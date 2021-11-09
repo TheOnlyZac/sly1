@@ -1,7 +1,9 @@
 #include "cheats.h"
-#include "savegame.h"
-#include <stdio.h>
-#include <string.h>
+
+#include <Savegame/savegame.h>
+
+#include <cstdio>
+#include <cstring>
 #include <iostream>
 
 char chetkido_ciphertext[] = "@KFWHJGL";
@@ -24,7 +26,7 @@ void activate_code_chetkido()
        ) || i_am_a_hacker) // Hacker override
    {
        // Copy encrypted string into sipher 
-       strcpy_s(cipher_slice, chetkido_ciphertext);
+       std::strncpy(cipher_slice, chetkido_ciphertext, 16);
        next_xor_char = cipher_slice;
        
        if (cipher_slice[0] != 0)
