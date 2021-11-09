@@ -122,7 +122,7 @@ struct PchzLevel
 extern GameSave* g_pgsCur;
 extern WorldSave* g_pwsCur;
 extern LevelSave* g_plsCur;
-PchzLevel pchzLevelTable[];
+extern PchzLevel pchzLevelTable[];
 
 void populatePchzLevelTable();
 int check_game_completion();

@@ -1,5 +1,6 @@
 #include "savegame.h"
-#include <stdio.h>
+
+#include <cstdio>
 #include <iostream>
 
 GameSave* g_pgsCur = new GameSave;

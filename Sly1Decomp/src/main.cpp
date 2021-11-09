@@ -1,5 +1,6 @@
-#include "savegame.h"
-#include "cheats.h"
+#include <Savegame/savegame.h>
+#include <Cheats/cheats.h>
+
 #include <stdio.h>
 #include <iostream>
 
