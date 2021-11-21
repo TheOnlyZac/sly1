@@ -62,7 +62,7 @@ void OnDifficultyWorldPostLoad(Difficulty* pdifficulty)
 	// Case: The transition is a quit-game reload
 	if (/*(g_transition.load_flags & 8) = 0 */ true) // todo implement g_transition
 	{
-		float newSuck = GLimitLm((LM*)&pdifficulty->props->unk_lm_0x8, g_plsCur->uSuck);
+		const float newSuck = GLimitLm((LM*)&pdifficulty->props->unk_lm_0x8, g_plsCur->uSuck);
 		ChangeSuck(newSuck, pdifficulty);
 	}
 	// Case: The ransition is not a quit-game reload
