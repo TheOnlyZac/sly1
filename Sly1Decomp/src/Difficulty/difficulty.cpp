@@ -4,6 +4,7 @@
 #include <Util/util.h>
 
 Difficulty* g_difficulty = new Difficulty();
+DifficultyProps g_difficultyEasy, g_difficultyMedium, g_difficultyHard;
 
 /* Update the suck value on the current level save data */
 void ChangeSuck(float nParam)

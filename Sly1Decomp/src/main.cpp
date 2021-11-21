@@ -22,7 +22,9 @@ int main(int argc, char* argv[])
     //std::cout << percent << "\n";
 
     // Difficulty
-    // todo
+    ChangeSuck(0.1);
+    OnDifficultyWorldPreLoad(g_difficulty);
+    OnDifficultyWorldPostLoad(g_difficulty);
 
     char _ = getchar();
     return 1;

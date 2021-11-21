@@ -5,7 +5,7 @@ struct LM
 	float gMin, gMax;
 	//float u4ag;
 
-	inline LM(float min, float max)
+	inline LM(float min = 0, float max = 1)
 	{
 		gMin = min;
 		gMax = max;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Util/util.h>
+
 enum DPS
 {
 	DPS_Normal = 0x0,
