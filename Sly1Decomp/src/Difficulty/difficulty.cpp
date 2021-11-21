@@ -3,6 +3,8 @@
 #include <Savegame/savegame.h>
 #include <Util/util.h>
 
+#include <iostream>
+
 Difficulty* g_difficulty = new Difficulty();
 DifficultyProps g_difficultyEasy, g_difficultyMedium, g_difficultyHard;
 
@@ -15,6 +17,12 @@ void ChangeSuck(float nParam)
 	g_plsCur->uSuck = newSuck; // set current level suck to clamped value
 
 	return;
+}
+
+/* Clears difficulty struct with all zeroes */
+void OnDifficultyGameLoad(Difficulty* pdifficulty)
+{
+	std::memset(pdifficulty, 0, sizeof(Difficulty));
 }
 
 /* Set the game difficulty props based on current save state */
@@ -93,4 +101,10 @@ void OnDifficultyWorldPostLoad(Difficulty* pdifficulty)
 
 		return;
 	}
+}
+
+// Stubbed, purpose unknown
+void OnDifficultyInitialTeleport(Difficulty* pdifficulty)
+{
+	return;
 }

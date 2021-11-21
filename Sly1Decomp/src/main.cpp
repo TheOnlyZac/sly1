@@ -17,15 +17,18 @@ int main(int argc, char* argv[])
     activate_code_chetkido(); // The password is: chetkido
 
     // Savegame
-    //populatePchzLevelTable();
+    populatePchzLevelTable();
     //int percent = calculate_percent_completion(g_pgsCur);
     //std::cout << percent << "\n";
 
     // Difficulty
     ChangeSuck(0.1);
+    OnDifficultyGameLoad(g_difficulty);
     OnDifficultyWorldPreLoad(g_difficulty);
     OnDifficultyWorldPostLoad(g_difficulty);
+    OnDifficultyInitialTeleport(g_difficulty);
 
+    std::cout << "Tests complete.\n";
     char _ = getchar();
     return 1;
 }
