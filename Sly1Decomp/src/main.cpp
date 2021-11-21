@@ -13,6 +13,10 @@ int main(int argc, char* argv[])
     std::cout << GLimitLm((LM*)&g_lmZeroOne, -4.3) << "\n"; // 0.0
     std::cout << GLimitLm((LM*)&g_lmZeroOne, 0.7) << "\n"; // 0.7
 
+	std::cout << GLimitAbs(1.3, 1) << "\n"; // 1.0
+	std::cout << GLimitAbs(-4.3, 1) << "\n"; // -1.0
+	std::cout << GLimitAbs(0.7, 1) << "\n"; // 0.7
+
     // Cheats
     activate_code_chetkido(); // The password is: chetkido
 

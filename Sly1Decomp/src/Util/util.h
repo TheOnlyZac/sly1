@@ -15,4 +15,8 @@ struct LM
 inline LM g_lmZeroOne(0, 1);
 
 float GLimitLm(LM* plm, float g);
+float GLimitAbs(float g, float absLimit);
+
+//float GRandInRange(float gLo, float gHi);
+//int NRandInRange(int nLo, int nHi);
 
