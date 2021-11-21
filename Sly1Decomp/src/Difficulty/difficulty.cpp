@@ -9,11 +9,11 @@ Difficulty* g_difficulty = new Difficulty();
 DifficultyProps g_difficultyEasy, g_difficultyMedium, g_difficultyHard;
 
 /* Update the suck value on the current level save data */
-void ChangeSuck(float nParam)
+void ChangeSuck(float nParam, Difficulty* pdifficulty)
 {
 	float newSuck;
 
-	newSuck = GLimitLm((LM*)&g_lmZeroOne, (g_plsCur->uSuck + nParam * 0.1)); // clamp new suck
+	newSuck = GLimitLm(&pdifficulty->props->suckLm, (g_plsCur->uSuck + nParam * 0.1)); // clamp new suck
 	g_plsCur->uSuck = newSuck; // set current level suck to clamped value
 
 	return;
@@ -68,7 +68,7 @@ void OnDifficultyWorldPostLoad(Difficulty* pdifficulty)
 	if (/*(g_transition.load_flags & 8) = 0 */ true) // todo implement g_transition
 	{
 		float newSuck = GLimitLm((LM*)&pdifficulty->props->unk_lm_0x8, g_plsCur->uSuck);
-		//SetPlayerSuck(newSuck, pdifficulty); //todo implement function
+		ChangeSuck(newSuck, pdifficulty);
 	}
 	// Case: The ransition is not a quit-game reload
 	else {
@@ -114,7 +114,7 @@ void OnDifficultyCollectKey(Difficulty* pdifficulty)
 {
 	LevelSave* lsCur = g_plsCur;
 
-	//SetPlayerSuck(0.0, pdifficulty); // todo implement function
+	ChangeSuck(0.0, pdifficulty);
 
 	lsCur->unk_suck_0x10 = 0.0;
 	lsCur->unk_field_0x70 = 0;

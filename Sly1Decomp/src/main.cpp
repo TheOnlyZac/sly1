@@ -22,13 +22,12 @@ int main(int argc, char* argv[])
     //std::cout << percent << "\n";
 
     // Difficulty
-    ChangeSuck(0.1);
     OnDifficultyGameLoad(g_difficulty);
     OnDifficultyWorldPreLoad(g_difficulty);
     OnDifficultyWorldPostLoad(g_difficulty);
+    ChangeSuck(0.1, g_difficulty);
     OnDifficultyInitialTeleport(g_difficulty);
     OnDifficultyCollectKey(g_difficulty);
-);
 
     std::cout << "Tests complete.\n";
     char _ = getchar();

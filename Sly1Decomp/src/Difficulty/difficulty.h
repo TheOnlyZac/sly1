@@ -11,8 +11,7 @@ enum DPS
 
 struct DifficultyProps
 {
-	float lmLo;
-	float lmHi;
+	LM suckLm;
 	LM* unk_lm_0x8;
 	float field_0xc;
 	float suckModifier;
@@ -46,7 +45,7 @@ extern DifficultyProps g_difficultyEasy;
 extern DifficultyProps g_difficultyMedium;
 extern DifficultyProps g_difficultyHard;
 
-void ChangeSuck(float nParam);
+void ChangeSuck(float nParam, Difficulty* pdifficulty);
 void OnDifficultyGameLoad(Difficulty* pdifficulty);
 void OnDifficultyWorldPreLoad(Difficulty* pdifficulty);
 void OnDifficultyWorldPostLoad(Difficulty* pdifficulty);
