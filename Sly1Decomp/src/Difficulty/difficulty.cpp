@@ -50,6 +50,9 @@ void OnDifficultyWorldPreLoad(Difficulty* pdifficulty)
 
 	pdifficulty->props = difficultyProps;
 
+	ChangeSuck(lsCur->uSuck, pdifficulty);
+	difficultyProps = pdifficulty->props; // redundant?
+
 	// todo: finish function
 }
 
