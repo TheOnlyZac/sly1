@@ -40,10 +40,8 @@ struct Difficulty
 	DPS dps;
 };
 
-extern Difficulty* g_difficulty;
-extern DifficultyProps g_difficultyEasy;
-extern DifficultyProps g_difficultyMedium;
-extern DifficultyProps g_difficultyHard;
+static Difficulty g_difficulty;
+static DifficultyProps g_difficultyEasy, g_difficultyMedium, g_difficultyHard;
 
 void ChangeSuck(float nParam, Difficulty* pdifficulty);
 void OnDifficultyGameLoad(Difficulty* pdifficulty);
