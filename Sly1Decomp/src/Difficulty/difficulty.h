@@ -11,14 +11,15 @@ struct DifficultyProps
 {
 	float lmLo;
 	float lmHi;
-	float unk_field_0xc;
+	LM* unk_lm_0x8;
+	float field_0xc;
 	float suckModifier;
-	float unk_field_0x14;
-	float unk_field_0x18;
-	float unk_field_0x1c;
-	float unk_field_0x20;
-	float unk_field_0x24;
-	float unk_field_0x28;
+	float field_0x14;
+	float field_0x18;
+	float field_0x1c;
+	float field_0x20;
+	float field_0x24;
+	float field_0x28;
 	float uSuckCharmLow;
 	int ccharmLow;
 	float uSuckCharmHigh;
@@ -27,7 +28,7 @@ struct DifficultyProps
 
 struct Difficulty
 {
-	int unk_field_0x0;
+	int field_0x0;
 	int ccoinRichMin;
 	int ccoinRichMax;
 	int ccoinPoorMin;
@@ -43,7 +44,10 @@ extern DifficultyProps g_difficultyEasy;
 extern DifficultyProps g_difficultyMedium;
 extern DifficultyProps g_difficultyHard;
 
-void ChangeSuck(int nParam);
+void ChangeSuck(float nParam); // complete
+void OnDifficultyWorldPreLoad(Difficulty* pdifficulty); // in-progress
+void OnDifficultyWorldPostLoad(Difficulty* pdifficulty);
+
 //void OnDifficultyAward(Difficulty* pdifficulty, int ccoinMin, int ccoinMax, Vector* ppos);
 //void OnDifficultyBreak(Difficulty* pdifficulty, Vector* ppos, int ccoin);
 void OnDifficultyCollectKey(Difficulty* pdifficulty);
@@ -52,8 +56,6 @@ void OnDifficultyInitialTeleport(Difficulty* pdifficulty);
 //void OnDifficultyMiniNpc(Difficulty* pdifficulty, Vector* ppos, int ccoin);
 void OnDifficultyPlayerDeath(Difficulty* pdifficulty);
 //void OnDifficultyTriggerCheckpoint(Difficulty* pdifficulty, Chkpnt* pchkpnt);
-void OnDifficultyWorldPostLoad(Difficulty* pdifficulty);
-void OnDifficultyWorldPreLoad(Difficulty* pdifficulty);
 //Difficulty* PdifficultyEnsureSw(SW* psw, ENSK ensk);
 void ResetSuckChkpnts(int nParam);
 void SetSuckChkpnts(int nParam);

@@ -9,13 +9,12 @@
 int main(int argc, char* argv[])
 {
     // Util
-    LM* lmZeroOne = new LM(0, 1);
-    std::cout << GLimitLm(lmZeroOne, 1.3) << "\n"; // 1.0
-    std::cout << GLimitLm(lmZeroOne, -4.3) << "\n"; // 0.0
-    std::cout << GLimitLm(lmZeroOne, 0.7) << "\n"; // 0.7
+    std::cout << GLimitLm((LM*)&g_lmZeroOne, 1.3) << "\n"; // 1.0
+    std::cout << GLimitLm((LM*)&g_lmZeroOne, -4.3) << "\n"; // 0.0
+    std::cout << GLimitLm((LM*)&g_lmZeroOne, 0.7) << "\n"; // 0.7
 
     // Cheats
-    activate_code_chetkido();
+    activate_code_chetkido(); // The password is: chetkido
 
     // Savegame
     //populatePchzLevelTable();
@@ -23,6 +22,7 @@ int main(int argc, char* argv[])
     //std::cout << percent << "\n";
 
     // Difficulty
+    // todo
 
     char _ = getchar();
     return 1;
