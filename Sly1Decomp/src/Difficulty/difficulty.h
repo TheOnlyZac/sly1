@@ -2,11 +2,11 @@
 
 #include <Util/util.h>
 
-enum DPS
+enum class DPS
 {
-	DPS_Normal = 0x0,
-	DPS_GivenCharms = 0x1,
-	DPS_Max = 0x2
+	Normal = 0x0,
+	GivenCharms = 0x1,
+	Max = 0x2
 };
 
 struct DifficultyProps

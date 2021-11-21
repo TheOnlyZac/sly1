@@ -92,7 +92,7 @@ void OnDifficultyWorldPostLoad(Difficulty* pdifficulty)
 		if (g_pgsCur->c_charms < csuckCharms)
 		{
 			//SetCcharm(numCharms); // todo implement function
-			pdifficulty->dps = DPS_GivenCharms;
+			pdifficulty->dps = DPS::GivenCharms;
 		}
 	}
 }

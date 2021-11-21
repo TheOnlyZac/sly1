@@ -12,7 +12,7 @@ struct LM
 	}
 };
 
-inline LM g_lmZeroOne(0, 1);
+static inline LM g_lmZeroOne(0, 1);
 
 float GLimitLm(LM* plm, float g);
 float GLimitAbs(float g, float absLimit);
