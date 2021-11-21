@@ -1,56 +1,56 @@
 #pragma once
 
-enum FGS
+enum class FGS : int
 {
-    FGS_FirstClue = 0x1,
-    FGS_HalfClues = 0x2,
-    FGS_AllClues = 0x4,
-    FGS_FirstVault = 0x8,
-    FGS_SecondVault = 0x10
+    FirstClue = 0x1,
+    HalfClues = 0x2,
+    AllClues = 0x4,
+    FirstVault = 0x8,
+    SecondVault = 0x10
 };
 
-enum FWS
+enum class FWS : int
 {
-    FWS_Visited = 0x1,
-    FWS_Lock_0 = 0x2,
-    FWS_Lock_1 = 0x4,
-    FWS_Lock_2 = 0x8,
-    FWS_Lock_3 = 0x10,
-    GRFWS_Lock_All = 0x1e
+    Visited = 0x1,
+    Lock_0 = 0x2,
+    Lock_1 = 0x4,
+    Lock_2 = 0x8,
+    Lock_3 = 0x10,
+    Lock_All = 0x1e
 };
 
-enum FLS
+enum class FLS : int
 {
-    FLS_Visited = 0x1,
-    FLS_KeyCollected = 0x2,
-    FLS_Secondary = 0x4,
-    FLS_Tertiary = 0x8,
-    FLS_BossDefeated = 0x10
+    Visited = 0x1,
+    KeyCollected = 0x2,
+    Secondary = 0x4,
+    Tertiary = 0x8,
+    BossDefeated = 0x10
 };
 
-enum GAMEWORLD
+enum class GAMEWORLD : int
 {
-    GAMEWORLD_Intro = 0x0,
-    GAMEWORLD_Underwater = 0x1,
-    GAMEWORLD_Muggshot = 0x2,
-    GAMEWORLD_Voodoo = 0x3,
-    GAMEWORLD_Snow = 0x4,
-    GAMEWORLD_Clockwerk = 0x5,
-    GAMEWORLD_Max = 0x6 
+    Intro = 0x0,
+    Underwater = 0x1,
+    Muggshot = 0x2,
+    Voodoo = 0x3,
+    Snow = 0x4,
+    Clockwerk = 0x5,
+    Max = 0x6 
 };
 
-enum WORLDLEVEL
+enum class WORLDLEVEL : int
 {
-    WORLDLEVEL_Approach = 0x0,
-    WORLDLEVEL_Hub = 0x1,
-    WORLDLEVEL_1 = 0x2,
-    WORLDLEVEL_2 = 0x3,
-    WORLDLEVEL_3 = 0x4,
-    WORLDLEVEL_4 = 0x5,
-    WORLDLEVEL_5 = 0x6,
-    WORLDLEVEL_6 = 0x7,
-    WORLDLEVEL_Boss = 0x8,
-    WORLDLEVEL_Max = 0x9
+    Approach = 0x0,
+    Hub = 0x1,
+    Level1 = 0x2,
+    Level2 = 0x3,
+    Level3 = 0x4,
+    Level4 = 0x5,
+    Level5 = 0x6,
+    Level6 = 0x7,
+    Boss = 0x8,
+    Max = 0x9
 };
 
 struct TestStruct

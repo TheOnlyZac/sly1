@@ -23,7 +23,8 @@ void OnDifficultyWorldPreLoad(Difficulty* pdifficulty)
 {
 	const GameSave* gsCur = g_pgsCur;
 	const LevelSave* lsCur = g_plsCur;
-	const int worldId = gsCur->gameworld;
+	const int gameworld = (int)(gsCur->gameworld);
+	const int worldlevel = (int)(gsCur->worldlevel);
 
 	DifficultyProps* difficultyProps;
 
@@ -32,11 +33,11 @@ void OnDifficultyWorldPreLoad(Difficulty* pdifficulty)
 	pdifficulty->ccoinPoorMax = 3;
 	pdifficulty->ccoinPoorMin = 1;
 
-	if (((worldId == GAMEWORLD_Intro) || (worldId == GAMEWORLD_Clockwerk)) || (gsCur->worldlevel == WORLDLEVEL_Hub))
+	if (((gameworld == (int)(GAMEWORLD::Intro)) || (gameworld == (int)(GAMEWORLD::Clockwerk))) || (worldlevel == (int)(WORLDLEVEL::Hub)))
 	{ // Case: World is 0 or 5, or current level is a hub (map ID 1)
 		difficultyProps = &g_difficultyEasy; // Set easy difficulty
 	}
-	else if ((lsCur->fls & FLS_KeyCollected) == 0)
+	else if (((int)(lsCur->fls) & (int)(FLS::KeyCollected)) == 0)
 	{ // Case: Key NOT collected on current level
 		difficultyProps = &g_difficultyMedium; // set medium difficulty
 	}
