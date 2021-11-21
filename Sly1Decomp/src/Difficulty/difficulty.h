@@ -46,15 +46,15 @@ extern DifficultyProps g_difficultyEasy;
 extern DifficultyProps g_difficultyMedium;
 extern DifficultyProps g_difficultyHard;
 
-void ChangeSuck(float nParam); // complete
+void ChangeSuck(float nParam);
 void OnDifficultyGameLoad(Difficulty* pdifficulty);
-void OnDifficultyWorldPreLoad(Difficulty* pdifficulty); // in-progress
+void OnDifficultyWorldPreLoad(Difficulty* pdifficulty);
 void OnDifficultyWorldPostLoad(Difficulty* pdifficulty);
 void OnDifficultyInitialTeleport(Difficulty* pdifficulty);
+void OnDifficultyCollectKey(Difficulty* pdifficulty);
 
 //void OnDifficultyAward(Difficulty* pdifficulty, int ccoinMin, int ccoinMax, Vector* ppos);
 //void OnDifficultyBreak(Difficulty* pdifficulty, Vector* ppos, int ccoin);
-void OnDifficultyCollectKey(Difficulty* pdifficulty);
 //void OnDifficultyMiniNpc(Difficulty* pdifficulty, Vector* ppos, int ccoin);
 void OnDifficultyPlayerDeath(Difficulty* pdifficulty);
 //void OnDifficultyTriggerCheckpoint(Difficulty* pdifficulty, Chkpnt* pchkpnt);

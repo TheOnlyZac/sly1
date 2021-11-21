@@ -27,6 +27,8 @@ int main(int argc, char* argv[])
     OnDifficultyWorldPreLoad(g_difficulty);
     OnDifficultyWorldPostLoad(g_difficulty);
     OnDifficultyInitialTeleport(g_difficulty);
+    OnDifficultyCollectKey(g_difficulty);
+);
 
     std::cout << "Tests complete.\n";
     char _ = getchar();

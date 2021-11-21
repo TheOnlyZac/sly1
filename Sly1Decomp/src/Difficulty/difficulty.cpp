@@ -23,6 +23,7 @@ void ChangeSuck(float nParam)
 void OnDifficultyGameLoad(Difficulty* pdifficulty)
 {
 	std::memset(pdifficulty, 0, sizeof(Difficulty));
+	return;
 }
 
 /* Set the game difficulty props based on current save state */
@@ -106,5 +107,19 @@ void OnDifficultyWorldPostLoad(Difficulty* pdifficulty)
 // Stubbed, purpose unknown
 void OnDifficultyInitialTeleport(Difficulty* pdifficulty)
 {
+	return;
+}
+
+void OnDifficultyCollectKey(Difficulty* pdifficulty)
+{
+	LevelSave* lsCur = g_plsCur;
+
+	//SetPlayerSuck(0.0, pdifficulty); // todo implement function
+
+	lsCur->unk_suck_0x10 = 0.0;
+	lsCur->unk_field_0x70 = 0;
+
+	std::memset(&lsCur->unk_field_0x74, 0, 1);
+
 	return;
 }
