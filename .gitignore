@@ -387,16 +387,13 @@ healthchecksdb
 **/CMakeScripts
 **/compile_commands.json
 
-include/divisible/*
 
 
 ## Local 
 
-.idea/*.xml
+#what the fuck were these rules ?? lol
 
-build/**/*
+.idea/
 
-include/*
-lib/*
-bin/*
-test/test_runner
+build*/
+
