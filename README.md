@@ -4,13 +4,15 @@ This is an expermental decompilation of Sly Cooper and the Thievius Raccoonus fo
 
 The goal of this project is to better understand how the game works. This repo does not contain any game assets or original code from the game's executable.
 
-## Beginner's Guide (Windows - Visual Studio)
+## Beginner's Guide
+
+### Windows - Visual Studio
 
 First, clone the repo to your PC. Then open Visual Studio, click `File > Open > CMake...`, and open the file `CMakeLists.txt`.
 
 To compile and run, make sure your startup item is `test.exe (Sly1Decomp\src\test.exe)`. This will build the project and execute the tests in `main.cpp.`
 
-## Beginner's Guide (Windows/Unix - MSYS2 MINGW64/UCRT64 - GNU/Linux)
+### Windows/Unix - MSYS2 MINGW64/UCRT64 - GNU/Linux
 
 Prereqs: gcc (optionally clang), cmake, ninja, git, (maybe others like base-devel)
 
