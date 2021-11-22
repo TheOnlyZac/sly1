@@ -1,9 +1,9 @@
-#include "difficulty.h"
-
-#include <Savegame/savegame.h>
-#include <Util/util.h>
+#include <difficulty.h>
+#include <savegame.h>
+#include <util.h>
 
 #include <iostream>
+#include <cstring>
 
 /* Update the suck value on the current level save data */
 void ChangeSuck(float nParam, Difficulty* pdifficulty)

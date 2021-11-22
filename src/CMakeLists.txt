@@ -1,19 +1,15 @@
 
 
 set (FILES
-	Util/util.cpp
-
-	Cheats/cheats.cpp
-
-	Savegame/savegame.cpp
-
-	Difficulty/difficulty.cpp
-
+	util.cpp
+	cheats.cpp
+	savegame.cpp
+	difficulty.cpp
 	# ...
 )
 
 add_library(DECOMP ${FILES})
-target_include_directories(DECOMP PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(DECOMP PUBLIC ${SLY1_INCLUDE_DIR})
 
 add_executable(test main.cpp)
 

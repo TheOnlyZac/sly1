@@ -1,7 +1,7 @@
-#include <Util/util.h>
-#include <Cheats/cheats.h>
-#include <Savegame/savegame.h>
-#include <Difficulty/difficulty.h>
+#include <util.h>
+#include <cheats.h>
+#include <savegame.h>
+#include <difficulty.h>
 
 #include <stdio.h>
 #include <iostream>

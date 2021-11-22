@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Util/util.h>
+#include <util.h>
 
 enum class DPS
 {

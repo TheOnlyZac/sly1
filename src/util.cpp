@@ -1,4 +1,4 @@
-#include "util.h"
+#include <util.h>
 
 /* Clamp the float to fall inside range given by the limit */
 float GLimitLm(LM* plm, float g)
