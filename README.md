@@ -12,4 +12,4 @@ To compile and run, make sure your startup item is `test.exe (Sly1Decomp\src\tes
 
 # Testing
 
-After building the project with `cmake --build . -j8`, you can run `ctest .` or `make check` in the build directory in order to run tests.
+You can run `cmake --build . --target check && ctest .`  or `make check` in the build directory in order to run tests.
