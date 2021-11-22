@@ -10,6 +10,6 @@ First, clone the repo to your PC. Then open Visual Studio, click `File > Open > 
 
 To compile and run, make sure your startup item is `test.exe (Sly1Decomp\src\test.exe)`. This will build the project and execute the tests in `main.cpp.`
 
-# Testing
+## Testing
 
 You can run `cmake --build . --target check && ctest .`  or `make check` in the build directory in order to run tests.
