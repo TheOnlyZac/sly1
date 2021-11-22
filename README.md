@@ -6,6 +6,21 @@ The goal of this project is to better understand how the game works. This repo d
 
 ## Beginner's Guide
 
+### Windows - Visual Studio
+
 First, clone the repo to your PC. Then open Visual Studio, click `File > Open > CMake...`, and open the file `CMakeLists.txt`.
 
 To compile and run, make sure your startup item is `test.exe (Sly1Decomp\src\test.exe)`. This will build the project and execute the tests in `main.cpp.`
+
+### Windows/Unix - MSYS2 MINGW64/UCRT64 - GNU/Linux
+
+Prereqs: gcc (optionally clang), cmake, ninja, git, (maybe others like base-devel)
+
+```bash
+git clone https://github.com/TheOnlyZac/sly1
+cd sly1
+mkdir build
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release
+cmake --build . -j8
+```
