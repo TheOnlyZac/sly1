@@ -11,19 +11,21 @@ char s_the_password_is[] = "The password is: ";
 
 void activate_code_chetkido()
 {
-    bool i_am_a_hacker = true;
+    bool overrideConditions = true;
 
     char cipher_slice[16];
     char* next_xor_char;
 
-    int completion = check_game_completion();
+    const int gameworld = (int)(g_pgsCur->gameworld);
+    const int worldlevel = (int)(g_pgsCur->worldlevel);
+    const int completion = check_game_completion();
 
    if ((
-       ((g_pgsCur->gameworld << 8 | g_pgsCur->worldlevel) == 0x400) && // curr level is A Perilous Ascent
+       ((gameworld << 8 | worldlevel) == 0x400) && // curr level is A Perilous Ascent
        ((completion & 6) == 6) && // Save file has 100% completion
        (g_pgsCur->c_coins == 99) && // Coin count is 99
        (g_pgsCur->c_lives == 0) // Lives count is 0
-       ) || i_am_a_hacker) // Hacker override
+       ) || overrideConditions) // Override conditions
    {
        // Copy encrypted string into sipher 
        std::strncpy(cipher_slice, chetkido_ciphertext, 16);

@@ -8,6 +8,7 @@ WorldSave* g_pwsCur = &(g_pgsCur->world_saves[0]);
 LevelSave* g_plsCur = &(g_pgsCur->world_saves[0].level_saves[0]);
 PchzLevel pchzLevelTable[0x2e];
 
+/* Debug: Populate default pchz table for testing */
 void populatePchzLevelTable()
 {
     for (int worldId = 0; worldId <= 5; worldId++)
@@ -23,11 +24,13 @@ void populatePchzLevelTable()
     }
 }
 
+
 int check_game_completion()
 {
     return 0b1111;
 }
 
+/* Calculates the percent completion on the current save data */
 int calculate_percent_completion(GameSave* pgs)
 {
     int cTasksChecked = 0;
@@ -38,39 +41,38 @@ int calculate_percent_completion(GameSave* pgs)
     {
         std::cout << i << " ";
         int levelId = *(int*)&((pchzLevelTable[0].level_id)) + i * sizeof(PchzLevel);
-        GAMEWORLD world = static_cast<GAMEWORLD>(levelId >> 8);
+        int world = levelId >> 8;
 
         // if world is part of Intro (ie. Splash, Paris, Hideout), skip it
-        if (world != GAMEWORLD_Intro)
+        if (world != static_cast<int>(GAMEWORLD::Intro))
         {
             // get all tasks for the current level
-            FLS levelTasks = *(FLS*)static_cast<FLS*>(&((pchzLevelTable[0].tasks)) + i);
+            int levelTasks = static_cast<int>(pchzLevelTable[0].tasks) + i;
 
             // get save data for the current level
             LevelSave* currLs = pgs->world_saves[world].level_saves + (levelId & 0xff);
+            int currFls = (int)(currLs->fls);
             
             // check if the level is visited 
             cTasksChecked++;
-            cTasksCompleted = cTasksCompleted + (currLs->fls & FLS_Visited);
+            cTasksCompleted = cTasksCompleted + (currFls & (int)(FLS::Visited));
 
-            /* This loops iterates over the bits in the FLS cmp and counts 
-            * how many of the bits are set, but only if those bits are also set 
-            * in the level_tasks we got from the level table
-            */
-            FLS flsMask = FLS_KeyCollected;
-            FLS tasksToCheck = static_cast<FLS>(levelTasks & FLS_KeyCollected);
-            while ((flsMask & (FLS_KeyCollected | FLS_Secondary | FLS_Tertiary)) != 0)
+            /* Loop over the bits in the FLS cmp and count how many are set, 
+            * but only if those bits are also set in the level_tasks the pchz table */
+            int flsMask = static_cast<int>(FLS::KeyCollected);
+            int tasksToCheck = (int)(levelTasks) & (int)(FLS::KeyCollected);
+            while ((flsMask & ((int)(FLS::KeyCollected) | (int)(FLS::Secondary) | (int)(FLS::Tertiary))) != 0)
             {
                 if (tasksToCheck != 0)
                 {
                     cTasksChecked++;
-                    if ((currLs->fls * flsMask) != 0)
+                    if ((currFls & flsMask) != 0)
                     {
                         cTasksCompleted++;
                     }
                 }
-                flsMask = static_cast<FLS>(flsMask << 1);
-                tasksToCheck = static_cast<FLS>(levelTasks & flsMask);
+                flsMask = flsMask << 1;
+                tasksToCheck = levelTasks & flsMask;
             }
         }
     }
@@ -83,7 +85,7 @@ int calculate_percent_completion(GameSave* pgs)
         cTasksChecked++;
         pCurrFws += 1;
         i--;
-        if ((fws_cmp & 0x20) != 0)
+        if (((int)(fws_cmp) & 0x20) != 0)
         {
             cTasksCompleted++;
         }

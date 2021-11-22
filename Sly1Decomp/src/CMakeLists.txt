@@ -1,9 +1,13 @@
 
 
 set (FILES
+	Util/util.cpp
+
 	Cheats/cheats.cpp
 
 	Savegame/savegame.cpp
+
+	Difficulty/difficulty.cpp
 
 	# ...
 )
