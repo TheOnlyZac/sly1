@@ -10,7 +10,7 @@ The goal of this project is to better understand how the game works. This repo d
 
 First, clone the repo to your PC. Then open Visual Studio, click `File > Open > CMake...`, and open the file `CMakeLists.txt`.
 
-To compile and run, make sure your startup item is `test.exe (Sly1Decomp\src\test.exe)`. This will build the project and execute the tests in `main.cpp.`
+To compile and run, make sure your startup item is `test.exe (Sly1Decomp\src\test.exe)`. This will build the project and execute the tests in `main.cpp`.
 
 ### Windows/Unix - MSYS2 MINGW64/UCRT64 - GNU/Linux
 

@@ -1,10 +1,8 @@
 #pragma once
 
-#include <savegame.h>
-
 struct Coin
 {
-
+	int _;
 };
 
 //int InitCoin(Coin* pcoin);

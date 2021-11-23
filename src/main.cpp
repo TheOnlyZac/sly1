@@ -2,6 +2,7 @@
 #include <cheats.h>
 #include <savegame.h>
 #include <difficulty.h>
+#include <coin.h>
 
 #include <stdio.h>
 #include <iostream>
