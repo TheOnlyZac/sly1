@@ -15,7 +15,7 @@ void OnCoinSmack(Coin * pcoin)
 		
 		int max_charms = 2 // todo: implment CcharmMost()
 		if (gsCur->c_charms < max_charms)
-		{ // Case: Player has max charms
+		{ // Case: Player does not have max charms
 			// Set coins to 0 and give Sly a lucky charm
 
 			g_pgsCur->c_coins = 0;
@@ -23,7 +23,7 @@ void OnCoinSmack(Coin * pcoin)
 			is a callback on the gui widget */
 		}
 		else
-		{ // Case: Player does not have max charms charms
+		{ // Case: Player has max charms
 			
 			if (gsCur->c_lives < 99)
 			{ // Case: Player does not have max lives
@@ -33,7 +33,7 @@ void OnCoinSmack(Coin * pcoin)
 				/* todo: gui stuff including the callback that actually gives the extra life */
 			}
 			else
-			{ // Case: Max coins, charms, and lives
+			{ // Case: Player has max lives
 				// make sure coins is capped at the max value and do nothing
 
 				g_pgsCur->c_coins = 99;
