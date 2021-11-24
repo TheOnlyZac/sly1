@@ -10,9 +10,9 @@ enum class FCHT : int
 	ResetWorld = 0x4000
 };
 
-static int g_grfcht;
+static const char chetkido_ciphertext[] = "@KFWHJGL";
+static const char s_the_password_is[] = "The password is: %s";
 
-static char chetkido_ciphertext[] = "@KFWHJGL";
-static char s_the_password_is[] = "The password is: %s";
+static int g_grfcht = (int)FCHT::None;
 
 void showChetkido();
