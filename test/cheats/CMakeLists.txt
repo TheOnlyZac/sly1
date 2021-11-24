@@ -1,2 +1,5 @@
 
-add_unit_test(PARALLEL TRUE NAME difftestexample SOURCES test.cpp LIBS DECOMP)
+add_unit_test(PARALLEL TRUE
+	NAME cheatstest
+	SOURCES test.cpp
+	LIBS DECOMP)
