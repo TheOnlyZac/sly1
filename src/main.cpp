@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 {
 	std::cout << "Starting main..." << std::endl;
 
-    // Savegame
+    // Save tests (todo: fix and move to tests folder)
     //populatePchzLevelTable();
     //int percent = calculate_percent_completion(g_pgsCur);
     //std::cout << percent << "\n";

@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 
 void SetCcoin(int nParam);
 int CcharmMost();

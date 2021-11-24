@@ -8,10 +8,9 @@
 char chetkido_buffer[64];
 int g_grfcht = (int)FCHT::None;
 
+/* Decrypt the chetkido string and output the hidden message */
 void showChetkido()
 {
-    const bool overrideConditions = true;
-
     char cipher_slice[16];
     char* next_xor_char;
 	char out_buffer[64];

@@ -2,7 +2,7 @@
 
 struct Coin
 {
-	int _;
+	// todo: add struct fields
 };
 
 //int InitCoin(Coin* pcoin);
