@@ -3,6 +3,7 @@ include (${CMAKE_CURRENT_SOURCE_DIR}/AddUnitTest.cmake)
 
 add_subdirectory(cheats)
 add_subdirectory(coin)
+add_subdirectory(difficulty)
 
 #...
 
