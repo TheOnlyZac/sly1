@@ -1,7 +1,7 @@
 
 include (${CMAKE_CURRENT_SOURCE_DIR}/AddUnitTest.cmake)
 
-add_subdirectory(difficulty)
+add_subdirectory(cheats)
 
 #...
 
