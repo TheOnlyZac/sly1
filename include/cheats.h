@@ -13,6 +13,7 @@ enum class FCHT : int
 static const char chetkido_ciphertext[] = "@KFWHJGL";
 static const char s_the_password_is[] = "The password is: %s";
 
-static int g_grfcht = (int)FCHT::None;
+extern char chetkido_buffer[]; // temp
+extern int g_grfcht;
 
 void showChetkido();
