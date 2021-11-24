@@ -12,7 +12,7 @@ First, clone the repo to your PC. Then open Visual Studio, click `File > Open > 
 
 ## Testing
 
-To execute unit testing, click `CMake > Tests > Run CTests`. The results will show in the Output window and the Test Explorer.
+To execute unit testing, first build the tests with `CMake > Build Only > Check`. Then run the tests with `CMake > Tests > Run CTests`. The results will show in the Output window and the Test Explorer.
 
 ### Windows/Unix - MSYS2 MINGW64/UCRT64 - GNU/Linux
 
