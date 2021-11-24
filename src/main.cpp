@@ -1,4 +1,5 @@
 #include <util.h>
+#include <game.h>
 #include <cheats.h>
 #include <savegame.h>
 #include <difficulty.h>

@@ -6,6 +6,7 @@ set (FILES
 	savegame.cpp
 	difficulty.cpp
 	coin.cpp
+	game.cpp
 	# ...
 )
 

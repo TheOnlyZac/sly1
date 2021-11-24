@@ -1,12 +1,10 @@
-#include <iostream>
 #include <cassert>
 
-#include <savegame.h>
 #include <cheats.h>
+#include <savegame.h>
 
 int main()
 {
-
 	g_pgsCur->gameworld = GAMEWORLD::Snow;
 	g_pgsCur->worldlevel = WORLDLEVEL::Approach;
 	g_pgsCur->c_coins = 99;

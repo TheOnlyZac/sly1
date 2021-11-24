@@ -1,8 +1,8 @@
-#include "..\include\coin.h"
-
+#include <coin.h>
+#include <game.h>
 #include <savegame.h>
 
-void OnCoinSmack(Coin * pcoin)
+void OnCoinSmack(Coin* pcoin)
 {
 	const GameSave* gsCur = g_pgsCur;
 	const int newCoinCount = g_pgsCur->c_coins + 1;
@@ -13,7 +13,7 @@ void OnCoinSmack(Coin * pcoin)
 	if (newCoinCount > 99)
 	{ // Case: Player has max coins
 		
-		int max_charms = 2; // todo: implment CcharmMost()
+		int max_charms = CcharmMost();
 		if (gsCur->c_charms < max_charms)
 		{ // Case: Player does not have max charms
 			// Set coins to 0 and give Sly a lucky charm
@@ -21,6 +21,7 @@ void OnCoinSmack(Coin * pcoin)
 			g_pgsCur->c_coins = 0;
 			/* todo: gui widget stuff, the function that actually gives the lucky charm
 			is a callback on the gui widget */
+			g_pgsCur->c_charms += 1; // temp
 		}
 		else
 		{ // Case: Player has max charms
@@ -31,6 +32,7 @@ void OnCoinSmack(Coin * pcoin)
 
 				g_pgsCur->c_coins = 0;
 				/* todo: gui stuff including the callback that actually gives the extra life */
+				g_pgsCur->c_lives += 1; // temp
 			}
 			else
 			{ // Case: Player has max lives

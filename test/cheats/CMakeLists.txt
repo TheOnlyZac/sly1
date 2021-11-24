@@ -1,5 +1,5 @@
 
 add_unit_test(PARALLEL TRUE
-	NAME cheatstest
+	NAME cheatsTest
 	SOURCES test.cpp
 	LIBS DECOMP)
