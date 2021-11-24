@@ -5,9 +5,6 @@
 #include <cstring>
 #include <iostream>
 
-char chetkido_ciphertext[] = "@KFWHJGL";
-char s_the_password_is[] = "The password is: %s";
-
 void showChetkido()
 {
     const bool overrideConditions = true;

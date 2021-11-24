@@ -1,4 +1,5 @@
 #include <game.h>
+#include <cheats.h>
 #include <savegame.h>
 
 /* Sets the number of coins on the save file */
@@ -14,6 +15,16 @@ void SetCcoin(int nParam)
 int CcharmMost()
 {
 	return 2;
+}
+
+/* Returns true if Sly has or can use a charm */
+bool FCharmAvailable()
+{
+	if ((g_pgsCur->c_charms > 0) || ((g_grfcht & (int)(FCHT::InfiniteCharms)) != (int)FCHT::None))
+	{
+		return true;
+	}
+	return false;
 }
 
 /* Sets the number of charms on the save file */
