@@ -5,10 +5,11 @@ set (FILES
 	cheats.cpp
 	savegame.cpp
 	difficulty.cpp
+	coin.cpp
 	# ...
 )
 
-add_library(DECOMP SHARED ${FILES})
+add_library(DECOMP STATIC ${FILES})
 target_include_directories(DECOMP PUBLIC ${SLY1_INCLUDE_DIR})
 
 add_executable(main main.cpp)

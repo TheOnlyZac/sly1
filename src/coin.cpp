@@ -13,7 +13,7 @@ void OnCoinSmack(Coin * pcoin)
 	if (newCoinCount > 99)
 	{ // Case: Player has max coins
 		
-		int max_charms = 2 // todo: implment CcharmMost()
+		int max_charms = 2; // todo: implment CcharmMost()
 		if (gsCur->c_charms < max_charms)
 		{ // Case: Player has max charms
 			// Set coins to 0 and give Sly a lucky charm
