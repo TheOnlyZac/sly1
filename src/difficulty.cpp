@@ -1,6 +1,7 @@
-#include <difficulty.h>
-#include <savegame.h>
 #include <util.h>
+#include <game.h>
+#include <savegame.h>
+#include <difficulty.h>
 
 #include <iostream>
 #include <cstring>
@@ -92,7 +93,7 @@ void OnDifficultyWorldPostLoad(Difficulty* pdifficulty)
 
 		if (g_pgsCur->c_charms < csuckCharms)
 		{
-			//SetCcharm(numCharms); // todo implement function
+			SetCcharm(csuckCharms); // todo implement function
 			pdifficulty->dps = DPS::GivenCharms;
 		}
 	}

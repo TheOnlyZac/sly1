@@ -2,5 +2,4 @@
 #pragma once
 
 int CcharmMost();
-
-static inline int test = 3;
+void SetCcharm(int nParam);
