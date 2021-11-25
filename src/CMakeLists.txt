@@ -7,6 +7,9 @@ set (FILES
 	difficulty.cpp
 	coin.cpp
 	game.cpp
+	xform.cpp
+	aseg.cpp
+	wipe.cpp
 	# ...
 )
 
