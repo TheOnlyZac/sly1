@@ -16,7 +16,7 @@ Build the unit tests with `CMake > Build Only > Check` and run them with `CMake 
 
 ### Windows/Unix - MSYS2 MINGW64/UCRT64 - GNU/Linux
 
-Prerequisites: gcc (optionally clang), cmake, ninja, git
+Prerequisites: gcc (optionally clang), cmake, ninja, git, and base-devel
 
 ```bash
 git clone https://github.com/TheOnlyZac/sly1
