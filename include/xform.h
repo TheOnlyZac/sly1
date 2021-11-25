@@ -15,7 +15,7 @@ enum class EXITS : int
 	Max = 0x6
 };
 
-class Exit
+struct Exit
 {
 	int padding[183];
 
