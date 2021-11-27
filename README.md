@@ -1,10 +1,10 @@
 # Sly Cooper and the Thievius Raccoonus
 
-This is an experimental decompilation of Sly Cooper and the Thievius Raccoonus for the PlayStation 2. The project is based on the NTSC-U version of the game (SCUS-971.98).
+This is an experimental decompilation of Sly Cooper and the Thievius Raccoonus for the PlayStation 2. The project is based on the NTSC-U version of the game, `SCUS-971.98`.
 
 The goal of this project is to better understand how the game works. This repo does not contain any game assets or original code from the game's executable.
 
-## Beginner's Guide
+## Getting Started
 
 ### Windows - Visual Studio
 
@@ -30,3 +30,13 @@ cmake --build . -j8
 #### Testing
 
 You can run `cmake --build . --target check && ctest .`  or `make check` in the build directory in order to run tests.
+
+## Style Guide
+
+Our goal is to imitate the original source code as closely as possible based on the debug symbols from the [May 2002 prototype](https://hiddenpalace.org/Sly_Cooper_and_the_Thievius_Raccoonus_(May_19,_2002_prototype)).
+
+* Original symbol names should be used wherever possible.
+* Function and class names use `UpperCamelCase`.
+* Variables and function parameters use `lowerCamelCase`.
+* Variables are named according to [Hungarian Notation](https://en.wikipedia.org/wiki/Hungarian_notation), which uses letter prefixes to denote the variable type.
+* Enum types are named in `ALLCAPS`.
