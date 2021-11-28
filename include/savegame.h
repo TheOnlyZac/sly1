@@ -124,6 +124,6 @@ extern WorldSave* g_pwsCur;
 extern LevelSave* g_plsCur;
 extern PchzLevel pchzLevelTable[];
 
-void populatePchzLevelTable();
-int check_game_completion();
-int calculate_percent_completion(GameSave* pgs);
+void PopulatePchzLevelTable();
+int FGameCompletion();
+int CalculatePercentCompletion(GameSave* pgs);

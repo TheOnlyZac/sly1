@@ -5,11 +5,14 @@
 #include <cstring>
 #include <iostream>
 
-char chetkido_buffer[64];
+char chetkido_buffer[64]; // temp
 int g_grfcht = (int)FCHT::None;
 
+static const char chetkido_ciphertext[] = "@KFWHJGL";
+static const char s_the_password_is[] = "The password is: %s";
+
 /* Decrypt the chetkido string and output the hidden message */
-void showChetkido()
+void CheatActivateChetkido()
 {
     char cipher_slice[16];
     char* next_xor_char;
@@ -17,7 +20,7 @@ void showChetkido()
 
     const int gameworld = (int)(g_pgsCur->gameworld);
     const int worldlevel = (int)(g_pgsCur->worldlevel);
-    const int completion = check_game_completion();
+    const int completion = FGameCompletion();
 
    if (
        ((gameworld << 8 | worldlevel) == 0x400) && // curr level is A Perilous Ascent

@@ -12,12 +12,12 @@ int main()
 	g_pgsCur->c_coins = 99;
 	g_pgsCur->c_lives = 0;
 
-	showChetkido();
+	CheatActivateChetkido();
 	assert(strstr(&chetkido_buffer[0], "The password is: chetkido") != NULL);
 
 	g_pgsCur->c_coins = 98;
 
-	showChetkido();
+	CheatActivateChetkido();
 	assert(strstr(&chetkido_buffer[0], "The password is: chetkido") == NULL);
 
 	return 0;

@@ -9,7 +9,7 @@ LevelSave* g_plsCur = &(g_pgsCur->world_saves[0].level_saves[0]);
 PchzLevel pchzLevelTable[0x2e];
 
 /* Debug: Populate default pchz table for testing */
-void populatePchzLevelTable()
+void PopulatePchzLevelTable()
 {
     for (int worldId = 0; worldId <= 5; worldId++)
     {
@@ -25,13 +25,13 @@ void populatePchzLevelTable()
 }
 
 
-int check_game_completion()
+int FGameCompletion()
 {
     return 0b1111;
 }
 
 /* Calculates the percent completion on the current save data */
-int calculate_percent_completion(GameSave* pgs)
+int CalculatePercentCompletion(GameSave* pgs)
 {
     int cTasksChecked = 0;
     int cTasksCompleted = 0;
