@@ -1,6 +1,6 @@
 #include <game.h>
 #include <joy.h>
-#include <savegame.h>
+#include <gs.h>
 
 /* Sets the number of coins on the save file */
 void SetCcoin(int nParam)

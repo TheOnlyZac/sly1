@@ -1,6 +1,6 @@
 #include <util.h>
 #include <game.h>
-#include <savegame.h>
+#include <gs.h>
 #include <difficulty.h>
 
 #include <iostream>

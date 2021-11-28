@@ -1,6 +1,6 @@
 #include <coin.h>
 #include <game.h>
-#include <savegame.h>
+#include <gs.h>
 
 void OnCoinSmack(Coin* pcoin)
 {

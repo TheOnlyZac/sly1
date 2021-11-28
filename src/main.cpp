@@ -1,12 +1,5 @@
-#include <util.h>
-#include <game.h>
+#include <gs.h>
 #include <joy.h>
-#include <savegame.h>
-#include <difficulty.h>
-#include <coin.h>
-#include <aseg.h>
-#include <wipe.h>
-#include <xform.h>
 
 #include <stdio.h>
 #include <iostream>

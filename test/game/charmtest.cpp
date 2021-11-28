@@ -1,6 +1,6 @@
 #include <game.h>
 #include <joy.h>
-#include <savegame.h>
+#include <gs.h>
 
 #include <cassert>
 

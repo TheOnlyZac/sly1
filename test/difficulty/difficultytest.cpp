@@ -1,5 +1,5 @@
 #include <difficulty.h>
-#include <savegame.h>
+#include <gs.h>
 
 #include <cassert>
 

@@ -3,7 +3,7 @@
 set (FILES
 	util.cpp
 	joy.cpp
-	savegame.cpp
+	gs.cpp
 	difficulty.cpp
 	coin.cpp
 	game.cpp
@@ -11,7 +11,7 @@ set (FILES
 	# ...
 )
 
-add_library(DECOMP SHARED ${FILES})
+add_library(DECOMP STATIC ${FILES}) # todo: use shared
 target_include_directories(DECOMP PUBLIC ${SLY1_INCLUDE_DIR})
 
 add_executable(main main.cpp)

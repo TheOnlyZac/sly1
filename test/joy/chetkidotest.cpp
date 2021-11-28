@@ -1,5 +1,5 @@
 #include <joy.h>
-#include <savegame.h>
+#include <gs.h>
 
 #include <cassert>
 #include <iostream>

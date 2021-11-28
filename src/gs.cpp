@@ -1,4 +1,4 @@
-#include <savegame.h>
+#include <gs.h>
 
 #include <cstdio>
 #include <iostream>
