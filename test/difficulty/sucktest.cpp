@@ -5,12 +5,8 @@
 
 int main()
 {
-	// todo
+	// Initialize difficulty
 	OnDifficultyGameLoad(&g_difficulty);
-
-	// todo
-	OnDifficultyWorldPreLoad(&g_difficulty);
-	OnDifficultyWorldPostLoad(&g_difficulty);
 
 	// Test changing level suck
 	g_plsCur->uSuck = 0.0;
@@ -27,4 +23,5 @@ int main()
 
 	// Test collect key scenario
 	OnDifficultyCollectKey(&g_difficulty);
+	assert(g_plsCur->uSuck == 0.0);
 }
