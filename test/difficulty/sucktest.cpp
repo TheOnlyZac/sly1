@@ -7,6 +7,8 @@ int main()
 {
 	// Initialize difficulty
 	OnDifficultyGameLoad(&g_difficulty);
+	OnDifficultyWorldPreLoad(&g_difficulty);
+	OnDifficultyWorldPostLoad(&g_difficulty);
 
 	// Test changing level suck
 	g_plsCur->uSuck = 0.0;

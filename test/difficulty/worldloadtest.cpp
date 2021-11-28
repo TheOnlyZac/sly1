@@ -7,11 +7,10 @@ int main()
 {
 	// Initialize difficulty
 	OnDifficultyGameLoad(&g_difficulty);
-
-	// Test world pre load and post loat
 	OnDifficultyWorldPreLoad(&g_difficulty);
 	OnDifficultyWorldPostLoad(&g_difficulty);
-	assert(0); // todo
+
+	assert(0); // todo: test initializing difficulty under different conditions
 
 	return 0;
 }
