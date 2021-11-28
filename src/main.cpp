@@ -33,14 +33,16 @@ int main(int argc, char* argv[])
 			std::cout << std::endl << "Thanks for playing!" << std::endl;
 			return 1;
 			break;
-		case ' ': // Show jump button pressed
+		case 'x': // Show jump button pressed
+		case 'X':
 			std::cout << "jump ";
 			break;
 		case 'o': // Show circle button pressed
+		case 'O':
 			std::cout << "circle ";
 
 			// Check for easter egg (jump and press the circle button)
-			if (chLastKey == ' ')
+			if (chLastKey == 'x' || chLastKey == 'X')
 			{
 				CheatActivateChetkido();
 				std::cout << std::endl << chetkido_buffer << std::endl;
