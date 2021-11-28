@@ -14,7 +14,7 @@ void SetExitExits(Exit* pexit, EXITS exits)
 	{
 		if (exits != EXITS::Exiting)
 		{
-			//levelIntoBlot::unknown()
+			//levelInfoBlot::unknown()
 			goto set_exits;
 		}
 	}
