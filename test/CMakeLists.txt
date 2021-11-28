@@ -6,6 +6,7 @@ add_subdirectory(coin)
 add_subdirectory(difficulty)
 add_subdirectory(game)
 add_subdirectory(xform)
+add_subdirectory(savegame)
 
 #...
 
