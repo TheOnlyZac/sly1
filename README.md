@@ -8,11 +8,11 @@ The goal of this project is to better understand how the game works. This repo d
 
 ### Windows - Visual Studio
 
-First, clone the repo to your PC. Then open Visual Studio, click `File > Open > CMake...`, and open the file `CMakeLists.txt`. To build and run the main program, set your startup item to `main.exe`.
+Clone the repo to your machine and open Visual Studio. Click `File > Open > CMake...` and open the file `CMakeLists.txt` in the main project folder. To build and run the main program, set your startup item to `main.exe`.
 
 #### Testing
 
-Build the unit tests with `CMake > Build Only > Check` and run them with `CMake > Tests > Run CTests`. The results will show in the Output window and the Test Explorer.
+Build the solution with `Build > Build All` and run tests with the Test Explorer window. The results will show in the Output window and the Test Explorer.
 
 ### Windows/Unix - MSYS2 MINGW64/UCRT64 - GNU/Linux
 
@@ -29,7 +29,7 @@ cmake --build . -j8
 
 #### Testing
 
-You can run `cmake --build . --target check && ctest .`  or `make check` in the build directory in order to run tests.
+In the build directory, run `cmake --build . --target check && ctest .`  or `make check` to run tests.
 
 ## Style Guide
 

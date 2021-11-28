@@ -26,5 +26,18 @@ int main()
 	g_grfcht |= (int)FCHT::InfiniteCharms; // enable infinite charms cheat
 	assert(FCharmAvailable() == true);
 
+	// Test setting charm count
+	SetCcharm(0);
+	assert(g_pgsCur->c_charms == 0);
+
+	SetCcharm(1);
+	assert(g_pgsCur->c_charms == 1);
+
+	SetCcharm(3);
+	assert(g_pgsCur->c_charms == 3);
+
+	SetCcharm(-1);
+	assert(g_pgsCur->c_charms == -1);
+
 	return 0;
 }

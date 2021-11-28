@@ -4,7 +4,7 @@
 
 int main()
 {
-	Exit* exit = new Exit();
+	EXIT* exit = new EXIT();
 
 	SetExitExits(exit, EXITS::Blocked);
 	assert(exit->fKeyed == EXITS::Blocked);

@@ -1,2 +1,2 @@
 
-add_unit_test(PARALLEL TRUE NAME gs_percent_test SOURCES percenttest.cpp LIBS DECOMP)
+add_unit_test(PARALLEL TRUE NAME gs.percent_completion SOURCES percenttest.cpp LIBS DECOMP)

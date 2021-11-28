@@ -5,7 +5,7 @@ macro(add_unit_test)
     cmake_parse_arguments(TEST "${options}" "${oneValueArgs}"
                                "${multiValueArgs}" ${ARGN})
     message(STATUS "Generating Test ${TEST_NAME}...")
-    add_executable(${TEST_NAME} EXCLUDE_FROM_ALL ${TEST_SOURCES})
+    add_executable(${TEST_NAME} ${TEST_SOURCES})
     target_link_libraries(${TEST_NAME} ${TEST_LIBS})
     if(TEST_PARALLEL AND HAVE_MPI)
       set(TESTCOMMAND ${MPIEXEC})

@@ -1,2 +1,2 @@
 
-add_unit_test(PARALLEL TRUE NAME coin_collect_test SOURCES collecttest.cpp LIBS DECOMP)
+add_unit_test(PARALLEL TRUE NAME coin.collect SOURCES collecttest.cpp LIBS DECOMP)

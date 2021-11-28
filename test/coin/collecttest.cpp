@@ -5,7 +5,7 @@
 
 int main()
 {
-	Coin coin = Coin();
+	COIN coin = COIN();
 
 	// Test collecting a coin normally
 	g_pgsCur->c_coins = 0;
