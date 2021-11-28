@@ -15,7 +15,7 @@ const char sThePasswordIs[] = "The password is: %s";
 void CheatActivateChetkido()
 {
     char cipherSlice[16];
-    char* next_xor_char;
+    char* nextXorChar;
 	char out_buffer[64];
 
     const int gameworld = (int)(g_pgsCur->gameworld);
@@ -30,18 +30,18 @@ void CheatActivateChetkido()
    {
        // Copy encrypted string into cipher 
        std::strncpy(cipherSlice, sChetkidoCiphertext, 16);
-       next_xor_char = cipherSlice;
+       nextXorChar = cipherSlice;
        
-	   // Decrypt the string "@KFWHJGL" resulting in "chetkido"
-	   // (XOR cipher with key 0x23)
+	   /* Decrypt the string "@KFWHJGL" resulting in "chetkido"
+	    (XOR cipher with key 0x23) */
        if (cipherSlice[0] != 0)
        {
            while (true)
            {
-               *next_xor_char = cipherSlice[0] ^ 0x23;
-               next_xor_char++;
-               if (*next_xor_char == 0) break;
-               cipherSlice[0] = *next_xor_char;
+               *nextXorChar = cipherSlice[0] ^ 0x23;
+               nextXorChar++;
+               if (*nextXorChar == 0) break;
+               cipherSlice[0] = *nextXorChar;
            }
        }
 

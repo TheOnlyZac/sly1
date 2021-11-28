@@ -53,13 +53,7 @@ enum class WORLDLEVEL : int
     Max = 0x9
 };
 
-struct TestStruct
-{
-    int test;
-    float test_two;
-};
-
-struct LevelSave
+struct LS
 {
     FLS fls;
     float playtime;
@@ -74,9 +68,9 @@ struct LevelSave
     unsigned int unk_field_0x74;
 };
 
-struct WorldSave
+struct WS
 {
-    LevelSave level_saves[9];
+    LS level_saves[9];
     int c_keys;
     int c_vaults;
     int c_mts;
@@ -84,13 +78,13 @@ struct WorldSave
     FWS fws;
 };
 
-struct GameSave
+struct GS
 {
     FGS fgs;
     int size;
     unsigned int unk;
     float playtime;
-    WorldSave world_saves[6];
+    WS world_saves[6];
     GAMEWORLD gameworld;
     WORLDLEVEL worldlevel;
     int c_lives;
@@ -119,11 +113,11 @@ struct PchzLevel
     FLS tasks;
 };
 
-extern GameSave* g_pgsCur;
-extern WorldSave* g_pwsCur;
-extern LevelSave* g_plsCur;
+extern GS* g_pgsCur;
+extern WS* g_pwsCur;
+extern LS* g_plsCur;
 extern PchzLevel pchzLevelTable[];
 
 void PopulatePchzLevelTable();
 int FGameCompletion();
-int CalculatePercentCompletion(GameSave* pgs);
+int CalculatePercentCompletion(GS* pgs);

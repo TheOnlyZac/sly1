@@ -4,7 +4,7 @@
 
 void OnCoinSmack(Coin* pcoin)
 {
-	const GameSave* gsCur = g_pgsCur;
+	const GS* gsCur = g_pgsCur;
 	const int newCoinCount = g_pgsCur->c_coins + 1;
 	
 	// Increment coin count

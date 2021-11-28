@@ -3,9 +3,9 @@
 #include <cstdio>
 #include <iostream>
 
-GameSave* g_pgsCur = new GameSave;
-WorldSave* g_pwsCur = &(g_pgsCur->world_saves[0]);
-LevelSave* g_plsCur = &(g_pgsCur->world_saves[0].level_saves[0]);
+GS* g_pgsCur = new GS;
+WS* g_pwsCur = &(g_pgsCur->world_saves[0]);
+LS* g_plsCur = &(g_pgsCur->world_saves[0].level_saves[0]);
 PchzLevel pchzLevelTable[0x2e];
 
 /* Debug: Populate default pchz table for testing */
@@ -31,7 +31,7 @@ int FGameCompletion()
 }
 
 /* Calculates the percent completion on the current save data */
-int CalculatePercentCompletion(GameSave* pgs)
+int CalculatePercentCompletion(GS* pgs)
 {
     int cTasksChecked = 0;
     int cTasksCompleted = 0;
@@ -50,7 +50,7 @@ int CalculatePercentCompletion(GameSave* pgs)
             int levelTasks = static_cast<int>(pchzLevelTable[0].tasks) + i;
 
             // get save data for the current level
-            LevelSave* currLs = pgs->world_saves[world].level_saves + (levelId & 0xff);
+            LS* currLs = pgs->world_saves[world].level_saves + (levelId & 0xff);
             int currFls = (int)(currLs->fls);
             
             // check if the level is visited 

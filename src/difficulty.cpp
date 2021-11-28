@@ -22,8 +22,8 @@ void OnDifficultyGameLoad(Difficulty* pdifficulty)
 /* Set the game difficulty props based on current save state */
 void OnDifficultyWorldPreLoad(Difficulty* pdifficulty)
 {
-	const GameSave* gsCur = g_pgsCur;
-	const LevelSave* lsCur = g_plsCur;
+	const GS* gsCur = g_pgsCur;
+	const LS* lsCur = g_plsCur;
 	const int gameworld = (int)(gsCur->gameworld);
 	const int worldlevel = (int)(gsCur->worldlevel);
 
@@ -108,7 +108,7 @@ void OnDifficultyInitialTeleport(Difficulty* pdifficulty)
 // Resets some difficulty values upon collecting a key
 void OnDifficultyCollectKey(Difficulty* pdifficulty)
 {
-	LevelSave* lsCur = g_plsCur;
+	LS* lsCur = g_plsCur;
 
 	ChangeSuck(0.0, pdifficulty);
 
