@@ -5,11 +5,20 @@
 #include <cstring>
 #include <iostream>
 
+const char sChetkidoCiphertext[] = "@KFWHJGL";
+const char sThePasswordIs[] = "The password is: %s";
+
 char chetkido_buffer[64]; // temp
 int g_grfcht = (int)FCHT::None;
 
-const char sChetkidoCiphertext[] = "@KFWHJGL";
-const char sThePasswordIs[] = "The password is: %s";
+void AddFcht(int nParam)
+{
+	g_grfcht |= nParam & ~(int)FCHT::ResetWorld;
+	if ((nParam & 0x4000) != 0)
+	{ // Case: Cheat reload flag set
+		//ResetWorld(FTRANS::None); // todo
+	}
+}
 
 /* Decrypt the chetkido string and output the hidden message */
 void CheatActivateChetkido()

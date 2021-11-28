@@ -13,4 +13,5 @@ enum class FCHT : int
 extern char chetkido_buffer[]; // temp
 extern int g_grfcht;
 
+void AddFcht(int nParam);
 void CheatActivateChetkido();
