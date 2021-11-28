@@ -8,8 +8,6 @@ set (FILES
 	coin.cpp
 	game.cpp
 	xform.cpp
-	aseg.cpp
-	wipe.cpp
 	# ...
 )
 
