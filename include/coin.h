@@ -3,6 +3,7 @@
 struct Coin
 {
 	// todo: add struct fields
+	int padding[0x3ac];
 };
 
 //int InitCoin(Coin* pcoin);
