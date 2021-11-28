@@ -1,6 +1,6 @@
 #include <util.h>
 #include <game.h>
-#include <cheats.h>
+#include <joy.h>
 #include <savegame.h>
 #include <difficulty.h>
 #include <coin.h>

@@ -2,7 +2,7 @@
 
 set (FILES
 	util.cpp
-	cheats.cpp
+	joy.cpp
 	savegame.cpp
 	difficulty.cpp
 	coin.cpp

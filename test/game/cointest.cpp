@@ -1,5 +1,5 @@
 #include <game.h>
-#include <cheats.h>
+#include <joy.h>
 #include <savegame.h>
 
 #include <cassert>
