@@ -15,23 +15,23 @@ void SetExitExits(Exit* pexit, EXITS exits)
 		if (exits != EXITS::Exiting)
 		{
 			//levelIntoBlot::unknown()
-			goto LAB_001f47a8;
+			goto set_exits;
 		}
 	}
 	else
 	{
-		LAB_001f47a8:
+	set_exits:
 		if (exits != EXITS::Exiting)
 		{
 			pexit->fKeyed = exits;
-			goto LAB_001f47e8;
+			goto update_clock;
 		}
 	}
 
 	//pexit->field_0x2c8 = pexit->field_0x2c8 & 0xfffffcffffffffff | 0x1000000000;
 	//IncrementSwHandsOff((SW *)pexit->field_0x14);
 	pexit->fKeyed = exits;
-LAB_001f47e8:
+update_clock:
 	return; //temp
 	//pexit->fFollowDefault = g_clock.animation_timer; // todo: implement clock
 }
