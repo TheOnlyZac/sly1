@@ -1,6 +1,7 @@
 #include <xform.h>
 
-void SetExitExits(Exit* pexit, EXITS exits)
+/* Set EXIT state */
+void SetExitExits(EXIT* pexit, EXITS exits)
 {
 	/* If exits is already the given value, return */
 	if (exits == pexit->fKeyed)

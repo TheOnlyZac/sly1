@@ -1,10 +1,12 @@
 #pragma once
 
+/* Object ID */
 enum class OID : int
 {
 	// todo
 };
 
+/* World ID */
 enum class WID : int
 {
 	// todo

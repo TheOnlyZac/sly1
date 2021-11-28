@@ -4,6 +4,7 @@
 #include <aseg.h>
 #include <wipe.h>
 
+/* EXIT State */
 enum class EXITS : int
 {
 	Blocked = 0x0,
@@ -15,7 +16,8 @@ enum class EXITS : int
 	Max = 0x6
 };
 
-struct Exit
+/* Warps placed in the world to move from one level to another */
+struct EXIT
 {
 	int padding[183];
 
@@ -42,4 +44,4 @@ struct Exit
 	float dtTriggerWipe;
 };
 
-void SetExitExits(Exit* pexit, EXITS exits);
+void SetExitExits(EXIT* pexit, EXITS exits);

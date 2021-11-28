@@ -11,6 +11,7 @@ const char sThePasswordIs[] = "The password is: %s";
 char chetkido_buffer[64]; // temp
 int g_grfcht = (int)FCHT::None;
 
+/* Sets the given cheat flag and reloads the level if necessary */
 void AddFcht(int nParam)
 {
 	g_grfcht |= nParam & ~(int)FCHT::ResetWorld;

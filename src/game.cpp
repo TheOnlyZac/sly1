@@ -16,7 +16,7 @@ int CcharmMost()
 	return 2;
 }
 
-/* Returns true if Sly has or can use a charm */
+/* Returns true if Sly has a charm or infinite charms cheat is enabled */
 bool FCharmAvailable()
 {
 	if ((g_pgsCur->c_charms > 0) || ((g_grfcht & (int)(FCHT::InfiniteCharms)) != (int)FCHT::None))

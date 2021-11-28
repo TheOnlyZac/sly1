@@ -2,7 +2,8 @@
 #include <game.h>
 #include <gs.h>
 
-void OnCoinSmack(Coin* pcoin)
+/* Handle when the player touches a coin */
+void OnCoinSmack(COIN* pcoin)
 {
 	const GS* gsCur = g_pgsCur;
 	const int newCoinCount = g_pgsCur->c_coins + 1;
@@ -36,7 +37,7 @@ void OnCoinSmack(Coin* pcoin)
 			}
 			else
 			{ // Case: Player has max lives
-				// make sure coins is capped at the max value and do nothing
+				// Make sure coins is capped at the max value and do nothing
 
 				g_pgsCur->c_coins = 99;
 			}

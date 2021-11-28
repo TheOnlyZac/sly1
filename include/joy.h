@@ -1,5 +1,6 @@
 #pragma once
 
+/* Cheats Enabled Flags */
 enum class FCHT : int
 {
 	None = 0x0,

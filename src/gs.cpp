@@ -24,13 +24,13 @@ void PopulatePchzLevelTable()
     }
 }
 
-
+/* Returns a set of flags indicating what has been completed on the save file */
 int FGameCompletion()
 {
-    return 0b1111;
+    return 0b1111; // temp: always returns full completion
 }
 
-/* Calculates the percent completion on the current save data */
+/* Calculates the percent completion on the current save file */
 int CalculatePercentCompletion(GS* pgs)
 {
     int cTasksChecked = 0;

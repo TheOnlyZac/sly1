@@ -36,7 +36,8 @@ You can run `cmake --build . --target check && ctest .`  or `make check` in the 
 Our goal is to imitate the original source code as closely as possible based on the debug symbols from the [May 2002 prototype](https://hiddenpalace.org/Sly_Cooper_and_the_Thievius_Raccoonus_(May_19,_2002_prototype)).
 
 * Original symbol names should be used wherever possible.
-* Function, class, and struct names use `UpperCamelCase`.
-* Variables, function params, and class members use `lowerCamelCase`.
-* Variables are named according to [Hungarian Notation](https://en.wikipedia.org/wiki/Hungarian_notation), which uses letter prefixes to denote the variable type.
-* Enums are named in `ALLCAPS`.
+* Use `ALLCAPS` for struct and enum names.
+* Use `UpperCamelCase` for function names, class names, and enum types.
+* Use `lowerCamelCase` for variables, function params, and class members.
+* Name global variables according to [Hungarian Notation](https://en.wikipedia.org/wiki/Hungarian_notation), which uses letter prefixes to denote the type.
+* Project includes should come before library includes.

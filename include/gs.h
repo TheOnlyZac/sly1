@@ -1,5 +1,6 @@
 #pragma once
 
+/* Game Save Flags */
 enum class FGS : int
 {
     FirstClue = 0x1,
@@ -9,6 +10,7 @@ enum class FGS : int
     SecondVault = 0x10
 };
 
+/* World Save Flags */
 enum class FWS : int
 {
     Visited = 0x1,
@@ -19,6 +21,7 @@ enum class FWS : int
     Lock_All = 0x1e
 };
 
+/* Level Save Flags */
 enum class FLS : int
 {
     Visited = 0x1,
@@ -53,6 +56,7 @@ enum class WORLDLEVEL : int
     Max = 0x9
 };
 
+/* Level Save */
 struct LS
 {
     FLS fls;
@@ -68,6 +72,7 @@ struct LS
     unsigned int unk_field_0x74;
 };
 
+/* World Save */
 struct WS
 {
     LS level_saves[9];
@@ -78,6 +83,7 @@ struct WS
     FWS fws;
 };
 
+/* Game Save*/
 struct GS
 {
     FGS fgs;
@@ -97,7 +103,7 @@ struct GS
     int last_thief_move;
 };
 
-struct PchzLevel
+struct PchzLevel // made-up name
 {
     double lsn_and_unk_ciphers;
     int search_Val;
