@@ -11,7 +11,7 @@ set (FILES
 	# ...
 )
 
-add_library(DECOMP STATIC ${FILES})
+add_library(DECOMP SHARED ${FILES})
 target_include_directories(DECOMP PUBLIC ${SLY1_INCLUDE_DIR})
 
 add_executable(main main.cpp)
