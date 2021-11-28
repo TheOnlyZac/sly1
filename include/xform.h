@@ -19,7 +19,6 @@ struct Exit
 {
 	int padding[183];
 
-public:
 	int fDefault;
 	EXITS fKeyed;
 	float fFollowDefault;

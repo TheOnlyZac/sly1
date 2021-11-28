@@ -1,7 +1,7 @@
-#include <cassert>
-
 #include <difficulty.h>
 #include <savegame.h>
+
+#include <cassert>
 
 int main()
 {

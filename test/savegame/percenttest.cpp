@@ -1,6 +1,6 @@
-#include <cassert>
-
 #include <savegame.h>
+
+#include <cassert>
 
 int main()
 {

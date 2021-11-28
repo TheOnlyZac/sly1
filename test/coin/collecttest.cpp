@@ -1,7 +1,7 @@
-#include <cassert>
-
 #include <coin.h>
 #include <savegame.h>
+
+#include <cassert>
 
 int main()
 {

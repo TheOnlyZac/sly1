@@ -1,9 +1,8 @@
-#include <cassert>
-#include <iostream>
-
 #include <game.h>
 #include <cheats.h>
 #include <savegame.h>
+
+#include <cassert>
 
 int main()
 {

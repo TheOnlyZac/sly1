@@ -1,6 +1,6 @@
-#include <cassert>
-
 #include <xform.h>
+
+#include <cassert>
 
 int main()
 {

@@ -48,7 +48,6 @@ void CheatActivateChetkido()
 	   /* Write output string to char buffer and show on-screen
 	     temporarily using chetkido buffer to store output until blot class is implemented */
 	   sprintf(out_buffer, sThePasswordIs, cipherSlice);
-	   sprintf(chetkido_buffer, out_buffer); // temp
        //cornerPopupBlot::prepareGuiText(out_buffer); // todo: blot class
 	   //SetBlotDtVisible(cornerPopupBlog, 10.0); // todo: implement classmethod
 	   //cornerPopupBlot::openIfNotAlready(); // todo: implement classmethod
