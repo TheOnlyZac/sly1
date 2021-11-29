@@ -1,6 +1,6 @@
 # Sly Cooper and the Thievius Raccoonus
 
-This is an experimental decompilation of Sly Cooper and the Thievius Raccoonus for the PlayStation 2. The project is based on the NTSC-U version of the game, `SCUS-971.98`.
+This is an experimental decompilation of Sly Cooper and the Thievius Raccoonus for the PlayStation 2. The project is a work-in-progress, and based on the NTSC-U version of the game `(`SCUS-971.98`).
 
 The goal of this project is to better understand how the game works. This repo does not contain any game assets or original code from the game's executable.
 
@@ -12,7 +12,7 @@ Clone the repo to your machine and open Visual Studio. Click `File > Open > CMak
 
 #### Testing
 
-Build the solution with `Build > Build All` and run tests with the Test Explorer window. The results will show in the Output window and the Test Explorer.
+Build the solution with `Build > Build All` and run tests in the Test Explorer window. The results will show in the Test Explorer and the Output window.
 
 ### Windows/Unix - MSYS2 MINGW64/UCRT64 - GNU/Linux
 
@@ -37,7 +37,7 @@ Our goal is to imitate the original source code as closely as possible based on 
 
 * Original symbol names should be used wherever possible.
 * Use `ALLCAPS` for struct and enum names.
-* Use `UpperCamelCase` for function names, class names, and enum types.
+* Use `UpperCamelCase` for function names, class names, and enum values.
 * Use `lowerCamelCase` for variables, function params, and class members.
-* Name global variables according to [Hungarian Notation](https://en.wikipedia.org/wiki/Hungarian_notation), which uses letter prefixes to denote the type.
+* Name variables according to [Hungarian Notation](https://en.wikipedia.org/wiki/Hungarian_notation), which uses letter prefixes to denote the type.
 * Project includes should come before library includes.
