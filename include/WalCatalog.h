@@ -1,5 +1,5 @@
 #include <iostream>
-#include "CFileLocation/CFileLocation.h"
+#include <CFileLocation.h>
 
 struct CWalCatalog 
 {

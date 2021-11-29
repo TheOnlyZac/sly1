@@ -1,4 +1,4 @@
-#include "WalCatalog.h"
+#include <WalCatalog.h>
 
 void Init(CWalCatalog *wac, CFileLocation* wac_file_desc0, CFileLocation* wal_file_desc1)
 {

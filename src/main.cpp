@@ -1,11 +1,11 @@
+#include <WalCatalog.h>
 #include <util.h>
 #include <cheats.h>
 #include <savegame.h>
 #include <difficulty.h>
-
 #include <stdio.h>
 #include <iostream>
-
+ 
 int main(int argc, char* argv[])
 {
     // Util
@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
     ChangeSuck(0.1, &g_difficulty);
     OnDifficultyInitialTeleport(&g_difficulty);
     OnDifficultyCollectKey(&g_difficulty);
-
+    Init(&wac, &fl0, &fl1);
     std::cout << "Tests complete.\n";
     char _ = getchar();
     return 1;

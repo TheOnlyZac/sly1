@@ -1,4 +1,4 @@
-#include "CBinaryInputStream.h"
+#include <CBinaryInputStream.h>
 
 uint32_t FOpenSector(CBinaryInputStream* bs, uint32_t sector_offset, uint32_t size)
 {
