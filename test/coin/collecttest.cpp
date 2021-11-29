@@ -1,11 +1,11 @@
-#include <coin.h>
+u#include <coin.h>
 #include <gs.h>
 
 #include <cassert>
 
 int main()
 {
-	COIN coin = COIN();
+	COIN coin;
 
 	// Test collecting a coin normally
 	g_pgsCur->c_coins = 0;
