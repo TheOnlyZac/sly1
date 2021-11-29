@@ -3,6 +3,7 @@
 
 #include <cassert>
 #include <iostream>
+#include <cstring>
 
 int main()
 {
@@ -13,12 +14,12 @@ int main()
 	g_pgsCur->c_lives = 0;
 
 	CheatActivateChetkido();
-	assert(strstr(&chetkido_buffer[0], "The password is: chetkido") != NULL);
+	assert(strstr(chetkido_buffer, "The password is: chetkido") != NULL);
 
 	g_pgsCur->c_coins = 98;
 
 	CheatActivateChetkido();
-	assert(strstr(&chetkido_buffer[0], "The password is: chetkido") == NULL);
+	assert(strstr(chetkido_buffer, "The password is: chetkido") == NULL);
 
 	return 0;
 }

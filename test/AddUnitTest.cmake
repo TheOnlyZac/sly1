@@ -19,5 +19,6 @@ macro(add_unit_test)
 	     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/bin/tests
              COMMAND ${TESTCOMMAND})
 
-     set(TESTNAMES ${TESTNAMES} ${TEST_NAME} PARENT_SCOPE)
+     get_property(TESTNAMES GLOBAL PROPERTY TESTNAMES)
+     set_property(GLOBAL PROPERTY TESTNAMES ${TESTNAMES} ${TEST_NAME})
 endmacro(add_unit_test)
