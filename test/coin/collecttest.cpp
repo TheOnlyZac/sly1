@@ -1,4 +1,4 @@
-u#include <coin.h>
+#include <coin.h>
 #include <gs.h>
 
 #include <cassert>
