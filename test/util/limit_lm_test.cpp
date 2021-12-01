@@ -13,12 +13,12 @@ int main()
 	assert(GLimitLm(&g_lmZeroOne, 4) == 1.f);
 
 	// Clamp value using local limit
-	LM* lmFiveTen = new LM(5, 10);
-	assert(GLimitLm(lmFiveTen, 1) == 5.f);
-	assert(GLimitLm(lmFiveTen, 5) == 5.f);
-	assert(GLimitLm(lmFiveTen, 7) == 7.f);
-	assert(GLimitLm(lmFiveTen, 10) == 10.f);
-	assert(GLimitLm(lmFiveTen, 99) == 10.f);
+	LM lmFiveTen(5, 10);
+	assert(GLimitLm(&lmFiveTen, 1) == 5.f);
+	assert(GLimitLm(&lmFiveTen, 5) == 5.f);
+	assert(GLimitLm(&lmFiveTen, 7) == 7.f);
+	assert(GLimitLm(&lmFiveTen, 10) == 10.f);
+	assert(GLimitLm(&lmFiveTen, 99) == 10.f);
 
 	return 0;
 }
