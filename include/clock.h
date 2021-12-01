@@ -11,12 +11,15 @@ struct CLOCK
 	long tickFrame; // todo: type shuld be TICK
 };
 
+extern CLOCK g_clock;
+extern float g_rtClock;
+
 void SetClockEnabled(CLOCK* pclock, int fEnabled);
 void ResetClock(CLOCK* pclock, float t);
 void MarkClockTick(CLOCK* pclock);
+void SetClockRate(float rt);
 
 //void MarkClockTickRealOnly(CLOCK* pclock);
 //void SetClockDebugRate(int nParam);
-//void SetClockRate(float rt);
 //void StartupClock();
 //TICK TickNow();

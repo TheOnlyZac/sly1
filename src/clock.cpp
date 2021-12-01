@@ -1,5 +1,9 @@
 #include <clock.h>
 
+/* Initialize global clock */
+CLOCK g_clock;
+float g_rtClock = 1.0;
+
 void SetClockEnabled(CLOCK * pclock, int fEnabled)
 {
 	pclock->fEnabled = fEnabled;
@@ -57,4 +61,9 @@ void MarkClockTick(CLOCK *pclock)
 	pclock->tReal = pclock->tReal + pclock->dtReal;
 }
 
-
+void SetClockRate(float rt)
+{
+	g_rtClock = rt;
+	SetClockEnabled(&g_clock, (int)(0.0 < rt));
+	return;
+}
