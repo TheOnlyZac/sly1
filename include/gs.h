@@ -64,7 +64,7 @@ struct LS
     float dtTimedBest; // best mts time (secs)
     float uSuck; // player suck for this level (0-1)
     float unk_suck_0x10; // unknown, seems suck related
-    unsigned int sceneFlags[20];
+    int afDialogPlayed[10]; // cutscene watched flags
     int cclue; // qty clues collected
     unsigned int fclue; // which clues collected
     unsigned int unk_field_0x6c;

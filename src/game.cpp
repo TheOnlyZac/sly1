@@ -5,7 +5,7 @@
 /* Sets the number of coins on the save file */
 void SetCcoin(int nParam)
 {
-	g_pgsCur->c_coins = nParam;
+	g_pgsCur->ccoin = nParam;
 }
 
 /* Returns the max number of charms the player can have */
@@ -19,7 +19,7 @@ int CcharmMost()
 /* Returns true if Sly has a charm or infinite charms cheat is enabled */
 bool FCharmAvailable()
 {
-	if ((g_pgsCur->c_charms > 0) || ((g_grfcht & (int)(FCHT::InfiniteCharms)) != (int)FCHT::None))
+	if ((g_pgsCur->ccharm > 0) || ((g_grfcht & (int)(FCHT::InfiniteCharms)) != (int)FCHT::None))
 	{
 		return true;
 	}
@@ -29,5 +29,5 @@ bool FCharmAvailable()
 /* Sets the number of charms on the save file */
 void SetCcharm(int nParam)
 {
-	g_pgsCur->c_charms = nParam;
+	g_pgsCur->ccharm = nParam;
 }

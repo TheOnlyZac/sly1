@@ -23,8 +23,8 @@ void OnDifficultyWorldPreLoad(DIFFICULTY* pdifficulty)
 {
 	const GS* gsCur = g_pgsCur;
 	const LS* lsCur = g_plsCur;
-	const int gameworld = (int)(gsCur->gameworld);
-	const int worldlevel = (int)(gsCur->worldlevel);
+	const int gameworld = (int)(gsCur->gameworldCur);
+	const int worldlevel = (int)(gsCur->worldlevelCur);
 
 	DIFFICULTYPROPS* difficultyProps;
 
@@ -90,7 +90,7 @@ void OnDifficultyWorldPostLoad(DIFFICULTY* pdifficulty)
 			csuckCharms = difficultyProps->ccharmLow;
 		}
 
-		if (g_pgsCur->c_charms < csuckCharms)
+		if (g_pgsCur->ccharm < csuckCharms)
 		{
 			SetCcharm(csuckCharms); // todo implement function
 			pdifficulty->dps = DPS::GivenCharms;

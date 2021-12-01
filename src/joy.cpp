@@ -27,15 +27,15 @@ void CheatActivateChetkido()
     char* nextXorChar;
 	char out_buffer[64];
 
-    const int gameworld = (int)(g_pgsCur->gameworld);
-    const int worldlevel = (int)(g_pgsCur->worldlevel);
+    const int gameworld = (int)(g_pgsCur->gameworldCur);
+    const int worldlevel = (int)(g_pgsCur->worldlevelCur);
     const int completion = FGameCompletion();
 
    if (
        ((gameworld << 8 | worldlevel) == 0x400) && // curr level is snow approach
        ((completion & 6) == 6) && // check save file has 100% completion
-       (g_pgsCur->c_coins == 99) && // check oin count is 99
-       (g_pgsCur->c_lives == 0)) // check lives count is 0
+       (g_pgsCur->ccoin == 99) && // check oin count is 99
+       (g_pgsCur->clife == 0)) // check lives count is 0
    {
        // Copy encrypted string into cipher 
        std::strncpy(cipherSlice, sChetkidoCiphertext, 16);

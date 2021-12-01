@@ -3,8 +3,8 @@
 #include <cstdio>
 
 GS* g_pgsCur = new GS;
-WS* g_pwsCur = &(g_pgsCur->world_saves[0]);
-LS* g_plsCur = &(g_pgsCur->world_saves[0].level_saves[0]);
+WS* g_pwsCur = &(g_pgsCur->aws[0]);
+LS* g_plsCur = &(g_pgsCur->aws[0].als[0]);
 PchzLevel pchzLevelTable[0x2e];
 
 /* Debug: Populate default pchz table for testing */
@@ -48,7 +48,7 @@ int CalculatePercentCompletion(GS* pgs)
             int levelTasks = static_cast<int>(pchzLevelTable[0].tasks) + i;
 
             // get save data for the current level
-            LS* currLs = pgs->world_saves[world].level_saves + (levelId & 0xff);
+            LS* currLs = pgs->aws[world].als + (levelId & 0xff);
             int currFls = (int)(currLs->fls);
             
             // check if the level is visited 
@@ -75,7 +75,7 @@ int CalculatePercentCompletion(GS* pgs)
         }
     }
 
-    FWS* pCurrFws = &pgs->world_saves[1].fws;
+    FWS* pCurrFws = &pgs->aws[1].fws;
     int i = 4;
     while (i > -1)
     {
