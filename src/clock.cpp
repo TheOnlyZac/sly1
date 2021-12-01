@@ -5,7 +5,7 @@ CLOCK g_clock;
 float g_rtClock = 1.0;
 
 /* Set the fEnabled flag on the clock to the given value */
-void SetClockEnabled(CLOCK * pclock, int fEnabled)
+void SetClockEnabled(CLOCK * pclock, bool fEnabled)
 {
 	pclock->fEnabled = fEnabled;
 }
@@ -68,6 +68,6 @@ void MarkClockTick(CLOCK *pclock)
 void SetClockRate(float rt)
 {
 	g_rtClock = rt;
-	SetClockEnabled(&g_clock, (int)(0.0 < rt));
+	SetClockEnabled(&g_clock, (0.0 < rt));
 	return;
 }
