@@ -2,7 +2,7 @@
 
 void SetClockEnabled(CLOCK * pclock, int fEnabled)
 {
-	pClock->fEnabled = fEnabled;
+	pclock->fEnabled = fEnabled;
 }
 
 void ResetClock(CLOCK * pclock, float t)
@@ -14,15 +14,17 @@ void MarkClockTick(CLOCK *pclock)
 {
 	float dt;
 
-	const long tickFrame = /* TickNow(); */ 0 // todo: implement TickNow
+	const long tickFrame = /* TickNow() */ 0; // todo: implement TickNow
 	const long deltaFrame = tickFrame - pclock->tickFrame;
 
 	if (deltaFrame < 0) {
-		//FUN_001fb6b0(deltaFrame & 1 | deltaFrame >> 1); // todo: implement function
+		/* todo: implement function
+		FUN_001fb6b0(deltaFrame & 1 | deltaFrame >> 1); */
 		dt += dt;
 	}
 	else {
-		//FUN_001fb6b0(deltaFrame); // todo: implement function
+		/* todo: implement function
+		FUN_001fb6b0(deltaFrame); */
 	}
 
 	dt *= 3.390842e-09;
@@ -41,7 +43,8 @@ void MarkClockTick(CLOCK *pclock)
 		dtFinal = dt;
 	}
 
-	dtFinal = dtFinal * g_rtClockPowerUp * g_rtClock;
+	/* todo: add global variables
+	dtFinal = dtFinal * g_rtClockPowerUp * g_rtClock; */
 
 	if (0.01666667 <= dtFinal) {
 		pclock->dtReal = dtFinal;

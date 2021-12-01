@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <conio.h>
+#include <clock.h>
 
 int main(int argc, char* argv[])
 {
