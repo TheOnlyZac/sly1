@@ -6,8 +6,6 @@
 
 int main()
 {
-	g_pgsCur->ccoin = 1; // set coins to 1
-
 	// Confirm max charm count is 2
 	assert(CcharmMost() == 2);
 
