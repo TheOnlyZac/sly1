@@ -1,7 +1,6 @@
 #include <gs.h>
 
 #include <cstdio>
-#include <iostream>
 
 GS* g_pgsCur = new GS;
 WS* g_pwsCur = &(g_pgsCur->world_saves[0]);
@@ -39,7 +38,6 @@ int CalculatePercentCompletion(GS* pgs)
     // Iterate over all the levels in the PchzLevel table
     for (int i = 0; i < 0x2e; i++)
     {
-        std::cout << i << " ";
         int levelId = *(int*)&((pchzLevelTable[0].level_id)) + i * sizeof(PchzLevel);
         int world = levelId >> 8;
 

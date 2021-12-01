@@ -2,7 +2,6 @@
 #include <gs.h>
 
 #include <cassert>
-#include <iostream>
 #include <cstring>
 
 int main()

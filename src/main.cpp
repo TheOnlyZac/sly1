@@ -2,12 +2,11 @@
 #include <joy.h>
 
 #include <stdio.h>
-#include <iostream>
 #include <conio.h>
 
 int main(int argc, char* argv[])
 {
-	std::cout << "Sly Cooper and the Thievius Raccoonus (SCUS-971.98)" << std::endl;
+	printf("Sly Cooper and the Thievius Raccoonus (SCUS-971.98)\n");
 
 	// Set chetkido values
 	g_pgsCur->gameworld = GAMEWORLD::Snow;
@@ -15,7 +14,7 @@ int main(int argc, char* argv[])
 	g_pgsCur->c_coins = 99;
 	g_pgsCur->c_lives = 0;
 
-	std::cout << "Press ENTER to quit..." << std::endl;
+	printf("Press ENTER to quit...\n");
 
 	char chKey = ' ';
 	char chLastKey = ' ';
@@ -30,27 +29,29 @@ int main(int argc, char* argv[])
 		switch (chKey)
 		{
 		case '\r': // Quit game
-			std::cout << std::endl << "Thanks for playing!" << std::endl;
+			printf("Thanks for playing!\n");
 			return 1;
-			break;
 		case 'x': // Show jump button pressed
 		case 'X':
-			std::cout << "jump ";
+			printf("jump ");
 			break;
 		case 'o': // Show circle button pressed
 		case 'O':
-			std::cout << "circle ";
+			printf("circle ");
 
 			// Check for easter egg (jump and press the circle button)
 			if (chLastKey == 'x' || chLastKey == 'X')
 			{
 				CheatActivateChetkido();
-				std::cout << std::endl << chetkido_buffer << std::endl;
+				printf("\n");
+				printf(chetkido_buffer);
+				printf("\n");
 			}
 
 			break;
 		default: // Print key pressed
-			std::cout << chKey << " ";
+			putchar(chKey);
+			printf(" ");
 			break;
 		}
 	}

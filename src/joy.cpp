@@ -3,7 +3,6 @@
 
 #include <cstdio>
 #include <cstring>
-#include <iostream>
 
 const char sChetkidoCiphertext[] = "@KFWHJGL";
 const char sThePasswordIs[] = "The password is: %s";

@@ -3,7 +3,6 @@
 #include <gs.h>
 #include <difficulty.h>
 
-#include <iostream>
 #include <cstring>
 
 /* Update the suck value on the current level save data */
