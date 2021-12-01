@@ -11,8 +11,8 @@ struct CLOCK
 	long tickFrame; // todo: type shuld be TICK
 };
 
-extern CLOCK g_clock;
-extern float g_rtClock;
+extern CLOCK g_clock; // global game clock
+extern float g_rtClock; // global clock rate
 
 void SetClockEnabled(CLOCK* pclock, int fEnabled);
 void ResetClock(CLOCK* pclock, float t);

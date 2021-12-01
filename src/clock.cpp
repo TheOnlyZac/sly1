@@ -1,19 +1,22 @@
 #include <clock.h>
 
-/* Initialize global clock */
+/* Initialize global values */
 CLOCK g_clock;
 float g_rtClock = 1.0;
 
+/* Set the fEnabled flag on the clock to the given value */
 void SetClockEnabled(CLOCK * pclock, int fEnabled)
 {
 	pclock->fEnabled = fEnabled;
 }
 
+/* Reset the real time on the clock to the given t value */
 void ResetClock(CLOCK * pclock, float t)
 {
 	pclock->t = t;
 }
 
+/* Calculate and update clock values according to time passed */
 void MarkClockTick(CLOCK *pclock)
 {
 	float dt;
@@ -61,6 +64,7 @@ void MarkClockTick(CLOCK *pclock)
 	pclock->tReal = pclock->tReal + pclock->dtReal;
 }
 
+/* Set the tick rate of the global clock */
 void SetClockRate(float rt)
 {
 	g_rtClock = rt;
