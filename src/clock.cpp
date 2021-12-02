@@ -19,9 +19,9 @@ void ResetClock(CLOCK * pclock, float t)
 /* Calculate and update clock values according to time passed */
 void MarkClockTick(CLOCK *pclock)
 {
-	float dt;
+	float dt{};
 
-	const long tickFrame = /* TickNow() */ 0; // todo: implement TickNow
+	const long tickFrame{}; /* = TickNow(); */ // todo: implement TickNow
 	const long deltaFrame = tickFrame - pclock->tickFrame;
 
 	if (deltaFrame < 0) {
@@ -36,15 +36,15 @@ void MarkClockTick(CLOCK *pclock)
 
 	dt *= 3.390842e-09;
 
-	if (dt < 0.01666667) {
-		dt = 0.01666667;
+	if (dt < 1/60) {
+		dt = 1/60;
 	}
-	else if (0.03333334 < dt) {
-		dt = 0.03333334;
+	else if (1/30 < dt) {
+		dt = 1/30;
 	}
 
 	pclock->dtReal = dt;
-	float dtFinal = 0.0;
+	float dtFinal{};
 
 	if (pclock->fEnabled) {
 		dtFinal = dt;
