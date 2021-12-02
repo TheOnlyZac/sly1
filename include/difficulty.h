@@ -9,7 +9,7 @@ enum class DPS
 	Max = 0x2
 };
 
-struct DifficultyProps
+struct DIFFICULTYPROPS // made-up name
 {
 	LM suckLm;
 	LM* unk_lm_0x8;
@@ -27,7 +27,7 @@ struct DifficultyProps
 	int ccharmHigh;
 };
 
-struct Difficulty
+struct DIFFICULTY
 {
 	int field_0x0;
 	int ccoinRichMin;
@@ -36,19 +36,19 @@ struct Difficulty
 	int ccoinPoorMax;
 	int uRichLow;
 	int uRichHigh;
-	DifficultyProps* props;
+	DIFFICULTYPROPS* props;
 	DPS dps;
 };
 
-static Difficulty g_difficulty;
-static DifficultyProps g_difficultyEasy, g_difficultyMedium, g_difficultyHard;
+static DIFFICULTY g_difficulty;
+static DIFFICULTYPROPS g_difficultyEasy, g_difficultyMedium, g_difficultyHard;
 
-void ChangeSuck(float nParam, Difficulty* pdifficulty);
-void OnDifficultyGameLoad(Difficulty* pdifficulty);
-void OnDifficultyWorldPreLoad(Difficulty* pdifficulty);
-void OnDifficultyWorldPostLoad(Difficulty* pdifficulty);
-void OnDifficultyInitialTeleport(Difficulty* pdifficulty);
-void OnDifficultyCollectKey(Difficulty* pdifficulty);
+void ChangeSuck(float nParam, DIFFICULTY* pdifficulty);
+void OnDifficultyGameLoad(DIFFICULTY* pdifficulty);
+void OnDifficultyWorldPreLoad(DIFFICULTY* pdifficulty);
+void OnDifficultyWorldPostLoad(DIFFICULTY* pdifficulty);
+void OnDifficultyInitialTeleport(DIFFICULTY* pdifficulty);
+void OnDifficultyCollectKey(DIFFICULTY* pdifficulty);
 
 //void OnDifficultyAward(Difficulty* pdifficulty, int ccoinMin, int ccoinMax, Vector* ppos);
 //void OnDifficultyBreak(Difficulty* pdifficulty, Vector* ppos, int ccoin);

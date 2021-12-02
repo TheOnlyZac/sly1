@@ -1,5 +1,6 @@
 #pragma once
 
+/* Game Save Flags */
 enum class FGS : int
 {
     FirstClue = 0x1,
@@ -9,6 +10,7 @@ enum class FGS : int
     SecondVault = 0x10
 };
 
+/* World Save Flags */
 enum class FWS : int
 {
     Visited = 0x1,
@@ -19,6 +21,7 @@ enum class FWS : int
     Lock_All = 0x1e
 };
 
+/* Level Save Flags */
 enum class FLS : int
 {
     Visited = 0x1,
@@ -53,57 +56,54 @@ enum class WORLDLEVEL : int
     Max = 0x9
 };
 
-struct TestStruct
+/* Level Save */
+struct LS
 {
-    int test;
-    float test_two;
-};
-
-struct LevelSave
-{
-    FLS fls;
-    float playtime;
-    float unk_float_0x08;
-    float uSuck;
-    float unk_suck_0x10;
-    unsigned int sceneFlags[20];
-    int c_bottles;
-    unsigned int f_bottles;
+    FLS fls; // level save flags
+    float dt; // time spent in level (secs)
+    float dtTimedBest; // best mts time (secs)
+    float uSuck; // player suck for this level (0-1)
+    float unk_suck_0x10; // unknown, seems suck related
+    int afDialogPlayed[10]; // cutscene watched flags
+    int cclue; // qty clues collected
+    unsigned int fclue; // which clues collected
     unsigned int unk_field_0x6c;
     unsigned int unk_field_0x70;
     unsigned int unk_field_0x74;
 };
 
-struct WorldSave
+/* World Save */
+struct WS
 {
-    LevelSave level_saves[9];
-    int c_keys;
-    int c_vaults;
-    int c_mts;
-    float playtime;
-    FWS fws;
+    LS als[9]; // all level saves (0-9)
+    int ckey; // qty keys collected
+    int cvault; // qty vaults opened
+    int ctimed; // qty mts completed
+    float dt; // time spent in world (secs)
+    FWS fws; // world save flags
 };
 
-struct GameSave
+/* Game Save*/
+struct GS
 {
-    FGS fgs;
-    int size;
-    unsigned int unk;
-    float playtime;
-    WorldSave world_saves[6];
-    GAMEWORLD gameworld;
-    WORLDLEVEL worldlevel;
-    int c_lives;
-    int c_charms;
-    int c_coins;
-    unsigned int settings_flags;
+    FGS fgs; // gsv?
+    int cbThis; // size (bytes)
+    int nChecksum; // expected size (bytes)
+    float dt; // time spend playing file (secs)
+    WS aws[6]; // all world saves (0-6)
+    GAMEWORLD gameworldCur;
+    WORLDLEVEL worldlevelCur;
+    int clife; // lives count
+    int ccharm; // charms count
+    int ccoin; // coins count
+    unsigned int settings_flags; // grfgs?
     unsigned int unlocked_thief_moves;
     unsigned int unlocked_cutscenes;
     unsigned int game_completion_flags;
     int last_thief_move;
 };
 
-struct PchzLevel
+struct PchzLevel // maybe wrong name
 {
     double lsn_and_unk_ciphers;
     int search_Val;
@@ -119,11 +119,11 @@ struct PchzLevel
     FLS tasks;
 };
 
-extern GameSave* g_pgsCur;
-extern WorldSave* g_pwsCur;
-extern LevelSave* g_plsCur;
+extern GS* g_pgsCur;
+extern WS* g_pwsCur;
+extern LS* g_plsCur;
 extern PchzLevel pchzLevelTable[];
 
-void populatePchzLevelTable();
-int check_game_completion();
-int calculate_percent_completion(GameSave* pgs);
+void PopulatePchzLevelTable();
+int FGameCompletion();
+int CalculatePercentCompletion(GS* pgs);
