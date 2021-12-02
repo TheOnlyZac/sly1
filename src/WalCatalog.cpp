@@ -1,6 +1,6 @@
 #include <WalCatalog.h>
 
-void Init(CWalCatalog *wac, CFileLocation* wac_file_desc0, CFileLocation* wal_file_desc1)
+void CWalCatalog::Init(CWalCatalog *wac, CFileLocation* wac_file_desc0, CFileLocation* wal_file_desc1)
 {
     wac->wac_sector_offset = wac_file_desc0->sector_offset;
     wac->wac_size = wac_file_desc0->size;
@@ -10,7 +10,7 @@ void Init(CWalCatalog *wac, CFileLocation* wac_file_desc0, CFileLocation* wal_fi
     return;
 }
 
-void Reload(CWalCatalog* wac)
+void CWalCatalog::Reload(CWalCatalog* wac)
 {
 
 }

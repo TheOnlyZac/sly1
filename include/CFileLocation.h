@@ -2,13 +2,16 @@
 #define FILELOCATION
 #include <iostream>
 
-struct CFileLocation
+class CFileLocation
 {
-    uint32_t sector_offset;
-    uint32_t size;
-};
+    public:
 
-static CFileLocation fl0;
-static CFileLocation fl1;
-void Clear(CFileLocation* fl);
+    struct CFileLocationStruct
+    {
+        uint32_t sector_offset;
+        uint32_t size;
+    };
+
+    void Clear(CFileLocationStruct* fl);
+};
 #endif
