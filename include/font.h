@@ -17,11 +17,35 @@ enum class JV : int
 };
 
 struct RGBA {
-    unsigned char ab[1];
+    char bRed;
     char bGreen;
     char bBlue;
     char bAlpha;
-    char u1bRed;
+};
+
+struct SFR
+{
+	float rx;
+	float ry;
+};
+
+struct CFont
+{
+protected:
+	int m_dxCharUnscaled;
+	int m_dxSpaceUnscaled;
+	int m_dyUnscaled;
+	int m_csfr;
+	struct SFR m_asfr[4];
+	int m_fGstest;
+	int field_0x34; // unknown
+	u64 m_gstest;
+	u32 m_z;
+
+private:
+	float m_rxScale;
+	float m_ryScale;
+	//__vtbl_ptr_type * vf5078; // todo
 };
 
 class CTextBox
