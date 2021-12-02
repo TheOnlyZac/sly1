@@ -1,6 +1,13 @@
 #include <clock.h>
 
-/* Initialize global values */
+/* Magic numbers */
+static constexpr int CLOCK_FRAMERATE = 60;
+static constexpr float CLOCK_FRAMETIME = 1.f / CLOCK_FRAMERATE;
+
+static constexpr int CLOCK_EE_TICK_RATE = 294912000;
+static constexpr float CLOCK_EE_TICK_DURATION = 1.f / CLOCK_EE_TICK_RATE;
+
+/* Global variables */
 CLOCK g_clock;
 float g_rtClock = 1.0;
 
@@ -34,13 +41,13 @@ void MarkClockTick(CLOCK *pclock)
 		FUN_001fb6b0(deltaFrame); */
 	}
 
-	dt *= 3.390842e-09;
+	dt *= CLOCK_EE_TICK_DURATION;
 
-	if (dt < 1/60) {
-		dt = 1/60;
+	if (dt < CLOCK_FRAMETIME) {
+		dt = CLOCK_FRAMETIME;
 	}
-	else if (1/30 < dt) {
-		dt = 1/30;
+	else if (CLOCK_FRAMETIME * 2 < dt) {
+		dt = CLOCK_FRAMETIME * 2;
 	}
 
 	pclock->dtReal = dt;
@@ -53,7 +60,7 @@ void MarkClockTick(CLOCK *pclock)
 	/* todo: add global variables
 	dtFinal = dtFinal * g_rtClockPowerUp * g_rtClock; */
 
-	if (0.01666667 <= dtFinal) {
+	if (CLOCK_FRAMETIME <= dtFinal) {
 		pclock->dtReal = dtFinal;
 	}
 
