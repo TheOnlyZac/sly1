@@ -15,4 +15,4 @@ struct BLOT
 	int padding[0x280];
 };
 
-void SetBlotBlots(BLOT pblot, BLOTS blots);
+void SetBlotBlots(BLOT* pblot, BLOTS blots);
