@@ -13,6 +13,6 @@ struct BLOT
 {
 	// todo
 	int padding[0x280];
-}
+};
 
 void SetBlotBlots(BLOT pblot, BLOTS blots);

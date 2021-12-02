@@ -1,10 +1,12 @@
 
 
 set (FILES
-	util.cpp
 	cheats.cpp
-	savegame.cpp
 	difficulty.cpp
+	font.cpp
+	savegame.cpp
+	screen.cpp
+	util.cpp
 	# ...
 )
 
