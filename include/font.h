@@ -1,5 +1,6 @@
 #pragma once
 
+/* Horizontal Justification */
 enum class JH : int
 {
 	JH_Left = 0x0,
@@ -8,6 +9,7 @@ enum class JH : int
 	JH_Max = 0x3
 };
 
+/* Vertical Justification */
 enum class JV : int
 {
 	JH_Top = 0x0,
@@ -16,6 +18,7 @@ enum class JV : int
 	JH_Max = 0x3
 };
 
+/* Red, Green, Blue, Alpha color values */
 struct RGBA {
     char bRed;
     char bGreen;
@@ -23,6 +26,7 @@ struct RGBA {
     char bAlpha;
 };
 
+/* Unknown, used by CFont class */
 struct SFR
 {
 	float rx;

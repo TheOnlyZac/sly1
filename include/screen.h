@@ -1,5 +1,6 @@
 #pragma once
 
+/* BLOT state */
 enum class BLOTS : int
 {
 	Hidden = 0x0,
@@ -9,6 +10,7 @@ enum class BLOTS : int
 	Max = 0x4
 };
 
+/* Used to draw screen objects */
 struct BLOT
 {
 	// todo
