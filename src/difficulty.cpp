@@ -1,43 +1,43 @@
-#include <difficulty.h>
-#include <savegame.h>
 #include <util.h>
+#include <game.h>
+#include <gs.h>
+#include <difficulty.h>
 
-#include <iostream>
 #include <cstring>
 
 /* Update the suck value on the current level save data */
-void ChangeSuck(float nParam, Difficulty* pdifficulty)
+void ChangeSuck(float nParam, DIFFICULTY* pdifficulty)
 {
 	const float newSuck = GLimitLm(&pdifficulty->props->suckLm, (g_plsCur->uSuck + nParam * 0.1)); // clamp new suck
 	g_plsCur->uSuck = newSuck; // set current level suck to clamped value
 }
 
-/* Called when game starts, clears the difficulty struct */
-void OnDifficultyGameLoad(Difficulty* pdifficulty)
+/* Called when game startsl; clears the difficulty struct */
+void OnDifficultyGameLoad(DIFFICULTY* pdifficulty)
 {
-	std::memset(pdifficulty, 0, sizeof(Difficulty));
+	std::memset(pdifficulty, 0, sizeof(DIFFICULTY));
 }
 
-/* Set the game difficulty props based on current save state */
-void OnDifficultyWorldPreLoad(Difficulty* pdifficulty)
+/* Set the game difficulty props based on current save file */
+void OnDifficultyWorldPreLoad(DIFFICULTY* pdifficulty)
 {
-	const GameSave* gsCur = g_pgsCur;
-	const LevelSave* lsCur = g_plsCur;
-	const int gameworld = (int)(gsCur->gameworld);
-	const int worldlevel = (int)(gsCur->worldlevel);
+	const GS* gsCur = g_pgsCur;
+	const LS* lsCur = g_plsCur;
+	const int gameworld = (int)(gsCur->gameworldCur);
+	const int worldlevel = (int)(gsCur->worldlevelCur);
 
-	DifficultyProps* difficultyProps;
+	DIFFICULTYPROPS* difficultyProps;
 
 	pdifficulty->ccoinRichMin = 4;
 	pdifficulty->ccoinRichMax = 6;
 	pdifficulty->ccoinPoorMax = 3;
 	pdifficulty->ccoinPoorMin = 1;
 
-	if (((gameworld == (int)(GAMEWORLD::Intro)) || (gameworld == (int)(GAMEWORLD::Clockwerk))) || (worldlevel == (int)(WORLDLEVEL::Hub)))
+	if (((gameworld == (int)GAMEWORLD::Intro) || (gameworld == (int)GAMEWORLD::Clockwerk)) || (worldlevel == (int)WORLDLEVEL::Hub))
 	{ // Case: World is 0 or 5, or current level is a hub (map ID 1)
 		difficultyProps = &g_difficultyEasy; // Set easy difficulty
 	}
-	else if (((int)(lsCur->fls) & (int)(FLS::KeyCollected)) == 0)
+	else if (((int)lsCur->fls & (int)FLS::KeyCollected) == 0)
 	{ // Case: Key NOT collected on current level
 		difficultyProps = &g_difficultyMedium; // set medium difficulty
 	}
@@ -55,9 +55,9 @@ void OnDifficultyWorldPreLoad(Difficulty* pdifficulty)
 }
 
 /* Update the player suck and determine the number of suck charms they get */
-void OnDifficultyWorldPostLoad(Difficulty* pdifficulty)
+void OnDifficultyWorldPostLoad(DIFFICULTY* pdifficulty)
 {
-	DifficultyProps* difficultyProps;
+	DIFFICULTYPROPS* difficultyProps;
 	int csuckCharms;
 
 	// Case: The transition is a quit-game reload
@@ -90,24 +90,24 @@ void OnDifficultyWorldPostLoad(Difficulty* pdifficulty)
 			csuckCharms = difficultyProps->ccharmLow;
 		}
 
-		if (g_pgsCur->c_charms < csuckCharms)
+		if (g_pgsCur->ccharm < csuckCharms)
 		{
-			//SetCcharm(numCharms); // todo implement function
+			SetCcharm(csuckCharms); // todo implement function
 			pdifficulty->dps = DPS::GivenCharms;
 		}
 	}
 }
 
-// Stubbed, purpose unknown
-void OnDifficultyInitialTeleport(Difficulty* pdifficulty)
+/* Stubbed, purpose unknown */
+void OnDifficultyInitialTeleport(DIFFICULTY* pdifficulty)
 {
 	return;
 }
 
-// Resets some difficulty values upon collecting a key
-void OnDifficultyCollectKey(Difficulty* pdifficulty)
+/* Resets some difficulty values upon collecting a key */
+void OnDifficultyCollectKey(DIFFICULTY* pdifficulty)
 {
-	LevelSave* lsCur = g_plsCur;
+	LS* lsCur = g_plsCur;
 
 	ChangeSuck(0.0, pdifficulty);
 
