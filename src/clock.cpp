@@ -28,17 +28,17 @@ void MarkClockTick(CLOCK *pclock)
 {
 	float dt{};
 
-	const long tickFrame{}; /* = TickNow(); */ // todo: implement TickNow
+	const long tickFrame = TickNow();
 	const long deltaFrame = tickFrame - pclock->tickFrame;
 
 	if (deltaFrame < 0) {
 		/* todo: implement function
-		FUN_001fb6b0(deltaFrame & 1 | deltaFrame >> 1); */
+		__floatdisf(deltaFrame & 1 | deltaFrame >> 1); */
 		dt += dt;
 	}
 	else {
 		/* todo: implement function
-		FUN_001fb6b0(deltaFrame); */
+		__floatdisf(deltaFrame); */
 	}
 
 	dt *= CLOCK_EE_TICK_DURATION;
@@ -77,4 +77,18 @@ void SetClockRate(float rt)
 	g_rtClock = rt;
 	SetClockEnabled(&g_clock, (0.0 < rt));
 	return;
+}
+
+unsigned long TickNow()
+{
+	unsigned long mask;
+
+	/* todo: define globals
+	mask = (long)Count & 0xffffffff;
+	if (mask < s_tickLastRaw) {
+		cWrapAround.1014 = cWrapAround.1014 + 1;
+	}
+	s_tickLastRaw = mask;
+	return cWrapAround.1014 << 0x20 | mask; */
+	return mask; // temp
 }
