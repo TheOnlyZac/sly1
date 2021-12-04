@@ -20,6 +20,18 @@ void StartupClock()
 	g_clock.tickFrame = TickNow();
 }
 
+unsigned long TickNow()
+{
+	/* todo: define globals
+	unsigned long mask = (long)Count & 0xffffffff;
+	if (mask < s_tickLastRaw) {
+		cWrapAround.1014 = cWrapAround.1014 + 1;
+	}
+	s_tickLastRaw = mask;
+	return cWrapAround.1014 << 0x20 | mask; */
+	return 1.0; // temp
+}
+
 /* Set the fEnabled flag on the clock to the given value */
 void SetClockEnabled(CLOCK* pclock, bool fEnabled)
 {
@@ -111,16 +123,4 @@ void SetClockRate(float rt)
 	g_rtClock = rt;
 	SetClockEnabled(&g_clock, (0.0 < rt));
 	return;
-}
-
-unsigned long TickNow()
-{
-	/* todo: define globals
-	unsigned long mask = (long)Count & 0xffffffff;
-	if (mask < s_tickLastRaw) {
-		cWrapAround.1014 = cWrapAround.1014 + 1;
-	}
-	s_tickLastRaw = mask;
-	return cWrapAround.1014 << 0x20 | mask; */
-	return 1.0; // temp
 }
