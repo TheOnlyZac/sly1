@@ -8,23 +8,32 @@ static constexpr int CLOCK_EE_TICK_RATE = 294912000;
 static constexpr float CLOCK_EE_TICK_DURATION = 1.f / CLOCK_EE_TICK_RATE;
 
 /* Global variables */
-CLOCK g_clock;
 float g_rtClock = 1.0;
+float g_trClockPowerUp = 1.0;
+CLOCK g_clock;
+long s_tickLastRaw{}; // this name suggests it should be a static class member
+
+void StartupClock()
+{
+	/* todo: what is Count?
+	s_tickLastRaw = (long)Count; */
+	g_clock.tickFrame = TickNow();
+}
 
 /* Set the fEnabled flag on the clock to the given value */
-void SetClockEnabled(CLOCK * pclock, bool fEnabled)
+void SetClockEnabled(CLOCK* pclock, bool fEnabled)
 {
 	pclock->fEnabled = fEnabled;
 }
 
 /* Reset the real time on the clock to the given t value */
-void ResetClock(CLOCK * pclock, float t)
+void ResetClock(CLOCK* pclock, float t)
 {
 	pclock->t = t;
 }
 
 /* Calculate and update clock values according to time elapsed */
-void MarkClockTick(CLOCK *pclock)
+void MarkClockTick(CLOCK* pclock)
 {
 	float dt{};
 
@@ -72,7 +81,7 @@ void MarkClockTick(CLOCK *pclock)
 }
 
 /* Calculate and update real clock values according to EE cyclerate */
-void MarkClockTickRealOnly(CLOCK *pClock)
+void MarkClockTickRealOnly(CLOCK* pClock)
 {
 	float dtReal{};
 
