@@ -12,6 +12,7 @@ struct CLOCK
 };
 
 extern CLOCK g_clock; // global game clock
+extern float g_rtClock;
 
 void SetClockRate(float rt);
 void MarkClockTick(CLOCK* pclock);
