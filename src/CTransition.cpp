@@ -14,18 +14,19 @@ void CTransition::Set(CTransition0* ct, OID* load_data, int param_2, int load_mo
 }
 void CTransition::Execute(LevelLoadManager* level_mgr)
 {
+	LevelLoadData* lld;
 	LevelLoadData* search_data;
 	LevelLoadData* ciphers;
 	lsn_and_unk_t* lsn_and_size;
 	lsn_and_unk_ciphers_t* lsn_enc_size_enc;
 	bool unk_0;
 	//SetPhase(2);
-	if ((search_data->lsn_and_size_ciphers).size_enc != 0)
+	if ((lld->lsn_and_size_ciphers).size_enc != 0)
 	{
 		//CFileLocation::Clear(&lsn_and_size);
 		//Loading the encrypted sector offsets and sizes in variables to be decrypted
 		uint32_t *enc_file_table = NULL;
-		uint32_t off = search_data->lsn_and_size_ciphers.size_enc;
+		uint32_t off = lld->lsn_and_size_ciphers.size_enc;
 		enc_file_table = (uint32_t*)off;
 		uint32_t enc_bytes0 = *enc_file_table;
 		enc_file_table = enc_file_table + 4;
@@ -42,13 +43,19 @@ void CTransition::Execute(LevelLoadManager* level_mgr)
 		uint32_t enc_bytes6 = *enc_file_table;
 		enc_file_table = enc_file_table + 4;
 		uint32_t enc_bytes7 = *enc_file_table;
-		search_data->lsn_and_size_ciphers.size_enc = 0;
+		lld->lsn_and_size_ciphers.size_enc = 0;
 		uint32_t size = enc_bytes1 ^ enc_bytes7;
 		lsn_and_size = (lsn_and_unk_t*)(enc_bytes0 ^ enc_bytes5);
 		if (size != 0)
 		{
+			search_data = (LevelLoadData*)lld->for_lsn;
 			unk_0 = 1;
-			
+			if (ciphers != search_data && search_data != 0)
+			{
+				uint32_t unk_1 = enc_bytes6 ^ enc_bytes2;
+				uint32_t unk_2 = lld->for_size ^ lld->lsn_and_size_ciphers.lsn_enc;
+			}
+
 		}
 	}
 }
