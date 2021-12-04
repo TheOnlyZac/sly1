@@ -5,7 +5,7 @@
 
 #include <cstring>
 
-/* Called when game startsl; clears the difficulty struct */
+/* Called when game starts; clears the difficulty struct */
 void OnDifficultyGameLoad(DIFFICULTY* pdifficulty)
 {
 	std::memset(pdifficulty, 0, sizeof(DIFFICULTY));
