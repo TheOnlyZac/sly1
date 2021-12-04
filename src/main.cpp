@@ -1,38 +1,60 @@
-#include <util.h>
-#include <cheats.h>
-#include <savegame.h>
-#include <difficulty.h>
-#include <CTransition.h>
+#include <gs.h>
+#include <joy.h>
+
 #include <stdio.h>
-#include <iostream>
- 
+#include <conio.h>
+
 int main(int argc, char* argv[])
 {
-    // Util
-    std::cout << GLimitLm((LM*)&g_lmZeroOne, 1.3) << "\n"; // 1.0
-    std::cout << GLimitLm((LM*)&g_lmZeroOne, -4.3) << "\n"; // 0.0
-    std::cout << GLimitLm((LM*)&g_lmZeroOne, 0.7) << "\n"; // 0.7
+	printf("Sly Cooper and the Thievius Raccoonus (SCUS-971.98)\n");
 
-	std::cout << GLimitAbs(1.3, 1) << "\n"; // 1.0
-	std::cout << GLimitAbs(-4.3, 1) << "\n"; // -1.0
-	std::cout << GLimitAbs(0.7, 1) << "\n"; // 0.7
+	// Set chetkido values
+	g_pgsCur->gameworldCur = GAMEWORLD::Snow;
+	g_pgsCur->worldlevelCur = WORLDLEVEL::Approach;
+	g_pgsCur->ccoin = 99;
+	g_pgsCur->clife = 0;
 
-    // Cheats
-    activate_code_chetkido(); // The password is: chetkido
+	printf("Press ENTER to quit...\n");
 
-    // Savegame
-    populatePchzLevelTable();
-    //int percent = calculate_percent_completion(g_pgsCur);
-    //std::cout << percent << "\n";
+	char chKey = ' ';
+	char chLastKey = ' ';
 
-    // Difficulty
-    OnDifficultyGameLoad(&g_difficulty);
-    OnDifficultyWorldPreLoad(&g_difficulty);
-    OnDifficultyWorldPostLoad(&g_difficulty);
-    ChangeSuck(0.1, &g_difficulty);
-    OnDifficultyInitialTeleport(&g_difficulty);
-    OnDifficultyCollectKey(&g_difficulty);
-    std::cout << "Tests complete.\n";
-    char _ = getchar();
-    return 1;
+	while (true)
+	{
+		// Get player input
+		chLastKey = chKey;
+		chKey = getch();
+
+		// Check and handle player input
+		switch (chKey)
+		{
+		case '\r': // Quit game
+			printf("Thanks for playing!\n");
+			return 1;
+		case 'x': // Show jump button pressed
+		case 'X':
+			printf("jump ");
+			break;
+		case 'o': // Show circle button pressed
+		case 'O':
+			printf("circle ");
+
+			// Check for easter egg (jump and press the circle button)
+			if (chLastKey == 'x' || chLastKey == 'X')
+			{
+				CheatActivateChetkido();
+				printf("\n");
+				printf(chetkido_buffer);
+				printf("\n");
+			}
+
+			break;
+		default: // Print key pressed
+			putchar(chKey);
+			printf(" ");
+			break;
+		}
+	}
+
+    return 0;
 }

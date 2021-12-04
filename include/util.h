@@ -1,5 +1,6 @@
 #pragma once
 
+/* Limit */
 struct LM
 {
 	float gMin, gMax;
@@ -19,4 +20,3 @@ float GLimitAbs(float g, float absLimit);
 
 //float GRandInRange(float gLo, float gHi);
 //int NRandInRange(int nLo, int nHi);
-

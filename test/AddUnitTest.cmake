@@ -4,7 +4,7 @@ macro(add_unit_test)
     set(multiValueArgs SOURCES LIBS)
     cmake_parse_arguments(TEST "${options}" "${oneValueArgs}"
                                "${multiValueArgs}" ${ARGN})
-    message(STATUS "Generating Test ${TEST_NAME}...")
+    message(STATUS "Generating Test ${TEST_NAME}... (${TEST_SOURCES})")
     add_executable(${TEST_NAME} EXCLUDE_FROM_ALL ${TEST_SOURCES})
     target_link_libraries(${TEST_NAME} ${TEST_LIBS})
     if(TEST_PARALLEL AND HAVE_MPI)
@@ -19,5 +19,6 @@ macro(add_unit_test)
 	     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/bin/tests
              COMMAND ${TESTCOMMAND})
 
-     set(TESTNAMES ${TESTNAMES} ${TEST_NAME} PARENT_SCOPE)
+     get_property(TESTNAMES GLOBAL PROPERTY TESTNAMES)
+     set_property(GLOBAL PROPERTY TESTNAMES ${TESTNAMES} ${TEST_NAME})
 endmacro(add_unit_test)

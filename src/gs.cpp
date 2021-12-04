@@ -1,15 +1,14 @@
-#include <savegame.h>
+#include <gs.h>
 
 #include <cstdio>
-#include <iostream>
 
-GameSave* g_pgsCur = new GameSave;
-WorldSave* g_pwsCur = &(g_pgsCur->world_saves[0]);
-LevelSave* g_plsCur = &(g_pgsCur->world_saves[0].level_saves[0]);
+GS* g_pgsCur = new GS;
+WS* g_pwsCur = &(g_pgsCur->aws[0]);
+LS* g_plsCur = &(g_pgsCur->aws[0].als[0]);
 PchzLevel pchzLevelTable[0x2e];
 
 /* Debug: Populate default pchz table for testing */
-void populatePchzLevelTable()
+void PopulatePchzLevelTable()
 {
     for (int worldId = 0; worldId <= 5; worldId++)
     {
@@ -24,14 +23,14 @@ void populatePchzLevelTable()
     }
 }
 
-
-int check_game_completion()
+/* Returns a set of flags indicating what has been completed on the save file */
+int FGameCompletion()
 {
-    return 0b1111;
+    return 0b1111; // temp: always returns full completion
 }
 
-/* Calculates the percent completion on the current save data */
-int calculate_percent_completion(GameSave* pgs)
+/* Calculates the percent completion on the current save file */
+int CalculatePercentCompletion(GS* pgs)
 {
     int cTasksChecked = 0;
     int cTasksCompleted = 0;
@@ -39,7 +38,6 @@ int calculate_percent_completion(GameSave* pgs)
     // Iterate over all the levels in the PchzLevel table
     for (int i = 0; i < 0x2e; i++)
     {
-        std::cout << i << " ";
         int levelId = *(int*)&((pchzLevelTable[0].level_id)) + i * sizeof(PchzLevel);
         int world = levelId >> 8;
 
@@ -50,7 +48,7 @@ int calculate_percent_completion(GameSave* pgs)
             int levelTasks = static_cast<int>(pchzLevelTable[0].tasks) + i;
 
             // get save data for the current level
-            LevelSave* currLs = pgs->world_saves[world].level_saves + (levelId & 0xff);
+            LS* currLs = pgs->aws[world].als + (levelId & 0xff);
             int currFls = (int)(currLs->fls);
             
             // check if the level is visited 
@@ -77,7 +75,7 @@ int calculate_percent_completion(GameSave* pgs)
         }
     }
 
-    FWS* pCurrFws = &pgs->world_saves[1].fws;
+    FWS* pCurrFws = &pgs->aws[1].fws;
     int i = 4;
     while (i > -1)
     {
