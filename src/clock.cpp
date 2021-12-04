@@ -23,7 +23,7 @@ void ResetClock(CLOCK * pclock, float t)
 	pclock->t = t;
 }
 
-/* Calculate and update clock values according to time passed */
+/* Calculate and update clock values according to time elapsed */
 void MarkClockTick(CLOCK *pclock)
 {
 	float dt{};
@@ -71,6 +71,31 @@ void MarkClockTick(CLOCK *pclock)
 	pclock->tReal = pclock->tReal + pclock->dtReal;
 }
 
+/* Calculate and update real clock values according to EE cyclerate */
+void MarkClockTickRealOnly(CLOCK *pClock)
+{
+	float dtReal{};
+
+	unsigned long tickNow = TickNow();
+	unsigned long deltaTick = tickNow - pClock->tickFrame;
+
+	if (deltaTick < 0)
+	{
+		/* todo: implement function
+		__floatdisf(deltaTick & 1 | deltaTick >> 1); */
+		dtReal += dtReal;
+	}
+	else
+	{
+		/* todo: implement function
+		__floatdisf(deltaTick); */
+	}
+
+	pClock->tickFrame = tickNow;
+	pClock->dtReal = dtReal * CLOCK_EE_TICK_DURATION;
+	pClock->tReal = pClock->tReal + dtReal * CLOCK_EE_TICK_DURATION;
+}
+
 /* Set the tick rate of the global clock */
 void SetClockRate(float rt)
 {
@@ -81,14 +106,12 @@ void SetClockRate(float rt)
 
 unsigned long TickNow()
 {
-	unsigned long mask;
-
 	/* todo: define globals
-	mask = (long)Count & 0xffffffff;
+	unsigned long mask = (long)Count & 0xffffffff;
 	if (mask < s_tickLastRaw) {
 		cWrapAround.1014 = cWrapAround.1014 + 1;
 	}
 	s_tickLastRaw = mask;
 	return cWrapAround.1014 << 0x20 | mask; */
-	return mask; // temp
+	return 1.0; // temp
 }
