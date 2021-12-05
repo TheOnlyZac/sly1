@@ -100,7 +100,7 @@ struct GS
     unsigned int unlocked_thief_moves;
     unsigned int unlocked_cutscenes;
     unsigned int game_completion_flags;
-    int last_thief_move;
+    int last_thief_move; // todo: fix name
 };
 
 struct PchzLevel // maybe wrong name

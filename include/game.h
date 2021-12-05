@@ -93,6 +93,7 @@ struct GAME {
 	int cgoldLatest;
 };
 
+void OnGameLoad(GAME* pgame);
 void InitGameState(GS* pgs);
 void SetCcoin(int nParam);
 int CcharmMost();

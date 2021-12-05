@@ -4,22 +4,39 @@
 
 #include <cstring>
 
+/* Clears the GAME struct */
+void OnGameLoad(GAME* pgame)
+{
+	memset(pgame, 0, sizeof(GAME));
+}
+
 /* Resets the save data values to their defaults */
 void InitGameState(GS* pgs)
 
 {
-	std::memset(pgs, 0, 0x1a00);
+	std::memset(pgs, 0, sizeof(GS));
 	pgs->gameworldCur = GAMEWORLD::Intro;
 	pgs->unlocked_thief_moves = 0;
 	pgs->gsv = 0x12;
-	pgs->cbThis = 0x1a00;
+	pgs->cbThis = sizeof(GS);
 	pgs->worldlevelCur = WORLDLEVEL::Level2;
 	pgs->clife = 5;
 	pgs->last_thief_move = -1;
 	/* todo: implement function (name is wrong)
 	reset_settings(pgs); */
-	return;
 }
+
+void UpdateGameState(float dt)
+
+{
+	LS* lsCur = g_plsCur;
+	WS* wsCur = g_pwsCur;
+
+	g_pgsCur->dt = g_pgsCur->dt + dt; // inc global playtime
+	wsCur->dt = wsCur->dt + dt; // inc world playtime
+	lsCur->dt = lsCur->dt + dt; // inc level playtime
+}
+
 /* Sets the number of coins on the save file */
 void SetCcoin(int nParam)
 {
