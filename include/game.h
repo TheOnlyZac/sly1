@@ -19,7 +19,7 @@ enum class OID : int
 
 /* World IDs
  Some of these values are directly from the may proto, 
- the rest are extrapolated based on the order of levels in the game. */
+ the rest I extrapolated based on the order of levels in the game -Zac */
 enum class WID : int
 {
 	// Intro
@@ -93,6 +93,7 @@ struct GAME {
 	int cgoldLatest;
 };
 
+void InitGameState(GS* pgs);
 void SetCcoin(int nParam);
 int CcharmMost();
 bool FCharmAvailable();

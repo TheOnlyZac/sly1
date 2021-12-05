@@ -86,7 +86,7 @@ struct WS
 /* Game Save*/
 struct GS
 {
-    FGS fgs; // gsv?
+    int gsv; // not sure why this isn't caled fgs
     int cbThis; // size (bytes)
     int nChecksum; // expected size (bytes)
     float dt; // time spend playing file (secs)
