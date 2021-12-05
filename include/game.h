@@ -84,6 +84,15 @@ enum class WID : int
 	Max = 0x2f
 };
 
+typedef struct VTGAME; // todo: implement struct
+struct GAME {
+	struct VTGAME* pvtgame;
+	int cAlarmsTriggered;
+	int fTimedChallenge;
+	float dtChallenge;
+	int cgoldLatest;
+};
+
 void SetCcoin(int nParam);
 int CcharmMost();
 bool FCharmAvailable();
