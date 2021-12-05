@@ -11,7 +11,6 @@ static constexpr float CLOCK_EE_TICK_DURATION = 1.f / CLOCK_EE_TICK_RATE;
 float g_rtClock = 1.0;
 float g_trClockPowerUp = 1.0;
 CLOCK g_clock;
-long s_tickLastRaw{}; // this name suggests it should be a static class member
 
 /* Set the tick rate of the global clock */
 void SetClockRate(float rt)
@@ -110,7 +109,7 @@ void SetClockEnabled(CLOCK* pclock, bool fEnabled)
 void StartupClock()
 {
 	/* todo: what is Count?
-	s_tickLastRaw = (long)Count; */
+	CLOCK::s_tickLastRaw = (long)Count; */
 	g_clock.tickFrame = TickNow();
 }
 
@@ -118,10 +117,10 @@ unsigned long TickNow()
 {
 	/* todo: define globals
 	unsigned long mask = (long)Count & 0xffffffff;
-	if (mask < s_tickLastRaw) {
+	if (mask < CLOCK::s_tickLastRaw) {
 		cWrapAround.1014 = cWrapAround.1014 + 1;
 	}
-	s_tickLastRaw = mask;
+	CLOCK::s_tickLastRaw = mask;
 	return cWrapAround.1014 << 0x20 | mask; */
 	return 1.0; // temp
 }

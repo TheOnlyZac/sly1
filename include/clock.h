@@ -1,14 +1,18 @@
 #pragma once
 
+typedef unsigned long TICK;
+
 struct CLOCK
 {
+	static TICK s_tickLastRaw{};
+
 	bool fEnabled; // clock enabled flag
 	float t;
 	float dt; // time since last frame
 	float dtPrev; // dt from previous frame
 	float tReal; // t factoring in EE clock cyclerate
 	float dtReal; // dt factoring in EE clock cyclerate
-	long tickFrame; // todo: type shuld be TICK
+	TICK tickFrame;
 };
 
 extern CLOCK g_clock; // global game clock
