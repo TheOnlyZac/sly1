@@ -1,6 +1,6 @@
-#include <CFileLocation.h>
+#include <FileLocation.h>
 
-void CFileLocation::Clear(CFileLocationStruct* fl)
+void FileLocation::Clear(CFileLocation* fl)
 {
 	memset(fl, 0, 8);
 }

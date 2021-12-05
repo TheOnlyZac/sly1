@@ -2,16 +2,16 @@
 #define FILELOCATION
 #include <iostream>
 
-class CFileLocation
+class FileLocation
 {
     public:
 
-    struct CFileLocationStruct
+    struct CFileLocation
     {
         uint32_t sector_offset;
         uint32_t size;
     };
 
-    void Clear(CFileLocationStruct* fl);
+    void Clear(CFileLocation* fl);
 };
 #endif

@@ -3,7 +3,7 @@ typedef unsigned char   byte;
 typedef struct CMpeg CMpeg, * PCMpeg;
 typedef struct CutsceneManager CutsceneManager, * PCutsceneManager;
 
-class CMpeg
+class Mpeg
 {
     public:
         typedef enum OID
@@ -282,7 +282,7 @@ class CMpeg
             byte field_0x12f;
         };
 
-        struct CMpegStruct
+        struct CMpeg
         {
             char* name;
             byte field_0x4;

@@ -1,6 +1,6 @@
-#include <CMpeg.h>
+#include <MPeg.h>
 
-void CMpeg::Execute(CutsceneManager* cutscene_manager)
+void Mpeg::Execute(CutsceneManager* cutscene_manager)
 {
     OID* cutscene;
     OID* second_cutscene;
