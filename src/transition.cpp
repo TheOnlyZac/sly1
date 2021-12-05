@@ -1,4 +1,4 @@
-#include <CTransition.h>
+#include <Transition.h>
 
 
 void Transition::Set(CTransition* ct, OID* load_data, int param_2, int load_mod, int load_flags)
