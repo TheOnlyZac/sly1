@@ -25,8 +25,8 @@ void MarkClockTick(CLOCK* pclock)
 {
 	float dt{};
 
-	const long tickFrame = TickNow();
-	const long deltaFrame = tickFrame - pclock->tickFrame;
+	const TICK tickFrame = TickNow();
+	const TICK deltaFrame = tickFrame - pclock->tickFrame;
 
 	if (deltaFrame < 0) {
 		/* todo: implement function
@@ -54,7 +54,7 @@ void MarkClockTick(CLOCK* pclock)
 		dtFinal = dt;
 	}
 
-	/* todo: add global variables
+	/* todo: define global variables
 	dtFinal = dtFinal * g_rtClockPowerUp * g_rtClock; */
 
 	if (CLOCK_FRAMETIME <= dtFinal) {
@@ -73,8 +73,8 @@ void MarkClockTickRealOnly(CLOCK* pClock)
 {
 	float dtReal{};
 
-	unsigned long tickNow = TickNow();
-	unsigned long deltaTick = tickNow - pClock->tickFrame;
+	TICK tickNow = TickNow();
+	TICK deltaTick = tickNow - pClock->tickFrame;
 
 	if (deltaTick < 0)
 	{
@@ -113,14 +113,14 @@ void StartupClock()
 	g_clock.tickFrame = TickNow();
 }
 
-unsigned long TickNow()
+TICK TickNow()
 {
-	/* todo: define globals
-	unsigned long mask = (long)Count & 0xffffffff;
-	if (mask < CLOCK::s_tickLastRaw) {
-		cWrapAround.1014 = cWrapAround.1014 + 1;
+	/* todo: what is Count and cWrapAround.1014?
+	TICK countLow = (long)Count & 0xffffffff;
+	if (countLow < CLOCK::s_tickLastRaw) {
+		cWrapAround.1014 += 1;
 	}
-	CLOCK::s_tickLastRaw = mask;
-	return cWrapAround.1014 << 0x20 | mask; */
+	CLOCK::s_tickLastRaw = countLow;
+	return cWrapAround.1014 << 0x20 | countLow; */
 	return 1.0; // temp
 }
