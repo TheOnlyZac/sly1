@@ -97,6 +97,7 @@ void OnGameLoad(GAME* pgame);
 void InitGameState(GS* pgs);
 void UpdateGameState(float dt);
 void RetryGame();
+void ClearLs(LS* pls);
 void SetCcoin(int nParam);
 int CcharmMost();
 bool FCharmAvailable();

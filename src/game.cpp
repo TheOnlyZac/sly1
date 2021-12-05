@@ -48,6 +48,11 @@ void RetryGame(void)
 	ResetChkmgrCheckpoints(&g_chkmgr); */
 }
 
+void ClearLs(LS* pls)
+{
+	memset(pls, 0, sizeof(LS));
+}
+
 /* Sets the number of coins on the save file */
 void SetCcoin(int nParam)
 {
