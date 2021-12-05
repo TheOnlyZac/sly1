@@ -1,6 +1,6 @@
 #include <bis.h>
 
-uint32_t CBinaryInputStream::FOpenSector(CBinaryInputStream* bs, uint32_t sector_offset, uint32_t size)
+uint32_t CBinaryInputStream::FOpenSector(CBinaryInputStreamStruct* bs, uint32_t sector_offset, uint32_t size)
 {
     int iVar1;
     int iVar2;
@@ -35,7 +35,7 @@ uint32_t CBinaryInputStream::FOpenSector(CBinaryInputStream* bs, uint32_t sector
     bs->field_0x64 = (CProg*)(iVar1 + -1);
     return 1;
 }
-void CBinaryInputStream::OpenMemory(CBinaryInputStream* bs, int size, void* pos)
+void CBinaryInputStream::OpenMemory(CBinaryInputStreamStruct* bs, int size, void* pos)
 {
     bs->stream_size = size;
     bs->field_0x4 = 2;
@@ -43,7 +43,7 @@ void CBinaryInputStream::OpenMemory(CBinaryInputStream* bs, int size, void* pos)
     return;
 }
 
-void CBinaryInputStream::Close(CBinaryInputStream* bs)
+void CBinaryInputStream::Close(CBinaryInputStreamStruct* bs)
 {
     if (bs->field_0x4 == 0) 
     {
@@ -79,13 +79,13 @@ void CBinaryInputStream::Close(CBinaryInputStream* bs)
     bs->field_0x28 = 0;
     return;
 }
-void CBinaryInputStream::DecrementCdReadLimit(CBinaryInputStream* bs, int param_1)
+void CBinaryInputStream::DecrementCdReadLimit(CBinaryInputStreamStruct* bs, int param_1)
 {
     bs->field_0x4c = (void*)((int)bs->field_0x4c - param_1);
     return;
 }
 
-void CBinaryInputStream::Read(CBinaryInputStream* bs, int count, void* dst)
+void CBinaryInputStream::Read(CBinaryInputStreamStruct* bs, int count, void* dst)
 {
     uint32_t uVar2;
 
@@ -135,7 +135,7 @@ void CBinaryInputStream::Read(CBinaryInputStream* bs, int count, void* dst)
     return;
 }
 
-void CBinaryInputStream::Align(CBinaryInputStream* bs, int alignment)
+void CBinaryInputStream::Align(CBinaryInputStreamStruct* bs, int alignment)
 {
     uint32_t pos = bs->stream_pos;
     uint32_t size = pos + alignment + -1 & -alignment;
@@ -144,7 +144,7 @@ void CBinaryInputStream::Align(CBinaryInputStream* bs, int alignment)
     return;
 }
 
-byte CBinaryInputStream::U8Read(CBinaryInputStream* bs)
+byte CBinaryInputStream::U8Read(CBinaryInputStreamStruct* bs)
 {
     byte value;
     if (bs->stream_size < 1)
@@ -160,7 +160,7 @@ byte CBinaryInputStream::U8Read(CBinaryInputStream* bs)
     }
 }
 
-uint16_t CBinaryInputStream::U16Read(CBinaryInputStream* bs)
+uint16_t CBinaryInputStream::U16Read(CBinaryInputStreamStruct* bs)
 {
     uint16_t value;
     if (bs->stream_size < 2)
@@ -176,7 +176,7 @@ uint16_t CBinaryInputStream::U16Read(CBinaryInputStream* bs)
     }
 }
 
-uint32_t CBinaryInputStream::U32Read(CBinaryInputStream* bs)
+uint32_t CBinaryInputStream::U32Read(CBinaryInputStreamStruct* bs)
 {
     uint32_t value;
     if (bs->stream_size < 4)
@@ -192,7 +192,7 @@ uint32_t CBinaryInputStream::U32Read(CBinaryInputStream* bs)
     }
 }
 
-int8_t CBinaryInputStream::S8Read(CBinaryInputStream* bs)
+int8_t CBinaryInputStream::S8Read(CBinaryInputStreamStruct* bs)
 {
     int8_t value;
     if (bs->stream_size < 1)
@@ -208,7 +208,7 @@ int8_t CBinaryInputStream::S8Read(CBinaryInputStream* bs)
     }
 }
 
-int16_t CBinaryInputStream::S16Read(CBinaryInputStream* bs)
+int16_t CBinaryInputStream::S16Read(CBinaryInputStreamStruct* bs)
 {
     int16_t value;
     if (bs->stream_size < 2)
@@ -225,7 +225,7 @@ int16_t CBinaryInputStream::S16Read(CBinaryInputStream* bs)
     return value;
 }
 
-int32_t CBinaryInputStream::S32Read(CBinaryInputStream* bs)
+int32_t CBinaryInputStream::S32Read(CBinaryInputStreamStruct* bs)
 {
     int32_t value;
     if (bs->stream_size < 4)
@@ -242,7 +242,7 @@ int32_t CBinaryInputStream::S32Read(CBinaryInputStream* bs)
     return value;
 }
 
-float CBinaryInputStream::F32Read(CBinaryInputStream* bs)
+float CBinaryInputStream::F32Read(CBinaryInputStreamStruct* bs)
 {
     float value;
     if (bs->stream_size < 4)
@@ -259,7 +259,7 @@ float CBinaryInputStream::F32Read(CBinaryInputStream* bs)
     return value;
 }
 
-void CBinaryInputStream::ReadStringSw(CBinaryInputStream* bs, char *dst0)
+void CBinaryInputStream::ReadStringSw(CBinaryInputStreamStruct* bs, char *dst0)
 {
     int string_count = U16Read(bs);
     char* dst1 = (char*)PvAllocSwImpl(string_count + 1);

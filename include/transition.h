@@ -1,13 +1,15 @@
 #include <iostream>
 #include <CFileLocation.h>
-typedef unsigned char    byte;
+#include <bis.h>
+#include <difficulty.h>
+typedef unsigned char byte;
 typedef struct LevelLoadManager LevelLoadManager, * PLevelLoadManager;
 typedef struct LevelLoadData LevelLoadData, * PLevelLoadData;
 typedef struct lsn_and_unk_ciphers_t lsn_and_unk_ciphers_t, * Plsn_and_unk_ciphers_t;
 typedef struct CTransition CTransition, * PCTransition;
 typedef struct lsn_and_unk_t lsn_and_unk_t, * Plsn_and_unk_t;
 
-class CTransition
+class Transition
 {
 	public:
 
@@ -24,13 +26,13 @@ class CTransition
             OID__VISIBILITY_MAP = 2
         } OID;
 
-        struct CTransition0
-        { /* PlaceHolder Class Structure */
-            uint32_t field_0x0;
-            char* level_file_info;
-            int field_0x8;
+        struct CTransition
+        {
+            uint32_t field_0x0; // unknown camera related anytime set to a
+            char* level_file_info; // this is the ptr to enc level sector offset and size in memory
+            int has_checkpoint_reached; // this basically checks if you have visited this level before
             int field_0xc;
-            uint32_t field_0x10;
+            uint32_t lost_all_lives; //this checks if you lost all lives when you die
         };
 
         typedef enum FLS 
@@ -76,6 +78,11 @@ class CTransition
             uint32_t lsn;
             uint32_t size;
         };
-        void Set(CTransition0* ct, OID* load_data, int param_2, int load_mod, int load_flags);
+
+        static CBinaryInputStream bs;
+
+        // Sets the conditions on the level if you died or loading level
+        void Set(CTransition* ct, OID* load_data, int param_2, int load_mod, int load_flags);
+        // Bacially Executing those conditions on the level
 		void Execute(LevelLoadManager* level_mgr);
 };

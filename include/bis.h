@@ -29,7 +29,7 @@ class CBinaryInputStream
         byte field_0x22;
     };
 
-    struct CBinaryInputStream
+    struct CBinaryInputStreamStruct
     {
         uint32_t field_0x0;
         int field_0x4;
@@ -59,20 +59,20 @@ class CBinaryInputStream
         uint32_t field_0x64;
     };
 
-    static CBinaryInputStream bs;
+    static CBinaryInputStreamStruct bs;
 
-    uint32_t FOpenSector(CBinaryInputStream* bs, uint32_t sector_offset, uint32_t size);
-    void OpenMemory(CBinaryInputStream* bs, int param_1, void* param_2);
-    void Close(CBinaryInputStream* bs);
-    void DecrementCdReadLimit(CBinaryInputStream* bs, int param_1);
-    void Read(CBinaryInputStream* bs, int count, void* dst);
-    void Align(CBinaryInputStream* bs, int alignment);
-    byte U8Read(CBinaryInputStream* bs);
-    uint16_t U16Read(CBinaryInputStream* bs);
-    uint32_t U32Read(CBinaryInputStream* bs);
-    int8_t S8Read(CBinaryInputStream* bs);
-    int16_t S16Read(CBinaryInputStream* bs);
-    int32_t S32Read(CBinaryInputStream* bs);
-    float F32Read(CBinaryInputStream* bs);
-    void ReadStringSw(CBinaryInputStream* bs, char* dst);
+    uint32_t FOpenSector(CBinaryInputStreamStruct* bs, uint32_t sector_offset, uint32_t size);
+    void OpenMemory(CBinaryInputStreamStruct* bs, int param_1, void* param_2);
+    void Close(CBinaryInputStreamStruct* bs);
+    void DecrementCdReadLimit(CBinaryInputStreamStruct* bs, int param_1);
+    void Read(CBinaryInputStreamStruct* bs, int count, void* dst);
+    void Align(CBinaryInputStreamStruct* bs, int alignment);
+    byte U8Read(CBinaryInputStreamStruct* bs);
+    uint16_t U16Read(CBinaryInputStreamStruct* bs);
+    uint32_t U32Read(CBinaryInputStreamStruct* bs);
+    int8_t S8Read(CBinaryInputStreamStruct* bs);
+    int16_t S16Read(CBinaryInputStreamStruct* bs);
+    int32_t S32Read(CBinaryInputStreamStruct* bs);
+    float F32Read(CBinaryInputStreamStruct* bs);
+    void ReadStringSw(CBinaryInputStreamStruct* bs, char* dst);
 };
