@@ -37,6 +37,17 @@ void UpdateGameState(float dt)
 	lsCur->dt = lsCur->dt + dt; // inc level playtime
 }
 
+void RetryGame(void)
+{
+	GS* gsCur = g_pgsCur;
+
+	g_pgsCur->clife = 5; // set lives to 5
+	gsCur->ccharm = 0; // set charms to 0
+
+	/* todo: implement function and CHKMGR struct
+	ResetChkmgrCheckpoints(&g_chkmgr); */
+}
+
 /* Sets the number of coins on the save file */
 void SetCcoin(int nParam)
 {
