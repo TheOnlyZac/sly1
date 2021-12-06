@@ -3,6 +3,7 @@ include (${CMAKE_CURRENT_SOURCE_DIR}/AddUnitTest.cmake)
 
 set (TESTNAMES "")
 
+add_subdirectory(clock)
 add_subdirectory(coin)
 add_subdirectory(difficulty)
 add_subdirectory(game)
