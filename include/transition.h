@@ -1,5 +1,5 @@
 #include <iostream>
-#include <CFileLocation.h>
+#include <FileLocation.h>
 #include <bis.h>
 #include <difficulty.h>
 typedef unsigned char byte;
@@ -9,7 +9,7 @@ typedef struct lsn_and_unk_ciphers_t lsn_and_unk_ciphers_t, * Plsn_and_unk_ciphe
 typedef struct CTransition CTransition, * PCTransition;
 typedef struct lsn_and_unk_t lsn_and_unk_t, * Plsn_and_unk_t;
 
-class Transition
+class CTransition
 {
 	public:
 
@@ -26,11 +26,11 @@ class Transition
             OID__VISIBILITY_MAP = 2
         } OID;
 
-        struct CTransition
+        struct CTransitionStruct
         {
-            uint32_t field_0x0; // unknown camera related anytime set to a
+            uint32_t field_0x0; // unknown camera related anytime set to a value it puts camera to origin
             char* level_file_info; // this is the ptr to enc level sector offset and size in memory
-            int has_checkpoint_reached; // this basically checks if you have visited this level before
+            int checkpoint_id; // this basically is the checkpoint_id on which checkpoint to spawn at when you start a level
             int field_0xc;
             uint32_t lost_all_lives; //this checks if you lost all lives when you die
         };
@@ -81,8 +81,8 @@ class Transition
 
         static CBinaryInputStream bs;
 
-        // Sets the conditions on the level if you died or loading level
-        void Set(CTransition* ct, OID* load_data, int param_2, int load_mod, int load_flags);
-        // Bacially Executing those conditions on the level
-		void Execute(LevelLoadManager* level_mgr);
+        // Sets the conditions on the level if you died or loading a level
+        void Set(CTransitionStruct* ct, OID* load_data, int checkpoint_id, int load_mod, int load_flags);
+        // Bacially Executing those conditions from the set function in the Execute function and setting some engine vaules to default
+	void Execute(LevelLoadManager* level_mgr);
 };
