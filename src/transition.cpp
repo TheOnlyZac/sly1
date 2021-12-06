@@ -1,19 +1,19 @@
 #include <Transition.h>
 
 
-void Transition::Set(CTransition* ct, OID* load_data, int param_2, int load_mod, int load_flags)
+void CTransition::Set(CTransitionStruct* ct, OID* load_data, int checkpoint_id, int load_mod, int load_flags)
 {
     if (ct->field_0x0 == 0)
     {
         ct->lost_all_lives = load_flags;
         ct->field_0x0 = 1;
         ct->level_file_info = (char*)load_data;
-        ct->has_checkpoint_reached = param_2;
+        ct->checkpoint_id = checkpoint_id;
         ct->field_0xc = load_mod;
     }
 }
 
-void Transition::Execute(LevelLoadManager* level_mgr)
+void CTransition::Execute(LevelLoadManager* level_mgr)
 {
 	LevelLoadData* lld;
 	LevelLoadData* search_data;
