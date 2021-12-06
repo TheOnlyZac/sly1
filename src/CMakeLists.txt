@@ -9,6 +9,8 @@ set (FILES
 	gs.cpp
 	coin.cpp
 	game.cpp
+	ui.cpp
+	wipe.cpp
 	xform.cpp
 	# ...
 )
