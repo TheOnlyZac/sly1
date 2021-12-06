@@ -1,6 +1,8 @@
 #include <iostream>
 #include <FileLocation.h>
 #include <bis.h>
+#include <game.h>
+#include <gs.h>
 #include <difficulty.h>
 typedef unsigned char byte;
 typedef struct LevelLoadManager LevelLoadManager, * PLevelLoadManager;
@@ -13,19 +15,6 @@ class CTransition
 {
 	public:
 
-        typedef enum OID 
-        {
-            OID__WORLD = 3,
-            OID_bentley = 6,
-            OID__CAMERA = 4,
-            OID_murray = 7,
-            OID__MERGED_STATICS = 1,
-            OID_rat = 617,
-            OID_Unknown = 0,
-            OID_jt = 5,
-            OID__VISIBILITY_MAP = 2
-        } OID;
-
         struct CTransitionStruct
         {
             uint32_t field_0x0; // unknown camera related anytime set to a value it puts camera to origin
@@ -34,15 +23,6 @@ class CTransition
             int field_0xc;
             uint32_t lost_all_lives; //this checks if you lost all lives when you die
         };
-
-        typedef enum FLS 
-        { /* Level State Flags */
-            FLS_BossDefeated = 16,
-            FLS_Tertiary = 8,
-            FLS_Visited = 1,
-            FLS_KeyCollected = 2,
-            FLS_Secondary = 4
-        } FLS;
 
         struct lsn_and_unk_ciphers_t
         {
@@ -80,9 +60,8 @@ class CTransition
         };
 
         static CBinaryInputStream bs;
-
         // Sets the conditions on the level if you died or loading a level
         void Set(CTransitionStruct* ct, OID* load_data, int checkpoint_id, int load_mod, int load_flags);
         // Bacially Executing those conditions from the set function in the Execute function and setting some engine vaules to default
-	void Execute(LevelLoadManager* level_mgr);
+		void Execute(LevelLoadManager* level_mgr);
 };
