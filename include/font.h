@@ -1,5 +1,7 @@
 #pragma once
 
+typedef char BYTE;
+
 /* Horizontal Justification */
 enum class JH : int
 {
@@ -20,10 +22,10 @@ enum class JV : int
 
 /* Red, Green, Blue, Alpha color values */
 struct RGBA {
-    char bRed;
-    char bGreen;
-    char bBlue;
-    char bAlpha;
+    BYTE bRed;
+    BYTE bGreen;
+	BYTE bBlue;
+	BYTE bAlpha;
 };
 
 /* Unknown, used by CFont class */
@@ -33,7 +35,7 @@ struct SFR
 	float ry;
 };
 
-typedef __vtbl_ptr_type struct;
+typedef struct __vtbl_ptr_type;
 struct CFont
 {
 protected:
@@ -44,8 +46,9 @@ protected:
 	struct SFR m_asfr[4];
 	int m_fGstest;
 	int field_0x34; // unknown
+	/* todo: figure out these types
 	u64 m_gstest;
-	u32 m_z;
+	u32 m_z; */
 
 private:
 	float m_rxScale;
