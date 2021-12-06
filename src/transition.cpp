@@ -108,7 +108,7 @@ void CTransition::Execute(LevelLoadManager* level_mgr)
 		//UpdateSounds();
 		//SetMvgkRvol(1.0,10,0);
 		//TeleportSwPlayer(g_psw, lld->search_val, lld ->field_0xc);
-		//OnDifficultyInitialTeleport(&g_difficulty);
+		OnDifficultyInitialTeleport(&g_difficulty);
 		uint32_t* unk_ptr3 = NULL;
 		uint32_t* unk_ptr4 = NULL;
 		uint32_t unk_5 = 0x02623d8;
