@@ -1,16 +1,17 @@
 #include <clock.h>
 
-/* Magic numbers */
+/* Set magic numbers */
 static constexpr int CLOCK_FRAMERATE = 60;
 static constexpr float CLOCK_FRAMETIME = 1.f / CLOCK_FRAMERATE;
 
 static constexpr int CLOCK_EE_TICK_RATE = 294912000;
 static constexpr float CLOCK_EE_TICK_DURATION = 1.f / CLOCK_EE_TICK_RATE;
 
-/* Global variables */
+/* Init global/static vars */
 float g_rtClock = 1.0;
 float g_trClockPowerUp = 1.0;
 CLOCK g_clock;
+TICK CLOCK::s_tickLastRaw{};
 
 /* Set the tick rate of the global clock */
 void SetClockRate(float rt)

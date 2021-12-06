@@ -4,7 +4,7 @@ typedef unsigned long long TICK;
 
 struct CLOCK
 {
-	static TICK s_tickLastRaw{};
+	static TICK s_tickLastRaw;
 
 	bool fEnabled; // clock enabled flag
 	float t;
@@ -24,6 +24,6 @@ void MarkClockTickRealOnly(CLOCK* pclock);
 void ResetClock(CLOCK* pclock, float t);
 void SetClockEnabled(CLOCK* pclock, bool fEnabled);
 void StartupClock();
-unsigned long TickNow(); // todo: return type should be TICK
+TICK TickNow();
 
 //void SetClockDebugRate(int nParam);
