@@ -4,12 +4,6 @@
 
 #include <cstring>
 
-/* Clears the GAME struct */
-void OnGameLoad(GAME* pgame)
-{
-	memset(pgame, 0, sizeof(GAME));
-}
-
 /* Resets the save data values to their defaults */
 void InitGameState(GS* pgs)
 
@@ -37,6 +31,12 @@ void UpdateGameState(float dt)
 	lsCur->dt = lsCur->dt + dt; // inc level playtime
 }
 
+/* Clears the level save struct */
+void ClearLs(LS* pls)
+{
+	memset(pls, 0, sizeof(LS));
+}
+
 void RetryGame(void)
 {
 	GS* gsCur = g_pgsCur;
@@ -48,23 +48,10 @@ void RetryGame(void)
 	ResetChkmgrCheckpoints(&g_chkmgr); */
 }
 
-void ClearLs(LS* pls)
+/* Sets the number of charms on the save file */
+void SetCcharm(int nParam)
 {
-	memset(pls, 0, sizeof(LS));
-}
-
-/* Sets the number of coins on the save file */
-void SetCcoin(int nParam)
-{
-	g_pgsCur->ccoin = nParam;
-}
-
-/* Returns the max number of charms the player can have */
-int CcharmMost()
-{
-	/* This was more complicated in the may proto because there was 
-	a powerup which enables you to have more than two charms */
-	return 2;
+	g_pgsCur->ccharm = nParam;
 }
 
 /* Returns true if Sly has a charm or infinite charms cheat is enabled */
@@ -77,8 +64,22 @@ bool FCharmAvailable()
 	return false;
 }
 
-/* Sets the number of charms on the save file */
-void SetCcharm(int nParam)
+/* Sets the number of coins on the save file */
+void SetCcoin(int nParam)
 {
-	g_pgsCur->ccharm = nParam;
+	g_pgsCur->ccoin = nParam;
+}
+
+/* Clears the GAME struct */
+void OnGameLoad(GAME* pgame)
+{
+	memset(pgame, 0, sizeof(GAME));
+}
+
+/* Returns the max number of charms the player can have */
+int CcharmMost()
+{
+	/* This was more complicated in the may proto because there was 
+	a powerup which enables you to have more than two charms */
+	return 2;
 }

@@ -93,12 +93,49 @@ struct GAME {
 	int cgoldLatest;
 };
 
-void OnGameLoad(GAME* pgame);
+/* Unimplemented function sigs below are from the May prototype,
+ some may be missing here, and some may be not be used in the final build */
+
+//void StartupGame();
+
+//char* PchzFromLevel(GAMEWORLD gameworld, WORLDLEVEL worldlevel);
+//char* PchzFriendlyFromLevel(GAMEWORLD gameworld, WORLDLEVEL worldlevel);
+//char* PchzFriendlyFromWorld(char* pchzWorld);
+
+//int FFindLevel(char* pchzWorld, GAMEWORLD* pgameworld, WORLDLEVEL* pworldlevel);
+
 void InitGameState(GS* pgs);
+//void SetupGame(char* pchzWorld, GRFTRANS grftrans)
 void UpdateGameState(float dt);
-void RetryGame();
+
+//GRFLS GrflsFromWid(WID wid)
 void ClearLs(LS* pls);
-void SetCcoin(int nParam);
-int CcharmMost();
-bool FCharmAvailable();
+
+//void UnloadGame();
+void RetryGame();
+//void StartGame();
+
 void SetCcharm(int nParam);
+bool FCharmAvailable();
+//void SetClife(int nParam);
+void SetCcoin(int nParam);
+
+//int* PfLookupDialog(LS* pls, OID oidDialog);
+//char* AchzFromGameworld(GAMEWORLD gameworld);
+//int CwlpGetWlps(int cwlpMax, WLP* awlp);
+
+void OnGameLoad(GAME* pgame);
+//void OnGameWorldTransition(GAME* pgame);
+//void OnGameAlarmTriggered(GAME* pgame);
+//void OnGameAlarmDisabled(GAME* pgame);
+//void OnGameEnterUis(GAME* pgame, UIS uis);
+
+//void StartGameTimedChallenge(GAME* pgame, GOLDCOLLECTED* pgoldCollected)
+//void EndGameTimedChallenge(GAME* pgame, int* pfNewBestTime);
+//void OnGameTimedChallengeTimerNotify(TIMER* ptimer, TIMERNOTK timernotk);
+//void StartGameTimedChallengeTimer(GAME* pgame, float dt);
+//void ResetGameTimedChallenge(GAME* pgame);
+//void PrepareGameGoldForTimedChallenge(GAME* pgame);
+//void GetBlueprintInfo(GRFVAULT* pgrfvault, int* pipdialog);
+
+int CcharmMost();
