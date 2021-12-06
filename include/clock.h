@@ -1,6 +1,6 @@
 #pragma once
 
-typedef unsigned long TICK;
+typedef unsigned long long TICK;
 
 struct CLOCK
 {
