@@ -35,6 +35,7 @@ uint32_t CBinaryInputStream::FOpenSector(uint32_t sector_offset, uint32_t size)
     this->field_0x64 = (CProg*)(iVar1 + -1);
     return 1;
 }
+
 void CBinaryInputStream::OpenMemory(int size, void* pos)
 {
     this->stream_size = size;
@@ -79,6 +80,7 @@ void CBinaryInputStream::Close()
     this->field_0x28 = 0;
     return;
 }
+
 void CBinaryInputStream::DecrementCdReadLimit(int param_1)
 {
     this->field_0x4c = (void*)((int)this->field_0x4c - param_1);
