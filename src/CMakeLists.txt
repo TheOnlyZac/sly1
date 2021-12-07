@@ -1,13 +1,15 @@
 
 
 set (FILES
+	bis.cpp
+	coin.cpp
+	difficulty.cpp
+	game.cpp
+	gs.cpp
+	joy.cpp
+	mpeg.cpp
 	transition.cpp
 	util.cpp
-	joy.cpp
-	gs.cpp
-	difficulty.cpp
-	coin.cpp
-	game.cpp
 	xform.cpp
 	# ...
 )
