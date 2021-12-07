@@ -10,7 +10,7 @@ void InitGameState(GS* pgs)
 {
 	std::memset(pgs, 0, sizeof(GS));
 	pgs->gameworldCur = GAMEWORLD::Intro;
-	pgs->unlocked_thief_moves = 0;
+	pgs->grfvault = 0;
 	pgs->gsv = 0x12;
 	pgs->cbThis = sizeof(GS);
 	pgs->worldlevelCur = WORLDLEVEL::Level2;
