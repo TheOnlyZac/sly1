@@ -1,15 +1,15 @@
 #include <Transition.h>
 
 
-void CTransition::Set(CTransitionStruct* ct, OID* load_data, int checkpoint_id, int load_mod, int load_flags)
+void CTransition::Set(OID* load_data, int checkpoint_id, int load_mod, int load_flags)
 {
-    if (ct->field_0x0 == 0)
+    if (this->field_0x0 == 0)
     {
-        ct->lost_all_lives = load_flags;
-        ct->field_0x0 = 1;
-        ct->level_file_info = (char*)load_data;
-        ct->checkpoint_id = checkpoint_id;
-        ct->field_0xc = load_mod;
+        this->lost_all_lives = load_flags;
+        this->field_0x0 = 1;
+        this->level_file_info = (char*)load_data;
+        this->checkpoint_id = checkpoint_id;
+        this->field_0xc = load_mod;
     }
 }
 
@@ -24,7 +24,7 @@ void CTransition::Execute(LevelLoadManager* level_mgr)
 	if ((lld->lsn_and_size_ciphers).size_enc != 0)
 	{
 		//CFileLocation::Clear(&lsn_and_size);
-		//Loading the encrypted sector offsets and sizes in variables to be decrypted
+		//Loading the encrypted seor offsets and sizes in variables to be decrypted
 		uint32_t *enc_file_table = NULL;
 		uint32_t off = lld->lsn_and_size_ciphers.size_enc;
 		enc_file_table = (uint32_t*)off;
