@@ -2,6 +2,7 @@
 
 set (FILES
 	bis.cpp
+	cat.cpp
 	coin.cpp
 	difficulty.cpp
 	game.cpp

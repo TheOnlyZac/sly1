@@ -1,4 +1,13 @@
-#include <WalCatalog.h>
+#include <cat.h>
+
+/* CFileLocation class methods */
+
+void CFileLocation::Clear(CFileLocation* fl)
+{
+	memset(fl, 0, 8);
+}
+
+/* CWalCatalog class methods */
 
 void CWalCatalog::Init(FileLocation* wac_file_desc0, FileLocation* wal_file_desc1)
 {

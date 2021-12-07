@@ -2,7 +2,17 @@
 
 #include <FileLocation.h>
 
-#include <iostream>
+class CFileLocation
+{
+public:
+	struct CFileLocation
+	{
+		uint32_t sector_offset;
+		uint32_t size;
+	};
+
+	void Clear(CFileLocation* fl);
+};
 
 class CWalCatalog
 {
