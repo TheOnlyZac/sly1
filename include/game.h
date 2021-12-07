@@ -1,5 +1,7 @@
 #pragma once
 
+#include <gs.h>
+
 /* Object ID
  There are a lot more that are unknown. */
 enum class OID : int
