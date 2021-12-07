@@ -1,6 +1,6 @@
 #include <bis.h>
 
-uint32_t CBinaryInputStream::FOpenSector(CBinaryInputStreamStruct* bs, uint32_t sector_offset, uint32_t size)
+uint32_t CBinaryInputStream::FOpenSector(uint32_t sector_offset, uint32_t size)
 {
     int iVar1;
     int iVar2;
@@ -10,58 +10,58 @@ uint32_t CBinaryInputStream::FOpenSector(CBinaryInputStreamStruct* bs, uint32_t 
         return 0;
     }
 
-    iVar2 = bs->field_0xc;
-    bs->field_0x4 = 1;
-    bs->sector_offset = (byte*)sector_offset;
-    bs->field_0x4c = (void*)size;
-    bs->field_0x20 = bs->field_0x8;
-    bs->size = size;
-    bs->size_2 = size;
-    bs->field_0x44 = 0;
-    bs->field_0x50 = 0;
-    bs->field_0x48 = 0;
+    iVar2 = this->field_0xc;
+    this->field_0x4 = 1;
+    this->sector_offset = (byte*)sector_offset;
+    this->field_0x4c = (void*)size;
+    this->field_0x20 = this->field_0x8;
+    this->size = size;
+    this->size_2 = size;
+    this->field_0x44 = 0;
+    this->field_0x50 = 0;
+    this->field_0x48 = 0;
     if (iVar2 < 0) 
     {
         iVar2 = iVar2 + 0xfffff;
     }
-    bs->field_0x5c = 0;
+    this->field_0x5c = 0;
     iVar1 = 2;
     if (2 < iVar2 >> 0x14) 
     {
         iVar1 = iVar2 >> 0x14;
     }
-    bs->field_0x60 = 0;
-    bs->field_0x58 = iVar1;
-    bs->field_0x64 = (CProg*)(iVar1 + -1);
+    this->field_0x60 = 0;
+    this->field_0x58 = iVar1;
+    this->field_0x64 = (CProg*)(iVar1 + -1);
     return 1;
 }
-void CBinaryInputStream::OpenMemory(CBinaryInputStreamStruct* bs, int size, void* pos)
+void CBinaryInputStream::OpenMemory(int size, void* pos)
 {
-    bs->stream_size = size;
-    bs->field_0x4 = 2;
-    bs->stream_pos = pos;
+    this->stream_size = size;
+    this->field_0x4 = 2;
+    this->stream_pos = pos;
     return;
 }
 
-void CBinaryInputStream::Close(CBinaryInputStreamStruct* bs)
+void CBinaryInputStream::Close()
 {
-    if (bs->field_0x4 == 0) 
+    if (this->field_0x4 == 0) 
     {
-        if (-1 < (long)*(int*)&bs->field_0x40) 
+        if (-1 < (long)*(int*)&this->field_0x40) 
         {
-            sceClose((long)*(int*)&bs->field_0x40);
+            sceClose((long)*(int*)&this->field_0x40);
         }
     }
     else 
     {
-        if (bs->field_0x4 != 1) 
+        if (this->field_0x4 != 1) 
         {
-            bs->field_0x2c = 0;
+            this->field_0x2c = 0;
             goto LAB_0013a694;
         }
-        if (bs->field_0x48 != 0) 
+        if (this->field_0x48 != 0) 
         {
-            if ((bs->field_0x0 & 2) == 0) 
+            if ((this->field_0x0 & 2) == 0) 
             {
                 snd_StreamSafeCdBreak();
             }
@@ -70,49 +70,49 @@ void CBinaryInputStream::Close(CBinaryInputStreamStruct* bs)
             }
         }
     }
-    bs->field_0x2c = 0;
-    bs->field_0x4 = -1;
-    bs->field_0x20 = (byte*)0x0;
-    bs->field_0x18 = (void*)0x0;
-    bs->field_0x24 = 0;
-    bs->field_0x1c = 0;
-    bs->field_0x28 = 0;
+    this->field_0x2c = 0;
+    this->field_0x4 = -1;
+    this->field_0x20 = (byte*)0x0;
+    this->field_0x18 = (void*)0x0;
+    this->field_0x24 = 0;
+    this->field_0x1c = 0;
+    this->field_0x28 = 0;
     return;
 }
-void CBinaryInputStream::DecrementCdReadLimit(CBinaryInputStreamStruct* bs, int param_1)
+void CBinaryInputStream::DecrementCdReadLimit(int param_1)
 {
-    bs->field_0x4c = (void*)((int)bs->field_0x4c - param_1);
+    this->field_0x4c = (void*)((int)this->field_0x4c - param_1);
     return;
 }
 
-void CBinaryInputStream::Read(CBinaryInputStreamStruct* bs, int count, void* dst)
+void CBinaryInputStream::Read(int count, void* dst)
 {
     uint32_t uVar2;
 
-    if (bs->stream_size > 0 && count > 0)
+    if (this->stream_size > 0 && count > 0)
     {
         do 
         {
-            uint32_t size = bs->stream_size;
+            uint32_t size = this->stream_size;
             if (size == 0) 
             {
-                if ((bs->field_0x0 & 4) == 0) 
+                if ((this->field_0x0 & 4) == 0) 
                 {
-                    Pump(bs);
-                    bs->stream_size = bs->field_0x24;
-                    bs->stream_pos = bs->field_0x20;
-                    bs->field_0x20 = bs->field_0x20 + bs->field_0x24;
-                    bs->field_0x24 = 0;
-                    size = bs->stream_size;
+                    Pump(this);
+                    this->stream_size = this->field_0x24;
+                    this->stream_pos = this->field_0x20;
+                    this->field_0x20 = this->field_0x20 + this->field_0x24;
+                    this->field_0x24 = 0;
+                    size = this->stream_size;
                 }
                 else 
                 {
-                    Decompress(bs);
-                    size = bs->stream_size;
+                    Decompress(this);
+                    size = this->stream_size;
                 }
                 if (size == 0) 
                 {
-                    bs->stream_size = 0xffffffff;
+                    this->stream_size = 0xffffffff;
                     return;
                 }
             }
@@ -123,147 +123,147 @@ void CBinaryInputStream::Read(CBinaryInputStreamStruct* bs, int count, void* dst
             }
             if (dst != (void*)0x0) 
             {
-                CopyAb(dst, bs->stream_pos, uVar2);
+                CopyAb(dst, this->stream_pos, uVar2);
                 dst = (void*)((int)dst + uVar2);
             }
             count = count - uVar2;
-            bs->stream_pos = (void*)((int)bs->stream_pos + uVar2);
-            bs->stream_size = bs->stream_size - uVar2;
+            this->stream_pos = (void*)((int)this->stream_pos + uVar2);
+            this->stream_size = this->stream_size - uVar2;
         } 
         while (0 < count);
     }
     return;
 }
 
-void CBinaryInputStream::Align(CBinaryInputStreamStruct* bs, int alignment)
+void CBinaryInputStream::Align(int alignment)
 {
-    uint32_t pos = bs->stream_pos;
+    uint32_t pos = this->stream_pos;
     uint32_t size = pos + alignment + -1 & -alignment;
-    bs->stream_size = size;
-    bs->stream_pos = bs->stream_pos - size - stream_pos;
+    this->stream_size = size;
+    this->stream_pos = this->stream_pos - size - stream_pos;
     return;
 }
 
-byte CBinaryInputStream::U8Read(CBinaryInputStreamStruct* bs)
+byte CBinaryInputStream::U8Read()
 {
     byte value;
-    if (bs->stream_size < 1)
+    if (this->stream_size < 1)
     {
-        Read(bs, 1, value);
+        Read(this, 1, value);
     }
     else
     {
-        value = (byte)*bs->stream_pos;
-        bs->stream_size = bs->stream_size - 1;
-        bs->stream_pos = bs->stream_pos + 1;
+        value = (byte)*this->stream_pos;
+        this->stream_size = this->stream_size - 1;
+        this->stream_pos = this->stream_pos + 1;
         return value;
     }
 }
 
-uint16_t CBinaryInputStream::U16Read(CBinaryInputStreamStruct* bs)
+uint16_t CBinaryInputStream::U16Read()
 {
     uint16_t value;
-    if (bs->stream_size < 2)
+    if (this->stream_size < 2)
     {
-        Read(bs, 2, value);
+        Read(this, 2, value);
     }
     else
     {
-        value = (uint16_t)*bs->stream_pos;
-        bs->stream_size = bs->stream_size - 2;
-        bs->stream_pos = bs->stream_pos + 2;
+        value = (uint16_t)*this->stream_pos;
+        this->stream_size = this->stream_size - 2;
+        this->stream_pos = this->stream_pos + 2;
         return value;
     }
 }
 
-uint32_t CBinaryInputStream::U32Read(CBinaryInputStreamStruct* bs)
+uint32_t CBinaryInputStream::U32Read()
 {
     uint32_t value;
-    if (bs->stream_size < 4)
+    if (this->stream_size < 4)
     {
-        Read(bs, 4, value);
+        Read(this, 4, value);
     }
     else
     {
-        value = (uint32_t)*bs->stream_pos;
-        bs->stream_size = bs->stream_size - 4;
-        bs->stream_pos = bs->stream_pos + 4;
+        value = (uint32_t)*this->stream_pos;
+        this->stream_size = this->stream_size - 4;
+        this->stream_pos = this->stream_pos + 4;
         return value;
     }
 }
 
-int8_t CBinaryInputStream::S8Read(CBinaryInputStreamStruct* bs)
+int8_t CBinaryInputStream::S8Read()
 {
     int8_t value;
-    if (bs->stream_size < 1)
+    if (this->stream_size < 1)
     {
-        Read(bs, 1, value);
+        Read(this, 1, value);
     }
     else
     {
-        value = (int8_t)*bs->stream_pos;
-        bs->stream_size = bs->stream_size - 1;
-        bs->stream_pos = bs->stream_pos + 1;
+        value = (int8_t)*this->stream_pos;
+        this->stream_size = this->stream_size - 1;
+        this->stream_pos = this->stream_pos + 1;
         return value;
     }
 }
 
-int16_t CBinaryInputStream::S16Read(CBinaryInputStreamStruct* bs)
+int16_t CBinaryInputStream::S16Read()
 {
     int16_t value;
-    if (bs->stream_size < 2)
+    if (this->stream_size < 2)
     {
-        Read(bs, 2, value);
+        Read(this, 2, value);
     }
     else
     {
-        value = (int16_t)*bs->stream_pos;
-        bs->stream_size = bs->stream_size - 2;
-        bs->stream_pos = bs->stream_pos + 2;
+        value = (int16_t)*this->stream_pos;
+        this->stream_size = this->stream_size - 2;
+        this->stream_pos = this->stream_pos + 2;
         return value;
     }
     return value;
 }
 
-int32_t CBinaryInputStream::S32Read(CBinaryInputStreamStruct* bs)
+int32_t CBinaryInputStream::S32Read()
 {
     int32_t value;
-    if (bs->stream_size < 4)
+    if (this->stream_size < 4)
     {
-        Read(bs, 4, value);
+        Read(this, 4, value);
     }
     else
     {
-        value = (int32_t)*bs->stream_pos;
-        bs->stream_size = bs->stream_size - 4;
-        bs->stream_pos = bs->stream_pos + 4;
+        value = (int32_t)*this->stream_pos;
+        this->stream_size = this->stream_size - 4;
+        this->stream_pos = this->stream_pos + 4;
         return value;
     }
     return value;
 }
 
-float CBinaryInputStream::F32Read(CBinaryInputStreamStruct* bs)
+float CBinaryInputStream::F32Read()
 {
     float value;
-    if (bs->stream_size < 4)
+    if (this->stream_size < 4)
     {
-        Read(bs, 4, value);
+        Read(this, 4, value);
     }
     else
     {
-        value = (float)*bs->stream_pos;
-        bs->stream_size = bs->stream_size - 4;
-        bs->stream_pos = bs->stream_pos + 4;
+        value = (float)*this->stream_pos;
+        this->stream_size = this->stream_size - 4;
+        this->stream_pos = this->stream_pos + 4;
         return value;
     }
     return value;
 }
 
-void CBinaryInputStream::ReadStringSw(CBinaryInputStreamStruct* bs, char *dst0)
+void CBinaryInputStream::ReadStringSw(char *dst0)
 {
-    int string_count = U16Read(bs);
+    int string_count = U16Read(this);
     char* dst1 = (char*)PvAllocSwImpl(string_count + 1);
-    Read(bs, string_count, dst1);
+    Read(this, string_count, dst1);
     dst1[string_count] = '\0';
     *dst0 = dst1;
     return;
