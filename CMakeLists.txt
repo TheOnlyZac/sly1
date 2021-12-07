@@ -1,21 +1,22 @@
+project(sly1-decomp)
 
+cmake_minimum_required(VERSION 3.12)
 
-set (FILES
-	Transition.cpp
-	util.cpp
-	joy.cpp
-	gs.cpp
-	difficulty.cpp
-	coin.cpp
-	game.cpp
-	xform.cpp
-	# ...
-)
+set(CMAKE_CXX_STANDARD 20)
 
-add_library(DECOMP STATIC ${FILES}) # todo: use shared
+set (SLY1_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
+set (SLY1_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-target_include_directories(DECOMP PUBLIC ${SLY1_INCLUDE_DIR})
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-add_executable(main main.cpp)
+add_subdirectory(src)
 
-target_link_libraries(main PUBLIC DECOMP)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/tests)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/tests)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/tests)
+
+enable_testing()
+
+add_subdirectory(test)
