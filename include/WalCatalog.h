@@ -1,9 +1,12 @@
-#include <iostream>
+#pragma once
+
 #include <FileLocation.h>
+
+#include <iostream>
 
 class CWalCatalog
 {
-    public:
+public:
     uint32_t wac_sector_offset;
     uint32_t wac_size;
     uint32_t wal_sector_offset;

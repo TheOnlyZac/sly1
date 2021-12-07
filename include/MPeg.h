@@ -1,13 +1,16 @@
-#include <iostream>
+#pragma once
+
 #include <difficulty.h>
+
+#include <iostream>
+
 typedef unsigned char   byte;
 typedef struct CMpeg CMpeg, * PCMpeg;
 typedef struct CutsceneManager CutsceneManager, * PCutsceneManager;
 
 class CMpeg
 {
-    public:
-
+public:
         struct CutsceneManager
         {
             uint32_t cutscene_index;

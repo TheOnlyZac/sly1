@@ -1,7 +1,9 @@
+#pragma once
+
 #include <iostream>
 
 class CTextBox
 {
-	public:
+public:
 	void SetHorizontalJust(CTextBox *tb, uint32_t param_1);
 };

@@ -1,11 +1,10 @@
-#ifndef FILELOCATION
-#define FILELOCATION
+#pragma once
+
 #include <iostream>
 
 class FileLocation
 {
-    public:
-
+public:
     struct CFileLocation
     {
         uint32_t sector_offset;
@@ -14,4 +13,3 @@ class FileLocation
 
     void Clear(CFileLocation* fl);
 };
-#endif

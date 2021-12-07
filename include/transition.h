@@ -1,9 +1,13 @@
-#include <iostream>
-#include <FileLocation.h>
+#pragma once
+
 #include <bis.h>
+#include <FileLocation.h>
 #include <game.h>
 #include <gs.h>
 #include <difficulty.h>
+
+#include <iostream>
+
 typedef unsigned char byte;
 typedef struct LevelLoadManager LevelLoadManager, * PLevelLoadManager;
 typedef struct LevelLoadData LevelLoadData, * PLevelLoadData;
