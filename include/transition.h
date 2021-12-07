@@ -12,7 +12,6 @@ typedef unsigned char byte;
 typedef struct LevelLoadManager LevelLoadManager, * PLevelLoadManager;
 typedef struct LevelLoadData LevelLoadData, * PLevelLoadData;
 typedef struct lsn_and_unk_ciphers_t lsn_and_unk_ciphers_t, * Plsn_and_unk_ciphers_t;
-typedef struct CTransition CTransition, * PCTransition;
 typedef struct lsn_and_unk_t lsn_and_unk_t, * Plsn_and_unk_t;
 
 class CTransition
