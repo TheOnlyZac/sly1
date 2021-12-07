@@ -1,15 +1,10 @@
 #pragma once
 
-#include <FileLocation.h>
-
 class CFileLocation
 {
 public:
-	struct CFileLocation
-	{
-		uint32_t sector_offset;
-		uint32_t size;
-	};
+	uint32_t sector_offset;
+	uint32_t size;
 
 	void Clear(CFileLocation* fl);
 };
@@ -29,6 +24,6 @@ public:
     uint32_t unk_4;
 
     //Basically just getting the wac and wal size and sector offset from the ISO and storing it in the wac struct
-    void Init(FileLocation* wac_file_desc0, FileLocation* wal_file_desc1);
+    void Init(CFileLocation* wac_file_desc0, CFileLocation* wal_file_desc1);
     void Reload();
 };
