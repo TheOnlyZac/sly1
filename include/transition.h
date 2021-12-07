@@ -15,14 +15,11 @@ class CTransition
 {
 	public:
 
-        struct CTransitionStruct
-        {
-            uint32_t field_0x0; // unknown camera related anytime set to a value it puts camera to origin
-            char* level_file_info; // this is the ptr to enc level sector offset and size in memory
-            int checkpoint_id; // this basically is the checkpoint_id on which checkpoint to spawn at when you start a level
-            int field_0xc;
-            uint32_t lost_all_lives; //this checks if you lost all lives when you die
-        };
+        uint32_t field_0x0; // unknown camera related anytime set to a value it puts camera to origin
+        char* level_file_info; // this is the ptr to enc level sector offset and size in memory
+        int checkpoint_id; // this basically is the checkpoint_id on which checkpoint to spawn at when you start a level
+        int field_0xc;
+        uint32_t lost_all_lives; //this checks if you lost all lives when you die
 
         struct lsn_and_unk_ciphers_t
         {
@@ -59,9 +56,8 @@ class CTransition
             uint32_t size;
         };
 
-        static CBinaryInputStream bs;
         // Sets the conditions on the level if you died or loading a level
-        void Set(CTransitionStruct* ct, OID* load_data, int checkpoint_id, int load_mod, int load_flags);
+        void Set(OID* load_data, int checkpoint_id, int load_mod, int load_flags);
         // Bacially Executing those conditions from the set function in the Execute function and setting some engine vaules to default
 		void Execute(LevelLoadManager* level_mgr);
 };
