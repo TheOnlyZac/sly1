@@ -59,5 +59,5 @@ class CTransition
         // Sets the conditions on the level if you died or loading a level
         void Set(OID* load_data, int checkpoint_id, int load_mod, int load_flags);
         // Bacially Executing those conditions from the set function in the Execute function and setting some engine vaules to default
-		void Execute(LevelLoadManager* level_mgr);
+	void Execute(LevelLoadManager* level_mgr);
 };
