@@ -3,6 +3,7 @@
 set (FILES
 	bis.cpp
 	cat.cpp
+	clock.cpp
 	coin.cpp
 	difficulty.cpp
 	game.cpp
