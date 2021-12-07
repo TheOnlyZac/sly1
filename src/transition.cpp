@@ -1,5 +1,5 @@
-#include <Transition.h>
-
+#include <transition.h>
+#include <clock.h>
 
 void CTransition::Set(OID* load_data, int checkpoint_id, int load_mod, int load_flags)
 {
@@ -84,7 +84,7 @@ void CTransition::Execute(LevelLoadManager* level_mgr)
 			{
 				//reset_engine_values((EntityList*)g_psw);
 				//Func_1db928();
-				//ResetClock(&g_clock, 0.0);
+				ResetClock(&g_clock, 0.0);
 				//AddGrfusr(0x80);
 				//load_level(search_data, )
 				//g_psw = PloNew(0x6C, 0x0, 0x0, OID_WORLD, -1);
@@ -123,7 +123,7 @@ void CTransition::Execute(LevelLoadManager* level_mgr)
 		//{
 			//lives_blot.field_0x0 + 0x38;
 		//}
-		//SetClockRate(1.0);
+		SetClockRate(1.0);
 	}
 
 	//FUN_001c06d8();
