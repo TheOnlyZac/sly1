@@ -1,14 +1,13 @@
 #pragma once
-
 #include <prog.h>
-
 #include <iostream>
 
 typedef unsigned char byte;
 
 class CBinaryInputStream
 {
-public:
+    public:
+
     uint32_t field_0x0;
     int field_0x4;
     int field_0x8;
@@ -41,7 +40,7 @@ public:
     void OpenMemory(int param_1, void* param_2);
     void Close();
     void DecrementCdReadLimit(int param_1);
-    void Read(int count, void* dst);
+    void Read(int count, uint64_t dst);
     void Align(int alignment);
     byte U8Read();
     uint16_t U16Read();
