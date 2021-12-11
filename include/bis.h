@@ -1,6 +1,7 @@
 #pragma once
 #include <prog.h>
 #include <iostream>
+#include <stdint.h>
 
 typedef unsigned char byte;
 
