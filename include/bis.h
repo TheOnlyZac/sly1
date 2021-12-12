@@ -3,7 +3,14 @@
 #include <iostream>
 #include <stdint.h>
 
-typedef unsigned char byte;
+typedef unsigned char BYTE;
+
+enum class BASK : int
+{
+    Cd = 1,
+    Host = 0,
+    Max = 2
+};
 
 class CBinaryInputStream
 {
@@ -17,10 +24,10 @@ class CBinaryInputStream
     uint32_t size_2;
     uint32_t stream_pos;
     int stream_size;
-    byte* ptr_data_origin;
+    BYTE* ptr_data_origin;
     uint32_t size_3;
     uint32_t flags;
-    byte* size_of_70002000_segment;
+    BYTE* size_of_70002000_segment;
     int* level_id;
     int field_0x34;
     int field_0x38;
@@ -29,7 +36,7 @@ class CBinaryInputStream
     int field_0x44;
     uint32_t lsn_to_read;
     uint32_t field_0x4c;
-    byte* field_0x50;
+    BYTE* field_0x50;
     uint32_t sector_offset;
     uint32_t field_0x58;
     uint32_t field_0x5c;
@@ -51,4 +58,24 @@ class CBinaryInputStream
     int32_t S32Read();
     float F32Read();
     void ReadStringSw(char* dst);
+};
+
+class CBinaryAsyncStream {
+public:
+    BASK m_bask;
+    int m_fd;
+    uint32_t m_isector;
+    int m_cbSpooling;
+    BYTE* m_pbSpooling;
+    BYTE* m_abSpool;
+    int m_cb;
+    BYTE* m_pb;
+    int m_ibCur;
+    int m_cbUnspooled;
+    int m_cbFile;
+
+    CBinaryAsyncStream(void* pvSpool); // todo (constructor)
+    ~CBinaryAsyncStream(); // todo (destructor)
+
+    void Close(); // todo
 };

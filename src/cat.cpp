@@ -4,9 +4,9 @@
 
 /* CFileLocation class methods */
 
-void CFileLocation::Clear(CFileLocation* fl)
+void CFileLocation::Clear()
 {
-	memset(fl, 0, 8);
+	memset(this, 0, sizeof(this));
 }
 
 /* CWalCatalog class methods */
@@ -19,9 +19,4 @@ void CWalCatalog::Init(CFileLocation* wac_file_desc0, CFileLocation* wal_file_de
     this->wal_size = wal_file_desc1->size;
     Reload();
     return;
-}
-
-void CWalCatalog::Reload()
-{
-
 }

@@ -4,16 +4,16 @@
  There are a lot more that are unknown. */
 enum class OID : int
 {
-	OID_Unknown = 0x0,
-	OID__MERGED_STATICS = 0x1,
-	OID__VISIBILITY_MAP = 0x2,
-	OID__WORLD = 0x3,
-	OID__CAMERA = 0x4,
-	OID_jt = 0x5,
-	OID_bentley = 0x6,
-	OID_murray = 0x7,
+	Unknown = 0x0,
+	_MERGED_STATICS = 0x1,
+	_VISIBILITY_MAP = 0x2,
+	_WORLD = 0x3,
+	_CAMERA = 0x4,
+	jt = 0x5,
+	bentley = 0x6,
+	murray = 0x7,
 	// ...
-	OID_rat = 0x269
+	rat = 0x269
 	// ...
 };
 

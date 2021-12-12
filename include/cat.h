@@ -7,7 +7,7 @@ public:
 	uint32_t sector_offset;
 	uint32_t size;
 
-	void Clear(CFileLocation* fl);
+	void Clear();
 };
 
 class CWalCatalog
@@ -26,5 +26,5 @@ public:
 
     //Basically just getting the wac and wal size and sector offset from the ISO and storing it in the wac struct
     void Init(CFileLocation* wac_file_desc0, CFileLocation* wal_file_desc1);
-    void Reload();
+    void Reload(); // todo
 };
