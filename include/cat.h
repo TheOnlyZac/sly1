@@ -1,11 +1,16 @@
 #pragma once
 #include <stdint.h>
 
+struct FCL
+{
+    uint32_t isector; // sector offset
+    uint32_t cb; // size
+};
+
 class CFileLocation
 {
 public:
-	uint32_t sector_offset;
-	uint32_t size;
+    FCL m_fcl; // sector and size information
 
 	void Clear();
 };
@@ -24,6 +29,6 @@ public:
     char** unk_3;
     uint32_t unk_4;
 
-    void Init(CFileLocation* wac_file_desc0, CFileLocation* wal_file_desc1);
+    void Init(CFileLocation* pflWac, CFileLocation* pflWal);
     void Reload(); // todo
 };

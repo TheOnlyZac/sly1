@@ -50,9 +50,9 @@ void CMpeg::Execute(OID* oid)
     }
     else
     {
-        fileLocation.size = (int)oid[1] ^ (int)oid[7];
-        fileLocation.sector_offset = *(int*)*oid ^ (int)oid[5];
-        foidValid = fileLocation.size != 0;
+        fileLocation.m_fcl.cb = (int)oid[1] ^ (int)oid[7];
+        fileLocation.m_fcl.isector = *(int*)*oid ^ (int)oid[5];
+        foidValid = fileLocation.m_fcl.cb != 0;
     }
     if ((foidValid) /*todo &&
         (fmpegIsEnd = FUN_0012fd78(&bas, &fileLocation), fmpegIsEnd != 0) */)
