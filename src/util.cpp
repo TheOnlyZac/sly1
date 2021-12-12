@@ -1,5 +1,7 @@
 #include <util.h>
+
 #include <math.h>
+#include <stdlib.h>
 
 /* Clamp the float to fall inside range given by the limit */
 float GLimitLm(LM* plm, float g)
@@ -80,16 +82,32 @@ BOOL FFloatsNear(float g1, float g2, float gEpsilon)
 int CSolveQuadratic(float a, float b, float c, float* ax)
 {
 	float bsquaredMinus4ac = (b * b) - 4.0 * a * c;
-	if (bsquaredMinus4ac < 0.0) {
+	if (bsquaredMinus4ac < 0.0)
+	{
 		return 0; // no solutions, radicand is negative
 	}
+
 	float bsquaredMinus4acOver2a = sqrt(bsquaredMinus4ac) / (2 * a);
 	float bOver2a = b / (2 * a);
-	if (abs(bsquaredMinus4acOver2a) < 0.0001) {
+	if (abs(bsquaredMinus4acOver2a) < 0.0001)
+	{
 		*ax = -bOver2a;
 		return 1; // one solution: -b / 2a
 	}
+
 	ax[1] = -bOver2a - bsquaredMinus4acOver2a;
 	*ax = -bOver2a + bsquaredMinus4acOver2a;
 	return 2; // two solutions: (-b ± radical) / 2a
+}
+
+/* Get a random float that falls between the given values */
+float GRandInRange(float gLow, float gHigh)
+{
+	float result = gLow;
+	if (gLow != gHigh)
+	{
+		int nRand = rand();
+		result = gLow + (gHigh - gLow) * (float)nRand * (float)0x30000000;
+	}
+	return result;
 }
