@@ -1,6 +1,7 @@
 
 
 set (FILES
+	bas.cpp
 	bis.cpp
 	cat.cpp
 	clock.cpp

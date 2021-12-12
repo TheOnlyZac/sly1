@@ -6,7 +6,7 @@
 
 typedef unsigned char BYTE;
 
-/* This might be the wrong file for this */
+/* Mpeg Audio State */
 enum class MAUDS : int
 {
     FillPreface = 1,
@@ -46,7 +46,7 @@ private:
 
 class CMpegAudio
 {
-    MAUDS m_mauds;
+    MAUDS m_mauds; // current state
     /* todo: define struct
     SpuStreamPreface m_ssp; */
     CByteQueue m_bqSsp;
