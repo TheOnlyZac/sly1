@@ -8,8 +8,7 @@ typedef unsigned char BYTE;
 
 class CBinaryInputStream
 {
-    public:
-
+public:
     uint32_t field_0x0;
     int field_0x4;
     int field_0x8;

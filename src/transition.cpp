@@ -1,29 +1,31 @@
 #include <transition.h>
 #include <clock.h>
 
-void CTransition::Set(OID* load_data, int checkpoint_id, int load_mod, int load_flags)
+void CTransition::Set(char* pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS grftrans)
 {
-    if (this->field_0x0 == 0)
-    {
-        this->lost_all_lives = load_flags;
-        this->field_0x0 = 1;
-        this->level_file_info = (char*)load_data;
-        this->checkpoint_id = checkpoint_id;
-        this->field_0xc = load_mod;
-    }
+	if (this->m_fPending == 0) {
+		this->grftrans = grftrans;
+		this->m_fPending = 1;
+		this->m_pchzWorld = pchzWorld;
+		this->m_oidWarp = oidWarp;
+		this->m_oidWarpContext = oidWarpContext;
+	}
+	return;
 }
 
-void CTransition::Execute(LevelLoadManager* level_mgr)
+
+void CTransition::Execute()
 {
 	LevelLoadData* lld;
 	LevelLoadData* search_data;
 	LevelLoadData* ciphers;
-	lsn_and_unk_t* lsn_and_size;
+	CFileLocation fileLocation;
 	lsn_and_unk_ciphers_t* lsn_enc_size_enc;
-	//SetPhase(2);
+	/* todo: define function
+	SetPhase(2); */
 	if ((lld->lsn_and_size_ciphers).size_enc != 0)
 	{
-		//CFileLocation::Clear(&lsn_and_size);
+		fileLocation.Clear();
 		//Loading the encrypted seor offsets and sizes in variables to be decrypted
 		uint32_t *enc_file_table = NULL;
 		uint32_t off = lld->lsn_and_size_ciphers.size_enc;
@@ -45,7 +47,7 @@ void CTransition::Execute(LevelLoadManager* level_mgr)
 		uint32_t enc_bytes7 = *enc_file_table;
 		lld->lsn_and_size_ciphers.size_enc = 0;
 		uint32_t size = enc_bytes1 ^ enc_bytes7;
-		lsn_and_size = (lsn_and_unk_t*)(enc_bytes0 ^ enc_bytes5);
+		fileLocation = *(CFileLocation*)(enc_bytes0 ^ enc_bytes5);
 
 		if (size != 0)
 		{
@@ -74,7 +76,7 @@ void CTransition::Execute(LevelLoadManager* level_mgr)
 			}
 
 			int always_1 = 0;
-			//always_1 = init_packed_data_stuff(bs, &lsn_and_size)
+			//always_1 = init_packed_data_stuff(bs, &fileLocation)
 
 			if (always_1 == 0)
 			{

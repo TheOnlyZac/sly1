@@ -10,7 +10,8 @@ enum class BASK : int
     Max = 2
 };
 
-class CBinaryAsyncStream {
+class CBinaryAsyncStream
+{
 public:
     BASK m_bask;
     int m_fd;
