@@ -1,4 +1,5 @@
 #include <util.h>
+#include <math.h>
 
 /* Clamp the float to fall inside range given by the limit */
 float GLimitLm(LM* plm, float g)
@@ -28,3 +29,13 @@ float GLimitAbs(float g, float absLimit)
 	return absLimit;
 }
 
+float GModPositive(float gDividend, float gDivisor)
+{
+	float result;
+
+	result = fmodf(gDividend, gDivisor);
+	if (result < 0.0) {
+		result = result + gDivisor;
+	}
+	return result;
+}
