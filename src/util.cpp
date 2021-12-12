@@ -46,7 +46,6 @@ BOOL FCheckLm(LM* plm, float g)
 
 /* Check whether the given float falls within any of the given limits */
 BOOL FCheckAlm(int clm, LM* alm, float g)
-
 {
 	int lmCur = 0;
 	if (0 < clm)
@@ -137,7 +136,7 @@ float RadNormalize(float rad)
 	return result;
 }
 
-/* Compares the sign of the given two floats. */
+/* Compare the sign of the given two floats */
 int SgnCompareG(float* pg1, float* pg2)
 {
 	int result = 1;
