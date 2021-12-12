@@ -29,6 +29,18 @@ float GLimitAbs(float g, float absLimit)
 	return absLimit;
 }
 
+/* Return true if the float falls within the given limit, otherwise false */
+BOOL FCheckLm(LM* plm, float g)
+
+{
+	if ((plm->gMin < g) && (g < plm->gMax))
+	{
+		return true;
+	}
+	return false;
+}
+
+
 float GModPositive(float gDividend, float gDivisor)
 {
 	float result;
