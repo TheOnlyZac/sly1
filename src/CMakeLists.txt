@@ -11,6 +11,7 @@ set (FILES
 	gs.cpp
 	joy.cpp
 	mpeg.cpp
+	prog.cpp
 	transition.cpp
 	util.cpp
 	xform.cpp

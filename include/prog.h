@@ -15,4 +15,8 @@ public:
 	RGBA m_rgbaRemain;
 	RGBA m_rgbaWarning;
 	RGBA m_rgbaTrouble;
+
+	void Begin(); // todo
+	void SetRemain(int nRemain);
+	void End(); // todo
 };
