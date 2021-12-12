@@ -111,3 +111,15 @@ float GRandInRange(float gLow, float gHigh)
 	}
 	return result;
 }
+
+/* Get a random int that falls between the given values */
+int NRandInRange(int nLow, int nHigh)
+{
+	int result = nLow;
+	if (nLow != nHigh)
+	{
+		int nRand = rand();
+		result = nLow + (nRand % 0x95675) % ((nHigh - nLow) + 1);
+	}
+	return result;
+}

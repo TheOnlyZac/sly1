@@ -24,4 +24,4 @@ BOOL FFloatsNear(float g1, float g2, float gEpsilon);
 float GModPositive(float gDividend, float gDivisor);
 int CSolveQuadratic(float a, float b, float c, float* ax);
 float GRandInRange(float gLow, float gHigh);
-//int NRandInRange(int nLo, int nHi);
+int NRandInRange(int nLow, int nHigh);
