@@ -3,6 +3,8 @@
 #include <math.h>
 #include <stdlib.h>
 
+static constexpr float PI = 3.141593;
+
 /* Clamp the float to fall inside range given by the limit */
 float GLimitLm(LM* plm, float g)
 {
@@ -73,8 +75,8 @@ float GModPositive(float gDividend, float gDivisor)
 BOOL FFloatsNear(float g1, float g2, float gEpsilon)
 
 {
-	float g1Abs = abs(g1);
-	return (BOOL)(unsigned int)(abs(g1 - g2) / (float)((unsigned int)(g1Abs < 1.0) * 0x3f800000 | (int)g1Abs * (unsigned int)(g1Abs >= 1.0)) < gEpsilon);
+	float g1Abs = fabs(g1);
+	return (BOOL)(unsigned int)(fabs(g1 - g2) / (float)((unsigned int)(g1Abs < 1.0) * 0x3f800000 | (int)g1Abs * (unsigned int)(g1Abs >= 1.0)) < gEpsilon);
 }
 
 /* Finds solutions using the quadratic equation. Stores the solutions in ax
@@ -89,7 +91,7 @@ int CSolveQuadratic(float a, float b, float c, float* ax)
 
 	float bsquaredMinus4acOver2a = sqrt(bsquaredMinus4ac) / (2 * a);
 	float bOver2a = b / (2 * a);
-	if (abs(bsquaredMinus4acOver2a) < 0.0001)
+	if (fabs(bsquaredMinus4acOver2a) < 0.0001)
 	{
 		*ax = -bOver2a;
 		return 1; // one solution: -b / 2a
@@ -120,6 +122,16 @@ int NRandInRange(int nLow, int nHigh)
 	{
 		int nRand = rand();
 		result = nLow + (nRand % 0x95675) % ((nHigh - nLow) + 1);
+	}
+	return result;
+}
+
+float RadNormalize(float rad)
+{
+	float result = rad;
+	if ((rad < -PI) || (PI < rad)) {
+		float gMod = GModPositive(rad + PI, 2 * PI);
+		result = gMod - PI;
 	}
 	return result;
 }
