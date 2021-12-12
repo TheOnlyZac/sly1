@@ -44,12 +44,12 @@ class CBinaryInputStream
     uint32_t field_0x64;
     uint32_t g_fCdAvailable;
 
-    uint32_t FOpenSector(uint32_t sector_offset, uint32_t size);
-    void OpenMemory(int param_1, void* param_2);
+    uint32_t FOpenSector(uint32_t isector, uint32_t cb);
+    void OpenMemory(int cb, void* pv);
     void Close();
-    void DecrementCdReadLimit(int param_1);
-    void Read(int count, uint64_t dst);
-    void Align(int alignment);
+    void DecrementCdReadLimit(int cb);
+    void Read(int cb, uint64_t pv); // todo: verify param types
+    void Align(int n);
     byte U8Read();
     uint16_t U16Read();
     uint32_t U32Read();
@@ -57,7 +57,7 @@ class CBinaryInputStream
     int16_t S16Read();
     int32_t S32Read();
     float F32Read();
-    void ReadStringSw(char* dst);
+    void ReadStringSw(char** pachz);
 };
 
 class CBinaryAsyncStream {
@@ -74,8 +74,8 @@ public:
     int m_cbUnspooled;
     int m_cbFile;
 
-    CBinaryAsyncStream(void* pvSpool); // todo (constructor)
-    ~CBinaryAsyncStream(); // todo (destructor)
+    CBinaryAsyncStream(void* pvSpool); // constructor
+    ~CBinaryAsyncStream(); // todo
 
     void Close(); // todo
 };

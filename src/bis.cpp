@@ -2,7 +2,7 @@
 
 /* CBinaryInputStream class methods */
 
-uint32_t CBinaryInputStream::FOpenSector(uint32_t sector_offset, uint32_t size)
+uint32_t CBinaryInputStream::FOpenSector(uint32_t isector, uint32_t cb)
 {
     int iVar1;
     int iVar2;
@@ -14,11 +14,11 @@ uint32_t CBinaryInputStream::FOpenSector(uint32_t sector_offset, uint32_t size)
 
     iVar2 = this->field_0xc;
     this->field_0x4 = 1;
-    this->sector_offset = sector_offset;
-    this->field_0x4c = size;
+    this->sector_offset = isector;
+    this->field_0x4c = cb;
     //this->ptr_data_origin = this->field_0x8;
-    this->size = size;
-    this->size_2 = size;
+    this->size = cb;
+    this->size_2 = cb;
     this->field_0x44 = 0;
     this->field_0x50 = 0;
     this->lsn_to_read = 0;
@@ -38,12 +38,11 @@ uint32_t CBinaryInputStream::FOpenSector(uint32_t sector_offset, uint32_t size)
     return 1;
 }
 
-void CBinaryInputStream::OpenMemory(int size, void* pos)
+void CBinaryInputStream::OpenMemory(int cb, void* pv)
 {
-    this->stream_size = size;
+    this->stream_size = cb;
     this->field_0x4 = 2;
-    //this->stream_pos = pos;
-    return;
+    //this->stream_pos = pv;
 }
 
 void CBinaryInputStream::Close()
@@ -80,20 +79,18 @@ void CBinaryInputStream::Close()
     this->size_3 = 0;
     this->stream_size = 0;
     this->flags = 0;
-    return;
 }
 
-void CBinaryInputStream::DecrementCdReadLimit(int param_1)
+void CBinaryInputStream::DecrementCdReadLimit(int cb)
 {
-    this->field_0x4c = this->field_0x4c - param_1;
-    return;
+    this->field_0x4c = this->field_0x4c - cb;
 }
 
-void CBinaryInputStream::Read(int count, uint64_t dst)
+void CBinaryInputStream::Read(int cb, uint64_t pv)
 {
     uint32_t uVar2;
 
-    if (this->stream_size > 0 && count > 0)
+    if (this->stream_size > 0 && cb > 0)
     {
         do
         {
@@ -120,36 +117,34 @@ void CBinaryInputStream::Read(int count, uint64_t dst)
                     return;
                 }
             }
-            uVar2 = count;
-            if ((int)size <= count)
+            uVar2 = cb;
+            if ((int)size <= cb)
             {
                 uVar2 = size;
             }
-            if (dst != 0x0)
+            if (pv != 0x0)
             {
-                //CopyAb(dst, this->stream_pos, uVar2);
-                dst = dst + uVar2;
+                //CopyAb(pv, this->stream_pos, uVar2);
+                pv = pv + uVar2;
             }
-            count = count - uVar2;
+            cb = cb - uVar2;
             this->stream_pos = this->stream_pos + uVar2;
             this->stream_size = this->stream_size - uVar2;
-        } while (0 < count);
+        } while (0 < cb);
     }
-    return;
 }
 
-void CBinaryInputStream::Align(int alignment)
+void CBinaryInputStream::Align(int n)
 {
-    uint32_t pos = this->stream_pos;
-    uint32_t size = pos + alignment + -1 & -alignment;
+    uint32_t stream_pos = this->stream_pos;
+    uint32_t size = stream_pos + n + -1 & -n; // todo: there must be missing parenthesis
     this->stream_size = size;
     this->stream_pos = this->stream_pos - size - stream_pos;
-    return;
 }
 
 byte CBinaryInputStream::U8Read()
 {
-    byte value;
+    byte value{};
     if (this->stream_size < 1)
     {
         Read(1, value);
@@ -157,15 +152,15 @@ byte CBinaryInputStream::U8Read()
     else
     {
         value = this->stream_pos;
-        this->stream_size = this->stream_size - 1;
-        this->stream_pos = this->stream_pos + 1;
-        return value;
+        this->stream_size -= 1;
+        this->stream_pos += 1;
     }
+    return value;
 }
 
 uint16_t CBinaryInputStream::U16Read()
 {
-    uint16_t value;
+    uint16_t value{};
     if (this->stream_size < 2)
     {
         Read(2, value);
@@ -173,15 +168,15 @@ uint16_t CBinaryInputStream::U16Read()
     else
     {
         value = this->stream_pos;
-        this->stream_size = this->stream_size - 2;
-        this->stream_pos = this->stream_pos + 2;
-        return value;
+        this->stream_size -= 2;
+        this->stream_pos += 2;
     }
+    return value;
 }
 
 uint32_t CBinaryInputStream::U32Read()
 {
-    uint32_t value;
+    uint32_t value{};
     if (this->stream_size < 4)
     {
         Read(4, value);
@@ -189,15 +184,15 @@ uint32_t CBinaryInputStream::U32Read()
     else
     {
         value = this->stream_pos;
-        this->stream_size = this->stream_size - 4;
-        this->stream_pos = this->stream_pos + 4;
-        return value;
+        this->stream_size -= 4;
+        this->stream_pos += 4;
     }
+    return value;
 }
 
 int8_t CBinaryInputStream::S8Read()
 {
-    int8_t value;
+    int8_t value{};
     if (this->stream_size < 1)
     {
         Read(1, value);
@@ -205,15 +200,15 @@ int8_t CBinaryInputStream::S8Read()
     else
     {
         value = this->stream_pos;
-        this->stream_size = this->stream_size - 1;
-        this->stream_pos = this->stream_pos + 1;
-        return value;
+        this->stream_size -= 1;
+        this->stream_pos += 1;
     }
+    return value;
 }
 
 int16_t CBinaryInputStream::S16Read()
 {
-    int16_t value;
+    int16_t value{};
     if (this->stream_size < 2)
     {
         Read(2, value);
@@ -221,16 +216,15 @@ int16_t CBinaryInputStream::S16Read()
     else
     {
         value = this->stream_pos;
-        this->stream_size = this->stream_size - 2;
-        this->stream_pos = this->stream_pos + 2;
-        return value;
+        this->stream_size -= 2;
+        this->stream_pos += 2;
     }
     return value;
 }
 
 int32_t CBinaryInputStream::S32Read()
 {
-    int32_t value;
+    int32_t value{};
     if (this->stream_size < 4)
     {
         Read(4, value);
@@ -238,16 +232,15 @@ int32_t CBinaryInputStream::S32Read()
     else
     {
         value = this->stream_pos;
-        this->stream_size = this->stream_size - 4;
-        this->stream_pos = this->stream_pos + 4;
-        return value;
+        this->stream_size -= 4;
+        this->stream_pos += 4;
     }
     return value;
 }
 
 float CBinaryInputStream::F32Read()
 {
-    float value;
+    float value{};
     if (this->stream_size < 4)
     {
         Read(4, value);
@@ -255,21 +248,19 @@ float CBinaryInputStream::F32Read()
     else
     {
         value = this->stream_pos;
-        this->stream_size = this->stream_size - 4;
-        this->stream_pos = this->stream_pos + 4;
-        return value;
+        this->stream_size -= 4;
+        this->stream_pos += 4;
     }
     return value;
 }
 
-void CBinaryInputStream::ReadStringSw(char* dst0)
+void CBinaryInputStream::ReadStringSw(char** pachz)
 {
     int string_count = U16Read();
     //char* dst1 = (char*)PvAllocSwImpl(string_count + 1);
     //Read(string_count, dst1);
     //dst1[string_count] = '\0';
-    //*dst0 = dst1;
-    return;
+    //*pachz = dst1;
 }
 
 /* CBinaryAsyncStream class methods */
