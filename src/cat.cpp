@@ -11,6 +11,7 @@ void CFileLocation::Clear()
 
 /* CWalCatalog class methods */
 
+/* Gets the wac and wal size/sector offset from the ISO and stores it in the wac struct */
 void CWalCatalog::Init(CFileLocation* wac_file_desc0, CFileLocation* wal_file_desc1)
 {
     this->wac_sector_offset = wac_file_desc0->sector_offset;

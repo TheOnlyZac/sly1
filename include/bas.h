@@ -25,7 +25,7 @@ public:
     int m_cbFile;
 
     CBinaryAsyncStream(void* pvSpool); // constructor
-    ~CBinaryAsyncStream(); // todo
+    ~CBinaryAsyncStream(); // todo destructor
 
     void Close(); // todo
 };

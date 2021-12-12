@@ -24,7 +24,6 @@ public:
     char** unk_3;
     uint32_t unk_4;
 
-    //Basically just getting the wac and wal size and sector offset from the ISO and storing it in the wac struct
     void Init(CFileLocation* wac_file_desc0, CFileLocation* wal_file_desc1);
     void Reload(); // todo
 };

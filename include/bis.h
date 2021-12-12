@@ -14,7 +14,7 @@ class CBinaryInputStream
     int field_0x4;
     int field_0x8;
     int field_0xc;
-    uint32_t size; /* Created by retype action */
+    uint32_t size;
     uint32_t size_2;
     uint32_t stream_pos;
     int stream_size;
