@@ -5,17 +5,14 @@
 
 static constexpr float PI = 3.141593;
 
-/* Clamp the float to fall inside range given by the limit */
-float GLimitLm(LM* plm, float g)
+float RadNormalize(float rad)
 {
-	float result = plm->gMin;
-
-	if ((result <= g) &&
-		(result = plm->gMax, g <= plm->gMax))
+	float result = rad;
+	if ((rad < -PI) || (PI < rad))
 	{
-		result = g;
+		float gMod = GModPositive(rad + PI, 2 * PI);
+		result = gMod - PI;
 	}
-
 	return result;
 }
 
@@ -33,39 +30,26 @@ float GLimitAbs(float g, float absLimit)
 	return absLimit;
 }
 
-/* Check whether the given float falls within the given limit */
-BOOL FCheckLm(LM* plm, float g)
-
+/* Get a random int that falls between the given values */
+int NRandInRange(int nLow, int nHigh)
 {
-	if ((plm->gMin < g) && (g < plm->gMax))
+	int result = nLow;
+	if (nLow != nHigh)
 	{
-		return true;
+		int nRand = rand();
+		result = nLow + (nRand % 0x95675) % ((nHigh - nLow) + 1);
 	}
-	return false;
+	return result;
 }
 
-/* Check whether the given float falls within any of the given limits */
-BOOL FCheckAlm(int clm, LM* alm, float g)
+/* Get a random float that falls between the given values */
+float GRandInRange(float gLow, float gHigh)
 {
-	int lmCur = 0;
-	if (0 < clm)
+	float result = gLow;
+	if (gLow != gHigh)
 	{
-		do
-		{
-			if (FCheckLm(alm, g)) return true;
-			lmCur++;
-			alm++;
-		} while (lmCur < clm);
-	}
-	return false;
-}
-
-float GModPositive(float gDividend, float gDivisor)
-{
-	float result = fmodf(gDividend, gDivisor);
-	if (result < 0.0)
-	{
-		result += gDivisor;
+		int nRand = rand();
+		result = gLow + (gHigh - gLow) * (float)nRand * (float)0x30000000;
 	}
 	return result;
 }
@@ -101,38 +85,54 @@ int CSolveQuadratic(float a, float b, float c, float* ax)
 	return 2; // two solutions: (-b ± radical) / 2a
 }
 
-/* Get a random float that falls between the given values */
-float GRandInRange(float gLow, float gHigh)
+float GModPositive(float gDividend, float gDivisor)
 {
-	float result = gLow;
-	if (gLow != gHigh)
+	float result = fmodf(gDividend, gDivisor);
+	if (result < 0.0)
 	{
-		int nRand = rand();
-		result = gLow + (gHigh - gLow) * (float)nRand * (float)0x30000000;
+		result += gDivisor;
 	}
 	return result;
 }
 
-/* Get a random int that falls between the given values */
-int NRandInRange(int nLow, int nHigh)
+/* Check whether the given float falls within the given limit */
+BOOL FCheckLm(LM* plm, float g)
+
 {
-	int result = nLow;
-	if (nLow != nHigh)
+	if ((plm->gMin < g) && (g < plm->gMax))
 	{
-		int nRand = rand();
-		result = nLow + (nRand % 0x95675) % ((nHigh - nLow) + 1);
+		return true;
 	}
-	return result;
+	return false;
 }
 
-float RadNormalize(float rad)
+/* Check whether the given float falls within any of the given limits */
+BOOL FCheckAlm(int clm, LM* alm, float g)
 {
-	float result = rad;
-	if ((rad < -PI) || (PI < rad))
+	int lmCur = 0;
+	if (0 < clm)
 	{
-		float gMod = GModPositive(rad + PI, 2 * PI);
-		result = gMod - PI;
+		do
+		{
+			if (FCheckLm(alm, g)) return true;
+			lmCur++;
+			alm++;
+		} while (lmCur < clm);
 	}
+	return false;
+}
+
+/* Clamp the float to fall inside range given by the limit */
+float GLimitLm(LM* plm, float g)
+{
+	float result = plm->gMin;
+
+	if ((result <= g) &&
+		(result = plm->gMax, g <= plm->gMax))
+	{
+		result = g;
+	}
+
 	return result;
 }
 
