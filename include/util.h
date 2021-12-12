@@ -22,6 +22,7 @@ BOOL FCheckLm(LM* plm, float g);
 BOOL FCheckAlm(int clm, LM* alm, float g);
 BOOL FFloatsNear(float g1, float g2, float gEpsilon);
 float GModPositive(float gDividend, float gDivisor);
+int CSolveQuadratic(float a, float b, float c, float* ax);
 
 //float GRandInRange(float gLo, float gHi);
 //int NRandInRange(int nLo, int nHi);

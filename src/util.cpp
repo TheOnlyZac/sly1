@@ -74,3 +74,22 @@ BOOL FFloatsNear(float g1, float g2, float gEpsilon)
 	float g1Abs = abs(g1);
 	return (BOOL)(unsigned int)(abs(g1 - g2) / (float)((unsigned int)(g1Abs < 1.0) * 0x3f800000 | (int)g1Abs * (unsigned int)(g1Abs >= 1.0)) < gEpsilon);
 }
+
+/* Finds solutions using the quadratic equation. Stores the solutions in ax
+   and returns the number of solutions (0, 1, or 2) */
+int CSolveQuadratic(float a, float b, float c, float* ax)
+{
+	float bsquaredMinus4ac = (b * b) - 4.0 * a * c;
+	if (bsquaredMinus4ac < 0.0) {
+		return 0; // no solutions, radicand is negative
+	}
+	float bsquaredMinus4acOver2a = sqrt(bsquaredMinus4ac) / (2 * a);
+	float bOver2a = b / (2 * a);
+	if (abs(bsquaredMinus4acOver2a) < 0.0001) {
+		*ax = -bOver2a;
+		return 1; // one solution: -b / 2a
+	}
+	ax[1] = -bOver2a - bsquaredMinus4acOver2a;
+	*ax = -bOver2a + bsquaredMinus4acOver2a;
+	return 2; // two solutions: (-b ± radical) / 2a
+}
