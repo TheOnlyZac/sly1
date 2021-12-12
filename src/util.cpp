@@ -129,9 +129,21 @@ int NRandInRange(int nLow, int nHigh)
 float RadNormalize(float rad)
 {
 	float result = rad;
-	if ((rad < -PI) || (PI < rad)) {
+	if ((rad < -PI) || (PI < rad))
+	{
 		float gMod = GModPositive(rad + PI, 2 * PI);
 		result = gMod - PI;
+	}
+	return result;
+}
+
+/* Compares the sign of the given two floats. */
+int SgnCompareG(float* pg1, float* pg2)
+{
+	int result = 1;
+	if ((*pg1 <= *pg2) && (result = -1, *pg2 <= *pg1))
+	{
+		return 0;
 	}
 	return result;
 }

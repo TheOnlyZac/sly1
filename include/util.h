@@ -25,3 +25,5 @@ float GModPositive(float gDividend, float gDivisor);
 int CSolveQuadratic(float a, float b, float c, float* ax);
 float GRandInRange(float gLow, float gHigh);
 int NRandInRange(int nLow, int nHigh);
+float RadNormalize(float rad);
+int SgnCompareG(float* pg1, float* pg2);
