@@ -20,6 +20,7 @@ static inline LM g_lmZeroOne(0, 1);
 float GLimitLm(LM* plm, float g);
 float GLimitAbs(float g, float absLimit);
 float FCheckLm(LM* plm, float g);
+BOOL FFloatsNear(float g1, float g2, float gEpsilon);
 float GModPositive(float gDividend, float gDivisor);
 
 //float GRandInRange(float gLo, float gHi);

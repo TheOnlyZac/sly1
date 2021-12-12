@@ -51,3 +51,10 @@ float GModPositive(float gDividend, float gDivisor)
 	}
 	return result;
 }
+
+BOOL FFloatsNear(float g1, float g2, float gEpsilon)
+
+{
+	float g1Abs = abs(g1);
+	return (BOOL)(unsigned int)(abs(g1 - g2) / (float)((unsigned int)(g1Abs < 1.0) * 0x3f800000 | (int)g1Abs * (unsigned int)(g1Abs >= 1.0)) < gEpsilon);
+}
