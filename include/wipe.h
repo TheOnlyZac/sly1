@@ -1672,7 +1672,7 @@ struct anon_struct_SPEAKER_0
 static TRANS trans;
 static WIPE g_pwipe;
 static DIALOG g_pdialogCalling;
-static LevelLoadData* g_transition;
+static CTransition g_transition;
 
 void WipeToWorldWarp(LevelLoadData* pchzWorld, OID oidWarp, WIPEK wipek);
 void ActivateWipe(WIPE* pwipe, TRANS* ptrans, WIPEK wipek);
