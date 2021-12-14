@@ -1,29 +1,16 @@
 #pragma once
-#include <iostream>
 #include <game.h>
 #include <transition.h>
+#include <iostream>
 
 typedef unsigned char byte;
-typedef struct LevelLoadData LevelLoadData, * PLevelLoadData;
-typedef struct anon_struct_WIPE_0 anon_struct_WIPE_0, * Panon_struct_WIPE_0;
 typedef struct anon_struct_WIPE_0 WIPE;
-typedef struct anon_struct_DIALOG_0 anon_struct_DIALOG_0, * Panon_struct_DIALOG_0;
 typedef struct anon_struct_DIALOG_0 DIALOG;
-typedef struct VTWIPE_199 VTWIPE_199, * PVTWIPE_199;
 typedef enum anon_enum_WIPES_0 WIPES;
-typedef struct TRANS_199 TRANS_199, * PTRANS_199;
 typedef enum anon_enum_DPK_0 DPK;
-typedef struct anon_struct_SPEAKER_0 anon_struct_SPEAKER_0, * Panon_struct_SPEAKER_0;
 typedef struct anon_struct_SPEAKER_0 SPEAKER;
-typedef struct ASEGA ASEGA, * PASEGA;
-typedef struct RGBA_199 RGBA_199, * PRGBA_199;
-typedef struct VECTOR_199 VECTOR_199, * PVECTOR_199;
-typedef struct SM_conflict SM_conflict, * PSM_conflict;
-typedef struct SMA SMA, * PSMA;
 typedef enum anon_enum_DIALOGS_0 DIALOGS;
-typedef struct DP_199 DP_199, * PDP_199;
-typedef struct MATRIX4_199 MATRIX4_199, * PMATRIX4_199;
-typedef struct MATRIX4_199 GRFDP;
+typedef struct MATRIX4 GRFDP;
 
 enum class WIPEK : int
 {
@@ -46,69 +33,11 @@ struct TRANS
 typedef enum anon_enum_WIPES_0 
 {
     WIPES_Idle = 0,
-    WIPES_Max = 4,
-    WIPES_Black = 2,
     WIPES_WipingOut = 1,
-    WIPES_WipingIn = 3
+    WIPES_Black = 2,
+    WIPES_WipingIn = 3,
+    WIPES_Max = 4,
 } anon_enum_WIPES_0;
-
-typedef enum anon_enum_OID_0 
-{
-    OID_stock_rosette_point = 28,
-    OID_stock_ripple = 14,
-    OID_stock_bone = 24,
-    OID_murray = 7,
-    OID_stock_smoke_cloud = 21,
-    OID_stock_bublet = 25,
-    OID_stock_glint = 30,
-    OID_jt = 5,
-    OID_stock_rosette_gold_filter = 38,
-    OID_blip_group = 11,
-    OID_stock_spark = 16,
-    OID_stock_puff = 15,
-    OID__WORLD = 3,
-    OID_stock_splashlet = 31,
-    OID__CAMERA = 4,
-    OID_stock_spark_halo = 17,
-    OID_stock_snowflake = 18,
-    OID_bentley = 6,
-    OID_stock_rosette_clue_filter = 35,
-    OID_stock_rosette_thief_filter = 37,
-    OID_rip_group = 10,
-    OID_stock_splash = 12,
-    OID_stock_target = 27,
-    OID__MERGED_STATICS = 1,
-    OID_stock_trail = 19,
-    OID_Unknown = 0,
-    OID_stock_smoke_trail = 22,
-    OID_sniper_turret = 8,
-    OID_stock_laser_beam = 23,
-    OID_stock_fast_shadow = 29,
-    OID_stock_fireball = 20,
-    OID_stock_debris = 26,
-    OID_stock_walkthru_good_point = 32,
-    OID_hover_tank = 9,
-    OID_stock_rosette_coin_filter = 36,
-    OID_stock_droplet = 13,
-    OID__VISIBILITY_MAP = 2,
-    OID_stock_walkthru_focus_point = 34,
-    OID_stock_walkthru_bad_point = 33
-} anon_enum_OID_0;
-
-struct TRANS_199 
-{
-    int fSet;
-    char* pchzWorld;
-    OID oidWarp;
-    byte field_0x9;
-    byte field_0xa;
-    byte field_0xb;
-    OID oidWarpContext;
-    byte field_0xd;
-    byte field_0xe;
-    byte field_0xf;
-    GRFTRANS grftrans;
-};
 
 struct anon_struct_WIPE_0
 {
@@ -116,31 +45,31 @@ struct anon_struct_WIPE_0
     WIPES wipes;
     float tWipes;
     float uBlack;
-    struct TRANS_199 trans;
+    struct TRANS trans;
     WIPEK wipek;
-    struct TRANS_199 transButton;
+    struct TRANS transButton;
     WIPEK wipekButton;
 };
 
 typedef enum anon_enum_DIALOGK_0 
 {
-    DIALOGK_Max = 3,
     DIALOGK_Binoc = 0,
+    DIALOGK_Instruct = 1,
     DIALOGK_Confront = 2,
-    DIALOGK_Instruct = 1
+    DIALOGK_Max = 3,
 } anon_enum_DIALOGK_0;
 
 typedef enum anon_enum_DIALOGK_0 DIALOGK;
 
 typedef enum anon_enum_DIALOGS_0 
 {
-    DIALOGS_Triggered = 1,
-    DIALOGS_Calling = 4,
-    DIALOGS_Disabled = 2,
     DIALOGS_Enabled = 0,
-    DIALOGS_Max = 6,
+    DIALOGS_Triggered = 1,
+    DIALOGS_Disabled = 2,
     DIALOGS_Playing = 3,
-    DIALOGS_UnableToCall = 5
+    DIALOGS_Calling = 4,
+    DIALOGS_UnableToCall = 5,
+    DIALOGS_Max = 6,
 } anon_enum_DIALOGS_0;
 
 typedef enum anon_enum_DPK_0 
@@ -163,18 +92,13 @@ typedef enum anon_enum_DPK_0
     DPK_Max = 15
 } anon_enum_DPK_0;
 
-struct SM_conflict
+struct MATRIX4
 {
 
 };
 
-struct MATRIX4_199 
+struct DP 
 {
-
-};
-
-struct DP_199 
-{ /* PlaceHolder Class Structure */
     GRFDP grfdp;
     byte field_0x1;
     byte field_0x2;
@@ -189,8 +113,8 @@ struct DP_199
     float tPauseMin;
 };
 
-struct VECTOR_199 
-{ /* PlaceHolder Class Structure */
+struct VECTOR 
+{
     float x;
     float y;
     float z;
@@ -951,7 +875,7 @@ struct anon_struct_DIALOG_0
     byte field_0x2f2;
     byte field_0x2f3;
     int ideCur;
-    struct DP_199 dp;
+    struct DP dp;
     OID oidPntAnchor;
     byte field_0x311;
     byte field_0x312;
@@ -970,7 +894,7 @@ struct SMA
 };
 
 struct RGBA_199 
-{ /* PlaceHolder Class Structure */
+{
     byte ab[1];
     byte bGreen;
     byte bBlue;
@@ -978,7 +902,8 @@ struct RGBA_199
     byte u1bRed;
 };
 
-struct anon_struct_SPEAKER_0 {
+struct anon_struct_SPEAKER_0 
+{
     byte field_0x0;
     byte field_0x1;
     byte field_0x2;
@@ -1732,8 +1657,8 @@ struct anon_struct_SPEAKER_0 {
     byte field_0x2fd;
     byte field_0x2fe;
     byte field_0x2ff;
-    struct VECTOR_199 dposLight;
-    struct VECTOR_199 dposLightConfront;
+    struct VECTOR dposLight;
+    struct VECTOR dposLightConfront;
     float uxTvConfront;
     float uyTvConfront;
     OID oidSmIdle;
@@ -1744,13 +1669,10 @@ struct anon_struct_SPEAKER_0 {
     struct SMA* psmaIdle;
 };
 
-struct ASEGA 
-{
-
-};
-
 static TRANS trans;
 static WIPE g_pwipe;
+static DIALOG g_pdialogCalling;
+static LevelLoadData* g_transition;
 
 void WipeToWorldWarp(LevelLoadData* pchzWorld, OID oidWarp, WIPEK wipek);
 void ActivateWipe(WIPE* pwipe, TRANS* ptrans, WIPEK wipek);
