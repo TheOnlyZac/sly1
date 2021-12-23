@@ -4,7 +4,7 @@
 #include <iostream>
 #include <stdint.h>
 
-typedef unsigned char BYTE;
+typedef unsigned char byte;
 
 class CBinaryInputStream
 {
