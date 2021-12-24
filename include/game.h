@@ -18,7 +18,7 @@ enum class OID : int
 };
 
 /* World IDs
- Some of these values are directly from the may proto, 
+ Some of these values are directly from the may proto,
  the rest are extrapolated based on the order of levels in the game. */
 enum class WID : int
 {
@@ -80,7 +80,7 @@ enum class WID : int
 	cw_reverse_sniper = 0x2c,
 	cw_outclimb = 0x2d,
 	cw_finish = 0x2e,
-	
+
 	Max = 0x2f
 };
 

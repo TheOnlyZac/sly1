@@ -1,6 +1,8 @@
 #pragma once
 #include <game.h>
 #include <transition.h>
+#include <sw.h>
+#include <wm.h>
 #include <iostream>
 
 typedef unsigned char byte;
@@ -14,23 +16,23 @@ typedef struct MATRIX4 GRFDP;
 
 enum class WIPEK : int
 {
-	Fade = 0x0,
-	Keyhole	= 0x1,
-	WorldMap = 0x2,
-	Frozen = 0x3,
-	Max = 0x4
+    Fade = 0x0,
+    Keyhole = 0x1,
+    WorldMap = 0x2,
+    Frozen = 0x3,
+    Max = 0x4
 };
 
 struct TRANS
 {
-	uint32_t fSet;
-	struct LevelLoadData* pchzWorld;
-	int oidWarp;
-	int trans_mod_flags;
-	int grftrans;
+    uint32_t fSet;
+    struct LevelTableStruct* pchzWorld; // Current file thats loading struct
+    OID oidWarp; // Checkpoint Warps
+    OID trans_mod_flags;
+    GRFTRANS grftrans; // Lost all lives flags 
 };
 
-typedef enum anon_enum_WIPES_0 
+typedef enum anon_enum_WIPES_0
 {
     WIPES_Idle = 0,
     WIPES_WipingOut = 1,
@@ -51,7 +53,7 @@ struct anon_struct_WIPE_0
     WIPEK wipekButton;
 };
 
-typedef enum anon_enum_DIALOGK_0 
+typedef enum anon_enum_DIALOGK_0
 {
     DIALOGK_Binoc = 0,
     DIALOGK_Instruct = 1,
@@ -61,7 +63,7 @@ typedef enum anon_enum_DIALOGK_0
 
 typedef enum anon_enum_DIALOGK_0 DIALOGK;
 
-typedef enum anon_enum_DIALOGS_0 
+typedef enum anon_enum_DIALOGS_0
 {
     DIALOGS_Enabled = 0,
     DIALOGS_Triggered = 1,
@@ -72,7 +74,7 @@ typedef enum anon_enum_DIALOGS_0
     DIALOGS_Max = 6,
 } anon_enum_DIALOGS_0;
 
-typedef enum anon_enum_DPK_0 
+typedef enum anon_enum_DPK_0
 {
     DPK_JoyRight = 10,
     DPK_DoubleJump = 13,
@@ -97,7 +99,7 @@ struct MATRIX4
 
 };
 
-struct DP 
+struct DP
 {
     GRFDP grfdp;
     byte field_0x1;
@@ -113,7 +115,7 @@ struct DP
     float tPauseMin;
 };
 
-struct VECTOR 
+struct VECTOR
 {
     float x;
     float y;
@@ -122,7 +124,7 @@ struct VECTOR
     byte field_0x10;
 };
 
-struct anon_struct_DIALOG_0 
+struct anon_struct_DIALOG_0
 {
     byte field_0x0;
     byte field_0x1;
@@ -888,12 +890,12 @@ struct anon_struct_DIALOG_0
     int fCrucial;
 };
 
-struct SMA 
+struct SMA
 {
 
 };
 
-struct RGBA_199 
+struct RGBA_199
 {
     byte ab[1];
     byte bGreen;
@@ -902,7 +904,7 @@ struct RGBA_199
     byte u1bRed;
 };
 
-struct anon_struct_SPEAKER_0 
+struct anon_struct_SPEAKER_0
 {
     byte field_0x0;
     byte field_0x1;
@@ -1673,6 +1675,9 @@ static TRANS trans;
 static WIPE g_pwipe;
 static DIALOG g_pdialogCalling;
 static CTransition g_transition;
+static sw g_psw;
+static wm g_wmc;
 
-void WipeToWorldWarp(LevelLoadData* pchzWorld, OID oidWarp, WIPEK wipek);
+void WipeToWorldWarp(LevelTableStruct* pchzWorld, OID oidWarp, WIPEK wipek);
 void ActivateWipe(WIPE* pwipe, TRANS* ptrans, WIPEK wipek);
+void SetWipeWipes(WIPE* pwipe, WIPES wipes);

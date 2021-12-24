@@ -14,7 +14,7 @@ struct lsn_and_unk_ciphers_t
     uint32_t size_enc;
 };
 
-struct LevelLoadData
+struct LevelTableStruct
 {
     struct lsn_and_unk_ciphers_t lsn_and_size_ciphers; /* Ciphers for lsn and size */
     uint32_t search_val;
@@ -38,11 +38,11 @@ protected:
 
 public:
     GRFTRANS grftrans; // Flags that affect level loading, one of them checks if you lost all lives when you die
-    char m_achzWorldCur[64];
+    char m_achzWorldCur[64]; // File description contents
 
     // Sets the conditions on the level if you died or loading a level
     void Set(char* pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS grftrans);
 
-    // Bacially Executing those conditions from the set function in the Execute function and setting some engine vaules to default
+    // Bacially Executing those conditions from the set function in the Execute function and setting some engine vaules to default and loading the level file
 	void Execute();
 };

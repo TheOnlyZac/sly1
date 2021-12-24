@@ -16,9 +16,9 @@ void CTransition::Set(char* pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS
 
 void CTransition::Execute()
 {
-	LevelLoadData* lld;
-	LevelLoadData* search_data;
-	LevelLoadData* ciphers;
+	LevelTableStruct* lld;
+	LevelTableStruct* search_data;
+	LevelTableStruct* ciphers;
 	CFileLocation fileLocation;
 	lsn_and_unk_ciphers_t* lsn_enc_size_enc;
 	/* todo: define function
@@ -51,7 +51,7 @@ void CTransition::Execute()
 
 		if (size != 0)
 		{
-			search_data = (LevelLoadData*)lld->for_lsn;
+			search_data = (LevelTableStruct*)lld->for_lsn;
 			bool unk_0 = 1;
 			if (ciphers != search_data && search_data != 0)
 			{

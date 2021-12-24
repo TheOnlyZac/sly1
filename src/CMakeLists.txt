@@ -11,10 +11,13 @@ set (FILES
 	joy.cpp
 	mpeg.cpp
 	prog.cpp
+	sw.cpp
 	transition.cpp
 	util.cpp
+	wipe.cpp
+	wm.cpp
 	xform.cpp
-
+	zap.cpp
 	# ...
 )
 
