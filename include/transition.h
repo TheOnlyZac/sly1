@@ -31,7 +31,6 @@ struct LevelTableStruct
 class CTransition
 {
 protected:
-    int m_fPending; // Moves the camera to level origin if you set it manually
     char* m_pchzWorld; // This is the ptr to enc level sector offset and size in memory
     OID m_oidWarp; // Which checkpoint you spawn at when you start a level
     OID m_oidWarpContext;
@@ -39,6 +38,7 @@ protected:
 public:
     GRFTRANS grftrans; // Flags that affect level loading, one of them checks if you lost all lives when you die
     char m_achzWorldCur[64]; // File description contents
+    int m_fPending; // Moves the camera to level origin if you set it manually
 
     // Sets the conditions on the level if you died or loading a level
     void Set(char* pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS grftrans);

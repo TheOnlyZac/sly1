@@ -3,6 +3,8 @@
 #include <transition.h>
 #include <sw.h>
 #include <wm.h>
+#include <keyhole.h>
+#include <joy.h>
 #include <iostream>
 
 typedef unsigned char byte;
@@ -1670,7 +1672,13 @@ static DIALOG g_pdialogCalling;
 static CTransition g_transition;
 static sw g_psw;
 static wm g_wmc;
+static keyhole g_pkeyhole;
 
 void WipeToWorldWarp(LevelTableStruct* pchzWorld, OID oidWarp, WIPEK wipek);
 void ActivateWipe(WIPE* pwipe, TRANS* ptrans, WIPEK wipek);
 void SetWipeWipes(WIPE* pwipe, WIPES wipes);
+void DrawWipe(WIPE* pwipe);
+void UpdateWipe(WIPE* pwipe, JOY* param_2);
+void InitWipe(WIPE* pwipe);
+void SetWipeButtonTrans(WIPE* param_1, TRANS* param_2, WIPEK param_3);
+int FCatchWipeButtonTrans(WIPE* pwipe, JOY* pjoy, WIPES wipesNew);
