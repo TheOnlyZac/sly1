@@ -56,7 +56,7 @@ enum class JOYK : int
     JOYK_Unknown = 0
 };
 
-typedef enum PadButtons 
+enum PadButtons
 {
     PAD_RIGHT_ARROW = 8192,
     PAD_L1 = 4,
@@ -75,7 +75,7 @@ typedef enum PadButtons
     PAD_TRIANGLE = 16,
     PAD_CROSS = 64,
     PAD_DOWN_ARROW = 16384
-} PadButtons;
+};
 
 struct LM_92 
 {

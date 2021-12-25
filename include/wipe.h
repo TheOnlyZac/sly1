@@ -6,12 +6,7 @@
 #include <iostream>
 
 typedef unsigned char byte;
-typedef struct anon_struct_WIPE_0 WIPE;
-typedef struct anon_struct_DIALOG_0 DIALOG;
-typedef enum anon_enum_WIPES_0 WIPES;
-typedef enum anon_enum_DPK_0 DPK;
 typedef struct anon_struct_SPEAKER_0 SPEAKER;
-typedef enum anon_enum_DIALOGS_0 DIALOGS;
 typedef struct MATRIX4 GRFDP;
 
 enum class WIPEK : int
@@ -32,16 +27,16 @@ struct TRANS
     GRFTRANS grftrans; // Lost all lives flags 
 };
 
-typedef enum anon_enum_WIPES_0
+enum WIPES
 {
     WIPES_Idle = 0,
     WIPES_WipingOut = 1,
     WIPES_Black = 2,
     WIPES_WipingIn = 3,
     WIPES_Max = 4,
-} anon_enum_WIPES_0;
+};
 
-struct anon_struct_WIPE_0
+struct WIPE
 {
     struct VTWIPE_199* u4pvtwipe;
     WIPES wipes;
@@ -53,17 +48,15 @@ struct anon_struct_WIPE_0
     WIPEK wipekButton;
 };
 
-typedef enum anon_enum_DIALOGK_0
+enum DIALOGK
 {
     DIALOGK_Binoc = 0,
     DIALOGK_Instruct = 1,
     DIALOGK_Confront = 2,
     DIALOGK_Max = 3,
-} anon_enum_DIALOGK_0;
+};
 
-typedef enum anon_enum_DIALOGK_0 DIALOGK;
-
-typedef enum anon_enum_DIALOGS_0
+enum DIALOGS
 {
     DIALOGS_Enabled = 0,
     DIALOGS_Triggered = 1,
@@ -72,9 +65,9 @@ typedef enum anon_enum_DIALOGS_0
     DIALOGS_Calling = 4,
     DIALOGS_UnableToCall = 5,
     DIALOGS_Max = 6,
-} anon_enum_DIALOGS_0;
+};
 
-typedef enum anon_enum_DPK_0
+enum DPK
 {
     DPK_JoyRight = 10,
     DPK_DoubleJump = 13,
@@ -92,7 +85,7 @@ typedef enum anon_enum_DPK_0
     DPK_Triangle = 4,
     DPK_X = 1,
     DPK_Max = 15
-} anon_enum_DPK_0;
+};
 
 struct MATRIX4
 {
@@ -124,7 +117,7 @@ struct VECTOR
     byte field_0x10;
 };
 
-struct anon_struct_DIALOG_0
+struct DIALOG
 {
     byte field_0x0;
     byte field_0x1;
