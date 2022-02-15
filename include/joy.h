@@ -77,6 +77,26 @@ enum PadButtons
     PAD_DOWN_ARROW = 16384
 };
 
+enum DPK
+{
+    DPK_JoyRight = 10,
+    DPK_DoubleJump = 13,
+    DPK_Square = 2,
+    DPK_None = 0,
+    DPK_JoyLeft = 9,
+    DPK_JoyLeftX = 11,
+    DPK_JoyLeftY = 12,
+    DPK_R1 = 7,
+    DPK_Circle = 3,
+    DPK_L1 = 5,
+    DPK_L2 = 6,
+    DPK_VaultOpen = 14,
+    DPK_R2 = 8,
+    DPK_Triangle = 4,
+    DPK_X = 1,
+    DPK_Max = 15
+};
+
 struct LM_92 
 {
     float gMin;
