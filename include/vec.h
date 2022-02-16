@@ -14,15 +14,6 @@ struct VECTOR
     float gUnused;
 };
 
-struct CLQ
-{
-    float g0;
-    float g1;
-    float g2;
-    float gUnused;
-    float u4ag[1];
-};
-
 struct BSPC
 {
     int cbsp;
@@ -42,6 +33,15 @@ struct CONSTR
 {
     struct VECTOR normal;
     CT ct;
+};
+
+struct CLQ
+{
+    float g0;
+    float g1;
+    float g2;
+    float gUnused;
+    float u4ag[1];
 };
 
 void CalculateVectorPanTilt(VECTOR* param_1, float* param_2, float* param_3);
