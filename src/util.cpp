@@ -7,13 +7,12 @@ static constexpr float PI = 3.141593;
 
 float RadNormalize(float rad)
 {
-	float result = rad;
 	if ((rad < -PI) || (PI < rad))
 	{
 		float gMod = GModPositive(rad + PI, 2 * PI);
-		result = gMod - PI;
+		return gMod - PI;
 	}
-	return result;
+	return rad;
 }
 
 /* Clamp the float to fall within the range [-absLimit, absLimit] */
@@ -33,25 +32,23 @@ float GLimitAbs(float g, float absLimit)
 /* Get a random int that falls between the given values */
 int NRandInRange(int nLow, int nHigh)
 {
-	int result = nLow;
 	if (nLow != nHigh)
 	{
 		int nRand = rand();
-		result = nLow + (nRand % 0x95675) % ((nHigh - nLow) + 1);
+		return nLow + (nRand % 0x95675) % ((nHigh - nLow) + 1);
 	}
-	return result;
+	return nLow;
 }
 
 /* Get a random float that falls between the given values */
 float GRandInRange(float gLow, float gHigh)
 {
-	float result = gLow;
 	if (gLow != gHigh)
 	{
 		int nRand = rand();
-		result = gLow + (gHigh - gLow) * (float)nRand * (float)0x30000000;
+		return gLow + (gHigh - gLow) * (float)nRand * (float)0x30000000;
 	}
-	return result;
+	return gLow;
 }
 
 /* Check whether the given floats are near each other based on the given epsilon */
@@ -82,7 +79,7 @@ int CSolveQuadratic(float a, float b, float c, float* ax)
 
 	ax[1] = -bOver2a - bsquaredMinus4acOver2a;
 	*ax = -bOver2a + bsquaredMinus4acOver2a;
-	return 2; // two solutions: (-b ± radical) / 2a
+	return 2; // two solutions: (-b ï¿½ radical) / 2a
 }
 
 float GModPositive(float gDividend, float gDivisor)
@@ -130,19 +127,18 @@ float GLimitLm(LM* plm, float g)
 	if ((result <= g) &&
 		(result = plm->gMax, g <= plm->gMax))
 	{
-		result = g;
+		return g;
 	}
 
-	return result;
+	return plm->gMin;
 }
 
 /* Compare the sign of the given two floats */
 int SgnCompareG(float* pg1, float* pg2)
 {
-	int result = 1;
 	if ((*pg1 <= *pg2) && (result = -1, *pg2 <= *pg1))
 	{
 		return 0;
 	}
-	return result;
+	return 1;
 }
