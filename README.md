@@ -49,7 +49,7 @@ See below for instructions on how to download the project and start writing code
 
 Clone the repo and open Visual Studio. Click `File > Open > CMake...` and open the file `CMakeLists.txt` in the main project folder. To build and run the main test program, set your startup item to `main.exe`.
 
-For unit testing, build the solution with `Build > Build All` and the tests should appear in the Test Explorer window. After running a test, the results will show in the Test Explorer and the Output window.
+For unit testing, build the target "Check" and the tests should appear in the Test Explorer window. After running a test, the results will show in the Test Explorer and the Output window.
 
 ### Windows/Unix - MSYS2 MINGW64/UCRT64 - GNU/Linux
 
@@ -64,7 +64,7 @@ cmake .. -DCMAKE_BUILD_TYPE=Release
 cmake --build . -j8
 ```
 
-To run tests, cd into the build directory and run `cmake --build . --target check && ctest .`  or `make check`.
+To run tests, cd into the build directory and run `cmake --build . --target check` or `make check` to build the tests. Then run the tests with `ctest . -C Debug`.
 
 ## Style Guide
 
