@@ -14,7 +14,7 @@ This is a work-in-progress, experimental decompilation of *Sly Cooper and the Th
 
 The goal of this project is to better understand how the game works to assist the speedrunning, glitch hunting and modding communities. **This repo does not contain any game assets or original code from the game's executable.**
 
-New collaborators are welcome and encouraged to contribute! If you would like to help but aren't sure where to start, you can [join our discord server](https://discord.gg/gh5xwfj) and/or message [TheOnlyZac#0269](https://discordapp.com/channels/@me/TheOnlyZac#0269/) for more info and guidance.
+New contributors are welcome and encouraged! If you would like to help but aren't sure where to start, you can [join our discord server](https://discord.gg/gh5xwfj) and/or message [TheOnlyZac#0269](https://discordapp.com/channels/@me/TheOnlyZac#0269/) for more info and advice.
 
 ## Getting Started
 
@@ -48,8 +48,11 @@ In the build directory, run `cmake --build . --target check && ctest .`  or `mak
 Our goal is to imitate the original source code as closely as possible based on the debug symbols from the [May 2002 prototype](https://hiddenpalace.org/Sly_Cooper_and_the_Thievius_Raccoonus_(May_19,_2002_prototype)).
 
 * Official names from the debug symbols should be used wherever possible.
-* Use `ALLCAPS` for struct/enum names (eg. `DIFFICULTY`, `COIN`, `FLS`).
-* Use `UpperCamelCase` for function/class names and enum values (eg. `GLimitLm`, `ChangeSuck`, `OnDifficultyGameLoad`).
-* Use `lowerCamelCase` for variables, function parameters, and class members (eg. `g_pgsCur`, `pCoin`, `nextXorChar`).
+* Use `ALLCAPS` for struct/enum names.
+    * eg. `DIFFICULTY`, `COIN`, `FLS`
+* Use `UpperCamelCase` for function/class names and enum values.
+    * eg. `GLimitLm`, `ChangeSuck`, `OnDifficultyGameLoad`
+* Use `lowerCamelCase` for variables, function parameters, and class members.
+    * eg. `g_pgsCur`, `pCoin`, `nextXorChar`
 * Name variables according to [Hungarian Notation](https://en.wikipedia.org/wiki/Hungarian_notation), which uses letter prefixes to denote the type.
 * Project includes should come before library includes.
