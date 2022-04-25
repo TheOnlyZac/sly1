@@ -12,9 +12,9 @@
 
 This is a work-in-progress, experimental decompilation of *Sly Cooper and the Thievius Raccoonus* for the PlayStation 2. It is based on the NTSC-U version of the game (`SCUS-971.98`).
 
-The goal of this project is to better understand how the game works to assist the speedrunning, glitch hunting and modding communities. **This repo does not contain any game assets or original code from the game's executable.**
+The goal of this project is to better understand how the game works to aid the speedrunning, glitch hunting and modding communities. **This repo does not contain any game assets or original code from the game's executable.**
 
-New contributors are welcome and encouraged! If you would like to help but aren't sure where to start, you can [join our discord server](https://discord.gg/gh5xwfj) and/or message [TheOnlyZac#0269](https://discordapp.com/channels/@me/TheOnlyZac#0269/) for more info and advice.
+New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, you can [join our discord server](https://discord.gg/gh5xwfj) and/or message [TheOnlyZac#0269](https://discordapp.com/channels/@me/TheOnlyZac#0269/) for more info and advice.
 
 ## Getting Started
 
@@ -22,9 +22,7 @@ New contributors are welcome and encouraged! If you would like to help but aren'
 
 Clone the repo and open Visual Studio. Click `File > Open > CMake...` and open the file `CMakeLists.txt` in the main project folder. To build and run the main test program, set your startup item to `main.exe`.
 
-#### Tests
-
-Build the solution with `Build > Build All` and the tests should appear in the Test Explorer window. After running a test, the results will show in the Test Explorer and the Output window.
+For testing, build the solution with `Build > Build All` and the tests should appear in the Test Explorer window. After running a test, the results will show in the Test Explorer and the Output window.
 
 ### Windows/Unix - MSYS2 MINGW64/UCRT64 - GNU/Linux
 
@@ -39,9 +37,7 @@ cmake .. -DCMAKE_BUILD_TYPE=Release
 cmake --build . -j8
 ```
 
-#### Tests
-
-In the build directory, run `cmake --build . --target check && ctest .`  or `make check` to run tests.
+To run tests, cd into the build directory and run `cmake --build . --target check && ctest .`  or `make check`.
 
 ## Style Guide
 
@@ -51,7 +47,7 @@ Our goal is to imitate the original source code as closely as possible based on 
 * Use `ALLCAPS` for struct/enum names.
     * eg. `DIFFICULTY`, `COIN`, `FLS`
 * Use `UpperCamelCase` for function/class names and enum values.
-    * eg. `GLimitLm`, `ChangeSuck`, `OnDifficultyGameLoad`
+    * eg. `GLimitLm`, `CTransition`, `OnDifficultyGameLoad()`
 * Use `lowerCamelCase` for variables, function parameters, and class members.
     * eg. `g_pgsCur`, `pCoin`, `nextXorChar`
 * Name variables according to [Hungarian Notation](https://en.wikipedia.org/wiki/Hungarian_notation), which uses letter prefixes to denote the type.
