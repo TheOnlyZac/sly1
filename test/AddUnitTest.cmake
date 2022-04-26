@@ -17,7 +17,7 @@ macro(add_unit_test)
     endif()
     add_test(NAME ${TEST_NAME}
 	     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/bin/tests
-             COMMAND ${TESTCOMMAND})
+         COMMAND ${TESTCOMMAND})
 
      get_property(TESTNAMES GLOBAL PROPERTY TESTNAMES)
      set_property(GLOBAL PROPERTY TESTNAMES ${TESTNAMES} ${TEST_NAME})
