@@ -1,6 +1,5 @@
 #include <joy.h>
-
-#include <cassert>
+#include "../assert.h"
 
 int main()
 {

@@ -1,6 +1,5 @@
 #include <clock.h>
-
-#include <cassert>
+#include "../assert.h"
 
 int main()
 {

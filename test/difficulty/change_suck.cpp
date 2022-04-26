@@ -1,7 +1,6 @@
 #include <difficulty.h>
 #include <gs.h>
-
-#include <cassert>
+#include "../assert.h"
 
 int main()
 {

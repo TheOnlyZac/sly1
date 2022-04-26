@@ -1,7 +1,7 @@
 #include <joy.h>
 #include <gs.h>
+#include "../assert.h"
 
-#include <cassert>
 #include <cstring>
 
 int main()
