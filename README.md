@@ -64,7 +64,7 @@ cmake .. -DCMAKE_BUILD_TYPE=Release
 cmake --build . -j8
 ```
 
-To run tests, cd into the build directory and run `cmake --build . --target check` or `make check` to build and run the tests.
+For testing, cd into the build directory and run `cmake --build . --target check` or `make check` to build the tests. Then run the tests with `ctest -C Debug`.
 
 ## Style Guide
 

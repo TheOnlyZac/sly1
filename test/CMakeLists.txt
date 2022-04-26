@@ -16,7 +16,6 @@ add_subdirectory(xform)
 
 get_property(tests GLOBAL PROPERTY TESTNAMES)
 
-add_custom_target(check COMMAND ctest -C Debug
-	DEPENDS ${tests})
+add_custom_target(check DEPENDS ${tests})
 
 # now make check should work for unix systems
