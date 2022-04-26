@@ -9,7 +9,7 @@ int main()
 
 	SetClockRate(0.5);
 	assert(g_rtClock == 0.5f);
-	assert(g_clock.fEnabled = true);
+	assert(g_clock.fEnabled == true);
 
 	SetClockRate(0);
 	assert(g_rtClock == 0.f);
