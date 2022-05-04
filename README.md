@@ -82,8 +82,8 @@ For the most part, variables are named according to [Hungarian Notation](https:/
 * `n` - Integer/number
 * `c` - Integer/count of items
 * `f` - Boolean/flag
-* `l` - Signed long
-* `u` - Unsigned long
+* `l` - Long
+* `u` - Unsigned float
 * `b` - Byte
 * `ch` - Char
 * `z` - Zero-terminated string
@@ -95,7 +95,7 @@ The following prefixes are used to denote the scope of a variable:
 * `s_` - Static member of class
 
 Here are some examples of variable names that combine the above prefixes:
-* `ccoin`, `clife`, `ccharm` - Count of coins, charms, and lives
+* `ccoin`, `clife`, `ccharm` - Count of coins, lives, and charms
 * `fSneakyFeet` - Flag that denotes whether Sly's footsteps make guitar noises
 * `g_pgsCur` - Global pointer to the game's current GS struct
 * `g_pchzArgs` - Global pointer to a zero-terminated char array of arguments
