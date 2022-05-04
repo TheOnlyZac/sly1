@@ -1,5 +1,6 @@
 #include <clock.h>
-#include "../test.h"
+
+#include <test/test.h>
 
 int main()
 {

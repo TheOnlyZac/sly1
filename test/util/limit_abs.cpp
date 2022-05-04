@@ -1,5 +1,6 @@
 #include <util.h>
-#include "../test.h"
+
+#include <test/test.h>
 
 // disable warning for truncating double to float
 #pragma warning(disable: 4305)

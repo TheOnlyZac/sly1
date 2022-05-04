@@ -1,6 +1,7 @@
 #include <coin.h>
 #include <gs.h>
-#include "../test.h"
+
+#include <test/test.h>
 
 int main()
 {
