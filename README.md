@@ -1,13 +1,14 @@
 # Sly Cooper and the Thievius Raccoonus
 <!-- Readme badges -->
 
-[![Build status][build-badge]][build-url] ![AppVeyor tests][tests-badge] [![Contributors][contributors-badge]][contributors-url] [![Discord Channel][discord-badge]][discord-url]
+[![Build status][build-badge]][build-url] [![AppVeyor tests][tests-badge]][tests-url] [![Contributors][contributors-badge]][contributors-url] [![Discord Channel][discord-badge]][discord-url]
 
 <!-- Build status links -->
 [build-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1
 [build-badge]: https://ci.appveyor.com/api/projects/status/800esepa77ctpv5p?svg=true
 
 <!-- Test status links -->
+[tests-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1/build/tests
 [tests-badge]: https://img.shields.io/appveyor/tests/theonlyzac/sly1
 
 <!-- Contributors badge links -->
