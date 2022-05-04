@@ -20,14 +20,14 @@
 
 This is a work-in-progress, experimental decompilation of *Sly Cooper and the Thievius Raccoonus* for the PlayStation 2. It is based on the NTSC-U version of the game (`SCUS-971.98`).
 
-The goal of this project is to better understand how the game works to aid the speedrunning, glitch hunting and modding communities. **This repo does not contain any game assets or original code from the game's executable.**
+The goal of this project is to better understand how the game works. **This repo does not contain any game assets or original code from the game's executable.**
 
-New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, you can [join our discord server](https://discord.gg/gh5xwfj) and/or message [TheOnlyZac#0269](https://discordapp.com/channels/@me/TheOnlyZac#0269/) for more info and advice.
+New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, you can [join our discord server](https://discord.gg/gh5xwfj) and/or message [TheOnlyZac#0269](https://discordapp.com/channels/@me/TheOnlyZac#0269/) for more info and advice on where to begin.
 
 ## Frequently Asked Questions
 
 #### What is a decompilation?
-When the developers created the game, they wrote programming code that we call the *source code*. Then, they compiled the code into *machine code* that can run on the PS2. Our job is to disasemble that code and reverse engineer it to re-create the original code. This process is called decompilation, and it leaves us with code that is very similar (but not identical) to the source code.
+When the developers created the game, they wrote programming code that we call the source code. Then, they compiled the code into machine code that can run on the PS2. Our job is to disasemble that code and reverse engineer it to re-create the original code. This process is called decompilation, and it leaves us with code that is very similar (but not identical) to the source code.
 
 #### How does it work?
 We use a tool called [Ghidra](https://ghidra-sre.org/) which was created by the [NSA](https://www.nsa.gov/) for reverse-engineering software. Ghidra does a lot of the work for us by auto-decompiling the assembly code in the game's executable to human-readable C code. This auto-decompiled code is messy and has a lot of mistakes, so we use it as a base. We look at each individual function, clean it up, add variable names, fix data types, and finally re-write the code in C++.
