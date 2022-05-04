@@ -1,23 +1,23 @@
 #include <clock.h>
-#include "../assert.h"
+#include "../test.h"
 
 int main()
 {
 	SetClockRate(1.0);
-	assert(g_rtClock == 1.0f);
-	assert(g_clock.fEnabled == true);
+	JtAssert(g_rtClock == 1.0f);
+	JtAssert(g_clock.fEnabled);
 
 	SetClockRate(0.5);
-	assert(g_rtClock == 0.5f);
-	assert(g_clock.fEnabled == true);
+	JtAssert(g_rtClock == 0.5f);
+	JtAssert(g_clock.fEnabled);
 
 	SetClockRate(0);
-	assert(g_rtClock == 0.f);
-	assert(g_clock.fEnabled == false);
+	JtAssert(g_rtClock == 0.f);
+	JtAssert(!g_clock.fEnabled);
 
 	SetClockRate(-1);
-	assert(g_rtClock == -1.f);
-	assert(g_clock.fEnabled == false);
+	JtAssert(g_rtClock == -1.f);
+	JtAssert(!g_clock.fEnabled);
 
 	return 0;
 }

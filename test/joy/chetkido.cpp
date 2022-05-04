@@ -1,6 +1,6 @@
 #include <joy.h>
 #include <gs.h>
-#include "../assert.h"
+#include "../test.h"
 
 #include <cstring>
 
@@ -13,12 +13,12 @@ int main()
 	g_pgsCur->clife = 0;
 
 	CheatActivateChetkido();
-	assert(strstr(chetkido_buffer, "The password is: chetkido") != NULL);
+	JtAssert(strstr(chetkido_buffer, "The password is: chetkido") != NULL);
 
 	g_pgsCur->ccoin = 98;
 
 	CheatActivateChetkido();
-	assert(strstr(chetkido_buffer, "The password is: chetkido") == NULL);
+	JtAssert(strstr(chetkido_buffer, "The password is: chetkido") == NULL);
 
 	return 0;
 }

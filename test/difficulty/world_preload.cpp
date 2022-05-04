@@ -1,6 +1,6 @@
 #include <difficulty.h>
 #include <gs.h>
-#include "../assert.h"
+#include "../test.h"
 
 void SetGameLevel(GAMEWORLD gameworld, WORLDLEVEL worldlevel);
 
@@ -13,13 +13,13 @@ int main()
 	// jb_intro = easy
 	SetGameLevel(GAMEWORLD::Intro, WORLDLEVEL::Approach);
 	OnDifficultyWorldPreLoad(&g_difficulty);
-	assert(g_difficulty.props == &g_difficultyEasy);
+	JtAssert(g_difficulty.props == &g_difficultyEasy);
 
 
 	// cw_security = easy
 	SetGameLevel(GAMEWORLD::Clockwerk, WORLDLEVEL::Level2);
 	OnDifficultyWorldPreLoad(&g_difficulty);
-	assert(g_difficulty.props == &g_difficultyEasy);
+	JtAssert(g_difficulty.props == &g_difficultyEasy);
 
 
 	// uw_bonus_security
@@ -28,12 +28,12 @@ int main()
 	// no key = medium
 	g_plsCur->fls = static_cast<FLS>((int)g_plsCur->fls & ~(int)FLS::KeyCollected); // unset KeyCollected flag
 	OnDifficultyWorldPreLoad(&g_difficulty);
-	assert(g_difficulty.props == &g_difficultyMedium);
+	JtAssert(g_difficulty.props == &g_difficultyMedium);
 
 	// with key = hard
 	g_plsCur->fls = static_cast<FLS>((int)g_plsCur->fls | (int)FLS::KeyCollected); // setKeyCollected flag
 	OnDifficultyWorldPreLoad(&g_difficulty);
-	assert(g_difficulty.props == &g_difficultyHard);
+	JtAssert(g_difficulty.props == &g_difficultyHard);
 
 	return 0;
 }
