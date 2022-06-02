@@ -5,11 +5,11 @@
 
 <!-- Build status links -->
 [build-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1
-[build-badge]: https://ci.appveyor.com/api/projects/status/800esepa77ctpv5p?svg=true
+[build-badge]: https://ci.appveyor.com/api/projects/status/800esepa77ctpv5p/branch/main?svg=true
 
 <!-- Test status links -->
 [tests-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1/build/tests
-[tests-badge]: https://img.shields.io/appveyor/tests/theonlyzac/sly1
+[tests-badge]: https://img.shields.io/appveyor/tests/theonlyzac/sly1/main
 
 <!-- Contributors badge links -->
 [contributors-url]: https://github.com/theonlyzac/sly1/graphs/contributors
