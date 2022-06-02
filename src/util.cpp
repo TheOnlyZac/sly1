@@ -51,7 +51,7 @@ float GRandInRange(float gLow, float gHigh)
 	return gLow;
 }
 
-/* Check whether the given floats are near each other based on the given epsilon */
+/* Compares two floats and returns true if they are within a certain epsilon of each other */
 BOOL FFloatsNear(float g1, float g2, float gEpsilon)
 
 {
@@ -59,26 +59,29 @@ BOOL FFloatsNear(float g1, float g2, float gEpsilon)
 	return (BOOL)(unsigned int)(fabs(g1 - g2) / (float)((unsigned int)(g1Abs < 1.0) * 0x3f800000 | (int)g1Abs * (unsigned int)(g1Abs >= 1.0)) < gEpsilon);
 }
 
-/* Finds solutions using the quadratic equation. Stores the solutions in ax
-   and returns the number of solutions (0, 1, or 2) */
+/*
+ * Solves a quadratic equation of the form ax^2 + bx + c = 0
+ * Returns the number of solutions found (0, 1, or 2)
+ * If there are two solutions, they are returned in ax[0] and ax[1]
+ */
 int CSolveQuadratic(float a, float b, float c, float* ax)
 {
-	float bsquaredMinus4ac = (b * b) - 4.0 * a * c;
-	if (bsquaredMinus4ac < 0.0)
+	float sqrt = (b * b) - 4.0 * a * c;
+	if (sqrt < 0.0)
 	{
 		return 0; // no solutions, radicand is negative
 	}
 
-	float bsquaredMinus4acOver2a = sqrt(bsquaredMinus4ac) / (2 * a);
+	float sqrtOver2a = sqrt(sqrt) / (2 * a);
 	float bOver2a = b / (2 * a);
-	if (fabs(bsquaredMinus4acOver2a) < 0.0001)
+	if (fabs(sqrtOver2a) < 0.0001)
 	{
 		*ax = -bOver2a;
 		return 1; // one solution: -b / 2a
 	}
 
-	ax[1] = -bOver2a - bsquaredMinus4acOver2a;
-	*ax = -bOver2a + bsquaredMinus4acOver2a;
+	ax[1] = -bOver2a - sqrtOver2a;
+	*ax = -bOver2a + sqrtOver2a;
 	return 2; // two solutions: (-b � radical) / 2a
 }
 
@@ -92,15 +95,10 @@ float GModPositive(float gDividend, float gDivisor)
 	return result;
 }
 
-/* Check whether the given float falls within the given limit */
+/* Verify that whether the given float falls within the given limit */
 BOOL FCheckLm(LM* plm, float g)
-
 {
-	if ((plm->gMin < g) && (g < plm->gMax))
-	{
-		return true;
-	}
-	return false;
+	return (plm->gMin < g) && (g < plm->gMax);
 }
 
 /* Check whether the given float falls within any of the given limits */
