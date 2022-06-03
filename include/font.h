@@ -28,7 +28,8 @@ struct RGBA {
 	BYTE bAlpha;
 };
 
-/* Unknown, used by CFont class */
+/* Unknown, possibly ScaleFactorRatio (used 
+ by CFont class, probably to scale fonts) */
 struct SFR
 {
 	float rx;
@@ -43,7 +44,7 @@ protected:
 	int m_dxSpaceUnscaled;
 	int m_dyUnscaled;
 	int m_csfr;
-	struct SFR m_asfr[4];
+	struct SFR m_asfr[4]; // 4 different scale factors, each to be used in a different situation?
 	int m_fGstest;
 	int field_0x34; // unknown
 	/* todo: figure out these types
