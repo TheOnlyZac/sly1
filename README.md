@@ -4,11 +4,11 @@
 [![Build status][build-badge]][build-url] [![AppVeyor tests][tests-badge]][tests-url] [![Contributors][contributors-badge]][contributors-url] [![Discord Channel][discord-badge]][discord-url]
 
 <!-- Build status links -->
-[build-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1
+[build-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1/branch/main
 [build-badge]: https://ci.appveyor.com/api/projects/status/800esepa77ctpv5p/branch/main?svg=true
 
 <!-- Test status links -->
-[tests-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1/build/tests
+[tests-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1/branch/main/tests
 [tests-badge]: https://img.shields.io/appveyor/tests/theonlyzac/sly1/main
 
 <!-- Contributors badge links -->
@@ -16,14 +16,14 @@
 [contributors-badge]: https://img.shields.io/github/contributors/theonlyzac/sly1?color=%23006ED1
 
 <!-- Discord badge links -->
-[discord-url]: https://discord.gg/gh5xwfj
+[discord-url]: https://discord.gg/2GSXcEzPJA
 [discord-badge]: https://img.shields.io/discord/439454661100175380?color=%23006ED1&logo=discord&logoColor=%23FFFFFF
 
 This is a work-in-progress, experimental decompilation of *Sly Cooper and the Thievius Raccoonus* for the PlayStation 2. It is based on the NTSC-U version of the game (`SCUS-971.98`).
 
 The goal of this project is to better understand how the game works. **This repo does not contain any game assets or original code from the game's executable.**
 
-New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, you can [join our discord server](https://discord.gg/gh5xwfj) and/or message [TheOnlyZac#0269](https://discordapp.com/channels/@me/TheOnlyZac#0269/) for more info and advice on where to begin.
+New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, you can [join our discord server][discord-url] and/or message [TheOnlyZac#0269](https://discordapp.com/channels/@me/TheOnlyZac#0269/) for more info and advice on where to begin.
 
 ## Frequently Asked Questions
 
@@ -40,7 +40,7 @@ We are not aware of any other major PS2 decompilation projects. However, this pr
 We are not currently aiming for a matching decomp due to the added complexity and lack of resources/info on PS2 reverse-engineering. However, this is subject to change if/when we learn more and come up with a process for function matching.
 
 #### How can I help?
-See below for instructions on how to download the project and start writing code. If you would like to contribute but have no idea where to start, you can [join our discord server](https://discord.gg/gh5xwfj) and/or reach out to [TheOnlyZac#0269](https://discordapp.com/channels/@me/TheOnlyZac#0269/) for some resources and advice to get started!
+See below for instructions on how to download the project and start writing code. If you would like to contribute but have no idea where to start, you can [join our discord server][discord-url] and/or reach out to [TheOnlyZac#0269](https://discordapp.com/channels/@me/TheOnlyZac#0269/) for some resources and advice to get started!
 
 ## Getting Started
 
