@@ -84,9 +84,11 @@ struct WS
 };
 
 /* Game Save*/
+typedef int GRFGS;
+typedef int GRFVAULT;
 struct GS
 {
-    FGS fgs; // gsv?
+    int gsv; // not sure why this isn't caled fgs
     int cbThis; // size (bytes)
     int nChecksum; // expected size (bytes)
     float dt; // time spend playing file (secs)
@@ -96,11 +98,11 @@ struct GS
     int clife; // lives count
     int ccharm; // charms count
     int ccoin; // coins count
-    unsigned int settings_flags; // grfgs?
-    unsigned int unlocked_thief_moves;
+    GRFGS grfgs; // game settings flags (I think -Zac)
+	GRFVAULT grfvault; // unlocked thief moves flags
     unsigned int unlocked_cutscenes;
     unsigned int game_completion_flags;
-    int last_thief_move;
+    int last_thief_move; // todo: fix name
 };
 
 struct PchzLevel // maybe wrong name
