@@ -1,8 +1,9 @@
 
-include (${CMAKE_CURRENT_SOURCE_DIR}/AddUnitTest.cmake)
-
 set (TESTNAMES "")
 
+include (${CMAKE_CURRENT_SOURCE_DIR}/AddUnitTest.cmake)
+
+add_subdirectory(clock)
 add_subdirectory(coin)
 add_subdirectory(difficulty)
 add_subdirectory(game)
@@ -15,7 +16,6 @@ add_subdirectory(xform)
 
 get_property(tests GLOBAL PROPERTY TESTNAMES)
 
-add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND}
-                        DEPENDS ${tests})
-		
+add_custom_target(check DEPENDS ${tests})
+
 # now make check should work for unix systems

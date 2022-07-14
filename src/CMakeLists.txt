@@ -1,15 +1,16 @@
 
 
 set (FILES
+	clock.cpp
+	coin.cpp
 	difficulty.cpp
 	font.cpp
-	screen.cpp
-	util.cpp
-	joy.cpp
-	gs.cpp
-	coin.cpp
 	game.cpp
+	gs.cpp
+	joy.cpp
+	screen.cpp
 	ui.cpp
+	util.cpp
 	wipe.cpp
 	xform.cpp
 	# ...
