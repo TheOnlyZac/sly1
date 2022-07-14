@@ -1,6 +1,6 @@
 #include <gs.h>
 
-#include <cassert>
+#include <test/test.h>
 
 int main()
 {
@@ -8,7 +8,7 @@ int main()
 
 	// Test save file percent calculation
 	int percent = CalculatePercentCompletion(g_pgsCur);
-	assert(percent == 0);
+	JtAssert(percent == 0);
 
 	return 0;
 }
