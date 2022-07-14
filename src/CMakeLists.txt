@@ -1,12 +1,13 @@
 
 
 set (FILES
-	util.cpp
-	joy.cpp
-	gs.cpp
-	difficulty.cpp
+	clock.cpp
 	coin.cpp
+	difficulty.cpp
 	game.cpp
+	gs.cpp
+	joy.cpp
+	util.cpp
 	xform.cpp
 	# ...
 )
