@@ -1,10 +1,13 @@
 #include <xform.h>
-
 #include <cassert>
+
+#include <test/test.h>
 
 int main()
 {
 	EXIT exit;
+
+	// todo: why does the custom assert macro cause errors here
 
 	SetExitExits(&exit, EXITS::Blocked);
 	assert(exit.fKeyed == EXITS::Blocked);
