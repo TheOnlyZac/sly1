@@ -66,13 +66,13 @@ BOOL FFloatsNear(float g1, float g2, float gEpsilon)
  */
 int CSolveQuadratic(float a, float b, float c, float* ax)
 {
-	float sqrt = (b * b) - 4.0 * a * c;
-	if (sqrt < 0.0)
+	float rt = (b * b) - 4.0 * a * c;
+	if (rt < 0.0)
 	{
 		return 0; // no solutions, radicand is negative
 	}
 
-	float sqrtOver2a = sqrt(sqrt) / (2 * a);
+	float sqrtOver2a = sqrt(rt) / (2 * a);
 	float bOver2a = b / (2 * a);
 	if (fabs(sqrtOver2a) < 0.0001)
 	{
@@ -134,9 +134,10 @@ float GLimitLm(LM* plm, float g)
 /* Compare the sign of the given two floats */
 int SgnCompareG(float* pg1, float* pg2)
 {
+	int result = 1;
 	if ((*pg1 <= *pg2) && (result = -1, *pg2 <= *pg1))
 	{
-		return 0;
+		result = 0;
 	}
-	return 1;
+	return result;
 }
