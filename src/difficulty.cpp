@@ -5,14 +5,7 @@
 
 #include <cstring>
 
-/* Update the suck value on the current level save data */
-void ChangeSuck(float nParam, DIFFICULTY* pdifficulty)
-{
-	const float newSuck = GLimitLm(&pdifficulty->props->suckLm, (g_plsCur->uSuck + nParam * 0.1)); // clamp new suck
-	g_plsCur->uSuck = newSuck; // set current level suck to clamped value
-}
-
-/* Called when game startsl; clears the difficulty struct */
+/* Called when game starts; clears the difficulty struct */
 void OnDifficultyGameLoad(DIFFICULTY* pdifficulty)
 {
 	std::memset(pdifficulty, 0, sizeof(DIFFICULTY));
@@ -115,4 +108,11 @@ void OnDifficultyCollectKey(DIFFICULTY* pdifficulty)
 	lsCur->unk_field_0x70 = 0;
 
 	std::memset(&lsCur->unk_field_0x74, 0, 1);
+}
+
+/* Update the suck value on the current level save data */
+void ChangeSuck(float nParam, DIFFICULTY* pdifficulty)
+{
+	const float newSuck = GLimitLm(&pdifficulty->props->suckLm, (g_plsCur->uSuck + nParam * 0.1)); // clamp new suck
+	g_plsCur->uSuck = newSuck; // set current level suck to clamped value
 }

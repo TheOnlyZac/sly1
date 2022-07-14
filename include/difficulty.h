@@ -43,18 +43,18 @@ struct DIFFICULTY
 static DIFFICULTY g_difficulty;
 static DIFFICULTYPROPS g_difficultyEasy, g_difficultyMedium, g_difficultyHard;
 
-void ChangeSuck(float nParam, DIFFICULTY* pdifficulty);
+//Difficulty* PdifficultyEnsureSw(SW* psw, ENSK ensk);
 void OnDifficultyGameLoad(DIFFICULTY* pdifficulty);
 void OnDifficultyWorldPreLoad(DIFFICULTY* pdifficulty);
 void OnDifficultyWorldPostLoad(DIFFICULTY* pdifficulty);
 void OnDifficultyInitialTeleport(DIFFICULTY* pdifficulty);
-void OnDifficultyCollectKey(DIFFICULTY* pdifficulty);
-
-//void OnDifficultyAward(Difficulty* pdifficulty, int ccoinMin, int ccoinMax, Vector* ppos);
-//void OnDifficultyBreak(Difficulty* pdifficulty, Vector* ppos, int ccoin);
-//void OnDifficultyMiniNpc(Difficulty* pdifficulty, Vector* ppos, int ccoin);
 //void OnDifficultyPlayerDeath(Difficulty* pdifficulty);
 //void OnDifficultyTriggerCheckpoint(Difficulty* pdifficulty, Chkpnt* pchkpnt);
-//Difficulty* PdifficultyEnsureSw(SW* psw, ENSK ensk);
+void OnDifficultyCollectKey(DIFFICULTY* pdifficulty);
+//void OnDifficultyAward(Difficulty* pdifficulty, int ccoinMin, int ccoinMax, Vector* ppos);
+//void OnDifficultyBreak(Difficulty* pdifficulty, VECTOR* ppos, int ccoin);
+//void OnDifficultyNpc(DIFFICULTY* pdifficulty, VECTOR* ppos, int ccoin)
+//void OnDifficultyMiniNpc(Difficulty* pdifficulty, VECTOR* ppos, int ccoin);
+void ChangeSuck(float nParam, DIFFICULTY* pdifficulty);
 //void ResetSuckChkpnts(int nParam);
 //void SetSuckChkpnts(int nParam);
