@@ -9,24 +9,28 @@ enum class DPS
 	Max = 0x2
 };
 
+/* Tracks values related to the current difficulty level 
+ * (easy, medium, or hard) */
 struct DIFFICULTYPROPS // made-up name
 {
 	LM suckLm;
 	LM* unk_lm_0x8;
 	float field_0xc;
-	float suckModifier;
-	float field_0x14;
-	float field_0x18;
-	float field_0x1c;
-	float field_0x20;
-	float field_0x24;
-	float field_0x28;
-	float uSuckCharmLow;
-	int ccharmLow;
-	float uSuckCharmHigh;
-	int ccharmHigh;
+	float duSuckDeath; // Suck penalty on player death
+	float duSuckCheckpntTrigger; // Suck penalty
+	float duSuckCheckpntRetrigger; // Suck penalty
+	float field_0x1c; // unknown
+	float field_0x20; // unknown
+	float field_0x24; // unknown
+	float field_0x28; // unknown
+	float uSuckCharmLow; // Suck threshold to get low charms
+	int ccharmLow; // Low charms count
+	float uSuckCharmHigh; // Suck threshold to get high charms
+	int ccharmHigh; // High charms coutn
 };
 
+/* Tracks values that don't change across difficulty levels, 
+ * and a pointer to the current difficulty level */
 struct DIFFICULTY
 {
 	int field_0x0;

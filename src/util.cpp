@@ -15,7 +15,7 @@ float RadNormalize(float rad)
 	return rad;
 }
 
-/* Clamp the float to fall within the range [-absLimit, absLimit] */
+/* Clamp the float to fall within the interval [-absLimit, absLimit] */
 float GLimitAbs(float g, float absLimit)
 {
 	if (g <= absLimit)
@@ -66,13 +66,13 @@ BOOL FFloatsNear(float g1, float g2, float gEpsilon)
  */
 int CSolveQuadratic(float a, float b, float c, float* ax)
 {
-	float rt = (b * b) - 4.0 * a * c;
-	if (rt < 0.0)
+	float rad = (b * b) - 4.0 * a * c;
+	if (rad < 0.0)
 	{
 		return 0; // no solutions, radicand is negative
 	}
 
-	float sqrtOver2a = sqrt(rt) / (2 * a);
+	float sqrtOver2a = sqrt(rad) / (2 * a);
 	float bOver2a = b / (2 * a);
 	if (fabs(sqrtOver2a) < 0.0001)
 	{
