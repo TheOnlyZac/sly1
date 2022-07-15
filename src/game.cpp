@@ -15,7 +15,7 @@ void InitGameState(GS* pgs)
 	pgs->cbThis = sizeof(GS);
 	pgs->worldlevelCur = WORLDLEVEL::Level2;
 	pgs->clife = 5;
-	pgs->last_thief_move = -1;
+	pgs->nPowerupLast = -1;
 	/* todo: implement function (name is wrong)
 	reset_settings(pgs); */
 }

@@ -2,6 +2,15 @@
 
 typedef bool BOOL;
 
+/* Vector */
+struct VECTOR
+{
+	float x;
+	float y;
+	float z;
+	float gUnused;
+};
+
 /* Limit */
 struct LM
 {

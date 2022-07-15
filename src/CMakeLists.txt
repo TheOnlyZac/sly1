@@ -13,6 +13,7 @@ set (FILES
 	util.cpp
 	wipe.cpp
 	xform.cpp
+	chkpnt.cpp
 	# ...
 )
 

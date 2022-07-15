@@ -19,7 +19,7 @@ void OnDifficultyWorldPreLoad(DIFFICULTY* pdifficulty)
 	const int gameworld = (int)(gsCur->gameworldCur);
 	const int worldlevel = (int)(gsCur->worldlevelCur);
 
-	DIFFICULTYPROPS* difficultyProps;
+	DIFFICULTYLEVEL* difficultyProps;
 
 	pdifficulty->ccoinRichMin = 4;
 	pdifficulty->ccoinRichMax = 6;
@@ -27,7 +27,7 @@ void OnDifficultyWorldPreLoad(DIFFICULTY* pdifficulty)
 	pdifficulty->ccoinPoorMin = 1;
 
 	if (((gameworld == (int)GAMEWORLD::Intro) || (gameworld == (int)GAMEWORLD::Clockwerk)) || (worldlevel == (int)WORLDLEVEL::Hub))
-	{ // Case: World is 0 or 5, or current level is a hub (map ID 1)
+	{ // Case: Current world is 0 or 5, or current level is a hub
 		difficultyProps = &g_difficultyEasy; // Set easy difficulty
 	}
 	else if (((int)lsCur->fls & (int)FLS::KeyCollected) == 0)
@@ -39,10 +39,10 @@ void OnDifficultyWorldPreLoad(DIFFICULTY* pdifficulty)
 		difficultyProps = &g_difficultyHard; // set hard difficulty
 	}
 
-	pdifficulty->props = difficultyProps;
+	pdifficulty->pdifficultyLevel = difficultyProps;
 
 	ChangeSuck(lsCur->uSuck, pdifficulty);
-	difficultyProps = pdifficulty->props; // redundant?
+	difficultyProps = pdifficulty->pdifficultyLevel; // redundant?
 
 	// todo: finish function
 }
@@ -50,18 +50,18 @@ void OnDifficultyWorldPreLoad(DIFFICULTY* pdifficulty)
 /* Update the player suck and determine the number of suck charms they get */
 void OnDifficultyWorldPostLoad(DIFFICULTY* pdifficulty)
 {
-	DIFFICULTYPROPS* difficultyProps;
+	DIFFICULTYLEVEL* difficultyProps;
 	int csuckCharms;
 
 	// Case: The transition is a quit-game reload
 	if (/*(g_transition.load_flags & 8) = 0 */ true) // todo implement g_transition
 	{
-		const float newSuck = GLimitLm((LM*)&pdifficulty->props->unk_lm_0x8, g_plsCur->uSuck);
+		const float newSuck = GLimitLm((LM*)&pdifficulty->pdifficultyLevel->unk_lm_0x8, g_plsCur->uSuck);
 		ChangeSuck(newSuck, pdifficulty);
 	}
 	// Case: The ransition is not a quit-game reload
 	else {
-		difficultyProps = pdifficulty->props;
+		difficultyProps = pdifficulty->pdifficultyLevel;
 
 		// Case: Suck value is BELOW charmLow or ABOVE charmHigh
 		if ((g_plsCur->uSuck < difficultyProps->uSuckCharmLow) ||
@@ -97,6 +97,51 @@ void OnDifficultyInitialTeleport(DIFFICULTY* pdifficulty)
 	return;
 }
 
+/* Applies a suck penalty upon player death */
+void OnDifficultyPlayerDeath(float scalar, DIFFICULTY* pdifficulty)
+{
+	DIFFICULTYLEVEL* pdifflevel = pdifficulty->pdifficultyLevel;
+
+	// Update player suck for current level
+	float uSuckCur = g_plsCur->uSuck;
+	float duSuckDeath = pdifflevel->duSuckDeath;
+
+	ChangeSuck(uSuckCur + scalar * duSuckDeath, pdifficulty);
+
+	// Update suckunknown_0x10 value for current level
+	float result;
+
+	// check for a game over
+	if (g_pgsCur->clife < 0)
+	{
+		result = pdifficulty->pdifficultyLevel->field_0x40;
+	}
+	else
+	{
+		result = pdifflevel->field_0x3c;
+		if (g_pgsCur->clife <= pdifflevel->field_0x4c)
+		{
+			result = result + pdifflevel->field_0x50;
+		}
+	}
+	result = GLimitLm(&g_lmZeroOne, g_plsCur->unk_suck_0x10 + scalar * result);
+	g_plsCur->unk_suck_0x10 = result;
+}
+
+/* Reduce player suck upon first triggering a checkpoint */
+void OnDifficultyTriggerCheckpoint(DIFFICULTY* pdifficulty, CHKPNT* pchkpnt)
+{
+	DIFFICULTYLEVEL* pdifflevel;
+
+	if (pchkpnt == NULL)
+	{
+		pdifflevel = pdifficulty->pdifficultyLevel;
+	}
+
+	/* todo: implement CHKPNT struct and finish this function */
+	// ...
+}
+
 /* Resets some difficulty values upon collecting a key */
 void OnDifficultyCollectKey(DIFFICULTY* pdifficulty)
 {
@@ -113,6 +158,6 @@ void OnDifficultyCollectKey(DIFFICULTY* pdifficulty)
 /* Update the suck value on the current level save data */
 void ChangeSuck(float nParam, DIFFICULTY* pdifficulty)
 {
-	const float newSuck = GLimitLm(&pdifficulty->props->suckLm, (g_plsCur->uSuck + nParam * 0.1)); // clamp new suck
+	const float newSuck = GLimitLm(&pdifficulty->pdifficultyLevel->suckLm, (g_plsCur->uSuck + nParam * 0.1)); // clamp new suck
 	g_plsCur->uSuck = newSuck; // set current level suck to clamped value
 }
