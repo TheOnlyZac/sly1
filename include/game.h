@@ -4,21 +4,21 @@
  There are a lot more that are unknown. */
 enum class OID : int
 {
-	OID_Unknown = 0x0,
-	OID__MERGED_STATICS = 0x1,
-	OID__VISIBILITY_MAP = 0x2,
-	OID__WORLD = 0x3,
-	OID__CAMERA = 0x4,
-	OID_jt = 0x5,
-	OID_bentley = 0x6,
-	OID_murray = 0x7,
+	Unknown = 0x0,
+	_MERGED_STATICS = 0x1,
+	_VISIBILITY_MAP = 0x2,
+	_WORLD = 0x3,
+	_CAMERA = 0x4,
+	jt = 0x5,
+	bentley = 0x6,
+	murray = 0x7,
 	// ...
-	OID_rat = 0x269
+	rat = 0x269
 	// ...
 };
 
 /* World IDs
- Some of these values are directly from the may proto, 
+ Some of these values are directly from the may proto,
  the rest are extrapolated based on the order of levels in the game. */
 enum class WID : int
 {
@@ -80,8 +80,16 @@ enum class WID : int
 	cw_reverse_sniper = 0x2c,
 	cw_outclimb = 0x2d,
 	cw_finish = 0x2e,
-	
+
 	Max = 0x2f
+};
+
+struct RGBA
+{
+	char r;
+	char b;
+	char g;
+	char a;
 };
 
 void SetCcoin(int nParam);
