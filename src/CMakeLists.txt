@@ -7,9 +7,11 @@ set (FILES
 	coin.cpp
 	difficulty.cpp
 	font.cpp
+	frm.cpp
 	game.cpp
 	gs.cpp
 	joy.cpp
+	phasemem.cpp
 	render.cpp
 	screen.cpp
 	sw.cpp
@@ -19,10 +21,16 @@ set (FILES
 	wipe.cpp
 	xform.cpp
 	# ...
+
+	splice/spliceutils.cpp
+	# ...
 )
 
 add_library(DECOMP STATIC ${FILES})
-target_include_directories(DECOMP PUBLIC ${SLY1_INCLUDE_DIR})
+target_include_directories(DECOMP PUBLIC
+	${SLY1_INCLUDE_DIR}
+	${SLY1_SOURCE_DIR}
+)
 
 add_executable(main main.cpp)
 

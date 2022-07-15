@@ -10,6 +10,15 @@ const char sThePasswordIs[] = "The password is: %s";
 char chetkido_buffer[64]; // temp
 int g_grfcht = (int)FCHT::None;
 
+void UpdateJoy(JOY * pjoy)
+{
+	// ...
+	
+	//unsigned long padState = padGetState(pjoy->nPort, pjoy->nSlot); // ps2sdk call
+
+	// ...
+}
+
 /* Sets the given cheat flag and reloads the level if necessary */
 void AddFcht(int nParam)
 {

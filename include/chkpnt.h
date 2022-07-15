@@ -3,16 +3,12 @@
 #include <util.h>
 #include <game.h>
 
-typedef struct VTCHKPNT;
 struct CHKPNT
 {
-	struct VTCHKPNT* pvtchkpnt;
 };
 
-typedef struct VTCHKMGR;
 struct CHKMGR
 {
-	struct VTCHKMTR* pvtchkmgr;
 	int cbitChk;
 	int unk_0x8;
 	int padding[128];

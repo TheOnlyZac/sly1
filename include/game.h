@@ -86,17 +86,13 @@ enum class WID : int
 	Max = 0x2f
 };
 
-typedef struct VTGAME; // todo: implement struct
 struct GAME {
-	struct VTGAME* pvtgame;
 	int cAlarmsTriggered;
 	int fTimedChallenge;
 	float dtChallenge;
 	int cgoldLatest;
 };
 
-/* Unimplemented function sigs below are from the May prototype,
- some may be missing here, and some may be not be used in the final build */
 
 //void StartupGame();
 

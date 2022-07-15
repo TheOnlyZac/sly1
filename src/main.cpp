@@ -7,6 +7,7 @@
 #include <update.h>
 #include <sw.h>
 #include <render.h>
+#include <frm.h>
 //#include <transition.h>
 //#include <mpeg.h>
 
@@ -50,7 +51,7 @@ int main(int cphzArgs, char* aphzArgs[])
 		}*/
 
 		// Call update functions
-		//UpdateJoy(&g_joy);
+		UpdateJoy(&g_joy);
 		//UpdateCodes();
 		//UpdateSave(&g_save);
 		//UpdateUi(g_ui);
@@ -61,8 +62,8 @@ int main(int cphzArgs, char* aphzArgs[])
 		{
 			// Prepare to render frame
 			SetupCm(g_pcm);
-			//OpenFrame();
-			//MarkClockTick(&g_clock);
+			OpenFrame();
+			MarkClockTick(&g_clock);
 
 			// call some function at g_ps2->0x54(?)
 			void* pv = g_psw + 0x54;
@@ -73,13 +74,13 @@ int main(int cphzArgs, char* aphzArgs[])
 
 			// Render frame
 			RenderSw(g_psw, g_pcm);
-			//RenderUi();
+			RenderUi();
 
 			// Draw frame
 			DrawSw(g_psw, g_pcm);
-			//DrawUi();
+			DrawUi();
 
-			//CloseFrame();
+			CloseFrame();
 		}
 
 		// Temp: Print the current frame number
