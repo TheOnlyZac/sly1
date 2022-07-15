@@ -28,10 +28,10 @@ New contributors are welcome and encouraged to make a pull request! If you would
 ## Frequently Asked Questions
 
 #### What is a decompilation?
-When the developers created the game, they wrote programming code that we call the source code. Then, they compiled the code into machine code that can run on the PS2. Our job is to reverse-engineer the compiled code and produce new, original code that behaves the same way. This process leaves us with code that is very similar (but not identical) to the source code, and helps us understand what the programmers were thinking when they made the game.
+When the developers created the game they wrote programming code that we call the source code. Then, they compiled the source code into machine code that can run on the PS2. Our job is to reverse-engineer the compiled code and produce new, original code that behaves the same way. This process leaves us with code that is very similar (but not identical) to the source code and helps us understand what the programmers were thinking when they made the game.
 
 #### How does it work?
-We use a tool called [Ghidra](https://ghidra-sre.org/) which was created by the [NSA](https://www.nsa.gov/) for reverse-engineering software. We use Ghidra to analyze the game's executable to identity functions, variables, data types and structures. We then reimplement each individual function by writing C++ code that produces the same output. We do not copy/paste any code or include any original assembly code from the game elf in the decompilation.
+We use a tool called [Ghidra](https://ghidra-sre.org/) which was created by the [NSA](https://www.nsa.gov/) for reverse-engineering software. Ghidra analyzes the game binary to identity functions, variables, data types and structures. We then reimplement each individual function by writing C++ code that produces the same output. We do not copy/paste any code or include any original assembly code from the game binary in the decompilation.
 
 #### Has this ever been done before?
 This is one of the first-ever large scale PS2 decompilation projects. Our inspiration comes from other decomp projects such as the [Super Mario 64 decomp](https://github.com/n64decomp/sm64) for the N64 and the [Breath of the Wild decomp](https://github.com/zeldaret/botw) for the Wii U (the latter is more similar in scope to what we are trying to do). There is also a Jak & Daxter decomp/PC port called [OpenGOAL](https://github.com/open-goal/jak-project), though that game is written in 98% GOAL language, not native PS2 code.
@@ -71,7 +71,7 @@ For testing, cd into the build directory and run `cmake --build . --target check
 
 ### General
 
-Our goal is to imitate the original source code as closely as possible based on the debug symbols from the [May 2002 prototype](https://hiddenpalace.org/Sly_Cooper_and_the_Thievius_Raccoonus_(May_19,_2002_prototype)). Please try to follow these guidelines when writing your code:
+Our goal is to imitate the original source code as closely as possible based on symbols from the publicly available [May 2002 demo](https://hiddenpalace.org/Sly_Cooper_and_the_Thievius_Raccoonus_(May_19,_2002_prototype)). Please try to follow these guidelines when writing your code:
 * Use official names from the debug symbols wherever possible.
 * Indent with tabs, not spaces
 * Put project includes before library includes.
@@ -84,7 +84,8 @@ For the most part, variables are named according to [Hungarian Notation](https:/
 * `c` - Integer/count of items
 * `f` - Boolean/flag
 * `l` - Long
-* `u` - Unsigned float
+* `d` - Float
+* `u` - Unsigned
 * `b` - Byte
 * `ch` - Char
 * `z` - Zero-terminated string
@@ -92,10 +93,10 @@ For the most part, variables are named according to [Hungarian Notation](https:/
 
 The following prefixes are used to denote the scope of a variable:
 * `g_` - Global variable
-* `m_` - Member of class (does not apply to structs)
-* `s_` - Static member of class
+* `m_` - Class member
+* `s_` - Static class member
 
-Here are some examples of variable names that combine the above prefixes:
+Here are some examples of symbol names that combine the above prefixes:
 * `ccoin`, `clife`, `ccharm` - Count of coins, lives, and charms
 * `fSneakyFeet` - Flag that denotes whether Sly's footsteps make guitar noises
 * `g_pgsCur` - Global pointer to the game's current GS struct
@@ -111,4 +112,4 @@ Please try to stick to the following capitalization schemes:
 * Use `UpperCamelCase` for function/class names and enum values.
     * eg. `void OnDifficultyGameLoad()`, `class CTransition`, `FCHT::InfiniteCharms`
 * Use `lowerCamelCase` for local variables, function parameters, and class members.
-    * eg. `char nextXorChar`, `Coin* pCoin`, `float m_rxScale`
+    * eg. `char nextXorChar`, `Coin* pcoin`, `float m_rxScale`
