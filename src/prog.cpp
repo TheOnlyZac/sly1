@@ -31,10 +31,14 @@ void CProg::SetRemain(int nRemain)
             }
         }
         this->m_nRemain = nRemain;
-        /* todo: define function
-        Draw(); */
+        Draw();
     }
-    return;
+}
+
+void CProg::Draw()
+{
+	// todo
+	// ...
 }
 
 void CProg::End()

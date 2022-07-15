@@ -1,5 +1,7 @@
 #include <vec.h>
 
+// todo: cleanup and fix params
+
 void CalculateVectorPanTilt(VECTOR* param_1, float* param_2, float* param_3)
 {
     float fVar1;

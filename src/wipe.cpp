@@ -7,8 +7,7 @@ void WipeToWorldWarp(LevelTableStruct* pchzWorld, OID oidWarp, WIPEK wipek)
 	trans.grftrans = (GRFTRANS)0;
 	trans.pchzWorld = pchzWorld;
 	trans.oidWarp = (OID)oidWarp;
-	ActivateWipe(&g_pwipe, &trans, wipek);
-	return;
+	ActivateWipe(g_pwipe, &trans, wipek);
 }
 
 void ActivateWipe(WIPE* pwipe, TRANS* ptrans, WIPEK wipek)
@@ -57,7 +56,7 @@ void ActivateWipe(WIPE* pwipe, TRANS* ptrans, WIPEK wipek)
 	pwipe->trans.grftrans = ptrans->grftrans;
 	WIPES wipes = WIPES_WipingOut;
 
-	if (&g_psw == nullptr)
+	if (g_psw == nullptr)
 	{
 		wipes = WIPES_Black;
 	}
@@ -154,13 +153,13 @@ void SetWipeWipes(WIPE* pwipe, WIPES wipes)
 
 void DrawWipe(WIPE* pwipe)
 {
-	int alpha;
+	float alpha;
 	float uBlack;
 	WIPEK wipek;
-	if (&g_psw != nullptr && &g_pwipe != nullptr)
+	if (g_psw != nullptr && g_pwipe != nullptr)
 	{
 		wipek = pwipe->wipek;
-		if (wipek == WIPEK::Keyhole && &g_pkeyhole != nullptr)
+		if (wipek == WIPEK::Keyhole && g_pkeyhole != nullptr)
 		{
 			//DrawKeyhole(g_pkeyhole, pwipe->uBlack);
 			return;
@@ -176,15 +175,15 @@ void DrawWipe(WIPE* pwipe)
 			}
 		}
 
-		uBlack = uBlack * 255.0;
-		if (uBlack < 2.0)
+		uBlack = uBlack * 255.0f;
+		if (uBlack < 2.0f)
 		{
 			alpha = uBlack;
 		}
 
 		else
 		{
-			if (uBlack < 0)
+			if (uBlack < 0.0f)
 			{
 				alpha = 0x7fffffff;
 			}
@@ -198,7 +197,7 @@ void DrawWipe(WIPE* pwipe)
 	}
 }
 
-void UpdateWipe(WIPE* param_1, JOY* param_2)
+void UpdateWipe(WIPE* pwipe, JOY* pjoy)
 {
 	WIPEK unk_0;
 	GRFTRANS grftrans;
@@ -206,21 +205,21 @@ void UpdateWipe(WIPE* param_1, JOY* param_2)
 	float uBlack;
 	float unk_3;
 
-	wipes = param_1->wipes;
-	//unk_2 = g_clock.tReal - param_1->tWipes;
+	wipes = pwipe->wipes;
+	//unk_2 = g_clock.tReal - pwipe->tWipes;
 
 	if (wipes == WIPES_WipingOut)
 	{
-		if(param_1->wipek != WIPEK::WorldMap)
+		if(pwipe->wipek != WIPEK::WorldMap)
 		unk_3 = 0.5;
-		if (param_1->wipek == WIPEK::Keyhole)
+		if (pwipe->wipek == WIPEK::Keyhole)
 		{
 			unk_3 = 1.5;
 		}
 
 		if (unk_3 < uBlack)
 		{
-			grftrans = param_1->trans.grftrans;
+			grftrans = pwipe->trans.grftrans;
 			wipes = WIPES_Black;
 		}
 
@@ -239,8 +238,8 @@ void UpdateWipe(WIPE* param_1, JOY* param_2)
 				}
 			}
 
-			grftrans = param_1->trans.grftrans;
-			param_1->uBlack = uBlack;
+			grftrans = pwipe->trans.grftrans;
+			pwipe->uBlack = uBlack;
 		}
 
 		//DrawPrelit();
@@ -250,7 +249,7 @@ void UpdateWipe(WIPE* param_1, JOY* param_2)
 	{
 		if (wipes < WIPES_Black)
 		{
-			//grftrans = FCatchWipeButtonTrans(param_1, param_2, WIPES_WipingOut);
+			grftrans = (GRFTRANS)FCatchWipeButtonTrans(pwipe, pjoy, WIPES_WipingOut);
 			if (wipes == WIPES_Idle && grftrans != 0)
 			{
 				return;
@@ -259,20 +258,14 @@ void UpdateWipe(WIPE* param_1, JOY* param_2)
 
 		else
 		{
-			if (wipes == WIPES_Black)
+			if (wipes == WIPES_Black && pwipe->trans.fSet == 0 && g_transition.m_fPending == 0)
 			{
-				if (param_1->trans.fSet == 0)
-				{
-					if (g_transition.m_fPending == 0)
-					{
-						wipes = WIPES_WipingIn;
-					}
-				}
+				wipes = WIPES_WipingIn;
 			}
 
 			else
 			{
-				if ((wipes == WIPES_WipingIn) && (unk_0 == param_1->wipek) && unk_0 != WIPEK::WorldMap)
+				if ((wipes == WIPES_WipingIn) && (unk_0 == pwipe->wipek) && unk_0 != WIPEK::WorldMap)
 				{
 					unk_3 = 0.25;
 					if (unk_0 == WIPEK::Keyhole)
@@ -284,10 +277,10 @@ void UpdateWipe(WIPE* param_1, JOY* param_2)
 					{
 						if (unk_0 == WIPEK::Frozen)
 						{
-							param_1->wipek = WIPEK::Fade;
+							pwipe->wipek = WIPEK::Fade;
 							//uBlack = g_clock.tReal;
-							param_1->uBlack = 1.0;
-							param_1->tWipes = uBlack;
+							pwipe->uBlack = 1.0;
+							pwipe->tWipes = uBlack;
 						}
 
 						else
@@ -298,48 +291,35 @@ void UpdateWipe(WIPE* param_1, JOY* param_2)
 
 					else
 					{
-						param_1->uBlack = 1.0 - uBlack / unk_3;
+						pwipe->uBlack = 1.0f - uBlack / unk_3;
 					}
 				}
 			}
 		}
 	}
 
-	SetWipeWipes(param_1, wipes);
-	return;
+	SetWipeWipes(pwipe, wipes);
 }
 
-void InitWipe(WIPE* param_1)
+void InitWipe(WIPE* pwipe)
 {
-	param_1->wipes = WIPES_Idle;
-	SetWipeWipes(param_1, WIPES_Idle);
-	return;
+	pwipe->wipes = WIPES_Idle;
+	SetWipeWipes(pwipe, WIPES_Idle);
 }
 
-void SetWipeButtonTrans(WIPE* param_1, TRANS* param_2, WIPEK param_3)
+void SetWipeButtonTrans(WIPE* pwipe, TRANS* ptrans, WIPEK wipek)
 {
-	param_1->transButton.grftrans = param_2->grftrans;
-	param_1->wipekButton = param_3;
-	return;
+	pwipe->transButton.grftrans = ptrans->grftrans;
+	pwipe->wipekButton = wipek;
 }
 
 int FCatchWipeButtonTrans(WIPE* pwipe, JOY* pjoy, WIPES wipesNew)
 {
-	bool is_match;
+	bool is_match = false;
 	GRFTRANS grftrans;
 	//bool is_match = FUN_001dda80(g_psw);
 
-	if (is_match == false)
-	{
-		return 0;
-	}
-
-	if (pwipe->trans.fSet = 0)
-	{
-		return 0;
-	}
-
-	if (pjoy->grfbtnPressed & PAD_START == _NOT_PRESSED)
+	if (!is_match || pwipe->trans.fSet == 0 || (pjoy->grfbtnPressed & PAD_START) == _NOT_PRESSED)
 	{
 		return 0;
 	}

@@ -6,6 +6,7 @@
 
 typedef unsigned char byte;
 
+// todo: rewrite class with correct fields and types
 class CBinaryInputStream
 {
 public:

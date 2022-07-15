@@ -15,6 +15,7 @@ public:
 	void Clear();
 };
 
+// todo: rewrite class (or remove it?)
 class CWalCatalog
 {
 public:

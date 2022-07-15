@@ -1,7 +1,7 @@
 #pragma once
+#include <game.h>
 
-typedef bool BOOL; // todo: move this to the appropriate file;
-typedef unsigned int RGBA; // todo: define struct
+typedef bool BOOL; // todo: move this to the appropriate file
 
 class CProg
 {
@@ -18,5 +18,6 @@ public:
 
 	void Begin();
 	void SetRemain(int nRemain);
+	void Draw();
 	void End();
 };

@@ -10,9 +10,7 @@ void CTransition::Set(char* pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS
 		this->m_oidWarp = oidWarp;
 		this->m_oidWarpContext = oidWarpContext;
 	}
-	return;
 }
-
 
 void CTransition::Execute()
 {
@@ -132,6 +130,5 @@ void CTransition::Execute()
 	//SetMvgkRvol(&g_psw->field_0x1d61, 1, 1);
 	//ClearPhase();
 	//(lld->lsn_and_size_ciphers).lsn_enc = 0;
-	return;
 }
 

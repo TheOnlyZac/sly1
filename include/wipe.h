@@ -18,15 +18,6 @@ enum class WIPEK : int
     Max = 0x4
 };
 
-struct TRANS
-{
-    uint32_t fSet;
-    struct LevelTableStruct* pchzWorld; // Current file thats loading struct
-    OID oidWarp; // Checkpoint Warps
-    OID trans_mod_flags;
-    GRFTRANS grftrans; // Lost all lives flags 
-};
-
 enum WIPES
 {
     WIPES_Idle = 0,
@@ -38,7 +29,7 @@ enum WIPES
 
 struct WIPE
 {
-    struct VTWIPE_199* u4pvtwipe;
+    struct VTWIPE* pvtwipe;
     WIPES wipes;
     float tWipes;
     float uBlack;
@@ -48,19 +39,19 @@ struct WIPE
     WIPEK wipekButton;
 };
 
-static TRANS trans;
-static WIPE g_pwipe;
-static DIALOG g_pdialogCalling;
 static CTransition g_transition;
-static sw g_psw;
-static wm g_wmc;
-static keyhole g_pkeyhole;
+static SW* g_psw;
+static WIPE* g_pwipe;
+static KEYHOLE* g_pkeyhole;
+static DIALOG* g_pdialogCalling;
+static WM g_wmc;
+static TRANS trans; // ?
 
 void WipeToWorldWarp(LevelTableStruct* pchzWorld, OID oidWarp, WIPEK wipek);
 void ActivateWipe(WIPE* pwipe, TRANS* ptrans, WIPEK wipek);
 void SetWipeWipes(WIPE* pwipe, WIPES wipes);
 void DrawWipe(WIPE* pwipe);
-void UpdateWipe(WIPE* pwipe, JOY* param_2);
+void UpdateWipe(WIPE* pwipe, JOY* pjoy);
 void InitWipe(WIPE* pwipe);
 void SetWipeButtonTrans(WIPE* param_1, TRANS* param_2, WIPEK param_3);
 int FCatchWipeButtonTrans(WIPE* pwipe, JOY* pjoy, WIPES wipesNew);

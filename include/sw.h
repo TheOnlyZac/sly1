@@ -1,6 +1,7 @@
 #include <vec.h>
 #include <iostream>
 
+// todo: fix, replace, or remove struct
 struct Entity
 {
     int field_0x0;
@@ -65,7 +66,8 @@ struct Entity
     uint32_t field_0xc00;
 };
 
-class sw
+// todo: investigate and rewrite struct
+struct SW
 {
 	public:
         enum OID field_0x8;

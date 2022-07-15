@@ -84,6 +84,14 @@ enum class WID : int
 	Max = 0x2f
 };
 
+struct RGBA
+{
+	char r;
+	char b;
+	char g;
+	char a;
+};
+
 void SetCcoin(int nParam);
 int CcharmMost();
 bool FCharmAvailable();

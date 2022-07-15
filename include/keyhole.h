@@ -1,7 +1,7 @@
 #include <iostream>
 
-class keyhole
+struct KEYHOLE
 {
-	public:
-
+	// todo
+	// ...
 };

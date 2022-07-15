@@ -1,4 +1,5 @@
 #include <alarm.h>
+// todo: fix parameter names
 
 void AddAlarmStepguard(ALARM* palarm, OID poid)
 {
@@ -6,53 +7,53 @@ void AddAlarmStepguard(ALARM* palarm, OID poid)
     return;
 }
 
-void BreakAlbrk(ACTLA* param_1)
+void BreakAlbrk(ACTLA* pactla)
 {
-    if (*(int*)(param_1 + 0x680) == 0) 
+    if (*(int*)(pactla + 0x680) == 0)
     {
-        DisableAlarmAlbrk(*(ALARM**)(param_1 + 0x6c0));
+        DisableAlarmAlbrk(*(ALARM**)(pactla + 0x6c0));
     }
     //BreakBrk((BRK*)param_1);
     return;
 }
 
-void CloneAlarm(SO* param_1, SO* param_2)
+void CloneAlarm(ALARM* palarm, ALARM* palarmBase)
 
 {
     uint32_t uVar1;
 
     //uVar1 = param_1 + 0x6b0;
-    //CloneSo(param_1, param_2);
+    //CloneSo((SO*)palarm, (SO*)palarmBase);
     //param_1 + 0x6b0 = uVar1;
     return;
 }
 
-void DisableAlarmAlbrk(ALARM* param_1)
+void DisableAlarmAlbrk(ALARM* palarm)
 {
-    param_1->apsensors[0xb] = (SENSOR*)&param_1->apsensors[0xb]->field_0x1;
+    palarm->apsensors[0xb] = (SENSOR*)&palarm->apsensors[0xb]->field_0x1;
     return;
 }
 
-void DisableAlarmSensors(ALARM* param_1)
+void DisableAlarmSensors(ALARM* palarm)
 {
     int iVar1;
     SENSOR* ppiVar2;
     int iVar2;
 
     iVar2 = 0;
-    if (0 < param_1->field_0x5bc) 
+    if (0 < palarm->field_0x5bc)
     {
-        ppiVar2 = (SENSOR*)&param_1->field_0x5c0;
+        ppiVar2 = (SENSOR*)&palarm->field_0x5c0;
         do 
         {
             if (ppiVar2 + 0x138 == 0x0) 
             {
-                iVar1 = param_1->field_0x5bc;
+                iVar1 = palarm->field_0x5bc;
             }
             else 
             {
                 //(**(int**)ppiVar2 + 0x138); GOTTA COME BAK TO THIS
-                iVar1 = param_1->field_0x5bc;
+                iVar1 = palarm->field_0x5bc;
             }
             iVar2 = iVar2 + 1;
             ppiVar2 = (SENSOR*)&ppiVar2->field_0x4;
@@ -61,7 +62,7 @@ void DisableAlarmSensors(ALARM* param_1)
     return;
 }
 
-void EnableAlarmSensors(ALARM* param_1)
+void EnableAlarmSensors(ALARM* palarm)
 {
     int* piVar1;
     int iVar2;
@@ -69,9 +70,9 @@ void EnableAlarmSensors(ALARM* param_1)
     int iVar3;
 
     iVar3 = 0;
-    if (0 < param_1->field_0x5bc) 
+    if (0 < palarm->field_0x5bc)
     {
-        ppiVar3 = (SENSOR*)&param_1->field_0x5c0;
+        ppiVar3 = (SENSOR*)&palarm->field_0x5c0;
         do 
         {
             piVar1 = *(int**)ppiVar3;
@@ -79,17 +80,17 @@ void EnableAlarmSensors(ALARM* param_1)
             {
                 if (piVar1 + 0x134 == 0x0) 
                 {
-                    iVar2 = param_1->field_0x5bc;
+                    iVar2 = palarm->field_0x5bc;
                 }
                 else 
                 {
                     //(**(code**)(*piVar1 + 0x134))(piVar1, 0); GOTTA COME BACK TO THIS
-                    iVar2 = param_1->field_0x5bc;
+                    iVar2 = palarm->field_0x5bc;
                 }
             }
             else 
             {
-                iVar2 = param_1->field_0x5bc;
+                iVar2 = palarm->field_0x5bc;
             }
             iVar3 = iVar3 + 1;
             ppiVar3 = (SENSOR*)&ppiVar3->field_0x4;
@@ -98,16 +99,16 @@ void EnableAlarmSensors(ALARM* param_1)
     return;
 }
 
-int FGetAlarmSensorList(ALARM* param_1, void* param_2)
+int FGetAlarmSensorList(ALARM* palarm, void* param_2)
 {
     long lVar1;
     SENSOR* ppiVar2;
     int iVar2;
 
     iVar2 = 0;
-    if (0 < param_1->field_0x5bc) 
+    if (0 < palarm->field_0x5bc)
     {
-        ppiVar2 = (SENSOR*)&param_1->field_0x5c0;
+        ppiVar2 = (SENSOR*)&palarm->field_0x5c0;
         do 
         {
             //lVar1 = FAppendSpliceListElement(param_2, ppiVar2);
@@ -117,19 +118,19 @@ int FGetAlarmSensorList(ALARM* param_1, void* param_2)
             }
             iVar2 = iVar2 + 1;
             ppiVar2 = (SENSOR*)&ppiVar2->field_0x4;
-        } while (iVar2 < param_1->field_0x5bc);
+        } while (iVar2 < palarm->field_0x5bc);
     }
     return 1;
 }
-void InitAlarm(ALARM* pAlarm)
+void InitAlarm(ALARM* palarm)
 {
 
     uint32_t uVar1 = 0;
 
-    //InitSo((SO*)pAlarm);
-    //pAlarm->state = ~ALARMS_Enabled;
+    //InitSo((SO*)palarm);
+    //palarm->state = ~ALARMS_Enabled;
     //uVar1 = IchkAllocChkmgr(&g_chkmgr);
-    //*(uint32_t*)&pAlarm->arsmg[6].field_0x2 = uVar1;
+    //*(uint32_t*)&palarm->arsmg[6].field_0x2 = uVar1;
     return;
 }
 
@@ -141,7 +142,7 @@ void PostAlarmLoad(ALARM* param_1)
     int local_50;
    // LinkedListNode** local_4c;
     OID local_48;
-    sw* local_44;
+    SW* local_44;
     
     //PostSwCallback(*(SW**)&param_1->field_0x14, PostAlarmLoadCallbackHookup, param_1, 0, (void*)0x0);
     //PostAloLoad((ALO*)param_1);
@@ -356,13 +357,13 @@ void SetAlbrkAlarm(ALBRK* param_1, ALARM* param_2)
     return;
 }
 
-void TriggerAlarm(ALARM* alarm, ALTK atlk)
+void TriggerAlarm(ALARM* palarm, ALTK atlk)
 {
-    ALARMS state;
+    ALARMS alarms;
 
     if (atlk == 1) 
     {
-        state = ALARMS_Enabled;
+		alarms = ALARMS_Enabled;
     }
     else 
     {
@@ -372,7 +373,7 @@ void TriggerAlarm(ALARM* alarm, ALTK atlk)
             {
                 return;
             }
-            state = ALARMS_Triggered;
+			alarms = ALARMS_Triggered;
         }
         else 
         {
@@ -380,10 +381,10 @@ void TriggerAlarm(ALARM* alarm, ALTK atlk)
             {
                 return;
             }
-            state = ALARMS_Disabled;
+			alarms = ALARMS_Disabled;
         }
     }
-    SetAlarmAlarms(alarm, state);
+    SetAlarmAlarms(palarm, alarms);
     return;
 }
 

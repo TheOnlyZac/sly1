@@ -18,13 +18,22 @@ set (FILES
 	wm.cpp
 	xform.cpp
 	zap.cpp
+	keyhole.cpp
+	vec.cpp
+	so.cpp
+	dialog.cpp
+	speaker.cpp
+	mat.cpp
+	sensor.cpp
+	alarm.cpp
+	actseg.cpp
 	# ...
- "keyhole.cpp")
+ )
 
-add_library(DECOMP STATIC ${FILES} "keyhole.cpp" "vec.cpp" "so.cpp" "dialog.cpp" "speaker.cpp" "mat.cpp" "sensor.cpp" "alarm.cpp" "actseg.cpp") # todo: use shared
+add_library(DECOMP STATIC ${FILES})
 
 target_include_directories(DECOMP PUBLIC ${SLY1_INCLUDE_DIR})
 
-add_executable(main main.cpp "keyhole.cpp" "vec.cpp" "so.cpp" "dialog.cpp" "speaker.cpp" "mat.cpp" "sensor.cpp" "alarm.cpp" "actseg.cpp")
+add_executable(main main.cpp)
 
 target_link_libraries(main PUBLIC DECOMP)

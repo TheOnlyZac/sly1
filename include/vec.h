@@ -18,7 +18,7 @@ struct BSPC
 {
     int cbsp;
     int cbspFull;
-    struct BSP_193_conflict* absp;
+    struct BSP* absp;
 };
 
 enum CT

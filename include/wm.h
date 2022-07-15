@@ -1,6 +1,7 @@
 #include <iostream>
 
-class wm
+class WM
 {
-	public:
+	// todo
+	// ...
 };

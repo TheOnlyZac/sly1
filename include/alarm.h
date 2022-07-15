@@ -45,7 +45,6 @@ enum ALARMS
     ALARMS_Triggered = 2
 };
 
-
 struct ALARM 
 {
     
@@ -138,16 +137,16 @@ struct ALBRK
 };
 
 void AddAlarmStepguard(ALARM* palarm, OID poid);
-void BreakAlbrk(ACTLA* param_1);
-void CloneAlarm(SO* param_1, SO* param_2);
-void DisableAlarmAlbrk(ALARM* param_1);
-void DisableAlarmSensors(ALARM* param_1);
-void EnableAlarmSensors(ALARM* param_1);
-int FGetAlarmSensorList(ALARM* param_1, void* param_2);
-void PostAlarmLoad(ALARM* param_1);
-void PostAlarmLoadCallbackHookup(ALARM* alarm, MSGID param_2, void* param_3);
-void SetAlarmAlarms(ALARM* alarm, ALARMS state);
-uint32_t SetAlarmRsmg(ALARM* param_1, int param_2, OID param_3, OID param_4, OID param_5);
-void SetAlbrkAlarm(ALBRK* param_1, ALARM* param_2);
-void TriggerAlarm(ALARM* alarm, ALTK atlk);
-void UpdateAlarm(ALARM* param_1, Entity* param_2);
+void BreakAlbrk(ACTLA* pactla);
+void CloneAlarm(ALARM* palarm, ALARM* palarmBase);
+void DisableAlarmAlbrk(ALARM* palarm);
+void DisableAlarmSensors(ALARM* palarm);
+void EnableAlarmSensors(ALARM* palarm);
+int FGetAlarmSensorList(ALARM* palarm, void* pv);
+void PostAlarmLoad(ALARM* palarm);
+void PostAlarmLoadCallbackHookup(ALARM* palarm, MSGID msgid, void* pv);
+void SetAlarmAlarms(ALARM* palarm, ALARMS alarms);
+uint32_t SetAlarmRsmg(ALARM* palarm, int param_2, OID param_3, OID param_4, OID param_5);
+void SetAlbrkAlarm(ALBRK* palarm, ALARM* param_2);
+void TriggerAlarm(ALARM* palarm, ALTK atlk);
+void UpdateAlarm(ALARM* palarm, Entity* param_2);

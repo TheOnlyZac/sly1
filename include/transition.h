@@ -6,7 +6,16 @@
 #include <difficulty.h>
 #include <iostream>
 
-typedef enum GRFTRANS;
+typedef int GRFTRANS;
+
+struct TRANS
+{
+	uint32_t fSet;
+	struct LevelTableStruct* pchzWorld; // Current file thats loading struct
+	OID oidWarp; // Checkpoint Warps
+	OID trans_mod_flags;
+	GRFTRANS grftrans; // Lost all lives flags 
+};
 
 struct lsn_and_unk_ciphers_t
 {
@@ -43,6 +52,6 @@ public:
     // Sets the conditions on the level if you died or loading a level
     void Set(char* pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS grftrans);
 
-    // Bacially Executing those conditions from the set function in the Execute function and setting some engine vaules to default and loading the level file
+    // Executes the conditions from CTransition::Set by setting some engine vaules to default and loading the level file
 	void Execute();
 };
