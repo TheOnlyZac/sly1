@@ -69,7 +69,6 @@ struct Entity
 // todo: investigate and rewrite struct
 struct SW
 {
-	public:
         enum OID field_0x8;
         struct CFrame* field_0x30;
         int* field_0x48;

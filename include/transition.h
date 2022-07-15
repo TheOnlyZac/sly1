@@ -10,11 +10,11 @@ typedef int GRFTRANS;
 
 struct TRANS
 {
-	uint32_t fSet;
+    uint32_t fSet;
 	struct LevelTableStruct* pchzWorld; // Current file thats loading struct
-	OID oidWarp; // Checkpoint Warps
-	OID trans_mod_flags;
-	GRFTRANS grftrans; // Lost all lives flags 
+    OID oidWarp; // Checkpoint Warps
+    OID trans_mod_flags;
+    GRFTRANS grftrans; // Lost all lives flags 
 };
 
 struct lsn_and_unk_ciphers_t
@@ -53,5 +53,5 @@ public:
     void Set(char* pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS grftrans);
 
     // Executes the conditions from CTransition::Set by setting some engine vaules to default and loading the level file
-	void Execute();
+    void Execute();
 };

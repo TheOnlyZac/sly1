@@ -7,7 +7,7 @@ typedef int GRFPVA;
 // todo: rewrite struct
 struct SO 
 {
-	char padding[0x2e0];
+    char padding[0x2e0];
     //DLE dleRoot;
     //DL dlPhys;
     //DLE dlePhys;
