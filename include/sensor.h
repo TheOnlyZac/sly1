@@ -4,7 +4,13 @@ typedef unsigned char byte;
 // todo rewrite struct
 struct SENSOR
 {
-    char padding[588];
+	byte field_0x0;
+	byte field_0x1;
+	byte field_0x2;
+	byte field_0x3;
+	int field_0x4;
+	int field_0x8;
+    char padding[0x57c];
     byte sensors;
     byte field_0x589;
     byte field_0x58a;
