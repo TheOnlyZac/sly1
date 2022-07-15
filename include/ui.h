@@ -22,3 +22,5 @@ struct UI
 };
 
 void SetUiUis(UI* pui, UIS uis);
+void DrawUi();
+void RenderUi();

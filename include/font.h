@@ -5,19 +5,19 @@ typedef char BYTE;
 /* Horizontal Justification */
 enum class JH : int
 {
-	JH_Left = 0x0,
-	JH_Center = 0x1,
-	JH_Right = 0x2,
-	JH_Max = 0x3
+	Left = 0x0,
+	Center = 0x1,
+	Right = 0x2,
+	Max = 0x3
 };
 
 /* Vertical Justification */
 enum class JV : int
 {
-	JH_Top = 0x0,
-	JH_Center = 0x1,
-	JH_Bottom = 0x2,
-	JH_Max = 0x3
+	Top = 0x0,
+	Center = 0x1,
+	Bottom = 0x2,
+	Max = 0x3
 };
 
 /* Red, Green, Blue, Alpha color values */
@@ -28,8 +28,8 @@ struct RGBA {
 	BYTE bAlpha;
 };
 
-/* Unknown, possibly ScaleFactorRatio (used 
- by CFont class, probably to scale fonts) */
+/* Unknown, possibly ScaleFactorRatio 
+(used by CFont class, probably to scale fonts) */
 struct SFR
 {
 	float rx;
@@ -37,7 +37,7 @@ struct SFR
 };
 
 typedef struct __vtbl_ptr_type;
-struct CFont
+class CFont
 {
 protected:
 	int m_dxCharUnscaled;

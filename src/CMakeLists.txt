@@ -1,23 +1,27 @@
 
 
 set (FILES
+	chkpnt.cpp
 	clock.cpp
+	cm.cpp
 	coin.cpp
 	difficulty.cpp
 	font.cpp
 	game.cpp
 	gs.cpp
 	joy.cpp
+	render.cpp
 	screen.cpp
+	sw.cpp
 	ui.cpp
+	update.cpp
 	util.cpp
 	wipe.cpp
 	xform.cpp
-	chkpnt.cpp
 	# ...
 )
 
-add_library(DECOMP STATIC ${FILES}) # todo: use shared
+add_library(DECOMP STATIC ${FILES})
 target_include_directories(DECOMP PUBLIC ${SLY1_INCLUDE_DIR})
 
 add_executable(main main.cpp)

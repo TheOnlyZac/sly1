@@ -18,3 +18,5 @@ struct BLOT
 };
 
 void SetBlotBlots(BLOT* pblot, BLOTS blots);
+void RenderBlots();
+void DrawBlots();
