@@ -72,7 +72,7 @@ struct JOY
 	int term;
 	JOYS joys;
 	JOYK joyk;
-	float tJOys;
+	float tJoys;
 	float tRead;
 	float tActive;
 	int dxLatch;
@@ -86,7 +86,7 @@ struct JOY
 	float uDeflect;
 	float bX, bY;
 	short unk_short;
-	int fStickMoves;
+	int fStickMoved;
 	LM almDeflect[4];
 
 	// right analog stick
@@ -104,8 +104,8 @@ struct JOY
 	unsigned char mpbtnpb[12];
 
 	// rumble
-	RUMBLE* prumble;
 	short unk_short_3;
+	RUMBLE* prumble;
 	int fRumbleEnabled;
 };
 
@@ -121,9 +121,16 @@ enum class FCHT : int
 };
 
 static JOY g_joy;
+static float g_tCodeCheck;
 extern int g_grfcht;
 extern char chetkido_buffer[]; // temp
 
+void SetJoyJoys(JOY* pjoy, JOYS joys, JOYK joyk);
 void UpdateJoy(JOY* pjoy);
+
+void SetRumbleRums(RUMBLE* prumble, RUMS rums);
+void InitRumble(RUMBLE* prumble, int nPort, int nSlot);
+
+void UpdateCodes();
 void AddFcht(int nParam);
 void CheatActivateChetkido();

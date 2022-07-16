@@ -21,6 +21,9 @@ struct UI
 	// todo
 };
 
+static UI g_ui;
+
 void SetUiUis(UI* pui, UIS uis);
+void UpdateUi(UI* pui);
 void DrawUi();
 void RenderUi();

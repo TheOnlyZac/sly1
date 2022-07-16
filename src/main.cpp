@@ -15,8 +15,6 @@
 #include <conio.h>
 #include <stdlib.h>
 
-void Test(); // temp
-
 int main(int cphzArgs, char* aphzArgs[])
 {
 	// __main(); // from libgcc2
@@ -40,7 +38,7 @@ int main(int cphzArgs, char* aphzArgs[])
 		/*if (g_transition.m_fPending != 0)
 		{
 			//FlushFrames(1);
-			//g_transition::DoExecute();
+			//g_transition::Execute();
 		}*/
 
 		// Check AGAIN if g_mpeg has an mpeg queued (in case two were queued back-to-back)
@@ -52,10 +50,10 @@ int main(int cphzArgs, char* aphzArgs[])
 
 		// Call update functions
 		UpdateJoy(&g_joy);
-		//UpdateCodes();
+		UpdateCodes();
 		//UpdateSave(&g_save);
-		//UpdateUi(g_ui);
-		//UpdateGameState(g_clock.dt);
+		UpdateUi(&g_ui);
+		UpdateGameState(g_clock.dt);
 
 		// Render and draw current frame
 		if (g_psw != NULL)
@@ -65,7 +63,7 @@ int main(int cphzArgs, char* aphzArgs[])
 			OpenFrame();
 			MarkClockTick(&g_clock);
 
-			// call some function at g_ps2->0x54(?)
+			// This ends up calling UpdateSw
 			void* pv = g_psw + 0x54;
 			if (pv != NULL)
 			{
@@ -83,8 +81,8 @@ int main(int cphzArgs, char* aphzArgs[])
 			CloseFrame();
 		}
 
-		// Temp: Print the current frame number
-		printf("%d\r", g_cframe);
+		// Temp debug function just to show everything is running
+		MainDebug();
 
 		// Increment the global frame counter
 		g_cframe += 1;
@@ -95,4 +93,10 @@ void Startup()
 {
 	// todo
 	// ...
+}
+
+void MainDebug()
+{
+	// print current frame number
+	printf("%d\r", g_cframe);
 }
