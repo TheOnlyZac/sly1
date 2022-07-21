@@ -1,3 +1,6 @@
+# /src/P2
+
+add_subdirectory(splice)
 
 set (P2_SOURCE_FILES
 	chkpnt.cpp
@@ -19,14 +22,8 @@ set (P2_SOURCE_FILES
 	util.cpp
 	wipe.cpp
 	xform.cpp
-	# ...
-
-	splice/spliceutils.cpp
-	# ...
 )
 
-add_library(${P2_LIB_TARGET} STATIC ${P2_SOURCE_FILES})
+add_library(P2 STATIC ${P2_SOURCE_FILES})
 target_include_directories(P2 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-
-add_executable(${P2_ELF_TARGET} main.cpp)
-target_link_libraries(${P2_ELF_TARGET} PUBLIC P2)
+target_link_libraries(P2 PUBLIC SPLICE)

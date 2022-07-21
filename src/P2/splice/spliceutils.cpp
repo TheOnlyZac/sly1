@@ -1,4 +1,4 @@
-#include <splice/spliceutils.h>
+#include <spliceutils.h>
 
 void StartupSplice()
 {
