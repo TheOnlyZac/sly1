@@ -1,7 +1,7 @@
 # Sly Cooper and the Thievius Raccoonus
 <!-- Readme badges -->
 
-[![Build status][build-badge]][build-url] [![AppVeyor tests][tests-badge]][tests-url] [![Contributors][contributors-badge]][contributors-url] [![Discord Channel][discord-badge]][discord-url]
+[![Build status][build-badge]][build-url] [![AppVeyor tests][tests-badge]][tests-url] [![Discord Channel][discord-badge]][discord-url] [![Wiki][wiki-badge]][wiki-url]
 
 <!-- Build status links -->
 [build-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1/branch/main
@@ -18,6 +18,10 @@
 <!-- Discord badge links -->
 [discord-url]: https://discord.gg/2GSXcEzPJA
 [discord-badge]: https://img.shields.io/discord/439454661100175380?color=%23006ED1&logo=discord&logoColor=%23FFFFFF
+
+<!-- Wiki badge links -->
+[wiki-url]: https://slymods.info
+[wiki-badge]: https://img.shields.io/badge/wiki-slymods.info-006ED1
 
 This is a work-in-progress, experimental decompilation of *Sly Cooper and the Thievius Raccoonus* for the PlayStation 2. It is based on the NTSC-U version of the game (`SCUS-971.98`).
 
