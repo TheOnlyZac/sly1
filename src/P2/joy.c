@@ -1,8 +1,8 @@
-#include <joy.h>
-#include <gs.h>
+#include "joy.h"
+#include "gs.h"
 
-#include <cstdio>
-#include <cstring>
+#include <stdio.h>
+#include <string.h>
 
 const char sChetkidoCiphertext[] = "@KFWHJGL";
 const char sThePasswordIs[] = "The password is: %s";
@@ -38,7 +38,7 @@ void CheatActivateChetkido()
        (g_pgsCur->clife == 0)) // check lives count is 0
    {
        // Copy encrypted string into cipher 
-       std::strncpy(cipherSlice, sChetkidoCiphertext, 16);
+       strncpy(cipherSlice, sChetkidoCiphertext, 16);
        nextXorChar = cipherSlice;
        
 	   /* Decrypt the string "@KFWHJGL" resulting in "chetkido"
