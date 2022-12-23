@@ -1,9 +1,9 @@
-#include <util.h>
-#include <game.h>
-#include <gs.h>
-#include <difficulty.h>
+#include "util.h"
+#include "game.h"
+#include "gs.h"
+#include "difficulty.h"
 
-#include <cstring>
+#include <string.h>
 
 /* Update the suck value on the current level save data */
 void ChangeSuck(float nParam, DIFFICULTY* pdifficulty)
@@ -114,5 +114,5 @@ void OnDifficultyCollectKey(DIFFICULTY* pdifficulty)
 	lsCur->unk_suck_0x10 = 0.0;
 	lsCur->unk_field_0x70 = 0;
 
-	std::memset(&lsCur->unk_field_0x74, 0, 1);
+	memset(&lsCur->unk_field_0x74, 0, 1);
 }

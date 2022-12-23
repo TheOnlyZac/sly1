@@ -1,6 +1,6 @@
-#include <coin.h>
-#include <game.h>
-#include <gs.h>
+#include "coin.h"
+#include "game.h"
+#include "gs.h"
 
 /* Handle when the player touches a coin */
 void OnCoinSmack(COIN* pcoin)

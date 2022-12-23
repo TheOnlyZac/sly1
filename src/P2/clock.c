@@ -1,30 +1,29 @@
-#include <clock.h>
+#include "clock.h"
 
 /* Set magic numbers */
-static constexpr int CLOCK_FRAMERATE = 60;
-static constexpr float CLOCK_FRAMETIME = 1.f / CLOCK_FRAMERATE;
+static const int CLOCK_FRAMERATE = 60;
+static const float CLOCK_FRAMETIME = 1.f / CLOCK_FRAMERATE;
 
-static constexpr int CLOCK_EE_TICK_RATE = 294912000;
-static constexpr float CLOCK_EE_TICK_DURATION = 1.f / CLOCK_EE_TICK_RATE;
+static const int CLOCK_EE_TICK_RATE = 294912000;
+static const float CLOCK_EE_TICK_DURATION = 1.f / CLOCK_EE_TICK_RATE;
 
 /* Init global/static vars */
-float g_rtClock = 1.0;
-float g_trClockPowerUp = 1.0;
+float g_rtClock = 1.0f;
+float g_trClockPowerUp = 1.0f;
 CLOCK g_clock;
-TICK CLOCK::s_tickLastRaw{};
 
 /* Set the tick rate of the global clock */
 void SetClockRate(float rt)
 {
 	g_rtClock = rt;
-	SetClockEnabled(&g_clock, (0.0 < rt));
+	SetClockEnabled(&g_clock, (0.0f < rt));
 	return;
 }
 
 /* Calculate and update clock values according to time elapsed */
 void MarkClockTick(CLOCK* pclock)
 {
-	float dt{};
+	float dt = 0.0f;
 
 	const TICK tickFrame = TickNow();
 	const TICK deltaFrame = tickFrame - pclock->tickFrame;
@@ -49,18 +48,16 @@ void MarkClockTick(CLOCK* pclock)
 	}
 
 	pclock->dtReal = dt;
-	float dtFinal{};
+	float dtFinal = 0.0f;
 
-	if (pclock->fEnabled) {
+	if (pclock->fEnabled)
 		dtFinal = dt;
-	}
 
 	/* todo: define global variables
 	dtFinal = dtFinal * g_rtClockPowerUp * g_rtClock; */
 
-	if (CLOCK_FRAMETIME <= dtFinal) {
+	if (CLOCK_FRAMETIME <= dtFinal)
 		pclock->dtReal = dtFinal;
-	}
 
 	pclock->tickFrame = tickFrame;
 	pclock->t = pclock->t + dtFinal;
@@ -72,7 +69,7 @@ void MarkClockTick(CLOCK* pclock)
 /* Calculate and update real clock values according to EE cyclerate */
 void MarkClockTickRealOnly(CLOCK* pClock)
 {
-	float dtReal{};
+	float dtReal = 0.0f;
 
 	TICK tickNow = TickNow();
 	TICK deltaTick = tickNow - pClock->tickFrame;

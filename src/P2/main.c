@@ -1,5 +1,5 @@
-#include <gs.h>
-#include <joy.h>
+#include "gs.h"
+#include "joy.h"
 
 #include <stdio.h>
 #include <conio.h>

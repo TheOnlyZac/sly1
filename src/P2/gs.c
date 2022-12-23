@@ -1,6 +1,6 @@
-#include <gs.h>
+#include "gs.h"
 
-#include <cstdio>
+#include <stdio.h>
 
 GS* g_pgsCur = new GS;
 WS* g_pwsCur = &(g_pgsCur->aws[0]);
