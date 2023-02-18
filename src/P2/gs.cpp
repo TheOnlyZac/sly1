@@ -7,8 +7,8 @@ WS* g_pwsCur = &(g_pgsCur->aws[0]);
 LS* g_plsCur = &(g_pgsCur->aws[0].als[0]);
 PchzLevel pchzLevelTable[0x2e];
 
-/* Debug: Populate default pchz table for testing */
-void PopulatePchzLevelTable()
+/* Temp: Populate default pchz table for testing */
+void PopulatePchzLevelTable() // temp
 {
     for (int worldId = 0; worldId <= 5; worldId++)
     {

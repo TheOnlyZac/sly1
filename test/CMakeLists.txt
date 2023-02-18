@@ -1,3 +1,6 @@
+# /test
+
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 set(TESTNAMES "")
 
@@ -14,6 +17,8 @@ add_subdirectory(xform)
 
 #...
 
+
 get_property(tests GLOBAL PROPERTY TESTNAMES)
+set_target_properties(${tests} PROPERTIES FOLDER tests)
 
 add_custom_target(check DEPENDS ${tests})

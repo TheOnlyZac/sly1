@@ -1,5 +1,12 @@
 #pragma once
 
+typedef struct UI;
+
+enum class UIS : int
+{
+	// todo
+};
+
 enum class WIPEK : int
 {
 	Fade = 0x0,
@@ -8,3 +15,19 @@ enum class WIPEK : int
 	Frozen = 0x3,
 	Max = 0x4
 };
+
+enum class WIPES
+{
+	Idle = 0,
+	WipingOut = 1,
+	Black = 2,
+	WipingIn = 3,
+	Max = 4
+};
+
+struct WIPE
+{
+	// todo
+};
+
+void SetWipeWipes(WIPE* pwipe, WIPES wipes);
