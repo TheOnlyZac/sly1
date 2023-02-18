@@ -1,6 +1,7 @@
 #include <cat.h>
-
+#include <cstring>
 #include <iostream>
+
 
 /* CFileLocation class methods */
 

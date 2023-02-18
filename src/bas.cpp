@@ -1,9 +1,11 @@
 #include <bas.h>
+#include <cstddef>
+#include <cstdint>
 
 CBinaryAsyncStream::CBinaryAsyncStream(void* pvSpool)
 {
     this->m_isector = 0;
-    this->m_abSpool = (BYTE*)((int)pvSpool + 0x3fU & 0xffffffc0);
+    this->m_abSpool = (BYTE*)((intptr_t)pvSpool + 0x3fU & 0xffffffc0);
     this->m_fd = -1;
     this->m_pbSpooling = NULL;
     this->m_pb = NULL;

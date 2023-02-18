@@ -2,7 +2,6 @@
 #include <joy.h>
 
 #include <stdio.h>
-#include <conio.h>
 
 int main(int argc, char* argv[])
 {
@@ -23,7 +22,7 @@ int main(int argc, char* argv[])
 	{
 		// Get player input
 		chLastKey = chKey;
-		chKey = getch();
+		chKey = getc(stdin);
 
 		// Check and handle player input
 		switch (chKey)
