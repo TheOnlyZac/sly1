@@ -12,7 +12,6 @@
 //#include <mpeg.h>
 
 #include <stdio.h>
-#include <conio.h>
 #include <stdlib.h>
 
 int main(int cphzArgs, char* aphzArgs[])

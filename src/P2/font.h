@@ -36,7 +36,7 @@ struct SFR
 	float ry;
 };
 
-typedef struct __vtbl_ptr_type;
+typedef struct _vtbl_ptr_type;
 class CFont
 {
 protected:
@@ -54,7 +54,7 @@ protected:
 private:
 	float m_rxScale;
 	float m_ryScale;
-	__vtbl_ptr_type* vf5078;
+	_vtbl_ptr_type* vf5078;
 };
 
 class CTextBox

@@ -1,7 +1,11 @@
 #pragma once
 
 typedef struct UI;
-typedef enum UIS;
+
+enum class UIS : int
+{
+	// todo
+};
 
 enum class WIPEK : int
 {
