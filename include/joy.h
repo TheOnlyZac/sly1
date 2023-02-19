@@ -28,9 +28,6 @@ struct RUMBLE
     int nPort;
     int nSlot;
     RUMS rums;
-    byte field_0xd;
-    byte field_0xe;
-    byte field_0xf;
     struct RUMPAT_92* prumpat;
     int irumins;
     float dtRumble;
@@ -112,13 +109,7 @@ struct JOY
     uint64_t aullDma;
     int term;
     JOYS joys;
-    byte field_0x15;
-    byte field_0x16;
-    byte field_0x17;
     JOYK joyk;
-    byte field_0x19;
-    byte field_0x1a;
-    byte field_0x1b;
     float tJoys;
     float tRead;
     float tActive;

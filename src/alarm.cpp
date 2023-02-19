@@ -1,4 +1,6 @@
 #include <alarm.h>
+#include <cstdint>
+
 // todo: fix parameter names
 
 void AddAlarmStepguard(ALARM* palarm, OID poid)
@@ -222,7 +224,7 @@ void PostAlarmLoadCallbackHookup(ALARM* alarm, MSGID param_2, void* param_3)
         } while (iVar4 < *(int*)&alarm->field_0x578);
     }
     iVar4 = 0;
-    if (0 < (int)alarm->apsensors[4]) {
+    if (0 < (intptr_t)alarm->apsensors[4]) {
         ppSVar6 = alarm->apsensors + 5;
         do {
             //pLVar1 = (LinkedListNode*) PloFindSwObject(*(SW**)&alarm->field_0x14, 0x104, (OID*)*ppSVar6, (Entity*)alarm);
@@ -232,7 +234,7 @@ void PostAlarmLoadCallbackHookup(ALARM* alarm, MSGID param_2, void* param_3)
             }
             iVar4 = iVar4 + 1;
             ppSVar6 = ppSVar6 + 1;
-        } while (iVar4 < (int)alarm->apsensors[4]);
+        } while (iVar4 < (intptr_t)alarm->apsensors[4]);
     }
     //uVar3 = FGetChkmgrIchk((int)&g_chkmgr, *(uint*)&alarm->arsmg[6].field_0x2);
     if (uVar3 == 0) 

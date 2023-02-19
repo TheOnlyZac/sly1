@@ -1,4 +1,5 @@
 #include <vec.h>
+#include <cmath>
 
 // todo: cleanup and fix params
 

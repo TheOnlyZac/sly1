@@ -3,6 +3,7 @@
 #include <gs.h>
 #include <joy.h>
 #include <mpeg.h>
+#include <cstdint>
 
 unsigned int g_phasemem{}; // todo: what data type is this
 
@@ -78,7 +79,7 @@ void CMpeg::Execute(OID* oid)
             } */
 
             if (this->m_pchzPss < (char*)0x10) {
-                fgs = static_cast<FGS>(1 << ((unsigned int )this->m_pchzPss & 0x1f));
+                fgs = static_cast<FGS>(1 << ((intptr_t)this->m_pchzPss & 0x1f));
             }
             else {
                 fgs = static_cast<FGS>(0);
