@@ -3,8 +3,7 @@
 #include <difficulty.h>
 #include <game.h>
 #include <iostream>
-
-typedef unsigned char BYTE;
+#include <util.h>
 
 /* Mpeg Audio State */
 enum class MAUDS : int

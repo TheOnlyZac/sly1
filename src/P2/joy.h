@@ -145,22 +145,22 @@ enum class FCHT : int
 
 enum DPK
 {
-    DPK_JoyRight = 10,
-    DPK_DoubleJump = 13,
-    DPK_Square = 2,
-    DPK_None = 0,
-    DPK_JoyLeft = 9,
-    DPK_JoyLeftX = 11,
-    DPK_JoyLeftY = 12,
-    DPK_R1 = 7,
-    DPK_Circle = 3,
-    DPK_L1 = 5,
-    DPK_L2 = 6,
-    DPK_VaultOpen = 14,
-    DPK_R2 = 8,
-    DPK_Triangle = 4,
-    DPK_X = 1,
-    DPK_Max = 15
+    JoyRight = 10,
+    DoubleJump = 13,
+    Square = 2,
+    None = 0,
+    JoyLeft = 9,
+    JoyLeftX = 11,
+    JoyLeftY = 12,
+    R1 = 7,
+    Circle = 3,
+    L1 = 5,
+    L2 = 6,
+    VaultOpen = 14,
+    R2 = 8,
+    Triangle = 4,
+    X = 1,
+    Max = 15
 };
 
 static JOY g_joy;

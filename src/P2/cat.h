@@ -12,7 +12,7 @@ class CFileLocation
 public:
     FCL m_fcl; // sector and size information
 
-	void Clear();
+    void Clear();
 };
 
 // todo: rewrite class (or remove it?)

@@ -36,7 +36,6 @@ public:
     uint32_t field_0x5c;
     uint32_t field_0x60;
     uint32_t field_0x64;
-    uint32_t g_fCdAvailable;
 
     uint32_t FOpenSector(uint32_t isector, uint32_t cb);
     void OpenMemory(int cb, void* pv);
@@ -53,3 +52,6 @@ public:
     float F32Read();
     void ReadStringSw(char** pachz);
 };
+
+
+static uint32_t g_fCdAvailable;

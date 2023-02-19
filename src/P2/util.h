@@ -1,7 +1,9 @@
 #pragma once
 
 typedef bool BOOL;
+typedef unsigned char byte;
 typedef unsigned char BYTE;
+typedef unsigned int undefined4;
 
 /* Limit */
 struct LM

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <zap.h>
+#include <util.h>
 
-typedef unsigned char byte;
 typedef int GRFPVA;
 
 // todo: rewrite struct
@@ -15,10 +15,7 @@ struct SO
     float gBuoyancy;
     float gViscosity;
     float m;
-    byte field_0x37c;
-    byte field_0x37d;
-    byte field_0x37e;
-    byte field_0x37f;
+    undefined4 field_0x37c;
     //struct VECTOR_153 posWorldPrev;
     //struct GEOM_153 geomLocal;
     //struct GEOM_153 geomWorld;
@@ -78,18 +75,9 @@ struct SO
     byte field_0x49e;
     byte field_0x49f;
     //struct OXA_153.conflict* poxa;
-    byte field_0x4a4;
-    byte field_0x4a5;
-    byte field_0x4a6;
-    byte field_0x4a7;
-    byte field_0x4a8;
-    byte field_0x4a9;
-    byte field_0x4aa;
-    byte field_0x4ab;
-    byte field_0x4ac;
-    byte field_0x4ad;
-    byte field_0x4ae;
-    byte field_0x4af;
+    undefined4 field_0x4a4;
+    undefined4 field_0x4a8;
+    undefined4 field_0x4ac;
     //struct VECTOR_153 dpos;
     //struct VECTOR_153 drot;
     //struct XA_153.conflict* pxa;
@@ -97,23 +85,11 @@ struct SO
     GRFPVA grfpvaXpValid;
     int ipsoRoot;
     int ipso;
-    byte field_0x4e4;
-    byte field_0x4e5;
-    byte field_0x4e6;
-    byte field_0x4e7;
-    byte field_0x4e8;
-    byte field_0x4e9;
-    byte field_0x4ea;
-    byte field_0x4eb;
-    byte field_0x4ec;
-    byte field_0x4ed;
-    byte field_0x4ee;
-    byte field_0x4ef;
+    undefined4 field_0x4e4;
+    undefined4 field_0x4e8;
+    undefined4 field_0x4ec;
     //struct VECTOR_153 posComLocal;
     ZOK zok;
-    byte field_0x501;
-    byte field_0x502;
-    byte field_0x503;
     SO* psoPhysHook;
     //struct GEOM_153 geomCameraLocal;
 };

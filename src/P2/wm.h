@@ -1,7 +1,9 @@
+#pragma once
 #include <iostream>
 
-class WM
+struct WM
 {
     // todo
-    // ...
 };
+
+void SetWmWms(WM* pwm, WM* pwms);

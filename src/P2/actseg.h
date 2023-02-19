@@ -1,4 +1,5 @@
 #include <vec.h>
+#include <util.h>
 
 struct ACTLA
 {
@@ -9,8 +10,8 @@ struct ACTLA
     int nPriorityEnabled;
     int nPriorityDisabled;
     int fPaused;
-    //struct CLQ_21 clqPanToPan;
-    //struct LM_21 lmPan;
-    //struct CLQ_21 clqTiltToTilt;
-    //struct LM_21 lmTilt;
+    struct CLQ clqPanToPan;
+    struct LM lmPan;
+    struct CLQ clqTiltToTilt;
+    struct LM lmTilt;
 };
