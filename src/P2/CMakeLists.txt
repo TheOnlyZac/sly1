@@ -1,39 +1,29 @@
+# /src/P2
 
-set (FILES
-	bas.cpp
-	bis.cpp
-	cat.cpp
+add_subdirectory(splice)
+
+set (P2_SOURCE_FILES
+	chkpnt.cpp
 	clock.cpp
+	cm.cpp
 	coin.cpp
 	difficulty.cpp
+	font.cpp
+	frm.cpp
 	game.cpp
 	gs.cpp
 	joy.cpp
-	mpeg.cpp
-	prog.cpp
+	phasemem.cpp
+	render.cpp
+	screen.cpp
 	sw.cpp
-	transition.cpp
+	ui.cpp
+	update.cpp
 	util.cpp
 	wipe.cpp
-	wm.cpp
 	xform.cpp
-	zap.cpp
-	keyhole.cpp
-	vec.cpp
-	so.cpp
-	dialog.cpp
-	speaker.cpp
-	mat.cpp
-	sensor.cpp
-	alarm.cpp
-	actseg.cpp
-	# ...
- )
+)
 
-add_library(DECOMP STATIC ${FILES})
-
-target_include_directories(DECOMP PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-
-add_executable(main main.cpp)
-
-target_link_libraries(main PUBLIC DECOMP)
+add_library(P2 STATIC ${P2_SOURCE_FILES})
+target_include_directories(P2 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(P2 PUBLIC SPLICE)

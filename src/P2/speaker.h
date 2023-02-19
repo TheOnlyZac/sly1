@@ -9,7 +9,7 @@ typedef int GRFPVA;
 struct SPEAKER
 {
     char padding[0x2e0];
-    //struct RGBA_199 rgbaText;
+    struct RGBA rgbaText;
     float radFOV;
     float sDistCm;
     float uxTv;

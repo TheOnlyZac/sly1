@@ -17,7 +17,7 @@ void ActivateWipe(WIPE* pwipe, TRANS* ptrans, WIPEK wipek)
 	LevelTableStruct* load_data;
 	bool condition;
 
-	if (pwipe->wipes != WIPES_Idle)
+	if (pwipe->wipes != WIPES::Idle)
 	{
 		return;
 	}
@@ -54,11 +54,11 @@ void ActivateWipe(WIPE* pwipe, TRANS* ptrans, WIPEK wipek)
 	}
 	ptrans->grftrans = grftrans;
 	pwipe->trans.grftrans = ptrans->grftrans;
-	WIPES wipes = WIPES_WipingOut;
+	WIPES wipes = WIPES::WipingOut;
 
 	if (g_psw == nullptr)
 	{
-		wipes = WIPES_Black;
+		wipes = WIPES::Black;
 	}
 
 	SetWipeWipes(pwipe, wipes);
@@ -74,12 +74,12 @@ void SetWipeWipes(WIPE* pwipe, WIPES wipes)
 		return;
 	}
 
-	if (pwipe->wipes == WIPES_Black && (&g_wmc != 0))
+	if (pwipe->wipes == WIPES::Black && (&g_wmc != 0))
 	{
 		//SetWmWm(g_wmc, 0);
 	}
 
-	if (wipes == WIPES_WipingOut)
+	if (wipes == WIPES::WipingOut)
 	{
 		if (pwipe->wipek == WIPEK::WorldMap)
 		{
@@ -105,7 +105,7 @@ void SetWipeWipes(WIPE* pwipe, WIPES wipes)
 		{
 			if (pwipe->wipek == WIPEK::Frozen)
 			{
-				wipes = WIPES_Black;
+				wipes = WIPES::Black;
 				if (pwipe->trans.fSet != 0)
 				{
 					g_transition.Set((char*)pwipe->trans.pchzWorld, pwipe->trans.oidWarp, pwipe->trans.trans_mod_flags, pwipe->trans.grftrans);
@@ -115,7 +115,7 @@ void SetWipeWipes(WIPE* pwipe, WIPES wipes)
 				pwipe->uBlack = 1.0;
 				pwipe->transButton.fSet = 0;
 
-				if (wipes != WIPES_WipingIn)
+				if (wipes != WIPES::WipingIn)
 				{
 					pwipe->wipes = wipes;
 					//pwipe->tWipes = g_clock.tReal;
@@ -126,12 +126,12 @@ void SetWipeWipes(WIPE* pwipe, WIPES wipes)
 				{
 					if (pwipe->wipek != WIPEK::Frozen)
 					{
-						pwipe->wipes = WIPES_WipingIn;
+						pwipe->wipes = WIPES::WipingIn;
 						//pwipe->tWipes = g_clock.tReal;
 						return;
 					}
 
-					wipes = WIPES_Idle;
+					wipes = WIPES::Idle;
 					//FadeFramesToBlack(0.25);
 					WIPES unk_1 = pwipe->wipes;
 					//pwipe->tWipes = g_clock.tReal;
@@ -141,7 +141,7 @@ void SetWipeWipes(WIPE* pwipe, WIPES wipes)
 				if (&g_wmc != 0)
 				{
 					//SetWmWms(g_wmc, WMS_Disappearing);
-					pwipe->wipes = WIPES_WipingOut;
+					pwipe->wipes = WIPES::WipingOut;
 					//pwipe->tWipes = g_clock.tReal;
 					return;
 				}
@@ -208,7 +208,7 @@ void UpdateWipe(WIPE* pwipe, JOY* pjoy)
 	wipes = pwipe->wipes;
 	//unk_2 = g_clock.tReal - pwipe->tWipes;
 
-	if (wipes == WIPES_WipingOut)
+	if (wipes == WIPES::WipingOut)
 	{
 		if(pwipe->wipek != WIPEK::WorldMap)
 		unk_3 = 0.5;
@@ -220,7 +220,7 @@ void UpdateWipe(WIPE* pwipe, JOY* pjoy)
 		if (unk_3 < uBlack)
 		{
 			grftrans = pwipe->trans.grftrans;
-			wipes = WIPES_Black;
+			wipes = WIPES::Black;
 		}
 
 		else
@@ -247,10 +247,10 @@ void UpdateWipe(WIPE* pwipe, JOY* pjoy)
 
 	else
 	{
-		if (wipes < WIPES_Black)
+		if (wipes < WIPES::Black)
 		{
-			grftrans = (GRFTRANS)FCatchWipeButtonTrans(pwipe, pjoy, WIPES_WipingOut);
-			if (wipes == WIPES_Idle && grftrans != 0)
+			grftrans = (GRFTRANS)FCatchWipeButtonTrans(pwipe, pjoy, WIPES::WipingOut);
+			if (wipes == WIPES::Idle && grftrans != 0)
 			{
 				return;
 			}
@@ -258,14 +258,14 @@ void UpdateWipe(WIPE* pwipe, JOY* pjoy)
 
 		else
 		{
-			if (wipes == WIPES_Black && pwipe->trans.fSet == 0 && g_transition.m_fPending == 0)
+			if (wipes == WIPES::Black && pwipe->trans.fSet == 0 && g_transition.m_fPending == 0)
 			{
-				wipes = WIPES_WipingIn;
+				wipes = WIPES::WipingIn;
 			}
 
 			else
 			{
-				if ((wipes == WIPES_WipingIn) && (unk_0 == pwipe->wipek) && unk_0 != WIPEK::WorldMap)
+				if ((wipes == WIPES::WipingIn) && (unk_0 == pwipe->wipek) && unk_0 != WIPEK::WorldMap)
 				{
 					unk_3 = 0.25;
 					if (unk_0 == WIPEK::Keyhole)
@@ -285,7 +285,7 @@ void UpdateWipe(WIPE* pwipe, JOY* pjoy)
 
 						else
 						{
-							wipes = WIPES_Idle;
+							wipes = WIPES::Idle;
 						}
 					}
 
@@ -303,8 +303,8 @@ void UpdateWipe(WIPE* pwipe, JOY* pjoy)
 
 void InitWipe(WIPE* pwipe)
 {
-	pwipe->wipes = WIPES_Idle;
-	SetWipeWipes(pwipe, WIPES_Idle);
+	pwipe->wipes = WIPES::Idle;
+	SetWipeWipes(pwipe, WIPES::Idle);
 }
 
 void SetWipeButtonTrans(WIPE* pwipe, TRANS* ptrans, WIPEK wipek)

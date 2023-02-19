@@ -1,6 +1,8 @@
 #pragma once
 
-/* Object ID
+#include <gs.h>
+
+/* Object IDs
  There are a lot more that are unknown. */
 enum class OID : int
 {
@@ -18,8 +20,8 @@ enum class OID : int
 };
 
 /* World IDs
- Some of these values are directly from the may proto,
- the rest are extrapolated based on the order of levels in the game. */
+ Some of these values are directly from the may proto, 
+ the rest I extrapolated based on the order of levels in the game -Zac */
 enum class WID : int
 {
 	// Intro
@@ -80,19 +82,57 @@ enum class WID : int
 	cw_reverse_sniper = 0x2c,
 	cw_outclimb = 0x2d,
 	cw_finish = 0x2e,
-
+	
 	Max = 0x2f
 };
 
-struct RGBA
-{
-	char r;
-	char b;
-	char g;
-	char a;
+struct GAME {
+	int cAlarmsTriggered;
+	int fTimedChallenge;
+	float dtChallenge;
+	int cgoldLatest;
 };
 
-void SetCcoin(int nParam);
-int CcharmMost();
-bool FCharmAvailable();
+//void StartupGame();
+
+//char* PchzFromLevel(GAMEWORLD gameworld, WORLDLEVEL worldlevel);
+//char* PchzFriendlyFromLevel(GAMEWORLD gameworld, WORLDLEVEL worldlevel);
+//char* PchzFriendlyFromWorld(char* pchzWorld);
+
+//int FFindLevel(char* pchzWorld, GAMEWORLD* pgameworld, WORLDLEVEL* pworldlevel);
+
+void InitGameState(GS* pgs);
+//void SetupGame(char* pchzWorld, GRFTRANS grftrans)
+void UpdateGameState(float dt);
+
+//GRFLS GrflsFromWid(WID wid)
+void ClearLs(LS* pls);
+
+//void UnloadGame();
+void RetryGame();
+//void StartGame();
+
 void SetCcharm(int nParam);
+bool FCharmAvailable();
+//void SetClife(int nParam);
+void SetCcoin(int nParam);
+
+//int* PfLookupDialog(LS* pls, OID oidDialog);
+//char* AchzFromGameworld(GAMEWORLD gameworld);
+//int CwlpGetWlps(int cwlpMax, WLP* awlp);
+
+void OnGameLoad(GAME* pgame);
+//void OnGameWorldTransition(GAME* pgame);
+//void OnGameAlarmTriggered(GAME* pgame);
+//void OnGameAlarmDisabled(GAME* pgame);
+//void OnGameEnterUis(GAME* pgame, UIS uis);
+
+//void StartGameTimedChallenge(GAME* pgame, GOLDCOLLECTED* pgoldCollected)
+//void EndGameTimedChallenge(GAME* pgame, int* pfNewBestTime);
+//void OnGameTimedChallengeTimerNotify(TIMER* ptimer, TIMERNOTK timernotk);
+//void StartGameTimedChallengeTimer(GAME* pgame, float dt);
+//void ResetGameTimedChallenge(GAME* pgame);
+//void PrepareGameGoldForTimedChallenge(GAME* pgame);
+//void GetBlueprintInfo(GRFVAULT* pgrfvault, int* pipdialog);
+
+int CcharmMost();

@@ -1,7 +1,6 @@
 #pragma once
 #include <stdint.h>
-
-typedef unsigned char BYTE;
+#include <util.h>
 
 enum class BASK : int
 {

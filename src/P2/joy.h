@@ -1,57 +1,11 @@
 #pragma once
+#include <util.h>
 #include <iostream>
-typedef unsigned char    byte;
-/* Cheats Enabled Flags */
-enum class FCHT : int
-{
-	None = 0x0,
-	Invulnerability = 0x1,
-	InfiniteCharms = 0x2,
-	LowGravity = 0x4,
-	LowFriction = 0x8,
-	ResetWorld = 0x4000
-};
 
-enum RUMS
-{
-    RUMS_Idle = 1,
-    RUMS_Dead = 0,
-    RUMS_Stop = 3,
-    RUMS_Kill = 4,
-    RUMS_Max = 5,
-    RUMS_Rumble = 2
-};
+typedef unsigned char byte;
 
-struct RUMBLE
-{
-    struct VTRUMBLE_92* u4pvtrumble;
-    int nPort;
-    int nSlot;
-    RUMS rums;
-    struct RUMPAT_92* prumpat;
-    int irumins;
-    float dtRumble;
-    float dtRumins;
-};
-
-enum class JOYS : int
-{
-    JOYS_Max = 4,
-    JOYS_Ready = 3,
-    JOYS_Waiting = 2,
-    JOYS_Initing = 0,
-    JOYS_Searching = 1
-};
-
-enum class JOYK : int
-{
-    JOYK_Shock2 = 4,
-    JOYK_Digital = 1,
-    JOYK_Max = 5,
-    JOYK_Analog = 2,
-    JOYK_Shock = 3,
-    JOYK_Unknown = 0
-};
+typedef long ulong_128;
+typedef short GRFBTN;
 
 enum PadButtons
 {
@@ -74,6 +28,121 @@ enum PadButtons
     PAD_DOWN_ARROW = 16384
 };
 
+/* Joypad state */
+enum class JOYS : int
+{
+	Initing = 0,
+	Searching = 1,
+	Waiting = 2,
+	Ready = 3,
+	Max = 4
+};
+
+/* Joypad K? */
+enum class JOYK : int
+{
+	Unknown = 0,
+	Digital = 1,
+	Analog = 2,
+	Shock = 3,
+	Shock2 = 4,
+	Max = 5
+};
+
+/* Rumble state */
+enum class RUMS : int
+{
+	Dead = 0,
+	Idle = 1,
+	Rumble = 2,
+	Stop = 3,
+	Kill = 4,
+	Max = 5
+};
+
+struct RUMINS
+{
+	int fHighSpeedMotor;
+	BYTE bLowSpeedMotor;
+	BYTE unk1, unk2;
+	float dt;
+};
+
+struct RUMPAT
+{
+	int crumins;
+	RUMINS arumins[32];
+};
+
+
+struct RUMBLE
+{
+	int nPort;
+	int nSlot;
+	RUMS rums;
+	RUMPAT* prumpat;
+	int irumins;
+	float dtRumble;
+	float dtRumins;
+};
+
+/* Handles joypad input */
+struct JOY
+{
+	int nPort;
+	int nSlot;
+	ulong_128* aullDma;
+	int term;
+	JOYS joys;
+	JOYK joyk;
+	float tJoys;
+	float tRead;
+	float tActive;
+	int dxLatch;
+	int dyLatch;
+	float tLatchX;
+	float tLatchY;
+	float dtLatchY;
+
+	// left analog stick
+	float x, y;
+	float uDeflect;
+	float bX, bY;
+	short unk_short;
+	int fStickMoved;
+	LM almDeflect[4];
+
+	// right analog stick
+	float x2, y2;
+	float uDeflect2;
+	float bX2, bY2;
+	short unk_short2;
+	float fStickMoved2;
+	LM almDeflect2[4];
+
+	// face buttons
+	GRFBTN grfbtn;
+	GRFBTN grfbtnPressed;
+	GRFBTN grfbtnReleased;
+	unsigned char mpbtnpb[12];
+
+	// rumble
+	short unk_short_3;
+	RUMBLE* prumble;
+	int fRumbleEnabled;
+};
+
+/* Cheat Code Flags */
+enum class FCHT : int
+{
+	None = 0x0,
+	Invulnerability = 0x1,
+	InfiniteCharms = 0x2,
+	LowGravity = 0x4,
+	LowFriction = 0x8,
+	ResetWorld = 0x4000
+};
+
 enum DPK
 {
     DPK_JoyRight = 10,
@@ -94,61 +163,17 @@ enum DPK
     DPK_Max = 15
 };
 
-struct LM_92 
-{
-    float gMin;
-    float gMax;
-    float u4ag[1];
-};
-
-struct JOY 
-{
-    struct VTJOY_92* u4pvtjoy;
-    int nPort;
-    int nSlot;
-    uint64_t aullDma;
-    int term;
-    JOYS joys;
-    JOYK joyk;
-    float tJoys;
-    float tRead;
-    float tActive;
-    int dxLatch;
-    int dyLatch;
-    float tLatchX;
-    float dtLatchX;
-    float tLatchY;
-    float dtLatchY;
-    float x;
-    float y;
-    float uDeflect;
-    byte bX;
-    byte bY;
-    byte field_0x4e;
-    byte field_0x4f;
-    int fStickMoved;
-    struct LM_92 almDeflect[4];
-    float x2;
-    float y2;
-    float uDeflect2;
-    byte bX2;
-    byte bY2;
-    byte field_0x82;
-    byte field_0x83;
-    int fStickMoved2;
-    struct LM_92 almDeflect2[4];
-    uint16_t grfbtn;
-    enum PadButtons grfbtnPressed;
-    uint16_t grfbtnReleased;
-    char mpbtnpb[12];
-    RUMBLE* prumble;
-    byte field_0xbe;
-    byte field_0xbf;
-    int fRumbleEnabled;
-};
-
-extern char chetkido_buffer[]; // temp
+static JOY g_joy;
+static float g_tCodeCheck;
 extern int g_grfcht;
+extern char chetkido_buffer[]; // temp
 
+void SetJoyJoys(JOY* pjoy, JOYS joys, JOYK joyk);
+void UpdateJoy(JOY* pjoy);
+
+void SetRumbleRums(RUMBLE* prumble, RUMS rums);
+void InitRumble(RUMBLE* prumble, int nPort, int nSlot);
+
+void UpdateCodes();
 void AddFcht(int nParam);
 void CheatActivateChetkido();

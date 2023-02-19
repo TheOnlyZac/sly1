@@ -1,5 +1,6 @@
 #pragma once
 #include <game.h>
+#include <font.h>
 
 typedef bool BOOL; // todo: move this to the appropriate file
 

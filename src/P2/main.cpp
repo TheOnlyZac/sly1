@@ -1,59 +1,101 @@
+#include <main.h>
 #include <gs.h>
 #include <joy.h>
+#include <clock.h>
+#include <ui.h>
+#include <game.h>
+#include <update.h>
+#include <sw.h>
+#include <render.h>
+#include <frm.h>
+//#include <transition.h>
+//#include <mpeg.h>
 
 #include <stdio.h>
+#include <stdlib.h>
 
-int main(int argc, char* argv[])
+int main(int cphzArgs, char* aphzArgs[])
 {
-	printf("Sly Cooper and the Thievius Raccoonus (SCUS-971.98)\n");
+	// __main(); // from libgcc2
+	g_chpzArgs = cphzArgs;
+	g_aphzArgs = aphzArgs;
 
-	// Set chetkido values
-	g_pgsCur->gameworldCur = GAMEWORLD::Snow;
-	g_pgsCur->worldlevelCur = WORLDLEVEL::Approach;
-	g_pgsCur->ccoin = 99;
-	g_pgsCur->clife = 0;
-
-	printf("Press ENTER to quit...\n");
-
-	char chKey = ' ';
-	char chLastKey = ' ';
+	//Startup(); 
 
 	while (true)
 	{
-		// Get player input
-		chLastKey = chKey;
-		chKey = getc(stdin);
+		// todo: implement all these methods
 
-		// Check and handle player input
-		switch (chKey)
+		// Check if g_mpeg has an mpeg queued to be player
+		/*if ((g_mpeg.oid_1 != OID::Unknown) && (g_wipe[1] != 0))
 		{
-		case '\r': // Quit game
-			printf("Thanks for playing!\n");
-			return 1;
-		case 'x': // Show jump button pressed
-		case 'X':
-			printf("jump ");
-			break;
-		case 'o': // Show circle button pressed
-		case 'O':
-			printf("circle ");
+			//FlushFrames(1);
+			//g_mpeg::DoExecute();
+		}*/
+		
+		// Check if g_transition has a pending transition
+		/*if (g_transition.m_fPending != 0)
+		{
+			//FlushFrames(1);
+			//g_transition::Execute();
+		}*/
 
-			// Check for easter egg (jump and press the circle button)
-			if (chLastKey == 'x' || chLastKey == 'X')
+		// Check AGAIN if g_mpeg has an mpeg queued (in case two were queued back-to-back)
+		/*if ((g_mpeg.oid_1 != OID::Unknown) && (g_wipe[1] != 0))
+		{
+			//FlushFrames(1);
+			//g_mpeg::DoExecute();
+		}*/
+
+		// Call update functions
+		UpdateJoy(&g_joy);
+		UpdateCodes();
+		//UpdateSave(&g_save);
+		UpdateUi(&g_ui);
+		UpdateGameState(g_clock.dt);
+
+		// Render and draw current frame
+		if (g_psw != NULL)
+		{
+			// Prepare to render frame
+			SetupCm(g_pcm);
+			OpenFrame();
+			MarkClockTick(&g_clock);
+
+			// This ends up calling UpdateSw
+			void* pv = g_psw + 0x54;
+			if (pv != NULL)
 			{
-				CheatActivateChetkido();
-				printf("\n");
-				printf(chetkido_buffer);
-				printf("\n");
+				//(*pv)(g_clock.dt);
 			}
 
-			break;
-		default: // Print key pressed
-			putchar(chKey);
-			printf(" ");
-			break;
-		}
-	}
+			// Render frame
+			RenderSw(g_psw, g_pcm);
+			RenderUi();
 
-    return 0;
+			// Draw frame
+			DrawSw(g_psw, g_pcm);
+			DrawUi();
+
+			CloseFrame();
+		}
+
+		// Temp debug function just to show everything is running
+		MainDebug();
+
+		// Increment the global frame counter
+		g_cframe += 1;
+	}
+}
+
+void Startup()
+{
+	// todo
+	// ...
+}
+
+void MainDebug()
+{
+	// print current frame number
+	printf("%d\r", g_cframe);
 }

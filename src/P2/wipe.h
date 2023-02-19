@@ -9,22 +9,27 @@
 
 typedef unsigned char byte;
 
-enum class WIPEK : int
+enum class UIS : int
 {
-    Fade = 0x0,
-    Keyhole = 0x1,
-    WorldMap = 0x2,
-    Frozen = 0x3,
-    Max = 0x4
+	// todo
 };
 
-enum WIPES
+enum class WIPEK : int
 {
-    WIPES_Idle = 0,
-    WIPES_WipingOut = 1,
-    WIPES_Black = 2,
-    WIPES_WipingIn = 3,
-    WIPES_Max = 4,
+	Fade = 0x0,
+	Keyhole	= 0x1,
+	WorldMap = 0x2,
+	Frozen = 0x3,
+	Max = 0x4
+};
+
+enum class WIPES
+{
+	Idle = 0,
+	WipingOut = 1,
+	Black = 2,
+	WipingIn = 3,
+	Max = 4
 };
 
 struct WIPE
@@ -40,7 +45,6 @@ struct WIPE
 };
 
 static CTransition g_transition;
-static SW* g_psw;
 static WIPE* g_pwipe;
 static KEYHOLE* g_pkeyhole;
 static DIALOG* g_pdialogCalling;

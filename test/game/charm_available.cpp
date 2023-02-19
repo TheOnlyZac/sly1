@@ -2,7 +2,7 @@
 #include <joy.h>
 #include <gs.h>
 
-#include <cassert>
+#include <test/test.h>
 
 int main()
 {
@@ -10,34 +10,34 @@ int main()
 	g_grfcht &= ~((int)FCHT::InfiniteCharms); // disable infinite charms
 
 	// Confirm max charm count is 2
-	assert(CcharmMost() == 2);
+	JtAssert(CcharmMost() == 2);
 
 	// Test checking if a charm is available
 	g_pgsCur->ccharm = 0;
-	assert(FCharmAvailable() == false);
+	JtAssert(FCharmAvailable() == false);
 
 	g_pgsCur->ccharm = 1;
-	assert(FCharmAvailable() == true);
+	JtAssert(FCharmAvailable() == true);
 
 	g_pgsCur->ccharm = -1;
-	assert(FCharmAvailable() == false);
+	JtAssert(FCharmAvailable() == false);
 
 	g_pgsCur->ccharm = 0;
 	g_grfcht |= (int)FCHT::InfiniteCharms; // enable infinite charms cheat
-	assert(FCharmAvailable() == true);
+	JtAssert(FCharmAvailable() == true);
 
 	// Test setting charm count
 	SetCcharm(0);
-	assert(g_pgsCur->ccharm == 0);
+	JtAssert(g_pgsCur->ccharm == 0);
 
 	SetCcharm(1);
-	assert(g_pgsCur->ccharm == 1);
+	JtAssert(g_pgsCur->ccharm == 1);
 
 	SetCcharm(3);
-	assert(g_pgsCur->ccharm == 3);
+	JtAssert(g_pgsCur->ccharm == 3);
 
 	SetCcharm(-1);
-	assert(g_pgsCur->ccharm == -1);
+	JtAssert(g_pgsCur->ccharm == -1);
 
 	return 0;
 }

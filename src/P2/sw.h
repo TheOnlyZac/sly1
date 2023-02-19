@@ -1,3 +1,4 @@
+#pragma once
 #include <vec.h>
 #include <iostream>
 
@@ -69,21 +70,24 @@ struct Entity
 // todo: investigate and rewrite struct
 struct SW
 {
-        enum OID field_0x8;
-        struct CFrame* field_0x30;
-        int* field_0x48;
-        int field_0x4d;
-        int* field_0x4e;
-        int field_0x53;
-        int field_0x5c;
-        uint32_t next_entity_offset;
-        float field_0x71;
-        struct XP* field_0x78;
-        struct SLOTHEAP* field_0x1b78;
-        struct LinkedListNode* field_0x1c2c;
-        //struct DL field_0x1c90;
-        float field_0x1e30;
-        float field_0x1e34;
-        int field_0x1e38;
-        //MUSID field_0x1e3c;
+    enum OID field_0x8;
+    struct CFrame* field_0x30;
+    int* field_0x48;
+    int field_0x4d;
+    int* field_0x4e;
+    int field_0x53;
+    int field_0x5c;
+    uint32_t next_entity_offset;
+    float field_0x71;
+    struct XP* field_0x78;
+    struct SLOTHEAP* field_0x1b78;
+    struct LinkedListNode* field_0x1c2c;
+    //struct DL field_0x1c90;
+    float field_0x1e30;
+    float field_0x1e34;
+    int field_0x1e38;
+    //MUSID field_0x1e3c;
 };
+
+static SW g_sw;
+extern SW* g_psw;
