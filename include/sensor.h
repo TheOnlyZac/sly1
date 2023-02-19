@@ -1,20 +1,22 @@
 
 typedef unsigned char byte;
 
+enum class SENSORS
+{
+    // todo
+};
+
 // todo rewrite struct
 struct SENSOR
 {
-	byte field_0x0;
-	byte field_0x1;
-	byte field_0x2;
-	byte field_0x3;
-	int field_0x4;
-	int field_0x8;
+    byte field_0x0;
+    byte field_0x1;
+    byte field_0x2;
+    byte field_0x3;
+    int field_0x4;
+    int field_0x8;
     char padding[0x57c];
-    byte sensors;
-    byte field_0x589;
-    byte field_0x58a;
-    byte field_0x58b;
+    SENSORS sensors;
     float tSensors;
     byte sensorsInitial;
     byte field_0x591;
