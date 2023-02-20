@@ -1,5 +1,4 @@
 #pragma once
-
 #include <game.h>
 #include <aseg.h>
 #include <wipe.h>

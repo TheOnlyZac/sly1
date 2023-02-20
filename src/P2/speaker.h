@@ -1,3 +1,4 @@
+#pragma once
 #include <game.h>
 #include <joy.h>
 #include <mat.h>

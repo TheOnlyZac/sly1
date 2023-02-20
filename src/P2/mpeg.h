@@ -1,3 +1,4 @@
+#pragma once
 #include <bis.h>
 #include <bq.h>
 #include <difficulty.h>
@@ -20,7 +21,7 @@ struct sceMpeg {
     int width;
     int height;
     int frameCount;
-    unsigned int field_0xc; // unknown
+    undefined4 field_0xc; // unknown
     long pts;
     long dts;
     unsigned long flags;
@@ -59,6 +60,7 @@ class CMpegAudio
 
 class CMpeg
 {
+public:
     char* m_pchzPss;
     OID oid_1;
     OID oid_2;
@@ -82,3 +84,5 @@ class CMpeg
     void Update(); // todo
     void Finish(); // todo
 };
+
+static CMpeg g_mpeg;

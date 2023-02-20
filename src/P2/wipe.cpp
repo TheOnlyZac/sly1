@@ -2,6 +2,8 @@
 #include <clock.h>
 #include <wm.h>
 
+WIPE* g_pwipe = &g_wipe;
+
 // First parameter is ptr to enc level file info second paramter unk third is warp type
 void WipeToWorldWarp(LevelTableStruct* pchzWorld, OID oidWarp, WIPEK wipek)
 {
@@ -78,7 +80,7 @@ void SetWipeWipes(WIPE* pwipe, WIPES wipes)
 
     if (pwipe->wipes == WIPES::Black && (&g_wmc != 0))
     {
-        //SetWmWm(g_wmc, 0);
+        SetWmWms(&g_wmc, 0); // this was SetWmWm but I changed it to SetWmWms, I think it was a typo -Zac
     }
 
     if (wipes == WIPES::WipingOut)
@@ -208,6 +210,9 @@ void UpdateWipe(WIPE* pwipe, JOY* pjoy)
     float unk_3;
 
     wipes = pwipe->wipes;
+
+    // g_clock is implemented but unk_2 is not used in this function so
+    // I'm not sure why this line is here. It is supposed to be unk_3? -Zac
     //unk_2 = g_clock.tReal - pwipe->tWipes;
 
     if (wipes == WIPES::WipingOut)

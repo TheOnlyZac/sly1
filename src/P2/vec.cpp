@@ -3,21 +3,21 @@
 
 // todo: cleanup and fix params
 
-void CalculateVectorPanTilt(VECTOR* param_1, float* param_2, float* param_3)
+void CalculateVectorPanTilt(VECTOR* pvec, float* ppan, float* ptilt)
 {
-    float fVar1;
+    float val;
 
-    if (param_2 != (float*)0x0)
+    if (*ppan != 0.0)
     {
-        fVar1 = atan2f(param_1->y, param_1->x);
+        val = atan2f(pvec->y, pvec->x);
         //fVar1 = FUN_001ea408(fVar1);
-        *param_2 = fVar1;
+        *ppan = val;
     }
-    if (param_3 != (float*)0x0)
+    if (*ptilt != 0.0)
     {
-        //fVar1 = atan2f(param_1->z, SQRT(param_1->x * param_1->x + param_1->y * param_1->y));
-        //fVar1 = FUN_001ea408(fVar1);
-        *param_3 = fVar1;
+        val = atan2f(pvec->z, sqrt(pvec->x * pvec->x + pvec->y * pvec->y));
+        //val = FUN_001ea408(val); // todo implement function
+        *ptilt = val;
     }
     return;
 }

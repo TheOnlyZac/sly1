@@ -1,5 +1,7 @@
+#pragma once
 #include <iostream>
 #include <game.h>
+#include <util.h>
 
 typedef unsigned char byte;
 
@@ -26,25 +28,13 @@ struct DIALOG
 {
     int padding[0xB8];
     DIALOGK dialogk;
-    byte field_0x2e1;
-    byte field_0x2e2;
-    byte field_0x2e3;
     DIALOGS dialogs;
-    byte field_0x2e5;
-    byte field_0x2e6;
-    byte field_0x2e7;
     float tDialogs;
     int cde;
-    byte field_0x2f0;
-    byte field_0x2f1;
-    byte field_0x2f2;
-    byte field_0x2f3;
+    undefined4 field_0x2f0;
     int ideCur;
     //struct DP dp;
     OID oidPntAnchor;
-    byte field_0x311;
-    byte field_0x312;
-    byte field_0x313;
     int* pfPlayed;
     int fPlayed;
     int cpfEquivalence;

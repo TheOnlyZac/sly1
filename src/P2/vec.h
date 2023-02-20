@@ -44,7 +44,7 @@ struct CLQ
     float u4ag[1];
 };
 
-void CalculateVectorPanTilt(VECTOR* param_1, float* param_2, float* param_3);
+void CalculateVectorPanTilt(VECTOR* pvec, float* ppan, float* ptilt);
 void ConvertDeulToW(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3);
 bool FCalculateMuzzleVelocity(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3, VECTOR* param_4, SO* param_5);
 uint32_t FCalculateMuzzleVelocityAngle(VECTOR* param_1, VECTOR* param_2, float param_3, VECTOR* param_4, SO* param_5);

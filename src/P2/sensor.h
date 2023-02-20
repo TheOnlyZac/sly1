@@ -1,3 +1,4 @@
+#pragma once
 #include <util.h>
 
 typedef unsigned char byte;

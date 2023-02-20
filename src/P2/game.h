@@ -1,5 +1,4 @@
 #pragma once
-
 #include <gs.h>
 
 /* Object IDs

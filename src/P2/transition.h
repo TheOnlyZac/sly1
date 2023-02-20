@@ -55,3 +55,5 @@ public:
     // Executes the conditions from CTransition::Set by setting some engine vaules to default and loading the level file
     void Execute();
 };
+
+static CTransition g_transition;

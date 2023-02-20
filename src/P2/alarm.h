@@ -1,3 +1,4 @@
+#pragma once
 #include <actseg.h>
 #include <clock.h>
 #include <game.h>
@@ -6,7 +7,7 @@
 
 typedef uint32_t ALTK;
 
-enum MSGID //This will be here temporarily
+enum class MSGID // Temporary?
 {
     water_entered = 10,
     water_left = 11,
@@ -37,30 +38,30 @@ enum MSGID //This will be here temporarily
     sfx_end = 9
 };
 
-enum ALARMS
+enum class ALARMS
 {
-    ALARMS_Disabled = 1,
-    ALARMS_Max = 3,
-    ALARMS_Enabled = 0,
-    ALARMS_Triggered = 2
+    Enabled = 0,
+    Disabled = 1,
+    Triggered = 2,
+    Max = 3
 };
 
 struct ALARM 
 {
     
-    enum ALARMS state;
+    ALARMS alarms_unk;
     float field_0x554;
     undefined4 field_0x558;
     undefined4 field_0x55c;
     undefined4 field_0x560;
-    undefined4 field_0x564;
+    int field_0x564;
     undefined4 field_0x568;
     undefined4 field_0x56c;
     undefined4 field_0x570;
     undefined4 field_0x574;
     undefined4 field_0x578;
     undefined4 field_0x57c;
-    enum ALARMS alarms;
+    ALARMS alarms;
     float tAlarms;
     float dtReset;
     int calbrks;

@@ -9,11 +9,6 @@
 
 typedef unsigned char byte;
 
-enum class UIS : int
-{
-	// todo
-};
-
 enum class WIPEK : int
 {
 	Fade = 0x0,
@@ -34,7 +29,6 @@ enum class WIPES
 
 struct WIPE
 {
-    struct VTWIPE* pvtwipe;
     WIPES wipes;
     float tWipes;
     float uBlack;
@@ -44,12 +38,13 @@ struct WIPE
     WIPEK wipekButton;
 };
 
-static CTransition g_transition;
-static WIPE* g_pwipe;
 static KEYHOLE* g_pkeyhole;
 static DIALOG* g_pdialogCalling;
 static WM g_wmc;
 static TRANS trans; // ?
+
+static WIPE g_wipe;
+extern WIPE* g_pwipe;
 
 void WipeToWorldWarp(LevelTableStruct* pchzWorld, OID oidWarp, WIPEK wipek);
 void ActivateWipe(WIPE* pwipe, TRANS* ptrans, WIPEK wipek);

@@ -32,7 +32,7 @@ void CloneAlarm(ALARM* palarm, ALARM* palarmBase)
 
 void DisableAlarmAlbrk(ALARM* palarm)
 {
-    palarm->apsensors[0xb] = (SENSOR*)&palarm->apsensors[0xb]->field_0x1;
+    palarm->apsensors[0xb] = (SENSOR*)&palarm->apsensors[0xb][0x1];
     return;
 }
 
@@ -130,7 +130,7 @@ void InitAlarm(ALARM* palarm)
     uint32_t uVar1 = 0;
 
     //InitSo((SO*)palarm);
-    //palarm->state = ~ALARMS_Enabled;
+    //palarm->state = ~ALARMS::Enabled;
     //uVar1 = IchkAllocChkmgr(&g_chkmgr);
     //*(uint32_t*)&palarm->arsmg[6].field_0x2 = uVar1;
     return;
@@ -189,7 +189,7 @@ void PostAlarmLoadCallbackHookup(ALARM* alarm, MSGID param_2, void* param_3)
 
     iVar7 = 0;
     iVar4 = 0;
-    if (0 < *(int*)&alarm->field_0x564) 
+    if (0 < alarm->field_0x564) 
     {
         ppOVar5 = (OID**)&alarm->field_0x568;
         do 
@@ -239,59 +239,59 @@ void PostAlarmLoadCallbackHookup(ALARM* alarm, MSGID param_2, void* param_3)
     //uVar3 = FGetChkmgrIchk((int)&g_chkmgr, *(uint*)&alarm->arsmg[6].field_0x2);
     if (uVar3 == 0) 
     {
-        SetAlarmAlarms(alarm, ALARMS_Enabled);
+        SetAlarmAlarms(alarm, ALARMS::Enabled);
     }
     else 
     {
-        SetAlarmAlarms(alarm, ALARMS_Disabled);
+        SetAlarmAlarms(alarm, ALARMS::Disabled);
     }
     return;
 }
 
-void SetAlarmAlarms(ALARM* alarm, ALARMS state)
+void SetAlarmAlarms(ALARM* palarm, ALARMS alarms)
 {
-    SENSOR* pSVar1;
+    SENSOR* sensors;
     uint64_t uVar2;
     int iVar3;
-    ALARMS current_state;
+    ALARMS alarmsCur;
 
-    current_state = alarm->state;
-    if (current_state == state) 
+    alarmsCur = palarm->alarms;
+    if (alarmsCur == alarms) 
     {
         return;
     }
-    if (-1 < (int)current_state) 
+    if (-1 < (int)alarmsCur) 
     {
-        if ((int)current_state < 2) 
+        if ((int)alarmsCur < (int)ALARMS::Triggered) 
         {
-            alarm->state = state;
+            palarm->alarms = alarms;
             goto LAB_00123914;
         }
-        if (current_state != ALARMS_Triggered) 
+        if (alarmsCur != ALARMS::Triggered) 
         {
-            alarm->state = state;
+            palarm->alarms = alarms;
             goto LAB_00123914;
         }
         //StopSound((long)(int)alarm->apsensors[0xc], 0);
         //UnsetExcitement((long)(int)alarm->apsensors[0xd]);
         //TriggerRsmg(*(SW**)&alarm->field_0x14, (int)alarm->apsensors[0xf], (OID**)&alarm->coidStepguards, (Entity*)alarm, 0);
-        if (state != ALARMS_Disabled) 
+        if (alarms != ALARMS::Disabled) 
         {
-            alarm->state = state;
-            goto LAB_00123914;
+            palarm->alarms = alarms;
+            goto LAB_00123914; // todo: fix control flow
         }
         //OnGameAlarmDisabled((int)&DAT_002623d8);
     }
-    alarm->state = state;
+    palarm->alarms = alarms;
 LAB_00123914:
-    *&alarm->field_0x554 = g_clock.t;
-    if (state == ALARMS_Disabled) 
+    *&palarm->field_0x554 = g_clock.t;
+    if (alarms == ALARMS::Disabled) 
     {
-        if (&alarm->field_0x55c != 0x0) 
+        if (&palarm->field_0x55c != 0x0) 
         {
             //SeekSma(*(SMA**)&alarm->field_0x55c, 0x220);
         }
-        //DisableAlarmSensors(alarm);
+        DisableAlarmSensors(palarm);
         //uVar2 = FGetChkmgrIchk((int)&g_chkmgr, *(uint*)&alarm->arsmg[6].field_0x2);
         if (uVar2 == 0) 
         {
@@ -305,11 +305,11 @@ LAB_00123914:
         //SetChkmgrIchk(&g_chkmgr, iVar3);
     }
     else {
-        if ((int)state < 2) 
+        if ((int)alarms < 2) 
         {
-            if (state == ALARMS_Enabled) 
+            if (alarms == ALARMS::Enabled) 
             {
-                if (&alarm->field_0x55c != 0x0) 
+                if (&palarm->field_0x55c != 0x0) 
                 {
                     //SetSmaGoal(&alarm->field_0x55c, 0x21a);
                 }
@@ -318,27 +318,27 @@ LAB_00123914:
         }
         else 
         {
-            if (state == ALARMS_Triggered) 
+            if (alarms == ALARMS::Triggered) 
             {
-                if (&alarm->field_0x55c == 0x0) 
+                if (&palarm->field_0x55c == 0x0) 
                 {
-                    pSVar1 = alarm->apsensors[0xe];
+                    sensors = palarm->apsensors[0xe];
                 }
                 else 
                 {
                     //SetSmaGoal(&alarm->field_0x55c, 0x21f);
-                    pSVar1 = alarm->apsensors[0xe];
+                    sensors = palarm->apsensors[0xe];
                 }
-                if (pSVar1 == 0x0) 
+                if (sensors == 0x0) 
                 {
-                    //StartSound(SFXID_EnvAlarmSounding, (AMB**)(alarm->apsensors + 0xc), (ALO*)alarm, (VECTOR*)0x0, 8000.0, 5000.0, 1.0, 0.0, 0.0, (LM*)0x0, (LM*)0x0);
+                    //StartSound(SFXID::EnvAlarmSounding, (AMB**)(alarm->apsensors + 0xc), (ALO*)alarm, (VECTOR*)0x0, 8000.0, 5000.0, 1.0, 0.0, 0.0, (LM*)0x0, (LM*)0x0);
                 }
                 //pSVar1 = PexcSetExcitement(0x6b);
-                alarm->apsensors[0xd] = pSVar1;
+                palarm->apsensors[0xd] = sensors;
                 //NotifyAlarmSensorsOnTrigger(alarm);
                 //TriggerRsmg(&alarm->field_0x14, (int)alarm->apsensors[0xf], (OID**)&alarm->coidStepguards, (Entity*)alarm, 1);
                 //HandleLoSpliceEvent((LO*)alarm, 2, 0, 0x0);
-                //OnGameAlarmTriggered((int)&DAT_002623d8);
+                //OnGameAlarmTriggered((GAME*)&DAT_002623d8);
             }
         }
     }
@@ -365,7 +365,7 @@ void TriggerAlarm(ALARM* palarm, ALTK atlk)
 
     if (atlk == 1) 
     {
-		alarms = ALARMS_Enabled;
+		alarms = ALARMS::Enabled;
     }
     else 
     {
@@ -375,7 +375,7 @@ void TriggerAlarm(ALARM* palarm, ALTK atlk)
             {
                 return;
             }
-			alarms = ALARMS_Triggered;
+			alarms = ALARMS::Triggered;
         }
         else 
         {
@@ -383,7 +383,7 @@ void TriggerAlarm(ALARM* palarm, ALTK atlk)
             {
                 return;
             }
-			alarms = ALARMS_Disabled;
+			alarms = ALARMS::Disabled;
         }
     }
     SetAlarmAlarms(palarm, alarms);
@@ -408,7 +408,7 @@ void UpdateAlarm(ALARM* param_1, Entity* param_2)
         {
             if (*(float*)&param_2->field_0x560 < g_clock.t - *(float*)&param_2->field_0x554) 
             {
-                SetAlarmAlarms((ALARM*)param_2, ALARMS_Enabled);
+                SetAlarmAlarms((ALARM*)param_2, ALARMS::Enabled);
                 return;
             }
             iVar1 = *(int*)&param_2->field_0x564;
@@ -426,7 +426,7 @@ void UpdateAlarm(ALARM* param_1, Entity* param_2)
     {
         if (*(int*)&param_2->field_0x61c == iVar1) 
         {
-            SetAlarmAlarms((ALARM*)param_2, ALARMS_Disabled);
+            SetAlarmAlarms((ALARM*)param_2, ALARMS::Disabled);
             return;
         }
         iVar3 = *(int*)&param_2->field_0x550;

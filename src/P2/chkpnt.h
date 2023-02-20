@@ -1,5 +1,4 @@
 #pragma once
-
 #include <util.h>
 #include <game.h>
 #include <vec.h>

@@ -1,5 +1,7 @@
 #include <transition.h>
 #include <clock.h>
+#include <phasemem.h>
+#include <prog.h>
 
 void CTransition::Set(char* pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS grftrans)
 {
@@ -19,12 +21,13 @@ void CTransition::Execute()
 	LevelTableStruct* ciphers;
 	CFileLocation fileLocation;
 	lsn_and_unk_ciphers_t* lsn_enc_size_enc;
-	/* todo: define function
-	SetPhase(2); */
+	
+	SetPhase(PHASE::Load);
 	if ((lld->lsn_and_size_ciphers).size_enc != 0)
 	{
 		fileLocation.Clear();
-		//Loading the encrypted seor offsets and sizes in variables to be decrypted
+
+		//Loading the encrypted sector offsets and sizes in variables to be decrypted
 		uint32_t *enc_file_table = NULL;
 		uint32_t off = lld->lsn_and_size_ciphers.size_enc;
 		enc_file_table = (uint32_t*)off;
@@ -70,7 +73,7 @@ void CTransition::Execute()
 			
 			if (ciphers->level_id != 0)
 			{
-				//CProg::Begin(ciphers->level_id);
+				//CProg::Begin(ciphers->level_id); // todo: need to call Begin on an instance of CProg
 			}
 
 			int always_1 = 0;
@@ -92,7 +95,7 @@ void CTransition::Execute()
 				//PostGlobalsetLoad(bs, ciphers)
 				if (ciphers->level_id != 0)
 				{
-					//CProg::End(ciphers->level_id);
+					//CProg::End(ciphers->level_id); // todo: need to call End on an instance of CProg
 				}
 
 			}    
@@ -128,7 +131,7 @@ void CTransition::Execute()
 
 	//FUN_001c06d8();
 	//SetMvgkRvol(&g_psw->field_0x1d61, 1, 1);
-	//ClearPhase();
+	ClearPhase();
 	//(lld->lsn_and_size_ciphers).lsn_enc = 0;
 }
 

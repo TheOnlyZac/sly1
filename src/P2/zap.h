@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <game.h>
 #include <gs.h>
