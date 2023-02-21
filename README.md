@@ -27,7 +27,7 @@ This is a work-in-progress, experimental decompilation of *Sly Cooper and the Th
 
 The goal of this project is to better understand how the game works. **This repo does not contain any game assets or original code from the game's executable.**
 
-New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, you can [join our discord server][discord-url] and/or message [TheOnlyZac#0269](https://discordapp.com/channels/@me/TheOnlyZac#0269/) for more info and advice on where to begin.
+New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, you can [join our discord server][discord-url] and checkout [CONTRIBUTING.md](/CONTRIBUTING.MD) for info on how to get started.
 
 ## Frequently Asked Questions
 
@@ -44,7 +44,7 @@ This is one of the first-ever large scale PS2 decompilation projects. Our inspir
 Due to the lack of resources on PS2 reverse-engineering, the currently decompiled code is not matching. However, we are actively researching the PS2 compiler and working to come up with with a process for function matching.
 
 #### How can I help?
-If you would like to contribute but have no idea where to start, you can [join our discord server](https://discord.gg/gh5xwfj) and/or reach out to [TheOnlyZac#0269](https://discordapp.com/channels/@me/TheOnlyZac#0269/) for some resources and advice to get started!
+If you would like to contribute but have no idea where to start, you can [join our discord server](https://discord.gg/gh5xwfj) and/or check out [CONTRIBUTING.md](/CONTRIBUTING.MD) for some resources and advice to get started!
 
 ## Getting Started
 
@@ -70,50 +70,3 @@ cmake --build . -j8
 ```
 
 For testing, cd into the build directory and run `cmake --build . --target check` or `make check` to build the tests. Then run the tests with `ctest -C Debug`.
-
-## Style Guide
-
-### General
-
-Our goal is to imitate the original source code as closely as possible based on symbols from the publicly available [May 2002 demo](https://hiddenpalace.org/Sly_Cooper_and_the_Thievius_Raccoonus_(May_19,_2002_prototype)). Please try to follow these guidelines when writing your code:
-* Use official names from the debug symbols wherever possible.
-* Indent with tabs, not spaces
-* Put project includes before library includes.
-
-### Symbol Names
-
-For the most part, variables are named according to [Hungarian Notation](https://en.wikipedia.org/wiki/Hungarian_notation). The following prefixes are used to denote the type of a variable/symbol:
-* `p` - Pointer
-* `n` - Integer/number
-* `c` - Integer/count of items
-* `f` - Boolean/flag
-* `l` - Long
-* `d` - Float
-* `u` - Unsigned
-* `b` - Byte
-* `ch` - Char
-* `z` - Zero-terminated string
-* `C` - Class name
-
-The following prefixes are used to denote the scope of a variable:
-* `g_` - Global variable
-* `m_` - Class member
-* `s_` - Static class member
-
-Here are some examples of symbol names that combine the above prefixes:
-* `ccoin`, `clife`, `ccharm` - Count of coins, lives, and charms
-* `fSneakyFeet` - Flag that denotes whether Sly's footsteps make guitar noises
-* `g_pgsCur` - Global pointer to the game's current GS struct
-* `g_pchzArgs` - Global pointer to a zero-terminated char array of arguments
-* `CBinaryInputStream` - Name of the class that handles reading data from binary streams
-* `m_cbBulkData` - Member variable that stores the count of bytes in a data block
-
-### Capitalization
-
-Please try to stick to the following capitalization schemes:
-* Use `ALLCAPS` for struct/enum names.
-    * eg. `struct DIFFICULTY`, `enum class FLS`
-* Use `UpperCamelCase` for function/class names and enum values.
-    * eg. `void OnDifficultyGameLoad()`, `class CTransition`, `FCHT::InfiniteCharms`
-* Use `lowerCamelCase` for local variables, function parameters, and class members.
-    * eg. `char nextXorChar`, `Coin* pcoin`, `float m_rxScale`
