@@ -1,0 +1,3 @@
+@echo off
+REM use this script to quickly match one source file, just drag it on this CMD file...
+C:\usr\local\sce\ee\gcc\bin\ee-gcc.exe -IC:\usr\local\sce\common\include -IC:\usr\local\sce\ee\gcc\include\g++-2 -g -O2 -x c++ -c %1 -o temp\%1.o

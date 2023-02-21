@@ -1,0 +1,3 @@
+Useful tips when decompiling with Ghidra:
+- Never, ever use floating-point numbers without the 'f' as it will produce a code that is more than twice as bigger.
+  (example: write 1.0f, not 1.0 like Ghidra's decompiler likes to output)
