@@ -1,35 +1,66 @@
 #pragma once
-#include <stdint.h>
+#include <iostream>
+typedef unsigned int uint;
+
+// KEEP THIS FILE JUST INCASE 
 
 struct FCL
 {
-    uint32_t isector; // sector offset
-    uint32_t cb; // size
+    uint isector; // File ISO Sector Offset.
+    uint cb; // File Size.
+};
+
+// File Type
+enum FK {
+    FK_Nil = -1,
+    FK_BrxWorld = 0, // Level File
+    FK_IcoIcon = 1, // Icon File
+    FK_BnkEffects = 2, // Sound Effect File
+    FK_BnkMusic = 3, // Music File
+    FK_VagDialog = 4, // Dialog File
+    FK_VagAnimation = 5,
+    FK_PssMovie = 6, // Video File
+    FK_Max = 7
+};
+
+struct WALE {
+    char* pchzKey; // File Name used for searching for file to load
+    struct FCL* pfcl; // File location and size.
 };
 
 class CFileLocation
 {
 public:
-    FCL m_fcl; // sector and size information
+    FCL m_fcl; // Sector and Size information
 
-    void Clear();
+    void Clear();  // Clear file information.
 };
 
-// todo: rewrite class (or remove it?)
-class CWalCatalog
+class CWalCatalog // This is the class that handles the WAC and WAL file
 {
 public:
-    uint32_t wac_sector_offset;
-    uint32_t wac_size;
-    uint32_t wal_sector_offset;
-    uint32_t wal_size;
-    uint32_t wac_file_count;
-    char file_version;
-    uint32_t unk_2;
-    uint32_t wac_file_names;
-    char** unk_3;
-    uint32_t unk_4;
+    CFileLocation m_flWac; // WAC ISO File Location and Size.
+    CFileLocation m_flWal; // WAL ISO File Location and Size.
+    char   m_ab[16384]; // Ptr to WAC Buffer.
+    int    m_brxv; // WAC File Count.
+    int    m_cpchz; // Number of levels in WAC File.
+    int    m_cwale;
+    char*  m_apchz[64]; // Buffer used to reference file names in WAC.
+    WALE   m_awale[1024]; // This is used to search and reference files in WAC.
 
-    void Init(CFileLocation* pflWac, CFileLocation* pflWal);
+    void Init(CFileLocation* pflWac, CFileLocation* pflWal); // Stores WAC and WAL size and iso sector location.
+    int  FFindFile(char* pchzKey, FK fk, CFileLocation* pflResult); // Finding a file in the WAC and WAL Files.
+    int  FDefaultWorld(char* pchzResult, CFileLocation* pflResult); // Loads the splash video file and sound files and starting world which is paris.
+    void BuildFl(WALE* pwale, CFileLocation* pflResult); // Load up file info from WAC.
     void Reload(); // todo
+};
+
+class CCatalog
+{
+public:
+    CWalCatalog m_wcatCd;
+
+    void Init();
+    int  FFindFile(char* pchzKey, FK fk, CFileLocation* pflResult);
+    int  FDefaultWorld(char* pchzResult, CFileLocation* pflResult);
 };

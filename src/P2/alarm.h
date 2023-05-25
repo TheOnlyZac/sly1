@@ -102,4 +102,4 @@ void SetAlarmAlarms(ALARM* palarm, ALARMS alarms);
 uint32_t SetAlarmRsmg(ALARM* palarm, int param_2, OID param_3, OID param_4, OID param_5);
 void SetAlbrkAlarm(ALBRK* palarm, ALARM* param_2);
 void TriggerAlarm(ALARM* palarm, ALTK atlk);
-void UpdateAlarm(ALARM* palarm, Entity* param_2);
+//void UpdateAlarm(ALARM* palarm, Entity* param_2);

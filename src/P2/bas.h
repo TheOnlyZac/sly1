@@ -4,6 +4,7 @@
 
 enum class BASK : int
 {
+    Nil = -1,
     Cd = 1,
     Host = 0,
     Max = 2

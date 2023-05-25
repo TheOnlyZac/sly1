@@ -1,6 +1,10 @@
 #pragma once
 #include <bis.h>
 #include <bq.h>
+#include <clock.h>
+#include <cat.h>
+#include <gs.h>
+#include <joy.h>
 #include <difficulty.h>
 #include <game.h>
 #include <iostream>

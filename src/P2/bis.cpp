@@ -1,255 +1,325 @@
 #include <bis.h>
 
-uint32_t CBinaryInputStream::FOpenSector(uint32_t isector, uint32_t cb)
+CBinaryInputStream::CBinaryInputStream(std::string fileName)
+{
+    file.open(fileName, std::ios::binary);
+}
+
+int CBinaryInputStream::FOpenFile(CFileLocation* pfl)
+{
+    int isFileOpen = 0;
+
+    if (g_fCdAvailable != 0)
+        isFileOpen = FOpenSector(pfl->m_fcl.isector, pfl->m_fcl.cb);
+
+    return isFileOpen;
+}
+
+int CBinaryInputStream::FOpenSector(uint32_t isector, uint32_t cb)
 {
     int iVar1;
     int iVar2;
-
-    if (g_fCdAvailable == 0)
-    {
+    
+    if (g_fCdAvailable == 0) 
         return 0;
-    }
 
-    iVar2 = this->field_0xc;
-    this->field_0x4 = 1;
-    this->sector_offset = isector;
-    this->field_0x4c = cb;
-    //this->ptr_data_origin = this->field_0x8;
-    this->size = cb;
-    this->size_2 = cb;
-    this->field_0x44 = 0;
-    this->field_0x50 = 0;
-    this->lsn_to_read = 0;
-    if (iVar2 < 0)
-    {
+    iVar2 = m_cbSpool;
+    m_bisk = BISK::Cd;
+    m_isector = isector;
+    m_cbAsyncRemaining = cb;
+    m_pbRaw = m_abSpool;
+    m_cbFile = cb;
+    m_cbRemaining = cb;
+    m_cbAsyncComplete = 0;
+    m_cbPartialRead = 0;
+    m_cbAsyncRequest = 0;
+
+    if (iVar2 < 0) 
         iVar2 = iVar2 + 0xfffff;
-    }
-    this->field_0x5c = 0;
+    
+    m_cbufFill = 0;
     iVar1 = 2;
-    if (2 < iVar2 >> 0x14)
-    {
+    
+    if (2 < iVar2 >> 0x14) 
         iVar1 = iVar2 >> 0x14;
-    }
-    this->field_0x60 = 0;
-    this->field_0x58 = iVar1;
-    this->field_0x64 = (iVar1 + -1);
+    
+    m_ibufMic = 0;
+    m_cbuf = iVar1;
+    m_ibufMac = iVar1 + -1;
     return 1;
 }
 
 void CBinaryInputStream::OpenMemory(int cb, void* pv)
 {
-    this->stream_size = cb;
-    this->field_0x4 = 2;
-    //this->stream_pos = pv;
-}
-
-void CBinaryInputStream::Close()
-{
-    if (this->field_0x4 == 0)
-    {
-        if (-1 < (long)*(int*)&this->sector_size)
-        {
-            //sceClose((long)*(int*)&this->sector_size);
-        }
-    }
-    else
-    {
-        if (this->field_0x4 != 1)
-        {
-            this->size_of_70002000_segment = 0;
-            //goto LAB_0013a694;
-        }
-        if (this->lsn_to_read != 0)
-        {
-            if ((this->field_0x0 & 2) == 0)
-            {
-                //snd_StreamSafeCdBreak();
-            }
-            else {
-                //sceCdBreak();
-            }
-        }
-    }
-    this->size_of_70002000_segment = 0;
-    this->field_0x4 = -1;
-    this->ptr_data_origin = (byte*)0x0;
-    this->stream_pos = 0x0;
-    this->size_3 = 0;
-    this->stream_size = 0;
-    this->flags = 0;
+    m_cb = cb;
+    m_bisk = BISK::Mem;
+    m_pb = (byte*)pv;
 }
 
 void CBinaryInputStream::DecrementCdReadLimit(int cb)
 {
-    this->field_0x4c = this->field_0x4c - cb;
+    m_cbAsyncRemaining = m_cbAsyncRemaining - cb;
 }
 
-void CBinaryInputStream::Read(int cb, uint64_t pv)
+void CBinaryInputStream::Read(int cb, void *pv)
 {
-    uint32_t uVar2;
+    uint32_t uVar1;
+    uint32_t cb_00;
+    
+    if ((-1 < m_cb) && (0 < cb)) {
 
-    if (this->stream_size > 0 && cb > 0)
-    {
-        do
+        for (int i = 0; i < cb; i++)
         {
-            uint32_t size = this->stream_size;
-            if (size == 0)
-            {
-                if ((this->field_0x0 & 4) == 0)
-                {
-                    //Pump(this);
-                    this->stream_size = this->size_3;
-                    //this->stream_pos = this->ptr_data_origin;
-                    this->ptr_data_origin = this->ptr_data_origin + this->size_3;
-                    this->size_3 = 0;
-                    size = this->stream_size;
+            uVar1 = m_cb;
+            if (uVar1 == 0) {
+                if ((m_grfbis & 4U) == 0) {
+                    //Pump();
+                    m_cb = m_cbRaw;
+                    m_pb = m_pbRaw;
+                    m_pbRaw = m_pbRaw + m_cbRaw;
+                    m_cbRaw = 0;
+                    uVar1 = m_cb;
                 }
-                else
-                {
-                    //Decompress(this);
-                    size = this->stream_size;
+                else {
+                    //Decompress();
+                    uVar1 = m_cb;
                 }
-                if (size == 0)
-                {
-                    this->stream_size = 0xffffffff;
+                if (uVar1 == 0) {
+                    m_cb = -1;
                     return;
                 }
             }
-            uVar2 = cb;
-            if ((int)size <= cb)
-            {
-                uVar2 = size;
+            cb_00 = cb;
+            if ((int)uVar1 <= cb) {
+                cb_00 = uVar1;
             }
-            if (pv != 0x0)
-            {
-                //CopyAb(pv, this->stream_pos, uVar2);
-                pv = pv + uVar2;
+            if (pv != 0x0) {
+                // CopyAb(pv, m_pb, cb_00);
+                pv = (void*)((int)pv + cb_00);
             }
-            cb = cb - uVar2;
-            this->stream_pos = this->stream_pos + uVar2;
-            this->stream_size = this->stream_size - uVar2;
-        } while (0 < cb);
+
+            m_pb = m_pb + cb_00;
+            m_cb = m_cb - cb_00;
+        }
     }
+}
+
+void CBinaryInputStream::Read_Modified(int cb, void* pv)
+{
+
 }
 
 void CBinaryInputStream::Align(int n)
 {
-    uint32_t stream_pos = this->stream_pos;
-    uint32_t size = stream_pos + n + -1 & -n; // todo: there must be missing parenthesis
-    this->stream_size = size;
-    this->stream_pos = this->stream_pos - size - stream_pos;
+    byte* puVar1;
+    byte* puVar2;
+
+    puVar1 = m_pb;
+    puVar2 = (byte*)((uint32_t)(puVar1 + n + -1) & -n);
+    m_pb = puVar2;
+    m_cb = m_cb - ((int)puVar2 - (int)puVar1);
+}
+
+void CBinaryInputStream::Align_Modified(int n)
+{
+    std::streamoff pos = file.tellg();
+
+    if (pos % n != 0)
+        pos += (uint32_t)(n - (pos % n));
+
+    file.seekg(pos, SEEK_SET);
 }
 
 byte CBinaryInputStream::U8Read()
 {
     byte value{};
-    if (this->stream_size < 1)
-    {
-        Read(1, value);
+
+    if (m_cb < 1)
+        Read(1, &value);
+    
+    else {
+        value = *m_pb;
+        m_cb = m_cb + -1;
+        m_pb = m_pb + 1;
     }
-    else
-    {
-        value = this->stream_pos;
-        this->stream_size -= 1;
-        this->stream_pos += 1;
-    }
+
     return value;
+}
+
+byte CBinaryInputStream::U8Read_Modified()
+{
+    byte temp;
+    file.read(reinterpret_cast<char*> (&temp), sizeof(byte));
+    return temp;
 }
 
 uint16_t CBinaryInputStream::U16Read()
 {
     uint16_t value{};
-    if (this->stream_size < 2)
-    {
-        Read(2, value);
-    }
-    else
-    {
-        value = this->stream_pos;
-        this->stream_size -= 2;
-        this->stream_pos += 2;
+
+    if (m_cb < 2) 
+        Read(2, &value);
+    
+    else {
+        value = *(uint16_t*)m_pb;
+        m_cb = m_cb + -2;
+        m_pb = (byte*)((int)m_pb + 2);
     }
     return value;
 }
 
+uint16_t CBinaryInputStream::U16Read_Modified()
+{
+    uint16_t temp;
+    file.read(reinterpret_cast<char*> (&temp), sizeof(uint16_t));
+    return temp;
+}
+
 uint32_t CBinaryInputStream::U32Read()
 {
+    byte bVar1;
+    byte bVar2;
+    byte bVar3;
+    byte bVar4;
+    byte* pbVar5;
+
     uint32_t value{};
-    if (this->stream_size < 4)
-    {
-        Read(4, value);
-    }
-    else
-    {
-        value = this->stream_pos;
-        this->stream_size -= 4;
-        this->stream_pos += 4;
+    if (m_cb < 4) 
+        Read(4, &value);
+    
+    else {
+        pbVar5 = m_pb;
+        bVar1 = pbVar5[1];
+        bVar2 = *pbVar5;
+        bVar3 = pbVar5[2];
+        bVar4 = pbVar5[3];
+        m_cb = m_cb + -4;
+        m_pb = pbVar5 + 4;
+        value = (uint32_t)bVar2 + (uint32_t)bVar1 * 0x100 + (uint32_t)bVar3 * 0x10000 + (uint32_t)bVar4 * 0x1000000;
     }
     return value;
+}
+
+uint32_t CBinaryInputStream::U32Read_Modified()
+{
+    uint32_t temp;
+    file.read(reinterpret_cast<char*> (&temp), sizeof(uint32_t));
+    return temp;
 }
 
 int8_t CBinaryInputStream::S8Read()
 {
     int8_t value{};
-    if (this->stream_size < 1)
-    {
-        Read(1, value);
-    }
-    else
-    {
-        value = this->stream_pos;
-        this->stream_size -= 1;
-        this->stream_pos += 1;
+
+    if (m_cb < 1) 
+        Read(1, &value);
+    
+    else {
+        value = *m_pb;
+        m_cb = m_cb + -1;
+        m_pb = m_pb + 1;
     }
     return value;
+}
+
+int8_t CBinaryInputStream::S8Read_Modified()
+{
+    int8_t temp;
+    file.read(reinterpret_cast<char*> (&temp), sizeof(int8_t));
+    return temp;
 }
 
 int16_t CBinaryInputStream::S16Read()
 {
+    byte bVar1;
+    byte bVar2;
+    byte* pbVar3;
     int16_t value{};
-    if (this->stream_size < 2)
-    {
-        Read(2, value);
+
+    if (m_cb < 2) {
+        Read(2, &value);
     }
-    else
-    {
-        value = this->stream_pos;
-        this->stream_size -= 2;
-        this->stream_pos += 2;
+    else {
+        pbVar3 = m_pb;
+        bVar1 = pbVar3[1];
+        bVar2 = *pbVar3;
+        m_cb = m_cb + -2;
+        m_pb = pbVar3 + 2;
+        value = (uint16_t)bVar2 | (uint16_t)(((uint32_t)bVar1 << 0x18) >> 0x10);
     }
     return value;
+}
+
+int16_t CBinaryInputStream::S16Read_Modified()
+{
+    int16_t temp;
+    file.read(reinterpret_cast<char*> (&temp), sizeof(int16_t));
+    return temp;
 }
 
 int32_t CBinaryInputStream::S32Read()
 {
+    byte bVar1;
+    byte bVar2;
+    byte bVar3;
+    byte bVar4;
+    byte* pbVar5;
     int32_t value{};
-    if (this->stream_size < 4)
-    {
-        Read(4, value);
-    }
-    else
-    {
-        value = this->stream_pos;
-        this->stream_size -= 4;
-        this->stream_pos += 4;
+
+    if (m_cb < 4) 
+        Read(4, &value);
+    
+    else {
+        pbVar5 = m_pb;
+        bVar2 = pbVar5[1];
+        bVar3 = *pbVar5;
+        bVar4 = pbVar5[2];
+        bVar1 = pbVar5[3];
+        m_cb = m_cb + -4;
+        m_pb = pbVar5 + 4;
+        value = (uint32_t)bVar3 + (uint32_t)bVar2 * 0x100 + (uint32_t)bVar4 * 0x10000 + (char)bVar1 * 0x1000000;
     }
     return value;
 }
 
+int32_t CBinaryInputStream::S32Read_Modified()
+{
+    int32_t temp;
+    file.read(reinterpret_cast<char*> (&temp), sizeof(int32_t));
+    return temp;
+}
+
 float CBinaryInputStream::F32Read()
 {
+    byte bVar1;
+    byte bVar2;
+    byte bVar3;
+    byte bVar4;
+    byte* pbVar5;
     float value{};
-    if (this->stream_size < 4)
-    {
-        Read(4, value);
-    }
-    else
-    {
-        value = this->stream_pos;
-        this->stream_size -= 4;
-        this->stream_pos += 4;
+
+    if (m_cb < 4) 
+        Read(4, &value);
+    
+    else {
+        pbVar5 = m_pb;
+        bVar1 = pbVar5[1];
+        bVar2 = *pbVar5;
+        bVar3 = pbVar5[2];
+        bVar4 = pbVar5[3];
+        m_cb = m_cb + -4;
+        value = (float)((uint32_t)bVar2 + (uint32_t)bVar1 * 0x100 + (uint32_t)bVar3 * 0x10000 + (uint32_t)bVar4 * 0x1000000)
+            ;
+        m_pb = pbVar5 + 4;
     }
     return value;
+}
+
+float CBinaryInputStream::F32Read_Modified()
+{
+    float temp;
+    file.read(reinterpret_cast<char*> (&temp), sizeof(float));
+    return temp;
 }
 
 void CBinaryInputStream::ReadStringSw(char** pachz)
@@ -259,4 +329,54 @@ void CBinaryInputStream::ReadStringSw(char** pachz)
     //Read(string_count, dst1);
     //dst1[string_count] = '\0';
     //*pachz = dst1;
+}
+
+void CBinaryInputStream::Close()
+{
+    if (m_bisk == BISK::Host) {
+        if (-1 < m_fd) {
+            //sceClose();
+        }
+    }
+    else {
+        if (m_bisk != BISK::Cd) {
+            m_cbSpillOver = 0;
+            m_bisk = BISK::Nil;
+            m_pbRaw = 0x0;
+            m_pb = 0x0;
+            m_cbRaw = 0;
+            m_cb = 0;
+            m_grfDecomp = 0;
+            return;
+        }
+        if (m_cbAsyncRequest != 0) {
+            if ((m_grfbis & 2U) == 0) {
+                //snd_StreamSafeCdBreak();
+            }
+            else {
+                //sceCdBreak();
+            }
+        }
+    }
+
+    m_cbSpillOver = 0;
+    m_bisk = BISK::Nil;
+    m_pbRaw = 0x0;
+    m_pb = 0x0;
+    m_cbRaw = 0;
+    m_cb = 0;
+    m_grfDecomp = 0;
+    return;
+}
+
+void CBinaryInputStream::Close_Modified()
+{
+    file.clear();
+    file.close();
+}
+
+CBinaryInputStream::~CBinaryInputStream()
+{
+    Close();
+    Close_Modified();
 }

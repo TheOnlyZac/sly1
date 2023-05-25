@@ -14,7 +14,7 @@ enum PadButtons
     PAD_L2 = 1,
     PAD_L3 = 512,
     PAD_LEFT_ARROW = 32768,
-    _NOT_PRESSED = 0,
+    NOT_PRESSED = 0,
     PAD_SELECT = 256,
     PAD_CIRCLE = 32,
     PAD_R1 = 8,
@@ -176,4 +176,5 @@ void InitRumble(RUMBLE* prumble, int nPort, int nSlot);
 
 void UpdateCodes();
 void AddFcht(int nParam);
+void AddGrfusr(int mask);
 void CheatActivateChetkido();

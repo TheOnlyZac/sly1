@@ -390,74 +390,74 @@ void TriggerAlarm(ALARM* palarm, ALTK atlk)
     return;
 }
 
-void UpdateAlarm(ALARM* param_1, Entity* param_2)
-{
-    //LinkedListNode* lst_head;
-    int iVar1;
-    OID** ppOVar2;
-    int iVar3;
-
-    //UpdateSo();
-    if (*(int*)&param_2->field_0x550 == 2) 
-    {
-        if (*(float*)&param_2->field_0x560 == 0.0) 
-        {
-            iVar1 = *(int*)&param_2->field_0x564;
-        }
-        else 
-        {
-            if (*(float*)&param_2->field_0x560 < g_clock.t - *(float*)&param_2->field_0x554) 
-            {
-                SetAlarmAlarms((ALARM*)param_2, ALARMS::Enabled);
-                return;
-            }
-            iVar1 = *(int*)&param_2->field_0x564;
-        }
-    }
-    else 
-    {
-        iVar1 = *(int*)&param_2->field_0x564;
-    }
-    if (iVar1 < 1) 
-    {
-        iVar3 = *(int*)&param_2->field_0x550;
-    }
-    else 
-    {
-        if (*(int*)&param_2->field_0x61c == iVar1) 
-        {
-            SetAlarmAlarms((ALARM*)param_2, ALARMS::Disabled);
-            return;
-        }
-        iVar3 = *(int*)&param_2->field_0x550;
-    }
-    //if (((iVar3 == 2) && (g_pjt->state == JTS_Celebrate)) && (iVar3 = 0, 0 < iVar1)) 
-    {
-        ppOVar2 = (OID**)&param_2->field_0x568;
-        do 
-        {
-            //lst_head = (LinkedListNode*) PloFindSwObject(param_2->entity_list_pointer, 0x104, *ppOVar2, param_2);
-
-            //if (lst_head == (LinkedListNode*)0x0) 
-            {
-                iVar1 = *(int*)&param_2->field_0x564;
-            }
-            //else 
-            {
-                //iVar1 = FIsBasicDerivedFrom(lst_head, 0x22);
-                if (iVar1 == 0) 
-                {
-                    iVar1 = *(int*)&param_2->field_0x564;
-                }
-                else 
-                {
-                    //(*(code*)lst_head->next[0x26].next)(lst_head); //GOTTA COME BACK TO THIS
-                    iVar1 = *(int*)&param_2->field_0x564;
-                }
-            }
-            iVar3 = iVar3 + 1;
-            ppOVar2 = ppOVar2 + 1;
-        } while (iVar3 < iVar1);
-    }
-    return;
-}
+//void UpdateAlarm(ALARM* param_1, Entity* param_2)
+//{
+//    //LinkedListNode* lst_head;
+//    int iVar1;
+//    OID** ppOVar2;
+//    int iVar3;
+//
+//    //UpdateSo();
+//    if (*(int*)&param_2->field_0x550 == 2) 
+//    {
+//        if (*(float*)&param_2->field_0x560 == 0.0) 
+//        {
+//            iVar1 = *(int*)&param_2->field_0x564;
+//        }
+//        else 
+//        {
+//            if (*(float*)&param_2->field_0x560 < g_clock.t - *(float*)&param_2->field_0x554) 
+//            {
+//                SetAlarmAlarms((ALARM*)param_2, ALARMS::Enabled);
+//                return;
+//            }
+//            iVar1 = *(int*)&param_2->field_0x564;
+//        }
+//    }
+//    else 
+//    {
+//        iVar1 = *(int*)&param_2->field_0x564;
+//    }
+//    if (iVar1 < 1) 
+//    {
+//        iVar3 = *(int*)&param_2->field_0x550;
+//    }
+//    else 
+//    {
+//        if (*(int*)&param_2->field_0x61c == iVar1) 
+//        {
+//            SetAlarmAlarms((ALARM*)param_2, ALARMS::Disabled);
+//            return;
+//        }
+//        iVar3 = *(int*)&param_2->field_0x550;
+//    }
+//    //if (((iVar3 == 2) && (g_pjt->state == JTS_Celebrate)) && (iVar3 = 0, 0 < iVar1)) 
+//    {
+//        ppOVar2 = (OID**)&param_2->field_0x568;
+//        do 
+//        {
+//            //lst_head = (LinkedListNode*) PloFindSwObject(param_2->entity_list_pointer, 0x104, *ppOVar2, param_2);
+//
+//            //if (lst_head == (LinkedListNode*)0x0) 
+//            {
+//                iVar1 = *(int*)&param_2->field_0x564;
+//            }
+//            //else 
+//            {
+//                //iVar1 = FIsBasicDerivedFrom(lst_head, 0x22);
+//                if (iVar1 == 0) 
+//                {
+//                    iVar1 = *(int*)&param_2->field_0x564;
+//                }
+//                else 
+//                {
+//                    //(*(code*)lst_head->next[0x26].next)(lst_head); //GOTTA COME BACK TO THIS
+//                    iVar1 = *(int*)&param_2->field_0x564;
+//                }
+//            }
+//            iVar3 = iVar3 + 1;
+//            ppOVar2 = ppOVar2 + 1;
+//        } while (iVar3 < iVar1);
+//    }
+//    return;
+//}

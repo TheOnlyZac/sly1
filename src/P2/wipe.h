@@ -53,4 +53,4 @@ void DrawWipe(WIPE* pwipe);
 void UpdateWipe(WIPE* pwipe, JOY* pjoy);
 void InitWipe(WIPE* pwipe);
 void SetWipeButtonTrans(WIPE* param_1, TRANS* param_2, WIPEK param_3);
-int FCatchWipeButtonTrans(WIPE* pwipe, JOY* pjoy, WIPES wipesNew);
+int  FCatchWipeButtonTrans(WIPE* pwipe, JOY* pjoy, WIPES wipesNew);

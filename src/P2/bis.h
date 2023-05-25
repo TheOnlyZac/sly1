@@ -1,57 +1,82 @@
 #pragma once
 #include <bas.h>
+#include <cat.h>
 #include <prog.h>
 #include <iostream>
+#include <fstream>
 #include <stdint.h>
 
 typedef unsigned char byte;
 
-// todo: rewrite class with correct fields and types
+// Types of binary stream to open up
+enum class BISK : int{
+    Nil = -1,
+    Host = 0,
+    Cd = 1,
+    Mem = 2,
+    Max = 3
+};
+
 class CBinaryInputStream
 {
 public:
-    uint32_t field_0x0;
-    int field_0x4;
-    int field_0x8;
-    int field_0xc;
-    uint32_t size;
-    uint32_t size_2;
-    uint32_t stream_pos;
-    int stream_size;
-    BYTE* ptr_data_origin;
-    uint32_t size_3;
-    uint32_t flags;
-    BYTE* size_of_70002000_segment;
-    int* level_id;
-    int field_0x34;
-    int field_0x38;
-    uint32_t field_0x3c;
-    int sector_size;
-    int field_0x44;
-    uint32_t lsn_to_read;
-    uint32_t field_0x4c;
-    BYTE* field_0x50;
-    uint32_t sector_offset;
-    uint32_t field_0x58;
-    uint32_t field_0x5c;
-    uint32_t field_0x60;
-    uint32_t field_0x64;
+    int m_grfbis;
+    enum BISK m_bisk;
+    byte* m_abSpool;
+    int m_cbSpool;
+    int m_cbFile;
+    int m_cbRemaining; /* File Stream Remaining Bytes. */
+    byte* m_pb; /* File Stream Position */
+    int m_cb; /* File Stream Size */
+    byte* m_pbRaw;
+    int m_cbRaw;
+    int m_grfDecomp;
+    int m_cbSpillOver;
+    struct CProg* m_pprog;
+    uint64_t m_tickWait;
+    int m_fd;
+    int m_cbAsyncComplete;
+    int m_cbAsyncRequest;
+    int m_cbAsyncRemaining;
+    int m_cbPartialRead;
+    uint32_t m_isector; /* Sector Offset in ISO */
+    int m_cbuf;
+    int m_cbufFill;
+    int m_ibufMic;
+    int m_ibufMac;
 
-    uint32_t FOpenSector(uint32_t isector, uint32_t cb);
+    std::ifstream file; /* WE NEED THIS TO LOAD FILES */
+
+    CBinaryInputStream(std::string fileName); // Used for file object
+
+    int  FOpenFile(CFileLocation* pfl);
+    int  FOpenSector(uint32_t isector, uint32_t cb); 
     void OpenMemory(int cb, void* pv);
-    void Close();
     void DecrementCdReadLimit(int cb);
-    void Read(int cb, uint64_t pv); // todo: verify param types
-    void Align(int n);
-    byte U8Read();
-    uint16_t U16Read();
-    uint32_t U32Read();
-    int8_t S8Read();
-    int16_t S16Read();
-    int32_t S32Read();
-    float F32Read();
-    void ReadStringSw(char** pachz);
-};
 
+    void Read(int cb, void *pv);
+    void Read_Modified(int cb, void* pv); // Used for file object
+    void Align(int n);
+    void Align_Modified(int n); // Used for file object
+    byte U8Read();
+    byte U8Read_Modified(); // Used for file object
+    uint16_t U16Read();
+    uint16_t U16Read_Modified(); // Used for file object
+    uint32_t U32Read();
+    uint32_t U32Read_Modified(); // Used for file object
+    int8_t S8Read();
+    int8_t S8Read_Modified(); // Used for file object
+    int16_t S16Read();
+    int16_t S16Read_Modified(); // Used for file object
+    int32_t S32Read();
+    int32_t S32Read_Modified(); // Used for file object
+    float F32Read();
+    float F32Read_Modified(); // Used for file object
+    void ReadStringSw(char** pachz);
+    void Close();
+    void Close_Modified(); // Used for file object
+
+    ~CBinaryInputStream();
+};
 
 static uint32_t g_fCdAvailable;

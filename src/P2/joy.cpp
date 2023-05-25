@@ -155,6 +155,11 @@ void AddFcht(int nParam)
 	}
 }
 
+void AddGrfusr(int mask)
+{
+
+}
+
 /* Decrypt the chetkido string and output the hidden message */
 void CheatActivateChetkido()
 {

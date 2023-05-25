@@ -1,9 +1,4 @@
-#include <cat.h>
-#include <clock.h>
-#include <gs.h>
-#include <joy.h>
 #include <mpeg.h>
-#include <cstdint>
 
 unsigned int g_phasemem{}; // todo: what data type is this
 
@@ -128,4 +123,19 @@ void CMpeg::Execute(OID* oid)
     // Clear the game phase (bas is destroyed automatically)
     /* todo: define function
     ClearPhase(PHASE::Mpeg); */
+}
+
+void CMpeg::Start()
+{
+
+}
+
+void CMpeg::Update()
+{
+
+}
+
+void CMpeg::Finish()
+{
+
 }

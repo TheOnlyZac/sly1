@@ -35,6 +35,11 @@ void ClearLs(LS* pls)
 	memset(pls, 0, sizeof(LS));
 }
 
+void SetupGame(char* pchzWorld, int grftrans)
+{
+
+}
+
 void RetryGame(void)
 {
 	GS* gsCur = g_pgsCur;

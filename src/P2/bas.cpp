@@ -1,17 +1,34 @@
 #include <bas.h>
-#include <cstddef>
-#include <cstdint>
 
 CBinaryAsyncStream::CBinaryAsyncStream(void* pvSpool)
 {
-    this->m_isector = 0;
-    this->m_abSpool = (BYTE*)((intptr_t)pvSpool + 0x3fU & 0xffffffc0);
-    this->m_fd = -1;
-    this->m_pbSpooling = NULL;
-    this->m_pb = NULL;
-    this->m_cbFile = 0;
-    this->m_cbUnspooled = 0;
-    this->m_cbSpooling = 0;
-    this->m_ibCur = 0;
-    this->m_cb = 0;
+    m_isector = 0;
+    m_abSpool = (BYTE*)((intptr_t)pvSpool + 0x3fU & 0xffffffc0);
+    m_fd = -1;
+    m_pbSpooling = NULL;
+    m_pb = NULL;
+    m_cbFile = 0;
+    m_cbUnspooled = 0;
+    m_cbSpooling = 0;
+    m_ibCur = 0;
+    m_cb = 0;
+}
+
+void CBinaryAsyncStream::Close()
+{
+    if (m_bask == BASK::Host) {
+        if (-1 < m_fd) {
+            //sceClose();
+        }
+        m_fd = -1;
+    }
+    else if (m_bask == BASK::Cd) {
+        m_isector = 0;
+    }
+    m_bask = BASK::Nil;
+}
+
+CBinaryAsyncStream::~CBinaryAsyncStream()
+{
+    Close();
 }
