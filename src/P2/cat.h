@@ -1,8 +1,7 @@
 #pragma once
 #include <iostream>
-typedef unsigned int uint;
 
-// KEEP THIS FILE JUST INCASE 
+typedef unsigned int uint;
 
 struct FCL
 {

@@ -13,11 +13,11 @@
 /* Mpeg Audio State */
 enum class MAUDS : int
 {
+    Dead = 0,
     FillPreface = 1,
     FillIop = 2,
-    Dead = 0,
-    Pmaudse = 4,
     Play = 3,
+    Pmaudse = 4,
     Max = 5
 };
 
