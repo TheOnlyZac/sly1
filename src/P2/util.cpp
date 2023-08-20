@@ -1,9 +1,8 @@
-#include <util.h>
-
+#include "util.h"
 #include <math.h>
-#include <stdlib.h>
 
 static constexpr float PI = 3.141593;
+static constexpr LM g_lmZeroOne(0, 1);
 
 float RadNormalize(float rad)
 {
@@ -51,6 +50,35 @@ float GRandInRange(float gLow, float gHigh)
 	return gLow;
 }
 
+//return a random number from the Gaussian distribution
+float GRandGaussian(float param_1, float param_2, float param_3)
+{
+	float fVar1;
+	float fVar2;
+	float fVar3;
+	float fVar4;
+
+	fVar3 = -1.0f;
+	fVar4 = 0.0f;
+	do {
+		do {
+			fVar1 = (float)GRandInRange(fVar3, 1.0f);
+			fVar2 = (float)GRandInRange(fVar3, 1.0f);
+			fVar1 = fVar1 * fVar1 + fVar2 * fVar2;
+		} while (1.0f < fVar1);
+	} while (fVar1 == fVar4);
+	fVar3 = logf(fVar1);
+	fVar4 = param_1 + param_2 * fVar2 * sqrtf((fVar3 * -2.0f) / fVar1);
+	fVar3 = fVar4;
+	if (param_3 != 0.0f)
+	{
+		fVar3 = param_1 - param_3;
+		if ((param_1 - param_3 <= fVar4) && (fVar3 = fVar4, param_1 + param_3 < fVar4))
+			fVar3 = param_1 + param_3;
+	}
+	return fVar3;
+}
+
 /* Compares two floats and returns true if they are within a certain epsilon of each other */
 BOOL FFloatsNear(float g1, float g2, float gEpsilon)
 
@@ -85,6 +113,91 @@ int CSolveQuadratic(float a, float b, float c, float* ax)
 	return 2; // two solutions: (-b � radical) / 2a
 }
 
+//TODO: PrescaleClq
+
+//return the sine and cosine of the given angle
+void CalculateSinCos(float angle, float *sin, float *cos)
+{
+	uint uVar1;
+	float fVar2;
+	float fVar3;
+	float fVar4;
+	float fVar5;
+
+	fVar2 = (angle + PI/2) * 0.3183099;
+	uVar1 = (uint)fVar2;
+	if (fVar2 < 0.0)
+		uVar1 = uVar1 - 1;
+	fVar2 = angle - (float)uVar1 * PI;
+	if ((uVar1 & 1) != 0)
+		fVar2 = -fVar2;
+	fVar3 = fVar2 * fVar2;
+	fVar4 = fVar2 * fVar3 * fVar3;
+	fVar5 = fVar4 * fVar3;
+	fVar3 = fVar2 +
+		fVar2 * fVar3 * -0.1666666 +
+		fVar4 * 0.008333026 +
+		fVar5 * -0.0001980741 +
+		fVar5 * fVar3 * 2.601887e-06;
+
+	fVar2 = sqrtf(1.0 - fVar3 * fVar3);
+	if ((uVar1 & 1) != 0)
+		fVar2 = -fVar2;
+
+	*cos = fVar2;
+	*sin = fVar3;
+}
+
+double GTrunc(double param_1)
+{
+	ulong uVar1;
+	ulong uVar2;
+	int iVar3;
+
+	iVar3 = ((uint)((ulong)param_1 >> 0x34) & 0x7ff) - 0x3ff;
+	if (iVar3 < 0)
+		param_1 = 0.0;
+	else
+	{
+		if (iVar3 < 0x34)
+		{
+			uVar2 = (ulong)param_1 & 0xfffffffffffff;
+			uVar1 = (1 << (long)(0x34 - iVar3)) - 1;
+			if ((uVar2 & uVar1) == uVar1)
+				param_1 = (double)((ulong)param_1 & 0xfff0000000000000 | uVar2 & ~uVar1) + 1.0;
+			else
+				param_1 = (double)((ulong)param_1 & 0xfff0000000000000 | uVar2 & ~uVar1);
+		}
+	}
+	return param_1;
+}
+
+float GTrunc(float param_1)
+{
+	uint uVar1;
+	int iVar2;
+	uint uVar3;
+	ulong local_10;
+
+	local_10 = (ulong)(uint)param_1;
+	iVar2 = ((uint)((local_10 << 9) >> 0x20) & 0xff) - 0x7f;
+	if (iVar2 < 0)
+		param_1 = 0.0;
+	else
+	{
+		if (iVar2 < 0x17)
+		{
+			uVar1 = (int)(1 << (long)(0x17 - iVar2)) - 1;
+			uVar3 = (uint)param_1 & 0x7fffff;
+			if ((uVar3 & uVar1) == uVar1)
+				param_1 = (float)((uint)param_1 & 0xff800000 | uVar3 & ~uVar1) + 1.0f;
+			else
+				param_1 = (float)((uint)param_1 & 0xff800000 | uVar3 & ~uVar1);
+		}
+	}
+	return param_1;
+}
+
 float GModPositive(float gDividend, float gDivisor)
 {
 	float result = fmodf(gDividend, gDivisor);
@@ -94,6 +207,8 @@ float GModPositive(float gDividend, float gDivisor)
 	}
 	return result;
 }
+
+//TODO: FitClq
 
 /* Verify that whether the given float falls within the given limit */
 BOOL FCheckLm(LM* plm, float g)
@@ -140,4 +255,9 @@ int SgnCompareG(float* pg1, float* pg2)
 		result = 0;
 	}
 	return result;
+}
+
+void Force(void *)
+{
+	//this function is empty
 }
