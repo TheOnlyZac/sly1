@@ -19,8 +19,8 @@ int CBinaryInputStream::FOpenSector(uint32_t isector, uint32_t cb)
 {
     int iVar1;
     int iVar2;
-    
-    if (g_fCdAvailable == 0) 
+
+    if (g_fCdAvailable == 0)
         return 0;
 
     iVar2 = m_cbSpool;
@@ -34,15 +34,15 @@ int CBinaryInputStream::FOpenSector(uint32_t isector, uint32_t cb)
     m_cbPartialRead = 0;
     m_cbAsyncRequest = 0;
 
-    if (iVar2 < 0) 
+    if (iVar2 < 0)
         iVar2 = iVar2 + 0xfffff;
-    
+
     m_cbufFill = 0;
     iVar1 = 2;
-    
-    if (2 < iVar2 >> 0x14) 
+
+    if (2 < iVar2 >> 0x14)
         iVar1 = iVar2 >> 0x14;
-    
+
     m_ibufMic = 0;
     m_cbuf = iVar1;
     m_ibufMac = iVar1 + -1;
@@ -65,7 +65,7 @@ void CBinaryInputStream::Read(int cb, void *pv)
 {
     uint32_t uVar1;
     uint32_t cb_00;
-    
+
     if ((-1 < m_cb) && (0 < cb)) {
 
         for (int i = 0; i < cb; i++)
@@ -95,7 +95,7 @@ void CBinaryInputStream::Read(int cb, void *pv)
             }
             if (pv != 0x0) {
                 // CopyAb(pv, m_pb, cb_00);
-                pv = (void*)((int)pv + cb_00);
+                pv = (void *)(pv + cb_00);
             }
 
             m_pb = m_pb + cb_00;
@@ -111,23 +111,23 @@ void CBinaryInputStream::Read_Modified(int cb, void* pv)
 
 void CBinaryInputStream::Align(int n)
 {
-    byte* puVar1;
-    byte* puVar2;
+    byte* pbOld;
+    byte* pbNew;
 
-    puVar1 = m_pb;
-    puVar2 = (byte*)((uint32_t)(puVar1 + n + -1) & -n);
-    m_pb = puVar2;
-    m_cb = m_cb - ((int)puVar2 - (int)puVar1);
+    pbOld = m_pb;
+    pbNew = reinterpret_cast<byte*>((reinterpret_cast<uintptr_t>(pbOld) + n - 1) & -n);
+    m_pb = pbNew;
+    m_cb = m_cb - (pbNew - pbOld);
 }
 
 void CBinaryInputStream::Align_Modified(int n)
 {
-    std::streamoff pos = file.tellg();
+    std::ifstream::pos_type pos = file.tellg();
 
     if (pos % n != 0)
-        pos += (uint32_t)(n - (pos % n));
+        pos += (n - (pos % n));
 
-    file.seekg(pos, SEEK_SET);
+    file.seekg(pos, std::ios_base::beg);
 }
 
 byte CBinaryInputStream::U8Read()
@@ -136,7 +136,7 @@ byte CBinaryInputStream::U8Read()
 
     if (m_cb < 1)
         Read(1, &value);
-    
+
     else {
         value = *m_pb;
         m_cb = m_cb + -1;
@@ -157,13 +157,13 @@ uint16_t CBinaryInputStream::U16Read()
 {
     uint16_t value{};
 
-    if (m_cb < 2) 
+    if (m_cb < 2)
         Read(2, &value);
-    
+
     else {
         value = *(uint16_t*)m_pb;
-        m_cb = m_cb + -2;
-        m_pb = (byte*)((int)m_pb + 2);
+        m_cb = m_cb - 2;
+        m_pb = reinterpret_cast<byte*>(reinterpret_cast<uintptr_t>(m_pb) + 2);
     }
     return value;
 }
@@ -184,9 +184,9 @@ uint32_t CBinaryInputStream::U32Read()
     byte* pbVar5;
 
     uint32_t value{};
-    if (m_cb < 4) 
+    if (m_cb < 4)
         Read(4, &value);
-    
+
     else {
         pbVar5 = m_pb;
         bVar1 = pbVar5[1];
@@ -211,9 +211,9 @@ int8_t CBinaryInputStream::S8Read()
 {
     int8_t value{};
 
-    if (m_cb < 1) 
+    if (m_cb < 1)
         Read(1, &value);
-    
+
     else {
         value = *m_pb;
         m_cb = m_cb + -1;
@@ -266,9 +266,9 @@ int32_t CBinaryInputStream::S32Read()
     byte* pbVar5;
     int32_t value{};
 
-    if (m_cb < 4) 
+    if (m_cb < 4)
         Read(4, &value);
-    
+
     else {
         pbVar5 = m_pb;
         bVar2 = pbVar5[1];
@@ -298,9 +298,9 @@ float CBinaryInputStream::F32Read()
     byte* pbVar5;
     float value{};
 
-    if (m_cb < 4) 
+    if (m_cb < 4)
         Read(4, &value);
-    
+
     else {
         pbVar5 = m_pb;
         bVar1 = pbVar5[1];

@@ -1,4 +1,5 @@
 #include <bas.h>
+#include <cstddef>
 
 CBinaryAsyncStream::CBinaryAsyncStream(void* pvSpool)
 {

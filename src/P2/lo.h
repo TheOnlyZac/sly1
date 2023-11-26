@@ -1,5 +1,6 @@
 #pragma once
 #include <basic.h>
+#include <game.h>
 #include <dl.h>
 
 struct LO {
