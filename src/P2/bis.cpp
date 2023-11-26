@@ -93,9 +93,10 @@ void CBinaryInputStream::Read(int cb, void *pv)
             if ((int)uVar1 <= cb) {
                 cb_00 = uVar1;
             }
-            if (pv != 0x0) {
-                // CopyAb(pv, m_pb, cb_00);
-                pv = (void *)(pv + cb_00);
+            if (pv != nullptr) {
+                byte* pb = reinterpret_cast<byte*>(pv);
+                //CopyAb(pb, m_pb, cb_00);
+                pv = reinterpret_cast<void*>(pb + cb_00);
             }
 
             m_pb = m_pb + cb_00;
