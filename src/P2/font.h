@@ -1,6 +1,5 @@
 #pragma once
-
-typedef char BYTE;
+#include <util.h>
 
 /* Horizontal Justification */
 enum class JH : int

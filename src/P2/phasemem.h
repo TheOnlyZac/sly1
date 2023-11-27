@@ -14,4 +14,4 @@ static PHASE g_phase;
 static void* g_phasemem; // todo: fix type
 
 void SetPhase(PHASE phase);
-void SetPhase(PHASE phase);
+void ClearPhase(PHASE phase = PHASE::None);

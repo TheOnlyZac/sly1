@@ -1,15 +1,9 @@
 #pragma once
 
 typedef bool BOOL;
-
-/* Vector */
-struct VECTOR
-{
-	float x;
-	float y;
-	float z;
-	float gUnused;
-};
+typedef unsigned char byte;
+typedef unsigned char BYTE;
+typedef unsigned int undefined4;
 
 /* Limit */
 struct LM

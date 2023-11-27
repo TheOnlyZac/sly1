@@ -1,9 +1,32 @@
 #pragma once
 #include <util.h>
+#include <iostream>
+
+typedef unsigned char byte;
 
 typedef long ulong_128;
 typedef short GRFBTN;
-typedef char BYTE;
+
+enum PadButtons
+{
+    NOT_PRESSED = 0,
+    PAD_L2 = 1,
+    PAD_R2 = 2,
+    PAD_L1 = 4,
+    PAD_R1 = 8,
+    PAD_TRIANGLE = 16,
+    PAD_CIRCLE = 32,
+    PAD_CROSS = 64,
+    PAD_SQUARE = 128,
+    PAD_SELECT = 256,
+    PAD_L3 = 512,
+    PAD_R3 = 1024,
+    PAD_START = 2048,
+    PAD_UP_ARROW = 4096,
+    PAD_RIGHT_ARROW = 8192,
+    PAD_DOWN_ARROW = 16384,
+    PAD_LEFT_ARROW = 32768
+};
 
 /* Joypad state */
 enum class JOYS : int
@@ -118,7 +141,27 @@ enum class FCHT : int
 	LowGravity = 0x4,
 	LowFriction = 0x8,
 	ResetWorld = 0x4000
+};enum DPK
+{
+    None = 0,
+    X = 1,
+    Square = 2,
+    Circle = 3,
+    Triangle = 4,
+    L1 = 5,
+    L2 = 6,
+    R1 = 7,
+    R2 = 8,
+    JoyLeft = 9,
+    JoyRight = 10,
+    JoyLeftX = 11,
+    JoyLeftY = 12,
+    DoubleJump = 13,
+    VaultOpen = 14,
+    Max = 15
 };
+
+
 
 static JOY g_joy;
 static float g_tCodeCheck;
@@ -133,4 +176,5 @@ void InitRumble(RUMBLE* prumble, int nPort, int nSlot);
 
 void UpdateCodes();
 void AddFcht(int nParam);
+void AddGrfusr(int mask);
 void CheatActivateChetkido();

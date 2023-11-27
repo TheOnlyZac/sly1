@@ -13,5 +13,5 @@ void SetPhase(PHASE phase)
 // Clears the global phase value
 void ClearPhase(PHASE phase)
 {
-	g_phase = PHASE::None;
+	g_phase = phase;
 }
