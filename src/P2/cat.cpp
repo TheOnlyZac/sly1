@@ -31,6 +31,7 @@ int CWalCatalog::FFindFile(char* pchzKey, FK fk, CFileLocation* pflResult)
     int iVar4;
     char achzKey[128]; // Buffer used to reference the file its looking for.
 
+    //! There is a mistake here, nothing is passed to the format string
     sprintf(achzKey, "%s\\%s"); // Storing the file that its looking for in achzKey buffer.
     pWVar3 = m_awale;
 

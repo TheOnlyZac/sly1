@@ -35,7 +35,7 @@ struct SFR
 	float ry;
 };
 
-typedef struct _vtbl_ptr_type;
+struct _vtbl_ptr_type; // todo: fix type
 class CFont
 {
 protected:

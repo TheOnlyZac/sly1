@@ -188,15 +188,17 @@ void CheatActivateChetkido()
            {
                *nextXorChar = cipherSlice[0] ^ 0x23;
                nextXorChar++;
-               if (*nextXorChar == 0) break;
+               if (*nextXorChar == 0)
+			       break;
                cipherSlice[0] = *nextXorChar;
            }
        }
 
 	   /* Write output string to char buffer and show on-screen
 	     temporarily using chetkido buffer to store output until blot class is implemented */
-	   sprintf(out_buffer, sThePasswordIs, cipherSlice);
-	   sprintf(chetkido_buffer, out_buffer); // temp
+
+	   sprintf(out_buffer, "%s", sThePasswordIs);
+	   sprintf(chetkido_buffer, "%s", out_buffer);
        //cornerPopupBlot::prepareGuiText(out_buffer); // todo: blot class
 	   //SetBlotDtVisible(cornerPopupBlog, 10.0); // todo: implement classmethod
 	   //cornerPopupBlot::openIfNotAlready(); // todo: implement classmethod
