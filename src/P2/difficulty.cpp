@@ -26,11 +26,11 @@ void OnDifficultyWorldPreLoad(DIFFICULTY* pdifficulty)
 	pdifficulty->ccoinPoorMax = 3;
 	pdifficulty->ccoinPoorMin = 1;
 
-	if (((gameworld == (int)GAMEWORLD::Intro) || (gameworld == (int)GAMEWORLD::Clockwerk)) || (worldlevel == (int)WORLDLEVEL::Hub))
+	if (((gameworld == (int)GAMEWORLD_Intro) || (gameworld == (int)GAMEWORLD_Clockwerk)) || (worldlevel == (int)WORLDLEVEL_Hub))
 	{ // Case: Current world is 0 or 5, or current level is a hub
 		difficultyProps = &g_difficultyEasy; // Set easy difficulty
 	}
-	else if (((int)lsCur->fls & (int)FLS::KeyCollected) == 0)
+	else if (((int)lsCur->fls & (int)FLS_KeyCollected) == 0)
 	{ // Case: Key NOT collected on current level
 		difficultyProps = &g_difficultyMedium; // set medium difficulty
 	}
@@ -86,7 +86,7 @@ void OnDifficultyWorldPostLoad(DIFFICULTY* pdifficulty)
 		if (g_pgsCur->ccharm < csuckCharms)
 		{
 			SetCcharm(csuckCharms); // todo implement function
-			pdifficulty->dps = DPS::GivenCharms;
+			pdifficulty->dps = DPS_GivenCharms;
 		}
 	}
 }

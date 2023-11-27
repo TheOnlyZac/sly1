@@ -1,22 +1,22 @@
 #pragma once
 #include <util.h>
 
-/* Horizontal Justification */
-enum class JH : int
+/* Horizontal justification */
+enum JH
 {
-	Left = 0x0,
-	Center = 0x1,
-	Right = 0x2,
-	Max = 0x3
+	JH_Left = 0,
+	JH_Center = 1,
+	JH_Right = 2,
+	JH_Max = 3
 };
 
-/* Vertical Justification */
-enum class JV : int
+/* Vertical justification */
+enum JV
 {
-	Top = 0x0,
-	Center = 0x1,
-	Bottom = 0x2,
-	Max = 0x3
+	JV_Top = 0,
+	JV_Center = 1,
+	JV_Bottom = 2,
+	JV_Max = 3
 };
 
 /* Red, Green, Blue, Alpha color values */
@@ -27,7 +27,7 @@ struct RGBA {
 	BYTE bAlpha;
 };
 
-/* Unknown, possibly ScaleFactorRatio 
+/* Unknown, possibly ScaleFactorRatio
 (used by CFont class, probably to scale fonts) */
 struct SFR
 {

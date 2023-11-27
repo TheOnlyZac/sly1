@@ -2,12 +2,12 @@
 #include <stdint.h>
 #include <util.h>
 
-enum class BASK : int
+enum BASK : int
 {
-    Nil = -1,
-    Cd = 1,
-    Host = 0,
-    Max = 2
+    BASK_Nil = -1,
+    BASK_Cd = 1,
+    BASK_Host = 0,
+    BASK_Max = 2
 };
 
 class CBinaryAsyncStream

@@ -9,11 +9,11 @@ void CMpeg::ExecuteOids()
     OID oid1 = this->oid_1;
     OID oid2 = this->oid_2;
 
-    this->oid_1 = OID::Unknown;
-    this->oid_2 = OID::Unknown;
+    this->oid_1 = OID_Unknown;
+    this->oid_2 = OID_Unknown;
 
     Execute(&oid1); // execute 1st mpeg
-    if (oid2 != OID::Unknown)
+    if (oid2 != OID_Unknown)
     {
         Execute(&oid2); // execute 2nd mpeg
     }
@@ -31,7 +31,7 @@ void CMpeg::Execute(OID* oid)
     // Update the global game phase and get the pchz key for the cutscene
 
     /* todo: define function and PHASE enum
-    SetPhase(PHASE::Mpeg); */
+    SetPhase(PHASE_Mpeg); */
 
     /* todo: define function
     pchzKey = (char*)get_cutscene_pchz_from_oid(oid);
@@ -117,12 +117,12 @@ void CMpeg::Execute(OID* oid)
     else {
         // Play thud sound if an invalid or null cutscene attempted to play
         /* todo: define StartSound function and SFXID enum
-        StartSound(SFXID::thud7, NULL, NULL, NULL, 3000.0, 300.0, 1.0, 0.0, 0.0, NULL, NULL); */
+        StartSound(SFXID_thud7, NULL, NULL, NULL, 3000.0, 300.0, 1.0, 0.0, 0.0, NULL, NULL); */
     }
 
     // Clear the game phase (bas is destroyed automatically)
     /* todo: define function
-    ClearPhase(PHASE::Mpeg); */
+    ClearPhase(PHASE_Mpeg); */
 }
 
 void CMpeg::Start()

@@ -4,15 +4,15 @@
 #include <wipe.h>
 
 /* EXIT State */
-enum class EXITS : int
+enum EXITS
 {
-	Blocked = 0x0,
-	Unblocked = 0x1,
-	Disabled = 0x2,
-	Enabled = 0x3,
-	Totals = 0x4,
-	Exiting = 0x5,
-	Max = 0x6
+	EXITS_Blocked = 0,
+	EXITS_Unblocked = 1,
+	EXITS_Disabled = 2,
+	EXITS_Enabled = 3,
+	EXITS_Totals = 4,
+	EXITS_Exiting = 5,
+	EXITS_Max = 6
 };
 
 /* Warps placed in the world to move from one level to another */

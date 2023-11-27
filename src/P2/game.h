@@ -3,33 +3,36 @@
 
 /* Object IDs
  There are a lot more that are unknown. */
-enum class OID : int
+enum OID : int
 {
-	Unknown = 0x0,
-	_MERGED_STATICS = 0x1,
-	_VISIBILITY_MAP = 0x2,
-	_WORLD = 0x3,
-	_CAMERA = 0x4,
-	jt = 0x5,
-	bentley = 0x6,
-	murray = 0x7,
-	// ...
-	rat = 0x269
-	// ...
+	OID_Unknown = 0x0,
+	OID__MERGED_STATICS = 0x1,
+	OID__VISIBILITY_MAP = 0x2,
+	OID__WORLD = 0x3,
+	OID__CAMERA = 0x4,
+	OID_jt = 0x5,
+	OID_bentley = 0x6,
+	OID_murray = 0x7,
+
+    // ...
+
+    OID_rat = 0x269
+
+    // ...
 };
 
-enum class CID : int
+enum CID : int
 {
-    CID_Nil = -1,      
-    CID_BASIC = 0,     
-    CID_LO = 1,        
-    CID_ALO = 2,       
-    CID_SO = 3,        
-    CID_MS = 4,        
-    CID_PO = 5,        
-    CID_STEP = 6,      
-    CID_JT = 7,        
-    CID_STEPGUARD = 8, 
+    CID_Nil = -1,
+    CID_BASIC = 0,
+    CID_LO = 1,
+    CID_ALO = 2,
+    CID_SO = 3,
+    CID_MS = 4,
+    CID_PO = 5,
+    CID_STEP = 6,
+    CID_JT = 7,
+    CID_STEPGUARD = 8,
     CID_SMARTGUARD = 9,
     CID_GOMER = 10,
     CID_UBG = 11,
@@ -187,70 +190,70 @@ enum class CID : int
 };
 
 /* World IDs
- Some of these values are directly from the may proto, 
+ Some of these values are directly from the may proto,
  the rest I extrapolated based on the order of levels in the game -Zac */
-enum class WID : int
+enum WID : int
 {
 	// Intro
-	stock_objects = 0x0,
-	splash = 0x1,
-	attract = 0x2,
-	jb_intro = 0x3,
+	WID_stock_objects = 0x0,
+	WID_splash = 0x1,
+	WID_attract = 0x2,
+	WID_jb_intro = 0x3,
 
 	// Underwater
-	uw_exterior_approach = 0x4,
-	uw_exterior_boat = 0x5,
-	uw_bonus_security = 0x6,
-	uw_bonus_drivewheels_final = 0x7,
-	uw_bonus_library = 0x8,
-	uw_t3_final = 0x9,
-	uw_rip_off = 0xa,
-	uw_c2_final = 0xb,
-	uw_boss_blimp = 0xc,
+	WID_uw_exterior_approach = 0x4,
+	WID_uw_exterior_boat = 0x5,
+	WID_uw_bonus_security = 0x6,
+	WID_uw_bonus_drivewheels_final = 0x7,
+	WID_uw_bonus_library = 0x8,
+	WID_uw_t3_final = 0x9,
+	WID_uw_rip_off = 0xa,
+	WID_uw_c2_final = 0xb,
+	WID_uw_boss_blimp = 0xc,
 
 	// Mesa
-	ms_approach = 0xd,
-	ms_casino = 0xe,
-	ms_exterior = 0xf,
-	ms_inspector = 0x10,
-	ms_rooftop = 0x11,
-	ms_vertigo = 0x12,
-	ms_sniper = 0x13,
-	ms_suv = 0x14,
-	ms_boss_battle = 0x15,
+	WID_ms_approach = 0xd,
+	WID_ms_casino = 0xe,
+	WID_ms_exterior = 0xf,
+	WID_ms_inspector = 0x10,
+	WID_ms_rooftop = 0x11,
+	WID_ms_vertigo = 0x12,
+	WID_ms_sniper = 0x13,
+	WID_ms_suv = 0x14,
+	WID_ms_boss_battle = 0x15,
 
 	// Voodoo
-	v_approach = 0x16,
-	v_gomerville = 0x17,
-	v_swamp_monster = 0x18,
-	v_hub = 0x19,
-	v_skinterior = 0x1a,
-	v_murray = 0x1b,
-	v_chicken = 0x1c,
-	v_puffer = 0x1d,
-	v_boss = 0x1e,
+	WID_v_approach = 0x16,
+	WID_v_gomerville = 0x17,
+	WID_v_swamp_monster = 0x18,
+	WID_v_hub = 0x19,
+	WID_v_skinterior = 0x1a,
+	WID_v_murray = 0x1b,
+	WID_v_chicken = 0x1c,
+	WID_v_puffer = 0x1d,
+	WID_v_boss = 0x1e,
 
 	// Snow
-	s_approach = 0x1f,
-	s_barrel = 0x20,
-	s_hub = 0x21,
-	s_inspector = 0x22,
-	s_security = 0x23,
-	s_sniper = 0x24,
-	s_suv = 0x25,
-	s_tank = 0x26,
-	s_boss = 0x27,
+	WID_s_approach = 0x1f,
+	WID_s_barrel = 0x20,
+	WID_s_hub = 0x21,
+	WID_s_inspector = 0x22,
+	WID_s_security = 0x23,
+	WID_s_sniper = 0x24,
+	WID_s_suv = 0x25,
+	WID_s_tank = 0x26,
+	WID_s_boss = 0x27,
 
 	// Clockwerk
-	cw_suv = 0x28,
-	cw_turret = 0x29,
-	cw_security = 0x2a,
-	cw_bentley = 0x2b,
-	cw_reverse_sniper = 0x2c,
-	cw_outclimb = 0x2d,
-	cw_finish = 0x2e,
-	
-	Max = 0x2f
+	WID_cw_suv = 0x28,
+	WID_cw_turret = 0x29,
+	WID_cw_security = 0x2a,
+	WID_cw_bentley = 0x2b,
+	WID_cw_reverse_sniper = 0x2c,
+	WID_cw_outclimb = 0x2d,
+	WID_cw_finish = 0x2e,
+
+	WID_Max = 0x2f
 };
 
 struct GAME {

@@ -11,14 +11,14 @@
 #include <util.h>
 
 /* Mpeg Audio State */
-enum class MAUDS : int
+enum MAUDS
 {
-    Dead = 0,
-    FillPreface = 1,
-    FillIop = 2,
-    Play = 3,
-    Pmaudse = 4,
-    Max = 5
+    MAUDS_Dead = 0,
+    MAUDS_FillPreface = 1,
+    MAUDS_FillIop = 2,
+    MAUDS_Play = 3,
+    MAUDS_Pmaudse = 4,
+    MAUDS_Max = 5
 };
 
 struct sceMpeg {

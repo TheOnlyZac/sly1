@@ -9,12 +9,13 @@
 typedef unsigned char byte;
 
 // Types of binary stream to open up
-enum class BISK : int{
-    Nil = -1,
-    Host = 0,
-    Cd = 1,
-    Mem = 2,
-    Max = 3
+enum BISK : int
+{
+    BISK_Nil = -1,
+    BISK_Host = 0,
+    BISK_Cd = 1,
+    BISK_Mem = 2,
+    BISK_Max = 3
 };
 
 class CBinaryInputStream
@@ -50,7 +51,7 @@ public:
     CBinaryInputStream(std::string fileName); // Used for file object
 
     int  FOpenFile(CFileLocation* pfl);
-    int  FOpenSector(uint32_t isector, uint32_t cb); 
+    int  FOpenSector(uint32_t isector, uint32_t cb);
     void OpenMemory(int cb, void* pv);
     void DecrementCdReadLimit(int cb);
 

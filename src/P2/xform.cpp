@@ -11,9 +11,9 @@ void SetExitExits(EXIT* pexit, EXITS exits)
 
 	/* If exits is totals (4) and and exit is not entered (5),
 		show level info blot */
-	if (pexit->fKeyed == EXITS::Totals)
+	if (pexit->fKeyed == EXITS_Totals)
 	{
-		if (exits != EXITS::Exiting)
+		if (exits != EXITS_Exiting)
 		{
 			//levelInfoBlot::unknown()
 			goto set_exits;
@@ -22,7 +22,7 @@ void SetExitExits(EXIT* pexit, EXITS exits)
 	else
 	{
 	set_exits:
-		if (exits != EXITS::Exiting)
+		if (exits != EXITS_Exiting)
 		{
 			pexit->fKeyed = exits;
 			goto update_clock;

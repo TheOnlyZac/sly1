@@ -2,18 +2,18 @@
 
 /* UI state
  May not be accurate as it seems to differ from the May proto */
-enum class UIS
+enum UIS
 {
-	Splash = 0,
-	Attract = 1,
-	Playing = 2,
-	Pausing = 3,
-	Paused = 4,
-	Unpausing = 5,
-	WorldMap = 6,
+	UIS_Splash = 0,
+	UIS_Attract = 1,
+	UIS_Playing = 2,
+	UIS_Pausing = 3,
+	UIS_Paused = 4,
+	UIS_Unpausing = 5,
+	UIS_WorldMap = 6,
 	// ??? = 7,
-	Wiping = 8,
-	Max = 9
+	UIS_Wiping = 8,
+	UIS_Max = 9
 };
 
 struct UI

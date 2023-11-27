@@ -9,7 +9,7 @@ const char sChetkidoCiphertext[] = "@KFWHJGL";
 const char sThePasswordIs[] = "The password is: %s";
 
 char chetkido_buffer[64]; // temp
-int g_grfcht = (int)FCHT::None;
+int g_grfcht = (int)FCHT_None;
 
 // Sets the given joypad state
 void SetJoyJoys(JOY* pjoy, JOYS joys, JOYK joyk)
@@ -18,10 +18,10 @@ void SetJoyJoys(JOY* pjoy, JOYS joys, JOYK joyk)
 		return;
 
 	// Check if controller is missing
-	if (joyk == JOYK::Unknown)
+	if (joyk == JOYK_Unknown)
 	{
 		pjoy->term = 0;
-		joys = JOYS::Searching;
+		joys = JOYS_Searching;
 	}
 	JOYK joykPrev = pjoy->joyk;
 
@@ -31,7 +31,7 @@ void SetJoyJoys(JOY* pjoy, JOYS joys, JOYK joyk)
 		InitRumble(pjoy->prumble, pjoy->nPort, pjoy->nSlot);
 	}
 
-	if (joys == JOYS::Ready)
+	if (joys == JOYS_Ready)
 	{
 		pjoy->tRead = 0.0f;
 
@@ -64,7 +64,7 @@ void UpdateJoy(JOY * pjoy)
 	JOYS joysNew{};
 
 	// if the joy manager is initializing, abort
-	if (pjoy->joys == JOYS::Initing)
+	if (pjoy->joys == JOYS_Initing)
 		return;
 
 
@@ -74,10 +74,10 @@ void UpdateJoy(JOY * pjoy)
 	if (padState == 6 || padState == 2)
 		condition = true;
 	joysNew = pjoy->joys;
-	
-	if (joysNew != JOYS::Ready)
+
+	if (joysNew != JOYS_Ready)
 	{
-		if (pjoy->joyk != JOYK::Unknown)
+		if (pjoy->joyk != JOYK_Unknown)
 		{
 			if (g_clock.tReal - pjoy->tJoys >= 2.0f)
 			{
@@ -86,9 +86,9 @@ void UpdateJoy(JOY * pjoy)
 		}
 	}
 
-	if (pjoy->joyk != JOYK::Unknown && padState == 0)
+	if (pjoy->joyk != JOYK_Unknown && padState == 0)
 	{
-		SetJoyJoys(pjoy, JOYS::Searching, JOYK::Unknown);
+		SetJoyJoys(pjoy, JOYS_Searching, JOYK_Unknown);
 	}
 
 	if (!condition)
@@ -96,7 +96,7 @@ void UpdateJoy(JOY * pjoy)
 
 	joysNew = pjoy->joys;
 	JOYK joyk = pjoy->joyk;
-	if (joysNew == JOYS::Waiting)
+	if (joysNew == JOYS_Waiting)
 	{
 		// todo
 		// ...
@@ -119,14 +119,14 @@ void SetRumbleRums(RUMBLE* prumble, RUMS rums)
 // Set the rumble rums on the controller in the given port/slot
 void InitRumble(RUMBLE* prumble, int nPort, int nSlot)
 {
-	if (prumble->rums == RUMS::Dead)
+	if (prumble->rums == RUMS_Dead)
 	{
-		SetRumbleRums(prumble, RUMS::Idle);
+		SetRumbleRums(prumble, RUMS_Idle);
 		prumble->nSlot = nSlot;
 	}
 	else
 	{
-		SetRumbleRums(prumble, RUMS::Stop);
+		SetRumbleRums(prumble, RUMS_Stop);
 		prumble->nSlot = nSlot;
 	}
 	prumble->nPort = nPort;
@@ -141,14 +141,14 @@ void UpdateCodes()
 	}
 
 	// ...
-	
+
 	g_tCodeCheck = 0.0f;
 }
 
 /* Sets the given cheat flag and reloads the level if necessary */
 void AddFcht(int nParam)
 {
-	g_grfcht |= nParam & ~(int)FCHT::ResetWorld;
+	g_grfcht |= nParam & ~(int)FCHT_ResetWorld;
 	if ((nParam & 0x4000) != 0)
 	{ // Case: Cheat reload flag set
 		//ResetWorld(FTRANS::None); // todo
@@ -176,10 +176,10 @@ void CheatActivateChetkido()
        && (g_pgsCur->ccoin == 99) // coin count is 99
        && (g_pgsCur->clife == 0)) // lives count is 0
    {
-       // Copy encrypted string into cipher 
+       // Copy encrypted string into cipher
        std::strncpy(cipherSlice, sChetkidoCiphertext, 16);
        nextXorChar = cipherSlice;
-       
+
 	   /* Decrypt the string "@KFWHJGL" resulting in "chetkido"
 	    (XOR cipher with key 0x23) */
        if (cipherSlice[0] != 0)

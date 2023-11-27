@@ -8,8 +8,8 @@
 int main()
 {
 	// Test chetkido string output
-	g_pgsCur->gameworldCur = GAMEWORLD::Snow;
-	g_pgsCur->worldlevelCur = WORLDLEVEL::Approach;
+	g_pgsCur->gameworldCur = GAMEWORLD_Snow;
+	g_pgsCur->worldlevelCur = WORLDLEVEL_Approach;
 	g_pgsCur->ccoin = 99;
 	g_pgsCur->clife = 0;
 

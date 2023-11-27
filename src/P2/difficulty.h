@@ -2,14 +2,14 @@
 #include <util.h>
 #include <chkpnt.h>
 
-enum class DPS
+enum DPS
 {
-	Normal = 0x0,
-	GivenCharms = 0x1,
-	Max = 0x2
+	DPS_Normal = 0x0,
+	DPS_GivenCharms = 0x1,
+	DPS_Max = 0x2
 };
 
-/* Tracks values related to the current difficulty level 
+/* Tracks values related to the current difficulty level
  * (easy, medium, or hard) */
 struct DIFFICULTYLEVEL // made-up name
 {
@@ -35,7 +35,7 @@ struct DIFFICULTYLEVEL // made-up name
 	float field_0x50;
 };
 
-/* Tracks values that don't change across difficulty levels, 
+/* Tracks values that don't change across difficulty levels,
  * and a pointer to the current difficulty level */
 struct DIFFICULTY
 {

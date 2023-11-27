@@ -3,9 +3,9 @@
 
 typedef unsigned char byte;
 
-enum class SENSORS
+enum SENSORS
 {
-    // todo
+    MAX
 };
 
 // todo rewrite struct

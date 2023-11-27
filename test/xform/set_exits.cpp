@@ -9,17 +9,17 @@ int main()
 
 	// todo: why does the custom assert macro cause errors here
 
-	SetExitExits(&exit, EXITS::Blocked);
-	assert(exit.fKeyed == EXITS::Blocked);
+	SetExitExits(&exit, EXITS_Blocked);
+	assert(exit.fKeyed == EXITS_Blocked);
 
-	SetExitExits(&exit, EXITS::Disabled);
-	assert(exit.fKeyed == EXITS::Disabled);
+	SetExitExits(&exit, EXITS_Disabled);
+	assert(exit.fKeyed == EXITS_Disabled);
 
-	SetExitExits(&exit, EXITS::Enabled);
-	assert(exit.fKeyed == EXITS::Enabled);
+	SetExitExits(&exit, EXITS_Enabled);
+	assert(exit.fKeyed == EXITS_Enabled);
 
-	SetExitExits(&exit, EXITS::Exiting);
-	assert(exit.fKeyed == EXITS::Exiting);
+	SetExitExits(&exit, EXITS_Exiting);
+	assert(exit.fKeyed == EXITS_Exiting);
 
 	return 0;
 }

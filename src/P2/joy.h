@@ -29,35 +29,35 @@ enum PadButtons
 };
 
 /* Joypad state */
-enum class JOYS : int
+enum JOYS
 {
-	Initing = 0,
-	Searching = 1,
-	Waiting = 2,
-	Ready = 3,
-	Max = 4
+	JOYS_Initing = 0,
+	JOYS_Searching = 1,
+	JOYS_Waiting = 2,
+	JOYS_Ready = 3,
+	JOYS_Max = 4
 };
 
-/* Joypad K? */
-enum class JOYK : int
+/* Joypad kind */
+enum JOYK
 {
-	Unknown = 0,
-	Digital = 1,
-	Analog = 2,
-	Shock = 3,
-	Shock2 = 4,
-	Max = 5
+	JOYK_Unknown = 0,
+	JOYK_Digital = 1,
+	JOYK_Analog = 2,
+	JOYK_Shock = 3,
+	JOYK_Shock2 = 4,
+	JOYK_Max = 5
 };
 
 /* Rumble state */
-enum class RUMS : int
+enum RUMS
 {
-	Dead = 0,
-	Idle = 1,
-	Rumble = 2,
-	Stop = 3,
-	Kill = 4,
-	Max = 5
+	RUMS_Dead = 0,
+	RUMS_Idle = 1,
+	RUMS_Rumble = 2,
+	RUMS_Stop = 3,
+	RUMS_Kill = 4,
+	RUMS_Max = 5
 };
 
 struct RUMINS
@@ -133,32 +133,34 @@ struct JOY
 };
 
 /* Cheat Code Flags */
-enum class FCHT : int
+enum FCHT
 {
-	None = 0x0,
-	Invulnerability = 0x1,
-	InfiniteCharms = 0x2,
-	LowGravity = 0x4,
-	LowFriction = 0x8,
-	ResetWorld = 0x4000
-};enum DPK
+	FCHT_None = 0x0,
+	FCHT_Invulnerability = 0x1,
+	FCHT_InfiniteCharms = 0x2,
+	FCHT_LowGravity = 0x4,
+	FCHT_LowFriction = 0x8,
+	FCHT_ResetWorld = 0x4000
+};
+
+enum DPK
 {
-    None = 0,
-    X = 1,
-    Square = 2,
-    Circle = 3,
-    Triangle = 4,
-    L1 = 5,
-    L2 = 6,
-    R1 = 7,
-    R2 = 8,
-    JoyLeft = 9,
-    JoyRight = 10,
-    JoyLeftX = 11,
-    JoyLeftY = 12,
-    DoubleJump = 13,
-    VaultOpen = 14,
-    Max = 15
+    DPK_None = 0,
+    DPK_X = 1,
+    DPK_Square = 2,
+    DPK_Circle = 3,
+    DPK_Triangle = 4,
+    DPK_L1 = 5,
+    DPK_L2 = 6,
+    DPK_R1 = 7,
+    DPK_R2 = 8,
+    DPK_JoyLeft = 9,
+    DPK_JoyRight = 10,
+    DPK_JoyLeftX = 11,
+    DPK_JoyLeftY = 12,
+    DPK_DoubleJump = 13,
+    DPK_VaultOpen = 14,
+    DPK_Max = 15
 };
 
 

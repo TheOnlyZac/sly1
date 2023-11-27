@@ -9,22 +9,24 @@
 
 typedef unsigned char byte;
 
-enum class WIPEK : int
+// Wipe kind
+enum WIPEK
 {
-	Fade = 0x0,
-	Keyhole	= 0x1,
-	WorldMap = 0x2,
-	Frozen = 0x3,
-	Max = 0x4
+	WIPEK_Fade = 0,
+	WIPEK_Keyhole = 1,
+	WIPEK_WorldMap = 2,
+	WIPEK_Frozen = 3,
+	WIPEK_Max = 4
 };
 
-enum class WIPES
+// Wipe state
+enum WIPES
 {
-	Idle = 0,
-	WipingOut = 1,
-	Black = 2,
-	WipingIn = 3,
-	Max = 4
+	WIPES_Idle = 0,
+	WIPES_WipingOut = 1,
+	WIPES_Black = 2,
+	WIPES_WipingIn = 3,
+	WIPES_Max = 4
 };
 
 struct WIPE

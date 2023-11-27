@@ -22,19 +22,19 @@ int main(int cphzArgs, char* aphzArgs[])
 	g_chpzArgs = cphzArgs;
 	g_aphzArgs = aphzArgs;
 
-	Startup(); 
+	Startup();
 
 	while (true)
 	{
 		// todo: implement all these methods
 
 		// Check if g_mpeg has an mpeg queued to be played
-		if ((g_mpeg.oid_1 != OID::Unknown) && (g_wipe.wipes != WIPES::Idle))
+		if ((g_mpeg.oid_1 != OID_Unknown) && (g_wipe.wipes != WIPES_Idle))
 		{
 			//FlushFrames(1); // todo implement
 			g_mpeg.ExecuteOids();
 		}
-		
+
 		// Check if g_transition has a pending transition
 		if (g_transition.m_fPending != 0)
 		{
@@ -43,7 +43,7 @@ int main(int cphzArgs, char* aphzArgs[])
 		}
 
 		// Check AGAIN if g_mpeg has an mpeg queued (in case two were queued back-to-back)
-		if ((g_mpeg.oid_2 != OID::Unknown) && (g_wipe.wipes != WIPES::Idle))
+		if ((g_mpeg.oid_2 != OID_Unknown) && (g_wipe.wipes != WIPES_Idle))
 		{
 			//FlushFrames(1); // todo implement
 			g_mpeg.ExecuteOids();

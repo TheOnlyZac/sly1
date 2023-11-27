@@ -21,7 +21,7 @@ void ActivateWipe(WIPE* pwipe, TRANS* ptrans, WIPEK wipek)
     LevelTableStruct* load_data;
     bool condition;
 
-    if (pwipe->wipes != WIPES::Idle)
+    if (pwipe->wipes != WIPES_Idle)
     {
         return;
     }
@@ -58,11 +58,11 @@ void ActivateWipe(WIPE* pwipe, TRANS* ptrans, WIPEK wipek)
     }
     ptrans->grftrans = grftrans;
     pwipe->trans.grftrans = ptrans->grftrans;
-    WIPES wipes = WIPES::WipingOut;
+    WIPES wipes = WIPES_WipingOut;
 
     if (g_psw == nullptr)
     {
-        wipes = WIPES::Black;
+        wipes = WIPES_Black;
     }
 
     SetWipeWipes(pwipe, wipes);
@@ -78,23 +78,23 @@ void SetWipeWipes(WIPE* pwipe, WIPES wipes)
         return;
     }
 
-    if (pwipe->wipes == WIPES::Black && (&g_wmc != 0))
+    if (pwipe->wipes == WIPES_Black && (&g_wmc != 0))
     {
         SetWmWms(&g_wmc, 0); // this was SetWmWm but I changed it to SetWmWms, I think it was a typo -Zac
     }
 
-    if (wipes == WIPES::WipingOut)
+    if (wipes == WIPES_WipingOut)
     {
-        if (pwipe->wipek == WIPEK::WorldMap)
+        if (pwipe->wipek == WIPEK_WorldMap)
         {
             //worldlevel = FFindLevel(pwipe->trans.pchzWorld); // todo implement func
-            if (&g_wmc == 0 || worldlevel == WORLDLEVEL::Approach)
+            if (&g_wmc == 0 || worldlevel == WORLDLEVEL_Approach)
             {
-                pwipe->wipek = WIPEK::Fade;
+                pwipe->wipek = WIPEK_Fade;
             }
             else
             {
-                unk_0 = WORLDLEVEL::Max;
+                unk_0 = WORLDLEVEL_Max;
                 if (&worldlevel != 0)
                 {
                     unk_0 = worldlevel;
@@ -107,9 +107,9 @@ void SetWipeWipes(WIPE* pwipe, WIPES wipes)
 
         else
         {
-            if (pwipe->wipek == WIPEK::Frozen)
+            if (pwipe->wipek == WIPEK_Frozen)
             {
-                wipes = WIPES::Black;
+                wipes = WIPES_Black;
                 if (pwipe->trans.fSet != 0)
                 {
                     g_transition.Set((char*)pwipe->trans.pchzWorld, pwipe->trans.oidWarp, pwipe->trans.trans_mod_flags, pwipe->trans.grftrans);
@@ -119,23 +119,23 @@ void SetWipeWipes(WIPE* pwipe, WIPES wipes)
                 pwipe->uBlack = 1.0;
                 pwipe->transButton.fSet = 0;
 
-                if (wipes != WIPES::WipingIn)
+                if (wipes != WIPES_WipingIn)
                 {
                     pwipe->wipes = wipes;
                     pwipe->tWipes = g_clock.tReal;
                     return;
                 }
 
-                if (pwipe->wipek != WIPEK::WorldMap)
+                if (pwipe->wipek != WIPEK_WorldMap)
                 {
-                    if (pwipe->wipek != WIPEK::Frozen)
+                    if (pwipe->wipek != WIPEK_Frozen)
                     {
-                        pwipe->wipes = WIPES::WipingIn;
+                        pwipe->wipes = WIPES_WipingIn;
                         pwipe->tWipes = g_clock.tReal;
                         return;
                     }
 
-                    wipes = WIPES::Idle;
+                    wipes = WIPES_Idle;
                     //FadeFramesToBlack(0.25); //todo implement function
                     WIPES unk_1 = pwipe->wipes;
                     pwipe->tWipes = g_clock.tReal;
@@ -145,11 +145,11 @@ void SetWipeWipes(WIPE* pwipe, WIPES wipes)
                 if (&g_wmc != 0)
                 {
                     //SetWmWms(g_wmc, WMS_Disappearing); //todo g_wmc
-                    pwipe->wipes = WIPES::WipingOut;
+                    pwipe->wipes = WIPES_WipingOut;
                     pwipe->tWipes = g_clock.tReal;
                     return;
                 }
-                pwipe->wipek = WIPEK::Frozen;
+                pwipe->wipek = WIPEK_Frozen;
             }
         }
     }
@@ -163,7 +163,7 @@ void DrawWipe(WIPE* pwipe)
     if (g_psw != nullptr && g_pwipe != nullptr)
     {
         wipek = pwipe->wipek;
-        if (wipek == WIPEK::Keyhole && g_pkeyhole != nullptr)
+        if (wipek == WIPEK_Keyhole && g_pkeyhole != nullptr)
         {
             //DrawKeyhole(g_pkeyhole, pwipe->uBlack);
             return;
@@ -173,7 +173,7 @@ void DrawWipe(WIPE* pwipe)
         {
             uBlack = pwipe->uBlack;
 
-            if (1 < (int)wipek && wipek != WIPEK::Fade)
+            if (1 < (int)wipek && wipek != WIPEK_Fade)
             {
                 return;
             }
@@ -215,11 +215,11 @@ void UpdateWipe(WIPE* pwipe, JOY* pjoy)
     // I'm not sure why this line is here. It is supposed to be unk_3? -Zac
     //unk_2 = g_clock.tReal - pwipe->tWipes;
 
-    if (wipes == WIPES::WipingOut)
+    if (wipes == WIPES_WipingOut)
     {
-        if (pwipe->wipek != WIPEK::WorldMap)
+        if (pwipe->wipek != WIPEK_WorldMap)
             unk_3 = 0.5;
-        if (pwipe->wipek == WIPEK::Keyhole)
+        if (pwipe->wipek == WIPEK_Keyhole)
         {
             unk_3 = 1.5;
         }
@@ -227,7 +227,7 @@ void UpdateWipe(WIPE* pwipe, JOY* pjoy)
         if (unk_3 < uBlack)
         {
             grftrans = pwipe->trans.grftrans;
-            wipes = WIPES::Black;
+            wipes = WIPES_Black;
         }
 
         else
@@ -254,10 +254,10 @@ void UpdateWipe(WIPE* pwipe, JOY* pjoy)
 
     else
     {
-        if (wipes < WIPES::Black)
+        if (wipes < WIPES_Black)
         {
-            grftrans = (GRFTRANS)FCatchWipeButtonTrans(pwipe, pjoy, WIPES::WipingOut);
-            if (wipes == WIPES::Idle && grftrans != 0)
+            grftrans = (GRFTRANS)FCatchWipeButtonTrans(pwipe, pjoy, WIPES_WipingOut);
+            if (wipes == WIPES_Idle && grftrans != 0)
             {
                 return;
             }
@@ -265,26 +265,26 @@ void UpdateWipe(WIPE* pwipe, JOY* pjoy)
 
         else
         {
-            if (wipes == WIPES::Black && pwipe->trans.fSet == 0 && g_transition.m_fPending == 0)
+            if (wipes == WIPES_Black && pwipe->trans.fSet == 0 && g_transition.m_fPending == 0)
             {
-                wipes = WIPES::WipingIn;
+                wipes = WIPES_WipingIn;
             }
 
             else
             {
-                if ((wipes == WIPES::WipingIn) && (unk_0 == pwipe->wipek) && unk_0 != WIPEK::WorldMap)
+                if ((wipes == WIPES_WipingIn) && (unk_0 == pwipe->wipek) && unk_0 != WIPEK_WorldMap)
                 {
                     unk_3 = 0.25;
-                    if (unk_0 == WIPEK::Keyhole)
+                    if (unk_0 == WIPEK_Keyhole)
                     {
                         unk_3 = 1.0;
                     }
 
                     if (unk_3 < uBlack)
                     {
-                        if (unk_0 == WIPEK::Frozen)
+                        if (unk_0 == WIPEK_Frozen)
                         {
-                            pwipe->wipek = WIPEK::Fade;
+                            pwipe->wipek = WIPEK_Fade;
                             //uBlack = g_clock.tReal;
                             pwipe->uBlack = 1.0;
                             pwipe->tWipes = uBlack;
@@ -292,7 +292,7 @@ void UpdateWipe(WIPE* pwipe, JOY* pjoy)
 
                         else
                         {
-                            wipes = WIPES::Idle;
+                            wipes = WIPES_Idle;
                         }
                     }
 
@@ -310,8 +310,8 @@ void UpdateWipe(WIPE* pwipe, JOY* pjoy)
 
 void InitWipe(WIPE* pwipe)
 {
-    pwipe->wipes = WIPES::Idle;
-    SetWipeWipes(pwipe, WIPES::Idle);
+    pwipe->wipes = WIPES_Idle;
+    SetWipeWipes(pwipe, WIPES_Idle);
 }
 
 void SetWipeButtonTrans(WIPE* pwipe, TRANS* ptrans, WIPEK wipek)

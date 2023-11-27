@@ -1,13 +1,13 @@
 #pragma once
 
 /* BLOT state */
-enum class BLOTS : int
+enum BLOTS
 {
-	Hidden = 0x0,
-	Appearing = 0x1,
-	Visible = 0x2,
-	Disappearing = 0x3,
-	Max = 0x4
+	BLOTS_Hidden = 0,
+	BLOTS_Appearing = 1,
+	BLOTS_Visible = 2,
+	BLOTS_Disappearing = 3,
+	BLOTS_Max = 4
 };
 
 /* Used to draw screen objects */
