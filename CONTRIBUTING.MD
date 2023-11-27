@@ -5,7 +5,7 @@ Welcome to the Sly Cooper Decompilation Project! Please follow this guide to get
 # Contents
 1. [Beginner's Guide](#beginners-guide)
 2. [Code Review Process](#code-review-process)
-3. [Style Guide](#third-example)
+3. [Style Guide](#style-guide)
 
 ## Beginner's Guide
 
@@ -55,6 +55,7 @@ When you are have pushed all commits to your fork and are ready to submit your c
 ## Code Review Process
 
 After you create a pull request, a code reviewer will reviwer it before it can be merged into the main branch. We are a volunteer-driven project, so please be patient while we review your code. These are the main things we will look for in your code:
+
 * It compiles and runs without any errors
 * It follows the [style guide](#Style Guide)
 * Nothing is copy/pasted directly from Ghidra
@@ -64,13 +65,12 @@ If everything looks good, we will merge your pull request as soon as possible. I
 
 ## Style Guide
 
-Our code is modeled after the debug symbols from the [Sly 1 May 2002 demo](https://hiddenpalace.org/Sly_Cooper_and_the_Thievius_Raccoonus_(May_19,_2002_prototype)). 
-
 ### Symbol Names
 
-Try and use official names for symbols wherever they are known. Official symbol names use a loose version of [Hungarian Notation](https://en.wikipedia.org/wiki/Hungarian_notation). If the official name for a symbol is not known you should try and mimic that style, which is as follows.
+Use official names from the [Sly 1 May 2002 demo](https://hiddenpalace.org/Sly_Cooper_and_the_Thievius_Raccoonus_(May_19,_2002_prototype)) wherever they are known. Official names use a loose version of [Hungarian Notation](https://en.wikipedia.org/wiki/Hungarian_notation). If the official name for a symbol is not known you should try and mimic that style, which is as follows.
 
 These prefixes denote the **type** of a symbol:
+
 | Prefix | Type                           | Examples                                                       |
 |--------|--------------------------------|----------------------------------------------------------------|
 | `p`    | Pointer                        | `CLOCK* pclock` - Pointer an instance of the CLOCK struct      |
@@ -86,6 +86,7 @@ These prefixes denote the **type** of a symbol:
 | `C`    | Class                          | `class CBinaryInputStream` - Class that reads data from binary streams |
 
 These prefixes denote the **scope** of a variable:
+
 | Prefix | Type                           | Examples                                                       |
 |--------|--------------------------------|----------------------------------------------------------------|
 | `g_`   | Global variable                | `LM g_lmZeroOne` - A global LM struct                          |
@@ -111,8 +112,8 @@ Use `lowerCamelCase` for local variables, function parameters, and class members
 ### Spacing
 
 * Indent your code with 4 spaces.
-* Put a single new line at the end of the file.
-* Remove trailing whitespace.
+* End files with a single new line.
+* Remove all trailing whitespace.
 
 ### Function Comments
 
@@ -123,7 +124,7 @@ Each function should have a [Doxygen-style comment](http://micro-os-plus.github.
  *
  * A longer summary of the function that goes into more detail
  * if you feel it is necessary.
- * 
+ *
  * @param param1 Description of the first parameter
  * @param param2 Description of the second parameter
  * ...
@@ -167,10 +168,10 @@ void CheatActivateChetkido()
        && (g_pgsCur->ccoin == 99) // coin count is 99
        && (g_pgsCur->clife == 0)) // lives count is 0
    {
-       // Copy encrypted string into cipher 
+       // Copy encrypted string into cipher
        std::strncpy(cipherSlice, sChetkidoCiphertext, 16);
        nextXorChar = cipherSlice;
-       
+
 	   /* Decrypt the string "@KFWHJGL" resulting in "chetkido"
 	    (XOR cipher with key 0x23) */
        if (cipherSlice[0] != 0)
@@ -188,7 +189,8 @@ void CheatActivateChetkido()
     PrepareGuiText(cornerPopupBlot, out_buffer);
     SetBlotDtVisible(cornerPopupBlot, 10.0);
     PpenIfNotAlready(cornerPopupBlot);
-}```
+}
+```
 
 This code does **not** conform to the style guide and should be rewritten:
 ```cpp
