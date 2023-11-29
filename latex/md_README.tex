@@ -1,0 +1,33 @@
+\href{https://ci.appveyor.com/project/TheOnlyZac/sly1/branch/main}{\texttt{ }} \href{https://discord.gg/2GSXcEzPJA}{\texttt{ }} \href{https://slymods.info}{\texttt{ }} \href{https://github.com/theonlyzac/sly1/graphs/contributors}{\texttt{ }}
+
+This is a work-\/in-\/progress decompilation of \href{https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus}{\texttt{ {\itshape Sly Cooper and the Thievius Raccoonus}}} for the Play\+Station 2. It is based on the N\+T\+S\+C-\/U version of the game ({\ttfamily S\+C\+U\+S-\/971.\+98}). Documentation of the game\textquotesingle{}s internal structures and mechanics can be found on the \href{https://slymods.info}{\texttt{ Sly\+Mods Wiki}}.
+
+The goal of this project is to better understand how the game works. {\bfseries{This repo does not contain any game assets or code from the game\textquotesingle{}s executable.}}
+
+New contributors are welcome and encouraged to make a pull request! If you would like to help but aren\textquotesingle{}t sure where to begin, you can \href{https://discord.gg/2GSXcEzPJA}{\texttt{ join our Discord server}} and/or read C\+O\+N\+T\+R\+I\+B\+U\+T\+I\+NG.md for info on how to get started.\hypertarget{md_README_autotoc_md1}{}\doxysection{Frequently Asked Questions}\label{md_README_autotoc_md1}
+\hypertarget{md_README_autotoc_md2}{}\doxysubsubsection{What is a decompilation?}\label{md_README_autotoc_md2}
+When the developers created the game they wrote programming code that we call the source code. Then they compiled the source code into machine code that can run on the P\+S2. Our job is to reverse-\/engineer the compiled code and produce new, original code that behaves the same way. This process leaves us with code that is very similar (but not identical) to the source code and helps us understand what the programmers were thinking when they made the game.\hypertarget{md_README_autotoc_md3}{}\doxysubsubsection{How does it work?}\label{md_README_autotoc_md3}
+We use a tool called \href{https://ghidra-sre.org/}{\texttt{ Ghidra}} which was created by the \href{https://www.nsa.gov/}{\texttt{ N\+SA}} for reverse-\/engineering software. Ghidra analyzes the game binary to identity functions, variables, data types and structures. We then reimplement each individual function by writing C++ code that produces the same output. We do not copy/paste any code or include any original assembly code from the game binary in the decompilation.\hypertarget{md_README_autotoc_md4}{}\doxysubsubsection{Has this ever been done before?}\label{md_README_autotoc_md4}
+This is one of the first large-\/scale P\+S2 decompilation projects. We take inspiration from other projects like the \href{https://github.com/n64decomp/sm64}{\texttt{ Super Mario 64 decomp}} for the N64 and the \href{https://github.com/zeldaret/botw}{\texttt{ Breath of the Wild decomp}} for the Wii U (the latter being more similar in scope to this project). There is also a Jak \& Daxter decomp/\+PC port called \href{https://github.com/open-goal/jak-project}{\texttt{ Open\+G\+O\+AL}}, though that game is written in 98\% G\+O\+AL language rather than C/\+C++.\hypertarget{md_README_autotoc_md5}{}\doxysubsubsection{Is this a matching decomp?}\label{md_README_autotoc_md5}
+Most of the decompiled code is not yet matching. We are actively researching the P\+S2 compiler and working to come up with with a process for function matching.\hypertarget{md_README_autotoc_md6}{}\doxysubsubsection{How can I help?}\label{md_README_autotoc_md6}
+If you would like to contribute but have no idea where to start, you can \href{https://discord.gg/gh5xwfj}{\texttt{ join our discord server}} and/or read C\+O\+N\+T\+R\+I\+B\+U\+T\+I\+NG.md for some resources and advice to get started!\hypertarget{md_README_autotoc_md7}{}\doxysection{Getting Started}\label{md_README_autotoc_md7}
+\hypertarget{md_README_autotoc_md8}{}\doxysubsection{Windows/\+Linux -\/ C\+LI}\label{md_README_autotoc_md8}
+{\bfseries{Prerequisites}}\+: gcc, cmake, ninja
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git clone https://github.com/TheOnlyZac/sly1}
+\DoxyCodeLine{cd sly1}
+\DoxyCodeLine{mkdir build}
+\DoxyCodeLine{cd build}
+\DoxyCodeLine{cmake .. -\/DCMAKE\_BUILD\_TYPE=Release}
+\DoxyCodeLine{cmake -\/-\/build .}
+\end{DoxyCode}
+
+
+To build unit tests, {\ttfamily cd} into the build directory and run {\ttfamily cmake -\/-\/build . -\/-\/target check} or {\ttfamily make check}. Run them with {\ttfamily ctest -\/C Debug}.\hypertarget{md_README_autotoc_md9}{}\doxysubsection{Windows -\/ Visual Studio}\label{md_README_autotoc_md9}
+{\bfseries{Prerequisites}}\+: C++ C\+Make tools for Windows
+
+Clone the repo and open Visual Studio. Click {\ttfamily File $>$ Open $>$ C\+Make...} and open the file {\ttfamily C\+Make\+Lists.\+txt} in the main project folder. Set the startup item to {\ttfamily S\+C\+U\+S\+\_\+971.\+98}.
+
+For unit testing, build the target \char`\"{}\+Check\char`\"{} and the tests should appear in the Test Explorer window. It will run the tests, and the results will show in the Test Explorer as well as the Output window. 
