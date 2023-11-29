@@ -1,7 +1,8 @@
 #include "util.h"
-#include <math.h>
+#include <cmath>
+#include <cstdlib> // rand()
 
-static constexpr float PI = 3.141593f;
+static constexpr float PI = 3.141593;
 LM g_lmZeroOne(0, 1);
 
 float RadNormalize(float rad)

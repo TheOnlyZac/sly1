@@ -1,6 +1,8 @@
 #pragma once
 
 typedef bool BOOL;
+typedef unsigned int uint;
+typedef unsigned long ulong;
 
 /* Vector */
 struct VECTOR
