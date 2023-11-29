@@ -1,10 +1,8 @@
 #pragma once
-#include <vec.h>
 
 typedef bool BOOL;
 typedef unsigned int uint;
 typedef unsigned long ulong;
-
 typedef unsigned char byte;
 typedef unsigned char BYTE;
 typedef unsigned int undefined4;
