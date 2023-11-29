@@ -1,0 +1,206 @@
+\hypertarget{gs_8h}{}\doxysection{src/\+P2/gs.h File Reference}
+\label{gs_8h}\index{src/P2/gs.h@{src/P2/gs.h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gs_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structLS}{LS}}
+\item 
+struct \mbox{\hyperlink{structWS}{WS}}
+\item 
+struct \mbox{\hyperlink{structGS}{GS}}
+\item 
+struct \mbox{\hyperlink{structPchzLevel}{Pchz\+Level}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int \mbox{\hyperlink{gs_8h_ac564a6561b43d28e2e9d44bf9d6baed9}{G\+R\+F\+GS}}
+\item 
+\mbox{\Hypertarget{gs_8h_a011ed7d35b76f7711b21e7a5cb43c47e}\label{gs_8h_a011ed7d35b76f7711b21e7a5cb43c47e}} 
+typedef int {\bfseries G\+R\+F\+V\+A\+U\+LT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{gs_8h_a560b10a3a3988ca252b61b71813d7d7c}{F\+GS}} \{ \newline
+{\bfseries F\+G\+S\+\_\+\+First\+Clue} = 0x1, 
+{\bfseries F\+G\+S\+\_\+\+Half\+Clues} = 0x2, 
+{\bfseries F\+G\+S\+\_\+\+All\+Clues} = 0x4, 
+{\bfseries F\+G\+S\+\_\+\+First\+Vault} = 0x8, 
+\newline
+{\bfseries F\+G\+S\+\_\+\+Second\+Vault} = 0x10
+ \}
+\item 
+enum \mbox{\hyperlink{gs_8h_a7b66087aaf45f736b057d73ed660a059}{F\+WS}} \{ \newline
+{\bfseries F\+W\+S\+\_\+\+Visited} = 0x1, 
+{\bfseries F\+W\+S\+\_\+\+Lock\+\_\+0} = 0x2, 
+{\bfseries F\+W\+S\+\_\+\+Lock\+\_\+1} = 0x4, 
+{\bfseries F\+W\+S\+\_\+\+Lock\+\_\+2} = 0x8, 
+\newline
+{\bfseries F\+W\+S\+\_\+\+Lock\+\_\+3} = 0x10, 
+{\bfseries F\+W\+S\+\_\+\+Lock\+\_\+\+All} = 0x1e
+ \}
+\item 
+enum \mbox{\hyperlink{gs_8h_a69c07e7119507370cb17c01479d16bc5}{F\+LS}} \{ \newline
+{\bfseries F\+L\+S\+\_\+\+Visited} = 0x1, 
+{\bfseries F\+L\+S\+\_\+\+Key\+Collected} = 0x2, 
+{\bfseries F\+L\+S\+\_\+\+Secondary} = 0x4, 
+{\bfseries F\+L\+S\+\_\+\+Tertiary} = 0x8, 
+\newline
+{\bfseries F\+L\+S\+\_\+\+Boss\+Defeated} = 0x10
+ \}
+\item 
+enum \mbox{\hyperlink{gs_8h_ad77f0bf00d10fa043645596cd3b2ddf7}{G\+A\+M\+E\+W\+O\+R\+LD}} \{ \newline
+{\bfseries G\+A\+M\+E\+W\+O\+R\+L\+D\+\_\+\+Intro} = 0, 
+{\bfseries G\+A\+M\+E\+W\+O\+R\+L\+D\+\_\+\+Underwater} = 1, 
+{\bfseries G\+A\+M\+E\+W\+O\+R\+L\+D\+\_\+\+Muggshot} = 2, 
+{\bfseries G\+A\+M\+E\+W\+O\+R\+L\+D\+\_\+\+Voodoo} = 3, 
+\newline
+{\bfseries G\+A\+M\+E\+W\+O\+R\+L\+D\+\_\+\+Snow} = 4, 
+{\bfseries G\+A\+M\+E\+W\+O\+R\+L\+D\+\_\+\+Clockwerk} = 5, 
+{\bfseries G\+A\+M\+E\+W\+O\+R\+L\+D\+\_\+\+Max} = 6
+ \}
+\item 
+enum \mbox{\hyperlink{gs_8h_a321f479b46e9fd90c9383f32076e9c65}{W\+O\+R\+L\+D\+L\+E\+V\+EL}} \+: int \{ \newline
+{\bfseries W\+O\+R\+L\+D\+L\+E\+V\+E\+L\+\_\+\+Approach} = 0, 
+{\bfseries W\+O\+R\+L\+D\+L\+E\+V\+E\+L\+\_\+\+Hub} = 1, 
+{\bfseries W\+O\+R\+L\+D\+L\+E\+V\+E\+L\+\_\+\+Level1} = 2, 
+{\bfseries W\+O\+R\+L\+D\+L\+E\+V\+E\+L\+\_\+\+Level2} = 3, 
+\newline
+{\bfseries W\+O\+R\+L\+D\+L\+E\+V\+E\+L\+\_\+\+Level3} = 4, 
+{\bfseries W\+O\+R\+L\+D\+L\+E\+V\+E\+L\+\_\+\+Level4} = 5, 
+{\bfseries W\+O\+R\+L\+D\+L\+E\+V\+E\+L\+\_\+\+Level5} = 6, 
+{\bfseries W\+O\+R\+L\+D\+L\+E\+V\+E\+L\+\_\+\+Level6} = 7, 
+\newline
+{\bfseries W\+O\+R\+L\+D\+L\+E\+V\+E\+L\+\_\+\+Boss} = 8, 
+{\bfseries W\+O\+R\+L\+D\+L\+E\+V\+E\+L\+\_\+\+Max} = 9
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{gs_8h_a3476a464e3ee9970b58f9ff6c8b87506}{Populate\+Pchz\+Level\+Table}} ()
+\begin{DoxyCompactList}\small\item\em Populate a default pchz table for testing. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{gs_8h_a7d3a7ac7c0521091d5d3e3a855d3bc3a}{F\+Game\+Completion}} ()
+\begin{DoxyCompactList}\small\item\em Returns a set of flags indicating what has been completed in the current game state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{gs_8h_ace3e2869d1606eced21896d335e0b7b3}{Calculate\+Percent\+Completion}} (\mbox{\hyperlink{structGS}{GS}} $\ast$pgs)
+\begin{DoxyCompactList}\small\item\em Calculates the percent completion on the current save file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{gs_8h_a9192a70ba964e7952f125c05f8c49f51}\label{gs_8h_a9192a70ba964e7952f125c05f8c49f51}} 
+\mbox{\hyperlink{structGS}{GS}} $\ast$ {\bfseries g\+\_\+pgs\+Cur}
+\item 
+\mbox{\Hypertarget{gs_8h_a7f3b2d029b915e5da61269e65ddf625f}\label{gs_8h_a7f3b2d029b915e5da61269e65ddf625f}} 
+\mbox{\hyperlink{structWS}{WS}} $\ast$ {\bfseries g\+\_\+pws\+Cur}
+\item 
+\mbox{\Hypertarget{gs_8h_a53aff3a4126f38462c330a81fe8cb2f1}\label{gs_8h_a53aff3a4126f38462c330a81fe8cb2f1}} 
+\mbox{\hyperlink{structLS}{LS}} $\ast$ {\bfseries g\+\_\+pls\+Cur}
+\item 
+\mbox{\Hypertarget{gs_8h_a633d42f8f7fef4ab6d50e4d21b956466}\label{gs_8h_a633d42f8f7fef4ab6d50e4d21b956466}} 
+\mbox{\hyperlink{structPchzLevel}{Pchz\+Level}} {\bfseries pchz\+Level\+Table} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Game state related functions and structures.
+
+Not to be confused with Graphic Synthesizer, which is the name of the P\+S2\textquotesingle{}s G\+PU and is also abbreviated as \mbox{\hyperlink{structGS}{GS}}. 
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{gs_8h_ac564a6561b43d28e2e9d44bf9d6baed9}\label{gs_8h_ac564a6561b43d28e2e9d44bf9d6baed9}} 
+\index{gs.h@{gs.h}!GRFGS@{GRFGS}}
+\index{GRFGS@{GRFGS}!gs.h@{gs.h}}
+\doxysubsubsection{\texorpdfstring{GRFGS}{GRFGS}}
+{\footnotesize\ttfamily typedef int \mbox{\hyperlink{gs_8h_ac564a6561b43d28e2e9d44bf9d6baed9}{G\+R\+F\+GS}}}
+
+Game State 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{gs_8h_a560b10a3a3988ca252b61b71813d7d7c}\label{gs_8h_a560b10a3a3988ca252b61b71813d7d7c}} 
+\index{gs.h@{gs.h}!FGS@{FGS}}
+\index{FGS@{FGS}!gs.h@{gs.h}}
+\doxysubsubsection{\texorpdfstring{FGS}{FGS}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gs_8h_a560b10a3a3988ca252b61b71813d7d7c}{F\+GS}}}
+
+Game State Flags \mbox{\Hypertarget{gs_8h_a69c07e7119507370cb17c01479d16bc5}\label{gs_8h_a69c07e7119507370cb17c01479d16bc5}} 
+\index{gs.h@{gs.h}!FLS@{FLS}}
+\index{FLS@{FLS}!gs.h@{gs.h}}
+\doxysubsubsection{\texorpdfstring{FLS}{FLS}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gs_8h_a69c07e7119507370cb17c01479d16bc5}{F\+LS}}}
+
+Level State Flags \mbox{\Hypertarget{gs_8h_a7b66087aaf45f736b057d73ed660a059}\label{gs_8h_a7b66087aaf45f736b057d73ed660a059}} 
+\index{gs.h@{gs.h}!FWS@{FWS}}
+\index{FWS@{FWS}!gs.h@{gs.h}}
+\doxysubsubsection{\texorpdfstring{FWS}{FWS}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gs_8h_a7b66087aaf45f736b057d73ed660a059}{F\+WS}}}
+
+World State Flags \mbox{\Hypertarget{gs_8h_ad77f0bf00d10fa043645596cd3b2ddf7}\label{gs_8h_ad77f0bf00d10fa043645596cd3b2ddf7}} 
+\index{gs.h@{gs.h}!GAMEWORLD@{GAMEWORLD}}
+\index{GAMEWORLD@{GAMEWORLD}!gs.h@{gs.h}}
+\doxysubsubsection{\texorpdfstring{GAMEWORLD}{GAMEWORLD}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gs_8h_ad77f0bf00d10fa043645596cd3b2ddf7}{G\+A\+M\+E\+W\+O\+R\+LD}}}
+
+Game World ID \mbox{\Hypertarget{gs_8h_a321f479b46e9fd90c9383f32076e9c65}\label{gs_8h_a321f479b46e9fd90c9383f32076e9c65}} 
+\index{gs.h@{gs.h}!WORLDLEVEL@{WORLDLEVEL}}
+\index{WORLDLEVEL@{WORLDLEVEL}!gs.h@{gs.h}}
+\doxysubsubsection{\texorpdfstring{WORLDLEVEL}{WORLDLEVEL}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gs_8h_a321f479b46e9fd90c9383f32076e9c65}{W\+O\+R\+L\+D\+L\+E\+V\+EL}} \+: int}
+
+World Level ID 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{gs_8h_ace3e2869d1606eced21896d335e0b7b3}\label{gs_8h_ace3e2869d1606eced21896d335e0b7b3}} 
+\index{gs.h@{gs.h}!CalculatePercentCompletion@{CalculatePercentCompletion}}
+\index{CalculatePercentCompletion@{CalculatePercentCompletion}!gs.h@{gs.h}}
+\doxysubsubsection{\texorpdfstring{CalculatePercentCompletion()}{CalculatePercentCompletion()}}
+{\footnotesize\ttfamily int Calculate\+Percent\+Completion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGS}{GS}} $\ast$}]{pgs }\end{DoxyParamCaption})}
+
+
+
+Calculates the percent completion on the current save file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pgs} & Pointer to the game state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Percent completion as an integer out of 100. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gs_8h_a7d3a7ac7c0521091d5d3e3a855d3bc3a}\label{gs_8h_a7d3a7ac7c0521091d5d3e3a855d3bc3a}} 
+\index{gs.h@{gs.h}!FGameCompletion@{FGameCompletion}}
+\index{FGameCompletion@{FGameCompletion}!gs.h@{gs.h}}
+\doxysubsubsection{\texorpdfstring{FGameCompletion()}{FGameCompletion()}}
+{\footnotesize\ttfamily int F\+Game\+Completion (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns a set of flags indicating what has been completed in the current game state. 
+
+\begin{DoxyReturn}{Returns}
+Flags indicating what has been completed on the save file.
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000005}{Todo}}]Implement this function. \end{DoxyRefDesc}
+shouldn\textquotesingle{}t always returns full completion, this is just for testing\mbox{\Hypertarget{gs_8h_a3476a464e3ee9970b58f9ff6c8b87506}\label{gs_8h_a3476a464e3ee9970b58f9ff6c8b87506}} 
+\index{gs.h@{gs.h}!PopulatePchzLevelTable@{PopulatePchzLevelTable}}
+\index{PopulatePchzLevelTable@{PopulatePchzLevelTable}!gs.h@{gs.h}}
+\doxysubsubsection{\texorpdfstring{PopulatePchzLevelTable()}{PopulatePchzLevelTable()}}
+{\footnotesize\ttfamily void Populate\+Pchz\+Level\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Populate a default pchz table for testing. 
+
+\begin{DoxyNote}{Note}
+This function is temporary and should be removed when support for loading the actual level data is added. 
+\end{DoxyNote}
