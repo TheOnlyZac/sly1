@@ -20,6 +20,7 @@ struct LM
 		gMin(min), gMax(max)
 	{}
 };
+extern LM g_lmZeroOne;
 
 float RadNormalize(float rad);
 float GLimitAbs(float g, float absLimit);

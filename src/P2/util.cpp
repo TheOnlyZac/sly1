@@ -1,8 +1,8 @@
 #include "util.h"
 #include <math.h>
 
-static constexpr float PI = 3.141593;
-static constexpr LM g_lmZeroOne(0, 1);
+static constexpr float PI = 3.141593f;
+LM g_lmZeroOne(0, 1);
 
 float RadNormalize(float rad)
 {
