@@ -64,7 +64,7 @@ bool FCalculateMuzzleVelocity(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3,
     fVar3 = param_2->x - param_1->x;
     fVar4 = param_2->y - param_1->y;
     fVar11 = param_2->z - param_1->z;
-    //if (ABS(fVar10) < 1.0) 
+    //if (ABS(fVar10) < 1.0)
     {
         //fVar10 = SQRT(fVar3 * fVar3 + fVar4 * fVar4 + fVar11 * fVar11 * 1.0) + 0.0;
         if (fVar10 < 0.0001) {
@@ -87,7 +87,7 @@ bool FCalculateMuzzleVelocity(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3,
         param_3->z = fVar11 * in_f12;
         param_3->gUnused = fVar10 * in_f12;
     }
-    //else 
+    //else
     {
         fVar11 = (float)((int)fVar11 * (uint32_t)(0.0 < fVar11));
         //fVar1 = SQRT(fVar3 * fVar3 + fVar4 * fVar4 + 0.0) + 0.0;
@@ -119,7 +119,7 @@ uint32_t FCalculateMuzzleVelocityAngle(VECTOR* param_1, VECTOR* param_2, VECTOR*
     return uVar1;
 }
 
-void FindClosestPointBetweenLines(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3, VECTOR* param_4, float* param_5, float* param_6, VECTOR* param_7)
+void FindClosestPointBetweenLines(VECTOR* pA, VECTOR* pB, VECTOR* pC, VECTOR* pD, float* unk_float1, float* unk_float2, VECTOR* presult)
 {
     float fVar1;
     float fVar2;
@@ -129,57 +129,57 @@ void FindClosestPointBetweenLines(VECTOR* param_1, VECTOR* param_2, VECTOR* para
     float fVar6;
     float fVar7;
     float fVar8;
-    float fVar9;
+    float zresult;
     float fVar10;
     float fVar11;
-    float fVar12;
-    float fVar13;
+    float xresult;
+    float yresult;
     float fVar14;
     float fVar15;
-    float fVar16;
+    float gresult;
 
-    fVar10 = param_1->gUnused;
-    fVar11 = param_3->gUnused;
-    fVar1 = param_3->x - param_1->x;
-    fVar2 = param_3->y - param_1->y;
-    fVar3 = param_3->z - param_1->z;
-    fVar16 = param_2->x - param_1->x;
-    fVar9 = param_2->y - param_1->y;
-    fVar4 = param_2->z - param_1->z;
-    fVar5 = param_4->x - param_3->x;
-    fVar6 = param_4->y - param_3->y;
-    fVar7 = param_4->z - param_3->z;
-    fVar12 = fVar9 * fVar7 - fVar6 * fVar4;
-    fVar13 = fVar4 * fVar5 - fVar7 * fVar16;
-    fVar14 = fVar16 * fVar6 - fVar5 * fVar9;
+    fVar10 = pA->gUnused;
+    fVar11 = pC->gUnused;
+    fVar1 = pC->x - pA->x;
+    fVar2 = pC->y - pA->y;
+    fVar3 = pC->z - pA->z;
+    gresult = pB->x - pA->x;
+    zresult = pB->y - pA->y;
+    fVar4 = pB->z - pA->z;
+    fVar5 = pD->x - pC->x;
+    fVar6 = pD->y - pC->y;
+    fVar7 = pD->z - pC->z;
+    xresult = zresult * fVar7 - fVar6 * fVar4;
+    yresult = fVar4 * fVar5 - fVar7 * gresult;
+    fVar14 = gresult * fVar6 - fVar5 * zresult;
     fVar15 = 0.0;
-    fVar8 = fVar12 * fVar12 + fVar13 * fVar13 + fVar14 * fVar14 * 1.0;
+    fVar8 = xresult * xresult + yresult * yresult + fVar14 * fVar14 * 1.0;
     if (fVar8 < 0.0001)
     {
-        *param_5 = 0.0;
-        param_5[1] = 0.0;
-        fVar12 = fVar1;
-        fVar13 = fVar2;
+        *unk_float1 = 0.0;
+        unk_float1[1] = 0.0;
+        xresult = fVar1;
+        yresult = fVar2;
         fVar14 = fVar3;
         fVar15 = fVar11 - fVar10;
     }
     else
     {
-        *param_5 = ((fVar2 * fVar7 - fVar6 * fVar3) * fVar12 + (fVar3 * fVar5 - fVar7 * fVar1) * fVar13
+        *unk_float1 = ((fVar2 * fVar7 - fVar6 * fVar3) * xresult + (fVar3 * fVar5 - fVar7 * fVar1) * yresult
             + (fVar1 * fVar6 - fVar5 * fVar2) * fVar14 * 1.0) / fVar8;
-        param_5[1] = ((fVar2 * fVar4 - fVar9 * fVar3) * fVar12 +
-            (fVar3 * fVar16 - fVar4 * fVar1) * fVar13 +
-            (fVar1 * fVar9 - fVar16 * fVar2) * fVar14 * 1.0) / fVar8;
-        if (fVar1 * fVar12 + fVar2 * fVar13 + fVar3 * fVar14 * 1.0 < 0.0)
+        unk_float1[1] = ((fVar2 * fVar4 - zresult * fVar3) * xresult +
+            (fVar3 * gresult - fVar4 * fVar1) * yresult +
+            (fVar1 * zresult - gresult * fVar2) * fVar14 * 1.0) / fVar8;
+        if (fVar1 * xresult + fVar2 * yresult + fVar3 * fVar14 * 1.0 < 0.0)
         {
-            fVar12 = fVar12 * -1.0;
-            fVar13 = fVar13 * -1.0;
+            xresult = xresult * -1.0;
+            yresult = yresult * -1.0;
             fVar14 = fVar14 * -1.0;
             fVar15 = -0.0;
         }
     }
     //fVar16 = SQRT(fVar12 * fVar12 + fVar13 * fVar13 + fVar14 * fVar14 * 1.0) + 0.0;
-    if (fVar16 < 0.0001)
+    if (gresult < 0.0001)
     {
         //fVar12 = (float)_DAT_00248d20;
         //fVar13 = (float)((ulong)_DAT_00248d20 >> 0x20);
@@ -188,17 +188,17 @@ void FindClosestPointBetweenLines(VECTOR* param_1, VECTOR* param_2, VECTOR* para
     }
     else
     {
-        fVar16 = 1.0 / fVar16;
-        fVar12 = fVar12 * fVar16;
-        fVar13 = fVar13 * fVar16;
-        fVar9 = fVar14 * fVar16;
-        fVar16 = fVar15 * fVar16;
+        gresult = 1.0 / gresult;
+        xresult = xresult * gresult;
+        yresult = yresult * gresult;
+        zresult = fVar14 * gresult;
+        gresult = fVar15 * gresult;
     }
-    *param_6 = fVar12 * fVar1 + fVar13 * fVar2 + fVar9 * fVar3 * 1.0;
-    param_7->x = fVar12;
-    param_7->y = fVar13;
-    param_7->z = fVar9;
-    param_7->gUnused = fVar16;
+    *unk_float2 = xresult * fVar1 + yresult * fVar2 + zresult * fVar3 * 1.0;
+    presult->x = xresult;
+    presult->y = yresult;
+    presult->z = zresult;
+    presult->gUnused = gresult;
     return;
 }
 
@@ -264,7 +264,7 @@ void FindClosestPointBetweenLineSegments(VECTOR* param_1, VECTOR* param_2, VECTO
     return;
 }
 
-void GetNormalVector(VECTOR* param_1, VECTOR* param_2)
+void GetNormalVector(VECTOR* pvec, VECTOR* presult)
 {
     float fVar1;
     float fVar2;
@@ -274,12 +274,12 @@ void GetNormalVector(VECTOR* param_1, VECTOR* param_2)
     float local_c;
     float local_8;
 
-    fVar1 = param_1->x;
-    local_10 = param_1->y;
-    fVar2 = param_1->z;
-    //if (ABS(fVar1) <= ABS(local_10)) 
+    fVar1 = pvec->x;
+    local_10 = pvec->y;
+    fVar2 = pvec->z;
+    //if (ABS(fVar1) <= ABS(local_10))
     {
-        //if (ABS(fVar1) <= ABS(fVar2)) 
+        //if (ABS(fVar1) <= ABS(fVar2))
         {
             local_8 = -local_10;
             local_10 = 0.0;
@@ -287,10 +287,10 @@ void GetNormalVector(VECTOR* param_1, VECTOR* param_2)
             goto LAB_001ed8b8;
         }
     }
-    //else 
+    //else
     {
         local_8 = -fVar1;
-        //if (ABS(local_10) <= ABS(fVar2)) 
+        //if (ABS(local_10) <= ABS(fVar2))
         {
             local_c = 0.0;
             local_10 = fVar2;
@@ -300,14 +300,14 @@ void GetNormalVector(VECTOR* param_1, VECTOR* param_2)
     local_8 = 0.0;
     local_c = -fVar1;
 LAB_001ed8b8:
-    fVar1 = param_1->y * local_8 - local_c * param_1->z;
-    fVar2 = param_1->z * local_10 - local_8 * fVar1;
-    fVar3 = param_1->x * local_c - local_10 * fVar2;
+    fVar1 = pvec->y * local_8 - local_c * pvec->z;
+    fVar2 = pvec->z * local_10 - local_8 * fVar1;
+    fVar3 = pvec->x * local_c - local_10 * fVar2;
     //fVar4 = 1.0 / (SQRT(fVar1 * fVar1 + fVar2 * fVar2 + fVar3 * fVar3 * 1.0) + 0.0);
-    param_2->x = fVar1 * fVar4;
-    param_2->y = fVar2 * fVar4;
-    param_2->z = fVar3 * fVar4;
-    param_2->gUnused = fVar4 * 0.0;
+    presult->x = fVar1 * fVar4;
+    presult->y = fVar2 * fVar4;
+    presult->z = fVar3 * fVar4;
+    presult->gUnused = fVar4 * 0.0;
     return;
 }
 
@@ -350,7 +350,7 @@ void GetNormalVectors(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3, VECTOR*
     return;
 }
 
-void LimitVectorLength(VECTOR* param_1, float param_2, VECTOR* param_3)
+void LimitVectorLength(VECTOR* pvec, float glength, VECTOR* presult)
 {
     float fVar1;
     float fVar2;
@@ -358,35 +358,35 @@ void LimitVectorLength(VECTOR* param_1, float param_2, VECTOR* param_3)
     float fVar4;
     float fVar5;
 
-    fVar2 = param_1->x;
-    fVar3 = param_1->y;
-    fVar4 = param_1->z;
-    fVar5 = param_1->gUnused;
+    fVar2 = pvec->x;
+    fVar3 = pvec->y;
+    fVar4 = pvec->z;
+    fVar5 = pvec->gUnused;
     //fVar1 = SQRT(fVar2 * fVar2 + fVar3 * fVar3 + fVar4 * fVar4 * 1.0) + 0.0;
-    if (param_2 < fVar1)
+    if (glength < fVar1)
     {
-        fVar1 = param_2 / fVar1;
-        param_3->x = fVar2 * fVar1;
-        param_3->y = fVar3 * fVar1;
-        param_3->z = fVar4 * fVar1;
-        param_3->gUnused = fVar5 * fVar1;
+        fVar1 = glength / fVar1;
+        presult->x = fVar2 * fVar1;
+        presult->y = fVar3 * fVar1;
+        presult->z = fVar4 * fVar1;
+        presult->gUnused = fVar5 * fVar1;
     }
     else
     {
-        if (param_1 != param_3) {
-            param_3->x = fVar2;
-            param_3->y = fVar3;
-            param_3->z = fVar4;
-            param_3->gUnused = fVar5;
+        if (pvec != presult) {
+            presult->x = fVar2;
+            presult->y = fVar3;
+            presult->z = fVar4;
+            presult->gUnused = fVar5;
         }
     }
     return;
 }
 
-long RadBetweenVectors(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3)
+long RadBetweenVectors(VECTOR* pvec1, VECTOR* pvec2, VECTOR* param_3)
 {
     float fVar1;
-    long lVar2;
+    long gAngleRads;
     float fVar3;
     float fVar4;
     float fVar5;
@@ -400,12 +400,12 @@ long RadBetweenVectors(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3)
     //fVar4 = DAT_00248d0c;
     //fVar5 = DAT_00248d08;
     //lVar2 = _DAT_00248d00;
-    fVar9 = param_1->x;
-    fVar10 = param_1->y;
-    fVar11 = param_1->z;
-    fVar6 = param_2->x;
-    fVar7 = param_2->y;
-    fVar8 = param_2->z;
+    fVar9 = pvec1->x;
+    fVar10 = pvec1->y;
+    fVar11 = pvec1->z;
+    fVar6 = pvec2->x;
+    fVar7 = pvec2->y;
+    fVar8 = pvec2->z;
     //fVar3 = SQRT(fVar9 * fVar9 + fVar10 * fVar10 + fVar11 * fVar11 * 1.0) + 0.0;
     //fVar1 = SQRT(fVar6 * fVar6 + fVar7 * fVar7 + fVar8 * fVar8 * 1.0) + 0.0;
 
@@ -417,9 +417,9 @@ long RadBetweenVectors(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3)
     }
     else {
         if (param_3 == (VECTOR*)0x0) {
-            fVar4 = param_1->x;
-            fVar5 = param_1->y;
-            fVar6 = param_1->z;
+            fVar4 = pvec1->x;
+            fVar5 = pvec1->y;
+            fVar6 = pvec1->z;
         }
         else {
             fVar4 = fVar10 * fVar8 - fVar7 * fVar11;
@@ -438,18 +438,18 @@ long RadBetweenVectors(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3)
                 param_3->gUnused = fVar5 * 0.0;
             }
             else {
-                GetNormalVector(param_1, param_3);
+                GetNormalVector(pvec1, param_3);
             }
-            fVar4 = param_1->x;
-            fVar5 = param_1->y;
-            fVar6 = param_1->z;
+            fVar4 = pvec1->x;
+            fVar5 = pvec1->y;
+            fVar6 = pvec1->z;
         }
-        fVar5 = fVar5 * param_2->y;
-        fVar4 = fVar4 * param_2->x + fVar5 + fVar6 * param_2->z * 1.0;
+        fVar5 = fVar5 * pvec2->y;
+        fVar4 = fVar4 * pvec2->x + fVar5 + fVar6 * pvec2->z * 1.0;
         //lVar2 = CONCAT44(fVar5, fVar4);
         acosf(fVar4 / (fVar3 * fVar1));
     }
-    return lVar2;
+    return gAngleRads;
 }
 
 void SetVectorCylind(float param_1, float param_2, float param_3, VECTOR* param_4)
@@ -479,7 +479,7 @@ void SetVectorSphere(float param_1, float param_2, float param_3, VECTOR* param_
     return;
 }
 
-float SProjectVector(VECTOR* param_1, VECTOR* param_2)
+float SProjectVector(VECTOR* pvec1, VECTOR* pvec2)
 {
     float fVar1;
     float fVar2;
@@ -496,24 +496,24 @@ float SProjectVector(VECTOR* param_1, VECTOR* param_2)
     float fVar8;
     float fVar9;
 
-    fVar6 = param_1->x;
-    fVar7 = param_1->y;
-    fVar8 = param_1->z;
-    fVar9 = param_1->gUnused;
-    fVar1 = fVar6 * param_2->x + fVar7 * param_2->y + fVar8 * param_2->z * 1.0;
-    fVar2 = param_2->x * fVar1;
-    fVar3 = param_2->y * fVar1;
-    fVar4 = param_2->z * fVar1;
-    fVar5 = param_2->gUnused * fVar1;
+    fVar6 = pvec1->x;
+    fVar7 = pvec1->y;
+    fVar8 = pvec1->z;
+    fVar9 = pvec1->gUnused;
+    fVar1 = fVar6 * pvec2->x + fVar7 * pvec2->y + fVar8 * pvec2->z * 1.0;
+    fVar2 = pvec2->x * fVar1;
+    fVar3 = pvec2->y * fVar1;
+    fVar4 = pvec2->z * fVar1;
+    fVar5 = pvec2->gUnused * fVar1;
 
-    //if (CONCAT44(in_a2_hi, in_a2_lo) != 0) 
+    //if (CONCAT44(in_a2_hi, in_a2_lo) != 0)
     {
         in_a2_lo->x = fVar2;
         in_a2_lo->y = fVar3;
         in_a2_lo->z = fVar4;
         in_a2_lo->gUnused = fVar5;
     }
-    //if (CONCAT44(in_a3_hi, in_a3_lo) != 0) 
+    //if (CONCAT44(in_a3_hi, in_a3_lo) != 0)
     {
         in_a3_lo->x = fVar6 - fVar2;
         in_a3_lo->y = fVar7 - fVar3;

@@ -1,7 +1,6 @@
 #include <frm.h>
 #include <phasemem.h>
 
-// todo
 void OpenFrame()
 {
 	SetPhase(PHASE_Main);
@@ -10,6 +9,7 @@ void OpenFrame()
 	int i = g_ifrmMax * 0x48;
 	g_ifrmMax += 1;
 
+	// todo
 	// ...
 
 	ClearPendingFrame(g_pfrmOpen);
@@ -17,14 +17,14 @@ void OpenFrame()
 	// ...
 }
 
-// todo
 void CloseFrame()
 {
+	// todo
 	// ...
 }
 
-// todo
 void ClearPendingFrame(FRM* pfrm)
 {
+	// todo
 	// ...
 }

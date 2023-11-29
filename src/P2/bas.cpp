@@ -15,6 +15,11 @@ CBinaryAsyncStream::CBinaryAsyncStream(void* pvSpool)
     m_cb = 0;
 }
 
+CBinaryAsyncStream::~CBinaryAsyncStream()
+{
+    Close();
+}
+
 void CBinaryAsyncStream::Close()
 {
     if (m_bask == BASK_Host) {
@@ -27,9 +32,4 @@ void CBinaryAsyncStream::Close()
         m_isector = 0;
     }
     m_bask = BASK_Nil;
-}
-
-CBinaryAsyncStream::~CBinaryAsyncStream()
-{
-    Close();
 }

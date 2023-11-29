@@ -2,8 +2,11 @@
 #include <game.h>
 #include <font.h>
 
-typedef bool BOOL; // todo: move this to the appropriate file
+typedef bool BOOL; // todo: move to util header
 
+/**
+ * Unknown, maybe program or progress?
+ */
 class CProg
 {
 public:

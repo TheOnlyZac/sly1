@@ -3,7 +3,9 @@
 #include <aseg.h>
 #include <wipe.h>
 
-/* EXIT State */
+/**
+ * EXIT State
+ */
 enum EXITS
 {
 	EXITS_Blocked = 0,
@@ -15,7 +17,11 @@ enum EXITS
 	EXITS_Max = 6
 };
 
-/* Warps placed in the world to move from one level to another */
+/**
+ * Exit
+ *
+ * An invisible warp triugger in the world that brings you to a new level.
+ */
 struct EXIT
 {
 	int padding[183];
@@ -43,4 +49,10 @@ struct EXIT
 	float dtTriggerWipe;
 };
 
+/**
+ * @brief Sets the EXIT state.
+ *
+ * @param pexit Pointer to the EXIT
+ * @param exits EXIT state
+ */
 void SetExitExits(EXIT* pexit, EXITS exits);

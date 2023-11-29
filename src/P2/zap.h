@@ -3,12 +3,20 @@
 #include <game.h>
 #include <gs.h>
 
+/**
+ * Zap
+ *
+ * A volume that damages the player upon contact.
+ */
 struct ZAP
 {
     // todo
     // ...
 };
 
+/**
+ * Zap Kind?
+ */
 enum ZOK
 {
     ZOK_Inherit = 0,

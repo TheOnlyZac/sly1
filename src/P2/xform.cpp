@@ -1,6 +1,5 @@
 #include <xform.h>
 
-/* Set EXIT state */
 void SetExitExits(EXIT* pexit, EXITS exits)
 {
 	/* If exits is already the given value, return */

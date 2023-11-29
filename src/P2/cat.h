@@ -1,15 +1,24 @@
 #pragma once
 #include <iostream>
 
-typedef unsigned int uint;
+typedef unsigned int uint; //todo move to util header
 
+/**
+ * File Location
+ *
+ * Stores the file location and size in bytes.
+ */
 struct FCL
 {
     uint isector; // File ISO Sector Offset.
     uint cb; // File Size.
 };
 
-// File Type
+/**
+ * File Key
+ *
+ * Used to identify the file type.
+ */
 enum FK {
     FK_Nil = -1,
     FK_BrxWorld = 0, // Level File
@@ -22,11 +31,19 @@ enum FK {
     FK_Max = 7
 };
 
+/**
+ * WAL Entry
+ *
+ * Stores the file key and file location & size.
+ */
 struct WALE {
     char* pchzKey; // File Name used for searching for file to load
     struct FCL* pfcl; // File location and size.
 };
 
+/**
+ * Handles information about the file sector and size.
+ */
 class CFileLocation
 {
 public:
@@ -35,7 +52,10 @@ public:
     void Clear();  // Clear file information.
 };
 
-class CWalCatalog // This is the class that handles the WAC and WAL file
+/**
+ * Handles the WAC and WAL files.
+ */
+class CWalCatalog
 {
 public:
     CFileLocation m_flWac; // WAC ISO File Location and Size.
@@ -47,19 +67,90 @@ public:
     char*  m_apchz[64]; // Buffer used to reference file names in WAC.
     WALE   m_awale[1024]; // This is used to search and reference files in WAC.
 
-    void Init(CFileLocation* pflWac, CFileLocation* pflWal); // Stores WAC and WAL size and iso sector location.
-    int  FFindFile(char* pchzKey, FK fk, CFileLocation* pflResult); // Finding a file in the WAC and WAL Files.
-    int  FDefaultWorld(char* pchzResult, CFileLocation* pflResult); // Loads the splash video file and sound files and starting world which is paris.
-    void BuildFl(WALE* pwale, CFileLocation* pflResult); // Load up file info from WAC.
+    /**
+     * @brief Initializes the WAC and WAL files.
+     *
+     * Stores the WAC and WAL size and iso sector location.
+     *
+     * @param pflWac WAC File Location and Size.
+     * @param pflWal WAL File Location and Size.
+     */
+    void Init(CFileLocation* pflWac, CFileLocation* pflWal);
+
+    /**
+     * @brief Finds a file in the WAC and WAL files.
+     *
+     * @param pchzKey File Name used for searching for file to load.
+     * @param fk File Key used to identify the file type.
+     * @param pflResult Stores the file location and size.
+     *
+     * @return 1 if file is found, 0 if file is not found.
+     */
+    int  FFindFile(char* pchzKey, FK fk, CFileLocation* pflResult);
+
+    /**
+     * @brief Checks if the default world file is found in the WAL file.
+     *
+     * If so, it loads the splash video file and sound files and starting world
+     * (typically Paris) into memory.
+     *
+     * @param pchzResult Stores the pchz of the default world file.
+     * @param pflResult Stores the file location and size.
+     *
+     * @retval 1 if file is found
+     * @retval 0 if file is not found.
+     */
+    int FDefaultWorld(char* pchzResult, CFileLocation* pflResult);
+
+    /**
+     * @brief Builds the file location and size from the WAC and WAL files.
+     *
+     * @param pwale Stores the file key and file location & size.
+     * @param pflResult Stores the file location and size.
+     */
+    void BuildFl(WALE* pwale, CFileLocation* pflResult);
+
+    /**
+     * @brief Not implemented
+     */
     void Reload(); // todo
 };
 
+/**
+ * Related to the WAC and WAL files.
+ */
 class CCatalog
 {
 public:
     CWalCatalog m_wcatCd;
 
+    /**
+     * @brief Initializes the catalog.
+     */
     void Init();
-    int  FFindFile(char* pchzKey, FK fk, CFileLocation* pflResult);
-    int  FDefaultWorld(char* pchzResult, CFileLocation* pflResult);
+
+    /**
+     * @brief Finds a file in the catalog
+     *
+     * @param pchzKey File Name used for searching for file to load.
+     * @param fk File Key used to identify the file type.
+     * @param pflResult Stores the file location and size.
+     *
+     * @note not implemented
+     */
+    int  FFindFile(char* pchzKey, FK fk, CFileLocation* pflResult); // todo
+
+    /**
+     * @brief Checks whether the default world file is found in the catalog.
+     *
+     * If so, it loads the splash video file and sound files and starting world
+     * (typically Paris) into memory.
+     *
+     * @param pchzResult Stores the pchz of the default world file.
+     * @param pflResult Stores the file location and size.
+     *
+     * @retval 1 if file is found
+     * @retval 0 if file is not found.
+     */
+    int FDefaultWorld(char* pchzResult, CFileLocation* pflResult);
 };

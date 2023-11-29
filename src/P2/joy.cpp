@@ -144,7 +144,6 @@ void UpdateCodes()
     g_tCodeCheck = 0.0f;
 }
 
-/* Sets the given cheat flag and reloads the level if necessary */
 void AddFcht(int nParam)
 {
     g_grfcht |= nParam & ~(int)FCHT_ResetWorld;

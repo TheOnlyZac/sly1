@@ -80,7 +80,7 @@ void SetWipeWipes(WIPE* pwipe, WIPES wipes)
 
     if (pwipe->wipes == WIPES_Black && (&g_wmc != 0))
     {
-        SetWmWms(&g_wmc, 0); // this was SetWmWm but I changed it to SetWmWms, I think it was a typo -Zac
+        SetWmWms(&g_wmc, WMS_ZERO); // this was SetWmWm but I changed it to SetWmWms, I think it was a typo -Zac
     }
 
     if (wipes == WIPES_WipingOut)

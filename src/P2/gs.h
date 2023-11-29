@@ -1,6 +1,16 @@
+/**
+ * @file gs.h
+ *
+ * Game state related functions and structures.
+ *
+ * Not to be confused with Graphic Synthesizer, which is the name of the PS2's GPU
+ * and is also abbreviated as GS.
+ */
 #pragma once
 
-/* Game State Flags */
+/**
+ * Game State Flags
+ */
 enum FGS
 {
     FGS_FirstClue = 0x1,
@@ -10,7 +20,9 @@ enum FGS
     FGS_SecondVault = 0x10
 };
 
-/* World State Flags */
+/**
+ * World State Flags
+ */
 enum FWS
 {
     FWS_Visited = 0x1,
@@ -21,7 +33,9 @@ enum FWS
     FWS_Lock_All = 0x1e
 };
 
-/* Level State Flags */
+/**
+ * Level State Flags
+ */
 enum FLS
 {
     FLS_Visited = 0x1,
@@ -31,6 +45,9 @@ enum FLS
     FLS_BossDefeated = 0x10
 };
 
+/**
+ * Game World ID
+ */
 enum GAMEWORLD
 {
     GAMEWORLD_Intro = 0,
@@ -42,21 +59,26 @@ enum GAMEWORLD
     GAMEWORLD_Max = 6
 };
 
+/**
+ * World Level ID
+ */
 enum WORLDLEVEL : int
 {
-    WORLDLEVEL_Approach = 0x0,
-    WORLDLEVEL_Hub = 0x1,
-    WORLDLEVEL_Level1 = 0x2,
-    WORLDLEVEL_Level2 = 0x3,
-    WORLDLEVEL_Level3 = 0x4,
-    WORLDLEVEL_Level4 = 0x5,
-    WORLDLEVEL_Level5 = 0x6,
-    WORLDLEVEL_Level6 = 0x7,
-    WORLDLEVEL_Boss = 0x8,
-    WORLDLEVEL_Max = 0x9
+    WORLDLEVEL_Approach = 0,
+    WORLDLEVEL_Hub = 1,
+    WORLDLEVEL_Level1 = 2,
+    WORLDLEVEL_Level2 = 3,
+    WORLDLEVEL_Level3 = 4,
+    WORLDLEVEL_Level4 = 5,
+    WORLDLEVEL_Level5 = 6,
+    WORLDLEVEL_Level6 = 7,
+    WORLDLEVEL_Boss = 8,
+    WORLDLEVEL_Max = 9
 };
 
-/* Level State */
+/**
+ * Level State
+ */
 struct LS
 {
     FLS fls; // Level state flags
@@ -73,7 +95,9 @@ struct LS
     char* unk_field_0x74;
 };
 
-/* World State */
+/**
+ * World State
+ */
 struct WS
 {
     LS als[9]; // Level states array
@@ -84,7 +108,9 @@ struct WS
     FWS fws; // World state flags
 };
 
-/* Game State */
+/**
+ * Game State
+ */
 typedef int GRFGS;
 typedef int GRFVAULT;
 struct GS
@@ -106,6 +132,11 @@ struct GS
     int nPowerupLast; // Last selected powerup
 };
 
+/**
+ * Level Info
+ *
+ * Used by the game to load the level.
+ */
 struct PchzLevel // maybe wrong name
 {
     double lsn_and_unk_ciphers;
@@ -122,11 +153,34 @@ struct PchzLevel // maybe wrong name
     FLS tasks;
 };
 
+// Global variables
 extern GS* g_pgsCur;
 extern WS* g_pwsCur;
 extern LS* g_plsCur;
 extern PchzLevel pchzLevelTable[];
 
+/**
+ * @brief Populate a default pchz table for testing.
+ *
+ * @note This function is temporary and should be removed when support for loading
+ * the actual level data is added.
+ */
 void PopulatePchzLevelTable();
+
+/**
+ * @brief Returns a set of flags indicating what has been completed in the current game state.
+ *
+ * @return Flags indicating what has been completed on the save file.
+ *
+ * @todo Implement this function.
+ */
 int FGameCompletion();
+
+/**
+ * @brief Calculates the percent completion on the current save file.
+ *
+ * @param pgs Pointer to the game state.
+ *
+ * @return Percent completion as an integer out of 100.
+ */
 int CalculatePercentCompletion(GS* pgs);

@@ -1,7 +1,10 @@
 #pragma once
 
-/* UI state
- May not be accurate as it seems to differ from the May proto */
+/**
+ * UI state
+ *
+ * Might not be accurate as it seems to differ from the May proto
+ */
 enum UIS
 {
 	UIS_Splash = 0,
@@ -16,14 +19,42 @@ enum UIS
 	UIS_Max = 9
 };
 
+/**
+ * UI
+*/
 struct UI
 {
 	// todo
 };
 
+// Global variables
 static UI g_ui;
 
+/**
+ * @brief Sets the UI state.
+ *
+ * @param pui Pointer to UI struct
+ * @param uis UI state
+ *
+ * @todo Implement function.
+*/
 void SetUiUis(UI* pui, UIS uis);
+
+/**
+ * @brief Updates the UI.
+ *
+ * @param pui Pointer to UI struct
+ *
+ * @todo Implement function.
+*/
 void UpdateUi(UI* pui);
+
+/**
+ * @brief Calls DrawBlots to draw the UI.
+*/
 void DrawUi();
+
+/**
+ * @brief Calls RenderBlots to render the UI.
+*/
 void RenderUi();

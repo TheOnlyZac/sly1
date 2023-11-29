@@ -3,12 +3,19 @@
 
 typedef unsigned char byte;
 
+/**
+ * Sensor State
+ */
 enum SENSORS
 {
     MAX
 };
 
-// todo rewrite struct
+/**
+ * Sensor
+ *
+ * todo: fix missing fields and rewrite
+ */
 struct SENSOR
 {
     undefined4 field_0x0;

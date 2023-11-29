@@ -2,11 +2,14 @@
 #include <util.h>
 #include <iostream>
 
-typedef unsigned char byte;
+typedef unsigned char byte; // todo move to util header
 
 typedef long ulong_128;
 typedef short GRFBTN;
 
+/**
+ * Joypad buttons
+ */
 enum PadButtons
 {
     NOT_PRESSED = 0,
@@ -28,7 +31,9 @@ enum PadButtons
     PAD_LEFT_ARROW = 32768
 };
 
-/* Joypad state */
+/**
+ * Joypad state
+ */
 enum JOYS
 {
 	JOYS_Initing = 0,
@@ -38,7 +43,9 @@ enum JOYS
 	JOYS_Max = 4
 };
 
-/* Joypad kind */
+/**
+ * Joypad kind
+ */
 enum JOYK
 {
 	JOYK_Unknown = 0,
@@ -49,7 +56,9 @@ enum JOYK
 	JOYK_Max = 5
 };
 
-/* Rumble state */
+/**
+ * Rumble state
+ */
 enum RUMS
 {
 	RUMS_Dead = 0,
@@ -60,6 +69,9 @@ enum RUMS
 	RUMS_Max = 5
 };
 
+/**
+ * Rumble intensity
+ */
 struct RUMINS
 {
 	int fHighSpeedMotor;
@@ -68,13 +80,21 @@ struct RUMINS
 	float dt;
 };
 
+/**
+ * Rumble pattern
+ */
 struct RUMPAT
 {
 	int crumins;
 	RUMINS arumins[32];
 };
 
-
+/**
+ * Rumble
+ *
+ * Combines the rumble state, rumble pattern, and rumble intensity along with the
+ * port and slot of the controller.
+ */
 struct RUMBLE
 {
 	int nPort;
@@ -86,9 +106,12 @@ struct RUMBLE
 	float dtRumins;
 };
 
-/* Handles joypad input */
+/**
+ * Joypad
+ */
 struct JOY
 {
+	// joypad info
 	int nPort;
 	int nSlot;
 	ulong_128* aullDma;
@@ -132,7 +155,9 @@ struct JOY
 	int fRumbleEnabled;
 };
 
-/* Cheat Code Flags */
+/**
+ * Cheat Flags
+ */
 enum FCHT
 {
 	FCHT_None = 0x0,
@@ -143,6 +168,9 @@ enum FCHT
 	FCHT_ResetWorld = 0x4000
 };
 
+/**
+ * ??? Kind
+ */
 enum DPK
 {
     DPK_None = 0,
@@ -163,20 +191,80 @@ enum DPK
     DPK_Max = 15
 };
 
-
-
+// Global variables
 static JOY g_joy;
 static float g_tCodeCheck;
 extern int g_grfcht;
 extern char chetkido_buffer[]; // temp
 
+/**
+ * @brief Sets the joypad state and kind.
+ *
+ * @param pjoy Pointer to the joypad
+ * @param joys Joypad state
+ * @param joyk Joypad kind
+ */
 void SetJoyJoys(JOY* pjoy, JOYS joys, JOYK joyk);
+
+/**
+ * @brief Updates the given joypad.
+ *
+ * @param pjoy Pointer to the joypad
+ */
 void UpdateJoy(JOY* pjoy);
 
+/**
+ * @brief Sets the rumble state.
+ *
+ * @param prumble Pointer to the rumble
+ * @param rums Rumble state
+ */
 void SetRumbleRums(RUMBLE* prumble, RUMS rums);
+
+/**
+ * @brief Initializes the rumble.
+ *
+ * @param prumble Pointer to the rumble
+ * @param nPort Port of the controller
+ * @param nSlot Slot of the controller
+ */
 void InitRumble(RUMBLE* prumble, int nPort, int nSlot);
 
+/**
+ * @brief Updates the check for cheat code entry.
+ */
 void UpdateCodes();
+
+/**
+ * @brief Activates a cheat code.
+ *
+ * Sets the given flag on the global fcht variable. Also reloads the level if
+ * is is a reload code.
+ *
+ * @param nparam Cheat code to check
+ */
 void AddFcht(int nParam);
+
+/**
+ * @brief Unknown, but related to cheat codes.
+ *
+ * @param mask Unknown
+ *
+ * @todo Figure out what this function does and implement it.
+ */
 void AddGrfusr(int mask);
+
+/**
+ * @brief Activates the Chetkido cheat code.
+ *
+ * Decrypts the string "The password is: Chetkido" and displays it on the screen
+ * if the following conditions are met:
+ *   - The level is snow_approach
+ *   - The game has 100% completion
+ *   - Coin count is 99
+ *   - Life count is 0
+ *
+ * @note Unofficial name because the real name is unknown.
+ * @todo Implement rendering the string on the screen.
+ */
 void CheatActivateChetkido();

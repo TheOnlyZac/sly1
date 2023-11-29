@@ -13,15 +13,15 @@ float g_trClockPowerUp = 1.0;
 CLOCK g_clock;
 TICK CLOCK::s_tickLastRaw{};
 
-/* Set the tick rate of the global clock */
 void SetClockRate(float rt)
 {
+	// Set global clock rate
 	g_rtClock = rt;
+
+	// Enable clock if rate > 0
 	SetClockEnabled(&g_clock, (0.0 < rt));
-	return;
 }
 
-/* Calculate and update clock values according to time elapsed */
 void MarkClockTick(CLOCK* pclock)
 {
 	float dt{};
@@ -69,7 +69,6 @@ void MarkClockTick(CLOCK* pclock)
 	pclock->tReal = pclock->tReal + pclock->dtReal;
 }
 
-/* Calculate and update real clock values according to EE cyclerate */
 void MarkClockTickRealOnly(CLOCK* pClock)
 {
 	float dtReal{};
@@ -94,13 +93,11 @@ void MarkClockTickRealOnly(CLOCK* pClock)
 	pClock->tReal = pClock->tReal + dtReal * CLOCK_EE_TICK_DURATION;
 }
 
-/* Reset the real time on the clock to the given t value */
 void ResetClock(CLOCK* pclock, float t)
 {
 	pclock->t = t;
 }
 
-/* Set the fEnabled flag on the clock to the given value */
 void SetClockEnabled(CLOCK* pclock, bool fEnabled)
 {
 	pclock->fEnabled = fEnabled;

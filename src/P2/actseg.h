@@ -2,6 +2,9 @@
 #include <vec.h>
 #include <util.h>
 
+/**
+ * Unknown
+ */
 struct ACTLA
 {
     int fUseTarget;

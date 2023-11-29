@@ -1,6 +1,7 @@
 #include "cat.h"
 #include <cstring>
 
+//todo move to util header
 #ifdef _MSC_VER
     #define STRICMP _stricmp
 #else
@@ -8,7 +9,6 @@
     #define STRICMP strcasecmp
 #endif
 
-// Now you can use STRICMP in your code, and it will use the correct function depending on the platform.
 void CFileLocation::Clear()
 {
     memset(this, 0, 8);
@@ -39,7 +39,6 @@ int CWalCatalog::FFindFile(char* pchzKey, FK fk, CFileLocation* pflResult)
         pWVar3 += 1;
         iVar4 += 1;
     }
-
 
     if (pwale == 0x0) {
         iVar4 = 0;

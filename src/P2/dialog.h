@@ -5,6 +5,9 @@
 
 typedef unsigned char byte;
 
+/**
+ * @brief Dialog Kind
+ */
 enum DIALOGK
 {
     DIALOGK_Binoc = 0,
@@ -13,6 +16,9 @@ enum DIALOGK
     DIALOGK_Max = 3,
 };
 
+/**
+ * @brief Dialog State
+ */
 enum DIALOGS
 {
     DIALOGS_Enabled = 0,
@@ -24,6 +30,9 @@ enum DIALOGS
     DIALOGS_Max = 6,
 };
 
+/**
+ * @brief Dialog
+ */
 struct DIALOG
 {
     int padding[0xB8];

@@ -1,5 +1,4 @@
 #include <gs.h>
-
 #include <cstdio>
 
 GS* g_pgsCur = new GS;
@@ -23,10 +22,9 @@ void PopulatePchzLevelTable() // temp
     }
 }
 
-/* Returns a set of flags indicating what has been completed on the save file */
 int FGameCompletion()
 {
-    return 0b1111; // temp: always returns full completion
+    return 0b1111; //! shouldn't always returns full completion, this is just for testing
 }
 
 /* Calculates the percent completion on the current save file */
@@ -89,7 +87,7 @@ int CalculatePercentCompletion(GS* pgs)
         }
     }
 
-    /* This clever if condition means we only calculate the % if we have to.
+    /* This check ensures we only calculate the % if we have to.
     *
     * If cTasksCompleted is 0, finalPercent is left as 0 and
     * the if block is skipped.
@@ -112,7 +110,7 @@ int CalculatePercentCompletion(GS* pgs)
         // convert the number of tasks completed to a value between 1 and 100
         int percent = (cTasksCompleted * 100) / cTasksChecked;
 
-        /* Another clever if statement to account for integer division errors
+        /* This check accounts for integer division errors.
         *
         * If cTasksChecked is <= 0, finalPercent is left as 1 and the
         * if block is skipped because we already know we have completed at least
@@ -130,5 +128,6 @@ int CalculatePercentCompletion(GS* pgs)
             finalPercent = percent;
         }
     }
+
     return finalPercent;
 }

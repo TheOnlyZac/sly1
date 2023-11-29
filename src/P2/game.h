@@ -1,8 +1,11 @@
 #pragma once
 #include <gs.h>
 
-/* Object IDs
- There are a lot more that are unknown. */
+/**
+ * Object ID
+ *
+ * There are a lot more that are not represented here.
+ */
 enum OID : int
 {
 	OID_Unknown = 0x0,
@@ -21,6 +24,9 @@ enum OID : int
     // ...
 };
 
+/**
+ * Collision ID?
+ */
 enum CID : int
 {
     CID_Nil = -1,
@@ -189,9 +195,9 @@ enum CID : int
     CID_Max = 162
 };
 
-/* World IDs
- Some of these values are directly from the may proto,
- the rest I extrapolated based on the order of levels in the game -Zac */
+/**
+ * World ID
+ */
 enum WID : int
 {
 	// Intro
@@ -256,6 +262,9 @@ enum WID : int
 	WID_Max = 0x2f
 };
 
+/**
+ * Game stats
+ */
 struct GAME {
 	int cAlarmsTriggered;
 	int fTimedChallenge;
@@ -271,28 +280,85 @@ struct GAME {
 
 //int FFindLevel(char* pchzWorld, GAMEWORLD* pgameworld, WORLDLEVEL* pworldlevel);
 
+
+/**
+ * @brief Resets the game state values to their defaults.
+ *
+ * @param pgs Pointer to the game state.
+ */
 void InitGameState(GS* pgs);
+
 //void SetupGame(char* pchzWorld, GRFTRANS grftrans)
+
+/**
+ * @brief Updates the game timers.
+ *
+ * @param dt Delta time.
+ */
 void UpdateGameState(float dt);
 
 //GRFLS GrflsFromWid(WID wid)
+
+/**
+ * @brief Clears the given level state struct.
+ *
+ * @param pls Pointer to the level state.
+ */
 void ClearLs(LS* pls);
 
 //void UnloadGame();
-void SetupGame(char* pchzWorld, int grftrans);
+
+
+//void SetupGame(char* pchzWorld, int grftrans);
+
+/**
+ * @brief Resets the lives and charms to their default values, and resets checkpoints.
+ */
 void RetryGame();
+
 //void StartGame();
 
+/**
+ * @brief Sets the number of charms the player has.
+ *
+ * @param nParam The number of charms.
+ */
 void SetCcharm(int nParam);
-bool FCharmAvailable();
-//void SetClife(int nParam);
+
+/**
+ * @brief Sets the number of lives the player has.
+ *
+ * @param nParam The number of lives.
+ */
+void SetClife(int nParam);
+
+/**
+ * @brief Sets the number of coins the player has.
+ *
+ * @param nParam The number of coins.
+ */
 void SetCcoin(int nParam);
+
+ /**
+ * @brief Check if the player has a charm available to prevent death.
+ *
+ * @retval true if the player has charms, or infinite charms cheat is enabled.
+ * @retval false otherwise.
+ */
+bool FCharmAvailable();
+
 
 //int* PfLookupDialog(LS* pls, OID oidDialog);
 //char* AchzFromGameworld(GAMEWORLD gameworld);
 //int CwlpGetWlps(int cwlpMax, WLP* awlp);
 
+/**
+ * @brief Clears the given game struct.
+ *
+ * @param pgame Pointer to the game struct.
+ */
 void OnGameLoad(GAME* pgame);
+
 //void OnGameWorldTransition(GAME* pgame);
 //void OnGameAlarmTriggered(GAME* pgame);
 //void OnGameAlarmDisabled(GAME* pgame);
@@ -306,4 +372,12 @@ void OnGameLoad(GAME* pgame);
 //void PrepareGameGoldForTimedChallenge(GAME* pgame);
 //void GetBlueprintInfo(GRFVAULT* pgrfvault, int* pipdialog);
 
+/**
+ * @brief Returns the max amount of charms the player can have.
+ *
+ * The function always returns 2. This is holdover earlier in development
+ * when there was a powerup that allowed you to have more than 2 charms.
+ *
+ * @return The max charm count.
+ */
 int CcharmMost();

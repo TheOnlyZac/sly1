@@ -3,10 +3,16 @@
 #include <game.h>
 #include <vec.h>
 
+/**
+ * Checkpoint
+*/
 struct CHKPNT
 {
 };
 
+/**
+ * Checkpoint Manager
+*/
 struct CHKMGR
 {
 	int cbitChk;
@@ -20,4 +26,9 @@ struct CHKMGR
 	int fCheckpoint;
 };
 
+/**
+ * @brief Resets the checkpoint manager.
+ *
+ * @param pchkmgr Pointer to the checkpoint manager.
+*/
 void ResetChkmgrCheckpoints(CHKMGR* pchkmgr);

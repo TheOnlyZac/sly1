@@ -2,8 +2,6 @@
 
 unsigned int g_phasemem{}; // todo: what data type is this
 
-/* Executes the mpegs stored as OIDs on the mpeg struct.
-   Name is not official.  */
 void CMpeg::ExecuteOids()
 {
     OID oid1 = this->oid_1;
@@ -19,7 +17,6 @@ void CMpeg::ExecuteOids()
     }
 }
 
-/* Execute (play) the mpeg with the given oid. */
 void CMpeg::Execute(OID* oid)
 {
     char* pchzKey;

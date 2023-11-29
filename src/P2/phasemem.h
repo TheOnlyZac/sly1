@@ -1,5 +1,8 @@
 #pragma once
 
+/**
+ * Game Phase
+ */
 enum PHASE
 {
 	PHASE_None = 0,
@@ -10,8 +13,16 @@ enum PHASE
 	PHASE_Max = 5
 };
 
+// Global variables
 static PHASE g_phase;
 static void* g_phasemem; // todo: fix type
 
+/**
+ * @brief Sets the current game phase.
+*/
 void SetPhase(PHASE phase);
+
+/**
+ * @brief Clears the current game phase.
+  */
 void ClearPhase(PHASE phase = PHASE_None);

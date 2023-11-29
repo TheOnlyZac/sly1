@@ -2,6 +2,9 @@
 #include <util.h>
 #include <cstdint>
 
+/**
+ * EASND
+ */
 struct EASND {
     uint16_t csfxid;
     uint16_t asfxid[6];
@@ -18,6 +21,9 @@ struct sound {
     EASND* peasnd;
 };
 
+/**
+ * Sound Effect ID
+ */
 enum SFXID {
     SFXID_Nil = -1,
     SFXID_CaneHandleUnlock = 0,
@@ -470,6 +476,11 @@ enum SFXID {
     SFXID_Max = 447
 };
 
+/**
+ * ??? Kind
+ *
+ * Categorizes sound effects into groups.
+ */
 enum MVGK {
     MVGK_Nil = -1,
     MVGK_Effects = 0,
@@ -484,6 +495,9 @@ enum MVGK {
     MVGK_Max = 9
 };
 
+/**
+ * ??? Unknown
+ */
 struct ISI {
     enum SFXID sfxid;
     struct LM lmRepeat;

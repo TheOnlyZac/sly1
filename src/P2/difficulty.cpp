@@ -91,33 +91,33 @@ void OnDifficultyWorldPostLoad(DIFFICULTY* pdifficulty)
 	}
 }
 
-/* Stubbed, purpose unknown */
 void OnDifficultyInitialTeleport(DIFFICULTY* pdifficulty)
 {
+	/* This funciton is not implemented in the game, it's purpose is unknown */
 	return;
 }
 
-/* Applies a suck penalty upon player death */
 void OnDifficultyPlayerDeath(float scalar, DIFFICULTY* pdifficulty)
 {
 	DIFFICULTYLEVEL* pdifflevel = pdifficulty->pdifficultyLevel;
 
-	// Update player suck for current level
+	// Get suck values for current level
 	float uSuckCur = g_plsCur->uSuck;
 	float duSuckDeath = pdifflevel->duSuckDeath;
 
+	// Increase suck value
 	ChangeSuck(uSuckCur + scalar * duSuckDeath, pdifficulty);
 
-	// Update suckunknown_0x10 value for current level
+	// Update suckunknown_0x10
 	float result;
-
-	// check for a game over
 	if (g_pgsCur->clife < 0)
 	{
+		// itgame over
 		result = pdifficulty->pdifficultyLevel->field_0x40;
 	}
 	else
 	{
+		// not game over
 		result = pdifflevel->field_0x3c;
 		if (g_pgsCur->clife <= pdifflevel->field_0x4c)
 		{
