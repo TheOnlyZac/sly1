@@ -1,6 +1,6 @@
 #include <wm.h>
 
-void SetWmWms(WM* pwm, WM* pwms)
+void SetWmWms(WM* pwm, WMS wms)
 {
     // todo
 }

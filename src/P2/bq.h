@@ -1,6 +1,6 @@
 #pragma once
 
-typedef unsigned char BYTE;
+typedef unsigned char BYTE; //todo mode to util header
 
 class CByteQueue {
     BYTE* m_ab;

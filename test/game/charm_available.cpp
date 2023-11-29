@@ -7,7 +7,7 @@
 int main()
 {
 	g_pgsCur->ccoin = 1; // set coins to 1
-	g_grfcht &= ~((int)FCHT::InfiniteCharms); // disable infinite charms
+	g_grfcht &= ~((int)FCHT_InfiniteCharms); // disable infinite charms
 
 	// Confirm max charm count is 2
 	JtAssert(CcharmMost() == 2);
@@ -23,7 +23,7 @@ int main()
 	JtAssert(FCharmAvailable() == false);
 
 	g_pgsCur->ccharm = 0;
-	g_grfcht |= (int)FCHT::InfiniteCharms; // enable infinite charms cheat
+	g_grfcht |= (int)FCHT_InfiniteCharms; // enable infinite charms cheat
 	JtAssert(FCharmAvailable() == true);
 
 	// Test setting charm count

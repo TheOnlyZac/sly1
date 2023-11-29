@@ -1,3 +1,4 @@
+#pragma once
 
 struct ALO {
     //LO field0_0x0;

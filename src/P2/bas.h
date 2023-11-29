@@ -2,14 +2,20 @@
 #include <stdint.h>
 #include <util.h>
 
-enum class BASK : int
+/**
+ * Binary Async Stream Kind
+*/
+enum BASK : int
 {
-    Nil = -1,
-    Cd = 1,
-    Host = 0,
-    Max = 2
+    BASK_Nil = -1,
+    BASK_Cd = 1,
+    BASK_Host = 0,
+    BASK_Max = 2
 };
 
+/**
+ * Binary Async Stream
+*/
 class CBinaryAsyncStream
 {
 public:
@@ -25,9 +31,21 @@ public:
     int m_cbUnspooled;
     int m_cbFile;
 
-    CBinaryAsyncStream(void* pvSpool); // constructor
-    ~CBinaryAsyncStream(); // todo destructor
+    /**
+     * @brief Constructs a new CBinaryAsyncStream.
+     *
+     * @param pvSpool Pointer to the spool
+    */
+    CBinaryAsyncStream(void* pvSpool);
 
-    void Close(); // todo
+    /**
+     * @brief Destroys the CBinaryAsyncStream.
+    */
+    ~CBinaryAsyncStream();
+
+    /**
+     * @brief Closes the stream.
+    */
+    void Close();
 };
 

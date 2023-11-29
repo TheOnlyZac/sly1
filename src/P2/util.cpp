@@ -1,6 +1,6 @@
-#include "util.h"
+#include <util.h>
 #include <cmath>
-#include <cstdlib> // rand()
+#include <cstdlib> // todo: implement rng functions to avoid using stdlib
 
 static constexpr float PI = 3.141593;
 LM g_lmZeroOne(0, 1);
@@ -15,7 +15,6 @@ float RadNormalize(float rad)
 	return rad;
 }
 
-/* Clamp the float to fall within the interval [-absLimit, absLimit] */
 float GLimitAbs(float g, float absLimit)
 {
 	if (g <= absLimit)
@@ -29,7 +28,6 @@ float GLimitAbs(float g, float absLimit)
 	return absLimit;
 }
 
-/* Get a random int that falls between the given values */
 int NRandInRange(int nLow, int nHigh)
 {
 	if (nLow != nHigh)
@@ -40,7 +38,6 @@ int NRandInRange(int nLow, int nHigh)
 	return nLow;
 }
 
-/* Get a random float that falls between the given values */
 float GRandInRange(float gLow, float gHigh)
 {
 	if (gLow != gHigh)
@@ -51,7 +48,6 @@ float GRandInRange(float gLow, float gHigh)
 	return gLow;
 }
 
-//return a random number from the Gaussian distribution
 float GRandGaussian(float param_1, float param_2, float param_3)
 {
 	float fVar1;
@@ -80,9 +76,7 @@ float GRandGaussian(float param_1, float param_2, float param_3)
 	return fVar3;
 }
 
-/* Compares two floats and returns true if they are within a certain epsilon of each other */
 BOOL FFloatsNear(float g1, float g2, float gEpsilon)
-
 {
 	float g1Abs = fabs(g1);
 	return (BOOL)(unsigned int)(fabs(g1 - g2) / (float)((unsigned int)(g1Abs < 1.0) * 0x3f800000 | (int)g1Abs * (unsigned int)(g1Abs >= 1.0)) < gEpsilon);
@@ -92,7 +86,7 @@ BOOL FFloatsNear(float g1, float g2, float gEpsilon)
  * Solves a quadratic equation of the form ax^2 + bx + c = 0
  * Returns the number of solutions found (0, 1, or 2)
  * If there are two solutions, they are returned in ax[0] and ax[1]
- */
+*/
 int CSolveQuadratic(float a, float b, float c, float* ax)
 {
 	float rad = (b * b) - 4.0 * a * c;
@@ -116,7 +110,6 @@ int CSolveQuadratic(float a, float b, float c, float* ax)
 
 //TODO: PrescaleClq
 
-//return the sine and cosine of the given angle
 void CalculateSinCos(float angle, float *sin, float *cos)
 {
 	uint uVar1;
@@ -211,13 +204,11 @@ float GModPositive(float gDividend, float gDivisor)
 
 //TODO: FitClq
 
-/* Verify that whether the given float falls within the given limit */
 BOOL FCheckLm(LM* plm, float g)
 {
 	return (plm->gMin < g) && (g < plm->gMax);
 }
 
-/* Check whether the given float falls within any of the given limits */
 BOOL FCheckAlm(int clm, LM* alm, float g)
 {
 	int lmCur = 0;
@@ -233,7 +224,6 @@ BOOL FCheckAlm(int clm, LM* alm, float g)
 	return false;
 }
 
-/* Clamp the float to fall inside range given by the limit */
 float GLimitLm(LM* plm, float g)
 {
 	float result = plm->gMin;
@@ -247,7 +237,6 @@ float GLimitLm(LM* plm, float g)
 	return plm->gMin;
 }
 
-/* Compare the sign of the given two floats */
 int SgnCompareG(float* pg1, float* pg2)
 {
 	int result = 1;
@@ -260,5 +249,5 @@ int SgnCompareG(float* pg1, float* pg2)
 
 void Force(void *)
 {
-	//this function is empty
+	// This function is empty.
 }

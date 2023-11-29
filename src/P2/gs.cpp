@@ -1,5 +1,4 @@
 #include <gs.h>
-
 #include <cstdio>
 
 GS* g_pgsCur = new GS;
@@ -23,10 +22,9 @@ void PopulatePchzLevelTable() // temp
     }
 }
 
-/* Returns a set of flags indicating what has been completed on the save file */
 int FGameCompletion()
 {
-    return 0b1111; // temp: always returns full completion
+    return 0b1111; //! shouldn't always returns full completion, this is just for testing
 }
 
 /* Calculates the percent completion on the current save file */
@@ -42,7 +40,7 @@ int CalculatePercentCompletion(GS* pgs)
         int world = levelId >> 8;
 
         // if world is part of Intro (ie. Splash, Paris, Hideout), skip it
-        if (world != static_cast<int>(GAMEWORLD::Intro))
+        if (world != static_cast<int>(GAMEWORLD_Intro))
         {
             // get all tasks for the current level
             int levelTasks = static_cast<int>(pchzLevelTable[0].tasks) + i;
@@ -50,16 +48,16 @@ int CalculatePercentCompletion(GS* pgs)
             // get save data for the current level
             LS* currLs = pgs->aws[world].als + (levelId & 0xff);
             int currFls = (int)(currLs->fls);
-            
-            // check if the level is visited 
-            cTasksChecked++;
-            cTasksCompleted = cTasksCompleted + (currFls & (int)(FLS::Visited));
 
-            /* Loop over the bits in the FLS cmp and count how many are set, 
+            // check if the level is visited
+            cTasksChecked++;
+            cTasksCompleted = cTasksCompleted + (currFls & (int)(FLS_Visited));
+
+            /* Loop over the bits in the FLS cmp and count how many are set,
             * but only if those bits are also set in the level_tasks the pchz table */
-            int flsMask = static_cast<int>(FLS::KeyCollected);
-            int tasksToCheck = (int)(levelTasks) & (int)(FLS::KeyCollected);
-            while ((flsMask & ((int)(FLS::KeyCollected) | (int)(FLS::Secondary) | (int)(FLS::Tertiary))) != 0)
+            int flsMask = static_cast<int>(FLS_KeyCollected);
+            int tasksToCheck = (int)(levelTasks) & (int)(FLS_KeyCollected);
+            while ((flsMask & ((int)(FLS_KeyCollected) | (int)(FLS_Secondary) | (int)(FLS_Tertiary))) != 0)
             {
                 if (tasksToCheck != 0)
                 {
@@ -89,14 +87,14 @@ int CalculatePercentCompletion(GS* pgs)
         }
     }
 
-    /* This clever if condition means we only calculate the % if we have to.
+    /* This check ensures we only calculate the % if we have to.
     *
-    * If cTasksCompleted is 0, finalPercent is left as 0 and 
+    * If cTasksCompleted is 0, finalPercent is left as 0 and
     * the if block is skipped.
-    * 
-    * If cTasksCompleted == cTasksChecked (ie. all tasks are completed), 
+    *
+    * If cTasksCompleted == cTasksChecked (ie. all tasks are completed),
     * finalPercent is set to 100 and the if block is skipped.
-    * 
+    *
     * In all other cases, the if block sets finalPercent to a calculated value.
     */
     int finalPercent = 0;
@@ -106,21 +104,21 @@ int CalculatePercentCompletion(GS* pgs)
         // if cTasksChecked is 0 then something has gone wrong
         if (cTasksChecked == 0)
         {
-            return -1; 
+            return -1;
         }
 
         // convert the number of tasks completed to a value between 1 and 100
         int percent = (cTasksCompleted * 100) / cTasksChecked;
 
-        /* Another clever if statement to account for integer division errors
-        * 
+        /* This check accounts for integer division errors.
+        *
         * If cTasksChecked is <= 0, finalPercent is left as 1 and the
-        * if block is skipped because we already know we have completed at least 
+        * if block is skipped because we already know we have completed at least
         * one task.
-        * 
-        * If the calclated percent is >= 100, finalPercent is set to 99 and the 
+        *
+        * If the calclated percent is >= 100, finalPercent is set to 99 and the
         * if block is skipped because we already know all tasks are not complete.
-        * 
+        *
         * In all other cases, finalPercent is set to the calculated percent.
         */
         finalPercent = 1;
@@ -130,5 +128,6 @@ int CalculatePercentCompletion(GS* pgs)
             finalPercent = percent;
         }
     }
+
     return finalPercent;
 }

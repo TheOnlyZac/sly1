@@ -12,27 +12,27 @@ int main()
 
 
 	// jb_intro = easy
-	SetGameLevel(GAMEWORLD::Intro, WORLDLEVEL::Approach);
+	SetGameLevel(GAMEWORLD_Intro, WORLDLEVEL_Approach);
 	OnDifficultyWorldPreLoad(&g_difficulty);
 	JtAssert(g_difficulty.pdifficultyLevel == &g_difficultyEasy);
 
 
 	// cw_security = easy
-	SetGameLevel(GAMEWORLD::Clockwerk, WORLDLEVEL::Level2);
+	SetGameLevel(GAMEWORLD_Clockwerk, WORLDLEVEL_Level2);
 	OnDifficultyWorldPreLoad(&g_difficulty);
 	JtAssert(g_difficulty.pdifficultyLevel == &g_difficultyEasy);
 
 
 	// uw_bonus_security
-	SetGameLevel(GAMEWORLD::Underwater, WORLDLEVEL::Level3);
-	
+	SetGameLevel(GAMEWORLD_Underwater, WORLDLEVEL_Level3);
+
 	// no key = medium
-	g_plsCur->fls = static_cast<FLS>((int)g_plsCur->fls & ~(int)FLS::KeyCollected); // unset KeyCollected flag
+	g_plsCur->fls = static_cast<FLS>((int)g_plsCur->fls & ~(int)FLS_KeyCollected); // unset KeyCollected flag
 	OnDifficultyWorldPreLoad(&g_difficulty);
 	JtAssert(g_difficulty.pdifficultyLevel == &g_difficultyMedium);
 
 	// with key = hard
-	g_plsCur->fls = static_cast<FLS>((int)g_plsCur->fls | (int)FLS::KeyCollected); // setKeyCollected flag
+	g_plsCur->fls = static_cast<FLS>((int)g_plsCur->fls | (int)FLS_KeyCollected); // setKeyCollected flag
 	OnDifficultyWorldPreLoad(&g_difficulty);
 	JtAssert(g_difficulty.pdifficultyLevel == &g_difficultyHard);
 

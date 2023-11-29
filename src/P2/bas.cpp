@@ -15,21 +15,21 @@ CBinaryAsyncStream::CBinaryAsyncStream(void* pvSpool)
     m_cb = 0;
 }
 
+CBinaryAsyncStream::~CBinaryAsyncStream()
+{
+    Close();
+}
+
 void CBinaryAsyncStream::Close()
 {
-    if (m_bask == BASK::Host) {
+    if (m_bask == BASK_Host) {
         if (-1 < m_fd) {
             //sceClose();
         }
         m_fd = -1;
     }
-    else if (m_bask == BASK::Cd) {
+    else if (m_bask == BASK_Cd) {
         m_isector = 0;
     }
-    m_bask = BASK::Nil;
-}
-
-CBinaryAsyncStream::~CBinaryAsyncStream()
-{
-    Close();
+    m_bask = BASK_Nil;
 }

@@ -20,7 +20,7 @@ void::CTransition::ResetWorld(FTRANS ftrans)
             /* Transition with the Sly Cooper logo wipe */
             grftrans = 4;
         }
-        Set(g_transition.m_achzWorldCur, OID::Unknown, OID::Unknown, grftrans);
+        Set(g_transition.m_achzWorldCur, OID_Unknown, OID_Unknown, grftrans);
     }
 }
 
@@ -39,13 +39,13 @@ void CTransition::Execute()
 {
     CFileLocation fileLocation;
     LevelTableStruct levelInfo{};
-    
-    SetPhase(PHASE::Load);
+
+    SetPhase(PHASE_Load);
     if (levelInfo.fileLocation.m_fcl.cb != 0)
     {
         fileLocation.Clear();
 
-        // Decrypting the sector offsets and file size 
+        // Decrypting the sector offsets and file size
         fileLocation.m_fcl.cb = levelInfo.fileLocation.m_fcl.cb ^ levelInfo.level_name;
         fileLocation.m_fcl.isector = levelInfo.fileLocation.m_fcl.isector ^ levelInfo.for_size;
 
@@ -53,7 +53,7 @@ void CTransition::Execute()
         {
             //FUN_001C06D8();
             //SetMvgkRvol();//
-            ClearPhase(PHASE::Load);
+            ClearPhase(PHASE_Load);
             levelInfo.fileLocation.m_fcl.isector = 0;
             return;
         }
@@ -64,8 +64,8 @@ void CTransition::Execute()
         ResetClock(&g_clock, 0.0);
         AddGrfusr(0x80);
         //SetupGame(levelInfo.level_id);
-        g_psw = PloNew(CID::CID_SW, 0, 0, OID::_WORLD, -1);
-        
+        g_psw = PloNew(CID_SW, 0, 0, OID__WORLD, -1);
+
     }
 }
 

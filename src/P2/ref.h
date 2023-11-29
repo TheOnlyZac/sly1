@@ -1,7 +1,12 @@
 #pragma once
 
+/**
+ * Unknown
+ *
+ * todo: implement
+*/
 class CRef
 {
-	public:
-
+public:
+	//todo
 };

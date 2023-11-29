@@ -2,6 +2,9 @@
 #include <util.h>
 #include <game.h>
 
+/**
+ * Animation Segment
+*/
 struct ASEG
 {
 	int padding[15];

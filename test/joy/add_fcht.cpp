@@ -7,16 +7,16 @@ int main()
 	// Test setting setting cheat flag
 	g_grfcht = 0x0;
 
-	AddFcht((int)FCHT::InfiniteCharms);
+	AddFcht((int)FCHT_InfiniteCharms);
 	JtAssert(g_grfcht == 0x2);
 
-	AddFcht((int)FCHT::LowGravity);
+	AddFcht((int)FCHT_LowGravity);
 	JtAssert(g_grfcht == 0x6);
 
-	AddFcht((int)FCHT::Invulnerability);
+	AddFcht((int)FCHT_Invulnerability);
 	JtAssert(g_grfcht == 0x7);
 
-	AddFcht((int)FCHT::LowFriction);
+	AddFcht((int)FCHT_LowFriction);
 	JtAssert(g_grfcht == 0xF);
 
 	return 0;

@@ -1,22 +1,48 @@
 #pragma once
 
-/* BLOT state */
-enum class BLOTS : int
+/**
+ * Blot State
+*/
+enum BLOTS
 {
-	Hidden = 0x0,
-	Appearing = 0x1,
-	Visible = 0x2,
-	Disappearing = 0x3,
-	Max = 0x4
+	BLOTS_Hidden = 0,
+	BLOTS_Appearing = 1,
+	BLOTS_Visible = 2,
+	BLOTS_Disappearing = 3,
+	BLOTS_Max = 4
 };
 
-/* Used to draw screen objects */
+/**
+ * Blot
+ *
+ * Used to draw screen objects
+*/
 struct BLOT
 {
 	// todo
 	int padding[0x280];
 };
 
+/**
+ * @brief Sets the BLOT state.
+ *
+ * @param pblot Pointer to the blot to set.
+ * @param blots The state to set.
+ *
+ * @todo Implement this function.
+*/
 void SetBlotBlots(BLOT* pblot, BLOTS blots);
+
+/**
+ * @brief Renders the BLOT object.
+ *
+ * @todo Implement this function.
+*/
 void RenderBlots();
+
+/**
+ * @brief Draws the BLOT object.
+ *
+ * @todo Implement this function.
+*/
 void DrawBlots();

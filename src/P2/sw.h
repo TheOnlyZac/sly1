@@ -13,10 +13,16 @@ struct PSL {
     LO** aploClone;
 };
 
+/**
+ * Scene World
+ *
+ * The scene world is the game world. It contains all the objects in the game
+ * world, and is responsible for rendering them.
+*/
 struct SW {
     LO field0_0x0;
-    int cpsoAll;
-    int cpsoRoot;
+    int cpsoAll; // count of all scene objects
+    int cpsoRoot; // count of root scene objects
     DL dlRoot;
     DL dlChild;
     DL dlMRD;
@@ -24,7 +30,7 @@ struct SW {
     DL dlBusySo;
     DL dlMRDRealClock;
     DL adlHash[512];
-    LO* aploCidHead[162];
+    LO* aploCidHead[162]; // array of linked lists of scene objects, indexed by collision ID(?)
     //OBR* aaobr;
     byte* aaoxf;
     //OXA* aoxa;
@@ -112,9 +118,35 @@ struct SW {
     float rDarkenSmooth;
 };
 
+// Global variables
 static SW g_sw;
 extern SW* g_psw;
 
+/**
+ * @brief Sets up bulk data from BRX.
+ *
+ * @param fLoadBulkData Whether to load bulk data.
+ * @param pbis Pointer to the binary input stream.
+ *
+ * @todo Implement this function.
+*/
 void SetupBulkDataFromBrx(int fLoadBulkData, CBinaryInputStream* pbis);
+
+/**
+ * @brief Loads the scene world from BRX.
+ *
+ * @param psw Pointer to the scene world.
+ * @param pbis Pointer to the binary input stream.
+ *
+ * @todo Implement this function.
+*/
 void LoadSwFromBrx(SW* psw, CBinaryInputStream* pbis);
+
+/**
+ * @brief Deletes the scene world.
+ *
+ * @param psw Pointer to the scene world.
+ *
+ * @todo Implement this function.
+*/
 void DeleteSw(SW* psw);

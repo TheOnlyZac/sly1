@@ -10,17 +10,22 @@
 #include <iostream>
 #include <util.h>
 
-/* Mpeg Audio State */
-enum class MAUDS : int
+/**
+ * Mpeg Audio State
+*/
+enum MAUDS
 {
-    Dead = 0,
-    FillPreface = 1,
-    FillIop = 2,
-    Play = 3,
-    Pmaudse = 4,
-    Max = 5
+    MAUDS_Dead = 0,
+    MAUDS_FillPreface = 1,
+    MAUDS_FillIop = 2,
+    MAUDS_Play = 3,
+    MAUDS_Pmaudse = 4,
+    MAUDS_Max = 5
 };
 
+/**
+ * MPEG video info
+*/
 struct sceMpeg {
     int width;
     int height;
@@ -35,7 +40,10 @@ struct sceMpeg {
     void* sys;
 };
 
-/* Todo: Derive from CQueueOutput class once that exists */
+/**
+ * QueueOutput IOP
+ * Todo: Inherit from CQueueOutput class once that exists
+*/
 class CQueueOutputIop /* : public CQueueOutput */
 {
 private:
@@ -48,6 +56,9 @@ private:
     int m_cbTotal;
 };
 
+/**
+ * MPEG Audio
+*/
 class CMpegAudio
 {
     MAUDS m_mauds; // current state
@@ -62,6 +73,9 @@ class CMpegAudio
     // todo: class methods
 };
 
+/**
+ * MPEG video
+*/
 class CMpeg
 {
 public:
@@ -82,11 +96,44 @@ public:
     BYTE field_0x12e;
     BYTE field_0x12f;
 
+    /**
+     * @brief Executes the mpegs stored as OIDs on the mpeg struct.
+     *
+     * @note Unofficial name
+    */
     void ExecuteOids();
-    void Execute(OID* oid);
+
+    /**
+     * @brief Executes the mpeg with the given oid.
+     *
+     * @param oid Pointer to the oid
+     *
+     * @todo Function is only partially implemented.
+     * @todo Double check whether oid is supposed to be a pointer.
+    */
+    void Execute(OID* oid); //  todo
+
+    /**
+     * @brief Starts the mpeg.
+     *
+     * @todo Implement this function.
+    */
     void Start(); // todo
+
+    /**
+     * @brief Updates the mpeg.
+     *
+     * @todo Implement this function.
+    */
     void Update(); // todo
+
+    /**
+     * @brief Finishes the mpeg.
+     *
+     * @todo Implement this function.
+    */
     void Finish(); // todo
 };
 
+// Global variables
 static CMpeg g_mpeg;

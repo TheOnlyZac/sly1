@@ -5,8 +5,15 @@
 
 typedef int GRFPVA;
 
-// todo: rewrite struct
-struct SO 
+
+/**
+ * Scene Object
+ *
+ * A scene object is a physical object in the game world.
+ *
+ * todo: identify missing fields and rewrite
+*/
+struct SO
 {
     char padding[0x2e0];
     //DLE dleRoot;

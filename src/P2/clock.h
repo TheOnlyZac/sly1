@@ -2,6 +2,9 @@
 
 typedef unsigned long long TICK;
 
+/**
+ * Clock
+*/
 struct CLOCK
 {
 	static TICK s_tickLastRaw;
@@ -15,15 +18,66 @@ struct CLOCK
 	TICK tickFrame;
 };
 
+// Global variables
 extern CLOCK g_clock; // global game clock
 extern float g_rtClock;
 
+/**
+ * @brief Sets the tick rate of the global clock.
+ *
+ * @param rt The new tick rate.
+*/
 void SetClockRate(float rt);
+
+/**
+ * @brief Calculates and updates clock values according to time elapsed.
+ *
+ * @param pclock Pointer to the clock.
+*/
 void MarkClockTick(CLOCK* pclock);
+
+/**
+ * @brief Calculates and updates clock values according to time elapsed.
+ *
+ * Only updates the real clock values (those which are determined by the EE clock cyclerate).
+ *
+ * @param pclock Pointer to the clock.
+*/
 void MarkClockTickRealOnly(CLOCK* pclock);
+
+/**
+ * @brief Resets the clock to the given time.
+ *
+ * @param pclock Pointer to the clock.
+ * @param t The new time.
+*/
 void ResetClock(CLOCK* pclock, float t);
+
+/**
+ * @brief Sets the fEnabled flag on the clock to the given value.
+ *
+ * @param pclock Pointer to the clock.
+ * @param fEnabled The new value of the fEnabled flag.
+*/
 void SetClockEnabled(CLOCK* pclock, bool fEnabled);
+
+/**
+ * @brief Initializes some values and starts the global clock.
+*/
 void StartupClock();
+
+/**
+ * @brief Gets the current tick.
+ *
+ * @return The current tick.
+*/
 TICK TickNow();
 
+/**
+ * @brief Sets the debug rate of the global clock.
+ *
+ * @param nParam The new debug rate.
+ *
+ * @todo Implement this function.
+*/
 //void SetClockDebugRate(int nParam);

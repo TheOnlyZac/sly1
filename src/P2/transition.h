@@ -15,6 +15,11 @@
 
 typedef int GRFTRANS;
 
+/**
+ * Transition data
+ *
+ * Responsible for holding data bout a level transition.
+*/
 struct TRANS
 {
     uint32_t fSet;
@@ -24,7 +29,10 @@ struct TRANS
     GRFTRANS grftrans; // Lost all lives flags
 };
 
-enum FTRANS { 
+/**
+ * Transition Flags
+*/
+enum FTRANS {
     GRFTRANS_None = 0,
     FTRANS_Checkpoint = 1,
     FTRANS_RetryWorld = 2,
@@ -33,6 +41,13 @@ enum FTRANS {
     FTRANS_ShowLives = 16
 };
 
+/**
+ * Level Table Struct
+ *
+ * Holds data about the level file.
+ *
+ * note: name is not official
+*/
 struct LevelTableStruct
 {
     CFileLocation fileLocation; /* Ciphers for lsn and size */
@@ -45,12 +60,15 @@ struct LevelTableStruct
     FLS tasks;         /* Tasks to complete (visited, key, vault, mts) */
 };
 
+/**
+ * Transition
+*/
 class CTransition
 {
 protected:
     char *m_pchzWorld;      // This is the ptr to enc level sector offset and size in memory
     OID   m_oidWarp;        // Which checkpoint you spawn at when you start a level
-    OID   m_oidWarpContext; 
+    OID   m_oidWarpContext;
 
 public:
     GRFTRANS grftrans;       // Flags that affect level loading, one of them checks if you lost all lives when you die.
@@ -67,4 +85,5 @@ public:
     void Execute();
 };
 
+// Global variables
 static CTransition g_transition;

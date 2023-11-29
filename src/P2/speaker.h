@@ -8,7 +8,14 @@
 
 typedef int GRFPVA;
 
-// todo: rewrite struct
+/**
+ * Speaker
+ *
+ * Either represents a speaker that emits sound in the game world, or a
+ * physical speaker in the real world. More research is needed.
+ *
+ * todo: identify undefined fields
+*/
 struct SPEAKER
 {
     char padding[0x2e0];
@@ -29,6 +36,9 @@ struct SPEAKER
     struct SMA* psmaIdle;
 };
 
+/**
+ * Dialog Player
+*/
 struct DP
 {
     GRFDP grfdp;

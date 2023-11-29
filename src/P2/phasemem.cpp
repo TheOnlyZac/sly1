@@ -1,6 +1,5 @@
 #include <phasemem.h>
 
-// Sets the current global phase value
 void SetPhase(PHASE phase)
 {
 	if (g_phase != phase)
@@ -10,7 +9,6 @@ void SetPhase(PHASE phase)
 	}
 }
 
-// Clears the global phase value
 void ClearPhase(PHASE phase)
 {
 	g_phase = phase;

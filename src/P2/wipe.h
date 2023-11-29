@@ -9,24 +9,33 @@
 
 typedef unsigned char byte;
 
-enum class WIPEK : int
+/**
+ * Wipe Kind
+*/
+enum WIPEK
 {
-	Fade = 0x0,
-	Keyhole	= 0x1,
-	WorldMap = 0x2,
-	Frozen = 0x3,
-	Max = 0x4
+	WIPEK_Fade = 0,
+	WIPEK_Keyhole = 1,
+	WIPEK_WorldMap = 2,
+	WIPEK_Frozen = 3,
+	WIPEK_Max = 4
 };
 
-enum class WIPES
+/**
+ * Wipe State
+*/
+enum WIPES
 {
-	Idle = 0,
-	WipingOut = 1,
-	Black = 2,
-	WipingIn = 3,
-	Max = 4
+	WIPES_Idle = 0,
+	WIPES_WipingOut = 1,
+	WIPES_Black = 2,
+	WIPES_WipingIn = 3,
+	WIPES_Max = 4
 };
 
+/**
+ * Wipe
+*/
 struct WIPE
 {
     WIPES wipes;
@@ -38,6 +47,7 @@ struct WIPE
     WIPEK wipekButton;
 };
 
+// Global variables
 static KEYHOLE* g_pkeyhole;
 static DIALOG* g_pdialogCalling;
 static WM g_wmc;
@@ -46,11 +56,74 @@ static TRANS trans; // ?
 static WIPE g_wipe;
 extern WIPE* g_pwipe;
 
+/**
+ * @brief Sets the values on the global transition and calles ActivateWipe to warp given world.
+ *
+ * @param pchzWorld World to transition to
+ * @param oidWarp Unknown
+ * @param wipek Wipe kind
+ *
+ * @todo Figure out what oidWarp is used for.
+*/
 void WipeToWorldWarp(LevelTableStruct* pchzWorld, OID oidWarp, WIPEK wipek);
+
+/**
+ * @brief Activates a wipe.
+ *
+ * @param pwipe Pointer to the wipe
+ * @param ptrans Pointer to the transition
+ * @param wipek Wipe kind
+*/
 void ActivateWipe(WIPE* pwipe, TRANS* ptrans, WIPEK wipek);
+
+/**
+ * @brief Sets the wipe state.
+ *
+ * @param pwipe Pointer to the wipe
+ * @param wipes Wipe state
+*/
 void SetWipeWipes(WIPE* pwipe, WIPES wipes);
+
+/**
+ * @brief Draws a wipe.
+ *
+ * @param pwipe Pointer to the wipe
+*/
 void DrawWipe(WIPE* pwipe);
+
+/**
+ * @brief Updates a wipe.
+ *
+ * Joypad is passed so it can catch the button press to skip the wipe.
+ *
+ * @brief pwipe Pointer to the wipe
+ * @brief pjoy Pointer to the joypad
+*/
 void UpdateWipe(WIPE* pwipe, JOY* pjoy);
+
+/**
+ * @brief Initializes a wipe.
+ *
+ * Sets the wipe state to Idle.
+ *
+ * @param pwipe Pointer to the wipe
+*/
 void InitWipe(WIPE* pwipe);
-void SetWipeButtonTrans(WIPE* param_1, TRANS* param_2, WIPEK param_3);
+
+/**
+ * @brief Sets the button flags on the transition.
+ *
+ * @param pwipe Pointer to the wipe
+ * @param ptrans Pointer to the transition
+ * @param wipek Wipe kind
+*/
+void SetWipeButtonTrans(WIPE* pwipe, TRANS* ptrans, WIPEK wipek);
+
+/**
+ * @brief Catches a button during a wipe transition.
+ *
+ * @param pwipe Pointer to the wipe
+ * @param pjoy Pointer to the joypad
+ * @param wipesNew New wipe state
+*/
 int  FCatchWipeButtonTrans(WIPE* pwipe, JOY* pjoy, WIPES wipesNew);

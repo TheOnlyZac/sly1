@@ -24,7 +24,7 @@ int CBinaryInputStream::FOpenSector(uint32_t isector, uint32_t cb)
         return 0;
 
     iVar2 = m_cbSpool;
-    m_bisk = BISK::Cd;
+    m_bisk = BISK_Cd;
     m_isector = isector;
     m_cbAsyncRemaining = cb;
     m_pbRaw = m_abSpool;
@@ -52,7 +52,7 @@ int CBinaryInputStream::FOpenSector(uint32_t isector, uint32_t cb)
 void CBinaryInputStream::OpenMemory(int cb, void* pv)
 {
     m_cb = cb;
-    m_bisk = BISK::Mem;
+    m_bisk = BISK_Mem;
     m_pb = (byte*)pv;
 }
 
@@ -334,15 +334,15 @@ void CBinaryInputStream::ReadStringSw(char** pachz)
 
 void CBinaryInputStream::Close()
 {
-    if (m_bisk == BISK::Host) {
+    if (m_bisk == BISK_Host) {
         if (-1 < m_fd) {
             //sceClose();
         }
     }
     else {
-        if (m_bisk != BISK::Cd) {
+        if (m_bisk != BISK_Cd) {
             m_cbSpillOver = 0;
-            m_bisk = BISK::Nil;
+            m_bisk = BISK_Nil;
             m_pbRaw = 0x0;
             m_pb = 0x0;
             m_cbRaw = 0;
@@ -361,7 +361,7 @@ void CBinaryInputStream::Close()
     }
 
     m_cbSpillOver = 0;
-    m_bisk = BISK::Nil;
+    m_bisk = BISK_Nil;
     m_pbRaw = 0x0;
     m_pb = 0x0;
     m_cbRaw = 0;

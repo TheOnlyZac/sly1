@@ -5,25 +5,34 @@
 
 typedef unsigned char byte;
 
-enum class DIALOGK
+/**
+ * @brief Dialog Kind
+*/
+enum DIALOGK
 {
-    Binoc = 0,
-    Instruct = 1,
-    Confront = 2,
-    Max = 3,
+    DIALOGK_Binoc = 0,
+    DIALOGK_Instruct = 1,
+    DIALOGK_Confront = 2,
+    DIALOGK_Max = 3,
 };
 
-enum class DIALOGS
+/**
+ * @brief Dialog State
+*/
+enum DIALOGS
 {
-    Enabled = 0,
-    Triggered = 1,
-    Disabled = 2,
-    Playing = 3,
-    Calling = 4,
-    UnableToCall = 5,
-    Max = 6,
+    DIALOGS_Enabled = 0,
+    DIALOGS_Triggered = 1,
+    DIALOGS_Disabled = 2,
+    DIALOGS_Playing = 3,
+    DIALOGS_Calling = 4,
+    DIALOGS_UnableToCall = 5,
+    DIALOGS_Max = 6,
 };
 
+/**
+ * @brief Dialog
+*/
 struct DIALOG
 {
     int padding[0xB8];

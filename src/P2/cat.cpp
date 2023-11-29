@@ -1,6 +1,7 @@
 #include "cat.h"
 #include <cstring>
 
+//todo move to util header
 #ifdef _MSC_VER
     #define STRICMP _stricmp
 #else
@@ -8,7 +9,6 @@
     #define STRICMP strcasecmp
 #endif
 
-// Now you can use STRICMP in your code, and it will use the correct function depending on the platform.
 void CFileLocation::Clear()
 {
     memset(this, 0, 8);
@@ -31,6 +31,7 @@ int CWalCatalog::FFindFile(char* pchzKey, FK fk, CFileLocation* pflResult)
     int iVar4;
     char achzKey[128]; // Buffer used to reference the file its looking for.
 
+    //! There is a mistake here, nothing is passed to the format string
     sprintf(achzKey, "%s\\%s"); // Storing the file that its looking for in achzKey buffer.
     pWVar3 = m_awale;
 
@@ -38,7 +39,6 @@ int CWalCatalog::FFindFile(char* pchzKey, FK fk, CFileLocation* pflResult)
         pWVar3 += 1;
         iVar4 += 1;
     }
-
 
     if (pwale == 0x0) {
         iVar4 = 0;

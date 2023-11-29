@@ -2,11 +2,14 @@
 #include <util.h>
 #include <iostream>
 
-typedef unsigned char byte;
+typedef unsigned char byte; // todo move to util header
 
 typedef long ulong_128;
 typedef short GRFBTN;
 
+/**
+ * Joypad buttons
+*/
 enum PadButtons
 {
     NOT_PRESSED = 0,
@@ -28,38 +31,47 @@ enum PadButtons
     PAD_LEFT_ARROW = 32768
 };
 
-/* Joypad state */
-enum class JOYS : int
+/**
+ * Joypad state
+*/
+enum JOYS
 {
-	Initing = 0,
-	Searching = 1,
-	Waiting = 2,
-	Ready = 3,
-	Max = 4
+	JOYS_Initing = 0,
+	JOYS_Searching = 1,
+	JOYS_Waiting = 2,
+	JOYS_Ready = 3,
+	JOYS_Max = 4
 };
 
-/* Joypad K? */
-enum class JOYK : int
+/**
+ * Joypad kind
+*/
+enum JOYK
 {
-	Unknown = 0,
-	Digital = 1,
-	Analog = 2,
-	Shock = 3,
-	Shock2 = 4,
-	Max = 5
+	JOYK_Unknown = 0,
+	JOYK_Digital = 1,
+	JOYK_Analog = 2,
+	JOYK_Shock = 3,
+	JOYK_Shock2 = 4,
+	JOYK_Max = 5
 };
 
-/* Rumble state */
-enum class RUMS : int
+/**
+ * Rumble state
+*/
+enum RUMS
 {
-	Dead = 0,
-	Idle = 1,
-	Rumble = 2,
-	Stop = 3,
-	Kill = 4,
-	Max = 5
+	RUMS_Dead = 0,
+	RUMS_Idle = 1,
+	RUMS_Rumble = 2,
+	RUMS_Stop = 3,
+	RUMS_Kill = 4,
+	RUMS_Max = 5
 };
 
+/**
+ * Rumble intensity
+*/
 struct RUMINS
 {
 	int fHighSpeedMotor;
@@ -68,13 +80,21 @@ struct RUMINS
 	float dt;
 };
 
+/**
+ * Rumble pattern
+*/
 struct RUMPAT
 {
 	int crumins;
 	RUMINS arumins[32];
 };
 
-
+/**
+ * Rumble
+ *
+ * Combines the rumble state, rumble pattern, and rumble intensity along with the
+ * port and slot of the controller.
+*/
 struct RUMBLE
 {
 	int nPort;
@@ -86,9 +106,12 @@ struct RUMBLE
 	float dtRumins;
 };
 
-/* Handles joypad input */
+/**
+ * Joypad
+*/
 struct JOY
 {
+	// joypad info
 	int nPort;
 	int nSlot;
 	ulong_128* aullDma;
@@ -132,49 +155,116 @@ struct JOY
 	int fRumbleEnabled;
 };
 
-/* Cheat Code Flags */
-enum class FCHT : int
+/**
+ * Cheat Flags
+*/
+enum FCHT
 {
-	None = 0x0,
-	Invulnerability = 0x1,
-	InfiniteCharms = 0x2,
-	LowGravity = 0x4,
-	LowFriction = 0x8,
-	ResetWorld = 0x4000
-};enum DPK
-{
-    None = 0,
-    X = 1,
-    Square = 2,
-    Circle = 3,
-    Triangle = 4,
-    L1 = 5,
-    L2 = 6,
-    R1 = 7,
-    R2 = 8,
-    JoyLeft = 9,
-    JoyRight = 10,
-    JoyLeftX = 11,
-    JoyLeftY = 12,
-    DoubleJump = 13,
-    VaultOpen = 14,
-    Max = 15
+	FCHT_None = 0x0,
+	FCHT_Invulnerability = 0x1,
+	FCHT_InfiniteCharms = 0x2,
+	FCHT_LowGravity = 0x4,
+	FCHT_LowFriction = 0x8,
+	FCHT_ResetWorld = 0x4000
 };
 
+/**
+ * ??? Kind
+*/
+enum DPK
+{
+    DPK_None = 0,
+    DPK_X = 1,
+    DPK_Square = 2,
+    DPK_Circle = 3,
+    DPK_Triangle = 4,
+    DPK_L1 = 5,
+    DPK_L2 = 6,
+    DPK_R1 = 7,
+    DPK_R2 = 8,
+    DPK_JoyLeft = 9,
+    DPK_JoyRight = 10,
+    DPK_JoyLeftX = 11,
+    DPK_JoyLeftY = 12,
+    DPK_DoubleJump = 13,
+    DPK_VaultOpen = 14,
+    DPK_Max = 15
+};
 
-
+// Global variables
 static JOY g_joy;
 static float g_tCodeCheck;
 extern int g_grfcht;
 extern char chetkido_buffer[]; // temp
 
+/**
+ * @brief Sets the joypad state and kind.
+ *
+ * @param pjoy Pointer to the joypad
+ * @param joys Joypad state
+ * @param joyk Joypad kind
+*/
 void SetJoyJoys(JOY* pjoy, JOYS joys, JOYK joyk);
+
+/**
+ * @brief Updates the given joypad.
+ *
+ * @param pjoy Pointer to the joypad
+*/
 void UpdateJoy(JOY* pjoy);
 
+/**
+ * @brief Sets the rumble state.
+ *
+ * @param prumble Pointer to the rumble
+ * @param rums Rumble state
+*/
 void SetRumbleRums(RUMBLE* prumble, RUMS rums);
+
+/**
+ * @brief Initializes the rumble.
+ *
+ * @param prumble Pointer to the rumble
+ * @param nPort Port of the controller
+ * @param nSlot Slot of the controller
+*/
 void InitRumble(RUMBLE* prumble, int nPort, int nSlot);
 
+/**
+ * @brief Updates the check for cheat code entry.
+*/
 void UpdateCodes();
+
+/**
+ * @brief Activates a cheat code.
+ *
+ * Sets the given flag on the global fcht variable. Also reloads the level if
+ * is is a reload code.
+ *
+ * @param nparam Cheat code to check
+*/
 void AddFcht(int nParam);
+
+/**
+ * @brief Unknown, but related to cheat codes.
+ *
+ * @param mask Unknown
+ *
+ * @todo Figure out what this function does and implement it.
+*/
 void AddGrfusr(int mask);
+
+/**
+ * @brief Activates the Chetkido cheat code.
+ *
+ * Decrypts the string "The password is: Chetkido" and displays it on the screen
+ * if the following conditions are met:
+ *   - The level is snow_approach
+ *   - The game has 100% completion
+ *   - Coin count is 99
+ *   - Life count is 0
+ *
+ * @note Unofficial name because the real name is unknown.
+ * @todo Implement rendering the string on the screen.
+*/
 void CheatActivateChetkido();
