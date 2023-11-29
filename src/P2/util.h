@@ -1,17 +1,13 @@
 #pragma once
+#include <vec.h>
 
 typedef bool BOOL;
 typedef unsigned int uint;
 typedef unsigned long ulong;
 
-/* Vector */
-struct VECTOR
-{
-	float x;
-	float y;
-	float z;
-	float gUnused;
-};
+typedef unsigned char byte;
+typedef unsigned char BYTE;
+typedef unsigned int undefined4;
 
 /* Limit */
 struct LM

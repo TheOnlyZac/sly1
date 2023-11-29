@@ -1,14 +1,12 @@
 #include <game.h>
 #include <joy.h>
 #include <gs.h>
-
 #include <cstring>
 
 /* Resets the save data values to their defaults */
 void InitGameState(GS* pgs)
-
 {
-	std::memset(pgs, 0, sizeof(GS));
+	memset(pgs, 0, sizeof(GS));
 	pgs->gameworldCur = GAMEWORLD::Intro;
 	pgs->grfvault = 0;
 	pgs->gsv = 0x12;
@@ -35,6 +33,11 @@ void UpdateGameState(float dt)
 void ClearLs(LS* pls)
 {
 	memset(pls, 0, sizeof(LS));
+}
+
+void SetupGame(char* pchzWorld, int grftrans)
+{
+
 }
 
 void RetryGame(void)
