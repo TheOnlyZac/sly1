@@ -1,6 +1,10 @@
 #pragma once
+#include <vec.h>
 
 typedef bool BOOL;
+typedef unsigned int uint;
+typedef unsigned long ulong;
+
 typedef unsigned char byte;
 typedef unsigned char BYTE;
 typedef unsigned int undefined4;
@@ -10,14 +14,11 @@ struct LM
 {
 	float gMin, gMax;
 
-	inline LM(float min = 0, float max = 1)
-	{
-		gMin = min;
-		gMax = max;
-	}
+	constexpr LM(float min = 0, float max = 1):
+		gMin(min), gMax(max)
+	{}
 };
-
-static inline LM g_lmZeroOne(0, 1);
+extern LM g_lmZeroOne;
 
 float RadNormalize(float rad);
 float GLimitAbs(float g, float absLimit);
@@ -29,20 +30,20 @@ float GLimitAbs(float g, float absLimit);
 //VU_VECTOR PosSmooth(VU_VECTOR posCur, VU_VECTOR posTarget, float dt, SMP* psmp, VECTOR* pv);
 int NRandInRange(int nLow, int nHigh);
 float GRandInRange(float gLow, float gHigh);
-//float GRandGaussian(float gMean, float gDeviation, float gLimit);
+float GRandGaussian(float gMean, float gDeviation, float gLimit);
 BOOL FFloatsNear(float g1, float g2, float gEpsilon);
 int CSolveQuadratic(float a, float b, float c, float* ax);
 //void PrescaleClq(CLQ* pclqSrc, float ru, float du, CLQ* pclqDst);
-//void CalculateSinCos(float rad, float* pgSin, float* pgCos);
-//double GTrunc(double g);
-//float GTrunc(float g);
+void CalculateSinCos(float rad, float* pgSin, float* pgCos);
+double GTrunc(double g);
+float GTrunc(float g);
 float GModPositive(float gDividend, float gDivisor);
 //void FitClq(float g0, float g1, float u, float gU, CLQ* pclq);
 BOOL FCheckLm(LM* plm, float g);
 BOOL FCheckAlm(int clm, LM* alm, float g);
 float GLimitLm(LM* plm, float g);
 int SgnCompareG(float* pg1, float* pg2);
-//void Force(void* pv);
+void Force(void* pv);
 //void MinimizeRange(PFNGG pfn, void* pv, float g, float dg, float gMin, float gMax, float* pgDom, float* pgRng);
 
 //int CSolveClq(CLQ* pclq, float g, float* ag);
