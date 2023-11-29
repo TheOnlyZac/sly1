@@ -18,7 +18,7 @@ struct PSL {
  *
  * The scene world is the game world. It contains all the objects in the game
  * world, and is responsible for rendering them.
- */
+*/
 struct SW {
     LO field0_0x0;
     int cpsoAll; // count of all scene objects
@@ -129,7 +129,7 @@ extern SW* g_psw;
  * @param pbis Pointer to the binary input stream.
  *
  * @todo Implement this function.
- */
+*/
 void SetupBulkDataFromBrx(int fLoadBulkData, CBinaryInputStream* pbis);
 
 /**
@@ -139,7 +139,7 @@ void SetupBulkDataFromBrx(int fLoadBulkData, CBinaryInputStream* pbis);
  * @param pbis Pointer to the binary input stream.
  *
  * @todo Implement this function.
- */
+*/
 void LoadSwFromBrx(SW* psw, CBinaryInputStream* pbis);
 
 /**
@@ -148,5 +148,5 @@ void LoadSwFromBrx(SW* psw, CBinaryInputStream* pbis);
  * @param psw Pointer to the scene world.
  *
  * @todo Implement this function.
- */
+*/
 void DeleteSw(SW* psw);

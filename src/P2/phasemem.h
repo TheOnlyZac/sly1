@@ -2,7 +2,7 @@
 
 /**
  * Game Phase
- */
+*/
 enum PHASE
 {
 	PHASE_None = 0,
@@ -24,5 +24,5 @@ void SetPhase(PHASE phase);
 
 /**
  * @brief Clears the current game phase.
-  */
+*/
 void ClearPhase(PHASE phase = PHASE_None);

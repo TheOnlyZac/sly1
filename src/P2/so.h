@@ -12,7 +12,7 @@ typedef int GRFPVA;
  * A scene object is a physical object in the game world.
  *
  * todo: identify missing fields and rewrite
- */
+*/
 struct SO
 {
     char padding[0x2e0];

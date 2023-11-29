@@ -4,7 +4,7 @@
 
 /**
  * @brief Difficulty Prize State.
- */
+*/
 enum DPS
 {
 	DPS_Normal = 0x0,
@@ -18,7 +18,7 @@ enum DPS
  * Stores values related to a particular difficulty level.
  *
  * @note Name is not official
- */
+*/
 struct DIFFICULTYLEVEL
 {
 	LM suckLm;
@@ -47,7 +47,7 @@ struct DIFFICULTYLEVEL
  * @brief Difficulty.
  *
  * Tracks values that don't change across difficulty levels, and a pointer to the current difficulty level
- */
+*/
 struct DIFFICULTY
 {
 	int field_0x0;
@@ -71,7 +71,7 @@ static DIFFICULTYLEVEL g_difficultyEasy, g_difficultyMedium, g_difficultyHard;
  * @brief Called when game loads, clears the difficulty struct.
  *
  * @param pdifficulty Pointer to the difficulty.
- */
+*/
 void OnDifficultyGameLoad(DIFFICULTY* pdifficulty);
 
 /**
@@ -80,7 +80,7 @@ void OnDifficultyGameLoad(DIFFICULTY* pdifficulty);
  * Sets the difficulty value based on the current level.
  *
  * @param pdifficulty Pointer to the difficulty.
- */
+*/
 void OnDifficultyWorldPreLoad(DIFFICULTY* pdifficulty);
 
 /**
@@ -89,14 +89,14 @@ void OnDifficultyWorldPreLoad(DIFFICULTY* pdifficulty);
  * Gives the player suck charms if they are below the threshold.
  *
  * @param pdifficulty Pointer to the difficulty.
- */
+*/
 void OnDifficultyWorldPostLoad(DIFFICULTY* pdifficulty);
 
 /**
  * @brief Stubbed, does nothing.
  *
  * @param pdifficulty Pointer to the difficulty.
- */
+*/
 void OnDifficultyInitialTeleport(DIFFICULTY* pdifficulty);
 
 /**
@@ -106,7 +106,7 @@ void OnDifficultyInitialTeleport(DIFFICULTY* pdifficulty);
  *
  * @param scalar The amount to increase the suck value by.
  * @param pdifficulty Pointer to the difficulty.
- */
+*/
 void OnDifficultyPlayerDeath(float scalar, DIFFICULTY* pdifficulty);
 
 /**
@@ -116,7 +116,7 @@ void OnDifficultyPlayerDeath(float scalar, DIFFICULTY* pdifficulty);
  *
  * @param pdifficulty Pointer to the difficulty.
  * @param pchkpnt Pointer to the checkpoint.
- */
+*/
 void OnDifficultyTriggerCheckpoint(DIFFICULTY* pdifficulty, CHKPNT* pchkpnt);
 
 /**
@@ -125,7 +125,7 @@ void OnDifficultyTriggerCheckpoint(DIFFICULTY* pdifficulty, CHKPNT* pchkpnt);
  * Resets the suck values.
  *
  * @param pdifficulty Pointer to the difficulty.
- */
+*/
 void OnDifficultyCollectKey(DIFFICULTY* pdifficulty);
 
 //void OnDifficultyAward(Difficulty* pdifficulty, int ccoinMin, int ccoinMax, Vector* ppos);
@@ -140,7 +140,7 @@ void OnDifficultyCollectKey(DIFFICULTY* pdifficulty);
  *
  * @param nParam The amount to change the suck value by.
  * @param pdifficulty Pointer to the difficulty.
- */
+*/
 void ChangeSuck(float nParam, DIFFICULTY* pdifficulty);
 
 //void ResetSuckChkpnts(int nParam);

@@ -2,7 +2,7 @@
 
 /**
  * Light shadow & midtone
- */
+*/
 struct LSM
 {
 	float uShadow;

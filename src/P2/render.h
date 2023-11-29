@@ -9,7 +9,7 @@
  * @param pcm The camera to render with.
  *
  * @todo Implement this function.
- */
+*/
 void RenderSw(SW* psw, CM* pcm);
 
 /**
@@ -19,5 +19,5 @@ void RenderSw(SW* psw, CM* pcm);
  * @param pcm The camera to draw with.
  *
  * @todo Implement this function.
- */
+*/
 void DrawSw(SW* psw, CM* pcm);

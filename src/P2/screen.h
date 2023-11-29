@@ -2,7 +2,7 @@
 
 /**
  * Blot State
- */
+*/
 enum BLOTS
 {
 	BLOTS_Hidden = 0,
@@ -16,7 +16,7 @@ enum BLOTS
  * Blot
  *
  * Used to draw screen objects
- */
+*/
 struct BLOT
 {
 	// todo
@@ -30,19 +30,19 @@ struct BLOT
  * @param blots The state to set.
  *
  * @todo Implement this function.
- */
+*/
 void SetBlotBlots(BLOT* pblot, BLOTS blots);
 
 /**
  * @brief Renders the BLOT object.
  *
  * @todo Implement this function.
- */
+*/
 void RenderBlots();
 
 /**
  * @brief Draws the BLOT object.
  *
  * @todo Implement this function.
- */
+*/
 void DrawBlots();

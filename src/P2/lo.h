@@ -5,7 +5,7 @@
 
 /**
  * Level Object
- */
+*/
 struct LO {
     struct BASIC field0_0x0;
     enum   OID oid;

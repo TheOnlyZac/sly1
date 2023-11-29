@@ -6,5 +6,5 @@
  *
  * @param psw The SW struct to update
  * @param dt Delta time
- */
+*/
 void UpdateSwObjects(SW* psw, float dt);

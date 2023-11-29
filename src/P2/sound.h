@@ -4,7 +4,7 @@
 
 /**
  * EASND
- */
+*/
 struct EASND {
     uint16_t csfxid;
     uint16_t asfxid[6];
@@ -23,7 +23,7 @@ struct sound {
 
 /**
  * Sound Effect ID
- */
+*/
 enum SFXID {
     SFXID_Nil = -1,
     SFXID_CaneHandleUnlock = 0,
@@ -480,7 +480,7 @@ enum SFXID {
  * ??? Kind
  *
  * Categorizes sound effects into groups.
- */
+*/
 enum MVGK {
     MVGK_Nil = -1,
     MVGK_Effects = 0,
@@ -497,7 +497,7 @@ enum MVGK {
 
 /**
  * ??? Unknown
- */
+*/
 struct ISI {
     enum SFXID sfxid;
     struct LM lmRepeat;

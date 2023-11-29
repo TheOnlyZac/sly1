@@ -12,7 +12,7 @@
 
 /**
  * Mpeg Audio State
- */
+*/
 enum MAUDS
 {
     MAUDS_Dead = 0,
@@ -25,7 +25,7 @@ enum MAUDS
 
 /**
  * MPEG video info
- */
+*/
 struct sceMpeg {
     int width;
     int height;
@@ -43,7 +43,7 @@ struct sceMpeg {
 /**
  * QueueOutput IOP
  * Todo: Inherit from CQueueOutput class once that exists
- */
+*/
 class CQueueOutputIop /* : public CQueueOutput */
 {
 private:
@@ -58,7 +58,7 @@ private:
 
 /**
  * MPEG Audio
- */
+*/
 class CMpegAudio
 {
     MAUDS m_mauds; // current state
@@ -75,7 +75,7 @@ class CMpegAudio
 
 /**
  * MPEG video
- */
+*/
 class CMpeg
 {
 public:
@@ -100,7 +100,7 @@ public:
      * @brief Executes the mpegs stored as OIDs on the mpeg struct.
      *
      * @note Unofficial name
-     */
+    */
     void ExecuteOids();
 
     /**
@@ -110,28 +110,28 @@ public:
      *
      * @todo Function is only partially implemented.
      * @todo Double check whether oid is supposed to be a pointer.
-     */
+    */
     void Execute(OID* oid); //  todo
 
     /**
      * @brief Starts the mpeg.
      *
      * @todo Implement this function.
-     */
+    */
     void Start(); // todo
 
     /**
      * @brief Updates the mpeg.
      *
      * @todo Implement this function.
-     */
+    */
     void Update(); // todo
 
     /**
      * @brief Finishes the mpeg.
      *
      * @todo Implement this function.
-     */
+    */
     void Finish(); // todo
 };
 

@@ -3,7 +3,7 @@
 
 /**
  * Horizontal justification
- */
+*/
 enum JH
 {
     JH_Left = 0,
@@ -14,7 +14,7 @@ enum JH
 
 /**
  * Vertical justification
- */
+*/
 enum JV
 {
     JV_Top = 0,
@@ -25,7 +25,7 @@ enum JV
 
 /**
  * 4-byte color value
- */
+*/
 struct RGBA {
     BYTE bRed;
     BYTE bGreen;
@@ -37,7 +37,7 @@ struct RGBA {
  * ScaleFactorRatio or ScaleFontRatio
  *
  * Unknown, used by CFont class (probably to scale fonts)
- */
+*/
 struct SFR
 {
     float rx;
@@ -50,7 +50,7 @@ struct _vtbl_ptr_type; // todo: fix type
  * Font class
  *
  * Represents a font used for text rendering
- */
+*/
 class CFont
 {
 protected:
@@ -75,7 +75,7 @@ private:
  * Text box class
  *
  * Represents a text box used for text rendering
- */
+*/
 class CTextBox
 {
 private:

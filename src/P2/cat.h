@@ -7,7 +7,7 @@ typedef unsigned int uint; //todo move to util header
  * File Location
  *
  * Stores the file location and size in bytes.
- */
+*/
 struct FCL
 {
     uint isector; // File ISO Sector Offset.
@@ -18,7 +18,7 @@ struct FCL
  * File Key
  *
  * Used to identify the file type.
- */
+*/
 enum FK {
     FK_Nil = -1,
     FK_BrxWorld = 0, // Level File
@@ -35,7 +35,7 @@ enum FK {
  * WAL Entry
  *
  * Stores the file key and file location & size.
- */
+*/
 struct WALE {
     char* pchzKey; // File Name used for searching for file to load
     struct FCL* pfcl; // File location and size.
@@ -43,7 +43,7 @@ struct WALE {
 
 /**
  * Handles information about the file sector and size.
- */
+*/
 class CFileLocation
 {
 public:
@@ -54,7 +54,7 @@ public:
 
 /**
  * Handles the WAC and WAL files.
- */
+*/
 class CWalCatalog
 {
 public:
@@ -74,7 +74,7 @@ public:
      *
      * @param pflWac WAC File Location and Size.
      * @param pflWal WAL File Location and Size.
-     */
+    */
     void Init(CFileLocation* pflWac, CFileLocation* pflWal);
 
     /**
@@ -85,7 +85,7 @@ public:
      * @param pflResult Stores the file location and size.
      *
      * @return 1 if file is found, 0 if file is not found.
-     */
+    */
     int  FFindFile(char* pchzKey, FK fk, CFileLocation* pflResult);
 
     /**
@@ -99,7 +99,7 @@ public:
      *
      * @retval 1 if file is found
      * @retval 0 if file is not found.
-     */
+    */
     int FDefaultWorld(char* pchzResult, CFileLocation* pflResult);
 
     /**
@@ -107,18 +107,18 @@ public:
      *
      * @param pwale Stores the file key and file location & size.
      * @param pflResult Stores the file location and size.
-     */
+    */
     void BuildFl(WALE* pwale, CFileLocation* pflResult);
 
     /**
      * @brief Not implemented
-     */
+    */
     void Reload(); // todo
 };
 
 /**
  * Related to the WAC and WAL files.
- */
+*/
 class CCatalog
 {
 public:
@@ -126,7 +126,7 @@ public:
 
     /**
      * @brief Initializes the catalog.
-     */
+    */
     void Init();
 
     /**
@@ -137,7 +137,7 @@ public:
      * @param pflResult Stores the file location and size.
      *
      * @note not implemented
-     */
+    */
     int  FFindFile(char* pchzKey, FK fk, CFileLocation* pflResult); // todo
 
     /**
@@ -151,6 +151,6 @@ public:
      *
      * @retval 1 if file is found
      * @retval 0 if file is not found.
-     */
+    */
     int FDefaultWorld(char* pchzResult, CFileLocation* pflResult);
 };

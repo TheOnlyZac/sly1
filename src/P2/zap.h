@@ -7,7 +7,7 @@
  * Zap
  *
  * A volume that damages the player upon contact.
- */
+*/
 struct ZAP
 {
     // todo
@@ -16,7 +16,7 @@ struct ZAP
 
 /**
  * Zap Kind?
- */
+*/
 enum ZOK
 {
     ZOK_Inherit = 0,

@@ -5,7 +5,7 @@ typedef unsigned char byte;
 
 /**
  * Sensor State
- */
+*/
 enum SENSORS
 {
     MAX
@@ -15,7 +15,7 @@ enum SENSORS
  * Sensor
  *
  * todo: fix missing fields and rewrite
- */
+*/
 struct SENSOR
 {
     undefined4 field_0x0;

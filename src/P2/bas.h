@@ -4,7 +4,7 @@
 
 /**
  * Binary Async Stream Kind
- */
+*/
 enum BASK : int
 {
     BASK_Nil = -1,
@@ -15,7 +15,7 @@ enum BASK : int
 
 /**
  * Binary Async Stream
- */
+*/
 class CBinaryAsyncStream
 {
 public:
@@ -35,19 +35,17 @@ public:
      * @brief Constructs a new CBinaryAsyncStream.
      *
      * @param pvSpool Pointer to the spool
-     */
+    */
     CBinaryAsyncStream(void* pvSpool);
 
     /**
      * @brief Destroys the CBinaryAsyncStream.
-     *
-     */
+    */
     ~CBinaryAsyncStream();
 
     /**
      * @brief Closes the stream.
-     *
-     */
+    */
     void Close();
 };
 

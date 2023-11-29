@@ -4,7 +4,7 @@
  * Unknown
  *
  * todo: implement
- */
+*/
 class CRef
 {
 public:

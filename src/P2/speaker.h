@@ -15,7 +15,7 @@ typedef int GRFPVA;
  * physical speaker in the real world. More research is needed.
  *
  * todo: identify undefined fields
- */
+*/
 struct SPEAKER
 {
     char padding[0x2e0];
@@ -38,7 +38,7 @@ struct SPEAKER
 
 /**
  * Dialog Player
- */
+*/
 struct DP
 {
     GRFDP grfdp;

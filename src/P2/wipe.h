@@ -11,7 +11,7 @@ typedef unsigned char byte;
 
 /**
  * Wipe Kind
- */
+*/
 enum WIPEK
 {
 	WIPEK_Fade = 0,
@@ -64,7 +64,7 @@ extern WIPE* g_pwipe;
  * @param wipek Wipe kind
  *
  * @todo Figure out what oidWarp is used for.
- */
+*/
 void WipeToWorldWarp(LevelTableStruct* pchzWorld, OID oidWarp, WIPEK wipek);
 
 /**
@@ -73,7 +73,7 @@ void WipeToWorldWarp(LevelTableStruct* pchzWorld, OID oidWarp, WIPEK wipek);
  * @param pwipe Pointer to the wipe
  * @param ptrans Pointer to the transition
  * @param wipek Wipe kind
- */
+*/
 void ActivateWipe(WIPE* pwipe, TRANS* ptrans, WIPEK wipek);
 
 /**
@@ -81,14 +81,14 @@ void ActivateWipe(WIPE* pwipe, TRANS* ptrans, WIPEK wipek);
  *
  * @param pwipe Pointer to the wipe
  * @param wipes Wipe state
- */
+*/
 void SetWipeWipes(WIPE* pwipe, WIPES wipes);
 
 /**
  * @brief Draws a wipe.
  *
  * @param pwipe Pointer to the wipe
- */
+*/
 void DrawWipe(WIPE* pwipe);
 
 /**
@@ -98,7 +98,7 @@ void DrawWipe(WIPE* pwipe);
  *
  * @brief pwipe Pointer to the wipe
  * @brief pjoy Pointer to the joypad
- */
+*/
 void UpdateWipe(WIPE* pwipe, JOY* pjoy);
 
 /**
@@ -107,7 +107,7 @@ void UpdateWipe(WIPE* pwipe, JOY* pjoy);
  * Sets the wipe state to Idle.
  *
  * @param pwipe Pointer to the wipe
- */
+*/
 void InitWipe(WIPE* pwipe);
 
 /**
@@ -116,7 +116,7 @@ void InitWipe(WIPE* pwipe);
  * @param pwipe Pointer to the wipe
  * @param ptrans Pointer to the transition
  * @param wipek Wipe kind
- */
+*/
 void SetWipeButtonTrans(WIPE* pwipe, TRANS* ptrans, WIPEK wipek);
 
 /**
@@ -125,5 +125,5 @@ void SetWipeButtonTrans(WIPE* pwipe, TRANS* ptrans, WIPEK wipek);
  * @param pwipe Pointer to the wipe
  * @param pjoy Pointer to the joypad
  * @param wipesNew New wipe state
- */
+*/
 int  FCatchWipeButtonTrans(WIPE* pwipe, JOY* pjoy, WIPES wipesNew);

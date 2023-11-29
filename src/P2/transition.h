@@ -19,7 +19,7 @@ typedef int GRFTRANS;
  * Transition data
  *
  * Responsible for holding data bout a level transition.
- */
+*/
 struct TRANS
 {
     uint32_t fSet;
@@ -31,7 +31,7 @@ struct TRANS
 
 /**
  * Transition Flags
- */
+*/
 enum FTRANS {
     GRFTRANS_None = 0,
     FTRANS_Checkpoint = 1,
@@ -47,7 +47,7 @@ enum FTRANS {
  * Holds data about the level file.
  *
  * note: name is not official
- */
+*/
 struct LevelTableStruct
 {
     CFileLocation fileLocation; /* Ciphers for lsn and size */
@@ -62,7 +62,7 @@ struct LevelTableStruct
 
 /**
  * Transition
- */
+*/
 class CTransition
 {
 protected:

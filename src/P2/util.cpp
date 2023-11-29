@@ -86,7 +86,7 @@ BOOL FFloatsNear(float g1, float g2, float gEpsilon)
  * Solves a quadratic equation of the form ax^2 + bx + c = 0
  * Returns the number of solutions found (0, 1, or 2)
  * If there are two solutions, they are returned in ax[0] and ax[1]
- */
+*/
 int CSolveQuadratic(float a, float b, float c, float* ax)
 {
 	float rad = (b * b) - 4.0 * a * c;

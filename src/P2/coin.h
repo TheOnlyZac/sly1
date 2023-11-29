@@ -17,14 +17,14 @@ struct COIN
  * @return 0 on success; nonzero on failure.
  *
  * @todo Implement this function.
- */
+*/
 //int InitCoin(Coin* pcoin);
 
 /**
  * @brief Handles when the player touches a coin.
  *
  * @param pcoin Pointer to the coin.
- */
+*/
 void OnCoinSmack(COIN* pcoin);
 
 /**
@@ -34,7 +34,7 @@ void OnCoinSmack(COIN* pcoin);
  * @param dprizes The new prize.
  *
  * @todo Implement this function.
- */
+*/
 //void SetcoinDprizes(Coin* pcoin, Dprizes dprizes);
 
 /**
@@ -44,5 +44,5 @@ void OnCoinSmack(COIN* pcoin);
  * @param dt Time elapsed since the last frame.
  *
  * @todo Implement this function.
- */
+*/
 //void UpdateCoin(Coin* pcoin, float dt);

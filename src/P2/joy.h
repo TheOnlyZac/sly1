@@ -9,7 +9,7 @@ typedef short GRFBTN;
 
 /**
  * Joypad buttons
- */
+*/
 enum PadButtons
 {
     NOT_PRESSED = 0,
@@ -33,7 +33,7 @@ enum PadButtons
 
 /**
  * Joypad state
- */
+*/
 enum JOYS
 {
 	JOYS_Initing = 0,
@@ -45,7 +45,7 @@ enum JOYS
 
 /**
  * Joypad kind
- */
+*/
 enum JOYK
 {
 	JOYK_Unknown = 0,
@@ -58,7 +58,7 @@ enum JOYK
 
 /**
  * Rumble state
- */
+*/
 enum RUMS
 {
 	RUMS_Dead = 0,
@@ -71,7 +71,7 @@ enum RUMS
 
 /**
  * Rumble intensity
- */
+*/
 struct RUMINS
 {
 	int fHighSpeedMotor;
@@ -82,7 +82,7 @@ struct RUMINS
 
 /**
  * Rumble pattern
- */
+*/
 struct RUMPAT
 {
 	int crumins;
@@ -94,7 +94,7 @@ struct RUMPAT
  *
  * Combines the rumble state, rumble pattern, and rumble intensity along with the
  * port and slot of the controller.
- */
+*/
 struct RUMBLE
 {
 	int nPort;
@@ -108,7 +108,7 @@ struct RUMBLE
 
 /**
  * Joypad
- */
+*/
 struct JOY
 {
 	// joypad info
@@ -157,7 +157,7 @@ struct JOY
 
 /**
  * Cheat Flags
- */
+*/
 enum FCHT
 {
 	FCHT_None = 0x0,
@@ -170,7 +170,7 @@ enum FCHT
 
 /**
  * ??? Kind
- */
+*/
 enum DPK
 {
     DPK_None = 0,
@@ -203,14 +203,14 @@ extern char chetkido_buffer[]; // temp
  * @param pjoy Pointer to the joypad
  * @param joys Joypad state
  * @param joyk Joypad kind
- */
+*/
 void SetJoyJoys(JOY* pjoy, JOYS joys, JOYK joyk);
 
 /**
  * @brief Updates the given joypad.
  *
  * @param pjoy Pointer to the joypad
- */
+*/
 void UpdateJoy(JOY* pjoy);
 
 /**
@@ -218,7 +218,7 @@ void UpdateJoy(JOY* pjoy);
  *
  * @param prumble Pointer to the rumble
  * @param rums Rumble state
- */
+*/
 void SetRumbleRums(RUMBLE* prumble, RUMS rums);
 
 /**
@@ -227,12 +227,12 @@ void SetRumbleRums(RUMBLE* prumble, RUMS rums);
  * @param prumble Pointer to the rumble
  * @param nPort Port of the controller
  * @param nSlot Slot of the controller
- */
+*/
 void InitRumble(RUMBLE* prumble, int nPort, int nSlot);
 
 /**
  * @brief Updates the check for cheat code entry.
- */
+*/
 void UpdateCodes();
 
 /**
@@ -242,7 +242,7 @@ void UpdateCodes();
  * is is a reload code.
  *
  * @param nparam Cheat code to check
- */
+*/
 void AddFcht(int nParam);
 
 /**
@@ -251,7 +251,7 @@ void AddFcht(int nParam);
  * @param mask Unknown
  *
  * @todo Figure out what this function does and implement it.
- */
+*/
 void AddGrfusr(int mask);
 
 /**
@@ -266,5 +266,5 @@ void AddGrfusr(int mask);
  *
  * @note Unofficial name because the real name is unknown.
  * @todo Implement rendering the string on the screen.
- */
+*/
 void CheatActivateChetkido();

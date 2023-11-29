@@ -5,7 +5,7 @@
  * Object ID
  *
  * There are a lot more that are not represented here.
- */
+*/
 enum OID : int
 {
 	OID_Unknown = 0x0,
@@ -26,7 +26,7 @@ enum OID : int
 
 /**
  * Collision ID?
- */
+*/
 enum CID : int
 {
     CID_Nil = -1,
@@ -197,7 +197,7 @@ enum CID : int
 
 /**
  * World ID
- */
+*/
 enum WID : int
 {
 	// Intro
@@ -264,7 +264,7 @@ enum WID : int
 
 /**
  * Game stats
- */
+*/
 struct GAME {
 	int cAlarmsTriggered;
 	int fTimedChallenge;
@@ -285,7 +285,7 @@ struct GAME {
  * @brief Resets the game state values to their defaults.
  *
  * @param pgs Pointer to the game state.
- */
+*/
 void InitGameState(GS* pgs);
 
 //void SetupGame(char* pchzWorld, GRFTRANS grftrans)
@@ -294,7 +294,7 @@ void InitGameState(GS* pgs);
  * @brief Updates the game timers.
  *
  * @param dt Delta time.
- */
+*/
 void UpdateGameState(float dt);
 
 //GRFLS GrflsFromWid(WID wid)
@@ -303,7 +303,7 @@ void UpdateGameState(float dt);
  * @brief Clears the given level state struct.
  *
  * @param pls Pointer to the level state.
- */
+*/
 void ClearLs(LS* pls);
 
 //void UnloadGame();
@@ -313,7 +313,7 @@ void ClearLs(LS* pls);
 
 /**
  * @brief Resets the lives and charms to their default values, and resets checkpoints.
- */
+*/
 void RetryGame();
 
 //void StartGame();
@@ -322,21 +322,21 @@ void RetryGame();
  * @brief Sets the number of charms the player has.
  *
  * @param nParam The number of charms.
- */
+*/
 void SetCcharm(int nParam);
 
 /**
  * @brief Sets the number of lives the player has.
  *
  * @param nParam The number of lives.
- */
+*/
 void SetClife(int nParam);
 
 /**
  * @brief Sets the number of coins the player has.
  *
  * @param nParam The number of coins.
- */
+*/
 void SetCcoin(int nParam);
 
  /**
@@ -344,7 +344,7 @@ void SetCcoin(int nParam);
  *
  * @retval true if the player has charms, or infinite charms cheat is enabled.
  * @retval false otherwise.
- */
+*/
 bool FCharmAvailable();
 
 
@@ -356,7 +356,7 @@ bool FCharmAvailable();
  * @brief Clears the given game struct.
  *
  * @param pgame Pointer to the game struct.
- */
+*/
 void OnGameLoad(GAME* pgame);
 
 //void OnGameWorldTransition(GAME* pgame);
@@ -379,5 +379,5 @@ void OnGameLoad(GAME* pgame);
  * when there was a powerup that allowed you to have more than 2 charms.
  *
  * @return The max charm count.
- */
+*/
 int CcharmMost();

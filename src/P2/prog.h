@@ -6,7 +6,7 @@ typedef bool BOOL; // todo: move to util header
 
 /**
  * Unknown, maybe program or progress?
- */
+*/
 class CProg
 {
 public:

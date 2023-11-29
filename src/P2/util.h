@@ -9,7 +9,7 @@ typedef unsigned int undefined4;
 
 /**
  * Limits for a float
- */
+*/
 struct LM
 {
 	float gMin, gMax;
@@ -142,7 +142,7 @@ float GTrunc(float g);
  * @param gDivisor The divisor.
  *
  * @return The positive remainder of the division.
- */
+*/
 float GModPositive(float gDividend, float gDivisor);
 
 //void FitClq(float g0, float g1, float u, float gU, CLQ* pclq);

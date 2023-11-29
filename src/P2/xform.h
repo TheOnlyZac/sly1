@@ -5,7 +5,7 @@
 
 /**
  * EXIT State
- */
+*/
 enum EXITS
 {
 	EXITS_Blocked = 0,
@@ -21,7 +21,7 @@ enum EXITS
  * Exit
  *
  * An invisible warp triugger in the world that brings you to a new level.
- */
+*/
 struct EXIT
 {
 	int padding[183];
@@ -54,5 +54,5 @@ struct EXIT
  *
  * @param pexit Pointer to the EXIT
  * @param exits EXIT state
- */
+*/
 void SetExitExits(EXIT* pexit, EXITS exits);

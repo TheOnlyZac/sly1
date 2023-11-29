@@ -7,7 +7,7 @@ typedef unsigned char byte;
 
 /**
  * @brief Dialog Kind
- */
+*/
 enum DIALOGK
 {
     DIALOGK_Binoc = 0,
@@ -18,7 +18,7 @@ enum DIALOGK
 
 /**
  * @brief Dialog State
- */
+*/
 enum DIALOGS
 {
     DIALOGS_Enabled = 0,
@@ -32,7 +32,7 @@ enum DIALOGS
 
 /**
  * @brief Dialog
- */
+*/
 struct DIALOG
 {
     int padding[0xB8];

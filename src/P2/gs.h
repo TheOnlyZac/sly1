@@ -5,12 +5,12 @@
  *
  * Not to be confused with Graphic Synthesizer, which is the name of the PS2's GPU
  * and is also abbreviated as GS.
- */
+*/
 #pragma once
 
 /**
  * Game State Flags
- */
+*/
 enum FGS
 {
     FGS_FirstClue = 0x1,
@@ -22,7 +22,7 @@ enum FGS
 
 /**
  * World State Flags
- */
+*/
 enum FWS
 {
     FWS_Visited = 0x1,
@@ -35,7 +35,7 @@ enum FWS
 
 /**
  * Level State Flags
- */
+*/
 enum FLS
 {
     FLS_Visited = 0x1,
@@ -47,7 +47,7 @@ enum FLS
 
 /**
  * Game World ID
- */
+*/
 enum GAMEWORLD
 {
     GAMEWORLD_Intro = 0,
@@ -61,7 +61,7 @@ enum GAMEWORLD
 
 /**
  * World Level ID
- */
+*/
 enum WORLDLEVEL : int
 {
     WORLDLEVEL_Approach = 0,
@@ -78,7 +78,7 @@ enum WORLDLEVEL : int
 
 /**
  * Level State
- */
+*/
 struct LS
 {
     FLS fls; // Level state flags
@@ -97,7 +97,7 @@ struct LS
 
 /**
  * World State
- */
+*/
 struct WS
 {
     LS als[9]; // Level states array
@@ -110,7 +110,7 @@ struct WS
 
 /**
  * Game State
- */
+*/
 typedef int GRFGS;
 typedef int GRFVAULT;
 struct GS
@@ -136,7 +136,7 @@ struct GS
  * Level Info
  *
  * Used by the game to load the level.
- */
+*/
 struct PchzLevel // maybe wrong name
 {
     double lsn_and_unk_ciphers;
@@ -164,7 +164,7 @@ extern PchzLevel pchzLevelTable[];
  *
  * @note This function is temporary and should be removed when support for loading
  * the actual level data is added.
- */
+*/
 void PopulatePchzLevelTable();
 
 /**
@@ -173,7 +173,7 @@ void PopulatePchzLevelTable();
  * @return Flags indicating what has been completed on the save file.
  *
  * @todo Implement this function.
- */
+*/
 int FGameCompletion();
 
 /**
@@ -182,5 +182,5 @@ int FGameCompletion();
  * @param pgs Pointer to the game state.
  *
  * @return Percent completion as an integer out of 100.
- */
+*/
 int CalculatePercentCompletion(GS* pgs);

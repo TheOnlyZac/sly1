@@ -8,7 +8,7 @@ typedef unsigned char byte; //todo move to util header
  * A slotheap is a heap of fixed size slots.  The slots are allocated in a
  * contiguous block of memory. The slotheap maintains a pointer to the next
  * free slot.
- */
+*/
 struct SLOTHEAP {
     int cb; // size of each slot
     byte* ab; // pointer to the block of memory
@@ -21,7 +21,7 @@ struct SLOTHEAP {
  * Slot
  *
  * Represents one slot in the slotheap.
- */
+*/
 struct SLOT {
     struct SLOT* pslotNext; // pointer to the next slot in the free list
 };

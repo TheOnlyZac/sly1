@@ -2,7 +2,7 @@
 
 /**
  * Game Camera
- */
+*/
 struct CM
 {
 	// todo
@@ -17,5 +17,5 @@ extern CM* g_pcm;
  * @brief Sets up the game camera.
  *
  * @param pcm Pointer to the camera.
- */
+*/
 void SetupCm(CM* pcm);

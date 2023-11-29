@@ -8,7 +8,7 @@ typedef int GRFPVA;
 
 /**
  * Vector3 with X, Y, and Z
- */
+*/
 struct VECTOR
 {
     float x;
@@ -19,7 +19,7 @@ struct VECTOR
 
 /**
  * Unknown
- */
+*/
 struct BSPC
 {
     int cbsp;
@@ -29,7 +29,7 @@ struct BSPC
 
 /**
  * Constraint Type
- */
+*/
 enum CT
 {
     CT_Tangent = 1,
@@ -40,7 +40,7 @@ enum CT
 
 /**
  * Constraint
- */
+*/
 struct CONSTR
 {
     struct VECTOR normal;
@@ -49,7 +49,7 @@ struct CONSTR
 
 /**
  * Unknown
- */
+*/
 struct CLQ
 {
     float g0;
@@ -65,7 +65,7 @@ struct CLQ
  * @param pvec Pointer to the vector
  * @param ppan Float pointer to store the pan result
  * @param ptilt Float pointer to store the tilt result
- */
+*/
 void CalculateVectorPanTilt(VECTOR* pvec, float* ppan, float* ptilt);
 
 /**
@@ -74,7 +74,7 @@ void CalculateVectorPanTilt(VECTOR* pvec, float* ppan, float* ptilt);
  * @param param_1 Unknown vector
  * @param param_2 Unknown vector
  * @param param_3 Unknown vector
- */
+*/
 void ConvertDeulToW(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3);
 
 /**
@@ -86,7 +86,7 @@ void ConvertDeulToW(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3);
  * @param param_4 Unknown
  *
  * @note This is an educated guess and may not be accurate.
- */
+*/
 bool FCalculateMuzzleVelocity(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3, VECTOR* param_4, SO* param_5);
 
 /**
@@ -98,7 +98,7 @@ bool FCalculateMuzzleVelocity(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3,
  * @param param_4 Unknown
  *
  * @note This is an educated guess and may not be accurate.
- */
+*/
 uint32_t FCalculateMuzzleVelocityAngle(VECTOR* param_1, VECTOR* param_2, float param_3, VECTOR* param_4, SO* param_5);
 
 /**
@@ -111,14 +111,14 @@ uint32_t FCalculateMuzzleVelocityAngle(VECTOR* param_1, VECTOR* param_2, float p
  * @param unk_float1 Unknown float
  * @param unk_float2 Unknown float
  * @param presult Pointer to store the resulting point
- */
+*/
 void FindClosestPointBetweenLines(VECTOR* pA, VECTOR* pB, VECTOR* pC, VECTOR* pD, float* unk_float1, float* unk_float2, VECTOR* presult);
 
 /**
  * @brief Finds the closest point between two line segments.
  *
  * @todo Static analysis of parameters and return values.
- */
+*/
 void FindClosestPointBetweenLineSegments(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3, VECTOR* param_4, VECTOR param_5, float* param_6, VECTOR* param_7);
 
 /**
@@ -126,7 +126,7 @@ void FindClosestPointBetweenLineSegments(VECTOR* param_1, VECTOR* param_2, VECTO
  *
  * @param pvec Pointer to the vector
  * @param presult Pointer to store the resulting normal vector
- */
+*/
 void GetNormalVector(VECTOR* pvec, VECTOR* presult);
 
 /**
@@ -138,7 +138,7 @@ void GetNormalVector(VECTOR* pvec, VECTOR* presult);
  * @param param_4 Unknown
  *
  * @todo Static analysis
- */
+*/
 void GetNormalVectors(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3, VECTOR* param_4);
 
 /**
@@ -147,7 +147,7 @@ void GetNormalVectors(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3, VECTOR*
  * @param pvec Pointer to the vector
  * @param glength Length to limit the vector to
  * @param presult Pointer to store the resulting vector
- */
+*/
 void LimitVectorLength(VECTOR* pvec, float glength, VECTOR* presult);
 
 /**
@@ -158,7 +158,7 @@ void LimitVectorLength(VECTOR* pvec, float glength, VECTOR* presult);
  * @param param_3 Unknown
  *
  * @return Angle between vectors in radians
- */
+*/
 long RadBetweenVectors(VECTOR* pvec1, VECTOR* pvec2, VECTOR* param_3);
 
 /**
@@ -168,7 +168,7 @@ long RadBetweenVectors(VECTOR* pvec1, VECTOR* pvec2, VECTOR* param_3);
  * @param y Y coordinate
  * @param z Z coordinate
  * @param pvec Pointer to the vector
- */
+*/
 void SetVectorCylind(float x, float y, float z, VECTOR* pvec);
 
 /**
@@ -178,7 +178,7 @@ void SetVectorCylind(float x, float y, float z, VECTOR* pvec);
  * @param y Y coordinate
  * @param z Z coordinate
  * @param pvec Pointer to the vector
- */
+*/
 void SetVectorSphere(float z, float y, float x, VECTOR* pvec);
 
 /**
@@ -188,5 +188,5 @@ void SetVectorSphere(float z, float y, float x, VECTOR* pvec);
  * @param pvec2 Vector to project onto
  *
  * @return Scalar projection of vec1 onto vec2
- */
+*/
 float SProjectVector(VECTOR* pvec1, VECTOR* pvec2);

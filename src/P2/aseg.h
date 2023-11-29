@@ -4,7 +4,7 @@
 
 /**
  * Animation Segment
- */
+*/
 struct ASEG
 {
 	int padding[15];

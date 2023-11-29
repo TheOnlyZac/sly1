@@ -12,7 +12,7 @@
  * @param isplice The splice index of the LO.
  *
  * @return Pointer to the new object.
- */
+*/
 SW* PloNew(CID cid, SW* csw, ALO* paloParent, OID oid, int isplice);
 
 /**
@@ -21,5 +21,5 @@ SW* PloNew(CID cid, SW* csw, ALO* paloParent, OID oid, int isplice);
  * @param oid The stock OID.
  *
  * @return The level object index.
- */
+*/
 int IploFromStockOid(int oid);

@@ -4,7 +4,7 @@
 
 /**
  * Unknown
- */
+*/
 struct ACTLA
 {
     int fUseTarget;

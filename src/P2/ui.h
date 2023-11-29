@@ -4,7 +4,7 @@
  * UI state
  *
  * Might not be accurate as it seems to differ from the May proto
- */
+*/
 enum UIS
 {
 	UIS_Splash = 0,
