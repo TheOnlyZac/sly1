@@ -16,7 +16,7 @@
 typedef int GRFTRANS;
 
 /**
- * Transition data
+ * @brief Transition data
  *
  * Responsible for holding data bout a level transition.
 */
@@ -30,7 +30,7 @@ struct TRANS
 };
 
 /**
- * Transition Flags
+ * @brief Transition Flags
 */
 enum FTRANS {
     GRFTRANS_None = 0,
@@ -42,11 +42,11 @@ enum FTRANS {
 };
 
 /**
- * Level Table Struct
+ * @brief Level Table Struct
  *
  * Holds data about the level file.
  *
- * note: name is not official
+ * @note Name is not official.
 */
 struct LevelTableStruct
 {
@@ -61,7 +61,7 @@ struct LevelTableStruct
 };
 
 /**
- * Transition
+ * @brief Transition
 */
 class CTransition
 {
@@ -86,4 +86,4 @@ public:
 };
 
 // Global variables
-static CTransition g_transition;
+static CTransition g_transition; // Current transition

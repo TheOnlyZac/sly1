@@ -3,7 +3,7 @@
 #include <game.h>
 
 /**
- * Animation Segment
+ * @brief Animation Segment
 */
 struct ASEG
 {

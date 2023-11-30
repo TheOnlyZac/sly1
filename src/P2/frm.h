@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * Frame
+ * @brief Frame
 */
 struct FRM
 {
@@ -10,8 +10,8 @@ struct FRM
 };
 
 // Global variables
-static int g_ifrmMax;
-static FRM* g_pfrmOpen;
+static int g_ifrmMax; // Maximum number of frames
+static FRM* g_pfrmOpen; // Pointer to the open frame
 
 /**
  * @brief Opens a new frame.

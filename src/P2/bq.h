@@ -2,6 +2,9 @@
 
 typedef unsigned char BYTE; //todo mode to util header
 
+/**
+ * @brief Byte Queue
+*/
 class CByteQueue {
     BYTE* m_ab;
     int m_cb;

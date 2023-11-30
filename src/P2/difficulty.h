@@ -62,8 +62,8 @@ struct DIFFICULTY
 };
 
 // Global variables
-static DIFFICULTY g_difficulty;
-static DIFFICULTYLEVEL g_difficultyEasy, g_difficultyMedium, g_difficultyHard;
+static DIFFICULTY g_difficulty; // Current difficulty struct
+static DIFFICULTYLEVEL g_difficultyEasy, g_difficultyMedium, g_difficultyHard; // One of three difficulty levels
 
 //Difficulty* PdifficultyEnsureSw(SW* psw, ENSK ensk);
 

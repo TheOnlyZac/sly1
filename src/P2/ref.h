@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * Unknown
+ * @brief Unknown, needs more research
  *
  * todo: implement
 */

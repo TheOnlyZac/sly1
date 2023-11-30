@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * Game Phase
+ * @brief Game Phase
 */
 enum PHASE
 {
@@ -14,7 +14,7 @@ enum PHASE
 };
 
 // Global variables
-static PHASE g_phase;
+static PHASE g_phase; // Current game phase
 static void* g_phasemem; // todo: fix type
 
 /**

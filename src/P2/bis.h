@@ -9,7 +9,7 @@
 typedef unsigned char byte; //todo move to util header
 
 /**
- * Binary Input Stream Kind
+ * @brief Binary Input Stream Kind
  *
  * Types of binary stream that can be opened
 */
@@ -23,7 +23,7 @@ enum BISK : int
 };
 
 /**
- * Binary Input Stream
+ * @brief Binary Input Stream
  *
  * Used to read binary data from files on the disc.
 */
@@ -257,4 +257,4 @@ public:
 };
 
 // Global variables
-static uint32_t g_fCdAvailable;
+static uint32_t g_fCdAvailable; // Is the CD available for reading?

@@ -3,7 +3,7 @@
 #include <util.h>
 
 /**
- * Binary Async Stream Kind
+ * @brief Binary Async Stream Kind
 */
 enum BASK : int
 {
@@ -14,7 +14,7 @@ enum BASK : int
 };
 
 /**
- * Binary Async Stream
+ * @brief Binary Async Stream
 */
 class CBinaryAsyncStream
 {

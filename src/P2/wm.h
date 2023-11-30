@@ -2,9 +2,7 @@
 #include <iostream>
 
 /**
- * Unknown
- *
- * Possibly WorldMap?
+ * @brief Unknown, possibly WorldMap
 */
 struct WM
 {
@@ -12,7 +10,7 @@ struct WM
 };
 
 /**
- * ??? State
+ * @brief Unknown, possibly WorldMap State
 */
 enum WMS
 {

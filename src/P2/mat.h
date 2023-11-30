@@ -3,7 +3,7 @@
 typedef struct MATRIX4 GRFDP;
 
 /**
- * 4x4 Matrix
+ * @brief 4x4 Matrix
 */
 struct MATRIX4
 {
@@ -11,7 +11,7 @@ struct MATRIX4
 };
 
 /**
- * 3x3 Matrix
+ * @brief 3x3 Matrix
 */
 struct MATRIX3
 {

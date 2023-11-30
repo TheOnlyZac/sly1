@@ -3,9 +3,9 @@
 typedef unsigned char byte; //todo move to util header
 
 /**
- * Slotheap
+ * @brief Slotheap
  *
- * A slotheap is a heap of fixed size slots.  The slots are allocated in a
+ * A slotheap is a heap of fixed size slots. The slots are allocated in a
  * contiguous block of memory. The slotheap maintains a pointer to the next
  * free slot.
 */
@@ -18,7 +18,7 @@ struct SLOTHEAP {
 };
 
 /**
- * Slot
+ * @brief Slot
  *
  * Represents one slot in the slotheap.
 */

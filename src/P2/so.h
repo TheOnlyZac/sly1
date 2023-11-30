@@ -7,11 +7,11 @@ typedef int GRFPVA;
 
 
 /**
- * Scene Object
+ * @brief Scene Object
  *
- * A scene object is a physical object in the game world.
+ * Represents a physical object in the game world.
  *
- * todo: identify missing fields and rewrite
+ * @todo Identify missing fields and rewrite struct.
 */
 struct SO
 {

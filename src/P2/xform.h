@@ -4,7 +4,7 @@
 #include <wipe.h>
 
 /**
- * EXIT State
+ * @brief EXIT State
 */
 enum EXITS
 {
@@ -18,7 +18,7 @@ enum EXITS
 };
 
 /**
- * Exit
+ * @brief Exit
  *
  * An invisible warp triugger in the world that brings you to a new level.
 */

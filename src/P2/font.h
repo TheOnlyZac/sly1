@@ -2,7 +2,7 @@
 #include <util.h>
 
 /**
- * Horizontal justification
+ * @brief Horizontal justification
 */
 enum JH
 {
@@ -13,7 +13,7 @@ enum JH
 };
 
 /**
- * Vertical justification
+ * @brief Vertical justification
 */
 enum JV
 {
@@ -24,7 +24,7 @@ enum JV
 };
 
 /**
- * 4-byte color value
+ * @brief 4-byte color value
 */
 struct RGBA {
     BYTE bRed;
@@ -34,7 +34,7 @@ struct RGBA {
 };
 
 /**
- * ScaleFactorRatio or ScaleFontRatio
+ * @brief ScaleFactorRatio or ScaleFontRatio
  *
  * Unknown, used by CFont class (probably to scale fonts)
 */
@@ -47,9 +47,9 @@ struct SFR
 struct _vtbl_ptr_type; // todo: fix type
 
 /**
- * Font class
+ * @brief Font
  *
- * Represents a font used for text rendering
+ * Represents a font used for text rendering.
 */
 class CFont
 {
@@ -72,9 +72,9 @@ private:
 };
 
 /**
- * Text box class
+ * @brief Text Box
  *
- * Represents a text box used for text rendering
+ * Represents a text box used for text rendering.
 */
 class CTextBox
 {

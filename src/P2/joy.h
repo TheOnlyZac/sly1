@@ -8,7 +8,7 @@ typedef long ulong_128;
 typedef short GRFBTN;
 
 /**
- * Joypad buttons
+ * @brief Joypad buttons
 */
 enum PadButtons
 {
@@ -32,7 +32,7 @@ enum PadButtons
 };
 
 /**
- * Joypad state
+ * @brief Joypad state
 */
 enum JOYS
 {
@@ -44,7 +44,7 @@ enum JOYS
 };
 
 /**
- * Joypad kind
+ * @brief Joypad kind
 */
 enum JOYK
 {
@@ -57,7 +57,7 @@ enum JOYK
 };
 
 /**
- * Rumble state
+ * @brief Rumble state
 */
 enum RUMS
 {
@@ -70,7 +70,7 @@ enum RUMS
 };
 
 /**
- * Rumble intensity
+ * @brief Rumble intensity
 */
 struct RUMINS
 {
@@ -81,7 +81,7 @@ struct RUMINS
 };
 
 /**
- * Rumble pattern
+ * @brief Rumble pattern
 */
 struct RUMPAT
 {
@@ -90,7 +90,7 @@ struct RUMPAT
 };
 
 /**
- * Rumble
+ * @brief Rumble
  *
  * Combines the rumble state, rumble pattern, and rumble intensity along with the
  * port and slot of the controller.
@@ -107,7 +107,7 @@ struct RUMBLE
 };
 
 /**
- * Joypad
+ * @brief Joypad
 */
 struct JOY
 {
@@ -156,7 +156,7 @@ struct JOY
 };
 
 /**
- * Cheat Flags
+ * @brief Cheat Flags
 */
 enum FCHT
 {
@@ -169,7 +169,7 @@ enum FCHT
 };
 
 /**
- * ??? Kind
+ * @brief ??? Kind
 */
 enum DPK
 {
@@ -192,10 +192,10 @@ enum DPK
 };
 
 // Global variables
-static JOY g_joy;
-static float g_tCodeCheck;
-extern int g_grfcht;
-extern char chetkido_buffer[]; // temp
+static JOY g_joy; // Handles joypad input
+static float g_tCodeCheck; // Time since last code check
+extern int g_grfcht; // Cheat flags
+extern char chetkido_buffer[]; // temp, used for Chetkido cheat code
 
 /**
  * @brief Sets the joypad state and kind.

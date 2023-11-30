@@ -3,7 +3,7 @@
 #include <util.h>
 
 /**
- * Unknown
+ * @brief Unknown, needs more research
 */
 struct ACTLA
 {

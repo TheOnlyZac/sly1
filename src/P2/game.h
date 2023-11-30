@@ -2,7 +2,7 @@
 #include <gs.h>
 
 /**
- * Object ID
+ * @brief Object ID
  *
  * There are a lot more that are not represented here.
 */
@@ -25,7 +25,9 @@ enum OID : int
 };
 
 /**
- * Collision ID?
+ * @brief Collision ID?
+ *
+ * @note Not sure if actually collision or something else.
 */
 enum CID : int
 {
@@ -196,7 +198,7 @@ enum CID : int
 };
 
 /**
- * World ID
+ * @brief World ID
 */
 enum WID : int
 {
@@ -263,7 +265,7 @@ enum WID : int
 };
 
 /**
- * Game stats
+ * @brief Game stats
 */
 struct GAME {
 	int cAlarmsTriggered;

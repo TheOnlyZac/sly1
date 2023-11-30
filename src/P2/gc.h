@@ -2,7 +2,7 @@
 #include <ref.h>
 
 /**
- * Unknown
+ * @brief Unknown, needs more research
 */
 struct SBB {
     int n;

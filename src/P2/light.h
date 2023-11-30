@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * Light shadow & midtone
+ * @brief Light shadow & midtone
 */
 struct LSM
 {

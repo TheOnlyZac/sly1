@@ -4,7 +4,7 @@
 #include <gs.h>
 
 /**
- * Zap
+ * @brief Zap
  *
  * A volume that damages the player upon contact.
 */
@@ -15,7 +15,9 @@ struct ZAP
 };
 
 /**
- * Zap Kind?
+ * @brief Zap Kind?
+ *
+ * @note Unsure what the O stands for.
 */
 enum ZOK
 {

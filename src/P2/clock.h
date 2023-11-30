@@ -3,7 +3,7 @@
 typedef unsigned long long TICK;
 
 /**
- * Clock
+ * @brief Game Clock
 */
 struct CLOCK
 {
@@ -19,8 +19,8 @@ struct CLOCK
 };
 
 // Global variables
-extern CLOCK g_clock; // global game clock
-extern float g_rtClock;
+extern CLOCK g_clock; // Main game clock
+extern float g_rtClock; // Clock tick rate
 
 /**
  * @brief Sets the tick rate of the global clock.

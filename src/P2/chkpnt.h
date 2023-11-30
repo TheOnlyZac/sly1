@@ -4,14 +4,14 @@
 #include <vec.h>
 
 /**
- * Checkpoint
+ * @brief Checkpoint
 */
 struct CHKPNT
 {
 };
 
 /**
- * Checkpoint Manager
+ * @brief Checkpoint Manager
 */
 struct CHKMGR
 {

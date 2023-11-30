@@ -2,7 +2,7 @@
 #include <gc.h>
 
 /**
- * Sidebag
+ * @brief Sidebag
  *
  * A sidebag is a data structure that stores the results of a computation that is
  * performed in parallel with the main computation.
