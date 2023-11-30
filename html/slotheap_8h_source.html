@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/slotheap.h Source File</title>
+<title>Sly 1 Decomp: sly1/src/P2/slotheap.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -97,30 +96,31 @@ $(document).ready(function(){initNavTree('slotheap_8h_source.html',''); initResi
 <div class="title">slotheap.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="slotheap_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="slotheap_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">    3</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="slotheap_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>; <span class="comment">//todo move to util header</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="structSLOTHEAP.html">   12</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structSLOTHEAP.html">SLOTHEAP</a> {</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="structSLOTHEAP.html#af29c3cde61e620646767c1b670a9a642">   13</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structSLOTHEAP.html#af29c3cde61e620646767c1b670a9a642">cb</a>; <span class="comment">// size of each slot</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structSLOTHEAP.html#ad0c6528408a755fa32298921b31125b5">   14</a></span>&#160;    <span class="keywordtype">byte</span>* <a class="code" href="structSLOTHEAP.html#ad0c6528408a755fa32298921b31125b5">ab</a>; <span class="comment">// pointer to the block of memory</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structSLOTHEAP.html#a51ddfd1b3af6229b9bf189d17bad8203">   15</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structSLOT.html">SLOT</a>* <a class="code" href="structSLOTHEAP.html#a51ddfd1b3af6229b9bf189d17bad8203">pslotFree</a>; <span class="comment">// pointer to the next free slot</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structSLOTHEAP.html#a43abaf3b2ba5c6e9b52d5f0ed30cafa0">   16</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structSLOTHEAP.html#a43abaf3b2ba5c6e9b52d5f0ed30cafa0">cAlloc</a>; <span class="comment">// number of slots allocated</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structSLOTHEAP.html#a89e5453992efdac5535ed080cb2d412a">   17</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structSLOTHEAP.html#a89e5453992efdac5535ed080cb2d412a">cInUse</a>; <span class="comment">// number of slots in use</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;};</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structSLOT.html">   25</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structSLOT.html">SLOT</a> {</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structSLOT.html#aab9780ba763dba280272ff7b176ae3da">   26</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structSLOT.html">SLOT</a>* <a class="code" href="structSLOT.html#aab9780ba763dba280272ff7b176ae3da">pslotNext</a>; <span class="comment">// pointer to the next slot in the free list</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div>
-<div class="ttc" id="aslotheap_8h_html_a0c8186d9b9b7880309c27230bbb5e69d"><div class="ttname"><a href="slotheap_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a></div><div class="ttdeci">unsigned char byte</div><div class="ttdef"><b>Definition:</b> slotheap.h:3</div></div>
-<div class="ttc" id="astructSLOTHEAP_html"><div class="ttname"><a href="structSLOTHEAP.html">SLOTHEAP</a></div><div class="ttdef"><b>Definition:</b> slotheap.h:12</div></div>
-<div class="ttc" id="astructSLOTHEAP_html_a43abaf3b2ba5c6e9b52d5f0ed30cafa0"><div class="ttname"><a href="structSLOTHEAP.html#a43abaf3b2ba5c6e9b52d5f0ed30cafa0">SLOTHEAP::cAlloc</a></div><div class="ttdeci">int cAlloc</div><div class="ttdef"><b>Definition:</b> slotheap.h:16</div></div>
-<div class="ttc" id="astructSLOTHEAP_html_a51ddfd1b3af6229b9bf189d17bad8203"><div class="ttname"><a href="structSLOTHEAP.html#a51ddfd1b3af6229b9bf189d17bad8203">SLOTHEAP::pslotFree</a></div><div class="ttdeci">struct SLOT * pslotFree</div><div class="ttdef"><b>Definition:</b> slotheap.h:15</div></div>
-<div class="ttc" id="astructSLOTHEAP_html_a89e5453992efdac5535ed080cb2d412a"><div class="ttname"><a href="structSLOTHEAP.html#a89e5453992efdac5535ed080cb2d412a">SLOTHEAP::cInUse</a></div><div class="ttdeci">int cInUse</div><div class="ttdef"><b>Definition:</b> slotheap.h:17</div></div>
-<div class="ttc" id="astructSLOTHEAP_html_ad0c6528408a755fa32298921b31125b5"><div class="ttname"><a href="structSLOTHEAP.html#ad0c6528408a755fa32298921b31125b5">SLOTHEAP::ab</a></div><div class="ttdeci">byte * ab</div><div class="ttdef"><b>Definition:</b> slotheap.h:14</div></div>
-<div class="ttc" id="astructSLOTHEAP_html_af29c3cde61e620646767c1b670a9a642"><div class="ttname"><a href="structSLOTHEAP.html#af29c3cde61e620646767c1b670a9a642">SLOTHEAP::cb</a></div><div class="ttdeci">int cb</div><div class="ttdef"><b>Definition:</b> slotheap.h:13</div></div>
-<div class="ttc" id="astructSLOT_html"><div class="ttname"><a href="structSLOT.html">SLOT</a></div><div class="ttdef"><b>Definition:</b> slotheap.h:25</div></div>
-<div class="ttc" id="astructSLOT_html_aab9780ba763dba280272ff7b176ae3da"><div class="ttname"><a href="structSLOT.html#aab9780ba763dba280272ff7b176ae3da">SLOT::pslotNext</a></div><div class="ttdeci">struct SLOT * pslotNext</div><div class="ttdef"><b>Definition:</b> slotheap.h:26</div></div>
+<a href="slotheap_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="slotheap_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">    8</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="slotheap_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>; <span class="comment">//todo move to util header</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structSLOTHEAP.html">   17</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structSLOTHEAP.html">SLOTHEAP</a> {</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structSLOTHEAP.html#af29c3cde61e620646767c1b670a9a642">   18</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structSLOTHEAP.html#af29c3cde61e620646767c1b670a9a642">cb</a>; <span class="comment">// size of each slot</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structSLOTHEAP.html#ad0c6528408a755fa32298921b31125b5">   19</a></span>&#160;    <span class="keywordtype">byte</span>* <a class="code" href="structSLOTHEAP.html#ad0c6528408a755fa32298921b31125b5">ab</a>; <span class="comment">// pointer to the block of memory</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structSLOTHEAP.html#a51ddfd1b3af6229b9bf189d17bad8203">   20</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structSLOT.html">SLOT</a>* <a class="code" href="structSLOTHEAP.html#a51ddfd1b3af6229b9bf189d17bad8203">pslotFree</a>; <span class="comment">// pointer to the next free slot</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structSLOTHEAP.html#a43abaf3b2ba5c6e9b52d5f0ed30cafa0">   21</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structSLOTHEAP.html#a43abaf3b2ba5c6e9b52d5f0ed30cafa0">cAlloc</a>; <span class="comment">// number of slots allocated</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structSLOTHEAP.html#a89e5453992efdac5535ed080cb2d412a">   22</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structSLOTHEAP.html#a89e5453992efdac5535ed080cb2d412a">cInUse</a>; <span class="comment">// number of slots in use</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structSLOT.html">   30</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structSLOT.html">SLOT</a> {</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="structSLOT.html#aab9780ba763dba280272ff7b176ae3da">   31</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structSLOT.html">SLOT</a>* <a class="code" href="structSLOT.html#aab9780ba763dba280272ff7b176ae3da">pslotNext</a>; <span class="comment">// pointer to the next slot in the free list</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;};</div>
+<div class="ttc" id="aslotheap_8h_html_a0c8186d9b9b7880309c27230bbb5e69d"><div class="ttname"><a href="slotheap_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a></div><div class="ttdeci">unsigned char byte</div><div class="ttdef"><b>Definition:</b> <a href="slotheap_8h_source.html#l00008">slotheap.h:8</a></div></div>
+<div class="ttc" id="astructSLOTHEAP_html"><div class="ttname"><a href="structSLOTHEAP.html">SLOTHEAP</a></div><div class="ttdoc">Slotheap.</div><div class="ttdef"><b>Definition:</b> <a href="slotheap_8h_source.html#l00017">slotheap.h:17</a></div></div>
+<div class="ttc" id="astructSLOTHEAP_html_a43abaf3b2ba5c6e9b52d5f0ed30cafa0"><div class="ttname"><a href="structSLOTHEAP.html#a43abaf3b2ba5c6e9b52d5f0ed30cafa0">SLOTHEAP::cAlloc</a></div><div class="ttdeci">int cAlloc</div><div class="ttdef"><b>Definition:</b> <a href="slotheap_8h_source.html#l00021">slotheap.h:21</a></div></div>
+<div class="ttc" id="astructSLOTHEAP_html_a51ddfd1b3af6229b9bf189d17bad8203"><div class="ttname"><a href="structSLOTHEAP.html#a51ddfd1b3af6229b9bf189d17bad8203">SLOTHEAP::pslotFree</a></div><div class="ttdeci">struct SLOT * pslotFree</div><div class="ttdef"><b>Definition:</b> <a href="slotheap_8h_source.html#l00020">slotheap.h:20</a></div></div>
+<div class="ttc" id="astructSLOTHEAP_html_a89e5453992efdac5535ed080cb2d412a"><div class="ttname"><a href="structSLOTHEAP.html#a89e5453992efdac5535ed080cb2d412a">SLOTHEAP::cInUse</a></div><div class="ttdeci">int cInUse</div><div class="ttdef"><b>Definition:</b> <a href="slotheap_8h_source.html#l00022">slotheap.h:22</a></div></div>
+<div class="ttc" id="astructSLOTHEAP_html_ad0c6528408a755fa32298921b31125b5"><div class="ttname"><a href="structSLOTHEAP.html#ad0c6528408a755fa32298921b31125b5">SLOTHEAP::ab</a></div><div class="ttdeci">byte * ab</div><div class="ttdef"><b>Definition:</b> <a href="slotheap_8h_source.html#l00019">slotheap.h:19</a></div></div>
+<div class="ttc" id="astructSLOTHEAP_html_af29c3cde61e620646767c1b670a9a642"><div class="ttname"><a href="structSLOTHEAP.html#af29c3cde61e620646767c1b670a9a642">SLOTHEAP::cb</a></div><div class="ttdeci">int cb</div><div class="ttdef"><b>Definition:</b> <a href="slotheap_8h_source.html#l00018">slotheap.h:18</a></div></div>
+<div class="ttc" id="astructSLOT_html"><div class="ttname"><a href="structSLOT.html">SLOT</a></div><div class="ttdoc">Slot.</div><div class="ttdef"><b>Definition:</b> <a href="slotheap_8h_source.html#l00030">slotheap.h:30</a></div></div>
+<div class="ttc" id="astructSLOT_html_aab9780ba763dba280272ff7b176ae3da"><div class="ttname"><a href="structSLOT.html#aab9780ba763dba280272ff7b176ae3da">SLOT::pslotNext</a></div><div class="ttdeci">struct SLOT * pslotNext</div><div class="ttdef"><b>Definition:</b> <a href="slotheap_8h_source.html#l00031">slotheap.h:31</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

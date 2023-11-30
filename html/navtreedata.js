@@ -24,11 +24,13 @@
 */
 var NAVTREE =
 [
-  [ "Sly Cooper and the Thievius Raccoonus", "index.html", [
-    [ "Frequently Asked Questions", "index.html#autotoc_md1", null ],
-    [ "Getting Started", "index.html#autotoc_md7", [
-      [ "Windows/Linux - CLI", "index.html#autotoc_md8", null ],
-      [ "Windows - Visual Studio", "index.html#autotoc_md9", null ]
+  [ "Sly 1 Decomp", "index.html", [
+    [ "Sly Cooper and the Thievius Raccoonus", "index.html", [
+      [ "Frequently Asked Questions", "index.html#autotoc_md1", null ],
+      [ "Getting Started", "index.html#autotoc_md7", [
+        [ "Windows/Linux - CLI", "index.html#autotoc_md8", null ],
+        [ "Windows - Visual Studio", "index.html#autotoc_md9", null ]
+      ] ]
     ] ],
     [ "Todo List", "todo.html", null ],
     [ "Classes", "annotated.html", [
@@ -58,16 +60,16 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "actseg_8h.html",
-"clock_8cpp.html#a58a6d4d6b3c4701e47a5aed43858f59d",
-"game_8h.html#a77e49d11b21c87ca68ee8269641360bba260550e7108cc14a77f347ca0cfe97b7",
-"gs_8h.html#a69c07e7119507370cb17c01479d16bc5a65c7dde5140f3e06b8f1cf5e207eec3e",
-"sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaa153cdab31ae60e17b984732acae1f316",
-"sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaaae69012c37543f187debae263e28eded",
-"structBASIC.html#a1239cf4a877bedbec9761a289bb2cc70",
-"structDL.html#a25d43a537fb9d3ec9f14027e71f67161",
-"structJOY.html#a3f8575a8fa15b7bdb1ad2d924e05897e",
-"structSW.html#a056f03a2c1fa782ffe1a377013c9a3a2",
-"vec_8h.html#a8a069ba1438df5dc275fdd4e27359402aeb9f34b976038bdd8952f01651874526"
+"clock_8cpp.html#a0f42018991eb527af2a76c76d0dd3d5a",
+"game_8h.html#a77e49d11b21c87ca68ee8269641360bba0cb0f7f4ab2833c244b6c4055a3d7f0b",
+"gs_8h.html#a321f479b46e9fd90c9383f32076e9c65aef64af900e64c3504a391ca53e2f70de",
+"sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaa04756cf935f63d35aab78399b425de8d",
+"sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaa9efdb7bf68870f76ce1d87f493bafd2d",
+"structASEG.html#a9e5741c1c0c0098cb954f6ea480abfea",
+"structDIFFICULTYLEVEL.html#a6dce1e14f881c429a30f7bac9fcdba85",
+"structGS.html#a7e7f2e337d1950f782fb30c46e0c250e",
+"structSO.html#afdb1d495d58ba97083abd14b1605e721",
+"vec_8cpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

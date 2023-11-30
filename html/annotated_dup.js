@@ -1,10 +1,5 @@
 var annotated_dup =
 [
-    [ "What is a decompilation?", "index.html#autotoc_md2", null ],
-    [ "How does it work?", "index.html#autotoc_md3", null ],
-    [ "Has this ever been done before?", "index.html#autotoc_md4", null ],
-    [ "Is this a matching decomp?", "index.html#autotoc_md5", null ],
-    [ "How can I help?", "index.html#autotoc_md6", null ],
     [ "ACTLA", "structACTLA.html", "structACTLA" ],
     [ "ALO", "structALO.html", "structALO" ],
     [ "ASEG", "structASEG.html", "structASEG" ],

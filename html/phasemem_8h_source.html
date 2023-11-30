@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/phasemem.h Source File</title>
+<title>Sly 1 Decomp: sly1/src/P2/phasemem.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -97,36 +96,37 @@ $(document).ready(function(){initNavTree('phasemem_8h_source.html',''); initResi
 <div class="title">phasemem.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="phasemem_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9">    6</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9">PHASE</a></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a95541b7f3511156d4a1a7111d508473f">    8</a></span>&#160;    <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a95541b7f3511156d4a1a7111d508473f">PHASE_None</a> = 0,</div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a8ddcc7f6ba1da040d1c4df5bc0a9b88a">    9</a></span>&#160;    <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a8ddcc7f6ba1da040d1c4df5bc0a9b88a">PHASE_Startup</a> = 0x1,</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9adba6920a963b17437121913f63663dfd">   10</a></span>&#160;    <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9adba6920a963b17437121913f63663dfd">PHASE_Load</a> = 1,</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a3bba28d55a4490911168de8180aa71ce">   11</a></span>&#160;    <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a3bba28d55a4490911168de8180aa71ce">PHASE_Main</a> = 2,</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9ab89a85f61d4265d53c80668780c96d10">   12</a></span>&#160;    <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9ab89a85f61d4265d53c80668780c96d10">PHASE_Mpeg</a> = 4,</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a28cb8cdf9062a4acedbf61d0d91e0a70">PHASE_Max</a> = 5</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a28cb8cdf9062a4acedbf61d0d91e0a70">   14</a></span>&#160;};</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">// Global variables</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="phasemem_8h.html#a401b9936ef9f98da6af1185974e80db6">   17</a></span>&#160;<span class="keyword">static</span> <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9">PHASE</a> <a class="code" href="phasemem_8h.html#a401b9936ef9f98da6af1185974e80db6">g_phase</a>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="phasemem_8h.html#a55b32eeb6cc117f6b178e12ff6b49bc3">   18</a></span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span>* <a class="code" href="phasemem_8h.html#a55b32eeb6cc117f6b178e12ff6b49bc3">g_phasemem</a>; <span class="comment">// todo: fix type</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">void</span> <a class="code" href="phasemem_8h.html#a2ef647a0ddd9076a74b6060a83c747b4">SetPhase</a>(<a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9">PHASE</a> phase);</div>
+<a href="phasemem_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9">   11</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9">PHASE</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a95541b7f3511156d4a1a7111d508473f">   13</a></span>&#160;    <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a95541b7f3511156d4a1a7111d508473f">PHASE_None</a> = 0,</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a8ddcc7f6ba1da040d1c4df5bc0a9b88a">   14</a></span>&#160;    <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a8ddcc7f6ba1da040d1c4df5bc0a9b88a">PHASE_Startup</a> = 0x1,</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9adba6920a963b17437121913f63663dfd">   15</a></span>&#160;    <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9adba6920a963b17437121913f63663dfd">PHASE_Load</a> = 1,</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a3bba28d55a4490911168de8180aa71ce">   16</a></span>&#160;    <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a3bba28d55a4490911168de8180aa71ce">PHASE_Main</a> = 2,</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9ab89a85f61d4265d53c80668780c96d10">   17</a></span>&#160;    <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9ab89a85f61d4265d53c80668780c96d10">PHASE_Mpeg</a> = 4,</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a28cb8cdf9062a4acedbf61d0d91e0a70">PHASE_Max</a> = 5</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a28cb8cdf9062a4acedbf61d0d91e0a70">   19</a></span>&#160;};</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">// Global variables</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="phasemem_8h.html#a401b9936ef9f98da6af1185974e80db6">   22</a></span>&#160;<span class="keyword">static</span> <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9">PHASE</a> <a class="code" href="phasemem_8h.html#a401b9936ef9f98da6af1185974e80db6">g_phase</a>; <span class="comment">// Current game phase</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="phasemem_8h.html#a55b32eeb6cc117f6b178e12ff6b49bc3">   23</a></span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span>* <a class="code" href="phasemem_8h.html#a55b32eeb6cc117f6b178e12ff6b49bc3">g_phasemem</a>; <span class="comment">// todo: fix type</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">void</span> <a class="code" href="phasemem_8h.html#ab09479b34ca5bc567d7e53c5f3504136">ClearPhase</a>(<a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9">PHASE</a> phase = <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a95541b7f3511156d4a1a7111d508473f">PHASE_None</a>);</div>
-<div class="ttc" id="aphasemem_8h_html_a2ef647a0ddd9076a74b6060a83c747b4"><div class="ttname"><a href="phasemem_8h.html#a2ef647a0ddd9076a74b6060a83c747b4">SetPhase</a></div><div class="ttdeci">void SetPhase(PHASE phase)</div><div class="ttdoc">Sets the current game phase.</div><div class="ttdef"><b>Definition:</b> phasemem.cpp:3</div></div>
-<div class="ttc" id="aphasemem_8h_html_a401b9936ef9f98da6af1185974e80db6"><div class="ttname"><a href="phasemem_8h.html#a401b9936ef9f98da6af1185974e80db6">g_phase</a></div><div class="ttdeci">static PHASE g_phase</div><div class="ttdef"><b>Definition:</b> phasemem.h:17</div></div>
-<div class="ttc" id="aphasemem_8h_html_a55b32eeb6cc117f6b178e12ff6b49bc3"><div class="ttname"><a href="phasemem_8h.html#a55b32eeb6cc117f6b178e12ff6b49bc3">g_phasemem</a></div><div class="ttdeci">static void * g_phasemem</div><div class="ttdef"><b>Definition:</b> phasemem.h:18</div></div>
-<div class="ttc" id="aphasemem_8h_html_ab09479b34ca5bc567d7e53c5f3504136"><div class="ttname"><a href="phasemem_8h.html#ab09479b34ca5bc567d7e53c5f3504136">ClearPhase</a></div><div class="ttdeci">void ClearPhase(PHASE phase=PHASE_None)</div><div class="ttdoc">Clears the current game phase.</div><div class="ttdef"><b>Definition:</b> phasemem.cpp:12</div></div>
-<div class="ttc" id="aphasemem_8h_html_ae279bfacbd0dac7aedff2c9121036de9"><div class="ttname"><a href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9">PHASE</a></div><div class="ttdeci">PHASE</div><div class="ttdef"><b>Definition:</b> phasemem.h:7</div></div>
-<div class="ttc" id="aphasemem_8h_html_ae279bfacbd0dac7aedff2c9121036de9a28cb8cdf9062a4acedbf61d0d91e0a70"><div class="ttname"><a href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a28cb8cdf9062a4acedbf61d0d91e0a70">PHASE_Max</a></div><div class="ttdeci">@ PHASE_Max</div><div class="ttdef"><b>Definition:</b> phasemem.h:13</div></div>
-<div class="ttc" id="aphasemem_8h_html_ae279bfacbd0dac7aedff2c9121036de9a3bba28d55a4490911168de8180aa71ce"><div class="ttname"><a href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a3bba28d55a4490911168de8180aa71ce">PHASE_Main</a></div><div class="ttdeci">@ PHASE_Main</div><div class="ttdef"><b>Definition:</b> phasemem.h:11</div></div>
-<div class="ttc" id="aphasemem_8h_html_ae279bfacbd0dac7aedff2c9121036de9a8ddcc7f6ba1da040d1c4df5bc0a9b88a"><div class="ttname"><a href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a8ddcc7f6ba1da040d1c4df5bc0a9b88a">PHASE_Startup</a></div><div class="ttdeci">@ PHASE_Startup</div><div class="ttdef"><b>Definition:</b> phasemem.h:9</div></div>
-<div class="ttc" id="aphasemem_8h_html_ae279bfacbd0dac7aedff2c9121036de9a95541b7f3511156d4a1a7111d508473f"><div class="ttname"><a href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a95541b7f3511156d4a1a7111d508473f">PHASE_None</a></div><div class="ttdeci">@ PHASE_None</div><div class="ttdef"><b>Definition:</b> phasemem.h:8</div></div>
-<div class="ttc" id="aphasemem_8h_html_ae279bfacbd0dac7aedff2c9121036de9ab89a85f61d4265d53c80668780c96d10"><div class="ttname"><a href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9ab89a85f61d4265d53c80668780c96d10">PHASE_Mpeg</a></div><div class="ttdeci">@ PHASE_Mpeg</div><div class="ttdef"><b>Definition:</b> phasemem.h:12</div></div>
-<div class="ttc" id="aphasemem_8h_html_ae279bfacbd0dac7aedff2c9121036de9adba6920a963b17437121913f63663dfd"><div class="ttname"><a href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9adba6920a963b17437121913f63663dfd">PHASE_Load</a></div><div class="ttdeci">@ PHASE_Load</div><div class="ttdef"><b>Definition:</b> phasemem.h:10</div></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">void</span> <a class="code" href="phasemem_8h.html#a2ef647a0ddd9076a74b6060a83c747b4">SetPhase</a>(<a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9">PHASE</a> phase);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span> <a class="code" href="phasemem_8h.html#ab09479b34ca5bc567d7e53c5f3504136">ClearPhase</a>(<a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9">PHASE</a> phase = <a class="code" href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a95541b7f3511156d4a1a7111d508473f">PHASE_None</a>);</div>
+<div class="ttc" id="aphasemem_8h_html_a2ef647a0ddd9076a74b6060a83c747b4"><div class="ttname"><a href="phasemem_8h.html#a2ef647a0ddd9076a74b6060a83c747b4">SetPhase</a></div><div class="ttdeci">void SetPhase(PHASE phase)</div><div class="ttdoc">Sets the current game phase.</div><div class="ttdef"><b>Definition:</b> <a href="phasemem_8cpp_source.html#l00008">phasemem.cpp:8</a></div></div>
+<div class="ttc" id="aphasemem_8h_html_a401b9936ef9f98da6af1185974e80db6"><div class="ttname"><a href="phasemem_8h.html#a401b9936ef9f98da6af1185974e80db6">g_phase</a></div><div class="ttdeci">static PHASE g_phase</div><div class="ttdef"><b>Definition:</b> <a href="phasemem_8h_source.html#l00022">phasemem.h:22</a></div></div>
+<div class="ttc" id="aphasemem_8h_html_a55b32eeb6cc117f6b178e12ff6b49bc3"><div class="ttname"><a href="phasemem_8h.html#a55b32eeb6cc117f6b178e12ff6b49bc3">g_phasemem</a></div><div class="ttdeci">static void * g_phasemem</div><div class="ttdef"><b>Definition:</b> <a href="phasemem_8h_source.html#l00023">phasemem.h:23</a></div></div>
+<div class="ttc" id="aphasemem_8h_html_ab09479b34ca5bc567d7e53c5f3504136"><div class="ttname"><a href="phasemem_8h.html#ab09479b34ca5bc567d7e53c5f3504136">ClearPhase</a></div><div class="ttdeci">void ClearPhase(PHASE phase=PHASE_None)</div><div class="ttdoc">Clears the current game phase.</div><div class="ttdef"><b>Definition:</b> <a href="phasemem_8cpp_source.html#l00017">phasemem.cpp:17</a></div></div>
+<div class="ttc" id="aphasemem_8h_html_ae279bfacbd0dac7aedff2c9121036de9"><div class="ttname"><a href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9">PHASE</a></div><div class="ttdeci">PHASE</div><div class="ttdoc">Game Phase.</div><div class="ttdef"><b>Definition:</b> <a href="phasemem_8h_source.html#l00011">phasemem.h:12</a></div></div>
+<div class="ttc" id="aphasemem_8h_html_ae279bfacbd0dac7aedff2c9121036de9a28cb8cdf9062a4acedbf61d0d91e0a70"><div class="ttname"><a href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a28cb8cdf9062a4acedbf61d0d91e0a70">PHASE_Max</a></div><div class="ttdeci">@ PHASE_Max</div><div class="ttdef"><b>Definition:</b> <a href="phasemem_8h_source.html#l00019">phasemem.h:18</a></div></div>
+<div class="ttc" id="aphasemem_8h_html_ae279bfacbd0dac7aedff2c9121036de9a3bba28d55a4490911168de8180aa71ce"><div class="ttname"><a href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a3bba28d55a4490911168de8180aa71ce">PHASE_Main</a></div><div class="ttdeci">@ PHASE_Main</div><div class="ttdef"><b>Definition:</b> <a href="phasemem_8h_source.html#l00016">phasemem.h:16</a></div></div>
+<div class="ttc" id="aphasemem_8h_html_ae279bfacbd0dac7aedff2c9121036de9a8ddcc7f6ba1da040d1c4df5bc0a9b88a"><div class="ttname"><a href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a8ddcc7f6ba1da040d1c4df5bc0a9b88a">PHASE_Startup</a></div><div class="ttdeci">@ PHASE_Startup</div><div class="ttdef"><b>Definition:</b> <a href="phasemem_8h_source.html#l00014">phasemem.h:14</a></div></div>
+<div class="ttc" id="aphasemem_8h_html_ae279bfacbd0dac7aedff2c9121036de9a95541b7f3511156d4a1a7111d508473f"><div class="ttname"><a href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9a95541b7f3511156d4a1a7111d508473f">PHASE_None</a></div><div class="ttdeci">@ PHASE_None</div><div class="ttdef"><b>Definition:</b> <a href="phasemem_8h_source.html#l00013">phasemem.h:13</a></div></div>
+<div class="ttc" id="aphasemem_8h_html_ae279bfacbd0dac7aedff2c9121036de9ab89a85f61d4265d53c80668780c96d10"><div class="ttname"><a href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9ab89a85f61d4265d53c80668780c96d10">PHASE_Mpeg</a></div><div class="ttdeci">@ PHASE_Mpeg</div><div class="ttdef"><b>Definition:</b> <a href="phasemem_8h_source.html#l00017">phasemem.h:17</a></div></div>
+<div class="ttc" id="aphasemem_8h_html_ae279bfacbd0dac7aedff2c9121036de9adba6920a963b17437121913f63663dfd"><div class="ttname"><a href="phasemem_8h.html#ae279bfacbd0dac7aedff2c9121036de9adba6920a963b17437121913f63663dfd">PHASE_Load</a></div><div class="ttdeci">@ PHASE_Load</div><div class="ttdef"><b>Definition:</b> <a href="phasemem_8h_source.html#l00015">phasemem.h:15</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

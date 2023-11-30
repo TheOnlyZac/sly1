@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/lo.h Source File</title>
+<title>Sly 1 Decomp: sly1/src/P2/lo.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -97,46 +96,47 @@ $(document).ready(function(){initNavTree('lo_8h_source.html',''); initResizable(
 <div class="title">lo.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="lo_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="structLO.html#a5907eb6fcc2985a1b86a0d0b05fd737f">    1</a></span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="basic_8h.html">basic.h</a>&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="game_8h.html">game.h</a>&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="dl_8h.html">dl.h</a>&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="structLO.html">    9</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structLO.html">LO</a> {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">struct </span><a class="code" href="structBASIC.html">BASIC</a> <a class="code" href="structLO.html#a3b935b27f5feba02d83d48e75445262f">field0_0x0</a>;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keyword">enum</span>   <a class="code" href="game_8h.html#a2bc7d449ad170d97dc662adf9d8dc84e">OID</a> <a class="code" href="structLO.html#a63dfdaac27f498cf45a6303eb6519538">oid</a>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">struct </span><a class="code" href="structDLE.html">DLE</a> <a class="code" href="structLO.html#a5907eb6fcc2985a1b86a0d0b05fd737f">dleOid</a>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="structLO.html#a19cbc766155598e4343e474849bfa035">   13</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structSW.html">SW</a>* <a class="code" href="structLO.html#a19cbc766155598e4343e474849bfa035">psw</a>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structLO.html#ac5d5c49298fa321a53c5d480fad701e9">   14</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structALO.html">ALO</a>* <a class="code" href="structLO.html#a7ce70127f6278c29a165c4f6fe625521">paloParent</a>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">struct </span><a class="code" href="structDLE.html">DLE</a> <a class="code" href="structLO.html#ac5d5c49298fa321a53c5d480fad701e9">dleChild</a>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structLO.html#a53841d390a8559c50f0c19b6f1b81fcf">   16</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structLO.html">LO</a>* <a class="code" href="structLO.html#a53841d390a8559c50f0c19b6f1b81fcf">ploCidNext</a>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structLO.html#ac252214c1d6af0f8327a05fd5a1ff672">   17</a></span>&#160;    <span class="keyword">struct </span>MQ* <a class="code" href="structLO.html#ac252214c1d6af0f8327a05fd5a1ff672">pmqFirst</a>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structLO.html#a0207e2491866129c14d572fb5b8f18a7">   18</a></span>&#160;    <span class="keywordtype">char</span>*  <a class="code" href="structLO.html#a0207e2491866129c14d572fb5b8f18a7">pchzName</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structLO.html#a7b18cec110c7dfe5152178963fc419f4">   19</a></span>&#160;    <span class="keyword">struct </span>CFrame* <a class="code" href="structLO.html#a7b18cec110c7dfe5152178963fc419f4">pframe</a>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structLO.html#a84bbb34f7555b9bfb4b3bda98d68e824">   20</a></span>&#160;    <span class="keyword">struct </span>PXR* <a class="code" href="structLO.html#a84bbb34f7555b9bfb4b3bda98d68e824">ppxr</a>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structLO.html#a46ccecbfce3ec9f46b7018a3067be0b5">   21</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="structLO.html#a46ccecbfce3ec9f46b7018a3067be0b5">dtickPerf</a>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;};</div>
-<div class="ttc" id="abasic_8h_html"><div class="ttname"><a href="basic_8h.html">basic.h</a></div></div>
+<a href="lo_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="structLO.html#a5907eb6fcc2985a1b86a0d0b05fd737f">    1</a></span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="basic_8h.html">basic.h</a>&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="game_8h.html">game.h</a>&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="dl_8h.html">dl.h</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structLO.html">   14</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structLO.html">LO</a> {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">struct </span><a class="code" href="structBASIC.html">BASIC</a> <a class="code" href="structLO.html#a3b935b27f5feba02d83d48e75445262f">field0_0x0</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">enum</span>   <a class="code" href="game_8h.html#a2bc7d449ad170d97dc662adf9d8dc84e">OID</a> <a class="code" href="structLO.html#a63dfdaac27f498cf45a6303eb6519538">oid</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">struct </span><a class="code" href="structDLE.html">DLE</a> <a class="code" href="structLO.html#a5907eb6fcc2985a1b86a0d0b05fd737f">dleOid</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structLO.html#a19cbc766155598e4343e474849bfa035">   18</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structSW.html">SW</a>* <a class="code" href="structLO.html#a19cbc766155598e4343e474849bfa035">psw</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structLO.html#ac5d5c49298fa321a53c5d480fad701e9">   19</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structALO.html">ALO</a>* <a class="code" href="structLO.html#a7ce70127f6278c29a165c4f6fe625521">paloParent</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">struct </span><a class="code" href="structDLE.html">DLE</a> <a class="code" href="structLO.html#ac5d5c49298fa321a53c5d480fad701e9">dleChild</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structLO.html#a53841d390a8559c50f0c19b6f1b81fcf">   21</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structLO.html">LO</a>* <a class="code" href="structLO.html#a53841d390a8559c50f0c19b6f1b81fcf">ploCidNext</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structLO.html#ac252214c1d6af0f8327a05fd5a1ff672">   22</a></span>&#160;    <span class="keyword">struct </span>MQ* <a class="code" href="structLO.html#ac252214c1d6af0f8327a05fd5a1ff672">pmqFirst</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structLO.html#a0207e2491866129c14d572fb5b8f18a7">   23</a></span>&#160;    <span class="keywordtype">char</span>*  <a class="code" href="structLO.html#a0207e2491866129c14d572fb5b8f18a7">pchzName</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structLO.html#a7b18cec110c7dfe5152178963fc419f4">   24</a></span>&#160;    <span class="keyword">struct </span>CFrame* <a class="code" href="structLO.html#a7b18cec110c7dfe5152178963fc419f4">pframe</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structLO.html#a84bbb34f7555b9bfb4b3bda98d68e824">   25</a></span>&#160;    <span class="keyword">struct </span>PXR* <a class="code" href="structLO.html#a84bbb34f7555b9bfb4b3bda98d68e824">ppxr</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structLO.html#a46ccecbfce3ec9f46b7018a3067be0b5">   26</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="structLO.html#a46ccecbfce3ec9f46b7018a3067be0b5">dtickPerf</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div>
+<div class="ttc" id="abasic_8h_html"><div class="ttname"><a href="basic_8h.html">basic.h</a></div><div class="ttdoc">Declares the BASIC struct.</div></div>
 <div class="ttc" id="adl_8h_html"><div class="ttname"><a href="dl_8h.html">dl.h</a></div></div>
-<div class="ttc" id="agame_8h_html"><div class="ttname"><a href="game_8h.html">game.h</a></div></div>
-<div class="ttc" id="agame_8h_html_a2bc7d449ad170d97dc662adf9d8dc84e"><div class="ttname"><a href="game_8h.html#a2bc7d449ad170d97dc662adf9d8dc84e">OID</a></div><div class="ttdeci">OID</div><div class="ttdef"><b>Definition:</b> game.h:10</div></div>
-<div class="ttc" id="astructALO_html"><div class="ttname"><a href="structALO.html">ALO</a></div><div class="ttdef"><b>Definition:</b> alo.h:3</div></div>
-<div class="ttc" id="astructBASIC_html"><div class="ttname"><a href="structBASIC.html">BASIC</a></div><div class="ttdef"><b>Definition:</b> basic.h:4</div></div>
-<div class="ttc" id="astructDLE_html"><div class="ttname"><a href="structDLE.html">DLE</a></div><div class="ttdef"><b>Definition:</b> dl.h:100</div></div>
-<div class="ttc" id="astructLO_html"><div class="ttname"><a href="structLO.html">LO</a></div><div class="ttdef"><b>Definition:</b> lo.h:9</div></div>
-<div class="ttc" id="astructLO_html_a0207e2491866129c14d572fb5b8f18a7"><div class="ttname"><a href="structLO.html#a0207e2491866129c14d572fb5b8f18a7">LO::pchzName</a></div><div class="ttdeci">char * pchzName</div><div class="ttdef"><b>Definition:</b> lo.h:18</div></div>
-<div class="ttc" id="astructLO_html_a19cbc766155598e4343e474849bfa035"><div class="ttname"><a href="structLO.html#a19cbc766155598e4343e474849bfa035">LO::psw</a></div><div class="ttdeci">struct SW * psw</div><div class="ttdef"><b>Definition:</b> lo.h:13</div></div>
-<div class="ttc" id="astructLO_html_a3b935b27f5feba02d83d48e75445262f"><div class="ttname"><a href="structLO.html#a3b935b27f5feba02d83d48e75445262f">LO::field0_0x0</a></div><div class="ttdeci">struct BASIC field0_0x0</div><div class="ttdef"><b>Definition:</b> lo.h:10</div></div>
-<div class="ttc" id="astructLO_html_a46ccecbfce3ec9f46b7018a3067be0b5"><div class="ttname"><a href="structLO.html#a46ccecbfce3ec9f46b7018a3067be0b5">LO::dtickPerf</a></div><div class="ttdeci">unsigned long dtickPerf</div><div class="ttdef"><b>Definition:</b> lo.h:21</div></div>
-<div class="ttc" id="astructLO_html_a53841d390a8559c50f0c19b6f1b81fcf"><div class="ttname"><a href="structLO.html#a53841d390a8559c50f0c19b6f1b81fcf">LO::ploCidNext</a></div><div class="ttdeci">struct LO * ploCidNext</div><div class="ttdef"><b>Definition:</b> lo.h:16</div></div>
-<div class="ttc" id="astructLO_html_a5907eb6fcc2985a1b86a0d0b05fd737f"><div class="ttname"><a href="structLO.html#a5907eb6fcc2985a1b86a0d0b05fd737f">LO::dleOid</a></div><div class="ttdeci">struct DLE dleOid</div><div class="ttdef"><b>Definition:</b> lo.h:12</div></div>
-<div class="ttc" id="astructLO_html_a63dfdaac27f498cf45a6303eb6519538"><div class="ttname"><a href="structLO.html#a63dfdaac27f498cf45a6303eb6519538">LO::oid</a></div><div class="ttdeci">enum OID oid</div><div class="ttdef"><b>Definition:</b> lo.h:11</div></div>
-<div class="ttc" id="astructLO_html_a7b18cec110c7dfe5152178963fc419f4"><div class="ttname"><a href="structLO.html#a7b18cec110c7dfe5152178963fc419f4">LO::pframe</a></div><div class="ttdeci">struct CFrame * pframe</div><div class="ttdef"><b>Definition:</b> lo.h:19</div></div>
-<div class="ttc" id="astructLO_html_a7ce70127f6278c29a165c4f6fe625521"><div class="ttname"><a href="structLO.html#a7ce70127f6278c29a165c4f6fe625521">LO::paloParent</a></div><div class="ttdeci">struct ALO * paloParent</div><div class="ttdef"><b>Definition:</b> lo.h:14</div></div>
-<div class="ttc" id="astructLO_html_a84bbb34f7555b9bfb4b3bda98d68e824"><div class="ttname"><a href="structLO.html#a84bbb34f7555b9bfb4b3bda98d68e824">LO::ppxr</a></div><div class="ttdeci">struct PXR * ppxr</div><div class="ttdef"><b>Definition:</b> lo.h:20</div></div>
-<div class="ttc" id="astructLO_html_ac252214c1d6af0f8327a05fd5a1ff672"><div class="ttname"><a href="structLO.html#ac252214c1d6af0f8327a05fd5a1ff672">LO::pmqFirst</a></div><div class="ttdeci">struct MQ * pmqFirst</div><div class="ttdef"><b>Definition:</b> lo.h:17</div></div>
-<div class="ttc" id="astructLO_html_ac5d5c49298fa321a53c5d480fad701e9"><div class="ttname"><a href="structLO.html#ac5d5c49298fa321a53c5d480fad701e9">LO::dleChild</a></div><div class="ttdeci">struct DLE dleChild</div><div class="ttdef"><b>Definition:</b> lo.h:15</div></div>
-<div class="ttc" id="astructSW_html"><div class="ttname"><a href="structSW.html">SW</a></div><div class="ttdef"><b>Definition:</b> sw.h:22</div></div>
+<div class="ttc" id="agame_8h_html"><div class="ttname"><a href="game_8h.html">game.h</a></div><div class="ttdoc">Declarations related to the game world and game objects.</div></div>
+<div class="ttc" id="agame_8h_html_a2bc7d449ad170d97dc662adf9d8dc84e"><div class="ttname"><a href="game_8h.html#a2bc7d449ad170d97dc662adf9d8dc84e">OID</a></div><div class="ttdeci">OID</div><div class="ttdoc">Object ID.</div><div class="ttdef"><b>Definition:</b> <a href="game_8h_source.html#l00014">game.h:15</a></div></div>
+<div class="ttc" id="astructALO_html"><div class="ttname"><a href="structALO.html">ALO</a></div><div class="ttdef"><b>Definition:</b> <a href="alo_8h_source.html#l00006">alo.h:6</a></div></div>
+<div class="ttc" id="astructBASIC_html"><div class="ttname"><a href="structBASIC.html">BASIC</a></div><div class="ttdef"><b>Definition:</b> <a href="basic_8h_source.html#l00008">basic.h:9</a></div></div>
+<div class="ttc" id="astructDLE_html"><div class="ttname"><a href="structDLE.html">DLE</a></div><div class="ttdef"><b>Definition:</b> <a href="dl_8h_source.html#l00105">dl.h:106</a></div></div>
+<div class="ttc" id="astructLO_html"><div class="ttname"><a href="structLO.html">LO</a></div><div class="ttdoc">Level Object.</div><div class="ttdef"><b>Definition:</b> <a href="lo_8h_source.html#l00014">lo.h:14</a></div></div>
+<div class="ttc" id="astructLO_html_a0207e2491866129c14d572fb5b8f18a7"><div class="ttname"><a href="structLO.html#a0207e2491866129c14d572fb5b8f18a7">LO::pchzName</a></div><div class="ttdeci">char * pchzName</div><div class="ttdef"><b>Definition:</b> <a href="lo_8h_source.html#l00023">lo.h:23</a></div></div>
+<div class="ttc" id="astructLO_html_a19cbc766155598e4343e474849bfa035"><div class="ttname"><a href="structLO.html#a19cbc766155598e4343e474849bfa035">LO::psw</a></div><div class="ttdeci">struct SW * psw</div><div class="ttdef"><b>Definition:</b> <a href="lo_8h_source.html#l00018">lo.h:18</a></div></div>
+<div class="ttc" id="astructLO_html_a3b935b27f5feba02d83d48e75445262f"><div class="ttname"><a href="structLO.html#a3b935b27f5feba02d83d48e75445262f">LO::field0_0x0</a></div><div class="ttdeci">struct BASIC field0_0x0</div><div class="ttdef"><b>Definition:</b> <a href="lo_8h_source.html#l00001">lo.h:15</a></div></div>
+<div class="ttc" id="astructLO_html_a46ccecbfce3ec9f46b7018a3067be0b5"><div class="ttname"><a href="structLO.html#a46ccecbfce3ec9f46b7018a3067be0b5">LO::dtickPerf</a></div><div class="ttdeci">unsigned long dtickPerf</div><div class="ttdef"><b>Definition:</b> <a href="lo_8h_source.html#l00026">lo.h:26</a></div></div>
+<div class="ttc" id="astructLO_html_a53841d390a8559c50f0c19b6f1b81fcf"><div class="ttname"><a href="structLO.html#a53841d390a8559c50f0c19b6f1b81fcf">LO::ploCidNext</a></div><div class="ttdeci">struct LO * ploCidNext</div><div class="ttdef"><b>Definition:</b> <a href="lo_8h_source.html#l00021">lo.h:21</a></div></div>
+<div class="ttc" id="astructLO_html_a5907eb6fcc2985a1b86a0d0b05fd737f"><div class="ttname"><a href="structLO.html#a5907eb6fcc2985a1b86a0d0b05fd737f">LO::dleOid</a></div><div class="ttdeci">struct DLE dleOid</div><div class="ttdef"><b>Definition:</b> <a href="lo_8h_source.html#l00001">lo.h:17</a></div></div>
+<div class="ttc" id="astructLO_html_a63dfdaac27f498cf45a6303eb6519538"><div class="ttname"><a href="structLO.html#a63dfdaac27f498cf45a6303eb6519538">LO::oid</a></div><div class="ttdeci">enum OID oid</div><div class="ttdef"><b>Definition:</b> <a href="lo_8h_source.html#l00001">lo.h:16</a></div></div>
+<div class="ttc" id="astructLO_html_a7b18cec110c7dfe5152178963fc419f4"><div class="ttname"><a href="structLO.html#a7b18cec110c7dfe5152178963fc419f4">LO::pframe</a></div><div class="ttdeci">struct CFrame * pframe</div><div class="ttdef"><b>Definition:</b> <a href="lo_8h_source.html#l00024">lo.h:24</a></div></div>
+<div class="ttc" id="astructLO_html_a7ce70127f6278c29a165c4f6fe625521"><div class="ttname"><a href="structLO.html#a7ce70127f6278c29a165c4f6fe625521">LO::paloParent</a></div><div class="ttdeci">struct ALO * paloParent</div><div class="ttdef"><b>Definition:</b> <a href="lo_8h_source.html#l00019">lo.h:19</a></div></div>
+<div class="ttc" id="astructLO_html_a84bbb34f7555b9bfb4b3bda98d68e824"><div class="ttname"><a href="structLO.html#a84bbb34f7555b9bfb4b3bda98d68e824">LO::ppxr</a></div><div class="ttdeci">struct PXR * ppxr</div><div class="ttdef"><b>Definition:</b> <a href="lo_8h_source.html#l00025">lo.h:25</a></div></div>
+<div class="ttc" id="astructLO_html_ac252214c1d6af0f8327a05fd5a1ff672"><div class="ttname"><a href="structLO.html#ac252214c1d6af0f8327a05fd5a1ff672">LO::pmqFirst</a></div><div class="ttdeci">struct MQ * pmqFirst</div><div class="ttdef"><b>Definition:</b> <a href="lo_8h_source.html#l00022">lo.h:22</a></div></div>
+<div class="ttc" id="astructLO_html_ac5d5c49298fa321a53c5d480fad701e9"><div class="ttname"><a href="structLO.html#ac5d5c49298fa321a53c5d480fad701e9">LO::dleChild</a></div><div class="ttdeci">struct DLE dleChild</div><div class="ttdef"><b>Definition:</b> <a href="lo_8h_source.html#l00019">lo.h:20</a></div></div>
+<div class="ttc" id="astructSW_html"><div class="ttname"><a href="structSW.html">SW</a></div><div class="ttdoc">Scene World.</div><div class="ttdef"><b>Definition:</b> <a href="sw_8h_source.html#l00030">sw.h:30</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

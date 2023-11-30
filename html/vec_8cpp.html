@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/vec.cpp File Reference</title>
+<title>Sly 1 Decomp: sly1/src/P2/vec.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -99,6 +98,9 @@ $(document).ready(function(){initNavTree('vec_8cpp.html',''); initResizable(); }
 <div class="title">vec.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Defines functions for vector math.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="vec_8h_source.html">vec.h</a>&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -106,18 +108,20 @@ Include dependency graph for vec.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="vec_8cpp__incl.png" border="0" usemap="#asly1_2src_2P2_2vec_8cpp" alt=""/></div>
 <map name="asly1_2src_2P2_2vec_8cpp" id="asly1_2src_2P2_2vec_8cpp">
-<area shape="rect" title=" " alt="" coords="113,5,260,32"/>
-<area shape="rect" href="vec_8h.html" title=" " alt="" coords="117,80,174,107"/>
+<area shape="rect" title="Defines functions for vector math." alt="" coords="113,5,260,32"/>
+<area shape="rect" href="vec_8h.html" title="Declares VECTOR and other related classes/functions." alt="" coords="117,80,174,107"/>
 <area shape="rect" title=" " alt="" coords="198,80,261,107"/>
 <area shape="rect" title=" " alt="" coords="5,304,85,331"/>
-<area shape="rect" href="so_8h.html" title=" " alt="" coords="121,155,170,181"/>
-<area shape="rect" href="util_8h.html" title=" " alt="" coords="198,229,253,256"/>
-<area shape="rect" href="zap_8h.html" title=" " alt="" coords="117,229,174,256"/>
-<area shape="rect" href="game_8h.html" title=" " alt="" coords="110,304,181,331"/>
-<area shape="rect" href="gs_8h.html" title=" " alt="" coords="157,379,206,405"/>
+<area shape="rect" href="so_8h.html" title="Declarations for scene objects." alt="" coords="121,155,170,181"/>
+<area shape="rect" href="util_8h.html" title="Declarations for utility functions." alt="" coords="198,229,253,256"/>
+<area shape="rect" href="zap_8h.html" title="Declarations for the zap (damage) system." alt="" coords="117,229,174,256"/>
+<area shape="rect" href="game_8h.html" title="Declarations related to the game world and game objects." alt="" coords="110,304,181,331"/>
+<area shape="rect" href="gs_8h.html" title="Declarations for the game state manipulation." alt="" coords="157,379,206,405"/>
 </map>
 </div>
-</div><table class="memberdecls">
+</div>
+<p><a href="vec_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ae15ec86b8218cdd5f2cfc6ba40102119"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8cpp.html#ae15ec86b8218cdd5f2cfc6ba40102119">CalculateVectorPanTilt</a> (<a class="el" href="structVECTOR.html">VECTOR</a> *pvec, float *ppan, float *ptilt)</td></tr>
@@ -158,7 +162,11 @@ Functions</h2></td></tr>
 <tr class="memdesc:aa7d923d9cb0c0aece2adc669f4354425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Projects one vector onto another using scalar projection.  <a href="vec_8cpp.html#aa7d923d9cb0c0aece2adc669f4354425">More...</a><br /></td></tr>
 <tr class="separator:aa7d923d9cb0c0aece2adc669f4354425"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Defines functions for vector math. </p>
+
+<p class="definition">Definition in file <a class="el" href="vec_8cpp_source.html">vec.cpp</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="ae15ec86b8218cdd5f2cfc6ba40102119"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae15ec86b8218cdd5f2cfc6ba40102119">&#9670;&nbsp;</a></span>CalculateVectorPanTilt()</h2>
 
@@ -200,6 +208,8 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="vec_8cpp_source.html#l00011">11</a> of file <a class="el" href="vec_8cpp_source.html">vec.cpp</a>.</p>
 
 </div>
 </div>
@@ -244,6 +254,8 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="vec_8cpp_source.html#l00030">30</a> of file <a class="el" href="vec_8cpp_source.html">vec.cpp</a>.</p>
 
 </div>
 </div>
@@ -303,6 +315,8 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This is an educated guess and may not be accurate. </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="vec_8cpp_source.html#l00045">45</a> of file <a class="el" href="vec_8cpp_source.html">vec.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a9c95676808e64ff540fc545dccb79dbb"></a>
@@ -348,6 +362,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vec_8cpp_source.html#l00121">121</a> of file <a class="el" href="vec_8cpp_source.html">vec.cpp</a>.</p>
 
 </div>
 </div>
@@ -421,6 +437,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="vec_8cpp_source.html#l00127">127</a> of file <a class="el" href="vec_8cpp_source.html">vec.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a0cc9e3bf6fe0299c269e7e1fa501a86a"></a>
@@ -479,6 +497,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="vec_8cpp_source.html#l00210">210</a> of file <a class="el" href="vec_8cpp_source.html">vec.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a6a04fe581ec80dc3a7112d5ba6d76abe"></a>
@@ -515,6 +535,8 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="vec_8cpp_source.html#l00272">272</a> of file <a class="el" href="vec_8cpp_source.html">vec.cpp</a>.</p>
 
 </div>
 </div>
@@ -566,7 +588,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd>Static analysis </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>Static analysis </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="vec_8cpp_source.html#l00319">319</a> of file <a class="el" href="vec_8cpp_source.html">vec.cpp</a>.</p>
 
 </div>
 </div>
@@ -612,6 +636,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="vec_8cpp_source.html#l00358">358</a> of file <a class="el" href="vec_8cpp_source.html">vec.cpp</a>.</p>
+
 </div>
 </div>
 <a id="acc6b315da0113636116df3d5b53c8ce5"></a>
@@ -656,6 +682,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Angle between vectors in radians </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="vec_8cpp_source.html#l00391">391</a> of file <a class="el" href="vec_8cpp_source.html">vec.cpp</a>.</p>
 
 </div>
 </div>
@@ -708,6 +736,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="vec_8cpp_source.html#l00460">460</a> of file <a class="el" href="vec_8cpp_source.html">vec.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a512059c7581e2fe364525b4413d06b52"></a>
@@ -759,6 +789,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="vec_8cpp_source.html#l00472">472</a> of file <a class="el" href="vec_8cpp_source.html">vec.cpp</a>.</p>
+
 </div>
 </div>
 <a id="aa7d923d9cb0c0aece2adc669f4354425"></a>
@@ -796,6 +828,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Scalar projection of vec1 onto vec2 </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="vec_8cpp_source.html#l00487">487</a> of file <a class="el" href="vec_8cpp_source.html">vec.cpp</a>.</p>
 
 </div>
 </div>

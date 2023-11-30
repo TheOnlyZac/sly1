@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/transition.cpp File Reference</title>
+<title>Sly 1 Decomp: sly1/src/P2/transition.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -97,45 +96,54 @@ $(document).ready(function(){initNavTree('transition_8cpp.html',''); initResizab
 <div class="title">transition.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implements for the transition system.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="transition_8h_source.html">transition.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for transition.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="transition_8cpp__incl.png" border="0" usemap="#asly1_2src_2P2_2transition_8cpp" alt=""/></div>
 <map name="asly1_2src_2P2_2transition_8cpp" id="asly1_2src_2P2_2transition_8cpp">
-<area shape="rect" title=" " alt="" coords="807,5,993,32"/>
-<area shape="rect" href="transition_8h.html" title=" " alt="" coords="852,80,948,107"/>
-<area shape="rect" href="bis_8h.html" title=" " alt="" coords="873,304,927,331"/>
-<area shape="rect" href="cat_8h.html" title=" " alt="" coords="1058,379,1113,405"/>
+<area shape="rect" title="Implements for the transition system." alt="" coords="807,5,993,32"/>
+<area shape="rect" href="transition_8h.html" title="Declarations for the transition system." alt="" coords="852,80,948,107"/>
+<area shape="rect" href="bis_8h.html" title="Implements the binary input stream class." alt="" coords="873,304,927,331"/>
+<area shape="rect" href="cat_8h.html" title="Declarations for working with WAC and WAL catalogs." alt="" coords="1058,379,1113,405"/>
 <area shape="rect" title=" " alt="" coords="615,528,695,555"/>
-<area shape="rect" href="prog_8h.html" title=" " alt="" coords="689,379,751,405"/>
-<area shape="rect" href="game_8h.html" title=" " alt="" coords="1115,528,1186,555"/>
-<area shape="rect" href="gs_8h.html" title=" " alt="" coords="513,603,562,629"/>
-<area shape="rect" href="brx_8h.html" title=" " alt="" coords="1089,155,1143,181"/>
-<area shape="rect" href="sw_8h.html" title=" " alt="" coords="1057,229,1108,256"/>
-<area shape="rect" href="sound_8h.html" title=" " alt="" coords="167,304,241,331"/>
-<area shape="rect" href="difficulty_8h.html" title=" " alt="" coords="346,155,435,181"/>
-<area shape="rect" href="clock_8h.html" title=" " alt="" coords="1505,155,1573,181"/>
-<area shape="rect" href="joy_8h.html" title=" " alt="" coords="297,453,349,480"/>
-<area shape="rect" href="phasemem_8h.html" title=" " alt="" coords="1597,155,1704,181"/>
-<area shape="rect" href="bas_8h.html" title=" " alt="" coords="827,379,885,405"/>
+<area shape="rect" href="prog_8h.html" title="Declares the prog class." alt="" coords="689,379,751,405"/>
+<area shape="rect" href="game_8h.html" title="Declarations related to the game world and game objects." alt="" coords="1115,528,1186,555"/>
+<area shape="rect" href="gs_8h.html" title="Declarations for the game state manipulation." alt="" coords="513,603,562,629"/>
+<area shape="rect" href="brx_8h.html" title="Declarations for interaction with binary resource archives." alt="" coords="1089,155,1143,181"/>
+<area shape="rect" href="sw_8h.html" title="Declares the scene world and related classes." alt="" coords="1057,229,1108,256"/>
+<area shape="rect" href="sound_8h.html" title="Declarations for the sound system." alt="" coords="167,304,241,331"/>
+<area shape="rect" href="difficulty_8h.html" title="Declarations for the difficulty scaling system." alt="" coords="346,155,435,181"/>
+<area shape="rect" href="clock_8h.html" title="Declarations for the game clock." alt="" coords="1505,155,1573,181"/>
+<area shape="rect" href="joy_8h.html" title="Declarations for joypad interactions." alt="" coords="297,453,349,480"/>
+<area shape="rect" href="phasemem_8h.html" title="Declarations for the phase system." alt="" coords="1597,155,1704,181"/>
+<area shape="rect" href="bas_8h.html" title="Declarations for the binary async stream." alt="" coords="827,379,885,405"/>
 <area shape="rect" title=" " alt="" coords="878,453,949,480"/>
 <area shape="rect" title=" " alt="" coords="909,379,982,405"/>
-<area shape="rect" href="util_8h.html" title=" " alt="" coords="206,528,261,555"/>
-<area shape="rect" href="font_8h.html" title=" " alt="" coords="373,453,433,480"/>
+<area shape="rect" href="util_8h.html" title="Declarations for utility functions." alt="" coords="206,528,261,555"/>
+<area shape="rect" href="font_8h.html" title="Declarations for the font system." alt="" coords="373,453,433,480"/>
 <area shape="rect" href="alo_8h.html" title=" " alt="" coords="1157,229,1211,256"/>
 <area shape="rect" href="dl_8h.html" title=" " alt="" coords="1331,379,1378,405"/>
-<area shape="rect" href="light_8h.html" title=" " alt="" coords="1053,304,1115,331"/>
-<area shape="rect" href="lo_8h.html" title=" " alt="" coords="1255,304,1302,331"/>
-<area shape="rect" href="slotheap_8h.html" title=" " alt="" coords="1140,304,1231,331"/>
-<area shape="rect" href="vec_8h.html" title=" " alt="" coords="511,304,569,331"/>
-<area shape="rect" href="basic_8h.html" title=" " alt="" coords="1239,379,1307,405"/>
+<area shape="rect" href="light_8h.html" title="Light and shadow system." alt="" coords="1053,304,1115,331"/>
+<area shape="rect" href="lo_8h.html" title="Declares Level Object struct." alt="" coords="1255,304,1302,331"/>
+<area shape="rect" href="slotheap_8h.html" title="Declares the slotheap and slot structs." alt="" coords="1140,304,1231,331"/>
+<area shape="rect" href="vec_8h.html" title="Declares VECTOR and other related classes/functions." alt="" coords="511,304,569,331"/>
+<area shape="rect" href="basic_8h.html" title="Declares the BASIC struct." alt="" coords="1239,379,1307,405"/>
 <area shape="rect" title=" " alt="" coords="195,379,261,405"/>
-<area shape="rect" href="so_8h.html" title=" " alt="" coords="513,379,562,405"/>
-<area shape="rect" href="zap_8h.html" title=" " alt="" coords="509,453,566,480"/>
-<area shape="rect" href="chkpnt_8h.html" title=" " alt="" coords="354,229,433,256"/>
+<area shape="rect" href="so_8h.html" title="Declarations for scene objects." alt="" coords="513,379,562,405"/>
+<area shape="rect" href="zap_8h.html" title="Declarations for the zap (damage) system." alt="" coords="509,453,566,480"/>
+<area shape="rect" href="chkpnt_8h.html" title="Declarations for the checkpoint system." alt="" coords="354,229,433,256"/>
 </map>
 </div>
+</div>
+<p><a href="transition_8cpp_source.html">Go to the source code of this file.</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implements for the transition system. </p>
+
+<p class="definition">Definition in file <a class="el" href="transition_8cpp_source.html">transition.cpp</a>.</p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

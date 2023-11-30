@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/wm.h File Reference</title>
+<title>Sly 1 Decomp: sly1/src/P2/wm.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -117,12 +116,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="center"><img src="wm_8h__dep__incl.png" border="0" usemap="#asly1_2src_2P2_2wm_8hdep" alt=""/></div>
 <map name="asly1_2src_2P2_2wm_8hdep" id="asly1_2src_2P2_2wm_8hdep">
 <area shape="rect" title=" " alt="" coords="178,5,310,32"/>
-<area shape="rect" href="wipe_8cpp.html" title=" " alt="" coords="5,155,160,181"/>
-<area shape="rect" href="wipe_8h.html" title=" " alt="" coords="175,80,313,107"/>
+<area shape="rect" href="wipe_8cpp.html" title="Implements functions for the wipe system." alt="" coords="5,155,160,181"/>
+<area shape="rect" href="wipe_8h.html" title="Declarations for the wipe system." alt="" coords="175,80,313,107"/>
 <area shape="rect" href="wm_8cpp.html" title=" " alt="" coords="337,80,484,107"/>
 <area shape="rect" href="main_8cpp.html" title=" " alt="" coords="185,155,341,181"/>
-<area shape="rect" href="xform_8h.html" title=" " alt="" coords="365,155,512,181"/>
-<area shape="rect" href="xform_8cpp.html" title=" " alt="" coords="357,229,520,256"/>
+<area shape="rect" href="xform_8h.html" title="Declares EXITs for moving between levels." alt="" coords="365,155,512,181"/>
+<area shape="rect" href="xform_8cpp.html" title="Implements EXIT transformation functions." alt="" coords="357,229,520,256"/>
 </map>
 </div>
 </div>
@@ -131,6 +130,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structWM.html">WM</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unknown, possibly WorldMap.  <a href="structWM.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
@@ -138,12 +138,13 @@ Enumerations</h2></td></tr>
 <tr class="memitem:a9416e61373757054054a2733b8d06cca"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wm_8h.html#a9416e61373757054054a2733b8d06cca">WMS</a> { <a class="el" href="wm_8h.html#a9416e61373757054054a2733b8d06ccaa606d3732de2721005b094068b2c5553f">WMS_ZERO</a> = 0
 , <a class="el" href="wm_8h.html#a9416e61373757054054a2733b8d06ccaa2df0b5f5cfd4191a89a72c411e47a456">WMS_MAX</a>
  }</td></tr>
+<tr class="memdesc:a9416e61373757054054a2733b8d06cca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unknown, possibly WorldMap State.  <a href="wm_8h.html#a9416e61373757054054a2733b8d06cca">More...</a><br /></td></tr>
 <tr class="separator:a9416e61373757054054a2733b8d06cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a9261663f9867b00a5bbed965f6367fcb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wm_8h.html#a9261663f9867b00a5bbed965f6367fcb">SetWmWms</a> (<a class="el" href="structWM.html">WM</a> *pwm, <a class="el" href="wm_8h.html#a9416e61373757054054a2733b8d06cca">WMS</a> wms)</td></tr>
-<tr class="memdesc:a9261663f9867b00a5bbed965f6367fcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the <a class="el" href="structWM.html">WM</a> state.  <a href="wm_8h.html#a9261663f9867b00a5bbed965f6367fcb">More...</a><br /></td></tr>
+<tr class="memdesc:a9261663f9867b00a5bbed965f6367fcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the <a class="el" href="structWM.html" title="Unknown, possibly WorldMap.">WM</a> state.  <a href="wm_8h.html#a9261663f9867b00a5bbed965f6367fcb">More...</a><br /></td></tr>
 <tr class="separator:a9261663f9867b00a5bbed965f6367fcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
@@ -158,11 +159,14 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>??? State </p>
+
+<p>Unknown, possibly WorldMap State. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a9416e61373757054054a2733b8d06ccaa606d3732de2721005b094068b2c5553f"></a>WMS_ZERO&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a9416e61373757054054a2733b8d06ccaa2df0b5f5cfd4191a89a72c411e47a456"></a>WMS_MAX&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="wm_8h_source.html#l00018">18</a> of file <a class="el" href="wm_8h_source.html">wm.h</a>.</p>
 
 </div>
 </div>
@@ -193,14 +197,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets the <a class="el" href="structWM.html">WM</a> state. </p>
+<p>Sets the <a class="el" href="structWM.html" title="Unknown, possibly WorldMap.">WM</a> state. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pwm</td><td>Pointer to the <a class="el" href="structWM.html">WM</a> </td></tr>
-    <tr><td class="paramname">pwms</td><td>Pointer to the <a class="el" href="structWM.html">WM</a> state </td></tr>
+    <tr><td class="paramname">pwm</td><td>Pointer to the <a class="el" href="structWM.html" title="Unknown, possibly WorldMap.">WM</a> </td></tr>
+    <tr><td class="paramname">pwms</td><td>Pointer to the <a class="el" href="structWM.html" title="Unknown, possibly WorldMap.">WM</a> state </td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="wm_8cpp_source.html#l00006">6</a> of file <a class="el" href="wm_8cpp_source.html">wm.cpp</a>.</p>
 
 </div>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/joy.cpp File Reference</title>
+<title>Sly 1 Decomp: sly1/src/P2/joy.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -100,6 +99,9 @@ $(document).ready(function(){initNavTree('joy_8cpp.html',''); initResizable(); }
 <div class="title">joy.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implements the joypad manager.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="joy_8h_source.html">joy.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="gs_8h_source.html">gs.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="clock_8h_source.html">clock.h</a>&gt;</code><br />
@@ -110,17 +112,19 @@ Include dependency graph for joy.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="joy_8cpp__incl.png" border="0" usemap="#asly1_2src_2P2_2joy_8cpp" alt=""/></div>
 <map name="asly1_2src_2P2_2joy_8cpp" id="asly1_2src_2P2_2joy_8cpp">
-<area shape="rect" title=" " alt="" coords="165,5,306,32"/>
-<area shape="rect" href="joy_8h.html" title=" " alt="" coords="52,80,104,107"/>
-<area shape="rect" href="gs_8h.html" title=" " alt="" coords="128,80,177,107"/>
-<area shape="rect" href="clock_8h.html" title=" " alt="" coords="201,80,269,107"/>
+<area shape="rect" title="Implements the joypad manager." alt="" coords="165,5,306,32"/>
+<area shape="rect" href="joy_8h.html" title="Declarations for joypad interactions." alt="" coords="52,80,104,107"/>
+<area shape="rect" href="gs_8h.html" title="Declarations for the game state manipulation." alt="" coords="128,80,177,107"/>
+<area shape="rect" href="clock_8h.html" title="Declarations for the game clock." alt="" coords="201,80,269,107"/>
 <area shape="rect" title=" " alt="" coords="294,80,355,107"/>
 <area shape="rect" title=" " alt="" coords="379,80,446,107"/>
-<area shape="rect" href="util_8h.html" title=" " alt="" coords="5,155,60,181"/>
+<area shape="rect" href="util_8h.html" title="Declarations for utility functions." alt="" coords="5,155,60,181"/>
 <area shape="rect" title=" " alt="" coords="85,155,165,181"/>
 </map>
 </div>
-</div><table class="memberdecls">
+</div>
+<p><a href="joy_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a636f994e6308715ae7ce93ad677f962a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8cpp.html#a636f994e6308715ae7ce93ad677f962a">SetJoyJoys</a> (<a class="el" href="structJOY.html">JOY</a> *pjoy, <a class="el" href="joy_8h.html#ab0a5ef0700b1060619e90b2c89643043">JOYS</a> joys, <a class="el" href="joy_8h.html#ad3186335c21a86b3a1c03262495b1775">JOYK</a> joyk)</td></tr>
@@ -159,7 +163,11 @@ Variables</h2></td></tr>
 <tr class="memitem:a17594cb5d7207a5a140baa3f554ee288"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8cpp.html#a17594cb5d7207a5a140baa3f554ee288">g_grfcht</a> = (int)<a class="el" href="joy_8h.html#a020a94afbc4629e6cbaf9a777eb85f55a907cc873d7c9b20deb706edebc27fecf">FCHT_None</a></td></tr>
 <tr class="separator:a17594cb5d7207a5a140baa3f554ee288"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implements the joypad manager. </p>
+
+<p class="definition">Definition in file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a9d12159b3676e1fe3d414cd16c09df35"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9d12159b3676e1fe3d414cd16c09df35">&#9670;&nbsp;</a></span>AddFcht()</h2>
 
@@ -184,6 +192,8 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00152">152</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
 
 </div>
 </div>
@@ -212,6 +222,8 @@ Variables</h2></td></tr>
 </dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>Figure out what this function does and implement it. </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00161">161</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a909fcc7c7ce78f27b9b82a2ea1be5f90"></a>
@@ -238,6 +250,8 @@ Variables</h2></td></tr>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>Unofficial name because the real name is unknown. </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>Implement rendering the string on the screen. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00167">167</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
 
 </div>
 </div>
@@ -283,6 +297,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00124">124</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a636f994e6308715ae7ce93ad677f962a"></a>
@@ -327,6 +343,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00020">20</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a72b5390eb5413ab7c0238d8a7d03750d"></a>
@@ -364,6 +382,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00118">118</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a792e8692cb813b8f2d37120ad3d5413a"></a>
@@ -382,6 +402,8 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Updates the check for cheat code entry. </p>
+
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00140">140</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
 
 </div>
 </div>
@@ -409,6 +431,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00066">66</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
@@ -424,6 +448,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00016">16</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a17594cb5d7207a5a140baa3f554ee288"></a>
@@ -437,6 +463,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00017">17</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
 
 </div>
 </div>
@@ -452,6 +480,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00013">13</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a379f50f21e94981aaf63de5f3eb007e8"></a>
@@ -465,6 +495,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00014">14</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
 
 </div>
 </div>

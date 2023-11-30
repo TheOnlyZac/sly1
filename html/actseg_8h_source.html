@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/actseg.h Source File</title>
+<title>Sly 1 Decomp: sly1/src/P2/actseg.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -97,41 +96,42 @@ $(document).ready(function(){initNavTree('actseg_8h_source.html',''); initResiza
 <div class="title">actseg.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="actseg_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="vec_8h.html">vec.h</a>&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">util.h</a>&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="structACTLA.html">    8</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structACTLA.html">ACTLA</a></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="structACTLA.html#ad3ed73440c6c105ae58746242780bf9e">   10</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structACTLA.html#ad3ed73440c6c105ae58746242780bf9e">fUseTarget</a>;</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="structACTLA.html#aff5096e57148917825399d0aa8129ea1">   11</a></span>&#160;    <span class="keyword">struct </span>ALO_conflict* <a class="code" href="structACTLA.html#aff5096e57148917825399d0aa8129ea1">paloTarget</a>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">struct </span><a class="code" href="structVECTOR.html">VECTOR</a> <a class="code" href="structACTLA.html#a7fae7e7f9132b0e1e69595961470e0eb">posTargetLocal</a>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="structACTLA.html#ac4889d7c589aece1043ba3b1e4fb2cb3">   13</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="structACTLA.html#ac4889d7c589aece1043ba3b1e4fb2cb3">sIgnore</a>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structACTLA.html#af8c5a4a70cd8b20784fb5eb61654ea68">   14</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structACTLA.html#af8c5a4a70cd8b20784fb5eb61654ea68">nPriorityEnabled</a>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structACTLA.html#a9e6e7e93cdd90470afa007de017504c0">   15</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structACTLA.html#a9e6e7e93cdd90470afa007de017504c0">nPriorityDisabled</a>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structACTLA.html#ae324839406f9444d42c522551be2b578">   16</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structACTLA.html#aa67fafd72c1c566cdd09601124fa3b73">fPaused</a>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">struct </span><a class="code" href="structCLQ.html">CLQ</a> <a class="code" href="structACTLA.html#ae324839406f9444d42c522551be2b578">clqPanToPan</a>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">struct </span><a class="code" href="structLM.html">LM</a> <a class="code" href="structACTLA.html#a3c8b7f97421e794251144c4b7180ad72">lmPan</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">struct </span><a class="code" href="structCLQ.html">CLQ</a> <a class="code" href="structACTLA.html#a930fd7939df32f139e285bb0f6fc57d3">clqTiltToTilt</a>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">struct </span><a class="code" href="structLM.html">LM</a> <a class="code" href="structACTLA.html#af56f7b56d393c93013c0a16fcea00f78">lmTilt</a>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
-<div class="ttc" id="astructACTLA_html"><div class="ttname"><a href="structACTLA.html">ACTLA</a></div><div class="ttdef"><b>Definition:</b> actseg.h:9</div></div>
-<div class="ttc" id="astructACTLA_html_a3c8b7f97421e794251144c4b7180ad72"><div class="ttname"><a href="structACTLA.html#a3c8b7f97421e794251144c4b7180ad72">ACTLA::lmPan</a></div><div class="ttdeci">struct LM lmPan</div><div class="ttdef"><b>Definition:</b> actseg.h:18</div></div>
-<div class="ttc" id="astructACTLA_html_a7fae7e7f9132b0e1e69595961470e0eb"><div class="ttname"><a href="structACTLA.html#a7fae7e7f9132b0e1e69595961470e0eb">ACTLA::posTargetLocal</a></div><div class="ttdeci">struct VECTOR posTargetLocal</div><div class="ttdef"><b>Definition:</b> actseg.h:12</div></div>
-<div class="ttc" id="astructACTLA_html_a930fd7939df32f139e285bb0f6fc57d3"><div class="ttname"><a href="structACTLA.html#a930fd7939df32f139e285bb0f6fc57d3">ACTLA::clqTiltToTilt</a></div><div class="ttdeci">struct CLQ clqTiltToTilt</div><div class="ttdef"><b>Definition:</b> actseg.h:19</div></div>
-<div class="ttc" id="astructACTLA_html_a9e6e7e93cdd90470afa007de017504c0"><div class="ttname"><a href="structACTLA.html#a9e6e7e93cdd90470afa007de017504c0">ACTLA::nPriorityDisabled</a></div><div class="ttdeci">int nPriorityDisabled</div><div class="ttdef"><b>Definition:</b> actseg.h:15</div></div>
-<div class="ttc" id="astructACTLA_html_aa67fafd72c1c566cdd09601124fa3b73"><div class="ttname"><a href="structACTLA.html#aa67fafd72c1c566cdd09601124fa3b73">ACTLA::fPaused</a></div><div class="ttdeci">int fPaused</div><div class="ttdef"><b>Definition:</b> actseg.h:16</div></div>
-<div class="ttc" id="astructACTLA_html_ac4889d7c589aece1043ba3b1e4fb2cb3"><div class="ttname"><a href="structACTLA.html#ac4889d7c589aece1043ba3b1e4fb2cb3">ACTLA::sIgnore</a></div><div class="ttdeci">float sIgnore</div><div class="ttdef"><b>Definition:</b> actseg.h:13</div></div>
-<div class="ttc" id="astructACTLA_html_ad3ed73440c6c105ae58746242780bf9e"><div class="ttname"><a href="structACTLA.html#ad3ed73440c6c105ae58746242780bf9e">ACTLA::fUseTarget</a></div><div class="ttdeci">int fUseTarget</div><div class="ttdef"><b>Definition:</b> actseg.h:10</div></div>
-<div class="ttc" id="astructACTLA_html_ae324839406f9444d42c522551be2b578"><div class="ttname"><a href="structACTLA.html#ae324839406f9444d42c522551be2b578">ACTLA::clqPanToPan</a></div><div class="ttdeci">struct CLQ clqPanToPan</div><div class="ttdef"><b>Definition:</b> actseg.h:17</div></div>
-<div class="ttc" id="astructACTLA_html_af56f7b56d393c93013c0a16fcea00f78"><div class="ttname"><a href="structACTLA.html#af56f7b56d393c93013c0a16fcea00f78">ACTLA::lmTilt</a></div><div class="ttdeci">struct LM lmTilt</div><div class="ttdef"><b>Definition:</b> actseg.h:20</div></div>
-<div class="ttc" id="astructACTLA_html_af8c5a4a70cd8b20784fb5eb61654ea68"><div class="ttname"><a href="structACTLA.html#af8c5a4a70cd8b20784fb5eb61654ea68">ACTLA::nPriorityEnabled</a></div><div class="ttdeci">int nPriorityEnabled</div><div class="ttdef"><b>Definition:</b> actseg.h:14</div></div>
-<div class="ttc" id="astructACTLA_html_aff5096e57148917825399d0aa8129ea1"><div class="ttname"><a href="structACTLA.html#aff5096e57148917825399d0aa8129ea1">ACTLA::paloTarget</a></div><div class="ttdeci">struct ALO_conflict * paloTarget</div><div class="ttdef"><b>Definition:</b> actseg.h:11</div></div>
-<div class="ttc" id="astructCLQ_html"><div class="ttname"><a href="structCLQ.html">CLQ</a></div><div class="ttdef"><b>Definition:</b> vec.h:54</div></div>
-<div class="ttc" id="astructLM_html"><div class="ttname"><a href="structLM.html">LM</a></div><div class="ttdef"><b>Definition:</b> util.h:14</div></div>
-<div class="ttc" id="astructVECTOR_html"><div class="ttname"><a href="structVECTOR.html">VECTOR</a></div><div class="ttdef"><b>Definition:</b> vec.h:13</div></div>
-<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div></div>
-<div class="ttc" id="avec_8h_html"><div class="ttname"><a href="vec_8h.html">vec.h</a></div></div>
+<a href="actseg_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="vec_8h.html">vec.h</a>&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">util.h</a>&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="structACTLA.html">   13</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structACTLA.html">ACTLA</a></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structACTLA.html#ad3ed73440c6c105ae58746242780bf9e">   15</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structACTLA.html#ad3ed73440c6c105ae58746242780bf9e">fUseTarget</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structACTLA.html#aff5096e57148917825399d0aa8129ea1">   16</a></span>&#160;    <span class="keyword">struct </span>ALO_conflict* <a class="code" href="structACTLA.html#aff5096e57148917825399d0aa8129ea1">paloTarget</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">struct </span><a class="code" href="structVECTOR.html">VECTOR</a> <a class="code" href="structACTLA.html#a7fae7e7f9132b0e1e69595961470e0eb">posTargetLocal</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structACTLA.html#ac4889d7c589aece1043ba3b1e4fb2cb3">   18</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="structACTLA.html#ac4889d7c589aece1043ba3b1e4fb2cb3">sIgnore</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structACTLA.html#af8c5a4a70cd8b20784fb5eb61654ea68">   19</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structACTLA.html#af8c5a4a70cd8b20784fb5eb61654ea68">nPriorityEnabled</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structACTLA.html#a9e6e7e93cdd90470afa007de017504c0">   20</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structACTLA.html#a9e6e7e93cdd90470afa007de017504c0">nPriorityDisabled</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structACTLA.html#ae324839406f9444d42c522551be2b578">   21</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structACTLA.html#aa67fafd72c1c566cdd09601124fa3b73">fPaused</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">struct </span><a class="code" href="structCLQ.html">CLQ</a> <a class="code" href="structACTLA.html#ae324839406f9444d42c522551be2b578">clqPanToPan</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">struct </span><a class="code" href="structLM.html">LM</a> <a class="code" href="structACTLA.html#a3c8b7f97421e794251144c4b7180ad72">lmPan</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">struct </span><a class="code" href="structCLQ.html">CLQ</a> <a class="code" href="structACTLA.html#a930fd7939df32f139e285bb0f6fc57d3">clqTiltToTilt</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">struct </span><a class="code" href="structLM.html">LM</a> <a class="code" href="structACTLA.html#af56f7b56d393c93013c0a16fcea00f78">lmTilt</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;};</div>
+<div class="ttc" id="astructACTLA_html"><div class="ttname"><a href="structACTLA.html">ACTLA</a></div><div class="ttdoc">Unknown, needs more research.</div><div class="ttdef"><b>Definition:</b> <a href="actseg_8h_source.html#l00013">actseg.h:14</a></div></div>
+<div class="ttc" id="astructACTLA_html_a3c8b7f97421e794251144c4b7180ad72"><div class="ttname"><a href="structACTLA.html#a3c8b7f97421e794251144c4b7180ad72">ACTLA::lmPan</a></div><div class="ttdeci">struct LM lmPan</div><div class="ttdef"><b>Definition:</b> <a href="actseg_8h_source.html#l00021">actseg.h:23</a></div></div>
+<div class="ttc" id="astructACTLA_html_a7fae7e7f9132b0e1e69595961470e0eb"><div class="ttname"><a href="structACTLA.html#a7fae7e7f9132b0e1e69595961470e0eb">ACTLA::posTargetLocal</a></div><div class="ttdeci">struct VECTOR posTargetLocal</div><div class="ttdef"><b>Definition:</b> <a href="actseg_8h_source.html#l00016">actseg.h:17</a></div></div>
+<div class="ttc" id="astructACTLA_html_a930fd7939df32f139e285bb0f6fc57d3"><div class="ttname"><a href="structACTLA.html#a930fd7939df32f139e285bb0f6fc57d3">ACTLA::clqTiltToTilt</a></div><div class="ttdeci">struct CLQ clqTiltToTilt</div><div class="ttdef"><b>Definition:</b> <a href="actseg_8h_source.html#l00021">actseg.h:24</a></div></div>
+<div class="ttc" id="astructACTLA_html_a9e6e7e93cdd90470afa007de017504c0"><div class="ttname"><a href="structACTLA.html#a9e6e7e93cdd90470afa007de017504c0">ACTLA::nPriorityDisabled</a></div><div class="ttdeci">int nPriorityDisabled</div><div class="ttdef"><b>Definition:</b> <a href="actseg_8h_source.html#l00020">actseg.h:20</a></div></div>
+<div class="ttc" id="astructACTLA_html_aa67fafd72c1c566cdd09601124fa3b73"><div class="ttname"><a href="structACTLA.html#aa67fafd72c1c566cdd09601124fa3b73">ACTLA::fPaused</a></div><div class="ttdeci">int fPaused</div><div class="ttdef"><b>Definition:</b> <a href="actseg_8h_source.html#l00021">actseg.h:21</a></div></div>
+<div class="ttc" id="astructACTLA_html_ac4889d7c589aece1043ba3b1e4fb2cb3"><div class="ttname"><a href="structACTLA.html#ac4889d7c589aece1043ba3b1e4fb2cb3">ACTLA::sIgnore</a></div><div class="ttdeci">float sIgnore</div><div class="ttdef"><b>Definition:</b> <a href="actseg_8h_source.html#l00018">actseg.h:18</a></div></div>
+<div class="ttc" id="astructACTLA_html_ad3ed73440c6c105ae58746242780bf9e"><div class="ttname"><a href="structACTLA.html#ad3ed73440c6c105ae58746242780bf9e">ACTLA::fUseTarget</a></div><div class="ttdeci">int fUseTarget</div><div class="ttdef"><b>Definition:</b> <a href="actseg_8h_source.html#l00015">actseg.h:15</a></div></div>
+<div class="ttc" id="astructACTLA_html_ae324839406f9444d42c522551be2b578"><div class="ttname"><a href="structACTLA.html#ae324839406f9444d42c522551be2b578">ACTLA::clqPanToPan</a></div><div class="ttdeci">struct CLQ clqPanToPan</div><div class="ttdef"><b>Definition:</b> <a href="actseg_8h_source.html#l00021">actseg.h:22</a></div></div>
+<div class="ttc" id="astructACTLA_html_af56f7b56d393c93013c0a16fcea00f78"><div class="ttname"><a href="structACTLA.html#af56f7b56d393c93013c0a16fcea00f78">ACTLA::lmTilt</a></div><div class="ttdeci">struct LM lmTilt</div><div class="ttdef"><b>Definition:</b> <a href="actseg_8h_source.html#l00021">actseg.h:25</a></div></div>
+<div class="ttc" id="astructACTLA_html_af8c5a4a70cd8b20784fb5eb61654ea68"><div class="ttname"><a href="structACTLA.html#af8c5a4a70cd8b20784fb5eb61654ea68">ACTLA::nPriorityEnabled</a></div><div class="ttdeci">int nPriorityEnabled</div><div class="ttdef"><b>Definition:</b> <a href="actseg_8h_source.html#l00019">actseg.h:19</a></div></div>
+<div class="ttc" id="astructACTLA_html_aff5096e57148917825399d0aa8129ea1"><div class="ttname"><a href="structACTLA.html#aff5096e57148917825399d0aa8129ea1">ACTLA::paloTarget</a></div><div class="ttdeci">struct ALO_conflict * paloTarget</div><div class="ttdef"><b>Definition:</b> <a href="actseg_8h_source.html#l00016">actseg.h:16</a></div></div>
+<div class="ttc" id="astructCLQ_html"><div class="ttname"><a href="structCLQ.html">CLQ</a></div><div class="ttdoc">Unknown, needs more research.</div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00058">vec.h:59</a></div></div>
+<div class="ttc" id="astructLM_html"><div class="ttname"><a href="structLM.html">LM</a></div><div class="ttdoc">Limits for a float.</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00018">util.h:19</a></div></div>
+<div class="ttc" id="astructVECTOR_html"><div class="ttname"><a href="structVECTOR.html">VECTOR</a></div><div class="ttdoc">Vector3 with X, Y, and Z.</div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00017">vec.h:18</a></div></div>
+<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Declarations for utility functions.</div></div>
+<div class="ttc" id="avec_8h_html"><div class="ttname"><a href="vec_8h.html">vec.h</a></div><div class="ttdoc">Declares VECTOR and other related classes/functions.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

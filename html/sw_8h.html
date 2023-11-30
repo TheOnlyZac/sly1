@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/sw.h File Reference</title>
+<title>Sly 1 Decomp: sly1/src/P2/sw.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -101,6 +100,9 @@ $(document).ready(function(){initNavTree('sw_8h.html',''); initResizable(); });
 <div class="title">sw.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Declares the scene world and related classes.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="bis_8h_source.html">bis.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="dl_8h_source.html">dl.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="light_8h_source.html">light.h</a>&gt;</code><br />
@@ -114,28 +116,28 @@ Include dependency graph for sw.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="sw_8h__incl.png" border="0" usemap="#asly1_2src_2P2_2sw_8h" alt=""/></div>
 <map name="asly1_2src_2P2_2sw_8h" id="asly1_2src_2P2_2sw_8h">
-<area shape="rect" title=" " alt="" coords="883,7,1008,33"/>
-<area shape="rect" href="bis_8h.html" title=" " alt="" coords="383,81,436,108"/>
+<area shape="rect" title="Declares the scene world and related classes." alt="" coords="883,7,1008,33"/>
+<area shape="rect" href="bis_8h.html" title="Implements the binary input stream class." alt="" coords="383,81,436,108"/>
 <area shape="rect" href="dl_8h.html" title=" " alt="" coords="1075,156,1122,183"/>
-<area shape="rect" href="light_8h.html" title=" " alt="" coords="1045,81,1107,108"/>
-<area shape="rect" href="lo_8h.html" title=" " alt="" coords="922,81,969,108"/>
-<area shape="rect" href="slotheap_8h.html" title=" " alt="" coords="1132,81,1223,108"/>
-<area shape="rect" href="sound_8h.html" title=" " alt="" coords="73,81,146,108"/>
-<area shape="rect" href="vec_8h.html" title=" " alt="" coords="713,81,770,108"/>
-<area shape="rect" href="bas_8h.html" title=" " alt="" coords="147,156,205,183"/>
+<area shape="rect" href="light_8h.html" title="Light and shadow system." alt="" coords="1045,81,1107,108"/>
+<area shape="rect" href="lo_8h.html" title="Declares Level Object struct." alt="" coords="922,81,969,108"/>
+<area shape="rect" href="slotheap_8h.html" title="Declares the slotheap and slot structs." alt="" coords="1132,81,1223,108"/>
+<area shape="rect" href="sound_8h.html" title="Declarations for the sound system." alt="" coords="73,81,146,108"/>
+<area shape="rect" href="vec_8h.html" title="Declares VECTOR and other related classes/functions." alt="" coords="713,81,770,108"/>
+<area shape="rect" href="bas_8h.html" title="Declarations for the binary async stream." alt="" coords="147,156,205,183"/>
 <area shape="rect" title=" " alt="" coords="210,231,281,257"/>
-<area shape="rect" href="cat_8h.html" title=" " alt="" coords="567,231,622,257"/>
+<area shape="rect" href="cat_8h.html" title="Declarations for working with WAC and WAL catalogs." alt="" coords="567,231,622,257"/>
 <area shape="rect" title=" " alt="" coords="671,305,751,332"/>
-<area shape="rect" href="prog_8h.html" title=" " alt="" coords="378,156,441,183"/>
+<area shape="rect" href="prog_8h.html" title="Declares the prog class." alt="" coords="378,156,441,183"/>
 <area shape="rect" title=" " alt="" coords="281,156,354,183"/>
-<area shape="rect" href="util_8h.html" title=" " alt="" coords="382,305,437,332"/>
-<area shape="rect" href="game_8h.html" title=" " alt="" coords="862,305,933,332"/>
-<area shape="rect" href="font_8h.html" title=" " alt="" coords="379,231,439,257"/>
-<area shape="rect" href="gs_8h.html" title=" " alt="" coords="835,380,885,407"/>
-<area shape="rect" href="basic_8h.html" title=" " alt="" coords="983,156,1051,183"/>
+<area shape="rect" href="util_8h.html" title="Declarations for utility functions." alt="" coords="382,305,437,332"/>
+<area shape="rect" href="game_8h.html" title="Declarations related to the game world and game objects." alt="" coords="862,305,933,332"/>
+<area shape="rect" href="font_8h.html" title="Declarations for the font system." alt="" coords="379,231,439,257"/>
+<area shape="rect" href="gs_8h.html" title="Declarations for the game state manipulation." alt="" coords="835,380,885,407"/>
+<area shape="rect" href="basic_8h.html" title="Declares the BASIC struct." alt="" coords="983,156,1051,183"/>
 <area shape="rect" title=" " alt="" coords="5,156,72,183"/>
-<area shape="rect" href="so_8h.html" title=" " alt="" coords="749,156,798,183"/>
-<area shape="rect" href="zap_8h.html" title=" " alt="" coords="799,231,857,257"/>
+<area shape="rect" href="so_8h.html" title="Declarations for scene objects." alt="" coords="749,156,798,183"/>
+<area shape="rect" href="zap_8h.html" title="Declarations for the zap (damage) system." alt="" coords="799,231,857,257"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -143,21 +145,21 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="sw_8h__dep__incl.png" border="0" usemap="#asly1_2src_2P2_2sw_8hdep" alt=""/></div>
 <map name="asly1_2src_2P2_2sw_8hdep" id="asly1_2src_2P2_2sw_8hdep">
-<area shape="rect" title=" " alt="" coords="567,6,693,33"/>
-<area shape="rect" href="brx_8h.html" title=" " alt="" coords="565,81,695,108"/>
-<area shape="rect" href="transition_8h.html" title=" " alt="" coords="706,156,877,182"/>
+<area shape="rect" title="Declares the scene world and related classes." alt="" coords="567,6,693,33"/>
+<area shape="rect" href="brx_8h.html" title="Declarations for interaction with binary resource archives." alt="" coords="565,81,695,108"/>
+<area shape="rect" href="transition_8h.html" title="Declarations for the transition system." alt="" coords="706,156,877,182"/>
 <area shape="rect" href="main_8cpp.html" title=" " alt="" coords="231,305,387,332"/>
-<area shape="rect" href="wipe_8h.html" title=" " alt="" coords="775,230,914,257"/>
-<area shape="rect" href="render_8h.html" title=" " alt="" coords="71,81,221,108"/>
-<area shape="rect" href="sw_8cpp.html" title=" " alt="" coords="952,81,1092,108"/>
-<area shape="rect" href="update_8h.html" title=" " alt="" coords="353,81,507,108"/>
-<area shape="rect" href="brx_8cpp.html" title=" " alt="" coords="538,156,682,182"/>
-<area shape="rect" href="transition_8cpp.html" title=" " alt="" coords="515,230,700,257"/>
-<area shape="rect" href="wipe_8cpp.html" title=" " alt="" coords="854,305,1009,332"/>
-<area shape="rect" href="xform_8h.html" title=" " alt="" coords="683,305,830,332"/>
-<area shape="rect" href="xform_8cpp.html" title=" " alt="" coords="675,380,838,406"/>
-<area shape="rect" href="render_8cpp.html" title=" " alt="" coords="5,156,169,182"/>
-<area shape="rect" href="update_8cpp.html" title=" " alt="" coords="346,156,514,182"/>
+<area shape="rect" href="wipe_8h.html" title="Declarations for the wipe system." alt="" coords="775,230,914,257"/>
+<area shape="rect" href="render_8h.html" title="Declarations for the render system." alt="" coords="71,81,221,108"/>
+<area shape="rect" href="sw_8cpp.html" title="Defines functions for loading and manipulating the scene world." alt="" coords="952,81,1092,108"/>
+<area shape="rect" href="update_8h.html" title="Declarations for functions that update game elements." alt="" coords="353,81,507,108"/>
+<area shape="rect" href="brx_8cpp.html" title="Implements interaction with binary resource archives." alt="" coords="538,156,682,182"/>
+<area shape="rect" href="transition_8cpp.html" title="Implements for the transition system." alt="" coords="515,230,700,257"/>
+<area shape="rect" href="wipe_8cpp.html" title="Implements functions for the wipe system." alt="" coords="854,305,1009,332"/>
+<area shape="rect" href="xform_8h.html" title="Declares EXITs for moving between levels." alt="" coords="683,305,830,332"/>
+<area shape="rect" href="xform_8cpp.html" title="Implements EXIT transformation functions." alt="" coords="675,380,838,406"/>
+<area shape="rect" href="render_8cpp.html" title="Defines functions for rendering scene objects." alt="" coords="5,156,169,182"/>
+<area shape="rect" href="update_8cpp.html" title="Defines functions for updating game elements." alt="" coords="346,156,514,182"/>
 </map>
 </div>
 </div>
@@ -166,8 +168,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPSL.html">PSL</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unknown, needs more research.  <a href="structPSL.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSW.html">SW</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scene World.  <a href="structSW.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -189,7 +193,11 @@ Variables</h2></td></tr>
 <tr class="memitem:a56584518ff86acc159ffd88eaf906606"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSW.html">SW</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sw_8h.html#a56584518ff86acc159ffd88eaf906606">g_psw</a></td></tr>
 <tr class="separator:a56584518ff86acc159ffd88eaf906606"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Declares the scene world and related classes. </p>
+
+<p class="definition">Definition in file <a class="el" href="sw_8h_source.html">sw.h</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="af4be1192fbe8211795c34286685f082e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af4be1192fbe8211795c34286685f082e">&#9670;&nbsp;</a></span>DeleteSw()</h2>
 
@@ -213,7 +221,9 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>Implement this function. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000021">Todo:</a></b></dt><dd>Implement this function. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sw_8cpp_source.html#l00020">20</a> of file <a class="el" href="sw_8cpp_source.html">sw.cpp</a>.</p>
 
 </div>
 </div>
@@ -251,7 +261,9 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>Implement this function. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>Implement this function. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sw_8cpp_source.html#l00015">15</a> of file <a class="el" href="sw_8cpp_source.html">sw.cpp</a>.</p>
 
 </div>
 </div>
@@ -289,7 +301,9 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>Implement this function. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>Implement this function. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sw_8cpp_source.html#l00010">10</a> of file <a class="el" href="sw_8cpp_source.html">sw.cpp</a>.</p>
 
 </div>
 </div>
@@ -314,6 +328,8 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="sw_8cpp_source.html#l00008">8</a> of file <a class="el" href="sw_8cpp_source.html">sw.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a840abf3c146b69321ae5831344f9c541"></a>
@@ -335,6 +351,8 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sw_8h_source.html#l00130">130</a> of file <a class="el" href="sw_8h_source.html">sw.h</a>.</p>
 
 </div>
 </div>

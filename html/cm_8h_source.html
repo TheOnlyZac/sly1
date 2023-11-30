@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/cm.h Source File</title>
+<title>Sly 1 Decomp: sly1/src/P2/cm.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -97,23 +96,24 @@ $(document).ready(function(){initNavTree('cm_8h_source.html',''); initResizable(
 <div class="title">cm.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="cm_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="structCM.html">    6</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCM.html">CM</a></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="comment">// todo</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="comment">// ...</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;};</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// Global variables</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="cm_8h.html#acad019a2b3cf11469a2b98e69bfded77">   13</a></span>&#160;<span class="keyword">static</span> <a class="code" href="structCM.html">CM</a> <a class="code" href="cm_8h.html#acad019a2b3cf11469a2b98e69bfded77">g_cm</a>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">extern</span> <a class="code" href="structCM.html">CM</a>* <a class="code" href="cm_8h.html#a1b61d8dc35531628c4c44dc30f8237dc">g_pcm</a>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> <a class="code" href="cm_8h.html#a0fae828f6a608fdfd641922f85dca71e">SetupCm</a>(<a class="code" href="structCM.html">CM</a>* pcm);</div>
-<div class="ttc" id="acm_8h_html_a0fae828f6a608fdfd641922f85dca71e"><div class="ttname"><a href="cm_8h.html#a0fae828f6a608fdfd641922f85dca71e">SetupCm</a></div><div class="ttdeci">void SetupCm(CM *pcm)</div><div class="ttdoc">Sets up the game camera.</div><div class="ttdef"><b>Definition:</b> cm.cpp:5</div></div>
-<div class="ttc" id="acm_8h_html_a1b61d8dc35531628c4c44dc30f8237dc"><div class="ttname"><a href="cm_8h.html#a1b61d8dc35531628c4c44dc30f8237dc">g_pcm</a></div><div class="ttdeci">CM * g_pcm</div><div class="ttdef"><b>Definition:</b> cm.cpp:3</div></div>
-<div class="ttc" id="acm_8h_html_acad019a2b3cf11469a2b98e69bfded77"><div class="ttname"><a href="cm_8h.html#acad019a2b3cf11469a2b98e69bfded77">g_cm</a></div><div class="ttdeci">static CM g_cm</div><div class="ttdef"><b>Definition:</b> cm.h:13</div></div>
-<div class="ttc" id="astructCM_html"><div class="ttname"><a href="structCM.html">CM</a></div><div class="ttdef"><b>Definition:</b> cm.h:7</div></div>
+<a href="cm_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="structCM.html">   11</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCM.html">CM</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="comment">// todo</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="comment">// ...</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;};</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">// Global variables</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="cm_8h.html#acad019a2b3cf11469a2b98e69bfded77">   18</a></span>&#160;<span class="keyword">static</span> <a class="code" href="structCM.html">CM</a> <a class="code" href="cm_8h.html#acad019a2b3cf11469a2b98e69bfded77">g_cm</a>; <span class="comment">// Main game camera</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">extern</span> <a class="code" href="structCM.html">CM</a>* <a class="code" href="cm_8h.html#a1b61d8dc35531628c4c44dc30f8237dc">g_pcm</a>; <span class="comment">// Pointer to the main game camera</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">void</span> <a class="code" href="cm_8h.html#a0fae828f6a608fdfd641922f85dca71e">SetupCm</a>(<a class="code" href="structCM.html">CM</a>* pcm);</div>
+<div class="ttc" id="acm_8h_html_a0fae828f6a608fdfd641922f85dca71e"><div class="ttname"><a href="cm_8h.html#a0fae828f6a608fdfd641922f85dca71e">SetupCm</a></div><div class="ttdeci">void SetupCm(CM *pcm)</div><div class="ttdoc">Sets up the game camera.</div><div class="ttdef"><b>Definition:</b> <a href="cm_8cpp_source.html#l00010">cm.cpp:10</a></div></div>
+<div class="ttc" id="acm_8h_html_a1b61d8dc35531628c4c44dc30f8237dc"><div class="ttname"><a href="cm_8h.html#a1b61d8dc35531628c4c44dc30f8237dc">g_pcm</a></div><div class="ttdeci">CM * g_pcm</div><div class="ttdef"><b>Definition:</b> <a href="cm_8cpp_source.html#l00008">cm.cpp:8</a></div></div>
+<div class="ttc" id="acm_8h_html_acad019a2b3cf11469a2b98e69bfded77"><div class="ttname"><a href="cm_8h.html#acad019a2b3cf11469a2b98e69bfded77">g_cm</a></div><div class="ttdeci">static CM g_cm</div><div class="ttdef"><b>Definition:</b> <a href="cm_8h_source.html#l00018">cm.h:18</a></div></div>
+<div class="ttc" id="astructCM_html"><div class="ttname"><a href="structCM.html">CM</a></div><div class="ttdoc">Game Camera.</div><div class="ttdef"><b>Definition:</b> <a href="cm_8h_source.html#l00011">cm.h:12</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

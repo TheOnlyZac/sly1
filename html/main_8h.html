@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/main.h File Reference</title>
+<title>Sly 1 Decomp: sly1/src/P2/main.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -115,10 +114,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a70d0b3419f374cc67098eb4e0c32a7a0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a70d0b3419f374cc67098eb4e0c32a7a0">main</a> (int cphzArgs, char *aphzArgs[])</td></tr>
+<tr class="memdesc:a70d0b3419f374cc67098eb4e0c32a7a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function.  <a href="main_8h.html#a70d0b3419f374cc67098eb4e0c32a7a0">More...</a><br /></td></tr>
 <tr class="separator:a70d0b3419f374cc67098eb4e0c32a7a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a567fcfb601dc83cc9691ce515ce5a474"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a567fcfb601dc83cc9691ce515ce5a474">Startup</a> ()</td></tr>
+<tr class="memdesc:a567fcfb601dc83cc9691ce515ce5a474"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts up the main game systems.  <a href="main_8h.html#a567fcfb601dc83cc9691ce515ce5a474">More...</a><br /></td></tr>
 <tr class="separator:a567fcfb601dc83cc9691ce515ce5a474"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa69a928b2b35939bb48c62dc19dc5873"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#aa69a928b2b35939bb48c62dc19dc5873">MainDebug</a> ()</td></tr>
+<tr class="memdesc:aa69a928b2b35939bb48c62dc19dc5873"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temp, used for debugging.  <a href="main_8h.html#aa69a928b2b35939bb48c62dc19dc5873">More...</a><br /></td></tr>
 <tr class="separator:aa69a928b2b35939bb48c62dc19dc5873"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -157,6 +159,17 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Main function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cphzArgs</td><td>Number of arguments </td></tr>
+    <tr><td class="paramname">aphzArgs</td><td>Array of arguments </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00019">19</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
 </div>
 </div>
 <a id="aa69a928b2b35939bb48c62dc19dc5873"></a>
@@ -174,6 +187,12 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Temp, used for debugging. </p>
+<p>Prints the current tick to stdout.</p>
+<dl class="section note"><dt>Note</dt><dd>This function is not in the game and is only used for testing. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00101">101</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a567fcfb601dc83cc9691ce515ce5a474"></a>
@@ -190,6 +209,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Starts up the main game systems. </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00093">93</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -214,6 +237,8 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="main_8h_source.html#l00004">4</a> of file <a class="el" href="main_8h_source.html">main.h</a>.</p>
+
 </div>
 </div>
 <a id="adb31644eb335536d71b0ccb2dd85a3aa"></a>
@@ -236,6 +261,8 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="main_8h_source.html#l00006">6</a> of file <a class="el" href="main_8h_source.html">main.h</a>.</p>
+
 </div>
 </div>
 <a id="a5c8b273906e1cb9ed91e92feed53837e"></a>
@@ -257,6 +284,8 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="main_8h_source.html#l00003">3</a> of file <a class="el" href="main_8h_source.html">main.h</a>.</p>
 
 </div>
 </div>

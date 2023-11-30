@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/joy.h File Reference</title>
+<title>Sly 1 Decomp: sly1/src/P2/joy.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -103,6 +102,9 @@ $(document).ready(function(){initNavTree('joy_8h.html',''); initResizable(); });
 <div class="title">joy.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Declarations for joypad interactions.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="util_8h_source.html">util.h</a>&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -110,8 +112,8 @@ Include dependency graph for joy.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="joy_8h__incl.png" border="0" usemap="#asly1_2src_2P2_2joy_8h" alt=""/></div>
 <map name="asly1_2src_2P2_2joy_8h" id="asly1_2src_2P2_2joy_8h">
-<area shape="rect" title=" " alt="" coords="15,5,141,32"/>
-<area shape="rect" href="util_8h.html" title=" " alt="" coords="5,80,60,107"/>
+<area shape="rect" title="Declarations for joypad interactions." alt="" coords="15,5,141,32"/>
+<area shape="rect" href="util_8h.html" title="Declarations for utility functions." alt="" coords="5,80,60,107"/>
 <area shape="rect" title=" " alt="" coords="85,80,165,107"/>
 </map>
 </div>
@@ -120,19 +122,19 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="joy_8h__dep__incl.png" border="0" usemap="#asly1_2src_2P2_2joy_8hdep" alt=""/></div>
 <map name="asly1_2src_2P2_2joy_8hdep" id="asly1_2src_2P2_2joy_8hdep">
-<area shape="rect" title=" " alt="" coords="415,5,542,32"/>
-<area shape="rect" href="game_8cpp.html" title=" " alt="" coords="5,80,165,107"/>
-<area shape="rect" href="joy_8cpp.html" title=" " alt="" coords="189,80,331,107"/>
+<area shape="rect" title="Declarations for joypad interactions." alt="" coords="415,5,542,32"/>
+<area shape="rect" href="game_8cpp.html" title="Implements functions for manipulating the game world." alt="" coords="5,80,165,107"/>
+<area shape="rect" href="joy_8cpp.html" title="Implements the joypad manager." alt="" coords="189,80,331,107"/>
 <area shape="rect" href="main_8cpp.html" title=" " alt="" coords="507,229,663,256"/>
-<area shape="rect" href="mpeg_8h.html" title=" " alt="" coords="406,80,551,107"/>
-<area shape="rect" href="speaker_8h.html" title=" " alt="" coords="575,80,734,107"/>
-<area shape="rect" href="transition_8h.html" title=" " alt="" coords="759,80,929,107"/>
-<area shape="rect" href="wipe_8h.html" title=" " alt="" coords="901,155,1040,181"/>
-<area shape="rect" href="mpeg_8cpp.html" title=" " alt="" coords="456,155,616,181"/>
-<area shape="rect" href="transition_8cpp.html" title=" " alt="" coords="691,155,877,181"/>
-<area shape="rect" href="wipe_8cpp.html" title=" " alt="" coords="787,229,941,256"/>
-<area shape="rect" href="xform_8h.html" title=" " alt="" coords="965,229,1112,256"/>
-<area shape="rect" href="xform_8cpp.html" title=" " alt="" coords="957,304,1120,331"/>
+<area shape="rect" href="mpeg_8h.html" title="Declarations for the MPEG system." alt="" coords="406,80,551,107"/>
+<area shape="rect" href="speaker_8h.html" title="Declarations for the speaker system." alt="" coords="575,80,734,107"/>
+<area shape="rect" href="transition_8h.html" title="Declarations for the transition system." alt="" coords="759,80,929,107"/>
+<area shape="rect" href="wipe_8h.html" title="Declarations for the wipe system." alt="" coords="901,155,1040,181"/>
+<area shape="rect" href="mpeg_8cpp.html" title="Implements MPEG video and audio playback." alt="" coords="456,155,616,181"/>
+<area shape="rect" href="transition_8cpp.html" title="Implements for the transition system." alt="" coords="691,155,877,181"/>
+<area shape="rect" href="wipe_8cpp.html" title="Implements functions for the wipe system." alt="" coords="787,229,941,256"/>
+<area shape="rect" href="xform_8h.html" title="Declares EXITs for moving between levels." alt="" coords="965,229,1112,256"/>
+<area shape="rect" href="xform_8cpp.html" title="Implements EXIT transformation functions." alt="" coords="957,304,1120,331"/>
 </map>
 </div>
 </div>
@@ -141,12 +143,16 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRUMINS.html">RUMINS</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rumble intensity.  <a href="structRUMINS.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRUMPAT.html">RUMPAT</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rumble pattern.  <a href="structRUMPAT.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRUMBLE.html">RUMBLE</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rumble.  <a href="structRUMBLE.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJOY.html">JOY</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Joypad.  <a href="structJOY.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -184,6 +190,7 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="joy_8h.html#a55189e4b697b337be466076866c54daea71002892aff82e0d3d03b65f6f4a14ca">PAD_LEFT_ARROW</a> = 32768
 <br />
  }</td></tr>
+<tr class="memdesc:a55189e4b697b337be466076866c54dae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Joypad buttons.  <a href="joy_8h.html#a55189e4b697b337be466076866c54dae">More...</a><br /></td></tr>
 <tr class="separator:a55189e4b697b337be466076866c54dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0a5ef0700b1060619e90b2c89643043"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8h.html#ab0a5ef0700b1060619e90b2c89643043">JOYS</a> { <br />
 &#160;&#160;<a class="el" href="joy_8h.html#ab0a5ef0700b1060619e90b2c89643043ae40589397c0585b866482a77b96f0a3e">JOYS_Initing</a> = 0
@@ -194,6 +201,7 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="joy_8h.html#ab0a5ef0700b1060619e90b2c89643043a04dc27d7f10403ae05c87998ec967a10">JOYS_Max</a> = 4
 <br />
  }</td></tr>
+<tr class="memdesc:ab0a5ef0700b1060619e90b2c89643043"><td class="mdescLeft">&#160;</td><td class="mdescRight">Joypad state.  <a href="joy_8h.html#ab0a5ef0700b1060619e90b2c89643043">More...</a><br /></td></tr>
 <tr class="separator:ab0a5ef0700b1060619e90b2c89643043"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3186335c21a86b3a1c03262495b1775"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8h.html#ad3186335c21a86b3a1c03262495b1775">JOYK</a> { <br />
 &#160;&#160;<a class="el" href="joy_8h.html#ad3186335c21a86b3a1c03262495b1775a91a92c157087c0b302638a4de6a9c1c2">JOYK_Unknown</a> = 0
@@ -205,6 +213,7 @@ Enumerations</h2></td></tr>
 , <a class="el" href="joy_8h.html#ad3186335c21a86b3a1c03262495b1775a42b8d787b50dc00ffb26e4d47bb484b0">JOYK_Max</a> = 5
 <br />
  }</td></tr>
+<tr class="memdesc:ad3186335c21a86b3a1c03262495b1775"><td class="mdescLeft">&#160;</td><td class="mdescRight">Joypad kind.  <a href="joy_8h.html#ad3186335c21a86b3a1c03262495b1775">More...</a><br /></td></tr>
 <tr class="separator:ad3186335c21a86b3a1c03262495b1775"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d5d8122f09c957bc5514c4a73b9ec0f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0f">RUMS</a> { <br />
 &#160;&#160;<a class="el" href="joy_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0faf3f06a542658b86bee2a23bea94e230a">RUMS_Dead</a> = 0
@@ -216,6 +225,7 @@ Enumerations</h2></td></tr>
 , <a class="el" href="joy_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa72b058661e02b3c95ad855a51b55e604">RUMS_Max</a> = 5
 <br />
  }</td></tr>
+<tr class="memdesc:a6d5d8122f09c957bc5514c4a73b9ec0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rumble state.  <a href="joy_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0f">More...</a><br /></td></tr>
 <tr class="separator:a6d5d8122f09c957bc5514c4a73b9ec0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a020a94afbc4629e6cbaf9a777eb85f55"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8h.html#a020a94afbc4629e6cbaf9a777eb85f55">FCHT</a> { <br />
 &#160;&#160;<a class="el" href="joy_8h.html#a020a94afbc4629e6cbaf9a777eb85f55a907cc873d7c9b20deb706edebc27fecf">FCHT_None</a> = 0x0
@@ -227,6 +237,7 @@ Enumerations</h2></td></tr>
 , <a class="el" href="joy_8h.html#a020a94afbc4629e6cbaf9a777eb85f55a69eb3a378ed7ae4893ac9dc0bfca1af6">FCHT_ResetWorld</a> = 0x4000
 <br />
  }</td></tr>
+<tr class="memdesc:a020a94afbc4629e6cbaf9a777eb85f55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cheat Flags.  <a href="joy_8h.html#a020a94afbc4629e6cbaf9a777eb85f55">More...</a><br /></td></tr>
 <tr class="separator:a020a94afbc4629e6cbaf9a777eb85f55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57adea9a383fd92233eac9fa02f8f517"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8h.html#a57adea9a383fd92233eac9fa02f8f517">DPK</a> { <br />
 &#160;&#160;<a class="el" href="joy_8h.html#a57adea9a383fd92233eac9fa02f8f517a4731f6c04be6404bed4021d6013439f7">DPK_None</a> = 0
@@ -250,6 +261,7 @@ Enumerations</h2></td></tr>
 , <a class="el" href="joy_8h.html#a57adea9a383fd92233eac9fa02f8f517a74a61c6b644470c463349135404fad07">DPK_Max</a> = 15
 <br />
  }</td></tr>
+<tr class="memdesc:a57adea9a383fd92233eac9fa02f8f517"><td class="mdescLeft">&#160;</td><td class="mdescRight">??? Kind  <a href="joy_8h.html#a57adea9a383fd92233eac9fa02f8f517">More...</a><br /></td></tr>
 <tr class="separator:a57adea9a383fd92233eac9fa02f8f517"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -290,7 +302,11 @@ Variables</h2></td></tr>
 <tr class="memitem:a3e49e59367c4b522540d4d549d8b9a05"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8h.html#a3e49e59367c4b522540d4d549d8b9a05">chetkido_buffer</a> []</td></tr>
 <tr class="separator:a3e49e59367c4b522540d4d549d8b9a05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Declarations for joypad interactions. </p>
+
+<p class="definition">Definition in file <a class="el" href="joy_8h_source.html">joy.h</a>.</p>
+</div><h2 class="groupheader">Typedef Documentation</h2>
 <a id="a0c8186d9b9b7880309c27230bbb5e69d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0c8186d9b9b7880309c27230bbb5e69d">&#9670;&nbsp;</a></span>byte</h2>
 
@@ -302,6 +318,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8h_source.html#l00010">10</a> of file <a class="el" href="joy_8h_source.html">joy.h</a>.</p>
 
 </div>
 </div>
@@ -317,6 +335,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="joy_8h_source.html#l00013">13</a> of file <a class="el" href="joy_8h_source.html">joy.h</a>.</p>
+
 </div>
 </div>
 <a id="a12f996f96c322bb58dbababb6d0d7fb0"></a>
@@ -330,6 +350,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8h_source.html#l00012">12</a> of file <a class="el" href="joy_8h_source.html">joy.h</a>.</p>
 
 </div>
 </div>
@@ -345,6 +367,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>??? Kind </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a57adea9a383fd92233eac9fa02f8f517a4731f6c04be6404bed4021d6013439f7"></a>DPK_None&#160;</td><td class="fielddoc"></td></tr>
@@ -365,6 +388,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a57adea9a383fd92233eac9fa02f8f517a74a61c6b644470c463349135404fad07"></a>DPK_Max&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
+<p class="definition">Definition at line <a class="el" href="joy_8h_source.html#l00179">179</a> of file <a class="el" href="joy_8h_source.html">joy.h</a>.</p>
+
 </div>
 </div>
 <a id="a020a94afbc4629e6cbaf9a777eb85f55"></a>
@@ -378,7 +403,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Cheat Flags </p>
+
+<p>Cheat Flags. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a020a94afbc4629e6cbaf9a777eb85f55a907cc873d7c9b20deb706edebc27fecf"></a>FCHT_None&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a020a94afbc4629e6cbaf9a777eb85f55aa128a70e5628aaa855f5549ffba3e294"></a>FCHT_Invulnerability&#160;</td><td class="fielddoc"></td></tr>
@@ -387,6 +413,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a020a94afbc4629e6cbaf9a777eb85f55a706a0708188bd035bd3c47b007923c2f"></a>FCHT_LowFriction&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a020a94afbc4629e6cbaf9a777eb85f55a69eb3a378ed7ae4893ac9dc0bfca1af6"></a>FCHT_ResetWorld&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="joy_8h_source.html#l00166">166</a> of file <a class="el" href="joy_8h_source.html">joy.h</a>.</p>
 
 </div>
 </div>
@@ -401,7 +429,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Joypad kind </p>
+
+<p>Joypad kind. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad3186335c21a86b3a1c03262495b1775a91a92c157087c0b302638a4de6a9c1c2"></a>JOYK_Unknown&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ad3186335c21a86b3a1c03262495b1775a274b2a427be4a0d8e201a53259d2ba97"></a>JOYK_Digital&#160;</td><td class="fielddoc"></td></tr>
@@ -410,6 +439,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="ad3186335c21a86b3a1c03262495b1775a9fc9290d232a4df81781361d10bcb3fc"></a>JOYK_Shock2&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ad3186335c21a86b3a1c03262495b1775a42b8d787b50dc00ffb26e4d47bb484b0"></a>JOYK_Max&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="joy_8h_source.html#l00054">54</a> of file <a class="el" href="joy_8h_source.html">joy.h</a>.</p>
 
 </div>
 </div>
@@ -424,7 +455,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Joypad state </p>
+
+<p>Joypad state. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab0a5ef0700b1060619e90b2c89643043ae40589397c0585b866482a77b96f0a3e"></a>JOYS_Initing&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ab0a5ef0700b1060619e90b2c89643043a88485c3706dd4152aab5dd8af94958fc"></a>JOYS_Searching&#160;</td><td class="fielddoc"></td></tr>
@@ -432,6 +464,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="ab0a5ef0700b1060619e90b2c89643043a96e7e10435681561e310c3c3ab912c71"></a>JOYS_Ready&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ab0a5ef0700b1060619e90b2c89643043a04dc27d7f10403ae05c87998ec967a10"></a>JOYS_Max&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="joy_8h_source.html#l00042">42</a> of file <a class="el" href="joy_8h_source.html">joy.h</a>.</p>
 
 </div>
 </div>
@@ -446,7 +480,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Joypad buttons </p>
+
+<p>Joypad buttons. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a55189e4b697b337be466076866c54daeacdb8b9a398ffbd729218a27d00d8fa45"></a>NOT_PRESSED&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a55189e4b697b337be466076866c54daeaceff0469d51b6bc717e70350dd7b438b"></a>PAD_L2&#160;</td><td class="fielddoc"></td></tr>
@@ -467,6 +502,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a55189e4b697b337be466076866c54daea71002892aff82e0d3d03b65f6f4a14ca"></a>PAD_LEFT_ARROW&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
+<p class="definition">Definition at line <a class="el" href="joy_8h_source.html#l00018">18</a> of file <a class="el" href="joy_8h_source.html">joy.h</a>.</p>
+
 </div>
 </div>
 <a id="a6d5d8122f09c957bc5514c4a73b9ec0f"></a>
@@ -480,7 +517,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Rumble state </p>
+
+<p>Rumble state. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0faf3f06a542658b86bee2a23bea94e230a"></a>RUMS_Dead&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0fa091e469bf6075a481e8ef168a45298c7"></a>RUMS_Idle&#160;</td><td class="fielddoc"></td></tr>
@@ -489,6 +527,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0fa56b51ed29c64c27e3ac333201f60152c"></a>RUMS_Kill&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0fa72b058661e02b3c95ad855a51b55e604"></a>RUMS_Max&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="joy_8h_source.html#l00067">67</a> of file <a class="el" href="joy_8h_source.html">joy.h</a>.</p>
 
 </div>
 </div>
@@ -518,6 +558,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00152">152</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a06bd5c71f5308931f8888a3ee894a9ec"></a>
@@ -545,6 +587,8 @@ Variables</h2></td></tr>
 </dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>Figure out what this function does and implement it. </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00161">161</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a909fcc7c7ce78f27b9b82a2ea1be5f90"></a>
@@ -571,6 +615,8 @@ Variables</h2></td></tr>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>Unofficial name because the real name is unknown. </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>Implement rendering the string on the screen. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00167">167</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
 
 </div>
 </div>
@@ -616,6 +662,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00124">124</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a636f994e6308715ae7ce93ad677f962a"></a>
@@ -660,6 +708,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00020">20</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a72b5390eb5413ab7c0238d8a7d03750d"></a>
@@ -697,6 +747,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00118">118</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a792e8692cb813b8f2d37120ad3d5413a"></a>
@@ -715,6 +767,8 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Updates the check for cheat code entry. </p>
+
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00140">140</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
 
 </div>
 </div>
@@ -742,6 +796,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00066">66</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
@@ -765,6 +821,8 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00016">16</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a17594cb5d7207a5a140baa3f554ee288"></a>
@@ -786,6 +844,8 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8cpp_source.html#l00017">17</a> of file <a class="el" href="joy_8cpp_source.html">joy.cpp</a>.</p>
 
 </div>
 </div>
@@ -809,6 +869,8 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="joy_8h_source.html#l00200">200</a> of file <a class="el" href="joy_8h_source.html">joy.h</a>.</p>
+
 </div>
 </div>
 <a id="acda069e9c7373203f67d0a3d5112caa1"></a>
@@ -830,6 +892,8 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8h_source.html#l00201">201</a> of file <a class="el" href="joy_8h_source.html">joy.h</a>.</p>
 
 </div>
 </div>

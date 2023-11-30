@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/basic.h File Reference</title>
+<title>Sly 1 Decomp: sly1/src/P2/basic.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -99,28 +98,31 @@ $(document).ready(function(){initNavTree('basic_8h.html',''); initResizable(); }
 <div class="title">basic.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Declares the <a class="el" href="structBASIC.html">BASIC</a> struct.  
+<a href="#details">More...</a></p>
 <div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="basic_8h__dep__incl.png" border="0" usemap="#asly1_2src_2P2_2basic_8hdep" alt=""/></div>
 <map name="asly1_2src_2P2_2basic_8hdep" id="asly1_2src_2P2_2basic_8hdep">
-<area shape="rect" title=" " alt="" coords="559,5,701,32"/>
-<area shape="rect" href="lo_8h.html" title=" " alt="" coords="570,80,690,107"/>
-<area shape="rect" href="sw_8h.html" title=" " alt="" coords="567,155,693,181"/>
-<area shape="rect" href="brx_8h.html" title=" " alt="" coords="565,229,695,256"/>
-<area shape="rect" href="transition_8h.html" title=" " alt="" coords="706,304,877,331"/>
+<area shape="rect" title="Declares the BASIC struct." alt="" coords="559,5,701,32"/>
+<area shape="rect" href="lo_8h.html" title="Declares Level Object struct." alt="" coords="570,80,690,107"/>
+<area shape="rect" href="sw_8h.html" title="Declares the scene world and related classes." alt="" coords="567,155,693,181"/>
+<area shape="rect" href="brx_8h.html" title="Declarations for interaction with binary resource archives." alt="" coords="565,229,695,256"/>
+<area shape="rect" href="transition_8h.html" title="Declarations for the transition system." alt="" coords="706,304,877,331"/>
 <area shape="rect" href="main_8cpp.html" title=" " alt="" coords="231,453,387,480"/>
-<area shape="rect" href="wipe_8h.html" title=" " alt="" coords="775,379,914,405"/>
-<area shape="rect" href="render_8h.html" title=" " alt="" coords="71,229,221,256"/>
-<area shape="rect" href="sw_8cpp.html" title=" " alt="" coords="952,229,1092,256"/>
-<area shape="rect" href="update_8h.html" title=" " alt="" coords="353,229,507,256"/>
-<area shape="rect" href="brx_8cpp.html" title=" " alt="" coords="538,304,682,331"/>
-<area shape="rect" href="transition_8cpp.html" title=" " alt="" coords="515,379,700,405"/>
-<area shape="rect" href="wipe_8cpp.html" title=" " alt="" coords="854,453,1009,480"/>
-<area shape="rect" href="xform_8h.html" title=" " alt="" coords="683,453,830,480"/>
-<area shape="rect" href="xform_8cpp.html" title=" " alt="" coords="675,528,838,555"/>
-<area shape="rect" href="render_8cpp.html" title=" " alt="" coords="5,304,169,331"/>
-<area shape="rect" href="update_8cpp.html" title=" " alt="" coords="346,304,514,331"/>
+<area shape="rect" href="wipe_8h.html" title="Declarations for the wipe system." alt="" coords="775,379,914,405"/>
+<area shape="rect" href="render_8h.html" title="Declarations for the render system." alt="" coords="71,229,221,256"/>
+<area shape="rect" href="sw_8cpp.html" title="Defines functions for loading and manipulating the scene world." alt="" coords="952,229,1092,256"/>
+<area shape="rect" href="update_8h.html" title="Declarations for functions that update game elements." alt="" coords="353,229,507,256"/>
+<area shape="rect" href="brx_8cpp.html" title="Implements interaction with binary resource archives." alt="" coords="538,304,682,331"/>
+<area shape="rect" href="transition_8cpp.html" title="Implements for the transition system." alt="" coords="515,379,700,405"/>
+<area shape="rect" href="wipe_8cpp.html" title="Implements functions for the wipe system." alt="" coords="854,453,1009,480"/>
+<area shape="rect" href="xform_8h.html" title="Declares EXITs for moving between levels." alt="" coords="683,453,830,480"/>
+<area shape="rect" href="xform_8cpp.html" title="Implements EXIT transformation functions." alt="" coords="675,528,838,555"/>
+<area shape="rect" href="render_8cpp.html" title="Defines functions for rendering scene objects." alt="" coords="5,304,169,331"/>
+<area shape="rect" href="update_8cpp.html" title="Defines functions for updating game elements." alt="" coords="346,304,514,331"/>
 </map>
 </div>
 </div>
@@ -131,7 +133,11 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBASIC.html">BASIC</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Declares the <a class="el" href="structBASIC.html">BASIC</a> struct. </p>
+
+<p class="definition">Definition in file <a class="el" href="basic_8h_source.html">basic.h</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

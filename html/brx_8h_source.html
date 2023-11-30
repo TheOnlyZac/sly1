@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/brx.h Source File</title>
+<title>Sly 1 Decomp: sly1/src/P2/brx.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -97,22 +96,23 @@ $(document).ready(function(){initNavTree('brx_8h_source.html',''); initResizable
 <div class="title">brx.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="brx_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="alo_8h.html">alo.h</a>&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="game_8h.html">game.h</a>&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="sw_8h.html">sw.h</a>&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<a class="code" href="structSW.html">SW</a>* <a class="code" href="brx_8h.html#ada93a74b75b026d0ccc3f351c0b2d32c">PloNew</a>(<a class="code" href="game_8h.html#a77e49d11b21c87ca68ee8269641360bb">CID</a> cid, <a class="code" href="structSW.html">SW</a>* csw, <a class="code" href="structALO.html">ALO</a>* paloParent, <a class="code" href="game_8h.html#a2bc7d449ad170d97dc662adf9d8dc84e">OID</a> oid, <span class="keywordtype">int</span> isplice);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">int</span> <a class="code" href="brx_8h.html#a6c488bce914e109b4252af6dfd9734aa">IploFromStockOid</a>(<span class="keywordtype">int</span> oid);</div>
+<a href="brx_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="alo_8h.html">alo.h</a>&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="game_8h.html">game.h</a>&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="sw_8h.html">sw.h</a>&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<a class="code" href="structSW.html">SW</a>* <a class="code" href="brx_8h.html#ada93a74b75b026d0ccc3f351c0b2d32c">PloNew</a>(<a class="code" href="game_8h.html#a77e49d11b21c87ca68ee8269641360bb">CID</a> cid, <a class="code" href="structSW.html">SW</a>* csw, <a class="code" href="structALO.html">ALO</a>* paloParent, <a class="code" href="game_8h.html#a2bc7d449ad170d97dc662adf9d8dc84e">OID</a> oid, <span class="keywordtype">int</span> isplice);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">int</span> <a class="code" href="brx_8h.html#a6c488bce914e109b4252af6dfd9734aa">IploFromStockOid</a>(<span class="keywordtype">int</span> oid);</div>
 <div class="ttc" id="aalo_8h_html"><div class="ttname"><a href="alo_8h.html">alo.h</a></div></div>
-<div class="ttc" id="abrx_8h_html_a6c488bce914e109b4252af6dfd9734aa"><div class="ttname"><a href="brx_8h.html#a6c488bce914e109b4252af6dfd9734aa">IploFromStockOid</a></div><div class="ttdeci">int IploFromStockOid(int oid)</div><div class="ttdoc">Gets the level object index from a stock OID.</div><div class="ttdef"><b>Definition:</b> brx.cpp:10</div></div>
-<div class="ttc" id="abrx_8h_html_ada93a74b75b026d0ccc3f351c0b2d32c"><div class="ttname"><a href="brx_8h.html#ada93a74b75b026d0ccc3f351c0b2d32c">PloNew</a></div><div class="ttdeci">SW * PloNew(CID cid, SW *csw, ALO *paloParent, OID oid, int isplice)</div><div class="ttdoc">Creates a new level object from a CID, SW, ALO, OID, and splice index.</div><div class="ttdef"><b>Definition:</b> brx.cpp:3</div></div>
-<div class="ttc" id="agame_8h_html"><div class="ttname"><a href="game_8h.html">game.h</a></div></div>
-<div class="ttc" id="agame_8h_html_a2bc7d449ad170d97dc662adf9d8dc84e"><div class="ttname"><a href="game_8h.html#a2bc7d449ad170d97dc662adf9d8dc84e">OID</a></div><div class="ttdeci">OID</div><div class="ttdef"><b>Definition:</b> game.h:10</div></div>
-<div class="ttc" id="agame_8h_html_a77e49d11b21c87ca68ee8269641360bb"><div class="ttname"><a href="game_8h.html#a77e49d11b21c87ca68ee8269641360bb">CID</a></div><div class="ttdeci">CID</div><div class="ttdef"><b>Definition:</b> game.h:31</div></div>
-<div class="ttc" id="astructALO_html"><div class="ttname"><a href="structALO.html">ALO</a></div><div class="ttdef"><b>Definition:</b> alo.h:3</div></div>
-<div class="ttc" id="astructSW_html"><div class="ttname"><a href="structSW.html">SW</a></div><div class="ttdef"><b>Definition:</b> sw.h:22</div></div>
-<div class="ttc" id="asw_8h_html"><div class="ttname"><a href="sw_8h.html">sw.h</a></div></div>
+<div class="ttc" id="abrx_8h_html_a6c488bce914e109b4252af6dfd9734aa"><div class="ttname"><a href="brx_8h.html#a6c488bce914e109b4252af6dfd9734aa">IploFromStockOid</a></div><div class="ttdeci">int IploFromStockOid(int oid)</div><div class="ttdoc">Gets the level object index from a stock OID.</div><div class="ttdef"><b>Definition:</b> <a href="brx_8cpp_source.html#l00015">brx.cpp:15</a></div></div>
+<div class="ttc" id="abrx_8h_html_ada93a74b75b026d0ccc3f351c0b2d32c"><div class="ttname"><a href="brx_8h.html#ada93a74b75b026d0ccc3f351c0b2d32c">PloNew</a></div><div class="ttdeci">SW * PloNew(CID cid, SW *csw, ALO *paloParent, OID oid, int isplice)</div><div class="ttdoc">Creates a new level object from a CID, SW, ALO, OID, and splice index.</div><div class="ttdef"><b>Definition:</b> <a href="brx_8cpp_source.html#l00008">brx.cpp:8</a></div></div>
+<div class="ttc" id="agame_8h_html"><div class="ttname"><a href="game_8h.html">game.h</a></div><div class="ttdoc">Declarations related to the game world and game objects.</div></div>
+<div class="ttc" id="agame_8h_html_a2bc7d449ad170d97dc662adf9d8dc84e"><div class="ttname"><a href="game_8h.html#a2bc7d449ad170d97dc662adf9d8dc84e">OID</a></div><div class="ttdeci">OID</div><div class="ttdoc">Object ID.</div><div class="ttdef"><b>Definition:</b> <a href="game_8h_source.html#l00014">game.h:15</a></div></div>
+<div class="ttc" id="agame_8h_html_a77e49d11b21c87ca68ee8269641360bb"><div class="ttname"><a href="game_8h.html#a77e49d11b21c87ca68ee8269641360bb">CID</a></div><div class="ttdeci">CID</div><div class="ttdoc">Collision ID?</div><div class="ttdef"><b>Definition:</b> <a href="game_8h_source.html#l00037">game.h:38</a></div></div>
+<div class="ttc" id="astructALO_html"><div class="ttname"><a href="structALO.html">ALO</a></div><div class="ttdef"><b>Definition:</b> <a href="alo_8h_source.html#l00006">alo.h:6</a></div></div>
+<div class="ttc" id="astructSW_html"><div class="ttname"><a href="structSW.html">SW</a></div><div class="ttdoc">Scene World.</div><div class="ttdef"><b>Definition:</b> <a href="sw_8h_source.html#l00030">sw.h:30</a></div></div>
+<div class="ttc" id="asw_8h_html"><div class="ttname"><a href="sw_8h.html">sw.h</a></div><div class="ttdoc">Declares the scene world and related classes.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

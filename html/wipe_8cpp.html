@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/wipe.cpp File Reference</title>
+<title>Sly 1 Decomp: sly1/src/P2/wipe.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -100,6 +99,9 @@ $(document).ready(function(){initNavTree('wipe_8cpp.html',''); initResizable(); 
 <div class="title">wipe.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implements functions for the wipe system.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="wipe_8h_source.html">wipe.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="clock_8h_source.html">clock.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="wm_8h_source.html">wm.h</a>&gt;</code><br />
@@ -108,44 +110,46 @@ Include dependency graph for wipe.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="wipe_8cpp__incl.png" border="0" usemap="#asly1_2src_2P2_2wipe_8cpp" alt=""/></div>
 <map name="asly1_2src_2P2_2wipe_8cpp" id="asly1_2src_2P2_2wipe_8cpp">
-<area shape="rect" title=" " alt="" coords="1451,5,1605,32"/>
-<area shape="rect" href="wipe_8h.html" title=" " alt="" coords="1111,80,1177,107"/>
-<area shape="rect" href="clock_8h.html" title=" " alt="" coords="1387,229,1455,256"/>
+<area shape="rect" title="Implements functions for the wipe system." alt="" coords="1451,5,1605,32"/>
+<area shape="rect" href="wipe_8h.html" title="Declarations for the wipe system." alt="" coords="1111,80,1177,107"/>
+<area shape="rect" href="clock_8h.html" title="Declarations for the game clock." alt="" coords="1387,229,1455,256"/>
 <area shape="rect" href="wm_8h.html" title=" " alt="" coords="1565,155,1624,181"/>
-<area shape="rect" href="dialog_8h.html" title=" " alt="" coords="504,528,579,555"/>
-<area shape="rect" href="game_8h.html" title=" " alt="" coords="323,603,394,629"/>
-<area shape="rect" href="joy_8h.html" title=" " alt="" coords="1435,304,1487,331"/>
+<area shape="rect" href="dialog_8h.html" title="Declarations for the dialog system." alt="" coords="504,528,579,555"/>
+<area shape="rect" href="game_8h.html" title="Declarations related to the game world and game objects." alt="" coords="323,603,394,629"/>
+<area shape="rect" href="joy_8h.html" title="Declarations for joypad interactions." alt="" coords="1435,304,1487,331"/>
 <area shape="rect" href="keyhole_8h.html" title=" " alt="" coords="1405,155,1491,181"/>
-<area shape="rect" href="sw_8h.html" title=" " alt="" coords="425,304,476,331"/>
-<area shape="rect" href="transition_8h.html" title=" " alt="" coords="827,155,923,181"/>
+<area shape="rect" href="sw_8h.html" title="Declares the scene world and related classes." alt="" coords="425,304,476,331"/>
+<area shape="rect" href="transition_8h.html" title="Declarations for the transition system." alt="" coords="827,155,923,181"/>
 <area shape="rect" title=" " alt="" coords="1327,603,1407,629"/>
-<area shape="rect" href="util_8h.html" title=" " alt="" coords="959,603,1014,629"/>
-<area shape="rect" href="gs_8h.html" title=" " alt="" coords="334,677,383,704"/>
-<area shape="rect" href="bis_8h.html" title=" " alt="" coords="803,379,856,405"/>
+<area shape="rect" href="util_8h.html" title="Declarations for utility functions." alt="" coords="959,603,1014,629"/>
+<area shape="rect" href="gs_8h.html" title="Declarations for the game state manipulation." alt="" coords="334,677,383,704"/>
+<area shape="rect" href="bis_8h.html" title="Implements the binary input stream class." alt="" coords="803,379,856,405"/>
 <area shape="rect" href="dl_8h.html" title=" " alt="" coords="339,453,386,480"/>
-<area shape="rect" href="light_8h.html" title=" " alt="" coords="195,379,258,405"/>
-<area shape="rect" href="lo_8h.html" title=" " alt="" coords="282,379,329,405"/>
-<area shape="rect" href="slotheap_8h.html" title=" " alt="" coords="353,379,444,405"/>
-<area shape="rect" href="sound_8h.html" title=" " alt="" coords="570,379,643,405"/>
-<area shape="rect" href="vec_8h.html" title=" " alt="" coords="1039,379,1097,405"/>
-<area shape="rect" href="bas_8h.html" title=" " alt="" coords="890,453,947,480"/>
+<area shape="rect" href="light_8h.html" title="Light and shadow system." alt="" coords="195,379,258,405"/>
+<area shape="rect" href="lo_8h.html" title="Declares Level Object struct." alt="" coords="282,379,329,405"/>
+<area shape="rect" href="slotheap_8h.html" title="Declares the slotheap and slot structs." alt="" coords="353,379,444,405"/>
+<area shape="rect" href="sound_8h.html" title="Declarations for the sound system." alt="" coords="570,379,643,405"/>
+<area shape="rect" href="vec_8h.html" title="Declares VECTOR and other related classes/functions." alt="" coords="1039,379,1097,405"/>
+<area shape="rect" href="bas_8h.html" title="Declarations for the binary async stream." alt="" coords="890,453,947,480"/>
 <area shape="rect" title=" " alt="" coords="742,528,813,555"/>
-<area shape="rect" href="cat_8h.html" title=" " alt="" coords="1299,453,1354,480"/>
-<area shape="rect" href="prog_8h.html" title=" " alt="" coords="654,453,717,480"/>
+<area shape="rect" href="cat_8h.html" title="Declarations for working with WAC and WAL catalogs." alt="" coords="1299,453,1354,480"/>
+<area shape="rect" href="prog_8h.html" title="Declares the prog class." alt="" coords="654,453,717,480"/>
 <area shape="rect" title=" " alt="" coords="793,453,866,480"/>
-<area shape="rect" href="font_8h.html" title=" " alt="" coords="657,528,717,555"/>
-<area shape="rect" href="basic_8h.html" title=" " alt="" coords="195,453,263,480"/>
+<area shape="rect" href="font_8h.html" title="Declarations for the font system." alt="" coords="657,528,717,555"/>
+<area shape="rect" href="basic_8h.html" title="Declares the BASIC struct." alt="" coords="195,453,263,480"/>
 <area shape="rect" title=" " alt="" coords="461,453,528,480"/>
-<area shape="rect" href="so_8h.html" title=" " alt="" coords="971,453,1021,480"/>
-<area shape="rect" href="zap_8h.html" title=" " alt="" coords="891,528,949,555"/>
-<area shape="rect" href="brx_8h.html" title=" " alt="" coords="361,229,415,256"/>
-<area shape="rect" href="difficulty_8h.html" title=" " alt="" coords="1023,229,1113,256"/>
-<area shape="rect" href="phasemem_8h.html" title=" " alt="" coords="867,229,973,256"/>
+<area shape="rect" href="so_8h.html" title="Declarations for scene objects." alt="" coords="971,453,1021,480"/>
+<area shape="rect" href="zap_8h.html" title="Declarations for the zap (damage) system." alt="" coords="891,528,949,555"/>
+<area shape="rect" href="brx_8h.html" title="Declarations for interaction with binary resource archives." alt="" coords="361,229,415,256"/>
+<area shape="rect" href="difficulty_8h.html" title="Declarations for the difficulty scaling system." alt="" coords="1023,229,1113,256"/>
+<area shape="rect" href="phasemem_8h.html" title="Declarations for the phase system." alt="" coords="867,229,973,256"/>
 <area shape="rect" href="alo_8h.html" title=" " alt="" coords="346,304,401,331"/>
-<area shape="rect" href="chkpnt_8h.html" title=" " alt="" coords="1029,304,1107,331"/>
+<area shape="rect" href="chkpnt_8h.html" title="Declarations for the checkpoint system." alt="" coords="1029,304,1107,331"/>
 </map>
 </div>
-</div><table class="memberdecls">
+</div>
+<p><a href="wipe_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a7b15d5fc257269040b4f1d16b8360faf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wipe_8cpp.html#a7b15d5fc257269040b4f1d16b8360faf">WipeToWorldWarp</a> (<a class="el" href="structLevelTableStruct.html">LevelTableStruct</a> *pchzWorld, <a class="el" href="game_8h.html#a2bc7d449ad170d97dc662adf9d8dc84e">OID</a> oidWarp, <a class="el" href="wipe_8h.html#aafe8282a667a264b047cc5c193e32791">WIPEK</a> wipek)</td></tr>
@@ -178,7 +182,11 @@ Variables</h2></td></tr>
 <tr class="memitem:a10eca766100f29f4f7f4bf465624ec95"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structWIPE.html">WIPE</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wipe_8cpp.html#a10eca766100f29f4f7f4bf465624ec95">g_pwipe</a> = &amp;<a class="el" href="wipe_8h.html#adb4e04a29c80838db3d036f9d34e5fac">g_wipe</a></td></tr>
 <tr class="separator:a10eca766100f29f4f7f4bf465624ec95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implements functions for the wipe system. </p>
+
+<p class="definition">Definition in file <a class="el" href="wipe_8cpp_source.html">wipe.cpp</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a73d84f34398bbc0b7a6661752ab1d838"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a73d84f34398bbc0b7a6661752ab1d838">&#9670;&nbsp;</a></span>ActivateWipe()</h2>
 
@@ -221,6 +229,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="wipe_8cpp_source.html#l00022">22</a> of file <a class="el" href="wipe_8cpp_source.html">wipe.cpp</a>.</p>
+
 </div>
 </div>
 <a id="aa5e7e82f81403e2af8f33d8176af77fa"></a>
@@ -246,6 +256,8 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="wipe_8cpp_source.html#l00163">163</a> of file <a class="el" href="wipe_8cpp_source.html">wipe.cpp</a>.</p>
 
 </div>
 </div>
@@ -291,6 +303,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="wipe_8cpp_source.html#l00328">328</a> of file <a class="el" href="wipe_8cpp_source.html">wipe.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a5d133e330fb3734107b739d9751d0395"></a>
@@ -317,6 +331,8 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="wipe_8cpp_source.html#l00316">316</a> of file <a class="el" href="wipe_8cpp_source.html">wipe.cpp</a>.</p>
 
 </div>
 </div>
@@ -362,6 +378,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="wipe_8cpp_source.html#l00322">322</a> of file <a class="el" href="wipe_8cpp_source.html">wipe.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a072139369cf6e4453cb215fa43844c8b"></a>
@@ -399,6 +417,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="wipe_8cpp_source.html#l00076">76</a> of file <a class="el" href="wipe_8cpp_source.html">wipe.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a97aac2b0fb4572251d58769a114cc7d1"></a>
@@ -431,6 +451,8 @@ Variables</h2></td></tr>
 <p>Joypad is passed so it can catch the button press to skip the wipe.</p>
 <p>pwipe Pointer to the wipe</p>
 <p>pjoy Pointer to the joypad </p>
+
+<p class="definition">Definition at line <a class="el" href="wipe_8cpp_source.html#l00209">209</a> of file <a class="el" href="wipe_8cpp_source.html">wipe.cpp</a>.</p>
 
 </div>
 </div>
@@ -475,7 +497,9 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>Figure out what oidWarp is used for. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd>Figure out what oidWarp is used for. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="wipe_8cpp_source.html#l00013">13</a> of file <a class="el" href="wipe_8cpp_source.html">wipe.cpp</a>.</p>
 
 </div>
 </div>
@@ -491,6 +515,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="wipe_8cpp_source.html#l00010">10</a> of file <a class="el" href="wipe_8cpp_source.html">wipe.cpp</a>.</p>
 
 </div>
 </div>

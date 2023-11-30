@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/speaker.h File Reference</title>
+<title>Sly 1 Decomp: sly1/src/P2/speaker.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -100,6 +99,9 @@ $(document).ready(function(){initNavTree('speaker_8h.html',''); initResizable();
 <div class="title">speaker.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Declarations for the speaker system.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="game_8h_source.html">game.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="joy_8h_source.html">joy.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="mat_8h_source.html">mat.h</a>&gt;</code><br />
@@ -111,17 +113,17 @@ Include dependency graph for speaker.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="speaker_8h__incl.png" border="0" usemap="#asly1_2src_2P2_2speaker_8h" alt=""/></div>
 <map name="asly1_2src_2P2_2speaker_8h" id="asly1_2src_2P2_2speaker_8h">
-<area shape="rect" title=" " alt="" coords="199,5,357,32"/>
-<area shape="rect" href="game_8h.html" title=" " alt="" coords="161,304,232,331"/>
-<area shape="rect" href="joy_8h.html" title=" " alt="" coords="288,155,340,181"/>
-<area shape="rect" href="util_8h.html" title=" " alt="" coords="165,229,220,256"/>
-<area shape="rect" href="mat_8h.html" title=" " alt="" coords="283,80,343,107"/>
-<area shape="rect" href="vec_8h.html" title=" " alt="" coords="55,80,112,107"/>
-<area shape="rect" href="font_8h.html" title=" " alt="" coords="152,155,212,181"/>
-<area shape="rect" href="gs_8h.html" title=" " alt="" coords="135,379,184,405"/>
+<area shape="rect" title="Declarations for the speaker system." alt="" coords="199,5,357,32"/>
+<area shape="rect" href="game_8h.html" title="Declarations related to the game world and game objects." alt="" coords="161,304,232,331"/>
+<area shape="rect" href="joy_8h.html" title="Declarations for joypad interactions." alt="" coords="288,155,340,181"/>
+<area shape="rect" href="util_8h.html" title="Declarations for utility functions." alt="" coords="165,229,220,256"/>
+<area shape="rect" href="mat_8h.html" title="Defines 4x4 and 3x3 matrix types." alt="" coords="283,80,343,107"/>
+<area shape="rect" href="vec_8h.html" title="Declares VECTOR and other related classes/functions." alt="" coords="55,80,112,107"/>
+<area shape="rect" href="font_8h.html" title="Declarations for the font system." alt="" coords="152,155,212,181"/>
+<area shape="rect" href="gs_8h.html" title="Declarations for the game state manipulation." alt="" coords="135,379,184,405"/>
 <area shape="rect" title=" " alt="" coords="6,304,86,331"/>
-<area shape="rect" href="so_8h.html" title=" " alt="" coords="27,155,76,181"/>
-<area shape="rect" href="zap_8h.html" title=" " alt="" coords="84,229,141,256"/>
+<area shape="rect" href="so_8h.html" title="Declarations for scene objects." alt="" coords="27,155,76,181"/>
+<area shape="rect" href="zap_8h.html" title="Declarations for the zap (damage) system." alt="" coords="84,229,141,256"/>
 </map>
 </div>
 </div>
@@ -130,8 +132,10 @@ Include dependency graph for speaker.h:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSPEAKER.html">SPEAKER</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Speaker.  <a href="structSPEAKER.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDP.html">DP</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dialog Player.  <a href="structDP.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -139,7 +143,11 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a184233990e66c6fa1762b8185c010d55"><td class="memItemLeft" align="right" valign="top">typedef int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="speaker_8h.html#a184233990e66c6fa1762b8185c010d55">GRFPVA</a></td></tr>
 <tr class="separator:a184233990e66c6fa1762b8185c010d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Declarations for the speaker system. </p>
+
+<p class="definition">Definition in file <a class="el" href="speaker_8h_source.html">speaker.h</a>.</p>
+</div><h2 class="groupheader">Typedef Documentation</h2>
 <a id="a184233990e66c6fa1762b8185c010d55"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a184233990e66c6fa1762b8185c010d55">&#9670;&nbsp;</a></span>GRFPVA</h2>
 
@@ -151,6 +159,8 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="speaker_8h_source.html#l00014">14</a> of file <a class="el" href="speaker_8h_source.html">speaker.h</a>.</p>
 
 </div>
 </div>

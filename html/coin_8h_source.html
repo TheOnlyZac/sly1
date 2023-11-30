@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper and the Thievius Raccoonus: sly1/src/P2/coin.h Source File</title>
+<title>Sly 1 Decomp: sly1/src/P2/coin.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -32,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sly Cooper and the Thievius Raccoonus
+   <div id="projectname">Sly 1 Decomp
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -97,24 +96,25 @@ $(document).ready(function(){initNavTree('coin_8h_source.html',''); initResizabl
 <div class="title">coin.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="coin_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="structCOIN.html">    6</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCOIN.html">COIN</a></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="comment">// todo: add struct fields</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="structCOIN.html#a8f0a99b466e644d349ce3a47b51fec70">    9</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structCOIN.html#a8f0a99b466e644d349ce3a47b51fec70">padding</a>[0x3ac];</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;};</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">//int InitCoin(Coin* pcoin);</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">void</span> <a class="code" href="coin_8h.html#a9cf5a7d9f5bc85d9301e20b298624967">OnCoinSmack</a>(<a class="code" href="structCOIN.html">COIN</a>* pcoin);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">//void SetcoinDprizes(Coin* pcoin, Dprizes dprizes);</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">//void UpdateCoin(Coin* pcoin, float dt);</span></div>
-<div class="ttc" id="acoin_8h_html_a9cf5a7d9f5bc85d9301e20b298624967"><div class="ttname"><a href="coin_8h.html#a9cf5a7d9f5bc85d9301e20b298624967">OnCoinSmack</a></div><div class="ttdeci">void OnCoinSmack(COIN *pcoin)</div><div class="ttdoc">Initializes a coin.</div><div class="ttdef"><b>Definition:</b> coin.cpp:6</div></div>
-<div class="ttc" id="astructCOIN_html"><div class="ttname"><a href="structCOIN.html">COIN</a></div><div class="ttdoc">Coin prize.</div><div class="ttdef"><b>Definition:</b> coin.h:7</div></div>
-<div class="ttc" id="astructCOIN_html_a8f0a99b466e644d349ce3a47b51fec70"><div class="ttname"><a href="structCOIN.html#a8f0a99b466e644d349ce3a47b51fec70">COIN::padding</a></div><div class="ttdeci">int padding[0x3ac]</div><div class="ttdef"><b>Definition:</b> coin.h:9</div></div>
+<a href="coin_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="structCOIN.html">   11</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCOIN.html">COIN</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="comment">// todo: add struct fields</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structCOIN.html#a8f0a99b466e644d349ce3a47b51fec70">   14</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structCOIN.html#a8f0a99b466e644d349ce3a47b51fec70">padding</a>[0x3ac];</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;};</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">//int InitCoin(Coin* pcoin);</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span> <a class="code" href="coin_8h.html#a9cf5a7d9f5bc85d9301e20b298624967">OnCoinSmack</a>(<a class="code" href="structCOIN.html">COIN</a>* pcoin);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">//void SetcoinDprizes(Coin* pcoin, Dprizes dprizes);</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">//void UpdateCoin(Coin* pcoin, float dt);</span></div>
+<div class="ttc" id="acoin_8h_html_a9cf5a7d9f5bc85d9301e20b298624967"><div class="ttname"><a href="coin_8h.html#a9cf5a7d9f5bc85d9301e20b298624967">OnCoinSmack</a></div><div class="ttdeci">void OnCoinSmack(COIN *pcoin)</div><div class="ttdoc">Initializes a coin.</div><div class="ttdef"><b>Definition:</b> <a href="coin_8cpp_source.html#l00011">coin.cpp:11</a></div></div>
+<div class="ttc" id="astructCOIN_html"><div class="ttname"><a href="structCOIN.html">COIN</a></div><div class="ttdoc">Coin prize.</div><div class="ttdef"><b>Definition:</b> <a href="coin_8h_source.html#l00011">coin.h:12</a></div></div>
+<div class="ttc" id="astructCOIN_html_a8f0a99b466e644d349ce3a47b51fec70"><div class="ttname"><a href="structCOIN.html#a8f0a99b466e644d349ce3a47b51fec70">COIN::padding</a></div><div class="ttdeci">int padding[0x3ac]</div><div class="ttdef"><b>Definition:</b> <a href="coin_8h_source.html#l00014">coin.h:14</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
