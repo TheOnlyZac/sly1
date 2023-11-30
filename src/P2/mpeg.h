@@ -1,3 +1,8 @@
+/**
+ * @file mpeg.h
+ *
+ * @brief Declarations for the MPEG system.
+*/
 #pragma once
 #include <bis.h>
 #include <bq.h>

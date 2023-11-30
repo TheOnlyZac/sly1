@@ -1,3 +1,8 @@
+/**
+ * @file ui.h
+ *
+ * @brief Declarations for the user interface.
+*/
 #pragma once
 
 /**

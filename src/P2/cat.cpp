@@ -1,3 +1,8 @@
+/**
+ * @file cat.cpp
+ *
+ * @brief Implements the WAC/WAL catalog system.
+*/
 #include "cat.h"
 #include <cstring>
 

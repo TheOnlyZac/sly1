@@ -1,10 +1,14 @@
+/**
+ * @file so.h
+ *
+ * @brief Declarations for scene objects.
+*/
 #pragma once
 #include <zap.h>
 #include <util.h>
 #include <iostream>
 
 typedef int GRFPVA;
-
 
 /**
  * @brief Scene Object

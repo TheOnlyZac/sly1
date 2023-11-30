@@ -1,3 +1,8 @@
+/**
+ * @file sw.h
+ *
+ * @brief Declares the scene world and related classes.
+*/
 #pragma once
 #include <bis.h>
 #include <dl.h>

@@ -1,3 +1,8 @@
+/**
+ * @file joy.cpp
+ *
+ * @brief Implements the joypad manager.
+*/
 #include <joy.h>
 #include <gs.h>
 #include <clock.h>

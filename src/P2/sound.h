@@ -1,3 +1,8 @@
+/**
+ * @file sound.h
+ *
+ * @brief Declarations for the sound system.
+*/
 #pragma once
 #include <util.h>
 #include <cstdint>

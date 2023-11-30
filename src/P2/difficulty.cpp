@@ -1,3 +1,8 @@
+/**
+ * @file difficulty.cpp
+ *
+ * @brief Implements the difficulty scaling functions.
+*/
 #include <util.h>
 #include <game.h>
 #include <gs.h>

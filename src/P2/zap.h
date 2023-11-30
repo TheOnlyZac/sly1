@@ -1,3 +1,8 @@
+/**
+ * @file zap.h
+ *
+ * @brief Declarations for the zap (damage) system.
+*/
 #pragma once
 #include <iostream>
 #include <game.h>

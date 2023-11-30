@@ -1,3 +1,8 @@
+/**
+ * @file sw.cpp
+ *
+ * @brief Defines functions for loading and manipulating the scene world.
+*/
 #include <sw.h>
 
 SW* g_psw = nullptr;

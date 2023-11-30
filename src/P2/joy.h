@@ -1,3 +1,8 @@
+/**
+ * @file joy.h
+ *
+ * @brief Declarations for joypad interactions.
+*/
 #pragma once
 #include <util.h>
 #include <iostream>

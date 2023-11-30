@@ -1,3 +1,8 @@
+/**
+ * @file util.h
+ *
+ * @brief Declarations for utility functions.
+*/
 #pragma once
 
 typedef bool BOOL;

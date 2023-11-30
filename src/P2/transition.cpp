@@ -1,3 +1,8 @@
+/**
+ * @file transition.cpp
+ *
+ * @brief Implements for the transition system.
+*/
 #include <transition.h>
 
 void::CTransition::ResetWorld(FTRANS ftrans)

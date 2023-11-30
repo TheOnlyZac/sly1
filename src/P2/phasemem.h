@@ -1,3 +1,8 @@
+/**
+ * @file phasemem.h
+ *
+ * @brief Declarations for the phase system.
+*/
 #pragma once
 
 /**

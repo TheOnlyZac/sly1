@@ -1,3 +1,8 @@
+/**
+ * @file sensor.h
+ *
+ * @brief Declarations for the sensor system.
+*/
 #pragma once
 #include <util.h>
 

@@ -1,3 +1,8 @@
+/**
+ * @file dialog.h
+ *
+ * @brief Declarations for the dialog system.
+*/
 #pragma once
 #include <iostream>
 #include <game.h>

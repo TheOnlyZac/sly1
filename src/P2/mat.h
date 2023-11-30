@@ -1,3 +1,8 @@
+/**
+ * @file mat.h
+ *
+ * @brief Defines 4x4 and 3x3 matrix types.
+*/
 #pragma once
 
 typedef struct MATRIX4 GRFDP;

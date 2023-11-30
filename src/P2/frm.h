@@ -1,3 +1,8 @@
+/**
+ * @file frm.h
+ *
+ * @brief Declarations for the frame system.
+*/
 #pragma once
 
 /**

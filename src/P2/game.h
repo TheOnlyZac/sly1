@@ -1,3 +1,8 @@
+/**
+ * @file game.h
+ *
+ * @brief Declarations related to the game world and game objects.
+*/
 #pragma once
 #include <gs.h>
 

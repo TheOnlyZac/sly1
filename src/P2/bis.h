@@ -1,3 +1,8 @@
+/**
+ * @file bis.h
+ *
+ * @brief Declarations for the binary input stream.
+*/
 #pragma once
 #include <bas.h>
 #include <cat.h>

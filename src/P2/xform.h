@@ -1,3 +1,8 @@
+/**
+ * @file xform.h
+ *
+ * @brief Declares EXITs for moving between levels.
+*/
 #pragma once
 #include <game.h>
 #include <aseg.h>

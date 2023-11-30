@@ -1,3 +1,8 @@
+/**
+ * @file bas.cpp
+ *
+ * @brief Implements for the binary async stream class.
+*/
 #include <bas.h>
 #include <cstddef>
 

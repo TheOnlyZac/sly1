@@ -1,3 +1,8 @@
+/**
+ * @file phasemem.cpp
+ *
+ * @brief Implements functions for setting and clearing the phase.
+*/
 #include <phasemem.h>
 
 void SetPhase(PHASE phase)

@@ -1,10 +1,9 @@
 /**
  * @file gs.h
  *
- * Game state related functions and structures.
+ * @brief Declarations for the game state manipulation.
  *
- * Not to be confused with Graphic Synthesizer, which is the name of the PS2's GPU
- * and is also abbreviated as GS.
+ * @note Not to be confused with Graphics Synthesizer, which is also abbreviated GS.
 */
 #pragma once
 

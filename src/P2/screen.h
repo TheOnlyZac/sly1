@@ -1,3 +1,8 @@
+/**
+ * @file screen.h
+ *
+ * @brief Declarations for the screen blot system.
+*/
 #pragma once
 
 /**

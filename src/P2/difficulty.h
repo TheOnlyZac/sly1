@@ -1,3 +1,8 @@
+/**
+ * @file difficulty.h
+ *
+ * @brief Declarations for the difficulty scaling system.
+*/
 #pragma once
 #include <util.h>
 #include <chkpnt.h>

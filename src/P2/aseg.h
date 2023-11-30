@@ -1,3 +1,8 @@
+/**
+ * @file aseg.h
+ *
+ * @brief Declarations for animation segments.
+*/
 #pragma once
 #include <util.h>
 #include <game.h>

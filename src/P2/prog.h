@@ -1,3 +1,8 @@
+/**
+ * @file prog.h
+ *
+ * @brief Declares the prog class.
+*/
 #pragma once
 #include <game.h>
 #include <font.h>

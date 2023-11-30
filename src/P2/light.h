@@ -1,3 +1,8 @@
+/**
+ * @file light.h
+ *
+ * @brief Light and shadow system.
+*/
 #pragma once
 
 /**

@@ -1,3 +1,8 @@
+/**
+ * @file cm.h
+ *
+ * @brief Declarations for the game camera.
+*/
 #pragma once
 
 /**

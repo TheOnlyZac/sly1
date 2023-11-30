@@ -1,5 +1,9 @@
+/**
+ * @file chkpnt.cpp
+ *
+ * @brief Implements checkpoint methods.
+*/
 #include <chkpnt.h>
-
 #include <cstring>
 
 void ResetChkmgrCheckpoints(CHKMGR* pchkmgr)

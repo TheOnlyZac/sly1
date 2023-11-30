@@ -1,3 +1,8 @@
+/**
+ * @file coin.h
+ *
+ * @brief Declarations for coin interaction/events.
+*/
 #pragma once
 
 /**

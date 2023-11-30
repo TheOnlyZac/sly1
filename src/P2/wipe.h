@@ -1,3 +1,8 @@
+/**
+ * @file wipe.h
+ *
+ * @brief Declarations for the wipe system.
+*/
 #pragma once
 #include <dialog.h>
 #include <game.h>

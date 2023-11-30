@@ -1,3 +1,8 @@
+/**
+ * @file lo.h
+ *
+ * @brief Declares Level Object struct.
+*/
 #pragma once
 #include <basic.h>
 #include <game.h>

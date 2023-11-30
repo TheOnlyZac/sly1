@@ -1,3 +1,8 @@
+/**
+ * @file font.h
+ *
+ * @brief Declarations for the font system.
+*/
 #pragma once
 #include <util.h>
 

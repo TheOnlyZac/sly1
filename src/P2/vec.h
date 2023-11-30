@@ -1,3 +1,8 @@
+/**
+ * @file vec.h
+ *
+ * @brief Declares VECTOR and other related classes/functions.
+*/
 #pragma once
 #include <iostream>
 #include <so.h>

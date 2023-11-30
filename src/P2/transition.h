@@ -1,3 +1,8 @@
+/**
+ * @file transition.h
+ *
+ * @brief Declarations for the transition system.
+*/
 #pragma once
 #include <bis.h>
 #include <brx.h>

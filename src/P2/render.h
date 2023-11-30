@@ -1,3 +1,8 @@
+/**
+ * @file render.h
+ *
+ * @brief Declarations for the render system.
+*/
 #pragma once
 #include <sw.h>
 #include <cm.h>

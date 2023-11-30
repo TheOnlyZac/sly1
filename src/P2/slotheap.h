@@ -1,3 +1,8 @@
+/**
+ * @file slotheap.h
+ *
+ * @brief Declares the slotheap and slot structs.
+*/
 #pragma once
 
 typedef unsigned char byte; //todo move to util header

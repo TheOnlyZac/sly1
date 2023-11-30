@@ -1,3 +1,8 @@
+/**
+ * @file util.cpp
+ *
+ * @brief Implements various utility/math functions.
+*/
 #include <util.h>
 #include <cmath>
 #include <cstdlib> // todo: implement rng functions to avoid using stdlib

@@ -1,3 +1,8 @@
+/**
+ * @file speaker.h
+ *
+ * @brief Declarations for the speaker system.
+*/
 #pragma once
 #include <game.h>
 #include <joy.h>

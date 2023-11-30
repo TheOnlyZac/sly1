@@ -1,3 +1,8 @@
+/**
+ * @file bq.h
+ *
+ * @brief Declares the byte queue class.
+*/
 #pragma once
 
 typedef unsigned char BYTE; //todo mode to util header

@@ -1,3 +1,8 @@
+/**
+ * @file wipe.cpp
+ *
+ * @brief Implements functions for the wipe system.
+*/
 #include <wipe.h>
 #include <clock.h>
 #include <wm.h>

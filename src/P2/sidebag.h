@@ -1,3 +1,8 @@
+/**
+ * @file sidebag.h
+ *
+ * @brief Declares the CSidebag class.
+*/
 #pragma once
 #include <gc.h>
 

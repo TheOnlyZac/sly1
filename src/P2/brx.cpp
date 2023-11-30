@@ -1,4 +1,9 @@
-#include "brx.h"
+/**
+ * @file brx.cpp
+ *
+ * @brief Implements interaction with binary resource archives.
+*/
+#include <brx.h>
 
 SW* PloNew(CID cid, SW* csw, ALO* paloParent, OID oid, int isplice)
 {

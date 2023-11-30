@@ -1,3 +1,8 @@
+/**
+ * @file bas.h
+ *
+ * @brief Declarations for the binary async stream.
+*/
 #pragma once
 #include <stdint.h>
 #include <util.h>

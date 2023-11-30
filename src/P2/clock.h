@@ -1,3 +1,8 @@
+/**
+ * @file clock.h
+ *
+ * @brief Declarations for the game clock.
+*/
 #pragma once
 
 typedef unsigned long long TICK;

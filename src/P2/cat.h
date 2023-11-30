@@ -1,3 +1,8 @@
+/**
+ * @file cat.h
+ *
+ * @brief Declarations for working with WAC and WAL catalogs.
+*/
 #pragma once
 #include <iostream>
 

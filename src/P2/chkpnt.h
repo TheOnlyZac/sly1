@@ -1,3 +1,8 @@
+/**
+ * @file chkpnt.h
+ *
+ * @brief Declarations for the checkpoint system.
+*/
 #pragma once
 #include <util.h>
 #include <game.h>
