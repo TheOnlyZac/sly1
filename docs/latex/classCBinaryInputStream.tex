@@ -1,0 +1,528 @@
+\hypertarget{classCBinaryInputStream}{}\doxysection{CBinary\+Input\+Stream Class Reference}
+\label{classCBinaryInputStream}\index{CBinaryInputStream@{CBinaryInputStream}}
+
+
+{\ttfamily \#include $<$bis.\+h$>$}
+
+
+
+Collaboration diagram for CBinary\+Input\+Stream\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classCBinaryInputStream__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCBinaryInputStream_a305c534fd354d342cb7c33432ecd34d1}{CBinary\+Input\+Stream}} (std\+::string file\+Name)
+\begin{DoxyCompactList}\small\item\em Constructs a new \mbox{\hyperlink{classCBinaryInputStream}{CBinary\+Input\+Stream}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classCBinaryInputStream_aab01aa251ea8810243dd6335dde8dac5}{FOpen\+File}} (\mbox{\hyperlink{classCFileLocation}{CFile\+Location}} $\ast$pfl)
+\begin{DoxyCompactList}\small\item\em Opens the file at the given location. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classCBinaryInputStream_a8c3a2650d4507cbb0e9cae7b14e567bb}{FOpen\+Sector}} (uint32\+\_\+t isector, uint32\+\_\+t cb)
+\begin{DoxyCompactList}\small\item\em Opens the sector at the given location. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCBinaryInputStream_aea59c08ce364995796469988d3239504}{Open\+Memory}} (int cb, void $\ast$pv)
+\begin{DoxyCompactList}\small\item\em Opens a certain number of bytes in memory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCBinaryInputStream_aa72c931429d711dcbe0ede99575690ab}{Decrement\+Cd\+Read\+Limit}} (int cb)
+\begin{DoxyCompactList}\small\item\em Decrements the number of async bytes remaining. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCBinaryInputStream_a93ecc76d98a2d579d3a8e162f6fd8a4a}{Read}} (int cb, void $\ast$pv)
+\begin{DoxyCompactList}\small\item\em Reads a certain number of bytes from the stream. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCBinaryInputStream_abac1de5e25e3c9652a2f15d717fd524b}{Read\+\_\+\+Modified}} (int cb, void $\ast$pv)
+\begin{DoxyCompactList}\small\item\em Reads a certain number of bytes from the stream. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCBinaryInputStream_af615f9414c8d89004f686999092ee2f8}{Align}} (int n)
+\begin{DoxyCompactList}\small\item\em Aligns the stream to a certain number of bytes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCBinaryInputStream_ac56ca5c2d9f239106a06954286836344}{Align\+\_\+\+Modified}} (int n)
+\begin{DoxyCompactList}\small\item\em Aligns the file object to a certain number of bytes. \end{DoxyCompactList}\item 
+byte \mbox{\hyperlink{classCBinaryInputStream_aa80661ec7c0518682e8d1a69aa14e525}{U8\+Read}} ()
+\begin{DoxyCompactList}\small\item\em Reads a byte from the stream. \end{DoxyCompactList}\item 
+byte \mbox{\hyperlink{classCBinaryInputStream_a7b0771d1d99113621777fcd2475810b3}{U8\+Read\+\_\+\+Modified}} ()
+\begin{DoxyCompactList}\small\item\em Reads a byte from the file object. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{classCBinaryInputStream_a0832f2effc00494531952415808d30d1}{U16\+Read}} ()
+\begin{DoxyCompactList}\small\item\em Reads a 16-\/bit unsigned integer from the stream. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{classCBinaryInputStream_ad6c9f49dc58e46126fe1359587cc134c}{U16\+Read\+\_\+\+Modified}} ()
+\begin{DoxyCompactList}\small\item\em Reads a 16-\/bit unsigned integer from the file object. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classCBinaryInputStream_a1e2c6bd78260615740575d6b133ee0e9}{U32\+Read}} ()
+\begin{DoxyCompactList}\small\item\em Reads a 32-\/bit unsigned integer from the stream. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classCBinaryInputStream_ae4c647a5ccb82871462421dd007c04d7}{U32\+Read\+\_\+\+Modified}} ()
+\begin{DoxyCompactList}\small\item\em Reads a 32-\/bit unsigned integer from the file object. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{classCBinaryInputStream_a9e21eb31327c42a5b705df25833c45db}{S8\+Read}} ()
+\begin{DoxyCompactList}\small\item\em Reads a 8-\/bit signed integer from the stream. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{classCBinaryInputStream_a0f9b99ebbdcd0caad258a2e8ba89b136}{S8\+Read\+\_\+\+Modified}} ()
+\begin{DoxyCompactList}\small\item\em Reads a 8-\/bit signed integer from the file object. \end{DoxyCompactList}\item 
+int16\+\_\+t \mbox{\hyperlink{classCBinaryInputStream_afdd101bcd0da6d49503c8acce2a7288e}{S16\+Read}} ()
+\begin{DoxyCompactList}\small\item\em Reads a 16-\/bit signed integer from the stream. \end{DoxyCompactList}\item 
+int16\+\_\+t \mbox{\hyperlink{classCBinaryInputStream_a145eb5b4c6600c8c6a8179c5df6af7cf}{S16\+Read\+\_\+\+Modified}} ()
+\begin{DoxyCompactList}\small\item\em Reads a 16-\/bit signed integer from the file object. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{classCBinaryInputStream_ac093a19b3819c04dd6b9267c0856b80c}{S32\+Read}} ()
+\begin{DoxyCompactList}\small\item\em Reads a 32-\/bit signed integer from the stream. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{classCBinaryInputStream_a998c319caf68fb85c8f32ffb8978bc93}{S32\+Read\+\_\+\+Modified}} ()
+\begin{DoxyCompactList}\small\item\em Reads a 32-\/bit signed integer from the file object. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classCBinaryInputStream_aa93eb8bd8387be3a31a39e56945915ff}{F32\+Read}} ()
+\begin{DoxyCompactList}\small\item\em Reads a 32-\/bit floating point number from the stream. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classCBinaryInputStream_a46f4a19ae82442b0a38d6e1482aa12c7}{F32\+Read\+\_\+\+Modified}} ()
+\begin{DoxyCompactList}\small\item\em Reads a 32-\/bit floating point number from the file object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCBinaryInputStream_ab896bbba2faea92ed9d35a7e5b359c70}{Read\+String\+Sw}} (char $\ast$$\ast$pachz)
+\begin{DoxyCompactList}\small\item\em Reads a string from the stream. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a6321d1634afab11e9e06028e08501965}\label{classCBinaryInputStream_a6321d1634afab11e9e06028e08501965}} 
+void \mbox{\hyperlink{classCBinaryInputStream_a6321d1634afab11e9e06028e08501965}{Close}} ()
+\begin{DoxyCompactList}\small\item\em Closes the stream. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a78a45ae4dacf454cf2bb934d9ea3a1ff}\label{classCBinaryInputStream_a78a45ae4dacf454cf2bb934d9ea3a1ff}} 
+void \mbox{\hyperlink{classCBinaryInputStream_a78a45ae4dacf454cf2bb934d9ea3a1ff}{Close\+\_\+\+Modified}} ()
+\begin{DoxyCompactList}\small\item\em Closes the file object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a876c8eaf30f7ed6e5ea909b64fff9463}\label{classCBinaryInputStream_a876c8eaf30f7ed6e5ea909b64fff9463}} 
+int {\bfseries m\+\_\+grfbis}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_ac95eebaf9ab48fd1a4565d63d32b9383}\label{classCBinaryInputStream_ac95eebaf9ab48fd1a4565d63d32b9383}} 
+enum BISK {\bfseries m\+\_\+bisk}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_af24ad1a5e644915f9eeffdeb7674483f}\label{classCBinaryInputStream_af24ad1a5e644915f9eeffdeb7674483f}} 
+byte $\ast$ {\bfseries m\+\_\+ab\+Spool}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a064071689672fa30240f0c791080ef03}\label{classCBinaryInputStream_a064071689672fa30240f0c791080ef03}} 
+int {\bfseries m\+\_\+cb\+Spool}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a04690c10f125851aeac3b107d8d89747}\label{classCBinaryInputStream_a04690c10f125851aeac3b107d8d89747}} 
+int {\bfseries m\+\_\+cb\+File}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a66fe30a4ff88b0f98ab3020603922882}\label{classCBinaryInputStream_a66fe30a4ff88b0f98ab3020603922882}} 
+int {\bfseries m\+\_\+cb\+Remaining}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_ae5951c50a1b1995b954160c92746026d}\label{classCBinaryInputStream_ae5951c50a1b1995b954160c92746026d}} 
+byte $\ast$ {\bfseries m\+\_\+pb}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_ac5f138c45d2bc3a34ae9806031bb6d5d}\label{classCBinaryInputStream_ac5f138c45d2bc3a34ae9806031bb6d5d}} 
+int {\bfseries m\+\_\+cb}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a6e3d1882a0b97f12ee66ea8ad1a503eb}\label{classCBinaryInputStream_a6e3d1882a0b97f12ee66ea8ad1a503eb}} 
+byte $\ast$ {\bfseries m\+\_\+pb\+Raw}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a414ced5d91738a0e2dd6e8bab185e065}\label{classCBinaryInputStream_a414ced5d91738a0e2dd6e8bab185e065}} 
+int {\bfseries m\+\_\+cb\+Raw}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a794e00e8ea2649deb4dcfce11b65623a}\label{classCBinaryInputStream_a794e00e8ea2649deb4dcfce11b65623a}} 
+int {\bfseries m\+\_\+grf\+Decomp}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_adf574335eabffaee7dbf9882a10bb3c7}\label{classCBinaryInputStream_adf574335eabffaee7dbf9882a10bb3c7}} 
+int {\bfseries m\+\_\+cb\+Spill\+Over}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_aef120c35a5183fe0232ea84683ade89f}\label{classCBinaryInputStream_aef120c35a5183fe0232ea84683ade89f}} 
+struct \mbox{\hyperlink{classCProg}{CProg}} $\ast$ {\bfseries m\+\_\+pprog}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_af5570d63ee74e96993e9f404a16b8480}\label{classCBinaryInputStream_af5570d63ee74e96993e9f404a16b8480}} 
+uint64\+\_\+t {\bfseries m\+\_\+tick\+Wait}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a84869326575fdfe16a51a1aee994f3d8}\label{classCBinaryInputStream_a84869326575fdfe16a51a1aee994f3d8}} 
+int {\bfseries m\+\_\+fd}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a7043db9b4445036bb6567a49dc07953e}\label{classCBinaryInputStream_a7043db9b4445036bb6567a49dc07953e}} 
+int {\bfseries m\+\_\+cb\+Async\+Complete}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_ac95219a3a27d5b6349b1a3f39048a6e9}\label{classCBinaryInputStream_ac95219a3a27d5b6349b1a3f39048a6e9}} 
+int {\bfseries m\+\_\+cb\+Async\+Request}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a8f1b45714868ef9bcd9091de9d3b5278}\label{classCBinaryInputStream_a8f1b45714868ef9bcd9091de9d3b5278}} 
+int {\bfseries m\+\_\+cb\+Async\+Remaining}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a0c2be3009b8ff88d92b28282b9f3f928}\label{classCBinaryInputStream_a0c2be3009b8ff88d92b28282b9f3f928}} 
+int {\bfseries m\+\_\+cb\+Partial\+Read}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a3431f3f08ac546df3870f21bf5677e5f}\label{classCBinaryInputStream_a3431f3f08ac546df3870f21bf5677e5f}} 
+uint32\+\_\+t {\bfseries m\+\_\+isector}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a4928880fcf822a3fba8ddf5df449ad96}\label{classCBinaryInputStream_a4928880fcf822a3fba8ddf5df449ad96}} 
+int {\bfseries m\+\_\+cbuf}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a7120e3408bdc4c9fecb7e4ba917f7b4c}\label{classCBinaryInputStream_a7120e3408bdc4c9fecb7e4ba917f7b4c}} 
+int {\bfseries m\+\_\+cbuf\+Fill}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a6994ab39563a784a27432bd82b243981}\label{classCBinaryInputStream_a6994ab39563a784a27432bd82b243981}} 
+int {\bfseries m\+\_\+ibuf\+Mic}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_a4eb02031c76e4d8ab03e1ecd1ae2f14c}\label{classCBinaryInputStream_a4eb02031c76e4d8ab03e1ecd1ae2f14c}} 
+int {\bfseries m\+\_\+ibuf\+Mac}
+\item 
+\mbox{\Hypertarget{classCBinaryInputStream_ae1d621036fdb20679025c88770dc68c4}\label{classCBinaryInputStream_ae1d621036fdb20679025c88770dc68c4}} 
+std\+::ifstream {\bfseries file}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Binary Input Stream
+
+Used to read binary data from files on the disc. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCBinaryInputStream_a305c534fd354d342cb7c33432ecd34d1}\label{classCBinaryInputStream_a305c534fd354d342cb7c33432ecd34d1}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!CBinaryInputStream@{CBinaryInputStream}}
+\index{CBinaryInputStream@{CBinaryInputStream}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{CBinaryInputStream()}{CBinaryInputStream()}}
+{\footnotesize\ttfamily CBinary\+Input\+Stream\+::\+CBinary\+Input\+Stream (\begin{DoxyParamCaption}\item[{std\+::string}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \mbox{\hyperlink{classCBinaryInputStream}{CBinary\+Input\+Stream}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & Name of the file to open \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCBinaryInputStream_af615f9414c8d89004f686999092ee2f8}\label{classCBinaryInputStream_af615f9414c8d89004f686999092ee2f8}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!Align@{Align}}
+\index{Align@{Align}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{Align()}{Align()}}
+{\footnotesize\ttfamily void CBinary\+Input\+Stream\+::\+Align (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Aligns the stream to a certain number of bytes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Number of bytes to align to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCBinaryInputStream_ac56ca5c2d9f239106a06954286836344}\label{classCBinaryInputStream_ac56ca5c2d9f239106a06954286836344}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!Align\_Modified@{Align\_Modified}}
+\index{Align\_Modified@{Align\_Modified}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{Align\_Modified()}{Align\_Modified()}}
+{\footnotesize\ttfamily void CBinary\+Input\+Stream\+::\+Align\+\_\+\+Modified (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Aligns the file object to a certain number of bytes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Number of bytes to align to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCBinaryInputStream_aa72c931429d711dcbe0ede99575690ab}\label{classCBinaryInputStream_aa72c931429d711dcbe0ede99575690ab}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!DecrementCdReadLimit@{DecrementCdReadLimit}}
+\index{DecrementCdReadLimit@{DecrementCdReadLimit}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{DecrementCdReadLimit()}{DecrementCdReadLimit()}}
+{\footnotesize\ttfamily void CBinary\+Input\+Stream\+::\+Decrement\+Cd\+Read\+Limit (\begin{DoxyParamCaption}\item[{int}]{cb }\end{DoxyParamCaption})}
+
+
+
+Decrements the number of async bytes remaining. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & Number of bytes to decrement \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCBinaryInputStream_aa93eb8bd8387be3a31a39e56945915ff}\label{classCBinaryInputStream_aa93eb8bd8387be3a31a39e56945915ff}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!F32Read@{F32Read}}
+\index{F32Read@{F32Read}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{F32Read()}{F32Read()}}
+{\footnotesize\ttfamily float CBinary\+Input\+Stream\+::\+F32\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a 32-\/bit floating point number from the stream. 
+
+\begin{DoxyReturn}{Returns}
+The 32-\/bit floating point number read 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCBinaryInputStream_a46f4a19ae82442b0a38d6e1482aa12c7}\label{classCBinaryInputStream_a46f4a19ae82442b0a38d6e1482aa12c7}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!F32Read\_Modified@{F32Read\_Modified}}
+\index{F32Read\_Modified@{F32Read\_Modified}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{F32Read\_Modified()}{F32Read\_Modified()}}
+{\footnotesize\ttfamily float CBinary\+Input\+Stream\+::\+F32\+Read\+\_\+\+Modified (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a 32-\/bit floating point number from the file object. 
+
+\begin{DoxyReturn}{Returns}
+The 32-\/bit floating point number read 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCBinaryInputStream_aab01aa251ea8810243dd6335dde8dac5}\label{classCBinaryInputStream_aab01aa251ea8810243dd6335dde8dac5}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!FOpenFile@{FOpenFile}}
+\index{FOpenFile@{FOpenFile}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{FOpenFile()}{FOpenFile()}}
+{\footnotesize\ttfamily int CBinary\+Input\+Stream\+::\+FOpen\+File (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCFileLocation}{CFile\+Location}} $\ast$}]{pfl }\end{DoxyParamCaption})}
+
+
+
+Opens the file at the given location. 
+
+First checks if the file is open and the CD is available.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pfl} & Pointer to the file location\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & File is not open \\
+\hline
+{\em 1} & File is open \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{classCBinaryInputStream_a8c3a2650d4507cbb0e9cae7b14e567bb}\label{classCBinaryInputStream_a8c3a2650d4507cbb0e9cae7b14e567bb}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!FOpenSector@{FOpenSector}}
+\index{FOpenSector@{FOpenSector}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{FOpenSector()}{FOpenSector()}}
+{\footnotesize\ttfamily int CBinary\+Input\+Stream\+::\+FOpen\+Sector (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{isector,  }\item[{uint32\+\_\+t}]{cb }\end{DoxyParamCaption})}
+
+
+
+Opens the sector at the given location. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em isector} & Sector to open \\
+\hline
+{\em cb} & Number of bytes to read\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Sector is not open \\
+\hline
+{\em 1} & Sector is open \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{classCBinaryInputStream_aea59c08ce364995796469988d3239504}\label{classCBinaryInputStream_aea59c08ce364995796469988d3239504}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!OpenMemory@{OpenMemory}}
+\index{OpenMemory@{OpenMemory}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{OpenMemory()}{OpenMemory()}}
+{\footnotesize\ttfamily void CBinary\+Input\+Stream\+::\+Open\+Memory (\begin{DoxyParamCaption}\item[{int}]{cb,  }\item[{void $\ast$}]{pv }\end{DoxyParamCaption})}
+
+
+
+Opens a certain number of bytes in memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & Number of bytes to open \\
+\hline
+{\em pv} & Pointer to the memory location \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCBinaryInputStream_a93ecc76d98a2d579d3a8e162f6fd8a4a}\label{classCBinaryInputStream_a93ecc76d98a2d579d3a8e162f6fd8a4a}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!Read@{Read}}
+\index{Read@{Read}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}}
+{\footnotesize\ttfamily void CBinary\+Input\+Stream\+::\+Read (\begin{DoxyParamCaption}\item[{int}]{cb,  }\item[{void $\ast$}]{pv }\end{DoxyParamCaption})}
+
+
+
+Reads a certain number of bytes from the stream. 
+
+Will read a certain number of bytes from the stream and store them at the given location.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & Number of bytes to read \\
+\hline
+{\em pv} & Pointer to the memory location \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCBinaryInputStream_abac1de5e25e3c9652a2f15d717fd524b}\label{classCBinaryInputStream_abac1de5e25e3c9652a2f15d717fd524b}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!Read\_Modified@{Read\_Modified}}
+\index{Read\_Modified@{Read\_Modified}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{Read\_Modified()}{Read\_Modified()}}
+{\footnotesize\ttfamily void CBinary\+Input\+Stream\+::\+Read\+\_\+\+Modified (\begin{DoxyParamCaption}\item[{int}]{cb,  }\item[{void $\ast$}]{pv }\end{DoxyParamCaption})}
+
+
+
+Reads a certain number of bytes from the stream. 
+
+Will read a certain number of bytes from the stream and store them at the given location. This is used for file objects.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & Number of bytes to read \\
+\hline
+{\em pv} & Pointer to the memory location \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCBinaryInputStream_ab896bbba2faea92ed9d35a7e5b359c70}\label{classCBinaryInputStream_ab896bbba2faea92ed9d35a7e5b359c70}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!ReadStringSw@{ReadStringSw}}
+\index{ReadStringSw@{ReadStringSw}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{ReadStringSw()}{ReadStringSw()}}
+{\footnotesize\ttfamily void CBinary\+Input\+Stream\+::\+Read\+String\+Sw (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{pachz }\end{DoxyParamCaption})}
+
+
+
+Reads a string from the stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pachz} & Pointer where the string will be stored \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCBinaryInputStream_afdd101bcd0da6d49503c8acce2a7288e}\label{classCBinaryInputStream_afdd101bcd0da6d49503c8acce2a7288e}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!S16Read@{S16Read}}
+\index{S16Read@{S16Read}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{S16Read()}{S16Read()}}
+{\footnotesize\ttfamily int16\+\_\+t CBinary\+Input\+Stream\+::\+S16\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a 16-\/bit signed integer from the stream. 
+
+\begin{DoxyReturn}{Returns}
+The 16-\/bit signed integer read 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCBinaryInputStream_a145eb5b4c6600c8c6a8179c5df6af7cf}\label{classCBinaryInputStream_a145eb5b4c6600c8c6a8179c5df6af7cf}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!S16Read\_Modified@{S16Read\_Modified}}
+\index{S16Read\_Modified@{S16Read\_Modified}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{S16Read\_Modified()}{S16Read\_Modified()}}
+{\footnotesize\ttfamily int16\+\_\+t CBinary\+Input\+Stream\+::\+S16\+Read\+\_\+\+Modified (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a 16-\/bit signed integer from the file object. 
+
+\begin{DoxyReturn}{Returns}
+The 16-\/bit signed integer read 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCBinaryInputStream_ac093a19b3819c04dd6b9267c0856b80c}\label{classCBinaryInputStream_ac093a19b3819c04dd6b9267c0856b80c}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!S32Read@{S32Read}}
+\index{S32Read@{S32Read}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{S32Read()}{S32Read()}}
+{\footnotesize\ttfamily int32\+\_\+t CBinary\+Input\+Stream\+::\+S32\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a 32-\/bit signed integer from the stream. 
+
+\begin{DoxyReturn}{Returns}
+The 32-\/bit signed integer read 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCBinaryInputStream_a998c319caf68fb85c8f32ffb8978bc93}\label{classCBinaryInputStream_a998c319caf68fb85c8f32ffb8978bc93}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!S32Read\_Modified@{S32Read\_Modified}}
+\index{S32Read\_Modified@{S32Read\_Modified}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{S32Read\_Modified()}{S32Read\_Modified()}}
+{\footnotesize\ttfamily int32\+\_\+t CBinary\+Input\+Stream\+::\+S32\+Read\+\_\+\+Modified (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a 32-\/bit signed integer from the file object. 
+
+\begin{DoxyReturn}{Returns}
+The 32-\/bit signed integer read 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCBinaryInputStream_a9e21eb31327c42a5b705df25833c45db}\label{classCBinaryInputStream_a9e21eb31327c42a5b705df25833c45db}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!S8Read@{S8Read}}
+\index{S8Read@{S8Read}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{S8Read()}{S8Read()}}
+{\footnotesize\ttfamily int8\+\_\+t CBinary\+Input\+Stream\+::\+S8\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a 8-\/bit signed integer from the stream. 
+
+\begin{DoxyReturn}{Returns}
+The 8-\/bit signed integer read 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCBinaryInputStream_a0f9b99ebbdcd0caad258a2e8ba89b136}\label{classCBinaryInputStream_a0f9b99ebbdcd0caad258a2e8ba89b136}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!S8Read\_Modified@{S8Read\_Modified}}
+\index{S8Read\_Modified@{S8Read\_Modified}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{S8Read\_Modified()}{S8Read\_Modified()}}
+{\footnotesize\ttfamily int8\+\_\+t CBinary\+Input\+Stream\+::\+S8\+Read\+\_\+\+Modified (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a 8-\/bit signed integer from the file object. 
+
+\begin{DoxyReturn}{Returns}
+The 8-\/bit signed integer read 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCBinaryInputStream_a0832f2effc00494531952415808d30d1}\label{classCBinaryInputStream_a0832f2effc00494531952415808d30d1}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!U16Read@{U16Read}}
+\index{U16Read@{U16Read}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{U16Read()}{U16Read()}}
+{\footnotesize\ttfamily uint16\+\_\+t CBinary\+Input\+Stream\+::\+U16\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a 16-\/bit unsigned integer from the stream. 
+
+\begin{DoxyReturn}{Returns}
+The 16-\/bit unsigned integer read 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCBinaryInputStream_ad6c9f49dc58e46126fe1359587cc134c}\label{classCBinaryInputStream_ad6c9f49dc58e46126fe1359587cc134c}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!U16Read\_Modified@{U16Read\_Modified}}
+\index{U16Read\_Modified@{U16Read\_Modified}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{U16Read\_Modified()}{U16Read\_Modified()}}
+{\footnotesize\ttfamily uint16\+\_\+t CBinary\+Input\+Stream\+::\+U16\+Read\+\_\+\+Modified (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a 16-\/bit unsigned integer from the file object. 
+
+\begin{DoxyReturn}{Returns}
+The 16-\/bit unsigned integer read 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCBinaryInputStream_a1e2c6bd78260615740575d6b133ee0e9}\label{classCBinaryInputStream_a1e2c6bd78260615740575d6b133ee0e9}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!U32Read@{U32Read}}
+\index{U32Read@{U32Read}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{U32Read()}{U32Read()}}
+{\footnotesize\ttfamily uint32\+\_\+t CBinary\+Input\+Stream\+::\+U32\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a 32-\/bit unsigned integer from the stream. 
+
+\begin{DoxyReturn}{Returns}
+The 32-\/bit unsigned integer read 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCBinaryInputStream_ae4c647a5ccb82871462421dd007c04d7}\label{classCBinaryInputStream_ae4c647a5ccb82871462421dd007c04d7}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!U32Read\_Modified@{U32Read\_Modified}}
+\index{U32Read\_Modified@{U32Read\_Modified}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{U32Read\_Modified()}{U32Read\_Modified()}}
+{\footnotesize\ttfamily uint32\+\_\+t CBinary\+Input\+Stream\+::\+U32\+Read\+\_\+\+Modified (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a 32-\/bit unsigned integer from the file object. 
+
+\begin{DoxyReturn}{Returns}
+The 32-\/bit unsigned integer read 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCBinaryInputStream_aa80661ec7c0518682e8d1a69aa14e525}\label{classCBinaryInputStream_aa80661ec7c0518682e8d1a69aa14e525}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!U8Read@{U8Read}}
+\index{U8Read@{U8Read}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{U8Read()}{U8Read()}}
+{\footnotesize\ttfamily byte CBinary\+Input\+Stream\+::\+U8\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a byte from the stream. 
+
+\begin{DoxyReturn}{Returns}
+The byte read 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCBinaryInputStream_a7b0771d1d99113621777fcd2475810b3}\label{classCBinaryInputStream_a7b0771d1d99113621777fcd2475810b3}} 
+\index{CBinaryInputStream@{CBinaryInputStream}!U8Read\_Modified@{U8Read\_Modified}}
+\index{U8Read\_Modified@{U8Read\_Modified}!CBinaryInputStream@{CBinaryInputStream}}
+\doxysubsubsection{\texorpdfstring{U8Read\_Modified()}{U8Read\_Modified()}}
+{\footnotesize\ttfamily byte CBinary\+Input\+Stream\+::\+U8\+Read\+\_\+\+Modified (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a byte from the file object. 
+
+\begin{DoxyReturn}{Returns}
+The byte read 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+P2/bis.\+h\item 
+src/\+P2/bis.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,44 @@
+\hypertarget{structSLOTHEAP}{}\doxysection{SLOTHEAP Struct Reference}
+\label{structSLOTHEAP}\index{SLOTHEAP@{SLOTHEAP}}
+
+
+{\ttfamily \#include $<$slotheap.\+h$>$}
+
+
+
+Collaboration diagram for SLOTHEAP\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{structSLOTHEAP__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structSLOTHEAP_af29c3cde61e620646767c1b670a9a642}\label{structSLOTHEAP_af29c3cde61e620646767c1b670a9a642}} 
+int {\bfseries cb}
+\item 
+\mbox{\Hypertarget{structSLOTHEAP_ad0c6528408a755fa32298921b31125b5}\label{structSLOTHEAP_ad0c6528408a755fa32298921b31125b5}} 
+byte $\ast$ {\bfseries ab}
+\item 
+\mbox{\Hypertarget{structSLOTHEAP_a51ddfd1b3af6229b9bf189d17bad8203}\label{structSLOTHEAP_a51ddfd1b3af6229b9bf189d17bad8203}} 
+struct \mbox{\hyperlink{structSLOT}{SLOT}} $\ast$ {\bfseries pslot\+Free}
+\item 
+\mbox{\Hypertarget{structSLOTHEAP_a43abaf3b2ba5c6e9b52d5f0ed30cafa0}\label{structSLOTHEAP_a43abaf3b2ba5c6e9b52d5f0ed30cafa0}} 
+int {\bfseries c\+Alloc}
+\item 
+\mbox{\Hypertarget{structSLOTHEAP_a89e5453992efdac5535ed080cb2d412a}\label{structSLOTHEAP_a89e5453992efdac5535ed080cb2d412a}} 
+int {\bfseries c\+In\+Use}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Slotheap
+
+A slotheap is a heap of fixed size slots. The slots are allocated in a contiguous block of memory. The slotheap maintains a pointer to the next free slot. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+P2/slotheap.\+h\end{DoxyCompactItemize}
