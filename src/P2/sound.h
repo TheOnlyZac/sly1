@@ -1,9 +1,14 @@
+/**
+ * @file sound.h
+ *
+ * @brief Declarations for the sound system.
+*/
 #pragma once
 #include <util.h>
 #include <cstdint>
 
 /**
- * EASND
+ * @brief EASND
 */
 struct EASND {
     uint16_t csfxid;
@@ -22,7 +27,7 @@ struct sound {
 };
 
 /**
- * Sound Effect ID
+ * @brief Sound Effect ID
 */
 enum SFXID {
     SFXID_Nil = -1,
@@ -477,7 +482,7 @@ enum SFXID {
 };
 
 /**
- * ??? Kind
+ * @brief ??? Kind
  *
  * Categorizes sound effects into groups.
 */
@@ -496,7 +501,7 @@ enum MVGK {
 };
 
 /**
- * ??? Unknown
+ * @brief ??? Unknown
 */
 struct ISI {
     enum SFXID sfxid;

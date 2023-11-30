@@ -1,3 +1,8 @@
+/**
+ * @file mpeg.cpp
+ *
+ * @brief Implements MPEG video and audio playback.
+*/
 #include <mpeg.h>
 
 unsigned int g_phasemem{}; // todo: what data type is this

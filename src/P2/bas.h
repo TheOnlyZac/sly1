@@ -1,9 +1,14 @@
+/**
+ * @file bas.h
+ *
+ * @brief Declarations for the binary async stream.
+*/
 #pragma once
 #include <stdint.h>
 #include <util.h>
 
 /**
- * Binary Async Stream Kind
+ * @brief Binary Async Stream Kind
 */
 enum BASK : int
 {
@@ -14,7 +19,7 @@ enum BASK : int
 };
 
 /**
- * Binary Async Stream
+ * @brief Binary Async Stream
 */
 class CBinaryAsyncStream
 {

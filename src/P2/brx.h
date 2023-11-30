@@ -1,3 +1,8 @@
+/**
+ * @file brx.h
+ *
+ * @brief Declarations for interaction with binary resource archives.
+*/
 #include <alo.h>
 #include <game.h>
 #include <sw.h>

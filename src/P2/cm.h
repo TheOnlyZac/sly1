@@ -1,7 +1,12 @@
+/**
+ * @file cm.h
+ *
+ * @brief Declarations for the game camera.
+*/
 #pragma once
 
 /**
- * Game Camera
+ * @brief Game Camera
 */
 struct CM
 {
@@ -10,8 +15,8 @@ struct CM
 };
 
 // Global variables
-static CM g_cm;
-extern CM* g_pcm;
+static CM g_cm; // Main game camera
+extern CM* g_pcm; // Pointer to the main game camera
 
 /**
  * @brief Sets up the game camera.

@@ -1,7 +1,12 @@
+/**
+ * @file ui.h
+ *
+ * @brief Declarations for the user interface.
+*/
 #pragma once
 
 /**
- * UI state
+ * @brief UI state
  *
  * Might not be accurate as it seems to differ from the May proto
 */
@@ -20,7 +25,7 @@ enum UIS
 };
 
 /**
- * UI
+ * @brief User Interface
 */
 struct UI
 {
@@ -28,7 +33,7 @@ struct UI
 };
 
 // Global variables
-static UI g_ui;
+static UI g_ui; // Main UI
 
 /**
  * @brief Sets the UI state.

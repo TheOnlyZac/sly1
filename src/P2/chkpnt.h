@@ -1,17 +1,22 @@
+/**
+ * @file chkpnt.h
+ *
+ * @brief Declarations for the checkpoint system.
+*/
 #pragma once
 #include <util.h>
 #include <game.h>
 #include <vec.h>
 
 /**
- * Checkpoint
+ * @brief Checkpoint
 */
 struct CHKPNT
 {
 };
 
 /**
- * Checkpoint Manager
+ * @brief Checkpoint Manager
 */
 struct CHKMGR
 {

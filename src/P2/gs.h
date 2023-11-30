@@ -1,15 +1,14 @@
 /**
  * @file gs.h
  *
- * Game state related functions and structures.
+ * @brief Declarations for the game state manipulation.
  *
- * Not to be confused with Graphic Synthesizer, which is the name of the PS2's GPU
- * and is also abbreviated as GS.
+ * @note Not to be confused with Graphics Synthesizer, which is also abbreviated GS.
 */
 #pragma once
 
 /**
- * Game State Flags
+ * @brief Game State Flags
 */
 enum FGS
 {
@@ -21,7 +20,7 @@ enum FGS
 };
 
 /**
- * World State Flags
+ * @brief World State Flags
 */
 enum FWS
 {
@@ -34,7 +33,7 @@ enum FWS
 };
 
 /**
- * Level State Flags
+ * @brief Level State Flags
 */
 enum FLS
 {
@@ -46,7 +45,7 @@ enum FLS
 };
 
 /**
- * Game World ID
+ * @brief Game World ID
 */
 enum GAMEWORLD
 {
@@ -60,7 +59,7 @@ enum GAMEWORLD
 };
 
 /**
- * World Level ID
+ * @brief World Level ID
 */
 enum WORLDLEVEL : int
 {
@@ -77,7 +76,7 @@ enum WORLDLEVEL : int
 };
 
 /**
- * Level State
+ * @brief Level State
 */
 struct LS
 {
@@ -96,7 +95,7 @@ struct LS
 };
 
 /**
- * World State
+ * @brief World State
 */
 struct WS
 {
@@ -109,7 +108,7 @@ struct WS
 };
 
 /**
- * Game State
+ * @brief Game State
 */
 typedef int GRFGS;
 typedef int GRFVAULT;
@@ -133,7 +132,7 @@ struct GS
 };
 
 /**
- * Level Info
+ * @brief Level Info
  *
  * Used by the game to load the level.
 */
@@ -154,10 +153,10 @@ struct PchzLevel // maybe wrong name
 };
 
 // Global variables
-extern GS* g_pgsCur;
-extern WS* g_pwsCur;
-extern LS* g_plsCur;
-extern PchzLevel pchzLevelTable[];
+extern GS* g_pgsCur; // Current game state
+extern WS* g_pwsCur; // Current world state
+extern LS* g_plsCur; // Current level state
+extern PchzLevel pchzLevelTable[]; // Level table
 
 /**
  * @brief Populate a default pchz table for testing.

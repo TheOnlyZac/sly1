@@ -1,10 +1,15 @@
+/**
+ * @file cat.h
+ *
+ * @brief Declarations for working with WAC and WAL catalogs.
+*/
 #pragma once
 #include <iostream>
 
 typedef unsigned int uint; //todo move to util header
 
 /**
- * File Location
+ * @brief File Location
  *
  * Stores the file location and size in bytes.
 */
@@ -15,7 +20,7 @@ struct FCL
 };
 
 /**
- * File Key
+ * @brief File Key
  *
  * Used to identify the file type.
 */
@@ -32,7 +37,7 @@ enum FK {
 };
 
 /**
- * WAL Entry
+ * @brief WAL Entry
  *
  * Stores the file key and file location & size.
 */
@@ -42,6 +47,8 @@ struct WALE {
 };
 
 /**
+ * @brief File Location
+ *
  * Handles information about the file sector and size.
 */
 class CFileLocation
@@ -53,6 +60,8 @@ public:
 };
 
 /**
+ * @brief WAL Catalog
+ *
  * Handles the WAC and WAL files.
 */
 class CWalCatalog
@@ -117,6 +126,8 @@ public:
 };
 
 /**
+ * @brief Catalog
+ *
  * Related to the WAC and WAL files.
 */
 class CCatalog

@@ -1,10 +1,15 @@
+/**
+ * @file lo.h
+ *
+ * @brief Declares Level Object struct.
+*/
 #pragma once
 #include <basic.h>
 #include <game.h>
 #include <dl.h>
 
 /**
- * Level Object
+ * @brief Level Object
 */
 struct LO {
     struct BASIC field0_0x0;

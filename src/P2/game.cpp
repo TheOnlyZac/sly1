@@ -1,3 +1,8 @@
+/**
+ * @file game.cpp
+ *
+ * @brief Implements functions for manipulating the game world.
+*/
 #include <game.h>
 #include <joy.h>
 #include <gs.h>

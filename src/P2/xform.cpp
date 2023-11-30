@@ -1,3 +1,8 @@
+/**
+ * @file xform.cpp
+ *
+ * @brief Implements EXIT transformation functions.
+*/
 #include <xform.h>
 
 void SetExitExits(EXIT* pexit, EXITS exits)

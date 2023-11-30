@@ -1,7 +1,12 @@
+/**
+ * @file screen.h
+ *
+ * @brief Declarations for the screen blot system.
+*/
 #pragma once
 
 /**
- * Blot State
+ * @brief Blot State
 */
 enum BLOTS
 {
@@ -13,9 +18,9 @@ enum BLOTS
 };
 
 /**
- * Blot
+ * @brief Blot
  *
- * Used to draw screen objects
+ * Used to draw screen objects.
 */
 struct BLOT
 {

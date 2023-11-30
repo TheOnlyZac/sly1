@@ -1,3 +1,8 @@
+/**
+ * @file util.h
+ *
+ * @brief Declarations for utility functions.
+*/
 #pragma once
 
 typedef bool BOOL;
@@ -8,7 +13,7 @@ typedef unsigned char BYTE;
 typedef unsigned int undefined4;
 
 /**
- * Limits for a float
+ * @brief Limits for a float
 */
 struct LM
 {
@@ -20,7 +25,7 @@ struct LM
 };
 
 // Global variables
-extern LM g_lmZeroOne;
+extern LM g_lmZeroOne; // Limits with the range [0, 1]
 
 /**
  * @brief Normalizes a float to the range [-PI, PI].

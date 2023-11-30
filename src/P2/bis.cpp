@@ -1,3 +1,8 @@
+/**
+ * @file bis.h
+ *
+ * @brief Implements the binary input stream class.
+*/
 #include <bis.h>
 
 CBinaryInputStream::CBinaryInputStream(std::string fileName)

@@ -1,3 +1,8 @@
+/**
+ * @file prog.cpp
+ *
+ * @brief Implements the CProg clas.
+*/
 #include <prog.h>
 
 void CProg::Begin()

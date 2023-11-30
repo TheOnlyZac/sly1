@@ -1,7 +1,12 @@
+/**
+ * @file light.h
+ *
+ * @brief Light and shadow system.
+*/
 #pragma once
 
 /**
- * Light shadow & midtone
+ * @brief Light shadow & midtone
 */
 struct LSM
 {

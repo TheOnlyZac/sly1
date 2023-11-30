@@ -1,10 +1,15 @@
+/**
+ * @file sensor.h
+ *
+ * @brief Declarations for the sensor system.
+*/
 #pragma once
 #include <util.h>
 
 typedef unsigned char byte;
 
 /**
- * Sensor State
+ * @brief Sensor State
 */
 enum SENSORS
 {
@@ -12,9 +17,9 @@ enum SENSORS
 };
 
 /**
- * Sensor
+ * @brief Sensor
  *
- * todo: fix missing fields and rewrite
+ * @todo Fix missing fields and rewrite struct
 */
 struct SENSOR
 {

@@ -1,3 +1,8 @@
+/**
+ * @file frm.cpp
+ *
+ * @brief Defines functions for manipulating frames.
+*/
 #include <frm.h>
 #include <phasemem.h>
 

@@ -1,3 +1,8 @@
+/**
+ * @file ui.cpp
+ *
+ * @brief Implements for the user interface.
+*/
 #include <ui.h>
 #include <screen.h>
 

@@ -1,3 +1,8 @@
+/**
+ * @file mpeg.h
+ *
+ * @brief Declarations for the MPEG system.
+*/
 #pragma once
 #include <bis.h>
 #include <bq.h>
@@ -11,7 +16,7 @@
 #include <util.h>
 
 /**
- * Mpeg Audio State
+ * @brief Mpeg Audio State
 */
 enum MAUDS
 {
@@ -24,7 +29,7 @@ enum MAUDS
 };
 
 /**
- * MPEG video info
+ * @brief MPEG video info
 */
 struct sceMpeg {
     int width;
@@ -41,7 +46,7 @@ struct sceMpeg {
 };
 
 /**
- * QueueOutput IOP
+ * @brief QueueOutput IOP
  * Todo: Inherit from CQueueOutput class once that exists
 */
 class CQueueOutputIop /* : public CQueueOutput */
@@ -57,7 +62,7 @@ private:
 };
 
 /**
- * MPEG Audio
+ * @brief MPEG Audio
 */
 class CMpegAudio
 {
@@ -74,7 +79,7 @@ class CMpegAudio
 };
 
 /**
- * MPEG video
+ * @brief MPEG video
 */
 class CMpeg
 {
@@ -136,4 +141,4 @@ public:
 };
 
 // Global variables
-static CMpeg g_mpeg;
+static CMpeg g_mpeg; // Current MPEG

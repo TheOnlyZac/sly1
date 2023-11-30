@@ -1,3 +1,8 @@
+/**
+ * @file sw.h
+ *
+ * @brief Declares the scene world and related classes.
+*/
 #pragma once
 #include <bis.h>
 #include <dl.h>
@@ -8,13 +13,16 @@
 #include <sw.h>
 #include <vec.h>
 
+/**
+ * @brief Unknown, needs more research
+*/
 struct PSL {
     int cploCloneFree;
     LO** aploClone;
 };
 
 /**
- * Scene World
+ * @brief Scene World
  *
  * The scene world is the game world. It contains all the objects in the game
  * world, and is responsible for rendering them.
@@ -119,8 +127,8 @@ struct SW {
 };
 
 // Global variables
-static SW g_sw;
-extern SW* g_psw;
+static SW g_sw; // Current scene world
+extern SW* g_psw; // Pointer to the current scene world
 
 /**
  * @brief Sets up bulk data from BRX.

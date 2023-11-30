@@ -1,5 +1,11 @@
+/**
+ * @file dl.h
+*/
 #pragma once
 
+/**
+ * @brief Unknown, needs more research
+*/
 struct DL {
     void* pvFirst;
     struct LO* ploFirst;

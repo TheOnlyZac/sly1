@@ -1,3 +1,8 @@
+/**
+ * @file vec.h
+ *
+ * @brief Declares VECTOR and other related classes/functions.
+*/
 #pragma once
 #include <iostream>
 #include <so.h>
@@ -7,7 +12,7 @@ typedef unsigned char byte;
 typedef int GRFPVA;
 
 /**
- * Vector3 with X, Y, and Z
+ * @brief Vector3 with X, Y, and Z
 */
 struct VECTOR
 {
@@ -18,7 +23,7 @@ struct VECTOR
 };
 
 /**
- * Unknown
+ * @brief Unknown, needs more research
 */
 struct BSPC
 {
@@ -28,7 +33,7 @@ struct BSPC
 };
 
 /**
- * Constraint Type
+ *@brief  Constraint Type
 */
 enum CT
 {
@@ -39,7 +44,7 @@ enum CT
 };
 
 /**
- * Constraint
+ * @brief Constraint
 */
 struct CONSTR
 {
@@ -48,7 +53,7 @@ struct CONSTR
 };
 
 /**
- * Unknown
+ * @brief Unknown, needs more research
 */
 struct CLQ
 {

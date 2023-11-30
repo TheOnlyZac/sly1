@@ -1,3 +1,8 @@
+/**
+ * @file gs.cpp
+ *
+ * @brief Implements functions for manipulating the game state.
+*/
 #include <gs.h>
 #include <cstdio>
 

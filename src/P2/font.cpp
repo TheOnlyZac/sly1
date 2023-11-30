@@ -1,3 +1,8 @@
+/**
+ * @file font.cpp
+ *
+ * @brief Defines functions for manipulating fonts.
+*/
 #include <font.h>
 
 void CTextBox::SetPos(float x, float y)

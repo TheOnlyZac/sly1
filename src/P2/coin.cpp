@@ -1,3 +1,8 @@
+/**
+ * @file coin.cpp
+ *
+ * @brief Implements coin interactions.
+*/
 #include <coin.h>
 #include <game.h>
 #include <gs.h>

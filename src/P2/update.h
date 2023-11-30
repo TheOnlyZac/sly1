@@ -1,3 +1,8 @@
+/**
+ * @file update.h
+ *
+ * @brief Declarations for functions that update game elements.
+*/
 #pragma once
 #include <sw.h>
 

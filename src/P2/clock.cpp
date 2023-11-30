@@ -1,13 +1,22 @@
+/**
+ * @file clock.cpp
+ *
+ * @brief Implements the game clock.
+*/
 #include <clock.h>
 
-/* Set magic numbers */
-static constexpr int CLOCK_FRAMERATE = 60;
-static constexpr float CLOCK_FRAMETIME = 1.f / CLOCK_FRAMERATE;
+/**
+ * Set magic numbers
+*/
+static constexpr int CLOCK_FRAMERATE = 60; // 60 FPS
+static constexpr float CLOCK_FRAMETIME = 1.f / CLOCK_FRAMERATE; // 1/60th of a second
 
-static constexpr int CLOCK_EE_TICK_RATE = 294912000;
-static constexpr float CLOCK_EE_TICK_DURATION = 1.f / CLOCK_EE_TICK_RATE;
+static constexpr int CLOCK_EE_TICK_RATE = 294912000; // 294.912 MHz
+static constexpr float CLOCK_EE_TICK_DURATION = 1.f / CLOCK_EE_TICK_RATE; // 1/294.912 MHz
 
-/* Init global/static vars */
+/**
+ * Init global/static vars
+*/
 float g_rtClock = 1.0;
 float g_trClockPowerUp = 1.0;
 CLOCK g_clock;

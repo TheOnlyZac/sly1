@@ -1,3 +1,8 @@
+/**
+ * @file wipe.h
+ *
+ * @brief Declarations for the wipe system.
+*/
 #pragma once
 #include <dialog.h>
 #include <game.h>
@@ -10,7 +15,7 @@
 typedef unsigned char byte;
 
 /**
- * Wipe Kind
+ * @brief Wipe Kind
 */
 enum WIPEK
 {
@@ -22,7 +27,7 @@ enum WIPEK
 };
 
 /**
- * Wipe State
+ * @brief Wipe State
 */
 enum WIPES
 {
@@ -34,7 +39,7 @@ enum WIPES
 };
 
 /**
- * Wipe
+ * @brief Wipe
 */
 struct WIPE
 {
@@ -48,13 +53,13 @@ struct WIPE
 };
 
 // Global variables
-static KEYHOLE* g_pkeyhole;
-static DIALOG* g_pdialogCalling;
-static WM g_wmc;
-static TRANS trans; // ?
+static KEYHOLE* g_pkeyhole; // Keyhole
+static DIALOG* g_pdialogCalling; // Dialogue currently being called
+static WM g_wmc; // Unknown
+static TRANS trans; // Unknown
 
-static WIPE g_wipe;
-extern WIPE* g_pwipe;
+static WIPE g_wipe; // Main wipe
+extern WIPE* g_pwipe; // Pointer to the main wipe
 
 /**
  * @brief Sets the values on the global transition and calles ActivateWipe to warp given world.
@@ -126,4 +131,4 @@ void SetWipeButtonTrans(WIPE* pwipe, TRANS* ptrans, WIPEK wipek);
  * @param pjoy Pointer to the joypad
  * @param wipesNew New wipe state
 */
-int  FCatchWipeButtonTrans(WIPE* pwipe, JOY* pjoy, WIPES wipesNew);
+int FCatchWipeButtonTrans(WIPE* pwipe, JOY* pjoy, WIPES wipesNew);

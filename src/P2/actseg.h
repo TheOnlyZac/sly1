@@ -1,9 +1,14 @@
+/**
+ * @file actseg.h
+ *
+ * @brief Declarations for actor segments.
+*/
 #pragma once
 #include <vec.h>
 #include <util.h>
 
 /**
- * Unknown
+ * @brief Unknown, needs more research
 */
 struct ACTLA
 {

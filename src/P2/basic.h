@@ -1,3 +1,8 @@
+/**
+ * @file basic.h
+ *
+ * @brief Declares the BASIC struct.
+*/
 #pragma once
 
 struct BASIC

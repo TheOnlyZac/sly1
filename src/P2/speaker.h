@@ -1,3 +1,8 @@
+/**
+ * @file speaker.h
+ *
+ * @brief Declarations for the speaker system.
+*/
 #pragma once
 #include <game.h>
 #include <joy.h>
@@ -9,7 +14,7 @@
 typedef int GRFPVA;
 
 /**
- * Speaker
+ * @brief Speaker
  *
  * Either represents a speaker that emits sound in the game world, or a
  * physical speaker in the real world. More research is needed.
@@ -37,7 +42,7 @@ struct SPEAKER
 };
 
 /**
- * Dialog Player
+ * @brief Dialog Player
 */
 struct DP
 {

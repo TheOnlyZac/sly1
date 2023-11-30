@@ -1,9 +1,14 @@
+/**
+ * @file aseg.h
+ *
+ * @brief Declarations for animation segments.
+*/
 #pragma once
 #include <util.h>
 #include <game.h>
 
 /**
- * Animation Segment
+ * @brief Animation Segment
 */
 struct ASEG
 {

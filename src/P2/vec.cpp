@@ -1,3 +1,8 @@
+/**
+ * @file vec.cpp
+ *
+ * @brief Defines functions for vector math.
+*/
 #include <vec.h>
 #include <cmath>
 
