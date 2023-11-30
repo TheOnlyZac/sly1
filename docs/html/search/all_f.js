@@ -17,9 +17,10 @@ var searchData=
   ['sfr_100',['SFR',['../structSFR.html',1,'']]],
   ['slot_101',['SLOT',['../structSLOT.html',1,'']]],
   ['slotheap_102',['SLOTHEAP',['../structSLOTHEAP.html',1,'']]],
-  ['so_103',['SO',['../structSO.html',1,'']]],
-  ['sound_104',['sound',['../structsound.html',1,'']]],
-  ['speaker_105',['SPEAKER',['../structSPEAKER.html',1,'']]],
-  ['start_106',['Start',['../classCMpeg.html#a9b83f6ada357c46a81102fc2943af749',1,'CMpeg']]],
-  ['sw_107',['SW',['../structSW.html',1,'']]]
+  ['sly_20cooper_20and_20the_20thievius_20raccoonus_103',['Sly Cooper and the Thievius Raccoonus',['../index.html',1,'']]],
+  ['so_104',['SO',['../structSO.html',1,'']]],
+  ['sound_105',['sound',['../structsound.html',1,'']]],
+  ['speaker_106',['SPEAKER',['../structSPEAKER.html',1,'']]],
+  ['start_107',['Start',['../classCMpeg.html#a9b83f6ada357c46a81102fc2943af749',1,'CMpeg']]],
+  ['sw_108',['SW',['../structSW.html',1,'']]]
 ];

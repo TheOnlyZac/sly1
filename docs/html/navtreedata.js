@@ -25,6 +25,11 @@
 var NAVTREE =
 [
   [ "Sly Cooper and the Thievius Raccoonus", "index.html", [
+    [ "Frequently Asked Questions", "index.html#autotoc_md1", null ],
+    [ "Getting Started", "index.html#autotoc_md7", [
+      [ "Windows/Linux - CLI", "index.html#autotoc_md8", null ],
+      [ "Windows - Visual Studio", "index.html#autotoc_md9", null ]
+    ] ],
     [ "Todo List", "todo.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -49,10 +54,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "actseg_8h_source.html",
-"slotheap_8h_source.html",
-"structCONSTR.html",
-"structEASND.html#a65af8f3c61257693cde95ab2a96fb49b",
-"structSO.html#a6c4f1d94da88de4c04298e7013c03f9e"
+"mpeg_8h_source.html",
+"structCLQ.html",
+"structDP.html#ac2457b16e2dcfec03dbeb70bd4a25955",
+"structSO.html#a45a1449e536485d1939659c5dcc9edd9"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
