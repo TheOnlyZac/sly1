@@ -1,5 +1,5 @@
 # Sly Cooper and the Thievius Raccoonus
-<img src="logo_1x.png" style="margin:7px" align="right" width="33%">
+<img src="logo.png" style="margin:7px" align="right" width="33%">
 
 <!-- shields.io badges -->
 [![Build status][build-badge]][build-url] <!--[![AppVeyor tests][tests-badge]][tests-url]--> [![Discord Channel][discord-badge]][discord-url] [![Contributors][contributors-badge]][contributors-url] [![Docs][docs-badge]][docs-url] [![Wiki][wiki-badge]][wiki-url]
@@ -29,10 +29,10 @@
 [wiki-badge]: https://img.shields.io/badge/wiki-slymods.info-2C4AA8
 
 This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoonus*](https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus) for the PlayStation 2. It is based on the NTSC-U version of the game (`SCUS-971.98`).
-* Documenation of the code is available on Github Pages at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1).
-*  of the game's internal structures and mechanics can be found on the [SlyMods Wiki][wiki-url].
 
-The goal of this project is to better understand how the game works. This repo does not contain any game assets or code from the game's executable.
+The goal of this project is to better understand how the game works. *This repo does not contain any game assets or code from the game's executable.*
+
+Documenation of the code can be found at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1). Research on the game's internal structures and mechanics is available on the [SlyMods Wiki][wiki-url].
 
 New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to begin, you can [join our Discord server][discord-url] and read [CONTRIBUTING.md](/CONTRIBUTING.MD) for info on how to get started.
 
@@ -63,6 +63,52 @@ Clone the repo and open Visual Studio. Click `File > Open > CMake...` and open t
 For unit testing, build the target "Check" and the tests should appear in the Test Explorer window. It will run the tests, and the results will show in the Test Explorer as well as the Output window.
 
 
+## Structure
+
+The project is split into two main directories: `src` and `test`. The `src` folder contains the decompiled code, and the `test` folder contains unit tests.
+
+The `src` folder contains the directory `P2` which contains the code for the game engine. `P2/splice` contains the code for the game's scripting engine, Splice.
+
+The `test` folder contains the directory comprises subdirectories for each game system. Each subdirectory contains unit tests for that system.
+
+```
+sly1
+├───src
+│   ├───P2
+│   │   ├───splice
+│   │   └───...
+└───test
+    ├───P2
+    │   ├───clock
+    |   |───difficulty
+    │   └───...
+    └───...
+```
+
+## Unit Tests
+
+Unit tests are implemented using CTest. Each test is a program with a main function; the test passes if the program exits with a return code of 0. Each subdirectory in the `test` folder contains a `CMakeLists.txt` file which adds the unit test using the `add_unit_test` command as follows:
+
+```cmake
+add_unit_test(PARALLEL TRUE NAME system.test_name SOURCES test_name.cpp LIBS ${P2_LIB_TARGET})
+```
+
+`system` should be the same as the name of the directory where you are adding the test. `test_name` should be a unique name for the test which is the same as the source file containing the test.
+
+The `PARALLEL` option specifies whether the test can be run in parallel with other tests. If `PARALLEL` is `TRUE`, the test will be run in parallel with other tests. If `PARALLEL` is `FALSE`, the test will be run in serial with other tests.
+
+The test runner is a program called `check` which runs each test and reports the results. It is built automatically when you build the `check` target.
+
+### Writing Tests
+
+If you are not function matching, it is recommended that you write tests for any new code you add to ensure it behaves the same way as the original code. You can use the `JtAssert(condition)` macro to assert that a condition is true. If the condition is false, the test will fail and the test runner will print the file and line number where the assertion failed.
+
+```cpp
+JtAssert(1 == 1); // Passes
+JtAssert(1 == 2); // Fails
+```
+
+
 ## FAQ
 
 #### What is a decompilation?
@@ -85,7 +131,7 @@ Most of the decompiled code is not yet matching. We are actively researching the
 
 If you would like to contribute but have no idea where to start, you can [join our discord server](https://discord.gg/gh5xwfj) and read [CONTRIBUTING.md](/CONTRIBUTING.MD) for some resources and advice to get started!
 
-<!-- ## Star History
+## Star History
 
 <a href="https://star-history.com/#theonlyzac/sly1&Date">
   <picture>
@@ -93,4 +139,4 @@ If you would like to contribute but have no idea where to start, you can [join o
     <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=theonlyzac/sly1&type=Date" />
     <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=theonlyzac/sly1&type=Date" />
   </picture>
-</a> -->
+</a>
