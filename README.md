@@ -33,7 +33,7 @@ This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoo
 
 The goal of this project is to better understand how the game works. This repo does not contain any game assets or code from the game's executable.
 
-Documenation of the code can be found at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1). For further reading on the game's internal structures and mechanics, go to the [SlyMods Wiki][wiki-url].
+Documentation of the code can be found at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1). For further reading on the game's internal structures and mechanics, go to the [SlyMods Wiki][wiki-url].
 
 New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to begin, check out [CONTRIBUTING.md](/CONTRIBUTING.MD) and feel free to [join our Discord server][discord-url] for guidance.
 
