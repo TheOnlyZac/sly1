@@ -66,11 +66,11 @@ For unit testing, build the target "Check" and the tests should appear in the Te
 
 ## Structure
 
-The project is split into two main directories: `src` and `test`. The `src` folder contains the decompiled code, and the `test` folder contains unit tests.
+The project is split into two main directories: `src` and `test`. The `src` directory contains the decompiled code, and the `test` directory contains unit tests.
 
-The `src` folder contains the directory `P2` which contains the code for the game engine. `P2/splice` contains the code for the game's scripting engine, Splice.
+* All of the code for the game engine is in `src/P2`. Code for the game's scripting engine, Splice, is in `src/P2/splice`.
 
-The `test` folder contains the directory comprises subdirectories for each game system. Each subdirectory contains unit tests for that system.
+* The `test` directory comprises subdirectories for each game system. Each subdirectory contains unit tests for that system.
 
 ```
 sly1
@@ -90,7 +90,7 @@ sly1
 
 #### What is a decompilation?
 
-When the developers created the game they wrote programming code that we call the source code. Then they compiled the source code into machine code that can run on the PS2. Our job is to reverse-engineer the compiled code and produce new, original code that behaves the same way. This process leaves us with code that is very similar (but not identical) to the source code and helps us understand what the programmers were thinking when they made the game.
+When the developers created the game, they wrote programming code that we call the source code, and compiled that into an exectuable which can run on the PS2. Our job is to reverse-engineer the compiled code and produce new, original code that behaves the same way. This process leaves us with code that is very similar (but not identical) to the source code and helps us understand what the programmers were thinking when they made the game.
 
 #### How does it work?
 
@@ -98,15 +98,15 @@ We use a tool called [Ghidra](https://ghidra-sre.org/) which was created by the 
 
 #### Has this ever been done before?
 
-This is one of the first large-scale PS2 decompilation projects. We take inspiration from other projects like the [Super Mario 64 decomp](https://github.com/n64decomp/sm64) for the N64 and the [Breath of the Wild decomp](https://github.com/zeldaret/botw) for the Wii U (the latter being more similar in scope to this project). There is also a Jak & Daxter decomp/PC port called [OpenGOAL](https://github.com/open-goal/jak-project), though that game is written in 98% GOAL language rather than C/C++.
+This is one of the first major PS2 decompilations. We take inspiration from other decomp projects such as the [Super Mario 64 decomp](https://github.com/n64decomp/sm64) for the N64 and the [Breath of the Wild decomp](https://github.com/zeldaret/botw) for the Wii U (the latter being more similar in scope to this project). There is a Jak & Daxter decomp/PC port called [OpenGOAL](https://github.com/open-goal/jak-project), though that game is written in 98% GOAL language rather than C/C++.
 
 #### Is this a matching decomp?
 
-Most of the decompiled code is not yet matching. We are actively researching the PS2 compiler and working to come up with with a process for function matching.
+Most of the decompiled code is not yet matching. We are actively researching the PS2 compiler and working to come up with with a process for function matching. If you would like to help, please join our [Discord server](https://discord.gg/gh5xwfj) and head to `#sly-research`.
 
 #### How can I help?
 
-If you would like to contribute but have no idea where to start, you can [join our discord server](https://discord.gg/gh5xwfj) and read [CONTRIBUTING.md](/CONTRIBUTING.MD) for some resources and advice to get started!
+If you want to contribute but have no idea where to start, check out [CONTRIBUTING.md](/CONTRIBUTING.MD) and feel free to [join our discord server](https://discord.gg/gh5xwfj) if you have any questions!
 
 ## Star History
 
