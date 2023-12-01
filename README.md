@@ -86,30 +86,6 @@ sly1
     └───...
 ```
 
-## Unit Tests
-
-Unit tests are implemented using CTest. Each test is a program with a main function; the test passes if the program exits with a return code of 0. Each subdirectory in the `test` folder contains a `CMakeLists.txt` file which adds the unit test using the `add_unit_test` command as follows:
-
-```cmake
-add_unit_test(PARALLEL TRUE NAME system.test_name SOURCES test_name.cpp LIBS ${P2_LIB_TARGET})
-```
-
-`system` should be the same as the name of the directory where you are adding the test. `test_name` should be a unique name for the test which is the same as the source file containing the test.
-
-The `PARALLEL` option specifies whether the test can be run in parallel with other tests. If `PARALLEL` is `TRUE`, the test will be run in parallel with other tests. If `PARALLEL` is `FALSE`, the test will be run in serial with other tests.
-
-The test runner is a program called `check` which runs each test and reports the results. It is built automatically when you build the `check` target.
-
-### Writing Tests
-
-If you are not function matching, it is recommended that you write tests for any new code you add to ensure it behaves the same way as the original code. You can use the `JtAssert(condition)` macro to assert that a condition is true. If the condition is false, the test will fail and the test runner will print the file and line number where the assertion failed.
-
-```cpp
-JtAssert(1 == 1); // Passes
-JtAssert(1 == 2); // Fails
-```
-
-
 ## FAQ
 
 #### What is a decompilation?

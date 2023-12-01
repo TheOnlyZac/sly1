@@ -1,4 +1,4 @@
-# Contributing Guide
+# Contributing
 
 Welcome to the Sly Cooper Decompilation Project! Please follow this guide to get started contributing.
 
@@ -6,6 +6,8 @@ Welcome to the Sly Cooper Decompilation Project! Please follow this guide to get
 1. [Beginner's Guide](#beginners-guide)
 2. [Code Review Process](#code-review-process)
 3. [Style Guide](#style-guide)
+4. [Code Examples](#code-examples)
+5. [Writing Tests](#writing-tests)
 
 ## Beginner's Guide
 
@@ -30,6 +32,10 @@ Replace `branch-name` with whatever you want to call your working branch. This w
 ### 4. Write your code
 
 Write your code in the `src` directory. You can use any text editor you like, but we recommend [Visual Studio](https://visualstudio.microsoft.com/downloads/).
+
+#### 4b. Write test cases
+
+If you are adding new code, it is strongly reocmmended that you also write unit tests for it. Unit tests use CTest and are located in the `test` directory. See the [unit tests section](#writing-tests) for more information.
 
 <!-- #### 4b. Match your code
 
@@ -57,7 +63,7 @@ When you are have pushed all commits to your fork and are ready to submit your c
 After you create a pull request, a code reviewer will reviwer it before it can be merged into the main branch. We are a volunteer-driven project, so please be patient while we review your code. These are the main things we will look for in your code:
 
 * It compiles and runs without any errors
-* It follows the [style guide](#Style Guide)
+* It follows the [style guide](#style-guide), or is at least clean and readble
 * Nothing is copy/pasted directly from Ghidra
 
 If everything looks good, we will merge your pull request as soon as possible. If anything needs to be fixed, we will let you know.
@@ -65,9 +71,20 @@ If everything looks good, we will merge your pull request as soon as possible. I
 
 ## Style Guide
 
+### Formatting
+
+Please try and follow these general rules when writing your code:
+
+* Indent with 4 spaces, not tabs.
+* Put opening curly braces on a new line.
+* Don't leave trailing whitespace at the end of lines.
+* End every file with a single blank line.
+
 ### Symbol Names
 
-Use official names from the [Sly 1 May 2002 demo](https://hiddenpalace.org/Sly_Cooper_and_the_Thievius_Raccoonus_(May_19,_2002_prototype)) wherever they are known. Official names use a loose version of [Hungarian Notation](https://en.wikipedia.org/wiki/Hungarian_notation). If the official name for a symbol is not known you should try and mimic that style, which is as follows.
+For variables/symbols, use the official name from the [Sly 1 May 2002 demo](https://hiddenpalace.org/Sly_Cooper_and_the_Thievius_Raccoonus_(May_19,_2002_prototype)) if it is known. If it is not known, use clear and descriptive name.
+
+When naming symbols, mimic the style of the official symbol names, Official names use a loose version of [Hungarian Notation](https://en.wikipedia.org/wiki/Hungarian_notation). The most important part is the prefixes used to denote the **type** and **scope** of a symbol, as shown below.
 
 These prefixes denote the **type** of a symbol:
 
@@ -77,8 +94,8 @@ These prefixes denote the **type** of a symbol:
 | `n`    | Integer/numeric value          | `int nScore` - Numeric score value                             |
 | `c`    | Integer/count or quantity      | `int ccoin`- A quantity of coins                               |
 | `f`    | Flag (boolean)                 | `int fSneakyFeet` - Footstep noises flag                       |
-| `l`    | Long                           | `long lSeconds` - Some time in seconds                         |
-| `d`    | Float                          |                                                                |
+| `l`    | Long                           | `long lTime` - A time in seconds                               |
+| `d`    | Float                          | `float dTime` - A time in seconds                              |
 | `ch`   | Char                           | `char chCur` - Current character in a loop                     |
 | `b`    | Byte                           | `byte bData` - A single byte of data                           |
 | `u`    | Unsigned                       | `float uSuck` - Unsigned value representing the player's suck score |
@@ -109,15 +126,26 @@ Use `UpperCamelCase` for function names, classes and enum values.
 Use `lowerCamelCase` for local variables, function parameters, and class members.
 * e.g. `char nextXorChar`, `Coin* pcoin`, `float m_rxScale`
 
-### Spacing
+### Comments
 
-* Indent your code with 4 spaces.
-* End files with a single new line.
-* Remove all trailing whitespace.
+Please comment your code with [Doxygen-style comments](http://micro-os-plus.github.io/develop/doxygen-style-guide/). They will be used to automatically generate [documentation](https://theonlyzac.github.io/sly1). You don't need to read the whole style guide, just follow these rules.
 
-### Function Comments
+#### File Comments
 
-Each function should have a [Doxygen-style comment](http://micro-os-plus.github.io/develop/doxygen-style-guide/) before it's declaration in the header file.
+Put file comments at the top of each file, before any includes.
+```c
+/**
+ * @file filename.xyz
+ * @brief A brief description of the file.
+ *
+ * A longer description of the file that goes into more detail
+ * if you feel it is necessary.
+ */
+```
+
+#### Function Comments
+
+Put function comments before the declaration of each function in the header files.
 ```c
 /**
  * @brief A brief summary of the function.
@@ -134,88 +162,157 @@ Each function should have a [Doxygen-style comment](http://micro-os-plus.github.
 int ExampleFunction(param1, param2 ...);
 ```
 
-You should note all parameters and return values using @param and @return, even if they are obvious. However, they can be omitted if the function has no parameters or returns void.
+Document all parameters and return values using `@param` and `@return`/`@retval`, even if they are obvious. You can omit them if the function has no parameters or returns void.
 
-### Examples
+#### Structs/Classes
+
+Put the struct/class comment before it's declaration in the header file.
+```c
+/**
+ * @brief Full name of the struct/class.
+ *
+ * A longer summary of the struct/class that goes into more detail
+ * if you feel it is necessary.
+ */
+```
+
+#### Todo and Notes
+
+Use `@todo` to mark something that needs to be done in the future.
+```c
+/**
+ * ...
+ * @todo Implement this function.
+ * ...
+ */
+```
+
+Use `@note` to add a note which will be differentiated form the rest of the comment.
+```
+/**
+ * ...
+ * @note The name of this struct is not official.
+ * ...
+ */
+```
+
+
+## Example Code
 
 This code is clear and conforms to the style guide:
 ```c
 // joy.h
 
 /**
- * @brief Activates the Chetkido password cheat code.
+ * @brief Activates a cheat code.
  *
- * Decrypts the string "The password is "Chetkido" using a XOR cipher
- * and displays it in the lower-left corner.
- */
-void CheatActivateChetkido()
+ * Sets the given flag on the global fcht variable. Also reloads the level if
+ * is is a reload code.
+ *
+ * @param nparam Cheat code to check
+*/
+void AddFcht(int nParam);
 
 
-//joy.c
+//joy.cpp
 
-void CheatActivateChetkido()
+void AddFcht(int nParam)
 {
-    char cipherSlice[16];
-    char* nextXorChar;
-    char outBuffer[64];
+    g_grfcht |= nParam & ~(int)FCHT_ResetWorld;
 
-    const int gameworld = (int)(g_pgsCur->gameworldCur);
-    const int worldlevel = (int)(g_pgsCur->worldlevelCur);
-    const int completion = FGameCompletion();
-
-   if (((gameworld << 8 | worldlevel) == 0x400) // curr level is snow approach
-       && ((completion & 6) == 6) // save file has 100% completion
-       && (g_pgsCur->ccoin == 99) // coin count is 99
-       && (g_pgsCur->clife == 0)) // lives count is 0
-   {
-       // Copy encrypted string into cipher
-       std::strncpy(cipherSlice, sChetkidoCiphertext, 16);
-       nextXorChar = cipherSlice;
-
-	   /* Decrypt the string "@KFWHJGL" resulting in "chetkido"
-	    (XOR cipher with key 0x23) */
-       if (cipherSlice[0] != 0)
-       {
-           while (true)
-           {
-               *nextXorChar = cipherSlice[0] ^ 0x23;
-               nextXorChar++;
-               if (*nextXorChar == 0) break;
-               cipherSlice[0] = *nextXorChar;
-           }
-       }
-
-    // Write output string to char buffer and show on-screen
-    PrepareGuiText(cornerPopupBlot, out_buffer);
-    SetBlotDtVisible(cornerPopupBlot, 10.0);
-    PpenIfNotAlready(cornerPopupBlot);
+    // Check if reload flag is set
+    if ((nParam & 0x4000) != 0)
+    {
+        ResetWorld(FTRANS::None);
+    }
 }
 ```
 
 This code does **not** conform to the style guide and should be rewritten:
 ```cpp
-uint32_t CBinaryInputStream::U32Read()
+// vec.h
+
+// Sets the vector cylinderically
+void SetVectorCylind(float x, float y, float z, VECTOR* pvec);
+
+
+// vec.cpp
+void SetVectorCylind(float param_1, float param_2, float param_3, VECTOR* param_4)
 {
-    byte bVar1;
-    byte bVar2;
-    byte bVar3;
-    byte bVar4;
-    byte* pbVar5;
+    float local_40;
+    float local_3c;
 
-    uint32_t value{};
-    if (m_cb < 4)
-        Read(4, &value);
-
-    else {
-        pbVar5 = m_pb;
-        bVar1 = pbVar5[1];
-        bVar2 = *pbVar5;
-        bVar3 = pbVar5[2];
-        bVar4 = pbVar5[3];
-        m_cb = m_cb + -4;
-        m_pb = pbVar5 + 4;
-        value = (uint32_t)bVar2 + (uint32_t)bVar1 * 0x100 + (uint32_t)bVar3 * 0x10000 + (uint32_t)bVar4 * 0x1000000;
-    }
-    return value;
+    //CalculateSinCos(param_1, &local_40, (float*)((uint32_t)&local_40 | 4));
+    param_4->z = param_3;
+    param_4->x = local_3c * param_2;
+    param_4->y = local_40 * param_2;
+    return;
 }
 ```
+
+## Unit Tests
+
+Since we do not yet have a process for function matching, it is strongly recommended that you write tests for any new code you add to ensure it behaves the same way as the original code.
+
+Unit tests are implemented using CTest. Each test is a program with a main function; the test passes if the program exits with a return code of 0.
+
+### Write the test
+
+To write a new test, create a new source file in the `test` directory under a subdirectory for the system you are testing. For example, if you are testing the `clock` system, create a new source file in `test/clock`. The name of the source file should be the same as the name of the test, e.g. `test/clock/set_clock_rate.cpp`.
+
+You can use the `JtAssert(condition)` macro (from `test/test.h`) to assert that a condition is true. If the condition is false, the test will fail and the test runner will print the file and line number where the assertion failed.
+
+```cpp
+JtAssert(1 == 1); // Passes
+JtAssert(1 == 2); // Fails
+```
+
+### Add the test to CMake
+
+After writing the test, create or edit the `CMakeLists.txt` in the subdirectory for the system you are testing to call the `add_unit_test` command as follows:
+
+```cmake
+add_unit_test(PARALLEL TRUE NAME system.test_name SOURCES test_name.cpp LIBS ${P2_LIB_TARGET})
+```
+
+- `system` should be the same as the name of the directory where you are adding the test.
+- `test_name` should be a unique name for the test which is the same as the source file containing the test.
+- `PARALLEL` specifies whether the test can be run in parallel with other tests. If `TRUE`, the test will be run in parallel with other tests. If `FALSE`, the test will be run in serial with other tests.
+
+### Run the tests
+
+The test runner is a program called `check` which runs each test and reports the results. It is built automatically when you build the `check` target.
+
+## Example Test
+
+### test/clock/set_clock_rate.cpp
+```
+#include <clock.h>
+#include <test/test.h>
+
+int main()
+{
+	SetClockRate(1.0);
+	JtAssert(g_rtClock == 1.0f);
+	JtAssert(g_clock.fEnabled);
+
+	SetClockRate(0.5);
+	JtAssert(g_rtClock == 0.5f);
+	JtAssert(g_clock.fEnabled);
+
+	SetClockRate(0);
+	JtAssert(g_rtClock == 0.f);
+	JtAssert(!g_clock.fEnabled);
+
+	SetClockRate(-1);
+	JtAssert(g_rtClock == -1.f);
+	JtAssert(!g_clock.fEnabled);
+
+	return 0;
+}
+```
+
+### test/clock/CMakeLists.txt
+```
+add_unit_test(PARALLEL TRUE NAME clock.set_clock_rate SOURCES set_clock_rate.cpp LIBS ${P2_LIB_TARGET})
+``````
