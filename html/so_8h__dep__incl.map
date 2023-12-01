@@ -1,28 +1,28 @@
-<map id="sly1/src/P2/so.h" name="sly1/src/P2/so.h">
-<area shape="rect" id="node1" title="Declarations for scene objects." alt="" coords="703,5,825,32"/>
-<area shape="rect" id="node2" href="$vec_8h.html" title="Declares VECTOR and other related classes/functions." alt="" coords="699,80,829,107"/>
-<area shape="rect" id="node3" href="$actseg_8h.html" title="Declarations for actor segments." alt="" coords="269,155,419,181"/>
-<area shape="rect" id="node4" href="$chkpnt_8h.html" title="Declarations for the checkpoint system." alt="" coords="444,155,596,181"/>
-<area shape="rect" id="node17" href="$speaker_8h.html" title="Declarations for the speaker system." alt="" coords="875,155,1034,181"/>
-<area shape="rect" id="node18" href="$sw_8h.html" title="Declares the scene world and related classes." alt="" coords="701,155,827,181"/>
-<area shape="rect" id="node26" href="$vec_8cpp.html" title="Defines functions for vector math." alt="" coords="1059,155,1205,181"/>
-<area shape="rect" id="node5" href="$chkpnt_8cpp.html" title="Implements checkpoint methods." alt="" coords="165,229,331,256"/>
-<area shape="rect" id="node6" href="$difficulty_8h.html" title="Declarations for the difficulty scaling system." alt="" coords="356,229,519,256"/>
-<area shape="rect" id="node7" href="$difficulty_8cpp.html" title="Implements the difficulty scaling functions." alt="" coords="5,304,184,331"/>
-<area shape="rect" id="node8" href="$mpeg_8h.html" title="Declarations for the MPEG system." alt="" coords="209,304,354,331"/>
-<area shape="rect" id="node11" href="$transition_8h.html" title="Declarations for the transition system." alt="" coords="388,304,559,331"/>
-<area shape="rect" id="node9" href="$main_8cpp.html" title=" " alt="" coords="689,453,845,480"/>
-<area shape="rect" id="node10" href="$mpeg_8cpp.html" title="Implements MPEG video and audio playback." alt="" coords="193,379,353,405"/>
-<area shape="rect" id="node12" href="$transition_8cpp.html" title="Implements for the transition system." alt="" coords="591,379,777,405"/>
-<area shape="rect" id="node13" href="$wipe_8h.html" title="Declarations for the wipe system." alt="" coords="377,379,516,405"/>
-<area shape="rect" id="node14" href="$wipe_8cpp.html" title="Implements functions for the wipe system." alt="" coords="243,453,397,480"/>
-<area shape="rect" id="node15" href="$xform_8h.html" title="Declares EXITs for moving between levels." alt="" coords="421,453,568,480"/>
-<area shape="rect" id="node16" href="$xform_8cpp.html" title="Implements EXIT transformation functions." alt="" coords="413,528,576,555"/>
-<area shape="rect" id="node19" href="$brx_8h.html" title="Declarations for interaction with binary resource archives." alt="" coords="594,229,723,256"/>
-<area shape="rect" id="node21" href="$render_8h.html" title="Declarations for the render system." alt="" coords="852,229,1001,256"/>
-<area shape="rect" id="node23" href="$sw_8cpp.html" title="Defines functions for loading and manipulating the scene world." alt="" coords="1205,229,1345,256"/>
-<area shape="rect" id="node24" href="$update_8h.html" title="Declarations for functions that update game elements." alt="" coords="1027,229,1181,256"/>
-<area shape="rect" id="node20" href="$brx_8cpp.html" title="Implements interaction with binary resource archives." alt="" coords="583,304,727,331"/>
-<area shape="rect" id="node22" href="$render_8cpp.html" title="Defines functions for rendering scene objects." alt="" coords="903,304,1067,331"/>
-<area shape="rect" id="node25" href="$update_8cpp.html" title="Defines functions for updating game elements." alt="" coords="1143,304,1311,331"/>
+<map id="src/P2/so.h" name="src/P2/so.h">
+<area shape="rect" id="node1" title="Declarations for scene objects." alt="" coords="593,5,685,32"/>
+<area shape="rect" id="node2" href="$vec_8h.html" title="Declares VECTOR and other related classes/functions." alt="" coords="589,80,689,107"/>
+<area shape="rect" id="node3" href="$actseg_8h.html" title="Declarations for actor segments." alt="" coords="227,155,347,181"/>
+<area shape="rect" id="node4" href="$chkpnt_8h.html" title="Declarations for the checkpoint system." alt="" coords="371,155,493,181"/>
+<area shape="rect" id="node17" href="$speaker_8h.html" title="Declarations for the speaker system." alt="" coords="734,155,861,181"/>
+<area shape="rect" id="node18" href="$sw_8h.html" title="Declares the scene world and related classes." alt="" coords="591,155,686,181"/>
+<area shape="rect" id="node26" href="$vec_8cpp.html" title="Defines functions for vector math." alt="" coords="885,155,1000,181"/>
+<area shape="rect" id="node5" href="$chkpnt_8cpp.html" title="Implements checkpoint methods." alt="" coords="131,229,267,256"/>
+<area shape="rect" id="node6" href="$difficulty_8h.html" title="Declarations for the difficulty scaling system." alt="" coords="291,229,423,256"/>
+<area shape="rect" id="node7" href="$difficulty_8cpp.html" title="Implements the difficulty scaling functions." alt="" coords="5,304,152,331"/>
+<area shape="rect" id="node8" href="$mpeg_8h.html" title="Declarations for the MPEG system." alt="" coords="176,304,291,331"/>
+<area shape="rect" id="node11" href="$transition_8h.html" title="Declarations for the transition system." alt="" coords="324,304,463,331"/>
+<area shape="rect" id="node9" href="$main_8cpp.html" title=" " alt="" coords="583,453,708,480"/>
+<area shape="rect" id="node10" href="$mpeg_8cpp.html" title="Implements MPEG video and audio playback." alt="" coords="161,379,290,405"/>
+<area shape="rect" id="node12" href="$transition_8cpp.html" title="Implements for the transition system." alt="" coords="497,379,652,405"/>
+<area shape="rect" id="node13" href="$wipe_8h.html" title="Declarations for the wipe system." alt="" coords="314,379,422,405"/>
+<area shape="rect" id="node14" href="$wipe_8cpp.html" title="Implements functions for the wipe system." alt="" coords="207,453,329,480"/>
+<area shape="rect" id="node15" href="$xform_8h.html" title="Declares EXITs for moving between levels." alt="" coords="354,453,470,480"/>
+<area shape="rect" id="node16" href="$xform_8cpp.html" title="Implements EXIT transformation functions." alt="" coords="347,528,477,555"/>
+<area shape="rect" id="node19" href="$brx_8h.html" title="Declarations for interaction with binary resource archives." alt="" coords="499,229,597,256"/>
+<area shape="rect" id="node21" href="$render_8h.html" title="Declarations for the render system." alt="" coords="727,229,846,256"/>
+<area shape="rect" id="node23" href="$sw_8cpp.html" title="Defines functions for loading and manipulating the scene world." alt="" coords="1025,229,1135,256"/>
+<area shape="rect" id="node24" href="$update_8h.html" title="Declarations for functions that update game elements." alt="" coords="879,229,1001,256"/>
+<area shape="rect" id="node20" href="$brx_8cpp.html" title="Implements interaction with binary resource archives." alt="" coords="487,304,601,331"/>
+<area shape="rect" id="node22" href="$render_8cpp.html" title="Defines functions for rendering scene objects." alt="" coords="777,304,911,331"/>
+<area shape="rect" id="node25" href="$update_8cpp.html" title="Defines functions for updating game elements." alt="" coords="986,304,1123,331"/>
 </map>

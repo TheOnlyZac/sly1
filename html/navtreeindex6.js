@@ -1,5 +1,8 @@
 var NAVTREEINDEX6 =
 {
+"structASEG.html#a7445784a66ba5110352be5370b95a8a7":[2,0,2,15],
+"structASEG.html#a77df99806973b13fe3a8e81964e9f78c":[2,0,2,8],
+"structASEG.html#a8111d8c8a17a1119234cda686085adb4":[2,0,2,17],
 "structASEG.html#a9e5741c1c0c0098cb954f6ea480abfea":[2,0,2,3],
 "structASEG.html#aaf2ea3201529e106e3d0df1ac353f23a":[2,0,2,10],
 "structASEG.html#ab124271316bb90e75f866cc27d6c0a9a":[2,0,2,5],
@@ -246,8 +249,5 @@ var NAVTREEINDEX6 =
 "structDIFFICULTYLEVEL.html#a1d21cdca447170644d223643f78e8e32":[2,0,30,14],
 "structDIFFICULTYLEVEL.html#a4637beee3bfc69a9bc7da1fcc0d31795":[2,0,30,0],
 "structDIFFICULTYLEVEL.html#a4c353d0548c32a7086f6c3ef730720c8":[2,0,30,8],
-"structDIFFICULTYLEVEL.html#a5624d2ef96bf3c2d8cb9e0c06d38e3d4":[2,0,30,11],
-"structDIFFICULTYLEVEL.html#a59f63a738f944e98c4f2863bd245df1e":[2,0,30,10],
-"structDIFFICULTYLEVEL.html#a5bd62d6923f0c46361327c9be90f7acd":[2,0,30,1],
-"structDIFFICULTYLEVEL.html#a6b798e67a851d18f62df84d413628cf8":[2,0,30,17]
+"structDIFFICULTYLEVEL.html#a5624d2ef96bf3c2d8cb9e0c06d38e3d4":[2,0,30,11]
 };

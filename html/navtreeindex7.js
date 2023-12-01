@@ -1,5 +1,8 @@
 var NAVTREEINDEX7 =
 {
+"structDIFFICULTYLEVEL.html#a59f63a738f944e98c4f2863bd245df1e":[2,0,30,10],
+"structDIFFICULTYLEVEL.html#a5bd62d6923f0c46361327c9be90f7acd":[2,0,30,1],
+"structDIFFICULTYLEVEL.html#a6b798e67a851d18f62df84d413628cf8":[2,0,30,17],
 "structDIFFICULTYLEVEL.html#a6dce1e14f881c429a30f7bac9fcdba85":[2,0,30,19],
 "structDIFFICULTYLEVEL.html#a758ca1652215621ef1f0a6cc3d904a18":[2,0,30,15],
 "structDIFFICULTYLEVEL.html#a81c68f42426df52353f1aa8ff0a89cdb":[2,0,30,16],
@@ -246,8 +249,5 @@ var NAVTREEINDEX7 =
 "structGAME.html#a96dd5a5a8c264e1ea5430704d8162c04":[2,0,38,0],
 "structGAME.html#ae3c113dcc4001a4656c5cc42d8264d95":[2,0,38,3],
 "structGS.html":[2,0,39],
-"structGS.html#a040f28ae2b73e0602ff551e128ae26e0":[2,0,39,4],
-"structGS.html#a05c717b3dbcc6dfc8ba649a4d1c8a4f4":[2,0,39,12],
-"structGS.html#a05eff992b514c286d5cbd2967f0adda6":[2,0,39,5],
-"structGS.html#a0bcd737e0d7aaa6e0ca956a439939ecd":[2,0,39,0]
+"structGS.html#a040f28ae2b73e0602ff551e128ae26e0":[2,0,39,4]
 };

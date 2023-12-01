@@ -1,4 +1,5 @@
 var files_dup =
 [
-    [ "sly1", "dir_1db5140a2d44a66081548f31d048ab2e.html", "dir_1db5140a2d44a66081548f31d048ab2e" ]
+    [ "src", "dir_68267d1309a1af8e8297ef4c3efbcdba.html", "dir_68267d1309a1af8e8297ef4c3efbcdba" ],
+    [ "logo.png", "logo_8png.html", null ]
 ];
