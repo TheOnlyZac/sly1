@@ -1,13 +1,14 @@
 # Contributing
 
-Welcome to the Sly Cooper Decompilation Project! Please follow this guide to get started contributing.
+Welcome to the Sly Cooper Decompilation Project! This guide will help you get started with contributing to the project.
 
 # Contents
 1. [Beginner's Guide](#beginners-guide)
 2. [Code Review Process](#code-review-process)
 3. [Style Guide](#style-guide)
-4. [Code Examples](#code-examples)
-5. [Writing Tests](#writing-tests)
+4. [Example Code](#example-code)
+5. [Unit Tests](#unit-tests)
+6. [Example Test](#example-test)
 
 ## Beginner's Guide
 
@@ -316,3 +317,11 @@ int main()
 ```
 add_unit_test(PARALLEL TRUE NAME clock.set_clock_rate SOURCES set_clock_rate.cpp LIBS ${P2_LIB_TARGET})
 ``````
+
+## Conclusion
+
+Thank you for reading, and we appreciate any contributions you make to the project!
+
+When in doubt, just try and follow the style of the existing code, and do your best to make your code clean and readable. The project is 100% volunteern-driven, so perfection is not required.
+
+ If you have any questions or concerns, feel free to ask in the [Discord server](https://discord.gg/2Y8b8Z2) or [open an issue](https://github.com/TheOnlyZac/sly1/issues/new).
