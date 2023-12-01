@@ -31,11 +31,11 @@
 
 This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoonus*](https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus) for the PlayStation 2. It is based on the NTSC-U version of the game (`SCUS-971.98`).
 
-The goal of this project is to better understand how the game works. *This repo does not contain any game assets or code from the game's executable.*
+The goal of this project is to better understand how the game works. This repo does not contain any game assets or code from the game's executable.
 
-Documenation of the code can be found at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1). Research on the game's internal structures and mechanics is available on the [SlyMods Wiki][wiki-url].
+Documenation of the code can be found at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1). For further reading on the game's internal structures and mechanics, go to the [SlyMods Wiki][wiki-url].
 
-New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to begin, you can [join our Discord server][discord-url] and read [CONTRIBUTING.md](/CONTRIBUTING.MD) for info on how to get started.
+New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to begin, check out [CONTRIBUTING.md](/CONTRIBUTING.MD) and feel free to [join our Discord server][discord-url] for guidance.
 
 
 ## Building
