@@ -1,5 +1,4 @@
 # Sly Cooper and the Thievius Raccoonus
-<img src="logo.png" style="margin:7px" align="right" width="33%">
 
 <!-- shields.io badges -->
 [![Build status][build-badge]][build-url] <!--[![AppVeyor tests][tests-badge]][tests-url]--> [![Discord Channel][discord-badge]][discord-url] [![Contributors][contributors-badge]][contributors-url] [![Docs][docs-badge]][docs-url] [![Wiki][wiki-badge]][wiki-url]
@@ -27,6 +26,8 @@
 <!-- Wiki badge -->
 [wiki-url]: https://slymods.info
 [wiki-badge]: https://img.shields.io/badge/wiki-slymods.info-2C4AA8
+
+[<img src="logo.png" style="margin:7px" align="right" width="33%">][docs-url]
 
 This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoonus*](https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus) for the PlayStation 2. It is based on the NTSC-U version of the game (`SCUS-971.98`).
 
