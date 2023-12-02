@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the zap (damage) system.
 */
-#pragma once
+#ifndef ZAP_H
+#define ZAP_H
+
 #include <iostream>
 #include <game.h>
 #include <gs.h>
@@ -33,3 +35,5 @@ enum ZOK
     ZOK_ZapAndIgnore = 4,
     ZOK_Max = 5
 };
+
+#endif // ZAP_H

@@ -3,7 +3,9 @@
  *
  * @brief Declares the slotheap and slot structs.
 */
-#pragma once
+#ifndef SLOTHEAP_H
+#define SLOTHEAP_H
+
 
 typedef unsigned char byte; //todo move to util header
 
@@ -30,3 +32,5 @@ struct SLOTHEAP {
 struct SLOT {
     struct SLOT* pslotNext; // pointer to the next slot in the free list
 };
+
+#endif // SLOTHEAP_H

@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the render system.
 */
-#pragma once
+#ifndef RENDER_H
+#define RENDER_H
+
 #include <sw.h>
 #include <cm.h>
 
@@ -26,3 +28,5 @@ void RenderSw(SW* psw, CM* pcm);
  * @todo Implement this function.
 */
 void DrawSw(SW* psw, CM* pcm);
+
+#endif // RENDER_H

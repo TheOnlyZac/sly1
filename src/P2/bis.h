@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the binary input stream.
 */
-#pragma once
+#ifndef BIS_H
+#define BIS_H
+
 #include <bas.h>
 #include <cat.h>
 #include <prog.h>
@@ -263,3 +265,5 @@ public:
 
 // Global variables
 static uint32_t g_fCdAvailable; // Is the CD available for reading?
+
+#endif // BIS_H

@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the screen blot system.
 */
-#pragma once
+#ifndef SCREEN_H
+#define SCREEN_H
+
 
 /**
  * @brief Blot State
@@ -51,3 +53,5 @@ void RenderBlots();
  * @todo Implement this function.
 */
 void DrawBlots();
+
+#endif // SCREEN_H

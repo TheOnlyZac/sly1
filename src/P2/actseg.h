@@ -3,7 +3,9 @@
  *
  * @brief Declarations for actor segments.
 */
-#pragma once
+#ifndef ACTSEG_H
+#define ACTSEG_H
+
 #include <vec.h>
 #include <util.h>
 
@@ -24,3 +26,5 @@ struct ACTLA
     struct CLQ clqTiltToTilt;
     struct LM lmTilt;
 };
+
+#endif // ACTSEG_H

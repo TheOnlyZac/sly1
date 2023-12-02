@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the checkpoint system.
 */
-#pragma once
+#ifndef CHKPNT_H
+#define CHKPNT_H
+
 #include <util.h>
 #include <game.h>
 #include <vec.h>
@@ -37,3 +39,5 @@ struct CHKMGR
  * @param pchkmgr Pointer to the checkpoint manager.
 */
 void ResetChkmgrCheckpoints(CHKMGR* pchkmgr);
+
+#endif // CHKPNT_H

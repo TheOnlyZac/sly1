@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the wipe system.
 */
-#pragma once
+#ifndef WIPE_H
+#define WIPE_H
+
 #include <dialog.h>
 #include <game.h>
 #include <joy.h>
@@ -132,3 +134,5 @@ void SetWipeButtonTrans(WIPE* pwipe, TRANS* ptrans, WIPEK wipek);
  * @param wipesNew New wipe state
 */
 int FCatchWipeButtonTrans(WIPE* pwipe, JOY* pjoy, WIPES wipesNew);
+
+#endif // WIPE_H

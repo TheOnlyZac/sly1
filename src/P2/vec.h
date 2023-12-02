@@ -3,7 +3,9 @@
  *
  * @brief Declares VECTOR and other related classes/functions.
 */
-#pragma once
+#ifndef VEC_H
+#define VEC_H
+
 #include <iostream>
 #include <so.h>
 #include <util.h>
@@ -195,3 +197,5 @@ void SetVectorSphere(float z, float y, float x, VECTOR* pvec);
  * @return Scalar projection of vec1 onto vec2
 */
 float SProjectVector(VECTOR* pvec1, VECTOR* pvec2);
+
+#endif // VEC_H

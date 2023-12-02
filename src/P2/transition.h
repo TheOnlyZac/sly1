@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the transition system.
 */
-#pragma once
+#ifndef TRANSITION_H
+#define TRANSITION_H
+
 #include <bis.h>
 #include <brx.h>
 #include <cat.h>
@@ -92,3 +94,5 @@ public:
 
 // Global variables
 static CTransition g_transition; // Current transition
+
+#endif // TRANSITION_H

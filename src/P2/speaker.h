@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the speaker system.
 */
-#pragma once
+#ifndef SPEAKER_H
+#define SPEAKER_H
+
 #include <game.h>
 #include <joy.h>
 #include <mat.h>
@@ -56,3 +58,5 @@ struct DP
     struct ASEGA* pasegaLipsync;
     float tPauseMin;
 };
+
+#endif // SPEAKER_H

@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the binary async stream.
 */
-#pragma once
+#ifndef BAS_H
+#define BAS_H
+
 #include <stdint.h>
 #include <util.h>
 
@@ -54,3 +56,5 @@ public:
     void Close();
 };
 
+
+#endif // BAS_H

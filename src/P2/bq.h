@@ -3,7 +3,9 @@
  *
  * @brief Declares the byte queue class.
 */
-#pragma once
+#ifndef BQ_H
+#define BQ_H
+
 
 typedef unsigned char BYTE; //todo mode to util header
 
@@ -22,3 +24,5 @@ class CByteQueue {
 
     // todo: class methods
 };
+
+#endif // BQ_H

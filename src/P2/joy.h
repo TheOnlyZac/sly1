@@ -3,7 +3,9 @@
  *
  * @brief Declarations for joypad interactions.
 */
-#pragma once
+#ifndef JOY_H
+#define JOY_H
+
 #include <util.h>
 #include <iostream>
 
@@ -273,3 +275,5 @@ void AddGrfusr(int mask);
  * @todo Implement rendering the string on the screen.
 */
 void CheatActivateChetkido();
+
+#endif // JOY_H

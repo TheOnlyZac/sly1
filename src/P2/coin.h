@@ -3,7 +3,9 @@
  *
  * @brief Declarations for coin interaction/events.
 */
-#pragma once
+#ifndef COIN_H
+#define COIN_H
+
 
 /**
  * @brief Coin prize
@@ -51,3 +53,5 @@ void OnCoinSmack(COIN* pcoin);
  * @todo Implement this function.
 */
 //void UpdateCoin(Coin* pcoin, float dt);
+
+#endif // COIN_H

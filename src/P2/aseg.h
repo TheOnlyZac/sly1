@@ -3,7 +3,9 @@
  *
  * @brief Declarations for animation segments.
 */
-#pragma once
+#ifndef ASEG_H
+#define ASEG_H
+
 #include <util.h>
 #include <game.h>
 
@@ -39,3 +41,5 @@ struct ASEG
 	int coidSearchRoot;
 	OID* aoidSearchRoot;
 };
+
+#endif // ASEG_H

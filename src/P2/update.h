@@ -3,7 +3,9 @@
  *
  * @brief Declarations for functions that update game elements.
 */
-#pragma once
+#ifndef UPDATE_H
+#define UPDATE_H
+
 #include <sw.h>
 
 /**
@@ -13,3 +15,5 @@
  * @param dt Delta time
 */
 void UpdateSwObjects(SW* psw, float dt);
+
+#endif // UPDATE_H

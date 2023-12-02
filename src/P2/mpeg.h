@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the MPEG system.
 */
-#pragma once
+#ifndef MPEG_H
+#define MPEG_H
+
 #include <bis.h>
 #include <bq.h>
 #include <clock.h>
@@ -142,3 +144,5 @@ public:
 
 // Global variables
 static CMpeg g_mpeg; // Current MPEG
+
+#endif // MPEG_H

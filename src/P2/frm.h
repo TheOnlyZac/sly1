@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the frame system.
 */
-#pragma once
+#ifndef FRM_H
+#define FRM_H
+
 
 /**
  * @brief Frame
@@ -36,3 +38,5 @@ void CloseFrame();
  * @param pfrm Pointer to the frame.
 */
 void ClearPendingFrame(FRM* pfrm);
+
+#endif // FRM_H

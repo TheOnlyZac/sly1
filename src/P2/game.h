@@ -3,7 +3,9 @@
  *
  * @brief Declarations related to the game world and game objects.
 */
-#pragma once
+#ifndef GAME_H
+#define GAME_H
+
 #include <gs.h>
 
 /**
@@ -388,3 +390,5 @@ void OnGameLoad(GAME* pgame);
  * @return The max charm count.
 */
 int CcharmMost();
+
+#endif // GAME_H

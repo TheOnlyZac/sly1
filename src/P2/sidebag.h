@@ -3,7 +3,9 @@
  *
  * @brief Declares the CSidebag class.
 */
-#pragma once
+#ifndef SIDEBAG_H
+#define SIDEBAG_H
+
 #include <gc.h>
 
 /**
@@ -19,3 +21,5 @@ struct CSidebag {
     int m_csbb;
     struct SBB m_asbb[16];
 };
+
+#endif // SIDEBAG_H

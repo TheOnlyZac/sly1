@@ -3,7 +3,9 @@
  *
  * @brief Declares the prog class.
 */
-#pragma once
+#ifndef PROG_H
+#define PROG_H
+
 #include <game.h>
 #include <font.h>
 
@@ -30,3 +32,5 @@ public:
 	void Draw();
 	void End();
 };
+
+#endif // PROG_H

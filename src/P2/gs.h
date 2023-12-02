@@ -5,7 +5,9 @@
  *
  * @note Not to be confused with Graphics Synthesizer, which is also abbreviated GS.
 */
-#pragma once
+#ifndef GS_H
+#define GS_H
+
 
 /**
  * @brief Game State Flags
@@ -183,3 +185,5 @@ int FGameCompletion();
  * @return Percent completion as an integer out of 100.
 */
 int CalculatePercentCompletion(GS* pgs);
+
+#endif // GS_H

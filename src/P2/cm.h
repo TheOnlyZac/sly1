@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the game camera.
 */
-#pragma once
+#ifndef CM_H
+#define CM_H
+
 
 /**
  * @brief Game Camera
@@ -24,3 +26,5 @@ extern CM* g_pcm; // Pointer to the main game camera
  * @param pcm Pointer to the camera.
 */
 void SetupCm(CM* pcm);
+
+#endif // CM_H

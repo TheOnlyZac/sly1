@@ -1,7 +1,9 @@
 /**
  * @file wm.h
 */
-#pragma once
+#ifndef WM_H
+#define WM_H
+
 #include <iostream>
 
 /**
@@ -32,3 +34,5 @@ enum WMS
  * @param pwms Pointer to the WM state
 */
 void SetWmWms(WM* pwm, WMS wms);
+
+#endif // WM_H

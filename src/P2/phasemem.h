@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the phase system.
 */
-#pragma once
+#ifndef PHASEMEM_H
+#define PHASEMEM_H
+
 
 /**
  * @brief Game Phase
@@ -31,3 +33,5 @@ void SetPhase(PHASE phase);
  * @brief Clears the current game phase.
 */
 void ClearPhase(PHASE phase = PHASE_None);
+
+#endif // PHASEMEM_H
