@@ -7,7 +7,6 @@
 #define SOUND_H
 
 #include <util.h>
-#include <cstdint>
 
 /**
  * @brief EASND

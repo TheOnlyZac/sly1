@@ -7,11 +7,11 @@
 #define BIS_H
 
 #include <bas.h>
+#include <util.h>
 #include <cat.h>
 #include <prog.h>
 #include <iostream>
 #include <fstream>
-#include <stdint.h>
 
 typedef unsigned char byte; //todo move to util header
 
@@ -20,7 +20,7 @@ typedef unsigned char byte; //todo move to util header
  *
  * Types of binary stream that can be opened
 */
-enum BISK : int
+enum BISK
 {
     BISK_Nil = -1,
     BISK_Host = 0,
@@ -69,7 +69,7 @@ public:
      *
      * @param fileName Name of the file to open
     */
-    CBinaryInputStream(std::string fileName); // Used for file object
+    CBinaryInputStream(const char* fileName); // Used for file object
 
     /**
      * @brief Opens the file at the given location.

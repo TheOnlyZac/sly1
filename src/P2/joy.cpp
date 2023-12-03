@@ -66,7 +66,7 @@ void SetJoyJoys(JOY *pjoy, JOYS joys, JOYK joyk)
 void UpdateJoy(JOY *pjoy)
 {
     bool condition = false;
-    JOYS joysNew{};
+    JOYS joysNew = JOYS_Initing;
 
     // if the joy manager is initializing, abort
     if (pjoy->joys == JOYS_Initing)
@@ -180,7 +180,7 @@ void CheatActivateChetkido()
         && (g_pgsCur->clife == 0))               // lives count is 0
     {
         // Copy encrypted string into cipher
-        std::strncpy(cipherSlice, sChetkidoCiphertext, 16);
+        strncpy(cipherSlice, sChetkidoCiphertext, 16);
         nextXorChar = cipherSlice;
 
         /* Decrypt the string "@KFWHJGL" resulting in "chetkido"

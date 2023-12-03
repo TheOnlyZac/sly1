@@ -63,7 +63,7 @@ enum GAMEWORLD
 /**
  * @brief World Level ID
 */
-enum WORLDLEVEL : int
+enum WORLDLEVEL
 {
     WORLDLEVEL_Approach = 0,
     WORLDLEVEL_Hub = 1,

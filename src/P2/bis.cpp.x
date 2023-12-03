@@ -5,7 +5,7 @@
 */
 #include <bis.h>
 
-CBinaryInputStream::CBinaryInputStream(std::string fileName)
+CBinaryInputStream::CBinaryInputStream(const char* fileName)
 {
     file.open(fileName, std::ios::binary);
 }
@@ -98,7 +98,7 @@ void CBinaryInputStream::Read(int cb, void *pv)
             if ((int)uVar1 <= cb) {
                 cb_00 = uVar1;
             }
-            if (pv != nullptr) {
+            if (pv != NULL) {
                 byte* pb = reinterpret_cast<byte*>(pv);
                 //CopyAb(pb, m_pb, cb_00);
                 pv = reinterpret_cast<void*>(pb + cb_00);

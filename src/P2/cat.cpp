@@ -3,16 +3,8 @@
  *
  * @brief Implements the WAC/WAL catalog system.
 */
-#include "cat.h"
+#include <cat.h>
 #include <cstring>
-
-//todo move to util header
-#ifdef _MSC_VER
-    #define STRICMP _stricmp
-#else
-    #include <strings.h>
-    #define STRICMP strcasecmp
-#endif
 
 void CFileLocation::Clear()
 {
@@ -37,10 +29,11 @@ int CWalCatalog::FFindFile(char* pchzKey, FK fk, CFileLocation* pflResult)
     char achzKey[128]; // Buffer used to reference the file its looking for.
 
     //! There is a mistake here, nothing is passed to the format string
-    sprintf(achzKey, "%s\\%s"); // Storing the file that its looking for in achzKey buffer.
+    // also I disable it because ee-gcc can't find sprintf
+    //sprintf(achzKey, "%s\\%s"); // Storing the file that its looking for in achzKey buffer.
     pWVar3 = m_awale;
 
-    while ((pwale == nullptr, iVar4 < m_cwale && (iVar2 = STRICMP(pWVar3->pchzKey, achzKey), pwale = pWVar3, iVar2 != 0))) {
+    while ((pwale == NULL, iVar4 < m_cwale && (iVar2 = strcasecmp(pWVar3->pchzKey, achzKey), pwale = pWVar3, iVar2 != 0))) {
         pWVar3 += 1;
         iVar4 += 1;
     }
@@ -49,7 +42,7 @@ int CWalCatalog::FFindFile(char* pchzKey, FK fk, CFileLocation* pflResult)
         iVar4 = 0;
         pWVar3 = m_awale;
 
-        while ((pWVar1 = pwale, iVar4 < m_cwale && (iVar2 = STRICMP(pWVar3->pchzKey, pchzKey), pWVar1 = pWVar3, iVar2 != 0))) {
+        while ((pWVar1 = pwale, iVar4 < m_cwale && (iVar2 = strcasecmp(pWVar3->pchzKey, pchzKey), pWVar1 = pWVar3, iVar2 != 0))) {
             pWVar3 = pWVar3 + 1;
             iVar4 = iVar4 + 1;
         }

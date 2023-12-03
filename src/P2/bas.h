@@ -6,13 +6,12 @@
 #ifndef BAS_H
 #define BAS_H
 
-#include <stdint.h>
 #include <util.h>
 
 /**
  * @brief Binary Async Stream Kind
 */
-enum BASK : int
+enum BASK
 {
     BASK_Nil = -1,
     BASK_Cd = 1,

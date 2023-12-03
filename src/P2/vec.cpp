@@ -4,7 +4,7 @@
  * @brief Defines functions for vector math.
 */
 #include <vec.h>
-#include <cmath>
+#include <math.h>
 
 // todo: cleanup and fix params
 

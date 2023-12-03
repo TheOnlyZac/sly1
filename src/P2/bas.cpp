@@ -4,12 +4,13 @@
  * @brief Implements for the binary async stream class.
 */
 #include <bas.h>
+#include <util.h>
 #include <cstddef>
 
 CBinaryAsyncStream::CBinaryAsyncStream(void* pvSpool)
 {
     m_isector = 0;
-    m_abSpool = (BYTE*)((intptr_t)pvSpool + 0x3fU & 0xffffffc0);
+    m_abSpool = reinterpret_cast<BYTE*>((reinterpret_cast<intptr_t>(pvSpool) + 0x3fU) & 0xffffffc0);
     m_fd = -1;
     m_pbSpooling = NULL;
     m_pb = NULL;

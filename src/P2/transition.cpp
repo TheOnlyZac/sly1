@@ -5,7 +5,7 @@
 */
 #include <transition.h>
 
-void::CTransition::ResetWorld(FTRANS ftrans)
+void CTransition::ResetWorld(FTRANS ftrans)
 {
     //989snd_related__(0.0);
     if (ftrans == FTRANS_Checkpoint) {
@@ -43,7 +43,7 @@ void CTransition::Set(char* pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS
 void CTransition::Execute()
 {
     CFileLocation fileLocation;
-    LevelTableStruct levelInfo{};
+    LevelTableStruct levelInfo = {};
 
     SetPhase(PHASE_Load);
     if (levelInfo.fileLocation.m_fcl.cb != 0)

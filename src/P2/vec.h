@@ -104,9 +104,9 @@ bool FCalculateMuzzleVelocity(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3,
  * @param param_3 Target velocity
  * @param param_4 Unknown
  *
- * @note This is an educated guess and may not be accurate.
+ * @note The name/paremeters for this function are an educated guess and may not be accurate.
 */
-uint32_t FCalculateMuzzleVelocityAngle(VECTOR* param_1, VECTOR* param_2, float param_3, VECTOR* param_4, SO* param_5);
+uint32_t FCalculateMuzzleVelocityAngle(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3, VECTOR* param_4, SO* param_5);
 
 /**
  * @brief Finds the closest point between the lines AB and CD.

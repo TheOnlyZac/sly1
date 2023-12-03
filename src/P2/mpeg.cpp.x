@@ -5,7 +5,7 @@
 */
 #include <mpeg.h>
 
-unsigned int g_phasemem{}; // todo: what data type is this
+unsigned int g_phasemem = 0; // todo: what data type is this
 
 void CMpeg::ExecuteOids()
 {

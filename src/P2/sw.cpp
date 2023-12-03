@@ -5,7 +5,7 @@
 */
 #include <sw.h>
 
-SW* g_psw = nullptr;
+SW* g_psw = NULL;
 
 void SetupBulkDataFromBrx(int fLoadBulkData, CBinaryInputStream* pbis)
 {

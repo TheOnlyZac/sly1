@@ -13,7 +13,7 @@
  *
  * There are a lot more that are not represented here.
 */
-enum OID : int
+enum OID
 {
 	OID_Unknown = 0x0,
 	OID__MERGED_STATICS = 0x1,
@@ -36,7 +36,7 @@ enum OID : int
  *
  * @note Not sure if actually collision or something else.
 */
-enum CID : int
+enum CID
 {
     CID_Nil = -1,
     CID_BASIC = 0,
@@ -207,7 +207,7 @@ enum CID : int
 /**
  * @brief World ID
 */
-enum WID : int
+enum WID
 {
 	// Intro
 	WID_stock_objects = 0x0,
