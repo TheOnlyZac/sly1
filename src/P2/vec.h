@@ -6,11 +6,9 @@
 #ifndef VEC_H
 #define VEC_H
 
-#include <iostream>
-#include <so.h>
 #include <util.h>
+#include <so.h>
 
-typedef unsigned char byte;
 typedef int GRFPVA;
 
 /**

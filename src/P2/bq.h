@@ -6,8 +6,7 @@
 #ifndef BQ_H
 #define BQ_H
 
-
-typedef unsigned char BYTE; //todo mode to util header
+#include <util.h>
 
 /**
  * @brief Byte Queue

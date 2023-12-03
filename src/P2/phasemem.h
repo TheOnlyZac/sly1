@@ -6,7 +6,6 @@
 #ifndef PHASEMEM_H
 #define PHASEMEM_H
 
-
 /**
  * @brief Game Phase
 */

@@ -4,6 +4,11 @@
  * @brief Implements for the transition system.
 */
 #include <transition.h>
+#include <phasemem.h>
+#include <clock.h>
+#include <sw.h>
+#include <joy.h>
+#include <brx.h>
 
 void CTransition::ResetWorld(FTRANS ftrans)
 {

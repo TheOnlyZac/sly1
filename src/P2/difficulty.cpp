@@ -3,11 +3,8 @@
  *
  * @brief Implements the difficulty scaling functions.
 */
-#include <util.h>
-#include <game.h>
-#include <gs.h>
 #include <difficulty.h>
-
+#include <game.h>
 #include <cstring>
 
 /* Called when game starts; clears the difficulty struct */

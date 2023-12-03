@@ -7,7 +7,6 @@
 #define ACTSEG_H
 
 #include <vec.h>
-#include <util.h>
 
 /**
  * @brief Unknown, needs more research

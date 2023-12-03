@@ -6,19 +6,9 @@
 #ifndef TRANSITION_H
 #define TRANSITION_H
 
-#include <bis.h>
-#include <brx.h>
-#include <cat.h>
+#include <util.h>
 #include <game.h>
-#include <gs.h>
-#include <difficulty.h>
-#include <clock.h>
-#include <joy.h>
-#include <phasemem.h>
-#include <prog.h>
-#include <sound.h>
-#include <sw.h>
-#include <iostream>
+#include <bis.h>
 
 typedef int GRFTRANS;
 

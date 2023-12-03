@@ -6,7 +6,6 @@
 #ifndef COIN_H
 #define COIN_H
 
-
 /**
  * @brief Coin prize
 */

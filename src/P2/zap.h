@@ -6,10 +6,6 @@
 #ifndef ZAP_H
 #define ZAP_H
 
-#include <iostream>
-#include <game.h>
-#include <gs.h>
-
 /**
  * @brief Zap
  *

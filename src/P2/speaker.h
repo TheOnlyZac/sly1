@@ -6,12 +6,12 @@
 #ifndef SPEAKER_H
 #define SPEAKER_H
 
+#include <util.h>
 #include <game.h>
 #include <joy.h>
 #include <mat.h>
-#include <vec.h>
 #include <font.h>
-#include <util.h>
+#include <vec.h>
 
 typedef int GRFPVA;
 
@@ -21,7 +21,8 @@ typedef int GRFPVA;
  * Either represents a speaker that emits sound in the game world, or a
  * physical speaker in the real world. More research is needed.
  *
- * todo: identify undefined fields
+ * @todo Figure out exactly what this struct represents.
+ * @todo Identify missing fields on this struct.
 */
 struct SPEAKER
 {

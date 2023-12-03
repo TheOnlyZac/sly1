@@ -8,7 +8,6 @@
 #ifndef GS_H
 #define GS_H
 
-
 /**
  * @brief Game State Flags
 */

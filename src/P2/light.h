@@ -6,7 +6,6 @@
 #ifndef LIGHT_H
 #define LIGHT_H
 
-
 /**
  * @brief Light shadow & midtone
 */

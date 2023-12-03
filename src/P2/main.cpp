@@ -32,7 +32,7 @@ int main(int cphzArgs, char* aphzArgs[])
 		if ((g_mpeg.oid_1 != OID_Unknown) && (g_wipe.wipes != WIPES_Idle))
 		{
 			//FlushFrames(1); // todo implement
-			//g_mpeg.ExecuteOids();
+			g_mpeg.ExecuteOids();
 		}
 
 		// Check if g_transition has a pending transition
@@ -46,7 +46,7 @@ int main(int cphzArgs, char* aphzArgs[])
 		if ((g_mpeg.oid_2 != OID_Unknown) && (g_wipe.wipes != WIPES_Idle))
 		{
 			//FlushFrames(1); // todo implement
-			//g_mpeg.ExecuteOids();
+			g_mpeg.ExecuteOids();
 		}
 
 		// Call update functions

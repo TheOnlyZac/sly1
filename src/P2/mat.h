@@ -6,7 +6,6 @@
 #ifndef MAT_H
 #define MAT_H
 
-
 typedef struct MATRIX4 GRFDP;
 
 /**

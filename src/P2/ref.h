@@ -6,7 +6,6 @@
 #ifndef REF_H
 #define REF_H
 
-
 /**
  * @brief Unknown, needs more research
  *

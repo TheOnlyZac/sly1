@@ -6,16 +6,9 @@
 #ifndef MPEG_H
 #define MPEG_H
 
-#include <bis.h>
-#include <bq.h>
-#include <clock.h>
-#include <cat.h>
-#include <gs.h>
-#include <joy.h>
-#include <difficulty.h>
 #include <game.h>
-#include <iostream>
-#include <util.h>
+#include <bas.h>
+#include <bq.h>
 
 /**
  * @brief Mpeg Audio State

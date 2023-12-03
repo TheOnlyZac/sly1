@@ -6,15 +6,11 @@
 #ifndef WIPE_H
 #define WIPE_H
 
-#include <dialog.h>
-#include <game.h>
-#include <joy.h>
-#include <keyhole.h>
-#include <sw.h>
+#include "dialog.h" // quotes to avoid ambiguity with <dialog.h>
 #include <transition.h>
+#include <keyhole.h>
+#include <joy.h>
 #include <wm.h>
-
-typedef unsigned char byte;
 
 /**
  * @brief Wipe Kind

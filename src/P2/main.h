@@ -1,7 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-
 static int g_chpzArgs;
 static char** g_aphzArgs;
 

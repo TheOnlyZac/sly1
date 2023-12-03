@@ -7,11 +7,7 @@
 #define JOY_H
 
 #include <util.h>
-#include <iostream>
 
-typedef unsigned char byte; // todo move to util header
-
-typedef long ulong_128;
 typedef short GRFBTN;
 
 /**

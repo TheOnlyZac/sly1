@@ -6,7 +6,6 @@
 #include <joy.h>
 #include <gs.h>
 #include <clock.h>
-
 #include <cstdio>
 #include <cstring>
 

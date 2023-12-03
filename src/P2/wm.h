@@ -4,8 +4,6 @@
 #ifndef WM_H
 #define WM_H
 
-#include <iostream>
-
 /**
  * @brief Unknown, possibly WorldMap
 */

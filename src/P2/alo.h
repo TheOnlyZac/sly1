@@ -4,7 +4,6 @@
 #ifndef ALO_H
 #define ALO_H
 
-
 struct ALO {
     //LO field0_0x0;
     //DL dlChild;

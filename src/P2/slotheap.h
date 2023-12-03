@@ -6,7 +6,6 @@
 #ifndef SLOTHEAP_H
 #define SLOTHEAP_H
 
-
 typedef unsigned char byte; //todo move to util header
 
 /**

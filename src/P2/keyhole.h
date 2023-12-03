@@ -4,8 +4,6 @@
 #ifndef KEYHOLE_H
 #define KEYHOLE_H
 
-#include <iostream>
-
 /**
  * Keyhole
 */

@@ -4,6 +4,8 @@
  * @brief Implements MPEG video and audio playback.
 */
 #include <mpeg.h>
+#include <bis.h>
+#include <clock.h>
 
 unsigned int g_phasemem = 0; // todo: what data type is this
 

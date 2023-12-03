@@ -5,7 +5,8 @@
 */
 #include <wipe.h>
 #include <clock.h>
-#include <wm.h>
+#include <gs.h>
+#include <sw.h>
 
 WIPE* g_pwipe = &g_wipe;
 

@@ -6,12 +6,13 @@
 #ifndef CHKPNT_H
 #define CHKPNT_H
 
-#include <util.h>
 #include <game.h>
 #include <vec.h>
 
 /**
  * @brief Checkpoint
+ *
+ * @todo Add struct fields.
 */
 struct CHKPNT
 {

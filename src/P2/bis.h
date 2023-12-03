@@ -2,6 +2,8 @@
  * @file bis.h
  *
  * @brief Declarations for the binary input stream.
+ *
+ * @todo Remove dependency on C standard library.
 */
 #ifndef BIS_H
 #define BIS_H
@@ -12,8 +14,6 @@
 #include <prog.h>
 #include <iostream>
 #include <fstream>
-
-typedef unsigned char byte; //todo move to util header
 
 /**
  * @brief Binary Input Stream Kind

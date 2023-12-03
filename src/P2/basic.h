@@ -6,7 +6,6 @@
 #ifndef BASIC_H
 #define BASIC_H
 
-
 struct BASIC
 {
     struct VTBASIC* pvtbasic;

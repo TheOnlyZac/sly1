@@ -6,8 +6,8 @@
 #ifndef SO_H
 #define SO_H
 
-#include <zap.h>
 #include <util.h>
+#include <zap.h>
 #include <iostream>
 
 typedef int GRFPVA;
