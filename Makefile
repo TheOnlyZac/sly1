@@ -1,8 +1,8 @@
-CC = wine $(EE)/gcc/bin/ee-gcc
+CC = $(EE)/gcc/bin/ee-gcc
 CFLAGS = -Wall -Wno-unused -g -I$(IDIR) -I$(EEIDIR) -I$(GPPIDIR)
 TARGET = SCUS_971.98
 
-SCE = /usr/local/sce
+SCE = C:/usr/local/sce
 EE = $(SCE)/ee
 GCC = $(EE)/gcc
 TLIB = $(SCE)/tlib_255
