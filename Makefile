@@ -8,11 +8,11 @@ OBJS = $(SRCS:.cpp=.o)
 
 SDIR = src/P2
 IDIR = src/P2
-SCEIDIR = /usr/local/sce/ee/gcc/ee/include
-GCCIDIR = /usr/local/sce/ee/gcc/include/g++-2
+SCEIDIR = C:/usr/local/sce/ee/gcc/ee/include
+GCCIDIR = C:/usr/local/sce/ee/gcc/include/g++-2
 
-LINKSCRIPT 	= /usr/local/sce/ee/gcc/ee/lib/r5900.ld
-LIBS 		= /usr/local/sce/ee/lib/libsn.a /usr/local/sce/ee/gcc/ee/lib/libc.a
+LINKSCRIPT 	= C:/usr/local/sce/ee/gcc/ee/lib/r5900.ld
+LIBS 		= C:/usr/local/sce/ee/lib/libsn.a C:/usr/local/sce/ee/gcc/ee/lib/libc.a
 
 .PHONY: all clean
 
