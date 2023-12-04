@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# A simple script to set up the ProDG compilers + SCE Runtime Library
+# to build the Sly 1 decompilation project.
+
+WINE_ROOT=~/.wine/drive_c
+TOP=$(pwd)
+
+# The SDK (Runtime Library) version to install.
+SDK_VER=242
+
+die() { # perl-style `die` expressions.
+	echo "Error: $@"
+	exit 1
+}
+
+# downloads files and uses b2sum(1) to verify integrity
+download_and_check() {
+	echo "Downloading $1 and b2sums"
+	wget -qP /tmp $1
+	wget -qP /tmp $1.b2
+
+	BASENAME=$(basename $1)
+	pushd /tmp >/dev/null
+		b2sum -c $BASENAME.b2 || die "b2sums failed to verify when downloading $1"
+		echo "b2sums verified, moving out of /tmp"
+		
+		rm $BASENAME.b2 # No longer needed
+		mv $BASENAME $TOP
+	popd >/dev/null
+}
+
+# download required files (registry + SDK package)
+download_and_check "https://computernewb.com/~lily/sly1/prodg_env.reg"
+download_and_check "https://computernewb.com/~lily/sly1/prodg_sce$SDK_VER.7z"
+
+# apply environment variables from the registry file
+wine regedit prodg_env.reg
+
+# Extract the SDK into the wine C drive root
+pushd $WINE_ROOT >/dev/null
+	7z x -y $TOP/prodg_sce$SDK_VER.7z
+popd >/dev/null
+
+echo "Removing temporary files"
+rm prodg_sce$SDK_VER.7z
+rm prodg_env.reg
