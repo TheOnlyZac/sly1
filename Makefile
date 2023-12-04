@@ -24,7 +24,7 @@ TFLAGS = -G0 -fno-common
 ASFLAGS = $(TFLAGS)
 CFLAGS = -Wall -Wno-unused $(TFLAGS) -fno-strict-aliasing -g -I$(EE)/include
 CXXFLAGS = $(CFLAGS) -fno-exceptions
-LDFLAGS = -nostartfiles -Wl,-Map,$(TARGET).map -T$(EE)/lib/relapp.cmd -L$(EE)/lib -lsn -lc -lm -lkernl
+LDFLAGS = -nostartfiles -Wl,-Map,$(TARGET).map -T$(EE)/lib/app.cmd -L$(EE)/lib -lsn -lc -lm -lkernl
 
 SDIR = src/P2
 
