@@ -21,32 +21,37 @@ download_and_check() {
 	wget -qP /tmp $1.b2
 
 	BASENAME=$(basename $1)
-	pushd /tmp >/dev/null
-		b2sum -c $BASENAME.b2 || die "b2sums failed to verify when downloading $1"
-		echo "b2sums verified, moving files out of /tmp"
+		b2sum -c /tmp/$BASENAME.b2 || die "b2sums failed to verify when downloading $1"
 
-		rm $BASENAME.b2 # No longer needed
-		mv $BASENAME $TOP
-	popd >/dev/null
+		echo "b2sums verified, moving files out of /tmp"
+		rm /tmp/$BASENAME.b2 # No longer needed
+		mv /tmp/$BASENAME $TOP
+}
+
+# downloads files without checking integrity
+download() {
+	echo "Downloading $1..."
+	wget -qP /tmp $1
+
+	BASENAME=$(basename $1)
+
+		echo "moving files out of /tmp"
+		mv /tmp/$BASENAME $TOP
 }
 
 echo Starting ProDG setup script...
 
 # download required files (registry + SDK package)
-download_and_check "https://computernewb.com/~lily/sly1/prodg_env.reg"
-download_and_check "https://computernewb.com/~lily/sly1/prodg_sce$SDK_VER.7z"
+download "https://computernewb.com/~lily/sly1/prodg_sce$SDK_VER.7z"
 
 # apply environment variables from the registry file
 wine regedit prodg_env.reg
 
 # Extract the SDK into the wine C drive root
 echo "Extracting SDK to $WINE_ROOT..."
-pushd $WINE_ROOT >/dev/null
-	7z x -y $TOP/prodg_sce$SDK_VER.7z
-popd >/dev/null
+7z x -y $TOP/prodg_sce$SDK_VER.7z -o$WINE_ROOT
 
 echo "Removing temporary files..."
 rm prodg_sce$SDK_VER.7z
-rm prodg_env.reg
 
 echo "Setup complete!"

@@ -11,8 +11,10 @@ environment:
     - CONFIGURATION: Release
 
 install:
-  - sudo sh tools/install_dependencies.sh
-  - sudo sh tools/setup_prodg_linux.sh
+  - cd tools
+  - sudo sh install_dependencies.sh
+  - sh setup_prodg_linux.sh
+  - cd ..
 
 build_script:
   - make
