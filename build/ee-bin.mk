@@ -1,9 +1,21 @@
-OBJS = crt0.o $(SRCS:.cpp=.o)
+include build/ee-common.mk
 
-$(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+OBJS := $(OBJDIR)/crt0.o $(OBJS)
+OUTDIR := bin/$(CONFIG)
+
+# This incantation is done to avoid modifying the SCE linker scripts.
+$(OUTDIR)/$(NAME): $(OBJDIR)/ $(OUTDIR)/ $(OBJS)
+	cd $(OBJDIR)/ && $(CXX) $(CXXFLAGS) -o ../../$@ $(notdir $(OBJS)) $(LDFLAGS)
+
+# :( have to duplicate the rule
+$(OBJDIR)/crt0.o: $(CRT0_S)
+	$(CC) -c -xassembler-with-cpp $(CCFLAGS) $< -o $@
+
+$(OBJDIR)/:
+	mkdir -p $@
+
+$(OUTDIR)/: 
+	mkdir -p $@
 
 clean-products:
-	$(RM) -f $(OBJS) $(NAME)
-
-include build/ee-common.mk
+	$(RM) -f $(OBJS) $(OUTDIR)/$(NAME)
