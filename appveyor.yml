@@ -11,9 +11,10 @@ environment:
     - CONFIGURATION: Release
 
 install:
+  - sudo rm -f /var/lib/man-db/auto-update # makes build faster
   - cd scripts
   - sudo sh install_dependencies.sh
-  - sh setup_prodg_linux.sh
+  - sh setup_progd_linux.sh
   - cd ..
 
 build_script:
