@@ -11,7 +11,7 @@ environment:
     - CONFIGURATION: Release
 
 install:
-  - cd tools
+  - cd scripts
   - sudo sh install_dependencies.sh
   - sh setup_prodg_linux.sh
   - cd ..
