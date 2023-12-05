@@ -16,19 +16,21 @@ die() { # perl-style `die` expressions.
 
 # downloads files and uses b2sum(1) to verify integrity
 download_and_check() {
-	echo "Downloading $1 and b2sums"
+	echo "Downloading $1 and b2sums..."
 	wget -qP /tmp $1
 	wget -qP /tmp $1.b2
 
 	BASENAME=$(basename $1)
 	pushd /tmp >/dev/null
 		b2sum -c $BASENAME.b2 || die "b2sums failed to verify when downloading $1"
-		echo "b2sums verified, moving out of /tmp"
-		
+		echo "b2sums verified, moving files out of /tmp"
+
 		rm $BASENAME.b2 # No longer needed
 		mv $BASENAME $TOP
 	popd >/dev/null
 }
+
+echo Starting ProDG setup script...
 
 # download required files (registry + SDK package)
 download_and_check "https://computernewb.com/~lily/sly1/prodg_env.reg"
@@ -38,10 +40,13 @@ download_and_check "https://computernewb.com/~lily/sly1/prodg_sce$SDK_VER.7z"
 wine regedit prodg_env.reg
 
 # Extract the SDK into the wine C drive root
+echo "Extracting SDK to $WINE_ROOT..."
 pushd $WINE_ROOT >/dev/null
 	7z x -y $TOP/prodg_sce$SDK_VER.7z
 popd >/dev/null
 
-echo "Removing temporary files"
+echo "Removing temporary files..."
 rm prodg_sce$SDK_VER.7z
 rm prodg_env.reg
+
+echo "Setup complete!"
