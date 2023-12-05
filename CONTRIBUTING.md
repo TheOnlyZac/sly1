@@ -31,11 +31,11 @@ Replace `branch-name` with whatever you want to call your working branch. This w
 
 ### 4. Write your code
 
-Write your code in the `src` directory. You can use any text editor you like, but we recommend [Visual Studio](https://visualstudio.microsoft.com/downloads/).
+Write your code in the `src/P2` directory. You can use any text editor you like, but we recommend [Visual Studio](https://visualstudio.microsoft.com/downloads/).
 
 #### 4b. Write test cases
 
-If you are adding new code, it is strongly reocmmended that you also write unit tests for it. Unit tests use CTest and are located in the `test` directory. See the [unit tests section](#writing-tests) for more information.
+If you are adding new code, it is strongly reocmmended that you also write unit tests for it. See the [unit tests section](#writing-tests) for more information.
 
 <!-- #### 4b. Match your code
 
@@ -60,11 +60,7 @@ When you are have pushed all commits to your fork and are ready to submit your c
 
 ## Writing Tests
 
-Since we do not yet have a process for function matching, it is strongly recommended that you write tests for any new code you add to ensure it behaves the same way as the original code.
-
-Unit tests are implemented using CTest. Each test is a program with a main function; the test passes if the program exits with a return code of 0.
-
-### Write the test
+Since the process for function matching is not fully set up yet, it is strongly recommended that you write tests for any new code you add to ensure it behaves the same way as the original code. Each test is a program with a main function; the test passes if the program exits with a return code of 0.
 
 To write a new test, create a new source file in the `test` directory under a subdirectory for the system you are testing. For example, if you are testing the `clock` system, create a new source file in `test/clock`. The name of the source file should be the same as the name of the test, e.g. `test/clock/set_clock_rate.cpp`.
 
@@ -75,21 +71,7 @@ JtAssert(1 == 1); // Passes
 JtAssert(1 == 2); // Fails
 ```
 
-### Add the test to CMake
-
-After writing the test, create or edit the `CMakeLists.txt` in the subdirectory for the system you are testing to call the `add_unit_test` command as follows:
-
-```cmake
-add_unit_test(PARALLEL TRUE NAME system.test_name SOURCES test_name.cpp LIBS ${P2_LIB_TARGET})
-```
-
-- `system` should be the same as the name of the directory where you are adding the test.
-- `test_name` should be a unique name for the test which is the same as the source file containing the test.
-- `PARALLEL` specifies whether the test can be run in parallel with other tests. If `TRUE`, the test will be run in parallel with other tests. If `FALSE`, the test will be run in serial with other tests.
-
-### Run the tests
-
-The test runner is a program called `check` which runs each test and reports the results. It is built automatically when you build the `check` target.
+<!-- TODO: Add a way to run the tests -->
 
 ## Example Test
 
@@ -120,20 +102,6 @@ int main()
 }
 ```
 
-### test/clock/CMakeLists.txt
-```
-add_unit_test(PARALLEL TRUE NAME clock.set_clock_rate SOURCES set_clock_rate.cpp LIBS ${P2_LIB_TARGET})
-``````
-
-## Conclusion
-
-Thank you for reading, and we appreciate any contributions you make to the project!
-
-When in doubt, just try and follow the style of the existing code, and do your best to make your code clean and readable. The project is 100% volunteern-driven, so perfection is not required.
-
- If you have any questions or concerns, feel free to ask in the [Discord server](https://discord.gg/2Y8b8Z2) or [open an issue](https://github.com/TheOnlyZac/sly1/issues/new).
-
-
 ## Code Review Process
 
 After you create a pull request, a code reviewer will review it before it can be merged into the main branch. We are a volunteer-driven project, so please be patient while we review your code. These are the main things we will look for in your code:
@@ -143,3 +111,12 @@ After you create a pull request, a code reviewer will review it before it can be
 * Nothing is copy/pasted directly from Ghidra
 
 If everything looks good, we will merge your pull request as soon as possible. If anything needs to be fixed, we will let you know.
+
+
+## Conclusion
+
+Thank you for reading, and we appreciate any contributions you make to the project!
+
+When in doubt, just try and follow the style of the existing code, and do your best to make your code clean and readable. The project is 100% volunteern-driven, so perfection is not required.
+
+If you have any questions or concerns, feel free to ask in the [Discord server](https://discord.gg/2Y8b8Z2) or [open an issue](https://github.com/TheOnlyZac/sly1/issues/new).
