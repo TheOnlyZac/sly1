@@ -33,38 +33,47 @@ This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoo
 
 The goal of this project is to better understand how the game works. This repo does not contain any game assets or code from the game's executable.
 
-Documentation of the code can be found at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1). For further reading on the game's internal structures and mechanics, go to the [SlyMods Wiki][wiki-url].
+Documentation of the code can be found at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1). For further reading on the game's internal structures and mechanics, visit the [SlyMods Wiki][wiki-url].
 
-New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to begin, check out [CONTRIBUTING.md](/CONTRIBUTING.MD) and feel free to [join our Discord server][discord-url] for guidance.
+New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, check out [CONTRIBUTING.md](/CONTRIBUTING.MD) and feel free to [join our Discord server][discord-url] for guidance.
 
 
 ## Building
 
-### Windows/Linux - CLI
+The project can be built on Windows or Linux using `make`. It will build the executable `SCUS_971.98`.
 
-**Prerequisites**: gcc, cmake, ninja
+The `tools` directory contains scripts for setting up the build environment on each platform, which involves downloading and installing the required runtime libraries.
+
+### Linux/WSL
+
+**Prerequisites**: `git`, `wine`, `make`, `p7zip-full`
 
 ```bash
 git clone https://github.com/TheOnlyZac/sly1
-cd sly1
-mkdir build
-cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release
-cmake --build .
+cd sly1/tools
+./setup-progd-linux.sh
+cd ..
+make
 ```
 
-To build unit tests, `cd` into the build directory and run `cmake --build . --target check` or `make check`. Run them with `ctest -C Debug`.
+### Windows
 
-### Windows - Visual Studio
+**Prerequisites**: `git`, `make`, `7zip`
 
-**Prerequisites**: C++ CMake tools for Windows
+```powershell
+git clone https://github.com/TheOnlyZac/sly1
+cd sly1\tools
+.\setup-progd-windows.bat
+cd ..
+make
+```
 
-Clone the repo and open Visual Studio. Click `File > Open > CMake...` and open the file `CMakeLists.txt` in the main project folder. Set the startup item to `SCUS_971.98`.
+## Running
 
-For unit testing, build the target "Check" and the tests should appear in the Test Explorer window. It will run the tests, and the results will show in the Test Explorer as well as the Output window.
+Running the executable requires a copy of the game and the [PCSX2 emulator](https://pcsx2.net/). Configure the emulator to run the game disc, but boot from the executable.
 
 
-## Structure
+## Project Structure
 
 The project is split into two main directories: `src` and `test`. The `src` directory contains the decompiled code, and the `test` directory contains unit tests.
 
@@ -73,16 +82,16 @@ The project is split into two main directories: `src` and `test`. The `src` dire
 * The `test` directory comprises subdirectories for each game system. Each subdirectory contains unit tests for that system.
 
 ```
-sly1
-├───src
-│   ├───P2
-│   │   ├───splice
+sly1/
+├───src/
+│   ├───P2/
+│   │   ├───splice/
 │   │   └───...
-└───test
-    ├───P2
-    │   ├───clock
-    |   |───difficulty
-    │   └───...
+└───test/
+    ├───clock/
+    |   ├───...
+    |───difficulty/
+    |   ├───...
     └───...
 ```
 
