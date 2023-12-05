@@ -12,7 +12,7 @@ environment:
 
 install:
   - sudo sh tools/install_dependencies.sh
-  - sudo sh setup_prodg_linux.sh
+  - sudo sh tools/setup_prodg_linux.sh
 
 build_script:
   - make
