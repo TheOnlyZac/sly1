@@ -42,7 +42,7 @@ New contributors are welcome and encouraged to make a pull request! If you would
 
 The project can be built on Windows or Linux using `make`. It will build the executable `SCUS_971.98`.
 
-The `tools` directory contains scripts for setting up the build environment on each platform, which involves downloading and installing the required runtime libraries.
+The `scripts` directory contains scripts for setting up the build environment on each platform, which involves downloading and installing the required runtime libraries.
 
 ### Linux/WSL
 
