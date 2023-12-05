@@ -1,0 +1,21 @@
+version: 1.0
+
+image:
+  - Ubuntu
+
+platform:
+  - x64
+
+environment:
+  matrix:
+    - CONFIGURATION: Release
+
+install:
+  - sh tools/install_dependencies.sh
+  - sh setup_prodg_linux.sh
+
+build_script:
+  - make
+
+test_script:
+  - echo "No tests configured"
