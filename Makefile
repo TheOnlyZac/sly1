@@ -1,55 +1,21 @@
-# SCE paths
-SCE := C:/usr/local/sce
-EE := $(SCE)/ee
-GCC := $(EE)/gcc
-
-# There's probably a slightly better detection heuristic
-# but this one seems to work more than well enough
-ifneq ($(OS),Windows_NT)
-CC := wine $(EE)/gcc/bin/ee-gcc.exe
-# driver doesn't exist for some reason
-CXX := wine $(EE)/gcc/bin/ee-gcc.exe
-# Unfortunately winepath emits a name that make chokes on
-# with a very cryptic error, so it has to be done like this :(
-CRT0_S := $(HOME)/.wine/drive_c/usr/local/sce/ee/lib/crt0.s
-else
-CC = $(EE)/gcc/bin/ee-gcc.exe
-CXX = $(EE)/gcc/bin/ee-gcc.exe
-CRT0_S := $(EE)/lib/crt0.s
-endif
-
-TARGET = SCUS_971.98
-TFLAGS = -G0 -fno-common
-
-ASFLAGS = $(TFLAGS)
-CFLAGS = -Wall -Wno-unused $(TFLAGS) -fno-strict-aliasing -g -I$(EE)/include
-CXXFLAGS = $(CFLAGS) -fno-exceptions
-LDFLAGS = -nostartfiles -Wl,-Map,$(TARGET).map -T$(EE)/lib/app.cmd -L$(EE)/lib -lsn -lc -lm -lkernl
+NAME := SCUS_971.98
+TARGET := ee
+TARGETTYPE := bin
 
 SDIR = src/P2
+SRCS := $(wildcard $(SDIR)/*.cpp)
 
-CFLAGS += -I$(SDIR)
+# Custom compiler flags
+CCFLAGS = -Wall -Wno-unused $(BASEFLAGS) -fno-strict-aliasing -I$(SCE_COMMON)/include -I$(SCE_EE)/include -I$(SDIR)
+CXXFLAGS = $(CCFLAGS)
+LDFLAGS = -nostartfiles -Wl,-Map,$(NAME).map -T$(SCE_EE)/lib/app.cmd -L$(SCE_EE)/lib -lsn -lc -lm -lkernl
 
-SRCS = $(wildcard $(SDIR)/*.cpp)
-OBJS = crt0.o $(SRCS:.cpp=.o)
 
+include build/core.mk
 
-.PHONY: all clean
+.PHONY: all clean clean-products
 
-all: $(TARGET)
+all: $(NAME)
 
-$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDSCRIPT) $(LDFLAGS)
-
-# :( have to duplicate the rule
-crt0.o: $(CRT0_S)
-	$(CC) -c -xassembler-with-cpp $(CCFLAGS) $< -o $@
-
-%.o: %.s
-	$(CC) -c -xassembler-with-cpp $(CCFLAGS) $< -o $@
-
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-clean:
-	$(RM) -f $(OBJS) $(TARGET) $(TARGET).map
+clean: clean-products
+	rm -f $(NAME).map
