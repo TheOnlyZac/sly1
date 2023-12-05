@@ -6,8 +6,8 @@ SDIR = src/P2
 SRCS := $(wildcard $(SDIR)/*.cpp)
 
 # Custom compiler flags
-CCFLAGS = -Wall -Wno-unused $(BASEFLAGS) -fno-strict-aliasing -g -I$(SCE_COMMON)/include -I$(SCE_EE)/include -I$(SDIR)
-CXXFLAGS = $(CCFLAGS) -fno-exceptions
+CCFLAGS = -Wall -Wno-unused $(BASEFLAGS) -fno-strict-aliasing -I$(SCE_COMMON)/include -I$(SCE_EE)/include -I$(SDIR)
+CXXFLAGS = $(CCFLAGS)
 LDFLAGS = -nostartfiles -Wl,-Map,$(NAME).map -T$(SCE_EE)/lib/app.cmd -L$(SCE_EE)/lib -lsn -lc -lm -lkernl
 
 
