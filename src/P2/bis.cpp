@@ -7,7 +7,12 @@
 
 CBinaryInputStream::CBinaryInputStream(const char* fileName)
 {
-    file.open(fileName, std::ios::binary);
+    // todo
+}
+
+CBinaryInputStream::~CBinaryInputStream()
+{
+    Close();
 }
 
 int CBinaryInputStream::FOpenFile(CFileLocation* pfl)
@@ -110,11 +115,6 @@ void CBinaryInputStream::Read(int cb, void *pv)
     }
 }
 
-void CBinaryInputStream::Read_Modified(int cb, void* pv)
-{
-
-}
-
 void CBinaryInputStream::Align(int n)
 {
     byte* pbOld;
@@ -126,19 +126,9 @@ void CBinaryInputStream::Align(int n)
     m_cb = m_cb - (pbNew - pbOld);
 }
 
-void CBinaryInputStream::Align_Modified(int n)
-{
-    std::ifstream::pos_type pos = file.tellg();
-
-    if (pos % n != 0)
-        pos += (n - (pos % n));
-
-    file.seekg(pos, std::ios_base::beg);
-}
-
 byte CBinaryInputStream::U8Read()
 {
-    byte value{};
+    byte value = 0;
 
     if (m_cb < 1)
         Read(1, &value);
@@ -152,16 +142,9 @@ byte CBinaryInputStream::U8Read()
     return value;
 }
 
-byte CBinaryInputStream::U8Read_Modified()
-{
-    byte temp;
-    file.read(reinterpret_cast<char*> (&temp), sizeof(byte));
-    return temp;
-}
-
 uint16_t CBinaryInputStream::U16Read()
 {
-    uint16_t value{};
+    uint16_t value = 0;
 
     if (m_cb < 2)
         Read(2, &value);
@@ -174,13 +157,6 @@ uint16_t CBinaryInputStream::U16Read()
     return value;
 }
 
-uint16_t CBinaryInputStream::U16Read_Modified()
-{
-    uint16_t temp;
-    file.read(reinterpret_cast<char*> (&temp), sizeof(uint16_t));
-    return temp;
-}
-
 uint32_t CBinaryInputStream::U32Read()
 {
     byte bVar1;
@@ -189,7 +165,7 @@ uint32_t CBinaryInputStream::U32Read()
     byte bVar4;
     byte* pbVar5;
 
-    uint32_t value{};
+    uint32_t value = 0;
     if (m_cb < 4)
         Read(4, &value);
 
@@ -206,16 +182,9 @@ uint32_t CBinaryInputStream::U32Read()
     return value;
 }
 
-uint32_t CBinaryInputStream::U32Read_Modified()
-{
-    uint32_t temp;
-    file.read(reinterpret_cast<char*> (&temp), sizeof(uint32_t));
-    return temp;
-}
-
 int8_t CBinaryInputStream::S8Read()
 {
-    int8_t value{};
+    int8_t value = 0;
 
     if (m_cb < 1)
         Read(1, &value);
@@ -228,19 +197,12 @@ int8_t CBinaryInputStream::S8Read()
     return value;
 }
 
-int8_t CBinaryInputStream::S8Read_Modified()
-{
-    int8_t temp;
-    file.read(reinterpret_cast<char*> (&temp), sizeof(int8_t));
-    return temp;
-}
-
 int16_t CBinaryInputStream::S16Read()
 {
     byte bVar1;
     byte bVar2;
     byte* pbVar3;
-    int16_t value{};
+    int16_t value = 0;
 
     if (m_cb < 2) {
         Read(2, &value);
@@ -256,13 +218,6 @@ int16_t CBinaryInputStream::S16Read()
     return value;
 }
 
-int16_t CBinaryInputStream::S16Read_Modified()
-{
-    int16_t temp;
-    file.read(reinterpret_cast<char*> (&temp), sizeof(int16_t));
-    return temp;
-}
-
 int32_t CBinaryInputStream::S32Read()
 {
     byte bVar1;
@@ -270,7 +225,7 @@ int32_t CBinaryInputStream::S32Read()
     byte bVar3;
     byte bVar4;
     byte* pbVar5;
-    int32_t value{};
+    int32_t value = 0;
 
     if (m_cb < 4)
         Read(4, &value);
@@ -288,13 +243,6 @@ int32_t CBinaryInputStream::S32Read()
     return value;
 }
 
-int32_t CBinaryInputStream::S32Read_Modified()
-{
-    int32_t temp;
-    file.read(reinterpret_cast<char*> (&temp), sizeof(int32_t));
-    return temp;
-}
-
 float CBinaryInputStream::F32Read()
 {
     byte bVar1;
@@ -302,7 +250,7 @@ float CBinaryInputStream::F32Read()
     byte bVar3;
     byte bVar4;
     byte* pbVar5;
-    float value{};
+    float value = 0.0f;
 
     if (m_cb < 4)
         Read(4, &value);
@@ -319,13 +267,6 @@ float CBinaryInputStream::F32Read()
         m_pb = pbVar5 + 4;
     }
     return value;
-}
-
-float CBinaryInputStream::F32Read_Modified()
-{
-    float temp;
-    file.read(reinterpret_cast<char*> (&temp), sizeof(float));
-    return temp;
 }
 
 void CBinaryInputStream::ReadStringSw(char** pachz)
@@ -373,16 +314,4 @@ void CBinaryInputStream::Close()
     m_cb = 0;
     m_grfDecomp = 0;
     return;
-}
-
-void CBinaryInputStream::Close_Modified()
-{
-    file.clear();
-    file.close();
-}
-
-CBinaryInputStream::~CBinaryInputStream()
-{
-    Close();
-    Close_Modified();
 }
