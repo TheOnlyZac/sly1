@@ -46,11 +46,11 @@ The `tools` directory contains scripts for setting up the build environment on e
 
 ### Linux/WSL
 
-**Prerequisites**: `git`, `wine`, `make`, `p7zip-full`
+**Prerequisites**: `git`, `make`, `wine`, `p7zip-full`
 
 ```bash
 git clone https://github.com/TheOnlyZac/sly1
-cd sly1/tools
+cd sly1/scripts
 ./setup-progd-linux.sh
 cd ..
 make
@@ -62,26 +62,36 @@ make
 
 ```powershell
 git clone https://github.com/TheOnlyZac/sly1
-cd sly1\tools
+cd sly1\scripts
 .\setup-progd-windows.bat
 cd ..
 make
 ```
 
-## Running
+### Running
 
-Running the executable requires a copy of the game and the [PCSX2 emulator](https://pcsx2.net/). Configure the emulator to run the game disc, but boot from the executable.
+Running the executable requires the [PCSX2 emulator](https://pcsx2.net/).
+* For PCSX2 1.6, click `System > Run ELF...` and select the compiled executable. You may need to change the file type to "All Files".
+* For PCSX2 1.7, add the `bin` dir to your Games folders and the ELF will show up as a game in your library. When it asks you to search recursively, say yes.
 
 
 ## Project Structure
 
-The project is split into two main directories: `src` and `test`. The `src` directory contains the decompiled code, and the `test` directory contains unit tests.
+The project is split into the following directories.
 
-* All of the code for the game engine is in `src/P2`. Code for the game's scripting engine, Splice, is in `src/P2/splice`.
+* `src` - Contains the decompiled source code.
+  * All of the code for the game engine is in `src/P2`.
+  * Code for the game's scripting engine, Splice, is in `src/P2/splice`.
+* `test` - Contains subdirectories for each game system. Each subdirectory contains unit tests for that system.
+* `build` - Makefiles used to build the executable.
+* `scripts` - Utility scripts for setting up the build environment.
+* `tools` - Utilities for function matching.
 
-* The `test` directory comprises subdirectories for each game system. Each subdirectory contains unit tests for that system.
+Additionally, when you build the executable, the following directories will be created.
+* `obj` - Compiled object files.
+* `bin` - Compiled executables.
 
-```
+<!--```
 sly1/
 ├───src/
 │   ├───P2/
@@ -93,7 +103,7 @@ sly1/
     |───difficulty/
     |   ├───...
     └───...
-```
+```-->
 
 ## FAQ
 
@@ -111,11 +121,11 @@ This is one of the first major PS2 decompilations. We take inspiration from othe
 
 #### Is this a matching decomp?
 
-Most of the decompiled code is not yet matching. We are actively researching the PS2 compiler and working to come up with with a process for function matching. If you would like to help, please join our [Discord server](https://discord.gg/gh5xwfj) and head to `#sly-research`.
+This is the first PS2 decompilation project to target the PS2 and utilize function matching. Most of the decompiled code is not yet matching, and we do not currently require it, but the ultimate goal is to match as many functions as possible.
 
 #### How can I help?
 
-If you want to contribute but have no idea where to start, check out [CONTRIBUTING.md](/CONTRIBUTING.MD) and feel free to [join our discord server](https://discord.gg/gh5xwfj) if you have any questions!
+If you want to contribute, read through [CONTRIBUTING.md](/CONTRIBUTING.MD) and feel free to [join our discord server](https://discord.gg/gh5xwfj) if you have any questions!
 
 ## Star History
 

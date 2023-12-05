@@ -1,4 +1,4 @@
-## Ignore project-specific files
+# Project-specific files
 *[Ss][Cc][Uu][Ss]*
 *971*98*
 ProDGPs2usrLocalSceFiles.zip
@@ -12,7 +12,36 @@ sce/
 ## Clang-tooling things
 **/compile_commands.json
 
-## Local
+# Compiled Object files
+**/.DS_Store
+*.slo
+*.lo
+*.o
+*.obj
 
-.idea/
+# Precompiled Headers
+*.gch
+*.pch
 
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+*.elf
+
+# Miscellaneous
+.vscode
+temp/
+__pycache__/
+*.pyc
