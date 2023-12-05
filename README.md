@@ -91,19 +91,6 @@ Additionally, when you build the executable, the following directories will be c
 * `obj` - Compiled object files.
 * `bin` - Compiled executables.
 
-<!--```
-sly1/
-├───src/
-│   ├───P2/
-│   │   ├───splice/
-│   │   └───...
-└───test/
-    ├───clock/
-    |   ├───...
-    |───difficulty/
-    |   ├───...
-    └───...
-```-->
 
 ## FAQ
 
