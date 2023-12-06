@@ -1,12 +1,9 @@
 #!/bin/bash
 
-# Abort if anything returns non-zero exit code
-set -e
-
 echo "Generating docs..."
 
 # Delete old docs
-rm -rf ./html
+rm -rf ./docs
 
 # Init submodules
 git submodule update --init --recursive
@@ -17,10 +14,10 @@ git clone https://github.com/theonlyzac/sly1
 # Generate docs
 cd sly1
 doxygen Doxyfile
-mv html/ ..
+mv docs/ ..
 
 # Delete the codebase
 cd ..
 rm -rf sly1
 
-echo Successfully generated docs in ./html.
+echo Successfully generated docs in ./docs.
