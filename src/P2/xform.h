@@ -3,7 +3,9 @@
  *
  * @brief Declares EXITs for moving between levels.
 */
-#pragma once
+#ifndef XFORM_H
+#define XFORM_H
+
 #include <game.h>
 #include <aseg.h>
 #include <wipe.h>
@@ -61,3 +63,5 @@ struct EXIT
  * @param exits EXIT state
 */
 void SetExitExits(EXIT* pexit, EXITS exits);
+
+#endif // XFORM_H

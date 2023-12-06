@@ -3,7 +3,8 @@
  *
  * @brief Light and shadow system.
 */
-#pragma once
+#ifndef LIGHT_H
+#define LIGHT_H
 
 /**
  * @brief Light shadow & midtone
@@ -13,3 +14,5 @@ struct LSM
 	float uShadow;
 	float uMidtone;
 };
+
+#endif // LIGHT_H

@@ -29,7 +29,7 @@ void PopulatePchzLevelTable() // temp
 
 int FGameCompletion()
 {
-    return 0b1111; //! shouldn't always returns full completion, this is just for testing
+    return 0xF; //! temporarily returns full completion for debugging
 }
 
 /* Calculates the percent completion on the current save file */

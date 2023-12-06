@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MAIN_H
+#define MAIN_H
 
 static int g_chpzArgs;
 static char** g_aphzArgs;
@@ -26,3 +27,5 @@ void Startup();
  * @note This function is not in the game and is only used for testing.
 */
 void MainDebug();
+
+#endif // MAIN_H

@@ -3,7 +3,9 @@
  *
  * @brief Declarations for working with WAC and WAL catalogs.
 */
-#pragma once
+#ifndef CAT_H
+#define CAT_H
+
 #include <iostream>
 
 typedef unsigned int uint; //todo move to util header
@@ -165,3 +167,5 @@ public:
     */
     int FDefaultWorld(char* pchzResult, CFileLocation* pflResult);
 };
+
+#endif // CAT_H

@@ -1,0 +1,24 @@
+version: 1.0.{build}
+
+image:
+  - Ubuntu
+
+platform:
+  - x64
+
+environment:
+  matrix:
+    - CONFIGURATION: Release
+
+install:
+  - sudo rm -f /var/lib/man-db/auto-update # makes build faster
+  - cd scripts
+  - sudo sh install_dependencies.sh
+  - sh setup_progd_linux.sh
+  - cd ..
+
+build_script:
+  - make
+
+test_script:
+  - echo "No tests configured"

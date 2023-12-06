@@ -1,8 +1,8 @@
 /**
  * @file wm.h
 */
-#pragma once
-#include <iostream>
+#ifndef WM_H
+#define WM_H
 
 /**
  * @brief Unknown, possibly WorldMap
@@ -32,3 +32,5 @@ enum WMS
  * @param pwms Pointer to the WM state
 */
 void SetWmWms(WM* pwm, WMS wms);
+
+#endif // WM_H

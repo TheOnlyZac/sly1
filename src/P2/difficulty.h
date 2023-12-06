@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the difficulty scaling system.
 */
-#pragma once
+#ifndef DIFFICULTY_H
+#define DIFFICULTY_H
+
 #include <util.h>
 #include <chkpnt.h>
 
@@ -150,3 +152,5 @@ void ChangeSuck(float nParam, DIFFICULTY* pdifficulty);
 
 //void ResetSuckChkpnts(int nParam);
 //void SetSuckChkpnts(int nParam);
+
+#endif // DIFFICULTY_H

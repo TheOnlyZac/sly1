@@ -4,8 +4,9 @@
  * @brief Implements the game camera.
 */
 #include <cm.h>
+#include <cstddef>
 
-CM* g_pcm = nullptr;
+CM* g_pcm = NULL;
 
 void SetupCm(CM* pcm)
 {

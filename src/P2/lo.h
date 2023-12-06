@@ -3,7 +3,9 @@
  *
  * @brief Declares Level Object struct.
 */
-#pragma once
+#ifndef LO_H
+#define LO_H
+
 #include <basic.h>
 #include <game.h>
 #include <dl.h>
@@ -25,3 +27,5 @@ struct LO {
     struct PXR* ppxr;
     unsigned long dtickPerf;
 };
+
+#endif // LO_H

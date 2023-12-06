@@ -5,7 +5,8 @@
 */
 #include <wipe.h>
 #include <clock.h>
-#include <wm.h>
+#include <gs.h>
+#include <sw.h>
 
 WIPE* g_pwipe = &g_wipe;
 
@@ -65,7 +66,7 @@ void ActivateWipe(WIPE* pwipe, TRANS* ptrans, WIPEK wipek)
     pwipe->trans.grftrans = ptrans->grftrans;
     WIPES wipes = WIPES_WipingOut;
 
-    if (g_psw == nullptr)
+    if (g_psw == NULL)
     {
         wipes = WIPES_Black;
     }
@@ -165,10 +166,10 @@ void DrawWipe(WIPE* pwipe)
     float alpha;
     float uBlack;
     WIPEK wipek;
-    if (g_psw != nullptr && g_pwipe != nullptr)
+    if (g_psw != NULL && g_pwipe != NULL)
     {
         wipek = pwipe->wipek;
-        if (wipek == WIPEK_Keyhole && g_pkeyhole != nullptr)
+        if (wipek == WIPEK_Keyhole && g_pkeyhole != NULL)
         {
             //DrawKeyhole(g_pkeyhole, pwipe->uBlack);
             return;

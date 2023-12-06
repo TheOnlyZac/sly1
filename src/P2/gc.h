@@ -1,7 +1,9 @@
 /**
  * @file gc.h
 */
-#pragma once
+#ifndef GC_H
+#define GC_H
+
 #include <ref.h>
 
 /**
@@ -11,3 +13,5 @@ struct SBB {
     int n;
     struct CRef ref;
 };
+
+#endif // GC_H

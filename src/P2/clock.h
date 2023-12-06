@@ -3,7 +3,8 @@
  *
  * @brief Declarations for the game clock.
 */
-#pragma once
+#ifndef CLOCK_H
+#define CLOCK_H
 
 typedef unsigned long long TICK;
 
@@ -86,3 +87,5 @@ TICK TickNow();
  * @todo Implement this function.
 */
 //void SetClockDebugRate(int nParam);
+
+#endif // CLOCK_H

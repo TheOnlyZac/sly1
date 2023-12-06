@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the font system.
 */
-#pragma once
+#ifndef FONT_H
+#define FONT_H
+
 #include <util.h>
 
 /**
@@ -130,3 +132,5 @@ public:
      */
     void SetVerticalJust(JV jv);
 };
+
+#endif // FONT_H

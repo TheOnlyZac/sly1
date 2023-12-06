@@ -3,9 +3,11 @@
  *
  * @brief Declarations for scene objects.
 */
-#pragma once
-#include <zap.h>
+#ifndef SO_H
+#define SO_H
+
 #include <util.h>
+#include <zap.h>
 #include <iostream>
 
 typedef int GRFPVA;
@@ -105,3 +107,5 @@ struct SO
     SO* psoPhysHook;
     //struct GEOM_153 geomCameraLocal;
 };
+
+#endif // SO_H

@@ -1,7 +1,8 @@
 /**
  * @file dl.h
 */
-#pragma once
+#ifndef DL_H
+#define DL_H
 
 /**
  * @brief Unknown, needs more research
@@ -197,3 +198,5 @@ struct DLE
     struct MGCO* pmgcoPrev;
     struct JMT* pjmtPrev;
 };
+
+#endif // DL_H

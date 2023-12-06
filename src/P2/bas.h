@@ -3,14 +3,15 @@
  *
  * @brief Declarations for the binary async stream.
 */
-#pragma once
-#include <stdint.h>
+#ifndef BAS_H
+#define BAS_H
+
 #include <util.h>
 
 /**
  * @brief Binary Async Stream Kind
 */
-enum BASK : int
+enum BASK
 {
     BASK_Nil = -1,
     BASK_Cd = 1,
@@ -54,3 +55,5 @@ public:
     void Close();
 };
 
+
+#endif // BAS_H

@@ -3,6 +3,9 @@
  *
  * @brief Declarations for interaction with binary resource archives.
 */
+#ifndef BRX_H
+#define BRX_H
+
 #include <alo.h>
 #include <game.h>
 #include <sw.h>
@@ -28,3 +31,5 @@ SW* PloNew(CID cid, SW* csw, ALO* paloParent, OID oid, int isplice);
  * @return The level object index.
 */
 int IploFromStockOid(int oid);
+
+#endif // BRX_H

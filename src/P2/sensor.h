@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the sensor system.
 */
-#pragma once
+#ifndef SENSOR_H
+#define SENSOR_H
+
 #include <util.h>
 
 typedef unsigned char byte;
@@ -58,3 +60,5 @@ struct SENSOR
     undefined4 field_0x5f8;
     float svtRestore;
 };
+
+#endif // SENSOR_H

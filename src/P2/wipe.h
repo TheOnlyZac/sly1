@@ -3,16 +3,14 @@
  *
  * @brief Declarations for the wipe system.
 */
-#pragma once
-#include <dialog.h>
-#include <game.h>
-#include <joy.h>
-#include <keyhole.h>
-#include <sw.h>
-#include <transition.h>
-#include <wm.h>
+#ifndef WIPE_H
+#define WIPE_H
 
-typedef unsigned char byte;
+#include "dialog.h" // quotes to avoid ambiguity with <dialog.h>
+#include <transition.h>
+#include <keyhole.h>
+#include <joy.h>
+#include <wm.h>
 
 /**
  * @brief Wipe Kind
@@ -132,3 +130,5 @@ void SetWipeButtonTrans(WIPE* pwipe, TRANS* ptrans, WIPEK wipek);
  * @param wipesNew New wipe state
 */
 int FCatchWipeButtonTrans(WIPE* pwipe, JOY* pjoy, WIPES wipesNew);
+
+#endif // WIPE_H

@@ -3,7 +3,9 @@
  *
  * @brief Declarations for the dialog system.
 */
-#pragma once
+#ifndef DIALOG_H
+#define DIALOG_H
+
 #include <iostream>
 #include <game.h>
 #include <util.h>
@@ -56,3 +58,5 @@ struct DIALOG
     int fDefault;
     int fCrucial;
 };
+
+#endif // DIALOG_H

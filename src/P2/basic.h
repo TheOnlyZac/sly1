@@ -3,7 +3,8 @@
  *
  * @brief Declares the BASIC struct.
 */
-#pragma once
+#ifndef BASIC_H
+#define BASIC_H
 
 struct BASIC
 {
@@ -170,3 +171,5 @@ struct BASIC
     struct VTCM* pvtcm;
 	struct CSidebag* psidebag;
 };
+
+#endif // BASIC_H

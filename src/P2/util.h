@@ -3,14 +3,10 @@
  *
  * @brief Declarations for utility functions.
 */
-#pragma once
+#ifndef UTIL_H
+#define UTIL_H
 
-typedef bool BOOL;
-typedef unsigned int uint;
-typedef unsigned long ulong;
-typedef unsigned char byte;
-typedef unsigned char BYTE;
-typedef unsigned int undefined4;
+#include <types.h>
 
 /**
  * @brief Limits for a float
@@ -18,10 +14,6 @@ typedef unsigned int undefined4;
 struct LM
 {
 	float gMin, gMax;
-
-	constexpr LM(float min = 0, float max = 1):
-		gMin(min), gMax(max)
-	{}
 };
 
 // Global variables
@@ -203,3 +195,5 @@ void Force(void* pv);
 //void ExtendRange(PFNGG pfn, void* pv, float g, float dg, float gMax, float* pgMic, float* pgMac);
 //int NRoundG(float g);
 //void SmoothMulti(int c, float dt, float r);
+
+#endif // UTIL_H

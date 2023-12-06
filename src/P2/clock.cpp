@@ -8,11 +8,11 @@
 /**
  * Set magic numbers
 */
-static constexpr int CLOCK_FRAMERATE = 60; // 60 FPS
-static constexpr float CLOCK_FRAMETIME = 1.f / CLOCK_FRAMERATE; // 1/60th of a second
+static const int CLOCK_FRAMERATE = 60; // 60 FPS
+static const float CLOCK_FRAMETIME = 1.f / CLOCK_FRAMERATE; // 1/60th of a second
 
-static constexpr int CLOCK_EE_TICK_RATE = 294912000; // 294.912 MHz
-static constexpr float CLOCK_EE_TICK_DURATION = 1.f / CLOCK_EE_TICK_RATE; // 1/294.912 MHz
+static const int CLOCK_EE_TICK_RATE = 294912000; // 294.912 MHz
+static const float CLOCK_EE_TICK_DURATION = 1.f / CLOCK_EE_TICK_RATE; // 1/294.912 MHz
 
 /**
  * Init global/static vars
@@ -20,7 +20,7 @@ static constexpr float CLOCK_EE_TICK_DURATION = 1.f / CLOCK_EE_TICK_RATE; // 1/2
 float g_rtClock = 1.0;
 float g_trClockPowerUp = 1.0;
 CLOCK g_clock;
-TICK CLOCK::s_tickLastRaw{};
+TICK CLOCK::s_tickLastRaw = 0;
 
 void SetClockRate(float rt)
 {
@@ -33,7 +33,7 @@ void SetClockRate(float rt)
 
 void MarkClockTick(CLOCK* pclock)
 {
-	float dt{};
+	float dt = 0.0f;
 
 	const TICK tickFrame = TickNow();
 	const TICK deltaFrame = tickFrame - pclock->tickFrame;
@@ -58,7 +58,7 @@ void MarkClockTick(CLOCK* pclock)
 	}
 
 	pclock->dtReal = dt;
-	float dtFinal{};
+	float dtFinal = 0.0f;;
 
 	if (pclock->fEnabled) {
 		dtFinal = dt;
@@ -80,7 +80,7 @@ void MarkClockTick(CLOCK* pclock)
 
 void MarkClockTickRealOnly(CLOCK* pClock)
 {
-	float dtReal{};
+	float dtReal = 0.0f;
 
 	TICK tickNow = TickNow();
 	TICK deltaTick = tickNow - pClock->tickFrame;

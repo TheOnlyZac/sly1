@@ -5,7 +5,6 @@
 */
 #include <game.h>
 #include <joy.h>
-#include <gs.h>
 #include <cstring>
 
 void InitGameState(GS* pgs)

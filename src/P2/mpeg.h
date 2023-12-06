@@ -3,17 +3,12 @@
  *
  * @brief Declarations for the MPEG system.
 */
-#pragma once
-#include <bis.h>
-#include <bq.h>
-#include <clock.h>
-#include <cat.h>
-#include <gs.h>
-#include <joy.h>
-#include <difficulty.h>
+#ifndef MPEG_H
+#define MPEG_H
+
 #include <game.h>
-#include <iostream>
-#include <util.h>
+#include <bas.h>
+#include <bq.h>
 
 /**
  * @brief Mpeg Audio State
@@ -142,3 +137,5 @@ public:
 
 // Global variables
 static CMpeg g_mpeg; // Current MPEG
+
+#endif // MPEG_H

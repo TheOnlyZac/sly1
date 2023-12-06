@@ -1,4 +1,10 @@
-#pragma once
+/**
+ * @file test.h
+ *
+ * @brief Contains macros for testing and debugging.
+*/
+#ifndef TEST_H
+#define TEST_H
 
 #include <stdexcept>
 #include <exception>
@@ -20,3 +26,5 @@
 		exit(1); \
 	} \
 }
+
+#endif // TEST_H

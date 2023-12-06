@@ -3,20 +3,12 @@
  *
  * @brief Declarations for the transition system.
 */
-#pragma once
-#include <bis.h>
-#include <brx.h>
-#include <cat.h>
+#ifndef TRANSITION_H
+#define TRANSITION_H
+
+#include <util.h>
 #include <game.h>
-#include <gs.h>
-#include <difficulty.h>
-#include <clock.h>
-#include <joy.h>
-#include <phasemem.h>
-#include <prog.h>
-#include <sound.h>
-#include <sw.h>
-#include <iostream>
+#include <bis.h>
 
 typedef int GRFTRANS;
 
@@ -92,3 +84,5 @@ public:
 
 // Global variables
 static CTransition g_transition; // Current transition
+
+#endif // TRANSITION_H

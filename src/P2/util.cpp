@@ -7,8 +7,8 @@
 #include <cmath>
 #include <cstdlib> // todo: implement rng functions to avoid using stdlib
 
-static constexpr float PI = 3.141593;
-LM g_lmZeroOne(0, 1);
+static const float PI = 3.141593;
+LM g_lmZeroOne = { 0.0f, 1.0f };
 
 float RadNormalize(float rad)
 {

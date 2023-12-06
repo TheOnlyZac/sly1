@@ -5,7 +5,8 @@
  *
  * @note Not to be confused with Graphics Synthesizer, which is also abbreviated GS.
 */
-#pragma once
+#ifndef GS_H
+#define GS_H
 
 /**
  * @brief Game State Flags
@@ -61,7 +62,7 @@ enum GAMEWORLD
 /**
  * @brief World Level ID
 */
-enum WORLDLEVEL : int
+enum WORLDLEVEL
 {
     WORLDLEVEL_Approach = 0,
     WORLDLEVEL_Hub = 1,
@@ -183,3 +184,5 @@ int FGameCompletion();
  * @return Percent completion as an integer out of 100.
 */
 int CalculatePercentCompletion(GS* pgs);
+
+#endif // GS_H

@@ -1,7 +1,8 @@
 /**
  * @file alo.h
 */
-#pragma once
+#ifndef ALO_H
+#define ALO_H
 
 struct ALO {
     //LO field0_0x0;
@@ -59,3 +60,5 @@ struct ALO {
     //DLR* pdlrFirst;
     //ACK ackRot;
 };
+
+#endif // ALO_H

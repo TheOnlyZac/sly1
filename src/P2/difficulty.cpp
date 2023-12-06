@@ -3,17 +3,14 @@
  *
  * @brief Implements the difficulty scaling functions.
 */
-#include <util.h>
-#include <game.h>
-#include <gs.h>
 #include <difficulty.h>
-
+#include <game.h>
 #include <cstring>
 
 /* Called when game starts; clears the difficulty struct */
 void OnDifficultyGameLoad(DIFFICULTY* pdifficulty)
 {
-	std::memset(pdifficulty, 0, sizeof(DIFFICULTY));
+	memset(pdifficulty, 0, sizeof(DIFFICULTY));
 }
 
 /* Set the game difficulty props based on current save file */
@@ -157,7 +154,7 @@ void OnDifficultyCollectKey(DIFFICULTY* pdifficulty)
 	lsCur->unk_suck_0x10 = 0.0;
 	lsCur->unk_field_0x70 = 0;
 
-	std::memset(&lsCur->unk_field_0x74, 0, 1);
+	memset(&lsCur->unk_field_0x74, 0, 1);
 }
 
 /* Update the suck value on the current level save data */

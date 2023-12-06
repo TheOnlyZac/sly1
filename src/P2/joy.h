@@ -3,13 +3,11 @@
  *
  * @brief Declarations for joypad interactions.
 */
-#pragma once
+#ifndef JOY_H
+#define JOY_H
+
 #include <util.h>
-#include <iostream>
 
-typedef unsigned char byte; // todo move to util header
-
-typedef long ulong_128;
 typedef short GRFBTN;
 
 /**
@@ -273,3 +271,5 @@ void AddGrfusr(int mask);
  * @todo Implement rendering the string on the screen.
 */
 void CheatActivateChetkido();
+
+#endif // JOY_H

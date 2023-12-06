@@ -3,9 +3,10 @@
  *
  * @brief Declarations for the sound system.
 */
-#pragma once
+#ifndef SOUND_H
+#define SOUND_H
+
 #include <util.h>
-#include <cstdint>
 
 /**
  * @brief EASND
@@ -508,3 +509,5 @@ struct ISI {
     struct LM lmRepeat;
     struct LM lmRepDist;
 };
+
+#endif // SOUND_H

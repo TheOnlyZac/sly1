@@ -1,8 +1,8 @@
 /**
  * @file keyhole.h
 */
-#pragma once
-#include <iostream>
+#ifndef KEYHOLE_H
+#define KEYHOLE_H
 
 /**
  * Keyhole
@@ -12,3 +12,5 @@ struct KEYHOLE
 	// todo
 	// ...
 };
+
+#endif // KEYHOLE_H

@@ -3,12 +3,12 @@
  *
  * @brief Declares VECTOR and other related classes/functions.
 */
-#pragma once
-#include <iostream>
-#include <so.h>
-#include <util.h>
+#ifndef VEC_H
+#define VEC_H
 
-typedef unsigned char byte;
+#include <util.h>
+#include <so.h>
+
 typedef int GRFPVA;
 
 /**
@@ -102,9 +102,9 @@ bool FCalculateMuzzleVelocity(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3,
  * @param param_3 Target velocity
  * @param param_4 Unknown
  *
- * @note This is an educated guess and may not be accurate.
+ * @note The name/paremeters for this function are an educated guess and may not be accurate.
 */
-uint32_t FCalculateMuzzleVelocityAngle(VECTOR* param_1, VECTOR* param_2, float param_3, VECTOR* param_4, SO* param_5);
+uint32_t FCalculateMuzzleVelocityAngle(VECTOR* param_1, VECTOR* param_2, VECTOR* param_3, VECTOR* param_4, SO* param_5);
 
 /**
  * @brief Finds the closest point between the lines AB and CD.
@@ -195,3 +195,5 @@ void SetVectorSphere(float z, float y, float x, VECTOR* pvec);
  * @return Scalar projection of vec1 onto vec2
 */
 float SProjectVector(VECTOR* pvec1, VECTOR* pvec2);
+
+#endif // VEC_H

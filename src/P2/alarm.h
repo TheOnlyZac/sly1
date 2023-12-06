@@ -2,5 +2,12 @@
  * @file alarm.h
  *
  * @brief Declarations for the alarm system.
+ *
+ * @todo Implement the alarm system.
 */
-#pragma once
+#ifndef ALARM_H
+#define ALARM_H
+
+// ...
+
+#endif // ALARM_H

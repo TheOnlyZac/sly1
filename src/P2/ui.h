@@ -3,7 +3,8 @@
  *
  * @brief Declarations for the user interface.
 */
-#pragma once
+#ifndef UI_H
+#define UI_H
 
 /**
  * @brief UI state
@@ -63,3 +64,5 @@ void DrawUi();
  * @brief Calls RenderBlots to render the UI.
 */
 void RenderUi();
+
+#endif // UI_H

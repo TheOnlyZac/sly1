@@ -3,7 +3,8 @@
  *
  * @brief Defines 4x4 and 3x3 matrix types.
 */
-#pragma once
+#ifndef MAT_H
+#define MAT_H
 
 typedef struct MATRIX4 GRFDP;
 
@@ -22,3 +23,5 @@ struct MATRIX3
 {
 	float mat[3][3];
 };
+
+#endif // MAT_H

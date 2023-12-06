@@ -3,7 +3,9 @@
  *
  * @brief Declares the scene world and related classes.
 */
-#pragma once
+#ifndef SW_H
+#define SW_H
+
 #include <bis.h>
 #include <dl.h>
 #include <light.h>
@@ -158,3 +160,5 @@ void LoadSwFromBrx(SW* psw, CBinaryInputStream* pbis);
  * @todo Implement this function.
 */
 void DeleteSw(SW* psw);
+
+#endif // SW_H
