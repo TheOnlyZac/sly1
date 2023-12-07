@@ -137,7 +137,7 @@ This is the first PS2 decompilation project to target the PS2 and utilize functi
 
 #### How can I help?
 
-If you want to contribute, read through [CONTRIBUTING.md](/CONTRIBUTING.MD) and feel free to [join our discord server](https://discord.gg/gh5xwfj) if you have any questions!
+If you want to contribute, read through [CONTRIBUTING.md](/CONTRIBUTING.md) and feel free to [join our discord server](https://discord.gg/gh5xwfj) if you have any questions!
 
 
 ## Star History

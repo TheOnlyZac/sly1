@@ -73,9 +73,9 @@ JtAssert(1 == 2); // Fails
 
 <!-- TODO: Add a way to run the tests -->
 
-## Example Test
+### Example Test
 
-### test/clock/set_clock_rate.cpp
+**test/clock/set_clock_rate.cpp**
 ```
 #include <clock.h>
 #include <test/test.h>
