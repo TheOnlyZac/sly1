@@ -31,7 +31,7 @@
 
 This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoonus*](https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus) for the PlayStation 2. It is based on the NTSC-U version of the game (`SCUS-971.98`).
 
-The goal of this project is to better understand how the game works. This repo does not contain any game assets or code from the game's executable.
+The goal of this project is to better understand the game engine. This repo does not contain any game assets or code from the game's executable, and it requires your own copy of the game to run.
 
 Documentation of the code can be found at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1). For further reading on the game's internal structures and mechanics, visit the [SlyMods Wiki][wiki-url].
 
@@ -46,7 +46,7 @@ The `scripts` directory contains scripts for setting up the build environment on
 
 ### Linux/WSL
 
-**Prerequisites**: `git`, `make`, `wine`, `p7zip-full`
+**Prerequisites**: `git`, `make`, `wine-stable`, `p7zip-full`
 
 ```bash
 git clone https://github.com/TheOnlyZac/sly1
@@ -75,18 +75,18 @@ Running the executable requires the [PCSX2 emulator](https://pcsx2.net/). You mu
 
 ### Automatic (script)
 
-The `run.sh` script in the `scripts` dir will automatically rebuild the executable and run it in the PCSX2 emulator. To use it, you must first edit the script to set th `PCSX2_PATH` and `ISO_PATH` variables to the correct paths on your system.
+The `run.sh` script in the `scripts` dir will automatically rebuild the executable and run it in the PCSX2 emulator. To use it, you must first edit the script to set the `PCSX2_PATH` and `ISO_PATH` variables to the correct paths on your system.
 
 ### Command line
 
 To boot the elf in PCSX2 from the command line, use one of the following commands:
 
-```
-pcsx2-1.6 --nogui --console --elf="/path/to/SCUS_971.98" "/path/to/game/iso.iso"
+```bash
+pcsx2-1.6 --nogui --console --elf="/path/to/SCUS_971.98" "/path/to/game/backup.iso"
 ```
 
-```
-pcsx2-1.7 -nogui -console -elf "/path/to/SCUS_971.98" "/path/to/game/iso.iso"
+```bash
+pcsx2-1.7 -nogui -console -elf "/path/to/SCUS_971.98" "/path/to/game/backup.iso"
 ```
 
 Change `pcsx2-1.6` or `pcsx2-1.7` to your PCSX2 executable.
@@ -96,7 +96,7 @@ Change `pcsx2-1.6` or `pcsx2-1.7` to your PCSX2 executable.
 
 ### PCSX2 GUI
 
-* For PCSX2 1.6, click `System > Run ELF...`, change the file type to "All Files", and browse for the `SCUS_971.98` in the `bin` dir of the project.
+* For PCSX2 1.6, click `System > Run ELF...`, change the file type to "All Files", and browse for `SCUS_971.98` in the `bin` dir of the project.
 * For PCSX2 1.7, add the `bin` dir to your Games folders and the ELF will show up as a game in your library. When it asks you to search recursively, say yes. You may have to rename the elf to end in `.elf` for it to automatically detect it.
 
 
