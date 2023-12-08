@@ -19,4 +19,4 @@ include build/core.mk
 all: $(OUTDIR)/$(NAME)
 
 clean: clean-products
-	$(RM) -f $(OBJDIR)/$(NAME).map
+	$(RM) -f $(OUTDIR)/*$(NAME).map $(SDIR)/*.o

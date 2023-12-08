@@ -21,7 +21,7 @@ OBJS += $(patsubst %.s,$(OBJDIR)/%.o,$(filter %.s,$(notdir $(SRCS))))
 BASEFLAGS := -G0 -fno-common
 
 ifeq ($(CONFIG),debug)
-	BASEFLAGS += -O0 -g
+	BASEFLAGS += -O2 -g
 endif
 
 ifeq ($(CONFIG),release)
