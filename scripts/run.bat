@@ -3,7 +3,7 @@
 REM ##############################################################################
 REM Set these paths to point to your PCSX2 1.7 executable and your copy of the game
 set PCSX2_PATH="C:\path\to\pcsx2.exe"
-set ISO_PATH="C:\path\to\game.iso"
+set ISO_PATH=""
 REM ##############################################################################
 
 goto :start
@@ -38,7 +38,7 @@ pushd "%~dp0..\.." > nul
 
 REM Build the game
 echo Compiling ELF...
-REM make clean > nul
+::make clean > nul
 make > nul
 
 REM Run the game

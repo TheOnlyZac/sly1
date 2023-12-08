@@ -161,7 +161,7 @@ void AddFcht(int nParam)
     // Check if reload flag is set
     if ((nParam & 0x4000) != 0)
     {
-        ResetWorld(FTRANS::None);
+        ResetWorld(FTRANS_None);
     }
 }
 ```
