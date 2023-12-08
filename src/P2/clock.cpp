@@ -102,17 +102,25 @@ void MarkClockTickRealOnly(CLOCK* pClock)
 	pClock->tReal = pClock->tReal + dtReal * CLOCK_EE_TICK_DURATION;
 }
 
+/**
+ * @note Matching 100%
+*/
 void ResetClock(CLOCK* pclock, float t)
 {
 	pclock->t = t;
 }
 
-void SetClockEnabled(CLOCK* pclock, bool fEnabled)
+/**
+ * @note Matching 100%
+*/
+void SetClockEnabled(CLOCK* pclock, int fEnabled)
 {
 	pclock->fEnabled = fEnabled;
 }
 
-/* Initialize some clock values */
+/**
+ * @todo What is Count?
+*/
 void StartupClock()
 {
 	/* todo: what is Count?
@@ -120,14 +128,18 @@ void StartupClock()
 	g_clock.tickFrame = TickNow();
 }
 
+/**
+ * @todo What is Count? What is cWrapAround.1014?
+*/
 TICK TickNow()
 {
-	/* todo: what is Count and cWrapAround.1014?
+	/*
 	TICK countLow = (long)Count & 0xffffffff;
 	if (countLow < CLOCK::s_tickLastRaw) {
 		cWrapAround.1014 += 1;
 	}
 	CLOCK::s_tickLastRaw = countLow;
-	return cWrapAround.1014 << 0x20 | countLow; */
+	return cWrapAround.1014 << 0x20 | countLow;
+	*/
 	return 1.0; // temp
 }

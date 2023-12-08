@@ -39,11 +39,11 @@ enum PadButtons
 */
 enum JOYS
 {
-	JOYS_Initing = 0,
-	JOYS_Searching = 1,
-	JOYS_Waiting = 2,
-	JOYS_Ready = 3,
-	JOYS_Max = 4
+    JOYS_Initing = 0,
+    JOYS_Searching = 1,
+    JOYS_Waiting = 2,
+    JOYS_Ready = 3,
+    JOYS_Max = 4
 };
 
 /**
@@ -51,12 +51,12 @@ enum JOYS
 */
 enum JOYK
 {
-	JOYK_Unknown = 0,
-	JOYK_Digital = 1,
-	JOYK_Analog = 2,
-	JOYK_Shock = 3,
-	JOYK_Shock2 = 4,
-	JOYK_Max = 5
+    JOYK_Unknown = 0,
+    JOYK_Digital = 1,
+    JOYK_Analog = 2,
+    JOYK_Shock = 3,
+    JOYK_Shock2 = 4,
+    JOYK_Max = 5
 };
 
 /**
@@ -64,12 +64,12 @@ enum JOYK
 */
 enum RUMS
 {
-	RUMS_Dead = 0,
-	RUMS_Idle = 1,
-	RUMS_Rumble = 2,
-	RUMS_Stop = 3,
-	RUMS_Kill = 4,
-	RUMS_Max = 5
+    RUMS_Dead = 0,
+    RUMS_Idle = 1,
+    RUMS_Rumble = 2,
+    RUMS_Stop = 3,
+    RUMS_Kill = 4,
+    RUMS_Max = 5
 };
 
 /**
@@ -77,10 +77,10 @@ enum RUMS
 */
 struct RUMINS
 {
-	int fHighSpeedMotor;
-	BYTE bLowSpeedMotor;
-	BYTE unk1, unk2;
-	float dt;
+    int fHighSpeedMotor;
+    BYTE bLowSpeedMotor;
+    BYTE unk1, unk2;
+    float dt;
 };
 
 /**
@@ -88,8 +88,8 @@ struct RUMINS
 */
 struct RUMPAT
 {
-	int crumins;
-	RUMINS arumins[32];
+    int crumins;
+    RUMINS arumins[32];
 };
 
 /**
@@ -100,13 +100,13 @@ struct RUMPAT
 */
 struct RUMBLE
 {
-	int nPort;
-	int nSlot;
-	RUMS rums;
-	RUMPAT* prumpat;
-	int irumins;
-	float dtRumble;
-	float dtRumins;
+    int nPort;
+    int nSlot;
+    RUMS rums;
+    RUMPAT* prumpat;
+    int irumins;
+    float dtRumble;
+    float dtRumins;
 };
 
 /**
@@ -114,48 +114,58 @@ struct RUMBLE
 */
 struct JOY
 {
-	// joypad info
-	int nPort;
-	int nSlot;
-	ulong_128* aullDma;
-	int term;
-	JOYS joys;
-	JOYK joyk;
-	float tJoys;
-	float tRead;
-	float tActive;
-	int dxLatch;
-	int dyLatch;
-	float tLatchX;
-	float tLatchY;
-	float dtLatchY;
+    // joypad info
+    int nPort;
+    int nSlot;
+    ulong_128* aullDma;
+    int term;
+    JOYS joys;
+    JOYK joyk;
+    float tJoys;
+    float tRead;
+    float tActive;
+    int dxLatch;
+    int dyLatch;
+    float tLatchX;
+    float tLatchY;
+    float dtLatchY;
 
-	// left analog stick
-	float x, y;
-	float uDeflect;
-	float bX, bY;
-	short unk_short;
-	int fStickMoved;
-	LM almDeflect[4];
+    // left analog stick
+    float x, y;
+    float uDeflect;
+    float bX, bY;
+    short unk_short;
+    int fStickMoved;
+    LM almDeflect[4];
 
-	// right analog stick
-	float x2, y2;
-	float uDeflect2;
-	float bX2, bY2;
-	short unk_short2;
-	float fStickMoved2;
-	LM almDeflect2[4];
+    // right analog stick
+    float x2, y2;
+    float uDeflect2;
+    float bX2, bY2;
+    short unk_short2;
+    float fStickMoved2;
+    LM almDeflect2[4];
 
-	// face buttons
-	GRFBTN grfbtn;
-	GRFBTN grfbtnPressed;
-	GRFBTN grfbtnReleased;
-	unsigned char mpbtnpb[12];
+    // face buttons
+    GRFBTN grfbtn;
+    GRFBTN grfbtnPressed;
+    GRFBTN grfbtnReleased;
+    unsigned char mpbtnpb[12];
 
-	// rumble
-	short unk_short_3;
-	RUMBLE* prumble;
-	int fRumbleEnabled;
+    // rumble
+    short unk_short_3;
+    RUMBLE* prumble;
+    int fRumbleEnabled;
+};
+
+/**
+ * @brief User Flags
+*/
+enum FUSR
+{
+    FUSR_Menu = 0x1,
+    FUSR_HandsOff = 0x2,
+    FUSR_NoPause = 0x4
 };
 
 /**
@@ -163,13 +173,18 @@ struct JOY
 */
 enum FCHT
 {
-	FCHT_None = 0x0,
-	FCHT_Invulnerability = 0x1,
-	FCHT_InfiniteCharms = 0x2,
-	FCHT_LowGravity = 0x4,
-	FCHT_LowFriction = 0x8,
-	FCHT_ResetWorld = 0x4000
+    FCHT_None = 0x0,
+    FCHT_Invulnerability = 0x1,
+    FCHT_InfiniteCharms = 0x2,
+    FCHT_LowGravity = 0x4,
+    FCHT_LowFriction = 0x8,
+    FCHT_ResetWorld = 0x4000
 };
+
+/**
+ * @brief Int representation of cheat flags
+*/
+typedef int GRFCHT;
 
 /**
  * @brief ??? Kind
@@ -196,9 +211,46 @@ enum DPK
 
 // Global variables
 static JOY g_joy; // Handles joypad input
+
+extern int g_grfusr; // User flags
+extern int g_grfjoyt; // Joypad type
+
 static float g_tCodeCheck; // Time since last code check
 extern int g_grfcht; // Cheat flags
 extern char chetkido_buffer[]; // temp, used for Chetkido cheat code
+
+/**
+ * @brief Starts up the joy system.
+*/
+void StartupJoy();
+
+/**
+ * @brief Sets the given flag on the global grfusr variable.
+ *
+ * @param mask Flag to set
+*/
+void AddGrfusr(int mask);
+
+/**
+ * @brief Clears the given flag on the global grfusr variable.
+ *
+ * @param mask Flag to clear
+*/
+void RemoveGrfusr(int mask);
+
+/**
+ * @brief Updates the grfjoy based on the global grfusr value.
+*/
+void UpdateGrfjoytFromGrfusr();
+
+/**
+ * @brief Initializes the given joypad.
+ *
+ * @param pjoy Pointer to the joypad
+ * @param nPort Port of the controller
+ * @param nSlot Slot of the controller
+*/
+void InitJoy(JOY* pjoy, int nPort, int nSlot);
 
 /**
  * @brief Sets the joypad state and kind.
@@ -239,6 +291,13 @@ void InitRumble(RUMBLE* prumble, int nPort, int nSlot);
 void UpdateCodes();
 
 /**
+ * @brief Removes all cheat codes.
+ *
+ * @note Name is not official.
+*/
+void RemoveAllFchts();
+
+/**
  * @brief Activates a cheat code.
  *
  * Sets the given flag on the global fcht variable. Also reloads the level if
@@ -247,15 +306,6 @@ void UpdateCodes();
  * @param nparam Cheat code to check
 */
 void AddFcht(int nParam);
-
-/**
- * @brief Unknown, but related to cheat codes.
- *
- * @param mask Unknown
- *
- * @todo Figure out what this function does and implement it.
-*/
-void AddGrfusr(int mask);
 
 /**
  * @brief Activates the Chetkido cheat code.

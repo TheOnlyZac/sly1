@@ -30,7 +30,7 @@ struct TRANS
  * @brief Transition Flags
 */
 enum FTRANS {
-    GRFTRANS_None = 0,
+    FTRANS_None = 0,
     FTRANS_Checkpoint = 1,
     FTRANS_RetryWorld = 2,
     FTRANS_ClearGame = 4,

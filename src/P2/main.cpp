@@ -16,11 +16,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Build id is MMDD.HHMM
-#define BUILD_ID __DATE__[0], __DATE__[1], __DATE__[3], __DATE__[4], __TIME__[0], __TIME__[1], __TIME__[3], __TIME__[4]
-#define BUILD_YEAR __DATE__[7], __DATE__[8], __DATE__[9], __DATE__[10]
-#define BUILD_USER getenv("USER")
-#define BRX_VERSION 000
+#define BUILD_YEAR (__DATE__[7] + __DATE__[8] + __DATE__[9] + __DATE__[10])
+#define BUILD_ID (__TIME__[0] + __TIME__[1] + "." + __TIME__[3] + __TIME__[4])
+#define BRX_VERSION "000"
+
+#ifndef __BUILD_USER
+#define __BUILD_USER "nobody"
+#endif
 
 int main(int cphzArgs, char* aphzArgs[])
 {
@@ -98,7 +100,7 @@ int main(int cphzArgs, char* aphzArgs[])
 
 void Startup()
 {
-	printf("Sly Cooper %x %s\n  Sly 1 Decompilation Team\nP2: %s %s\nBrx: %d\n\n", 0xA9, BUILD_YEAR, BUILD_ID, BUILD_USER, BRX_VERSION);
+	printf("Sly Cooper %c %s\n  Sly 1 Decompilation Team\nP2: %s %s\nBrx: %d\n\n", 0xA9, BUILD_YEAR, BUILD_ID, __BUILD_USER, BRX_VERSION);
 	SetPhase(PHASE_Startup);
 
 	StartupSplice();

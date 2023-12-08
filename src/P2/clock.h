@@ -15,7 +15,7 @@ struct CLOCK
 {
 	static TICK s_tickLastRaw;
 
-	bool fEnabled; // clock enabled flag
+	int fEnabled; // clock enabled flag
 	float t;
 	float dt; // time since last frame
 	float dtPrev; // dt from previous frame
@@ -65,7 +65,7 @@ void ResetClock(CLOCK* pclock, float t);
  * @param pclock Pointer to the clock.
  * @param fEnabled The new value of the fEnabled flag.
 */
-void SetClockEnabled(CLOCK* pclock, bool fEnabled);
+void SetClockEnabled(CLOCK* pclock, int fEnabled);
 
 /**
  * @brief Initializes some values and starts the global clock.

@@ -22,15 +22,15 @@ float RadNormalize(float rad)
 
 float GLimitAbs(float g, float absLimit)
 {
-	if (g <= absLimit)
+	if (absLimit < g)
 	{
 		if (g < -absLimit)
 		{
-			g = -absLimit;
+			return -absLimit;
 		}
-		return g;
+		return absLimit;
 	}
-	return absLimit;
+	return g;
 }
 
 int NRandInRange(int nLow, int nHigh)
@@ -209,6 +209,9 @@ float GModPositive(float gDividend, float gDivisor)
 
 //TODO: FitClq
 
+/**
+ * @note Matching 100%
+*/
 BOOL FCheckLm(LM* plm, float g)
 {
 	return (plm->gMin < g) && (g < plm->gMax);
@@ -231,15 +234,18 @@ BOOL FCheckAlm(int clm, LM* alm, float g)
 
 float GLimitLm(LM* plm, float g)
 {
-	float result = plm->gMin;
-
-	if ((result <= g) &&
-		(result = plm->gMax, g <= plm->gMax))
+	if (g <= plm->gMin)
+	{
+		return plm->gMin;
+	}
+	else if (plm->gMax <= g)
+	{
+		return plm->gMax;
+	}
+	else
 	{
 		return g;
 	}
-
-	return plm->gMin;
 }
 
 int SgnCompareG(float* pg1, float* pg2)
@@ -252,6 +258,9 @@ int SgnCompareG(float* pg1, float* pg2)
 	return result;
 }
 
+/**
+ * @note Matching 100%
+*/
 void Force(void *)
 {
 	// This function is empty.

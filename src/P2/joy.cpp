@@ -8,6 +8,12 @@
 #include <clock.h>
 #include <cstdio>
 #include <cstring>
+#include <util.h>
+#include <transition.h>
+#include <libpad.h>
+
+int g_grfusr;
+int g_grfjoyt;
 
 const char sChetkidoCiphertext[] = "@KFWHJGL";
 const char sThePasswordIs[] = "The password is: %s";
@@ -15,7 +21,64 @@ const char sThePasswordIs[] = "The password is: %s";
 char chetkido_buffer[64]; // temp
 int g_grfcht = (int)FCHT_None;
 
-// Sets the given joypad state
+void StartupJoy()
+{
+    UpdateGrfjoytFromGrfusr();
+    scePadInit(0);
+    InitJoy(&g_joy, 0, 0);
+}
+
+void AddGrfusr(int mask)
+{
+    g_grfusr |= mask;
+    UpdateGrfjoytFromGrfusr();
+}
+
+void RemoveGrfusr(int mask)
+{
+    g_grfusr &= ~mask;
+    UpdateGrfjoytFromGrfusr();
+}
+
+void UpdateGrfjoytFromGrfusr()
+{
+    if ((g_grfusr & 0x84) != 0)
+    {
+        g_grfjoyt = 0;
+    }
+    else if ((g_grfusr & FUSR_Menu) != 0)
+    {
+        g_grfjoyt = 5;
+    }
+    else if ((g_grfusr & FUSR_HandsOff) != 0)
+    {
+        g_grfjoyt = 4;
+    }
+    else
+    {
+        g_grfjoyt = 7;
+    }
+}
+
+void InitJoy(JOY *pjoy, int nPort, int nSlot)
+{
+    memset(pjoy, 0, sizeof(JOY));
+    SetJoyJoys(pjoy, JOYS_Searching, JOYK_Unknown);
+    pjoy->nPort = nPort;
+    pjoy->nSlot = nSlot;
+
+    //unk* thing = unk_fun18d4b0(0x140) //todo reverse function
+    //u128 paullDma = thing->field_0x3fU & 0xffffffc0;
+    ulong_128 *paullDma = (ulong_128 *)0x0; //! temp, will segfault
+
+    pjoy->aullDma = paullDma;
+    scePadPortOpen(pjoy->nPort, pjoy->nSlot, paullDma);
+
+    RUMBLE *prumble = /* unk_fun18d4b0(0x20) */ (RUMBLE*)0x0; //! temp, will segfault
+    pjoy->prumble = prumble;
+    pjoy->fRumbleEnabled = 1;
+}
+
 void SetJoyJoys(JOY *pjoy, JOYS joys, JOYK joyk)
 {
     if (joys == pjoy->joys && joyk == pjoy->joyk)
@@ -61,21 +124,22 @@ void SetJoyJoys(JOY *pjoy, JOYS joys, JOYK joyk)
     pjoy->tJoys = g_clock.tReal;
 }
 
-// Updates the joypad manager
 void UpdateJoy(JOY *pjoy)
 {
-    bool condition = false;
-    JOYS joysNew = JOYS_Initing;
+    bool cond = false;
+    JOYS joysNew;
+    JOYK joykNew, joyk;
+    uint padState;
 
-    // if the joy manager is initializing, abort
+    // if the joy manager is initializing, early return
     if (pjoy->joys == JOYS_Initing)
         return;
 
-    //unsigned long padState = padGetState(pjoy->nPort, pjoy->nSlot); // ps2sdk call
-    unsigned long padState = 0.0l; // temp
-
-    if (padState == 6 || padState == 2)
-        condition = true;
+    padState = scePadGetState(pjoy->nPort, pjoy->nSlot);
+    if (padState == 6 || padState == 2) //todo: enum for padState
+    {
+        cond = true; //todo: what is this condition?
+    }
     joysNew = pjoy->joys;
 
     if (joysNew != JOYS_Ready)
@@ -94,15 +158,58 @@ void UpdateJoy(JOY *pjoy)
         SetJoyJoys(pjoy, JOYS_Searching, JOYK_Unknown);
     }
 
-    if (!condition)
+    // Return if condition not met
+    if (!cond)
         return;
 
     joysNew = pjoy->joys;
-    JOYK joyk = pjoy->joyk;
+    joykNew = pjoy->joyk;
     if (joysNew == JOYS_Waiting)
     {
-        // todo
-        // ...
+        padState = scePadGetState(pjoy->nPort, pjoy->nSlot);
+        if (padState != '\x01')
+        {
+            if (padState > '\x01')
+            {
+                if (padState != '\x02')
+                {
+                    joykNew = JOYK_Unknown;
+                }
+                SetJoyJoys(pjoy, joysNew, joykNew);
+                return;
+            }
+            joykNew = JOYK_Unknown;
+            if (padState != '\0')
+            {
+                SetJoyJoys(pjoy, joysNew, joykNew);
+                return;
+            }
+
+            joyk = pjoy->joyk;
+            if (joyk == JOYK_Analog)
+            {
+                joykNew = JOYK_Shock;
+            }
+            else
+            {
+                if (static_cast<int>(joyk) > 2)
+                {
+                    joykNew = JOYK_Unknown;
+
+                    if (joyk != JOYK_Shock)
+                    {
+                        SetJoyJoys(pjoy, joysNew, joykNew);
+                        return;
+                    }
+                    joykNew = JOYK_Shock2;
+                    joysNew = JOYS_Ready;
+                    SetJoyJoys(pjoy, joysNew, joykNew);
+                    return;
+                }
+                //todo
+                //...
+            }
+        }
     }
     else
     {
@@ -110,16 +217,14 @@ void UpdateJoy(JOY *pjoy)
         // ...
     }
 
-    SetJoyJoys(pjoy, joysNew, joyk);
+    SetJoyJoys(pjoy, joysNew, joykNew);
 }
 
-// todo
 void SetRumbleRums(RUMBLE *prumble, RUMS rums)
 {
     // ...
 }
 
-// Set the rumble rums on the controller in the given port/slot
 void InitRumble(RUMBLE *prumble, int nPort, int nSlot)
 {
     if (prumble->rums == RUMS_Dead)
@@ -135,7 +240,6 @@ void InitRumble(RUMBLE *prumble, int nPort, int nSlot)
     prumble->nPort = nPort;
 }
 
-// todo
 void UpdateCodes()
 {
     if (g_tCodeCheck != 0x0f && g_tCodeCheck <= g_clock.tReal)
@@ -148,6 +252,12 @@ void UpdateCodes()
     g_tCodeCheck = 0.0f;
 }
 
+void RemoveAllFchts()
+{
+    g_grfcht = FCHT_None;
+    g_transition.ResetWorld(FTRANS_None); // todo double check, should ResetWorld be static?
+}
+
 void AddFcht(int nParam)
 {
     g_grfcht |= nParam & ~(int)FCHT_ResetWorld;
@@ -157,12 +267,6 @@ void AddFcht(int nParam)
     }
 }
 
-void AddGrfusr(int mask)
-{
-    //todo
-}
-
-/* Decrypt the chetkido string and output the hidden message */
 void CheatActivateChetkido()
 {
     char cipherSlice[16];

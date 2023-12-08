@@ -157,6 +157,7 @@ struct PchzLevel // maybe wrong name
 extern GS* g_pgsCur; // Current game state
 extern WS* g_pwsCur; // Current world state
 extern LS* g_plsCur; // Current level state
+extern WORLDLEVEL worldlevelPrev; // Previous level
 extern PchzLevel pchzLevelTable[]; // Level table
 
 /**

@@ -5,6 +5,8 @@
 */
 #include <game.h>
 #include <joy.h>
+#include <wipe.h>
+#include <difficulty.h>
 #include <cstring>
 
 void InitGameState(GS* pgs)
@@ -22,7 +24,6 @@ void InitGameState(GS* pgs)
 }
 
 void UpdateGameState(float dt)
-
 {
 	LS* lsCur = g_plsCur;
 	WS* wsCur = g_pwsCur;
@@ -37,7 +38,18 @@ void ClearLs(LS* pls)
 	memset(pls, 0, sizeof(LS));
 }
 
-void RetryGame(void)
+void UnloadGame()
+{
+	InitGameState(g_pgsCur);
+	//unk_gs? = NULL;
+	//clear_something_8_bytes(unknown);
+	OnDifficultyGameLoad(&g_difficulty);
+	g_grfcht = static_cast<GRFCHT>(FCHT_None);
+	worldlevelPrev = static_cast<WORLDLEVEL>(-1);
+	RetryGame();
+}
+
+void RetryGame()
 {
 	GS* gsCur = g_pgsCur;
 
@@ -48,9 +60,16 @@ void RetryGame(void)
 	ResetChkmgrCheckpoints(&g_chkmgr); */
 }
 
+void StartGame()
+{
+	UnloadGame();
+	//WipeToWorldWarp(&level_unk, ~OID_Unknown, WIPEK_Fade);
+}
+
 void SetCcharm(int nParam)
 {
-	g_pgsCur->ccharm = nParam;
+	GS* gsCur = g_pgsCur;
+	gsCur->ccharm = nParam;
 }
 
 void SetClife(int nParam)

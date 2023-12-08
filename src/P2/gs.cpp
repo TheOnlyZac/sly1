@@ -9,6 +9,7 @@
 GS* g_pgsCur = new GS;
 WS* g_pwsCur = &(g_pgsCur->aws[0]);
 LS* g_plsCur = &(g_pgsCur->aws[0].als[0]);
+WORLDLEVEL worldlevelPrev = WORLDLEVEL_Approach;
 PchzLevel pchzLevelTable[0x2e];
 
 /* Temp: Populate default pchz table for testing */

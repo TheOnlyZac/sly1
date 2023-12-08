@@ -30,5 +30,6 @@ typedef unsigned short uint16_t;
 typedef unsigned char uint8_t;
 
 typedef __uint128_t ulong_128;
+typedef __uint128_t u_long128; // hack for libpad.h
 
 #endif // TYPES_H
