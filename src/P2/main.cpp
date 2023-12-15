@@ -16,8 +16,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define BUILD_YEAR (__DATE__[7] + __DATE__[8] + __DATE__[9] + __DATE__[10])
-#define BUILD_ID (__TIME__[0] + __TIME__[1] + "." + __TIME__[3] + __TIME__[4])
+#define BUILD_YEAR __DATE__[7], __DATE__[8], __DATE__[9], __DATE__[10]
+#define COPYRIGHT "Sly 1 Decompilation Team"
+#define BUILD_ID __DATE__[0], __DATE__[1], __DATE__[2], (__DATE__[4] == ' ' ? '0' : __DATE__[4]), __DATE__[5], __TIME__[0], __TIME__[1], __TIME__[3], __TIME__[4]
 #define BRX_VERSION "000"
 
 #ifndef __BUILD_USER
@@ -100,7 +101,12 @@ int main(int cphzArgs, char* aphzArgs[])
 
 void Startup()
 {
-	printf("Sly Cooper %c %s\n  Sly 1 Decompilation Team\nP2: %s %s\nBrx: %d\n\n", 0xA9, BUILD_YEAR, BUILD_ID, __BUILD_USER, BRX_VERSION);
+#ifdef __DEBUG
+	printf("Sly Cooper %c %c%c%c%c\n", 0xA9, BUILD_YEAR);
+	printf("  %s\n", COPYRIGHT);
+	printf("P2: %c%c%c%c%c.%c%c%c%c\n", BUILD_ID);
+	printf("Brx: %s\n\n", BRX_VERSION);
+#endif
 	SetPhase(PHASE_Startup);
 
 	StartupSplice();
@@ -114,5 +120,5 @@ void Startup()
 void MainDebug()
 {
 	// print current frame number
-	printf("%d\r", g_cframe);
+	printf("Current frame: %d\r", g_cframe);
 }
