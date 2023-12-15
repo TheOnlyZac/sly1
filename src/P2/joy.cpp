@@ -10,6 +10,7 @@
 #include <cstring>
 #include <util.h>
 #include <transition.h>
+#include <sound.h>
 #include <libpad.h>
 
 int g_grfusr;
@@ -40,6 +41,9 @@ void RemoveGrfusr(int mask)
     UpdateGrfjoytFromGrfusr();
 }
 
+/**
+ * Almost matching
+*/
 void UpdateGrfjoytFromGrfusr()
 {
     if ((g_grfusr & 0x84) != 0)
@@ -69,7 +73,7 @@ void InitJoy(JOY *pjoy, int nPort, int nSlot)
 
     //unk* thing = unk_fun18d4b0(0x140) //todo reverse function
     //u128 paullDma = thing->field_0x3fU & 0xffffffc0;
-    ulong_128 *paullDma = (ulong_128 *)0x0; //! temp, will segfault
+    u_long128 *paullDma = (u_long128 *)0x0; //! temp, will segfault
 
     pjoy->aullDma = paullDma;
     scePadPortOpen(pjoy->nPort, pjoy->nSlot, paullDma);
@@ -220,6 +224,11 @@ void UpdateJoy(JOY *pjoy)
     SetJoyJoys(pjoy, joysNew, joykNew);
 }
 
+void SetJoyBtnHandled(JOY* pjoy, GRFBTN btn)
+{
+    pjoy->grfbtnPressed = pjoy->grfbtnPressed & ~btn;
+}
+
 void SetRumbleRums(RUMBLE *prumble, RUMS rums)
 {
     // ...
@@ -240,19 +249,83 @@ void InitRumble(RUMBLE *prumble, int nPort, int nSlot)
     prumble->nPort = nPort;
 }
 
-void UpdateCodes()
+/**
+ * Almost matching
+*/
+void _ResetCodes()
 {
-    if (g_tCodeCheck != 0x0f && g_tCodeCheck <= g_clock.tReal)
+    CHT* pcht = g_pcht;
+    if (pcht != NULL)
     {
-        // ...
+        pcht->nInputCounter = 0;
+        do
+        {
+            pcht->nInputCounter = 0;
+            pcht = pcht->pchtNext;
+        } while (pcht != NULL);
     }
-
-    // ...
-
-    g_tCodeCheck = 0.0f;
 }
 
-void RemoveAllFchts()
+void UpdateCodes()
+{
+    int i;
+    CHT** ppcht;
+    CHT* pchtToExecute;
+    CHT* pcht;
+
+    if (g_tCodeCheck != 0x0f && g_tCodeCheck <= g_clock.tReal)
+    {
+        pchtToExecute = NULL;
+        pcht = g_pcht;
+
+        if (g_pcht != NULL)
+        {
+            i = g_pcht->index;
+            pcht = g_pcht;
+            while (true)
+            {
+                if (i == 0)
+                {
+                    if (pcht->nInputCounter < pcht->cnInputSeqLen)
+                    {
+                        ppcht = &pcht->pchtNext;
+                    }
+                    else if ((/* pchtToExecute == NULL || */ //todo fix
+                              ppcht = &pcht->pchtNext, pchtToExecute->cnInputSeqLen < pcht->cnInputSeqLen))
+                    {
+                        ppcht = &pcht->pchtNext;
+                        pchtToExecute = pcht;
+                    }
+                }
+                else
+                {
+                    *ppcht = pcht->pchtNext;
+                    pcht->pchtNext = NULL;
+                    pcht->nInputCounter = 0;
+                    pcht->index = 0;
+                }
+                pcht = *ppcht;
+                if (pcht == NULL)
+                    break;
+
+                i = pcht->index;
+            }
+        }
+
+        // Check if we found a match
+        if (pchtToExecute != NULL)
+        {
+            // Execute the cheat
+            StartSound(SFXID_UiTick, NULL, NULL, NULL, 3000, 300, 1, 0, 0, NULL, NULL);
+            //(pchtToExecute->pfn)(pchtToExecute->nParam); //todo fix function pointer
+        }
+
+        _ResetCodes();
+        g_tCodeCheck = 0.0f;
+    }
+}
+
+void ClearAllCheats()
 {
     g_grfcht = FCHT_None;
     g_transition.ResetWorld(FTRANS_None); // todo double check, should ResetWorld be static?
@@ -309,4 +382,17 @@ void CheatActivateChetkido()
         //SetBlotDtVisible(cornerPopupBlog, 10.0); // todo: implement classmethod
         //cornerPopupBlot::openIfNotAlready(); // todo: implement classmethod
     }
+}
+
+void StartupCodes()
+{
+    ////AddCode(&cheat_reload_level.pCodeSeq);
+    ////AddCode(&cheat_reload_no_cheats.pCodeSeq);
+    ////AddCode(&cheat_reload_slippery_movement.pCodeSeq);
+    ////AddCode(&cheat_slippery_objects.pCodeSeq);
+    ////AddCode(&cheat_infinite_charms.pCodeSeq);
+    ////AddCode(&cheat_collect_bottles.pCodeSeq);
+    ////AddCode(&cheat_unlock_pages.pCodeSeq);
+    ////AddCode(&cheat_unlock_all_worlds.pCodeSeq);
+    ////AddCode(&cheat_chetkido_password.pCodeSeq);
 }

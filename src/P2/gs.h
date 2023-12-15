@@ -128,7 +128,7 @@ struct GS
     GRFGS grfgs; // Game settings flags(?)
 	GRFVAULT grfvault; // Unlocked powerup flags
     unsigned int unlocked_cutscenes;
-    unsigned int game_completion_flags;
+    unsigned int fgs;
     int nPowerupLast; // Last selected powerup
 };
 

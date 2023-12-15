@@ -12,6 +12,7 @@
 #include <mpeg.h>
 #include <wipe.h>
 #include <phasemem.h>
+#include <prog.h>
 #include <spliceutils.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,6 +30,7 @@
 int main(int cphzArgs, char* aphzArgs[])
 {
 	// __main(); // from libgcc2
+
 	g_chpzArgs = cphzArgs;
 	g_aphzArgs = aphzArgs;
 
@@ -36,33 +38,31 @@ int main(int cphzArgs, char* aphzArgs[])
 
 	while (true)
 	{
-		// todo: implement all these methods
-
 		// Check if g_mpeg has an mpeg queued to be played
 		if ((g_mpeg.oid_1 != OID_Unknown) && (g_wipe.wipes != WIPES_Idle))
 		{
-			//FlushFrames(1); // todo implement
+			////FlushFrames(1);
 			g_mpeg.ExecuteOids();
 		}
 
 		// Check if g_transition has a pending transition
 		if (g_transition.m_fPending != 0)
 		{
-			//FlushFrames(1); // todo implement
+			////FlushFrames(1);
 			g_transition.Execute();
 		}
 
 		// Check AGAIN if g_mpeg has an mpeg queued (in case two were queued back-to-back)
 		if ((g_mpeg.oid_2 != OID_Unknown) && (g_wipe.wipes != WIPES_Idle))
 		{
-			//FlushFrames(1); // todo implement
+			////FlushFrames(1);
 			g_mpeg.ExecuteOids();
 		}
 
 		// Call update functions
 		UpdateJoy(&g_joy);
 		UpdateCodes();
-		//UpdateSave(&g_save);
+		////UpdateSave(&g_save);
 		UpdateUi(&g_ui);
 		UpdateGameState(g_clock.dt);
 
@@ -78,7 +78,7 @@ int main(int cphzArgs, char* aphzArgs[])
 			void* pv = g_psw + 0x54;
 			if (pv != NULL)
 			{
-				//(*pv)(g_clock.dt);
+				////(*pv)(g_clock.dt);
 			}
 
 			// Render frame
@@ -103,14 +103,20 @@ void Startup()
 	printf("%s @ %c%c%c%c\n", BUILD_TITLE, BUILD_YEAR);
 	printf("  %s\n", COPYRIGHT);
 	printf("P2: %c%c%c%c%c.%c%c%c%c %s\n", BUILD_ID, __BUILD_USER);
-	printf("Brx: %s\n"`, BRX_VERSION);
+	printf("Brx: %s\n", BRX_VERSION);
 #endif
+	CProg prog;
+	prog.Begin();
+
 	SetPhase(PHASE_Startup);
 
+	/* todo game systems should be started by iterating over s_StartupSampler and
+     calling each function, updating the progress along the way */
 	StartupSplice();
-
-	// todo startup other game systems
+	StartupCodes();
 	// ...
 
+	prog.SetRemain(0);
+	prog.End();
 	ClearPhase(PHASE_Startup);
 }

@@ -332,7 +332,7 @@ int FCatchWipeButtonTrans(WIPE* pwipe, JOY* pjoy, WIPES wipesNew)
     GRFTRANS grftrans;
     //bool is_match = FUN_001dda80(g_psw);
 
-    if (!is_match || pwipe->trans.fSet == 0 || (pjoy->grfbtnPressed & PAD_START) == NOT_PRESSED)
+    if (!is_match || pwipe->trans.fSet == 0 || (pjoy->grfbtnPressed & PAD_START) == _NOT_PRESSED)
     {
         return 0;
     }

@@ -15,7 +15,7 @@ typedef short GRFBTN;
 */
 enum PadButtons
 {
-    NOT_PRESSED = 0,
+    _NOT_PRESSED = 0,
     PAD_L2 = 1,
     PAD_R2 = 2,
     PAD_L1 = 4,
@@ -117,7 +117,7 @@ struct JOY
     // joypad info
     int nPort;
     int nSlot;
-    ulong_128* aullDma;
+    u_long128* aullDma;
     int term;
     JOYS joys;
     JOYK joyk;
@@ -168,6 +168,17 @@ enum FUSR
     FUSR_NoPause = 0x4
 };
 
+struct CHT
+{
+    short* pCodeSeq; // Pointer to code sequence
+    int cnInputSeqLen; // Cheat code length
+    void* pfn; // Callback function pointer
+    int nParam; // Param for callback function
+    int nInputCounter; // Counter for correct inputs
+    int index; // Index of cheat code in linked list
+    struct CHT* pchtNext; // Pointer to next cheat code
+};
+
 /**
  * @brief Cheat Flags
 */
@@ -215,6 +226,7 @@ static JOY g_joy; // Handles joypad input
 extern int g_grfusr; // User flags
 extern int g_grfjoyt; // Joypad type
 
+static CHT* g_pcht; // Pointer to cheat code for updating codes (possibly should be g_pcode)
 static float g_tCodeCheck; // Time since last code check
 extern int g_grfcht; // Cheat flags
 extern char chetkido_buffer[]; // temp, used for Chetkido cheat code
@@ -269,6 +281,14 @@ void SetJoyJoys(JOY* pjoy, JOYS joys, JOYK joyk);
 void UpdateJoy(JOY* pjoy);
 
 /**
+ * @brief Unsets the button flag on the grfbtnPressed flags.
+ *
+ * @param pjoy Pointer to the joypad
+ * @param btn Button handled
+*/
+void SetJoyBtnHandled(JOY* pjoy, GRFBTN btn);
+
+/**
  * @brief Sets the rumble state.
  *
  * @param prumble Pointer to the rumble
@@ -286,16 +306,21 @@ void SetRumbleRums(RUMBLE* prumble, RUMS rums);
 void InitRumble(RUMBLE* prumble, int nPort, int nSlot);
 
 /**
+ * @brief Resets cheat codes
+*/
+void _ResetCodes();
+
+/**
  * @brief Updates the check for cheat code entry.
 */
 void UpdateCodes();
 
 /**
- * @brief Removes all cheat codes.
+ * @brief Disables all cheat codes.
  *
- * @note Name is not official.
+ * @details Unsets all cheat flags and reloads the level.
 */
-void RemoveAllFchts();
+void ClearAllCheats();
 
 /**
  * @brief Activates a cheat code.
@@ -321,5 +346,14 @@ void AddFcht(int nParam);
  * @todo Implement rendering the string on the screen.
 */
 void CheatActivateChetkido();
+
+/**
+ * @brief Starts the codes system.
+ *
+ * @details Calls AddCode to register each cheat in the global cheat list.
+ *
+ * @todo Create the global cheat list and implement this function.
+*/
+void StartupCodes();
 
 #endif // JOY_H

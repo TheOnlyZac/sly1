@@ -5,6 +5,7 @@
 */
 #ifndef TYPES_H
 #define TYPES_H
+#include <eetypes.h>
 
 typedef bool BOOL;
 
@@ -28,8 +29,5 @@ typedef unsigned long long uint64_t;
 typedef unsigned int uint32_t;
 typedef unsigned short uint16_t;
 typedef unsigned char uint8_t;
-
-typedef __uint128_t ulong_128;
-typedef __uint128_t u_long128; // hack for libpad.h
 
 #endif // TYPES_H

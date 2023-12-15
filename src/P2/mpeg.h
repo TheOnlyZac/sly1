@@ -9,6 +9,7 @@
 #include <game.h>
 #include <bas.h>
 #include <bq.h>
+#include <libmpeg.h>
 
 /**
  * @brief Mpeg Audio State
@@ -21,23 +22,6 @@ enum MAUDS
     MAUDS_Play = 3,
     MAUDS_Pmaudse = 4,
     MAUDS_Max = 5
-};
-
-/**
- * @brief MPEG video info
-*/
-struct sceMpeg {
-    int width;
-    int height;
-    int frameCount;
-    undefined4 field_0xc; // unknown
-    long pts;
-    long dts;
-    unsigned long flags;
-    long pts2nd;
-    long dts2nd;
-    unsigned long flags2nd;
-    void* sys;
 };
 
 /**
@@ -108,31 +92,31 @@ public:
      *
      * @param oid Pointer to the oid
      *
-     * @todo Function is only partially implemented.
+     * @todo Function is only partially implemented, finish it.
      * @todo Double check whether oid is supposed to be a pointer.
     */
-    void Execute(OID* oid); //  todo
+    void Execute(OID* oid);
 
     /**
      * @brief Starts the mpeg.
      *
      * @todo Implement this function.
     */
-    void Start(); // todo
+    void Start();
 
     /**
      * @brief Updates the mpeg.
      *
      * @todo Implement this function.
     */
-    void Update(); // todo
+    void Update();
 
     /**
      * @brief Finishes the mpeg.
      *
      * @todo Implement this function.
     */
-    void Finish(); // todo
+    void Finish();
 };
 
 // Global variables
