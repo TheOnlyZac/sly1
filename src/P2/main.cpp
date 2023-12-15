@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define BUILD_TITLE "Sly Cooper"
 #define BUILD_YEAR __DATE__[7], __DATE__[8], __DATE__[9], __DATE__[10]
 #define COPYRIGHT "Sly 1 Decompilation Team"
 #define BUILD_ID __DATE__[0], __DATE__[1], __DATE__[2], (__DATE__[4] == ' ' ? '0' : __DATE__[4]), __DATE__[5], __TIME__[0], __TIME__[1], __TIME__[3], __TIME__[4]
@@ -91,9 +92,6 @@ int main(int cphzArgs, char* aphzArgs[])
 			CloseFrame();
 		}
 
-		// Temp debug function just to show everything is running
-		MainDebug();
-
 		// Increment the global frame counter
 		g_cframe += 1;
 	}
@@ -102,10 +100,10 @@ int main(int cphzArgs, char* aphzArgs[])
 void Startup()
 {
 #ifdef __DEBUG
-	printf("Sly Cooper %c %c%c%c%c\n", 0xA9, BUILD_YEAR);
+	printf("%s @ %c%c%c%c\n", BUILD_TITLE, BUILD_YEAR);
 	printf("  %s\n", COPYRIGHT);
-	printf("P2: %c%c%c%c%c.%c%c%c%c\n", BUILD_ID);
-	printf("Brx: %s\n\n", BRX_VERSION);
+	printf("P2: %c%c%c%c%c.%c%c%c%c %s\n", BUILD_ID, __BUILD_USER);
+	printf("Brx: %s\n"`, BRX_VERSION);
 #endif
 	SetPhase(PHASE_Startup);
 
@@ -115,10 +113,4 @@ void Startup()
 	// ...
 
 	ClearPhase(PHASE_Startup);
-}
-
-void MainDebug()
-{
-	// print current frame number
-	printf("Current frame: %d\r", g_cframe);
 }
