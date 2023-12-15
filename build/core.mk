@@ -18,12 +18,18 @@ else
 WINE := n
 endif
 
+# Check and set configuration
 ifeq ($(CONFIG),)
 CONFIG := debug
 endif
 
 ifneq ($($(CONFIG)_Valid),y)
 $(error Invalid configuration)
+endif
+
+# Defines for debug condig
+ifeq ($(CONFIG),debug)
+CCDEFINES += -D__DEBUG
 endif
 
 # Moved here since it doesn't really have to be specified in the target common file.

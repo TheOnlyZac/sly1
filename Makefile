@@ -7,7 +7,7 @@ VPATH := $(SDIR)
 SRCS := $(wildcard $(SDIR)/*.cpp)
 
 # Custom compiler flags
-CCDEFINES = -D__BUILD_USER=\"$(USER)\"
+CCDEFINES := -D__BUILD_USER=\"$(USER)\"
 CCINCLUDES = -I$(SCE_COMMON)/include -I$(SCE_EE)/include -I$(SDIR)
 CCFLAGS = -Wall -Wno-unused $(BASEFLAGS) -fno-strict-aliasing $(CCINCLUDES) $(CCDEFINES)
 CXXFLAGS = $(CCFLAGS)
