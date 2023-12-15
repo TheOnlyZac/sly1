@@ -2,12 +2,15 @@
 
 # ##############################################################################
 # Set these paths to point to your PCSX2 1.7 executable and your copy of the game
-PCSX2_PATH="/opt/pcsx2-v1.7.AppImage"
+PCSX2_PATH="/opt/pcsx2-1.7.4714.AppImage"
 ISO_PATH=""
 # ##############################################################################
 
 # Exit on error
 set -e
+
+# Print commands as they're run (for debugging)
+#set -o xtrace
 
 # Function to print an error message and exit
 die() {
@@ -47,12 +50,12 @@ pushd "$(dirname "$0")/.." > /dev/null
 
 # Build the game
 echo Compiling ELF...
-#make clean > /dev/null
+make clean > /dev/null
 make > /dev/null
 
 # Run the game
 echo Booting ELF in PCSX2...
-"$PCSX2_PATH" -nogui -console -elf "./bin/debug/SCUS_971.98" "$ISO_PATH"
+"$PCSX2_PATH" -elf bin/debug/SCUS_971.98 $ISO_PATH
 
 # Switch back to the original directory
 popd > /dev/null
