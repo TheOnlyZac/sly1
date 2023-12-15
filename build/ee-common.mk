@@ -10,7 +10,6 @@ CXX := $(SCE_EE_GCC)/bin/ee-gcc.exe
 CRT0_S := $(SCE_EE)/lib/crt0.s
 endif
 
-OBJDIR := obj/$(CONFIG)
 
 # Scary Make Incantations: Volume 1
 OBJS := $(patsubst %.cpp,$(OBJDIR)/%.o,$(filter %.cpp,$(notdir $(SRCS))))
@@ -21,11 +20,11 @@ OBJS += $(patsubst %.s,$(OBJDIR)/%.o,$(filter %.s,$(notdir $(SRCS))))
 BASEFLAGS := -G0 -fno-common
 
 ifeq ($(CONFIG),debug)
-	BASEFLAGS += -O2 -g
+BASEFLAGS += -O2 -g
 endif
 
 ifeq ($(CONFIG),release)
-	BASEFLAGS += -O2
+BASEFLAGS += -O2
 endif
 
 $(OBJDIR)/%.o: %.s
@@ -36,4 +35,3 @@ $(OBJDIR)/%.o: %.c
 
 $(OBJDIR)/%.o: %.cpp
 	$(CXX) -c $(CXXFLAGS) $< -o $@
-
