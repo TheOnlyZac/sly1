@@ -43,7 +43,7 @@ make > nul
 
 REM Run the game
 echo Booting ELF in PCSX2...
-"%PCSX2_PATH%" -nogui -console -elf ".\bin\debug\SCUS_971.98" "%ISO_PATH%"
+"%PCSX2_PATH%" -elf ".\bin\debug\SCUS_971.98" %ISO_PATH%
 
 REM Switch back to the original directory
 popd > nul
