@@ -82,15 +82,14 @@ The `run.sh` script in the `scripts` dir will automatically rebuild the executab
 To boot the elf in PCSX2 from the command line, use one of the following commands:
 
 ```bash
-pcsx2-1.6 --nogui --console --elf="/path/to/SCUS_971.98" "/path/to/game/backup.iso"
+pcsx2-1.6 --console --elf="/path/to/SCUS_971.98" "/path/to/game/backup.iso"
 ```
 
 ```bash
-pcsx2-1.7 -nogui -console -elf "/path/to/SCUS_971.98" "/path/to/game/backup.iso"
+pcsx2-1.7 -elf "/path/to/SCUS_971.98" "/path/to/game/backup.iso"
 ```
 
-Change `pcsx2-1.6` or `pcsx2-1.7` to your PCSX2 executable.
-* The `nogui` and `console` flags are optional.
+Replace `pcsx2-1.6` or `pcsx2-1.7` with the path to your PCSX2 executable.
 * The `elf` flag is required and specifies the path to the elf file.
 * The last argument is the path to your game ISO.
 
