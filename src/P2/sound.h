@@ -7,6 +7,9 @@
 #define SOUND_H
 
 #include <util.h>
+#include <dl.h>
+#include <alo.h>
+#include <vec.h>
 
 /**
  * @brief EASND
@@ -503,11 +506,45 @@ enum MVGK {
 
 /**
  * @brief ??? Unknown
+ *
+ * @todo Figure out what this is.
 */
 struct ISI {
     enum SFXID sfxid;
     struct LM lmRepeat;
     struct LM lmRepDist;
 };
+
+/**
+ * @brief ??? Unknown
+ *
+ * @todo Figure out what this is.
+*/
+struct AMB
+{
+    // ...
+};
+
+/**
+ * @brief Starts playing a sound effect.
+ *
+ * @param sfxid Sound effect ID
+ * @param ppamb ??? Unknown
+ * @param palo ??? Unknown
+ * @param ppos Position vector
+ * @param sStart ??? Unknown
+ * @param sFull ??? Unknown
+ * @param uVolAtSource Volume at source
+ * @param frq Frequency
+ * @param uDoppler Doppler effect
+ * @param plmRepeat ??? Unknown
+ * @param plmRepDis ??? Unknown
+ *
+ * @todo Figure out what the ppamb and palo parameters are.
+ * @todo Figure out what the sStart and sFull parameters are.
+ * @todo Figure out what the plmRepeat and plmRepDis parameters are.
+ * @todo Implement this function.
+*/
+void StartSound(SFXID sfxid, AMB **ppamb, ALO *palo, VECTOR *ppos, float sStart, float sFull, float uVolAtSource, float frq, float uDoppler, LM *plmRepeat, LM *plmRepDis);
 
 #endif // SOUND_H

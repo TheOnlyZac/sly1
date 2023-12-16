@@ -14,8 +14,8 @@ $(OBJDIR)/crt0.o: $(CRT0_S)
 $(OBJDIR)/:
 	mkdir -p $@
 
-$(OUTDIR)/: 
+$(OUTDIR)/:
 	mkdir -p $@
 
 clean-products:
-	$(RM) -f $(OBJS) $(OUTDIR)/$(NAME)
+	$(RM) $(OBJS) $(OUTDIR)/*/$(NAME)

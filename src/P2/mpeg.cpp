@@ -5,9 +5,12 @@
 */
 #include <mpeg.h>
 #include <bis.h>
+#include <phasemem.h>
 #include <clock.h>
-
-unsigned int g_phasemem = 0; // todo: what data type is this
+#include <joy.h>
+#include <wipe.h>
+#include <cd.h>
+#include <sound.h>
 
 void CMpeg::ExecuteOids()
 {
@@ -29,13 +32,11 @@ void CMpeg::Execute(OID* oid)
     char* pchzKey;
     int fmpegIsEnd;
     FGS fgs;
-    CFileLocation fileLocation;
     bool foidValid;
 
-    // Update the global game phase and get the pchz key for the cutscene
+    // Update the phase and set the cutscene pchz
 
-    /* todo: define function and PHASE enum
-    SetPhase(PHASE_Mpeg); */
+    SetPhase(PHASE_Mpeg);
 
     /* todo: define function
     pchzKey = (char*)get_cutscene_pchz_from_oid(oid);
@@ -43,6 +44,7 @@ void CMpeg::Execute(OID* oid)
 
     // Setup binary async stream and file location
     CBinaryAsyncStream bas(&g_phasemem);
+    CFileLocation fileLocation;
     fileLocation.Clear();
 
     if (oid == NULL)
@@ -58,14 +60,12 @@ void CMpeg::Execute(OID* oid)
     if ((foidValid) /*todo &&
         (fmpegIsEnd = FUN_0012fd78(&bas, &fileLocation), fmpegIsEnd != 0) */)
     {
-        // Start the mpeg, and begin the while loop that repeats until it's done
+        // Start the mpeg, then loop until it ends
         Start();
-        while (/*todo fmpegIsEnd = sceMpegIsEnd(&this->m_scempeg), */ fmpegIsEnd == 0)
+        while (fmpegIsEnd = sceMpegIsEnd(&this->m_scempeg), fmpegIsEnd == 0)
         {
-            // Update clock and handle joy inputs during mpeg
             MarkClockTickRealOnly(&g_clock);
-            /* todo: define joy.c function
-            UpdateJoy(&g_joy); */
+            UpdateJoy(&g_joy);
 
             /* todo: define global variables
             if (oid == &g_oid_unknown ? ) {
@@ -85,10 +85,10 @@ void CMpeg::Execute(OID* oid)
                 fgs = static_cast<FGS>(0);
             }
 
-            /* todo: define global vars, functions, and PadButtons enum
-            if ((g_pgsCur->fgs & fgs) != 0 || foidValid && DAT_00269b4c != 0) {
-                fmpegIsEnd = FCatchWipeButtonTrans((WIPE*)&g_pwipe, &g_joy, WIPES_Black);
+            if ((g_pgsCur->fgs & fgs) != 0 /* || foidValid && DAT_00269b4c != 0 */) {
+                fmpegIsEnd = FCatchWipeButtonTrans(g_pwipe, &g_joy, WIPES_Black);
                 if (fmpegIsEnd != 0) break;
+
                 // Allow the cutscene to be skipped by pressing certain joy buttons
                 if ((g_joy.grfbtnPressed &
                     (PAD_L2 | PAD_R2 | PAD_L1 | PAD_R1 | PAD_TRIANGLE | PAD_SELECT | PAD_START)) !=
@@ -97,12 +97,11 @@ void CMpeg::Execute(OID* oid)
                         PAD_SELECT | PAD_START);
                     break;
                 }
-            } */
+            }
 
-            /* todo: define functions and global variables
             UpdateCd();
-            if (g_cds != CDS::Ready) break; */
-            Update();
+            if (g_cds != CDS_Ready) break;
+            Update(); // update the mpeg
         }
 
         foidValid = true;
@@ -120,13 +119,11 @@ void CMpeg::Execute(OID* oid)
     }
     else {
         // Play thud sound if an invalid or null cutscene attempted to play
-        /* todo: define StartSound function and SFXID enum
-        StartSound(SFXID_thud7, NULL, NULL, NULL, 3000.0, 300.0, 1.0, 0.0, 0.0, NULL, NULL); */
+        StartSound(SFXID_Nil, NULL, NULL, NULL, 3000, 300, 1, 0, 0, NULL, NULL); //todo sfxid for thud sound
     }
 
     // Clear the game phase (bas is destroyed automatically)
-    /* todo: define function
-    ClearPhase(PHASE_Mpeg); */
+    ClearPhase(PHASE_Mpeg);
 }
 
 void CMpeg::Start()

@@ -66,6 +66,9 @@ void CBinaryInputStream::OpenMemory(int cb, void* pv)
     m_pb = (byte*)pv;
 }
 
+/**
+ * @note Matching 100%
+*/
 void CBinaryInputStream::DecrementCdReadLimit(int cb)
 {
     m_cbAsyncRemaining = m_cbAsyncRemaining - cb;

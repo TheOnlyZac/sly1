@@ -281,14 +281,15 @@ struct GAME {
 	int cgoldLatest;
 };
 
-//void StartupGame();
+void StartupGame();
 
 //char* PchzFromLevel(GAMEWORLD gameworld, WORLDLEVEL worldlevel);
+
 //char* PchzFriendlyFromLevel(GAMEWORLD gameworld, WORLDLEVEL worldlevel);
+
 //char* PchzFriendlyFromWorld(char* pchzWorld);
 
 //int FFindLevel(char* pchzWorld, GAMEWORLD* pgameworld, WORLDLEVEL* pworldlevel);
-
 
 /**
  * @brief Resets the game state values to their defaults.
@@ -315,15 +316,20 @@ void UpdateGameState(float dt);
 */
 void ClearLs(LS* pls);
 
-//void UnloadGame();
-
-
-//void SetupGame(char* pchzWorld, int grftrans);
+/**
+ * @brief Unloads the current game.
+*/
+void UnloadGame();
 
 /**
  * @brief Resets the lives and charms to their default values, and resets checkpoints.
 */
 void RetryGame();
+
+/**
+ * @brief Starts the game.
+*/
+void StartGame();
 
 //void StartGame();
 

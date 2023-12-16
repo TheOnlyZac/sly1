@@ -128,7 +128,7 @@ struct GS
     GRFGS grfgs; // Game settings flags(?)
 	GRFVAULT grfvault; // Unlocked powerup flags
     unsigned int unlocked_cutscenes;
-    unsigned int game_completion_flags;
+    unsigned int fgs;
     int nPowerupLast; // Last selected powerup
 };
 
@@ -157,6 +157,7 @@ struct PchzLevel // maybe wrong name
 extern GS* g_pgsCur; // Current game state
 extern WS* g_pwsCur; // Current world state
 extern LS* g_plsCur; // Current level state
+extern WORLDLEVEL worldlevelPrev; // Previous level
 extern PchzLevel pchzLevelTable[]; // Level table
 
 /**

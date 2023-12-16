@@ -7,9 +7,12 @@ VPATH := $(SDIR)
 SRCS := $(wildcard $(SDIR)/*.cpp)
 
 # Custom compiler flags
-CCFLAGS = -Wall -Wno-unused $(BASEFLAGS) -fno-strict-aliasing -I$(SCE_COMMON)/include -I$(SCE_EE)/include -I$(SDIR)
+CCDEFINES := -D__BUILD_USER=\"$(USER)\"
+CCINCLUDES = -I$(SCE_COMMON)/include -I$(SCE_EE)/include -I$(SDIR)
+CCFLAGS = -Wall -Wno-unused $(BASEFLAGS) -fno-strict-aliasing $(CCINCLUDES) $(CCDEFINES)
 CXXFLAGS = $(CCFLAGS)
-LDFLAGS = -nostartfiles -Wl,-Map,../../$(OUTDIR)/$(NAME).map -T$(SCE_EE)/lib/app.cmd -L$(SCE_EE)/lib -lsn -lc -lm -lkernl
+LDLIBS = -L$(SCE_EE)/lib -lsn -lc -lm -lpad -lmpeg -ldma -lipu -lkernl
+LDFLAGS = -nostartfiles -Wl,-Map,../../$(OUTDIR)/$(NAME).map -T$(SCE_EE)/lib/app.cmd $(LDLIBS)
 
 
 include build/core.mk
@@ -19,4 +22,4 @@ include build/core.mk
 all: $(OUTDIR)/$(NAME)
 
 clean: clean-products
-	$(RM) -f $(OBJDIR)/$(NAME).map
+	$(RM) -f $(OUTDIR)/*$(NAME).map $(SDIR)/*.o

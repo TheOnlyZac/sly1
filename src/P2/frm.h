@@ -18,6 +18,7 @@ struct FRM
 // Global variables
 static int g_ifrmMax; // Maximum number of frames
 static FRM* g_pfrmOpen; // Pointer to the open frame
+static int g_cframe; // Current frame count
 
 /**
  * @brief Opens a new frame.

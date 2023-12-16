@@ -12,7 +12,7 @@
 typedef bool BOOL; // todo: move to util header
 
 /**
- * Unknown, maybe program or progress?
+ * @Brief Progress
 */
 class CProg
 {

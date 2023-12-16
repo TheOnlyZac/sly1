@@ -6,19 +6,22 @@
 #include <transition.h>
 #include <phasemem.h>
 #include <clock.h>
+#include <chkpnt.h>
 #include <sw.h>
 #include <joy.h>
 #include <brx.h>
 
 void CTransition::ResetWorld(FTRANS ftrans)
 {
+    GRFTRANS grftrans = 0;
+
     //989snd_related__(0.0);
     if (ftrans == FTRANS_Checkpoint) {
-        //ReturnChkmgrToCheckpoint(&g_chkmgr);
+        //ReturnChkmgrToCheckpoint(&g_chkmgr); //todo implement this
     }
     else {
         if (ftrans < 2) {
-            if (ftrans == GRFTRANS_None) {
+            if (ftrans == FTRANS_None) {
                 grftrans = 0;
                 /* Reload with no transition */
             }
