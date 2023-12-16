@@ -22,10 +22,10 @@ fi
 source_basename="$(basename "$source_file" | cut -d. -f1)"
 
 # Match command: match_file script grepped with relevant lines
-match_file_cmd="./match_file.sh $source_file | grep -e'------------' -e'+' -e'$target_function'"
+match_cmd="./match_file.sh $source_file | grep -e'------------' -e'+' -e'$target_function'"
 
-# Dump command: ee-objdump grepped with regex matching everything from the function name to a blank line
-dump_file_cmd="wine ~/.wine/drive_c/usr/local/sce/ee/gcc/bin/ee-objdump.exe -d ../obj/debug/$source_basename.o | grep -e'$target_function' -A1000 -e'^$'"
+# Print command: ee-objdump grepped with regex matching everything from the function name to a blank line
+objdump_cmd="wine ~/.wine/drive_c/usr/local/sce/ee/gcc/bin/ee-objdump.exe -d ../obj/debug/$source_basename.o | grep -e'$target_function' -A1000 -e'^$'"
 
 # Watch the match_single script with the source file and dump file commands
-watch -n 1 --color "( $match_file_cmd && $dump_file_cmd )"
+watch -n 1 --color "( $match_cmd && $objdump_cmd )"
