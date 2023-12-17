@@ -6,6 +6,12 @@ usr/
 sce/
 docs/
 
+# Splat files
+undefined_funcs*.txt
+undefined_syms*.txt
+asm/
+assets/
+
 # Startup scripts (so we don't accidentally push them with paths set)
 scripts/run.sh
 scripts/run.bat
