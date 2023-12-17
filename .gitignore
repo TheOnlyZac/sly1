@@ -12,10 +12,6 @@ undefined_syms*.txt
 asm/
 assets/
 
-# Startup scripts (so we don't accidentally push them with paths set)
-scripts/run.sh
-scripts/run.bat
-
 ## Binary/object products
 **/bin/
 **/obj/

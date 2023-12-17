@@ -103,19 +103,26 @@ Replace `pcsx2-1.6` or `pcsx2-1.7` with the path to your PCSX2 executable.
 
 ## Project Structure
 
-The project is split into the following directories.
+The project is split into the following directories:
 
-* `src` - Contains the decompiled source code.
+* `src` - The decompiled source code.
   * All of the code for the game engine is in `src/P2`.
   * Code for the game's scripting engine, Splice, is in `src/P2/splice`.
-* `test` - Contains subdirectories for each game system. Each subdirectory contains unit tests for that system.
-* `build` - Makefiles used to build the executable.
+* `include` - Header files for the game engine.
+* `test` - Directories containing unit tests for each game system.
 * `scripts` - Utility scripts for setting up the build environment.
-* `tools` - Utilities for function matching.
+* `tools` - Utilities for function matching and binary splitting.
+* `build` - Makefiles used to build the executable.
 
-Additionally, when you build the executable, the following directories will be created.
+When you build the executable, the following directories will be created:
+
 * `obj` - Compiled object files.
 * `bin` - Compiled executables.
+
+When you use splat to split the elf, the following directories will be created:
+
+* `asm` - Disassembled assembly code for each segment.
+* `assets`- Binary data extracted from the elf.
 
 
 ## FAQ
