@@ -35,12 +35,12 @@ The goal of this project is to better understand the game engine. This repo does
 
 Documentation of the code can be found at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1). For further reading on the game's internal structures and mechanics, visit the [SlyMods Wiki][wiki-url].
 
-New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, check out [CONTRIBUTING.md](/CONTRIBUTING.MD) and feel free to [join our Discord server][discord-url] for guidance.
+New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our Discord server][discord-url] for guidance.
 
 
 ## Building
 
-The project can be built on Windows or Linux using `make`. It will build the executable `SCUS_971.98`.
+The project can be compiled on Windows or Linux using `make`. It builds the executable `SCUS_971.98`.
 
 The `scripts` directory contains scripts for setting up the build environment on each platform, which involves downloading and installing the required runtime libraries.
 
@@ -73,11 +73,13 @@ make
 
 Running the executable requires the [PCSX2 emulator](https://pcsx2.net/). You must have your own copy of the original game and the BIOS from your own PS2. They are not included in this repo and we cannot provide them for you.
 
+Once you have those and you have built the executable, you can run it in one of three ways.
+
 ### Automatic (script)
 
 The `run.sh` script in the `scripts` dir will automatically rebuild the executable and run it in the PCSX2 emulator. To use it, you must first edit the script to set the `PCSX2_PATH` and `ISO_PATH` variables to the correct paths on your system.
 
-### Command line
+### Manual (command line)
 
 To boot the elf in PCSX2 from the command line, use one of the following commands:
 
@@ -93,7 +95,7 @@ Replace `pcsx2-1.6` or `pcsx2-1.7` with the path to your PCSX2 executable.
 * The `elf` flag is required and specifies the path to the elf file.
 * The last argument is the path to your game ISO.
 
-### PCSX2 GUI
+### Manual (PCSX2 GUI)
 
 * For PCSX2 1.6, click `System > Run ELF...`, change the file type to "All Files", and browse for `SCUS_971.98` in the `bin` dir of the project.
 * For PCSX2 1.7, add the `bin` dir to your Games folders and the ELF will show up as a game in your library. When it asks you to search recursively, say yes. You may have to rename the elf to end in `.elf` for it to automatically detect it.
@@ -136,7 +138,7 @@ This is the first PS2 decompilation project to target the PS2 and utilize functi
 
 #### How can I help?
 
-If you want to contribute, read through [CONTRIBUTING.md](/CONTRIBUTING.md) and feel free to [join our discord server](https://discord.gg/gh5xwfj) if you have any questions!
+If you want to contribute, read through [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our discord server](https://discord.gg/gh5xwfj) if you have any questions!
 
 
 ## Star History
