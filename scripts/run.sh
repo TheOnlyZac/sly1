@@ -2,16 +2,16 @@
 
 # ##############################################################################
 # Set these paths to point to your PCSX2 1.7 executable and your copy of the game
-PCSX2_PATH="/opt/pcsx2-v1.7"
+PCSX2_PATH="/opt/pcsx2-1.7.AppImage"
 ISO_PATH=""
 # ##############################################################################
 
-# Exit on error
-set -e
-
 # Expand aliases
 shopt -s expand_aliases
-source ~/.bash_aliases
+source ~/.bash_aliases > /dev/null
+
+# Exit on error
+set -e
 
 # Print commands as they're run (for debugging)
 #set -o xtrace

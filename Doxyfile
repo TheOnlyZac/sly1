@@ -1033,10 +1033,12 @@ FILTER_SOURCE_PATTERNS =
 # (index.html). This can be useful if you have a project on for instance GitHub
 # and want to reuse the introduction page also for the doxygen output.
 
-INPUT += README.md
 INPUT += logo.png
-INPUT += CONTRIBUTING.md
-INPUT += STYLEGUIDE.md
+INPUT += README.md
+INPUT += docs/CONTRIBUTING.md
+INPUT += docs/STYLEGUIDE.md
+INPUT += docs/BEGINNERSGUIDE.md
+INPUT += tools/codematcher/README.md
 USE_MDFILE_AS_MAINPAGE = README.md
 
 #---------------------------------------------------------------------------
@@ -1195,7 +1197,7 @@ GENERATE_HTML          = YES
 # The default directory is: html.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_OUTPUT            = docs
+HTML_OUTPUT            = html
 
 # The HTML_FILE_EXTENSION tag can be used to specify the file extension for each
 # generated HTML page (for example: .htm, .php, .asp).

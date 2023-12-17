@@ -16,12 +16,13 @@ Please try and follow these general rules when writing your code:
 * Put opening curly braces on a new line.
 * Don't leave trailing whitespace at the end of lines.
 * End every file with a single blank line.
+* Keep lines between 80-100 character long at most.
 
 ## Symbol Names
 
-For variables/symbols, use the official name from the [Sly 1 May 2002 demo](https://hiddenpalace.org/Sly_Cooper_and_the_Thievius_Raccoonus_(May_19,_2002_prototype)) if it is known. If it is not known, use a clear and descriptive name.
+For new symbols (i.e. classes, variables, and functions), use the official name from the [May 19 2002 demo](https://hiddenpalace.org/Sly_Cooper_and_the_Thievius_Raccoonus_(May_19,_2002_prototype)) if it is known. If it is not known, use a clear and descriptive name.
 
-When naming symbols, mimic the style of the official symbol names, Official names use a loose version of [Hungarian Notation](https://en.wikipedia.org/wiki/Hungarian_notation). The most important part is the prefixes used to denote the **type** and **scope** of a symbol, as shown below.
+When making up symbol names, mimic the style of the official symbol names, Official names use a variation of [Hungarian Notation](https://en.wikipedia.org/wiki/Hungarian_notation). The most important part is the prefixes used to denote the **type** and **scope** of a symbol, as shown below.
 
 These prefixes denote the **type** of a symbol:
 
@@ -66,7 +67,7 @@ Use `lowerCamelCase` for local variables, function parameters, and class members
 
 ## Documentation
 
-Comment your code with [Doxygen-style comments](http://micro-os-plus.github.io/develop/doxygen-style-guide/). They will be used to automatically generate [documentation](https://theonlyzac.github.io/sly1). You don't need to read the whole Doxygen style guide, just follow these rules.
+Comment your code with [Doxygen-style comments](http://micro-os-plus.github.io/develop/doxygen-style-guide/). They will be used to automatically generate a [documentation website](https://theonlyzac.github.io/sly1). You don't need to read the whole Doxygen style guide, just follow these rules.
 
 ### File Comments
 
@@ -76,7 +77,7 @@ Put file comments at the top of each file, before any includes.
  * @file filename.xyz
  * @brief A brief description of the file.
  *
- * A longer description of the file that goes into more detail
+ * @details A longer description of the file that goes into more detail
  * if you feel it is necessary.
  */
 ```
@@ -88,7 +89,7 @@ Put function comments before the declaration of each function in the header file
 /**
  * @brief A brief summary of the function.
  *
- * A longer summary of the function that goes into more detail
+ * @details A longer summary of the function that goes into more detail
  * if you feel it is necessary.
  *
  * @param param1 Description of the first parameter
@@ -109,7 +110,7 @@ Put class (and struct) comments before the class declaration in the header file.
 /**
  * @brief Full name of the struct/class.
  *
- * A longer summary of the struct/class that goes into more detail
+ * @details A longer summary of the struct/class that goes into more detail
  * if you feel it is necessary.
  */
 ```
@@ -126,7 +127,7 @@ Use `@todo` to mark something that needs to be done in the future.
 ```
 
 Use `@note` to add a note which will be differentiated form the rest of the comment.
-```
+```c
 /**
  * ...
  * @note The name of this struct is not official.
@@ -144,15 +145,15 @@ This code is clear and conforms to the style guide:
 /**
  * @brief Activates a cheat code.
  *
- * Sets the given flag on the global fcht variable. Also reloads the level if
- * is is a reload code.
+ * @details Sets the given flag on the global fcht variable. Also reloads the
+ * level if it is a reload code.
  *
  * @param nparam Cheat code to check
 */
 void AddFcht(int nParam);
 
 
-//joy.cpp
+// joy.cpp
 
 void AddFcht(int nParam)
 {
@@ -170,7 +171,7 @@ This code does **not** conform to the style guide and should be rewritten:
 ```cpp
 // vec.h
 
-// Sets the vector cylinderically
+// Sets the vector cylinder
 void SetVectorCylind(float x, float y, float z, VECTOR* pvec);
 
 

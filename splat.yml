@@ -1,0 +1,41 @@
+name: Sly Cooper and the Thievius Raccoonus (USA)
+sha1: 57dc305db57932ad3f1122966cdb695d2e62a47a
+options:
+  basename: SCUS_971.98
+  target_path: SCUS_971.98
+  base_path: .
+  compiler: GCC
+  find_file_boundaries: False
+  platform: ps2
+  create_undefined_funcs_auto: True
+  undefined_funcs_auto_path: undefined_funcs_auto.txt
+  create_undefined_syms_auto: True
+  undefined_syms_auto_path: undefined_syms_auto.txt
+  symbol_addrs_path: symbol_addrs.txt
+  asm_path: asm
+  src_path: src
+  build_path: build
+  extensions_path: tools/splat_ext
+  section_order: [".text", ".rodata", ".data", ".bss"]
+  auto_all_sections: [".rodata",".data", ".bss"]
+  subalign: 8
+  disasm_unknown: True
+  named_regs_for_c_funcs: False
+segments:
+  - [0, databin, elf_header]
+  - name: main
+    type: code
+    start: 0x1000
+    vram: 0x100000
+    bss_size: 0x3B1304
+    subsegments:
+    - [0x1000, asm, crt0]
+    - [0x1178, asm]
+
+    - [0x118380, rodata]
+
+    - [0x151580, data]
+
+  # - [0x38DB80, databin] # .reginfo / segment_1.2
+  # - [0x38DB98, databin]
+  - [0x1A20C8]
