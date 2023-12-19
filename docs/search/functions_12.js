@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['_7ecbinaryasyncstream_2497',['~CBinaryAsyncStream',['../classCBinaryAsyncStream.html#a587367762fa14ad65e9279f964d9fd11',1,'CBinaryAsyncStream']]],
-  ['_7ecbinaryinputstream_2498',['~CBinaryInputStream',['../classCBinaryInputStream.html#ab9a05e3f251bc2833bee37e58cbd51cb',1,'CBinaryInputStream']]]
+  ['wipetoworldwarp_2549',['WipeToWorldWarp',['../wipe_8cpp.html#a7b15d5fc257269040b4f1d16b8360faf',1,'WipeToWorldWarp(LevelTableStruct *pchzWorld, OID oidWarp, WIPEK wipek):&#160;wipe.cpp'],['../wipe_8h.html#a7b15d5fc257269040b4f1d16b8360faf',1,'WipeToWorldWarp(LevelTableStruct *pchzWorld, OID oidWarp, WIPEK wipek):&#160;wipe.cpp']]]
 ];

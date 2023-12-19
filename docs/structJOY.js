@@ -2,7 +2,7 @@ var structJOY =
 [
     [ "almDeflect", "structJOY.html#a98f116dd2b127260ce545a297d8efdc9", null ],
     [ "almDeflect2", "structJOY.html#acc60ae9e5775f4fdb0afaa463e69975c", null ],
-    [ "aullDma", "structJOY.html#a3fccc408d27d260effef63719196e6d5", null ],
+    [ "aullDma", "structJOY.html#a628b37f0e783bafc9bf43fb8420f021f", null ],
     [ "bX", "structJOY.html#ad2ff63e82677fb854669962fe42e2b70", null ],
     [ "bX2", "structJOY.html#ae01dc22d29594c8e784ebd212d8712a3", null ],
     [ "bY", "structJOY.html#acc20f4b7cbdd7cf0a82e8aab9e9ba47f", null ],

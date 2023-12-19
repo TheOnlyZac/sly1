@@ -5,7 +5,7 @@ var clock_8h =
     [ "MarkClockTick", "clock_8h.html#a6e4ed2930f61243e9c0fe9838f3fdbf5", null ],
     [ "MarkClockTickRealOnly", "clock_8h.html#a3bf9156b767e2e75d031c1d2324394f7", null ],
     [ "ResetClock", "clock_8h.html#a374128d3628fad7a947557821a975524", null ],
-    [ "SetClockEnabled", "clock_8h.html#a58a6d4d6b3c4701e47a5aed43858f59d", null ],
+    [ "SetClockEnabled", "clock_8h.html#a6a8213cb50fbf233faa31a25a0226ab4", null ],
     [ "SetClockRate", "clock_8h.html#a6c90f64d8e1e3200b50a3f3286d935db", null ],
     [ "StartupClock", "clock_8h.html#ad1c9500a546abe5c10e3802ed8585a41", null ],
     [ "TickNow", "clock_8h.html#a007c9b2acfde5b733603b8ce5520f75d", null ],

@@ -26,38 +26,56 @@ var NAVTREE =
     [ "Sly Cooper and the Thievius Raccoonus", "index.html", [
       [ "Building", "index.html#autotoc_md1", [
         [ "Linux/WSL", "index.html#autotoc_md2", null ],
-        [ "Windows", "index.html#autotoc_md3", null ],
-        [ "Running", "index.html#autotoc_md4", null ]
+        [ "Windows", "index.html#autotoc_md3", null ]
       ] ],
-      [ "Project Structure", "index.html#autotoc_md5", null ],
-      [ "FAQ", "index.html#autotoc_md6", null ],
-      [ "Star History", "index.html#autotoc_md12", null ]
+      [ "Running", "index.html#autotoc_md4", [
+        [ "Automatic (script)", "index.html#autotoc_md5", null ],
+        [ "Command line", "index.html#autotoc_md6", null ],
+        [ "PCSX2 GUI", "index.html#autotoc_md7", null ]
+      ] ],
+      [ "Project Structure", "index.html#autotoc_md8", null ],
+      [ "FAQ", "index.html#autotoc_md9", null ],
+      [ "Star History", "index.html#autotoc_md15", null ]
     ] ],
     [ "Contributing", "md_CONTRIBUTING.html", [
-      [ "Contents", "md_CONTRIBUTING.html#autotoc_md14", [
-        [ "Beginner's Guide", "md_CONTRIBUTING.html#autotoc_md15", [
-          [ "What is a decompilation?", "index.html#autotoc_md7", null ],
-          [ "How does it work?", "index.html#autotoc_md8", null ],
-          [ "Has this ever been done before?", "index.html#autotoc_md9", null ],
-          [ "Is this a matching decomp?", "index.html#autotoc_md10", null ],
-          [ "How can I help?", "index.html#autotoc_md11", null ],
-          [ "1. Fork the repository on GitHub", "md_CONTRIBUTING.html#autotoc_md16", null ],
-          [ "2. Clone the forked repository to your machine", "md_CONTRIBUTING.html#autotoc_md17", null ],
-          [ "3. Create a new branch for your changes", "md_CONTRIBUTING.html#autotoc_md18", null ],
-          [ "4. Write your code", "md_CONTRIBUTING.html#autotoc_md19", [
-            [ "4b. Write test cases", "md_CONTRIBUTING.html#autotoc_md20", null ]
+      [ "Contents", "md_CONTRIBUTING.html#autotoc_md17", [
+        [ "Beginner's Guide", "md_CONTRIBUTING.html#autotoc_md18", [
+          [ "What is a decompilation?", "index.html#autotoc_md10", null ],
+          [ "How does it work?", "index.html#autotoc_md11", null ],
+          [ "Has this ever been done before?", "index.html#autotoc_md12", null ],
+          [ "Is this a matching decomp?", "index.html#autotoc_md13", null ],
+          [ "How can I help?", "index.html#autotoc_md14", null ],
+          [ "1. Fork the repository on GitHub", "md_CONTRIBUTING.html#autotoc_md19", null ],
+          [ "2. Clone the forked repository to your machine", "md_CONTRIBUTING.html#autotoc_md20", null ],
+          [ "3. Create a new branch for your changes", "md_CONTRIBUTING.html#autotoc_md21", null ],
+          [ "4. Write your code", "md_CONTRIBUTING.html#autotoc_md22", [
+            [ "4b. Write test cases", "md_CONTRIBUTING.html#autotoc_md23", null ]
           ] ],
-          [ "4. Commit the changes to your branch", "md_CONTRIBUTING.html#autotoc_md21", null ],
-          [ "6. Push the commits to your fork", "md_CONTRIBUTING.html#autotoc_md22", null ],
-          [ "7. Create a pull request on GitHub", "md_CONTRIBUTING.html#autotoc_md23", null ]
+          [ "4. Commit the changes to your branch", "md_CONTRIBUTING.html#autotoc_md24", null ],
+          [ "6. Push the commits to your fork", "md_CONTRIBUTING.html#autotoc_md25", null ],
+          [ "7. Create a pull request on GitHub", "md_CONTRIBUTING.html#autotoc_md26", null ]
         ] ],
-        [ "Writing Tests", "md_CONTRIBUTING.html#autotoc_md24", null ],
-        [ "Example Test", "md_CONTRIBUTING.html#autotoc_md25", [
-          [ "test/clock/set_clock_rate.cpp", "md_CONTRIBUTING.html#autotoc_md26", null ]
+        [ "Writing Tests", "md_CONTRIBUTING.html#autotoc_md27", [
+          [ "Example Test", "md_CONTRIBUTING.html#autotoc_md28", null ]
         ] ],
-        [ "Code Review Process", "md_CONTRIBUTING.html#autotoc_md27", null ],
-        [ "Conclusion", "md_CONTRIBUTING.html#autotoc_md28", null ]
+        [ "Code Review Process", "md_CONTRIBUTING.html#autotoc_md29", null ],
+        [ "Conclusion", "md_CONTRIBUTING.html#autotoc_md30", null ]
       ] ]
+    ] ],
+    [ "Style Guide", "md_STYLEGUIDE.html", [
+      [ "Contents", "md_STYLEGUIDE.html#autotoc_md32", null ],
+      [ "General Rules", "md_STYLEGUIDE.html#autotoc_md33", null ],
+      [ "Symbol Names", "md_STYLEGUIDE.html#autotoc_md34", [
+        [ "Capitalization", "md_STYLEGUIDE.html#autotoc_md35", null ]
+      ] ],
+      [ "Documentation", "md_STYLEGUIDE.html#autotoc_md36", [
+        [ "File Comments", "md_STYLEGUIDE.html#autotoc_md37", null ],
+        [ "Function Comments", "md_STYLEGUIDE.html#autotoc_md38", [
+          [ "Class Comments", "md_STYLEGUIDE.html#autotoc_md39", null ]
+        ] ],
+        [ "Todo and Notes", "md_STYLEGUIDE.html#autotoc_md40", null ]
+      ] ],
+      [ "Example Code", "md_STYLEGUIDE.html#autotoc_md41", null ]
     ] ],
     [ "Todo List", "todo.html", null ],
     [ "Classes", "annotated.html", [
@@ -77,7 +95,8 @@ var NAVTREE =
         [ "Variables", "globals_vars.html", null ],
         [ "Typedefs", "globals_type.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
-        [ "Enumerator", "globals_eval.html", "globals_eval" ]
+        [ "Enumerator", "globals_eval.html", "globals_eval" ],
+        [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
   ] ]
@@ -86,16 +105,16 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "actseg_8h.html",
-"clock_8h.html",
-"game_8h.html#a5a95f696191e6e81c14198ad0c7792f4a6f9b3478fafc8c7e73cd105fd3c005ef",
-"gs_8h.html#a69c07e7119507370cb17c01479d16bc5ae280102e293c1790b28a3347a64ef09b",
-"sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaa03221a29399c6bfe4cbabd741988ff2b",
-"sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaa9df730914228230d6ab730357b81f715",
-"structASEG.html#a7445784a66ba5110352be5370b95a8a7",
-"structDIFFICULTYLEVEL.html#a59f63a738f944e98c4f2863bd245df1e",
-"structGS.html#a05c717b3dbcc6dfc8ba649a4d1c8a4f4",
-"structSO.html#aeda820dd745ec933a9004015bd88639a",
-"util_8h.html#a2f0b7dccbef4dacbdd56f8c22ee615db"
+"clock_8cpp.html#a007c9b2acfde5b733603b8ce5520f75d",
+"game_8h.html#a5a95f696191e6e81c14198ad0c7792f4a5e807a893e0d38a8638423f9b060fa72",
+"gs_8h.html#a38913784588016f8cc4112a1178c2ea1a22d025f37c3d584de271519581da69ef",
+"phasemem_8h.html",
+"sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaa6f1d7e9fd5d9974283fc377ce2b6aa1d",
+"sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaaf99842b0e999594998ee239becfd6d40",
+"structBSPC.html",
+"structDLE.html#aa3d468e9c1a45c77de8836b925d025a4",
+"structSENSOR.html#aca009a32a09951e42f442501c86d85b0",
+"types_8h.html#a4ae1dab0fb4b072a66584546209e7d58"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -237,5 +237,8 @@ var game_8h =
     [ "SetCcharm", "game_8h.html#adb82ed3f3754624cf0e8923f02ef2eca", null ],
     [ "SetCcoin", "game_8h.html#a063104aa231ea8656ec195ac0754ced4", null ],
     [ "SetClife", "game_8h.html#aad78a15fb90db7e336dd3cc4a387ca11", null ],
+    [ "StartGame", "game_8h.html#a93ecb4242527b80e76b5e28209f67d2d", null ],
+    [ "StartupGame", "game_8h.html#ac910d4646c5d3629c6c9ec83204c0a31", null ],
+    [ "UnloadGame", "game_8h.html#a6c98af07bba56f512f44079096875c17", null ],
     [ "UpdateGameState", "game_8h.html#aaec7f89e5b3cd373f42793841d43fb06", null ]
 ];

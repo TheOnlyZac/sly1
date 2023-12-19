@@ -118,15 +118,15 @@ $(document).ready(function(){initNavTree('util_8cpp_source.html',''); initResiza
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="util_8h.html#a81017b4e44a87233a7c5a211f1b0b0eb">   23</a></span>&#160;<span class="keywordtype">float</span> <a class="code" href="util_8cpp.html#a81017b4e44a87233a7c5a211f1b0b0eb">GLimitAbs</a>(<span class="keywordtype">float</span> g, <span class="keywordtype">float</span> absLimit)</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">if</span> (g &lt;= absLimit)</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">if</span> (absLimit &lt; g)</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    {</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">if</span> (g &lt; -absLimit)</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            g = -absLimit;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="keywordflow">return</span> -absLimit;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">return</span> g;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">return</span> absLimit;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">return</span> absLimit;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">return</span> g;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
 <div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="util_8h.html#aaef9d30a8058d3b98eabff5950f76724">   36</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="util_8cpp.html#aaef9d30a8058d3b98eabff5950f76724">NRandInRange</a>(<span class="keywordtype">int</span> nLow, <span class="keywordtype">int</span> nHigh)</div>
@@ -305,59 +305,62 @@ $(document).ready(function(){initNavTree('util_8cpp_source.html',''); initResiza
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="comment">//TODO: FitClq</span></div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
-<div class="line"><a name="l00212"></a><span class="lineno"><a class="line" href="util_8h.html#a8e2d52a01b4e6a47a13db6c8c69313c5">  212</a></span>&#160;<a class="code" href="prog_8h.html#ab40a1f154aa44511af7f97b88296f7d3">BOOL</a> <a class="code" href="util_8cpp.html#a8e2d52a01b4e6a47a13db6c8c69313c5">FCheckLm</a>(<a class="code" href="structLM.html">LM</a>* plm, <span class="keywordtype">float</span> g)</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;{</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keywordflow">return</span> (plm-&gt;<a class="code" href="structLM.html#abdcbe67d21628227b56ea055a1cdaf3e">gMin</a> &lt; g) &amp;&amp; (g &lt; plm-&gt;<a class="code" href="structLM.html#af8d95056c083f463f196884431911896">gMax</a>);</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;}</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
-<div class="line"><a name="l00217"></a><span class="lineno"><a class="line" href="util_8h.html#a7c1000414c658e015d4f80c60f79ac49">  217</a></span>&#160;<a class="code" href="prog_8h.html#ab40a1f154aa44511af7f97b88296f7d3">BOOL</a> <a class="code" href="util_8cpp.html#a7c1000414c658e015d4f80c60f79ac49">FCheckAlm</a>(<span class="keywordtype">int</span> clm, <a class="code" href="structLM.html">LM</a>* alm, <span class="keywordtype">float</span> g)</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;{</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordtype">int</span> lmCur = 0;</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keywordflow">if</span> (0 &lt; clm)</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    {</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        <span class="keywordflow">do</span></div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        {</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="util_8cpp.html#a8e2d52a01b4e6a47a13db6c8c69313c5">FCheckLm</a>(alm, g)) <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            lmCur++;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            alm++;</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        } <span class="keywordflow">while</span> (lmCur &lt; clm);</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    }</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;}</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160; </div>
-<div class="line"><a name="l00232"></a><span class="lineno"><a class="line" href="util_8h.html#afb080e80f030ed3f08ff3d0da121ab9b">  232</a></span>&#160;<span class="keywordtype">float</span> <a class="code" href="util_8cpp.html#afb080e80f030ed3f08ff3d0da121ab9b">GLimitLm</a>(<a class="code" href="structLM.html">LM</a>* plm, <span class="keywordtype">float</span> g)</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;{</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keywordtype">float</span> result = plm-&gt;<a class="code" href="structLM.html#abdcbe67d21628227b56ea055a1cdaf3e">gMin</a>;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160; </div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <span class="keywordflow">if</span> ((result &lt;= g) &amp;&amp;</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        (result = plm-&gt;<a class="code" href="structLM.html#af8d95056c083f463f196884431911896">gMax</a>, g &lt;= plm-&gt;gMax))</div>
+<div class="line"><a name="l00215"></a><span class="lineno"><a class="line" href="util_8h.html#a8e2d52a01b4e6a47a13db6c8c69313c5">  215</a></span>&#160;<a class="code" href="prog_8h.html#ab40a1f154aa44511af7f97b88296f7d3">BOOL</a> <a class="code" href="util_8cpp.html#a8e2d52a01b4e6a47a13db6c8c69313c5">FCheckLm</a>(<a class="code" href="structLM.html">LM</a>* plm, <span class="keywordtype">float</span> g)</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;{</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="keywordflow">return</span> (plm-&gt;<a class="code" href="structLM.html#abdcbe67d21628227b56ea055a1cdaf3e">gMin</a> &lt; g) &amp;&amp; (g &lt; plm-&gt;<a class="code" href="structLM.html#af8d95056c083f463f196884431911896">gMax</a>);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;}</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
+<div class="line"><a name="l00220"></a><span class="lineno"><a class="line" href="util_8h.html#a7c1000414c658e015d4f80c60f79ac49">  220</a></span>&#160;<a class="code" href="prog_8h.html#ab40a1f154aa44511af7f97b88296f7d3">BOOL</a> <a class="code" href="util_8cpp.html#a7c1000414c658e015d4f80c60f79ac49">FCheckAlm</a>(<span class="keywordtype">int</span> clm, <a class="code" href="structLM.html">LM</a>* alm, <span class="keywordtype">float</span> g)</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;{</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keywordtype">int</span> lmCur = 0;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordflow">if</span> (0 &lt; clm)</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    {</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="keywordflow">do</span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        {</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="util_8cpp.html#a8e2d52a01b4e6a47a13db6c8c69313c5">FCheckLm</a>(alm, g)) <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            lmCur++;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            alm++;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        } <span class="keywordflow">while</span> (lmCur &lt; clm);</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    }</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;}</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
+<div class="line"><a name="l00235"></a><span class="lineno"><a class="line" href="util_8h.html#afb080e80f030ed3f08ff3d0da121ab9b">  235</a></span>&#160;<span class="keywordtype">float</span> <a class="code" href="util_8cpp.html#afb080e80f030ed3f08ff3d0da121ab9b">GLimitLm</a>(<a class="code" href="structLM.html">LM</a>* plm, <span class="keywordtype">float</span> g)</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;{</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keywordflow">if</span> (g &lt;= plm-&gt;gMin)</div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    {</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="keywordflow">return</span> g;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="keywordflow">return</span> plm-&gt;<a class="code" href="structLM.html#abdcbe67d21628227b56ea055a1cdaf3e">gMin</a>;</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    }</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="keywordflow">return</span> plm-&gt;<a class="code" href="structLM.html#abdcbe67d21628227b56ea055a1cdaf3e">gMin</a>;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;}</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
-<div class="line"><a name="l00245"></a><span class="lineno"><a class="line" href="util_8h.html#a32acfc0bce6a17971f228c8e225454fa">  245</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="util_8cpp.html#a32acfc0bce6a17971f228c8e225454fa">SgnCompareG</a>(<span class="keywordtype">float</span>* pg1, <span class="keywordtype">float</span>* pg2)</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;{</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keywordtype">int</span> result = 1;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keywordflow">if</span> ((*pg1 &lt;= *pg2) &amp;&amp; (result = -1, *pg2 &lt;= *pg1))</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    {</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        result = 0;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    }</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;}</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
-<div class="line"><a name="l00255"></a><span class="lineno"><a class="line" href="util_8h.html#adeb1d60b29bba6f8c136087e04ee5994">  255</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="util_8cpp.html#a7507f00164ef9b6c267b08b25346edc7">Force</a>(<span class="keywordtype">void</span> *)</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;{</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <span class="comment">// This function is empty.</span></div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;}</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (plm-&gt;<a class="code" href="structLM.html#af8d95056c083f463f196884431911896">gMax</a> &lt;= g)</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <span class="keywordflow">return</span> plm-&gt;<a class="code" href="structLM.html#af8d95056c083f463f196884431911896">gMax</a>;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    }</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    {</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        <span class="keywordflow">return</span> g;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    }</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;}</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160; </div>
+<div class="line"><a name="l00251"></a><span class="lineno"><a class="line" href="util_8h.html#a32acfc0bce6a17971f228c8e225454fa">  251</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="util_8cpp.html#a32acfc0bce6a17971f228c8e225454fa">SgnCompareG</a>(<span class="keywordtype">float</span>* pg1, <span class="keywordtype">float</span>* pg2)</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;{</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordtype">int</span> result = 1;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <span class="keywordflow">if</span> ((*pg1 &lt;= *pg2) &amp;&amp; (result = -1, *pg2 &lt;= *pg1))</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    {</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        result = 0;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    }</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;}</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; </div>
+<div class="line"><a name="l00264"></a><span class="lineno"><a class="line" href="util_8h.html#adeb1d60b29bba6f8c136087e04ee5994">  264</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="util_8cpp.html#a7507f00164ef9b6c267b08b25346edc7">Force</a>(<span class="keywordtype">void</span> *)</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;{</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <span class="comment">// This function is empty.</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="autil_8cpp_html_aa08a577393243b86dfd2a97e61443673"><div class="ttname"><a href="util_8cpp.html#aa08a577393243b86dfd2a97e61443673">PI</a></div><div class="ttdeci">static const float PI</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00010">util.cpp:10</a></div></div>
 <div class="ttc" id="autil_8cpp_html_a14639672f9ca35fa2c7e362348d26c5d"><div class="ttname"><a href="util_8cpp.html#a14639672f9ca35fa2c7e362348d26c5d">RadNormalize</a></div><div class="ttdeci">float RadNormalize(float rad)</div><div class="ttdoc">Normalizes a float to the range [-PI, PI].</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00013">util.cpp:13</a></div></div>
-<div class="ttc" id="autil_8cpp_html_a7c1000414c658e015d4f80c60f79ac49"><div class="ttname"><a href="util_8cpp.html#a7c1000414c658e015d4f80c60f79ac49">FCheckAlm</a></div><div class="ttdeci">BOOL FCheckAlm(int clm, LM *alm, float g)</div><div class="ttdoc">Checks if a float falls within any of the given limits.</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00217">util.cpp:217</a></div></div>
-<div class="ttc" id="autil_8cpp_html_afb080e80f030ed3f08ff3d0da121ab9b"><div class="ttname"><a href="util_8cpp.html#afb080e80f030ed3f08ff3d0da121ab9b">GLimitLm</a></div><div class="ttdeci">float GLimitLm(LM *plm, float g)</div><div class="ttdoc">Clamps a float to fall within the given limit.</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00232">util.cpp:232</a></div></div>
+<div class="ttc" id="autil_8cpp_html_a7c1000414c658e015d4f80c60f79ac49"><div class="ttname"><a href="util_8cpp.html#a7c1000414c658e015d4f80c60f79ac49">FCheckAlm</a></div><div class="ttdeci">BOOL FCheckAlm(int clm, LM *alm, float g)</div><div class="ttdoc">Checks if a float falls within any of the given limits.</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00220">util.cpp:220</a></div></div>
+<div class="ttc" id="autil_8cpp_html_afb080e80f030ed3f08ff3d0da121ab9b"><div class="ttname"><a href="util_8cpp.html#afb080e80f030ed3f08ff3d0da121ab9b">GLimitLm</a></div><div class="ttdeci">float GLimitLm(LM *plm, float g)</div><div class="ttdoc">Clamps a float to fall within the given limit.</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00235">util.cpp:235</a></div></div>
 <div class="ttc" id="astructLM_html"><div class="ttname"><a href="structLM.html">LM</a></div><div class="ttdoc">Limits for a float.</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00014">util.h:14</a></div></div>
 <div class="ttc" id="autil_8cpp_html_a7d8abfc06184da58f918104502a3e43c"><div class="ttname"><a href="util_8cpp.html#a7d8abfc06184da58f918104502a3e43c">GModPositive</a></div><div class="ttdeci">float GModPositive(float gDividend, float gDivisor)</div><div class="ttdoc">Calculates the positive remainder of dividing the dividend by the divisor.</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00200">util.cpp:200</a></div></div>
 <div class="ttc" id="autil_8cpp_html_abc49606a8af594252b5364fd82116358"><div class="ttname"><a href="util_8cpp.html#abc49606a8af594252b5364fd82116358">GTrunc</a></div><div class="ttdeci">double GTrunc(double param_1)</div><div class="ttdoc">Truncates a double precision floating point number to an integer value, rounding up if the fractional...</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00150">util.cpp:150</a></div></div>
@@ -366,16 +369,16 @@ $(document).ready(function(){initNavTree('util_8cpp_source.html',''); initResiza
 <div class="ttc" id="astructLM_html_af8d95056c083f463f196884431911896"><div class="ttname"><a href="structLM.html#af8d95056c083f463f196884431911896">LM::gMax</a></div><div class="ttdeci">float gMax</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00016">util.h:16</a></div></div>
 <div class="ttc" id="aprog_8h_html_ab40a1f154aa44511af7f97b88296f7d3"><div class="ttname"><a href="prog_8h.html#ab40a1f154aa44511af7f97b88296f7d3">BOOL</a></div><div class="ttdeci">bool BOOL</div><div class="ttdef"><b>Definition:</b> <a href="prog_8h_source.html#l00012">prog.h:12</a></div></div>
 <div class="ttc" id="autil_8cpp_html_aeee4823b200985156b402f1c57becb78"><div class="ttname"><a href="util_8cpp.html#aeee4823b200985156b402f1c57becb78">g_lmZeroOne</a></div><div class="ttdeci">LM g_lmZeroOne</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00011">util.cpp:11</a></div></div>
-<div class="ttc" id="autil_8cpp_html_a7507f00164ef9b6c267b08b25346edc7"><div class="ttname"><a href="util_8cpp.html#a7507f00164ef9b6c267b08b25346edc7">Force</a></div><div class="ttdeci">void Force(void *)</div><div class="ttdoc">Stubbed function, does nothing.</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00255">util.cpp:255</a></div></div>
-<div class="ttc" id="atypes_8h_html_a718b4eb2652c286f4d42dc18a8e71a1a"><div class="ttname"><a href="types_8h.html#a718b4eb2652c286f4d42dc18a8e71a1a">ulong</a></div><div class="ttdeci">unsigned long ulong</div><div class="ttdef"><b>Definition:</b> <a href="types_8h_source.html#l00016">types.h:16</a></div></div>
+<div class="ttc" id="autil_8cpp_html_a7507f00164ef9b6c267b08b25346edc7"><div class="ttname"><a href="util_8cpp.html#a7507f00164ef9b6c267b08b25346edc7">Force</a></div><div class="ttdeci">void Force(void *)</div><div class="ttdoc">Stubbed function, does nothing.</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00264">util.cpp:264</a></div></div>
+<div class="ttc" id="atypes_8h_html_a718b4eb2652c286f4d42dc18a8e71a1a"><div class="ttname"><a href="types_8h.html#a718b4eb2652c286f4d42dc18a8e71a1a">ulong</a></div><div class="ttdeci">unsigned long ulong</div><div class="ttdef"><b>Definition:</b> <a href="types_8h_source.html#l00017">types.h:17</a></div></div>
 <div class="ttc" id="autil_8cpp_html_a76d4e5693b100a890108ce0c52939ff3"><div class="ttname"><a href="util_8cpp.html#a76d4e5693b100a890108ce0c52939ff3">CalculateSinCos</a></div><div class="ttdeci">void CalculateSinCos(float angle, float *sin, float *cos)</div><div class="ttdoc">Calculates the sine and cosine of a given angle.</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00118">util.cpp:118</a></div></div>
-<div class="ttc" id="autil_8cpp_html_a32acfc0bce6a17971f228c8e225454fa"><div class="ttname"><a href="util_8cpp.html#a32acfc0bce6a17971f228c8e225454fa">SgnCompareG</a></div><div class="ttdeci">int SgnCompareG(float *pg1, float *pg2)</div><div class="ttdoc">Compares the sign of two floats.</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00245">util.cpp:245</a></div></div>
+<div class="ttc" id="autil_8cpp_html_a32acfc0bce6a17971f228c8e225454fa"><div class="ttname"><a href="util_8cpp.html#a32acfc0bce6a17971f228c8e225454fa">SgnCompareG</a></div><div class="ttdeci">int SgnCompareG(float *pg1, float *pg2)</div><div class="ttdoc">Compares the sign of two floats.</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00251">util.cpp:251</a></div></div>
 <div class="ttc" id="autil_8cpp_html_a4f9d2ee9ae89d1b11e74be7c24d06701"><div class="ttname"><a href="util_8cpp.html#a4f9d2ee9ae89d1b11e74be7c24d06701">GRandInRange</a></div><div class="ttdeci">float GRandInRange(float gLow, float gHigh)</div><div class="ttdoc">Gets a random float that falls between the given values.</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00046">util.cpp:46</a></div></div>
 <div class="ttc" id="autil_8cpp_html_a567e3a24beb2e2c281a88ecec05c2bc3"><div class="ttname"><a href="util_8cpp.html#a567e3a24beb2e2c281a88ecec05c2bc3">CSolveQuadratic</a></div><div class="ttdeci">int CSolveQuadratic(float a, float b, float c, float *ax)</div><div class="ttdoc">Solves a quadratic equation.</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00095">util.cpp:95</a></div></div>
 <div class="ttc" id="astructLM_html_abdcbe67d21628227b56ea055a1cdaf3e"><div class="ttname"><a href="structLM.html#abdcbe67d21628227b56ea055a1cdaf3e">LM::gMin</a></div><div class="ttdeci">float gMin</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00016">util.h:16</a></div></div>
 <div class="ttc" id="acat_8h_html_a91ad9478d81a7aaf2593e8d9c3d06a14"><div class="ttname"><a href="cat_8h.html#a91ad9478d81a7aaf2593e8d9c3d06a14">uint</a></div><div class="ttdeci">unsigned int uint</div><div class="ttdef"><b>Definition:</b> <a href="cat_8h_source.html#l00011">cat.h:11</a></div></div>
 <div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Declarations for utility functions.</div></div>
-<div class="ttc" id="autil_8cpp_html_a8e2d52a01b4e6a47a13db6c8c69313c5"><div class="ttname"><a href="util_8cpp.html#a8e2d52a01b4e6a47a13db6c8c69313c5">FCheckLm</a></div><div class="ttdeci">BOOL FCheckLm(LM *plm, float g)</div><div class="ttdoc">Checks if a float falls within the given limit.</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00212">util.cpp:212</a></div></div>
+<div class="ttc" id="autil_8cpp_html_a8e2d52a01b4e6a47a13db6c8c69313c5"><div class="ttname"><a href="util_8cpp.html#a8e2d52a01b4e6a47a13db6c8c69313c5">FCheckLm</a></div><div class="ttdeci">BOOL FCheckLm(LM *plm, float g)</div><div class="ttdoc">Checks if a float falls within the given limit.</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00215">util.cpp:215</a></div></div>
 <div class="ttc" id="autil_8cpp_html_a81017b4e44a87233a7c5a211f1b0b0eb"><div class="ttname"><a href="util_8cpp.html#a81017b4e44a87233a7c5a211f1b0b0eb">GLimitAbs</a></div><div class="ttdeci">float GLimitAbs(float g, float absLimit)</div><div class="ttdoc">Clamps the float to the inteval [-absLimit, absLimit].</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00023">util.cpp:23</a></div></div>
 <div class="ttc" id="autil_8cpp_html_a9f7a3668b133cc29fa8104516de303c2"><div class="ttname"><a href="util_8cpp.html#a9f7a3668b133cc29fa8104516de303c2">GRandGaussian</a></div><div class="ttdeci">float GRandGaussian(float param_1, float param_2, float param_3)</div><div class="ttdoc">Returns a random number from the Gaussian distribution.</div><div class="ttdef"><b>Definition:</b> <a href="util_8cpp_source.html#l00056">util.cpp:56</a></div></div>
 <!-- start footer part -->

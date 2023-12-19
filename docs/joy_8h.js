@@ -4,7 +4,9 @@ var joy_8h =
     [ "RUMPAT", "structRUMPAT.html", "structRUMPAT" ],
     [ "RUMBLE", "structRUMBLE.html", "structRUMBLE" ],
     [ "JOY", "structJOY.html", "structJOY" ],
+    [ "CHT", "structCHT.html", "structCHT" ],
     [ "GRFBTN", "joy_8h.html#af899f8f8bf1c74c663892886390d3046", null ],
+    [ "GRFCHT", "joy_8h.html#a9cd8a293dec6dd6df079a47c6536cf75", null ],
     [ "DPK", "joy_8h.html#a57adea9a383fd92233eac9fa02f8f517", [
       [ "DPK_None", "joy_8h.html#a57adea9a383fd92233eac9fa02f8f517a4731f6c04be6404bed4021d6013439f7", null ],
       [ "DPK_X", "joy_8h.html#a57adea9a383fd92233eac9fa02f8f517accb9fe6e21b8b2234ad0dc45142d1853", null ],
@@ -31,6 +33,11 @@ var joy_8h =
       [ "FCHT_LowFriction", "joy_8h.html#a020a94afbc4629e6cbaf9a777eb85f55a706a0708188bd035bd3c47b007923c2f", null ],
       [ "FCHT_ResetWorld", "joy_8h.html#a020a94afbc4629e6cbaf9a777eb85f55a69eb3a378ed7ae4893ac9dc0bfca1af6", null ]
     ] ],
+    [ "FUSR", "joy_8h.html#abb0778c4d7b835581afc243b3d66800b", [
+      [ "FUSR_Menu", "joy_8h.html#abb0778c4d7b835581afc243b3d66800bab0d8fff1622a0c2b3d7e136fd2e4c2c6", null ],
+      [ "FUSR_HandsOff", "joy_8h.html#abb0778c4d7b835581afc243b3d66800ba478d13129747f0c2adde3b1b092c8dd4", null ],
+      [ "FUSR_NoPause", "joy_8h.html#abb0778c4d7b835581afc243b3d66800ba4cba1ce300e6b21d326dc22769d81fbf", null ]
+    ] ],
     [ "JOYK", "joy_8h.html#ad3186335c21a86b3a1c03262495b1775", [
       [ "JOYK_Unknown", "joy_8h.html#ad3186335c21a86b3a1c03262495b1775a91a92c157087c0b302638a4de6a9c1c2", null ],
       [ "JOYK_Digital", "joy_8h.html#ad3186335c21a86b3a1c03262495b1775a274b2a427be4a0d8e201a53259d2ba97", null ],
@@ -47,7 +54,7 @@ var joy_8h =
       [ "JOYS_Max", "joy_8h.html#ab0a5ef0700b1060619e90b2c89643043a04dc27d7f10403ae05c87998ec967a10", null ]
     ] ],
     [ "PadButtons", "joy_8h.html#a55189e4b697b337be466076866c54dae", [
-      [ "NOT_PRESSED", "joy_8h.html#a55189e4b697b337be466076866c54daeacdb8b9a398ffbd729218a27d00d8fa45", null ],
+      [ "_NOT_PRESSED", "joy_8h.html#a55189e4b697b337be466076866c54daea46a3862772c6f040f19626f84a9ad8b0", null ],
       [ "PAD_L2", "joy_8h.html#a55189e4b697b337be466076866c54daeaceff0469d51b6bc717e70350dd7b438b", null ],
       [ "PAD_R2", "joy_8h.html#a55189e4b697b337be466076866c54daea199a33cf49a9e1f3b7e027b4d5346243", null ],
       [ "PAD_L1", "joy_8h.html#a55189e4b697b337be466076866c54daea39c01a6419f46d517f812795374b1b6a", null ],
@@ -73,16 +80,27 @@ var joy_8h =
       [ "RUMS_Kill", "joy_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa56b51ed29c64c27e3ac333201f60152c", null ],
       [ "RUMS_Max", "joy_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa72b058661e02b3c95ad855a51b55e604", null ]
     ] ],
+    [ "_ResetCodes", "joy_8h.html#ad857e78b1ee87bda696d5f5c752d1997", null ],
     [ "AddFcht", "joy_8h.html#a9d12159b3676e1fe3d414cd16c09df35", null ],
     [ "AddGrfusr", "joy_8h.html#a06bd5c71f5308931f8888a3ee894a9ec", null ],
     [ "CheatActivateChetkido", "joy_8h.html#a909fcc7c7ce78f27b9b82a2ea1be5f90", null ],
+    [ "ClearAllCheats", "joy_8h.html#ac367bc79be73de061370574e823023a0", null ],
+    [ "InitJoy", "joy_8h.html#a0889f2c44237e0ce8eb98bf4f8c4955b", null ],
     [ "InitRumble", "joy_8h.html#a22a347bba35744030a7f57363defa7ab", null ],
+    [ "RemoveGrfusr", "joy_8h.html#a6fb47e95134e50b3d55f66540ae2fafd", null ],
+    [ "SetJoyBtnHandled", "joy_8h.html#ab80175f86dab719931b376e361b89b7c", null ],
     [ "SetJoyJoys", "joy_8h.html#a636f994e6308715ae7ce93ad677f962a", null ],
     [ "SetRumbleRums", "joy_8h.html#a72b5390eb5413ab7c0238d8a7d03750d", null ],
+    [ "StartupCodes", "joy_8h.html#aa47450283563071585a47f0fdd1e3793", null ],
+    [ "StartupJoy", "joy_8h.html#a1643ae6c8e3c59aa41b828035a8c8d8a", null ],
     [ "UpdateCodes", "joy_8h.html#a792e8692cb813b8f2d37120ad3d5413a", null ],
+    [ "UpdateGrfjoytFromGrfusr", "joy_8h.html#ac987ccc8ebf81c9ab5b574f4ded366c9", null ],
     [ "UpdateJoy", "joy_8h.html#a49022be84d409d9ca307575b01fe158c", null ],
     [ "chetkido_buffer", "joy_8h.html#a3e49e59367c4b522540d4d549d8b9a05", null ],
     [ "g_grfcht", "joy_8h.html#a17594cb5d7207a5a140baa3f554ee288", null ],
+    [ "g_grfjoyt", "joy_8h.html#a95464161d12c23af6407536fb806d189", null ],
+    [ "g_grfusr", "joy_8h.html#a9b7778e18b7558d92d8eb3bec318375f", null ],
     [ "g_joy", "joy_8h.html#a70565d6d6966e1b44214f269ab63ce60", null ],
+    [ "g_pcht", "joy_8h.html#aa4082b7606037dbc779a4266cce9be03", null ],
     [ "g_tCodeCheck", "joy_8h.html#acda069e9c7373203f67d0a3d5112caa1", null ]
 ];

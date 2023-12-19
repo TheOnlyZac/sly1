@@ -95,6 +95,7 @@ $(document).ready(function(){initNavTree('main_8cpp.html',''); initResizable(); 
 
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">main.cpp File Reference</div>  </div>
@@ -113,6 +114,8 @@ $(document).ready(function(){initNavTree('main_8cpp.html',''); initResizable(); 
 <code>#include &lt;<a class="el" href="transition_8h_source.html">transition.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="mpeg_8h_source.html">mpeg.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="wipe_8h_source.html">wipe.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="phasemem_8h_source.html">phasemem.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="prog_8h_source.html">prog.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="spliceutils_8h_source.html">spliceutils.h</a>&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
@@ -121,50 +124,69 @@ Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8cpp__incl.png" border="0" usemap="#src_2P2_2main_8cpp" alt=""/></div>
 <map name="src_2P2_2main_8cpp" id="src_2P2_2main_8cpp">
-<area shape="rect" title=" " alt="" coords="588,5,713,32"/>
+<area shape="rect" title=" " alt="" coords="811,5,936,32"/>
 <area shape="rect" href="main_8h.html" title=" " alt="" coords="5,80,72,107"/>
-<area shape="rect" href="gs_8h.html" title="Declarations for the game state manipulation." alt="" coords="198,453,247,480"/>
-<area shape="rect" href="joy_8h.html" title="Declarations for joypad interactions." alt="" coords="1159,155,1211,181"/>
-<area shape="rect" href="clock_8h.html" title="Declarations for the game clock." alt="" coords="795,80,863,107"/>
-<area shape="rect" href="ui_8h.html" title="Declarations for the user interface." alt="" coords="887,80,934,107"/>
-<area shape="rect" href="game_8h.html" title="Declarations related to the game world and game objects." alt="" coords="302,379,373,405"/>
-<area shape="rect" href="update_8h.html" title="Declarations for functions that update game elements." alt="" coords="299,80,378,107"/>
-<area shape="rect" href="sw_8h.html" title="Declares the scene world and related classes." alt="" coords="373,155,424,181"/>
-<area shape="rect" href="render_8h.html" title="Declarations for the render system." alt="" coords="453,80,528,107"/>
-<area shape="rect" href="frm_8h.html" title="Declarations for the frame system." alt="" coords="958,80,1015,107"/>
-<area shape="rect" href="transition_8h.html" title="Declarations for the transition system." alt="" coords="603,155,699,181"/>
-<area shape="rect" href="mpeg_8h.html" title="Declarations for the MPEG system." alt="" coords="463,304,534,331"/>
-<area shape="rect" href="wipe_8h.html" title="Declarations for the wipe system." alt="" coords="654,80,719,107"/>
-<area shape="rect" href="spliceutils_8h.html" title="Utility function for the splice scripting engine." alt="" coords="1039,80,1139,107"/>
-<area shape="rect" title=" " alt="" coords="1164,80,1231,107"/>
-<area shape="rect" title=" " alt="" coords="1255,80,1326,107"/>
-<area shape="rect" href="util_8h.html" title="Declarations for utility functions." alt="" coords="782,453,837,480"/>
-<area shape="rect" href="types_8h.html" title="Defines types used throughout the game." alt="" coords="774,528,845,555"/>
-<area shape="rect" href="bis_8h.html" title="Implements the binary input stream class." alt="" coords="832,229,885,256"/>
+<area shape="rect" href="gs_8h.html" title="Declarations for the game state manipulation." alt="" coords="251,453,301,480"/>
+<area shape="rect" href="joy_8h.html" title="Declarations for joypad interactions." alt="" coords="1189,155,1241,181"/>
+<area shape="rect" href="clock_8h.html" title="Declarations for the game clock." alt="" coords="1018,80,1086,107"/>
+<area shape="rect" href="ui_8h.html" title="Declarations for the user interface." alt="" coords="1110,80,1157,107"/>
+<area shape="rect" href="game_8h.html" title="Declarations related to the game world and game objects." alt="" coords="406,379,477,405"/>
+<area shape="rect" href="update_8h.html" title="Declarations for functions that update game elements." alt="" coords="471,80,550,107"/>
+<area shape="rect" href="sw_8h.html" title="Declares the scene world and related classes." alt="" coords="509,155,560,181"/>
+<area shape="rect" href="prog_8h.html" title="Declares the prog class." alt="" coords="770,304,833,331"/>
+<area shape="rect" href="render_8h.html" title="Declarations for the render system." alt="" coords="625,80,700,107"/>
+<area shape="rect" href="frm_8h.html" title="Declarations for the frame system." alt="" coords="1181,80,1238,107"/>
+<area shape="rect" href="transition_8h.html" title="Declarations for the transition system." alt="" coords="825,155,921,181"/>
+<area shape="rect" href="mpeg_8h.html" title="Declarations for the MPEG system." alt="" coords="675,304,746,331"/>
+<area shape="rect" href="wipe_8h.html" title="Declarations for the wipe system." alt="" coords="877,80,942,107"/>
+<area shape="rect" href="phasemem_8h.html" title="Declarations for the phase system." alt="" coords="1263,80,1369,107"/>
+<area shape="rect" href="spliceutils_8h.html" title="Utility function for the splice scripting engine." alt="" coords="1394,80,1494,107"/>
+<area shape="rect" title=" " alt="" coords="1519,80,1585,107"/>
+<area shape="rect" title=" " alt="" coords="1610,80,1681,107"/>
+<area shape="rect" href="util_8h.html" title="Declarations for utility functions." alt="" coords="805,453,859,480"/>
+<area shape="rect" href="types_8h.html" title="Defines types used throughout the game." alt="" coords="797,528,867,555"/>
+<area shape="rect" title=" " alt="" coords="789,603,875,629"/>
+<area shape="rect" href="bis_8h.html" title="Implements the binary input stream class." alt="" coords="847,229,900,256"/>
 <area shape="rect" href="dl_8h.html" title=" " alt="" coords="341,304,387,331"/>
-<area shape="rect" href="light_8h.html" title="Light and shadow system." alt="" coords="443,229,506,256"/>
-<area shape="rect" href="lo_8h.html" title="Declares Level Object struct." alt="" coords="206,229,253,256"/>
-<area shape="rect" href="slotheap_8h.html" title="Declares the slotheap and slot structs." alt="" coords="277,229,368,256"/>
-<area shape="rect" href="sound_8h.html" title="Declarations for the sound system." alt="" coords="734,229,807,256"/>
-<area shape="rect" href="vec_8h.html" title="Declares VECTOR and other related classes/functions." alt="" coords="653,229,710,256"/>
-<area shape="rect" href="bas_8h.html" title="Declarations for the binary async stream." alt="" coords="557,379,614,405"/>
-<area shape="rect" href="cat_8h.html" title="Declarations for working with WAC and WAL catalogs." alt="" coords="923,304,978,331"/>
-<area shape="rect" title=" " alt="" coords="936,379,1016,405"/>
-<area shape="rect" href="prog_8h.html" title="Declares the prog class." alt="" coords="558,304,621,331"/>
-<area shape="rect" href="font_8h.html" title="Declarations for the font system." alt="" coords="473,379,533,405"/>
+<area shape="rect" href="light_8h.html" title="Light and shadow system." alt="" coords="269,229,331,256"/>
+<area shape="rect" href="lo_8h.html" title="Declares Level Object struct." alt="" coords="198,229,245,256"/>
+<area shape="rect" href="slotheap_8h.html" title="Declares the slotheap and slot structs." alt="" coords="356,229,447,256"/>
+<area shape="rect" href="sound_8h.html" title="Declarations for the sound system." alt="" coords="522,229,595,256"/>
+<area shape="rect" href="vec_8h.html" title="Declares VECTOR and other related classes/functions." alt="" coords="542,304,599,331"/>
+<area shape="rect" href="bas_8h.html" title="Declarations for the binary async stream." alt="" coords="845,379,902,405"/>
+<area shape="rect" href="cat_8h.html" title="Declarations for working with WAC and WAL catalogs." alt="" coords="1130,379,1185,405"/>
+<area shape="rect" title=" " alt="" coords="1084,453,1164,480"/>
+<area shape="rect" href="font_8h.html" title="Declarations for the font system." alt="" coords="761,379,821,405"/>
 <area shape="rect" href="basic_8h.html" title="Declares the BASIC struct." alt="" coords="249,304,317,331"/>
-<area shape="rect" href="so_8h.html" title="Declarations for scene objects." alt="" coords="697,304,746,331"/>
-<area shape="rect" href="zap_8h.html" title="Declarations for the zap (damage) system." alt="" coords="638,379,695,405"/>
-<area shape="rect" href="cm_8h.html" title="Declarations for the game camera." alt="" coords="473,155,527,181"/>
-<area shape="rect" href="bq_8h.html" title="Declares the byte queue class." alt="" coords="397,379,448,405"/>
-<area shape="rect" href="dialog_8h.html" title="Declarations for the dialog system." alt="" coords="1053,304,1128,331"/>
-<area shape="rect" href="keyhole_8h.html" title=" " alt="" coords="723,155,808,181"/>
-<area shape="rect" href="wm_8h.html" title=" " alt="" coords="832,155,891,181"/>
+<area shape="rect" href="alo_8h.html" title=" " alt="" coords="411,304,466,331"/>
+<area shape="rect" href="so_8h.html" title="Declarations for scene objects." alt="" coords="501,379,550,405"/>
+<area shape="rect" href="zap_8h.html" title="Declarations for the zap (damage) system." alt="" coords="497,453,554,480"/>
+<area shape="rect" href="cm_8h.html" title="Declarations for the game camera." alt="" coords="635,155,690,181"/>
+<area shape="rect" href="bq_8h.html" title="Declares the byte queue class." alt="" coords="685,379,736,405"/>
+<area shape="rect" title=" " alt="" coords="574,379,661,405"/>
+<area shape="rect" href="dialog_8h.html" title="Declarations for the dialog system." alt="" coords="1028,304,1103,331"/>
+<area shape="rect" href="keyhole_8h.html" title=" " alt="" coords="1079,155,1164,181"/>
+<area shape="rect" href="wm_8h.html" title=" " alt="" coords="945,155,1004,181"/>
 </map>
 </div>
 </div>
 <p><a href="main_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:aca9ab08a12e9bf7e109d7ffdea8199e0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aca9ab08a12e9bf7e109d7ffdea8199e0">BUILD_TITLE</a>&#160;&#160;&#160;&quot;Sly Cooper&quot;</td></tr>
+<tr class="separator:aca9ab08a12e9bf7e109d7ffdea8199e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb9ec68a7385d7febaad9e0267b2f7a9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#abb9ec68a7385d7febaad9e0267b2f7a9">BUILD_YEAR</a>&#160;&#160;&#160;__DATE__[7], __DATE__[8], __DATE__[9], __DATE__[10]</td></tr>
+<tr class="separator:abb9ec68a7385d7febaad9e0267b2f7a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6247bc79b0a606bddbf5a90fc3a03194"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a6247bc79b0a606bddbf5a90fc3a03194">COPYRIGHT</a>&#160;&#160;&#160;&quot;Sly 1 Decompilation Team&quot;</td></tr>
+<tr class="separator:a6247bc79b0a606bddbf5a90fc3a03194"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af652e7dd456fccd389b083823682768e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#af652e7dd456fccd389b083823682768e">BUILD_ID</a>&#160;&#160;&#160;__DATE__[0], __DATE__[1], __DATE__[2], (__DATE__[4] == ' ' ? '0' : __DATE__[4]), __DATE__[5], __TIME__[0], __TIME__[1], __TIME__[3], __TIME__[4]</td></tr>
+<tr class="separator:af652e7dd456fccd389b083823682768e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b1a013467d22be82b2fd8deaa6f4b14"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a9b1a013467d22be82b2fd8deaa6f4b14">BRX_VERSION</a>&#160;&#160;&#160;&quot;000&quot;</td></tr>
+<tr class="separator:a9b1a013467d22be82b2fd8deaa6f4b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b89fa796701e97024f40df874a4c8af"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a8b89fa796701e97024f40df874a4c8af">__BUILD_USER</a>&#160;&#160;&#160;&quot;nobody&quot;</td></tr>
+<tr class="separator:a8b89fa796701e97024f40df874a4c8af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a70d0b3419f374cc67098eb4e0c32a7a0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a70d0b3419f374cc67098eb4e0c32a7a0">main</a> (int cphzArgs, char *aphzArgs[])</td></tr>
@@ -173,10 +195,104 @@ Functions</h2></td></tr>
 <tr class="memitem:a567fcfb601dc83cc9691ce515ce5a474"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a567fcfb601dc83cc9691ce515ce5a474">Startup</a> ()</td></tr>
 <tr class="memdesc:a567fcfb601dc83cc9691ce515ce5a474"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts up the main game systems.  <a href="main_8cpp.html#a567fcfb601dc83cc9691ce515ce5a474">More...</a><br /></td></tr>
 <tr class="separator:a567fcfb601dc83cc9691ce515ce5a474"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa69a928b2b35939bb48c62dc19dc5873"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aa69a928b2b35939bb48c62dc19dc5873">MainDebug</a> ()</td></tr>
-<tr class="memdesc:aa69a928b2b35939bb48c62dc19dc5873"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temp, used for debugging.  <a href="main_8cpp.html#aa69a928b2b35939bb48c62dc19dc5873">More...</a><br /></td></tr>
-<tr class="separator:aa69a928b2b35939bb48c62dc19dc5873"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a8b89fa796701e97024f40df874a4c8af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b89fa796701e97024f40df874a4c8af">&#9670;&nbsp;</a></span>__BUILD_USER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define __BUILD_USER&#160;&#160;&#160;&quot;nobody&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00027">27</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a9b1a013467d22be82b2fd8deaa6f4b14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b1a013467d22be82b2fd8deaa6f4b14">&#9670;&nbsp;</a></span>BRX_VERSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BRX_VERSION&#160;&#160;&#160;&quot;000&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00024">24</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af652e7dd456fccd389b083823682768e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af652e7dd456fccd389b083823682768e">&#9670;&nbsp;</a></span>BUILD_ID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BUILD_ID&#160;&#160;&#160;__DATE__[0], __DATE__[1], __DATE__[2], (__DATE__[4] == ' ' ? '0' : __DATE__[4]), __DATE__[5], __TIME__[0], __TIME__[1], __TIME__[3], __TIME__[4]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00023">23</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aca9ab08a12e9bf7e109d7ffdea8199e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca9ab08a12e9bf7e109d7ffdea8199e0">&#9670;&nbsp;</a></span>BUILD_TITLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BUILD_TITLE&#160;&#160;&#160;&quot;Sly Cooper&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00020">20</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+</div>
+</div>
+<a id="abb9ec68a7385d7febaad9e0267b2f7a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb9ec68a7385d7febaad9e0267b2f7a9">&#9670;&nbsp;</a></span>BUILD_YEAR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BUILD_YEAR&#160;&#160;&#160;__DATE__[7], __DATE__[8], __DATE__[9], __DATE__[10]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00021">21</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a6247bc79b0a606bddbf5a90fc3a03194"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6247bc79b0a606bddbf5a90fc3a03194">&#9670;&nbsp;</a></span>COPYRIGHT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define COPYRIGHT&#160;&#160;&#160;&quot;Sly 1 Decompilation Team&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00022">22</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a70d0b3419f374cc67098eb4e0c32a7a0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a70d0b3419f374cc67098eb4e0c32a7a0">&#9670;&nbsp;</a></span>main()</h2>
@@ -213,30 +329,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00019">19</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
-
-</div>
-</div>
-<a id="aa69a928b2b35939bb48c62dc19dc5873"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa69a928b2b35939bb48c62dc19dc5873">&#9670;&nbsp;</a></span>MainDebug()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MainDebug </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Temp, used for debugging. </p>
-<p>Prints the current tick to stdout.</p>
-<dl class="section note"><dt>Note</dt><dd>This function is not in the game and is only used for testing. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00101">101</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00030">30</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -257,7 +350,7 @@ Functions</h2></td></tr>
 
 <p>Starts up the main game systems. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00093">93</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00100">100</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>

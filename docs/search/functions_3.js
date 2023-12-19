@@ -1,10 +1,20 @@
 var searchData=
 [
-  ['decrementcdreadlimit_2377',['DecrementCdReadLimit',['../classCBinaryInputStream.html#aa72c931429d711dcbe0ede99575690ab',1,'CBinaryInputStream']]],
-  ['deletesw_2378',['DeleteSw',['../sw_8cpp.html#af4be1192fbe8211795c34286685f082e',1,'DeleteSw(SW *psw):&#160;sw.cpp'],['../sw_8h.html#af4be1192fbe8211795c34286685f082e',1,'DeleteSw(SW *psw):&#160;sw.cpp']]],
-  ['draw_2379',['Draw',['../classCProg.html#a76885d900fb7ecaac744dc01e95af183',1,'CProg']]],
-  ['drawblots_2380',['DrawBlots',['../screen_8cpp.html#a62df48e32a24c95818d9c20502432b06',1,'DrawBlots():&#160;screen.cpp'],['../screen_8h.html#a62df48e32a24c95818d9c20502432b06',1,'DrawBlots():&#160;screen.cpp']]],
-  ['drawsw_2381',['DrawSw',['../render_8cpp.html#a207e8af6c2f0cb075bc523289f689cbd',1,'DrawSw(SW *psw, CM *pcm):&#160;render.cpp'],['../render_8h.html#a207e8af6c2f0cb075bc523289f689cbd',1,'DrawSw(SW *psw, CM *pcm):&#160;render.cpp']]],
-  ['drawui_2382',['DrawUi',['../ui_8cpp.html#a4b4076b522f72e17ddf5874b62cd97db',1,'DrawUi():&#160;ui.cpp'],['../ui_8h.html#a4b4076b522f72e17ddf5874b62cd97db',1,'DrawUi():&#160;ui.cpp']]],
-  ['drawwipe_2383',['DrawWipe',['../wipe_8cpp.html#aa5e7e82f81403e2af8f33d8176af77fa',1,'DrawWipe(WIPE *pwipe):&#160;wipe.cpp'],['../wipe_8h.html#aa5e7e82f81403e2af8f33d8176af77fa',1,'DrawWipe(WIPE *pwipe):&#160;wipe.cpp']]]
+  ['calculatepercentcompletion_2403',['CalculatePercentCompletion',['../gs_8cpp.html#ace3e2869d1606eced21896d335e0b7b3',1,'CalculatePercentCompletion(GS *pgs):&#160;gs.cpp'],['../gs_8h.html#ace3e2869d1606eced21896d335e0b7b3',1,'CalculatePercentCompletion(GS *pgs):&#160;gs.cpp']]],
+  ['calculatesincos_2404',['CalculateSinCos',['../util_8cpp.html#a76d4e5693b100a890108ce0c52939ff3',1,'CalculateSinCos(float angle, float *sin, float *cos):&#160;util.cpp'],['../util_8h.html#a0033025333613b94763e2dd9525d6627',1,'CalculateSinCos(float rad, float *pgSin, float *pgCos):&#160;util.cpp']]],
+  ['calculatevectorpantilt_2405',['CalculateVectorPanTilt',['../vec_8cpp.html#ae15ec86b8218cdd5f2cfc6ba40102119',1,'CalculateVectorPanTilt(VECTOR *pvec, float *ppan, float *ptilt):&#160;vec.cpp'],['../vec_8h.html#ae15ec86b8218cdd5f2cfc6ba40102119',1,'CalculateVectorPanTilt(VECTOR *pvec, float *ppan, float *ptilt):&#160;vec.cpp']]],
+  ['cbinaryasyncstream_2406',['CBinaryAsyncStream',['../classCBinaryAsyncStream.html#a9b2d28fc670a276574d97480a42737fc',1,'CBinaryAsyncStream']]],
+  ['cbinaryinputstream_2407',['CBinaryInputStream',['../classCBinaryInputStream.html#a8d7b2ce0f96977e21e1cb55339edb287',1,'CBinaryInputStream']]],
+  ['ccharmmost_2408',['CcharmMost',['../game_8cpp.html#a8c302fb2a66756b8ade0cb21a4519691',1,'CcharmMost():&#160;game.cpp'],['../game_8h.html#a8c302fb2a66756b8ade0cb21a4519691',1,'CcharmMost():&#160;game.cpp']]],
+  ['changesuck_2409',['ChangeSuck',['../difficulty_8cpp.html#a82a5cb61b19ab1d31e1de237870700b7',1,'ChangeSuck(float nParam, DIFFICULTY *pdifficulty):&#160;difficulty.cpp'],['../difficulty_8h.html#a82a5cb61b19ab1d31e1de237870700b7',1,'ChangeSuck(float nParam, DIFFICULTY *pdifficulty):&#160;difficulty.cpp']]],
+  ['cheatactivatechetkido_2410',['CheatActivateChetkido',['../joy_8cpp.html#a909fcc7c7ce78f27b9b82a2ea1be5f90',1,'CheatActivateChetkido():&#160;joy.cpp'],['../joy_8h.html#a909fcc7c7ce78f27b9b82a2ea1be5f90',1,'CheatActivateChetkido():&#160;joy.cpp']]],
+  ['clear_2411',['Clear',['../classCFileLocation.html#a1f0587f8c06717c8a010f9e698f29691',1,'CFileLocation']]],
+  ['clearallcheats_2412',['ClearAllCheats',['../joy_8cpp.html#ac367bc79be73de061370574e823023a0',1,'ClearAllCheats():&#160;joy.cpp'],['../joy_8h.html#ac367bc79be73de061370574e823023a0',1,'ClearAllCheats():&#160;joy.cpp']]],
+  ['clearls_2413',['ClearLs',['../game_8cpp.html#a81fce5cde731b30e9f7c31228738655e',1,'ClearLs(LS *pls):&#160;game.cpp'],['../game_8h.html#a81fce5cde731b30e9f7c31228738655e',1,'ClearLs(LS *pls):&#160;game.cpp']]],
+  ['clearpendingframe_2414',['ClearPendingFrame',['../frm_8cpp.html#ad21eba897c3dd300f8283e44c1d3b578',1,'ClearPendingFrame(FRM *pfrm):&#160;frm.cpp'],['../frm_8h.html#ad21eba897c3dd300f8283e44c1d3b578',1,'ClearPendingFrame(FRM *pfrm):&#160;frm.cpp']]],
+  ['clearphase_2415',['ClearPhase',['../phasemem_8cpp.html#aeffaaac9b5568d7ee0185742d081b2af',1,'ClearPhase(PHASE phase):&#160;phasemem.cpp'],['../phasemem_8h.html#ab09479b34ca5bc567d7e53c5f3504136',1,'ClearPhase(PHASE phase=PHASE_None):&#160;phasemem.cpp']]],
+  ['close_2416',['Close',['../classCBinaryAsyncStream.html#a052611951d67b5560489f4ba7d84ea86',1,'CBinaryAsyncStream::Close()'],['../classCBinaryInputStream.html#a6321d1634afab11e9e06028e08501965',1,'CBinaryInputStream::Close()']]],
+  ['closeframe_2417',['CloseFrame',['../frm_8cpp.html#abda93e1b820013282ae3f429865ad3aa',1,'CloseFrame():&#160;frm.cpp'],['../frm_8h.html#abda93e1b820013282ae3f429865ad3aa',1,'CloseFrame():&#160;frm.cpp']]],
+  ['convertdeultow_2418',['ConvertDeulToW',['../vec_8cpp.html#af93911dce8abf485bb3f77bda71d6271',1,'ConvertDeulToW(VECTOR *param_1, VECTOR *param_2, VECTOR *param_3):&#160;vec.cpp'],['../vec_8h.html#af93911dce8abf485bb3f77bda71d6271',1,'ConvertDeulToW(VECTOR *param_1, VECTOR *param_2, VECTOR *param_3):&#160;vec.cpp']]],
+  ['csolvequadratic_2419',['CSolveQuadratic',['../util_8cpp.html#a567e3a24beb2e2c281a88ecec05c2bc3',1,'CSolveQuadratic(float a, float b, float c, float *ax):&#160;util.cpp'],['../util_8h.html#a567e3a24beb2e2c281a88ecec05c2bc3',1,'CSolveQuadratic(float a, float b, float c, float *ax):&#160;util.cpp']]]
 ];

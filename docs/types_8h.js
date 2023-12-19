@@ -15,6 +15,5 @@ var types_8h =
     [ "uint8_t", "types_8h.html#aba7bc1797add20fe3efdf37ced1182c5", null ],
     [ "uintptr_t", "types_8h.html#a83242de74310b4aec3fc506bc3644211", null ],
     [ "ulong", "types_8h.html#a718b4eb2652c286f4d42dc18a8e71a1a", null ],
-    [ "ulong_128", "types_8h.html#ad1e3ac5c302b39314142b9f8979fd7fc", null ],
     [ "undefined4", "types_8h.html#a25c731f7beb942a072198391add6487b", null ]
 ];

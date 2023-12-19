@@ -2,6 +2,7 @@ var annotated_dup =
 [
     [ "ACTLA", "structACTLA.html", "structACTLA" ],
     [ "ALO", "structALO.html", "structALO" ],
+    [ "AMB", "structAMB.html", null ],
     [ "ASEG", "structASEG.html", "structASEG" ],
     [ "BASIC", "structBASIC.html", "structBASIC" ],
     [ "BLOT", "structBLOT.html", "structBLOT" ],
@@ -14,6 +15,7 @@ var annotated_dup =
     [ "CFont", "classCFont.html", "classCFont" ],
     [ "CHKMGR", "structCHKMGR.html", "structCHKMGR" ],
     [ "CHKPNT", "structCHKPNT.html", null ],
+    [ "CHT", "structCHT.html", "structCHT" ],
     [ "CLOCK", "structCLOCK.html", "structCLOCK" ],
     [ "CLQ", "structCLQ.html", "structCLQ" ],
     [ "CM", "structCM.html", null ],
@@ -57,7 +59,6 @@ var annotated_dup =
     [ "RUMINS", "structRUMINS.html", "structRUMINS" ],
     [ "RUMPAT", "structRUMPAT.html", "structRUMPAT" ],
     [ "SBB", "structSBB.html", "structSBB" ],
-    [ "sceMpeg", "structsceMpeg.html", "structsceMpeg" ],
     [ "SENSOR", "structSENSOR.html", "structSENSOR" ],
     [ "SFR", "structSFR.html", "structSFR" ],
     [ "SLOT", "structSLOT.html", "structSLOT" ],

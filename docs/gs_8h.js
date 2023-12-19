@@ -55,5 +55,6 @@ var gs_8h =
     [ "g_pgsCur", "gs_8h.html#a9192a70ba964e7952f125c05f8c49f51", null ],
     [ "g_plsCur", "gs_8h.html#a53aff3a4126f38462c330a81fe8cb2f1", null ],
     [ "g_pwsCur", "gs_8h.html#a7f3b2d029b915e5da61269e65ddf625f", null ],
-    [ "pchzLevelTable", "gs_8h.html#a633d42f8f7fef4ab6d50e4d21b956466", null ]
+    [ "pchzLevelTable", "gs_8h.html#a633d42f8f7fef4ab6d50e4d21b956466", null ],
+    [ "worldlevelPrev", "gs_8h.html#a64df8f43033c46b112839a2710591d13", null ]
 ];

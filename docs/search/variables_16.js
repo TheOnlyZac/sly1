@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['y_3473',['y',['../structJOY.html#abc3c30159f09ded6c5eb4fb97b9b8d72',1,'JOY::y()'],['../structVECTOR.html#a4ec1837e436862330f4c0ea543ba08b6',1,'VECTOR::y()']]],
-  ['y2_3474',['y2',['../structJOY.html#a859e6fdd10bc42c73255c133e36a1c4b',1,'JOY']]]
+  ['z_3530',['z',['../structVECTOR.html#a95f342c4402f2ef9755ae8c515db31cd',1,'VECTOR']]],
+  ['zok_3531',['zok',['../structSO.html#a7060e8e3da0c3283ae2652778af42d50',1,'SO']]]
 ];

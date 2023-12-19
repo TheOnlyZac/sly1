@@ -101,7 +101,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="textblock"><p><a href="https://ci.appveyor.com/project/TheOnlyZac/sly1/branch/main"><img src="https://ci.appveyor.com/api/projects/status/800esepa77ctpv5p/branch/main?svg=true" alt="Build status" class="inline"/></a> <a href="https://discord.gg/2GSXcEzPJA"><img src="https://img.shields.io/discord/439454661100175380?color=%235865F2&amp;logo=discord&amp;logoColor=%23FFFFFF" alt="Discord Channel" class="inline"/></a> <a href="https://github.com/theonlyzac/sly1/graphs/contributors"><img src="https://img.shields.io/github/contributors/theonlyzac/sly1?color=%23db6d28" alt="Contributors" class="inline"/></a> <a href="https://theonlyzac.github.io/sly1"><img src="https://img.shields.io/badge/docs-doxygen-2C4AA8" alt="Docs" class="inline"/></a> <a href="https://slymods.info"><img src="https://img.shields.io/badge/wiki-slymods.info-2C4AA8" alt="Wiki" class="inline"/></a></p>
 <p><a href="https://theonlyzac.github.io/sly1"><img src="logo.png" alt="" style="margin:7px" align="right" width="33%" class="inline"/></a></p>
 <p>This is a work-in-progress decompilation of <a href="https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus"><em>Sly Cooper and the Thievius Raccoonus</em></a> for the PlayStation 2. It is based on the NTSC-U version of the game (<code>SCUS-971.98</code>).</p>
-<p>The goal of this project is to better understand how the game works. This repo does not contain any game assets or code from the game's executable.</p>
+<p>The goal of this project is to better understand the game engine. This repo does not contain any game assets or code from the game's executable, and it requires your own copy of the game to run.</p>
 <p>Documentation of the code can be found at <a href="https://theonlyzac.github.io/sly1">theonlyzac.github.io/sly1</a>. For further reading on the game's internal structures and mechanics, visit the <a href="https://slymods.info">SlyMods Wiki</a>.</p>
 <p>New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, check out CONTRIBUTING.md and feel free to <a href="https://discord.gg/2GSXcEzPJA">join our Discord server</a> for guidance.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
@@ -110,7 +110,7 @@ Building</h1>
 <p>The <code>scripts</code> directory contains scripts for setting up the build environment on each platform, which involves downloading and installing the required runtime libraries.</p>
 <h2><a class="anchor" id="autotoc_md2"></a>
 Linux/WSL</h2>
-<p><b>Prerequisites</b>: <code>git</code>, <code>make</code>, <code>wine</code>, <code>p7zip-full</code></p>
+<p><b>Prerequisites</b>: <code>git</code>, <code>make</code>, <code>wine-stable</code>, <code>p7zip-full</code></p>
 <div class="fragment"><div class="line">git clone https://github.com/TheOnlyZac/sly1</div>
 <div class="line">cd sly1/scripts</div>
 <div class="line">./setup-progd-linux.sh</div>
@@ -124,13 +124,28 @@ Windows</h2>
 <div class="line">.\setup-progd-windows.bat</div>
 <div class="line">cd ..</div>
 <div class="line">make</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md4"></a>
-Running</h2>
-<p>Running the executable requires the <a href="https://pcsx2.net/">PCSX2 emulator</a>.</p><ul>
-<li>For PCSX2 1.6, click <code>System &gt; Run ELF...</code> and select the compiled executable. You may need to change the file type to "All Files".</li>
-<li>For PCSX2 1.7, add the <code>bin</code> dir to your Games folders and the ELF will show up as a game in your library. When it asks you to search recursively, say yes.</li>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+Running</h1>
+<p>Running the executable requires the <a href="https://pcsx2.net/">PCSX2 emulator</a>. You must have your own copy of the original game and the BIOS from your own PS2. They are not included in this repo and we cannot provide them for you.</p>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Automatic (script)</h2>
+<p>The <code>run.sh</code> script in the <code>scripts</code> dir will automatically rebuild the executable and run it in the PCSX2 emulator. To use it, you must first edit the script to set the <code>PCSX2_PATH</code> and <code>ISO_PATH</code> variables to the correct paths on your system.</p>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Command line</h2>
+<p>To boot the elf in PCSX2 from the command line, use one of the following commands:</p>
+<div class="fragment"><div class="line">pcsx2-1.6 --console --elf=&quot;/path/to/SCUS_971.98&quot; &quot;/path/to/game/backup.iso&quot;</div>
+</div><!-- fragment --><div class="fragment"><div class="line">pcsx2-1.7 -elf &quot;/path/to/SCUS_971.98&quot; &quot;/path/to/game/backup.iso&quot;</div>
+</div><!-- fragment --><p>Replace <code>pcsx2-1.6</code> or <code>pcsx2-1.7</code> with the path to your PCSX2 executable.</p><ul>
+<li>The <code>elf</code> flag is required and specifies the path to the elf file.</li>
+<li>The last argument is the path to your game ISO.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h2><a class="anchor" id="autotoc_md7"></a>
+PCSX2 GUI</h2>
+<ul>
+<li>For PCSX2 1.6, click <code>System &gt; Run ELF...</code>, change the file type to "All Files", and browse for <code>SCUS_971.98</code> in the <code>bin</code> dir of the project.</li>
+<li>For PCSX2 1.7, add the <code>bin</code> dir to your Games folders and the ELF will show up as a game in your library. When it asks you to search recursively, say yes. You may have to rename the elf to end in <code>.elf</code> for it to automatically detect it.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md8"></a>
 Project Structure</h1>
 <p>The project is split into the following directories.</p>
 <ul>
@@ -148,24 +163,24 @@ Project Structure</h1>
 <li><code>obj</code> - Compiled object files.</li>
 <li><code>bin</code> - Compiled executables.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md9"></a>
 FAQ</h1>
-<h3><a class="anchor" id="autotoc_md7"></a>
+<h3><a class="anchor" id="autotoc_md10"></a>
 What is a decompilation?</h3>
 <p>When the developers created the game, they wrote programming code that we call the source code, and compiled that into an exectuable which can run on the PS2. Our job is to reverse-engineer the compiled code and produce new, original code that behaves the same way. This process leaves us with code that is very similar (but not identical) to the source code and helps us understand what the programmers were thinking when they made the game.</p>
-<h3><a class="anchor" id="autotoc_md8"></a>
+<h3><a class="anchor" id="autotoc_md11"></a>
 How does it work?</h3>
 <p>We use a tool called <a href="https://ghidra-sre.org/">Ghidra</a> which was created by the <a href="https://www.nsa.gov/">NSA</a> for reverse-engineering software. Ghidra analyzes the game binary to identity functions, variables, data types and structures. We then reimplement each individual function by writing C++ code that produces the same output. We do not copy/paste any code or include any original assembly code from the game binary in the decompilation.</p>
-<h3><a class="anchor" id="autotoc_md9"></a>
+<h3><a class="anchor" id="autotoc_md12"></a>
 Has this ever been done before?</h3>
 <p>This is one of the first major PS2 decompilations. We take inspiration from other decomp projects such as the <a href="https://github.com/n64decomp/sm64">Super Mario 64 decomp</a> for the N64 and the <a href="https://github.com/zeldaret/botw">Breath of the Wild decomp</a> for the Wii U (the latter being more similar in scope to this project). There is a Jak &amp; Daxter decomp/PC port called <a href="https://github.com/open-goal/jak-project">OpenGOAL</a>, though that game is written in 98% GOAL language rather than C/C++.</p>
-<h3><a class="anchor" id="autotoc_md10"></a>
+<h3><a class="anchor" id="autotoc_md13"></a>
 Is this a matching decomp?</h3>
 <p>This is the first PS2 decompilation project to target the PS2 and utilize function matching. Most of the decompiled code is not yet matching, and we do not currently require it, but the ultimate goal is to match as many functions as possible.</p>
-<h3><a class="anchor" id="autotoc_md11"></a>
+<h3><a class="anchor" id="autotoc_md14"></a>
 How can I help?</h3>
-<p>If you want to contribute, read through CONTRIBUTING.md and feel free to <a href="https://discord.gg/gh5xwfj">join our discord server</a> if you have any questions!</p>
-<h1><a class="anchor" id="autotoc_md12"></a>
+<p>If you want to contribute, read through <a class="el" href="CONTRIBUTING_8md.html">CONTRIBUTING.md</a> and feel free to <a href="https://discord.gg/gh5xwfj">join our discord server</a> if you have any questions!</p>
+<h1><a class="anchor" id="autotoc_md15"></a>
 Star History</h1>
 <p><a href="https://star-history.com/#theonlyzac/sly1&amp;Date"><img src="https://api.star-history.com/svg?repos=theonlyzac/sly1&amp;type=Date" alt="Star History Chart" class="inline"/>  </a> </p>
 </div></div><!-- PageDoc -->

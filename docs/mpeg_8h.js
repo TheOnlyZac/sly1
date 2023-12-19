@@ -1,6 +1,5 @@
 var mpeg_8h =
 [
-    [ "sceMpeg", "structsceMpeg.html", "structsceMpeg" ],
     [ "CQueueOutputIop", "classCQueueOutputIop.html", "classCQueueOutputIop" ],
     [ "CMpegAudio", "classCMpegAudio.html", "classCMpegAudio" ],
     [ "CMpeg", "classCMpeg.html", "classCMpeg" ],

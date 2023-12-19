@@ -6,7 +6,7 @@ var structGS =
     [ "ccoin", "structGS.html#aebe1e98f00dae70ba7eb069fd6af4449", null ],
     [ "clife", "structGS.html#a040f28ae2b73e0602ff551e128ae26e0", null ],
     [ "dt", "structGS.html#a05eff992b514c286d5cbd2967f0adda6", null ],
-    [ "game_completion_flags", "structGS.html#af8582cccea75eea73de2da37cb2bca0e", null ],
+    [ "fgs", "structGS.html#ae58a2c2db471fc3a9cd8ce61499ba582", null ],
     [ "gameworldCur", "structGS.html#a8e82ec41a9d2132a15d8806a10f2e72e", null ],
     [ "grfgs", "structGS.html#af2e8a3ae3824977ff87a414f6fce884a", null ],
     [ "grfvault", "structGS.html#a8abf44465427909f2522dc43a1bc4f38", null ],

@@ -3,6 +3,7 @@ var sound_8h =
     [ "EASND", "structEASND.html", "structEASND" ],
     [ "sound", "structsound.html", "structsound" ],
     [ "ISI", "structISI.html", "structISI" ],
+    [ "AMB", "structAMB.html", null ],
     [ "MVGK", "sound_8h.html#a4e23a876da329fd0e51bf7b110943e85", [
       [ "MVGK_Nil", "sound_8h.html#a4e23a876da329fd0e51bf7b110943e85a80de4687ff798f2aa98e5d555cae2345", null ],
       [ "MVGK_Effects", "sound_8h.html#a4e23a876da329fd0e51bf7b110943e85afc3caea696d2de16946e5d572f2cb7de", null ],
@@ -466,5 +467,6 @@ var sound_8h =
       [ "SFXID_Snd09_Clockwerk", "sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaa195e7f97d2342ea326581d59c8438b4e", null ],
       [ "SFXID_Snd10_Clockwerk", "sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaa954f7b92c8c6722afe7e07a843e49884", null ],
       [ "SFXID_Max", "sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaab22974ea9659794d8b4abde5d1b3e45f", null ]
-    ] ]
+    ] ],
+    [ "StartSound", "sound_8h.html#a19f5d0ea8587ed106fe9e06d2b293b26", null ]
 ];

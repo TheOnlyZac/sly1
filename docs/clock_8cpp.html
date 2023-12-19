@@ -131,9 +131,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a374128d3628fad7a947557821a975524"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8cpp.html#a374128d3628fad7a947557821a975524">ResetClock</a> (<a class="el" href="structCLOCK.html">CLOCK</a> *pclock, float t)</td></tr>
 <tr class="memdesc:a374128d3628fad7a947557821a975524"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the clock to the given time.  <a href="clock_8cpp.html#a374128d3628fad7a947557821a975524">More...</a><br /></td></tr>
 <tr class="separator:a374128d3628fad7a947557821a975524"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58a6d4d6b3c4701e47a5aed43858f59d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8cpp.html#a58a6d4d6b3c4701e47a5aed43858f59d">SetClockEnabled</a> (<a class="el" href="structCLOCK.html">CLOCK</a> *pclock, bool fEnabled)</td></tr>
-<tr class="memdesc:a58a6d4d6b3c4701e47a5aed43858f59d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the fEnabled flag on the clock to the given value.  <a href="clock_8cpp.html#a58a6d4d6b3c4701e47a5aed43858f59d">More...</a><br /></td></tr>
-<tr class="separator:a58a6d4d6b3c4701e47a5aed43858f59d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a8213cb50fbf233faa31a25a0226ab4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8cpp.html#a6a8213cb50fbf233faa31a25a0226ab4">SetClockEnabled</a> (<a class="el" href="structCLOCK.html">CLOCK</a> *pclock, int fEnabled)</td></tr>
+<tr class="memdesc:a6a8213cb50fbf233faa31a25a0226ab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the fEnabled flag on the clock to the given value.  <a href="clock_8cpp.html#a6a8213cb50fbf233faa31a25a0226ab4">More...</a><br /></td></tr>
+<tr class="separator:a6a8213cb50fbf233faa31a25a0226ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1c9500a546abe5c10e3802ed8585a41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8cpp.html#ad1c9500a546abe5c10e3802ed8585a41">StartupClock</a> ()</td></tr>
 <tr class="memdesc:ad1c9500a546abe5c10e3802ed8585a41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes some values and starts the global clock.  <a href="clock_8cpp.html#ad1c9500a546abe5c10e3802ed8585a41">More...</a><br /></td></tr>
 <tr class="separator:ad1c9500a546abe5c10e3802ed8585a41"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -247,20 +247,14 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Resets the clock to the given time. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pclock</td><td>Pointer to the clock. </td></tr>
-    <tr><td class="paramname">t</td><td>The new time. </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section note"><dt>Note</dt><dd>Matching 100% </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="clock_8cpp_source.html#l00105">105</a> of file <a class="el" href="clock_8cpp_source.html">clock.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clock_8cpp_source.html#l00108">108</a> of file <a class="el" href="clock_8cpp_source.html">clock.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a58a6d4d6b3c4701e47a5aed43858f59d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58a6d4d6b3c4701e47a5aed43858f59d">&#9670;&nbsp;</a></span>SetClockEnabled()</h2>
+<a id="a6a8213cb50fbf233faa31a25a0226ab4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a8213cb50fbf233faa31a25a0226ab4">&#9670;&nbsp;</a></span>SetClockEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -274,7 +268,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fEnabled</em>&#160;</td>
         </tr>
         <tr>
@@ -286,15 +280,9 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Sets the fEnabled flag on the clock to the given value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pclock</td><td>Pointer to the clock. </td></tr>
-    <tr><td class="paramname">fEnabled</td><td>The new value of the fEnabled flag. </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section note"><dt>Note</dt><dd>Matching 100% </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="clock_8cpp_source.html#l00110">110</a> of file <a class="el" href="clock_8cpp_source.html">clock.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clock_8cpp_source.html#l00116">116</a> of file <a class="el" href="clock_8cpp_source.html">clock.cpp</a>.</p>
 
 </div>
 </div>
@@ -342,8 +330,9 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initializes some values and starts the global clock. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>What is Count? </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="clock_8cpp_source.html#l00116">116</a> of file <a class="el" href="clock_8cpp_source.html">clock.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clock_8cpp_source.html#l00124">124</a> of file <a class="el" href="clock_8cpp_source.html">clock.cpp</a>.</p>
 
 </div>
 </div>
@@ -363,9 +352,9 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the current tick. </p>
-<dl class="section return"><dt>Returns</dt><dd>The current tick. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>What is Count? What is cWrapAround.1014? </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="clock_8cpp_source.html#l00123">123</a> of file <a class="el" href="clock_8cpp_source.html">clock.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clock_8cpp_source.html#l00134">134</a> of file <a class="el" href="clock_8cpp_source.html">clock.cpp</a>.</p>
 
 </div>
 </div>

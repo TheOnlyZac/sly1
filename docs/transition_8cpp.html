@@ -104,6 +104,7 @@ $(document).ready(function(){initNavTree('transition_8cpp.html',''); initResizab
 <div class="textblock"><code>#include &lt;<a class="el" href="transition_8h_source.html">transition.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="phasemem_8h_source.html">phasemem.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="clock_8h_source.html">clock.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="chkpnt_8h_source.html">chkpnt.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="sw_8h_source.html">sw.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="joy_8h_source.html">joy.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="brx_8h_source.html">brx.h</a>&gt;</code><br />
@@ -112,33 +113,35 @@ Include dependency graph for transition.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="transition_8cpp__incl.png" border="0" usemap="#src_2P2_2transition_8cpp" alt=""/></div>
 <map name="src_2P2_2transition_8cpp" id="src_2P2_2transition_8cpp">
-<area shape="rect" title="Implements for the transition system." alt="" coords="603,5,757,32"/>
-<area shape="rect" href="transition_8h.html" title="Declarations for the transition system." alt="" coords="5,155,101,181"/>
-<area shape="rect" href="phasemem_8h.html" title="Declarations for the phase system." alt="" coords="743,80,849,107"/>
-<area shape="rect" href="clock_8h.html" title="Declarations for the game clock." alt="" coords="874,80,942,107"/>
-<area shape="rect" href="sw_8h.html" title="Declares the scene world and related classes." alt="" coords="633,155,684,181"/>
-<area shape="rect" href="joy_8h.html" title="Declarations for joypad interactions." alt="" coords="879,155,931,181"/>
-<area shape="rect" href="brx_8h.html" title="Declarations for interaction with binary resource archives." alt="" coords="557,80,611,107"/>
-<area shape="rect" href="util_8h.html" title="Declarations for utility functions." alt="" coords="465,453,519,480"/>
-<area shape="rect" href="game_8h.html" title="Declarations related to the game world and game objects." alt="" coords="119,379,190,405"/>
-<area shape="rect" href="bis_8h.html" title="Implements the binary input stream class." alt="" coords="352,229,405,256"/>
-<area shape="rect" href="types_8h.html" title="Defines types used throughout the game." alt="" coords="457,528,527,555"/>
-<area shape="rect" href="gs_8h.html" title="Declarations for the game state manipulation." alt="" coords="130,453,179,480"/>
-<area shape="rect" href="bas_8h.html" title="Declarations for the binary async stream." alt="" coords="366,379,423,405"/>
-<area shape="rect" href="cat_8h.html" title="Declarations for working with WAC and WAL catalogs." alt="" coords="467,304,522,331"/>
-<area shape="rect" title=" " alt="" coords="448,379,528,405"/>
-<area shape="rect" href="prog_8h.html" title="Declares the prog class." alt="" coords="227,304,290,331"/>
-<area shape="rect" href="font_8h.html" title="Declarations for the font system." alt="" coords="230,379,290,405"/>
-<area shape="rect" href="dl_8h.html" title=" " alt="" coords="883,304,930,331"/>
-<area shape="rect" href="light_8h.html" title="Light and shadow system." alt="" coords="750,229,813,256"/>
-<area shape="rect" href="lo_8h.html" title="Declares Level Object struct." alt="" coords="598,229,645,256"/>
-<area shape="rect" href="slotheap_8h.html" title="Declares the slotheap and slot structs." alt="" coords="837,229,928,256"/>
-<area shape="rect" href="sound_8h.html" title="Declarations for the sound system." alt="" coords="553,379,626,405"/>
-<area shape="rect" href="vec_8h.html" title="Declares VECTOR and other related classes/functions." alt="" coords="669,229,726,256"/>
-<area shape="rect" href="basic_8h.html" title="Declares the BASIC struct." alt="" coords="598,304,666,331"/>
-<area shape="rect" href="so_8h.html" title="Declarations for scene objects." alt="" coords="690,304,739,331"/>
-<area shape="rect" href="zap_8h.html" title="Declarations for the zap (damage) system." alt="" coords="702,379,759,405"/>
-<area shape="rect" href="alo_8h.html" title=" " alt="" coords="554,155,609,181"/>
+<area shape="rect" title="Implements for the transition system." alt="" coords="290,5,445,32"/>
+<area shape="rect" href="transition_8h.html" title="Declarations for the transition system." alt="" coords="257,155,353,181"/>
+<area shape="rect" href="phasemem_8h.html" title="Declarations for the phase system." alt="" coords="130,80,237,107"/>
+<area shape="rect" href="clock_8h.html" title="Declarations for the game clock." alt="" coords="261,80,329,107"/>
+<area shape="rect" href="chkpnt_8h.html" title="Declarations for the checkpoint system." alt="" coords="379,229,457,256"/>
+<area shape="rect" href="sw_8h.html" title="Declares the scene world and related classes." alt="" coords="637,155,687,181"/>
+<area shape="rect" href="joy_8h.html" title="Declarations for joypad interactions." alt="" coords="5,155,57,181"/>
+<area shape="rect" href="brx_8h.html" title="Declarations for interaction with binary resource archives." alt="" coords="760,80,815,107"/>
+<area shape="rect" href="util_8h.html" title="Declarations for utility functions." alt="" coords="181,453,236,480"/>
+<area shape="rect" href="game_8h.html" title="Declarations related to the game world and game objects." alt="" coords="625,379,696,405"/>
+<area shape="rect" href="bis_8h.html" title="Implements the binary input stream class." alt="" coords="250,229,303,256"/>
+<area shape="rect" href="types_8h.html" title="Defines types used throughout the game." alt="" coords="173,528,244,555"/>
+<area shape="rect" title=" " alt="" coords="165,603,252,629"/>
+<area shape="rect" href="gs_8h.html" title="Declarations for the game state manipulation." alt="" coords="636,453,685,480"/>
+<area shape="rect" href="bas_8h.html" title="Declarations for the binary async stream." alt="" coords="153,379,211,405"/>
+<area shape="rect" href="cat_8h.html" title="Declarations for working with WAC and WAL catalogs." alt="" coords="235,379,289,405"/>
+<area shape="rect" title=" " alt="" coords="287,453,367,480"/>
+<area shape="rect" href="prog_8h.html" title="Declares the prog class." alt="" coords="321,304,384,331"/>
+<area shape="rect" href="font_8h.html" title="Declarations for the font system." alt="" coords="365,379,425,405"/>
+<area shape="rect" href="vec_8h.html" title="Declares VECTOR and other related classes/functions." alt="" coords="460,304,517,331"/>
+<area shape="rect" href="so_8h.html" title="Declarations for scene objects." alt="" coords="552,379,601,405"/>
+<area shape="rect" href="zap_8h.html" title="Declarations for the zap (damage) system." alt="" coords="548,453,605,480"/>
+<area shape="rect" href="dl_8h.html" title=" " alt="" coords="796,304,843,331"/>
+<area shape="rect" href="light_8h.html" title="Light and shadow system." alt="" coords="631,229,693,256"/>
+<area shape="rect" href="lo_8h.html" title="Declares Level Object struct." alt="" coords="935,229,981,256"/>
+<area shape="rect" href="slotheap_8h.html" title="Declares the slotheap and slot structs." alt="" coords="718,229,809,256"/>
+<area shape="rect" href="sound_8h.html" title="Declarations for the sound system." alt="" coords="533,229,607,256"/>
+<area shape="rect" href="basic_8h.html" title="Declares the BASIC struct." alt="" coords="919,304,987,331"/>
+<area shape="rect" href="alo_8h.html" title=" " alt="" coords="687,304,741,331"/>
 </map>
 </div>
 </div>
