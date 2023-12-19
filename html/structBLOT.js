@@ -1,0 +1,28 @@
+var structBLOT =
+[
+    [ "achzDraw", "structBLOT.html#a0d986b1a82cc287848dc109d7b26d75b", null ],
+    [ "bloti", "structBLOT.html#a73ffe2407d72dec1fbb472f8a0512248", null ],
+    [ "blotk", "structBLOT.html#a185d080ac7daa6991871186c66224728", null ],
+    [ "blots", "structBLOT.html#a7957b7b4e66bbb5e3fc005c565582b52", null ],
+    [ "dtAppear", "structBLOT.html#a702774f27622ae41c84ae5e2b066265f", null ],
+    [ "dtBlotsExtre", "structBLOT.html#a4433e0a29bfe6810d9e47b3f1819bc1b", null ],
+    [ "dtDisappear", "structBLOT.html#ac2d128b5502504deb97c2084d931f7a1", null ],
+    [ "dtVisible", "structBLOT.html#ac18da68473ba7801d4e1d5cd7ee4753e", null ],
+    [ "dx", "structBLOT.html#acb4be07d4c0169b31455c03a7382be93", null ],
+    [ "dy", "structBLOT.html#aaafe65a865eab1d19e84650c7fb15167", null ],
+    [ "fActive", "structBLOT.html#ad1e919c41353b0efa3c7eee8fd16173f", null ],
+    [ "pfont", "structBLOT.html#a396582a72fd29200f8d5b24c432f8f35", null ],
+    [ "pte", "structBLOT.html#a5d21839af0b2cd62deb5bfa910df1d4a", null ],
+    [ "ptNow", "structBLOT.html#a805a49a50250339d31463e552a8be50f", null ],
+    [ "pvtblot", "structBLOT.html#ae2ea2fcc27c28d25649d31d587d04e2c", null ],
+    [ "rFontScale", "structBLOT.html#af86b26894cb971db9282211cb54d970a", null ],
+    [ "rgba", "structBLOT.html#a663d5de7eb62a2e2d7c81236530fb957", null ],
+    [ "tBlots", "structBLOT.html#a5c25212adb50724ceabc8ade4c43f7ab", null ],
+    [ "uOn", "structBLOT.html#aa58e02d001d9e52f9bece7cd717afe97", null ],
+    [ "x", "structBLOT.html#ab157a079bb0e114cd9827dfe7febfdb9", null ],
+    [ "xOff", "structBLOT.html#a0e39718a1d7b29e48f31d2420b2960ce", null ],
+    [ "xOn", "structBLOT.html#add6d1a3abc3674bafb5d1804c315d299", null ],
+    [ "y", "structBLOT.html#afeda0b8280b8a172b4812a21f0ab5dc8", null ],
+    [ "yOff", "structBLOT.html#a1276ce06065a2925bee35ae4a19239fc", null ],
+    [ "yOn", "structBLOT.html#afd117a721d0a95b83901947dbe7c5d87", null ]
+];

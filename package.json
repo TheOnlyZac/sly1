@@ -1,0 +1,27 @@
+{
+  "name": "sly1-docs",
+  "version": "1.0.0",
+  "description": "Documentation of Sly 1 decompilation.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheOnlyZac/sly1.git#gh-pages"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/TheOnlyZac/sly1/issues"
+  },
+  "homepage": "https://github.com/TheOnlyZac/sly1/tree/gh-pages#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
