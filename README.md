@@ -37,6 +37,17 @@ Documentation of the code can be found at [theonlyzac.github.io/sly1](https://th
 
 New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our Discord server][discord-url] for guidance.
 
+## Setup
+
+First you need to clone the repository. After cloning, install the required python packages with pip.
+
+```bash
+git clone https://github.com/TheOnlyZac/sly1
+cd sly1
+pip install -U -r requirements.txt
+```
+
+After setting up the repository and installing the required packages, you will need to extract the ELF file from a legally obtained copy of the game. With the disc mounted, copy the `SCUS_971.98` file from the root directory of the disc to the `disc` directory of the project.
 
 ## Building
 
@@ -49,7 +60,6 @@ The `scripts` directory contains scripts for setting up the build environment on
 **Prerequisites**: `git`, `make`, `wine-stable`, `p7zip-full`
 
 ```bash
-git clone https://github.com/TheOnlyZac/sly1
 cd sly1/scripts
 ./setup-progd-linux.sh
 cd ..
@@ -61,7 +71,6 @@ make
 **Prerequisites**: `git`, `make`, `7zip`
 
 ```powershell
-git clone https://github.com/TheOnlyZac/sly1
 cd sly1\scripts
 .\setup-progd-windows.bat
 cd ..
