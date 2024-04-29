@@ -10,7 +10,7 @@ options:
   compiler: GCC
 
   asm_path: asm
-  src_path: src
+  src_path: c
   build_path: build
 
   find_file_boundaries: False
@@ -43,9 +43,27 @@ segments:
     bss_size: 0x3B1304
     subsegments:
     - [0x001000, asm, sce/crt0] # starts with 2 nops
-    - [0x001178, asm]
+    - [0x001178, c, P2/ps2t/spaprops] # ext should be .ic
+
+    #----------------------------------------
+    # Splice sources
+    #----------------------------------------
+    - [0x013698, cpp, P2/splice/bif]
+    - [0x019d48, cpp, P2/splice/eval]
+    - [0x01b328, cpp, P2/splice/frame]
+    - [0x01b678, cpp, P2/splice/gc]
+    - [0x01bdf8, asm]
+
+    #----------------------------------------
+    # P2 sources
+    #----------------------------------------
     - [0x0491A0, c, P2/coin]
     - [0x049400, asm]
+
+    - [0x0eb408, c, P2/util]
+    - [0x0ec518, asm]
+
+    #----------------------------------------
 
     - [0x112E10, bin, vutext]
 
