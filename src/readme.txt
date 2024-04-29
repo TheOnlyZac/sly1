@@ -1,6 +1,5 @@
-The P2 directory contains the source code for the game engine. The following is a list of all confirmed source code files:
+The P2 directory contains the source code for the game engine. The following is a list of all known source code file names:
 
-main.c
 ac.c
 act.c
 actseg.c

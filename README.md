@@ -37,9 +37,10 @@ Documentation of the code can be found at [theonlyzac.github.io/sly1](https://th
 
 New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our Discord server][discord-url] for guidance.
 
+
 ## Setup
 
-First you need to clone the repository. After cloning, install the required python packages with pip.
+First clone the repository, then install the required Python packages with pip:
 
 ```bash
 git clone https://github.com/TheOnlyZac/sly1
@@ -49,18 +50,19 @@ pip install -U -r requirements.txt
 
 After setting up the repository and installing the required packages, you will need to extract the ELF file from a legally obtained copy of the game. With the disc mounted, copy the `SCUS_971.98` file from the root directory of the disc to the `disc` directory of the project.
 
+
 ## Building
 
 The project can be compiled on Windows or Linux using `make`. It builds the executable `SCUS_971.98`.
 
-The `scripts` directory contains scripts for setting up the build environment on each platform, which involves downloading and installing the required runtime libraries.
+The `scripts` directory contains scripts for setting up the build environment on each platform, which involves downloading and installing the required runtime libraries. Instructions for running the script on each platforms are below.
 
 ### Linux/WSL
 
 **Prerequisites**: `git`, `make`, `wine-stable`, `p7zip-full`
 
 ```bash
-cd sly1/scripts
+cd scripts
 ./setup-progd-linux.sh
 cd ..
 make
@@ -71,7 +73,7 @@ make
 **Prerequisites**: `git`, `make`, `7zip`
 
 ```powershell
-cd sly1\scripts
+cd scripts
 .\setup-progd-windows.bat
 cd ..
 make
@@ -82,7 +84,7 @@ make
 
 Running the executable requires the [PCSX2 emulator](https://pcsx2.net/). You must have your own copy of the original game and the BIOS from your own PS2. They are not included in this repo and we cannot provide them for you.
 
-Once you have those and you have built the executable, you can run it in one of three ways.
+Once you have those and you have built the executable, you can run it in one of the following three ways.
 
 ### Automatic (script)
 
@@ -90,38 +92,35 @@ The `run.sh` script in the `scripts` dir will automatically rebuild the executab
 
 ### Manual (command line)
 
-To boot the elf in PCSX2 from the command line, use one of the following commands:
+To boot the elf in PCSX2 from the command line, use the following command:
 
 ```bash
-pcsx2-1.6 --console --elf="/path/to/SCUS_971.98" "/path/to/game/backup.iso"
+pcsx2-1.7.exe -elf ".../sly1/bin/debug/SCUS_971.98" "/path/to/game/backup.iso"
 ```
 
-```bash
-pcsx2-1.7 -elf "/path/to/SCUS_971.98" "/path/to/game/backup.iso"
-```
+Replace `pcsx2-1.7.exe` with the path to your PCSX2 v1.7 executable (for Linux it will be an **.appimage** file).
+- The `-elf` parameter specifies the path to the SCUS_971.98 you built from this project. Replace `...` with the path to this repository. The emulator will use this ELF to boot the game.
+- The last argument is the path to your game ISO. Replace `/path/to/game/backup.iso` with the path to a backup of your own game disc. This is where the game will load the assets from.
 
-Replace `pcsx2-1.6` or `pcsx2-1.7` with the path to your PCSX2 executable.
-* The `elf` flag is required and specifies the path to the elf file.
-* The last argument is the path to your game ISO.
+### Manual (PCSX2 1.7 GUI)
 
-### Manual (PCSX2 GUI)
-
-* For PCSX2 1.6, click `System > Run ELF...`, change the file type to "All Files", and browse for `SCUS_971.98` in the `bin` dir of the project.
-* For PCSX2 1.7, add the `bin` dir to your Games folders and the ELF will show up as a game in your library. When it asks you to search recursively, say yes. You may have to rename the elf to end in `.elf` for it to automatically detect it.
+Add the `bin` dir in this project to your Games folders. When it asks you to search recursively, say yes. The ELF should appear as a game in your library. If it doesn't automatically appear, rename the executable to `SCUS_971.98.elf`.
 
 
 ## Project Structure
 
-The project is split into the following directories:
+The project is divided into the following directories:
 
+* `build` - Makefiles for building the executable.
+* `config` - Config files for Splat (binary splitting tool).
+* `docs` - Documentation and instructions for contributing.
+* `include` - Header files for the game engine.
+* `scripts` - Utility scripts for setting up the build environment.
 * `src` - The decompiled source code.
   * All of the code for the game engine is in `src/P2`.
-  * Code for the game's scripting engine, Splice, is in `src/P2/splice`.
-* `include` - Header files for the game engine.
-* `test` - Directories containing unit tests for each game system.
-* `scripts` - Utility scripts for setting up the build environment.
-* `tools` - Utilities for function matching and binary splitting.
-* `build` - Makefiles used to build the executable.
+  * Code for the game's scripting engine is in `src/P2/splice`.
+* `test` - Handwritten unit tests for the decomp code.
+* `tools` - Utilities for function matching.
 
 When you build the executable, the following directories will be created:
 
