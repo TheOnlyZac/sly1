@@ -45,6 +45,9 @@ segments:
     - [0x001000, asm, sce/crt0] # starts with 2 nops
     - [0x10c0, c, P2/ps2t/spaprops.ic]
 
+    #----------------------------------------
+    # Splice sources
+    #----------------------------------------
     - [0x11de8, cpp, P2/splice/bif]
     - [0x19d50, cpp, P2/splice/eval]
     - [0x1b8f0, cpp, P2/splice/frame]
@@ -59,6 +62,9 @@ segments:
     - [0x1ddc0, cpp, P2/splice/splotheap]
     - [0x1e0f0, cpp, P2/splice/vecmat]
 
+    #----------------------------------------
+    # P2 sources
+    #----------------------------------------
     - [0x1e888, c, P2/989snd]
     - [0x203e0, c, P2/brx]
     - [0x210a8, c, P2/ac]
@@ -238,6 +244,8 @@ segments:
     - [0x10ee10, c, P2/wr]
     - [0x110338, c, P2/xform]
     - [0x111da0, c, P2/zap]
+
+    #----------------------------------------
 
     - [0x113e00, data]
 
