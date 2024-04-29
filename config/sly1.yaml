@@ -9,8 +9,8 @@ options:
   platform: ps2
   compiler: GCC
 
-  asm_path: asm
-  src_path: c
+  asm_path: splat/release/asm
+  src_path: splat/release/src
   build_path: build
 
   find_file_boundaries: False
@@ -58,10 +58,10 @@ segments:
     # P2 sources
     #----------------------------------------
     - [0x0491A0, c, P2/coin]
-    - [0x049400, asm]
+    - [0x049400, asm] # TBD
 
     - [0x0eb408, c, P2/util]
-    - [0x0ec518, asm]
+    - [0x0ec518, asm] # TBD
 
     #----------------------------------------
 

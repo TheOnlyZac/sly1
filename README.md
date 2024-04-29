@@ -129,8 +129,10 @@ When you build the executable, the following directories will be created:
 
 When you use splat to split the elf, the following directories will be created:
 
-* `asm` - Disassembled assembly code for each segment.
 * `assets`- Binary data extracted from the elf.
+* `splat` - Output of the binary splitting tool.
+  * `asm` - Disassembled assembly code.
+  * `src` - Generated C files.
 
 
 ## FAQ

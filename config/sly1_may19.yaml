@@ -9,8 +9,8 @@ options:
   platform: ps2
   compiler: GCC
 
-  asm_path: asm
-  src_path: c
+  asm_path: splat/may19/asm
+  src_path: splat/may19/src
   build_path: build
 
   find_file_boundaries: False
