@@ -45,7 +45,6 @@ segments:
     - [0x001000, asm, sce/crt0] # starts with 2 nops
     - [0x001178, c, P2/ps2t/spaprops] # ext should be .ic
 
-
     #----------------------------------------
     # Splice sources
     #----------------------------------------
@@ -63,13 +62,11 @@ segments:
     - [0x1d128, cpp, P2/splice/splotheap]
     - [0x1d508, cpp, P2/splice/vecmat]
 
-
     #----------------------------------------
     # P2 sources
     #----------------------------------------
-    - [0x1dbb8, asm] # TBD
-    #989snd
-    #brx
+    - [0x1dbb8, c, P2/989snd]
+    - [0x1f560, c, P2/brx]
     - [0x1fe70, c, P2/ac]
     #act
     #actseg
@@ -82,23 +79,23 @@ segments:
     - [0x310e8, c, P2/basic]
     - [0x31168, c, P2/bez]
     - [0x31f48, c, P2/binoc]
-    #bis
+    - [0x38290, c, P2/bis]
     - [0x395a0, c, P2/bbmark]
     - [0x39ff0, c, P2/blend]
-    #blip
+    - [0x3ab70, c, P2/blip]
     - [0x3c4c0, c, P2/bomb]
     #bone
     #bq
     - [0x3dcf8, c, P2/break]
     #bsp
     #button
-    #cat
+    #cat (might not be in release)
     #can
-    #cd
+    - [0x417a8, c, P2/cd]
     - [0x41d90, c, P2/chkpnt]
-    #clip
+    - [0x429e8, c, P2/clip]
     - [0x43ed0, c, P2/clock]
-    #cm
+    - [0x44148, c, P2/cm]
     - [0x47100, c, P2/cnvo]
     - [0x491A0, c, P2/coin]
     - [0x4a398, c, P2/cplcy]
@@ -106,11 +103,10 @@ segments:
     - [0x4c0c0, c, P2/crout]
     #crusher
     - [0x4e0a8, c, P2/crv]
-    #cycle
     #dart
     #dartgun
     #dialog
-    #difficulty
+    - [0x529e0, c, P2/difficulty]
     - [0x53438, c, P2/dl]
     - [0x53810, c, P2/dmas]
     #dsp
@@ -121,25 +117,24 @@ segments:
     - [0x5aad0, c, P2/fader]
     #find
     - [0x5b8b0, c, P2/flash]
+    - [0x5bae0, c, P2/fly]
+    - [0x5d188, c, P2/font]
+    - [0x5f810, c, P2/frm]
     - [0x60678, c, P2/freeze]
-    #fly
-    #font
-    #frm
     - [0x60f88, c, P2/frzg]
-    #game
+    - [0x61070, c, P2/game]
     - [0x61e80, c, P2/geom]
     #gifs
     #glbs
     #glob
     #gomer
     - [0x69130, c, P2/gs]
-    #hg
     - [0x6ac58, c, P2/hide]
     #hnd
     #ik
     #jack
     #jlo
-    #joy
+    - [0x6f0b8, c, P2/joy]
     - [0x70608, c, P2/jt]
     #jp
     #jsg
@@ -149,11 +144,12 @@ segments:
     #lgn
     - [0x83c18, c, P2/lo]
     - [0x84cc8, c, P2/light]
-    #lookat
+    - [0x86358, c, P2/lookat]
     - [0x86758, c, P2/main]
-    #map2d
-    - [0x86b38, cpp, P2/splice/splotheap]
+    - [0x86c18, c, P2/mark]
     - [0x894c0, c, P2/mat]
+
+    - [0x8b388, asm] # TODO
     #mecha
     #mb
     #memcard
@@ -165,12 +161,15 @@ segments:
     #mrkv
     #ms
     #murray
+
     - [0x917e0, c, P2/path]
     - [0x92e70, c, P2/phasemem]
     #pipe
     - [0x93068, c, P2/pnt]
     #po
-    #prog
+    - [0x94210, c, P2/prog]
+
+    - [0x94598, asm] # TODO
     #prompt
     #proxy
     #puffer
@@ -178,7 +177,8 @@ segments:
     #rail
     #rat
     #rchm
-    #render
+
+    - [0x9e410, c, P2/render]
     - [0x9f040, c, P2/rip]
     #rog
     #rope
@@ -199,7 +199,7 @@ segments:
     - [0xb8968, c, P2/so]
     - [0xbd760, c, P2/solve]
     - [0xbf068, c, P2/sort]
-    #sound
+    - [0xbf1e8, c, P2/sound]
     #speaker
     - [0xc2190, c, P2/splicemap]
     - [0xc24c0, c, P2/spliceobj]
@@ -220,38 +220,44 @@ segments:
     - [0xd5848, c, P2/stepzap]
     - [0xd8120, c, P2/stream]
     #suv
-    #sw
+    - [0xdc480, c, P2/sw]
     #tail
     #tank
     #target
     - [0xe18f8, c, P2/text]
     #thread
     #tn
-    #transition
-    #turret
+    - [0xe5e38, c, P2/transition]
+    - [0xe6378, c, P2/turret]
     - [0xe6e70, c, P2/tv]
     #ub
     #ui
     - [0xeac78, c, P2/update]
     - [0xeb408, c, P2/util]
+
+    - [0xec518, asm] # TODO what is this?
+
     - [0xee650, c, P2/vec]
-    #vife
-    #vifs
-    #vis
-    #water
-    #waypoint
-    #wibu_ee (might not be in release)
+    #vife (not in release, or somewhere else)
+    - [0xef318, c, P2/vifs]
+    - [0xef900, c, P2/vis]
+    - [0xefc60, c, P2/water]
+    - [0xf0838, c, P2/waypoint]
     - [0xf0ce8, c, P2/wipe]
-    #wm
-    #xform
+    - [0xf1758, c, P2/wm] # not confident
+    - [0xf49f8, c, P2/xform]
     - [0xf5f70, c, P2/zap]
 
+    # Source files in May proto that aren't in release:
+    # P2/cycle.c - some kind of vehicle?
+    # P2/hg.c - hang glider
+    # P2map2d.c - world map?
+    # P2/wibu_ee.c - wibukey encryption
 
     #----------------------------------------
     # Libs
     #----------------------------------------
     - [0xf69c4, asm] # TBD
-
 
     #----------------------------------------
 
