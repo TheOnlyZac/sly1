@@ -8,7 +8,7 @@ ASSET_PATH 	:= assets
 SDIR = src/P2
 IDIR = include
 VPATH := $(SDIR)
-SRCS := $(wildcard $(SDIR)/*.cpp)
+SRCS := $(wildcard $(SDIR)/*.cpp) $(wildcard $(SDIR)/*.c)
 
 # Output
 LD_SCRIPT := sly1.ld

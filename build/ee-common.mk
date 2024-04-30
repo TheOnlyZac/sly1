@@ -30,7 +30,7 @@ $(OBJDIR)/%.o: %.s
 	$(CC) -c -xassembler-with-cpp $(CCFLAGS) $< -o $@
 
 $(OBJDIR)/%.o: %.c
-	$(CC) -c $(CCFLAGS) $< -o $@
+	$(CC) -x c++ -c $(CCFLAGS) $< -o $@
 
 $(OBJDIR)/%.o: %.cpp
 	$(CXX) -c $(CXXFLAGS) $< -o $@
