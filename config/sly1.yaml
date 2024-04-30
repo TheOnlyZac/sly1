@@ -45,23 +45,213 @@ segments:
     - [0x001000, asm, sce/crt0] # starts with 2 nops
     - [0x001178, c, P2/ps2t/spaprops] # ext should be .ic
 
+
     #----------------------------------------
     # Splice sources
     #----------------------------------------
-    - [0x013698, cpp, P2/splice/bif]
-    - [0x019d48, cpp, P2/splice/eval]
-    - [0x01b328, cpp, P2/splice/frame]
-    - [0x01b678, cpp, P2/splice/gc]
-    - [0x01bdf8, asm]
+    - [0x13698, cpp, P2/splice/bif]
+    - [0x19d48, cpp, P2/splice/eval]
+    - [0x1b328, cpp, P2/splice/frame]
+    - [0x1b678, cpp, P2/splice/gc]
+    - [0x1be78, cpp, P2/splice/method]
+    - [0x1bf98, cpp, P2/splice/pair]
+    - [0x1bf98, cpp, P2/splice/proc]
+    - [0x1c008, cpp, P2/splice/ref]
+    - [0x1ca28, cpp, P2/splice/serialize]
+    - [0x1cd28, cpp, P2/splice/sidebag]
+    - [0x1cf70, cpp, P2/splice/spliceutils]
+    - [0x1d128, cpp, P2/splice/splotheap]
+    - [0x1d508, cpp, P2/splice/vecmat]
+
 
     #----------------------------------------
     # P2 sources
     #----------------------------------------
-    - [0x0491A0, c, P2/coin]
-    - [0x049400, asm] # TBD
+    - [0x1dbb8, asm] # TBD
+    #989snd
+    #brx
+    - [0x1fe70, c, P2/ac]
+    #act
+    #actseg
+    - [0x243c0, c, P2/alarm]
+    - [0x24dc0, c, P2/alo]
+    #aseg
+    #asega
+    #barrier
+    - [0x30cf0, c, P2/bas]
+    - [0x310e8, c, P2/basic]
+    - [0x31168, c, P2/bez]
+    - [0x31f48, c, P2/binoc]
+    #bis
+    - [0x395a0, c, P2/bbmark]
+    - [0x39ff0, c, P2/blend]
+    #blip
+    - [0x3c4c0, c, P2/bomb]
+    #bone
+    #bq
+    - [0x3dcf8, c, P2/break]
+    #bsp
+    #button
+    #cat
+    #can
+    #cd
+    - [0x41d90, c, P2/chkpnt]
+    #clip
+    - [0x43ed0, c, P2/clock]
+    #cm
+    - [0x47100, c, P2/cnvo]
+    - [0x491A0, c, P2/coin]
+    - [0x4a398, c, P2/cplcy]
+    - [0x4bbd0, c, P2/credit]
+    - [0x4c0c0, c, P2/crout]
+    #crusher
+    - [0x4e0a8, c, P2/crv]
+    #cycle
+    #dart
+    #dartgun
+    #dialog
+    #difficulty
+    - [0x53438, c, P2/dl]
+    - [0x53810, c, P2/dmas]
+    #dsp
+    #dysh
+    #dzg
+    - [0x559c8, c, P2/emitter]
+    #eyes
+    - [0x5aad0, c, P2/fader]
+    #find
+    - [0x5b8b0, c, P2/flash]
+    - [0x60678, c, P2/freeze]
+    #fly
+    #font
+    #frm
+    - [0x60f88, c, P2/frzg]
+    #game
+    - [0x61e80, c, P2/geom]
+    #gifs
+    #glbs
+    #glob
+    #gomer
+    - [0x69130, c, P2/gs]
+    #hg
+    - [0x6ac58, c, P2/hide]
+    #hnd
+    #ik
+    #jack
+    #jlo
+    #joy
+    - [0x70608, c, P2/jt]
+    #jp
+    #jsg
+    - [0x7e248, c, P2/jump]
+    #keyhole
+    #landing
+    #lgn
+    - [0x83c18, c, P2/lo]
+    - [0x84cc8, c, P2/light]
+    #lookat
+    - [0x86758, c, P2/main]
+    #map2d
+    - [0x86b38, cpp, P2/splice/splotheap]
+    - [0x894c0, c, P2/mat]
+    #mecha
+    #mb
+    #memcard
+    #memory
+    #menu
+    #missile
+    #mouthgame
+    #mpeg
+    #mrkv
+    #ms
+    #murray
+    - [0x917e0, c, P2/path]
+    - [0x92e70, c, P2/phasemem]
+    #pipe
+    - [0x93068, c, P2/pnt]
+    #po
+    #prog
+    #prompt
+    #proxy
+    #puffer
+    #pzo
+    #rail
+    #rat
+    #rchm
+    #render
+    - [0x9f040, c, P2/rip]
+    #rog
+    #rope
+    - [0xa8b20, c, P2/rumble]
+    - [0xa8fe8, c, P2/rwm]
+    #sampler (might not be in release)
+    #sc
+    - [0xaac68, c, P2/screen]
+    #sensor
+    - [0xb2ac8, c, P2/shadow]
+    #shape
+    - [0xb3988, c, P2/shd]
+    - [0xb5920, c, P2/shdanim]
+    #sky
+    #slotheap
+    - [0xb6f50, c, P2/sm]
+    #smartguard
+    - [0xb8968, c, P2/so]
+    - [0xbd760, c, P2/solve]
+    - [0xbf068, c, P2/sort]
+    #sound
+    #speaker
+    - [0xc2190, c, P2/splicemap]
+    - [0xc24c0, c, P2/spliceobj]
+    - [0xc3430, c, P2/sprbuf]
+    #sqtr
+    #squish
+    - [0xc5458, c, P2/step]
+    - [0xc6f18, c, P2/stepact]
+    - [0xc71e0, c, P2/stepcane]
+    #stepguard
+    #stephang
+    - [0xd24f0, c, P2/steppipe]
+    #stephide
+    - [0xd39c8, c, P2/steppower]
+    #steprun
+    - [0xd5148, c, P2/stepside]
+    #stepski
+    - [0xd5848, c, P2/stepzap]
+    - [0xd8120, c, P2/stream]
+    #suv
+    #sw
+    #tail
+    #tank
+    #target
+    - [0xe18f8, c, P2/text]
+    #thread
+    #tn
+    #transition
+    #turret
+    - [0xe6e70, c, P2/tv]
+    #ub
+    #ui
+    - [0xeac78, c, P2/update]
+    - [0xeb408, c, P2/util]
+    - [0xee650, c, P2/vec]
+    #vife
+    #vifs
+    #vis
+    #water
+    #waypoint
+    #wibu_ee (might not be in release)
+    - [0xf0ce8, c, P2/wipe]
+    #wm
+    #xform
+    - [0xf5f70, c, P2/zap]
 
-    - [0x0eb408, c, P2/util]
-    - [0x0ec518, asm] # TBD
+
+    #----------------------------------------
+    # Libs
+    #----------------------------------------
+    - [0xf69c4, asm] # TBD
+
 
     #----------------------------------------
 
