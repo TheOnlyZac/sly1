@@ -68,13 +68,13 @@ segments:
     - [0x1dbb8, c, P2/989snd]
     - [0x1f560, c, P2/brx]
     - [0x1fe70, c, P2/ac]
-    #act
-    #actseg
+    #- [0x, c, P2/act]
+    #- [0x, c, P2/actseg]
     - [0x243c0, c, P2/alarm]
     - [0x24dc0, c, P2/alo]
-    #aseg
-    #asega
-    #barrier
+    #- [0x, c, P2/aseg]
+    #- [0x, c, P2/asega]
+    #- [0x, c, P2/barrier]
     - [0x30cf0, c, P2/bas]
     - [0x310e8, c, P2/basic]
     - [0x31168, c, P2/bez]
@@ -84,13 +84,16 @@ segments:
     - [0x39ff0, c, P2/blend]
     - [0x3ab70, c, P2/blip]
     - [0x3c4c0, c, P2/bomb]
-    #bone
-    #bq
+    #- [0x, c, P2/bone]
+    #- [0x, c, P2/bq]
     - [0x3dcf8, c, P2/break]
-    #bsp
-    #button
-    #cat (might not be in release)
-    #can
+
+    - [0x3efd8, asm] # TODO
+    #- [0x, c, P2/bsp]
+    #- [0x, c, P2/button]
+    #- [0x, c, P2/cat] (might not be in release)
+    #- [0x, c, P2/can]
+
     - [0x417a8, c, P2/cd]
     - [0x41d90, c, P2/chkpnt]
     - [0x429e8, c, P2/clip]
@@ -101,21 +104,24 @@ segments:
     - [0x4a398, c, P2/cplcy]
     - [0x4bbd0, c, P2/credit]
     - [0x4c0c0, c, P2/crout]
-    #crusher
+    #- [0x, c, P2/crusher]
     - [0x4e0a8, c, P2/crv]
-    #dart
-    #dartgun
-    #dialog
+    - [0x4fe40, c, dart]
+    #- [0x, c, P2/dartgun]
+    #- [0x, c, P2/dialog]
     - [0x529e0, c, P2/difficulty]
     - [0x53438, c, P2/dl]
     - [0x53810, c, P2/dmas]
-    #dsp
-    #dysh
-    #dzg
+    #- [0x, c, P2/dsp]
+    #- [0x, c, P2/dysh]
+    #- [0x, c, P2/dzg]
     - [0x559c8, c, P2/emitter]
-    #eyes
+    - [0x5a6e0, c, P2/eyes]
     - [0x5aad0, c, P2/fader]
-    #find
+
+    - [0x5aca0, asm] #? unknown file
+
+    - [0x5af20, c, P2/find]
     - [0x5b8b0, c, P2/flash]
     - [0x5bae0, c, P2/fly]
     - [0x5d188, c, P2/font]
@@ -124,24 +130,24 @@ segments:
     - [0x60f88, c, P2/frzg]
     - [0x61070, c, P2/game]
     - [0x61e80, c, P2/geom]
-    #gifs
-    #glbs
-    #glob
-    #gomer
+    #- [0x, c, P2/gifs]
+    #- [0x, c, P2/glbs]
+    #- [0x, c, P2/glob]
+    #- [0x, c, P2/gomer]
     - [0x69130, c, P2/gs]
     - [0x6ac58, c, P2/hide]
-    #hnd
-    #ik
-    #jack
-    #jlo
+    #- [0x, c, P2/hnd]
+    #- [0x, c, P2/ik]
+    #- [0x, c, P2/jack]
+    #- [0x, c, P2/jlo]
     - [0x6f0b8, c, P2/joy]
     - [0x70608, c, P2/jt]
-    #jp
-    #jsg
+    #- [0x, c, P2/jp]
+    #- [0x, c, P2/jsg]
     - [0x7e248, c, P2/jump]
-    #keyhole
-    #landing
-    #lgn
+    #- [0x, c, P2/keyhole]
+    #- [0x, c, P2/landing]
+    #- [0x, c, P2/lgn]
     - [0x83c18, c, P2/lo]
     - [0x84cc8, c, P2/light]
     - [0x86358, c, P2/lookat]
@@ -150,95 +156,97 @@ segments:
     - [0x894c0, c, P2/mat]
 
     - [0x8b388, asm] # TODO
-    #mecha
-    #mb
-    #memcard
-    #memory
-    #menu
-    #missile
-    #mouthgame
-    #mpeg
-    #mrkv
-    #ms
-    #murray
+    #- [0x, c, P2/mecha]
+    #- [0x, c, P2/mb]
+    #- [0x, c, P2/memcard]
+    #- [0x, c, P2/memory]
+    #- [0x, c, P2/menu]
+    #- [0x, c, P2/missile]
+    #- [0x, c, P2/mouthgame]
+    #- [0x, c, P2/mpeg]
+    #- [0x, c, P2/mrkv]
+    #- [0x, c, P2/ms]
+    #- [0x, c, P2/murray]
 
     - [0x917e0, c, P2/path]
     - [0x92e70, c, P2/phasemem]
-    #pipe
+    - [0x92ec0, c, P2/pipe]
     - [0x93068, c, P2/pnt]
-    #po
+    #- [0x, c, P2/po]
     - [0x94210, c, P2/prog]
 
     - [0x94598, asm] # TODO
-    #prompt
-    #proxy
-    #puffer
-    #pzo
-    #rail
-    #rat
-    #rchm
+    #- [0x, c, P2/prompt]
+    #- [0x, c, P2/proxy]
+    #- [0x, c, P2/puffer]
+    #- [0x, c, P2/pzo]
+    #- [0x, c, P2/rail]
+    #- [0x, c, P2/rat]
+    #- [0x, c, P2/rchm]
 
     - [0x9e410, c, P2/render]
     - [0x9f040, c, P2/rip]
-    #rog
-    #rope
+    #- [0x, c, P2/rog]
+    #- [0x, c, P2/rope]
     - [0xa8b20, c, P2/rumble]
     - [0xa8fe8, c, P2/rwm]
-    #sampler (might not be in release)
-    #sc
+    #- [0x, c, P2/sampler] (might not be in release)
+    #- [0x, c, P2/sc]
     - [0xaac68, c, P2/screen]
-    #sensor
+    #- [0x, c, P2/sensor]
     - [0xb2ac8, c, P2/shadow]
-    #shape
+    #- [0x, c, P2/shape]
     - [0xb3988, c, P2/shd]
     - [0xb5920, c, P2/shdanim]
-    #sky
-    #slotheap
+    #- [0x, c, P2/sky]
+    #- [0x, c, P2/slotheap]
     - [0xb6f50, c, P2/sm]
-    #smartguard
+    #- [0x, c, P2/smartguard]
     - [0xb8968, c, P2/so]
     - [0xbd760, c, P2/solve]
     - [0xbf068, c, P2/sort]
     - [0xbf1e8, c, P2/sound]
-    #speaker
+    #- [0x, c, P2/speaker]
     - [0xc2190, c, P2/splicemap]
     - [0xc24c0, c, P2/spliceobj]
     - [0xc3430, c, P2/sprbuf]
-    #sqtr
-    #squish
+    #- [0x, c, P2/sqtr]
+    #- [0x, c, P2/squish]
     - [0xc5458, c, P2/step]
     - [0xc6f18, c, P2/stepact]
     - [0xc71e0, c, P2/stepcane]
-    #stepguard
-    #stephang
+    #- [0x, c, P2/stepguard]
+    #- [0x, c, P2/stephang]
     - [0xd24f0, c, P2/steppipe]
-    #stephide
+    - [0xcefb8, c, P2/stephide]
     - [0xd39c8, c, P2/steppower]
-    #steprun
+
+    - [0xdf1d0, asm] #? unknown file
+
+    - [0xd46f0, c, P2/steprun]
     - [0xd5148, c, P2/stepside]
-    #stepski
     - [0xd5848, c, P2/stepzap]
     - [0xd8120, c, P2/stream]
-    #suv
+    #- [0x, c, P2/suv]
     - [0xdc480, c, P2/sw]
-    #tail
-    #tank
-    #target
+    #- [0x, c, P2/tail]
+    #- [0x, c, P2/tank]
+    #- [0x, c, P2/target]
     - [0xe18f8, c, P2/text]
-    #thread
-    #tn
+    #- [0x, c, P2/thread]
+    #- [0x, c, P2/tn]
     - [0xe5e38, c, P2/transition]
     - [0xe6378, c, P2/turret]
     - [0xe6e70, c, P2/tv]
-    #ub
-    #ui
+    #- [0x, c, P2/ub]
+    #- [0x, c, P2/ui]
     - [0xeac78, c, P2/update]
     - [0xeb408, c, P2/util]
 
-    - [0xec518, asm] # TODO what is this?
+    - [0xec518, asm] #? unknown file
 
     - [0xee650, c, P2/vec]
-    #vife (not in release, or somewhere else)
+    # [0x, c, P2/vife] (either not in release, or somewhere else)
     - [0xef318, c, P2/vifs]
     - [0xef900, c, P2/vis]
     - [0xefc60, c, P2/water]
@@ -248,10 +256,11 @@ segments:
     - [0xf49f8, c, P2/xform]
     - [0xf5f70, c, P2/zap]
 
-    # Source files in May proto that aren't in release:
-    # P2/cycle.c - some kind of vehicle?
+    ## Source files in May proto that aren't in release:
+    # P2/cycle.c - some kind of wheeled vehicle
     # P2/hg.c - hang glider
-    # P2map2d.c - world map?
+    # P2/stepski.c - skiing
+    # P2/map2d.c - unknown
     # P2/wibu_ee.c - wibukey encryption
 
     #----------------------------------------
