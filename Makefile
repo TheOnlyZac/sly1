@@ -8,7 +8,7 @@ ASSET_PATH 	:= assets
 SDIR = src/P2
 IDIR = include
 VPATH := $(SDIR)
-SRCS := $(wildcard $(SDIR)/*.cpp) $(wildcard $(SDIR)/*.c) $(wildcard $(SDIR)/*/*.cpp) $(wildcard $(SDIR)/*/*.c)
+SRCS := $(shell find $(SDIR) -name '*.cpp' -or -name '*.c')
 
 # Output
 LD_SCRIPT := sly1.ld
@@ -25,7 +25,7 @@ CCINCLUDES = -I$(SCE_COMMON)/include -I$(SCE_EE)/include -I$(IDIR)
 CCFLAGS = -Wall -Wno-unused $(BASEFLAGS) -fno-strict-aliasing $(CCINCLUDES) $(CCDEFINES)
 CXXFLAGS = $(CCFLAGS)
 LDLIBS = -L$(SCE_EE)/lib -lsn -lc -lm -lpad -lmpeg -ldma -lipu -lkernl
-LDFLAGS = -nostartfiles -Wl,-Map,../../$(OUTDIR)/$(NAME).map -T$(SCE_EE)/lib/app.cmd $(LDLIBS)
+LDFLAGS = -nostartfiles -Wl,-Map,$(realpath $(OUTDIR)/$(NAME).map) -T$(SCE_EE)/lib/app.cmd $(LDLIBS)
 
 
 include build/core.mk

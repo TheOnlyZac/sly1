@@ -10,10 +10,14 @@ CXX := $(SCE_EE_GCC)/bin/ee-gcc.exe
 CRT0_S := $(SCE_EE)/lib/crt0.s
 endif
 
-# Scary Make Incantations: Volume 1
-OBJS := $(patsubst %.cpp,$(OBJDIR)/%.o,$(filter %.cpp,$(notdir $(SRCS))))
-OBJS += $(patsubst %.c,$(OBJDIR)/%.o,$(filter %.c,$(notdir $(SRCS))))
-OBJS += $(patsubst %.s,$(OBJDIR)/%.o,$(filter %.s,$(notdir $(SRCS))))
+# Rewrite the object files to maintain directory structure
+OBJS := $(patsubst $(SDIR)/%,$(OBJDIR)/%,$(SRCS:.cpp=.o))
+OBJS := $(patsubst $(SDIR)/%,$(OBJDIR)/%,$(OBJS:.c=.o))
+
+
+# print objs
+$(info "YO")
+$(info $(OBJS))
 
 # shared for both c/c++ compilation
 BASEFLAGS := -G0 -fno-common
@@ -27,10 +31,13 @@ BASEFLAGS += -O2
 endif
 
 $(OBJDIR)/%.o: %.s
+	mkdir -p $(@D)
 	$(CC) -c -xassembler-with-cpp $(CCFLAGS) $< -o $@
 
 $(OBJDIR)/%.o: %.c
+	mkdir -p $(@D)
 	$(CC) -x c++ -c $(CCFLAGS) $< -o $@
 
 $(OBJDIR)/%.o: %.cpp
+	mkdir -p $(@D)
 	$(CXX) -c $(CXXFLAGS) $< -o $@
