@@ -6,7 +6,10 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-#include <types.h>
+#include <common.h>
+#include <bif.h>
+#include <mat.h>
+#include <ref.h>
 
 /**
  * @brief Limits for a float
@@ -38,12 +41,12 @@ float RadNormalize(float rad);
 */
 float GLimitAbs(float g, float absLimit);
 
-//float GSmooth(float gCur, float gTarget, float dt, SMP* psmp, float* pdgNext);
-//float GSmoothA(float gCur, float dgCur, float gTarget, float dt, SMPA* psmpa, float* pdgNext);
-//float RadSmooth(float radCur, float radTarget, float dt, SMP* psmp, float* pdradNext);
-//float RadSmoothA(float radCur, float dradCur, float radTarget, float dt, SMPA* psmpa, float* pdradNext);
-//void SmoothMatrix(MAT* pmatPrev, MAT* pmatNext, SMP* psmp, float dt, MAT* pmatSmooth, VECTOR* pwSmooth);
-//VU_VECTOR PosSmooth(VU_VECTOR posCur, VU_VECTOR posTarget, float dt, SMP* psmp, VECTOR* pv);
+float GSmooth(float gCur, float gTarget, float dt, SMP* psmp, float* pdgNext);
+float GSmoothA(float gCur, float dgCur, float gTarget, float dt, SMPA* psmpa, float* pdgNext);
+float RadSmooth(float radCur, float radTarget, float dt, SMP* psmp, float* pdradNext);
+float RadSmoothA(float radCur, float dradCur, float radTarget, float dt, SMPA* psmpa, float* pdradNext);
+VU_VECTOR PosSmooth(VU_VECTOR posCur, VU_VECTOR posTarget, float dt, SMP* psmp, VECTOR* pv);
+void SmoothMatrix(MATRIX3* pmatPrev, MATRIX3* pmatNext, SMP* psmp, float dt, MATRIX3* pmatSmooth, VECTOR* pwSmooth);
 
 /**
  * @brief Gets a random int that falls between the given values.
@@ -92,7 +95,7 @@ BOOL FFloatsNear(float g1, float g2, float gEpsilon);
  * @brief Solves a quadratic equation.
  *
  * A quadratic equation is of the form ax^2 + bx + c = 0. The solutions (if any)
- * are stored in the given array.
+ * are stored in ax[0] and ax[1].
  *
  * @param a The coefficient of the x^2 term
  * @param b The coefficient of the x term
@@ -103,7 +106,7 @@ BOOL FFloatsNear(float g1, float g2, float gEpsilon);
 */
 int CSolveQuadratic(float a, float b, float c, float* ax);
 
-//void PrescaleClq(CLQ* pclqSrc, float ru, float du, CLQ* pclqDst);
+void PrescaleClq(CLQ* pclqSrc, float ru, float du, CLQ* pclqDst);
 
 /**
  * @brief Calculates the sine and cosine of a given angle.
@@ -142,7 +145,7 @@ float GTrunc(float g);
 */
 float GModPositive(float gDividend, float gDivisor);
 
-//void FitClq(float g0, float g1, float u, float gU, CLQ* pclq);
+void FitClq(float g0, float g1, float u, float gU, CLQ* pclq);
 
 /**
  * @brief Checks if a float falls within the given limit.
@@ -188,7 +191,7 @@ int SgnCompareG(float* pg1, float* pg2);
 */
 void Force(void* pv);
 
-//void MinimizeRange(PFNGG pfn, void* pv, float g, float dg, float gMin, float gMax, float* pgDom, float* pgRng);
+void MinimizeRange(void* pfn, void* pv, float g, float dg, float gMin, float gMax, float* pgDom, float* pgRng);
 
 //int CSolveClq(CLQ* pclq, float g, float* ag);
 //float DtSmooth(float gCur, float gTarget, SMP* psmp, float* pdg);

@@ -6,7 +6,7 @@
 #ifndef SO_H
 #define SO_H
 
-#include <util.h>
+#include <common.h>
 #include <zap.h>
 #include <iostream>
 

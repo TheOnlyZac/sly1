@@ -14,11 +14,6 @@ endif
 OBJS := $(patsubst $(SDIR)/%,$(OBJDIR)/%,$(SRCS:.cpp=.o))
 OBJS := $(patsubst $(SDIR)/%,$(OBJDIR)/%,$(OBJS:.c=.o))
 
-
-# print objs
-$(info "YO")
-$(info $(OBJS))
-
 # shared for both c/c++ compilation
 BASEFLAGS := -G0 -fno-common
 
