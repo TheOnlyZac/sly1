@@ -33,6 +33,19 @@ float GLimitAbs(float g, float absLimit)
 	return g;
 }
 
+INCLUDE_ASM(const s32, "P2/util", GSmooth);
+
+INCLUDE_ASM(const s32, "P2/util", GSmoothA);
+INCLUDE_ASM(const s32, "P2/util", func_001EA720); // Part of GSmoothA
+
+INCLUDE_ASM(const s32, "P2/util", RadSmooth);
+
+INCLUDE_ASM(const s32, "P2/util", RadSmoothA);
+
+INCLUDE_ASM(const s32, "P2/util", PosSmooth);
+
+INCLUDE_ASM(const s32, "P2/util", SmoothMatrix);
+
 int NRandInRange(int nLow, int nHigh)
 {
 	if (nLow != nHigh)
@@ -87,11 +100,6 @@ BOOL FFloatsNear(float g1, float g2, float gEpsilon)
 	return (BOOL)(unsigned int)(fabs(g1 - g2) / (float)((unsigned int)(g1Abs < 1.0) * 0x3f800000 | (int)g1Abs * (unsigned int)(g1Abs >= 1.0)) < gEpsilon);
 }
 
-/*
- * Solves a quadratic equation of the form ax^2 + bx + c = 0
- * Returns the number of solutions found (0, 1, or 2)
- * If there are two solutions, they are returned in ax[0] and ax[1]
-*/
 int CSolveQuadratic(float a, float b, float c, float* ax)
 {
 	float rad = (b * b) - 4.0 * a * c;
@@ -113,7 +121,7 @@ int CSolveQuadratic(float a, float b, float c, float* ax)
 	return 2; // two solutions: (-b � radical) / 2a
 }
 
-//TODO: PrescaleClq
+INCLUDE_ASM(const s32, "P2/util", PrescaleClq);
 
 void CalculateSinCos(float angle, float *sin, float *cos)
 {
@@ -207,7 +215,7 @@ float GModPositive(float gDividend, float gDivisor)
 	return result;
 }
 
-//TODO: FitClq
+INCLUDE_ASM(const s32, "P2/util", FitClq);
 
 /**
  * @note Matching 100%
@@ -265,3 +273,6 @@ void Force(void *)
 {
 	// This function is empty.
 }
+
+INCLUDE_ASM(const s32, "P2/util", MinimizeRange);
+INCLUDE_ASM(const s32, "P2/util", func_001EB458);

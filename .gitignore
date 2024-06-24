@@ -53,8 +53,11 @@ undefined_syms*.txt
 # Linker scripts
 *.ld
 
+# Python
+env/
+__pycache__/
+*.pyc
+
 # Miscellaneous
 .vscode
 temp/
-__pycache__/
-*.pyc

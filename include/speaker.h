@@ -49,14 +49,11 @@ struct SPEAKER
 */
 struct DP
 {
-    GRFDP grfdp;
+    uint grfdp;
     DPK dpk;
     SPEAKER* pspeakerLeft;
-    byte field_0x9;
-    byte field_0xa;
-    byte field_0xb;
     SPEAKER* pspeakerRight;
-    struct ASEGA* pasegaLipsync;
+    ASEGA* pasegaLipsync;
     float tPauseMin;
 };
 

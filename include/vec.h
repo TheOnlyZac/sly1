@@ -6,7 +6,6 @@
 #ifndef VEC_H
 #define VEC_H
 
-#include <util.h>
 #include <so.h>
 
 typedef int GRFPVA;

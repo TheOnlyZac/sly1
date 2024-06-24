@@ -5,7 +5,7 @@ OUTDIR := bin/$(CONFIG)
 
 # This incantation is done to avoid modifying the SCE linker scripts.
 $(OUTDIR)/$(NAME): $(OBJDIR)/ $(OUTDIR)/ $(OBJS)
-	cd $(OBJDIR)/ && $(CXX) $(CXXFLAGS) -o ../../$@ $(notdir $(OBJS)) $(LDFLAGS)
+	cd $(OBJDIR)/ && $(CXX) $(CXXFLAGS) -o ../../$@ $(OBJS:$(OBJDIR)/%=%) $(LDFLAGS)
 
 # :( have to duplicate the rule
 $(OBJDIR)/crt0.o: $(CRT0_S)
