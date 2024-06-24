@@ -40,7 +40,9 @@ New contributors are welcome and encouraged to make a pull request! If you would
 
 ## Setup
 
-First clone the repository, then install the required Python packages with pip:
+### Splat
+
+Splat is used for binary splitting. To install it, clone the repository and install the Python packages with pip:
 
 ```bash
 git clone https://github.com/TheOnlyZac/sly1
@@ -48,49 +50,52 @@ cd sly1
 pip install -U -r requirements.txt
 ```
 
-After setting up the repository and installing the required packages, you will need to extract the ELF file from a legally obtained copy of the game. With the disc mounted, copy the `SCUS_971.98` file from the root directory of the disc to the `disc` directory of the project.
+After setting up the repository and installing the required packages, you will need to extract the ELF file from your own legally obtained copy of the game. Mount the disk on your PC and copy the file `SCUS_971.98` from the root directory of the disc to the `disc` directory of this project.
 
 
-## Building
+### Build Environment
 
-The project can be compiled on Windows or Linux using `make`. It builds the executable `SCUS_971.98`.
+The `scripts` directory contains scripts for setting up the build environment on Windows and Linux, which involves downloading and installing the required runtime libraries. Follow the instruction for your platform below.
 
-The `scripts` directory contains scripts for setting up the build environment on each platform, which involves downloading and installing the required runtime libraries. Instructions for running the script on each platforms are below.
-
-### Linux/WSL
+#### Linux/WSL
 
 **Prerequisites**: `git`, `make`, `wine-stable`, `p7zip-full`
 
 ```bash
 cd scripts
 ./setup-progd-linux.sh
-cd ..
-make
 ```
 
-### Windows
+#### Windows
 
 **Prerequisites**: `git`, `make`, `7zip`
 
 ```powershell
 cd scripts
 .\setup-progd-windows.bat
-cd ..
+```
+
+## Building
+
+
+The project can be compiled on Windows or Linux using `make`. It builds the executable `SCUS_971.98`.
+
+```bash
 make
 ```
 
 
 ## Running
 
-Running the executable requires the [PCSX2 emulator](https://pcsx2.net/). You must have your own copy of the original game and the BIOS from your own PS2. They are not included in this repo and we cannot provide them for you.
+Running the executable requires [PCSX2 1.7](https://pcsx2.net/). You must have your own copy of the original game and the BIOS from your own PS2. They are not included in this repo and we cannot provide them for you.
 
-Once you have those and you have built the executable, you can run it in one of the following three ways.
+Once you have those and you have built the executable, you can run it in one of these three ways:
 
-### Automatic (script)
+### 1. Autorun script
 
 The `run.sh` script in the `scripts` dir will automatically rebuild the executable and run it in the PCSX2 emulator. To use it, you must first edit the script to set the `PCSX2_PATH` and `ISO_PATH` variables to the correct paths on your system.
 
-### Manual (command line)
+### 2. Run from command line
 
 To boot the elf in PCSX2 from the command line, use the following command:
 
@@ -102,7 +107,7 @@ Replace `pcsx2-1.7.exe` with the path to your PCSX2 v1.7 executable (for Linux i
 - The `-elf` parameter specifies the path to the SCUS_971.98 you built from this project. Replace `...` with the path to this repository. The emulator will use this ELF to boot the game.
 - The last argument is the path to your game ISO. Replace `/path/to/game/backup.iso` with the path to a backup of your own game disc. This is where the game will load the assets from.
 
-### Manual (PCSX2 1.7 GUI)
+### 3. Run from PCSX2 GUI
 
 Add the `bin` dir in this project to your Games folders. When it asks you to search recursively, say yes. The ELF should appear as a game in your library. If it doesn't automatically appear, rename the executable to `SCUS_971.98.elf`.
 
@@ -147,7 +152,7 @@ We use a tool called [Ghidra](https://ghidra-sre.org/) which was created by the 
 
 #### Has this ever been done before?
 
-This is one of the first major PS2 decompilations. We take inspiration from other decomp projects such as the [Super Mario 64 decomp](https://github.com/n64decomp/sm64) for the N64 and the [Breath of the Wild decomp](https://github.com/zeldaret/botw) for the Wii U (the latter being more similar in scope to this project). There is a Jak & Daxter decomp/PC port called [OpenGOAL](https://github.com/open-goal/jak-project), though that game is written in 98% GOAL language rather than C/C++.
+This is one the first ever PS2 decompilations. We draw inspiration from other decomp projects such as the [Super Mario 64 decomp](https://github.com/n64decomp/sm64) for the N64 and the [Breath of the Wild decomp](https://github.com/zeldaret/botw) for the Wii U (the latter being more similar in scope to this project). There is a Jak & Daxter decomp/PC port called [OpenGOAL](https://github.com/open-goal/jak-project), though that game is written in 98% GOAL language rather than C/C++.
 
 #### Is this a matching decomp?
 
