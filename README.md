@@ -77,6 +77,13 @@ cd scripts
 
 ## Building
 
+Before building, you must split the ELF file using Splat. Run the following command to split the ELF:
+
+```bash
+python -m splat split config/sly1.yaml
+```
+
+This will create a new directory `splat` with the disassembled assembly code and generated C files. You can now build the project.
 
 The project can be compiled on Windows or Linux using `make`. It builds the executable `SCUS_971.98`.
 

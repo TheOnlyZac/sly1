@@ -6,8 +6,6 @@
 #ifndef CAT_H
 #define CAT_H
 
-#include <iostream>
-
 typedef unsigned int uint; //todo move to util header
 
 /**

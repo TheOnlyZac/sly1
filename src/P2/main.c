@@ -1,4 +1,5 @@
 #include <main.h>
+#include <spliceutils.h>
 #include <gs.h>
 #include <joy.h>
 #include <clock.h>
@@ -13,7 +14,6 @@
 #include <wipe.h>
 #include <phasemem.h>
 #include <prog.h>
-#include <spliceutils.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -112,7 +112,7 @@ void Startup()
 
 	/* todo game systems should be started by iterating over s_StartupSampler and
      calling each function, updating the progress along the way */
-	StartupSplice();
+	///StartupSplice();
 	StartupCodes();
 	// ...
 
