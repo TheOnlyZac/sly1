@@ -33,18 +33,18 @@ float GLimitAbs(float g, float absLimit)
 	return g;
 }
 
-INCLUDE_ASM(const s32, "P2/util", GSmooth);
+//INCLUDE_ASM(const s32, "P2/util", GSmooth);
 
-INCLUDE_ASM(const s32, "P2/util", GSmoothA);
-INCLUDE_ASM(const s32, "P2/util", func_001EA720); // Part of GSmoothA
+//INCLUDE_ASM(const s32, "P2/util", GSmoothA);
+//INCLUDE_ASM(const s32, "P2/util", func_001EA720); // Part of GSmoothA
 
-INCLUDE_ASM(const s32, "P2/util", RadSmooth);
+//INCLUDE_ASM(const s32, "P2/util", RadSmooth);
 
-INCLUDE_ASM(const s32, "P2/util", RadSmoothA);
+//INCLUDE_ASM(const s32, "P2/util", RadSmoothA);
 
-INCLUDE_ASM(const s32, "P2/util", PosSmooth);
+//INCLUDE_ASM(const s32, "P2/util", PosSmooth);
 
-INCLUDE_ASM(const s32, "P2/util", SmoothMatrix);
+//INCLUDE_ASM(const s32, "P2/util", SmoothMatrix);
 
 int NRandInRange(int nLow, int nHigh)
 {
@@ -118,10 +118,10 @@ int CSolveQuadratic(float a, float b, float c, float* ax)
 
 	ax[1] = -bOver2a - sqrtOver2a;
 	*ax = -bOver2a + sqrtOver2a;
-	return 2; // two solutions: (-b � radical) / 2a
+	return 2; // two solutions: (-b ± radical) / 2a
 }
 
-INCLUDE_ASM(const s32, "P2/util", PrescaleClq);
+//INCLUDE_ASM(const s32, "P2/util", PrescaleClq);
 
 void CalculateSinCos(float angle, float *sin, float *cos)
 {
@@ -215,7 +215,7 @@ float GModPositive(float gDividend, float gDivisor)
 	return result;
 }
 
-INCLUDE_ASM(const s32, "P2/util", FitClq);
+//INCLUDE_ASM(const s32, "P2/util", FitClq);
 
 /**
  * @note Matching 100%
@@ -272,7 +272,8 @@ int SgnCompareG(float* pg1, float* pg2)
 void Force(void *)
 {
 	// This function is empty.
+	return;
 }
 
-INCLUDE_ASM(const s32, "P2/util", MinimizeRange);
-INCLUDE_ASM(const s32, "P2/util", func_001EB458);
+//INCLUDE_ASM(const s32, "P2/util", MinimizeRange);
+//INCLUDE_ASM(const s32, "P2/util", func_001EB458);
