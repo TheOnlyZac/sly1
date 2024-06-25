@@ -19,15 +19,14 @@ PYTHON          ?= python3
 SPLAT           ?= $(PYTHON) -m splat split
 SPLAT_YAML      ?= config/sly1.yaml
 
-
 # Custom compiler flags
 CCDEFINES := -D__BUILD_USER=\"$(USER)\"
-CCINCLUDES = -I$(SCE_COMMON)/include -I$(SCE_EE)/include -I$(IDIR)
+CCINCLUDES = -I$(IDIR) -I$(SCE_COMMON)/include -I$(SCE_EE)/include
 CCFLAGS = -Wall -Wno-unused $(BASEFLAGS) -fno-strict-aliasing $(CCINCLUDES) $(CCDEFINES)
 CXXFLAGS = $(CCFLAGS)
+
 LDLIBS = -L$(SCE_EE)/lib -lsn -lc -lm -lpad -lmpeg -ldma -lipu -lkernl
 LDFLAGS = -nostartfiles -Wl,-Map,$(realpath $(OUTDIR)/$(NAME).map) -T$(SCE_EE)/lib/app.cmd $(LDLIBS)
-
 
 include build/core.mk
 

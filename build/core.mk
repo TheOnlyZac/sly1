@@ -42,14 +42,20 @@ include build/$(TARGET)-$(TARGETTYPE).mk
 .PHONY: objonly objflush
 
 ifeq ($(COMPILEME),)
+
 # Running these targets without a object file to compile is a logic error.
 objonly:
 	$(error No object file provided, please set the COMPILEME variable to the object file you want to compile.)
+
 objflush:
 	$(error No object file provided)
+
 else
+
 objonly: $(OBJDIR)/ $(OBJDIR)/$(COMPILEME)
 	$(info $(OBJDIR)/$(COMPILEME))
+
 objflush:
 	$(RM) $(OBJDIR)/$(COMPILEME)
+
 endif
