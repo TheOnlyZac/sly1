@@ -24,7 +24,7 @@ options:
   undefined_syms_auto_path: config/undefined_syms_auto.txt
 
   # Symbol addrs file generated using a ghidra script
-  #symbol_addrs_path: config/symbol_addrs.txt
+  symbol_addrs_path: config/symbol_addrs.txt
 
   extensions_path: tools/splat_ext
 
@@ -173,7 +173,7 @@ segments:
     - [0x83c18, asm, P2/lo]
     - [0x84cc8, asm, P2/light]
     - [0x86358, asm, P2/lookat]
-    - [0x86758, asm, P2/main]
+    - [0x86758, c, P2/main]
     - [0x86c18, asm, P2/mark]
     - [0x894c0, asm, P2/mat]
 
