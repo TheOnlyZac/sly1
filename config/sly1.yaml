@@ -1,3 +1,4 @@
+# Splat config for Sly 1 NTSC-U (PS2)
 name: Sly Cooper and the Thievius Raccoonus (USA)
 sha1: 57dc305db57932ad3f1122966cdb695d2e62a47a
 
@@ -9,26 +10,30 @@ options:
   platform: ps2
   compiler: GCC
 
+  # Output paths
   asm_path: asm
   src_path: src
   build_path: obj
 
+  # (?)
   find_file_boundaries: False
   disasm_unknown: True
   named_regs_for_c_funcs: False
 
+  # Auto-generate undefined functions and symbols
   create_undefined_funcs_auto: True
   undefined_funcs_auto_path: config/undefined_funcs_auto.txt
-
   create_undefined_syms_auto: True
   undefined_syms_auto_path: config/undefined_syms_auto.txt
 
+  # Manually defined symvols
   symbol_addrs_path: config/symbol_addrs.txt
 
+  # Splat extensions
   extensions_path: tools/splat_ext
 
+  # ELF sections
   section_order: [".text", ".rodata", ".data", ".bss"]
-
   auto_all_sections: [".rodata", ".data", ".bss"]
 
   # Linker script options
@@ -45,13 +50,14 @@ segments:
     vram: 0x100000
     bss_size: 0x3B1304
     subsegments:
+
     - [0x001000, asm, sce/crt0] # starts with 2 nops
     - [0x001178, asm, P2/ps2t/spaprops] # ext should be .ic
 
-    #----------------------------------------
+    #--------------------------------------------------------
     # Splice sources
     # All .cpp files
-    #----------------------------------------
+    #--------------------------------------------------------
     - [0x13698, asm, P2/splice/bif]
     - [0x19d48, asm, P2/splice/eval]
     - [0x1b328, asm, P2/splice/frame]
@@ -66,10 +72,10 @@ segments:
     - [0x1d128, asm, P2/splice/splotheap]
     - [0x1d508, asm, P2/splice/vecmat]
 
-    #----------------------------------------
+    #--------------------------------------------------------
     # P2 sources
     # All .c files (but compiled as c++)
-    #----------------------------------------
+    #--------------------------------------------------------
     - [0x1dbb8, asm, P2/989snd]
     - [0x1f560, asm, P2/brx]
 
@@ -306,23 +312,23 @@ segments:
     # P2/vife.c - vif encoder
     # P2/wibu_ee.c - wibukey encryption
 
-    #----------------------------------------
+    #--------------------------------------------------------
     # Libs
-    #----------------------------------------
+    #--------------------------------------------------------
     - [0xf69c4, asm] # TBD
 
-    #----------------------------------------
+    #--------------------------------------------------------
 
     - [0x112E10, bin, vutext]
 
-    #----------------------------------------
+    #--------------------------------------------------------
     # Rodata
-    #----------------------------------------
+    #--------------------------------------------------------
     - [0x118380, rodata]
 
-    #----------------------------------------
+    #--------------------------------------------------------
     # Data
-    #----------------------------------------
+    #--------------------------------------------------------
     - [0x151580, data]
 
   - [0x17C200, databin]

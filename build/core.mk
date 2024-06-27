@@ -35,26 +35,29 @@ endif
 # Moved here since it doesn't really have to be specified in the target common file.
 OBJDIR := obj/$(CONFIG)
 
+#!-------- (?)
 include build/$(TARGET)-$(TARGETTYPE).mk
 
 # Make targets for allowing "only compile/only remove this object file" workflows
 # Useful for decompilation tooling that wants to use this.
 .PHONY: objonly objflush
 
-ifeq ($(COMPILEME),)
-
 # Running these targets without a object file to compile is a logic error.
+
+ifeq ($(COMPILEME),) # No object file provided
+
 objonly:
 	$(error No object file provided, please set the COMPILEME variable to the object file you want to compile.)
-
 objflush:
 	$(error No object file provided)
 
 else
 
+#* `make objonly COMPILEME=foo.o` - compiles the specified object file
 objonly: $(OBJDIR)/ $(OBJDIR)/$(COMPILEME)
 	$(info $(OBJDIR)/$(COMPILEME))
 
+#* `make objflush COMPILEME=foo.o` - removes the specified object file
 objflush:
 	$(RM) $(OBJDIR)/$(COMPILEME)
 

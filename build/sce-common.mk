@@ -1,5 +1,4 @@
 # SCE common paths
-
 SCE = C:/usr/local/sce
 
 # Unfortunately winepath emits a name that make chokes on

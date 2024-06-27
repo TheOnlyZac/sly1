@@ -13,7 +13,7 @@ VPATH := $(SDIR)
 SRCS := $(shell find $(SDIR) -name '*.cpp' -or -name '*.c')
 
 # Output
-LD_SCRIPT := sly1.ld
+LDSCRIPTS := -T ../../sly1.ld -T ../../config/undefined_syms_auto.txt -T ../../config/undefined_funcs_auto.txt
 
 # Splat configuration
 PYTHON          ?= python3
@@ -28,18 +28,22 @@ CCFLAGS = -Wall -Wno-unused $(BASEFLAGS) -fno-strict-aliasing $(CCINCLUDES) $(CC
 CXXFLAGS = $(CCFLAGS)
 
 LDLIBS = -L$(SCE_EE)/lib -lsn -lc -lm -lpad -lmpeg -ldma -lipu -lkernl
-LDFLAGS = -fuse-ld=mold -nostartfiles -T../../$(LD_SCRIPT) $(LDLIBS)
+LDFLAGS = -fuse-ld=mold -nostartfiles $(LDSCRIPTS) $(LDLIBS)
 
-include build/core.mk
+include build/core.mk #!-------- core.mk
 
+#* Phony targets
 .PHONY: all extract clean clean-products
 
+#* `make all` - builds the final ELF
 all: $(OUTDIR)/$(NAME)
 
+#* `make clean` - removes build artifacts
 clean: clean-products
 	$(RM) -f $(OUTDIR)/*$(NAME).map $(SDIR)/*.o
 	$(RM) -rf $(ASM_PATH) $(ASSET_PATH) $(SPLAT_C_PATH) $(LD_SCRIPT)
 
+#* `make extract` - runs splat to extract the assets
 extract:
 	$(RM) -r asm/ $(LD_SCRIPT)
 	$(SPLAT) $(SPLAT_YAML) $(SPLAT_FLAGS)
