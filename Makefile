@@ -4,7 +4,8 @@ TARGETTYPE := bin
 
 ASM_PATH 	:= asm/
 ASSET_PATH 	:= assets/
-SPLAT_C_PATH := c/
+SPLAT_C_PATH := src/
+ASMS := $(shell find $(ASM_PATH) -name '*.s')
 
 SDIR = src/P2
 IDIR = include
@@ -22,11 +23,12 @@ SPLAT_YAML      ?= config/sly1.yaml
 # Custom compiler flags
 CCDEFINES := -D__BUILD_USER=\"$(USER)\"
 CCINCLUDES = -I$(IDIR) -I$(SCE_COMMON)/include -I$(SCE_EE)/include
+
 CCFLAGS = -Wall -Wno-unused $(BASEFLAGS) -fno-strict-aliasing $(CCINCLUDES) $(CCDEFINES)
 CXXFLAGS = $(CCFLAGS)
 
 LDLIBS = -L$(SCE_EE)/lib -lsn -lc -lm -lpad -lmpeg -ldma -lipu -lkernl
-LDFLAGS = -nostartfiles -Wl,-Map,$(realpath $(OUTDIR)/$(NAME).map) -T$(SCE_EE)/lib/app.cmd $(LDLIBS)
+LDFLAGS = -fuse-ld=mold -nostartfiles -T../../$(LD_SCRIPT) $(LDLIBS)
 
 include build/core.mk
 

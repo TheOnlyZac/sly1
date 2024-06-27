@@ -1,7 +1,7 @@
 include build/ee-common.mk
 
 OBJS := $(OBJDIR)/crt0.o $(OBJS)
-OUTDIR := bin/$(CONFIG)
+OUTDIR := out/$(CONFIG)
 
 #CRT0_S = $(ASM_PATH)sce/crt0.s
 

@@ -11,7 +11,7 @@ options:
 
   asm_path: asm
   src_path: src
-  build_path: bin
+  build_path: obj
 
   find_file_boundaries: False
   disasm_unknown: True
@@ -23,7 +23,6 @@ options:
   create_undefined_syms_auto: True
   undefined_syms_auto_path: config/undefined_syms_auto.txt
 
-  # Symbol addrs file generated using a ghidra script
   symbol_addrs_path: config/symbol_addrs.txt
 
   extensions_path: tools/splat_ext
@@ -32,7 +31,10 @@ options:
 
   auto_all_sections: [".rodata", ".data", ".bss"]
 
-subalign: 0x4
+  # Linker script options
+  subalign: null
+  ld_align_section_vram_end: False
+  ld_align_segment_vram_end: False
 
 segments:
   - [0, databin, elf_header]
@@ -316,12 +318,12 @@ segments:
     #----------------------------------------
     # Rodata
     #----------------------------------------
-    #- [0x118380, rodata]
+    - [0x118380, rodata]
 
     #----------------------------------------
     # Data
     #----------------------------------------
-    #- [0x151580, data]
+    - [0x151580, data]
 
   - [0x17C200, databin]
   - [0x1A20D0]

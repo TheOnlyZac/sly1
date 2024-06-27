@@ -4,10 +4,12 @@ ifeq ($(WINE),y)
 CC := wine $(SCE_EE)/gcc/bin/ee-gcc.exe
 CXX := wine $(SCE_EE)/gcc/bin/ee-gcc.exe
 CRT0_S := $(SCE_WINE)/ee/lib/crt0.s
+AS := wine $(SCE_WINE)/ee/bin/ee-as.exe
 else
 CC := $(SCE_EE_GCC)/bin/ee-gcc.exe
 CXX := $(SCE_EE_GCC)/bin/ee-gcc.exe
 CRT0_S := $(SCE_EE)/lib/crt0.s
+AS := $(SCE_EE)/bin/ee-as.exe
 endif
 
 # Rewrite the object files to maintain directory structure
