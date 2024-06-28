@@ -1,11 +1,12 @@
 # Sly Cooper and the Thievius Raccoonus
 
 <!-- shields.io badges -->
-[![Build status][build-badge]][build-url] <!--[![AppVeyor tests][tests-badge]][tests-url]--> [![Discord Channel][discord-badge]][discord-url] [![Contributors][contributors-badge]][contributors-url] [![Docs][docs-badge]][docs-url] [![Wiki][wiki-badge]][wiki-url]
+<!--[![Build status][build-badge]][build-url]--> <!--[![AppVeyor tests][tests-badge]][tests-url]-->
+[![Discord Channel][discord-badge]][discord-url] [![Contributors][contributors-badge]][contributors-url] [![Docs][docs-badge]][docs-url] [![Wiki][wiki-badge]][wiki-url]
 
 <!-- Build status badge -->
-<!--[build-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1/branch/main
-[build-badge]: https://ci.appveyor.com/api/projects/status/800esepa77ctpv5p/branch/main?svg=true-->
+[build-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1/branch/main
+[build-badge]: https://ci.appveyor.com/api/projects/status/800esepa77ctpv5p/branch/main?svg=true
 
 <!-- Test status badge -->
 [tests-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1/branch/main/tests
@@ -29,7 +30,7 @@
 
 [<img src="logo.png" style="margin:7px" align="right" width="33%" alt="Sly 1 Decompilation Logo by Cooper941">][docs-url]
 
-This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoonus*](https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus) for the PlayStation 2. It builds the NTSC-U version of the game, `SCUS-971.98` (SHA1: `57dc305d`).
+This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoonus*](https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus) for the PlayStation 2. It builds the NTSC-U version of the game, `SCUS_971.98` (SHA1: `57dc305d`).
 
 The goal of this project is to better understand the game engine. This repo does not contain any game assets or code from the game's executable, and it requires your own copy of the game to run.
 
@@ -51,14 +52,11 @@ cd sly1
 
 ### Install Python packages
 
-Splat is used for binary splitting, and Ninja is used for building the project. Install them with pip:
+Splat is used for binary splitting, and Ninja is used for building the project. You will need Python 3. Install dependencies with pip:
 
 ```bash
 pip install -U -r requirements.txt
 ```
-
-After setting up the repository and installing the required packages, you will need to extract the ELF file from your own legally obtained copy of the game. Mount the disk on your PC and copy the file `SCUS_971.98` from the root directory of the disc to the `disc` directory of this project.
-
 
 ### Setup build environment
 
@@ -83,6 +81,11 @@ cd scripts
 cd scripts
 .\setup-progd-windows.bat
 ```
+
+### Setup binary splitting
+
+To build the ELF , you will need to extract the original ELF file from your own legally obtained copy of the game. Mount the disk on your PC and copy the file `SCUS_971.98` from the root directory of the disc to the `disc` directory of this project.
+
 
 ## Building
 
@@ -141,6 +144,7 @@ The project is divided into the following directories:
 * `docs` - Documentation and instructions for contributing.
 * `test` - Handwritten unit tests for the decomp code.
 * `tools` - Utilities for function matching.
+* `reference` - Reference files for functions and data structures.
 
 When you build the executable, the following directories will be created:
 
