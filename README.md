@@ -4,8 +4,8 @@
 [![Build status][build-badge]][build-url] <!--[![AppVeyor tests][tests-badge]][tests-url]--> [![Discord Channel][discord-badge]][discord-url] [![Contributors][contributors-badge]][contributors-url] [![Docs][docs-badge]][docs-url] [![Wiki][wiki-badge]][wiki-url]
 
 <!-- Build status badge -->
-[build-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1/branch/main
-[build-badge]: https://ci.appveyor.com/api/projects/status/800esepa77ctpv5p/branch/main?svg=true
+<!--[build-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1/branch/main
+[build-badge]: https://ci.appveyor.com/api/projects/status/800esepa77ctpv5p/branch/main?svg=true-->
 
 <!-- Test status badge -->
 [tests-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1/branch/main/tests

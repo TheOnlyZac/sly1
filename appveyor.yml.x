@@ -1,5 +1,8 @@
 version: 1.0.{build}
 
+# Builds disabled pending compatibility with the new build system (splat)
+build: off
+
 image:
   - Ubuntu2004
 
