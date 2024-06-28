@@ -1,7 +1,8 @@
 # Sly Cooper and the Thievius Raccoonus
 
 <!-- shields.io badges -->
-[![Build status][build-badge]][build-url] <!--[![AppVeyor tests][tests-badge]][tests-url]--> [![Discord Channel][discord-badge]][discord-url] [![Contributors][contributors-badge]][contributors-url] [![Docs][docs-badge]][docs-url] [![Wiki][wiki-badge]][wiki-url]
+<!--[![Build status][build-badge]][build-url]--> <!--[![AppVeyor tests][tests-badge]][tests-url]-->
+[![Discord Channel][discord-badge]][discord-url] [![Contributors][contributors-badge]][contributors-url] [![Docs][docs-badge]][docs-url] [![Wiki][wiki-badge]][wiki-url]
 
 <!-- Build status badge -->
 [build-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1/branch/main
@@ -27,93 +28,129 @@
 [wiki-url]: https://slymods.info
 [wiki-badge]: https://img.shields.io/badge/wiki-slymods.info-2C4AA8
 
-[<img src="logo.png" style="margin:7px" align="right" width="33%">][docs-url]
+[<img src="logo.png" style="margin:7px" align="right" width="33%" alt="Sly 1 Decompilation Logo by Cooper941">][docs-url]
 
-This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoonus*](https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus) for the PlayStation 2. It is based on the NTSC-U version of the game (`SCUS-971.98`).
+This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoonus*](https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus) for the PlayStation 2. It builds the NTSC-U version of the game, `SCUS_971.98` (SHA1: `57dc305d`).
 
 The goal of this project is to better understand the game engine. This repo does not contain any game assets or code from the game's executable, and it requires your own copy of the game to run.
 
 Documentation of the code can be found at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1). For further reading on the game's internal structures and mechanics, visit the [SlyMods Wiki][wiki-url].
 
-New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, check out [CONTRIBUTING.md](/CONTRIBUTING.MD) and feel free to [join our Discord server][discord-url] for guidance.
+New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our Discord server][discord-url] for guidance.
+
+
+## Setup
+
+### Clone the repo
+
+First clone the repository to your local machine:
+
+```bash
+git clone https://github.com/TheOnlyZac/sly1
+cd sly1
+```
+
+### Install Python packages
+
+Splat is used for binary splitting, and Ninja is used for building the project. You will need Python 3. Install dependencies with pip:
+
+```bash
+pip install -U -r requirements.txt
+```
+
+### Setup build environment
+
+The `scripts` directory contains scripts for setting up the build environment on Windows and Linux, which automatically download and install the required runtime libraries. Follow the instruction for your platform below.
+
+#### Linux/WSL
+
+**Prerequisites**: `git`, `make`, `wine-stable`, `p7zip-full`, `binutils-mips-linux-gnu`
+
+```bash
+cd scripts
+./setup-progd-linux.sh
+```
+
+#### Windows
+
+**Prerequisites**: `git`, `make`, `7zip`
+
+*Note: Building Windows is untested with the new build system. If you encounter issues, you can still build on Windows using WSL.*
+
+```powershell
+cd scripts
+.\setup-progd-windows.bat
+```
+
+### Setup binary splitting
+
+To build the ELF , you will need to extract the original ELF file from your own legally obtained copy of the game. Mount the disk on your PC and copy the file `SCUS_971.98` from the root directory of the disc to the `disc` directory of this project.
 
 
 ## Building
 
-The project can be built on Windows or Linux using `make`. It will build the executable `SCUS_971.98`.
+The project can be compiled on Windows (using WSL) or Linux. It builds the executable `SCUS_971.98`.
 
-The `scripts` directory contains scripts for setting up the build environment on each platform, which involves downloading and installing the required runtime libraries.
-
-### Linux/WSL
-
-**Prerequisites**: `git`, `make`, `wine-stable`, `p7zip-full`
+First configure the project:
 
 ```bash
-git clone https://github.com/TheOnlyZac/sly1
-cd sly1/scripts
-./setup-progd-linux.sh
-cd ..
-make
+python configure.py
 ```
 
-### Windows
+Then build with Ninja:
 
-**Prerequisites**: `git`, `make`, `7zip`
-
-```powershell
-git clone https://github.com/TheOnlyZac/sly1
-cd sly1\scripts
-.\setup-progd-windows.bat
-cd ..
-make
+```bash
+ninja
 ```
 
 
 ## Running
 
-Running the executable requires the [PCSX2 emulator](https://pcsx2.net/). You must have your own copy of the original game and the BIOS from your own PS2. They are not included in this repo and we cannot provide them for you.
+Running the executable requires [PCSX2 1.7](https://pcsx2.net/). You must have your own copy of the original game and the BIOS from your own PS2. They are not included in this repo and we cannot provide them for you.
 
-### Automatic (script)
+Once you have those and you have built the executable, you can run it in one of these three ways:
+
+### 1. Autorun script
 
 The `run.sh` script in the `scripts` dir will automatically rebuild the executable and run it in the PCSX2 emulator. To use it, you must first edit the script to set the `PCSX2_PATH` and `ISO_PATH` variables to the correct paths on your system.
 
-### Command line
+### 2. Run from command line
 
-To boot the elf in PCSX2 from the command line, use one of the following commands:
-
-```bash
-pcsx2-1.6 --console --elf="/path/to/SCUS_971.98" "/path/to/game/backup.iso"
-```
+To boot the elf in PCSX2 from the command line, use the following command:
 
 ```bash
-pcsx2-1.7 -elf "/path/to/SCUS_971.98" "/path/to/game/backup.iso"
+pcsx2-1.7.exe -elf ".../sly1/bin/debug/SCUS_971.98" "/path/to/game/backup.iso"
 ```
 
-Replace `pcsx2-1.6` or `pcsx2-1.7` with the path to your PCSX2 executable.
-* The `elf` flag is required and specifies the path to the elf file.
-* The last argument is the path to your game ISO.
+Replace `pcsx2-1.7.exe` with the path to your PCSX2 v1.7 executable (for Linux it will be an **.appimage** file).
+- The `-elf` parameter specifies the path to the SCUS_971.98 you built from this project. Replace `...` with the path to this repository. The emulator will use this ELF to boot the game.
+- The last argument is the path to your game ISO. Replace `/path/to/game/backup.iso` with the path to a backup of your own game disc. This is where the game will load the assets from.
 
-### PCSX2 GUI
+### 3. Run from PCSX2 GUI
 
-* For PCSX2 1.6, click `System > Run ELF...`, change the file type to "All Files", and browse for `SCUS_971.98` in the `bin` dir of the project.
-* For PCSX2 1.7, add the `bin` dir to your Games folders and the ELF will show up as a game in your library. When it asks you to search recursively, say yes. You may have to rename the elf to end in `.elf` for it to automatically detect it.
+Copy `SCUS_971.98` from the `out` dir to your PCSX2 Games folder and rename it to `SCUS_971.98.elf`. Right click on the game in PCSX2 and click "Properties...". Go to "Disc Path", click "Browse", and select the ISO of your game backup. Then click "Close" and start the game as normal.
 
 
 ## Project Structure
 
-The project is split into the following directories.
+The project is divided into the following directories:
 
-* `src` - Contains the decompiled source code.
+* `include` - Header files for the game engine.
+* `src` - The decompiled source code.
   * All of the code for the game engine is in `src/P2`.
-  * Code for the game's scripting engine, Splice, is in `src/P2/splice`.
-* `test` - Contains subdirectories for each game system. Each subdirectory contains unit tests for that system.
-* `build` - Makefiles used to build the executable.
+  * Code for the game's scripting engine is in `src/P2/splice`.
+* `config` - Config files for Splat (binary splitting tool).
 * `scripts` - Utility scripts for setting up the build environment.
+* `docs` - Documentation and instructions for contributing.
 * `tools` - Utilities for function matching.
+* `reference` - Reference files for functions and data structures.
 
-Additionally, when you build the executable, the following directories will be created.
+When you build the executable, the following directories will be created:
+
+* `asm` - Disassembled assembly code from the elf.
+* `assets`- Binary data extracted from the elf.
 * `obj` - Compiled object files.
-* `bin` - Compiled executables.
+* `out` - Compiled executables.
 
 
 ## FAQ
@@ -128,15 +165,15 @@ We use a tool called [Ghidra](https://ghidra-sre.org/) which was created by the 
 
 #### Has this ever been done before?
 
-This is one of the first major PS2 decompilations. We take inspiration from other decomp projects such as the [Super Mario 64 decomp](https://github.com/n64decomp/sm64) for the N64 and the [Breath of the Wild decomp](https://github.com/zeldaret/botw) for the Wii U (the latter being more similar in scope to this project). There is a Jak & Daxter decomp/PC port called [OpenGOAL](https://github.com/open-goal/jak-project), though that game is written in 98% GOAL language rather than C/C++.
+This is one the first ever PS2 decompilations. We draw inspiration from other decomp projects such as the [Super Mario 64 decomp](https://github.com/n64decomp/sm64) for the N64 and the [Breath of the Wild decomp](https://github.com/zeldaret/botw) for the Wii U (the latter being more similar in scope to this project). There is a Jak & Daxter decomp/PC port called [OpenGOAL](https://github.com/open-goal/jak-project), though that game is written in 98% GOAL language rather than C/C++.
 
 #### Is this a matching decomp?
 
-This is the first PS2 decompilation project to target the PS2 and utilize function matching. Most of the decompiled code is not yet matching, and we do not currently require it, but the ultimate goal is to match as many functions as possible.
+This was the first PS2 decompilation project that aimed to target the PS2 and utilize function matching. The ultimate goal is to match as many functions as possible.
 
 #### How can I help?
 
-If you want to contribute, read through [CONTRIBUTING.md](/CONTRIBUTING.md) and feel free to [join our discord server](https://discord.gg/gh5xwfj) if you have any questions!
+If you want to contribute, read through [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our discord server](https://discord.gg/gh5xwfj) if you have any questions!
 
 
 ## Star History

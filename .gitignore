@@ -1,14 +1,25 @@
 # Project-specific files
+SCUS_971.98
 *[Ss][Cc][Uu][Ss]*
 *971*98*
+SCUS_*.*
+*.elf
+
 prodg_sce*
+tools/cc/*
 usr/
 sce/
-docs/
 
-# Startup scripts (so we don't accidentally push them with paths set)
-scripts/run.sh
-scripts/run.bat
+html/
+functions.txt
+
+# Splat files
+splat/
+assets/
+asm/
+c/
+undefined_funcs*.txt
+undefined_syms*.txt
 
 ## Binary/object products
 **/bin/
@@ -45,8 +56,14 @@ scripts/run.bat
 *.app
 *.elf
 
+# Linker scripts
+*.ld
+
+# Python
+env/
+__pycache__/
+*.pyc
+
 # Miscellaneous
 .vscode
 temp/
-__pycache__/
-*.pyc

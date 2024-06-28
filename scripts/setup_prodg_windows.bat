@@ -52,6 +52,10 @@ REM Extract the SDK into the C: drive
 echo Extracting SDK to C:\...
 7z x -y prodg_sce%SDK_VER%.7z -oC:\ -bso0 -bse2 -bsp0
 
+REM Copy the compiler to tools/cc/ee-gcc2.9-991111/bin
+echo Copying compiler to tools dir...
+copy C:\usr\local\sce\ee\gcc\bin\ee-gcc.exe tools\cc\ee-gcc2.9-991111
+
 ::echo Removing temporary files
 echo Removing temporary files...
 del prodg_sce%SDK_VER%.7z

@@ -1,7 +1,10 @@
 version: 1.0.{build}
 
+# Builds disabled pending compatibility with the new build system (splat)
+build: off
+
 image:
-  - Ubuntu
+  - Ubuntu2004
 
 platform:
   - x64
@@ -16,9 +19,11 @@ install:
   - sudo sh install_dependencies.sh
   - sh setup_progd_linux.sh
   - cd ..
+  - pip3 install -r requirements.txt
 
 build_script:
-  - make
+  - python3 configure.py
+  - ninja
 
 test_script:
   - echo "No tests configured"
