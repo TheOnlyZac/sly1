@@ -40,26 +40,33 @@ New contributors are welcome and encouraged to make a pull request! If you would
 
 ## Setup
 
-### Splat
+### Clone the repo
 
-Splat is used for binary splitting. To install it, clone the repository and install the Python packages with pip:
+First clone the repository to your local machine:
 
 ```bash
 git clone https://github.com/TheOnlyZac/sly1
 cd sly1
+```
+
+### Install Python packages
+
+Splat is used for binary splitting, and Ninja is used for building the project. Install them with pip:
+
+```bash
 pip install -U -r requirements.txt
 ```
 
 After setting up the repository and installing the required packages, you will need to extract the ELF file from your own legally obtained copy of the game. Mount the disk on your PC and copy the file `SCUS_971.98` from the root directory of the disc to the `disc` directory of this project.
 
 
-### Build Environment
+### Setup build environment
 
-The `scripts` directory contains scripts for setting up the build environment on Windows and Linux, which involves downloading and installing the required runtime libraries. Follow the instruction for your platform below.
+The `scripts` directory contains scripts for setting up the build environment on Windows and Linux, which automatically download and install the required runtime libraries. Follow the instruction for your platform below.
 
 #### Linux/WSL
 
-**Prerequisites**: `git`, `make`, `wine-stable`, `p7zip-full`
+**Prerequisites**: `git`, `make`, `wine-stable`, `p7zip-full`, `binutils-mips-linux-gnu`
 
 ```bash
 cd scripts
@@ -70,6 +77,8 @@ cd scripts
 
 **Prerequisites**: `git`, `make`, `7zip`
 
+*Note: Building on Windows is temporarily not working. You can still build on Windows using WSL.*
+
 ```powershell
 cd scripts
 .\setup-progd-windows.bat
@@ -77,18 +86,18 @@ cd scripts
 
 ## Building
 
-The project can be compiled on Windows or Linux using `make`. It builds the executable `SCUS_971.98`.
+The project can be compiled on Windows (using WSL) or Linux. It builds the executable `SCUS_971.98`.
 
-Before building, you must split the ELF file using Splat. This is defined in the `Makefile` as the `extract` target:
+First configure the project:
 
 ```bash
-make extract
+python configure.py
 ```
 
-This will create a new directory `asm` with the disassembled assembly code and generated C files. You can now build the project:
+Then build with Ninja:
 
 ```bash
-make
+ninja
 ```
 
 
@@ -136,15 +145,10 @@ The project is divided into the following directories:
 
 When you build the executable, the following directories will be created:
 
-* `obj` - Compiled object files.
-* `bin` - Compiled executables.
-
-When you use splat to split the elf, the following directories will be created:
-
 * `assets`- Binary data extracted from the elf.
-* `splat` - Output of the binary splitting tool.
-  * `asm` - Disassembled assembly code.
-  * `src` - Generated C files.
+* `asm` - Disassembled assembly code from the elf.
+* `obj` - Compiled object files.
+* `out` - Compiled executables.
 
 
 ## FAQ
@@ -163,7 +167,7 @@ This is one the first ever PS2 decompilations. We draw inspiration from other de
 
 #### Is this a matching decomp?
 
-This is the first PS2 decompilation project to target the PS2 and utilize function matching. Most of the decompiled code is not yet matching, and we do not currently require it, but the ultimate goal is to match as many functions as possible.
+This is the first PS2 decompilation project to target the PS2 and utilize function matching. The project is not 100% matching, but the ultimate goal is to match as many functions as possible.
 
 #### How can I help?
 
