@@ -74,7 +74,7 @@ compiler_type = "gcc"
 """)
 
 #MARK: Build
-def build_stuff(linker_entries: List[LinkerEntry]):
+def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False):
     """
     Build the objects and the final ELF file.
     """
@@ -195,12 +195,15 @@ def build_stuff(linker_entries: List[LinkerEntry]):
         PRE_ELF_PATH,
     )
 
-    ninja.build(
-        ELF_PATH + ".ok",
-        "sha1sum",
-        "checksum.sha1",
-        implicit=[ELF_PATH],
-    )
+    if not skip_checksum:
+        ninja.build(
+            ELF_PATH + ".ok",
+            "sha1sum",
+            "checksum.sha1",
+            implicit=[ELF_PATH],
+        )
+    else:
+        print("Skipping checksum step")
 
 #MARK: Main
 def main():
@@ -214,17 +217,25 @@ def main():
         help="Clean extraction and build artifacts",
         action="store_true",
     )
+    parser.add_argument(
+        "-s",
+        "--skip-checksum",
+        help="Skip the checksum step",
+        action="store_true",
+    )
     args = parser.parse_args()
 
     if args.clean:
         clean()
-        return
 
     split.main([YAML_FILE], modes="all", verbose=False)
 
     linker_entries = split.linker_writer.entries
 
-    build_stuff(linker_entries)
+    if args.skip_checksum:
+        build_stuff(linker_entries, skip_checksum=True)
+    else:
+        build_stuff(linker_entries)
 
     write_permuter_settings()
 
