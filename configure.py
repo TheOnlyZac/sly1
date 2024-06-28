@@ -214,7 +214,13 @@ def main():
     parser.add_argument(
         "-c",
         "--clean",
-        help="Clean extraction and build artifacts",
+        help="Clean artifacts and build",
+        action="store_true",
+    )
+    parser.add_argument(
+        "-C",
+        "--only-clean",
+        help="Only clean artifacts",
         action="store_true",
     )
     parser.add_argument(
@@ -225,8 +231,10 @@ def main():
     )
     args = parser.parse_args()
 
-    if args.clean:
+    if args.clean or args.only_clean:
         clean()
+        if args.only_clean:
+            return
 
     split.main([YAML_FILE], modes="all", verbose=False)
 

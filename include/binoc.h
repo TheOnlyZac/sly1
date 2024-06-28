@@ -53,4 +53,9 @@ struct CTextBox
     enum JV m_jv;
 };
 
+void CTextBox__SetPos(struct CTextBox *this,float x,float y);
+void CTextBox__SetSize(struct CTextBox *this,float dx,float dy);
+void CTextBox__SetHorizontalJust(struct CTextBox* this, JH jh);
+void CTextBox__SetVerticalJust(struct CTextBox* this, JV jv);
+
 #endif /* BINOC_H */

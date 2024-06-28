@@ -6,6 +6,18 @@ StartupVU0 = 0x185A58; // type:func
 StartupVU1 = 0x185AC8; // type:func
 Startup = 0x185B38; // type:func
 
+// clock.c
+SetClockRate = 0x142ED0; // type:func
+MarkClockTick = 0x142F10; // type:func
+MarkClockTickRealOnly = 0x143030; // type:func
+ResetClock = 0x1430B8; // type:func
+SetClockEnabled = 0x1430C0; // type:func
+StartupClock = 0x1430C8; // type:func
+TickNow = 0x1430F8; // type:func
+
+g_rtClock = 0x261850; // size:0x4
+g_clock = 0x261858; // size:0x1c
+
 // binoc.c
 InitBei = 0x130F48; // type:func
 GEvaluateBei = 0x131000; // type:func
