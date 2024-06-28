@@ -16,7 +16,7 @@ from splat.segtypes.linker_entry import LinkerEntry
 
 #MARK: Constants
 ROOT = Path(__file__).parent.resolve()
-TOOLS_DIR = str(Path.home() / ".wine/drive_c/usr/local/sce/ee").replace(os.sep, '/')
+TOOLS_DIR = ROOT / "tools"
 OUTDIR = "out"
 
 YAML_FILE = "config/sly1.yaml"
@@ -28,15 +28,13 @@ PRE_ELF_PATH = f"{OUTDIR}/{BASENAME}.elf"
 
 COMMON_INCLUDES = "-Iinclude -isystem include/sdk/ee -isystem include/gcc"
 
-CC_DIR = f"{TOOLS_DIR}/gcc/bin"
-COMMON_COMPILE_FLAGS = "-O2 -G0 $g"
+CC_DIR = f"{TOOLS_DIR}/cc/ee-gcc2.9-991111/bin"
+COMMON_COMPILE_FLAGS = "-O2 -G0"
 
 WINE = "wine"
 
-GAME_GCC_CMD = f"{TOOLS_DIR}/gcc/bin/ee-gcc -c -B {TOOLS_DIR}/gcc/bin/ee- {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $in"
-COMPILE_CMD = f"{WINE} {GAME_GCC_CMD} -S -o - | {WINE} {TOOLS_DIR}/gcc/bin/ee-as {COMMON_COMPILE_FLAGS} -EL -mabi=eabi"
-
-NO_G_FILES = []
+GAME_GCC_CMD = f"{CC_DIR}/ee-gcc.exe -c {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $in"
+COMPILE_CMD = f"{WINE} {GAME_GCC_CMD}"
 
 def clean():
     """
@@ -168,11 +166,7 @@ def build_stuff(linker_entries: List[LinkerEntry]):
         ):
             build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.c.CommonSegC):
-            if entry.src_paths[0].name in NO_G_FILES:
-                g = ""
-            else:
-                g = "-g"
-            build(entry.object_path, entry.src_paths, "cc", variables={"g": g})
+            build(entry.object_path, entry.src_paths, "cc")
         elif isinstance(seg, splat.segtypes.common.databin.CommonSegDatabin):
             build(entry.object_path, entry.src_paths, "as")
         else:
