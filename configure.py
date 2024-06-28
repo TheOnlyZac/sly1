@@ -1,5 +1,4 @@
 #! /usr/bin/env python3
-
 import argparse
 import os
 import shutil
@@ -29,11 +28,13 @@ GAME_CC_DIR = f"{TOOLS_DIR}/gcc/bin"
 LIB_CC_DIR = f"{TOOLS_DIR}/lib"
 COMMON_COMPILE_FLAGS = "-O2 -G0 $g"
 
-GAME_GCC_CMD = f"wine {TOOLS_DIR}/gcc/bin/ee-gcc -c -B {TOOLS_DIR}/gcc/bin/ee- {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $in"
+WINE = "wine"
 
-GAME_COMPILE_CMD = f"wine {GAME_GCC_CMD} -S -o - | wine {TOOLS_DIR}/gcc/bin/ee-as {COMMON_COMPILE_FLAGS} -EL -mabi=eabi"
+GAME_GCC_CMD = f"{TOOLS_DIR}/gcc/bin/ee-gcc -c -B {TOOLS_DIR}/gcc/bin/ee- {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $in"
 
-LIB_COMPILE_CMD = f"wine {TOOLS_DIR}/ee-gcc -c -isystem include/gcc-991111 {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS}"
+GAME_COMPILE_CMD = f"{WINE} {GAME_GCC_CMD} -S -o - | {WINE} {TOOLS_DIR}/gcc/bin/ee-as {COMMON_COMPILE_FLAGS} -EL -mabi=eabi"
+
+LIB_COMPILE_CMD = f"{WINE} {TOOLS_DIR}/gcc/bin/ee-gcc -c -isystem include/gcc-991111 {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS}"
 
 NO_G_FILES = [
 ]
@@ -43,6 +44,7 @@ def clean():
         os.remove(".splache")
     shutil.rmtree("asm", ignore_errors=True)
     shutil.rmtree("assets", ignore_errors=True)
+    shutil.rmtree("obj", ignore_errors=True)
     shutil.rmtree("out", ignore_errors=True)
 
 
@@ -68,9 +70,12 @@ def build_stuff(linker_entries: List[LinkerEntry]):
         object_paths: Union[Path, List[Path]],
         src_paths: List[Path],
         task: str,
-        variables: Dict[str, str] = {},
+        variables: Dict[str, str] = None,
         implicit_outputs: List[str] = [],
     ):
+        if variables is None:
+            variables = {}
+
         if not isinstance(object_paths, list):
             object_paths = [object_paths]
 
@@ -87,12 +92,12 @@ def build_stuff(linker_entries: List[LinkerEntry]):
                 implicit_outputs=implicit_outputs,
             )
 
-    ninja = ninja_syntax.Writer(open(str(ROOT / "build.ninja"), "w"), width=9999)
+    ninja = ninja_syntax.Writer(open(str(ROOT / "build.ninja"), "w", encoding="utf-8"), width=9999)
 
     # Rules
     cross = "mips-linux-gnu-"
 
-    ld_args = f"-EL -T config/undefined_syms_auto.txt -T config/undefined_funcs_auto.txt -Map $mapfile -T $in -o $out"
+    ld_args = "-EL -T config/undefined_syms_auto.txt -T config/undefined_funcs_auto.txt -Map $mapfile -T $in -o $out"
 
     ninja.rule(
         "as",
@@ -174,8 +179,7 @@ def build_stuff(linker_entries: List[LinkerEntry]):
         PRE_ELF_PATH,
     )
 
-
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description="Configure the project")
     parser.add_argument(
         "-c",
@@ -187,6 +191,7 @@ if __name__ == "__main__":
 
     if args.clean:
         clean()
+        return
 
     split.main([YAML_FILE], modes="all", verbose=False)
 
@@ -195,3 +200,6 @@ if __name__ == "__main__":
     build_stuff(linker_entries)
 
     write_permuter_settings()
+
+if __name__ == "__main__":
+    main()
