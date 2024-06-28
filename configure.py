@@ -193,6 +193,13 @@ def build_stuff(linker_entries: List[LinkerEntry]):
         PRE_ELF_PATH,
     )
 
+    ninja.build(
+        ELF_PATH + ".ok",
+        "sha1sum",
+        "checksum.sha1",
+        implicit=[ELF_PATH],
+    )
+
 #MARK: Main
 def main():
     """
