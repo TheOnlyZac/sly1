@@ -16,9 +16,11 @@ install:
   - sudo sh install_dependencies.sh
   - sh setup_progd_linux.sh
   - cd ..
+  - pip3 install -r requirements.txt
 
 build_script:
-  - make
+  - python3 configure.py
+  - ninja
 
 test_script:
   - echo "No tests configured"
