@@ -15,6 +15,8 @@ options:
   src_path: src
   build_path: obj
 
+  rodata_string_guesser_level: 0 # improve string detection
+
   # (?)
   find_file_boundaries: False
   disasm_unknown: True
@@ -37,12 +39,12 @@ options:
   auto_all_sections: [".rodata", ".data", ".bss"]
 
   # Linker script options
-  #subalign: null
+  subalign: 4
   #ld_align_section_vram_end: False
   #ld_align_segment_vram_end: False
 
 segments:
-  #- [0, databin, elf_header]
+  - [0, databin, elf_header]
 
   - name: main
     type: code
@@ -318,7 +320,7 @@ segments:
 
     #--------------------------------------------------------
 
-    - [0x112E10, databin, vutext] #MARK: vutext
+    - [0x112E10, textbin, vutext] #MARK: vutext
 
     #--------------------------------------------------------
     # Rodata
@@ -329,6 +331,7 @@ segments:
     # Data
     #--------------------------------------------------------
     - [0x151580, data] #MARK: data
+    - [0x191D00, databin]
 
-  - [0x191cfb, databin]
+  - [0x1A1C70, databin]
   - [0x1A20D0]
