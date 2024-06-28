@@ -3,7 +3,7 @@ name: Sly Cooper and the Thievius Raccoonus (USA)
 sha1: 57dc305db57932ad3f1122966cdb695d2e62a47a
 
 options:
-  basename: sly1
+  basename: SCUS_971.98
   target_path: disc/SCUS_971.98
   elf_path: SCUS_971.98
   base_path: ../
@@ -42,7 +42,7 @@ options:
   ld_align_segment_vram_end: False
 
 segments:
-  - [0, databin, elf_header]
+  #- [0, databin, elf_header]
 
   - name: main
     type: code
@@ -63,7 +63,7 @@ segments:
     - [0x1b328, asm, P2/splice/frame]
     - [0x1b678, asm, P2/splice/gc]
     - [0x1be78, asm, P2/splice/method]
-    - [0x1bf98, asm, P2/splice/pair]
+    #- [0x1bf98, asm, P2/splice/pair]
     - [0x1bf98, asm, P2/splice/proc]
     - [0x1c008, asm, P2/splice/ref]
     - [0x1ca28, asm, P2/splice/serialize]
@@ -331,5 +331,5 @@ segments:
     #--------------------------------------------------------
     - [0x151580, data]
 
-  - [0x17C200, databin]
+  - [0x191cfb, databin]
   - [0x1A20D0]
