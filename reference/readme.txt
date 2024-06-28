@@ -1,5 +1,8 @@
-The P2 directory contains the source code for the game engine. The following is a list of all known source code file names:
+This directory contains reference files you can use to help with decompiling game functions. They are all source code files we wrote by hand before we used Splat to decompile and reassemble the game to a byte-matching executable. Because of this, none of the functions in this directory is matching, but we tried to make them as close as possible to the original game functions.
 
+The include directory contains header files that are used by the source files in the src dir. Many of the short data structures/enums are correct and can be copied directly into the actual decomp. The longer ones are probably not correct (missing fields, wrong field types, etc), but they can be used as a reference.
+
+The src/P2 directory contains the source code for the game engine. The following is a list of all known source code file names from a prototype build of the game. Some of them are not present in the final game.
 ac.c
 act.c
 actseg.c
