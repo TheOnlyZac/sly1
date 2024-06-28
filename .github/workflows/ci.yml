@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Download required file
+    - name: Download required file for splat
       run: |
         curl -o disc/SCUS_971.98 "${{ secrets.FILE_URL }}"
 
@@ -28,14 +28,14 @@ jobs:
         pip install -r requirements.txt
         pip install requests
 
-    - name: Run your build script
+    - name: Run build script
       run: |
         python configure.py
         ninja
 
-    - name: Upload progress to frogress
+    - name: Post to frogress endpoint
       run: |
-        curl -X POST https://progress.deco.mp/data/slycooper1/v1.0/ \
+        curl -X POST https://progress.deco.mp/data/slycooper1/ntsc-u/ \
         -H "Content-Type: application/json" \
         -d '{
           "api_key": "${{ secrets.FROGRESS_API_KEY }}",
