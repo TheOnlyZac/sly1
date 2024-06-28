@@ -37,9 +37,9 @@ options:
   auto_all_sections: [".rodata", ".data", ".bss"]
 
   # Linker script options
-  subalign: null
-  ld_align_section_vram_end: False
-  ld_align_segment_vram_end: False
+  #subalign: null
+  #ld_align_section_vram_end: False
+  #ld_align_segment_vram_end: False
 
 segments:
   #- [0, databin, elf_header]
@@ -50,7 +50,6 @@ segments:
     vram: 0x100000
     bss_size: 0x3B1304
     subsegments:
-
     - [0x001000, asm, sce/crt0] # starts with 2 nops
     - [0x001178, asm, P2/ps2t/spaprops] # ext should be .ic
 
@@ -58,7 +57,7 @@ segments:
     # Splice sources
     # All .cpp files
     #--------------------------------------------------------
-    - [0x13698, asm, P2/splice/bif]
+    - [0x13698, asm, P2/splice/bif] #MARK: P2/splice
     - [0x19d48, asm, P2/splice/eval]
     - [0x1b328, asm, P2/splice/frame]
     - [0x1b678, asm, P2/splice/gc]
@@ -76,7 +75,7 @@ segments:
     # P2 sources
     # All .c files (but compiled as c++)
     #--------------------------------------------------------
-    - [0x1dbb8, asm, P2/989snd]
+    - [0x1dbb8, asm, P2/989snd] #MARK: P2
     - [0x1f560, asm, P2/brx]
 
     - [0x1fe70, asm, P2/ac]
@@ -315,21 +314,21 @@ segments:
     #--------------------------------------------------------
     # Libs
     #--------------------------------------------------------
-    - [0xf69c4, asm] # TBD
+    - [0xf69c4, asm] # TBD #MARK: libs
 
     #--------------------------------------------------------
 
-    - [0x112E10, bin, vutext]
+    - [0x112E10, bin, vutext] #MARK: vutext
 
     #--------------------------------------------------------
     # Rodata
     #--------------------------------------------------------
-    - [0x118380, rodata]
+    - [0x118380, rodata] #MARK: rodata
 
     #--------------------------------------------------------
     # Data
     #--------------------------------------------------------
-    - [0x151580, data]
+    - [0x151580, data] #MARK: data
 
   - [0x191cfb, databin]
   - [0x1A20D0]
