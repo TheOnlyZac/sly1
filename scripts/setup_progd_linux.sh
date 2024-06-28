@@ -51,6 +51,11 @@ wine regedit prodg_env.reg
 echo "Extracting SDK to $WINE_ROOT..."
 7z x -y $TOP/prodg_sce$SDK_VER.7z -o$WINE_ROOT
 
+# Copy the compiler to tools/cc/ee-gcc2.9-991111/bin
+echo "Copying compiler to tools dir..."
+mkdir -p $TOP/tools/cc/ee-gcc2.9-991111/bin
+cp $WINE_ROOT/usr/local/sce/ee/gcc/bin/ee-gcc.exe $TOP/tools/cc/ee-gcc2.9-991111/bin
+
 echo "Removing temporary files..."
 rm prodg_sce$SDK_VER.7z
 

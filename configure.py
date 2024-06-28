@@ -34,7 +34,9 @@ COMMON_COMPILE_FLAGS = "-O2 -G0"
 WINE = "wine"
 
 GAME_GCC_CMD = f"{CC_DIR}/ee-gcc.exe -c {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $in"
-COMPILE_CMD = f"{WINE} {GAME_GCC_CMD}"
+COMPILE_CMD = f"{GAME_GCC_CMD}"
+if sys.platform == "linux" or sys.platform == "linux2":
+    COMPILE_CMD = f"{WINE} {GAME_GCC_CMD}"
 
 def clean():
     """

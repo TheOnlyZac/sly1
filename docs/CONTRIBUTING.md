@@ -6,9 +6,8 @@ Welcome to the **Sly Cooper Decompilation Project**! This guide will help you st
 
 1. [Getting Started](#getting-started)
 2. [Function Matching](#function-matching)
-3. [Writing Tests](#writing-tests)
-4. [Code Review Process](#code-review-process)
-5. [Conclusion](#conclusion)
+3. [Code Review Process](#code-review-process)
+4. [Conclusion](#conclusion)
 
 
 ## Getting Started
@@ -20,58 +19,26 @@ For instructions on how to build and run the project, see the [README](/README.m
 
 ## Function Matching
 
-The goal of this project is to match the original code as closely as possible. This means writing code that compiles to the same assembly as the original code, or at least has identical behavior at runtime.
+The goal of this project is to match the original code closely enough that it compiles to a byte-matching executable. This means writing functions that compiles to the same assembly as the original functions. When you build the project, you will know it matches if it says `SCUS_971.98: OK`.
 
-We use [CodeMatcher](https://github.com/felinis/CodeMatcher) to match our code against the original code. CodeMatcher can compile and match the entire source tree or just one file at a time. Matching against the release elf is not fully set up yet, so for now we are matching against the [May 19 2002 prototype](https://hiddenpalace.org/Sly_Cooper_and_the_Thievius_Raccoonus_(May_19,_2002_prototype)). For instructions on using CodeMatcher, see the [Code Matching Guide](/tools/codematcher/README.md).
+### Decomp.me
+
+You can use the website [decomp.me](https://decomp.me/) to assist with function matching.
+* First choose a function to decompile, then go the website and click "Start decomping".
+* Select "PlayStation 2", and for the compiler, select `EE GCC build 991111-01`.
+  * **Note**: The actual compiler version is `EE GCC build 2.9-ee-991111b/r4`, but that is not available on decomp.me as of this writing; Keep in mind that your code may not match perfectly on the website, even though it would match in this project.
+* For "Diff label", enter the name of the function.
+* Paste in the asm of the function into the "Target assembly" box.
+* Click "Create scratch"
+
+Then start writing your code in the "Source code" box. It will tell you what percent of the code matches the original. When you get close to 100%, you can copy the code and paste it into the project and build it to see if it matches, then tweak it until it does.
+
+
+### CodeMatcher
+
+You can use [CodeMatcher](https://github.com/felinis/CodeMatcher) to help match your code against the original code. It can compile and match the entire source tree or just one file at a time. Matching against the release elf is not fully set up yet, so for now we are matching against the [May 19 2002 prototype](https://hiddenpalace.org/Sly_Cooper_and_the_Thievius_Raccoonus_(May_19,_2002_prototype)). For instructions on using CodeMatcher, see the [Code Matching Guide](/tools/codematcher/README.md).
 
 If you are adding new code, it is strongly recommended that you run CodeMatcher before submitting a pull request. We will accept pull requests that don't match as long as the code is clean and readable, but in the future we may require that your code matches before merging it into the main branch.
-
-
-## Writing Tests
-
-Since the process for matching against the release elf is not fully set up yet, we recommended that you write tests for any new code you add to ensure it behaves the same way as the original code. Each test is a program with a main function; The test passes if the program runs successfuly without any errors.
-
-To write a new test, create a new source file in the `test` directory under a subdirectory for the system you are testing. For example, if you are testing the `clock` system, create a new source file in `test/clock`. The name of the source file should be the same as the name of the test, e.g. `test/clock/set_clock_rate.cpp`.
-
-You can use the `JtAssert(condition)` macro (from `test/test.h`) to assert that a condition is true. If the condition is false, the test will fail and the test runner will print the file and line number where the assertion failed.
-
-```cpp
-JtAssert(1 == 1); // Passes
-JtAssert(1 == 2); // Fails
-```
-
-<!-- ### Running tests
-
-TODO: Add a way to compile and run the tests -->
-
-### Example Test
-
-**test/clock/set_clock_rate.cpp**
-```
-#include <clock.h>
-#include <test/test.h>
-
-int main()
-{
-	SetClockRate(1.0);
-	JtAssert(g_rtClock == 1.0f);
-	JtAssert(g_clock.fEnabled);
-
-	SetClockRate(0.5);
-	JtAssert(g_rtClock == 0.5f);
-	JtAssert(g_clock.fEnabled);
-
-	SetClockRate(0);
-	JtAssert(g_rtClock == 0.f);
-	JtAssert(!g_clock.fEnabled);
-
-	SetClockRate(-1);
-	JtAssert(g_rtClock == -1.f);
-	JtAssert(!g_clock.fEnabled);
-
-	return 0;
-}
-```
 
 
 ## Code Review Process
@@ -79,8 +46,8 @@ int main()
 Once you create a pull request, a code reviewer will need to approve it before it can be merged into the main branch. We are a volunteer-driven project, so please be patient while we review your code. These are the main things we will look for in your code:
 
 * It compiles and runs without any errors.
-* It follows the [style guide](/docs/STYLEGUIDE.md), or is at least clean and readible.
-* Nothing is copy/pasted directly from Ghidra.
+* The compiled elf matches the original elf.
+* It follows the [style guide](/docs/STYLEGUIDE.md), or is at least clean and readable.
 
 If everything looks good, we will merge your pull request as soon as possible. If anything needs to be fixed, we will let you know.
 

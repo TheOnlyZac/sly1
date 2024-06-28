@@ -29,7 +29,7 @@
 
 [<img src="logo.png" style="margin:7px" align="right" width="33%" alt="Sly 1 Decompilation Logo by Cooper941">][docs-url]
 
-This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoonus*](https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus) for the PlayStation 2. It is based on the NTSC-U version of the game, `SCUS-971.98` (SHA1: `57dc305d`).
+This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoonus*](https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus) for the PlayStation 2. It builds the NTSC-U version of the game, `SCUS-971.98` (SHA1: `57dc305d`).
 
 The goal of this project is to better understand the game engine. This repo does not contain any game assets or code from the game's executable, and it requires your own copy of the game to run.
 
@@ -125,28 +125,27 @@ Replace `pcsx2-1.7.exe` with the path to your PCSX2 v1.7 executable (for Linux i
 
 ### 3. Run from PCSX2 GUI
 
-Add the `bin` dir in this project to your Games folders. When it asks you to search recursively, say yes. The ELF should appear as a game in your library. If it doesn't automatically appear, rename the executable to `SCUS_971.98.elf`.
+Copy `SCUS_971.98` from the `out` dir to your PCSX2 Games folder and rename it to `SCUS_971.98.elf`. Right click on the game in PCSX2 and click "Properties...". Go to "Disc Path", click "Browse", and select the ISO of your game backup. Then click "Close" and start the game as normal.
 
 
 ## Project Structure
 
 The project is divided into the following directories:
 
-* `build` - Makefiles for building the executable.
-* `config` - Config files for Splat (binary splitting tool).
-* `docs` - Documentation and instructions for contributing.
 * `include` - Header files for the game engine.
-* `scripts` - Utility scripts for setting up the build environment.
 * `src` - The decompiled source code.
   * All of the code for the game engine is in `src/P2`.
   * Code for the game's scripting engine is in `src/P2/splice`.
+* `config` - Config files for Splat (binary splitting tool).
+* `scripts` - Utility scripts for setting up the build environment.
+* `docs` - Documentation and instructions for contributing.
 * `test` - Handwritten unit tests for the decomp code.
 * `tools` - Utilities for function matching.
 
 When you build the executable, the following directories will be created:
 
-* `assets`- Binary data extracted from the elf.
 * `asm` - Disassembled assembly code from the elf.
+* `assets`- Binary data extracted from the elf.
 * `obj` - Compiled object files.
 * `out` - Compiled executables.
 
@@ -167,7 +166,7 @@ This is one the first ever PS2 decompilations. We draw inspiration from other de
 
 #### Is this a matching decomp?
 
-This is the first PS2 decompilation project to target the PS2 and utilize function matching. The project is not 100% matching, but the ultimate goal is to match as many functions as possible.
+This was the first PS2 decompilation project that aimed to target the PS2 and utilize function matching. The ultimate goal is to match as many functions as possible.
 
 #### How can I help?
 
