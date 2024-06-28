@@ -169,6 +169,12 @@ def build_stuff(linker_entries: List[LinkerEntry]):
             build(entry.object_path, entry.src_paths, "cc")
         elif isinstance(seg, splat.segtypes.common.databin.CommonSegDatabin):
             build(entry.object_path, entry.src_paths, "as")
+        elif isinstance(seg, splat.segtypes.common.rodatabin.CommonSegRodatabin):
+            build(entry.object_path, entry.src_paths, "as")
+        elif isinstance(seg, splat.segtypes.common.textbin.CommonSegTextbin):
+            build(entry.object_path, entry.src_paths, "as")
+        elif isinstance(seg, splat.segtypes.common.bin.CommonSegBin):
+            build(entry.object_path, entry.src_paths, "as")
         else:
             print(f"ERROR: Unsupported build segment type {seg.type}")
             sys.exit(1)

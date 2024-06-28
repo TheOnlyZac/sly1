@@ -33,7 +33,7 @@ options:
   extensions_path: tools/splat_ext
 
   # ELF sections
-  section_order: [".text", ".rodata", ".data", ".bss"]
+  section_order: [".text", ".vutext", ".rodata", ".data", ".bss"]
   auto_all_sections: [".rodata", ".data", ".bss"]
 
   # Linker script options
@@ -314,11 +314,11 @@ segments:
     #--------------------------------------------------------
     # Libs
     #--------------------------------------------------------
-    - [0xf69c4, asm] # TBD #MARK: libs
+    - [0xF69C4, asm] # TBD #MARK: libs
 
     #--------------------------------------------------------
 
-    - [0x112E10, bin, vutext] #MARK: vutext
+    - [0x112E10, databin, vutext] #MARK: vutext
 
     #--------------------------------------------------------
     # Rodata
