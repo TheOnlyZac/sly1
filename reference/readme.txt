@@ -1,4 +1,4 @@
-This directory contains reference files you can use to help with decompiling game functions. They are all source code files we wrote by hand before we used Splat to decompile and reassemble the game to a byte-matching executable. Because of this, none of the functions in this directory is matching, but we tried to make them as close as possible to the original game functions.
+This directory contains reference files you can use to help with decompiling game functions. They are all source code files we wrote by hand before we used Splat to decompile and reassemble the game to a byte-matching executable. Because of this, none of the functions in this directory match, but we tried to make them as close as possible to the original game functions.
 
 The include directory contains header files that are used by the source files in the src dir. Many of the short data structures/enums are correct and can be copied directly into the actual decomp. The longer ones are probably not correct (missing fields, wrong field types, etc), but they can be used as a reference.
 

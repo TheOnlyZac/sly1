@@ -75,7 +75,7 @@ cd scripts
 
 **Prerequisites**: `git`, `make`, `7zip`
 
-*Note: Building on Windows is temporarily not working. You can still build on Windows using WSL.*
+*Note: Building Windows is untested with the new build system. If you encounter issues, you can still build on Windows using WSL.*
 
 ```powershell
 cd scripts
@@ -142,7 +142,6 @@ The project is divided into the following directories:
 * `config` - Config files for Splat (binary splitting tool).
 * `scripts` - Utility scripts for setting up the build environment.
 * `docs` - Documentation and instructions for contributing.
-* `test` - Handwritten unit tests for the decomp code.
 * `tools` - Utilities for function matching.
 * `reference` - Reference files for functions and data structures.
 
