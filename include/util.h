@@ -7,11 +7,18 @@
 #define UTIL_H
 
 /**
- * @brief Limits for a float
+ * @brief Limits for a float.
 */
 struct LM
 {
 	float gMin, gMax;
+};
+
+/**
+ * @brief Vector struct.
+*/
+struct VECTOR {
+	float x, y, z, gUnused;
 };
 
 /**

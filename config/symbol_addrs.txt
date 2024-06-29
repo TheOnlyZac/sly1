@@ -6,19 +6,8 @@ StartupVU0 = 0x185A58; // type:func
 StartupVU1 = 0x185AC8; // type:func
 Startup = 0x185B38; // type:func
 
-// clock.c
-SetClockRate = 0x142ED0; // type:func
-MarkClockTick = 0x142F10; // type:func
-MarkClockTickRealOnly = 0x143030; // type:func
-ResetClock = 0x1430B8; // type:func
-SetClockEnabled = 0x1430C0; // type:func
-StartupClock = 0x1430C8; // type:func
-TickNow = 0x1430F8; // type:func
 
-g_rtClock = 0x261850; // size:0x4
-g_clock = 0x261858; // size:0x1c
-
-// binoc.c
+// P2/binoc.c
 InitBei = 0x130F48; // type:func
 GEvaluateBei = 0x131000; // type:func
 FUN_001310f0 = 0x1310F0; // type:func
@@ -59,7 +48,61 @@ CTextBox__SetHorizontalJust = 0x137260; // type:func
 CTextBox__SetVerticalJust = 0x137268; // type:func
 _GLOBAL_$I$InitBei__FP3BEIP3CLQffi = 0x137270; // type:func
 
-// util.c
+// P2/chkpnt.c
+ResetChkmgrCheckpoints = 0x140D90; // type:func
+SaveChkmgrCheckpoint = 0x140E10; // type:func
+ReturnChkmgrToCheckpoint = 0x140ED0; // type:func
+RestoreChkmgrFromCheckpoint = 0x140F48; // type:func
+IchkAllocChkmgr = 0x140FF8; // type:func
+FGetChkmgrIchk = 0x141008; // type:func
+SetChkmgrIchk = 0x141040; // type:func
+ClearChkmgrIchk = 0x1410A0; // type:func
+LoadVolFromBrx = 0x141108; // type:func
+FCheckVolPoint = 0x141170; // type:func
+InitChkpnt = 0x1411A8; // type:func
+LoadChkpntFromBrx = 0x141210; // type:func
+BindChkpnt = 0x141338; // type:func
+FUN_00141438 = 0x141438; // type:func
+FUN_001415d0 = 0x1415D0; // type:func
+FUN_00141690 = 0x141690; // type:func
+FUN_001417f0 = 0x1417F0; // type:func
+FUN_00141870 = 0x141870; // type:func
+
+
+// P2/clock.c
+SetClockRate = 0x142ED0; // type:func
+MarkClockTick = 0x142F10; // type:func
+MarkClockTickRealOnly = 0x143030; // type:func
+ResetClock = 0x1430B8; // type:func
+SetClockEnabled = 0x1430C0; // type:func
+StartupClock = 0x1430C8; // type:func
+TickNow = 0x1430F8; // type:func
+
+g_rtClock = 0x261850; // size:0x4
+g_rtClockPowerUp = 0x261854; // size:0x4
+g_clock = 0x261858; // size:0x1c
+s_tickLastRaw = 0x284b30; // size:0x4
+
+
+// P2/difficulty.c
+FUN_001519e0 = 0x1519E0; // type:func
+OnDifficultyGameLoad = 0x151A68; // type:func
+OnDifficultyWorldPreLoad = 0x151A88; // type:func
+OnDifficultyWorldPostLoad = 0x151D28; // type:func
+OnDifficultyInitialTeleport = 0x151E18; // type:func
+OnDifficultyPlayerDeath = 0x151E20; // type:func
+OnDifficultyTriggerCheckpoint = 0x151ED8; // type:func
+OnDifficultyCollectKey = 0x151FC8; // type:func
+OnDifficultyBreak = 0x152010; // type:func
+ChangeSuck = 0x152410; // type:func
+
+g_difficultyMedium = 0x261d70; // size:0x5c
+g_difficultyHard = 0x261e30; // size:0x5c
+g_difficultyEasy = 0x261e90; // size:0x5c
+g_difficulty = 0x261ef0; // size:0x20
+
+
+// P2/util.c
 RadNormalize = 0x1EA408; // type:func
 GLimitAbs = 0x1EA480; // type:func
 GSmooth = 0x1EA4B8; // type:func
@@ -86,5 +129,12 @@ SgnCompareG = 0x1EB128; // type:func
 Force = 0x1EB160; // type:func
 MinimizeRange = 0x1EB168; // type:func
 
+
+// sce/rand.c
 srand = 0x1F66F8; // type:func
 rand = 0x1F6708; // type:func
+
+
+// gcc/dp-bit.c
+dpcmp = 0x1FD308; // type:func
+fptodp = 0x1FD868; // type:func
