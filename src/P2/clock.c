@@ -1,8 +1,5 @@
 #include <clock.h>
 
-extern struct CLOCK g_clock;
-extern float g_rtClock;
-
 void SetClockRate(float rt)
 {
 	// Set global clock rate
