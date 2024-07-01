@@ -6,6 +6,9 @@
 
 #include "common.h"
 
-// ...
+class CFrame
+{
+    // todo Implement class.
+};
 
 #endif // SPLICE_FRAME_H

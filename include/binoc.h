@@ -5,7 +5,8 @@
  */
 #ifndef BINOC_H
 #define BINOC_H
-#include <common.h>
+
+#include "common.h"
 
 /**
  * @brief Horizontal text justification

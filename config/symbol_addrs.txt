@@ -49,24 +49,24 @@ SetVerticalJust__8CTextBox2JV = 0x137268; // type:func
 _GLOBAL_$I$InitBei__FP3BEIP3CLQffi = 0x137270; // type:func
 
 // P2/chkpnt.c
-ResetChkmgrCheckpoints = 0x140D90; // type:func
-SaveChkmgrCheckpoint = 0x140E10; // type:func
-ReturnChkmgrToCheckpoint = 0x140ED0; // type:func
-RestoreChkmgrFromCheckpoint = 0x140F48; // type:func
-IchkAllocChkmgr = 0x140FF8; // type:func
-FGetChkmgrIchk = 0x141008; // type:func
-SetChkmgrIchk = 0x141040; // type:func
-ClearChkmgrIchk = 0x1410A0; // type:func
-LoadVolFromBrx = 0x141108; // type:func
-FCheckVolPoint = 0x141170; // type:func
-InitChkpnt = 0x1411A8; // type:func
-LoadChkpntFromBrx = 0x141210; // type:func
-BindChkpnt = 0x141338; // type:func
-FUN_00141438 = 0x141438; // type:func
-FUN_001415d0 = 0x1415D0; // type:func
-FUN_00141690 = 0x141690; // type:func
+ResetChkmgrCheckpoints__FP6CHKMGR = 0x140D90; // type:func
+SaveChkmgrCheckpoint__FP6CHKMGR3OIDT1 = 0x140E10; // type:func
+ReturnChkmgrToCheckpoint__FP6CHKMGR = 0x140ED0; // type:func
+RestoreChkmgrFromCheckpoint__FP6CHKMGR = 0x140F48; // type:func
+IchkAllocChkmgr__FP6CHKMGR = 0x140FF8; // type:func
+FGetChkmgrIchk__FP6CHKMGRi = 0x141008; // type:func
+SetChkmgrIchk__FP6CHKMGRi = 0x141040; // type:func
+ClearChkmgrIchk__FP6CHKMGRi = 0x1410A0; // type:func
+LoadVolFromBrx__FP3VOLP18CBinaryInputStream = 0x141108; // type:func
+FCheckVolPoint__FP3VOLP6VECTOR = 0x141170; // type:func
+InitChkpnt__FP6CHKPNT = 0x1411A8; // type:func
+LoadChkpntFromBrx__FP6CHKPNTP18CBinaryInputStream = 0x141210; // type:func
+BindChkpnt__FP6CHKPNT = 0x141338; // type:func
+PostChkpntLoad__FP6CHKPNT = 0x141438; // type:func
+CloneChkpnt__FP6CHKPNTT0 = 0x1415D0; // type:func
+UpdateChkpnt__FP6CHKPNTf = 0x141690; // type:func
 FUN_001417f0 = 0x1417F0; // type:func
-FUN_00141870 = 0x141870; // type:func
+TriggerChkpnt__FP6CHKPNT = 0x141870; // type:func
 
 
 // P2/clock.c

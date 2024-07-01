@@ -1,7 +1,7 @@
 /**
  * @file difficulty.h
  *
- * Dynamic game difficulty.
+ * Dynamic difficulty system.
  */
 #ifndef DIFFICULTY_H
 #define DIFFICULTY_H
@@ -12,12 +12,12 @@
 /**
  * @brief Difficulty prize state.
  */
-typedef enum DPS
+enum DPS
 {
     DPS_Normal = 0,
     DPS_GivenCharms = 1,
     DPS_Max = 2
-} DPS;
+};
 
 /**
  * @brief Values for a particular difficulty level.

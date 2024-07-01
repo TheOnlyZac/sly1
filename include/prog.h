@@ -6,6 +6,9 @@
 
 #include "common.h"
 
-// ...
+class CProg
+{
+    // todo Implement class.
+};
 
 #endif // PROG_H

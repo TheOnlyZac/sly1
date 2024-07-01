@@ -6,6 +6,7 @@
 
 #include "common.h"
 
-// ...
+// todo Implement struct.
+struct ALO;
 
 #endif // ALO_H

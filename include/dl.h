@@ -6,6 +6,9 @@
 
 #include "common.h"
 
-// ...
+// todo Implement struct.
+struct DLE
+{
+};
 
 #endif // DL_H

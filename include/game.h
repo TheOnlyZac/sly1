@@ -6,6 +6,4 @@
 
 #include "common.h"
 
-// ...
-
 #endif // GAME_H
