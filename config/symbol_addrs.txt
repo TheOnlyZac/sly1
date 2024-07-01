@@ -102,6 +102,53 @@ g_difficultyEasy = 0x261e90; // size:0x5c
 g_difficulty = 0x261ef0; // size:0x20
 
 
+// P2/game.c
+StartupGame__Fv = 0x160070; // type:func
+
+search_level_by_load_data = 0x1600A0; // type:func
+search_level_by_id = 0x160110; // type:func
+PchzFriendlyFromWid = 0x160148; // type:func
+call_search_level_by_id = 0x160180; // type:func
+FFindLevel = 0x1601A0; // type:func
+get_level_completion_by_id = 0x1601D8; // type:func
+tally_world_completion = 0x160208; // type:func
+check_game_completion = 0x1602A0; // type:func
+UnlockIntroCutsceneFromWid = 0x160340; // type:func
+DefeatBossFromWid = 0x1603E8; // type:func
+UnlockEndgameCutscenesFromFgs = 0x1604B8; // type:func
+PlayEndingFromCompletionFlags = 0x160578; // type:func
+
+InitGameState = 0x1605E8; // type:func
+
+FUN_00160650 = 0x160650; // type:func
+
+SetupGame = 0x160690; // type:func
+UpdateGameState = 0x1607D0; // type:func
+LsFromWid = 0x160810; // type:func
+GrflsFromWid = 0x160850; // type:func
+UnloadGame = 0x160880; // type:func
+RetryGame = 0x1608E0; // type:func
+StartGame__Fv = 0x160918; // type:func
+
+FUN_00160948 = 0x160948; // type:func
+calculate_percent_completion = 0x160B28; // type:func
+
+SetCcharm = 0x160C48; // type:func
+FCharmAvailable = 0x160C58; // type:func
+PfLookupDialog = 0x160CA0; // type:func
+
+clr_8_bytes_1 = 0x160CC8; // type:func
+FUN_00160ce8 = 0x160CE8; // type:func
+OnGameAlarmTriggered = 0x160CF0; // type:func
+OnGameAlarmDisabled = 0x160D00; // type:func
+grfvault_something = 0x160D10; // type:func
+
+GetBlueprintInfo = 0x160D30; // type:func
+CcharmMost__Fv = 0x160D98; // type:func
+
+reload_post_death = 0x160DA0; // type:func
+
+
 // P2/util.c
 RadNormalize = 0x1EA408; // type:func
 GLimitAbs = 0x1EA480; // type:func
