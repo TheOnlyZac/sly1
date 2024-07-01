@@ -130,6 +130,23 @@ Force__FPv = 0x1EB160; // type:func
 MinimizeRange = 0x1EB168; // type:func
 
 
+// P2/vec.c
+SetVectorCylind = 0x1ED650; // type:func
+SetVectorSphere = 0x1ED6B0; // type:func
+SProjectVector = 0x1ED738; // type:func
+GetNormalVectors = 0x1ED780; // type:func
+GetNormalVector = 0x1ED840; // type:func
+RadBetweenVectors = 0x1ED908; // type:func
+FindClosestPointBetweenLines = 0x1EDA80; // type:func
+FindClosestPointBetweenLineSegments = 0x1EDC08; // type:func
+CalculateVectorPanTilt = 0x1EDDB0; // type:func
+ConvertDeulToW = 0x1EDE38; // type:func
+FCalculateMuzzleVelocity = 0x1EDEF0; // type:func
+FCalculateMuzzleVelocity1 = 0x1EE090; // type:func
+FCalculateMuzzleVelocityAngle = 0x1EE290; // type:func
+LimitVectorLength = 0x1EE2B0; // type:func
+
+
 // sce/rand.c
 srand = 0x1F66F8; // type:func
 rand = 0x1F6708; // type:func

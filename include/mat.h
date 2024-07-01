@@ -1,7 +1,7 @@
 /**
  * @file mat.h
  *
- * @brief Defines 4x4 and 3x3 matrix types.
+ * @brief 3x3 and 4x4 matrix types.
 */
 #ifndef MAT_H
 #define MAT_H
