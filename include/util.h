@@ -14,7 +14,6 @@
 struct CLQ;
 struct SMP;
 struct SMPA;
-struct VU_VECTOR;
 
 /**
  * @brief Limits for a float.

@@ -42,8 +42,7 @@ void SaveChkmgrCheckpoint(CHKMGR *pchkmgr,OID oidWarp,OID oidWarpContext);
 
 void ReturnChkmgrToCheckpoint(CHKMGR *pchkmgr);
 
-// sig may be wrong
-void RestoreChkmgrFromCheckpoint(CHKMGR *pchkmgr,undefined8 param_2,ulong param_3,int lives,...);
+void RestoreChkmgrFromCheckpoint(CHKMGR *pchkmgr);
 
 void IchkAllocChkmgr(CHKMGR *pchkmgr);
 

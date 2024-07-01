@@ -74,14 +74,14 @@ INCLUDE_ASM(const s32, "P2/binoc", __static_initialization_and_destruction_0);
 
 void CTextBox::SetPos(float x, float y)
 {
-    this->m_x = x;
-    this->m_y = y;
+    m_x = x;
+    m_y = y;
 }
 
 void CTextBox::SetSize(float dx, float dy)
 {
-    this->m_dx = dx;
-    this->m_dy = dy;
+    m_dx = dx;
+    m_dy = dy;
 }
 
 INCLUDE_ASM(const s32, "P2/binoc", SetTextColor__8CTextBoxG4RGBA);
@@ -92,12 +92,12 @@ INCLUDE_ASM(const s32, "P2/binoc", SetTextColor__8CTextBoxG4RGBA);
 
 void CTextBox::SetHorizontalJust(JH jh)
 {
-    this->m_jh = jh;
+    m_jh = jh;
 }
 
 void CTextBox::SetVerticalJust(JV jv)
 {
-    this->m_jv = jv;
+    m_jv = jv;
 }
 
 INCLUDE_ASM(const s32, "P2/binoc", _GLOBAL_$I$InitBei__FP3BEIP3CLQffi);

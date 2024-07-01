@@ -24,9 +24,55 @@ struct CLOCK
     TICK tickFrame;
 };
 
+/**
+ * @brief Sets the rate of the global clock.
+ *
+ * @param rt The new tick rate.
+*/
 void SetClockRate(float rt);
+
+/**
+ * @brief Updates clock values based to time elapsed.
+ *
+ * @param pclock Pointer to the clock.
+*/
+void MarkClockTick(CLOCK *pclock);
+
+/**
+ * @brief Updates clock values based to time elapsed.
+ *
+ * Only updates the real clock values (those determined by the EE clock cyclerate).
+ *
+ * @param pclock Pointer to the clock.
+*/
+void MarkClockTickRealOnly(CLOCK *pClock);
+
+/**
+ * @brief Resets the clock to the given time t.
+ *
+ * @param pclock Pointer to the clock.
+ * @param t Time to set.
+*/
 void ResetClock(CLOCK *pclock, float t);
+
+/**
+ * @brief Sets the fEnabled flag on the clock to the given value.
+ *
+ * @param pclock Pointer to the clock.
+ * @param fEnabled 1 to enable, 0 to disable.
+*/
 void SetClockEnabled(CLOCK *pclock, int fEnabled);
+
+/**
+ * @brief Initializes and enables the global clock.
+*/
+void StartupClock();
+
+/**
+ * @brief Gets the current tick.
+ *
+ * @return The current tick.
+*/
 const TICK TickNow();
 
 extern float g_rtClock;

@@ -17,6 +17,12 @@ struct VECTOR
     float gUnused;
 };
 
+
+struct VU_VECTOR
+{
+    uint16 data;
+}
+
 /**
  * @brief Sets the coordinates of a vector using cylindrical coordinates.
  *

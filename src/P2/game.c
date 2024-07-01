@@ -19,7 +19,7 @@ INCLUDE_ASM(const s32, "P2/game", get_level_completion_by_id);
 
 INCLUDE_ASM(const s32, "P2/game", tally_world_completion);
 
-INCLUDE_ASM(const s32, "P2/game", check_game_completion);
+INCLUDE_ASM(const s32, "P2/game", get_game_completion);
 
 INCLUDE_ASM(const s32, "P2/game", UnlockIntroCutsceneFromWid);
 
@@ -54,7 +54,6 @@ INCLUDE_ASM(const s32, "P2/game", calculate_percent_completion);
 INCLUDE_ASM(const s32, "P2/game", SetCcharm);
 
 INCLUDE_ASM(const s32, "P2/game", FCharmAvailable);
-
 INCLUDE_ASM(const s32, "P2/game", func_00160C90);
 
 INCLUDE_ASM(const s32, "P2/game", PfLookupDialog);

@@ -1,12 +1,6 @@
 _start = 0x100008; // type:func
 _exit = 0x1000B8; // type:func
 
-main = 0x185758; // type:func
-StartupVU0 = 0x185A58; // type:func
-StartupVU1 = 0x185AC8; // type:func
-Startup = 0x185B38; // type:func
-
-
 // P2/binoc.c
 InitBei = 0x130F48; // type:func
 GEvaluateBei = 0x131000; // type:func
@@ -85,7 +79,7 @@ s_tickLastRaw = 0x284b30; // size:0x4
 
 
 // P2/difficulty.c
-FUN_001519e0 = 0x1519E0; // type:func
+PdifficultyEnsureSw = 0x1519E0; // type:func
 OnDifficultyGameLoad = 0x151A68; // type:func
 OnDifficultyWorldPreLoad = 0x151A88; // type:func
 OnDifficultyWorldPostLoad = 0x151D28; // type:func
@@ -112,7 +106,7 @@ call_search_level_by_id = 0x160180; // type:func
 FFindLevel = 0x1601A0; // type:func
 get_level_completion_by_id = 0x1601D8; // type:func
 tally_world_completion = 0x160208; // type:func
-check_game_completion = 0x1602A0; // type:func
+get_game_completion = 0x1602A0; // type:func
 UnlockIntroCutsceneFromWid = 0x160340; // type:func
 DefeatBossFromWid = 0x1603E8; // type:func
 UnlockEndgameCutscenesFromFgs = 0x1604B8; // type:func
@@ -147,6 +141,13 @@ GetBlueprintInfo = 0x160D30; // type:func
 CcharmMost__Fv = 0x160D98; // type:func
 
 reload_post_death = 0x160DA0; // type:func
+
+
+// P2/main.c
+main = 0x185758; // type:func
+StartupVU0 = 0x185A58; // type:func
+StartupVU1 = 0x185AC8; // type:func
+Startup = 0x185B38; // type:func
 
 
 // P2/util.c

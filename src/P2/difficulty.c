@@ -1,6 +1,6 @@
 #include <difficulty.h>
 
-INCLUDE_ASM(const s32, "P2/difficulty", FUN_001519e0);
+INCLUDE_ASM(const s32, "P2/difficulty", PdifficultyEnsureSw);
 INCLUDE_ASM(const s32, "P2/difficulty", func_00151A58);
 
 INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyGameLoad);

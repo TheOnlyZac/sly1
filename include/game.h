@@ -1,5 +1,9 @@
 /**
  * @file game.h
+ *
+ * @brief Game state and level management.
+ *
+ * @todo Cleanup function names and parameters, add documentation.
  */
 #ifndef GAME_H
 #define GAME_H
@@ -252,31 +256,231 @@ enum WID
     WID_Max = 0x2f
 };
 
+struct GAME
+{
+    undefined4 field_0x0; // vtgame pointer?
+    int cAlarmsTriggered;
+    int fTimedChallenge;
+    float dtChallenge;
+    int cgoldLatest;
+};
+
 /**
  * @brief Calls StartGame.
  */
 void StartupGame();
 
+// LevelLoadData * search_level_by_load_data(LevelLoadData *search_level);
+
+// LevelLoadData * search_level_by_id(int search_id);
+
+/**
+ * @brief Gets the friendly name of a level from its world ID.
+ *
+ * @param wid World ID.
+ */
+char *PchzFriendlyFromWid(int wid);
+
+// LevelLoadData *call_search_level_by_id(int level_id);
+
+// WORLDLEVEL FFindLevel(LevelLoadData *level)
+
+uint get_level_completion_by_id(int level_id);
+
+/**
+ * @brief Tally the completion of a world.
+ *
+ * @param world_id World ID.
+ * @param qty_keys Result of the tally of keys.
+ * @param qty_vaults Result of the tally of vaults.
+ * @param qty_mts Result of the tally of Master Thief Sprints
+ */
+void tally_world_completion(int world_id, int *qty_keys, int *qty_vaults, int *qty_mts);
+
+/**
+ * @brief Get the game completion flags based on the current game state.
+ */
+FGS get_game_completion(void);
+
+/**
+ * @brief Unlocks the intro cutscene for a world.
+ *
+ * @param wid World ID.
+ */
+void UnlockIntroCutsceneFromWid(int wid);
+
+/**
+ * @brief Updates game state upon defeating the boss of a world.
+ *
+ * Unlocks specific reward cutscenes and powerups based on the world ID.
+ *
+ * @param wid World ID.
+ */
+void DefeatBossFromWid(int wid);
+
+/**
+ * @brief Unlocks the endgame cutscenes based on the completion flags.
+ *
+ * E.g. Ten Seconds, Thievius Raccoonus, etc.
+ *
+ * @param fgs Completion flags.
+ */
+void UnlockEndgameCutscenesFromFgs(FGS fgs);
+
+/**
+ * @brief Plays the ending cutscene based on the completion flags.
+ *
+ * @param grfgs Completion flags.
+ */
+void PlayEndingFromCompletionFlags(GRFGS grfgs);
+
+/**
+ * @brief Initializes the game state.
+ *
+ * @param pgs Game state.
+ */
+void InitGameState(GS *pgs);
+
+/**
+ * @brief Unknown function.
+ *
+ * @param param_1 Unknown parameter.
+ */
+int FUN_00160650(int param_1);
+
+// void SetupGame(LevelLoadData *search_data,FTRANS transition_flags);
+
+/**
+ * @brief Updates the timers on the game state.
+ *
+ * @param dt Delta time.
+ */
 void UpdateGameState(float dt);
 
-LS *LsFromWid(WID wid);
+/**
+ * @brief Gets the level state object from a world ID.
+ *
+ * @param wid World ID.
+ */
+int *LsFromWid(WID wid);
 
+/**
+ * @brief Gets the level state flags from a world ID.
+ *
+ * @param wid World ID.
+ */
 GRFLS GrflsFromWid(uint wid);
 
+/**
+ * @brief Unloads the game.
+ */
 void UnloadGame();
+
+/**
+ * @brief TBD
+ */
+void RetryGame();
 
 /**
  * Unloads the game and wipes to the default world warp.
  */
 void StartGame();
 
+/**
+ * @brief Unknown function.
+ */
+int FUN_00160948();
+
+/**
+ * @brief Calculates the percentage completion of the game.
+ *
+ * Tallies up the completion of each world and returns the percentage
+ * as an int out of 100.
+ *
+ * @param pgs Game state.
+ */
+int calculate_percent_completion(GS *pgs);
+
+/**
+ * @brief Sets the number of charms the player has.
+ *
+ * @param nParam Number of charms.
+ */
+void SetCcharm(int nParam);
+
+/**
+ * @brief Checks if the player has any charms available.
+ *
+ * Will return true if the ccharm on the g_gs is > 0, of if the
+ * infinite charms cheat is enabled.
+ */
+bool FCharmAvailable();
+
+/**
+ * @brief Unknown function, TBD.
+ *
+ * @param pls Pointer to level state.
+ * @param param_2 OID of the dialog.
+ */
+//int PfLookupDialog(LS *pls, OID oidDialog);
+
+/**
+ * @brief Clears 8 bytes of memory.
+ *
+ * Used in UnloadGame and FUN_00160948.
+ * Probably used to clear a pointer or something.
+ *
+ * @param ptr Pointer to the memory to clear.
+ */
+undefined8 *clr_8_bytes_1(void *ptr);
+
+/**
+ * @brief Unknown function.
+ *
+ * @param param_1 Unknown parameter.
+ */
+void FUN_00160ce8(int param_1);
+
+/**
+ * @brief Increases the count of alarms triggered in the given GAME.
+ *
+ * The count is used as a multiplier for the MTS countdown timer.
+ */
+void OnGameAlarmTriggered(GAME *pgame);
+
+/**
+ * @brief Decreases the count of alarms triggered in the given GAME.
+ *
+ * The count is used as a multiplier for the MTS countdown timer.
+ */
+void OnGameAlarmDisabled(GAME *pgame);
+
+/**
+ * @brief Unknown function.
+ */
+uint grfvault_something();
+
+/**
+ * @brief Gets the blueprint info for a vault.
+ *
+ * @param pgrfvault Pointer to the vault flags.
+ * @param pipdialog Pointer to the dialog flags.
+ *
+ * @todo Fix parameter types.
+ */
 void GetBlueprintInfo(int *pgrfvault, int *pipdialog);
 
 /**
  * @brief Returns the max number of charms the player can hold.
  *
- * @note Always returns 2.
+ * @note Always returns 2. This is a holdover from earlier in development where
+ * there was a powerup that allowed you to have more than 2 charms.
  */
 int CCharmMost();
+
+/**
+ * @brief Reloads the game state after the player dies.
+ */
+void reload_post_death();
 
 #endif // GAME_H
