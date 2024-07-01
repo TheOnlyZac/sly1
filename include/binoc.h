@@ -45,9 +45,9 @@ struct RGBA
 class CTextBox
 {
 public:
-    void SetTextColor(RGBA* rgba);
     void SetPos(float x, float y);
     void SetSize(float dx, float dy);
+    void SetTextColor(RGBA* rgba);
     void SetHorizontalJust(JH jh);
     void SetVerticalJust(JV jv);
 

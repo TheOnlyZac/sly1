@@ -85,6 +85,10 @@ void CTextBox::SetSize(float dx, float dy)
 }
 
 INCLUDE_ASM(const s32, "P2/binoc", SetTextColor__8CTextBoxG4RGBA);
+/*void CTextBox::SetTextColor(RGBA *rgba)
+{
+    this->m_rgba = *rgba;
+}*/
 
 void CTextBox::SetHorizontalJust(JH jh)
 {
