@@ -70,7 +70,7 @@ FUN_00141870 = 0x141870; // type:func
 
 
 // P2/clock.c
-SetClockRate = 0x142ED0; // type:func
+SetClockRate__Ff = 0x142ED0; // type:func
 MarkClockTick = 0x142F10; // type:func
 MarkClockTickRealOnly = 0x143030; // type:func
 ResetClock__FP5CLOCKf = 0x1430B8; // type:func
@@ -124,7 +124,7 @@ GModPositive = 0x1EAFE0; // type:func
 FitClq = 0x1EB018; // type:func
 FCheckLm__FP2LMf = 0x1EB050; // type:func
 FCheckAlm = 0x1EB080; // type:func
-GLimitLm = 0x1EB0F8; // type:func
+GLimitLm__FP2LMf = 0x1EB0F8; // type:func
 SgnCompareG = 0x1EB128; // type:func
 Force__FPv = 0x1EB160; // type:func
 MinimizeRange = 0x1EB168; // type:func

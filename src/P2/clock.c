@@ -5,7 +5,11 @@ float g_rtClockPowerUp = 1.0f;
 struct CLOCK g_clock;
 TICK s_tickLastRaw;*/
 
-INCLUDE_ASM(const s32, "P2/clock", SetClockRate);
+INCLUDE_ASM(const s32, "P2/clock", SetClockRate__Ff);
+/*void SetClockRate(float rt) {
+    g_rtClock = rt;
+    SetClockEnabled(&g_clock, rt > 0.0f);
+}*/
 
 INCLUDE_ASM(const s32, "P2/clock", MarkClockTick);
 

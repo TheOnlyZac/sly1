@@ -32,6 +32,14 @@ struct VECTOR {
 int FCheckLm(LM* plm, float g);
 
 /**
+ * @brief Limits a float to the given range.
+ *
+ * @param plm Pointer to the limit
+ * @param g The float to limit
+*/
+float GLimitLm(LM* plm, float g);
+
+/**
  * @brief Stubbed function, does nothing.
 */
 void Force(void *pv);

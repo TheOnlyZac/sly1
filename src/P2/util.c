@@ -46,7 +46,7 @@ int FCheckLm(LM* plm, float g)
 
 INCLUDE_ASM(const s32, "P2/util", FCheckAlm);
 
-INCLUDE_ASM(const s32, "P2/util", GLimitLm);
+INCLUDE_ASM(const s32, "P2/util", GLimitLm__FP2LMf);
 
 INCLUDE_ASM(const s32, "P2/util", SgnCompareG);
 
