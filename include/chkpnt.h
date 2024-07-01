@@ -5,12 +5,15 @@
  */
 #ifndef CHKPNT_H
 #define CHKPNT_H
+
 #include "common.h"
 
 /**
  * @brief Checkpoint.
+ *
+ * @todo Define struct.
  */
-struct CHKPNT; // todo
+struct CHKPNT;
 
 
 #endif /* CHKPNT_H */

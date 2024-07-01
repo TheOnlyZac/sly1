@@ -10,7 +10,7 @@
 #include <mat.h>
 #include <vec.h>
 
-//! TEMP
+// todo: determine where these structs should be defined
 struct CLQ;
 struct SMP;
 struct SMPA;
