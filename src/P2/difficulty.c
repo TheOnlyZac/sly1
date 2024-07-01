@@ -9,8 +9,9 @@ INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyWorldPreLoad);
 
 INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyWorldPostLoad);
 
-void OnDifficultyInitialTeleport(struct DIFFICULTY* pdifficulty) {
+void OnDifficultyInitialTeleport(DIFFICULTY* pdifficulty) {
     // Stubbed, does nothing.
+    return;
 }
 
 INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyPlayerDeath);

@@ -11,12 +11,12 @@ INCLUDE_ASM(const s32, "P2/clock", MarkClockTick);
 
 INCLUDE_ASM(const s32, "P2/clock", MarkClockTickRealOnly);
 
-void ResetClock(struct CLOCK *pclock, float t)
+void ResetClock(CLOCK *pclock, float t)
 {
 	pclock->t = t;
 }
 
-void SetClockEnabled(struct CLOCK *pclock, int fEnabled)
+void SetClockEnabled(CLOCK *pclock, int fEnabled)
 {
 	pclock->fEnabled = fEnabled;
 }
@@ -24,7 +24,4 @@ void SetClockEnabled(struct CLOCK *pclock, int fEnabled)
 INCLUDE_ASM(const s32, "P2/clock", StartupClock);
 
 INCLUDE_ASM(const s32, "P2/clock", TickNow);
-
-void func_00143140(void)
-{
-}
+INCLUDE_ASM(const s32, "P2/clock", func_00143140); // empty, not really a function

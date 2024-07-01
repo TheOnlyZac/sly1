@@ -6,6 +6,8 @@
 #ifndef UTIL_H
 #define UTIL_H
 
+#include "common.h"
+
 /**
  * @brief Limits for a float.
 */
@@ -27,11 +29,11 @@ struct VECTOR {
  * @param plm Pointer to the limit
  * @param g The float to check
 */
-int FCheckLm(struct LM* plm, float g);
+int FCheckLm(LM* plm, float g);
 
 /**
  * @brief Stubbed function, does nothing.
 */
-void Force(void);
+void Force();
 
 #endif // UTIL_H

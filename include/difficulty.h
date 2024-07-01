@@ -74,7 +74,7 @@ extern struct DIFFICULTYLEVEL g_difficultyHard;
  *
  * @param pdifficulty Pointer to the difficulty.
 */
-void OnDifficultyGameLoad(struct DIFFICULTY* pdifficulty);
+void OnDifficultyGameLoad(DIFFICULTY* pdifficulty);
 
 /**
  * @brief Sets up the difficulty system.
@@ -83,7 +83,7 @@ void OnDifficultyGameLoad(struct DIFFICULTY* pdifficulty);
  *
  * @param pdifficulty Pointer to the difficulty.
 */
-void OnDifficultyWorldPreLoad(struct DIFFICULTY* pdifficulty);
+void OnDifficultyWorldPreLoad(DIFFICULTY* pdifficulty);
 
 /**
  * @brief Called after a level is loaded to set up the difficulty system.
@@ -92,14 +92,14 @@ void OnDifficultyWorldPreLoad(struct DIFFICULTY* pdifficulty);
  *
  * @param pdifficulty Pointer to the difficulty.
 */
-void OnDifficultyWorldPostLoad(struct DIFFICULTY* pdifficulty);
+void OnDifficultyWorldPostLoad(DIFFICULTY* pdifficulty);
 
 /**
  * @brief Stubbed, does nothing.
  *
  * @param pdifficulty Pointer to the difficulty.
 */
-void OnDifficultyInitialTeleport(struct DIFFICULTY* pdifficulty);
+void OnDifficultyInitialTeleport(DIFFICULTY* pdifficulty);
 
 /**
  * @brief Called when the player dies.
@@ -119,7 +119,7 @@ void OnDifficultyPlayerDeath(float scalar, struct DIFFICULTY* pdifficulty);
  * @param pdifficulty Pointer to the difficulty.
  * @param pchkpnt Pointer to the checkpoint.
 */
-void OnDifficultyTriggerCheckpoint(struct DIFFICULTY* pdifficulty, struct CHKPNT* pchkpnt);
+void OnDifficultyTriggerCheckpoint(DIFFICULTY* pdifficulty, struct CHKPNT* pchkpnt);
 
 /**
  * @brief Called when the player collects a key.
@@ -128,7 +128,7 @@ void OnDifficultyTriggerCheckpoint(struct DIFFICULTY* pdifficulty, struct CHKPNT
  *
  * @param pdifficulty Pointer to the difficulty.
 */
-void OnDifficultyCollectKey(struct DIFFICULTY* pdifficulty);
+void OnDifficultyCollectKey(DIFFICULTY* pdifficulty);
 
 /**
  * @brief Called when the player breaks something.
@@ -137,7 +137,7 @@ void OnDifficultyCollectKey(struct DIFFICULTY* pdifficulty);
  * @param ppos Pointer to the position of the breakable.
  * @param ccoin The number of coins. (?)
  */
-void OnDifficultyBreak(struct DIFFICULTY* pdifficulty, struct VECTOR* ppos, int ccoin);
+void OnDifficultyBreak(DIFFICULTY* pdifficulty, struct VECTOR* ppos, int ccoin);
 
 /**
  * @brief Changes the suck value by the given amount.

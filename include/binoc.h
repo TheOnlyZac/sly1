@@ -42,8 +42,16 @@ struct RGBA
     uchar bAlpha;
 };
 
-struct CTextBox
+class CTextBox
 {
+public:
+    void SetTextColor(RGBA* rgba);
+    void SetPos(float x, float y);
+    void SetSize(float dx, float dy);
+    void SetHorizontalJust(JH jh);
+    void SetVerticalJust(JV jv);
+
+private:
     float m_x;
     float m_y;
     float m_dx;
@@ -52,10 +60,5 @@ struct CTextBox
     enum JH m_jh;
     enum JV m_jv;
 };
-
-void CTextBox__SetPos(struct CTextBox *this,float x,float y);
-void CTextBox__SetSize(struct CTextBox *this,float dx,float dy);
-void CTextBox__SetHorizontalJust(struct CTextBox* this, JH jh);
-void CTextBox__SetVerticalJust(struct CTextBox* this, JV jv);
 
 #endif /* BINOC_H */

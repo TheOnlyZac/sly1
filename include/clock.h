@@ -25,8 +25,8 @@ struct CLOCK
 };
 
 void SetClockRate(float rt);
-void ResetClock(struct CLOCK *pclock, float t);
-void SetClockEnabled(struct CLOCK *pclock, int fEnabled);
+void ResetClock(CLOCK *pclock, float t);
+void SetClockEnabled(CLOCK *pclock, int fEnabled);
 
 extern float g_rtClock;
 extern float g_rtClockPowerUp;
