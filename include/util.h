@@ -34,6 +34,6 @@ int FCheckLm(LM* plm, float g);
 /**
  * @brief Stubbed function, does nothing.
 */
-void Force();
+void Force(void *pv);
 
 #endif // UTIL_H

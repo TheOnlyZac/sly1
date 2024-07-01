@@ -11,7 +11,6 @@ INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyWorldPostLoad);
 
 void OnDifficultyInitialTeleport(DIFFICULTY* pdifficulty) {
     // Stubbed, does nothing.
-    return;
 }
 
 INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyPlayerDeath);

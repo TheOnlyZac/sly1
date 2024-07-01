@@ -50,7 +50,10 @@ INCLUDE_ASM(const s32, "P2/util", GLimitLm);
 
 INCLUDE_ASM(const s32, "P2/util", SgnCompareG);
 
-INCLUDE_ASM(const s32, "P2/util", Force); // stubbed
+void Force(void *pv)
+{
+	// Stubbed, does nothing.
+}
 
 INCLUDE_ASM(const s32, "P2/util", MinimizeRange);
 INCLUDE_ASM(const s32, "P2/util", func_001EB458);
