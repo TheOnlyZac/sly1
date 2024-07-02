@@ -65,12 +65,12 @@ TriggerChkpnt__FP6CHKPNT = 0x141870; // type:func
 
 // P2/clock.c
 SetClockRate__Ff = 0x142ED0; // type:func
-MarkClockTick = 0x142F10; // type:func
+MarkClockTick__FP5CLOCK = 0x142F10; // type:func
 MarkClockTickRealOnly = 0x143030; // type:func
 ResetClock__FP5CLOCKf = 0x1430B8; // type:func
 SetClockEnabled__FP5CLOCKi = 0x1430C0; // type:func
 StartupClock = 0x1430C8; // type:func
-TickNow = 0x1430F8; // type:func
+TickNow__Fv = 0x1430F8; // type:func
 
 g_rtClock = 0x261850; // size:0x4
 g_rtClockPowerUp = 0x261854; // size:0x4
@@ -233,3 +233,4 @@ fptodp = 0x1FD868; // type:func
 
 // misc
 memset = 0x1F5C0C; // type:func
+__floatdisf = 0x1fb6b0; // type:func
