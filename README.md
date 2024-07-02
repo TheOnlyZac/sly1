@@ -64,7 +64,7 @@ The `scripts` directory contains scripts for setting up the build environment on
 
 #### Linux/WSL
 
-**Prerequisites**: `git`, `make`, `wine-stable`, `p7zip-full`, `binutils-mips-linux-gnu`
+**Prerequisites**: `git`, `wine-stable`, `binutils-mips-linux-gnu`
 
 ```bash
 cd scripts
