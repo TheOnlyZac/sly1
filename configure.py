@@ -28,8 +28,8 @@ PRE_ELF_PATH = f"{OUTDIR}/{BASENAME}.elf"
 
 COMMON_INCLUDES = "-Iinclude -isystem include/sdk/ee -isystem include/gcc"
 
-CC_DIR = f"{TOOLS_DIR}/cc/ee-gcc2.9-991111/bin"
-COMMON_COMPILE_FLAGS = f"-x c++ -V 2.95.2 -O2 -G0"
+CC_DIR = f"{TOOLS_DIR}/cc/bin"
+COMMON_COMPILE_FLAGS = "-x c++ -V 2.95.2 -O2 -G0"
 
 WINE = "wine"
 
