@@ -75,7 +75,7 @@ cd scripts
 
 **Prerequisites**: `git`, `make`, `7zip`
 
-*Note: Building Windows is untested with the new build system. If you encounter issues, you can still build on Windows using WSL.*
+*Note: Building on Windows is untested with the new build system. If you encounter issues, you can still build on Windows using WSL.*
 
 ```powershell
 .\scripts\setup-progd-windows.bat
