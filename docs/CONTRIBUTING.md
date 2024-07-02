@@ -40,7 +40,7 @@ Once you have chosen a function, you can use the website [decomp.me](https://dec
 * Under "Select a compiler", select "EE GCC 2.95.2 (SN BUILD v2.73a)".
 * Under "Diff label", enter the name of the function.
 * Find the `.s` file corresponding to the function you want to match in the `asm/nonmatchings` folder. Copy the contents of the file into the "Target assembly" box.
-* Find the `.h` header file in the `include` folder where the function is/would be declared. Copy it into the "Context" is defined, as well as any other relevant function/data definitions in other headers.
+* Find the `.h` header file in the `include` folder where the function is/would be declared. Copy it into the "Context" box, as well as any other relevant function/data definitions in other headers.
 * Click "Create scratch".
 * Click the "Options" tab, then copy and paste this into the "Compiler options" text box:
   * `-x c++ -O2 -G0`.
@@ -58,8 +58,9 @@ Once the function matches 100%, follow these steps to integrate it into the proj
    * The symbol_addrs.txt file is sorted alphabetically by filename, then by address within the file.
    * The mangled name of the function can be found by searching the strings in the May 19 prototype elf. If you don't know how to do this, ask for help in the Discord server. Someone will be able to find it for you easily.
 
-
-When it matches 100%, copy the code and paste it into the correct `.c` file in the `src` directory and build the project. It should match; If it doesn't, it might be an issue with the compiler, so open an issue on GitHub or ask for help on Discord.
+The project should build and match. Here are some tips for troubleshooting common issues:
+* Undefined reference errors usually means the entry in the symbol_addrs.txt is wrong. Ensure you are using the correct mangled function name in the symbol_addrs.txt, and the normal un-mangled name in the source code.
+* Checksum failed means the compiled elf doesn't match the original. If it matches on decomp.me, it might be an issue with the compiler, so open an issue on GitHub or let someone know on Discord.
 
 <!--### CodeMatcher
 
