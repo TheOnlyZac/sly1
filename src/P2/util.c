@@ -1,6 +1,15 @@
 #include <util.h>
 
-INCLUDE_ASM(const s32, "P2/util", RadNormalize);
+static const float PI = 3.14159265359f;
+
+float RadNormalize(float rad)
+{
+  if ((rad < -PI) || (PI < rad)) {
+    float modpos = GModPositive(rad + PI, 2 * PI);
+    rad = modpos - PI;
+  }
+  return rad;
+}
 
 INCLUDE_ASM(const s32, "P2/util", GLimitAbs);
 
@@ -35,7 +44,7 @@ INCLUDE_ASM(const s32, "P2/util", GTrunc);
 
 INCLUDE_ASM(const s32, "P2/util", GTrunc1);
 
-INCLUDE_ASM(const s32, "P2/util", GModPositive);
+INCLUDE_ASM(const s32, "P2/util", GModPositive__Fff);
 
 INCLUDE_ASM(const s32, "P2/util", FitClq);
 

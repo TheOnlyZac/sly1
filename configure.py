@@ -46,6 +46,7 @@ def clean():
         ".splache",
         ".ninja_log",
         "build.ninja",
+        "permuter_settings.toml",
         LD_PATH
     ]
     for filename in files_to_clean:

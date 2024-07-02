@@ -151,7 +151,7 @@ Startup = 0x185B38; // type:func
 
 
 // P2/util.c
-RadNormalize = 0x1EA408; // type:func
+RadNormalize__Ff = 0x1EA408; // type:func
 GLimitAbs = 0x1EA480; // type:func
 GSmooth = 0x1EA4B8; // type:func
 GSmoothA = 0x1EA620; // type:func
@@ -168,7 +168,7 @@ PrescaleClq = 0x1EAD30; // type:func
 CalculateSinCos = 0x1EAD88; // type:func
 GTrunc = 0x1EAE78; // type:func
 GTrunc1 = 0x1EAF28; // type:func
-GModPositive = 0x1EAFE0; // type:func
+GModPositive__Fff = 0x1EAFE0; // type:func
 FitClq = 0x1EB018; // type:func
 FCheckLm__FP2LMf = 0x1EB050; // type:func
 FCheckAlm = 0x1EB080; // type:func
