@@ -22,7 +22,7 @@ struct CHKPNT;
 
 /**
  * @brief Checkpoint Manager
-*/
+ */
 struct CHKMGR
 {
 	int cbitChk;
@@ -38,7 +38,7 @@ struct CHKMGR
 
 void ResetChkmgrCheckpoints(CHKMGR *pchkmgr);
 
-void SaveChkmgrCheckpoint(CHKMGR *pchkmgr,OID oidWarp,OID oidWarpContext);
+void SaveChkmgrCheckpoint(CHKMGR *pchkmgr, OID oidWarp, OID oidWarpContext);
 
 void ReturnChkmgrToCheckpoint(CHKMGR *pchkmgr);
 
@@ -46,27 +46,27 @@ void RestoreChkmgrFromCheckpoint(CHKMGR *pchkmgr);
 
 void IchkAllocChkmgr(CHKMGR *pchkmgr);
 
-int FGetChkmgrIchk(CHKMGR *pchkmgr,int ichk);
+int FGetChkmgrIchk(CHKMGR *pchkmgr, int ichk);
 
-void SetChkmgrIchk(CHKMGR *pchkmgr,int ichk);
+void SetChkmgrIchk(CHKMGR *pchkmgr, int ichk);
 
-void ClearChkmgrIchk(CHKMGR *pchkmgr,int ichk);
+void ClearChkmgrIchk(CHKMGR *pchkmgr, int ichk);
 
-void LoadVolFromBrx(VOL *pvol,CBinaryInputStream *pbis);
+void LoadVolFromBrx(VOL *pvol, CBinaryInputStream *pbis);
 
-int FCheckVolPoint(VOL *pvol,VECTOR *ppos);
+int FCheckVolPoint(VOL *pvol, VECTOR *ppos);
 
 void InitChkpnt(CHKPNT *pchkpnt);
 
-void LoadChkpntFromBrx(CHKPNT *pchkpnt,CBinaryInputStream *pbis);
+void LoadChkpntFromBrx(CHKPNT *pchkpnt, CBinaryInputStream *pbis);
 
 void BindChkpnt(CHKPNT *pchkpnt);
 
 void PostChkpntLoad(CHKPNT *pchkpnt);
 
-void CloneChkpnt(CHKPNT *pchkpnt,CHKPNT *pchkpntBase);
+void CloneChkpnt(CHKPNT *pchkpnt, CHKPNT *pchkpntBase);
 
-void UpdateChkpnt(CHKPNT *pchkpnt,float dt);
+void UpdateChkpnt(CHKPNT *pchkpnt, float dt);
 
 // ? tbd
 void FUN_001417f0();

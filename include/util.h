@@ -1,7 +1,7 @@
 /**
  * @file util.h
  *
- * @brief Declarations for utility functions.
+ * @brief Utility functions.
  */
 #ifndef UTIL_H
 #define UTIL_H
