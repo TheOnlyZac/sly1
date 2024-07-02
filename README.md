@@ -59,13 +59,16 @@ The `scripts` directory contains scripts for setting up the build environment on
 
 #### Linux/WSL
 
-**Prerequisites**: `git`, `wine-32`, `binutils-mips-linux-gnu`
-
 Setup wine:
 ```bash
 sudo dpkg --add-architecture i386
 sudo apt-get update
 sudo apt-get install wine32
+```
+
+Install binutils:
+```bash
+suto apt-get install binutils-mips-linux-gnu
 ```
 
 Setup build environment:
@@ -76,10 +79,14 @@ cd scripts
 
 #### Windows
 
-**Prerequisites**: `git`, `make`, `7zip`
+*Note: Building on Windows is untested with the new build system, and may not work as expected. If you encounter issues, you can still build on Windows using WSL.*
 
-*Note: Building on Windows is untested with the new build system. If you encounter issues, you can still build on Windows using WSL.*
+Install 7zip:
+```powershell
+winget install 7zip
+```
 
+Setup build environment:
 ```powershell
 .\scripts\setup-progd-windows.bat
 ```
