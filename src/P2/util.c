@@ -1,4 +1,3 @@
-#include "common.h"
 #include <util.h>
 
 INCLUDE_ASM(const s32, "P2/util", RadNormalize);
@@ -40,18 +39,31 @@ INCLUDE_ASM(const s32, "P2/util", GModPositive);
 
 INCLUDE_ASM(const s32, "P2/util", FitClq);
 
-int FCheckLm(struct LM* plm, float g)
+int FCheckLm(LM* plm, float g)
 {
 	return (plm->gMin < g) && (g < plm->gMax);
 }
 
 INCLUDE_ASM(const s32, "P2/util", FCheckAlm);
 
-INCLUDE_ASM(const s32, "P2/util", GLimitLm);
+float GLimitLm(struct LM* plm, float g)
+{
+	if (g < plm->gMin)
+	{
+		return plm->gMin;
+	}
+	if (g > plm->gMax)
+	{
+		return plm->gMax;
+	}
+	return g;
+}
 
 INCLUDE_ASM(const s32, "P2/util", SgnCompareG);
 
-void Force(void) {
+void Force(void *pv)
+{
+	// Stubbed, does nothing.
 }
 
 INCLUDE_ASM(const s32, "P2/util", MinimizeRange);

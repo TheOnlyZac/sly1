@@ -75,11 +75,10 @@ cd scripts
 
 **Prerequisites**: `git`, `make`, `7zip`
 
-*Note: Building Windows is untested with the new build system. If you encounter issues, you can still build on Windows using WSL.*
+*Note: Building on Windows is untested with the new build system. If you encounter issues, you can still build on Windows using WSL.*
 
 ```powershell
-cd scripts
-.\setup-progd-windows.bat
+.\scripts\setup-progd-windows.bat
 ```
 
 ### Setup binary splitting

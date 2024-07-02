@@ -15,51 +15,35 @@ echo Error: %*
 exit /b 1
 
 
-REM download_and_check: URL
-REM downloads files and uses certutil to verify integrity
-:download_and_check
-echo Downloading %~1 and certutil hashes...
+REM download_file: URL
+REM downloads file using curl
+:download_file
+echo Downloading %~1...
 curl -sS %~1 -o %TEMP%\%~nx1
-curl -sS %~1.b2 -o %TEMP%\%~nx1.b2
-
-REM download files to %TEMP% and verify hashes
-pushd %TEMP% >nul
-certutil -hashfile %~nx1 SHA256 | findstr /i /c:"%~nx1.b2" >nul || (
-    if errorlevel 1 (
-        call :die "certutil hashes failed to verify when downloading %~1"
-    )
-)
-popd >nul
-
-echo certutil hashes verified, moving files from %TEMP% to %CD%
-del %TEMP%\%~nx1.b2
-move %TEMP%\%~nx1 %CD%
 goto :eof
 
 
 REM start
 REM main entrypoint
 :start
+echo NOTE This script is untested with the new build system and may not work as expected!
+echo Please report any issues on github or discord.
+echo
+
 REM download required files (registry + SDK package)
-call :download_and_check "https://computernewb.com/~lily/sly1/prodg_env.reg"
-call :download_and_check "https://computernewb.com/~lily/sly1/prodg_sce%SDK_VER%.7z"
+call :download_file "https://github.com/TheOnlyZac/compilers/releases/download/ee-gcc2.95.2-SN-v2.73a/ee-gcc2.95.2-SN-v2.73a.zip"
 
 REM apply environment variables from the registry file
 echo Applying environment variables, please accept the UAC prompt
 regedit %TEMP%\prodg_env.reg
 
-REM Extract the SDK into the C: drive
-echo Extracting SDK to C:\...
-7z x -y prodg_sce%SDK_VER%.7z -oC:\ -bso0 -bse2 -bsp0
-
-REM Copy the compiler to tools/cc/ee-gcc2.9-991111/bin
-echo Copying compiler to tools dir...
-copy C:\usr\local\sce\ee\gcc\bin\ee-gcc.exe tools\cc\ee-gcc2.9-991111
+REM Extract the compiler to the project/tools directory
+echo Extracting compiler to tools directory...
+7z x -y %TEMP%\ee-gcc2.95.2-SN-v2.73a.zip -otools
 
 ::echo Removing temporary files
 echo Removing temporary files...
-del prodg_sce%SDK_VER%.7z
-del prodg_env.reg
+del %TEMP%\ee-gcc2.95.2-SN-v2.73a.zip
 
 echo Setup complete!
 endlocal
