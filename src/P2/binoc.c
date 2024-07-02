@@ -84,6 +84,9 @@ void CTextBox::SetSize(float dx, float dy)
     m_dy = dy;
 }
 
+/**
+ * @todo Figure out why this implemtation causes undefined reference errors.
+ */
 INCLUDE_ASM(const s32, "P2/binoc", SetTextColor__8CTextBoxG4RGBA);
 /*void CTextBox::SetTextColor(RGBA *rgba)
 {
