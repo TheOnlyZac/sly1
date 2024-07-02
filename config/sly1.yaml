@@ -165,7 +165,7 @@ segments:
     #- [0x, asm, P2/jack]
     #- [0x, asm, P2/jlo]
 
-    - [0x6f0b8, asm, P2/joy]
+    - [0x6f0b8, c, P2/joy]
 
     - [0x70608, asm, P2/jt]
     #- [0x, asm, P2/jp]
@@ -409,8 +409,12 @@ segments:
     #- [0x, data,, P2/ik]
     #- [0x, data,, P2/jack]
     #- [0x, data,, P2/jlo]
-    #- [0x, data, P2/joy]
+
+    - [0x163a50, data, P2/joy]
+    - [0x163e10, data]
+
     #- [0x, data, P2/jt]
+
     #- [0x, data,, P2/jp]
     #- [0x, data,, P2/jsg]
     #- [0x, data, P2/jump]

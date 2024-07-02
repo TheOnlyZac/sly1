@@ -143,6 +143,32 @@ CcharmMost__Fv = 0x160D98; // type:func
 reload_post_death = 0x160DA0; // type:func
 
 
+// P2/joy.c
+StartupJoy__Fv = 0x16E0B8; // type:func
+AddGrfusr__Fi = 0x16E0F0; // type:func
+RemoveGrfusr__Fi = 0x16E118; // type:func
+UpdateGrfjoytFromGrfusr__Fv = 0x16E148; // type:func
+InitJoy__FP3JOYii = 0x16E1A0; // type:func
+UpdateJoy__FP3JOY = 0x16E238; // type:func
+SetJoyJoys__FP3JOY4JOYS4JOYK = 0x16E630; // type:func
+GetJoyXYDeflection__FP3JOYUcUcPfN23PUcT6PiP2LM = 0x16E738; // type:func
+FReadJoy__FP3JOY = 0x16E940; // type:func
+SetJoyBtnHandled__FP3JOYUs = 0x16EC20; // type:func
+rumble_related = 0x16EC38; // type:func
+StartJoySelection__FP3JOY = 0x16EC88; // type:func
+DxSelectionJoy__FP3JOY = 0x16EC98; // type:func
+DySelectionJoy__FP3JOY = 0x16EED0; // type:func
+UBtnpJoy__FP3JOY4BTNP = 0x16F108; // type:func
+AddCode__FP4CODE = 0x16F188; // type:func
+_ResetCodes__Fv = 0x16F1F8; // type:func
+_MatchCodes__FP3JOYUs = 0x16F238; // type:func
+UpdateCodes__Fv = 0x16F2E0; // type:func
+remove_all_fchts = 0x16F408; // type:func
+AddFcht__Fi = 0x16F430; // type:func
+Chetkido__Fv = 0x16F478; // type:func
+StartupCodes__Fv = 0x16F588; // type:func
+
+
 // P2/main.c
 main = 0x185758; // type:func
 StartupVU0 = 0x185A58; // type:func
@@ -203,3 +229,7 @@ rand = 0x1F6708; // type:func
 // gcc/dp-bit.c
 dpcmp = 0x1FD308; // type:func
 fptodp = 0x1FD868; // type:func
+
+
+// misc
+memset = 0x1F5C0C; // type:func
