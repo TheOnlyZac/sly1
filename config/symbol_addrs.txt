@@ -272,11 +272,25 @@ g_transition = 0x275af0;
 
 
 // P2/ui.c
+StartupUi__Fv = 0x1E9088; // type:func
+InitUi__FP2UI = 0x1E90A8; // type:func
+PostUiLoad__FP2UI = 0x1E90E8; // type:func
 UpdateUi__FP2UI = 0x1e9108; // type:func
+PushUiActiveBlot__FP2UIP4BLOT = 0x1E9498; // type:func
+PopUiActiveBlot__FP2UI = 0x1E9570; // type:func
 DrawUi__Fv = 0x1e9648; // type:func
 RenderUi__Fv = 0x1e9668; // type:func
+ResetUi__FP2UI = 0x1E9688; // type:func
+SetUiUis__FP2UI3UIS = 0x1E96F8; // type:func
+SetUiUPause__FP2UIf = 0x1E98E8; // type:func
+FUN_001e9970__Fv = 0x1E9970; // type:func
+FUN_001e9a10__Fv = 0x1E9A10; // type:func
+FUN_001e9a68__Fv = 0x1E9A68; // type:func
+FUN_001e9ad8__Fv = 0x1E9AD8; // type:func
+check_anticrack_collectibles_Fv = 0x1E9B30; // type:func
 
 g_ui = 0x275BC0;
+
 
 // P2/util.c
 RadNormalize__Ff = 0x1EA408; // type:func
