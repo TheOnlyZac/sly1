@@ -5,47 +5,47 @@ float g_rtClockPowerUp = 1.0f;
 struct CLOCK g_clock;
 TICK s_tickLastRaw;*/
 
-static const int CLOCK_FRAMERATE = 60;						// 60 FPS
+static const int CLOCK_FRAMERATE = 60; // 60 FPS
 static const float CLOCK_FRAMETIME = 1.f / CLOCK_FRAMERATE; // 1/60th of a second
 
-static const int CLOCK_EE_TICK_RATE = 294912000;					  // 294.912 MHz
+static const int CLOCK_EE_TICK_RATE = 294912000; // 294.912 MHz
 static const float CLOCK_EE_TICK_DURATION = 1.f / CLOCK_EE_TICK_RATE; // 1/294.912 MHz
 
-void SetClockRate(float rt)
-{
-	g_rtClock = rt;
-	SetClockEnabled(&g_clock, rt > 0.0f);
+void SetClockRate(float rt) {
+    g_rtClock = rt;
+    SetClockEnabled(&g_clock, rt > 0.0f);
 }
 
-void MarkClockTick(CLOCK *pclock)
+void MarkClockTick(CLOCK* pclock)
 {
+	float dt;
+	float t1;
+
 	const TICK tickFrame = TickNow();
 	const TICK deltaTick = tickFrame - pclock->tickFrame;
 
-	float dt = deltaTick * CLOCK_EE_TICK_DURATION;
-	float t1 = CLOCK_FRAMETIME * 2;
+	dt = deltaTick * CLOCK_EE_TICK_DURATION;
 
-	if (dt < CLOCK_FRAMETIME)
-	{
+    t1 = CLOCK_FRAMETIME * 2;
+
+	if (dt < CLOCK_FRAMETIME) {
 		dt = CLOCK_FRAMETIME;
 	}
-	else if (t1 < dt)
-	{
+	else if (t1 < dt) {
 		dt = t1;
 	}
 
 	pclock->dtReal = dt;
+
 	float dtFinal = 0.0f;
 
-	if (pclock->fEnabled)
-	{
+	if (pclock->fEnabled) {
 		dtFinal = dt;
 	}
 
 	dtFinal *= g_rtClockPowerUp * g_rtClock;
 
-	if (CLOCK_FRAMETIME <= dtFinal)
-	{
+	if (CLOCK_FRAMETIME <= dtFinal) {
 		pclock->dtReal = dtFinal;
 	}
 
