@@ -19,15 +19,11 @@ void SetClockRate(float rt)
 
 void MarkClockTick(CLOCK *pclock)
 {
-	float dt;
-	float t1;
-
 	const TICK tickFrame = TickNow();
 	const TICK deltaTick = tickFrame - pclock->tickFrame;
 
-	dt = deltaTick * CLOCK_EE_TICK_DURATION;
-
-	t1 = CLOCK_FRAMETIME * 2;
+	float dt = deltaTick * CLOCK_EE_TICK_DURATION;
+	float t1 = CLOCK_FRAMETIME * 2;
 
 	if (dt < CLOCK_FRAMETIME)
 	{
@@ -39,7 +35,6 @@ void MarkClockTick(CLOCK *pclock)
 	}
 
 	pclock->dtReal = dt;
-
 	float dtFinal = 0.0f;
 
 	if (pclock->fEnabled)

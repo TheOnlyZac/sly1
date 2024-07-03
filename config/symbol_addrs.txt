@@ -1,6 +1,15 @@
 _start = 0x100008; // type:func
 _exit = 0x1000B8; // type:func
 
+
+// P2/splice/spliceutils.cpp
+StartupSplice__Fv = 0x11BF70; // type:func
+ShutdownSplice__Fv = 0x11C040; // type:func
+spliceutils__static_initialization_and_destruction_0 = 0x11C0A8; // type:func
+_GLOBAL_$I$g_splotheapPair = 0x11C0E8; // type:func
+_GLOBAL_$D$g_splotheapPair = 0x11C108; // type:func
+
+
 // P2/binoc.c
 InitBei = 0x130F48; // type:func
 GEvaluateBei = 0x131000; // type:func
@@ -34,7 +43,7 @@ DrawBinoc = 0x1366A0; // type:func
 GetBinocReticleFocus = 0x136EC8; // type:func
 FUN_00136ef8 = 0x136EF8; // type:func
 FUN_00136fa8 = 0x136FA8; // type:func
-__static_initialization_and_destruction_0 = 0x136FE8; // type:func
+binoc__static_initialization_and_destruction_0 = 0x136FE8; // type:func
 SetPos__8CTextBoxff = 0x137228; // type:func
 SetSize__8CTextBoxff = 0x137238; // type:func
 SetTextColor__8CTextBoxG4RGBA = 0x137248; // type:func
@@ -94,6 +103,22 @@ g_difficultyMedium = 0x261d70; // size:0x5c
 g_difficultyHard = 0x261e30; // size:0x5c
 g_difficultyEasy = 0x261e90; // size:0x5c
 g_difficulty = 0x261ef0; // size:0x20
+
+
+// P2/frm.c
+StartupFrame__Fv = 0x15E810; // type:func
+OpenFrame__Fv = 0x15E9F0; // type:func
+EnsureVu1Code__FP4VIFSPvT1 = 0x15EAE0; // type:func
+FinalizeFrameGifs__FP4GIFSPiPP2QW = 0x15EB20; // type:func
+FUN_0015ebf0 = 0x15EBF0; // type:func
+CloseFrame__Fv = 0x15EC68; // type:func
+PrepareGsForFrameRender__FP3FRM = 0x15ED50; // type:func
+check_anticrack_antigrab__Fv = 0x15EDB8; // type:func
+FrameRenderLoop__FPv = 0x15EE80; // type:func
+RenderFrame__FP3FRMi = 0x15EF88; // type:func
+ClearPendingFrame__FP3FRM = 0x15EFE8; // type:func
+FlushFrames__Fi = 0x15F210; // type:func
+BlendPrevFrame__Fv = 0x15F320; // type:func
 
 
 // P2/game.c
@@ -171,9 +196,29 @@ StartupCodes__Fv = 0x16F588; // type:func
 
 // P2/main.c
 main = 0x185758; // type:func
-StartupVU0 = 0x185A58; // type:func
-StartupVU1 = 0x185AC8; // type:func
-Startup = 0x185B38; // type:func
+StartupVU0__Fv = 0x185A58; // type:func
+StartupVU1__Fv = 0x185AC8; // type:func
+Startup__Fv = 0x185B38; // type:func
+
+// P2/phasemem.c
+SetPhase__F5PHASE = 0x191E70; // type:func
+ClearPhase__Fv = 0x191EB0; // type:func
+
+g_phase = 0x269ba4; // size:0x4
+
+
+// P2/prog.c
+__5CProgG4RGBAN31 = 0x193210; // type:func
+Begin__5CProg = 0x193270; // type:func
+SetRemain__5CProgi = 0x193288; // type:func
+End__5CProg = 0x193300; // type:func
+Draw__5CProg = 0x193318; // type:func
+
+
+// P2/steppower.c
+SetFsp__F3FSP = 0x1D29C8; // type:func
+UpdateJtActivePowerUp__FP2JTP3JOY = 0x1d2bb8; // type:func
+IRotatePowerUp__FP3JOYiiPi = 0x1d3100; // type:func
 
 
 // P2/util.c
@@ -219,6 +264,10 @@ FCalculateMuzzleVelocity = 0x1EDEF0; // type:func
 FCalculateMuzzleVelocity1 = 0x1EE090; // type:func
 FCalculateMuzzleVelocityAngle = 0x1EE290; // type:func
 LimitVectorLength = 0x1EE2B0; // type:func
+
+
+// sce/ee/gcc/src/gcc/libgcc2.c
+__main = 0x1fae18; // type:func
 
 
 // sce/rand.c

@@ -70,7 +70,7 @@ INCLUDE_ASM(const s32, "P2/binoc", FUN_00136ef8);
 
 INCLUDE_ASM(const s32, "P2/binoc", FUN_00136fa8);
 
-INCLUDE_ASM(const s32, "P2/binoc", __static_initialization_and_destruction_0);
+INCLUDE_ASM(const s32, "P2/binoc", binoc__static_initialization_and_destruction_0);
 
 void CTextBox::SetPos(float x, float y)
 {
