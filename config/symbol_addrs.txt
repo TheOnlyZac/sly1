@@ -2,6 +2,12 @@ _start = 0x100008; // type:func
 _exit = 0x1000B8; // type:func
 
 
+// UKNOWN FILE
+UpdateSave__FP4SAVE = 0x18bdc8; // type:func
+
+g_save = 0x264A40;
+
+
 // P2/splice/spliceutils.cpp
 StartupSplice__Fv = 0x11BF70; // type:func
 ShutdownSplice__Fv = 0x11C040; // type:func
@@ -51,6 +57,11 @@ SetHorizontalJust__8CTextBox2JH = 0x137260; // type:func
 SetVerticalJust__8CTextBox2JV = 0x137268; // type:func
 _GLOBAL_$I$InitBei__FP3BEIP3CLQffi = 0x137270; // type:func
 
+
+// P2/cd.c
+CdPath__FPcT0i = 0x140b60; // type:func
+
+
 // P2/chkpnt.c
 ResetChkmgrCheckpoints__FP6CHKMGR = 0x140D90; // type:func
 SaveChkmgrCheckpoint__FP6CHKMGR3OIDT1 = 0x140E10; // type:func
@@ -87,6 +98,12 @@ g_clock = 0x261858; // size:0x1c
 s_tickLastRaw = 0x284b30; // size:0x4
 
 
+// P2/cm.c
+SetupCm__FP2CM = 0x144270; // type:func
+
+g_pcm = 0x261990; // size:0x4
+
+
 // P2/difficulty.c
 PdifficultyEnsureSw = 0x1519E0; // type:func
 OnDifficultyGameLoad = 0x151A68; // type:func
@@ -120,6 +137,8 @@ ClearPendingFrame__FP3FRM = 0x15EFE8; // type:func
 FlushFrames__Fi = 0x15F210; // type:func
 BlendPrevFrame__Fv = 0x15F320; // type:func
 
+g_cframe = 0x2622cc; // size:0x4
+
 
 // P2/game.c
 StartupGame__Fv = 0x160070; // type:func
@@ -137,24 +156,26 @@ DefeatBossFromWid = 0x1603E8; // type:func
 UnlockEndgameCutscenesFromFgs = 0x1604B8; // type:func
 PlayEndingFromCompletionFlags = 0x160578; // type:func
 
-InitGameState = 0x1605E8; // type:func
+InitGameState__FP2GS = 0x1605E8; // type:func
 
 FUN_00160650 = 0x160650; // type:func
 
-SetupGame = 0x160690; // type:func
-UpdateGameState = 0x1607D0; // type:func
+SetupGame__FPci = 0x160690; // type:func
+UpdateGameState__Ff = 0x1607D0; // type:func
+
 LsFromWid = 0x160810; // type:func
 GrflsFromWid = 0x160850; // type:func
-UnloadGame = 0x160880; // type:func
-RetryGame = 0x1608E0; // type:func
+
+UnloadGame__Fv = 0x160880; // type:func
+RetryGame__Fv = 0x1608E0; // type:func
 StartGame__Fv = 0x160918; // type:func
 
 FUN_00160948 = 0x160948; // type:func
 calculate_percent_completion = 0x160B28; // type:func
 
-SetCcharm = 0x160C48; // type:func
-FCharmAvailable = 0x160C58; // type:func
-PfLookupDialog = 0x160CA0; // type:func
+SetCcharm__Fi = 0x160C48; // type:func
+FCharmAvailable__Fv = 0x160C58; // type:func
+PfLookupDialog__FP2LS3OID = 0x160CA0; // type:func
 
 clr_8_bytes_1 = 0x160CC8; // type:func
 FUN_00160ce8 = 0x160CE8; // type:func
@@ -193,12 +214,26 @@ AddFcht__Fi = 0x16F430; // type:func
 Chetkido__Fv = 0x16F478; // type:func
 StartupCodes__Fv = 0x16F588; // type:func
 
+// size of g_joy might be wrong
+g_joy = 0x262C70; // size:0xc4
+
 
 // P2/main.c
 main = 0x185758; // type:func
+main_epilogue = 0x1858f8; // type:func
 StartupVU0__Fv = 0x185A58; // type:func
 StartupVU1__Fv = 0x185AC8; // type:func
 Startup__Fv = 0x185B38; // type:func
+
+g_chpzArgs = 0x264834; // size:0x4
+g_aphzArgs = 0x264838; // size:0x4
+
+
+// P2/mpeg.c
+ExecuteOids__5CMpeg = 0x18f148; // type:func
+
+g_mpeg = 0x269A00;
+
 
 // P2/phasemem.c
 SetPhase__F5PHASE = 0x191E70; // type:func
@@ -215,11 +250,33 @@ End__5CProg = 0x193300; // type:func
 Draw__5CProg = 0x193318; // type:func
 
 
+// P2/render.c
+RenderSw__FP2SWP2CM = 0x19d6c0; // type:func
+DrawSw__FP2SWP2CM = 0x19DC98; // type:func
+
+
 // P2/steppower.c
 SetFsp__F3FSP = 0x1D29C8; // type:func
 UpdateJtActivePowerUp__FP2JTP3JOY = 0x1d2bb8; // type:func
 IRotatePowerUp__FP3JOYiiPi = 0x1d3100; // type:func
 
+
+// P2/sw.c
+g_psw = 0x275710; // size:0x4
+
+
+// P2/transition.c
+Execute__11CTransition = 0x1e4ea8; // type:func
+
+g_transition = 0x275af0;
+
+
+// P2/ui.c
+UpdateUi__FP2UI = 0x1e9108; // type:func
+DrawUi__Fv = 0x1e9648; // type:func
+RenderUi__Fv = 0x1e9668; // type:func
+
+g_ui = 0x275BC0;
 
 // P2/util.c
 RadNormalize__Ff = 0x1EA408; // type:func
@@ -266,8 +323,13 @@ FCalculateMuzzleVelocityAngle = 0x1EE290; // type:func
 LimitVectorLength = 0x1EE2B0; // type:func
 
 
+// P2/wipe.c
+g_pwipe = 0x275f80;
+g_wipe = 0x275f84;
+
+
 // sce/ee/gcc/src/gcc/libgcc2.c
-__main = 0x1fae18; // type:func
+__main__Fv = 0x1fae18; // type:func
 
 
 // sce/rand.c
