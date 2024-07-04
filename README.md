@@ -55,61 +55,68 @@ pip install -U -r requirements.txt
 
 ### Setup build environment
 
-The `scripts` directory contains scripts for setting up the build environment on Windows and Linux, which automatically download and install the required runtime libraries. Follow the instruction for your platform below.
+The project can be built on Windows (using WSL) or Linux. Follow the instructions below to set up the build environment.
 
-#### Linux/WSL
+<!--#### Linux/WSL-->
 
-Setup wine:
+1. Setup wine:
 ```bash
 sudo dpkg --add-architecture i386
 sudo apt-get update
 sudo apt-get install wine32
 ```
 
-Install binutils:
+2. Install MIPS assembler:
 ```bash
-suto apt-get install binutils-mips-linux-gnu
+sudo apt-get install binutils-mips-linux-gnu
 ```
 
-Setup build environment:
+3. Setup build environment:
 ```bash
 cd scripts
 ./setup-progd-linux.sh
 ```
 
-#### Windows
+<!--#### Windows
 
-*Note: Building on Windows is untested with the new build system, and may not work as expected. If you encounter issues, you can still build on Windows using WSL.*
+*Prerequisites: [Chocolatey](https://chocolatey.org/install)*
 
-Install 7zip:
+1. Install 7zip:
 ```powershell
-winget install 7zip
+choco install 7zip
 ```
 
-Setup build environment:
+2. Setup build environment:
 ```powershell
 .\scripts\setup-progd-windows.bat
-```
+```-->
 
 ### Setup binary splitting
 
-To build the ELF , you will need to extract the original ELF file from your own legally obtained copy of the game. Mount the disk on your PC and copy the file `SCUS_971.98` from the root directory of the disc to the `disc` directory of this project.
+To build the ELF, you will need to extract the original ELF file from your own legally obtained copy of the game. Mount the disk on your PC and copy the file `SCUS_971.98` from the root directory of the disc to the `disc` directory of this project.
 
 
 ## Building
 
-The project can be compiled on Windows (using WSL) or Linux. It builds the executable `SCUS_971.98`.
+The project can be built on Windows (using WSL) or Linux. It builds the executable `SCUS_971.98`.
 
-First configure the project:
+The configure.py script will automatically split the binary and generate the build files. Then you can build the project with Ninja.
 
 ```bash
 python configure.py
+ninja
 ```
 
-Then build with Ninja:
+If you update the config files, you will need to clean and reconfigure:
 
 ```bash
-ninja
+python configure.py --clean
+```
+
+To only clean and not reconfigure, run:
+
+```bash
+python configure.py --only-clean
 ```
 
 
