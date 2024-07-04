@@ -287,7 +287,7 @@ RadSmooth = 0x1EA728; // type:func
 RadSmoothA = 0x1EA798; // type:func
 PosSmooth = 0x1EA818; // type:func
 SmoothMatrix = 0x1EA918; // type:func
-NRandInRange = 0x1EAA70; // type:func
+NRandInRange__Fii = 0x1EAA70; // type:func
 GRandInRange = 0x1EAAE0; // type:func
 GRandGaussian = 0x1EAB48; // type:func
 FFloatsNear = 0x1EAC68; // type:func
@@ -335,6 +335,9 @@ __main__Fv = 0x1fae18; // type:func
 // sce/rand.c
 srand = 0x1F66F8; // type:func
 rand = 0x1F6708; // type:func
+
+g_rng = 0x276680; // size:0x5c
+g_prng = 0x27696c; // size:0x4
 
 
 // gcc/dp-bit.c
