@@ -231,7 +231,10 @@ def main():
     )
     args = parser.parse_args()
 
-    if args.clean or args.only_clean:
+    do_clean = (args.clean or args.only_clean) or False
+    do_skip_checksum = args.skip_checksum or False
+
+    if do_clean:
         clean()
         if args.only_clean:
             return
@@ -240,10 +243,7 @@ def main():
 
     linker_entries = split.linker_writer.entries
 
-    if args.skip_checksum:
-        build_stuff(linker_entries, skip_checksum=True)
-    else:
-        build_stuff(linker_entries)
+    build_stuff(linker_entries, do_skip_checksum)
 
     write_permuter_settings()
 
