@@ -2,9 +2,11 @@
 
 # ##############################################################################
 # Set these paths to point to your PCSX2 1.7 executable and your copy of the game
-PCSX2_PATH="/opt/pcsx2-1.7.AppImage"
+PCSX2_PATH=""
 ISO_PATH=""
 # ##############################################################################
+ELF_PATH="out/SCUS_971.98"
+OPTONS="-fastboot -nogui"
 
 # Expand aliases
 shopt -s expand_aliases
@@ -32,34 +34,34 @@ fi
 if [ -z "$ISO_PATH" ]; then
     echo "Warning: ISO path is empty, please edit the paths in 'scripts/run.sh'"
 # Error if ISO path is not valid
-elif [ ! -f "$ISO_PATH" ]; then
-    die Game ISO not found at '$ISO_PATH'
+elif [ -f "$ISO_PATH" ]; then
+    die Game ISO not found at $ISO_PATH
     exit 1
 fi
 
 # Error if PCSX2 is not valid
-if [ ! -f "$PCSX2_PATH" ]; then
-    die PCSX2 executable not found at '$PCSX2_PATH'
-    exit 1
-fi
+#if [ -f "$PCSX2_PATH" ]; then
+#    die PCSX2 executable not found at $PCSX2_PATH
+#    exit 1
+#fi
 
 # Show error message if PCSX2 is not executable
-if [ ! -x "$PCSX2_PATH" ]; then
-    die PCSX2 executable is not executable
-    exit 1
-fi
+#if [ -x "$PCSX2_PATH" ]; then
+#    die PCSX2 executable is not executable
+#    exit 1
+#fi
 
 # Switch to the project root directory
 pushd "$(dirname "$0")/.." > /dev/null
 
 # Build the game
 echo Compiling ELF...
-#make clean > /dev/null
-make > /dev/null
+#python3 configure.py --clean
+ninja
 
 # Run the game
 echo Booting ELF in PCSX2...
-"$PCSX2_PATH" -elf bin/debug/SCUS_971.98 $ISO_PATH
+"$PCSX2_PATH" -elf $ELF_PATH $OPTIONS -- $ISO_PATH
 
 # Switch back to the original directory
 popd > /dev/null
