@@ -19,7 +19,13 @@ REM download_file: URL
 REM downloads file using curl
 :download_file
 echo Downloading %~1...
-curl -sS %~1 -o %TEMP%\%~nx1
+set output_file=%TEMP%\progd.zip
+curl -L %~1 -o %output_file%
+if exist "%output_file%" (
+    echo File downloaded to %output_file%
+) else (
+    call :die Failed to download file
+)
 goto :eof
 
 
@@ -33,17 +39,17 @@ echo
 REM download required files (registry + SDK package)
 call :download_file "https://github.com/TheOnlyZac/compilers/releases/download/ee-gcc2.95.2-SN-v2.73a/ee-gcc2.95.2-SN-v2.73a.zip"
 
-REM apply environment variables from the registry file
-echo Applying environment variables, please accept the UAC prompt
-regedit %TEMP%\prodg_env.reg
+::REM apply environment variables from the registry file
+::echo Applying environment variables, please accept the UAC prompt
+::regedit %TEMP%\prodg_env.reg
 
 REM Extract the compiler to the project/tools directory
 echo Extracting compiler to tools directory...
-7z x -y %TEMP%\ee-gcc2.95.2-SN-v2.73a.zip -otools
+7z x -y %TEMP%\progd.zip -otools
 
 ::echo Removing temporary files
 echo Removing temporary files...
-del %TEMP%\ee-gcc2.95.2-SN-v2.73a.zip
+::del %TEMP%\ee-gcc2.95.2-SN-v2.73a.zip
 
 echo Setup complete!
 endlocal
