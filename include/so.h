@@ -6,9 +6,16 @@
 #ifndef SO_H
 #define SO_H
 
+#include <alo.h>
+
 /**
+ * @brief Scene object.
+ *
  * @todo Implement struct.
  */
-struct SO;
+struct SO : public ALO
+{
+    // ...
+};
 
 #endif // SO_H

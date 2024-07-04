@@ -1,4 +1,4 @@
-#include "common.h"
+#include "steppower.h"
 
 INCLUDE_ASM(const s32, "P2/steppower", SetFsp__F3FSP);
 
