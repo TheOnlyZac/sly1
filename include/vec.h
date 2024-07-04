@@ -17,6 +17,11 @@ struct VECTOR
     float gUnused;
 };
 
+struct VECTOR4
+{
+    float x, y, z, w;
+};
+
 
 struct VU_VECTOR
 {

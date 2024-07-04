@@ -5,7 +5,7 @@
 #define TRANSITION_H
 
 #include "common.h"
-#include <game.h>
+#include <oid.h>
 
 /**
  * @brief Transition flags.
