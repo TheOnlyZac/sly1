@@ -9,7 +9,48 @@
 #include "common.h"
 #include <util.h>
 
-//MARK:Rumble
+// MARK:Pad
+
+enum PAD
+{
+    _NOT_PRESSED = 0x0,
+    PAD_L2 = 0x1,
+    PAD_R2 = 0x2,
+    PAD_L1 = 0x4,
+    PAD_R1 = 0x8,
+    PAD_TRIANGLE = 0x10,
+    PAD_CIRCLE = 0x20,
+    PAD_CROSS = 0x40,
+    PAD_SQUARE = 0x80,
+    PAD_SELECT = 0x100,
+    PAD_L3 = 0x200,
+    PAD_R3 = 0x400,
+    PAD_START = 0x800,
+    PAD_UP_ARROW = 0x1000,
+    PAD_RIGHT_ARROW = 0x2000,
+    PAD_DOWN_ARROW = 0x4000,
+    PAD_LEFT_ARROW = 0x8000
+};
+
+enum BTNP
+{
+    BTNP_Nil = -1,
+    BTNP_PadRight = 0,
+    BTNP_PadLeft = 1,
+    BTNP_PadUp = 2,
+    BTNP_PadDown = 3,
+    BTNP_Triangle = 4,
+    BTNP_Circle = 5,
+    BTNP_X = 6,
+    BTNP_Square = 7,
+    BTNP_L1 = 8,
+    BTNP_R1 = 9,
+    BTNP_L2 = 10,
+    BTNP_R2 = 11,
+    BTNP_Max = 12
+};
+
+// MARK:Rumble
 
 /**
  * @brief Rumble state
@@ -62,7 +103,7 @@ struct RUMBLE
     float dtRumins;
 };
 
-//MARK:Joy
+// MARK:Joy
 
 /**
  * @brief Joypad button integer type.
@@ -143,7 +184,7 @@ struct JOY
     int fRumbleEnabled;
 };
 
-//MARK:User
+// MARK:User
 
 /**
  * @brief User flags integer type.
@@ -160,26 +201,21 @@ enum FUSR
     FUSR_NoPause = 0x4
 };
 
-//MARK:Cheats
+// MARK:Cheats
 
-/**
- * @brief Cheat flags integer type.
- */
-typedef int GRFCHT;
-
-struct CHT
+struct CODE
 {
-    short *pCodeSeq;      // Pointer to code sequence
-    int cnInputSeqLen;    // Cheat code length
-    void *pfn;            // Callback function pointer
-    int nParam;           // Param for callback function
-    int nInputCounter;    // Counter for correct inputs
-    int index;            // Index of cheat code in linked list
-    struct CHT *pchtNext; // Pointer to next cheat code
+    short *ajbc;       // Pointer to code sequence
+    int cjbc;          // Code sequence length
+    void *pfn;         // Callback function pointer
+    int nParam;        // Param for callback function
+    int nInputCounter; // Counter for correct inputs
+    int index;         // Index of cheat code in linked list
+    CODE *pchtNext;    // Pointer to next cheat code
 };
 
 /**
- * @brief Cheat Flags
+ * @brief Cheat flags.
  */
 enum FCHT
 {
@@ -190,5 +226,68 @@ enum FCHT
     FCHT_LowFriction = 0x8,
     FCHT_ResetWorld = 0x4000
 };
+
+/**
+ * @brief Cheat flags integer type.
+ */
+typedef int GRFCHT;
+
+/**
+ * @brief Cheat type.
+ *
+ * @note Usage unknown.
+ */
+enum CHT
+{
+    CHT_Nil = 0x0,
+    CHT_Charms = 0x1,
+    CHT_Max = 0x2
+};
+
+void StartupJoy();
+
+void AddGrfusr(GRFUSR grfusr);
+
+void RemoveGrfusr(GRFUSR grfusr);
+
+void UpdateGrfjoytFromGrfusr();
+
+void InitJoy(JOY *pjoy, int nPort, int nSlot);
+
+void UpdateJoy(JOY *pjoy);
+
+void SetJoyJoys(JOY *pjoy, JOYS joys, JOYK joyk);
+
+void GetJoyXYDeflection(JOY *pjoy, uchar bX, uchar bY, float *px, float *py, float *puDeflect, uchar *pbX, uchar *pbY, int *pfStickMoved, LM *almDeflect);
+
+int FReadJoy(JOY *pjoy);
+
+void SetJoyBtnHandled(JOY *joy, PAD btn);
+
+void TriggerJoyRumbleRumk(RUMBLE *prumble, JOY *pjoy, float dt);
+
+void StartJoySelection(JOY *pjoy);
+
+int DxSelectionJoy(JOY *pjoy);
+
+int DySelectionJoy(JOY *pjoy);
+
+float UBtnpJoy(JOY *pjoy, BTNP btnp);
+
+void AddCode(CODE *pcode);
+
+void _ResetCodes(void);
+
+void _MatchCodes(JOY *pjoy, short grfbtnPrev);
+
+void UpdateCodes();
+
+void ClearFchts();
+
+void AddFcht(uint nParam);
+
+void Chetkido();
+
+void StartupCodes();
 
 #endif // JOY_H

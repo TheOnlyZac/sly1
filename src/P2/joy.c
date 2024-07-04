@@ -20,7 +20,7 @@ INCLUDE_ASM(const s32, "P2/joy", FReadJoy__FP3JOY);
 
 INCLUDE_ASM(const s32, "P2/joy", SetJoyBtnHandled__FP3JOYUs);
 
-INCLUDE_ASM(const s32, "P2/joy", rumble_related);
+INCLUDE_ASM(const s32, "P2/joy", TriggerJoyRumbleRumk__FP6RUMBLEP3JOYf);
 INCLUDE_ASM(const s32, "P2/joy", func_0016EC80);
 
 INCLUDE_ASM(const s32, "P2/joy", StartJoySelection__FP3JOY);
@@ -40,7 +40,7 @@ INCLUDE_ASM(const s32, "P2/joy", _MatchCodes__FP3JOYUs);
 
 INCLUDE_ASM(const s32, "P2/joy", UpdateCodes__Fv);
 
-INCLUDE_ASM(const s32, "P2/joy", remove_all_fchts);
+INCLUDE_ASM(const s32, "P2/joy", ClearFchts__Fv);
 
 INCLUDE_ASM(const s32, "P2/joy", AddFcht__Fi);
 INCLUDE_ASM(const s32, "P2/joy", func_0016F470);
