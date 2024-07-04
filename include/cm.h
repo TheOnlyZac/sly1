@@ -18,7 +18,8 @@ struct CM; // Forward declaration
 /**
  * @brief Unknown.
  */
-enum CFK {
+enum CFK
+{
     CFK_Nil = -1,
     CFK_Behind = 0,
     CFK_Side = 1,
@@ -74,7 +75,8 @@ enum LOOKK
 /**
  * @brief Unknown.
  */
-enum FTND {
+enum FTND
+{
     FTND_Nil = -1,
     FTND_Forward = 1,
     FTND_Reverse = 2,
@@ -318,5 +320,15 @@ struct CM : public LO
 };
 
 extern CM *g_pcm;
+
+/**
+ * @brief Calls SetCmRgbaFog with the global camera.
+ */
+void SetSwCameraRgbaFog(SW *psw, RGBA *prgbaFog);
+
+/**
+ * @brief Sets the RGBA fog color for the camera.
+ */
+void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog);
 
 #endif // CM_H

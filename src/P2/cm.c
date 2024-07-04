@@ -31,7 +31,10 @@ INCLUDE_ASM(const s32, "P2/cm", FUN_00143860);
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00143888);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_001438b0);
+void SetSwCameraRgbaFog(SW *psw, RGBA *prgbaFog)
+{
+    SetCmRgbaFog(g_pcm, prgbaFog);
+}
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_001438d8);
 
