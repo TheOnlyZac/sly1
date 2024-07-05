@@ -226,8 +226,8 @@ segments:
     #- [0x, asm, P2/sampler] (might not be in release)
     #- [0x, asm, P2/sc]
 
-    - [0xaac68, asm, P2/screen]
-    #- [0x, asm, P2/sensor]
+    - [0xaac68, c, P2/screen]
+    - [0xaf510, asm, P2/sensor]
 
     - [0xb2ac8, asm, P2/shadow]
     #- [0x, asm, P2/shape]

@@ -54,4 +54,6 @@ struct DLR
     DLR *pdlrNext;
 };
 
+void InitDl(DL *pdl,int ibDle);
+
 #endif // DL_H

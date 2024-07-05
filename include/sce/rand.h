@@ -1,3 +1,11 @@
+/**
+ * @file rand.h
+ *
+ * @brief Random number generator.
+ */
+#ifndef RAND_H
+#define RAND_H
+
 #include "common.h"
 
 struct RNG {
@@ -32,3 +40,5 @@ extern "C" uint rand();
 
 extern struct RNG g_rng;
 extern struct RNG *g_prng;
+
+#endif // RAND_H
