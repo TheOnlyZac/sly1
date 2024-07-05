@@ -173,6 +173,43 @@ _GLOBAL_$I$StartupCm__Fv = 0x1460E0; // type:func
 g_pcm = 0x261990; // size:0x4
 
 
+// P2/coin.c
+
+InitDprize__FP6DPRIZE = 0x146340; // type:func
+LoadDprizeFromBrx__FP6DPRIZEP18CBinaryInputStream = 0x1463C0; // type:func
+CloneDprize__FP6DPRIZET0 = 0x146418; // type:func
+PostDprizeLoad__FP6DPRIZE = 0x146470; // type:func
+ProjectDprizeTransform__FP6DPRIZEfi = 0x146518; // type:func
+FFilterDprizeObjects__FP6DPRIZEP2SO = 0x146D10; // type:func
+CheckDprizeBounce__FP6DPRIZE = 0x146DB0; // type:func
+CheckDprizeCollect__FP6DPRIZE = 0x1471B0; // type:func
+FAbsorbDprizeWkr__FP6DPRIZEP3WKR = 0x1473E0; // type:func
+UpdateDprize__FP6DPRIZEf = 0x147428; // type:func
+RenderDprizeAll__FP6DPRIZEP2CMP2RO = 0x1478F0; // type:func
+SetDprizeDprizes__FP6DPRIZE7DPRIZES = 0x147AB0; // type:func
+InitCoin__FP4COIN = 0x147E40; // type:func
+FUN_00147ed0 = 0x147ED0; // type:func
+FUN_00147ef8 = 0x147EF8; // type:func
+UpdateCoin__FP4COINf = 0x147FB0; // type:func
+CreateSwCharm__FP2SW = 0x148038; // type:func
+AddLife__FPv = 0x148178; // type:func
+OnCoinSmack__FP4COIN = 0x1481A0; // type:func
+SetCoinDprizes__FP4COIN7DPRIZES = 0x148298; // type:func
+FUN_00148400 = 0x148400; // type:func
+SetCharmDprizes__FP5CHARM7DPRIZES = 0x148470; // type:func
+FUN_00148510 = 0x148510; // type:func
+SetKeyDprizes__FP3KEY7DPRIZES = 0x148598; // type:func
+FUN_00148698 = 0x148698; // type:func
+FUN_00148718 = 0x148718; // type:func
+FUN_00148748 = 0x148748; // type:func
+FUN_00148770 = 0x148770; // type:func
+FUN_00148828 = 0x148828; // type:func
+FUN_00148888 = 0x148888; // type:func
+FUN_00148938 = 0x148938; // type:func
+CpdprizeAttractSwDprizes__FP2SW3CIDP6VECTORiPP6DPRIZE = 0x148AC0; // type:func
+RemoveSwExtraneousCharms__FP2SW = 0x148CE0; // type:func
+
+
 // P2/difficulty.c
 PdifficultyEnsureSw = 0x1519E0; // type:func
 OnDifficultyGameLoad = 0x151A68; // type:func
