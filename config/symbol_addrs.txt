@@ -191,6 +191,11 @@ g_difficultyEasy = 0x261e90; // size:0x5c
 g_difficulty = 0x261ef0; // size:0x20
 
 
+// P2/font.c
+
+g_pfont = 0x26227C; // size:0x4
+
+
 // P2/frm.c
 StartupFrame__Fv = 0x15E810; // type:func
 OpenFrame__Fv = 0x15E9F0; // type:func
@@ -337,7 +342,7 @@ PostBlotLoad__FP4BLOT = 0x1AA268; // type:func
 UpdateBlot__FP4BLOT = 0x1AA298; // type:func
 SetBlotAchzDraw__FP4BLOTPc = 0x1AA4F0; // type:func
 SetBlotRgba__FP4BLOTUi = 0x1AA5A0; // type:func
-SetBlotFontScale__FP4BLOTf = 0x1AA788; // type:func
+SetBlotFontScale__FfP4BLOT = 0x1AA788; // type:func
 DrawBlot__FP4BLOT = 0x1AA790; // type:func
 DtAppearBlot__FP4BLOT = 0x1AA898; // type:func
 DtVisibleBlot__FP4BLOT = 0x1AA8A0; // type:func

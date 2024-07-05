@@ -26,4 +26,6 @@ class CFont
     float m_ryScale;
 };
 
+extern CFont *g_pfont;
+
 #endif // FONT_H

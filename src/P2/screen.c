@@ -1,4 +1,6 @@
 #include <screen.h>
+#include <clock.h>
+#include <font.h>
 
 INCLUDE_ASM(const s32, "P2/screen", StartupScreen__Fv);
 
@@ -16,7 +18,13 @@ INCLUDE_ASM(const s32, "P2/screen", DrawBlots__Fv);
 
 INCLUDE_ASM(const s32, "P2/screen", InitBlot__FP4BLOT5BLOTK);
 
-INCLUDE_ASM(const s32, "P2/screen", PostBlotLoad__FP4BLOT);
+void PostBlotLoad(BLOT *pblot)
+{
+    pblot->pfont = g_pfont;
+    *(int*)&pblot->rgba = 0xff808080; // Union?
+    pblot->achzDraw[0] = 0;
+    pblot->rFontScale = 1.0f;
+}
 
 INCLUDE_ASM(const s32, "P2/screen", UpdateBlot__FP4BLOT);
 
@@ -24,23 +32,44 @@ INCLUDE_ASM(const s32, "P2/screen", SetBlotAchzDraw__FP4BLOTPc);
 
 INCLUDE_ASM(const s32, "P2/screen", SetBlotRgba__FP4BLOTUi);
 
-INCLUDE_ASM(const s32, "P2/screen", SetBlotFontScale__FP4BLOTf);
+void SetBlotFontScale(float rFontScale, BLOT *pblot)
+{
+    pblot->rFontScale = rFontScale;
+}
 
 INCLUDE_ASM(const s32, "P2/screen", DrawBlot__FP4BLOT);
 
 INCLUDE_ASM(const s32, "P2/screen", func_001AA890);
 
-INCLUDE_ASM(const s32, "P2/screen", DtAppearBlot__FP4BLOT);
+float DtAppearBlot(BLOT *pblot)
+{
+    return pblot->dtAppear;
+}
 
-INCLUDE_ASM(const s32, "P2/screen", DtVisibleBlot__FP4BLOT);
+float DtVisibleBlot(BLOT *pblot)
+{
+    return pblot->dtVisible;
+}
 
-INCLUDE_ASM(const s32, "P2/screen", DtDisappearBlot__FP4BLOT);
+float DtDisappearBlot(BLOT *pblot)
+{
+    return pblot->dtDisappear;
+}
 
-INCLUDE_ASM(const s32, "P2/screen", SetBlotDtAppear__FP4BLOTf);
+void SetBlotDtAppear(BLOT *pblot, float dtAppear)
+{
+    pblot->dtAppear = dtAppear;
+}
 
-INCLUDE_ASM(const s32, "P2/screen", SetBlotDtVisible__FP4BLOTf);
+void SetBlotDtVisible(BLOT *pblot, float dtVisible)
+{
+    pblot->dtVisible = dtVisible;
+}
 
-INCLUDE_ASM(const s32, "P2/screen", SetBlotDtDisappear__FP4BLOTf);
+void SetBlotDtDisappear(BLOT *pblot, float dtDisappear)
+{
+    pblot->dtDisappear = dtDisappear;
+}
 
 INCLUDE_ASM(const s32, "P2/screen", OnBlotReset__FP4BLOT);
 
