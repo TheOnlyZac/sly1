@@ -1,6 +1,21 @@
 _start = 0x100008; // type:func
 _exit = 0x1000B8; // type:func
 
+
+// UKNOWN FILE
+UpdateSave__FP4SAVE = 0x18bdc8; // type:func
+
+g_save = 0x264A40;
+
+
+// P2/splice/spliceutils.cpp
+StartupSplice__Fv = 0x11BF70; // type:func
+ShutdownSplice__Fv = 0x11C040; // type:func
+spliceutils__static_initialization_and_destruction_0 = 0x11C0A8; // type:func
+_GLOBAL_$I$g_splotheapPair = 0x11C0E8; // type:func
+_GLOBAL_$D$g_splotheapPair = 0x11C108; // type:func
+
+
 // P2/binoc.c
 InitBei = 0x130F48; // type:func
 GEvaluateBei = 0x131000; // type:func
@@ -34,13 +49,18 @@ DrawBinoc = 0x1366A0; // type:func
 GetBinocReticleFocus = 0x136EC8; // type:func
 FUN_00136ef8 = 0x136EF8; // type:func
 FUN_00136fa8 = 0x136FA8; // type:func
-__static_initialization_and_destruction_0 = 0x136FE8; // type:func
+binoc__static_initialization_and_destruction_0 = 0x136FE8; // type:func
 SetPos__8CTextBoxff = 0x137228; // type:func
 SetSize__8CTextBoxff = 0x137238; // type:func
-SetTextColor__8CTextBoxG4RGBA = 0x137248; // type:func
+SetTextColor__8CTextBoxP4RGBA = 0x137248; // type:func
 SetHorizontalJust__8CTextBox2JH = 0x137260; // type:func
 SetVerticalJust__8CTextBox2JV = 0x137268; // type:func
 _GLOBAL_$I$InitBei__FP3BEIP3CLQffi = 0x137270; // type:func
+
+
+// P2/cd.c
+CdPath__FPcT0i = 0x140b60; // type:func
+
 
 // P2/chkpnt.c
 ResetChkmgrCheckpoints__FP6CHKMGR = 0x140D90; // type:func
@@ -65,17 +85,92 @@ TriggerChkpnt__FP6CHKPNT = 0x141870; // type:func
 
 // P2/clock.c
 SetClockRate__Ff = 0x142ED0; // type:func
-MarkClockTick = 0x142F10; // type:func
+MarkClockTick__FP5CLOCK = 0x142F10; // type:func
 MarkClockTickRealOnly = 0x143030; // type:func
 ResetClock__FP5CLOCKf = 0x1430B8; // type:func
 SetClockEnabled__FP5CLOCKi = 0x1430C0; // type:func
 StartupClock = 0x1430C8; // type:func
-TickNow = 0x1430F8; // type:func
+TickNow__Fv = 0x1430F8; // type:func
 
 g_rtClock = 0x261850; // size:0x4
 g_rtClockPowerUp = 0x261854; // size:0x4
 g_clock = 0x261858; // size:0x1c
 s_tickLastRaw = 0x284b30; // size:0x4
+
+
+// P2/cm.c
+CalcCmAdjust__FP2CMP2SOP6CPDEFIP6VECTOR = 0x143148; // type:func
+SpringCm__FfffP2CMP6VECTORP6VECTORP6VECTOR = 0x143180; // type:func
+AdjustCmCpdefi__FP2CMP2SOfP6CPDEFI = 0x143208; // type:func
+ResetCmAdjust__FP2CMP2SOP6CPDEFI = 0x1433E0; // type:func
+GetCmCpdefi__FP2CMP2SOfP6CPDEFI = 0x143418; // type:func
+BuildCmFgfn__FP2CMfP4FGFN = 0x1434C8; // type:func
+RecalcCmFrustrum__FP2CM = 0x143560; // type:func
+InitCm__FP2CM = 0x143648; // type:func
+SetSwCameraFov__Ff = 0x1437C0; // type:func
+FUN_001437e8 = 0x1437E8; // type:func
+FUN_00143810 = 0x143810; // type:func
+FUN_00143838 = 0x143838; // type:func
+FUN_00143860 = 0x143860; // type:func
+FUN_00143888 = 0x143888; // type:func
+SetSwCameraRgbaFog__FP2SWP4RGBA = 0x1438B0; // type:func
+FUN_001438d8 = 0x1438D8; // type:func
+FUN_00143900 = 0x143900; // type:func
+FUN_00143920 = 0x143920; // type:func
+FUN_00143940 = 0x143940; // type:func
+FUN_00143968 = 0x143968; // type:func
+FUN_00143988 = 0x143988; // type:func
+FUN_001439a8 = 0x1439A8; // type:func
+FUN_001439c8 = 0x1439C8; // type:func
+FUN_001439e8 = 0x1439E8; // type:func
+SetCmRgbaFog__FP2CMP4RGBA = 0x143A08; // type:func
+SetCmMrdRatio__FP2CMf = 0x143A38; // type:func
+ResetCm = 0x143A60; // type:func
+ClearCmFadeObjects = 0x143AF0; // type:func
+AddCmFadeObject = 0x143AF8; // type:func
+RemoveCmFadeObject = 0x143B20; // type:func
+UpdateCmFade = 0x143BE0; // type:func
+UpdateCmLast = 0x143E40; // type:func
+SetupCmRotateToCam = 0x144008; // type:func
+ConvertCmScreenToWorld = 0x144128; // type:func
+ConvertCmWorldToScreen = 0x1441C0; // type:func
+SetupCm__FP2CM = 0x144270; // type:func
+CombineEyeLookAtProj = 0x1442C8; // type:func
+BuildFrustrum = 0x1443C8; // type:func
+UpdateCmMat4 = 0x144540; // type:func
+DrawCm = 0x144848; // type:func
+SetCmPosMat = 0x1448C8; // type:func
+SetCmLookAt = 0x144938; // type:func
+ConvertWorldToCylindVelocity = 0x144978; // type:func
+ConvertCylindToWorldVelocity = 0x144AA0; // type:func
+ResetCmLookAtSmooth = 0x144B70; // type:func
+SetCmLookAtSmooth = 0x144BE8; // type:func
+AdjustCmJoy = 0x144FF8; // type:func
+SetCmPolicy = 0x145088; // type:func
+RevokeCmPolicy = 0x1451F0; // type:func
+FInsideCmMrd = 0x1453B0; // type:func
+DecomposeCylind = 0x145438; // type:func
+DecomposeSphere = 0x1454E0; // type:func
+SetCmCut = 0x1455C0; // type:func
+FUN_001455e0 = 0x1455E0; // type:func
+FUN_001455f0 = 0x1455F0; // type:func
+AdaptCm = 0x145610; // type:func
+SetCm = 0x145718; // type:func
+PsoEnemyStepguard = 0x145810; // type:func
+FUN_00145950 = 0x145950; // type:func
+FUN_00145b68 = 0x145B68; // type:func
+FUN_00145de8 = 0x145DE8; // type:func
+FUN_00145e68 = 0x145E68; // type:func
+FUN_00145fb8 = 0x145FB8; // type:func
+LookkPopCm = 0x145FD8; // type:func
+LookkCurCm = 0x145FF8; // type:func
+SetCmSniperFocus = 0x146018; // type:func
+FUN_00146028 = 0x146028; // type:func
+FUN_00146038 = 0x146038; // type:func
+cm__static_initialization_and_destruction_0 = 0x1460B8; // type:func
+_GLOBAL_$I$StartupCm__Fv = 0x1460E0; // type:func
+
+g_pcm = 0x261990; // size:0x4
 
 
 // P2/difficulty.c
@@ -96,6 +191,29 @@ g_difficultyEasy = 0x261e90; // size:0x5c
 g_difficulty = 0x261ef0; // size:0x20
 
 
+// P2/font.c
+
+g_pfont = 0x26227C; // size:0x4
+
+
+// P2/frm.c
+StartupFrame__Fv = 0x15E810; // type:func
+OpenFrame__Fv = 0x15E9F0; // type:func
+EnsureVu1Code__FP4VIFSPvT1 = 0x15EAE0; // type:func
+FinalizeFrameGifs__FP4GIFSPiPP2QW = 0x15EB20; // type:func
+FUN_0015ebf0 = 0x15EBF0; // type:func
+CloseFrame__Fv = 0x15EC68; // type:func
+PrepareGsForFrameRender__FP3FRM = 0x15ED50; // type:func
+check_anticrack_antigrab__Fv = 0x15EDB8; // type:func
+FrameRenderLoop__FPv = 0x15EE80; // type:func
+RenderFrame__FP3FRMi = 0x15EF88; // type:func
+ClearPendingFrame__FP3FRM = 0x15EFE8; // type:func
+FlushFrames__Fi = 0x15F210; // type:func
+BlendPrevFrame__Fv = 0x15F320; // type:func
+
+g_cframe = 0x2622cc; // size:0x4
+
+
 // P2/game.c
 StartupGame__Fv = 0x160070; // type:func
 
@@ -112,24 +230,26 @@ DefeatBossFromWid = 0x1603E8; // type:func
 UnlockEndgameCutscenesFromFgs = 0x1604B8; // type:func
 PlayEndingFromCompletionFlags = 0x160578; // type:func
 
-InitGameState = 0x1605E8; // type:func
+InitGameState__FP2GS = 0x1605E8; // type:func
 
 FUN_00160650 = 0x160650; // type:func
 
-SetupGame = 0x160690; // type:func
-UpdateGameState = 0x1607D0; // type:func
+SetupGame__FPci = 0x160690; // type:func
+UpdateGameState__Ff = 0x1607D0; // type:func
+
 LsFromWid = 0x160810; // type:func
 GrflsFromWid = 0x160850; // type:func
-UnloadGame = 0x160880; // type:func
-RetryGame = 0x1608E0; // type:func
+
+UnloadGame__Fv = 0x160880; // type:func
+RetryGame__Fv = 0x1608E0; // type:func
 StartGame__Fv = 0x160918; // type:func
 
 FUN_00160948 = 0x160948; // type:func
 calculate_percent_completion = 0x160B28; // type:func
 
-SetCcharm = 0x160C48; // type:func
-FCharmAvailable = 0x160C58; // type:func
-PfLookupDialog = 0x160CA0; // type:func
+SetCcharm__Fi = 0x160C48; // type:func
+FCharmAvailable__Fv = 0x160C58; // type:func
+PfLookupDialog__FP2LS3OID = 0x160CA0; // type:func
 
 clr_8_bytes_1 = 0x160CC8; // type:func
 FUN_00160ce8 = 0x160CE8; // type:func
@@ -143,15 +263,196 @@ CcharmMost__Fv = 0x160D98; // type:func
 reload_post_death = 0x160DA0; // type:func
 
 
+// P2/joy.c
+StartupJoy__Fv = 0x16E0B8; // type:func
+AddGrfusr__Fi = 0x16E0F0; // type:func
+RemoveGrfusr__Fi = 0x16E118; // type:func
+UpdateGrfjoytFromGrfusr__Fv = 0x16E148; // type:func
+InitJoy__FP3JOYii = 0x16E1A0; // type:func
+UpdateJoy__FP3JOY = 0x16E238; // type:func
+SetJoyJoys__FP3JOY4JOYS4JOYK = 0x16E630; // type:func
+GetJoyXYDeflection__FP3JOYUcUcPfN23PUcT6PiP2LM = 0x16E738; // type:func
+FReadJoy__FP3JOY = 0x16E940; // type:func
+SetJoyBtnHandled__FP3JOYUs = 0x16EC20; // type:func
+TriggerJoyRumbleRumk__FP6RUMBLEP3JOYf = 0x16EC38; // type:func
+StartJoySelection__FP3JOY = 0x16EC88; // type:func
+DxSelectionJoy__FP3JOY = 0x16EC98; // type:func
+DySelectionJoy__FP3JOY = 0x16EED0; // type:func
+UBtnpJoy__FP3JOY4BTNP = 0x16F108; // type:func
+AddCode__FP4CODE = 0x16F188; // type:func
+_ResetCodes__Fv = 0x16F1F8; // type:func
+_MatchCodes__FP3JOYUs = 0x16F238; // type:func
+UpdateCodes__Fv = 0x16F2E0; // type:func
+ClearFchts__Fv = 0x16F408; // type:func
+AddFcht__Fi = 0x16F430; // type:func
+Chetkido__Fv = 0x16F478; // type:func
+StartupCodes__Fv = 0x16F588; // type:func
+
+// size of g_joy might be wrong
+g_joy = 0x262C70; // size:0xc4
+
+
 // P2/main.c
 main = 0x185758; // type:func
-StartupVU0 = 0x185A58; // type:func
-StartupVU1 = 0x185AC8; // type:func
-Startup = 0x185B38; // type:func
+main_epilogue = 0x1858f8; // type:func
+StartupVU0__Fv = 0x185A58; // type:func
+StartupVU1__Fv = 0x185AC8; // type:func
+Startup__Fv = 0x185B38; // type:func
+
+g_chpzArgs = 0x264834; // size:0x4
+g_aphzArgs = 0x264838; // size:0x4
+
+
+// P2/mpeg.c
+ExecuteOids__5CMpeg = 0x18f148; // type:func
+
+g_mpeg = 0x269A00;
+
+
+// P2/phasemem.c
+SetPhase__F5PHASE = 0x191E70; // type:func
+ClearPhase__Fv = 0x191EB0; // type:func
+
+g_phase = 0x269ba4; // size:0x4
+
+
+// P2/prog.c
+__5CProgG4RGBAN31 = 0x193210; // type:func
+Begin__5CProg = 0x193270; // type:func
+SetRemain__5CProgi = 0x193288; // type:func
+End__5CProg = 0x193300; // type:func
+Draw__5CProg = 0x193318; // type:func
+
+
+// P2/render.c
+RenderSw__FP2SWP2CM = 0x19d6c0; // type:func
+DrawSw__FP2SWP2CM = 0x19DC98; // type:func
+
+
+// P2/screen.c
+StartupScreen__Fv = 0x1A9C68; // type:func
+PostBlotsLoad__Fv = 0x1A9F78; // type:func
+UpdateBlots__Fv = 0x1A9FD0; // type:func
+ForceHideBlots__Fv = 0x1AA060; // type:func
+ResetBlots__Fv = 0x1AA0C0; // type:func
+RenderBlots__Fv = 0x1AA110; // type:func
+DrawBlots__Fv = 0x1AA178; // type:func
+InitBlot__FP4BLOT5BLOTK = 0x1AA1F0; // type:func
+PostBlotLoad__FP4BLOT = 0x1AA268; // type:func
+UpdateBlot__FP4BLOT = 0x1AA298; // type:func
+SetBlotAchzDraw__FP4BLOTPc = 0x1AA4F0; // type:func
+SetBlotRgba__FP4BLOTUi = 0x1AA5A0; // type:func
+SetBlotFontScale__FfP4BLOT = 0x1AA788; // type:func
+DrawBlot__FP4BLOT = 0x1AA790; // type:func
+DtAppearBlot__FP4BLOT = 0x1AA898; // type:func
+DtVisibleBlot__FP4BLOT = 0x1AA8A0; // type:func
+DtDisappearBlot__FP4BLOT = 0x1AA8A8; // type:func
+SetBlotDtAppear__FP4BLOTf = 0x1AA8B0; // type:func
+SetBlotDtVisible__FP4BLOTf = 0x1AA8B8; // type:func
+SetBlotDtDisappear__FP4BLOTf = 0x1AA8C0; // type:func
+OnBlotReset__FP4BLOT = 0x1AA8C8; // type:func
+ShowBlot__FP4BLOT = 0x1AA8F0; // type:func
+HideBlot__FP4BLOT = 0x1AA958; // type:func
+SetBlotBlots__FP4BLOT5BLOTS = 0x1AA998; // type:func
+FIncludeBlotForPeg__FP4BLOTT0 = 0x1AAAC8; // type:func
+ResizeBlot__FP4BLOTff = 0x1AAB20; // type:func
+RepositionBlot__FP4BLOT = 0x1AAB60; // type:func
+RepositionBlotDependents__FP4BLOT = 0x1AAEC0; // type:func
+SetBlotClock__FP4BLOTPf = 0x1AAF58; // type:func
+PostCtrLoad__FP3CTR = 0x1AAF88; // type:func
+UpdateCtr__FP3CTR = 0x1AB058; // type:func
+DrawCtr__FP3CTR = 0x1AB198; // type:func
+RebuildCtrAchzDraw__FP3CTR = 0x1AB2B8; // type:func
+DtVisibleCtr__FP3CTR = 0x1AB5D8; // type:func
+FUN_001ab600 = 0x1AB600; // type:func
+UpdateTimer__FP5TIMER = 0x1AB660; // type:func
+DrawTimer__FP5TIMER = 0x1AB710; // type:func
+SetTimer__FP5TIMERf = 0x1AB890; // type:func
+SetTimerSpeed__FP5TIMERf = 0x1AB920; // type:func
+SetTimerExpire__FP5TIMERfPFP5TIMER9TIMERNOTK_v = 0x1AB928; // type:func
+StartTimer__FP5TIMER = 0x1AB938; // type:func
+StopTimer__FP5TIMER = 0x1AB958; // type:func
+RebuildTimerAchzDraw__FP5TIMERf = 0x1AB980; // type:func
+SetTimerTimers__FP5TIMER6TIMERS = 0x1ABE20; // type:func
+DtVisibleTrunkctr__FP8TRUNKCTR = 0x1ABE40; // type:func
+DtVisibleCrusherctr__FP10CRUSHERCTR = 0x1ABE50; // type:func
+FUN_001abe70 = 0x1ABE70; // type:func
+FUN_001ac060 = 0x1AC060; // type:func
+FUN_001ac0e8 = 0x1AC0E8; // type:func
+PostNoteLoad__FP4NOTE = 0x1AC5C0; // type:func
+SetNoteAchzDraw__FP4NOTEPc = 0x1AC638; // type:func
+DrawNote__FP4NOTE = 0x1AC700; // type:func
+FUN_001ac888 = 0x1AC888; // type:func
+FUN_001ac910 = 0x1AC910; // type:func
+FUN_001ac990 = 0x1AC990; // type:func
+FUN_001ac9e0 = 0x1AC9E0; // type:func
+FUN_001aca30 = 0x1ACA30; // type:func
+FUN_001aca68 = 0x1ACA68; // type:func
+DrawTitle__FP5TITLE = 0x1ACAA8; // type:func
+PostTotalsLoad__FP6TOTALS = 0x1ACDA0; // type:func
+FUN_001ace38 = 0x1ACE38; // type:func
+FUN_001acee0 = 0x1ACEE0; // type:func
+render_level_info_from_id = 0x1AD088; // type:func
+render_level_info = 0x1AD0D0; // type:func
+render_hideout_world_info = 0x1AD1E8; // type:func
+SetTotalsBlots__FP6TOTALS5BLOTS = 0x1AD320; // type:func
+ShowTotalsQMARK = 0x1AD378; // type:func
+HideTotalsQMARK = 0x1AD3B0; // type:func
+DrawTotals__FP6TOTALS = 0x1AD3F0; // type:func
+FUN_001ad6a8 = 0x1AD6A8; // type:func
+FUN_001ad718 = 0x1AD718; // type:func
+FUN_001ad7b0 = 0x1AD7B0; // type:func
+FUN_001ad940 = 0x1AD940; // type:func
+FUN_001ad970 = 0x1AD970; // type:func
+DrawLetterbox__FP9LETTERBOX = 0x1ADB00; // type:func
+FUN_001adc60 = 0x1ADC60; // type:func
+DrawLogo__FP4LOGO = 0x1ADD28; // type:func
+FUN_001adf28 = 0x1ADF28; // type:func
+FUN_001adff0 = 0x1ADFF0; // type:func
+FUN_001ae130 = 0x1AE130; // type:func
+UpdateAttract__FP7ATTRACT = 0x1AE178; // type:func
+DrawLineScreen__FUiUiUiUiUiUiG4RGBAi = 0x1AE3B8; // type:func
+
+
+// P2/steppower.c
+SetFsp__F3FSP = 0x1D29C8; // type:func
+UpdateJtActivePowerUp__FP2JTP3JOY = 0x1d2bb8; // type:func
+IRotatePowerUp__FP3JOYiiPi = 0x1d3100; // type:func
+
+
+// P2/sw.c
+g_psw = 0x275710; // size:0x4
+
+
+// P2/transition.c
+Execute__11CTransition = 0x1e4ea8; // type:func
+
+g_transition = 0x275af0;
+
+
+// P2/ui.c
+StartupUi__Fv = 0x1E9088; // type:func
+InitUi__FP2UI = 0x1E90A8; // type:func
+PostUiLoad__FP2UI = 0x1E90E8; // type:func
+UpdateUi__FP2UI = 0x1e9108; // type:func
+PushUiActiveBlot__FP2UIP4BLOT = 0x1E9498; // type:func
+PopUiActiveBlot__FP2UI = 0x1E9570; // type:func
+DrawUi__Fv = 0x1e9648; // type:func
+RenderUi__Fv = 0x1e9668; // type:func
+ResetUi__FP2UI = 0x1E9688; // type:func
+SetUiUis__FP2UI3UIS = 0x1E96F8; // type:func
+SetUiUPause__FP2UIf = 0x1E98E8; // type:func
+FUN_001e9970__Fv = 0x1E9970; // type:func
+FUN_001e9a10__Fv = 0x1E9A10; // type:func
+FUN_001e9a68__Fv = 0x1E9A68; // type:func
+FUN_001e9ad8__Fv = 0x1E9AD8; // type:func
+check_anticrack_collectibles_Fv = 0x1E9B30; // type:func
+
+g_ui = 0x275BC0;
 
 
 // P2/util.c
-RadNormalize = 0x1EA408; // type:func
+RadNormalize__Ff = 0x1EA408; // type:func
 GLimitAbs = 0x1EA480; // type:func
 GSmooth = 0x1EA4B8; // type:func
 GSmoothA = 0x1EA620; // type:func
@@ -159,7 +460,7 @@ RadSmooth = 0x1EA728; // type:func
 RadSmoothA = 0x1EA798; // type:func
 PosSmooth = 0x1EA818; // type:func
 SmoothMatrix = 0x1EA918; // type:func
-NRandInRange = 0x1EAA70; // type:func
+NRandInRange__Fii = 0x1EAA70; // type:func
 GRandInRange = 0x1EAAE0; // type:func
 GRandGaussian = 0x1EAB48; // type:func
 FFloatsNear = 0x1EAC68; // type:func
@@ -168,7 +469,7 @@ PrescaleClq = 0x1EAD30; // type:func
 CalculateSinCos = 0x1EAD88; // type:func
 GTrunc = 0x1EAE78; // type:func
 GTrunc1 = 0x1EAF28; // type:func
-GModPositive = 0x1EAFE0; // type:func
+GModPositive__Fff = 0x1EAFE0; // type:func
 FitClq = 0x1EB018; // type:func
 FCheckLm__FP2LMf = 0x1EB050; // type:func
 FCheckAlm = 0x1EB080; // type:func
@@ -195,11 +496,28 @@ FCalculateMuzzleVelocityAngle = 0x1EE290; // type:func
 LimitVectorLength = 0x1EE2B0; // type:func
 
 
+// P2/wipe.c
+g_pwipe = 0x275f80;
+g_wipe = 0x275f84;
+
+
+// sce/ee/gcc/src/gcc/libgcc2.c
+__main__Fv = 0x1fae18; // type:func
+
+
 // sce/rand.c
 srand = 0x1F66F8; // type:func
 rand = 0x1F6708; // type:func
+
+g_rng = 0x276680; // size:0x5c
+g_prng = 0x27696c; // size:0x4
 
 
 // gcc/dp-bit.c
 dpcmp = 0x1FD308; // type:func
 fptodp = 0x1FD868; // type:func
+
+
+// misc
+memset = 0x1F5C0C; // type:func
+__floatdisf = 0x1fb6b0; // type:func

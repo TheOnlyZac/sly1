@@ -41,6 +41,14 @@ struct RGBA
     uchar bGreen;
     uchar bBlue;
     uchar bAlpha;
+
+    inline void operator=(const int rgba)
+    {
+        bRed = (rgba >> 24) & 0xFF;
+        bGreen = (rgba >> 16) & 0xFF;
+        bBlue = (rgba >> 8) & 0xFF;
+        bAlpha = rgba & 0xFF;
+    }
 };
 
 class CTextBox
@@ -57,7 +65,7 @@ private:
     float m_y;
     float m_dx;
     float m_dy;
-    struct RGBA m_rgba;
+    RGBA m_rgba;
     enum JH m_jh;
     enum JV m_jv;
 };

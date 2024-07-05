@@ -70,7 +70,7 @@ INCLUDE_ASM(const s32, "P2/binoc", FUN_00136ef8);
 
 INCLUDE_ASM(const s32, "P2/binoc", FUN_00136fa8);
 
-INCLUDE_ASM(const s32, "P2/binoc", __static_initialization_and_destruction_0);
+INCLUDE_ASM(const s32, "P2/binoc", binoc__static_initialization_and_destruction_0);
 
 void CTextBox::SetPos(float x, float y)
 {
@@ -84,14 +84,10 @@ void CTextBox::SetSize(float dx, float dy)
     m_dy = dy;
 }
 
-/**
- * @todo Figure out why this implemtation causes undefined reference errors.
- */
-INCLUDE_ASM(const s32, "P2/binoc", SetTextColor__8CTextBoxG4RGBA);
-/*void CTextBox::SetTextColor(RGBA *rgba)
+void CTextBox::SetTextColor(RGBA *rgba)
 {
     this->m_rgba = *rgba;
-}*/
+}
 
 void CTextBox::SetHorizontalJust(JH jh)
 {

@@ -9,8 +9,11 @@
 typedef unsigned char byte;
 
 typedef unsigned char uchar;
+typedef unsigned short ushort;
 typedef unsigned long ulong;
 typedef unsigned int uint;
+
+typedef short int16;
 
 typedef unsigned char uint8;
 typedef unsigned short uint16;

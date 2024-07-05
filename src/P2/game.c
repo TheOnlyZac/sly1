@@ -29,21 +29,21 @@ INCLUDE_ASM(const s32, "P2/game", UnlockEndgameCutscenesFromFgs);
 
 INCLUDE_ASM(const s32, "P2/game", PlayEndingFromCompletionFlags);
 
-INCLUDE_ASM(const s32, "P2/game", InitGameState);
+INCLUDE_ASM(const s32, "P2/game", InitGameState__FP2GS);
 
 INCLUDE_ASM(const s32, "P2/game", FUN_00160650);
 
-INCLUDE_ASM(const s32, "P2/game", SetupGame);
+INCLUDE_ASM(const s32, "P2/game", SetupGame__FPci);
 
-INCLUDE_ASM(const s32, "P2/game", UpdateGameState);
+INCLUDE_ASM(const s32, "P2/game", UpdateGameState__Ff);
 
 INCLUDE_ASM(const s32, "P2/game", LsFromWid);
 
 INCLUDE_ASM(const s32, "P2/game", GrflsFromWid);
 
-INCLUDE_ASM(const s32, "P2/game", UnloadGame);
+INCLUDE_ASM(const s32, "P2/game", UnloadGame__Fv);
 
-INCLUDE_ASM(const s32, "P2/game", RetryGame);
+INCLUDE_ASM(const s32, "P2/game", RetryGame__Fv);
 
 INCLUDE_ASM(const s32, "P2/game", StartGame__Fv);
 
@@ -51,12 +51,12 @@ INCLUDE_ASM(const s32, "P2/game", FUN_00160948);
 
 INCLUDE_ASM(const s32, "P2/game", calculate_percent_completion);
 
-INCLUDE_ASM(const s32, "P2/game", SetCcharm);
+INCLUDE_ASM(const s32, "P2/game", SetCcharm__Fi);
 
-INCLUDE_ASM(const s32, "P2/game", FCharmAvailable);
+INCLUDE_ASM(const s32, "P2/game", FCharmAvailable__Fv);
 INCLUDE_ASM(const s32, "P2/game", func_00160C90);
 
-INCLUDE_ASM(const s32, "P2/game", PfLookupDialog);
+INCLUDE_ASM(const s32, "P2/game", PfLookupDialog__FP2LS3OID);
 
 INCLUDE_ASM(const s32, "P2/game", clr_8_bytes_1);
 

@@ -9,184 +9,144 @@
 #define GAME_H
 
 #include "common.h"
-#include <gs.h>
+#include <oid.h>
+#include <cid.h>
 
 /**
- * @brief Level state flags integer type
+ * @brief World ID.
+ */
+enum GAMEWORLD
+{
+    GAMEWORLD_Intro = 0,
+    GAMEWORLD_Underwater = 1,
+    GAMEWORLD_Muggshot = 2,
+    GAMEWORLD_Voodoo = 3,
+    GAMEWORLD_Snow = 4,
+    GAMEWORLD_Clockwerk = 5,
+    GAMEWORLD_Max = 6
+};
+
+/**
+ * @brief Level ID.
+ */
+enum WORLDLEVEL
+{
+    WORLDLEVEL_Approach = 0,
+    WORLDLEVEL_Hub = 1,
+    WORLDLEVEL_Level1 = 2,
+    WORLDLEVEL_Level2 = 3,
+    WORLDLEVEL_Level3 = 4,
+    WORLDLEVEL_Level4 = 5,
+    WORLDLEVEL_Level5 = 6,
+    WORLDLEVEL_Level6 = 7,
+    WORLDLEVEL_Boss = 8,
+    WORLDLEVEL_Max = 9
+};
+
+/**
+ * @brief Game state flags.
+ */
+enum FGS
+{
+    FGS_FirstClue = 0x1,
+    FGS_HalfClues = 0x2,
+    FGS_AllClues = 0x4,
+    FGS_FirstVault = 0x8,
+    FGS_SecondVault = 0x10
+};
+
+/**
+ * @brief Game state flags integer type.
+ */
+typedef int GRFGS;
+
+/**
+ * @brief World state flags.
+ */
+enum FWS
+{
+    FWS_Visited = 0x1,
+    FWS_Lock_0 = 0x2,
+    FWS_Lock_1 = 0x4,
+    FWS_Lock_2 = 0x8,
+    FWS_Lock_3 = 0x10,
+    FWS_Lock_All = 0x1e
+};
+/**
+ * @brief World state flags integer type.
+ */
+typedef int GRFWS;
+
+/**
+ * @brief Level state flags.
+ */
+enum FLS
+{
+    FLS_Visited = 0x1,
+    FLS_KeyCollected = 0x2,
+    FLS_Secondary = 0x4,
+    FLS_Tertiary = 0x8,
+    FLS_BossDefeated = 0x10
+};
+
+/**
+ * @brief Level state flags integer type.
  */
 typedef int GRFLS;
 
 /**
- * @brief Collision ID?
- *
- * @note Not sure if actually collision or something else.
+ * @brief Level State
  */
-enum CID
+struct LS
 {
-    CID_Nil = -1,
-    CID_BASIC = 0,
-    CID_LO = 1,
-    CID_ALO = 2,
-    CID_SO = 3,
-    CID_MS = 4,
-    CID_PO = 5,
-    CID_STEP = 6,
-    CID_JT = 7,
-    CID_STEPGUARD = 8,
-    CID_SMARTGUARD = 9,
-    CID_GOMER = 10,
-    CID_UBG = 11,
-    CID_MBG = 12,
-    CID_BHG = 13,
-    CID_MURRAY = 14,
-    CID_PUFFC = 15,
-    CID_CRFOD = 16,
-    CID_CRFODB = 17,
-    CID_CRFODK = 18,
-    CID_TANK = 19,
-    CID_JP = 20,
-    CID_HG = 21,
-    CID_MECHA = 22,
-    CID_ROV = 23,
-    CID_TURRET = 24,
-    CID_VAULT = 25,
-    CID_PUFFER = 26,
-    CID_MGV = 27,
-    CID_SUV = 28,
-    CID_CYCLE = 29,
-    CID_LGN = 30,
-    CID_JACK = 31,
-    CID_RIPG = 32,
-    CID_WATER = 33,
-    CID_BRK = 34,
-    CID_BREAK = 35,
-    CID_ALBRK = 36,
-    CID_CAN = 37,
-    CID_DARTGUN = 38,
-    CID_SWP = 39,
-    CID_FRAGILE = 40,
-    CID_ZAPBREAK = 41,
-    CID_BRKP = 42,
-    CID_BUTTON = 43,
-    CID_VOLBTN = 44,
-    CID_JLOVOL = 45,
-    CID_SQUISH = 46,
-    CID_BONE = 47,
-    CID_SPRIZE = 48,
-    CID_SCPRIZE = 49,
-    CID_LIFETKN = 50,
-    CID_CLUE = 51,
-    CID_ALARM = 52,
-    CID_SENSOR = 53,
-    CID_LASEN = 54,
-    CID_CAMSEN = 55,
-    CID_PRSEN = 56,
-    CID_BARRIER = 57,
-    CID_IKH = 58,
-    CID_TZP = 59,
-    CID_VOLZP = 60,
-    CID_CNVO = 61,
-    CID_HBSK = 62,
-    CID_BOMB = 63,
-    CID_MISSILE = 64,
-    CID_ACCMISS = 65,
-    CID_TARMISS = 66,
-    CID_SPLMISS = 67,
-    CID_GROUNDMISS = 68,
-    CID_FLY = 69,
-    CID_RAT = 70,
-    CID_ROH = 71,
-    CID_ROC = 72,
-    CID_ROST = 73,
-    CID_ROP = 74,
-    CID_DART = 75,
-    CID_UBV = 76,
-    CID_UBP = 77,
-    CID_DSP = 78,
-    CID_JLO = 79,
-    CID_PUFFT = 80,
-    CID_MRKV = 81,
-    CID_LGNB = 82,
-    CID_BLIPG = 83,
-    CID_CAMERA = 84,
-    CID_LBONE = 85,
-    CID_EMITTER = 86,
-    CID_LIGHT = 87,
-    CID_SCH = 88,
-    CID_LIKH = 89,
-    CID_CHKPNT = 90,
-    CID_PROXY = 91,
-    CID_SKY = 92,
-    CID_DPRIZE = 93,
-    CID_CHARM = 94,
-    CID_COIN = 95,
-    CID_KEY = 96,
-    CID_GOLD = 97,
-    CID_LOCK = 98,
-    CID_LOCKG = 99,
-    CID_TAIL = 100,
-    CID_ROB = 101,
-    CID_FLASH = 102,
-    CID_DYSH = 103,
-    CID_SCENTMAP = 104,
-    CID_WAYPOINT = 105,
-    CID_TN = 106,
-    CID_JLOC = 107,
-    CID_DIALOG = 108,
-    CID_SPEAKER = 109,
-    CID_ROPE = 110,
-    CID_WM = 111,
-    CID_PUFFB = 112,
-    CID_CRBRAIN = 113,
-    CID_MGC = 114,
-    CID_JACKB = 115,
-    CID_JACKN = 116,
-    CID_JACKF = 117,
-    CID_SW = 118,
-    CID_CM = 119,
-    CID_SHAPE = 120,
-    CID_HSHAPE = 121,
-    CID_PIPE = 122,
-    CID_RAIL = 123,
-    CID_LANDING = 124,
-    CID_XFM = 125,
-    CID_WARP = 126,
-    CID_TARGET = 127,
-    CID_HND = 128,
-    CID_EXPL = 129,
-    CID_EXPLG = 130,
-    CID_EXPLO = 131,
-    CID_EXPLS = 132,
-    CID_VOL = 133,
-    CID_RATHOLE = 134,
-    CID_PUFFV = 135,
-    CID_EXIT = 136,
-    CID_PNT = 137,
-    CID_PNTSV = 138,
-    CID_PNTS = 139,
-    CID_PNTVEC = 140,
-    CID_HPNT = 141,
-    CID_JMT = 142,
-    CID_SPIRE = 143,
-    CID_SCAN = 144,
-    CID_ASEG = 145,
-    CID_ASEGBL = 146,
-    CID_MAP = 147,
-    CID__VISZONE = 148,
-    CID_VISMAP = 149,
-    CID_FRZG = 150,
-    CID_SM = 151,
-    CID_SGG = 152,
-    CID_PATHZONE = 153,
-    CID_RCHM = 154,
-    CID_RWM = 155,
-    CID_WR = 156,
-    CID_KEYHOLE = 157,
-    CID_JSG = 158,
-    CID_ASEGA = 159,
-    CID_SMA = 160,
-    CID__FCST = 161,
-    CID_Max = 162
+    FLS fls;                // Level state flags
+    float dt;               // Time spent in level (secs)
+    float dtTimedBest;      // Best MTS time for level (secs)
+    float uSuck;            // Current player suck for this level
+    float unk_suck_0x10;    // unknown, seems suck related
+    int afDialogPlayed[12]; // Dialog played flags
+    int sceneVars[2][4];    // Scene variables
+    int cclue;              // Count of clues collected
+    unsigned int fclue;     // Clue collected flags
+    int unk_field_0x6c;
+    int unk_field_0x70;
+    char *unk_field_0x74;
+};
+
+/**
+ * @brief World State
+ */
+struct WS
+{
+    LS als[9];  // Level states array
+    int ckey;   // Count of keys collected in world
+    int cvault; // Count of vaults opened on worls
+    int ctimed; // Count of MTSs completed in world
+    float dt;   // Time spent in world (secs)
+    FWS fws;    // World state flags
+};
+
+/**
+ * @brief Game State
+ */
+typedef int GRFVAULT;
+struct GS
+{
+    int gsv;                  // not sure why this isn't caled fgs
+    int cbThis;               // Struct size (bytes)
+    int nChecksum;            // Expected size (bytes)
+    float dt;                 // Time spent in game (secs)
+    WS aws[6];                // World states array
+    GAMEWORLD gameworldCur;   // Current world
+    WORLDLEVEL worldlevelCur; // Current level
+    int clife;                // Lives count
+    int ccharm;               // Charm count
+    int ccoin;                // Coin count
+    GRFGS grfgs;              // Game settings flags(?)
+    GRFVAULT grfvault;        // Unlocked powerup flags
+    unsigned int unlocked_cutscenes;
+    unsigned int fgs;
+    int nPowerupLast; // Last selected powerup
 };
 
 /**
