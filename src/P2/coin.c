@@ -32,18 +32,18 @@ INCLUDE_ASM(const s32, "P2/coin", CpdprizeAttractSwDprizes__FP2SW3CIDP6VECTORiPP
 
 INCLUDE_ASM(const s32, "P2/coin", RemoveSwExtraneousCharms__FP2SW);
 
-INCLUDE_ASM(const s32, "P2/coin", func_00148D90);
+INCLUDE_ASM(const s32, "P2/coin", FUN_00148d90);
 
-INCLUDE_ASM(const s32, "P2/coin", func_00148E18);
+INCLUDE_ASM(const s32, "P2/coin", FUN_00148e18);
 
-INCLUDE_ASM(const s32, "P2/coin", func_00148E40);
+INCLUDE_ASM(const s32, "P2/coin", FUN_00148e40);
 
-INCLUDE_ASM(const s32, "P2/coin", func_00148EF8);
+INCLUDE_ASM(const s32, "P2/coin", FUN_00148ef8);
 
-INCLUDE_ASM(const s32, "P2/coin", func_00148F80);
+INCLUDE_ASM(const s32, "P2/coin", increment_and_show_life_count);
 
-INCLUDE_ASM(const s32, "P2/coin", func_00148FF0);
+INCLUDE_ASM(const s32, "P2/coin", CollectLifetkn__FP7LIFETKN);
 
-INCLUDE_ASM(const s32, "P2/coin", func_00149168);
+INCLUDE_ASM(const s32, "P2/coin", FUN_00149168);
 
-INCLUDE_ASM(const s32, "P2/coin", func_00149190);
+INCLUDE_ASM(const s32, "P2/coin", break_bottle);
