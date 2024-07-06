@@ -16,6 +16,7 @@ struct SM;
 struct SMA;
 struct SMT;
 struct SMS;
+struct SMP;
 
 /**
  * @brief State machine.
@@ -68,6 +69,15 @@ struct SMS
 {
     OID oid;
     undefined4 unk_0;
+};
+
+/**
+ * @brief State machine something(?).
+ */
+struct SMP
+{
+    float svSlow;
+    float dtFast;
 };
 
 #endif // SM_H

@@ -1,13 +1,43 @@
 /**
- * @file stream.h
+ * @file surf.h
+ *
+ * @brief Surface?
  */
-#ifndef STREAM_H
-#define STREAM_H
+#ifndef SURF_H
+#define SURF_H
 
 #include "common.h"
+#include <vec.h>
+#include <geom.h>
 
-//todo implement structs
-struct TSURF;
+// todo define struct
 struct TBSP;
 
-#endif // STREAM_H
+struct SUR
+{
+    int cb;
+    void *pvSrc;
+    void *pvDst;
+    int cvtx;
+};
+
+struct SURF
+{
+    VECTOR normal;
+    float gDot;
+    EDGE *pedge;
+    EDGE *pedgeOther;
+    short grfsurf;
+    short ipos;
+};
+
+struct TSURF
+{
+    float gDot;
+    undefined4 unk1;
+    undefined4 unk2;
+    undefined4 unk3;
+    VECTOR normal;
+};
+
+#endif // SURF_H

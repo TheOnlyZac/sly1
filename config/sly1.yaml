@@ -142,8 +142,8 @@ segments:
 
     - [0x5aca0, asm] #? unknown file
 
-    - [0x5af20, asm, P2/find]
-    - [0x5b8b0, asm, P2/flash]
+    - [0x5af20, c, P2/find]
+    - [0x5b8b0, c, P2/flash]
     - [0x5bae0, asm, P2/fly]
     - [0x5d188, asm, P2/font]
     - [0x5f810, c, P2/frm]
@@ -499,7 +499,10 @@ segments:
     #- [0x, data, P2/stepzap]
     #- [0x, data, P2/stream]
     #- [0x, data,, P2/suv]
-    #- [0x, data, P2/sw]
+
+    - [0x176710, data, P2/sw]
+    - [0x176714, data]
+
     #- [0x, data,, P2/tail]
     #- [0x, data,, P2/tank]
     #- [0x, data,, P2/target]
@@ -519,7 +522,10 @@ segments:
     #- [0x, data, P2/vis]
     #- [0x, data, P2/water]
     #- [0x, data, P2/waypoint]
-    #- [0x, data, P2/wipe]
+
+    - [0x176f80, data, P2/wipe]
+    - [0x176fc0, data]
+
     #- [0x, data, P2/wm]
     #- [0x, data, P2/xform]
     #- [0x, data, P2/zap]

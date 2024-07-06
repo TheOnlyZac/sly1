@@ -236,6 +236,28 @@ g_difficultyEasy = 0x261e90; // size:0x5c
 g_difficulty = 0x261ef0; // size:0x20
 
 
+// P2/find.c
+PdlFromSwOid__FP2SW3OID = 0x159F20; // type:func
+MatchSwObject__FP2LOiiiT0iPiPP2LOT6 = 0x159F48; // type:func
+CploFindSwObjects__FP2SWi3OIDP2LOiPP2LO = 0x15A198; // type:func
+PloFindSwObject__FP2SWi3OIDP2LO = 0x15A418; // type:func
+PloFindSwNearest__FP2SW3OIDP2LO = 0x15A448; // type:func
+PloFindSwChild__FP2SW3OIDP3ALO = 0x15A480; // type:func
+FIsCidDerivedFrom__F3CIDT0 = 0x15A4B8; // type:func
+CploFindSwObjectsByClass__FP2SWi3CIDP2LOiPP2LO = 0x15A4F0; // type:func
+PloFindSwObjectByClass__FP2SWi3CIDP2LO = 0x15A838; // type:func
+PaloFindLoCommonParent__FP2LOT0 = 0x15A868; // type:func
+
+
+// P2/flash.c
+InitFlash__FP5FLASH = 0x15A8B0; // type:func
+LoadFlashFromBrx__FP5FLASHP18CBinaryInputStream = 0x15A918; // type:func
+UpdateFlash__FP5FLASHf = 0x15A960; // type:func
+RenderFlashSelf__FP5FLASHP2CMP2RO = 0x15A9A8; // type:func
+FPosFlashWithin__FP5FLASHP6VECTOR = 0x15AA50; // type:func
+
+
+
 // P2/font.c
 
 g_pfont = 0x26227C; // size:0x4

@@ -11,4 +11,6 @@ struct SW
 {
 };
 
+extern SW *g_psw;
+
 #endif // SW_H

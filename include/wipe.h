@@ -45,4 +45,7 @@ struct WIPE
     WIPEK wipekButton;
 };
 
+extern WIPE *g_pwipe;
+extern WIPE g_wipe;
+
 #endif // WIPE_H
