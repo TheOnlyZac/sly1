@@ -8,9 +8,16 @@
 
 #include "common.h"
 #include <alo.h>
-#include <vec.h>
-#include <mat.h>
+#include <util.h>
 #include <dl.h>
+#include <surf.h>
+#include <game.h>
+#include <oid.h>
+#include <anim.h>
+#include <wipe.h>
+#include <bis.h>
+#include <proxy.h>
+#include <rs.h>
 
 // Forward declarations
 struct XFM;
@@ -63,6 +70,9 @@ struct EXPLSTE
     // ...
 };
 
+/**
+ * @brief Target.
+ */
 struct TARGET : public XFM
 {
     DLE dleTarget;
@@ -72,6 +82,32 @@ struct TARGET : public XFM
     undefined4 unk0;
     undefined4 unk1;
     undefined4 unk2;
+};
+
+/**
+ * @brief Warp.
+ */
+struct WARP : XFM
+{
+    WID widMenu;
+    undefined4 unk0_0x4;
+    undefined4 unk1_0x8;
+    undefined4 unk2_0xC;
+    VECTOR v;
+    int fDefault;
+    float radCmInit;
+    int cpaseg;
+    ASEG **apaseg;
+    int coidHide;
+    OID *aoidHide;
+    int coidShowWhenDifficult;
+    OID aoidShowWhenDifficult[4];
+    OID oidAlias;
+    int crsmg;
+    RSMG arsmg[4];
+    undefined4 unk3;
+    undefined4 unk4;
+    undefined4 unk5;
 };
 
 /**
@@ -102,5 +138,100 @@ struct CAMERA : public ALO
     undefined4 unk_3;
     undefined4 unk_4;
 };
+
+enum EXITS
+{
+    EXITS_Nil = -1,
+    EXITS_Blocked = 0,
+    EXITS_Unblocked = 1,
+    EXITS_Disabled = 2,
+    EXITS_Enabled = 3,
+    EXITS_Totals = 4,
+    EXITS_Exiting = 5,
+    EXITS_Max = 6
+};
+
+enum EDK
+{
+    EDK_Nil = -1,
+    EDK_DestinationKey = 0,
+    EDK_CurrentKey = 1,
+    EDK_Max = 2
+};
+
+struct EXIT : public ALO
+{
+    int fDefault;
+    EXITS fKeyed;
+    float fFollowDefault;
+    int fTotals;
+    EXITS exits;
+    float tExits;
+    int ctsurf;
+    TSURF *atsurf;
+    int ctbsp;
+    TBSP *atbsp;
+    WID widWarp;
+    OID oidWarp;
+    EDK edkAlt;
+    WID widAlt;
+    OID oidAlt;
+    int cpaseg;
+    ASEG *apaseg;
+    WIPEK wipek;
+    float tWipe;
+    float dtUnblock;
+    float dtTriggerWipe;
+};
+
+void InitXfm(XFM *pxfm);
+
+void LoadXfmFromBrx(XFM *pxfm, CBinaryInputStream *pbis);
+
+void SetXfmParent(XFM *pxfm, ALO *paloParent);
+
+void ApplyXfmProxy(XFM *pxfm, PROXY *pproxyApply);
+
+void ConvertXfmWorldToLocal(XFM *pxfm, VECTOR *pposWorld, VECTOR *pposLocal);
+
+void GetXfmPos(XFM *xfm, VECTOR *ppos);
+
+void GetXfmMat(XFM *pxfm, MATRIX3 *pmat);
+
+WARP *PwarpFromOid(OID oid, OID oidContext);
+
+void LoadWarpFromBrx(WARP *pwarp, CBinaryInputStream *pbis);
+
+void CloneWarp(WARP *pwarp, WARP *pwarpBase);
+
+void PostWarpLoad(WARP *pwarp);
+
+void TriggerWarp(WARP *pwarp);
+
+void SetWarpRsmg(WARP *pwarp, int fOnTrigger, OID oidRoot, OID oidSM, OID oidGoal);
+
+void TeleportSwPlayer(SW *psw, OID oidWarp, OID oidWarpContext);
+
+EXIT *PexitDefault();
+
+void TriggerDefaultExit(int fInhibitAsegs, WIPEK wipek);
+
+void LoadExitFromBrx(EXIT *pexit, CBinaryInputStream *pbis);
+
+void PostExitLoad(EXIT *pexit);
+
+void SetExitExits(EXIT *pexit, EXITS exits);
+
+void TriggerExit(EXIT *pexit);
+
+void WipeExit(EXIT *pexit);
+
+void UpdateExit(float dt, EXIT *pexit);
+
+void InitCamera(CAMERA *pcamera);
+
+void PostCameraLoad(CAMERA *camera);
+
+void EnableCamera(CAMERA *pcamera);
 
 #endif // XFORM_H

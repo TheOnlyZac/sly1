@@ -118,17 +118,13 @@ struct CTR : public BLOT
     void *pv;
 };
 
+struct TRUNKCTR : public CTR { };
+struct CRUSHERCTR : public CTR { };
+struct LIFECTR : public CTR { };
+struct CLUECTR : public CTR { };
+struct KEYCTR : public CTR { };
+struct COINCTR : public CTR { };
 
-struct TRUNKCTR : public CTR
-{
-    // empty
-};
-
-
-struct CRUSHERCTR : public CTR
-{
-    // empty
-};
 
 // MARK: Totals
 

@@ -14,7 +14,6 @@
 struct VECTOR
 {
     float x, y, z;
-    float gUnused;
 };
 
 struct VECTOR4

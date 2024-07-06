@@ -12,10 +12,6 @@
 #include "common.h"
 #include <xform.h>
 
-//todo implement structs
-struct TSURF;
-struct TBSP;
-
 struct VOL : public XFM
 {
     int ctsurf;

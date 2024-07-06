@@ -436,11 +436,14 @@ void GetBlueprintInfo(int *pgrfvault, int *pipdialog);
  * @note Always returns 2. This is a holdover from earlier in development where
  * there was a powerup that allowed you to have more than 2 charms.
  */
-int CCharmMost();
+int CcharmMost();
 
 /**
  * @brief Reloads the game state after the player dies.
  */
 void reload_post_death();
+
+extern GS g_gsCur;
+extern GS *g_pgsCur;
 
 #endif // GAME_H

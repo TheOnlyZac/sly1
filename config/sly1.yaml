@@ -297,8 +297,8 @@ segments:
     - [0xf0838, asm, P2/waypoint]
     - [0xf0ce8, asm, P2/wipe]
     - [0xf1758, asm, P2/wm] # not confident
-    - [0xf49f8, asm, P2/xform]
-    - [0xf5f70, asm, P2/zap]
+    - [0xf49f8, c, P2/xform]
+    - [0xf5f20, asm, P2/zap]
 
     ## Source files in May proto that aren't in release:
     # P2/cycle.c - some kind of wheeled vehicle
@@ -311,7 +311,7 @@ segments:
     #--------------------------------------------------------
     # Libs
     #--------------------------------------------------------
-    - [0xF69C4, asm] # TBD #MARK: libs
+    - [0xF6930, asm] # TBD #MARK: libs
 
     - [0xF76F8, asm, sce/rand]
 
@@ -395,7 +395,10 @@ segments:
     #- [0x, data, P2/frm]
     #- [0x, data, P2/freeze]
     #- [0x, data, P2/frzg]
-    #- [0x, data, P2/game]
+
+    - [0x1633c0, data, P2/game]
+    - [0x1633d8, data]
+
     #- [0x, data, P2/geom]
     #- [0x, data,, P2/gifs]
     #- [0x, data,, P2/glbs]

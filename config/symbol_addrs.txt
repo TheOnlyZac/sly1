@@ -308,6 +308,18 @@ CcharmMost__Fv = 0x160D98; // type:func
 reload_post_death = 0x160DA0; // type:func
 
 
+g_pgsCur = 0x2623c0; // size:0x4
+g_pwsCur = 0x2623c4; // size:0x4
+g_plsCur = 0x2623c8; // size:0x4
+g_worldlevelPrev = 0x2623cc; // size:0x4
+chz_none = 0x2623d0; // size:0x7
+
+
+// static
+g_gsCur = 0xea0; // size:0x1a00
+
+
+
 // P2/joy.c
 StartupJoy__Fv = 0x16E0B8; // type:func
 AddGrfusr__Fi = 0x16E0F0; // type:func
@@ -458,6 +470,20 @@ FUN_001ae130 = 0x1AE130; // type:func
 UpdateAttract__FP7ATTRACT = 0x1AE178; // type:func
 DrawLineScreen__FUiUiUiUiUiUiG4RGBAi = 0x1AE3B8; // type:func
 
+// Global blots
+g_lifectr = 0x26c6c8; // size:0x280
+g_cluectr = 0x26c948; // size:0x280
+g_keyctr = 0x26cbc8; // size:0x280
+g_coinctr = 0x26ce48; // size:0x280
+g_unkblot0 = 0x26d0c8; // size:0x280
+g_unkblot1 = 0x26d348; // size:0x280
+g_unkblot2 = 0x26d5c8; // size:0x280
+g_unkblot3 = 0x26d848; // size:0x280
+g_unkblot4 = 0x26dac8; // size:0x280
+g_unkblot5 = 0x26dd48; // size:0x280
+g_unkblot6 = 0x26dfc8; // size:0x280
+g_unkblot7 = 0x26e248; // size:0x280
+
 
 // P2/steppower.c
 SetFsp__F3FSP = 0x1D29C8; // type:func
@@ -544,6 +570,34 @@ LimitVectorLength = 0x1EE2B0; // type:func
 // P2/wipe.c
 g_pwipe = 0x275f80;
 g_wipe = 0x275f84;
+
+
+// P2/xform.c
+InitXfm__FP3XFM = 0x1F39F8; // type:func
+LoadXfmFromBrx__FP3XFMP18CBinaryInputStream = 0x1F3A40; // type:func
+SetXfmParent__FP3XFMP3ALO = 0x1F3A90; // type:func
+ApplyXfmProxy__FP3XFMP5PROXY = 0x1F3AF0; // type:func
+ConvertXfmLocalToWorld__FP3XFMP6VECTORT1 = 0x1F3B48; // type:func
+GetXfmPos__FP3XFMP6VECTOR = 0x1F3BD8; // type:func
+GetXfmMat__FP3XFMP7MATRIX3 = 0x1F3C08; // type:func
+PwarpFromOid__F3OIDT0 = 0x1F3C38; // type:func
+LoadWarpFromBrx__FP4WARPP18CBinaryInputStream = 0x1F3D80; // type:func
+CloneWarp__FP4WARPT0 = 0x1F3EE0; // type:func
+PostWarpLoad__FP4WARP = 0x1F3F80; // type:func
+TriggerWarp__FP4WARP = 0x1F4008; // type:func
+SetWarpRsmg__FP4WARPi3OIDN22 = 0x1F42D0; // type:func
+TeleportSwPlayer__FP2SW3OIDT1 = 0x1F4318; // type:func
+PexitDefault__Fv = 0x1F4378; // type:func
+TriggerDefaultExit__Fi5WIPEK = 0x1F4408; // type:func
+LoadExitFromBrx__FP4EXITP18CBinaryInputStream = 0x1F4500; // type:func
+PostExitLoad__FP4EXIT = 0x1F4660; // type:func
+SetExitExits__FP4EXIT5EXITS = 0x1F4760; // type:func
+TriggerExit__FP4EXIT = 0x1F4808; // type:func
+WipeExit__FP4EXIT = 0x1F4A30; // type:func
+UpdateExit__FfP4EXIT = 0x1F4AE0; // type:func
+InitCamera__FP6CAMERA = 0x1F4E18; // type:func
+PostCameraLoad__FP6CAMERA = 0x1F4E48; // type:func
+EnableCamera__FP6CAMERA = 0x1F4ED0; // type:func
 
 
 // sce/ee/gcc/src/gcc/libgcc2.c
