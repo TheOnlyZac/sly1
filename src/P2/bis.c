@@ -4,7 +4,38 @@ INCLUDE_ASM(const s32, "P2/bis", __18CBinaryInputStreamiPvi);
 
 INCLUDE_ASM(const s32, "P2/bis", DESTRUCTOR__CBinaryInputStream);
 
-INCLUDE_ASM(const s32, "P2/bis", FOpenSector__18CBinaryInputStreamUiUi);
+int CBinaryInputStream::FOpenSector(uint isector, uint cb)
+{
+    int cbSpool = m_cbSpool;
+
+    m_bisk = BISK_Cd;
+    m_cbAsyncRequest = isector;
+    m_cbFile = cb;
+    m_cbRemaining = cb;
+    m_fd = cb;
+    m_pbRaw = m_abSpool;
+    *(uint *)&m_tickWait = 0;
+    m_cbAsyncComplete = 0;
+    *(uint *)((int)&m_tickWait + 4) = 0;
+
+    if (cbSpool < 0) {
+        cbSpool += 0xfffff;
+    }
+
+    m_cbPartialRead = 0;
+
+    int cbAsyncRemaining = 2;
+    int shr = 20;
+    if ((cbSpool >> shr) > cbAsyncRemaining) {
+        cbAsyncRemaining = cbSpool >> shr;
+    }
+
+    m_isector = 0;
+    m_cbAsyncRemaining = cbAsyncRemaining;
+    m_cbuf = cbAsyncRemaining - 1;
+
+    return 1;
+}
 
 INCLUDE_ASM(const s32, "P2/bis", OpenMemory__18CBinaryInputStreamiPv);
 

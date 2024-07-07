@@ -8,6 +8,7 @@
 
 #include "common.h"
 #include <prog.h>
+#include <clock.h>
 #include <vec.h>
 #include <mat.h>
 #include <geom.h>
@@ -56,25 +57,25 @@ class CBinaryInputStream
 {
 public:
     int m_grfbis;
-    enum BISK m_bisk;
+    BISK m_bisk;
     byte *m_abSpool;
     int m_cbSpool;
     int m_cbFile;
-    int m_cbRemaining; /* File Stream Remaining Bytes. */
-    byte *m_pb;        /* File Stream Position */
-    int m_cb;          /* File Stream Size */
+    int m_cbRemaining; // File Stream Remaining Bytes.
+    byte *m_pb;        // File Stream Position
+    int m_cb;          // File Stream Size
     byte *m_pbRaw;
     int m_cbRaw;
     int m_grfDecomp;
     int m_cbSpillOver;
     CProg *m_pprog;
-    uint64_t m_tickWait;
+    TICK m_tickWait;
     int m_fd;
     int m_cbAsyncComplete;
     int m_cbAsyncRequest;
     int m_cbAsyncRemaining;
     int m_cbPartialRead;
-    uint32_t m_isector; /* Sector Offset in ISO */
+    uint m_isector; // Sector Offset in ISO
     int m_cbuf;
     int m_cbufFill;
     int m_ibufMic;
@@ -112,7 +113,6 @@ public:
      * @param pv Pointer to the memory location.
      */
     void OpenMemory(int cb, void *pv);
-
 
     /**
      * @brief Opens the file at the given location.
@@ -263,7 +263,7 @@ public:
      *
      * @todo Fix parse errors in function declaration.
      */
-    //void (GEOM *pgeom, BSPC *pbspc);
+    // void (GEOM *pgeom, BSPC *pbspc);
 
     /**
      * @brief Reads the given number of VBSPs from the stream.
