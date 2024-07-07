@@ -58,6 +58,37 @@ SetVerticalJust__8CTextBox2JV = 0x137268; // type:func
 _GLOBAL_$I$InitBei__FP3BEIP3CLQffi = 0x137270; // type:func
 
 
+// P2/bis.c
+__18CBinaryInputStreamiPvi = 0x137290; // type:func
+DESTRUCTOR__CBinaryInputStream = 0x1372E0; // type:func
+FOpenSector__18CBinaryInputStreamUiUi = 0x137328; // type:func
+OpenMemory__18CBinaryInputStreamiPv = 0x137398; // type:func
+FOpenFile__18CBinaryInputStreamP13CFileLocation = 0x1373B0; // type:func
+Close__18CBinaryInputStream = 0x1373D0; // type:func
+DecrementCdReadLimit__18CBinaryInputStreami = 0x137480; // type:func
+PumpCd__18CBinaryInputStream = 0x137490; // type:func
+PumpHost__18CBinaryInputStream = 0x1377C0; // type:func
+Pump__18CBinaryInputStream = 0x137820; // type:func
+Decompress__18CBinaryInputStream = 0x1378A0; // type:func
+Read__18CBinaryInputStreamiPv = 0x137A60; // type:func
+Align__18CBinaryInputStreami = 0x137B60; // type:func
+U8Read__18CBinaryInputStream = 0x137B90; // type:func
+U16Read__18CBinaryInputStream = 0x137BE0; // type:func
+U32Read__18CBinaryInputStream = 0x137C40; // type:func
+S8Read__18CBinaryInputStream = 0x137CC0; // type:func
+S16Read__18CBinaryInputStream = 0x137D10; // type:func
+S32Read__18CBinaryInputStream = 0x137D78; // type:func
+F32Read__18CBinaryInputStream = 0x137DF8; // type:func
+ReadVector__18CBinaryInputStreamP6VECTOR = 0x137E70; // type:func
+ReadVector4__18CBinaryInputStreamP7VECTOR4 = 0x137E90; // type:func
+ReadMatrix__18CBinaryInputStreamP7MATRIX3 = 0x137EB0; // type:func
+ReadMatrix4__18CBinaryInputStreamP7MATRIX4 = 0x137F08; // type:func
+ReadGeom__18CBinaryInputStreamP4GEOM = 0x137FB0; // type:func
+ReadBspc__18CBinaryInputStreamP4GEOMP4BSPC = 0x138278; // type:func
+ReadVbsp__18CBinaryInputStreamPiPP4VBSP = 0x138398; // type:func
+ReadStringSw__18CBinaryInputStreamPPc = 0x1384A0; // type:func
+
+
 // P2/cd.c
 CdPath__FPcT0i = 0x140b60; // type:func
 

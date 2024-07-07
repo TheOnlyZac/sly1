@@ -1,16 +1,24 @@
 /**
  * @file bis.h
+ *
+ * @brief Binary Input Stream.
  */
 #ifndef BIS_H
 #define BIS_H
 
 #include "common.h"
 #include <prog.h>
+#include <vec.h>
+#include <mat.h>
+#include <geom.h>
+
+typedef struct BSPC;
+typedef struct VBSP;
 
 /**
- * @brief Binary Input Stream Kind
+ * @brief Binary Input Stream Kind.
  *
- * Types of binary stream that can be opened
+ * Types of binary stream that can be opened.
  */
 enum BISK
 {
@@ -31,6 +39,13 @@ class CFileLocation
     // todo Implement class.
     // Also it maybe isn't supposed to be in this file.
 };
+
+/**
+ * @brief Binary Input Stream Flags numeric type.
+ *
+ * Flags for the binary input stream.
+ */
+typedef int GRFBIS;
 
 /**
  * @brief Binary Input Stream
@@ -68,11 +83,11 @@ public:
     /**
      * @brief Constructs a new CBinaryInputStream.
      *
-     * @param fileName Name of the file to open
+     * @param fileName Name of the file to open.
      *
      * @todo Implement this constructor.
      */
-    CBinaryInputStream(const char *fileName); // Used for file object
+    CBinaryInputStream(int cbSpool, void *pvSpool, GRFBIS grfbis);
 
     /**
      * @brief Destroys the CBinaryInputStream.
@@ -80,42 +95,68 @@ public:
     ~CBinaryInputStream();
 
     /**
-     * @brief Opens the file at the given location.
-     *
-     * First checks if the file is open and the CD is available.
-     *
-     * @param pfl Pointer to the file location
-     *
-     * @retval 0 File is not open
-     * @retval 1 File is open
-     */
-    int FOpenFile(CFileLocation *pfl);
-
-    /**
      * @brief Opens the sector at the given location.
      *
-     * @param isector Sector to open
-     * @param cb Number of bytes to read
+     * @param isector Sector to open.
+     * @param cb Number of bytes to read.
      *
-     * @retval 0 Sector is not open
-     * @retval 1 Sector is open
+     * @retval 0 Sector is not open.
+     * @retval 1 Sector is open.
      */
-    int FOpenSector(uint32_t isector, uint32_t cb);
+    int FOpenSector(uint isector, uint cb);
 
     /**
      * @brief Opens a certain number of bytes in memory.
      *
-     * @param cb Number of bytes to open
-     * @param pv Pointer to the memory location
+     * @param cb Number of bytes to open.
+     * @param pv Pointer to the memory location.
      */
     void OpenMemory(int cb, void *pv);
+
+
+    /**
+     * @brief Opens the file at the given location.
+     *
+     * First checks if the file is open and the CD is available.
+     *
+     * @param pfl Pointer to the file location.
+     *
+     * @retval 0 File is not open.
+     * @retval 1 File is open.
+     */
+    int FOpenFile(CFileLocation *pfl);
+
+    /**
+     * @brief Closes the stream.
+     */
+    void Close();
 
     /**
      * @brief Decrements the number of async bytes remaining.
      *
-     * @param cb Number of bytes to decrement
+     * @param cb Number of bytes to decrement.
      */
     void DecrementCdReadLimit(int cb);
+
+    /**
+     * @brief TBD.
+     */
+    void PumpCd();
+
+    /**
+     * @brief TBD.
+     */
+    void PumpHost();
+
+    /**
+     * @brief TBD.
+     */
+    void Pump();
+
+    /**
+     * @brief TBD.
+     */
+    void Decompress();
 
     /**
      * @brief Reads a certain number of bytes from the stream.
@@ -123,22 +164,24 @@ public:
      * Will read a certain number of bytes from the stream and store them at the
      * given location.
      *
-     * @param cb Number of bytes to read
-     * @param pv Pointer to the memory location
+     * @param cb Number of bytes to read.
+     * @param pv Pointer to the memory location.
      */
     void Read(int cb, void *pv);
 
     /**
      * @brief Aligns the stream to a certain number of bytes.
      *
-     * @param n Number of bytes to align to
+     * @param n Number of bytes to align to.
      */
     void Align(int n);
+
+    // MARK: Read Methods
 
     /**
      * @brief Reads a byte from the stream.
      *
-     * @return The byte read
+     * @return The byte read.
      */
     byte U8Read();
 
@@ -185,16 +228,57 @@ public:
     float F32Read();
 
     /**
+     * @brief Reads a vector from the stream.
+     *
+     * @param pv Pointer to the vector to store the data.
+     */
+    float ReadVector(VECTOR *pvec);
+
+    /**
+     * @brief Reads a 4D vector from the stream.
+     *
+     * @param pv Pointer to the vector to store the data.
+     */
+    void ReadVector4(float *pvec);
+
+    /**
+     * @brief Reads a matrix from the stream.
+     *
+     * @param pmat Pointer to the matrix to store the data.
+     */
+    void ReadMatrix(MATRIX3 *pmat);
+
+    /**
+     * @brief Reads a 4x4 matrix from the stream.
+     *
+     * @param pmat Pointer to the matrix to store the data.
+     */
+    void ReadMatrix4(MATRIX4 *pmat);
+
+    /**
+     * @brief Reads geometry data from the stream.
+     *
+     * @param pgeom Pointer to the geometry data structure to store the data.
+     * @param pbspb Unknown.
+     *
+     * @todo Fix parse errors in function declaration.
+     */
+    //void (GEOM *pgeom, BSPC *pbspc);
+
+    /**
+     * @brief Reads the given number of VBSPs from the stream.
+     *
+     * @param pcvbsp Pointer to the number of VBSP data structures to read.
+     * @param apvbsp Pointer to the array of VBSP data structures to store the data.
+     */
+    void ReadVbsp(int *pcvbsp, VBSP **apvbsp);
+
+    /**
      * @brief Reads a string from the stream.
      *
      * @param pachz Pointer where the string will be stored
      */
     void ReadStringSw(char **pachz);
-
-    /**
-     * @brief Closes the stream.
-     */
-    void Close();
 };
 
 #endif // BIS_H
