@@ -12,6 +12,7 @@
 #include <vec.h>
 #include <mat.h>
 #include <geom.h>
+#include <cat.h>
 
 typedef struct BSPC;
 typedef struct VBSP;
@@ -29,18 +30,6 @@ enum BISK
     BISK_Mem = 2,
     BISK_Max = 3
 };
-
-/**
- * @brief File Location
- *
- * Represents the location of a file on the disc.
- */
-class CFileLocation
-{
-    // todo Implement class.
-    // Also it maybe isn't supposed to be in this file.
-};
-
 /**
  * @brief Binary Input Stream Flags numeric type.
  *

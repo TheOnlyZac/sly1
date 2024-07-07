@@ -37,9 +37,17 @@ int CBinaryInputStream::FOpenSector(uint isector, uint cb)
     return 1;
 }
 
-INCLUDE_ASM(const s32, "P2/bis", OpenMemory__18CBinaryInputStreamiPv);
+void CBinaryInputStream::OpenMemory(int cb, void *pv)
+{
+    m_bisk = BISK_Mem;
+    m_pb = (byte *)pv;
+    m_cb = cb;
+}
 
-INCLUDE_ASM(const s32, "P2/bis", FOpenFile__18CBinaryInputStreamP13CFileLocation);
+int CBinaryInputStream::FOpenFile(CFileLocation *pfl)
+{
+    return FOpenSector(pfl->fcl.isector, pfl->fcl.cb);
+}
 
 INCLUDE_ASM(const s32, "P2/bis", Close__18CBinaryInputStream);
 
