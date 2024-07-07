@@ -108,7 +108,7 @@ struct RUMBLE
 /**
  * @brief Joypad button integer type.
  */
-typedef int GRFBTN;
+typedef ushort GRFBTN;
 
 /**
  * @brief Joypad state.
@@ -140,10 +140,12 @@ enum JOYK
  */
 struct JOY
 {
+    undefined4 *pvtjoy;
+
     // joypad info
     int nPort;
     int nSlot;
-    int *aullDma[8]; // todo: fix type
+    uint *aullDma; // todo: fix type
     int term;
     JOYS joys;
     JOYK joyk;
@@ -159,24 +161,26 @@ struct JOY
     // left analog stick
     float x, y;
     float uDeflect;
-    float bX, bY;
-    short unk_short;
+    byte bX, bY;
+    ushort unk_short;
     int fStickMoved;
     LM almDeflect[4];
 
     // right analog stick
     float x2, y2;
     float uDeflect2;
-    float bX2, bY2;
-    short unk_short2;
-    float fStickMoved2;
+    byte bX2, bY2;
+    ushort unk_short2;
+    int fStickMoved2;
     LM almDeflect2[4];
+
+    undefined4 unk_not_real; // only needed to make grfbtnPressed the right offset (0xaa)
 
     // face buttons
     GRFBTN grfbtn;
     GRFBTN grfbtnPressed;
     GRFBTN grfbtnReleased;
-    unsigned char mpbtnpb[12];
+    byte mpbtnpb[12];
 
     // rumble
     short unk_short_3;
@@ -262,7 +266,7 @@ void GetJoyXYDeflection(JOY *pjoy, uchar bX, uchar bY, float *px, float *py, flo
 
 int FReadJoy(JOY *pjoy);
 
-void SetJoyBtnHandled(JOY *joy, PAD btn);
+void SetJoyBtnHandled(JOY *joy, ushort btn);
 
 void TriggerJoyRumbleRumk(RUMBLE *prumble, JOY *pjoy, float dt);
 
