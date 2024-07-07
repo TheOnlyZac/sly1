@@ -1,5 +1,7 @@
 /**
  * @file sound.h
+ *
+ * @brief Sound playback.
  */
 #ifndef SOUND_H
 #define SOUND_H

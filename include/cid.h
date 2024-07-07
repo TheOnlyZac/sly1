@@ -1,7 +1,7 @@
 /**
  * @file cid.h
  *
- * @brief Collision ID?
+ * @brief Class ID.
  */
 #ifndef CID_H
 #define CID_H
@@ -9,9 +9,7 @@
 #include "common.h"
 
 /**
- * @brief Collision ID?
- *
- * @note Not sure if actually collision or something else.
+ * @brief Class ID.
  */
 enum CID
 {

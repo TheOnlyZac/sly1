@@ -1,5 +1,7 @@
 /**
  * @file find.h
+ *
+ * @brief Find objects in the SW.
  */
 #ifndef FIND_H
 #define FIND_H

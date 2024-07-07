@@ -1,7 +1,7 @@
 /**
  * @file binoc.h
  *
- * @brief Binoc-u-com
+ * @brief Binoc-u-com.
  */
 #ifndef BINOC_H
 #define BINOC_H
@@ -9,7 +9,7 @@
 #include "common.h"
 
 /**
- * @brief Horizontal text justification
+ * @brief Horizontal text justification.
 */
 typedef enum JH
 {
@@ -21,7 +21,7 @@ typedef enum JH
 } JH;
 
 /**
- * @brief Vertical text justification
+ * @brief Vertical text justification.
 */
 typedef enum JV
 {
@@ -33,7 +33,7 @@ typedef enum JV
 } JV;
 
 /**
- * @brief RGBA color value
+ * @brief RGBA color value.
 */
 struct RGBA
 {

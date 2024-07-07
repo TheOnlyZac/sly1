@@ -1,5 +1,7 @@
 /**
  * @file screen.h
+ *
+ * @brief User interface manager.
  */
 #ifndef SCREEN_H
 #define SCREEN_H

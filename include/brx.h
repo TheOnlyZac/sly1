@@ -1,5 +1,7 @@
 /**
  * @file brx.h
+ *
+ * @brief Binary Resource Archive.
  */
 #ifndef BRX_H
 #define BRX_H

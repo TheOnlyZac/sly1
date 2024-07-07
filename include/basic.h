@@ -9,6 +9,11 @@
 #include "common.h"
 #include <splice/sidebag.h>
 
+/**
+ * @brief Basic object.
+ *
+ * Base class for most objects.
+ */
 struct BASIC
 {
     int field_0x0;

@@ -1,5 +1,7 @@
 /**
  * @file sw.h
+ *
+ * @brief Scene world?
  */
 #ifndef SW_H
 #define SW_H

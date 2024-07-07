@@ -1,5 +1,7 @@
 /**
  * @file transition.h
+ *
+ * @brief Level transitions.
  */
 #ifndef TRANSITION_H
 #define TRANSITION_H

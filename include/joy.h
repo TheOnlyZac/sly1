@@ -1,7 +1,7 @@
 /**
  * @file joy.h
  *
- * @brief Joypad state.
+ * @brief Joypad manager.
  */
 #ifndef JOY_H
 #define JOY_H

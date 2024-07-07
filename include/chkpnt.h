@@ -18,7 +18,10 @@
  *
  * @note CHKPNT : ALO : LO : BASIC
  */
-struct CHKPNT;
+struct CHKPNT : public ALO
+{
+	// ...
+};
 
 /**
  * @brief Checkpoint Manager

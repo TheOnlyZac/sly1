@@ -1,5 +1,7 @@
 /**
  * @file flash.h
+ *
+ * @brief Flash (might be flash animation, or literal screen flashes).
  */
 #ifndef FLASH_H
 #define FLASH_H

@@ -1,5 +1,7 @@
 /**
  * @file font.h
+ *
+ * @brief Font system.
  */
 #ifndef FONT_H
 #define FONT_H

@@ -1,7 +1,7 @@
 /**
  * @file difficulty.h
  *
- * Dynamic difficulty system.
+ * @brief Dynamic difficulty system.
  */
 #ifndef DIFFICULTY_H
 #define DIFFICULTY_H

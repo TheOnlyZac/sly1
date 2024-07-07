@@ -6,6 +6,9 @@
 
 #include "common.h"
 
-// ...
+struct BOMB
+{
+    // ...
+};
 
 #endif // BOMB_H

@@ -1,5 +1,7 @@
 /**
  * @file alarm.h
+ *
+ * @brief Alarm system.
  */
 #ifndef ALARM_H
 #define ALARM_H

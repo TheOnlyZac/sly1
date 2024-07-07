@@ -1,5 +1,7 @@
 /**
  * @file shd.h
+ *
+ * @brief Shaders.
  */
 #ifndef SHD_H
 #define SHD_H
