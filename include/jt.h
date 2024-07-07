@@ -1,5 +1,7 @@
 /**
  * @file jt.h
+ *
+ * @brief Sly entity.
  */
 #ifndef JT_H
 #define JT_H
