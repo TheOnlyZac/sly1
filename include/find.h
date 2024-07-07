@@ -23,7 +23,7 @@ LO *PloFindSwChild(SW *psw, OID oid, ALO *paloAncestor);
 
 int FIsCidDerivedFrom(int cid, int cidAncestor);
 
-int CploFindSwObjectsByClass(SW *psw, ulong grffso, CID cid, LO *ploContext, int cploMax, LO **aplo);
+int CploFindSwObjectsByClass(SW *psw, int grffso, CID cid, LO *ploContext, int cploMax, LO **aplo);
 
 LO *PloFindSwObjectByClass(SW *psw, int grffso, CID cid, LO *ploContext);
 

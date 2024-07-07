@@ -261,9 +261,7 @@ segments:
     - [0xcefb8, asm, P2/stephide]
     - [0xd24f0, asm, P2/steppipe]
     - [0xd39c8, c, P2/steppower]
-
-    - [0xd41d0, asm, P2/step_pqr_unk] #? unknown file
-
+    - [0xd41d0, asm, P2/steprail] #? unconfirmed name
     - [0xd46f0, asm, P2/steprun]
     - [0xd5148, asm, P2/stepside]
     - [0xd5848, asm, P2/stepzap]
@@ -287,9 +285,7 @@ segments:
     - [0xea088, c, P2/ui]
     - [0xeac78, asm, P2/update]
     - [0xeb408, c, P2/util]
-
     - [0xec518, asm, P2/uv_unk] #? unknown file
-
     - [0xee650, c, P2/vec]
     - [0xef318, asm, P2/vifs]
     - [0xef900, asm, P2/vis]
@@ -297,7 +293,11 @@ segments:
     - [0xf0838, asm, P2/waypoint]
     - [0xf0ce8, asm, P2/wipe]
     - [0xf1758, asm, P2/wm] # not confident
-    - [0xf49f8, c, P2/xform]
+
+    - [0xf49f8, c, P2/xform1]
+    - [0xf4c38, asm, P2/xform_PwarpFromOid]
+    - [0xf4d80, c, P2/xform2]
+
     - [0xf5f20, asm, P2/zap]
 
     ## Source files in May proto that aren't in release:
