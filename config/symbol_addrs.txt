@@ -16,6 +16,12 @@ _GLOBAL_$I$g_splotheapPair = 0x11C0E8; // type:func
 _GLOBAL_$D$g_splotheapPair = 0x11C108; // type:func
 
 
+// P2/989snd.c
+snd_StreamSafeCdBreak = 0x11e2a0; // type:func
+snd_SendIOPCommandAndWait = 0x11e6b8; // type:func
+snd_SendIOPCommandNoWait = 0x11e8c8; // type:func
+
+
 // P2/binoc.c
 InitBei = 0x130F48; // type:func
 GEvaluateBei = 0x131000; // type:func
@@ -655,6 +661,14 @@ EnableCamera__FP6CAMERA = 0x1F4ED0; // type:func
 
 // sce/ee/gcc/src/gcc/libgcc2.c
 __main__Fv = 0x1fae18; // type:func
+
+
+// sce/eecdvd.c
+sceCdBreak = 0x203e28; // type:func
+
+
+// sce/filestub.c
+sceClose = 0x1f8c38; // type:func
 
 
 // sce/rand.c

@@ -50,9 +50,9 @@ public:
     byte *m_abSpool;
     int m_cbSpool;
     int m_cbFile;
-    int m_cbRemaining; // File Stream Remaining Bytes.
-    byte *m_pb;        // File Stream Position
-    int m_cb;          // File Stream Size
+    int m_cbRemaining; /* File Stream Remaining Bytes. */
+    byte *m_pb;        /* File Stream Position */
+    int m_cb;          /* File Stream Size */
     byte *m_pbRaw;
     int m_cbRaw;
     int m_grfDecomp;
@@ -64,7 +64,7 @@ public:
     int m_cbAsyncRequest;
     int m_cbAsyncRemaining;
     int m_cbPartialRead;
-    uint m_isector; // Sector Offset in ISO
+    uint32_t m_isector; /* Sector Offset in ISO */
     int m_cbuf;
     int m_cbufFill;
     int m_ibufMic;

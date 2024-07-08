@@ -1,4 +1,5 @@
 #include <bis.h>
+#include <989snd.h>
 
 INCLUDE_ASM(const s32, "P2/bis", __18CBinaryInputStreamiPvi);
 
@@ -51,7 +52,9 @@ int CBinaryInputStream::FOpenFile(CFileLocation *pfl)
 
 INCLUDE_ASM(const s32, "P2/bis", Close__18CBinaryInputStream);
 
-INCLUDE_ASM(const s32, "P2/bis", DecrementCdReadLimit__18CBinaryInputStreami);
+void CBinaryInputStream::DecrementCdReadLimit(int cb) {
+    m_fd = m_fd - cb;
+}
 
 INCLUDE_ASM(const s32, "P2/bis", PumpCd__18CBinaryInputStream);
 
