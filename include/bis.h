@@ -219,14 +219,14 @@ public:
      *
      * @param pv Pointer to the vector to store the data.
      */
-    float ReadVector(VECTOR *pvec);
+    void ReadVector(VECTOR *pvec);
 
     /**
      * @brief Reads a 4D vector from the stream.
      *
      * @param pv Pointer to the vector to store the data.
      */
-    void ReadVector4(float *pvec);
+    void ReadVector4(VECTOR4 *pvec);
 
     /**
      * @brief Reads a matrix from the stream.

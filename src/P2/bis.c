@@ -19,7 +19,8 @@ int CBinaryInputStream::FOpenSector(uint isector, uint cb)
     m_cbAsyncComplete = 0;
     *(uint *)((int)&m_tickWait + 4) = 0;
 
-    if (cbSpool < 0) {
+    if (cbSpool < 0)
+    {
         cbSpool += 0xfffff;
     }
 
@@ -27,7 +28,8 @@ int CBinaryInputStream::FOpenSector(uint isector, uint cb)
 
     int cbAsyncRemaining = 2;
     int shr = 20;
-    if ((cbSpool >> shr) > cbAsyncRemaining) {
+    if ((cbSpool >> shr) > cbAsyncRemaining)
+    {
         cbAsyncRemaining = cbSpool >> shr;
     }
 
@@ -52,7 +54,8 @@ int CBinaryInputStream::FOpenFile(CFileLocation *pfl)
 
 INCLUDE_ASM(const s32, "P2/bis", Close__18CBinaryInputStream);
 
-void CBinaryInputStream::DecrementCdReadLimit(int cb) {
+void CBinaryInputStream::DecrementCdReadLimit(int cb)
+{
     m_fd = m_fd - cb;
 }
 
@@ -155,7 +158,7 @@ int CBinaryInputStream::S32Read()
         char x = m_pb[3];
         m_pb += 4;
         m_cb -= 4;
-        return u + (v * 0x100) + (w * 0x10000) + (x * 0x1000000);
+        return u + (v << 8) + (w << 16) + (x << 24);
     }
     else
     {
@@ -168,9 +171,15 @@ INCLUDE_ASM(const s32, "P2/bis", func_00137DF0);
 
 INCLUDE_ASM(const s32, "P2/bis", F32Read__18CBinaryInputStream);
 
-INCLUDE_ASM(const s32, "P2/bis", ReadVector__18CBinaryInputStreamP6VECTOR);
+void CBinaryInputStream::ReadVector(VECTOR *pvec)
+{
+    Read(sizeof(VECTOR), pvec);
+}
 
-INCLUDE_ASM(const s32, "P2/bis", ReadVector4__18CBinaryInputStreamP7VECTOR4);
+void CBinaryInputStream::ReadVector4(VECTOR4 *pvec)
+{
+    Read(sizeof(VECTOR4), pvec);
+}
 
 INCLUDE_ASM(const s32, "P2/bis", ReadMatrix__18CBinaryInputStreamP7MATRIX3);
 
