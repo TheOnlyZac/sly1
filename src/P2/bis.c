@@ -68,12 +68,27 @@ INCLUDE_ASM(const s32, "P2/bis", Read__18CBinaryInputStreamiPv);
 
 INCLUDE_ASM(const s32, "P2/bis", Align__18CBinaryInputStreami);
 
-INCLUDE_ASM(const s32, "P2/bis", U8Read__18CBinaryInputStream);
+byte CBinaryInputStream::U8Read()
+{
+
+    if (m_cb >= 1)
+    {
+        int b = *m_pb;
+        m_pb += 1;
+        m_cb -= 1;
+        return b;
+    }
+    else
+    {
+        byte b;
+        Read(1, &b);
+        return b;
+    }
+}
 
 INCLUDE_ASM(const s32, "P2/bis", U16Read__18CBinaryInputStream);
 
 INCLUDE_ASM(const s32, "P2/bis", U32Read__18CBinaryInputStream);
-
 INCLUDE_ASM(const s32, "P2/bis", func_00137CB8);
 
 INCLUDE_ASM(const s32, "P2/bis", S8Read__18CBinaryInputStream);
@@ -81,7 +96,6 @@ INCLUDE_ASM(const s32, "P2/bis", S8Read__18CBinaryInputStream);
 INCLUDE_ASM(const s32, "P2/bis", S16Read__18CBinaryInputStream);
 
 INCLUDE_ASM(const s32, "P2/bis", S32Read__18CBinaryInputStream);
-
 INCLUDE_ASM(const s32, "P2/bis", func_00137DF0);
 
 INCLUDE_ASM(const s32, "P2/bis", F32Read__18CBinaryInputStream);
@@ -101,7 +115,5 @@ INCLUDE_ASM(const s32, "P2/bis", ReadBspc__18CBinaryInputStreamP4GEOMP4BSPC);
 INCLUDE_ASM(const s32, "P2/bis", ReadVbsp__18CBinaryInputStreamPiPP4VBSP);
 
 INCLUDE_ASM(const s32, "P2/bis", ReadStringSw__18CBinaryInputStreamPPc);
-
 INCLUDE_ASM(const s32, "P2/bis", func_00138510);
-
 INCLUDE_ASM(const s32, "P2/bis", func_00138550);
