@@ -86,10 +86,44 @@ byte CBinaryInputStream::U8Read()
     }
 }
 
-INCLUDE_ASM(const s32, "P2/bis", U16Read__18CBinaryInputStream);
+ushort CBinaryInputStream::U16Read()
+{
+    if (m_cb >= 2)
+    {
+        ushort u = m_pb[0];
+        ushort v = m_pb[1];
+        m_pb += 2;
+        m_cb -= 2;
+        return (v << 8) | u;
+    }
+    else
+    {
+        ushort v;
+        Read(2, &v);
+        return v;
+    }
+}
 
-INCLUDE_ASM(const s32, "P2/bis", U32Read__18CBinaryInputStream);
-INCLUDE_ASM(const s32, "P2/bis", func_00137CB8);
+uint CBinaryInputStream::U32Read()
+{
+    if (m_cb >= 4)
+    {
+        uint u = m_pb[0];
+        uint v = m_pb[1];
+        uint w = m_pb[2];
+        uint x = m_pb[3];
+        m_pb += 4;
+        m_cb -= 4;
+        return u + (v * 0x100) + (w * 0x10000) + (x * 0x1000000);
+    }
+    else
+    {
+        uint v;
+        Read(4, &v);
+        return v;
+    }
+}
+INCLUDE_ASM(const s32, "P2/bis", func_00137CB8); // Not really a function, not sure why it's necessary.
 
 INCLUDE_ASM(const s32, "P2/bis", S8Read__18CBinaryInputStream);
 
