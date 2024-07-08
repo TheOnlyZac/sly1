@@ -13,10 +13,12 @@
  * @brief Basic object.
  *
  * Base class for most objects.
+ *
+ * @todo Declare virtual methods.
  */
 struct BASIC
 {
-    int field_0x0;
+    int field_0x0; // placeholder for vtable
     CSidebag *psidebag;
 };
 

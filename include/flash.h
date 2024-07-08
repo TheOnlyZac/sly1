@@ -12,6 +12,9 @@
 #include <shd.h>
 #include <cm.h>
 
+/**
+ * @brief Unknown.
+ */
 struct RO
 {
     MATRIX4 mat;
@@ -38,12 +41,36 @@ struct FLASH : public ALO
     undefined4 unk2;
 };
 
+/**
+ * @brief Initializes the given flash.
+ *
+ * @param pflash Flash to initialize.
+ */
 void InitFlash(FLASH *pflash);
 
+/**
+ * @brief Loads a flash from the given binary input stream.
+ *
+ * @param pflash Where to load the flash.
+ * @param pbis Binary input stream.
+ */
 void LoadFlashFromBrx(FLASH *pflash, CBinaryInputStream *pbis);
 
+/**
+ * @brief Updates the given flash.
+ *
+ * @param pflash Flash to update.
+ * @param dt Delta time.
+ */
 void UpdateFlash(FLASH *pflash, float dt);
 
+/**
+ * @brief Renders the given flash.
+ *
+ * @param pflash Flash to render.
+ * @param pcm Game camera.
+ * @param pro Render options(?).
+ */
 void RenderFlashSelf(FLASH *pflash, CM *pcm, RO *pro);
 
 int FPosFlashWithin(FLASH *pflash, VECTOR *ppos);

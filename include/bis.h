@@ -165,8 +165,6 @@ public:
      */
     void Align(int n);
 
-    // MARK: Read Methods
-
     /**
      * @brief Reads a byte from the stream.
      *

@@ -10,6 +10,8 @@
 
 /**
  * @brief Class ID.
+ *
+ * @note Values are based on May 19 build, and may not be accurate to release.
  */
 enum CID
 {

@@ -8,6 +8,9 @@
 
 #include "common.h"
 
+/**
+ * @brief Scaled font ratio.
+ */
 struct SFR
 {
     float rx, ry;

@@ -8,16 +8,22 @@
 
 #include "common.h"
 
+/**
+ * @brief Related to file location.
+ */
 struct FCL
 {
     uint isector;
     uint cb;
 };
 
+/**
+ * @brief File location.
+ */
 class CFileLocation
 {
 public:
-    FCL fcl;
+    FCL fcl; // File sector and size.
 };
 
 #endif // CAT_H

@@ -5,6 +5,7 @@
  */
 #ifndef DIFFICULTY_H
 #define DIFFICULTY_H
+
 #include "common.h"
 #include <util.h>
 #include <chkpnt.h>
