@@ -68,19 +68,19 @@ INCLUDE_ASM(const s32, "P2/bis", Read__18CBinaryInputStreamiPv);
 
 INCLUDE_ASM(const s32, "P2/bis", Align__18CBinaryInputStreami);
 
-byte CBinaryInputStream::U8Read()
+uchar CBinaryInputStream::U8Read()
 {
 
     if (m_cb >= 1)
     {
-        int b = *m_pb;
+        uchar b = *m_pb;
         m_pb += 1;
         m_cb -= 1;
         return b;
     }
     else
     {
-        byte b;
+        uchar b;
         Read(1, &b);
         return b;
     }
@@ -125,11 +125,45 @@ uint CBinaryInputStream::U32Read()
 }
 INCLUDE_ASM(const s32, "P2/bis", func_00137CB8); // Not really a function, not sure why it's necessary.
 
-INCLUDE_ASM(const s32, "P2/bis", S8Read__18CBinaryInputStream);
+char CBinaryInputStream::S8Read()
+{
+
+    if (m_cb >= 1)
+    {
+        char b = *m_pb;
+        m_pb += 1;
+        m_cb -= 1;
+        return b;
+    }
+    else
+    {
+        char b;
+        Read(1, &b);
+        return b;
+    }
+}
 
 INCLUDE_ASM(const s32, "P2/bis", S16Read__18CBinaryInputStream);
 
-INCLUDE_ASM(const s32, "P2/bis", S32Read__18CBinaryInputStream);
+int CBinaryInputStream::S32Read()
+{
+    if (m_cb >= 4)
+    {
+        int u = m_pb[0];
+        int v = m_pb[1];
+        int w = m_pb[2];
+        char x = m_pb[3];
+        m_pb += 4;
+        m_cb -= 4;
+        return u + (v * 0x100) + (w * 0x10000) + (x * 0x1000000);
+    }
+    else
+    {
+        int v;
+        Read(4, &v);
+        return v;
+    }
+}
 INCLUDE_ASM(const s32, "P2/bis", func_00137DF0);
 
 INCLUDE_ASM(const s32, "P2/bis", F32Read__18CBinaryInputStream);

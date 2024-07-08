@@ -166,46 +166,46 @@ public:
     void Align(int n);
 
     /**
-     * @brief Reads a byte from the stream.
+     * @brief Reads a 8-bit unsigned integer from the stream.
      *
      * @return The byte read.
      */
-    byte U8Read();
+    uchar U8Read();
 
     /**
      * @brief Reads a 16-bit unsigned integer from the stream.
      *
      * @return The 16-bit unsigned integer read
      */
-    uint16_t U16Read();
+    ushort U16Read();
 
     /**
      * @brief Reads a 32-bit unsigned integer from the stream.
      *
      * @return The 32-bit unsigned integer read
      */
-    uint32_t U32Read();
+    uint U32Read();
 
     /**
      * @brief Reads a 8-bit signed integer from the stream.
      *
      * @return The 8-bit signed integer read
      */
-    int8_t S8Read();
+    char S8Read();
 
     /**
      * @brief Reads a 16-bit signed integer from the stream.
      *
      * @return The 16-bit signed integer read
      */
-    int16_t S16Read();
+    short S16Read();
 
     /**
      * @brief Reads a 32-bit signed integer from the stream.
      *
      * @return The 32-bit signed integer read
      */
-    int32_t S32Read();
+    int S32Read();
 
     /**
      * @brief Reads a 32-bit floating point number from the stream.
