@@ -1,10 +1,12 @@
 /**
  * @file mq.h
  *
- * @brief Message queue(?)
+ * @brief Message queue(?).
  */
 #ifndef MQ_H
 #define MQ_H
+
+#include "common.h"
 
 /**
  * @brief Message ID

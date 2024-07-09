@@ -66,7 +66,7 @@ INCLUDE_ASM(const s32, "P2/game", OnGameAlarmTriggered);
 
 INCLUDE_ASM(const s32, "P2/game", OnGameAlarmDisabled);
 
-INCLUDE_ASM(const s32, "P2/game", grfvault_something);
+INCLUDE_ASM(const s32, "P2/game", grfvault_something__Fv);
 
 INCLUDE_ASM(const s32, "P2/game", GetBlueprintInfo);
 

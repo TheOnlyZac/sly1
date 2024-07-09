@@ -1,5 +1,7 @@
 /**
  * @file transition.h
+ *
+ * @brief Level transitions.
  */
 #ifndef TRANSITION_H
 #define TRANSITION_H
@@ -31,10 +33,10 @@ typedef int GRFTRANS;
 */
 struct TRANS
 {
-    uint32_t fSet;
+    uint fSet;
     struct LevelTableStruct *pchzWorld; // Current file thats loading struct
     OID oidWarp; // Checkpoint Warps
-    OID trans_mod_flags;
+    OID oidWarpContet;
     GRFTRANS grftrans; // Lost all lives flags
 };
 

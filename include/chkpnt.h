@@ -15,19 +15,22 @@
  * @brief Checkpoint.
  *
  * @todo Define struct.
- *
- * @note CHKPNT : ALO : LO : BASIC
  */
-struct CHKPNT;
+struct CHKPNT : public ALO
+{
+	// ...
+};
 
 /**
- * @brief Checkpoint Manager
+ * @brief Checkpoint Manager.
+ *
+ * @todo Fill in missing fields.
  */
 struct CHKMGR
 {
-	int cbitChk;
-	int unk_0x8;
-	int padding[128];
+	int cbitChk; // Count of values in abitChk.
+	int *abitChk; // Unknown, name/type may be wrong.
+	int padding[128]; // Temporary padding
 	int fChkDirty;
 	VECTOR posVolChkpnt;
 	int csSaved[129]; // type may be wrong

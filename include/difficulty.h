@@ -1,10 +1,11 @@
 /**
  * @file difficulty.h
  *
- * Dynamic difficulty system.
+ * @brief Dynamic difficulty system.
  */
 #ifndef DIFFICULTY_H
 #define DIFFICULTY_H
+
 #include "common.h"
 #include <util.h>
 #include <chkpnt.h>

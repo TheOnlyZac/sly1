@@ -1,5 +1,7 @@
 /**
  * @file shd.h
+ *
+ * @brief Shaders.
  */
 #ifndef SHD_H
 #define SHD_H
@@ -7,6 +9,7 @@
 #include "common.h"
 #include <binoc.h>
 #include <geom.h>
+#include <surf.h>
 #include <sce/gs.h>
 
 typedef struct SHD; // Forward declaration
@@ -91,26 +94,6 @@ union QW
     int an[4];
     ushort as[8];
     float ag[4];
-};
-
-// MARK: Surface?
-
-struct SUR
-{
-    int cb;
-    void *pvSrc;
-    void *pvDst;
-    int cvtx;
-};
-
-struct SURF
-{
-    VECTOR normal;
-    float gDot;
-    EDGE *pedge;
-    EDGE *pedgeOther;
-    short grfsurf;
-    short ipos;
 };
 
 // MARK: SAIR

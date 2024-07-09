@@ -1,7 +1,7 @@
 /**
  * @file binoc.h
  *
- * @brief Binoc-u-com
+ * @brief Binoc-u-com.
  */
 #ifndef BINOC_H
 #define BINOC_H
@@ -9,8 +9,8 @@
 #include "common.h"
 
 /**
- * @brief Horizontal text justification
-*/
+ * @brief Horizontal text justification.
+ */
 typedef enum JH
 {
     JH_Nil = -1,
@@ -21,8 +21,8 @@ typedef enum JH
 } JH;
 
 /**
- * @brief Vertical text justification
-*/
+ * @brief Vertical text justification.
+ */
 typedef enum JV
 {
     JV_Nil = -1,
@@ -33,8 +33,8 @@ typedef enum JV
 } JV;
 
 /**
- * @brief RGBA color value
-*/
+ * @brief RGBA color value.
+ */
 struct RGBA
 {
     uchar bRed;
@@ -54,20 +54,51 @@ struct RGBA
 class CTextBox
 {
 public:
+    /**
+     * @brief Sets the position of the text box.
+     *
+     * @param x X position.
+     * @param y Y position.
+     */
     void SetPos(float x, float y);
+
+    /**
+     * @brief Sets the size of the text box.
+     *
+     * @param dx Width.
+     * @param dy Height.
+     */
     void SetSize(float dx, float dy);
-    void SetTextColor(RGBA* rgba);
+
+    /**
+     * @brief Sets the text color.
+     *
+     * @param rgba RGBA color value.
+     */
+    void SetTextColor(RGBA *rgba);
+
+    /**
+     * @brief Sets the horizontal text justification.
+     *
+     * @param jh Horizontal text justification.
+     */
     void SetHorizontalJust(JH jh);
+
+    /**
+     * @brief Sets the vertical text justification.
+     *
+     * @param jv Vertical text justification.
+     */
     void SetVerticalJust(JV jv);
 
 private:
-    float m_x;
-    float m_y;
-    float m_dx;
-    float m_dy;
-    RGBA m_rgba;
-    enum JH m_jh;
-    enum JV m_jv;
+    float m_x;    // X position.
+    float m_y;    // Y position.
+    float m_dx;   // Width.
+    float m_dy;   // Height.
+    RGBA m_rgba;  // Text color.
+    enum JH m_jh; // Horizontal text justification.
+    enum JV m_jv; // Vertical text justification;
 };
 
 #endif /* BINOC_H */

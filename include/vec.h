@@ -1,7 +1,7 @@
 /**
  * @file vec.h
  *
- * @brief Declares VECTOR and other related classes/functions.
+ * @brief Vector math functions.
  */
 #ifndef VEC_H
 #define VEC_H
@@ -14,7 +14,6 @@
 struct VECTOR
 {
     float x, y, z;
-    float gUnused;
 };
 
 struct VECTOR4

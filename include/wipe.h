@@ -32,17 +32,20 @@ enum WIPES
 };
 
 /**
- * @brief Wipe
+ * @brief Screen wipe
  */
 struct WIPE
 {
+    undefined4 unk_0x0;
     WIPES wipes;
     float tWipes;
     float uBlack;
-    TRANS trans;
-    WIPEK wipek;
     TRANS transButton;
+    WIPEK wipek;
     WIPEK wipekButton;
 };
+
+extern WIPE *g_pwipe;
+extern WIPE g_wipe;
 
 #endif // WIPE_H
