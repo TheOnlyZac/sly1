@@ -16,8 +16,8 @@ typedef unsigned long long TICK;
 struct CLOCK
 {
     int fEnabled; // clock enabled flag
-    float t;
-    float dt;	  // time since last frame
+    float t;      // current time
+    float dt;     // time since last frame
     float dtPrev; // dt from previous frame
     float tReal;  // t factoring in EE clock cyclerate
     float dtReal; // dt factoring in EE clock cyclerate
@@ -28,14 +28,14 @@ struct CLOCK
  * @brief Sets the rate of the global clock.
  *
  * @param rt The new tick rate.
-*/
+ */
 void SetClockRate(float rt);
 
 /**
  * @brief Updates clock values based to time elapsed.
  *
  * @param pclock Pointer to the clock.
-*/
+ */
 void MarkClockTick(CLOCK *pclock);
 
 /**
@@ -44,7 +44,7 @@ void MarkClockTick(CLOCK *pclock);
  * Only updates the real clock values (those determined by the EE clock cyclerate).
  *
  * @param pclock Pointer to the clock.
-*/
+ */
 void MarkClockTickRealOnly(CLOCK *pClock);
 
 /**
@@ -52,7 +52,7 @@ void MarkClockTickRealOnly(CLOCK *pClock);
  *
  * @param pclock Pointer to the clock.
  * @param t Time to set.
-*/
+ */
 void ResetClock(CLOCK *pclock, float t);
 
 /**
@@ -60,24 +60,19 @@ void ResetClock(CLOCK *pclock, float t);
  *
  * @param pclock Pointer to the clock.
  * @param fEnabled 1 to enable, 0 to disable.
-*/
+ */
 void SetClockEnabled(CLOCK *pclock, int fEnabled);
 
 /**
  * @brief Initializes and enables the global clock.
-*/
+ */
 void StartupClock();
 
 /**
  * @brief Gets the current tick.
  *
  * @return The current tick.
-*/
+ */
 const TICK TickNow();
-
-extern float g_rtClock;
-extern float g_rtClockPowerUp;
-extern struct CLOCK g_clock;
-extern TICK s_tickLastRaw;
 
 #endif // CLOCK_H
