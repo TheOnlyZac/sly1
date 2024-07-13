@@ -5,10 +5,9 @@ SCUS_971.98
 SCUS_*.*
 *.elf
 
-prodg_sce*
-tools/cc/*
+prodg*
+tools/cc/
 usr/
-sce/
 
 html/
 functions.txt
@@ -17,9 +16,12 @@ functions.txt
 splat/
 assets/
 asm/
-c/
-undefined_funcs*.txt
-undefined_syms*.txt
+undefined_funcs_auto.txt
+undefined_syms_auto.txt
+.splache
+.ninja_log
+*.ninja
+permuter_settings.toml
 
 ## Binary/object products
 **/bin/

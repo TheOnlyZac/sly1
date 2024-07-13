@@ -1,32 +1,27 @@
 # Sly Cooper and the Thievius Raccoonus
 
-<!-- shields.io badges -->
-<!--[![Build status][build-badge]][build-url]--> <!--[![AppVeyor tests][tests-badge]][tests-url]-->
-[![Discord Channel][discord-badge]][discord-url] [![Contributors][contributors-badge]][contributors-url] [![Docs][docs-badge]][docs-url] [![Wiki][wiki-badge]][wiki-url]
+<!-- Build status shield -->
+[build-url]:https://github.com/TheOnlyZac/sly1/actions/workflows/build.yml
+[build-badge]: https://img.shields.io/github/actions/workflow/status/theonlyzac/sly1/build.yml?branch=main&label=build
 
-<!-- Build status badge -->
-[build-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1/branch/main
-[build-badge]: https://ci.appveyor.com/api/projects/status/800esepa77ctpv5p/branch/main?svg=true
-
-<!-- Test status badge -->
-[tests-url]: https://ci.appveyor.com/project/TheOnlyZac/sly1/branch/main/tests
-[tests-badge]: https://img.shields.io/appveyor/tests/theonlyzac/sly1/main
-
-<!-- Contributors badge -->
+<!-- Contributors shield -->
 [contributors-url]: https://github.com/theonlyzac/sly1/graphs/contributors
 [contributors-badge]: https://img.shields.io/github/contributors/theonlyzac/sly1?color=%23db6d28
 
-<!-- Discord badge -->
+<!-- Discord shield -->
 [discord-url]: https://discord.gg/2GSXcEzPJA
 [discord-badge]: https://img.shields.io/discord/439454661100175380?color=%235865F2&logo=discord&logoColor=%23FFFFFF
 
-<!-- Docs badge -->
+<!-- Docs shield -->
 [docs-url]: https://theonlyzac.github.io/sly1
 [docs-badge]: https://img.shields.io/badge/docs-doxygen-2C4AA8
 
-<!-- Wiki badge -->
+<!-- Wiki shield -->
 [wiki-url]: https://slymods.info
 [wiki-badge]: https://img.shields.io/badge/wiki-slymods.info-2C4AA8
+
+<!-- Shields -->
+[![Build][build-badge]][build-url] [![Contributors][contributors-badge]][contributors-url] [![Discord Channel][discord-badge]][discord-url] [![Docs][docs-badge]][docs-url] [![Wiki][wiki-badge]][wiki-url]
 
 [<img src="logo.png" style="margin:7px" align="right" width="33%" alt="Sly 1 Decompilation Logo by Cooper941">][docs-url]
 
@@ -60,47 +55,68 @@ pip install -U -r requirements.txt
 
 ### Setup build environment
 
-The `scripts` directory contains scripts for setting up the build environment on Windows and Linux, which automatically download and install the required runtime libraries. Follow the instruction for your platform below.
+The project can be built on Windows (using WSL) or Linux. Follow the instructions below to set up the build environment.
 
-#### Linux/WSL
+<!--#### Linux/WSL-->
 
-**Prerequisites**: `git`, `make`, `wine-stable`, `p7zip-full`, `binutils-mips-linux-gnu`
+1. Setup wine:
+```bash
+sudo dpkg --add-architecture i386
+sudo apt-get update
+sudo apt-get install wine32
+```
 
+2. Install MIPS assembler:
+```bash
+sudo apt-get install binutils-mips-linux-gnu
+```
+
+3. Setup build environment:
 ```bash
 cd scripts
 ./setup-progd-linux.sh
 ```
 
-#### Windows
+<!--#### Windows
 
-**Prerequisites**: `git`, `make`, `7zip`
+*Prerequisites: [Chocolatey](https://chocolatey.org/install)*
 
-*Note: Building Windows is untested with the new build system. If you encounter issues, you can still build on Windows using WSL.*
-
+1. Install 7zip:
 ```powershell
-cd scripts
-.\setup-progd-windows.bat
+choco install 7zip
 ```
+
+2. Setup build environment:
+```powershell
+.\scripts\setup-progd-windows.bat
+```-->
 
 ### Setup binary splitting
 
-To build the ELF , you will need to extract the original ELF file from your own legally obtained copy of the game. Mount the disk on your PC and copy the file `SCUS_971.98` from the root directory of the disc to the `disc` directory of this project.
+To build the ELF, you will need to extract the original ELF file from your own legally obtained copy of the game. Mount the disk on your PC and copy the file `SCUS_971.98` from the root directory of the disc to the `disc` directory of this project.
 
 
 ## Building
 
-The project can be compiled on Windows (using WSL) or Linux. It builds the executable `SCUS_971.98`.
+The project can be built on Windows (using WSL) or Linux. It builds the executable `SCUS_971.98`.
 
-First configure the project:
+The configure.py script will automatically split the binary and generate the build files. Then you can build the project with Ninja.
 
 ```bash
 python configure.py
+ninja
 ```
 
-Then build with Ninja:
+If you update the config files, you will need to clean and reconfigure:
 
 ```bash
-ninja
+python configure.py --clean
+```
+
+To only clean and not reconfigure, run:
+
+```bash
+python configure.py --only-clean
 ```
 
 
@@ -157,23 +173,23 @@ When you build the executable, the following directories will be created:
 
 #### What is a decompilation?
 
-When the developers created the game, they wrote programming code that we call the source code, and compiled that into an exectuable which can run on the PS2. Our job is to reverse-engineer the compiled code and produce new, original code that behaves the same way. This process leaves us with code that is very similar (but not identical) to the source code and helps us understand what the programmers were thinking when they made the game.
+When the developers created the game, they wrote source code and compiled it to assembly code that can run on the PS2. A decompilation involves reverse-engineering the assembly code to produce new, original code that compiles to matching assembly. This process leaves us with source code that is similar to and behaves the same as the source code (though not necessarily identical), which helps us understand what the programmers were thinking when they made the game.
 
 #### How does it work?
 
-We use a tool called [Ghidra](https://ghidra-sre.org/) which was created by the [NSA](https://www.nsa.gov/) for reverse-engineering software. Ghidra analyzes the game binary to identity functions, variables, data types and structures. We then reimplement each individual function by writing C++ code that produces the same output. We do not copy/paste any code or include any original assembly code from the game binary in the decompilation.
+We use a tool called [Splat](https://github.com/ethteck/splat/) to split the binary into assembly files representing each individual function. We then reimplement every function and data structure by writing C++ code that compiles to the same assembly code. We do not include any data or code from the original game binary in the decompilation.
 
 #### Has this ever been done before?
 
-This is one the first ever PS2 decompilations. We draw inspiration from other decomp projects such as the [Super Mario 64 decomp](https://github.com/n64decomp/sm64) for the N64 and the [Breath of the Wild decomp](https://github.com/zeldaret/botw) for the Wii U (the latter being more similar in scope to this project). There is a Jak & Daxter decomp/PC port called [OpenGOAL](https://github.com/open-goal/jak-project), though that game is written in 98% GOAL language rather than C/C++.
+This was one the first ever PS2 decompilations; Several other PS2 decompilations have been started since we began in 2020. Our main inspiration was other projects such as the [Super Mario 64 decomp](https://github.com/n64decomp/sm64) for the N64 and the [Breath of the Wild decomp](https://github.com/zeldaret/botw) for the Wii U (the latter being more similar in scope to this project). There is also a Jak & Daxter decomp/PC port called [OpenGOAL](https://github.com/open-goal/jak-project), though that game is 98% GOAL language rather than C/C++.
 
 #### Is this a matching decomp?
 
-This was the first PS2 decompilation project that aimed to target the PS2 and utilize function matching. The ultimate goal is to match as many functions as possible.
+Yes. This was the first PS2 decompilation project that aimed to target the PS2 and utilize function matching, before it was even possible to produce a byte-matching executable. The ultimate goal is to match 100% of the game's functions.
 
 #### How can I help?
 
-If you want to contribute, read through [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our discord server](https://discord.gg/gh5xwfj) if you have any questions!
+If you want to contribute, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our discord server](https://discord.gg/gh5xwfj) if you have any questions!
 
 
 ## Star History

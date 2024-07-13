@@ -28,8 +28,8 @@ PRE_ELF_PATH = f"{OUTDIR}/{BASENAME}.elf"
 
 COMMON_INCLUDES = "-Iinclude -isystem include/sdk/ee -isystem include/gcc"
 
-CC_DIR = f"{TOOLS_DIR}/cc/ee-gcc2.9-991111/bin"
-COMMON_COMPILE_FLAGS = "-O2 -G0"
+CC_DIR = f"{TOOLS_DIR}/cc/bin"
+COMMON_COMPILE_FLAGS = "-x c++ -V 2.95.2 -O2 -G0"
 
 WINE = "wine"
 
@@ -46,6 +46,7 @@ def clean():
         ".splache",
         ".ninja_log",
         "build.ninja",
+        "permuter_settings.toml",
         LD_PATH
     ]
     for filename in files_to_clean:
@@ -74,7 +75,7 @@ compiler_type = "gcc"
 """)
 
 #MARK: Build
-def build_stuff(linker_entries: List[LinkerEntry]):
+def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False):
     """
     Build the objects and the final ELF file.
     """
@@ -195,12 +196,15 @@ def build_stuff(linker_entries: List[LinkerEntry]):
         PRE_ELF_PATH,
     )
 
-    ninja.build(
-        ELF_PATH + ".ok",
-        "sha1sum",
-        "checksum.sha1",
-        implicit=[ELF_PATH],
-    )
+    if not skip_checksum:
+        ninja.build(
+            ELF_PATH + ".ok",
+            "sha1sum",
+            "checksum.sha1",
+            implicit=[ELF_PATH],
+        )
+    else:
+        print("Skipping checksum step")
 
 #MARK: Main
 def main():
@@ -211,20 +215,36 @@ def main():
     parser.add_argument(
         "-c",
         "--clean",
-        help="Clean extraction and build artifacts",
+        help="Clean artifacts and build",
+        action="store_true",
+    )
+    parser.add_argument(
+        "-C",
+        "--only-clean",
+        help="Only clean artifacts",
+        action="store_true",
+    )
+    parser.add_argument(
+        "-s",
+        "--skip-checksum",
+        help="Skip the checksum step",
         action="store_true",
     )
     args = parser.parse_args()
 
-    if args.clean:
+    do_clean = (args.clean or args.only_clean) or False
+    do_skip_checksum = args.skip_checksum or False
+
+    if do_clean:
         clean()
-        return
+        if args.only_clean:
+            return
 
     split.main([YAML_FILE], modes="all", verbose=False)
 
     linker_entries = split.linker_writer.entries
 
-    build_stuff(linker_entries)
+    build_stuff(linker_entries, do_skip_checksum)
 
     write_permuter_settings()
 
