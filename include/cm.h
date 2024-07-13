@@ -331,4 +331,35 @@ void SetSwCameraRgbaFog(SW *psw, RGBA *prgbaFog);
  */
 void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog);
 
+// todo fix undefined reference
+/* extern VECTOR g_posEyeDefault;
+extern VECTOR g_posCenterDefault;
+extern float g_sNearFog;
+extern float g_sFarFog;
+extern float g_uFogMax;
+extern RGBA g_rgbaFog;
+extern VECTOR D_2618b8;
+extern float DT_CmJoltMax;
+extern float SW_CmJolt;
+extern CLQ s_clqUToUJolt;
+extern VECTOR s_dposJolt;
+extern VECTOR s_rotJolt;
+extern VECTOR s_vecRange;
+extern VECTOR s_vecOffset;
+extern float R_SetCmSpring;
+extern float R_SetCmDamping;
+extern float D_00261928[9];
+extern float D_0026194c;
+extern float D_00261950;
+extern SMP s_smpSquishEye;
+extern float D_00261970;
+extern float D_00261974;
+extern float D_00261978;
+extern float D_0026197c;
+extern float D_00261980;
+extern float D_00261984;
+extern float D_00261988;
+extern float D_0026198c;
+extern CM* g_pcm; */
+
 #endif // CM_H
