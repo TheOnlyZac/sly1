@@ -1,4 +1,4 @@
-name: update frogress
+name: Frogress
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
       - frogress
 
 jobs:
-  update-frogress:
+  update-progress:
     runs-on: ubuntu-latest
 
     steps:
@@ -42,4 +42,4 @@ jobs:
 
       - name: Post to frogress endpoint
         run: |
-          python3 scripts/upload_progress.py --frogress_api_key ${{ secrets.FROGRESS_API_KEY }} --git_hash ${{ github.sha }} --timestamp ${{ github.event.head_commit.timestamp }}
+          python3 scripts/upload_progress.py --frogress_api_key ${{ secrets.FROGRESS_API_KEY }}
