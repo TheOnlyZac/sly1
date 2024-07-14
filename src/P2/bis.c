@@ -146,7 +146,23 @@ char CBinaryInputStream::S8Read()
     }
 }
 
-INCLUDE_ASM(const s32, "P2/bis", S16Read__18CBinaryInputStream);
+short CBinaryInputStream::S16Read(void)
+{
+    if (m_cb >= 2)
+    {
+        short v = m_pb[1] << 8;
+        v |= m_pb[0];
+        m_pb += 2;
+        m_cb -= 2;
+        return v;
+    }
+    else
+    {
+        short v;
+        Read(2, &v);
+        return v;
+    }
+}
 
 int CBinaryInputStream::S32Read()
 {
