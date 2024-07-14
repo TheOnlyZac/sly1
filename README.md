@@ -75,7 +75,7 @@ sudo apt-get install wine32
 sudo apt-get install binutils-mips-linux-gnu
 ```
 
-3. Setup build environment:
+3. Setup compiler:
 ```bash
 cd scripts
 ./setup-progd-linux.sh
