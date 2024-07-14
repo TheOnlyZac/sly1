@@ -107,7 +107,7 @@ def main(args: argparse.ArgumentParser) -> None:
     if not timestamp:
         raise ValueError("Missing timestamp.")
 
-    timestamp_dt = datetime.strptime(timestamp_str, '%Y-%m-%dT%H:%M:%SZ')
+    timestamp_dt = datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%SZ')
     unix_timestamp = int(timestamp_dt.timestamp())
 
     mapPath = "out/SCUS_971.98.map"

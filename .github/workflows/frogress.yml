@@ -7,7 +7,7 @@ on:
       - frogress
 
 jobs:
-  build:
+  update-frogress:
     runs-on: ubuntu-latest
 
     steps:

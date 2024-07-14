@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  update-frogress:
+  build:
     runs-on: ubuntu-latest
 
     steps:
