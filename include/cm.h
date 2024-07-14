@@ -16,7 +16,7 @@
 struct CM; // Forward declaration
 
 /**
- * @brief Unknown.
+ * @brief Unknown Kind.
  */
 enum CFK
 {
@@ -198,7 +198,7 @@ struct CPASEG : public CPLCY
  *
  * Unknown usage.
  *
- * @note Might be unused in the final game based on the name.
+ * @note Might be unused in release build, based on the name.
  */
 struct CPTN : public CPLCY
 {

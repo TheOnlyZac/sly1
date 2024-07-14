@@ -92,7 +92,7 @@ segments:
     - [0x310e8, asm, P2/basic]
     - [0x31168, asm, P2/bez]
     - [0x31f48, c, P2/binoc]
-    - [0x38290, asm, P2/bis]
+    - [0x38290, c, P2/bis]
     - [0x395a0, asm, P2/bbmark]
     - [0x39ff0, asm, P2/blend]
     - [0x3ab70, asm, P2/blip]
@@ -114,7 +114,7 @@ segments:
     - [0x43ed0, c, P2/clock]
     - [0x44148, c, P2/cm]
     - [0x47100, asm, P2/cnvo]
-    - [0x491A0, asm, P2/coin]
+    - [0x491A0, c, P2/coin]
     - [0x4a398, asm, P2/cplcy]
     - [0x4bbd0, asm, P2/credit]
 
@@ -141,8 +141,8 @@ segments:
 
     - [0x5aca0, asm, P2/unk_f] #? unknown file
 
-    - [0x5af20, asm, P2/find]
-    - [0x5b8b0, asm, P2/flash]
+    - [0x5af20, c, P2/find]
+    - [0x5b8b0, c, P2/flash]
     - [0x5bae0, asm, P2/fly]
     - [0x5d188, asm, P2/font]
     - [0x5f810, c, P2/frm]
@@ -258,9 +258,8 @@ segments:
     - [0xcefb8, asm, P2/stephide]
     - [0xd24f0, asm, P2/steppipe]
     - [0xd39c8, c, P2/steppower]
-
-    - [0xd41d0, asm, P2/step_pqr_unk] #? unknown file
-
+    - [0xd41cc, asm] # 4 bytes padding after steppower, needed to align steprail
+    - [0xd41d0, asm, P2/steprail] #? unconfirmed name
     - [0xd46f0, asm, P2/steprun]
     - [0xd5148, asm, P2/stepside]
     - [0xd5848, asm, P2/stepzap]
@@ -284,9 +283,7 @@ segments:
     - [0xea088, c, P2/ui]
     - [0xeac78, asm, P2/update]
     - [0xeb408, c, P2/util]
-
     - [0xec518, asm, P2/uv_unk] #? unknown file
-
     - [0xee650, c, P2/vec]
     - [0xef318, asm, P2/vifs]
     - [0xef900, asm, P2/vis]
@@ -294,8 +291,12 @@ segments:
     - [0xf0838, asm, P2/waypoint]
     - [0xf0ce8, asm, P2/wipe]
     - [0xf1758, asm, P2/wm] # not confident
-    - [0xf49f8, asm, P2/xform]
-    - [0xf5f70, asm, P2/zap]
+
+    - [0xf49f8, c, P2/xform1]
+    - [0xf4c38, asm, P2/xform_PwarpFromOid]
+    - [0xf4d80, c, P2/xform2]
+
+    - [0xf5f20, asm, P2/zap]
 
     ## Source files in May proto that aren't in release:
     # P2/cycle.c - some kind of wheeled vehicle
@@ -311,7 +312,6 @@ segments:
     - [0xF69C4, asm, sce/libs] # #MARK: libs
     #- [0xF76F8, asm, sce/rand]
     #- [0xF7738, asm]
-
 
     #--------------------------------------------------------
     # Vutext
@@ -392,7 +392,10 @@ segments:
     #- [0x, data, P2/frm]
     #- [0x, data, P2/freeze]
     #- [0x, data, P2/frzg]
-    #- [0x, data, P2/game]
+
+    - [0x1633c0, data, P2/game]
+    - [0x1633d8, data]
+
     #- [0x, data, P2/geom]
     #- [0x, data,, P2/gifs]
     #- [0x, data,, P2/glbs]
@@ -487,13 +490,16 @@ segments:
     #- [0x, data, P2/stephide]
     #- [0x, data, P2/steppipe]
     #- [0x, data, P2/steppower]
-    #- [0x, data, P2/step_pqr_unk] #? unknown file
+    #- [0x, data, P2/steprail] #? unknown file
     #- [0x, data, P2/steprun]
     #- [0x, data, P2/stepside]
     #- [0x, data, P2/stepzap]
     #- [0x, data, P2/stream]
     #- [0x, data,, P2/suv]
-    #- [0x, data, P2/sw]
+
+    - [0x176710, data, P2/sw]
+    - [0x176714, data]
+
     #- [0x, data,, P2/tail]
     #- [0x, data,, P2/tank]
     #- [0x, data,, P2/target]
@@ -513,7 +519,10 @@ segments:
     #- [0x, data, P2/vis]
     #- [0x, data, P2/water]
     #- [0x, data, P2/waypoint]
-    #- [0x, data, P2/wipe]
+
+    - [0x176f80, data, P2/wipe]
+    - [0x176fc0, data]
+
     #- [0x, data, P2/wm]
     #- [0x, data, P2/xform]
     #- [0x, data, P2/zap]

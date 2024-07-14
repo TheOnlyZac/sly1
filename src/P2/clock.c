@@ -1,10 +1,5 @@
 #include <clock.h>
 
-/*float g_rtClock = 1.0f;
-float g_rtClockPowerUp = 1.0f;
-struct CLOCK g_clock;
-TICK s_tickLastRaw;*/
-
 static const int CLOCK_FRAMERATE = 60; // 60 FPS
 static const float CLOCK_FRAMETIME = 1.f / CLOCK_FRAMERATE; // 1/60th of a second
 
@@ -56,7 +51,16 @@ void MarkClockTick(CLOCK* pclock)
 	pclock->tickFrame = tickFrame;
 }
 
-INCLUDE_ASM(const s32, "P2/clock", MarkClockTickRealOnly);
+void MarkClockTickRealOnly(CLOCK *pclock)
+{
+	const TICK tickFrame = TickNow();
+	const TICK deltaTick = tickFrame - pclock->tickFrame;
+	float dt = deltaTick * CLOCK_EE_TICK_DURATION;
+
+	pclock->dtReal = dt;
+	pclock->tReal += pclock->dtReal;
+	pclock->tickFrame = tickFrame;
+}
 
 void ResetClock(CLOCK *pclock, float t)
 {
@@ -68,7 +72,7 @@ void SetClockEnabled(CLOCK *pclock, int fEnabled)
 	pclock->fEnabled = fEnabled;
 }
 
-INCLUDE_ASM(const s32, "P2/clock", StartupClock);
+INCLUDE_ASM(const s32, "P2/clock", StartupClock__Fv);
 
 INCLUDE_ASM(const s32, "P2/clock", TickNow__Fv);
 INCLUDE_ASM(const s32, "P2/clock", func_00143140); // empty, not really a function

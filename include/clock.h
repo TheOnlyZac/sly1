@@ -1,7 +1,7 @@
 /**
  * @file clock.h
  *
- * @brief Engine clock
+ * @brief Engine clock.
  */
 #ifndef CLOCK_H
 #define CLOCK_H

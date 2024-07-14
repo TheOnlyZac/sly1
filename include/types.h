@@ -1,7 +1,7 @@
 /**
  * @file types.h
  *
- * @brief Defines types used throughout the game.
+ * @brief Types used throughout the engine.
 */
 #ifndef TYPES_H
 #define TYPES_H

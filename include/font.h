@@ -1,11 +1,16 @@
 /**
  * @file font.h
+ *
+ * @brief Font system.
  */
 #ifndef FONT_H
 #define FONT_H
 
 #include "common.h"
 
+/**
+ * @brief Scaled font ratio.
+ */
 struct SFR
 {
     float rx, ry;
