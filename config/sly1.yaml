@@ -103,8 +103,7 @@ segments:
 
     - [0x3dcf8, asm, P2/break]
 
-    - [0x3efd8, asm] # TODO
-    #- [0x, asm, P2/bsp]
+    - [0x3efd8, asm, P2/bsp]
     #- [0x, asm, P2/button]
     #- [0x, asm, P2/cat] (might not be in release)
     #- [0x, asm, P2/can]
@@ -140,7 +139,7 @@ segments:
     - [0x5a6e0, asm, P2/eyes]
     - [0x5aad0, asm, P2/fader]
 
-    - [0x5aca0, asm] #? unknown file
+    - [0x5aca0, asm, P2/unk_f] #? unknown file
 
     - [0x5af20, c, P2/find]
     - [0x5b8b0, c, P2/flash]
@@ -183,8 +182,7 @@ segments:
     - [0x86c18, asm, P2/mark]
     - [0x894c0, asm, P2/mat]
 
-    - [0x8b388, asm] # TODO
-    #- [0x, asm, P2/mecha]
+    - [0x8b388, asm, P2/mecha]
     #- [0x, asm, P2/mb]
     #- [0x, asm, P2/memcard]
     #- [0x, asm, P2/memory]
@@ -205,8 +203,7 @@ segments:
 
     - [0x94210, c, P2/prog]
 
-    - [0x94598, asm] # TODO
-    #- [0x, asm, P2/prompt]
+    - [0x94598, asm, P2/prompt]
     #- [0x, asm, P2/proxy]
     #- [0x, asm, P2/puffer]
     #- [0x, asm, P2/pzo]
@@ -312,13 +309,13 @@ segments:
     #--------------------------------------------------------
     # Libs
     #--------------------------------------------------------
-    - [0xF6930, asm] # TBD #MARK: libs
-
-    - [0xF76F8, asm, sce/rand]
-    - [0xF7738, asm]
+    - [0xF69C4, asm, sce/libs] # #MARK: libs
+    #- [0xF76F8, asm, sce/rand]
+    #- [0xF7738, asm]
 
     #--------------------------------------------------------
-
+    # Vutext
+    #--------------------------------------------------------
     - [0x112E10, textbin, vutext] #MARK: vutext
 
     #--------------------------------------------------------
