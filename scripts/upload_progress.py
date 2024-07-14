@@ -95,25 +95,14 @@ def main(args: argparse.ArgumentParser) -> None:
     Main function, calculates the progress and uploads it to the frogress.
     """
     frogress_api_key = args.frogress_api_key
-    git_hash = args.git_hash
-    timestamp = args.timestamp
-
     if not frogress_api_key:
         raise ValueError("Missing frogress API key.")
-
-    if not git_hash:
-        raise ValueError("Missing git hash.")
-
-    if not timestamp:
-        raise ValueError("Missing timestamp.")
-
-    timestamp_dt = datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%SZ')
-    unix_timestamp = int(timestamp_dt.timestamp())
 
     mapPath = "out/SCUS_971.98.map"
 
     codeTotalStats, codeProgressPerFolder = getProgress(mapPath)
     codeEntries: dict[str, int] = mapfile_parser.frontends.upload_frogress.getFrogressEntriesFromStats(codeTotalStats, codeProgressPerFolder, verbose=True)
+    print(codeEntries)
 
     url = mapfile_parser.utils.generateFrogressEndpointUrl(BASE_URL, SLUG, VERSION)
     mapfile_parser.frontends.upload_frogress.uploadEntriesToFrogress(codeEntries, "all", url, apikey=frogress_api_key, verbose=True)
@@ -121,8 +110,6 @@ def main(args: argparse.ArgumentParser) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Upload progress to the frogress")
     parser.add_argument("--frogress_api_key", help="API key for the frogress")
-    parser.add_argument("--git_hash", help="Git hash of the current commit")
-    parser.add_argument("--timestamp", help="Timestamp of the build")
 
     args = parser.parse_args()
     main(args)
