@@ -1,10 +1,10 @@
-name: CI
+name: update frogress
 
 on:
   push:
     branches:
-      - "main"
-      - "frogress"
+      - main
+      - frogress
 
 jobs:
   build:

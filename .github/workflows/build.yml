@@ -1,4 +1,4 @@
-name: CI
+name: build
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  update-frogress:
     runs-on: ubuntu-latest
 
     steps:

@@ -5,6 +5,7 @@ Adapted from https://github.com/zeldaret/af/blob/aeb01dcb95e8281f89f355604dbeba5
 MIT License: https://opensource.org/license/mit
 """
 from pathlib import Path
+from datetime import datetime
 import argparse
 import mapfile_parser
 
@@ -105,7 +106,9 @@ def main(args: argparse.ArgumentParser) -> None:
 
     if not timestamp:
         raise ValueError("Missing timestamp.")
-    timestamp = int(timestamp)
+
+    timestamp_dt = datetime.strptime(timestamp_str, '%Y-%m-%dT%H:%M:%SZ')
+    unix_timestamp = int(timestamp_dt.timestamp())
 
     mapPath = "out/SCUS_971.98.map"
 
