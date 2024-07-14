@@ -1,4 +1,4 @@
-#include "common.h"
+#include <vec.h>
 
 INCLUDE_ASM(const s32, "P2/vec", SetVectorCylind);
 

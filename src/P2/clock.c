@@ -1,11 +1,19 @@
 #include <clock.h>
 
+// constants
 static const int CLOCK_FRAMERATE = 60; // 60 FPS
 static const float CLOCK_FRAMETIME = 1.f / CLOCK_FRAMERATE; // 1/60th of a second
 
 static const int CLOCK_EE_TICK_RATE = 294912000; // 294.912 MHz
 static const float CLOCK_EE_TICK_DURATION = 1.f / CLOCK_EE_TICK_RATE; // 1/294.912 MHz
 
+// data
+float g_rtClock = 1.0f;
+float g_rtClockPowerUp = 1.0f;
+CLOCK g_clock = { 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0 };
+TICK s_tickLastRaw; // Should be static?
+
+// text
 void SetClockRate(float rt) {
     g_rtClock = rt;
     SetClockEnabled(&g_clock, rt > 0.0f);

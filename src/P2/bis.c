@@ -146,7 +146,23 @@ char CBinaryInputStream::S8Read()
     }
 }
 
-INCLUDE_ASM(const s32, "P2/bis", S16Read__18CBinaryInputStream);
+short CBinaryInputStream::S16Read(void)
+{
+    if (m_cb >= 2)
+    {
+        short v = m_pb[1] << 8;
+        v |= m_pb[0];
+        m_pb += 2;
+        m_cb -= 2;
+        return v;
+    }
+    else
+    {
+        short v;
+        Read(2, &v);
+        return v;
+    }
+}
 
 int CBinaryInputStream::S32Read()
 {
@@ -169,7 +185,23 @@ int CBinaryInputStream::S32Read()
 }
 INCLUDE_ASM(const s32, "P2/bis", func_00137DF0);
 
-INCLUDE_ASM(const s32, "P2/bis", F32Read__18CBinaryInputStream);
+float CBinaryInputStream::F32Read()
+{
+    if (m_cb >= 4)
+    {
+        int g;
+        g = (m_pb[0] + (m_pb[1] << 8) + (m_pb[2] << 16) + (m_pb[3] << 24));
+        m_pb += 4;
+        m_cb -= 4;
+        return *(float*)&g;
+    }
+    else
+    {
+        float g;
+        Read(4, &g);
+        return g;
+    }
+}
 
 void CBinaryInputStream::ReadVector(VECTOR *pvec)
 {

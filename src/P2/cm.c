@@ -2,6 +2,49 @@
  * @todo Mangle all function names.
  */
 #include <cm.h>
+#include <util.h>
+#include <binoc.h>
+
+// todo fix data
+/*VECTOR g_posEyeDefault = { 0.0f, -2000.0f, 500.0f, 0.0f };
+VECTOR g_posCenterDefault = { 0.0f, 0.0f, 0.0f, 0.0f };
+
+float g_sNearFog = 500.0f;
+float g_sFarFog = 20000.0f;
+float g_uFogMax = 0.5f;
+RGBA g_rgbaFog = { 0, 0, 0, 0 };
+
+VECTOR D_002618B8 = { 0.5f, 0.0f, 0.1f, 10.0f }; // unknown
+
+float DT_CmJoltMax = 0.5f;
+float SW_CmJolt = 50.0f;
+CLQ s_clqUToUJolt = { 1.0f, -2.0f, 1.0f, 0.0f };
+VECTOR s_dposJolt = { 0.0f, 0.0f, 0.0f, 0.0f };
+VECTOR s_rotJolt = { 0.05f, 0.0f, 0.0f, 0.0f };
+
+VECTOR s_vecRange = { 0.0f, 0.0f, 0.0f, 0.0f };
+VECTOR s_vecOffset = { 0.0f, 0.0f, 0.0f, 0.0f };
+
+float R_SetCmSpring = 15.0f;
+float R_SetCmDamping = -8.0f;
+
+float D_00261928[] = { 1.0f, 5.0f, 10.0f, 12.0f, 15.0f, 12.0f, 10.0f, 5.0f, 1.0f }; // array of 9 floats
+float D_0026194C = 250.0f;
+float D_00261950 = 1500.0f;
+
+SMP s_smpSquishEye = { 2500.0f, 0.0f, 0.25f };
+SMP unk_padding = { 0.0f, 0.0f, 0.0f }; // needed to align next variables
+
+float D_00261970 = -250.0f;
+float D_00261974 = 250.0f;
+float D_00261978 = 250.0f;
+float D_0026197C = 0.0f;
+float D_00261980 = 250.0f;
+float D_00261984 = 250.0f;
+float D_00261988 = 250.0f;
+float D_0026198C = 0.0f;
+
+CM* g_pcm = (CM *)0x0;*/
 
 INCLUDE_ASM(const s32, "P2/cm", CalcCmAdjust__FP2CMP2SOP6CPDEFIP6VECTOR);
 

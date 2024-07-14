@@ -17,6 +17,7 @@ struct SMA;
 struct SMT;
 struct SMS;
 struct SMP;
+struct SMPA; // todo define
 
 /**
  * @brief State machine.
@@ -76,6 +77,7 @@ struct SMS
  */
 struct SMP
 {
+    float svFast; // todo check if this is correct
     float svSlow;
     float dtFast;
 };

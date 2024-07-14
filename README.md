@@ -31,18 +31,40 @@
 
 This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoonus*](https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus) for the PlayStation 2. It builds the NTSC-U version of the game, `SCUS_971.98` (SHA1: `57dc305d`).
 
-The goal of this project is to better understand the game engine. This repo does not contain any game assets or code from the game's executable, and it requires your own copy of the game to run.
+The goal of this project is to better understand the game engine. This repo does not contain any game assets or code from the game's executable; It requires your own copy of the game to build and run.
 
 Documentation of the code can be found at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1). For further reading on the game's internal structures and mechanics, visit the [SlyMods Wiki][wiki-url].
 
 New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our Discord server][discord-url] for guidance.
 
+## Quickstart
 
-## Setup
+```bash
+git clone https://github.com/theonlyzac/sly1 && \
+cd sly1 && \
+pip install -U -r requirements.txt && \
+sudo ./scripts/setup_build_environment.sh
+```
+
+Copy the `SCUS_971.98` file from your game disc to the `disc` directory of the project. Then build with:
+
+```
+./scripts/build.sh
+```
+
+If it works, you will see this:
+```
+[XXX/XXX] sha1sum checksum.sha1
+out/SCUS_971.98: OK
+```
+
+If you have any issues, or you prefer to set up the project manually, follow the instructions below. Instructions to run the game are also provided below.
+
+## Manual Setup
 
 ### Clone the repo
 
-First clone the repository to your local machine:
+Clone the repository to your local machine:
 
 ```bash
 git clone https://github.com/TheOnlyZac/sly1
@@ -75,7 +97,7 @@ sudo apt-get install wine32
 sudo apt-get install binutils-mips-linux-gnu
 ```
 
-3. Setup build environment:
+3. Setup compiler:
 ```bash
 cd scripts
 ./setup-progd-linux.sh
@@ -97,27 +119,25 @@ choco install 7zip
 
 ### Setup binary splitting
 
-To build the ELF, you will need to extract the original ELF file from your own legally obtained copy of the game. Mount the disk on your PC and copy the file `SCUS_971.98` from the root directory of the disc to the `disc` directory of this project.
+To build the project you will need to extract the original ELF file from your own legally obtained copy of the game. Mount the disc on your PC and copy the file `SCUS_971.98` from your disc to the `disc` directory of this project.
 
 
-## Building
+### Build the project
 
-The project can be built on Windows (using WSL) or Linux. It builds the executable `SCUS_971.98`.
-
-The configure.py script will automatically split the binary and generate the build files. Then you can build the project with Ninja.
+The project can be built on Linux (or Windows using WSL). It builds the executable `SCUS_971.98`.
 
 ```bash
 python configure.py
 ninja
 ```
 
-If you update the config files, you will need to clean and reconfigure:
+If you update the config files, you will need run a clean reconfigure:
 
 ```bash
 python configure.py --clean
 ```
 
-To only clean and not reconfigure, run:
+To only clean without reconfiguring (i.e. delete build files) use:
 
 ```bash
 python configure.py --only-clean
@@ -126,7 +146,7 @@ python configure.py --only-clean
 
 ## Running
 
-Running the executable requires [PCSX2 1.7](https://pcsx2.net/). You must have your own copy of the original game and the BIOS from your own PS2. They are not included in this repo and we cannot provide them for you.
+Running the executable requires [PCSX2 2.0](https://pcsx2.net/). You must have your own copy of the original game and the BIOS from your own PS2. They are not included in this repo and we cannot provide them for you.
 
 Once you have those and you have built the executable, you can run it in one of these three ways:
 
@@ -185,11 +205,11 @@ We use a tool called [Splat](https://github.com/ethteck/splat/) to split the bin
 
 #### Has this ever been done before?
 
-This was one the first ever PS2 decompilations; Several other PS2 decompilations have been started since we began in 2020. Our main inspiration was other projects such as the [Super Mario 64 decomp](https://github.com/n64decomp/sm64) for the N64 and the [Breath of the Wild decomp](https://github.com/zeldaret/botw) for the Wii U (the latter being more similar in scope to this project). There is also a Jak & Daxter decomp/PC port called [OpenGOAL](https://github.com/open-goal/jak-project), though that game is 98% GOAL language rather than C/C++.
+This was one the first PS2 decompilations; Several others have been started since we began in 2020. Our main inspiration was other projects such as the [Super Mario 64 decomp](https://github.com/n64decomp/sm64) for the N64 and the [Breath of the Wild decomp](https://github.com/zeldaret/botw) for the Wii U (the latter being more similar in scope to this project). There is also a Jak & Daxter decomp/PC port called [OpenGOAL](https://github.com/open-goal/jak-project), though that game is 98% GOAL language rather than C/C++.
 
 #### Is this a matching decomp?
 
-Yes. This was the first PS2 decompilation project that aimed to target the PS2 and utilize function matching, before it was even possible to produce a byte-matching executable. The ultimate goal is to match 100% of the game's functions.
+Yes. This was the first PS2 decompilation project that targeted the PS2 and utilized function matching, before it was even possible to produce a byte-matching executable. We have built a matching elf since July 2024. The ultimate goal is to match 100% of the game's functions.
 
 #### How can I help?
 

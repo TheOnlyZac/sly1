@@ -9,11 +9,17 @@
 #include "common.h"
 #include <mat.h>
 #include <vec.h>
+#include <sm.h>
 
-// todo: determine where these structs should be defined
-struct CLQ;
-struct SMP;
-struct SMPA;
+/**
+ * @brief Unknown.
+ *
+ * @todo Figure out what this is.
+ */
+struct CLQ
+{
+	float u, v, w, x;
+};
 
 /**
  * @brief Limits for a float.

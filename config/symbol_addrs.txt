@@ -131,8 +131,8 @@ TickNow__Fv = 0x1430F8; // type:func
 
 g_rtClock = 0x261850; // size:0x4
 g_rtClockPowerUp = 0x261854; // size:0x4
-g_clock = 0x261858; // size:0x1c
-s_tickLastRaw = 0x284b30; // size:0x4
+g_clock = 0x261858; // size:0x20
+s_tickLastRaw = 0x261878; // size:0x4
 
 
 // P2/cm.c
@@ -206,6 +206,38 @@ FUN_00146028 = 0x146028; // type:func
 FUN_00146038 = 0x146038; // type:func
 cm__static_initialization_and_destruction_0 = 0x1460B8; // type:func
 _GLOBAL_$I$StartupCm__Fv = 0x1460E0; // type:func
+
+g_posEyeDefault = 0x261880; // size:0x10
+g_posCenterDefault = 0x261890; // size:0x10
+g_sNearFog = 0x2618a0; // size:0x4
+g_sFarFog = 0x2618a4; // size:0x4
+g_uFogMax = 0x2618a8; // size:0x4
+g_rgbaFog = 0x2618b0; // size:0x4
+// ...
+DT_CmJoltMax = 0x2618c8; // size:0x4
+SW_CmJolt = 0x2618cc; // size:0x4
+s_clqUToUJolt = 0x2618d0; // size:0x10
+s_dposJolt = 0x2618e0; // size:0x10
+s_rotJolt = 0x2618f0; // size:0x10
+s_vecRange = 0x261900; // size:0x10
+s_vecOffset = 0x261910; // size:0x10
+R_SetCmSpring = 0x261920; // size:0x4
+R_SetCmDamping = 0x261924; // size:0x4
+
+D_00261928 = 0x261928; // size:0x24
+D_0026194C = 0x26194c; // size:0x4
+D_00261950 = 0x261950; // size:0x4
+
+s_smpSquishEye = 0x261958; // size:0xc
+
+D_00261970 = 0x261970; // size:0x4
+D_00261974 = 0x261974; // size:0x4
+D_00261978 = 0x261978; // size:0x4
+D_0026197C = 0x26197c; // size:0x4
+D_00261980 = 0x261980; // size:0x4
+D_00261984 = 0x261984; // size:0x4
+D_00261988 = 0x261988; // size:0x4
+D_0026198C = 0x26198c; // size:0x4
 
 g_pcm = 0x261990; // size:0x4
 
