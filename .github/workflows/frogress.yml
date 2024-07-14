@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "main"
+      - "frogress"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -U -r requirements.txt
+
+      - name: Setup wine
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt-get install wine32
+
+      - name: Setup build environment
+        run: |
+          sudo apt-get install binutils-mips-linux-gnu
+          scripts/setup_progd_linux.sh
+          curl -o disc/SCUS_971.98 "${{ secrets.FILE_URL }}"
+
+      - name: Run build script
+        run: |
+          python configure.py
+          ninja
+
+      - name: Post to frogress endpoint
+        run: |
+          python3 scripts/upload_progress.py --frogress_api_key ${{ secrets.FROGRESS_API_KEY }} --git_hash ${{ github.sha }} --timestamp ${{ github.event.head_commit.timestamp }}
