@@ -443,7 +443,13 @@ int CcharmMost();
  */
 void reload_post_death();
 
+// todo these should be somewhere else?
 extern GS g_gsCur;
+extern WS g_wsCur;
+extern LS g_lsCur;
+
 extern GS *g_pgsCur;
+extern WS *g_pwsCur;
+extern LS *g_plsCur;
 
 #endif // GAME_H

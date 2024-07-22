@@ -1,9 +1,13 @@
 #include <difficulty.h>
+#include <sce/memset.h>
+#include <game.h>
 
 INCLUDE_ASM(const s32, "P2/difficulty", PdifficultyEnsureSw);
 INCLUDE_ASM(const s32, "P2/difficulty", func_00151A58);
 
-INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyGameLoad);
+void OnDifficultyGameLoad(DIFFICULTY* pdifficulty) {
+    memset(pdifficulty, 0, sizeof(DIFFICULTY)); // DIFFICULTY should be 0x24 bytes
+}
 
 INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyWorldPreLoad);
 
@@ -11,6 +15,7 @@ INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyWorldPostLoad);
 
 void OnDifficultyInitialTeleport(DIFFICULTY* pdifficulty) {
     // Stubbed, does nothing.
+    return;
 }
 
 INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyPlayerDeath);
@@ -21,4 +26,7 @@ INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyCollectKey);
 
 INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyBreak);
 
-INCLUDE_ASM(const s32, "P2/difficulty", ChangeSuck);
+void ChangeSuck(float nParam, DIFFICULTY *pdifficulty)
+{
+    g_plsCur->uSuck = GLimitLm(&pdifficulty->p_difficulty_level->suck_lm, nParam);
+}

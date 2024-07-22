@@ -289,7 +289,7 @@ break_bottle = 0x149190; // type:func
 
 // P2/difficulty.c
 PdifficultyEnsureSw = 0x1519E0; // type:func
-OnDifficultyGameLoad = 0x151A68; // type:func
+OnDifficultyGameLoad__FP10DIFFICULTY = 0x151A68; // type:func
 OnDifficultyWorldPreLoad = 0x151A88; // type:func
 OnDifficultyWorldPostLoad = 0x151D28; // type:func
 OnDifficultyInitialTeleport__FP10DIFFICULTY = 0x151E18; // type:func
@@ -297,7 +297,7 @@ OnDifficultyPlayerDeath = 0x151E20; // type:func
 OnDifficultyTriggerCheckpoint = 0x151ED8; // type:func
 OnDifficultyCollectKey = 0x151FC8; // type:func
 OnDifficultyBreak = 0x152010; // type:func
-ChangeSuck = 0x152410; // type:func
+ChangeSuck__FfP10DIFFICULTY = 0x152410; // type:func
 
 g_difficultyMedium = 0x261d70; // size:0x5c
 g_difficultyHard = 0x261e30; // size:0x5c
@@ -438,6 +438,56 @@ StartupCodes__Fv = 0x16F588; // type:func
 
 // size of g_joy might be wrong
 g_joy = 0x262C70; // size:0xc4
+
+
+// P2/jt.c
+InitJt__FP2JT = 0x16F608; // type:func
+LoadJtFromBrx__FP2JTP18CBinaryInputStream = 0x16F7B0; // type:func
+PostJtLoad__FP2JT = 0x16F810; // type:func
+PresetJtAccelBase = 0x16FD70; // type:func
+PresetJtAccel__FP2JTf = 0x1701B0; // type:func
+AdjustJtNewXp__FP2JTP2XPi = 0x170410; // type:func
+AdjustJtDz__FP2JTiP2DZif = 0x170528; // type:func
+HandleJtGrfjtsc = 0x1705C8; // type:func
+UpdateJtInternalXps__FP2JT = 0x170660; // type:func
+FCheckJtXpBase__FP2JTP2XPi = 0x170790; // type:func
+AdjustJtXpVelocity__FP2JTP2XPi = 0x170820; // type:func
+HandleJtMessage__FP2JT5MSGIDPv = 0x170960; // type:func
+FTurnJtToTarget__FP2JT = 0x171180; // type:func
+UpdateJtBalance__FP2JT = 0x171238; // type:func
+RebuildJtXmg__FP2JTP3ALOfT1P6ACTADJP3XMG = 0x1719E8; // type:func
+FMatchJtXmg__FP2JTP3XMGP6ACTADJ = 0x171C80; // type:func
+UpdateJtStand__FP2JT = 0x171DD8; // type:func
+ThrowJt__FP2JTP6VECTORff = 0x171F28; // type:func
+UnhookJt__FP2JT = 0x171FE0; // type:func
+CalculateJtToolSpin__FP2JTfP7MATRIX3 = 0x172078; // type:func
+RenderJtAll__FP2JTP2CMP2RO = 0x1721B0; // type:func
+FUN_00172530 = 0x172530; // type:func
+FUN_001725e0 = 0x1725E0; // type:func
+UpdateJtTool__FP2JT = 0x1727B0; // type:func
+FUN_00172898 = 0x172898; // type:func
+UpdateJtPosWorldPrev__FP2JT = 0x172AE0; // type:func
+FUN_00172b08 = 0x172B08; // type:func
+UpdateJtBounds__FP2JT = 0x172B88; // type:func
+PsoGetJtEffect__FP2JTPi = 0x172BF8; // type:func
+AddJtCustomXps__FP2JTP2SOiP3BSPT3PP2XP = 0x172CF0; // type:func
+FUN_00172ee0 = 0x172EE0; // type:func
+GetJtCpdefiFlatten__FP2JTP6CPDEFI = 0x1733B8; // type:func
+FUN_00173708 = 0x173708; // type:func
+FUN_00173750 = 0x173750; // type:func
+UpdateJtActive__FP2JTP3JOYf = 0x173888; // type:func
+UpdateJt__FP2JTf = 0x174808; // type:func
+UpdateJtDrive__FP2JT = 0x174E20; // type:func
+ChooseJtPhys__FP2JT = 0x174F50; // type:func
+EnableJtActadj__FP2JTi = 0x175078; // type:func
+SetJtJts__FP2JT3JTS4JTBS = 0x175170; // type:func
+ProfileJt__FP2JTi = 0x1777F8; // type:func
+SetJtPuppet__FP2JTP5ASEGA = 0x177800; // type:func
+PaloAbsorbWkr__FP3WKRiPP3ALO = 0x177838; // type:func
+UpdateJtEffect__FP2JT = 0x177990; // type:func
+FIsJtSoundBase__FP2JT = 0x177E20; // type:func
+CollectJtPrize__FP2JT3PCKP3ALO = 0x177E70; // type:func
+PlayJtDialog__FP2JTP6DIALOG = 0x177F98; // type:func
 
 
 // P2/main.c

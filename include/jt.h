@@ -21,4 +21,16 @@ struct JT : public STEP
     // ...
 };
 
+/**
+ * @brief Stubbed, does nothing.
+ *
+ * @param pjt Pointer to JT entity.
+ * @param fProfile Profile flag.
+ *
+ * @deprecated
+ */
+void ProfileJt(JT* pjt, int fProfile);
+
+extern JT* g_pjt;
+
 #endif // JT_H
