@@ -1,9 +1,12 @@
 #include <difficulty.h>
+#include <sce/memset.h>
 
 INCLUDE_ASM(const s32, "P2/difficulty", PdifficultyEnsureSw);
 INCLUDE_ASM(const s32, "P2/difficulty", func_00151A58);
 
-INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyGameLoad);
+void OnDifficultyGameLoad(DIFFICULTY* pdifficulty) {
+    memset(pdifficulty, 0, sizeof(DIFFICULTY)); // DIFFICULTY should be 0x24 bytes
+}
 
 INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyWorldPreLoad);
 

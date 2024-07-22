@@ -289,7 +289,7 @@ break_bottle = 0x149190; // type:func
 
 // P2/difficulty.c
 PdifficultyEnsureSw = 0x1519E0; // type:func
-OnDifficultyGameLoad = 0x151A68; // type:func
+OnDifficultyGameLoad__FP10DIFFICULTY = 0x151A68; // type:func
 OnDifficultyWorldPreLoad = 0x151A88; // type:func
 OnDifficultyWorldPostLoad = 0x151D28; // type:func
 OnDifficultyInitialTeleport__FP10DIFFICULTY = 0x151E18; // type:func
