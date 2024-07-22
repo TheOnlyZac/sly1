@@ -49,7 +49,22 @@ INCLUDE_ASM(const s32, "P2/util", GRandInRange);
 
 INCLUDE_ASM(const s32, "P2/util", GRandGaussian);
 
-INCLUDE_ASM(const s32, "P2/util", FFloatsNear);
+int FFloatsNear(float g1,float g2,float gEpsilon)
+{
+    float x = 1.0f;
+    g2 = g1-g2;
+    g1 = g1 > 0.0f ? g1 : -g1;
+    g2 = g2 > 0.0f ? g2 : -g2;
+    x = g1 > x ? g1 : x;
+    
+
+    g2 = g2 / x;
+    if(g2 < gEpsilon)
+    {
+        return 1;
+    }    
+    return 0;
+}
 
 INCLUDE_ASM(const s32, "P2/util", CSolveQuadratic);
 
