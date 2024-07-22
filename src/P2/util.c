@@ -55,7 +55,7 @@ INCLUDE_ASM(const s32, "P2/util", CSolveQuadratic);
 
 INCLUDE_ASM(const s32, "P2/util", PrescaleClq);
 
-INCLUDE_ASM(const s32, "P2/util", CalculateSinCos);
+INCLUDE_ASM(const s32, "P2/util", CalculateSinCos__FfPfT1);
 
 INCLUDE_ASM(const s32, "P2/util", GTrunc);
 
