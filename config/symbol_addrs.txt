@@ -297,7 +297,7 @@ OnDifficultyPlayerDeath = 0x151E20; // type:func
 OnDifficultyTriggerCheckpoint = 0x151ED8; // type:func
 OnDifficultyCollectKey = 0x151FC8; // type:func
 OnDifficultyBreak = 0x152010; // type:func
-ChangeSuck = 0x152410; // type:func
+ChangeSuck__FfP10DIFFICULTY = 0x152410; // type:func
 
 g_difficultyMedium = 0x261d70; // size:0x5c
 g_difficultyHard = 0x261e30; // size:0x5c
