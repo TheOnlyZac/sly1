@@ -30,22 +30,22 @@ struct VU_VECTOR
 /**
  * @brief Sets the coordinates of a vector using cylindrical coordinates.
  *
- * @param x X coordinate
- * @param y Y coordinate
- * @param z Z coordinate
  * @param pvec Pointer to the vector
+ * @param rad Degrees in radians
+ * @param sXY XY-Scale/Radius
+ * @param sZ Z Offset
  */
-void SetVectorCylind(float x, float y, float z, VECTOR *pvec);
+void SetVectorCylind(VECTOR *pvec, float rad, float sXY, float sZ);
 
 /**
  * @brief Sets the coordinates of a vector using spherical coordinates.
  *
- * @param x X coordinate
- * @param y Y coordinate
- * @param z Z coordinate
  * @param pvec Pointer to the vector
+ * @param radPan Angle around Z axis
+ * @param radTilt Angle above horizontal
+ * @param s Scale/Radius
  */
-void SetVectorSphere(float z, float y, float x, VECTOR *pvec);
+void SetVectorSphere(VECTOR *pvec, float radPan, float radTilt, float s);
 
 /**
  * @brief Projects one vector onto another using scalar projection.
@@ -112,31 +112,38 @@ void FindClosestPointBetweenLineSegments(VECTOR *param_1, VECTOR *param_2, VECTO
  * @brief Calculates the pan and tilt of a vector
  *
  * @param pvec Pointer to the vector
- * @param ppan Float pointer to store the pan result
- * @param ptilt Float pointer to store the tilt result
+ * @param pradPan Float pointer to store the pan result
+ * @param pradTilt Float pointer to store the tilt result
  */
-void CalculateVectorPanTilt(VECTOR *pvec, float *ppan, float *ptilt);
+void CalculateVectorPanTilt(VECTOR *pvec, float *pradPan, float *pradTilt);
 
 /**
- * @brief Unknown
+ * @brief Creates a vector from a rotation vector and an offset vector
  *
- * @param param_1 Unknown vector
- * @param param_2 Unknown vector
- * @param param_3 Unknown vector
+ * @details Use the peul vector to define euler angles for a vector,
+ * Using the forward vector as a reference direction,
+ * pdeul's X is a Rightward offset
+ * pdeul's Y is a Forward offset
+ * pdeul's Z is a Vertical offset
+ * 
+ * @param peul Rotation vector, defines a "forward"
+ * @param pdeul Offset vector
+ * @param pw Resultant Vector
  */
-void ConvertDeulToW(VECTOR *param_1, VECTOR *param_2, VECTOR *param_3);
+void ConvertDeulToW(VECTOR *peul, VECTOR *pdeul, VECTOR *pw);
 
 /**
  * @brief Calculates the muzzle velocity of a projectile.
  *
- * @param param_1 Initial position
- * @param param_2 Target position
- * @param param_3 Target velocity
- * @param param_4 Unknown
+ * @param pposLaunch Initial position
+ * @param pposTarget Target position
+ * @param radVert Vertical angle?
+ * @param pvecMuzzle Target velocity
+ * @param psoLaunch Unknown
  *
  * @note This is an educated guess and may not be accurate.
  */
-bool FCalculateMuzzleVelocity(VECTOR *param_1, VECTOR *param_2, VECTOR *param_3, VECTOR *param_4, SO *param_5);
+int FCalculateMuzzleVelocity(VECTOR *pposLaunch,VECTOR *pposTarget,float radVert,VECTOR *pvecMuzzle,SO *psoLaunch);
 
 /**
  * @brief Calculates the muzzle velocity angle of a projectile.
@@ -148,7 +155,7 @@ bool FCalculateMuzzleVelocity(VECTOR *param_1, VECTOR *param_2, VECTOR *param_3,
  *
  * @note The name/paremeters for this function are an educated guess and may not be accurate.
  */
-uint32_t FCalculateMuzzleVelocityAngle(VECTOR *param_1, VECTOR *param_2, VECTOR *param_3, VECTOR *param_4, SO *param_5);
+int FCalculateMuzzleVelocityAngle(VECTOR *pposLaunch, VECTOR *pposTarget, float radTilt, VECTOR *pvecMuzzle, SO *psoLaunch);
 
 /**
  * @brief Limits the length of a vector.

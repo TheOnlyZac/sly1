@@ -675,10 +675,10 @@ SmoothMatrix = 0x1EA918; // type:func
 NRandInRange__Fii = 0x1EAA70; // type:func
 GRandInRange = 0x1EAAE0; // type:func
 GRandGaussian = 0x1EAB48; // type:func
-FFloatsNear = 0x1EAC68; // type:func
+FFloatsNear__Ffff = 0x1EAC68; // type:func
 CSolveQuadratic = 0x1EACA0; // type:func
 PrescaleClq = 0x1EAD30; // type:func
-CalculateSinCos = 0x1EAD88; // type:func
+CalculateSinCos__FfPfT1 = 0x1EAD88; // type:func
 GTrunc = 0x1EAE78; // type:func
 GTrunc1 = 0x1EAF28; // type:func
 GModPositive__Fff = 0x1EAFE0; // type:func
@@ -692,8 +692,8 @@ MinimizeRange = 0x1EB168; // type:func
 
 
 // P2/vec.c
-SetVectorCylind = 0x1ED650; // type:func
-SetVectorSphere = 0x1ED6B0; // type:func
+SetVectorCylind__FP6VECTORfff = 0x1ED650; // type:func
+SetVectorSphere__FP6VECTORfff = 0x1ED6B0; // type:func
 SProjectVector = 0x1ED738; // type:func
 GetNormalVectors = 0x1ED780; // type:func
 GetNormalVector = 0x1ED840; // type:func
@@ -701,10 +701,10 @@ RadBetweenVectors = 0x1ED908; // type:func
 FindClosestPointBetweenLines = 0x1EDA80; // type:func
 FindClosestPointBetweenLineSegments = 0x1EDC08; // type:func
 CalculateVectorPanTilt = 0x1EDDB0; // type:func
-ConvertDeulToW = 0x1EDE38; // type:func
-FCalculateMuzzleVelocity = 0x1EDEF0; // type:func
+ConvertDeulToW__FP6VECTORN20 = 0x1EDE38; // type:func
+FCalculateMuzzleVelocity__FP6VECTORT0fT0P2SO = 0x1EDEF0; // type:func
 FCalculateMuzzleVelocity1 = 0x1EE090; // type:func
-FCalculateMuzzleVelocityAngle = 0x1EE290; // type:func
+FCalculateMuzzleVelocityAngle__FP6VECTORT0fT0P2SO = 0x1EE290; // type:func
 LimitVectorLength = 0x1EE2B0; // type:func
 
 
