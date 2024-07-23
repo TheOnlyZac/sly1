@@ -398,6 +398,9 @@ CcharmMost__Fv = 0x160D98; // type:func
 
 reload_post_death = 0x160DA0; // type:func
 
+// P2/gs.c
+ClearFrameBuffers__Fv = 0x168AF8; // type:func
+
 
 g_pgsCur = 0x2623c0; // size:0x4
 g_pwsCur = 0x2623c4; // size:0x4

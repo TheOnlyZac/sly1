@@ -10,4 +10,9 @@
 
 // ...
 
+/**
+ * 
+*/
+void ClearFrameBuffers();
+
 #endif // GS_H
