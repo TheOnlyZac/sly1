@@ -21,6 +21,7 @@ class CProg
     RGBA m_rgbaTrouble;
 
 public:
+    CProg(RGBA *rgbaComplete, RGBA *rgbaRemain, RGBA *rgbaWarning, RGBA *rgbaTrouble);
     void Begin();
     void SetRemain(int nRemain);
     void End();

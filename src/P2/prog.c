@@ -2,7 +2,19 @@
 #include "prog.h"
 #include "gs.h"
 
-INCLUDE_ASM(const s32, "P2/prog", __5CProgG4RGBAN31);
+//INCLUDE_ASM(const s32, "P2/prog", __5CProgG4RGBAN31);
+CProg::CProg(RGBA *rgbaComplete, RGBA *rgbaRemain, RGBA *rgbaWarning, RGBA *rgbaTrouble)
+{
+    m_rgbaComplete = *rgbaComplete;
+    m_rgbaRemain = *rgbaRemain;
+    m_rgbaWarning = *rgbaWarning;
+    m_rgbaTrouble = *rgbaTrouble;
+    m_fActive = 0;
+    m_cRetry = 0;
+    m_nRemain = 0;
+    m_nTarget = 0;
+    m_nMax = 0;
+}
 
 void CProg::Begin()
 {
@@ -13,7 +25,7 @@ void CProg::Begin()
     this->m_nMax = 0;
 }
 
-void CProg::SetRemain(int nRemain) 
+void CProg::SetRemain(int nRemain)
 {
     if (m_fActive != 0)
     {

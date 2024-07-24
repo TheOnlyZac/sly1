@@ -1,5 +1,6 @@
 #include "common.h"
 #include <game.h>
+#include "prog.h"
 
 // extern g_chpzArgs;
 // extern g_aphzArgs;
