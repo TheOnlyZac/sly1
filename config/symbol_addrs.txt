@@ -624,6 +624,11 @@ g_unkblot4 = 0x26dac8; // size:0x280
 g_unkblot5 = 0x26dd48; // size:0x280
 g_unkblot6 = 0x26dfc8; // size:0x280
 g_unkblot7 = 0x26e248; // size:0x280
+g_unkblot8 = 0x26e4e0; // size:0x280
+g_unkblot9 = 0x26e760; // size:0x280
+g_unkblot10 = 0x26e9f8; // size:0x280
+g_unkblot11 = 0x26eed0; // size:0x280
+g_totals = 0x26f138; // size:0x280
 
 
 // P2/steppower.c
@@ -633,6 +638,9 @@ IRotatePowerUp__FP3JOYiiPi = 0x1d3100; // type:func
 
 
 // P2/sw.c
+IncrementSwHandsOff__FP2SW = 0x1dda20; // type:func
+DecrementSwHandsOff__FP2SW = 0x1dda50; // type:func
+
 g_psw = 0x275710; // size:0x4
 
 
