@@ -21,10 +21,39 @@ class CProg
     RGBA m_rgbaTrouble;
 
 public:
+
+/**
+ * @brief Initializes CProg with RGBA values
+ *
+ * @param rgbaComplete Unknown
+ * @param rgbaRemain Unknown
+ * @param rgbaWarning Unknown
+ * @param rgbaTrouble Unknown
+ */
     CProg(RGBA *rgbaComplete, RGBA *rgbaRemain, RGBA *rgbaWarning, RGBA *rgbaTrouble);
+    
+/**
+ * @brief Zeroes out the variables
+ *
+ */
     void Begin();
+    
+/**
+ * @brief Clear's Frame Buffers, Updates Remain and calls Draw
+ *
+ * @param nRemain new Remain value
+ */
     void SetRemain(int nRemain);
+    
+/**
+ * @brief Zeroes out the variables
+ *
+ */
     void End();
+
+/**
+ * @brief Unknown
+ */
     void Draw();
 };
 

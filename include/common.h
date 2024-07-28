@@ -10,4 +10,6 @@
 #include "include_rodata.h"
 #include <types.h>
 
+float atan2f(float x, float y);
+
 #endif /* COMMON_H */
