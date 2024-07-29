@@ -8,8 +8,6 @@
 
 #include "include_asm.h"
 #include "include_rodata.h"
-#include <types.h>
-
-float atan2f(float x, float y);
+#include "types.h"
 
 #endif /* COMMON_H */

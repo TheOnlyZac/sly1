@@ -1,6 +1,6 @@
 #include "common.h"
-#include "prog.h"
-#include "gs.h"
+#include <prog.h>
+#include <gs.h>
 
 CProg::CProg(RGBA *rgbaComplete, RGBA *rgbaRemain, RGBA *rgbaWarning, RGBA *rgbaTrouble)
 {
