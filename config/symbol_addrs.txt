@@ -20,6 +20,37 @@ spliceutils__static_initialization_and_destruction_0 = 0x11C0A8; // type:func
 _GLOBAL_$I$g_splotheapPair = 0x11C0E8; // type:func
 _GLOBAL_$D$g_splotheapPair = 0x11C108; // type:func
 
+
+////////////////////////////////////////////////////////////////
+// P2/splice/ref.cpp
+////////////////////////////////////////////////////////////////
+__4CRef = 0x11B008; // type:func
+__4CRefRC4CRef = 0x11B018; // type:func
+_$_4CRef = 0x11B060; // type:func
+__as__4CRefRC4CRef = 0x11B0A8; // type:func
+__eq__C4CRefRC4CRef = 0x11B0F8; // type:func
+CloneTo__4CRefP4CRefP6CFrame = 0x11B258; // type:func
+Decref__C4CRef = 0x11B418; // type:func
+Incref__C4CRef = 0x11B4A8; // type:func
+SetTag__4CRef4TAGK = 0x11B538; // type:func
+SetS32__4CRefi = 0x11B570; // type:func
+SetF32__4CReff = 0x11B5B0; // type:func
+SetBool__4CRefi = 0x11B5F0; // type:func
+SetSymid__4CRefUi = 0x11B640; // type:func
+SetBifk__4CRef4BIFK = 0x11B680; // type:func
+SetPair__4CRefP5CPair = 0x11B6C0; // type:func
+SetProc__4CRefP5CProc = 0x11B700; // type:func
+SetVector__4CRefP6VECTOR = 0x11B740; // type:func
+SetMatrix__4CRefP7MATRIX4 = 0x11B788; // type:func
+SetClq__4CRefP3CLQ = 0x11B7D0; // type:func
+SetLm__4CRefP2LM = 0x11B818; // type:func
+SetSmp__4CRefP3SMP = 0x11B860; // type:func
+SetBasic__4CRefP5BASIC = 0x11B8A8; // type:func
+SetMethod__4CRefP7CMethod = 0x11B8E8; // type:func
+RefCoerceS32__4CRef = 0x11B928; // type:func
+RefCoerceF32__4CRef = 0x11B9A8; // type:func
+
+
 ////////////////////////////////////////////////////////////////
 // P2/989snd.c
 ////////////////////////////////////////////////////////////////
