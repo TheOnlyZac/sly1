@@ -8,6 +8,6 @@
 
 #include "include_asm.h"
 #include "include_rodata.h"
-#include <types.h>
+#include "types.h"
 
 #endif /* COMMON_H */

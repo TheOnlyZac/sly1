@@ -5,11 +5,12 @@ static const float PI = 3.14159265359f;
 
 float RadNormalize(float rad)
 {
-  if ((rad < -PI) || (PI < rad)) {
-    float modpos = GModPositive(rad + PI, 2 * PI);
-    rad = modpos - PI;
-  }
-  return rad;
+    if ((rad < -PI) || (PI < rad)) 
+    {
+        float modpos = GModPositive(rad + PI, 2 * PI);
+        rad = modpos - PI;
+    }
+    return rad;
 }
 
 INCLUDE_ASM(const s32, "P2/util", GLimitAbs);
@@ -30,7 +31,8 @@ INCLUDE_ASM(const s32, "P2/util", SmoothMatrix);
 const int PRIME_MOD = 0x95675;
 
 // Generates a random integer in the range [nLow, nHi]
-int NRandInRange(int nLow, int nHi) {
+int NRandInRange(int nLow, int nHi) 
+{
     if (nLow == nHi)
     {
         return nLow;

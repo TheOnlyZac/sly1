@@ -2,27 +2,34 @@ _start = 0x100008; // type:func
 _exit = 0x1000B8; // type:func
 
 
-// UKNOWN FILE
+////////////////////////////////////////////////////////////////
+// Unknown file
+// Related to save files
+////////////////////////////////////////////////////////////////
 UpdateSave__FP4SAVE = 0x18bdc8; // type:func
 
 g_save = 0x264A40;
 
 
+////////////////////////////////////////////////////////////////
 // P2/splice/spliceutils.cpp
+////////////////////////////////////////////////////////////////
 StartupSplice__Fv = 0x11BF70; // type:func
 ShutdownSplice__Fv = 0x11C040; // type:func
 spliceutils__static_initialization_and_destruction_0 = 0x11C0A8; // type:func
 _GLOBAL_$I$g_splotheapPair = 0x11C0E8; // type:func
 _GLOBAL_$D$g_splotheapPair = 0x11C108; // type:func
 
-
+////////////////////////////////////////////////////////////////
 // P2/989snd.c
+////////////////////////////////////////////////////////////////
 snd_StreamSafeCdBreak = 0x11e2a0; // type:func
 snd_SendIOPCommandAndWait = 0x11e6b8; // type:func
 snd_SendIOPCommandNoWait = 0x11e8c8; // type:func
 
-
+////////////////////////////////////////////////////////////////
 // P2/binoc.c
+////////////////////////////////////////////////////////////////
 InitBei = 0x130F48; // type:func
 GEvaluateBei = 0x131000; // type:func
 FUN_001310f0 = 0x1310F0; // type:func
@@ -63,8 +70,9 @@ SetHorizontalJust__8CTextBox2JH = 0x137260; // type:func
 SetVerticalJust__8CTextBox2JV = 0x137268; // type:func
 _GLOBAL_$I$InitBei__FP3BEIP3CLQffi = 0x137270; // type:func
 
-
+////////////////////////////////////////////////////////////////
 // P2/bis.c
+////////////////////////////////////////////////////////////////
 __18CBinaryInputStreamiPvi = 0x137290; // type:func
 DESTRUCTOR__CBinaryInputStream = 0x1372E0; // type:func
 FOpenSector__18CBinaryInputStreamUiUi = 0x137328; // type:func
@@ -94,12 +102,14 @@ ReadBspc__18CBinaryInputStreamP4GEOMP4BSPC = 0x138278; // type:func
 ReadVbsp__18CBinaryInputStreamPiPP4VBSP = 0x138398; // type:func
 ReadStringSw__18CBinaryInputStreamPPc = 0x1384A0; // type:func
 
-
+////////////////////////////////////////////////////////////////
 // P2/cd.c
+////////////////////////////////////////////////////////////////
 CdPath__FPcT0i = 0x140b60; // type:func
 
-
+////////////////////////////////////////////////////////////////
 // P2/chkpnt.c
+////////////////////////////////////////////////////////////////
 ResetChkmgrCheckpoints__FP6CHKMGR = 0x140D90; // type:func
 SaveChkmgrCheckpoint__FP6CHKMGR3OIDT1 = 0x140E10; // type:func
 ReturnChkmgrToCheckpoint__FP6CHKMGR = 0x140ED0; // type:func
@@ -119,8 +129,9 @@ UpdateChkpnt__FP6CHKPNTf = 0x141690; // type:func
 FUN_001417f0 = 0x1417F0; // type:func
 TriggerChkpnt__FP6CHKPNT = 0x141870; // type:func
 
-
+////////////////////////////////////////////////////////////////
 // P2/clock.c
+////////////////////////////////////////////////////////////////
 SetClockRate__Ff = 0x142ED0; // type:func
 MarkClockTick__FP5CLOCK = 0x142F10; // type:func
 MarkClockTickRealOnly__FP5CLOCK = 0x143030; // type:func
@@ -134,8 +145,9 @@ g_rtClockPowerUp = 0x261854; // size:0x4
 g_clock = 0x261858; // size:0x20
 s_tickLastRaw = 0x261878; // size:0x4
 
-
+////////////////////////////////////////////////////////////////
 // P2/cm.c
+////////////////////////////////////////////////////////////////
 CalcCmAdjust__FP2CMP2SOP6CPDEFIP6VECTOR = 0x143148; // type:func
 SpringCm__FfffP2CMP6VECTORP6VECTORP6VECTOR = 0x143180; // type:func
 AdjustCmCpdefi__FP2CMP2SOfP6CPDEFI = 0x143208; // type:func
@@ -241,9 +253,9 @@ D_0026198C = 0x26198c; // size:0x4
 
 g_pcm = 0x261990; // size:0x4
 
-
+////////////////////////////////////////////////////////////////
 // P2/coin.c
-
+////////////////////////////////////////////////////////////////
 InitDprize__FP6DPRIZE = 0x146340; // type:func
 LoadDprizeFromBrx__FP6DPRIZEP18CBinaryInputStream = 0x1463C0; // type:func
 CloneDprize__FP6DPRIZET0 = 0x146418; // type:func
@@ -286,8 +298,9 @@ CollectLifetkn__FP7LIFETKN = 0x148FF0; // type:func
 FUN_00149168 = 0x149168; // type:func
 break_bottle = 0x149190; // type:func
 
-
+////////////////////////////////////////////////////////////////
 // P2/difficulty.c
+////////////////////////////////////////////////////////////////
 PdifficultyEnsureSw = 0x1519E0; // type:func
 OnDifficultyGameLoad__FP10DIFFICULTY = 0x151A68; // type:func
 OnDifficultyWorldPreLoad = 0x151A88; // type:func
@@ -304,8 +317,9 @@ g_difficultyHard = 0x261e30; // size:0x5c
 g_difficultyEasy = 0x261e90; // size:0x5c
 g_difficulty = 0x261ef0; // size:0x20
 
-
+////////////////////////////////////////////////////////////////
 // P2/find.c
+////////////////////////////////////////////////////////////////
 PdlFromSwOid__FP2SW3OID = 0x159F20; // type:func
 MatchSwObject__FP2LOiiiT0iPiPP2LOT6 = 0x159F48; // type:func
 CploFindSwObjects__FP2SWi3OIDP2LOiPP2LO = 0x15A198; // type:func
@@ -317,8 +331,9 @@ CploFindSwObjectsByClass__FP2SWi3CIDP2LOiPP2LO = 0x15A4F0; // type:func
 PloFindSwObjectByClass__FP2SWi3CIDP2LO = 0x15A838; // type:func
 PaloFindLoCommonParent__FP2LOT0 = 0x15A868; // type:func
 
-
+////////////////////////////////////////////////////////////////
 // P2/flash.c
+////////////////////////////////////////////////////////////////
 InitFlash__FP5FLASH = 0x15A8B0; // type:func
 LoadFlashFromBrx__FP5FLASHP18CBinaryInputStream = 0x15A918; // type:func
 UpdateFlash__FP5FLASHf = 0x15A960; // type:func
@@ -326,13 +341,14 @@ RenderFlashSelf__FP5FLASHP2CMP2RO = 0x15A9A8; // type:func
 FPosFlashWithin__FP5FLASHP6VECTOR = 0x15AA50; // type:func
 
 
-
+////////////////////////////////////////////////////////////////
 // P2/font.c
-
+////////////////////////////////////////////////////////////////
 g_pfont = 0x26227C; // size:0x4
 
-
+////////////////////////////////////////////////////////////////
 // P2/frm.c
+////////////////////////////////////////////////////////////////
 StartupFrame__Fv = 0x15E810; // type:func
 OpenFrame__Fv = 0x15E9F0; // type:func
 EnsureVu1Code__FP4VIFSPvT1 = 0x15EAE0; // type:func
@@ -349,8 +365,9 @@ BlendPrevFrame__Fv = 0x15F320; // type:func
 
 g_cframe = 0x2622cc; // size:0x4
 
-
+////////////////////////////////////////////////////////////////
 // P2/game.c
+////////////////////////////////////////////////////////////////
 StartupGame__Fv = 0x160070; // type:func
 
 search_level_by_load_data = 0x1600A0; // type:func
@@ -398,20 +415,25 @@ CcharmMost__Fv = 0x160D98; // type:func
 
 reload_post_death = 0x160DA0; // type:func
 
-
+// data
 g_pgsCur = 0x2623c0; // size:0x4
 g_pwsCur = 0x2623c4; // size:0x4
 g_plsCur = 0x2623c8; // size:0x4
 g_worldlevelPrev = 0x2623cc; // size:0x4
 chz_none = 0x2623d0; // size:0x7
 
-
 // static
 g_gsCur = 0xea0; // size:0x1a00
 
+////////////////////////////////////////////////////////////////
+// P2/gs.c
+// Graphics synthesizer
+////////////////////////////////////////////////////////////////
+ClearFrameBuffers__Fv = 0x168AF8; // type:func
 
-
+////////////////////////////////////////////////////////////////
 // P2/joy.c
+////////////////////////////////////////////////////////////////
 StartupJoy__Fv = 0x16E0B8; // type:func
 AddGrfusr__Fi = 0x16E0F0; // type:func
 RemoveGrfusr__Fi = 0x16E118; // type:func
@@ -440,7 +462,9 @@ StartupCodes__Fv = 0x16F588; // type:func
 g_joy = 0x262C70; // size:0xc4
 
 
+////////////////////////////////////////////////////////////////
 // P2/jt.c
+////////////////////////////////////////////////////////////////
 InitJt__FP2JT = 0x16F608; // type:func
 LoadJtFromBrx__FP2JTP18CBinaryInputStream = 0x16F7B0; // type:func
 PostJtLoad__FP2JT = 0x16F810; // type:func
@@ -490,7 +514,9 @@ CollectJtPrize__FP2JT3PCKP3ALO = 0x177E70; // type:func
 PlayJtDialog__FP2JTP6DIALOG = 0x177F98; // type:func
 
 
+////////////////////////////////////////////////////////////////
 // P2/main.c
+////////////////////////////////////////////////////////////////
 main = 0x185758; // type:func
 main_epilogue = 0x1858f8; // type:func
 StartupVU0__Fv = 0x185A58; // type:func
@@ -501,33 +527,43 @@ g_chpzArgs = 0x264834; // size:0x4
 g_aphzArgs = 0x264838; // size:0x4
 
 
+////////////////////////////////////////////////////////////////
 // P2/mpeg.c
+////////////////////////////////////////////////////////////////
 ExecuteOids__5CMpeg = 0x18f148; // type:func
 
 g_mpeg = 0x269A00;
 
 
+////////////////////////////////////////////////////////////////
 // P2/phasemem.c
+////////////////////////////////////////////////////////////////
 SetPhase__F5PHASE = 0x191E70; // type:func
 ClearPhase__Fv = 0x191EB0; // type:func
 
 g_phase = 0x269ba4; // size:0x4
 
 
+////////////////////////////////////////////////////////////////
 // P2/prog.c
-__5CProgG4RGBAN31 = 0x193210; // type:func
+////////////////////////////////////////////////////////////////
+__5CProgP4RGBAN31 = 0x193210; // type:func
 Begin__5CProg = 0x193270; // type:func
 SetRemain__5CProgi = 0x193288; // type:func
 End__5CProg = 0x193300; // type:func
 Draw__5CProg = 0x193318; // type:func
 
 
+////////////////////////////////////////////////////////////////
 // P2/render.c
+////////////////////////////////////////////////////////////////
 RenderSw__FP2SWP2CM = 0x19d6c0; // type:func
 DrawSw__FP2SWP2CM = 0x19DC98; // type:func
 
 
+////////////////////////////////////////////////////////////////
 // P2/screen.c
+////////////////////////////////////////////////////////////////
 StartupScreen__Fv = 0x1A9C68; // type:func
 PostBlotsLoad__Fv = 0x1A9F78; // type:func
 UpdateBlots__Fv = 0x1A9FD0; // type:func
@@ -631,26 +667,34 @@ g_unkblot11 = 0x26eed0; // size:0x280
 g_totals = 0x26f138; // size:0x280
 
 
+////////////////////////////////////////////////////////////////
 // P2/steppower.c
+////////////////////////////////////////////////////////////////
 SetFsp__F3FSP = 0x1D29C8; // type:func
 UpdateJtActivePowerUp__FP2JTP3JOY = 0x1d2bb8; // type:func
 IRotatePowerUp__FP3JOYiiPi = 0x1d3100; // type:func
 
 
+////////////////////////////////////////////////////////////////
 // P2/sw.c
+////////////////////////////////////////////////////////////////
 IncrementSwHandsOff__FP2SW = 0x1dda20; // type:func
 DecrementSwHandsOff__FP2SW = 0x1dda50; // type:func
 
 g_psw = 0x275710; // size:0x4
 
 
+////////////////////////////////////////////////////////////////
 // P2/transition.c
+////////////////////////////////////////////////////////////////
 Execute__11CTransition = 0x1e4ea8; // type:func
 
 g_transition = 0x275af0;
 
 
+////////////////////////////////////////////////////////////////
 // P2/ui.c
+////////////////////////////////////////////////////////////////
 StartupUi__Fv = 0x1E9088; // type:func
 InitUi__FP2UI = 0x1E90A8; // type:func
 PostUiLoad__FP2UI = 0x1E90E8; // type:func
@@ -671,7 +715,9 @@ check_anticrack_collectibles_Fv = 0x1E9B30; // type:func
 g_ui = 0x275BC0;
 
 
+////////////////////////////////////////////////////////////////
 // P2/util.c
+////////////////////////////////////////////////////////////////
 RadNormalize__Ff = 0x1EA408; // type:func
 GLimitAbs = 0x1EA480; // type:func
 GSmooth = 0x1EA4B8; // type:func
@@ -699,7 +745,9 @@ Force__FPv = 0x1EB160; // type:func
 MinimizeRange = 0x1EB168; // type:func
 
 
+////////////////////////////////////////////////////////////////
 // P2/vec.c
+////////////////////////////////////////////////////////////////
 SetVectorCylind__FP6VECTORfff = 0x1ED650; // type:func
 SetVectorSphere__FP6VECTORfff = 0x1ED6B0; // type:func
 SProjectVector = 0x1ED738; // type:func
@@ -716,12 +764,16 @@ FCalculateMuzzleVelocityAngle__FP6VECTORT0fT0P2SO = 0x1EE290; // type:func
 LimitVectorLength = 0x1EE2B0; // type:func
 
 
+////////////////////////////////////////////////////////////////
 // P2/wipe.c
+////////////////////////////////////////////////////////////////
 g_pwipe = 0x275f80;
 g_wipe = 0x275f84;
 
 
+////////////////////////////////////////////////////////////////
 // P2/xform.c
+////////////////////////////////////////////////////////////////
 InitXfm__FP3XFM = 0x1F39F8; // type:func
 LoadXfmFromBrx__FP3XFMP18CBinaryInputStream = 0x1F3A40; // type:func
 SetXfmParent__FP3XFMP3ALO = 0x1F3A90; // type:func
@@ -749,19 +801,33 @@ PostCameraLoad__FP6CAMERA = 0x1F4E48; // type:func
 EnableCamera__FP6CAMERA = 0x1F4ED0; // type:func
 
 
+////////////////////////////////////////////////////////////////
 // sce/ee/gcc/src/gcc/libgcc2.c
+////////////////////////////////////////////////////////////////
 __main__Fv = 0x1fae18; // type:func
 
 
+////////////////////////////////////////////////////////////////
+// sce/ee/gcc/src/newlib/libm/math/wf_atan2.c
+////////////////////////////////////////////////////////////////
+atan2f = 0x205778; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // sce/eecdvd.c
+////////////////////////////////////////////////////////////////
 sceCdBreak = 0x203e28; // type:func
 
 
+////////////////////////////////////////////////////////////////
 // sce/filestub.c
+////////////////////////////////////////////////////////////////
 sceClose = 0x1f8c38; // type:func
 
 
+////////////////////////////////////////////////////////////////
 // sce/rand.c
+////////////////////////////////////////////////////////////////
 srand = 0x1F66F8; // type:func
 rand = 0x1F6708; // type:func
 
@@ -769,11 +835,15 @@ g_rng = 0x276680; // size:0x5c
 g_prng = 0x27696c; // size:0x4
 
 
+////////////////////////////////////////////////////////////////
 // gcc/dp-bit.c
+////////////////////////////////////////////////////////////////
 dpcmp = 0x1FD308; // type:func
 fptodp = 0x1FD868; // type:func
 
 
+////////////////////////////////////////////////////////////////
 // misc
+////////////////////////////////////////////////////////////////
 memset = 0x1F5C0C; // type:func
 __floatdisf = 0x1fb6b0; // type:func
