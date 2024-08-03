@@ -62,6 +62,8 @@ If you have any issues, or you prefer to set up the project manually, follow the
 
 ## Manual Setup
 
+The project can be built on Linux, or Windows using WSL. Follow the instructions below to set up the build environment.
+
 ### Clone the repo
 
 Clone the repository to your local machine:
@@ -71,17 +73,15 @@ git clone https://github.com/TheOnlyZac/sly1
 cd sly1
 ```
 
-### Install Python packages
+### Install python packages
 
-Splat is used for binary splitting, and Ninja is used for building the project. You will need Python 3. Install dependencies with pip:
+You will need Python 3.8 or higher.
 
 ```bash
 pip install -U -r requirements.txt
 ```
 
 ### Setup build environment
-
-The project can be built on Windows (using WSL) or Linux. Follow the instructions below to set up the build environment.
 
 <!--#### Linux/WSL-->
 
@@ -124,7 +124,7 @@ To build the project you will need to extract the original ELF file from your ow
 
 ### Build the project
 
-The project can be built on Linux (or Windows using WSL). It builds the executable `SCUS_971.98`.
+The project builds the executable `SCUS_971.98`.
 
 ```bash
 python configure.py
@@ -143,12 +143,11 @@ To only clean without reconfiguring (i.e. delete build files) use:
 python configure.py --only-clean
 ```
 
-
 ## Running
 
 Running the executable requires [PCSX2 2.0](https://pcsx2.net/). You must have your own copy of the original game and the BIOS from your own PS2. They are not included in this repo and we cannot provide them for you.
 
-Once you have those and you have built the executable, you can run it in one of these three ways:
+Once you have those and you have built the executable, you can run it in one of three ways:
 
 ### 1. Autorun script
 
@@ -169,7 +168,6 @@ Replace `pcsx2-1.7.exe` with the path to your PCSX2 v1.7 executable (for Linux i
 ### 3. Run from PCSX2 GUI
 
 Copy `SCUS_971.98` from the `out` dir to your PCSX2 Games folder and rename it to `SCUS_971.98.elf`. Right click on the game in PCSX2 and click "Properties...". Go to "Disc Path", click "Browse", and select the ISO of your game backup. Then click "Close" and start the game as normal.
-
 
 ## Project Structure
 
@@ -192,7 +190,6 @@ When you build the executable, the following directories will be created:
 * `obj` - Compiled object files.
 * `out` - Compiled executables.
 
-
 ## FAQ
 
 #### What is a decompilation?
@@ -214,7 +211,6 @@ Yes. This was the first PS2 decompilation project that targeted the PS2 and util
 #### How can I help?
 
 If you want to contribute, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our discord server](https://discord.gg/gh5xwfj) if you have any questions!
-
 
 ## Star History
 

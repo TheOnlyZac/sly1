@@ -136,6 +136,8 @@ struct TOTALS : public BLOT
     GRFLS grflsReshow;
 };
 
+extern TOTALS g_totals;
+
 // MARK: Note
 
 struct NOTE : public BLOT

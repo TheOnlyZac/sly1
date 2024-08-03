@@ -24,7 +24,7 @@ sudo apt-get install wine32
 sudo apt-get install binutils-mips-linux-gnu
 
 # Setup compiler
-./setup-progd-linux.sh
+./setup_progd_linux.sh
 
 popd > /dev/null
 echo "Build environment setup complete."

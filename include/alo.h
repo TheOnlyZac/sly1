@@ -33,6 +33,7 @@ struct ALO : public LO
     //XF xf;
     //VECTOR pso
 
+    undefined4 padding[0x94];
     // ...
 };
 

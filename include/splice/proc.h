@@ -6,6 +6,14 @@
 
 #include "common.h"
 
-// ...
+/**
+ * @class CProc
+ *
+ * @todo Fill in class.
+ */
+class CProc
+{
+    // ...
+};
 
 #endif // SPLICE_PROC_H

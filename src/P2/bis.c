@@ -126,7 +126,8 @@ uint CBinaryInputStream::U32Read()
         return v;
     }
 }
-INCLUDE_ASM(const s32, "P2/bis", func_00137CB8); // Not really a function, not sure why it's necessary.
+
+INCLUDE_ASM(const s32, "P2/bis", func_00137CB8);
 
 char CBinaryInputStream::S8Read()
 {

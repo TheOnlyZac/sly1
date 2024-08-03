@@ -38,4 +38,19 @@ typedef unsigned short undefined2;
 typedef unsigned int undefined4;
 typedef unsigned long undefined8;
 
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned int u32;
+typedef unsigned long long u64;
+
+typedef signed char s8;
+typedef signed short s16;
+typedef signed int s32;
+typedef signed long long s64;
+
+typedef float f32;
+typedef double f64;
+
+typedef uint size_t;
+
 #endif // TYPES_H
