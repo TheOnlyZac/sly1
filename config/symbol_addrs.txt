@@ -28,10 +28,10 @@ __4CRef = 0x11B008; // type:func
 __4CRefRC4CRef = 0x11B018; // type:func
 _$_4CRef = 0x11B060; // type:func
 __as__4CRefRC4CRef = 0x11B0A8; // type:func
-__eq__C4CRefRC4CRef = 0x11B0F8; // type:func
+__eq__4CRefRC4CRef = 0x11B0F8; // type:func
 CloneTo__4CRefP4CRefP6CFrame = 0x11B258; // type:func
-Decref__C4CRef = 0x11B418; // type:func
-Incref__C4CRef = 0x11B4A8; // type:func
+Decref__4CRef = 0x11B418; // type:func
+Incref__4CRef = 0x11B4A8; // type:func
 SetTag__4CRef4TAGK = 0x11B538; // type:func
 SetS32__4CRefi = 0x11B570; // type:func
 SetF32__4CReff = 0x11B5B0; // type:func
@@ -49,6 +49,21 @@ SetBasic__4CRefP5BASIC = 0x11B8A8; // type:func
 SetMethod__4CRefP7CMethod = 0x11B8E8; // type:func
 RefCoerceS32__4CRef = 0x11B928; // type:func
 RefCoerceF32__4CRef = 0x11B9A8; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/vecmat.cpp
+////////////////////////////////////////////////////////////////
+IncrefVector__FP6VECTOR = 0x11c580; // type:func
+DecrefVector__FP6VECTOR = 0x11c5b0; // type:func
+IncrefMatrix__FP7MATRIX4 = 0x11c690; // type:func
+DecrefMatrix__FP7MATRIX4 = 0x11c6c0; // type:func
+IncrefClq__FP3CLQ = 0x11c7c0; // type:func
+DecrefClq__FP3CLQ = 0x11c7f0; // type:func
+IncrefLm__FP2LM = 0x11c8d0; // type:func
+DecrefLm__FP2LM = 0x11c900; // type:func
+IncrefSmp__FP3SMP = 0x11c9e0; // type:func
+DecrefSmp__FP3SMP = 0x11ca20; // type:func
 
 
 ////////////////////////////////////////////////////////////////

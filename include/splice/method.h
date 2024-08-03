@@ -6,6 +6,14 @@
 
 #include "common.h"
 
-// ...
+/**
+ * @class CMethod
+ *
+ * @todo Fill in class.
+ */
+class CMethod
+{
+    // ...
+};
 
 #endif // SPLICE_METHOD_H
