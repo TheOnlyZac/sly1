@@ -3,6 +3,8 @@
 # A simple script to set up the ProDG compilers + SCE Runtime Library
 # to build the Sly 1 decompilation project.
 
+set -e
+
 WINE_ROOT=~/.wine/drive_c
 TOP=$(cd "$(dirname "$0")"; pwd)/..
 
@@ -31,7 +33,7 @@ echo Starting ProDG setup script...
 download "https://github.com/TheOnlyZac/compilers/releases/download/ee-gcc2.95.2-SN-v2.73a/ee-gcc2.95.2-SN-v2.73a.tar.gz"
 
 # apply environment variables from the registry file
-wine regedit prodg_env.reg
+# wine regedit prodg_env.reg
 
 # Extract the compiler into the tools dir
 echo "Extracting compiler to $TOP/tools..."
