@@ -1,5 +1,6 @@
 #include <util.h>
 #include <sce/rand.h>
+#include <sce/math.h>
 
 static const float PI = 3.14159265359f;
 
@@ -15,14 +16,30 @@ float RadNormalize(float rad)
 
 INCLUDE_ASM(const s32, "P2/util", GLimitAbs);
 
-INCLUDE_ASM(const s32, "P2/util", GSmooth);
+INCLUDE_ASM(const s32, "P2/util", GSmooth__FfffP3SMPPf);
 
-INCLUDE_ASM(const s32, "P2/util", GSmoothA);
+INCLUDE_ASM(const s32, "P2/util", GSmoothA__FffffP4SMPAPf);
 INCLUDE_ASM(const s32, "P2/util", func_001EA720);
 
-INCLUDE_ASM(const s32, "P2/util", RadSmooth);
+float RadSmooth(float radCur, float radTarget, float dt, SMP *psmp, float *pdradNext)
+{
+    float fVar1;
+    
+    fVar1 = RadNormalize(radTarget - radCur);
+    fVar1 = GSmooth(0.0, fVar1, dt, psmp, pdradNext);
+    fVar1 = RadNormalize(radCur + fVar1);
+    return fVar1;
+}
 
-INCLUDE_ASM(const s32, "P2/util", RadSmoothA);
+float RadSmoothA(float radCur, float dradCur, float radTarget, float dt, SMPA *psmpa, float *pdradNext)
+{
+    float fVar1;
+
+    fVar1 = RadNormalize(radTarget - radCur);
+    fVar1 = GSmoothA(0.0, dradCur, fVar1, dt, psmpa, pdradNext);
+    fVar1 = RadNormalize(radCur + fVar1);
+    return fVar1;
+}
 
 INCLUDE_ASM(const s32, "P2/util", PosSmooth);
 
@@ -47,7 +64,23 @@ int NRandInRange(int nLow, int nHi)
     return nLow + (randVal % range);
 }
 
-INCLUDE_ASM(const s32, "P2/util", GRandInRange);
+float GRandInRange(float gHi,float gLow)
+{
+    int rand_result;
+    float delta;
+    float result;
+    if (gHi != gLow)
+    {
+        rand_result = rand();
+        delta = gLow - gHi;
+        result = gHi + delta * (float)rand_result * 4.656613e-10f;
+    }
+    else
+    {
+        result = gHi;
+    }
+    return result;
+}
 
 INCLUDE_ASM(const s32, "P2/util", GRandGaussian);
 
@@ -78,9 +111,25 @@ INCLUDE_ASM(const s32, "P2/util", GTrunc);
 
 INCLUDE_ASM(const s32, "P2/util", GTrunc1);
 
-INCLUDE_ASM(const s32, "P2/util", GModPositive__Fff);
+float GModPositive(float gDividend, float gDivisor)
+{
+	float result = fmodf(gDividend, gDivisor);
+	if (result < 0.0f)
+	{
+		result += gDivisor;
+	}
+	return result;
+}
 
-INCLUDE_ASM(const s32, "P2/util", FitClq);
+void FitClq(float g0, float g1, float u, float gU, CLQ *pclq)
+{
+    float fVar1;
+
+    pclq->u = g0;
+    fVar1 = ((gU - g0) / u - (g1 - g0)) / (u - 1.0f);
+    pclq->w = fVar1;
+    pclq->v = (g1 - g0) - fVar1;
+}
 
 int FCheckLm(LM* plm, float g)
 {
@@ -102,7 +151,22 @@ float GLimitLm(struct LM* plm, float g)
 	return g;
 }
 
-INCLUDE_ASM(const s32, "P2/util", SgnCompareG);
+int SgnCompareG(float *pg1,float *pg2)
+{
+    int iVar1;
+    
+    iVar1 = 1;
+    if (*pg1 > *pg2)
+    {
+        return iVar1;
+    }
+    iVar1 = -1;
+    if(*pg2 > *pg1)
+    {
+        return iVar1;
+    }
+    return 0;
+}
 
 void Force(void *pv)
 {

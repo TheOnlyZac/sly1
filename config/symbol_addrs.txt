@@ -766,14 +766,14 @@ g_ui = 0x275BC0;
 ////////////////////////////////////////////////////////////////
 RadNormalize__Ff = 0x1EA408; // type:func
 GLimitAbs = 0x1EA480; // type:func
-GSmooth = 0x1EA4B8; // type:func
-GSmoothA = 0x1EA620; // type:func
-RadSmooth = 0x1EA728; // type:func
-RadSmoothA = 0x1EA798; // type:func
+GSmooth__FfffP3SMPPf = 0x1EA4B8; // type:func
+GSmoothA__FffffP4SMPAPf = 0x1EA620; // type:func
+RadSmooth__FfffP3SMPPf = 0x1EA728; // type:func
+RadSmoothA__FffffP4SMPAPf = 0x1EA798; // type:func
 PosSmooth = 0x1EA818; // type:func
 SmoothMatrix = 0x1EA918; // type:func
 NRandInRange__Fii = 0x1EAA70; // type:func
-GRandInRange = 0x1EAAE0; // type:func
+GRandInRange__Fff = 0x1EAAE0; // type:func
 GRandGaussian = 0x1EAB48; // type:func
 FFloatsNear__Ffff = 0x1EAC68; // type:func
 CSolveQuadratic = 0x1EACA0; // type:func
@@ -782,11 +782,11 @@ CalculateSinCos__FfPfT1 = 0x1EAD88; // type:func
 GTrunc = 0x1EAE78; // type:func
 GTrunc1 = 0x1EAF28; // type:func
 GModPositive__Fff = 0x1EAFE0; // type:func
-FitClq = 0x1EB018; // type:func
+FitClq__FffffP3CLQ = 0x1EB018; // type:func
 FCheckLm__FP2LMf = 0x1EB050; // type:func
 FCheckAlm = 0x1EB080; // type:func
 GLimitLm__FP2LMf = 0x1EB0F8; // type:func
-SgnCompareG = 0x1EB128; // type:func
+SgnCompareG__FPfT0 = 0x1EB128; // type:func
 Force__FPv = 0x1EB160; // type:func
 MinimizeRange = 0x1EB168; // type:func
 
@@ -857,6 +857,11 @@ __main__Fv = 0x1fae18; // type:func
 // sce/ee/gcc/src/newlib/libm/math/wf_atan2.c
 ////////////////////////////////////////////////////////////////
 atan2f = 0x205778; // type:func
+
+////////////////////////////////////////////////////////////////
+// sce/ee/gcc/src/newlib/libm/math/wf_atan2.c
+////////////////////////////////////////////////////////////////
+fmodf = 0x2058a0; // type:func
 
 
 ////////////////////////////////////////////////////////////////
