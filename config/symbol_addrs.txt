@@ -78,9 +78,9 @@ snd_SendIOPCommandNoWait = 0x11e8c8; // type:func
 ////////////////////////////////////////////////////////////////
 InitBei = 0x130F48; // type:func
 GEvaluateBei = 0x131000; // type:func
-FUN_001310f0 = 0x1310F0; // type:func
-FUN_00131140 = 0x131140; // type:func
-FUN_00131198 = 0x131198; // type:func
+InitBinoc__FP5BINOC5BLOTK = 0x1310F0; // type:func
+ResetBinoc__FP5BINOC = 0x131140; // type:func
+PostBinocLoad__FP5BINOC = 0x131198; // type:func
 DrawBinocCompass = 0x1316E8; // type:func
 DrawBinocZoom = 0x131F60; // type:func
 DrawBinocReticle = 0x132500; // type:func

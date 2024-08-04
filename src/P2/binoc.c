@@ -4,11 +4,11 @@ INCLUDE_ASM(const s32, "P2/binoc", InitBei);
 
 INCLUDE_ASM(const s32, "P2/binoc", GEvaluateBei);
 
-INCLUDE_ASM(const s32, "P2/binoc", FUN_001310f0);
+INCLUDE_ASM(const s32, "P2/binoc", InitBinoc__FP5BINOC5BLOTK);
 
-INCLUDE_ASM(const s32, "P2/binoc", FUN_00131140);
+INCLUDE_ASM(const s32, "P2/binoc", ResetBinoc__FP5BINOC);
 
-INCLUDE_ASM(const s32, "P2/binoc", FUN_00131198);
+INCLUDE_ASM(const s32, "P2/binoc", PostBinocLoad__FP5BINOC);
 
 INCLUDE_ASM(const s32, "P2/binoc", DrawBinocCompass);
 
