@@ -6,7 +6,7 @@ static const float PI = 3.14159265359f;
 
 float RadNormalize(float rad)
 {
-    if ((rad < -PI) || (PI < rad)) 
+    if ((rad < -PI) || (PI < rad))
     {
         float modpos = GModPositive(rad + PI, 2 * PI);
         rad = modpos - PI;
@@ -23,22 +23,22 @@ INCLUDE_ASM(const s32, "P2/util", func_001EA720);
 
 float RadSmooth(float radCur, float radTarget, float dt, SMP *psmp, float *pdradNext)
 {
-    float fVar1;
-    
-    fVar1 = RadNormalize(radTarget - radCur);
-    fVar1 = GSmooth(0.0, fVar1, dt, psmp, pdradNext);
-    fVar1 = RadNormalize(radCur + fVar1);
-    return fVar1;
+    float result;
+
+    result = RadNormalize(radTarget - radCur);
+    result = GSmooth(0.0, result, dt, psmp, pdradNext);
+    result = RadNormalize(radCur + result);
+    return result;
 }
 
 float RadSmoothA(float radCur, float dradCur, float radTarget, float dt, SMPA *psmpa, float *pdradNext)
 {
-    float fVar1;
+    float result;
 
-    fVar1 = RadNormalize(radTarget - radCur);
-    fVar1 = GSmoothA(0.0, dradCur, fVar1, dt, psmpa, pdradNext);
-    fVar1 = RadNormalize(radCur + fVar1);
-    return fVar1;
+    result = RadNormalize(radTarget - radCur);
+    result = GSmoothA(0.0, dradCur, result, dt, psmpa, pdradNext);
+    result = RadNormalize(radCur + result);
+    return result;
 }
 
 INCLUDE_ASM(const s32, "P2/util", PosSmooth);
@@ -48,7 +48,7 @@ INCLUDE_ASM(const s32, "P2/util", SmoothMatrix);
 const int PRIME_MOD = 0x95675;
 
 // Generates a random integer in the range [nLow, nHi]
-int NRandInRange(int nLow, int nHi) 
+int NRandInRange(int nLow, int nHi)
 {
     if (nLow == nHi)
     {
@@ -91,13 +91,13 @@ int FFloatsNear(float g1,float g2,float gEpsilon)
     g1 = g1 > 0.0f ? g1 : -g1;
     g2 = g2 > 0.0f ? g2 : -g2;
     x = g1 > x ? g1 : x;
-    
+
 
     g2 = g2 / x;
     if(g2 < gEpsilon)
     {
         return 1;
-    }    
+    }
     return 0;
 }
 
@@ -113,12 +113,12 @@ INCLUDE_ASM(const s32, "P2/util", GTrunc1);
 
 float GModPositive(float gDividend, float gDivisor)
 {
-	float result = fmodf(gDividend, gDivisor);
-	if (result < 0.0f)
-	{
-		result += gDivisor;
-	}
-	return result;
+    float result = fmodf(gDividend, gDivisor);
+    if (result < 0.0f)
+    {
+        result += gDivisor;
+    }
+    return result;
 }
 
 void FitClq(float g0, float g1, float u, float gU, CLQ *pclq)
@@ -153,17 +153,17 @@ float GLimitLm(struct LM* plm, float g)
 
 int SgnCompareG(float *pg1,float *pg2)
 {
-    int iVar1;
-    
-    iVar1 = 1;
+    int result;
+
+    result = 1;
     if (*pg1 > *pg2)
     {
-        return iVar1;
+        return result;
     }
-    iVar1 = -1;
+    result = -1;
     if(*pg2 > *pg1)
     {
-        return iVar1;
+        return result;
     }
     return 0;
 }
