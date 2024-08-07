@@ -55,5 +55,6 @@ struct DLR
 };
 
 void InitDl(DL *pdl,int ibDle);
+void AppendDlEntry(DL *pdl,void *pv);
 
 #endif // DL_H

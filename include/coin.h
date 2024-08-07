@@ -16,6 +16,7 @@
 struct DPRIZE;
 struct COIN;
 struct KEY;
+struct CHARM;
 
 /**
  * @brief DPRIZE state.
@@ -43,10 +44,10 @@ enum DPRIZES
  */
 struct DPRIZE : public ALO
 {
-    DPRIZES dprizes; // State
+    OID oidInitialState;
     float tDprizes;
     DPRIZES dprizesInit;
-    OID oidInitialState;
+    DPRIZES dprizes; // State
     float dtInitialSkip;
     SM *psm; // State machine
     SMA *psma; // State machine action
@@ -54,9 +55,12 @@ struct DPRIZE : public ALO
     VECTOR posCenter;
     VECTOR vCenter;
     VECTOR dvCenter;
-    float uGlintChance;
     PNT *ppntFrontGlint;
     PNT *ppntBackGlint;
+    int fLeft;
+    float uGlintChance;
+    float tGlint;
+    undefined4 unk_0[4];
     int fNeverReuse;
     int fReuseCandidate;
     int fLastBounce;
@@ -67,14 +71,14 @@ struct DPRIZE : public ALO
     float rzBounce;
     float rxyBounce;
     float radSmooth;
-    undefined4 unk_0;
     VECTOR normalSmooth;
     int fSwirlDone;
+    undefined4 unk_1; 
     DLE dle;
     int ichkCollected;
     EXPL *pexplCollect;
     EXPL *pexplAttract;
-    float svcAtract;
+    float svcAttract;
     float cAttract;
 };
 
@@ -83,7 +87,8 @@ struct DPRIZE : public ALO
  */
 struct COIN : public DPRIZE
 {
-    // ...
+    LM lmDtMaxLifetime;
+    float tLose;
 };
 
 /**
@@ -93,5 +98,42 @@ struct KEY : public DPRIZE
 {
     // ...
 };
+
+
+/**
+ * @brief Charm.
+ */
+struct CHARM : public DPRIZE
+{
+
+};
+
+/**
+ * @brief Initializes a DPrize
+ *
+ * @param pdprize DPrize to initialize
+ */
+void InitDprize(DPRIZE *pdprize);
+
+/**
+ * @brief Initializes a DPrize
+ *
+ * @param pdprize DPrize to initialize
+ */
+void InitCoin(COIN *pcoin);
+
+/**
+ * @brief Initializes a Charm
+ *
+ * @param pcharm Charm to initialize
+ */
+void InitCharm(CHARM *pcharm);
+
+/**
+ * @brief Initializes a Charm
+ *
+ * @param pcharm Charm to initialize
+ */
+void InitKey(KEY *pkey);
 
 #endif // COIN_H

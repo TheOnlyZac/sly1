@@ -11,6 +11,8 @@
 // todo Implement struct.
 struct SW
 {
+    undefined1 padding[0x1c53];
+    DL dlDprize;
 };
 
 extern SW *g_psw;

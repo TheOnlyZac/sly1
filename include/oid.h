@@ -13,6 +13,7 @@
 
  */
 enum OID {
+    OID_Nil = -1,
     OID_Unknown = 0x0,
     OID__MERGED_STATICS = 0x1,
     OID__VISIBILITY_MAP = 0x2,

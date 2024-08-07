@@ -38,6 +38,7 @@ struct CHKMGR
 	OID unk_oid_0x428;
 	int fCheckpoint;
 };
+extern CHKMGR g_chkmgr;
 
 void ResetChkmgrCheckpoints(CHKMGR *pchkmgr);
 
@@ -47,7 +48,7 @@ void ReturnChkmgrToCheckpoint(CHKMGR *pchkmgr);
 
 void RestoreChkmgrFromCheckpoint(CHKMGR *pchkmgr);
 
-void IchkAllocChkmgr(CHKMGR *pchkmgr);
+int IchkAllocChkmgr(CHKMGR *pchkmgr);
 
 int FGetChkmgrIchk(CHKMGR *pchkmgr, int ichk);
 
