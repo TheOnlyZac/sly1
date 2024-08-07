@@ -71,9 +71,9 @@ INCLUDE_ASM(const s32, "P2/bis", Read__18CBinaryInputStreamiPv);
 
 void CBinaryInputStream::Align(int n)
 {
-    int iVar1 = ((int)m_pb + (n - 1)) & -n;
-    m_cb -= (iVar1 - (int)m_pb);
-    m_pb = (byte*)iVar1;
+    int pbAligned = ((int)m_pb + (n - 1)) & -n;
+    m_cb -= (pbAligned - (int)m_pb);
+    m_pb = (byte*)pbAligned;
 }
 
 uchar CBinaryInputStream::U8Read()
