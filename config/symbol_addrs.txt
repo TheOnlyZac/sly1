@@ -74,6 +74,11 @@ snd_SendIOPCommandAndWait = 0x11e6b8; // type:func
 snd_SendIOPCommandNoWait = 0x11e8c8; // type:func
 
 ////////////////////////////////////////////////////////////////
+// P2/alo.c
+////////////////////////////////////////////////////////////////
+InitAlo__FP3ALO = 0x123ED0; // type:func
+
+////////////////////////////////////////////////////////////////
 // P2/binoc.c
 ////////////////////////////////////////////////////////////////
 InitBei = 0x130F48; // type:func
@@ -174,6 +179,8 @@ CloneChkpnt__FP6CHKPNTT0 = 0x1415D0; // type:func
 UpdateChkpnt__FP6CHKPNTf = 0x141690; // type:func
 FUN_001417f0 = 0x1417F0; // type:func
 TriggerChkpnt__FP6CHKPNT = 0x141870; // type:func
+
+g_chkmgr = 0x261420; //size:0x430
 
 ////////////////////////////////////////////////////////////////
 // P2/clock.c
@@ -322,9 +329,9 @@ CreateSwCharm__FP2SW = 0x148038; // type:func
 AddLife__FPv = 0x148178; // type:func
 OnCoinSmack__FP4COIN = 0x1481A0; // type:func
 SetCoinDprizes__FP4COIN7DPRIZES = 0x148298; // type:func
-FUN_00148400 = 0x148400; // type:func
+InitCharm__FP5CHARM = 0x148400; // type:func
 SetCharmDprizes__FP5CHARM7DPRIZES = 0x148470; // type:func
-FUN_00148510 = 0x148510; // type:func
+InitKey__FP3KEY = 0x148510; // type:func
 SetKeyDprizes__FP3KEY7DPRIZES = 0x148598; // type:func
 FUN_00148698 = 0x148698; // type:func
 FUN_00148718 = 0x148718; // type:func
@@ -362,6 +369,11 @@ g_difficultyMedium = 0x261d70; // size:0x5c
 g_difficultyHard = 0x261e30; // size:0x5c
 g_difficultyEasy = 0x261e90; // size:0x5c
 g_difficulty = 0x261ef0; // size:0x20
+
+////////////////////////////////////////////////////////////////
+// P2/dl.c
+////////////////////////////////////////////////////////////////
+AppendDlEntry__FP2DLPv = 0x152470; // type:func
 
 ////////////////////////////////////////////////////////////////
 // P2/find.c

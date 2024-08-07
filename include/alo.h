@@ -8,6 +8,15 @@
 #include <lo.h>
 #include <dl.h>
 
+struct FICG
+{
+    uchar grficSweep;
+    uchar grficRush;
+    uchar grficSmash;
+    uchar grficBomb;
+    uchar grficShock;
+};
+
 /**
  * @brief "Lightweight"
  *
@@ -33,8 +42,18 @@ struct ALO : public LO
     //XF xf;
     //VECTOR pso
 
-    undefined4 padding[0x94];
+    undefined4 padding[0x88];
+    FICG ficg;
+
+    undefined1 padding2[0x16];
     // ...
 };
+
+/**
+ * @brief Initializes an ALO
+ *
+ * @param palo ALO to initialize
+ */
+void InitAlo(ALO *palo);
 
 #endif // ALO_H
