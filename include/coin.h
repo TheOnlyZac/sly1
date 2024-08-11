@@ -19,16 +19,6 @@ struct KEY;
 struct CHARM;
 
 /**
- * @brief Unknown
-*/
-struct SNIP
-{
-    int grfsnip;
-    OID oid;
-    int ib;
-};
-
-/**
  * @brief DPRIZE state.
  *
  * @note Values based on May 19 build.
@@ -126,6 +116,14 @@ struct CHARM : public DPRIZE
 void InitDprize(DPRIZE *pdprize);
 
 /**
+ * @brief Loads a DPrize from an Input Stream
+ *
+ * @param pdprize DPrize to initialize
+ * @param pbis Input Stream
+ */
+void LoadDprizeFromBrx(DPRIZE *pdprize, CBinaryInputStream *pbis);
+
+/**
  * @brief Initializes a DPrize
  *
  * @param pdprize DPrize to initialize
@@ -151,5 +149,8 @@ void InitCharm(CHARM *pcharm);
  * @param pcharm Charm to initialize
  */
 void InitKey(KEY *pkey);
+
+
+extern SNIP s_asnipDprize[5];
 
 #endif // COIN_H

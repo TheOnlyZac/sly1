@@ -18,7 +18,12 @@ void InitDprize(DPRIZE *pdprize)
     pdprize->fLastBounce = 1;
 }
 
-INCLUDE_ASM(const s32, "P2/coin", LoadDprizeFromBrx__FP6DPRIZEP18CBinaryInputStream);
+void LoadDprizeFromBrx(DPRIZE *pdprize, CBinaryInputStream *pbis)
+{
+    SetAloTargetHitTest(pdprize, 1);
+    LoadAloFromBrx(pdprize, pbis);
+    SnipAloObjects(pdprize, 5, s_asnipDprize);
+}
 
 INCLUDE_ASM(const s32, "P2/coin", CloneDprize__FP6DPRIZET0);
 

@@ -8,6 +8,9 @@
 #include <lo.h>
 #include <dl.h>
 
+// Forward
+struct CBinaryInputStream;
+
 struct FICG
 {
     uchar grficSweep;
@@ -15,6 +18,16 @@ struct FICG
     uchar grficSmash;
     uchar grficBomb;
     uchar grficShock;
+};
+
+/**
+ * @brief Unknown
+*/
+struct SNIP
+{
+    int grfsnip;
+    OID oid;
+    int ib;
 };
 
 /**
@@ -57,10 +70,26 @@ struct ALO : public LO
 void InitAlo(ALO *palo);
 
 /**
+ * @brief unknown
+ *
+ */
+void SnipAloObjects(ALO *palo, int csnip, SNIP *asnip);
+
+/**
  * @brief Updates an ALO
  *
  * @param palo ALO to initialize
  */
 void UpdateAlo(ALO *palo, float dt);
+
+/**
+ * @brief unknown
+ */
+void LoadAloFromBrx(ALO *palo, CBinaryInputStream *pbis);
+
+/**
+ * @brief unknown
+ */
+void SetAloTargetHitTest(ALO *palo, int fHitTest);
 
 #endif // ALO_H
