@@ -1,5 +1,6 @@
 #include <coin.h>
 #include <chkpnt.h>
+#include <bis.h>
 
 void InitDprize(DPRIZE *pdprize)
 {
@@ -61,7 +62,19 @@ INCLUDE_ASM(const s32, "P2/coin", UpdateCoin__FP4COINf);
 
 INCLUDE_ASM(const s32, "P2/coin", CreateSwCharm__FP2SW);
 
-INCLUDE_ASM(const s32, "P2/coin", AddLife__FPv);
+void AddLife(void *ptr)
+{
+    int new_clife;
+    int capped_clife;
+    
+    new_clife = g_pgsCur->clife + 1;
+    capped_clife = 99;
+    if (new_clife < 99) 
+    {
+        capped_clife = new_clife;
+    }
+    g_pgsCur->clife = capped_clife;
+}
 
 INCLUDE_ASM(const s32, "P2/coin", OnCoinSmack__FP4COIN);
 

@@ -77,6 +77,7 @@ snd_SendIOPCommandNoWait = 0x11e8c8; // type:func
 // P2/alo.c
 ////////////////////////////////////////////////////////////////
 InitAlo__FP3ALO = 0x123ED0; // type:func
+UpdateAlo__FP3ALOf = 0x124FC0; // type:func
 
 ////////////////////////////////////////////////////////////////
 // P2/binoc.c
@@ -350,6 +351,8 @@ increment_and_show_life_count = 0x148F80; // type:func
 CollectLifetkn__FP7LIFETKN = 0x148FF0; // type:func
 FUN_00149168 = 0x149168; // type:func
 break_bottle = 0x149190; // type:func
+
+s_asnipDprize = 0x2619A0; // size:0x3c
 
 ////////////////////////////////////////////////////////////////
 // P2/difficulty.c

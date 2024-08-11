@@ -19,6 +19,16 @@ struct KEY;
 struct CHARM;
 
 /**
+ * @brief Unknown
+*/
+struct SNIP
+{
+    int grfsnip;
+    OID oid;
+    int ib;
+};
+
+/**
  * @brief DPRIZE state.
  *
  * @note Values based on May 19 build.
@@ -121,6 +131,12 @@ void InitDprize(DPRIZE *pdprize);
  * @param pdprize DPrize to initialize
  */
 void InitCoin(COIN *pcoin);
+
+/**
+ * @brief Add a life
+ *
+ */
+void AddLife(void *ptr);
 
 /**
  * @brief Initializes a Charm

@@ -56,4 +56,11 @@ struct ALO : public LO
  */
 void InitAlo(ALO *palo);
 
+/**
+ * @brief Updates an ALO
+ *
+ * @param palo ALO to initialize
+ */
+void UpdateAlo(ALO *palo, float dt);
+
 #endif // ALO_H
