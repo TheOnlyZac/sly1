@@ -116,11 +116,25 @@ struct CHARM : public DPRIZE
 void InitDprize(DPRIZE *pdprize);
 
 /**
+ * @brief Loads a DPrize from an Input Stream
+ *
+ * @param pdprize DPrize to initialize
+ * @param pbis Input Stream
+ */
+void LoadDprizeFromBrx(DPRIZE *pdprize, CBinaryInputStream *pbis);
+
+/**
  * @brief Initializes a DPrize
  *
  * @param pdprize DPrize to initialize
  */
 void InitCoin(COIN *pcoin);
+
+/**
+ * @brief Add a life
+ *
+ */
+void AddLife(void *ptr);
 
 /**
  * @brief Initializes a Charm
@@ -135,5 +149,8 @@ void InitCharm(CHARM *pcharm);
  * @param pcharm Charm to initialize
  */
 void InitKey(KEY *pkey);
+
+
+extern SNIP s_asnipDprize[5];
 
 #endif // COIN_H
