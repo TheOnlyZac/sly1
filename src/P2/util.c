@@ -1,4 +1,5 @@
 #include <util.h>
+#include <vec.h>
 #include <sce/rand.h>
 #include <sce/math.h>
 
@@ -103,7 +104,12 @@ int FFloatsNear(float g1,float g2,float gEpsilon)
 
 INCLUDE_ASM(const s32, "P2/util", CSolveQuadratic);
 
-INCLUDE_ASM(const s32, "P2/util", PrescaleClq);
+void PrescaleClq(CLQ *pclqSrc, float ru, float du, CLQ *pclqDst)
+{
+    pclqDst->w = pclqSrc->w * ru * ru;
+    pclqDst->v = (pclqSrc->w + pclqSrc->w) * ru * du + pclqSrc->v * ru;
+    pclqDst->u = pclqSrc->w * du * du + pclqSrc->v * du + pclqSrc->u;
+}
 
 INCLUDE_ASM(const s32, "P2/util", CalculateSinCos__FfPfT1);
 
