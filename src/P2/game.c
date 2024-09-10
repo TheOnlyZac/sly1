@@ -1,10 +1,8 @@
 #include <game.h>
 
-
 void StartupGame(void)
 {
-  StartGame();
-  return;
+    StartGame();
 }
 
 INCLUDE_ASM(const s32, "P2/game", func_00160090);
@@ -61,8 +59,7 @@ INCLUDE_ASM(const s32, "P2/game", calculate_percent_completion);
 
 void SetCcharm(int nParam)
 {
-  g_pgsCur->ccharm = nParam;
-  return;
+    g_pgsCur->ccharm = nParam;
 }
 
 INCLUDE_ASM(const s32, "P2/game", FCharmAvailable__Fv);
@@ -75,19 +72,17 @@ INCLUDE_ASM(const s32, "P2/game", clr_8_bytes_1);
 
 void FUN_00160ce8(int param_1)
 {
-  *(undefined4 *)(param_1 + 4) = 0;
-  return;
+    *(undefined4 *)(param_1 + 4) = 0;
 }
 
 void OnGameAlarmTriggered(GAME *pgame)
 {
-  pgame->cAlarmsTriggered++;
+    pgame->cAlarmsTriggered++;
 }
 
 void OnGameAlarmDisabled(GAME *pgame)
 {
-  pgame->cAlarmsTriggered--;
-  return;
+    pgame->cAlarmsTriggered--;
 }
 
 INCLUDE_ASM(const s32, "P2/game", grfvault_something__Fv);
@@ -96,6 +91,7 @@ INCLUDE_ASM(const s32, "P2/game", GetBlueprintInfo);
 
 int CcharmMost()
 {
+    // Holdover from when there was a powerup that increased the charm limit
     return 2;
 }
 
