@@ -23,6 +23,12 @@ undefined_syms_auto.txt
 *.ninja
 permuter_settings.toml
 
+## MacOS
+.DS_Store
+
+## Linux
+*.swp
+
 ## Binary/object products
 **/bin/
 **/obj/
@@ -31,7 +37,6 @@ permuter_settings.toml
 **/compile_commands.json
 
 # Compiled Object files
-**/.DS_Store
 *.slo
 *.lo
 *.o
