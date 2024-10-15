@@ -142,6 +142,7 @@ segments:
     - [0x5aca0, asm, P2/unk_f] #? unknown file
 
     - [0x5af20, c, P2/find]
+    - [0x5b8ac, asm, P2/find_padding] # Needed to align P2/find
     - [0x5b8b0, c, P2/flash]
     - [0x5bae0, asm, P2/fly]
     - [0x5d188, asm, P2/font]
