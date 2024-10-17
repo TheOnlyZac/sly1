@@ -10,6 +10,7 @@
 #include <alo.h>
 #include <sw.h>
 #include <cid.h>
+#include <so.h>
 
 /**
  * @brief Gets the DL for the SW object with the given OID.

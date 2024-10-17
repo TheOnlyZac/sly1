@@ -9,21 +9,21 @@ INCLUDE_ASM(const s32, "P2/find", CploFindSwObjects__FP2SWi3OIDP2LOiPP2LO);
 LO * PloFindSwObject(SW *psw, int grffso, OID oid, LO *ploContext) {
     LO *value1[4];
     value1[0] = 0;
-    CploFindSwObjects(psw, grffso | 0x200, oid, ploContext, 1, value1);
+    CploFindSwObjects(psw, FSO_ReturnActualCount | grffso, oid, ploContext, 1, value1);
     return value1[0];
 }
 
 LO * PloFindSwNearest(SW *psw, OID oid, LO *ploContext) {
     LO *value1[4];
     value1[0] = 0;
-    CploFindSwObjects(psw, 0x204, oid, ploContext, 1, value1);
+    CploFindSwObjects(psw, FSO_ReturnActualCount | FSO_FindNearest, oid, ploContext, 1, value1);
     return value1[0];
 }
 
 LO * PloFindSwChild(SW *psw, OID oid, ALO *paloAncestor) {
     LO *value1[4];
     value1[0] = 0;
-    CploFindSwObjects(psw, 0x201, oid, paloAncestor, 1, value1);
+    CploFindSwObjects(psw, FSO_ReturnActualCount | FSO_FindChild, oid, paloAncestor, 1, value1);
     return value1[0];
 }
 
