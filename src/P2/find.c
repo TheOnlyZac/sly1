@@ -6,7 +6,12 @@ INCLUDE_ASM(const s32, "P2/find", MatchSwObject__FP2LOiiiT0iPiPP2LOT6);
 
 INCLUDE_ASM(const s32, "P2/find", CploFindSwObjects__FP2SWi3OIDP2LOiPP2LO);
 
-INCLUDE_ASM(const s32, "P2/find", PloFindSwObject__FP2SWi3OIDP2LO);
+LO * PloFindSwObject(SW *psw, int grffso, OID oid, LO *ploContext) {
+    LO *value1[4];
+    value1[0] = 0;
+    CploFindSwObjects(psw, grffso | 0x200, oid, ploContext, 1, value1);
+    return value1[0];
+}
 
 INCLUDE_ASM(const s32, "P2/find", PloFindSwNearest__FP2SW3OIDP2LO);
 
