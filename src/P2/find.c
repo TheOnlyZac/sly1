@@ -20,7 +20,12 @@ LO * PloFindSwNearest(SW *psw, OID oid, LO *ploContext) {
     return value1[0];
 }
 
-INCLUDE_ASM(const s32, "P2/find", PloFindSwChild__FP2SW3OIDP3ALO);
+LO * PloFindSwChild(SW *psw, OID oid, ALO *paloAncestor) {
+    LO *value1[4];
+    value1[0] = 0;
+    CploFindSwObjects(psw, 0x201, oid, paloAncestor, 1, value1);
+    return value1[0];
+}
 
 INCLUDE_ASM(const s32, "P2/find", FIsCidDerivedFrom__F3CIDT0);
 
