@@ -56,4 +56,6 @@ LO *PloFindSwObjectByClass(SW *psw, int grffso, CID cid, LO *ploContext);
  */
 ALO *PaloFindLoCommonParent(LO *plo, LO *ploOther);
 
+extern void** g_mpcidpvt;
+
 #endif // FIND_H
