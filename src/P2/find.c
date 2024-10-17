@@ -1,6 +1,14 @@
 #include <find.h>
 
-INCLUDE_ASM(const s32, "P2/find", PdlFromSwOid__FP2SW3OID);
+DL *PdlFromSwOid(SW *psw, OID oid) {
+    s32 v1 = 0x95675;
+    s32 a2 = 0xc;
+    u32 v0 = oid * v1;
+    v0 = v0 & 0x1ff;
+    v0 = v0 * a2;
+    v0 = v0 + 0x84;
+    return (DL*) ((u32) psw + v0);
+}
 
 INCLUDE_ASM(const s32, "P2/find", MatchSwObject__FP2LOiiiT0iPiPP2LOT6);
 
