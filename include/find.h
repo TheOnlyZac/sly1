@@ -10,6 +10,7 @@
 #include <alo.h>
 #include <sw.h>
 #include <cid.h>
+#include <so.h>
 
 /**
  * @brief Gets the DL for the SW object with the given OID.
@@ -55,5 +56,7 @@ LO *PloFindSwObjectByClass(SW *psw, int grffso, CID cid, LO *ploContext);
  * @return The common parent of the two LOs.
  */
 ALO *PaloFindLoCommonParent(LO *plo, LO *ploOther);
+
+extern void** g_mpcidpvt;
 
 #endif // FIND_H
