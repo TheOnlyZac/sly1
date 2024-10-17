@@ -18,4 +18,17 @@ INCLUDE_ASM(const s32, "P2/find", CploFindSwObjectsByClass__FP2SWi3CIDP2LOiPP2LO
 
 INCLUDE_ASM(const s32, "P2/find", PloFindSwObjectByClass__FP2SWi3CIDP2LO);
 
-INCLUDE_ASM(const s32, "P2/find", PaloFindLoCommonParent__FP2LOT0);
+ALO * PaloFindLoCommonParent(LO *plo, LO *ploOther) {
+    ALO *current;
+    while (plo != (LO *)0x0) {
+        current = (ALO *)ploOther;
+        while (current != (ALO *)0x0) {
+            if (plo == current) {
+                return (ALO *)plo;
+            }
+            current = (ALO *)current->paloParent;
+        }
+        plo = (LO *)plo->paloParent;
+    }
+    return (ALO *)0x0;
+}
