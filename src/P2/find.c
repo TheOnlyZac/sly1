@@ -14,17 +14,17 @@ LO * PloFindSwObject(SW *psw, int grffso, OID oid, LO *ploContext) {
 }
 
 LO * PloFindSwNearest(SW *psw, OID oid, LO *ploContext) {
-    LO *value1[4];
-    value1[0] = 0;
-    CploFindSwObjects(psw, FSO_ReturnActualCount | FSO_FindNearest, oid, ploContext, 1, value1);
-    return value1[0];
+    LO *aplo[4];
+    aplo[0] = 0;
+    CploFindSwObjects(psw, FSO_ReturnActualCount | FSO_FindNearest, oid, ploContext, 1, aplo);
+    return aplo[0];
 }
 
 LO * PloFindSwChild(SW *psw, OID oid, ALO *paloAncestor) {
-    LO *value1[4];
-    value1[0] = 0;
-    CploFindSwObjects(psw, FSO_ReturnActualCount | FSO_FindChild, oid, paloAncestor, 1, value1);
-    return value1[0];
+    LO *aplo[4];
+    aplo[0] = 0;
+    CploFindSwObjects(psw, FSO_ReturnActualCount | FSO_FindChild, oid, paloAncestor, 1, aplo);
+    return aplo[0];
 }
 
 int FIsCidDerivedFrom(CID cid, CID cidAncestor) {
