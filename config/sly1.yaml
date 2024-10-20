@@ -19,7 +19,7 @@ options:
 
   find_file_boundaries: False
   disasm_unknown: True
-  named_regs_for_c_funcs: False
+  named_regs_for_c_funcs: True
 
   # Auto-generate undefined functions and symbols
   create_undefined_funcs_auto: True
