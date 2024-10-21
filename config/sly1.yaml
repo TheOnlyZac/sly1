@@ -19,7 +19,7 @@ options:
 
   find_file_boundaries: False
   disasm_unknown: True
-  named_regs_for_c_funcs: True
+  named_regs_for_c_funcs: False
 
   # Auto-generate undefined functions and symbols
   create_undefined_funcs_auto: True
@@ -168,7 +168,7 @@ segments:
     - [0x6f0b8, c, P2/joy]
 
     - [0x70608, c, P2/jt1]
-    - [0x74888, asm, P2/jt_UpdateJtActive]
+    - [0x74888, asm, P2/jt_UpdateJtActive] # should be in P2/jt but doesn't match when split
     - [0x75808, c, P2/jt2]
 
     - [0x79008, asm, P2/jp]
