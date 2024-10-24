@@ -32,25 +32,6 @@ typedef enum JV
     JV_Max = 3
 } JV;
 
-/**
- * @brief RGBA color value.
- */
-struct RGBA
-{
-    uchar bRed;
-    uchar bGreen;
-    uchar bBlue;
-    uchar bAlpha;
-
-    inline void operator=(const int rgba)
-    {
-        bRed = (rgba >> 24) & 0xFF;
-        bGreen = (rgba >> 16) & 0xFF;
-        bBlue = (rgba >> 8) & 0xFF;
-        bAlpha = rgba & 0xFF;
-    }
-};
-
 class CTextBox
 {
 public:

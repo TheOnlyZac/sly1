@@ -7,7 +7,6 @@
 #define SHD_H
 
 #include "common.h"
-#include <binoc.h>
 #include <geom.h>
 #include <surf.h>
 #include <sce/gs.h>
