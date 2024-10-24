@@ -7,6 +7,13 @@
 #define BINOC_H
 
 #include "common.h"
+#include <screen.h>
+
+struct BINOC : public BLOT {
+    undefined1 padding[0x90];
+    float value0;
+    undefined4 value1;
+};
 
 /**
  * @brief Horizontal text justification.
