@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('md_docs_CONTRIBUTING.html',''); initRe
 <div class="title">Contributing </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Welcome to the <b>Sly Cooper Decompilation Project</b>! This guide will help you start contributing to the project. We are a volunteer-driven project, so we appreciate any contributions you make.**If you need help with anything, you are welcome to ask in the #sly-research channel of the <a href="https://discord.gg/2GSXcEzPJA">Discord server</a>!**</p>
+<div class="textblock"><p>Welcome to the <b>Sly Cooper Decompilation Project</b>! This guide will help you start contributing to the project. We are a volunteer-driven project, so we appreciate all contribution. If you need any help, feel free to ask in the #sly-research channel of the <a href="https://discord.gg/2GSXcEzPJA">Discord server</a>.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Contents</h1>
 <ol type="1">
@@ -109,36 +109,39 @@ Contents</h1>
 </ol>
 <h2><a class="anchor" id="autotoc_md3"></a>
 Getting Started</h2>
-<p>If you haven't used Git before, follow the steps in the <a class="el" href="BEGINNERSGUIDE_8md.html">Beginner's Guide</a> to learn how to fork the repo, make changes, and submit a pull request. If you are already familiar with Git, continue on with this guide.</p>
-<p>Start by following the instructions to build and run the project in the <a class="el" href="README_8md.html">README</a>. If you see the following in the console, you're ready to start contributing:</p>
+<p>If you haven't used Git before, follow the <a class="el" href="BEGINNERSGUIDE_8md.html">Beginner's Guide</a> to learn how to fork the repo, make changes, and submit a pull request. If you are already familiar with Git, continue on with this guide.</p>
+<p>Start by following the instructions in the <a class="el" href="README_8md.html">README</a> to build the project. If you see the following in the terminal, you're ready to start contributing:</p>
 <div class="fragment"><div class="line">[XXX/XXX] sha1sum checksum.sha1</div>
 <div class="line">out/SCUS_971.98: OK</div>
-</div><!-- fragment --><p>The goal of this project is to match the original code closely enough that it compiles to a byte-matching executable. This means writing functions that compiles to the same assembly as the original functions. You will know it matches if you build the project and it says <code>SCUS_971.98: OK</code>.</p>
+</div><!-- fragment --><p>The goal of this project is to match the original code closely enough that it compiles to a byte-matching executable. This means writing functions that compiles to the same assembly as the original functions. You will know it matches if you build the project and it says <code>SCUS_971.98: OK</code> with no errors.</p>
 <h2><a class="anchor" id="autotoc_md4"></a>
 Find a function to match</h2>
 <p>First, find a function in the game that you want to match. There are a few ways to do this:</p><ul>
 <li>Browse Ghidra for interesting functions.</li>
-<li>Look through the <code>src</code> directory to find functions in <code>.c</code> files that haven't been matched yet (they will have an <code>INCLUDE_ASM</code> macro as as placeholder).</li>
+<li>Look through the <code>src</code> directory to find functions in <code>.c</code> files that haven't been matched yet.<ul>
+<li>Functions that haven't been matched will have an <code>INCLUDE_ASM</code> macro as as placeholder.</li>
+</ul>
+</li>
 <li>Look through the <code>asm/nonmatchings</code> folder.</li>
-<li>Ask for suggestions in the Discord server.</li>
+<li>Ask for suggestions on Discord.</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md5"></a>
 Match the function using Decomp.me</h2>
-<p>Once you have chosen a function, you can use the website <a href="https://decomp.me/">decomp.me</a> to match it.</p><ul>
+<p>Once you have chosen a function, you can use the website <a href="https://decomp.me/">decomp.me</a> to match it.</p><ol type="1">
 <li>Go the website and click "Start decomping".</li>
-<li>Select "PlayStation 2"</li>
-<li>Under "Select a compiler", select "EE GCC 2.95.2 (SN BUILD v2.73a)".</li>
+<li>Under "Preset", select "Sly Cooper and the Thievius Raccoonus".</li>
 <li>Under "Diff label", enter the name of the function.</li>
-<li>Find the <code>.s</code> file corresponding to the function you want to match in the <code>asm/nonmatchings</code> folder. Copy the contents of the file into the "Target assembly" box.</li>
-<li>Find the <code>.h</code> header file in the <code>include</code> folder where the function is/would be declared. Copy it into the "Context" box, as well as any other relevant function/data definitions in other headers.</li>
-<li>Click "Create scratch".</li>
-<li>Click the "Options" tab, then copy and paste this into the "Compiler options" text box:<ul>
-<li><code>-x c++ -O2 -G0</code>.</li>
+<li>Find the <code>.s</code> file corresponding to the function you want to match in the <code>asm/nonmatchings</code> directory. Copy the contents of the file into the "Target assembly" box.</li>
+<li>Copy any functions, global variables, or data types used by the function from the headers in the <code>include</code> directory into the "Context" box.<ul>
+<li>E.g. For the function <code>void <a class="el" href="clock_8h.html#a374128d3628fad7a947557821a975524" title="Resets the clock to the given time t.">ResetClock(struct CLOCK* pclock, float t)</a></code>, you will need to include the definition of <code><a class="el" href="structCLOCK.html" title="Engine clock.">CLOCK</a></code> struct, and the <code>TICK</code> data type since it is used in the <a class="el" href="structCLOCK.html" title="Engine clock.">CLOCK</a> struct.</li>
+<li>You should almost always copy the entirety of "types.h" to ensure you have all the necessary primitive types.</li>
 </ul>
 </li>
-</ul>
-<p>Then start writing your code under the "Source code" tab. It will tell you what percent of the code matches the original. Tweak the code until it matches 100%.</p>
-<p><b>Note: The <code>reference</code> directory contains source code files that do not match, but are based on the original code. You can use them as a reference to help you match the code.</b></p>
+<li>Click "Create scratch".</li>
+<li>(Optional) Go to the "Options" tab and under "Debug information" select <code>-g3 (Macro expansions)</code>. This will show you which line numbers the source code coreespond to each line in the assembly.</li>
+</ol>
+<p>Then start writing your code under the "Source code" tab. It will tell you what percent of the code matches the original. Tweak the code until it matches 100%. An example scratch can be found here: <a href="https://decomp.me/scratch/hmmyP">https://decomp.me/scratch/hmmyP</a></p>
+<p><em>Note: You can use the code in the <code>reference</code> directory to help you during matching. The code in that directory does not match, but it may be useful as an outline for certain functions.</em></p>
 <h2><a class="anchor" id="autotoc_md6"></a>
 Integrate the matched code</h2>
 <p>Once the function matches 100%, follow these steps to integrate it into the project:</p><ol type="1">
@@ -146,14 +149,14 @@ Integrate the matched code</h2>
 <li>If the function is in a new file, <b>do not create a new file</b>. Creating new <code>.c</code> files is done by editing the <code>config/sly1.yaml</code> file to change the file split from <code>asm</code> to <code>c</code>, then running <code>python configure.py</code> to generate the new file. If you don't know how to do this, feel free to ask for help in the Discord server.</li>
 </ul>
 </li>
-<li>Edit <code>config/symbol_addrs.txt</code> to add the <b>mangled name of the function</b> with its address.<ul>
+<li>Check <code>config/symbol_addrs.txt</code> to see if the mangled name of the function is present.<ul>
+<li>If it is not, add the <b>mangled name</b> of the function with it's address. The mangled name of the function can be found by searching the strings in the May 19 prototype elf, if it's the same as the release version. If you don't know how to do this, ask for help in the Discord server; Someone will be able to find it for you easily.</li>
 <li>The symbol_addrs.txt file is sorted alphabetically by filename, then by address within the file.</li>
-<li>The mangled name of the function can be found by searching the strings in the May 19 prototype elf. If you don't know how to do this, ask for help in the Discord server. Someone will be able to find it for you easily.</li>
 </ul>
 </li>
 </ol>
 <p>The project should build and match. Here are some tips for troubleshooting common issues:</p><ul>
-<li>Undefined reference errors usually means the entry in the symbol_addrs.txt is wrong. Ensure you are using the correct mangled function name in the symbol_addrs.txt, and the normal un-mangled name in the source code.</li>
+<li>Undefined reference errors usually mean the entry in the symbol_addrs.txt is wrong. Make sure the function name is mangled in symbol_addrs.txt and normal/un-mangled in the source code, and the mangled version matches the signature of the function. Also ensure that the address is correct in symbol_addrs.txt.</li>
 <li>Checksum failed means the compiled elf doesn't match the original. If it matches on decomp.me, it might be an issue with the compiler, so open an issue on GitHub or let someone know on Discord.</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md7"></a>
@@ -163,13 +166,11 @@ Code Review Process</h2>
 <ul>
 <li>It compiles without any errors.</li>
 <li>The compiled elf matches the original elf.</li>
-<li>It follows the <a class="el" href="STYLEGUIDE_8md.html">style guide</a>, or is at least clean and understandable.</li>
 </ul>
 <p>If everything looks good, we will merge your pull request as soon as possible. If anything needs to be fixed, we will let you know.</p>
 <h2><a class="anchor" id="autotoc_md8"></a>
 Conclusion</h2>
-<p>Thank you for reading, and we appreciate any contributions you make to the project!</p>
-<p>When in doubt, just try and follow the style of the existing code, and do your best to write clean and readable code. The project is 100% volunteern-driven, so perfection is not required. The most important thing is to have fun and learn something new about the game!</p>
+<p>Thank you for reading, and we appreciate any contributions you make to the project! The project is 100% volunteern-driven, so perfection is not required. The most important thing is to have fun and learn something new about the game.</p>
 <p>If you have any questions or concerns, feel free to ask in the <a href="https://discord.gg/2Y8b8Z2">Discord server</a> or <a href="https://github.com/TheOnlyZac/sly1/issues/new">open an issue</a> on GitHub. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

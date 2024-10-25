@@ -1,9 +1,13 @@
 var searchData=
 [
-  ['int16_3117',['int16',['../types_8h.html#a4355d16fcf9f644c9ac84293f0b1801f',1,'types.h']]],
-  ['int16_5ft_3118',['int16_t',['../types_8h.html#aa343fa3b3d06292b959ffdd4c4703b06',1,'types.h']]],
-  ['int32_5ft_3119',['int32_t',['../types_8h.html#a32f2e37ee053cf2ce8ca28d1f74630e5',1,'types.h']]],
-  ['int64_5ft_3120',['int64_t',['../types_8h.html#a996e72f71b11a5bb8b3b7b6936b1516d',1,'types.h']]],
-  ['int8_5ft_3121',['int8_t',['../types_8h.html#aef44329758059c91c76d334e8fc09700',1,'types.h']]],
-  ['intptr_5ft_3122',['intptr_t',['../types_8h.html#aa9e7b0ed8f34f9c482a7a32d7f18c054',1,'types.h']]]
+  ['grfbis_3407',['GRFBIS',['../bis_8h.html#a0f16a19ad9c62cc7c24a95f63f2ef73c',1,'bis.h']]],
+  ['grfbtn_3408',['GRFBTN',['../joy_8h.html#a11b2d8de1bd111fd6b1ee53ca802adf1',1,'joy.h']]],
+  ['grfcht_3409',['GRFCHT',['../joy_8h.html#a9cd8a293dec6dd6df079a47c6536cf75',1,'joy.h']]],
+  ['grffso_3410',['GRFFSO',['../so_8h.html#a799f71a3e0f221ead1ad0cbb8c60bff2',1,'so.h']]],
+  ['grfgs_3411',['GRFGS',['../game_8h.html#ac564a6561b43d28e2e9d44bf9d6baed9',1,'game.h']]],
+  ['grfls_3412',['GRFLS',['../game_8h.html#aef6608991adbe1cce41bb10ad1ea3630',1,'game.h']]],
+  ['grftrans_3413',['GRFTRANS',['../transition_8h.html#ad6c4dcfee29abc553b6b3c6bd0ac26b8',1,'transition.h']]],
+  ['grfusr_3414',['GRFUSR',['../joy_8h.html#a1e6097f2bf11df90c9609b278df69806',1,'joy.h']]],
+  ['grfvault_3415',['GRFVAULT',['../game_8h.html#a011ed7d35b76f7711b21e7a5cb43c47e',1,'game.h']]],
+  ['grfws_3416',['GRFWS',['../game_8h.html#a5e52510f0b618d3a9b3bd165b8d84ade',1,'game.h']]]
 ];

@@ -1,6 +1,7 @@
 var oid_8h =
 [
     [ "OID", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26", [
+      [ "OID_Nil", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26adedc54e9f395ec2961e66afaff4917bc", null ],
       [ "OID_Unknown", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26af99af93b087f115f5479b7a372e583c1", null ],
       [ "OID__MERGED_STATICS", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26a23310496c5f8e446b3640a7f3189c170", null ],
       [ "OID__VISIBILITY_MAP", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26aa34209d103965cca52677873ffad16a2", null ],

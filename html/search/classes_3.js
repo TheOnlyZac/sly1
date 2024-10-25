@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['difficulty_1862',['DIFFICULTY',['../structDIFFICULTY.html',1,'']]],
-  ['difficultylevel_1863',['DifficultyLevel',['../structDifficultyLevel.html',1,'']]],
-  ['dl_1864',['DL',['../structDL.html',1,'']]],
-  ['dle_1865',['DLE',['../structDLE.html',1,'']]],
-  ['dli_1866',['DLI',['../structDLI.html',1,'']]],
-  ['dlim_1867',['DLIM',['../structDLIM.html',1,'']]],
-  ['dlr_1868',['DLR',['../structDLR.html',1,'']]],
-  ['dprize_1869',['DPRIZE',['../structDPRIZE.html',1,'']]]
+  ['difficulty_2043',['DIFFICULTY',['../structDIFFICULTY.html',1,'']]],
+  ['difficultylevel_2044',['DifficultyLevel',['../structDifficultyLevel.html',1,'']]],
+  ['dl_2045',['DL',['../structDL.html',1,'']]],
+  ['dle_2046',['DLE',['../structDLE.html',1,'']]],
+  ['dli_2047',['DLI',['../structDLI.html',1,'']]],
+  ['dlim_2048',['DLIM',['../structDLIM.html',1,'']]],
+  ['dlr_2049',['DLR',['../structDLR.html',1,'']]],
+  ['dprize_2050',['DPRIZE',['../structDPRIZE.html',1,'']]]
 ];

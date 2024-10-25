@@ -1,6 +1,6 @@
 var binoc_8h =
 [
-    [ "RGBA", "structRGBA.html", "structRGBA" ],
+    [ "BINOC", "structBINOC.html", "structBINOC" ],
     [ "CTextBox", "classCTextBox.html", "classCTextBox" ],
     [ "JH", "binoc_8h.html#ae7dae4174f939ac6bae73185f5d9ef78", null ],
     [ "JV", "binoc_8h.html#a959b2d9cfb24a262a71d0a65762e05fc", null ],

@@ -9,5 +9,6 @@ var find_8h =
     [ "PloFindSwChild", "find_8h.html#a8be4297a4a5b484fa8a51284e11c2b38", null ],
     [ "PloFindSwNearest", "find_8h.html#ac90b6c7ca44bdc1212701a9070828d45", null ],
     [ "PloFindSwObject", "find_8h.html#a1c5dd7a20683c0490bc2ca4a8c5f6e21", null ],
-    [ "PloFindSwObjectByClass", "find_8h.html#aa570b2c550266f867a3d8d3fb2ee6f5c", null ]
+    [ "PloFindSwObjectByClass", "find_8h.html#aa570b2c550266f867a3d8d3fb2ee6f5c", null ],
+    [ "g_mpcidpvt", "find_8h.html#a190bee94c4a1357e9e4690589cbd26f6", null ]
 ];

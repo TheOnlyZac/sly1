@@ -95,7 +95,9 @@ $(document).ready(function(){initNavTree('coin_8h.html',''); initResizable(); })
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">coin.h File Reference</div>  </div>
 </div><!--header-->
@@ -134,6 +136,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKEY.html">KEY</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Treasure key.  <a href="structKEY.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCHARM.html">CHARM</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Charm.  <a href="structCHARM.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -154,6 +159,32 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a278f27aa0df68ffcb451a8de1766e0a5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structDPRIZE.html" title="DPRIZE.">DPRIZE</a> state.  <a href="coin_8h.html#a278f27aa0df68ffcb451a8de1766e0a5">More...</a><br /></td></tr>
 <tr class="separator:a278f27aa0df68ffcb451a8de1766e0a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a861f067745a91a9656469e0ea5dd7608"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8h.html#a861f067745a91a9656469e0ea5dd7608">InitDprize</a> (<a class="el" href="structDPRIZE.html">DPRIZE</a> *pdprize)</td></tr>
+<tr class="memdesc:a861f067745a91a9656469e0ea5dd7608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a DPrize.  <a href="coin_8h.html#a861f067745a91a9656469e0ea5dd7608">More...</a><br /></td></tr>
+<tr class="separator:a861f067745a91a9656469e0ea5dd7608"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfc36dc9afc7d963cd4c085ed65b54f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8h.html#acfc36dc9afc7d963cd4c085ed65b54f5">LoadDprizeFromBrx</a> (<a class="el" href="structDPRIZE.html">DPRIZE</a> *pdprize, <a class="el" href="classCBinaryInputStream.html">CBinaryInputStream</a> *pbis)</td></tr>
+<tr class="memdesc:acfc36dc9afc7d963cd4c085ed65b54f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a DPrize from an Input Stream.  <a href="coin_8h.html#acfc36dc9afc7d963cd4c085ed65b54f5">More...</a><br /></td></tr>
+<tr class="separator:acfc36dc9afc7d963cd4c085ed65b54f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a644b52f8e679770b2a1470aea098bd4b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8h.html#a644b52f8e679770b2a1470aea098bd4b">InitCoin</a> (<a class="el" href="structCOIN.html">COIN</a> *pcoin)</td></tr>
+<tr class="memdesc:a644b52f8e679770b2a1470aea098bd4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a DPrize.  <a href="coin_8h.html#a644b52f8e679770b2a1470aea098bd4b">More...</a><br /></td></tr>
+<tr class="separator:a644b52f8e679770b2a1470aea098bd4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d21c77e9e2528d06d0e5125c760c788"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8h.html#a5d21c77e9e2528d06d0e5125c760c788">AddLife</a> (void *ptr)</td></tr>
+<tr class="memdesc:a5d21c77e9e2528d06d0e5125c760c788"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a life.  <a href="coin_8h.html#a5d21c77e9e2528d06d0e5125c760c788">More...</a><br /></td></tr>
+<tr class="separator:a5d21c77e9e2528d06d0e5125c760c788"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8011f0062f36f84e0f66a2633bce3a51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8h.html#a8011f0062f36f84e0f66a2633bce3a51">InitCharm</a> (<a class="el" href="structCHARM.html">CHARM</a> *pcharm)</td></tr>
+<tr class="memdesc:a8011f0062f36f84e0f66a2633bce3a51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a Charm.  <a href="coin_8h.html#a8011f0062f36f84e0f66a2633bce3a51">More...</a><br /></td></tr>
+<tr class="separator:a8011f0062f36f84e0f66a2633bce3a51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebf2a6c5c7ddbc715a2ebc5f00a404ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8h.html#aebf2a6c5c7ddbc715a2ebc5f00a404ff">InitKey</a> (<a class="el" href="structKEY.html">KEY</a> *pkey)</td></tr>
+<tr class="memdesc:aebf2a6c5c7ddbc715a2ebc5f00a404ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a Charm.  <a href="coin_8h.html#aebf2a6c5c7ddbc715a2ebc5f00a404ff">More...</a><br /></td></tr>
+<tr class="separator:aebf2a6c5c7ddbc715a2ebc5f00a404ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:acaf128e7da7de1fd1a19f6fc1afd6e5f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSNIP.html">SNIP</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8h.html#acaf128e7da7de1fd1a19f6fc1afd6e5f">s_asnipDprize</a> [5]</td></tr>
+<tr class="separator:acaf128e7da7de1fd1a19f6fc1afd6e5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Coins, keys, and other collectibles. </p>
@@ -187,7 +218,196 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="a278f27aa0df68ffcb451a8de1766e0a5a8b5ab54a601c0138f8c360a10cd7ca1f"></a>DPRIZES_Max&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="coin_8h_source.html#l00025">25</a> of file <a class="el" href="coin_8h_source.html">coin.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="coin_8h_source.html#l00026">26</a> of file <a class="el" href="coin_8h_source.html">coin.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a5d21c77e9e2528d06d0e5125c760c788"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d21c77e9e2528d06d0e5125c760c788">&#9670;&nbsp;</a></span>AddLife()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AddLife </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a life. </p>
+
+<p class="definition">Definition at line <a class="el" href="coin_8c_source.html#l00070">70</a> of file <a class="el" href="coin_8c_source.html">coin.c</a>.</p>
+
+</div>
+</div>
+<a id="a8011f0062f36f84e0f66a2633bce3a51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8011f0062f36f84e0f66a2633bce3a51">&#9670;&nbsp;</a></span>InitCharm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InitCharm </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCHARM.html">CHARM</a> *&#160;</td>
+          <td class="paramname"><em>pcharm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes a Charm. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pcharm</td><td>Charm to initialize </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="coin_8c_source.html#l00088">88</a> of file <a class="el" href="coin_8c_source.html">coin.c</a>.</p>
+
+</div>
+</div>
+<a id="a644b52f8e679770b2a1470aea098bd4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a644b52f8e679770b2a1470aea098bd4b">&#9670;&nbsp;</a></span>InitCoin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InitCoin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCOIN.html">COIN</a> *&#160;</td>
+          <td class="paramname"><em>pcoin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes a DPrize. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdprize</td><td>DPrize to initialize </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="coin_8c_source.html#l00048">48</a> of file <a class="el" href="coin_8c_source.html">coin.c</a>.</p>
+
+</div>
+</div>
+<a id="a861f067745a91a9656469e0ea5dd7608"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a861f067745a91a9656469e0ea5dd7608">&#9670;&nbsp;</a></span>InitDprize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InitDprize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structDPRIZE.html">DPRIZE</a> *&#160;</td>
+          <td class="paramname"><em>pdprize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes a DPrize. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdprize</td><td>DPrize to initialize </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="coin_8c_source.html#l00005">5</a> of file <a class="el" href="coin_8c_source.html">coin.c</a>.</p>
+
+</div>
+</div>
+<a id="aebf2a6c5c7ddbc715a2ebc5f00a404ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebf2a6c5c7ddbc715a2ebc5f00a404ff">&#9670;&nbsp;</a></span>InitKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InitKey </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structKEY.html">KEY</a> *&#160;</td>
+          <td class="paramname"><em>pkey</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes a Charm. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pcharm</td><td>Charm to initialize </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="coin_8c_source.html#l00102">102</a> of file <a class="el" href="coin_8c_source.html">coin.c</a>.</p>
+
+</div>
+</div>
+<a id="acfc36dc9afc7d963cd4c085ed65b54f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfc36dc9afc7d963cd4c085ed65b54f5">&#9670;&nbsp;</a></span>LoadDprizeFromBrx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LoadDprizeFromBrx </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structDPRIZE.html">DPRIZE</a> *&#160;</td>
+          <td class="paramname"><em>pdprize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCBinaryInputStream.html">CBinaryInputStream</a> *&#160;</td>
+          <td class="paramname"><em>pbis</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Loads a DPrize from an Input Stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdprize</td><td>DPrize to initialize </td></tr>
+    <tr><td class="paramname">pbis</td><td>Input Stream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="coin_8c_source.html#l00021">21</a> of file <a class="el" href="coin_8c_source.html">coin.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="acaf128e7da7de1fd1a19f6fc1afd6e5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaf128e7da7de1fd1a19f6fc1afd6e5f">&#9670;&nbsp;</a></span>s_asnipDprize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structSNIP.html">SNIP</a> s_asnipDprize[5]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

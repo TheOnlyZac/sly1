@@ -131,5 +131,9 @@ var game_8h =
     [ "UnlockIntroCutsceneFromWid", "game_8h.html#afa395b2778fd773a04798c8753444872", null ],
     [ "UpdateGameState", "game_8h.html#aaec7f89e5b3cd373f42793841d43fb06", null ],
     [ "g_gsCur", "game_8h.html#a5b22b345224fdb7146b8ed60aa988286", null ],
-    [ "g_pgsCur", "game_8h.html#a9192a70ba964e7952f125c05f8c49f51", null ]
+    [ "g_lsCur", "game_8h.html#a408b6e931a15b73d98dfc6ef91f932c7", null ],
+    [ "g_pgsCur", "game_8h.html#a9192a70ba964e7952f125c05f8c49f51", null ],
+    [ "g_plsCur", "game_8h.html#a53aff3a4126f38462c330a81fe8cb2f1", null ],
+    [ "g_pwsCur", "game_8h.html#a7f3b2d029b915e5da61269e65ddf625f", null ],
+    [ "g_wsCur", "game_8h.html#a84d86025c83f3d5df6e1ed220c174b59", null ]
 ];

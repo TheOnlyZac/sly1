@@ -5,9 +5,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "989snd.h", "989snd_8h.html", "989snd_8h" ],
     [ "ac.h", "ac_8h.html", null ],
     [ "alarm.h", "alarm_8h.html", null ],
-    [ "alo.h", "alo_8h.html", [
-      [ "ALO", "structALO.html", "structALO" ]
-    ] ],
+    [ "alo.h", "alo_8h.html", "alo_8h" ],
     [ "anim.h", "anim_8h.html", [
       [ "ASEG", "structASEG.html", null ],
       [ "ASEGA", "structASEGA.html", null ],
@@ -41,7 +39,9 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "cm.h", "cm_8h.html", "cm_8h" ],
     [ "cnvo.h", "cnvo_8h.html", null ],
     [ "coin.h", "coin_8h.html", "coin_8h" ],
-    [ "common.h", "common_8h.html", null ],
+    [ "common.h", "common_8h.html", [
+      [ "RGBA", "structRGBA.html", "structRGBA" ]
+    ] ],
     [ "cplcy.h", "cplcy_8h.html", null ],
     [ "credit.h", "credit_8h.html", null ],
     [ "crout.h", "crout_8h.html", null ],
@@ -65,14 +65,12 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
       [ "EDGE", "structEDGE.html", "structEDGE" ],
       [ "GEOM", "structGEOM.html", null ]
     ] ],
-    [ "gs.h", "gs_8h.html", null ],
+    [ "gs.h", "gs_8h.html", "gs_8h" ],
     [ "hide.h", "hide_8h.html", null ],
     [ "include_asm.h", "include__asm_8h.html", "include__asm_8h" ],
     [ "include_rodata.h", "include__rodata_8h.html", "include__rodata_8h" ],
     [ "joy.h", "joy_8h.html", "joy_8h" ],
-    [ "jt.h", "jt_8h.html", [
-      [ "JT", "structJT.html", null ]
-    ] ],
+    [ "jt.h", "jt_8h.html", "jt_8h" ],
     [ "jump.h", "jump_8h.html", null ],
     [ "light.h", "light_8h.html", null ],
     [ "lo.h", "lo_8h.html", [
@@ -96,7 +94,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
       [ "PO", "structPO.html", null ]
     ] ],
     [ "prog.h", "prog_8h.html", [
-      [ "CProg", "classCProg.html", null ]
+      [ "CProg", "classCProg.html", "classCProg" ]
     ] ],
     [ "proxy.h", "proxy_8h.html", [
       [ "PROXY", "structPROXY.html", "structPROXY" ]

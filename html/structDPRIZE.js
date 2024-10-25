@@ -7,6 +7,7 @@ var structDPRIZE =
     [ "dtInitialSkip", "structDPRIZE.html#a6e9b56a1ec3999093e62cc13feb11d2f", null ],
     [ "dvCenter", "structDPRIZE.html#a98dc186588155df70ba878ca395bf602", null ],
     [ "fLastBounce", "structDPRIZE.html#a5fdf8425ad7954624257b08e94efc20c", null ],
+    [ "fLeft", "structDPRIZE.html#ad9a16fb9faff25053a4f7732b8cad9b8", null ],
     [ "fNeverReuse", "structDPRIZE.html#aa228a162e6664d1f18c1fd931b85b9c1", null ],
     [ "fReuseCandidate", "structDPRIZE.html#a712b45049e201bd124c72df70ac85aa8", null ],
     [ "fSwirlDone", "structDPRIZE.html#aaee7024ec8fcb8cd4cf374a4d82706d3", null ],
@@ -26,11 +27,13 @@ var structDPRIZE =
     [ "rzBounce", "structDPRIZE.html#aaa9261facb474fc3fa08ea510a5751b7", null ],
     [ "sRadiusBounce", "structDPRIZE.html#aa20098ab80af32b7873f76ce91dcc9a0", null ],
     [ "sRadiusCollect", "structDPRIZE.html#a567016ad5d44e55ecca53172c5722f3c", null ],
-    [ "svcAtract", "structDPRIZE.html#a8a9d3f69e3152f5fcbf49ca4e390d95d", null ],
+    [ "svcAttract", "structDPRIZE.html#a8dc753745057ed18cf0c4b0be6f5ac7e", null ],
     [ "svLastBounce", "structDPRIZE.html#a122d55fa24d46b9e00f84a0c073d40dc", null ],
     [ "svLastBounceMax", "structDPRIZE.html#a19717f1908325c64352a147f1d42d645", null ],
     [ "tDprizes", "structDPRIZE.html#a2ea870c8ada15a313d219df0333f9060", null ],
+    [ "tGlint", "structDPRIZE.html#a9aa4a4963d2edba1eb71d4fa53a4ea9f", null ],
     [ "uGlintChance", "structDPRIZE.html#ac9c57b80dd014062025cf64a429685af", null ],
-    [ "unk_0", "structDPRIZE.html#a98a3117c199153d1236b7c82f67bd2e4", null ],
+    [ "unk_0", "structDPRIZE.html#a304085c1c8a79953624f141e7848cba3", null ],
+    [ "unk_1", "structDPRIZE.html#a0ae6f6b6aac5f1daa5cef76c2f8edc01", null ],
     [ "vCenter", "structDPRIZE.html#a9ca3dbc033fa748916f4ae4f9d969f5a", null ]
 ];

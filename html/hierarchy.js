@@ -9,6 +9,7 @@ var hierarchy =
           [ "CAMERA", "structCAMERA.html", null ],
           [ "CHKPNT", "structCHKPNT.html", null ],
           [ "DPRIZE", "structDPRIZE.html", [
+            [ "CHARM", "structCHARM.html", null ],
             [ "COIN", "structCOIN.html", null ],
             [ "KEY", "structKEY.html", null ]
           ] ],
@@ -45,6 +46,7 @@ var hierarchy =
     ] ],
     [ "BLOT", "structBLOT.html", [
       [ "ATTRACT", "structATTRACT.html", null ],
+      [ "BINOC", "structBINOC.html", null ],
       [ "CTR", "structCTR.html", [
         [ "CLUECTR", "structCLUECTR.html", null ],
         [ "COINCTR", "structCOINCTR.html", null ],
@@ -71,10 +73,13 @@ var hierarchy =
     [ "CFrame", "classCFrame.html", null ],
     [ "CHKMGR", "structCHKMGR.html", null ],
     [ "CLOCK", "structCLOCK.html", null ],
+    [ "CLQ", "structCLQ.html", null ],
     [ "CLUTF", "structCLUTF.html", [
       [ "CLUT", "structCLUT.html", null ]
     ] ],
+    [ "CMethod", "classCMethod.html", null ],
     [ "CODE", "structCODE.html", null ],
+    [ "CPair", "classCPair.html", null ],
     [ "CPDEFI", "structCPDEFI.html", null ],
     [ "CPLCY", "structCPLCY.html", [
       [ "CPALIGN", "structCPALIGN.html", null ],
@@ -84,7 +89,9 @@ var hierarchy =
       [ "CPTN", "structCPTN.html", null ]
     ] ],
     [ "CPR", "structCPR.html", null ],
+    [ "CProc", "classCProc.html", null ],
     [ "CProg", "classCProg.html", null ],
+    [ "CRef", "classCRef.html", null ],
     [ "CSidebag", "classCSidebag.html", null ],
     [ "CTextBox", "classCTextBox.html", null ],
     [ "CTextEdge", "classCTextEdge.html", null ],
@@ -101,6 +108,7 @@ var hierarchy =
     [ "EXPLSTE", "structEXPLSTE.html", null ],
     [ "FCL", "structFCL.html", null ],
     [ "FGFN", "structFGFN.html", null ],
+    [ "FICG", "structFICG.html", null ],
     [ "GAME", "structGAME.html", null ],
     [ "GEOM", "structGEOM.html", null ],
     [ "GS", "structGS.html", null ],
@@ -133,9 +141,11 @@ var hierarchy =
     [ "SMP", "structSMP.html", null ],
     [ "SMS", "structSMS.html", null ],
     [ "SMT", "structSMT.html", null ],
+    [ "SNIP", "structSNIP.html", null ],
     [ "SUR", "structSUR.html", null ],
     [ "SURF", "structSURF.html", null ],
     [ "SW", "structSW.html", null ],
+    [ "TAG", "unionTAG.html", null ],
     [ "TCX", "structTCX.html", null ],
     [ "TEXF", "structTEXF.html", [
       [ "TEX", "structTEX.html", null ]

@@ -101,7 +101,9 @@ $(document).ready(function(){initNavTree('util_8c.html',''); initResizable(); })
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="util_8h_source.html">util.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="vec_8h_source.html">vec.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="rand_8h_source.html">sce/rand.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="math_8h_source.html">sce/math.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for util.c:</div>
 <div class="dyncontent">
@@ -116,61 +118,64 @@ Functions</h2></td></tr>
 <tr class="memitem:a14639672f9ca35fa2c7e362348d26c5d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a14639672f9ca35fa2c7e362348d26c5d">RadNormalize</a> (float rad)</td></tr>
 <tr class="memdesc:a14639672f9ca35fa2c7e362348d26c5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalizes a float to the range [-PI, PI].  <a href="util_8c.html#a14639672f9ca35fa2c7e362348d26c5d">More...</a><br /></td></tr>
 <tr class="separator:a14639672f9ca35fa2c7e362348d26c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2d3c03b40c071f065bb8ec5efb5a397"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#ac2d3c03b40c071f065bb8ec5efb5a397">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, GLimitAbs)</td></tr>
+<tr class="memitem:ac2d3c03b40c071f065bb8ec5efb5a397"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#ac2d3c03b40c071f065bb8ec5efb5a397">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/util&quot;, GLimitAbs)</td></tr>
 <tr class="separator:ac2d3c03b40c071f065bb8ec5efb5a397"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accec7ea4e0ee9185de00831f5ab95e97"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#accec7ea4e0ee9185de00831f5ab95e97">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, GSmooth)</td></tr>
-<tr class="separator:accec7ea4e0ee9185de00831f5ab95e97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b79ba29adaa6ad68c462b6eb68eb6ef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a9b79ba29adaa6ad68c462b6eb68eb6ef">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, GSmoothA)</td></tr>
-<tr class="separator:a9b79ba29adaa6ad68c462b6eb68eb6ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e50fdc3473b7c75c31531d61a3068e9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a6e50fdc3473b7c75c31531d61a3068e9">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, func_001EA720)</td></tr>
+<tr class="memitem:ae01e197e86b938cba6ed2ec15338c094"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#ae01e197e86b938cba6ed2ec15338c094">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/util&quot;, GSmooth__FfffP3SMPPf)</td></tr>
+<tr class="separator:ae01e197e86b938cba6ed2ec15338c094"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8388f2a790fdd1a42e48a01a6eb5bdb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#ad8388f2a790fdd1a42e48a01a6eb5bdb">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/util&quot;, GSmoothA__FffffP4SMPAPf)</td></tr>
+<tr class="separator:ad8388f2a790fdd1a42e48a01a6eb5bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e50fdc3473b7c75c31531d61a3068e9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a6e50fdc3473b7c75c31531d61a3068e9">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/util&quot;, func_001EA720)</td></tr>
 <tr class="separator:a6e50fdc3473b7c75c31531d61a3068e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67e8c20267ebb0fec88de8e8ef99a5a0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a67e8c20267ebb0fec88de8e8ef99a5a0">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, RadSmooth)</td></tr>
-<tr class="separator:a67e8c20267ebb0fec88de8e8ef99a5a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc0d73be720eaec483822fbfbd2486de"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#afc0d73be720eaec483822fbfbd2486de">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, RadSmoothA)</td></tr>
-<tr class="separator:afc0d73be720eaec483822fbfbd2486de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e7f3da18d8e85eb8f6d2dad0de75d0e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a8e7f3da18d8e85eb8f6d2dad0de75d0e">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, PosSmooth)</td></tr>
+<tr class="memitem:a75f21c63972b878f298849b70ea42888"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a75f21c63972b878f298849b70ea42888">RadSmooth</a> (float radCur, float radTarget, float dt, <a class="el" href="structSMP.html">SMP</a> *psmp, float *pdradNext)</td></tr>
+<tr class="separator:a75f21c63972b878f298849b70ea42888"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa15aa728b5a15e07058059d409c68b98"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#aa15aa728b5a15e07058059d409c68b98">RadSmoothA</a> (float radCur, float dradCur, float radTarget, float dt, SMPA *psmpa, float *pdradNext)</td></tr>
+<tr class="separator:aa15aa728b5a15e07058059d409c68b98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e7f3da18d8e85eb8f6d2dad0de75d0e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a8e7f3da18d8e85eb8f6d2dad0de75d0e">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/util&quot;, PosSmooth)</td></tr>
 <tr class="separator:a8e7f3da18d8e85eb8f6d2dad0de75d0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59a4a407ba76fa659555344efaba3cc1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a59a4a407ba76fa659555344efaba3cc1">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, SmoothMatrix)</td></tr>
+<tr class="memitem:a59a4a407ba76fa659555344efaba3cc1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a59a4a407ba76fa659555344efaba3cc1">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/util&quot;, SmoothMatrix)</td></tr>
 <tr class="separator:a59a4a407ba76fa659555344efaba3cc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b22d9917a9f89a986c85a40fbd3e139"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a7b22d9917a9f89a986c85a40fbd3e139">NRandInRange</a> (int nLow, int nHi)</td></tr>
 <tr class="memdesc:a7b22d9917a9f89a986c85a40fbd3e139"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a random int that falls between the given values.  <a href="util_8c.html#a7b22d9917a9f89a986c85a40fbd3e139">More...</a><br /></td></tr>
 <tr class="separator:a7b22d9917a9f89a986c85a40fbd3e139"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9387920ed311df83033dc9b48582afbe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a9387920ed311df83033dc9b48582afbe">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, GRandInRange)</td></tr>
-<tr class="separator:a9387920ed311df83033dc9b48582afbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85c6822fa0b23ae165415d5865ca4ee7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a85c6822fa0b23ae165415d5865ca4ee7">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, GRandGaussian)</td></tr>
+<tr class="memitem:a312ace44a83bec0c99e57fbc8808423a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a312ace44a83bec0c99e57fbc8808423a">GRandInRange</a> (float gHi, float gLow)</td></tr>
+<tr class="memdesc:a312ace44a83bec0c99e57fbc8808423a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a random float that falls between the given values.  <a href="util_8c.html#a312ace44a83bec0c99e57fbc8808423a">More...</a><br /></td></tr>
+<tr class="separator:a312ace44a83bec0c99e57fbc8808423a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85c6822fa0b23ae165415d5865ca4ee7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a85c6822fa0b23ae165415d5865ca4ee7">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/util&quot;, GRandGaussian)</td></tr>
 <tr class="separator:a85c6822fa0b23ae165415d5865ca4ee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba5aec7d730f1b93cdcad23e5c2cda03"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#aba5aec7d730f1b93cdcad23e5c2cda03">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, FFloatsNear)</td></tr>
-<tr class="separator:aba5aec7d730f1b93cdcad23e5c2cda03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a652369745482756a14f3ec2094548ac2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a652369745482756a14f3ec2094548ac2">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, CSolveQuadratic)</td></tr>
+<tr class="memitem:a1de2f7ffac278c48466cac3ca85d1f17"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a1de2f7ffac278c48466cac3ca85d1f17">FFloatsNear</a> (float g1, float g2, float gEpsilon)</td></tr>
+<tr class="memdesc:a1de2f7ffac278c48466cac3ca85d1f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two floats are within a given epsilon of each other.  <a href="util_8c.html#a1de2f7ffac278c48466cac3ca85d1f17">More...</a><br /></td></tr>
+<tr class="separator:a1de2f7ffac278c48466cac3ca85d1f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a652369745482756a14f3ec2094548ac2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a652369745482756a14f3ec2094548ac2">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/util&quot;, CSolveQuadratic)</td></tr>
 <tr class="separator:a652369745482756a14f3ec2094548ac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3aede941c8e1c405b9c18c8bee8ef33"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#aa3aede941c8e1c405b9c18c8bee8ef33">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, PrescaleClq)</td></tr>
-<tr class="separator:aa3aede941c8e1c405b9c18c8bee8ef33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe92b518e321d7e3f11bcab967f7530e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#afe92b518e321d7e3f11bcab967f7530e">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, CalculateSinCos)</td></tr>
-<tr class="separator:afe92b518e321d7e3f11bcab967f7530e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a172167c6176a836da9d137e2f527ceea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a172167c6176a836da9d137e2f527ceea">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, GTrunc)</td></tr>
+<tr class="memitem:a49f2ecf9e2d63396d5045dc32e9030f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a49f2ecf9e2d63396d5045dc32e9030f4">PrescaleClq</a> (<a class="el" href="structCLQ.html">CLQ</a> *pclqSrc, float ru, float du, <a class="el" href="structCLQ.html">CLQ</a> *pclqDst)</td></tr>
+<tr class="separator:a49f2ecf9e2d63396d5045dc32e9030f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a654bbd22bf1d9a24d1641931695a0695"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a654bbd22bf1d9a24d1641931695a0695">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/util&quot;, CalculateSinCos__FfPfT1)</td></tr>
+<tr class="separator:a654bbd22bf1d9a24d1641931695a0695"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a172167c6176a836da9d137e2f527ceea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a172167c6176a836da9d137e2f527ceea">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/util&quot;, GTrunc)</td></tr>
 <tr class="separator:a172167c6176a836da9d137e2f527ceea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1d6e03eb9089840e719fa68e1eab0ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#ad1d6e03eb9089840e719fa68e1eab0ac">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, GTrunc1)</td></tr>
+<tr class="memitem:ad1d6e03eb9089840e719fa68e1eab0ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#ad1d6e03eb9089840e719fa68e1eab0ac">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/util&quot;, GTrunc1)</td></tr>
 <tr class="separator:ad1d6e03eb9089840e719fa68e1eab0ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a581674dd414c7b2c90a616edfc0a52e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a581674dd414c7b2c90a616edfc0a52e8">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, GModPositive__Fff)</td></tr>
-<tr class="separator:a581674dd414c7b2c90a616edfc0a52e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6cc77c00667e5d18846446ffd6bcd3f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a6cc77c00667e5d18846446ffd6bcd3f9">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, FitClq)</td></tr>
-<tr class="separator:a6cc77c00667e5d18846446ffd6bcd3f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d8abfc06184da58f918104502a3e43c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a7d8abfc06184da58f918104502a3e43c">GModPositive</a> (float gDividend, float gDivisor)</td></tr>
+<tr class="memdesc:a7d8abfc06184da58f918104502a3e43c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the positive remainder of dividing the dividend by the divisor.  <a href="util_8c.html#a7d8abfc06184da58f918104502a3e43c">More...</a><br /></td></tr>
+<tr class="separator:a7d8abfc06184da58f918104502a3e43c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a562f3b536c2b19ba4ce0667dc98dc6c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a562f3b536c2b19ba4ce0667dc98dc6c3">FitClq</a> (float g0, float g1, float u, float gU, <a class="el" href="structCLQ.html">CLQ</a> *pclq)</td></tr>
+<tr class="separator:a562f3b536c2b19ba4ce0667dc98dc6c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a605551daee615bf5acabd1dde4bce94d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a605551daee615bf5acabd1dde4bce94d">FCheckLm</a> (<a class="el" href="structLM.html">LM</a> *plm, float g)</td></tr>
 <tr class="memdesc:a605551daee615bf5acabd1dde4bce94d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a float falls within the given limit.  <a href="util_8c.html#a605551daee615bf5acabd1dde4bce94d">More...</a><br /></td></tr>
 <tr class="separator:a605551daee615bf5acabd1dde4bce94d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e203e745de0115691e1bbb2dd3782a3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a7e203e745de0115691e1bbb2dd3782a3">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, FCheckAlm)</td></tr>
+<tr class="memitem:a7e203e745de0115691e1bbb2dd3782a3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a7e203e745de0115691e1bbb2dd3782a3">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/util&quot;, FCheckAlm)</td></tr>
 <tr class="separator:a7e203e745de0115691e1bbb2dd3782a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19241d88b84ed2bddef344c3d600151c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a19241d88b84ed2bddef344c3d600151c">GLimitLm</a> (struct <a class="el" href="structLM.html">LM</a> *plm, float g)</td></tr>
 <tr class="memdesc:a19241d88b84ed2bddef344c3d600151c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limits a float to the given range.  <a href="util_8c.html#a19241d88b84ed2bddef344c3d600151c">More...</a><br /></td></tr>
 <tr class="separator:a19241d88b84ed2bddef344c3d600151c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e13ad28b86e92f6c97c48a350808644"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a5e13ad28b86e92f6c97c48a350808644">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, SgnCompareG)</td></tr>
-<tr class="separator:a5e13ad28b86e92f6c97c48a350808644"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32acfc0bce6a17971f228c8e225454fa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a32acfc0bce6a17971f228c8e225454fa">SgnCompareG</a> (float *pg1, float *pg2)</td></tr>
+<tr class="separator:a32acfc0bce6a17971f228c8e225454fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adeb1d60b29bba6f8c136087e04ee5994"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#adeb1d60b29bba6f8c136087e04ee5994">Force</a> (void *pv)</td></tr>
 <tr class="memdesc:adeb1d60b29bba6f8c136087e04ee5994"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stubbed function, does nothing.  <a href="util_8c.html#adeb1d60b29bba6f8c136087e04ee5994">More...</a><br /></td></tr>
 <tr class="separator:adeb1d60b29bba6f8c136087e04ee5994"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a453dd08fe5126da9f6cd963d01aabfa7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a453dd08fe5126da9f6cd963d01aabfa7">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, MinimizeRange)</td></tr>
+<tr class="memitem:a453dd08fe5126da9f6cd963d01aabfa7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#a453dd08fe5126da9f6cd963d01aabfa7">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/util&quot;, MinimizeRange)</td></tr>
 <tr class="separator:a453dd08fe5126da9f6cd963d01aabfa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf57383c41f368314e87187343b528d0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#abf57383c41f368314e87187343b528d0">INCLUDE_ASM</a> (const s32, &quot;P2/util&quot;, func_001EB458)</td></tr>
+<tr class="memitem:abf57383c41f368314e87187343b528d0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#abf57383c41f368314e87187343b528d0">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/util&quot;, func_001EB458)</td></tr>
 <tr class="separator:abf57383c41f368314e87187343b528d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -216,7 +221,108 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00068">68</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00140">140</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+
+</div>
+</div>
+<a id="a1de2f7ffac278c48466cac3ca85d1f17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1de2f7ffac278c48466cac3ca85d1f17">&#9670;&nbsp;</a></span>FFloatsNear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FFloatsNear </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>g1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>g2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>gEpsilon</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two floats are within a given epsilon of each other. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">g1</td><td>The first float </td></tr>
+    <tr><td class="paramname">g2</td><td>The second float </td></tr>
+    <tr><td class="paramname">gEpsilon</td><td>The epsilon</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>if the floats are within the epsilon of each other </td></tr>
+    <tr><td class="paramname">false</td><td>otherwise </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00088">88</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+
+</div>
+</div>
+<a id="a562f3b536c2b19ba4ce0667dc98dc6c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a562f3b536c2b19ba4ce0667dc98dc6c3">&#9670;&nbsp;</a></span>FitClq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FitClq </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>g0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>g1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>gU</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCLQ.html">CLQ</a> *&#160;</td>
+          <td class="paramname"><em>pclq</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00130">130</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>
@@ -238,7 +344,7 @@ Variables</h2></td></tr>
 
 <p>Stubbed function, does nothing. </p>
 
-<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00090">90</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00177">177</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>
@@ -277,12 +383,98 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00075">75</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00147">147</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>
-<a id="afe92b518e321d7e3f11bcab967f7530e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe92b518e321d7e3f11bcab967f7530e">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[1/22]</span></h2>
+<a id="a7d8abfc06184da58f918104502a3e43c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d8abfc06184da58f918104502a3e43c">&#9670;&nbsp;</a></span>GModPositive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GModPositive </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>gDividend</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>gDivisor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the positive remainder of dividing the dividend by the divisor. </p>
+<p>If the result is negative, it is adjusted to be positive by adding the divisor.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gDividend</td><td>The dividend. </td></tr>
+    <tr><td class="paramname">gDivisor</td><td>The divisor.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The positive remainder of the division. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00120">120</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+
+</div>
+</div>
+<a id="a312ace44a83bec0c99e57fbc8808423a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a312ace44a83bec0c99e57fbc8808423a">&#9670;&nbsp;</a></span>GRandInRange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GRandInRange </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>gLow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>gHigh</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets a random float that falls between the given values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gLow</td><td>The lower bound </td></tr>
+    <tr><td class="paramname">gHigh</td><td>The upper bound</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">A</td><td>random float that falls between the given values </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00068">68</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+
+</div>
+</div>
+<a id="a654bbd22bf1d9a24d1641931695a0695"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a654bbd22bf1d9a24d1641931695a0695">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[1/14]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -302,7 +494,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="util_8h.html#a0033025333613b94763e2dd9525d6627">CalculateSinCos</a>&#160;</td>
+          <td class="paramtype">CalculateSinCos__FfPfT1&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -316,7 +508,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="a652369745482756a14f3ec2094548ac2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a652369745482756a14f3ec2094548ac2">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[2/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a652369745482756a14f3ec2094548ac2">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[2/14]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -350,7 +542,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="a7e203e745de0115691e1bbb2dd3782a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e203e745de0115691e1bbb2dd3782a3">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[3/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e203e745de0115691e1bbb2dd3782a3">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[3/14]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -383,76 +575,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="aba5aec7d730f1b93cdcad23e5c2cda03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba5aec7d730f1b93cdcad23e5c2cda03">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[4/22]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/util&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="util_8h.html#a1de2f7ffac278c48466cac3ca85d1f17">FFloatsNear</a>&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6cc77c00667e5d18846446ffd6bcd3f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6cc77c00667e5d18846446ffd6bcd3f9">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[5/22]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/util&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="util_8h.html#a562f3b536c2b19ba4ce0667dc98dc6c3">FitClq</a>&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a6e50fdc3473b7c75c31531d61a3068e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e50fdc3473b7c75c31531d61a3068e9">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[6/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e50fdc3473b7c75c31531d61a3068e9">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[4/14]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -486,7 +610,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="abf57383c41f368314e87187343b528d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf57383c41f368314e87187343b528d0">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[7/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abf57383c41f368314e87187343b528d0">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[5/14]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -520,7 +644,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="ac2d3c03b40c071f065bb8ec5efb5a397"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2d3c03b40c071f065bb8ec5efb5a397">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[8/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2d3c03b40c071f065bb8ec5efb5a397">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[6/14]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -553,42 +677,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a581674dd414c7b2c90a616edfc0a52e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a581674dd414c7b2c90a616edfc0a52e8">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[9/22]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/util&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">GModPositive__Fff&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a85c6822fa0b23ae165415d5865ca4ee7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a85c6822fa0b23ae165415d5865ca4ee7">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[10/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a85c6822fa0b23ae165415d5865ca4ee7">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[7/14]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -621,8 +711,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a9387920ed311df83033dc9b48582afbe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9387920ed311df83033dc9b48582afbe">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[11/22]</span></h2>
+<a id="ae01e197e86b938cba6ed2ec15338c094"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae01e197e86b938cba6ed2ec15338c094">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[8/14]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -642,7 +732,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="util_8h.html#a4f9d2ee9ae89d1b11e74be7c24d06701">GRandInRange</a>&#160;</td>
+          <td class="paramtype">GSmooth__FfffP3SMPPf&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -655,8 +745,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="accec7ea4e0ee9185de00831f5ab95e97"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#accec7ea4e0ee9185de00831f5ab95e97">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[12/22]</span></h2>
+<a id="ad8388f2a790fdd1a42e48a01a6eb5bdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8388f2a790fdd1a42e48a01a6eb5bdb">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[9/14]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -676,41 +766,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="util_8h.html#a9be66b4788fa2ed499f338c5c583c1f5">GSmooth</a>&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a9b79ba29adaa6ad68c462b6eb68eb6ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b79ba29adaa6ad68c462b6eb68eb6ef">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[13/22]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/util&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="util_8h.html#a2360fe486ec07a843912e419d1747a5d">GSmoothA</a>&#160;</td>
+          <td class="paramtype">GSmoothA__FffffP4SMPAPf&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -724,7 +780,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="a172167c6176a836da9d137e2f527ceea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a172167c6176a836da9d137e2f527ceea">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[14/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a172167c6176a836da9d137e2f527ceea">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[10/14]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -758,7 +814,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="ad1d6e03eb9089840e719fa68e1eab0ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1d6e03eb9089840e719fa68e1eab0ac">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[15/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1d6e03eb9089840e719fa68e1eab0ac">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[11/14]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -792,7 +848,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="a453dd08fe5126da9f6cd963d01aabfa7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a453dd08fe5126da9f6cd963d01aabfa7">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[16/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a453dd08fe5126da9f6cd963d01aabfa7">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[12/14]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -826,7 +882,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="a8e7f3da18d8e85eb8f6d2dad0de75d0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e7f3da18d8e85eb8f6d2dad0de75d0e">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[17/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e7f3da18d8e85eb8f6d2dad0de75d0e">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[13/14]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -859,144 +915,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="aa3aede941c8e1c405b9c18c8bee8ef33"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3aede941c8e1c405b9c18c8bee8ef33">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[18/22]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/util&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="util_8h.html#a49f2ecf9e2d63396d5045dc32e9030f4">PrescaleClq</a>&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a67e8c20267ebb0fec88de8e8ef99a5a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a67e8c20267ebb0fec88de8e8ef99a5a0">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[19/22]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/util&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="util_8h.html#a75f21c63972b878f298849b70ea42888">RadSmooth</a>&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="afc0d73be720eaec483822fbfbd2486de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc0d73be720eaec483822fbfbd2486de">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[20/22]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/util&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="util_8h.html#aa15aa728b5a15e07058059d409c68b98">RadSmoothA</a>&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5e13ad28b86e92f6c97c48a350808644"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e13ad28b86e92f6c97c48a350808644">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[21/22]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/util&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SgnCompareG&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a59a4a407ba76fa659555344efaba3cc1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a59a4a407ba76fa659555344efaba3cc1">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[22/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a59a4a407ba76fa659555344efaba3cc1">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[14/14]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1070,7 +990,49 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00033">33</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00052">52</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+
+</div>
+</div>
+<a id="a49f2ecf9e2d63396d5045dc32e9030f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49f2ecf9e2d63396d5045dc32e9030f4">&#9670;&nbsp;</a></span>PrescaleClq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PrescaleClq </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLQ.html">CLQ</a> *&#160;</td>
+          <td class="paramname"><em>pclqSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>ru</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>du</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCLQ.html">CLQ</a> *&#160;</td>
+          <td class="paramname"><em>pclqDst</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00107">107</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>
@@ -1104,7 +1066,139 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00006">6</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00008">8</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+
+</div>
+</div>
+<a id="a75f21c63972b878f298849b70ea42888"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75f21c63972b878f298849b70ea42888">&#9670;&nbsp;</a></span>RadSmooth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float RadSmooth </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radCur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radTarget</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structSMP.html">SMP</a> *&#160;</td>
+          <td class="paramname"><em>psmp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>pdradNext</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00025">25</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+
+</div>
+</div>
+<a id="aa15aa728b5a15e07058059d409c68b98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa15aa728b5a15e07058059d409c68b98">&#9670;&nbsp;</a></span>RadSmoothA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float RadSmoothA </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radCur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dradCur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radTarget</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SMPA *&#160;</td>
+          <td class="paramname"><em>psmpa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>pdradNext</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00035">35</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+
+</div>
+</div>
+<a id="a32acfc0bce6a17971f228c8e225454fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32acfc0bce6a17971f228c8e225454fa">&#9670;&nbsp;</a></span>SgnCompareG()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SgnCompareG </td>
+          <td>(</td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>pg1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>pg2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00160">160</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>
@@ -1129,7 +1223,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00004">4</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00006">6</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>
@@ -1145,7 +1239,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00030">30</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00049">49</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>

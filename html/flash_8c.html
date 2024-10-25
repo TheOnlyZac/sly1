@@ -94,12 +94,14 @@ $(document).ready(function(){initNavTree('flash_8c.html',''); initResizable(); }
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">flash.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="flash_8h_source.html">flash.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="clock_8h_source.html">clock.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for flash.c:</div>
 <div class="dyncontent">
@@ -111,20 +113,26 @@ Include dependency graph for flash.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af28ee95c4b6742f84d156fff84627885"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="flash_8c.html#af28ee95c4b6742f84d156fff84627885">INCLUDE_ASM</a> (const s32, &quot;P2/flash&quot;, InitFlash__FP5FLASH)</td></tr>
+<tr class="memitem:af28ee95c4b6742f84d156fff84627885"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="flash_8c.html#af28ee95c4b6742f84d156fff84627885">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/flash&quot;, InitFlash__FP5FLASH)</td></tr>
 <tr class="separator:af28ee95c4b6742f84d156fff84627885"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e95ccbeecd0c4923ee8e01e650a95fc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="flash_8c.html#a0e95ccbeecd0c4923ee8e01e650a95fc">INCLUDE_ASM</a> (const s32, &quot;P2/flash&quot;, LoadFlashFromBrx__FP5FLASHP18CBinaryInputStream)</td></tr>
+<tr class="memitem:a0e95ccbeecd0c4923ee8e01e650a95fc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="flash_8c.html#a0e95ccbeecd0c4923ee8e01e650a95fc">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/flash&quot;, LoadFlashFromBrx__FP5FLASHP18CBinaryInputStream)</td></tr>
 <tr class="separator:a0e95ccbeecd0c4923ee8e01e650a95fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46cbd29a07d0449d63cc87363ccbd893"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="flash_8c.html#a46cbd29a07d0449d63cc87363ccbd893">INCLUDE_ASM</a> (const s32, &quot;P2/flash&quot;, UpdateFlash__FP5FLASHf)</td></tr>
-<tr class="separator:a46cbd29a07d0449d63cc87363ccbd893"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12c17b85a2ec2818a16431dd140456eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="flash_8c.html#a12c17b85a2ec2818a16431dd140456eb">INCLUDE_ASM</a> (const s32, &quot;P2/flash&quot;, RenderFlashSelf__FP5FLASHP2CMP2RO)</td></tr>
+<tr class="memitem:ad943925fd2218a098a8448fa12a8293c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="flash_8c.html#ad943925fd2218a098a8448fa12a8293c">UpdateFlash</a> (<a class="el" href="structFLASH.html">FLASH</a> *pflash, float dt)</td></tr>
+<tr class="memdesc:ad943925fd2218a098a8448fa12a8293c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the given flash.  <a href="flash_8c.html#ad943925fd2218a098a8448fa12a8293c">More...</a><br /></td></tr>
+<tr class="separator:ad943925fd2218a098a8448fa12a8293c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12c17b85a2ec2818a16431dd140456eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="flash_8c.html#a12c17b85a2ec2818a16431dd140456eb">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/flash&quot;, RenderFlashSelf__FP5FLASHP2CMP2RO)</td></tr>
 <tr class="separator:a12c17b85a2ec2818a16431dd140456eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43501db6d6f98ca2e5eee2aa674755ff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="flash_8c.html#a43501db6d6f98ca2e5eee2aa674755ff">INCLUDE_ASM</a> (const s32, &quot;P2/flash&quot;, FPosFlashWithin__FP5FLASHP6VECTOR)</td></tr>
+<tr class="memitem:a43501db6d6f98ca2e5eee2aa674755ff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="flash_8c.html#a43501db6d6f98ca2e5eee2aa674755ff">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/flash&quot;, FPosFlashWithin__FP5FLASHP6VECTOR)</td></tr>
 <tr class="separator:a43501db6d6f98ca2e5eee2aa674755ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a265c0096832085486287b2bb6603595c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLOCK.html">CLOCK</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="flash_8c.html#a265c0096832085486287b2bb6603595c">g_clock</a></td></tr>
+<tr class="separator:a265c0096832085486287b2bb6603595c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a43501db6d6f98ca2e5eee2aa674755ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a43501db6d6f98ca2e5eee2aa674755ff">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[1/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a43501db6d6f98ca2e5eee2aa674755ff">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -158,7 +166,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="af28ee95c4b6742f84d156fff84627885"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af28ee95c4b6742f84d156fff84627885">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[2/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af28ee95c4b6742f84d156fff84627885">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -192,7 +200,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a0e95ccbeecd0c4923ee8e01e650a95fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e95ccbeecd0c4923ee8e01e650a95fc">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[3/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e95ccbeecd0c4923ee8e01e650a95fc">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -226,7 +234,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a12c17b85a2ec2818a16431dd140456eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12c17b85a2ec2818a16431dd140456eb">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[4/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a12c17b85a2ec2818a16431dd140456eb">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -259,29 +267,23 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a46cbd29a07d0449d63cc87363ccbd893"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a46cbd29a07d0449d63cc87363ccbd893">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[5/5]</span></h2>
+<a id="ad943925fd2218a098a8448fa12a8293c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad943925fd2218a098a8448fa12a8293c">&#9670;&nbsp;</a></span>UpdateFlash()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname">void UpdateFlash </td>
           <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
+          <td class="paramtype"><a class="el" href="structFLASH.html">FLASH</a> *&#160;</td>
+          <td class="paramname"><em>pflash</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">&quot;P2/flash&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">UpdateFlash__FP5FLASHf&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dt</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -290,6 +292,34 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Updates the given flash. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pflash</td><td>Flash to update. </td></tr>
+    <tr><td class="paramname">dt</td><td>Delta time. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="flash_8c_source.html#l00010">10</a> of file <a class="el" href="flash_8c_source.html">flash.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a265c0096832085486287b2bb6603595c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a265c0096832085486287b2bb6603595c">&#9670;&nbsp;</a></span>g_clock</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCLOCK.html">CLOCK</a> g_clock</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00013">13</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
 
 </div>
 </div>

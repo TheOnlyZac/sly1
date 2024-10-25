@@ -106,6 +106,7 @@ $(document).ready(function(){initNavTree('util_8h.html',''); initResizable(); })
 <div class="textblock"><code>#include &quot;<a class="el" href="common_8h_source.html">common.h</a>&quot;</code><br />
 <code>#include &lt;<a class="el" href="mat_8h_source.html">mat.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="vec_8h_source.html">vec.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="sm_8h_source.html">sm.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for util.h:</div>
 <div class="dyncontent">
@@ -123,6 +124,9 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLQ.html">CLQ</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unknown.  <a href="structCLQ.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLM.html">LM</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limits for a float.  <a href="structLM.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,7 +166,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a567e3a24beb2e2c281a88ecec05c2bc3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a567e3a24beb2e2c281a88ecec05c2bc3">CSolveQuadratic</a> (float a, float b, float c, float *ax)</td></tr>
 <tr class="memdesc:a567e3a24beb2e2c281a88ecec05c2bc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solves a quadratic equation.  <a href="util_8h.html#a567e3a24beb2e2c281a88ecec05c2bc3">More...</a><br /></td></tr>
 <tr class="separator:a567e3a24beb2e2c281a88ecec05c2bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49f2ecf9e2d63396d5045dc32e9030f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a49f2ecf9e2d63396d5045dc32e9030f4">PrescaleClq</a> (CLQ *pclqSrc, float ru, float du, CLQ *pclqDst)</td></tr>
+<tr class="memitem:a49f2ecf9e2d63396d5045dc32e9030f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a49f2ecf9e2d63396d5045dc32e9030f4">PrescaleClq</a> (<a class="el" href="structCLQ.html">CLQ</a> *pclqSrc, float ru, float du, <a class="el" href="structCLQ.html">CLQ</a> *pclqDst)</td></tr>
 <tr class="separator:a49f2ecf9e2d63396d5045dc32e9030f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0033025333613b94763e2dd9525d6627"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a0033025333613b94763e2dd9525d6627">CalculateSinCos</a> (float rad, float *pgSin, float *pgCos)</td></tr>
 <tr class="memdesc:a0033025333613b94763e2dd9525d6627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the sine and cosine of a given angle.  <a href="util_8h.html#a0033025333613b94763e2dd9525d6627">More...</a><br /></td></tr>
@@ -176,7 +180,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a7d8abfc06184da58f918104502a3e43c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a7d8abfc06184da58f918104502a3e43c">GModPositive</a> (float gDividend, float gDivisor)</td></tr>
 <tr class="memdesc:a7d8abfc06184da58f918104502a3e43c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the positive remainder of dividing the dividend by the divisor.  <a href="util_8h.html#a7d8abfc06184da58f918104502a3e43c">More...</a><br /></td></tr>
 <tr class="separator:a7d8abfc06184da58f918104502a3e43c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a562f3b536c2b19ba4ce0667dc98dc6c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a562f3b536c2b19ba4ce0667dc98dc6c3">FitClq</a> (float g0, float g1, float u, float gU, CLQ *pclq)</td></tr>
+<tr class="memitem:a562f3b536c2b19ba4ce0667dc98dc6c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a562f3b536c2b19ba4ce0667dc98dc6c3">FitClq</a> (float g0, float g1, float u, float gU, <a class="el" href="structCLQ.html">CLQ</a> *pclq)</td></tr>
 <tr class="separator:a562f3b536c2b19ba4ce0667dc98dc6c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a605551daee615bf5acabd1dde4bce94d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a605551daee615bf5acabd1dde4bce94d">FCheckLm</a> (<a class="el" href="structLM.html">LM</a> *plm, float g)</td></tr>
 <tr class="memdesc:a605551daee615bf5acabd1dde4bce94d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a float falls within the given limit.  <a href="util_8h.html#a605551daee615bf5acabd1dde4bce94d">More...</a><br /></td></tr>
@@ -325,7 +329,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00068">68</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00140">140</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>
@@ -378,6 +382,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00088">88</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+
 </div>
 </div>
 <a id="a562f3b536c2b19ba4ce0667dc98dc6c3"></a>
@@ -413,7 +419,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">CLQ *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCLQ.html">CLQ</a> *&#160;</td>
           <td class="paramname"><em>pclq</em>&#160;</td>
         </tr>
         <tr>
@@ -423,6 +429,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00130">130</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>
@@ -444,7 +452,7 @@ Functions</h2></td></tr>
 
 <p>Stubbed function, does nothing. </p>
 
-<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00090">90</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00177">177</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>
@@ -526,7 +534,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00075">75</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00147">147</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>
@@ -566,6 +574,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The positive remainder of the division. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00120">120</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>
@@ -659,6 +669,8 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00068">68</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>
@@ -853,7 +865,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00033">33</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00052">52</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>
@@ -912,7 +924,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void PrescaleClq </td>
           <td>(</td>
-          <td class="paramtype">CLQ *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCLQ.html">CLQ</a> *&#160;</td>
           <td class="paramname"><em>pclqSrc</em>, </td>
         </tr>
         <tr>
@@ -930,7 +942,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">CLQ *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCLQ.html">CLQ</a> *&#160;</td>
           <td class="paramname"><em>pclqDst</em>&#160;</td>
         </tr>
         <tr>
@@ -940,6 +952,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00107">107</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>
@@ -973,7 +987,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00006">6</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00008">8</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>
@@ -1020,6 +1034,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00025">25</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>
@@ -1072,6 +1088,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8c_source.html#l00035">35</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
 
 </div>
 </div>

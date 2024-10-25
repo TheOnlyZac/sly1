@@ -100,6 +100,8 @@ $(document).ready(function(){initNavTree('coin_8c.html',''); initResizable(); })
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="coin_8h_source.html">coin.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="chkpnt_8h_source.html">chkpnt.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="bis_8h_source.html">bis.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for coin.c:</div>
 <div class="dyncontent">
@@ -111,58 +113,122 @@ Include dependency graph for coin.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac2cefdd1897fadfde30e248c6c49f426"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#ac2cefdd1897fadfde30e248c6c49f426">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, OnCoinSmack__FP4COIN)</td></tr>
+<tr class="memitem:a861f067745a91a9656469e0ea5dd7608"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a861f067745a91a9656469e0ea5dd7608">InitDprize</a> (<a class="el" href="structDPRIZE.html">DPRIZE</a> *pdprize)</td></tr>
+<tr class="memdesc:a861f067745a91a9656469e0ea5dd7608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a DPrize.  <a href="coin_8c.html#a861f067745a91a9656469e0ea5dd7608">More...</a><br /></td></tr>
+<tr class="separator:a861f067745a91a9656469e0ea5dd7608"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfc36dc9afc7d963cd4c085ed65b54f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#acfc36dc9afc7d963cd4c085ed65b54f5">LoadDprizeFromBrx</a> (<a class="el" href="structDPRIZE.html">DPRIZE</a> *pdprize, <a class="el" href="classCBinaryInputStream.html">CBinaryInputStream</a> *pbis)</td></tr>
+<tr class="memdesc:acfc36dc9afc7d963cd4c085ed65b54f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a DPrize from an Input Stream.  <a href="coin_8c.html#acfc36dc9afc7d963cd4c085ed65b54f5">More...</a><br /></td></tr>
+<tr class="separator:acfc36dc9afc7d963cd4c085ed65b54f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4784f732d75babf6af0f4669d742ecb7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a4784f732d75babf6af0f4669d742ecb7">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, CloneDprize__FP6DPRIZET0)</td></tr>
+<tr class="separator:a4784f732d75babf6af0f4669d742ecb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add73ae940f2b29bf20b1756805f6eaab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#add73ae940f2b29bf20b1756805f6eaab">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, PostDprizeLoad__FP6DPRIZE)</td></tr>
+<tr class="separator:add73ae940f2b29bf20b1756805f6eaab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd03912f0e42efbb19de60e73c645c37"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#acd03912f0e42efbb19de60e73c645c37">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, ProjectDprizeTransform__FP6DPRIZEfi)</td></tr>
+<tr class="separator:acd03912f0e42efbb19de60e73c645c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dd6cc639b843f5d6fb36a4f3e73f2b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a0dd6cc639b843f5d6fb36a4f3e73f2b4">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, FFilterDprizeObjects__FP6DPRIZEP2SO)</td></tr>
+<tr class="separator:a0dd6cc639b843f5d6fb36a4f3e73f2b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4081d7b9280c52ee978b638ddada047c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a4081d7b9280c52ee978b638ddada047c">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, CheckDprizeBounce__FP6DPRIZE)</td></tr>
+<tr class="separator:a4081d7b9280c52ee978b638ddada047c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a593b7808835aab4bc26e51620641a7ca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a593b7808835aab4bc26e51620641a7ca">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, CheckDprizeCollect__FP6DPRIZE)</td></tr>
+<tr class="separator:a593b7808835aab4bc26e51620641a7ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a894216ff06620bfaa9746f028084f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a3a894216ff06620bfaa9746f028084f7">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, FAbsorbDprizeWkr__FP6DPRIZEP3WKR)</td></tr>
+<tr class="separator:a3a894216ff06620bfaa9746f028084f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4efda95fa427163a51d2e12706049f27"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a4efda95fa427163a51d2e12706049f27">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, UpdateDprize__FP6DPRIZEf)</td></tr>
+<tr class="separator:a4efda95fa427163a51d2e12706049f27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4ce0e8262e32ab82fc79e34b62ea737"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#ab4ce0e8262e32ab82fc79e34b62ea737">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, RenderDprizeAll__FP6DPRIZEP2CMP2RO)</td></tr>
+<tr class="separator:ab4ce0e8262e32ab82fc79e34b62ea737"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a103576694bc71f2464b5bf1a46d7aa24"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a103576694bc71f2464b5bf1a46d7aa24">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, SetDprizeDprizes__FP6DPRIZE7DPRIZES)</td></tr>
+<tr class="separator:a103576694bc71f2464b5bf1a46d7aa24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a644b52f8e679770b2a1470aea098bd4b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a644b52f8e679770b2a1470aea098bd4b">InitCoin</a> (<a class="el" href="structCOIN.html">COIN</a> *pcoin)</td></tr>
+<tr class="memdesc:a644b52f8e679770b2a1470aea098bd4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a DPrize.  <a href="coin_8c.html#a644b52f8e679770b2a1470aea098bd4b">More...</a><br /></td></tr>
+<tr class="separator:a644b52f8e679770b2a1470aea098bd4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a255a15fb6f16a0ee289a0c5a6ed398b1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a255a15fb6f16a0ee289a0c5a6ed398b1">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, FUN_00147ed0)</td></tr>
+<tr class="separator:a255a15fb6f16a0ee289a0c5a6ed398b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22ffb3f2d21309b16e0ceebad9d98cf4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a22ffb3f2d21309b16e0ceebad9d98cf4">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, FUN_00147ef8)</td></tr>
+<tr class="separator:a22ffb3f2d21309b16e0ceebad9d98cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c2e5fd8b39e043f393cca607b2c2edb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a8c2e5fd8b39e043f393cca607b2c2edb">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, UpdateCoin__FP4COINf)</td></tr>
+<tr class="separator:a8c2e5fd8b39e043f393cca607b2c2edb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a774c56eb32753eca03396df2cd1e422d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a774c56eb32753eca03396df2cd1e422d">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, CreateSwCharm__FP2SW)</td></tr>
+<tr class="separator:a774c56eb32753eca03396df2cd1e422d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d21c77e9e2528d06d0e5125c760c788"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a5d21c77e9e2528d06d0e5125c760c788">AddLife</a> (void *ptr)</td></tr>
+<tr class="memdesc:a5d21c77e9e2528d06d0e5125c760c788"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a life.  <a href="coin_8c.html#a5d21c77e9e2528d06d0e5125c760c788">More...</a><br /></td></tr>
+<tr class="separator:a5d21c77e9e2528d06d0e5125c760c788"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2cefdd1897fadfde30e248c6c49f426"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#ac2cefdd1897fadfde30e248c6c49f426">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, OnCoinSmack__FP4COIN)</td></tr>
 <tr class="separator:ac2cefdd1897fadfde30e248c6c49f426"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38c91b79912b32574b2e2c4899fa9b12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a38c91b79912b32574b2e2c4899fa9b12">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, SetCoinDprizes__FP4COIN7DPRIZES)</td></tr>
+<tr class="memitem:a38c91b79912b32574b2e2c4899fa9b12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a38c91b79912b32574b2e2c4899fa9b12">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, SetCoinDprizes__FP4COIN7DPRIZES)</td></tr>
 <tr class="separator:a38c91b79912b32574b2e2c4899fa9b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a669022482472b20bd8d66524c609fce3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a669022482472b20bd8d66524c609fce3">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, FUN_00148400)</td></tr>
-<tr class="separator:a669022482472b20bd8d66524c609fce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a266e0121584fcea90339b0351bf1fdb3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a266e0121584fcea90339b0351bf1fdb3">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, SetCharmDprizes__FP5CHARM7DPRIZES)</td></tr>
+<tr class="memitem:a8011f0062f36f84e0f66a2633bce3a51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a8011f0062f36f84e0f66a2633bce3a51">InitCharm</a> (<a class="el" href="structCHARM.html">CHARM</a> *pcharm)</td></tr>
+<tr class="memdesc:a8011f0062f36f84e0f66a2633bce3a51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a Charm.  <a href="coin_8c.html#a8011f0062f36f84e0f66a2633bce3a51">More...</a><br /></td></tr>
+<tr class="separator:a8011f0062f36f84e0f66a2633bce3a51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a266e0121584fcea90339b0351bf1fdb3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a266e0121584fcea90339b0351bf1fdb3">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, SetCharmDprizes__FP5CHARM7DPRIZES)</td></tr>
 <tr class="separator:a266e0121584fcea90339b0351bf1fdb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e92b69a94e39500d21c84ab16b663b1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a5e92b69a94e39500d21c84ab16b663b1">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, FUN_00148510)</td></tr>
-<tr class="separator:a5e92b69a94e39500d21c84ab16b663b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2242ea114e93321efcad725c41ad8a4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#ae2242ea114e93321efcad725c41ad8a4">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, SetKeyDprizes__FP3KEY7DPRIZES)</td></tr>
+<tr class="memitem:aebf2a6c5c7ddbc715a2ebc5f00a404ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#aebf2a6c5c7ddbc715a2ebc5f00a404ff">InitKey</a> (<a class="el" href="structKEY.html">KEY</a> *pkey)</td></tr>
+<tr class="memdesc:aebf2a6c5c7ddbc715a2ebc5f00a404ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a Charm.  <a href="coin_8c.html#aebf2a6c5c7ddbc715a2ebc5f00a404ff">More...</a><br /></td></tr>
+<tr class="separator:aebf2a6c5c7ddbc715a2ebc5f00a404ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2242ea114e93321efcad725c41ad8a4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#ae2242ea114e93321efcad725c41ad8a4">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, SetKeyDprizes__FP3KEY7DPRIZES)</td></tr>
 <tr class="separator:ae2242ea114e93321efcad725c41ad8a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a0f89498f89e2da7f28acb9fed652ef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a1a0f89498f89e2da7f28acb9fed652ef">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, FUN_00148698)</td></tr>
+<tr class="memitem:a1a0f89498f89e2da7f28acb9fed652ef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a1a0f89498f89e2da7f28acb9fed652ef">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, FUN_00148698)</td></tr>
 <tr class="separator:a1a0f89498f89e2da7f28acb9fed652ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab19658250b668ccc134755ad48586a8a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#ab19658250b668ccc134755ad48586a8a">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, FUN_00148718)</td></tr>
+<tr class="memitem:ab19658250b668ccc134755ad48586a8a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#ab19658250b668ccc134755ad48586a8a">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, FUN_00148718)</td></tr>
 <tr class="separator:ab19658250b668ccc134755ad48586a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a266823ee8a2d5eca4841c8300648b68e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a266823ee8a2d5eca4841c8300648b68e">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, FUN_00148748)</td></tr>
+<tr class="memitem:a266823ee8a2d5eca4841c8300648b68e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a266823ee8a2d5eca4841c8300648b68e">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, FUN_00148748)</td></tr>
 <tr class="separator:a266823ee8a2d5eca4841c8300648b68e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9f52958302309100380aee7977f94a5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#ac9f52958302309100380aee7977f94a5">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, FUN_00148770)</td></tr>
+<tr class="memitem:ac9f52958302309100380aee7977f94a5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#ac9f52958302309100380aee7977f94a5">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, FUN_00148770)</td></tr>
 <tr class="separator:ac9f52958302309100380aee7977f94a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad503c5bfcb439ca71e9b5fc4c377973f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#ad503c5bfcb439ca71e9b5fc4c377973f">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, FUN_00148828)</td></tr>
+<tr class="memitem:ad503c5bfcb439ca71e9b5fc4c377973f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#ad503c5bfcb439ca71e9b5fc4c377973f">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, FUN_00148828)</td></tr>
 <tr class="separator:ad503c5bfcb439ca71e9b5fc4c377973f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61029ed01a989eb46cdc251da021e3e0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a61029ed01a989eb46cdc251da021e3e0">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, FUN_00148888)</td></tr>
+<tr class="memitem:a61029ed01a989eb46cdc251da021e3e0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a61029ed01a989eb46cdc251da021e3e0">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, FUN_00148888)</td></tr>
 <tr class="separator:a61029ed01a989eb46cdc251da021e3e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71cffa0d856f039ca91e6d547fd6cb3b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a71cffa0d856f039ca91e6d547fd6cb3b">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, func_00148910)</td></tr>
+<tr class="memitem:a71cffa0d856f039ca91e6d547fd6cb3b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a71cffa0d856f039ca91e6d547fd6cb3b">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, func_00148910)</td></tr>
 <tr class="separator:a71cffa0d856f039ca91e6d547fd6cb3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ada6c4c2fb4604b926ae51477031240"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a7ada6c4c2fb4604b926ae51477031240">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, FUN_00148938)</td></tr>
+<tr class="memitem:a7ada6c4c2fb4604b926ae51477031240"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a7ada6c4c2fb4604b926ae51477031240">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, FUN_00148938)</td></tr>
 <tr class="separator:a7ada6c4c2fb4604b926ae51477031240"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f46c1f6562dca85072a60cf5ddef44a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a2f46c1f6562dca85072a60cf5ddef44a">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, CpdprizeAttractSwDprizes__FP2SW3CIDP6VECTORiPP6DPRIZE)</td></tr>
+<tr class="memitem:a2f46c1f6562dca85072a60cf5ddef44a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a2f46c1f6562dca85072a60cf5ddef44a">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, CpdprizeAttractSwDprizes__FP2SW3CIDP6VECTORiPP6DPRIZE)</td></tr>
 <tr class="separator:a2f46c1f6562dca85072a60cf5ddef44a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a732562e8042e65bba517a520f4779b63"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a732562e8042e65bba517a520f4779b63">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, RemoveSwExtraneousCharms__FP2SW)</td></tr>
+<tr class="memitem:a732562e8042e65bba517a520f4779b63"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a732562e8042e65bba517a520f4779b63">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, RemoveSwExtraneousCharms__FP2SW)</td></tr>
 <tr class="separator:a732562e8042e65bba517a520f4779b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3e063c88841f36c3e5ec2646b93969b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#ae3e063c88841f36c3e5ec2646b93969b">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, FUN_00148d90)</td></tr>
+<tr class="memitem:ae3e063c88841f36c3e5ec2646b93969b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#ae3e063c88841f36c3e5ec2646b93969b">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, FUN_00148d90)</td></tr>
 <tr class="separator:ae3e063c88841f36c3e5ec2646b93969b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d73d4e43afbe8dad437cf60c287f58c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a2d73d4e43afbe8dad437cf60c287f58c">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, FUN_00148e18)</td></tr>
+<tr class="memitem:a2d73d4e43afbe8dad437cf60c287f58c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a2d73d4e43afbe8dad437cf60c287f58c">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, FUN_00148e18)</td></tr>
 <tr class="separator:a2d73d4e43afbe8dad437cf60c287f58c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50b8b9f1eddc5aaf726bf0a97c0796a3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a50b8b9f1eddc5aaf726bf0a97c0796a3">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, FUN_00148e40)</td></tr>
+<tr class="memitem:a50b8b9f1eddc5aaf726bf0a97c0796a3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a50b8b9f1eddc5aaf726bf0a97c0796a3">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, FUN_00148e40)</td></tr>
 <tr class="separator:a50b8b9f1eddc5aaf726bf0a97c0796a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a876e02016dfe135900b6ead5fdb7667b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a876e02016dfe135900b6ead5fdb7667b">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, FUN_00148ef8)</td></tr>
+<tr class="memitem:a876e02016dfe135900b6ead5fdb7667b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a876e02016dfe135900b6ead5fdb7667b">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, FUN_00148ef8)</td></tr>
 <tr class="separator:a876e02016dfe135900b6ead5fdb7667b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31c7f64065581d208f215126585262b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a31c7f64065581d208f215126585262b9">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, increment_and_show_life_count)</td></tr>
+<tr class="memitem:a31c7f64065581d208f215126585262b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a31c7f64065581d208f215126585262b9">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, increment_and_show_life_count)</td></tr>
 <tr class="separator:a31c7f64065581d208f215126585262b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a454b13166bdb5a763ebd22d9ea35dc52"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a454b13166bdb5a763ebd22d9ea35dc52">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, CollectLifetkn__FP7LIFETKN)</td></tr>
+<tr class="memitem:a454b13166bdb5a763ebd22d9ea35dc52"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a454b13166bdb5a763ebd22d9ea35dc52">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, CollectLifetkn__FP7LIFETKN)</td></tr>
 <tr class="separator:a454b13166bdb5a763ebd22d9ea35dc52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5873abfbe917e5941f9eb274b3291479"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a5873abfbe917e5941f9eb274b3291479">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, FUN_00149168)</td></tr>
+<tr class="memitem:a5873abfbe917e5941f9eb274b3291479"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#a5873abfbe917e5941f9eb274b3291479">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, FUN_00149168)</td></tr>
 <tr class="separator:a5873abfbe917e5941f9eb274b3291479"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afef1aa63ebcf86b9adcc60af0dffd55e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#afef1aa63ebcf86b9adcc60af0dffd55e">INCLUDE_ASM</a> (const s32, &quot;P2/coin&quot;, break_bottle)</td></tr>
+<tr class="memitem:afef1aa63ebcf86b9adcc60af0dffd55e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="coin_8c.html#afef1aa63ebcf86b9adcc60af0dffd55e">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/coin&quot;, break_bottle)</td></tr>
 <tr class="separator:afef1aa63ebcf86b9adcc60af0dffd55e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a5d21c77e9e2528d06d0e5125c760c788"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d21c77e9e2528d06d0e5125c760c788">&#9670;&nbsp;</a></span>AddLife()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AddLife </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a life. </p>
+
+<p class="definition">Definition at line <a class="el" href="coin_8c_source.html#l00070">70</a> of file <a class="el" href="coin_8c_source.html">coin.c</a>.</p>
+
+</div>
+</div>
 <a id="afef1aa63ebcf86b9adcc60af0dffd55e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afef1aa63ebcf86b9adcc60af0dffd55e">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[1/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afef1aa63ebcf86b9adcc60af0dffd55e">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[1/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -195,8 +261,110 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a4081d7b9280c52ee978b638ddada047c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4081d7b9280c52ee978b638ddada047c">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[2/36]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">INCLUDE_ASM </td>
+          <td>(</td>
+          <td class="paramtype">const&#160;</td>
+          <td class="paramname"><em>s32</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;P2/coin&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CheckDprizeBounce__FP6DPRIZE&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a593b7808835aab4bc26e51620641a7ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a593b7808835aab4bc26e51620641a7ca">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[3/36]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">INCLUDE_ASM </td>
+          <td>(</td>
+          <td class="paramtype">const&#160;</td>
+          <td class="paramname"><em>s32</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;P2/coin&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CheckDprizeCollect__FP6DPRIZE&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4784f732d75babf6af0f4669d742ecb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4784f732d75babf6af0f4669d742ecb7">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[4/36]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">INCLUDE_ASM </td>
+          <td>(</td>
+          <td class="paramtype">const&#160;</td>
+          <td class="paramname"><em>s32</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;P2/coin&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CloneDprize__FP6DPRIZET0&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a454b13166bdb5a763ebd22d9ea35dc52"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a454b13166bdb5a763ebd22d9ea35dc52">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[2/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a454b13166bdb5a763ebd22d9ea35dc52">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[5/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -230,7 +398,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a2f46c1f6562dca85072a60cf5ddef44a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f46c1f6562dca85072a60cf5ddef44a">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[3/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f46c1f6562dca85072a60cf5ddef44a">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[6/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -263,8 +431,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a669022482472b20bd8d66524c609fce3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a669022482472b20bd8d66524c609fce3">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[4/24]</span></h2>
+<a id="a774c56eb32753eca03396df2cd1e422d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a774c56eb32753eca03396df2cd1e422d">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[7/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -284,7 +452,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FUN_00148400&#160;</td>
+          <td class="paramtype">CreateSwCharm__FP2SW&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -297,8 +465,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5e92b69a94e39500d21c84ab16b663b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e92b69a94e39500d21c84ab16b663b1">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[5/24]</span></h2>
+<a id="a3a894216ff06620bfaa9746f028084f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a894216ff06620bfaa9746f028084f7">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[8/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -318,7 +486,109 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FUN_00148510&#160;</td>
+          <td class="paramtype">FAbsorbDprizeWkr__FP6DPRIZEP3WKR&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0dd6cc639b843f5d6fb36a4f3e73f2b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dd6cc639b843f5d6fb36a4f3e73f2b4">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[9/36]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">INCLUDE_ASM </td>
+          <td>(</td>
+          <td class="paramtype">const&#160;</td>
+          <td class="paramname"><em>s32</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;P2/coin&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FFilterDprizeObjects__FP6DPRIZEP2SO&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a255a15fb6f16a0ee289a0c5a6ed398b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a255a15fb6f16a0ee289a0c5a6ed398b1">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[10/36]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">INCLUDE_ASM </td>
+          <td>(</td>
+          <td class="paramtype">const&#160;</td>
+          <td class="paramname"><em>s32</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;P2/coin&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FUN_00147ed0&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a22ffb3f2d21309b16e0ceebad9d98cf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22ffb3f2d21309b16e0ceebad9d98cf4">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[11/36]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">INCLUDE_ASM </td>
+          <td>(</td>
+          <td class="paramtype">const&#160;</td>
+          <td class="paramname"><em>s32</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;P2/coin&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FUN_00147ef8&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -332,7 +602,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a1a0f89498f89e2da7f28acb9fed652ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a0f89498f89e2da7f28acb9fed652ef">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[6/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a0f89498f89e2da7f28acb9fed652ef">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[12/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -366,7 +636,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ab19658250b668ccc134755ad48586a8a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab19658250b668ccc134755ad48586a8a">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[7/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab19658250b668ccc134755ad48586a8a">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[13/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -400,7 +670,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a266823ee8a2d5eca4841c8300648b68e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a266823ee8a2d5eca4841c8300648b68e">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[8/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a266823ee8a2d5eca4841c8300648b68e">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[14/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -434,7 +704,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ac9f52958302309100380aee7977f94a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9f52958302309100380aee7977f94a5">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[9/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9f52958302309100380aee7977f94a5">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[15/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -468,7 +738,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ad503c5bfcb439ca71e9b5fc4c377973f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad503c5bfcb439ca71e9b5fc4c377973f">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[10/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad503c5bfcb439ca71e9b5fc4c377973f">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[16/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -502,7 +772,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a61029ed01a989eb46cdc251da021e3e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61029ed01a989eb46cdc251da021e3e0">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[11/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a61029ed01a989eb46cdc251da021e3e0">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[17/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -536,7 +806,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a7ada6c4c2fb4604b926ae51477031240"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ada6c4c2fb4604b926ae51477031240">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[12/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ada6c4c2fb4604b926ae51477031240">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[18/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -570,7 +840,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ae3e063c88841f36c3e5ec2646b93969b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3e063c88841f36c3e5ec2646b93969b">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[13/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3e063c88841f36c3e5ec2646b93969b">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[19/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -604,7 +874,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a2d73d4e43afbe8dad437cf60c287f58c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2d73d4e43afbe8dad437cf60c287f58c">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[14/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d73d4e43afbe8dad437cf60c287f58c">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[20/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -638,7 +908,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a50b8b9f1eddc5aaf726bf0a97c0796a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50b8b9f1eddc5aaf726bf0a97c0796a3">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[15/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a50b8b9f1eddc5aaf726bf0a97c0796a3">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[21/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -672,7 +942,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a876e02016dfe135900b6ead5fdb7667b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a876e02016dfe135900b6ead5fdb7667b">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[16/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a876e02016dfe135900b6ead5fdb7667b">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[22/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -706,7 +976,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a5873abfbe917e5941f9eb274b3291479"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5873abfbe917e5941f9eb274b3291479">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[17/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5873abfbe917e5941f9eb274b3291479">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[23/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -740,7 +1010,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a71cffa0d856f039ca91e6d547fd6cb3b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71cffa0d856f039ca91e6d547fd6cb3b">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[18/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a71cffa0d856f039ca91e6d547fd6cb3b">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[24/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -774,7 +1044,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a31c7f64065581d208f215126585262b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31c7f64065581d208f215126585262b9">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[19/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a31c7f64065581d208f215126585262b9">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[25/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -808,7 +1078,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ac2cefdd1897fadfde30e248c6c49f426"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2cefdd1897fadfde30e248c6c49f426">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[20/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2cefdd1897fadfde30e248c6c49f426">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[26/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -841,8 +1111,76 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="add73ae940f2b29bf20b1756805f6eaab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add73ae940f2b29bf20b1756805f6eaab">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[27/36]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">INCLUDE_ASM </td>
+          <td>(</td>
+          <td class="paramtype">const&#160;</td>
+          <td class="paramname"><em>s32</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;P2/coin&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PostDprizeLoad__FP6DPRIZE&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acd03912f0e42efbb19de60e73c645c37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd03912f0e42efbb19de60e73c645c37">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[28/36]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">INCLUDE_ASM </td>
+          <td>(</td>
+          <td class="paramtype">const&#160;</td>
+          <td class="paramname"><em>s32</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;P2/coin&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ProjectDprizeTransform__FP6DPRIZEfi&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a732562e8042e65bba517a520f4779b63"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a732562e8042e65bba517a520f4779b63">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[21/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a732562e8042e65bba517a520f4779b63">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[29/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -875,8 +1213,42 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ab4ce0e8262e32ab82fc79e34b62ea737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4ce0e8262e32ab82fc79e34b62ea737">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[30/36]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">INCLUDE_ASM </td>
+          <td>(</td>
+          <td class="paramtype">const&#160;</td>
+          <td class="paramname"><em>s32</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;P2/coin&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">RenderDprizeAll__FP6DPRIZEP2CMP2RO&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a266e0121584fcea90339b0351bf1fdb3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a266e0121584fcea90339b0351bf1fdb3">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[22/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a266e0121584fcea90339b0351bf1fdb3">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[31/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -910,7 +1282,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a38c91b79912b32574b2e2c4899fa9b12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38c91b79912b32574b2e2c4899fa9b12">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[23/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a38c91b79912b32574b2e2c4899fa9b12">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[32/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -943,8 +1315,42 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a103576694bc71f2464b5bf1a46d7aa24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a103576694bc71f2464b5bf1a46d7aa24">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[33/36]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">INCLUDE_ASM </td>
+          <td>(</td>
+          <td class="paramtype">const&#160;</td>
+          <td class="paramname"><em>s32</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;P2/coin&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SetDprizeDprizes__FP6DPRIZE7DPRIZES&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ae2242ea114e93321efcad725c41ad8a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2242ea114e93321efcad725c41ad8a4">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[24/24]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2242ea114e93321efcad725c41ad8a4">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[34/36]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -974,6 +1380,225 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8c2e5fd8b39e043f393cca607b2c2edb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c2e5fd8b39e043f393cca607b2c2edb">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[35/36]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">INCLUDE_ASM </td>
+          <td>(</td>
+          <td class="paramtype">const&#160;</td>
+          <td class="paramname"><em>s32</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;P2/coin&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UpdateCoin__FP4COINf&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4efda95fa427163a51d2e12706049f27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4efda95fa427163a51d2e12706049f27">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[36/36]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">INCLUDE_ASM </td>
+          <td>(</td>
+          <td class="paramtype">const&#160;</td>
+          <td class="paramname"><em>s32</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;P2/coin&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UpdateDprize__FP6DPRIZEf&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8011f0062f36f84e0f66a2633bce3a51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8011f0062f36f84e0f66a2633bce3a51">&#9670;&nbsp;</a></span>InitCharm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InitCharm </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCHARM.html">CHARM</a> *&#160;</td>
+          <td class="paramname"><em>pcharm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes a Charm. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pcharm</td><td>Charm to initialize </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="coin_8c_source.html#l00088">88</a> of file <a class="el" href="coin_8c_source.html">coin.c</a>.</p>
+
+</div>
+</div>
+<a id="a644b52f8e679770b2a1470aea098bd4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a644b52f8e679770b2a1470aea098bd4b">&#9670;&nbsp;</a></span>InitCoin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InitCoin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCOIN.html">COIN</a> *&#160;</td>
+          <td class="paramname"><em>pcoin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes a DPrize. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdprize</td><td>DPrize to initialize </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="coin_8c_source.html#l00048">48</a> of file <a class="el" href="coin_8c_source.html">coin.c</a>.</p>
+
+</div>
+</div>
+<a id="a861f067745a91a9656469e0ea5dd7608"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a861f067745a91a9656469e0ea5dd7608">&#9670;&nbsp;</a></span>InitDprize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InitDprize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structDPRIZE.html">DPRIZE</a> *&#160;</td>
+          <td class="paramname"><em>pdprize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes a DPrize. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdprize</td><td>DPrize to initialize </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="coin_8c_source.html#l00005">5</a> of file <a class="el" href="coin_8c_source.html">coin.c</a>.</p>
+
+</div>
+</div>
+<a id="aebf2a6c5c7ddbc715a2ebc5f00a404ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebf2a6c5c7ddbc715a2ebc5f00a404ff">&#9670;&nbsp;</a></span>InitKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InitKey </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structKEY.html">KEY</a> *&#160;</td>
+          <td class="paramname"><em>pkey</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes a Charm. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pcharm</td><td>Charm to initialize </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="coin_8c_source.html#l00102">102</a> of file <a class="el" href="coin_8c_source.html">coin.c</a>.</p>
+
+</div>
+</div>
+<a id="acfc36dc9afc7d963cd4c085ed65b54f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfc36dc9afc7d963cd4c085ed65b54f5">&#9670;&nbsp;</a></span>LoadDprizeFromBrx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LoadDprizeFromBrx </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structDPRIZE.html">DPRIZE</a> *&#160;</td>
+          <td class="paramname"><em>pdprize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCBinaryInputStream.html">CBinaryInputStream</a> *&#160;</td>
+          <td class="paramname"><em>pbis</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Loads a DPrize from an Input Stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdprize</td><td>DPrize to initialize </td></tr>
+    <tr><td class="paramname">pbis</td><td>Input Stream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="coin_8c_source.html#l00021">21</a> of file <a class="el" href="coin_8c_source.html">coin.c</a>.</p>
 
 </div>
 </div>

@@ -1,5 +1,6 @@
 var util_8h =
 [
+    [ "CLQ", "structCLQ.html", "structCLQ" ],
     [ "LM", "structLM.html", "structLM" ],
     [ "CalculateSinCos", "util_8h.html#a0033025333613b94763e2dd9525d6627", null ],
     [ "CSolveQuadratic", "util_8h.html#a567e3a24beb2e2c281a88ecec05c2bc3", null ],

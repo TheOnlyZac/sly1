@@ -103,13 +103,36 @@ $(document).ready(function(){initNavTree('common_8h_source.html',''); initResiza
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="include__asm_8h.html">include_asm.h</a>&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="include__rodata_8h.html">include_rodata.h</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="types_8h.html">types.h</a>&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">types.h</a>&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* COMMON_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structRGBA.html">   16</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structRGBA.html">RGBA</a></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structRGBA.html#a13bd41e099c74c86b52b63ff57365cc0">   18</a></span>&#160;    <a class="code" href="types_8h.html#a65f85814a8290f9797005d3b28e7e5fc">uchar</a> <a class="code" href="structRGBA.html#a13bd41e099c74c86b52b63ff57365cc0">bRed</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structRGBA.html#a7897af82ee638d146a4caccef26f0cd6">   19</a></span>&#160;    <a class="code" href="types_8h.html#a65f85814a8290f9797005d3b28e7e5fc">uchar</a> <a class="code" href="structRGBA.html#a7897af82ee638d146a4caccef26f0cd6">bGreen</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structRGBA.html#a19f72cdfaa5d7b3c12e761914aefd183">   20</a></span>&#160;    <a class="code" href="types_8h.html#a65f85814a8290f9797005d3b28e7e5fc">uchar</a> <a class="code" href="structRGBA.html#a19f72cdfaa5d7b3c12e761914aefd183">bBlue</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structRGBA.html#adb32fd73f1d70ccb57a3c96ae60e767d">   21</a></span>&#160;    <a class="code" href="types_8h.html#a65f85814a8290f9797005d3b28e7e5fc">uchar</a> <a class="code" href="structRGBA.html#adb32fd73f1d70ccb57a3c96ae60e767d">bAlpha</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structRGBA.html#a989d3661a0733c857c44c7caf3b41e3e">   23</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="structRGBA.html#a989d3661a0733c857c44c7caf3b41e3e">operator=</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> rgba)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="structRGBA.html#a13bd41e099c74c86b52b63ff57365cc0">bRed</a> = (rgba &gt;&gt; 24) &amp; 0xFF;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="structRGBA.html#a7897af82ee638d146a4caccef26f0cd6">bGreen</a> = (rgba &gt;&gt; 16) &amp; 0xFF;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="structRGBA.html#a19f72cdfaa5d7b3c12e761914aefd183">bBlue</a> = (rgba &gt;&gt; 8) &amp; 0xFF;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <a class="code" href="structRGBA.html#adb32fd73f1d70ccb57a3c96ae60e767d">bAlpha</a> = rgba &amp; 0xFF;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;};</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* COMMON_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="astructRGBA_html_a989d3661a0733c857c44c7caf3b41e3e"><div class="ttname"><a href="structRGBA.html#a989d3661a0733c857c44c7caf3b41e3e">RGBA::operator=</a></div><div class="ttdeci">void operator=(const int rgba)</div><div class="ttdef"><b>Definition:</b> <a href="common_8h_source.html#l00023">common.h:23</a></div></div>
+<div class="ttc" id="astructRGBA_html"><div class="ttname"><a href="structRGBA.html">RGBA</a></div><div class="ttdoc">RGBA color value.</div><div class="ttdef"><b>Definition:</b> <a href="common_8h_source.html#l00016">common.h:16</a></div></div>
 <div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div><div class="ttdoc">Types used throughout the engine.</div></div>
+<div class="ttc" id="astructRGBA_html_a7897af82ee638d146a4caccef26f0cd6"><div class="ttname"><a href="structRGBA.html#a7897af82ee638d146a4caccef26f0cd6">RGBA::bGreen</a></div><div class="ttdeci">uchar bGreen</div><div class="ttdef"><b>Definition:</b> <a href="common_8h_source.html#l00019">common.h:19</a></div></div>
 <div class="ttc" id="ainclude__asm_8h_html"><div class="ttname"><a href="include__asm_8h.html">include_asm.h</a></div></div>
+<div class="ttc" id="atypes_8h_html_a65f85814a8290f9797005d3b28e7e5fc"><div class="ttname"><a href="types_8h.html#a65f85814a8290f9797005d3b28e7e5fc">uchar</a></div><div class="ttdeci">unsigned char uchar</div><div class="ttdef"><b>Definition:</b> <a href="types_8h_source.html#l00011">types.h:11</a></div></div>
+<div class="ttc" id="astructRGBA_html_a19f72cdfaa5d7b3c12e761914aefd183"><div class="ttname"><a href="structRGBA.html#a19f72cdfaa5d7b3c12e761914aefd183">RGBA::bBlue</a></div><div class="ttdeci">uchar bBlue</div><div class="ttdef"><b>Definition:</b> <a href="common_8h_source.html#l00020">common.h:20</a></div></div>
+<div class="ttc" id="astructRGBA_html_a13bd41e099c74c86b52b63ff57365cc0"><div class="ttname"><a href="structRGBA.html#a13bd41e099c74c86b52b63ff57365cc0">RGBA::bRed</a></div><div class="ttdeci">uchar bRed</div><div class="ttdef"><b>Definition:</b> <a href="common_8h_source.html#l00018">common.h:18</a></div></div>
+<div class="ttc" id="astructRGBA_html_adb32fd73f1d70ccb57a3c96ae60e767d"><div class="ttname"><a href="structRGBA.html#adb32fd73f1d70ccb57a3c96ae60e767d">RGBA::bAlpha</a></div><div class="ttdeci">uchar bAlpha</div><div class="ttdef"><b>Definition:</b> <a href="common_8h_source.html#l00021">common.h:21</a></div></div>
 <div class="ttc" id="ainclude__rodata_8h_html"><div class="ttname"><a href="include__rodata_8h.html">include_rodata.h</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

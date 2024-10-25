@@ -13,8 +13,8 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title=" ">
-<polygon fill="#bfbfbf" stroke="black" points="404,-112.5 404,-131.5 446,-131.5 446,-112.5 404,-112.5"/>
-<text text-anchor="middle" x="425" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">BLOT</text>
+<polygon fill="#bfbfbf" stroke="black" points="373,-112.5 373,-131.5 415,-131.5 415,-112.5 373,-112.5"/>
+<text text-anchor="middle" x="394" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">BLOT</text>
 </a>
 </g>
 </g>
@@ -22,209 +22,224 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="structATTRACT.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="146.5,-56.5 146.5,-75.5 207.5,-75.5 207.5,-56.5 146.5,-56.5"/>
-<text text-anchor="middle" x="177" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">ATTRACT</text>
+<polygon fill="white" stroke="black" points="80.5,-56.5 80.5,-75.5 141.5,-75.5 141.5,-56.5 80.5,-56.5"/>
+<text text-anchor="middle" x="111" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">ATTRACT</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M393.88,-114.35C353.19,-105.64 279.73,-89.84 217,-76 213.94,-75.33 210.75,-74.62 207.57,-73.91"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="393.22,-117.79 403.73,-116.46 394.68,-110.94 393.22,-117.79"/>
+<path fill="none" stroke="midnightblue" d="M362.81,-115.62C316.5,-107.54 226.84,-91.55 151,-76 147.93,-75.37 144.74,-74.69 141.55,-74"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="362.37,-119.09 372.82,-117.36 363.57,-112.2 362.37,-119.09"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="structCTR.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="226,-56.5 226,-75.5 262,-75.5 262,-56.5 226,-56.5"/>
-<text text-anchor="middle" x="244" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">CTR</text>
+<g id="a_node3"><a xlink:href="structBINOC.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="160,-56.5 160,-75.5 208,-75.5 208,-56.5 160,-56.5"/>
+<text text-anchor="middle" x="184" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">BINOC</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M393.91,-112.28C362.73,-103.46 313.4,-89.26 271,-76 268.17,-75.12 265.18,-74.15 262.27,-73.19"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="393.18,-115.71 403.75,-115.06 395.08,-108.98 393.18,-115.71"/>
+<path fill="none" stroke="midnightblue" d="M363.27,-113.36C327.93,-104.53 268.21,-89.49 217,-76 214.13,-75.24 211.12,-74.44 208.14,-73.63"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="362.44,-116.76 372.99,-115.78 364.13,-109.97 362.44,-116.76"/>
 </g>
-<!-- Node10 -->
-<g id="node10" class="node">
-<title>Node10</title>
-<g id="a_node10"><a xlink:href="structLETTERBOX.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="280,-56.5 280,-75.5 354,-75.5 354,-56.5 280,-56.5"/>
-<text text-anchor="middle" x="317" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">LETTERBOX</text>
+<!-- Node4 -->
+<g id="node4" class="node">
+<title>Node4</title>
+<g id="a_node4"><a xlink:href="structCTR.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="226,-56.5 226,-75.5 262,-75.5 262,-56.5 226,-56.5"/>
+<text text-anchor="middle" x="244" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">CTR</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node10 -->
-<g id="edge9" class="edge">
-<title>Node1&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M398.45,-107.73C378.45,-97.73 351.61,-84.31 334.31,-75.65"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="397.14,-110.98 407.65,-112.32 400.27,-104.72 397.14,-110.98"/>
+<!-- Node1&#45;&gt;Node4 -->
+<g id="edge3" class="edge">
+<title>Node1&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M363.14,-109.89C332.74,-98.95 287.31,-82.59 262.24,-73.57"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="362.23,-113.28 372.83,-113.38 364.6,-106.7 362.23,-113.28"/>
 </g>
 <!-- Node11 -->
 <g id="node11" class="node">
 <title>Node11</title>
-<g id="a_node11"><a xlink:href="structLOGO.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="372,-56.5 372,-75.5 416,-75.5 416,-56.5 372,-56.5"/>
-<text text-anchor="middle" x="394" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">LOGO</text>
+<g id="a_node11"><a xlink:href="structLETTERBOX.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="280,-56.5 280,-75.5 354,-75.5 354,-56.5 280,-56.5"/>
+<text text-anchor="middle" x="317" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">LETTERBOX</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node11 -->
 <g id="edge10" class="edge">
 <title>Node1&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M414.82,-103.27C409.53,-94.05 403.28,-83.17 399.02,-75.75"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="411.87,-105.15 419.88,-112.08 417.94,-101.67 411.87,-105.15"/>
+<path fill="none" stroke="midnightblue" d="M373.1,-106.34C359.09,-96.52 341.12,-83.91 329.34,-75.65"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="371.43,-109.45 381.63,-112.32 375.45,-103.72 371.43,-109.45"/>
 </g>
 <!-- Node12 -->
 <g id="node12" class="node">
 <title>Node12</title>
-<g id="a_node12"><a xlink:href="structNOTE.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="434,-56.5 434,-75.5 478,-75.5 478,-56.5 434,-56.5"/>
-<text text-anchor="middle" x="456" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">NOTE</text>
+<g id="a_node12"><a xlink:href="structLOGO.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="372,-56.5 372,-75.5 416,-75.5 416,-56.5 372,-56.5"/>
+<text text-anchor="middle" x="394" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">LOGO</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node12 -->
 <g id="edge11" class="edge">
 <title>Node1&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M435.18,-103.27C440.47,-94.05 446.72,-83.17 450.98,-75.75"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="432.06,-101.67 430.12,-112.08 438.13,-105.15 432.06,-101.67"/>
+<path fill="none" stroke="midnightblue" d="M394,-101.8C394,-92.91 394,-82.78 394,-75.75"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="390.5,-102.08 394,-112.08 397.5,-102.08 390.5,-102.08"/>
 </g>
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="structTIMER.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="496.5,-56.5 496.5,-75.5 543.5,-75.5 543.5,-56.5 496.5,-56.5"/>
-<text text-anchor="middle" x="520" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">TIMER</text>
+<g id="a_node13"><a xlink:href="structNOTE.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="434,-56.5 434,-75.5 478,-75.5 478,-56.5 434,-56.5"/>
+<text text-anchor="middle" x="456" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">NOTE</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node13 -->
 <g id="edge12" class="edge">
 <title>Node1&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M449.32,-107.18C466.8,-97.24 489.83,-84.15 504.77,-75.65"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="447.23,-104.34 440.26,-112.32 450.69,-110.43 447.23,-104.34"/>
+<path fill="none" stroke="midnightblue" d="M411.75,-105.54C422.81,-95.91 436.63,-83.87 445.86,-75.83"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="409.2,-103.12 403.96,-112.32 413.8,-108.4 409.2,-103.12"/>
 </g>
 <!-- Node14 -->
 <g id="node14" class="node">
 <title>Node14</title>
-<g id="a_node14"><a xlink:href="structTITLE.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="561.5,-56.5 561.5,-75.5 604.5,-75.5 604.5,-56.5 561.5,-56.5"/>
-<text text-anchor="middle" x="583" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">TITLE</text>
+<g id="a_node14"><a xlink:href="structTIMER.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="496.5,-56.5 496.5,-75.5 543.5,-75.5 543.5,-56.5 496.5,-56.5"/>
+<text text-anchor="middle" x="520" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">TIMER</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node14 -->
 <g id="edge13" class="edge">
 <title>Node1&#45;&gt;Node14</title>
-<path fill="none" stroke="midnightblue" d="M455.77,-110.48C486.81,-99.87 533.93,-83.77 561.27,-74.43"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="454.64,-107.17 446.31,-113.72 456.9,-113.8 454.64,-107.17"/>
+<path fill="none" stroke="midnightblue" d="M423.16,-108.5C446.78,-98.38 479.43,-84.39 500.13,-75.52"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="421.78,-105.29 413.97,-112.44 424.54,-111.72 421.78,-105.29"/>
 </g>
 <!-- Node15 -->
 <g id="node15" class="node">
 <title>Node15</title>
-<g id="a_node15"><a xlink:href="structTOTALS.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="622.5,-56.5 622.5,-75.5 675.5,-75.5 675.5,-56.5 622.5,-56.5"/>
-<text text-anchor="middle" x="649" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">TOTALS</text>
+<g id="a_node15"><a xlink:href="structTITLE.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="561.5,-56.5 561.5,-75.5 604.5,-75.5 604.5,-56.5 561.5,-56.5"/>
+<text text-anchor="middle" x="583" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">TITLE</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node15 -->
 <g id="edge14" class="edge">
 <title>Node1&#45;&gt;Node15</title>
-<path fill="none" stroke="midnightblue" d="M455.8,-113.84C493.25,-105.11 558.34,-89.78 614,-76 616.68,-75.34 619.47,-74.64 622.26,-73.93"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="454.95,-110.45 446.01,-116.13 456.54,-117.27 454.95,-110.45"/>
+<path fill="none" stroke="midnightblue" d="M424.81,-112.43C456.87,-103.49 508.51,-88.97 553,-76 555.71,-75.21 558.56,-74.37 561.38,-73.53"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="423.81,-109.08 415.12,-115.14 425.69,-115.82 423.81,-109.08"/>
 </g>
-<!-- Node4 -->
-<g id="node4" class="node">
-<title>Node4</title>
-<g id="a_node4"><a xlink:href="structCLUECTR.html" target="_top" xlink:title=" ">
+<!-- Node16 -->
+<g id="node16" class="node">
+<title>Node16</title>
+<g id="a_node16"><a xlink:href="structTOTALS.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="622.5,-56.5 622.5,-75.5 675.5,-75.5 675.5,-56.5 622.5,-56.5"/>
+<text text-anchor="middle" x="649" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">TOTALS</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node16 -->
+<g id="edge15" class="edge">
+<title>Node1&#45;&gt;Node16</title>
+<path fill="none" stroke="midnightblue" d="M425.05,-115.16C467.75,-107 546.94,-91.47 614,-76 616.69,-75.38 619.49,-74.71 622.28,-74.02"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="424.18,-111.76 415.01,-117.07 425.48,-118.64 424.18,-111.76"/>
+</g>
+<!-- Node5 -->
+<g id="node5" class="node">
+<title>Node5</title>
+<g id="a_node5"><a xlink:href="structCLUECTR.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-19.5 62,-19.5 62,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="31" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">CLUECTR</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node4 -->
-<g id="edge3" class="edge">
-<title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M216.3,-56.09C216.2,-56.06 216.1,-56.03 216,-56 187.29,-47.9 107.09,-28.85 62.29,-18.32"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="215.4,-59.47 225.98,-59 217.42,-52.77 215.4,-59.47"/>
+<!-- Node4&#45;&gt;Node5 -->
+<g id="edge4" class="edge">
+<title>Node4&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M215.92,-55.9C175.36,-44.71 103.48,-27.81 62.1,-18.19"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="215.19,-59.33 225.77,-58.69 217.1,-52.6 215.19,-59.33"/>
 </g>
-<!-- Node5 -->
-<g id="node5" class="node">
-<title>Node5</title>
-<g id="a_node5"><a xlink:href="structCOINCTR.html" target="_top" xlink:title=" ">
+<!-- Node6 -->
+<g id="node6" class="node">
+<title>Node6</title>
+<g id="a_node6"><a xlink:href="structCOINCTR.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="80.5,-0.5 80.5,-19.5 141.5,-19.5 141.5,-0.5 80.5,-0.5"/>
 <text text-anchor="middle" x="111" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">COINCTR</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node5 -->
-<g id="edge4" class="edge">
-<title>Node3&#45;&gt;Node5</title>
+<!-- Node4&#45;&gt;Node6 -->
+<g id="edge5" class="edge">
+<title>Node4&#45;&gt;Node6</title>
 <path fill="none" stroke="midnightblue" d="M216.46,-53.82C191.38,-43.64 154.88,-28.82 132.06,-19.55"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="215.2,-57.09 225.79,-57.6 217.84,-50.6 215.2,-57.09"/>
 </g>
-<!-- Node6 -->
-<g id="node6" class="node">
-<title>Node6</title>
-<g id="a_node6"><a xlink:href="structCRUSHERCTR.html" target="_top" xlink:title=" ">
+<!-- Node7 -->
+<g id="node7" class="node">
+<title>Node7</title>
+<g id="a_node7"><a xlink:href="structCRUSHERCTR.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="159.5,-0.5 159.5,-19.5 242.5,-19.5 242.5,-0.5 159.5,-0.5"/>
 <text text-anchor="middle" x="201" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">CRUSHERCTR</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node6 -->
-<g id="edge5" class="edge">
-<title>Node3&#45;&gt;Node6</title>
+<!-- Node4&#45;&gt;Node7 -->
+<g id="edge6" class="edge">
+<title>Node4&#45;&gt;Node7</title>
 <path fill="none" stroke="midnightblue" d="M230.58,-48.14C223.09,-38.74 214.06,-27.4 207.97,-19.75"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="227.93,-50.44 236.9,-56.08 233.41,-46.08 227.93,-50.44"/>
 </g>
-<!-- Node7 -->
-<g id="node7" class="node">
-<title>Node7</title>
-<g id="a_node7"><a xlink:href="structKEYCTR.html" target="_top" xlink:title=" ">
+<!-- Node8 -->
+<g id="node8" class="node">
+<title>Node8</title>
+<g id="a_node8"><a xlink:href="structKEYCTR.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="261,-0.5 261,-19.5 315,-19.5 315,-0.5 261,-0.5"/>
 <text text-anchor="middle" x="288" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">KEYCTR</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node7 -->
-<g id="edge6" class="edge">
-<title>Node3&#45;&gt;Node7</title>
+<!-- Node4&#45;&gt;Node8 -->
+<g id="edge7" class="edge">
+<title>Node4&#45;&gt;Node8</title>
 <path fill="none" stroke="midnightblue" d="M257.73,-48.14C265.4,-38.74 274.63,-27.4 280.87,-19.75"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="254.87,-46.12 251.27,-56.08 260.3,-50.54 254.87,-46.12"/>
 </g>
-<!-- Node8 -->
-<g id="node8" class="node">
-<title>Node8</title>
-<g id="a_node8"><a xlink:href="structLIFECTR.html" target="_top" xlink:title=" ">
+<!-- Node9 -->
+<g id="node9" class="node">
+<title>Node9</title>
+<g id="a_node9"><a xlink:href="structLIFECTR.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="333,-0.5 333,-19.5 389,-19.5 389,-0.5 333,-0.5"/>
 <text text-anchor="middle" x="361" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">LIFECTR</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node8 -->
-<g id="edge7" class="edge">
-<title>Node3&#45;&gt;Node8</title>
+<!-- Node4&#45;&gt;Node9 -->
+<g id="edge8" class="edge">
+<title>Node4&#45;&gt;Node9</title>
 <path fill="none" stroke="midnightblue" d="M271.12,-52.48C292.99,-42.39 323.16,-28.47 342.37,-19.6"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="269.64,-49.31 262.02,-56.68 272.57,-55.67 269.64,-49.31"/>
 </g>
-<!-- Node9 -->
-<g id="node9" class="node">
-<title>Node9</title>
-<g id="a_node9"><a xlink:href="structTRUNKCTR.html" target="_top" xlink:title=" ">
+<!-- Node10 -->
+<g id="node10" class="node">
+<title>Node10</title>
+<g id="a_node10"><a xlink:href="structTRUNKCTR.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="407,-0.5 407,-19.5 477,-19.5 477,-0.5 407,-0.5"/>
 <text text-anchor="middle" x="442" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">TRUNKCTR</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node9 -->
-<g id="edge8" class="edge">
-<title>Node3&#45;&gt;Node9</title>
+<!-- Node4&#45;&gt;Node10 -->
+<g id="edge9" class="edge">
+<title>Node4&#45;&gt;Node10</title>
 <path fill="none" stroke="midnightblue" d="M271.97,-55.84C323.94,-40.49 374.1,-27.66 406.77,-19.56"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="270.83,-52.53 262.25,-58.74 272.83,-59.24 270.83,-52.53"/>
 </g>

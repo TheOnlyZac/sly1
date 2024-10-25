@@ -375,8 +375,16 @@ Functions</h2></td></tr>
 Variables</h2></td></tr>
 <tr class="memitem:a5b22b345224fdb7146b8ed60aa988286"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structGS.html">GS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a5b22b345224fdb7146b8ed60aa988286">g_gsCur</a></td></tr>
 <tr class="separator:a5b22b345224fdb7146b8ed60aa988286"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84d86025c83f3d5df6e1ed220c174b59"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structWS.html">WS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a84d86025c83f3d5df6e1ed220c174b59">g_wsCur</a></td></tr>
+<tr class="separator:a84d86025c83f3d5df6e1ed220c174b59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a408b6e931a15b73d98dfc6ef91f932c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structLS.html">LS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a408b6e931a15b73d98dfc6ef91f932c7">g_lsCur</a></td></tr>
+<tr class="separator:a408b6e931a15b73d98dfc6ef91f932c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9192a70ba964e7952f125c05f8c49f51"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structGS.html">GS</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a9192a70ba964e7952f125c05f8c49f51">g_pgsCur</a></td></tr>
 <tr class="separator:a9192a70ba964e7952f125c05f8c49f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f3b2d029b915e5da61269e65ddf625f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structWS.html">WS</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a7f3b2d029b915e5da61269e65ddf625f">g_pwsCur</a></td></tr>
+<tr class="separator:a7f3b2d029b915e5da61269e65ddf625f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53aff3a4126f38462c330a81fe8cb2f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structLS.html">LS</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a53aff3a4126f38462c330a81fe8cb2f1">g_plsCur</a></td></tr>
+<tr class="separator:a53aff3a4126f38462c330a81fe8cb2f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Game state and level management. </p>
@@ -704,7 +712,7 @@ Variables</h2></td></tr>
 <p>Returns the max number of charms the player can hold. </p>
 <dl class="section note"><dt>Note</dt><dd>Always returns 2. This is a holdover from earlier in development where there was a powerup that allowed you to have more than 2 charms. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00073">73</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00092">92</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -858,6 +866,8 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00073">73</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1053,6 +1063,8 @@ Variables</h2></td></tr>
 <p>Decreases the count of alarms triggered in the given <a class="el" href="structGAME.html">GAME</a>. </p>
 <p>The count is used as a multiplier for the MTS countdown timer. </p>
 
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00083">83</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+
 </div>
 </div>
 <a id="a30b5523f69b10f232623631b58b59196"></a>
@@ -1073,6 +1085,8 @@ Variables</h2></td></tr>
 
 <p>Increases the count of alarms triggered in the given <a class="el" href="structGAME.html">GAME</a>. </p>
 <p>The count is used as a multiplier for the MTS countdown timer. </p>
+
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00078">78</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1190,6 +1204,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00060">60</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+
 </div>
 </div>
 <a id="a93ecb4242527b80e76b5e28209f67d2d"></a>
@@ -1226,6 +1242,8 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Calls StartGame. </p>
+
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00003">3</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1393,6 +1411,20 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a408b6e931a15b73d98dfc6ef91f932c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a408b6e931a15b73d98dfc6ef91f932c7">&#9670;&nbsp;</a></span>g_lsCur</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structLS.html">LS</a> g_lsCur</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a9192a70ba964e7952f125c05f8c49f51"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9192a70ba964e7952f125c05f8c49f51">&#9670;&nbsp;</a></span>g_pgsCur</h2>
 
@@ -1401,6 +1433,48 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structGS.html">GS</a>* g_pgsCur</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a53aff3a4126f38462c330a81fe8cb2f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53aff3a4126f38462c330a81fe8cb2f1">&#9670;&nbsp;</a></span>g_plsCur</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structLS.html">LS</a>* g_plsCur</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7f3b2d029b915e5da61269e65ddf625f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f3b2d029b915e5da61269e65ddf625f">&#9670;&nbsp;</a></span>g_pwsCur</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structWS.html">WS</a>* g_pwsCur</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a84d86025c83f3d5df6e1ed220c174b59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84d86025c83f3d5df6e1ed220c174b59">&#9670;&nbsp;</a></span>g_wsCur</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structWS.html">WS</a> g_wsCur</td>
         </tr>
       </table>
 </div><div class="memdoc">

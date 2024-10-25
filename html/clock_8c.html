@@ -127,11 +127,11 @@ Functions</h2></td></tr>
 <tr class="memitem:a6a8213cb50fbf233faa31a25a0226ab4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8c.html#a6a8213cb50fbf233faa31a25a0226ab4">SetClockEnabled</a> (<a class="el" href="structCLOCK.html">CLOCK</a> *pclock, int fEnabled)</td></tr>
 <tr class="memdesc:a6a8213cb50fbf233faa31a25a0226ab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the fEnabled flag on the clock to the given value.  <a href="clock_8c.html#a6a8213cb50fbf233faa31a25a0226ab4">More...</a><br /></td></tr>
 <tr class="separator:a6a8213cb50fbf233faa31a25a0226ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c750280b75f2a6d96f17f18b706157d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8c.html#a6c750280b75f2a6d96f17f18b706157d">INCLUDE_ASM</a> (const s32, &quot;P2/clock&quot;, StartupClock__Fv)</td></tr>
+<tr class="memitem:a6c750280b75f2a6d96f17f18b706157d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8c.html#a6c750280b75f2a6d96f17f18b706157d">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/clock&quot;, StartupClock__Fv)</td></tr>
 <tr class="separator:a6c750280b75f2a6d96f17f18b706157d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a999b3d52f4502cfc72a699a68abbfdc2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8c.html#a999b3d52f4502cfc72a699a68abbfdc2">INCLUDE_ASM</a> (const s32, &quot;P2/clock&quot;, TickNow__Fv)</td></tr>
+<tr class="memitem:a999b3d52f4502cfc72a699a68abbfdc2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8c.html#a999b3d52f4502cfc72a699a68abbfdc2">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/clock&quot;, TickNow__Fv)</td></tr>
 <tr class="separator:a999b3d52f4502cfc72a699a68abbfdc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6949fb49627a7bdfeb7af852b5bb02e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8c.html#ac6949fb49627a7bdfeb7af852b5bb02e">INCLUDE_ASM</a> (const s32, &quot;P2/clock&quot;, func_00143140)</td></tr>
+<tr class="memitem:ac6949fb49627a7bdfeb7af852b5bb02e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8c.html#ac6949fb49627a7bdfeb7af852b5bb02e">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/clock&quot;, func_00143140)</td></tr>
 <tr class="separator:ac6949fb49627a7bdfeb7af852b5bb02e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -144,6 +144,14 @@ Variables</h2></td></tr>
 <tr class="separator:a4a6825d343c275a1ecf2c83cabb5e65d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbf196470be5c48f0dfea448beb8ab97"><td class="memItemLeft" align="right" valign="top">static const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8c.html#abbf196470be5c48f0dfea448beb8ab97">CLOCK_EE_TICK_DURATION</a> = 1.f / <a class="el" href="clock_8c.html#a4a6825d343c275a1ecf2c83cabb5e65d">CLOCK_EE_TICK_RATE</a></td></tr>
 <tr class="separator:abbf196470be5c48f0dfea448beb8ab97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a703ee32b0fdd07ed17b7922f108d2d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8c.html#a9a703ee32b0fdd07ed17b7922f108d2d">g_rtClock</a> = 1.0f</td></tr>
+<tr class="separator:a9a703ee32b0fdd07ed17b7922f108d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4ffcf8c63d569624581dfea37c0695b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8c.html#ae4ffcf8c63d569624581dfea37c0695b">g_rtClockPowerUp</a> = 1.0f</td></tr>
+<tr class="separator:ae4ffcf8c63d569624581dfea37c0695b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a265c0096832085486287b2bb6603595c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLOCK.html">CLOCK</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8c.html#a265c0096832085486287b2bb6603595c">g_clock</a> = { 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0 }</td></tr>
+<tr class="separator:a265c0096832085486287b2bb6603595c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0710cb3e06af0c4aca6be1d55958208b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="clock_8h.html#a3a8c7bc1502dc3ae9014e2b0f3c90204">TICK</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8c.html#a0710cb3e06af0c4aca6be1d55958208b">s_tickLastRaw</a></td></tr>
+<tr class="separator:a0710cb3e06af0c4aca6be1d55958208b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ac6949fb49627a7bdfeb7af852b5bb02e"></a>
@@ -272,7 +280,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00014">14</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00022">22</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
 
 </div>
 </div>
@@ -301,7 +309,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00054">54</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00062">62</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
 
 </div>
 </div>
@@ -340,7 +348,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00065">65</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00073">73</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
 
 </div>
 </div>
@@ -379,7 +387,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00070">70</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00078">78</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
 
 </div>
 </div>
@@ -407,7 +415,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00009">9</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00017">17</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
 
 </div>
 </div>
@@ -432,7 +440,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00007">7</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00008">8</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
 
 </div>
 </div>
@@ -456,7 +464,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00006">6</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00007">7</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
 
 </div>
 </div>
@@ -480,7 +488,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00003">3</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00004">4</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
 
 </div>
 </div>
@@ -504,7 +512,71 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00004">4</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00005">5</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
+
+</div>
+</div>
+<a id="a265c0096832085486287b2bb6603595c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a265c0096832085486287b2bb6603595c">&#9670;&nbsp;</a></span>g_clock</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCLOCK.html">CLOCK</a> g_clock = { 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0 }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00013">13</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
+
+</div>
+</div>
+<a id="a9a703ee32b0fdd07ed17b7922f108d2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a703ee32b0fdd07ed17b7922f108d2d">&#9670;&nbsp;</a></span>g_rtClock</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float g_rtClock = 1.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00011">11</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
+
+</div>
+</div>
+<a id="ae4ffcf8c63d569624581dfea37c0695b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4ffcf8c63d569624581dfea37c0695b">&#9670;&nbsp;</a></span>g_rtClockPowerUp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float g_rtClockPowerUp = 1.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00012">12</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
+
+</div>
+</div>
+<a id="a0710cb3e06af0c4aca6be1d55958208b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0710cb3e06af0c4aca6be1d55958208b">&#9670;&nbsp;</a></span>s_tickLastRaw</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="clock_8h.html#a3a8c7bc1502dc3ae9014e2b0f3c90204">TICK</a> s_tickLastRaw</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00014">14</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
 
 </div>
 </div>

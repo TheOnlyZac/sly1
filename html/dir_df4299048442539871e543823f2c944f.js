@@ -13,6 +13,8 @@ var dir_df4299048442539871e543823f2c944f =
     [ "frm.c", "frm_8c.html", "frm_8c" ],
     [ "game.c", "game_8c.html", "game_8c" ],
     [ "joy.c", "joy_8c.html", "joy_8c" ],
+    [ "jt1.c", "jt1_8c.html", "jt1_8c" ],
+    [ "jt2.c", "jt2_8c.html", "jt2_8c" ],
     [ "main.c", "main_8c.html", "main_8c" ],
     [ "prog.c", "prog_8c.html", "prog_8c" ],
     [ "screen.c", "screen_8c.html", "screen_8c" ],

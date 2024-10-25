@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tick_3125',['TICK',['../clock_8h.html#a3a8c7bc1502dc3ae9014e2b0f3c90204',1,'clock.h']]]
+  ['jh_3423',['JH',['../binoc_8h.html#ae7dae4174f939ac6bae73185f5d9ef78',1,'binoc.h']]],
+  ['jv_3424',['JV',['../binoc_8h.html#a959b2d9cfb24a262a71d0a65762e05fc',1,'binoc.h']]]
 ];

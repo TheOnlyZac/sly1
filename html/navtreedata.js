@@ -24,19 +24,21 @@ var NAVTREE =
 [
   [ "Sly Cooper Decompilation", "index.html", [
     [ "Sly Cooper and the Thievius Raccoonus", "index.html", [
-      [ "Setup", "index.html#autotoc_md21", [
-        [ "Clone the repo", "index.html#autotoc_md22", null ],
-        [ "Install Python packages", "index.html#autotoc_md23", null ],
-        [ "Setup build environment", "index.html#autotoc_md24", null ]
+      [ "Quickstart", "index.html#autotoc_md21", null ],
+      [ "Manual Setup", "index.html#autotoc_md22", [
+        [ "Clone the repository", "index.html#autotoc_md23", null ],
+        [ "Extract your original ELF file", "index.html#autotoc_md24", null ],
+        [ "Install python packages", "index.html#autotoc_md25", null ],
+        [ "Setup build environment", "index.html#autotoc_md26", null ]
       ] ],
-      [ "Running", "index.html#autotoc_md25", [
-        [ "1. Autorun script", "index.html#autotoc_md26", null ],
-        [ "2. Run from command line", "index.html#autotoc_md27", null ],
-        [ "3. Run from PCSX2 GUI", "index.html#autotoc_md28", null ]
+      [ "Running", "index.html#autotoc_md27", [
+        [ "1. Autorun script", "index.html#autotoc_md28", null ],
+        [ "2. Run from command line", "index.html#autotoc_md29", null ],
+        [ "3. Run from PCSX2 GUI", "index.html#autotoc_md30", null ]
       ] ],
-      [ "Project Structure", "index.html#autotoc_md29", null ],
-      [ "FAQ", "index.html#autotoc_md30", null ],
-      [ "Star History", "index.html#autotoc_md36", null ]
+      [ "Project Structure", "index.html#autotoc_md31", null ],
+      [ "FAQ", "index.html#autotoc_md32", null ],
+      [ "Star History", "index.html#autotoc_md38", null ]
     ] ],
     [ "Beginner's Guide", "md_docs_BEGINNERSGUIDE.html", null ],
     [ "Contributing", "md_docs_CONTRIBUTING.html", [
@@ -58,11 +60,11 @@ var NAVTREE =
       [ "Documentation", "md_docs_STYLEGUIDE.html#autotoc_md14", [
         [ "File Comments", "md_docs_STYLEGUIDE.html#autotoc_md15", null ],
         [ "Function Comments", "md_docs_STYLEGUIDE.html#autotoc_md16", [
-          [ "What is a decompilation?", "index.html#autotoc_md31", null ],
-          [ "How does it work?", "index.html#autotoc_md32", null ],
-          [ "Has this ever been done before?", "index.html#autotoc_md33", null ],
-          [ "Is this a matching decomp?", "index.html#autotoc_md34", null ],
-          [ "How can I help?", "index.html#autotoc_md35", null ],
+          [ "What is a decompilation?", "index.html#autotoc_md33", null ],
+          [ "How does it work?", "index.html#autotoc_md34", null ],
+          [ "Has this ever been done before?", "index.html#autotoc_md35", null ],
+          [ "Is this a matching decomp?", "index.html#autotoc_md36", null ],
+          [ "How can I help?", "index.html#autotoc_md37", null ],
           [ "Class Comments", "md_docs_STYLEGUIDE.html#autotoc_md17", null ]
         ] ],
         [ "Todo and Notes", "md_docs_STYLEGUIDE.html#autotoc_md18", null ]
@@ -70,6 +72,7 @@ var NAVTREE =
       [ "Example Code", "md_docs_STYLEGUIDE.html#autotoc_md19", null ]
     ] ],
     [ "Todo List", "todo.html", null ],
+    [ "Deprecated List", "deprecated.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -98,17 +101,18 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "989snd_8h.html",
-"cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a81bd3c7b75fa1a06fee6f2fd6a6c27d3",
-"cm_8c.html#a69b6a7d54277c2adba1d20da8bc30aaf",
-"font_8h_source.html",
-"globals_d.html",
-"md_docs_STYLEGUIDE.html",
-"screen_8h.html#a6dc75e83d8c1123135c801b32063fd58",
-"structBLOTI.html#aa42f5ca88ba72e49b4438be247ea1952",
-"structDPRIZE.html#a058b97e2e1765d118d801f73abcf30c4",
-"structRNG.html#ae79ff5166a2c5e8abef5bcf05444a7b3",
-"transition_8h.html#a4f51cfc2d370d8a616b56c9ae61eee74a94c9d37f2f17a353728fb0b0d728bdb1",
-"xform_8h.html#aa0ee6ec5dfe8c83760fb7c8a877988ba"
+"cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a78996484bce54cc3e7151bf5747e47dd",
+"clock_8c.html#a6c750280b75f2a6d96f17f18b706157d",
+"difficulty_8h.html#aa0470d6e9156b9c9b478d90e73f9d290",
+"game_8h.html#a73a5f862a351662bf22487f62e26cb5ea5030cc35ea8642650916525f846bf7c3",
+"joy_8h.html#a5d72ae8c56502814dfd0044b83de8b59",
+"ref_8h.html#a4e55c80470e633730d036482bd72bd52a1a4a629fbf3f0ce50ad537d50649cfc5",
+"shd_8h.html#a17156c86ed7fd6d9586270b8c90ea4e3a1e032f0af0656db38296b1f10aa6d231",
+"structCLQ.html#ab998b48863dd4eb6440bdc13e70369b6",
+"structDifficultyLevel.html#a4036b5ef37e69c6c4a8bec5b07914e57",
+"structSAA.html#a83fb65109194db926cd2ffaac52afab2",
+"types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1",
+"xform_8h.html#a6d6b0d51d65bbb253972f9aa23a7cd7e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

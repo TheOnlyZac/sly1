@@ -125,5 +125,6 @@ var screen_8h =
     [ "UpdateBlot", "screen_8h.html#a43ca605b865bd0e806121e23fe4ccc65", null ],
     [ "UpdateBlots", "screen_8h.html#a1ee78fd73e07161a860bc999d680e024", null ],
     [ "UpdateCtr", "screen_8h.html#a6ffaa36d2d672b123a3e43fe6c52854b", null ],
-    [ "UpdateTimer", "screen_8h.html#a9f5f4088444640441f522c88b5ebe898", null ]
+    [ "UpdateTimer", "screen_8h.html#a9f5f4088444640441f522c88b5ebe898", null ],
+    [ "g_totals", "screen_8h.html#acd4b674a359cf2ce01916cc2c4875150", null ]
 ];

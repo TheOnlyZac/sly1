@@ -1,6 +1,7 @@
 var game_8c =
 [
     [ "CcharmMost", "game_8c.html#a8c302fb2a66756b8ade0cb21a4519691", null ],
+    [ "FUN_00160ce8", "game_8c.html#af7a6e0e43b45c7cd270868b04160259a", null ],
     [ "INCLUDE_ASM", "game_8c.html#acf1b26d2c1d354a84c8739264937f53c", null ],
     [ "INCLUDE_ASM", "game_8c.html#a6255c64bb7f8f08ab56002a33dd12cb3", null ],
     [ "INCLUDE_ASM", "game_8c.html#a9c0b70a2294af536de9aa8c6eb8fd278", null ],
@@ -9,7 +10,6 @@ var game_8c =
     [ "INCLUDE_ASM", "game_8c.html#ab31e97d9c49b09ee8266fda00e2771ce", null ],
     [ "INCLUDE_ASM", "game_8c.html#a541affa536759b969c6cc4c68f9ee818", null ],
     [ "INCLUDE_ASM", "game_8c.html#a3d695a8d23f6fa5f507e7fd460389b36", null ],
-    [ "INCLUDE_ASM", "game_8c.html#aea289f06dc4749ea59fcef021155ae08", null ],
     [ "INCLUDE_ASM", "game_8c.html#a86a70f76fa122ebc0477b46bc2b67e27", null ],
     [ "INCLUDE_ASM", "game_8c.html#a9da86d459a64e874fc19da47f1e81e2a", null ],
     [ "INCLUDE_ASM", "game_8c.html#a4927a7f3421e91849425ca884d94a36c", null ],
@@ -21,8 +21,6 @@ var game_8c =
     [ "INCLUDE_ASM", "game_8c.html#a54ca18e47cb91be8a60111ff3d3c3130", null ],
     [ "INCLUDE_ASM", "game_8c.html#aa232ff12c4a06e403a2bab9682b4533d", null ],
     [ "INCLUDE_ASM", "game_8c.html#adc1ef645cd392ac56a48677243d216ff", null ],
-    [ "INCLUDE_ASM", "game_8c.html#a8b71a577da0d5d9dc35ae4156d48855d", null ],
-    [ "INCLUDE_ASM", "game_8c.html#a949874fa834e24e39cd27844fb0fc344", null ],
     [ "INCLUDE_ASM", "game_8c.html#aac94925128e5782503e47169a8c57cd9", null ],
     [ "INCLUDE_ASM", "game_8c.html#a9952e79af56c24858d274f7b0763b03a", null ],
     [ "INCLUDE_ASM", "game_8c.html#a2ac58e0b0b4f8f88327461e7ed54b1a8", null ],
@@ -30,13 +28,15 @@ var game_8c =
     [ "INCLUDE_ASM", "game_8c.html#a5a2dd7e218b3bbbf6aa36970ef5d434d", null ],
     [ "INCLUDE_ASM", "game_8c.html#a1245b01ab27ee1819eaa09afdb0ceba8", null ],
     [ "INCLUDE_ASM", "game_8c.html#a21f7aa0d2d068956873e0a4eb88054f7", null ],
-    [ "INCLUDE_ASM", "game_8c.html#a4ac8fe245e93e0d4689b7d0a523644bd", null ],
     [ "INCLUDE_ASM", "game_8c.html#aeba90778a85605be68a8b81bb7b2859e", null ],
     [ "INCLUDE_ASM", "game_8c.html#a079fcf581873a2a3be0f1d19bfe6d287", null ],
-    [ "INCLUDE_ASM", "game_8c.html#a19e7ef6368361072dffdc0c2313ccae0", null ],
     [ "INCLUDE_ASM", "game_8c.html#a05fdc9f59c37b295d6e61fe7b6787acd", null ],
     [ "INCLUDE_ASM", "game_8c.html#a95063a997c19af228cd0c501ad9bd772", null ],
     [ "INCLUDE_ASM", "game_8c.html#a3100b7c40c60ca1fdafa2e4f3f486476", null ],
     [ "INCLUDE_ASM", "game_8c.html#a684597c652e55a06c28cd38735066759", null ],
-    [ "INCLUDE_ASM", "game_8c.html#af29af8b8c2737ec44aab496830c0eab8", null ]
+    [ "INCLUDE_ASM", "game_8c.html#af29af8b8c2737ec44aab496830c0eab8", null ],
+    [ "OnGameAlarmDisabled", "game_8c.html#a0fab3fd5e4e06cde617964dac173d856", null ],
+    [ "OnGameAlarmTriggered", "game_8c.html#a30b5523f69b10f232623631b58b59196", null ],
+    [ "SetCcharm", "game_8c.html#adb82ed3f3754624cf0e8923f02ef2eca", null ],
+    [ "StartupGame", "game_8c.html#ac8e4a5ae6f891b31b3bf913587392106", null ]
 ];

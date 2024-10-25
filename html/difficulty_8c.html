@@ -100,6 +100,8 @@ $(document).ready(function(){initNavTree('difficulty_8c.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="difficulty_8h_source.html">difficulty.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="memset_8h_source.html">sce/memset.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="game_8h_source.html">game.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for difficulty.c:</div>
 <div class="dyncontent">
@@ -111,54 +113,50 @@ Include dependency graph for difficulty.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a262459c047d8c7a6ad578d1809cd125d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a262459c047d8c7a6ad578d1809cd125d">INCLUDE_ASM</a> (const s32, &quot;P2/difficulty&quot;, PdifficultyEnsureSw)</td></tr>
+<tr class="memitem:a262459c047d8c7a6ad578d1809cd125d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a262459c047d8c7a6ad578d1809cd125d">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/difficulty&quot;, PdifficultyEnsureSw)</td></tr>
 <tr class="separator:a262459c047d8c7a6ad578d1809cd125d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa87f51b27523216688a6b30473604815"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#aa87f51b27523216688a6b30473604815">INCLUDE_ASM</a> (const s32, &quot;P2/difficulty&quot;, func_00151A58)</td></tr>
+<tr class="memitem:aa87f51b27523216688a6b30473604815"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#aa87f51b27523216688a6b30473604815">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/difficulty&quot;, func_00151A58)</td></tr>
 <tr class="separator:aa87f51b27523216688a6b30473604815"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c1742a915c106f10989717a4829fcd8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a2c1742a915c106f10989717a4829fcd8">INCLUDE_ASM</a> (const s32, &quot;P2/difficulty&quot;, OnDifficultyGameLoad)</td></tr>
-<tr class="separator:a2c1742a915c106f10989717a4829fcd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2440266da090c3229b35d2f00f5b6c79"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a2440266da090c3229b35d2f00f5b6c79">INCLUDE_ASM</a> (const s32, &quot;P2/difficulty&quot;, OnDifficultyWorldPreLoad)</td></tr>
+<tr class="memitem:a6874f5e8bc778a07830560acd25647ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a6874f5e8bc778a07830560acd25647ed">OnDifficultyGameLoad</a> (<a class="el" href="structDIFFICULTY.html">DIFFICULTY</a> *pdifficulty)</td></tr>
+<tr class="memdesc:a6874f5e8bc778a07830560acd25647ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the difficulty struct.  <a href="difficulty_8c.html#a6874f5e8bc778a07830560acd25647ed">More...</a><br /></td></tr>
+<tr class="separator:a6874f5e8bc778a07830560acd25647ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2440266da090c3229b35d2f00f5b6c79"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a2440266da090c3229b35d2f00f5b6c79">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/difficulty&quot;, OnDifficultyWorldPreLoad)</td></tr>
 <tr class="separator:a2440266da090c3229b35d2f00f5b6c79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d040c748aed9c3a429b396443571468"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a9d040c748aed9c3a429b396443571468">INCLUDE_ASM</a> (const s32, &quot;P2/difficulty&quot;, OnDifficultyWorldPostLoad)</td></tr>
+<tr class="memitem:a9d040c748aed9c3a429b396443571468"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a9d040c748aed9c3a429b396443571468">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/difficulty&quot;, OnDifficultyWorldPostLoad)</td></tr>
 <tr class="separator:a9d040c748aed9c3a429b396443571468"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a766e65528239962fa5c3840e5268763b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a766e65528239962fa5c3840e5268763b">OnDifficultyInitialTeleport</a> (<a class="el" href="structDIFFICULTY.html">DIFFICULTY</a> *pdifficulty)</td></tr>
 <tr class="memdesc:a766e65528239962fa5c3840e5268763b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stubbed, does nothing.  <a href="difficulty_8c.html#a766e65528239962fa5c3840e5268763b">More...</a><br /></td></tr>
 <tr class="separator:a766e65528239962fa5c3840e5268763b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a861b05e35acd39fa7fcb2e3ac9c1e38b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a861b05e35acd39fa7fcb2e3ac9c1e38b">INCLUDE_ASM</a> (const s32, &quot;P2/difficulty&quot;, OnDifficultyPlayerDeath)</td></tr>
+<tr class="memitem:a861b05e35acd39fa7fcb2e3ac9c1e38b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a861b05e35acd39fa7fcb2e3ac9c1e38b">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/difficulty&quot;, OnDifficultyPlayerDeath)</td></tr>
 <tr class="separator:a861b05e35acd39fa7fcb2e3ac9c1e38b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d83d9542cd320f375089b733b61ae60"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a9d83d9542cd320f375089b733b61ae60">INCLUDE_ASM</a> (const s32, &quot;P2/difficulty&quot;, OnDifficultyTriggerCheckpoint)</td></tr>
+<tr class="memitem:a9d83d9542cd320f375089b733b61ae60"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a9d83d9542cd320f375089b733b61ae60">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/difficulty&quot;, OnDifficultyTriggerCheckpoint)</td></tr>
 <tr class="separator:a9d83d9542cd320f375089b733b61ae60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0538ed19fcda3c609998407398876c7f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a0538ed19fcda3c609998407398876c7f">INCLUDE_ASM</a> (const s32, &quot;P2/difficulty&quot;, OnDifficultyCollectKey)</td></tr>
+<tr class="memitem:a0538ed19fcda3c609998407398876c7f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a0538ed19fcda3c609998407398876c7f">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/difficulty&quot;, OnDifficultyCollectKey)</td></tr>
 <tr class="separator:a0538ed19fcda3c609998407398876c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06cfe7407670892ee9fd5db6501658ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a06cfe7407670892ee9fd5db6501658ac">INCLUDE_ASM</a> (const s32, &quot;P2/difficulty&quot;, OnDifficultyBreak)</td></tr>
+<tr class="memitem:a06cfe7407670892ee9fd5db6501658ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a06cfe7407670892ee9fd5db6501658ac">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/difficulty&quot;, OnDifficultyBreak)</td></tr>
 <tr class="separator:a06cfe7407670892ee9fd5db6501658ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76903f4ae27a45b1ac979d8c50479b15"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a76903f4ae27a45b1ac979d8c50479b15">INCLUDE_ASM</a> (const s32, &quot;P2/difficulty&quot;, ChangeSuck)</td></tr>
-<tr class="separator:a76903f4ae27a45b1ac979d8c50479b15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82a5cb61b19ab1d31e1de237870700b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="difficulty_8c.html#a82a5cb61b19ab1d31e1de237870700b7">ChangeSuck</a> (float nParam, <a class="el" href="structDIFFICULTY.html">DIFFICULTY</a> *pdifficulty)</td></tr>
+<tr class="memdesc:a82a5cb61b19ab1d31e1de237870700b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the suck value by the given amount.  <a href="difficulty_8c.html#a82a5cb61b19ab1d31e1de237870700b7">More...</a><br /></td></tr>
+<tr class="separator:a82a5cb61b19ab1d31e1de237870700b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a76903f4ae27a45b1ac979d8c50479b15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76903f4ae27a45b1ac979d8c50479b15">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[1/10]</span></h2>
+<a id="a82a5cb61b19ab1d31e1de237870700b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82a5cb61b19ab1d31e1de237870700b7">&#9670;&nbsp;</a></span>ChangeSuck()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname">void ChangeSuck </td>
           <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>nParam</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">&quot;P2/difficulty&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="difficulty_8h.html#aa0470d6e9156b9c9b478d90e73f9d290">ChangeSuck</a>&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype">struct <a class="el" href="structDIFFICULTY.html">DIFFICULTY</a> *&#160;</td>
+          <td class="paramname"><em>pdifficulty</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -168,10 +166,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Changes the suck value by the given amount. </p>
+<p>Clamps the suck between the min and max values for the given difficulty.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nParam</td><td>The amount to change the suck value by. </td></tr>
+    <tr><td class="paramname">pdifficulty</td><td>Pointer to the difficulty. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="difficulty_8c_source.html#l00029">29</a> of file <a class="el" href="difficulty_8c_source.html">difficulty.c</a>.</p>
+
 </div>
 </div>
 <a id="aa87f51b27523216688a6b30473604815"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa87f51b27523216688a6b30473604815">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[2/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa87f51b27523216688a6b30473604815">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[1/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -205,7 +215,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a06cfe7407670892ee9fd5db6501658ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06cfe7407670892ee9fd5db6501658ac">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[3/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a06cfe7407670892ee9fd5db6501658ac">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[2/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -239,7 +249,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a0538ed19fcda3c609998407398876c7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0538ed19fcda3c609998407398876c7f">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[4/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0538ed19fcda3c609998407398876c7f">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[3/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -272,42 +282,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2c1742a915c106f10989717a4829fcd8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c1742a915c106f10989717a4829fcd8">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[5/10]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/difficulty&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="difficulty_8h.html#a6874f5e8bc778a07830560acd25647ed">OnDifficultyGameLoad</a>&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a861b05e35acd39fa7fcb2e3ac9c1e38b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a861b05e35acd39fa7fcb2e3ac9c1e38b">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[6/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a861b05e35acd39fa7fcb2e3ac9c1e38b">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[4/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -341,7 +317,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a9d83d9542cd320f375089b733b61ae60"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d83d9542cd320f375089b733b61ae60">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[7/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d83d9542cd320f375089b733b61ae60">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[5/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -375,7 +351,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a9d040c748aed9c3a429b396443571468"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d040c748aed9c3a429b396443571468">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[8/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d040c748aed9c3a429b396443571468">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[6/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -409,7 +385,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a2440266da090c3229b35d2f00f5b6c79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2440266da090c3229b35d2f00f5b6c79">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[9/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2440266da090c3229b35d2f00f5b6c79">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[7/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -443,7 +419,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a262459c047d8c7a6ad578d1809cd125d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a262459c047d8c7a6ad578d1809cd125d">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[10/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a262459c047d8c7a6ad578d1809cd125d">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[8/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -476,6 +452,34 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a6874f5e8bc778a07830560acd25647ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6874f5e8bc778a07830560acd25647ed">&#9670;&nbsp;</a></span>OnDifficultyGameLoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OnDifficultyGameLoad </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structDIFFICULTY.html">DIFFICULTY</a> *&#160;</td>
+          <td class="paramname"><em>pdifficulty</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clears the difficulty struct. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdifficulty</td><td>Pointer to the difficulty. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="difficulty_8c_source.html#l00008">8</a> of file <a class="el" href="difficulty_8c_source.html">difficulty.c</a>.</p>
+
+</div>
+</div>
 <a id="a766e65528239962fa5c3840e5268763b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a766e65528239962fa5c3840e5268763b">&#9670;&nbsp;</a></span>OnDifficultyInitialTeleport()</h2>
 
@@ -500,7 +504,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="difficulty_8c_source.html#l00012">12</a> of file <a class="el" href="difficulty_8c_source.html">difficulty.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="difficulty_8c_source.html#l00016">16</a> of file <a class="el" href="difficulty_8c_source.html">difficulty.c</a>.</p>
 
 </div>
 </div>

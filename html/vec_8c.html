@@ -99,11 +99,12 @@ $(document).ready(function(){initNavTree('vec_8c.html',''); initResizable(); });
 <div class="title">vec.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="common_8h_source.html">common.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="vec_8h_source.html">vec.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="util_8h_source.html">util.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for vec.c:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="vec_8c__incl.svg" width="378" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="vec_8c__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 </div>
@@ -111,40 +112,151 @@ Include dependency graph for vec.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:acaac6550a26652ad60b6a23307c53103"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#acaac6550a26652ad60b6a23307c53103">INCLUDE_ASM</a> (const s32, &quot;P2/vec&quot;, SetVectorCylind)</td></tr>
-<tr class="separator:acaac6550a26652ad60b6a23307c53103"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c4fe7291efeff56852d5a2bd268bda1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a5c4fe7291efeff56852d5a2bd268bda1">INCLUDE_ASM</a> (const s32, &quot;P2/vec&quot;, SetVectorSphere)</td></tr>
-<tr class="separator:a5c4fe7291efeff56852d5a2bd268bda1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adee4cd235623c1a9db73d4c15c4c0c32"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#adee4cd235623c1a9db73d4c15c4c0c32">INCLUDE_ASM</a> (const s32, &quot;P2/vec&quot;, SProjectVector)</td></tr>
+<tr class="memitem:a162852370472ceb2729f094b7d989df8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a162852370472ceb2729f094b7d989df8">SetVectorCylind</a> (<a class="el" href="structVECTOR.html">VECTOR</a> *pvec, float rad, float sXY, float sZ)</td></tr>
+<tr class="memdesc:a162852370472ceb2729f094b7d989df8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the coordinates of a vector using cylindrical coordinates.  <a href="vec_8c.html#a162852370472ceb2729f094b7d989df8">More...</a><br /></td></tr>
+<tr class="separator:a162852370472ceb2729f094b7d989df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57366d43ede3d05db5ecd89d14eb9659"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a57366d43ede3d05db5ecd89d14eb9659">SetVectorSphere</a> (<a class="el" href="structVECTOR.html">VECTOR</a> *pvec, float radPan, float radTilt, float s)</td></tr>
+<tr class="memdesc:a57366d43ede3d05db5ecd89d14eb9659"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the coordinates of a vector using spherical coordinates.  <a href="vec_8c.html#a57366d43ede3d05db5ecd89d14eb9659">More...</a><br /></td></tr>
+<tr class="separator:a57366d43ede3d05db5ecd89d14eb9659"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adee4cd235623c1a9db73d4c15c4c0c32"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#adee4cd235623c1a9db73d4c15c4c0c32">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/vec&quot;, SProjectVector)</td></tr>
 <tr class="separator:adee4cd235623c1a9db73d4c15c4c0c32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc5b30df0f48070868dcfcaa1604559c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#adc5b30df0f48070868dcfcaa1604559c">INCLUDE_ASM</a> (const s32, &quot;P2/vec&quot;, GetNormalVectors)</td></tr>
+<tr class="memitem:adc5b30df0f48070868dcfcaa1604559c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#adc5b30df0f48070868dcfcaa1604559c">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/vec&quot;, GetNormalVectors)</td></tr>
 <tr class="separator:adc5b30df0f48070868dcfcaa1604559c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a818ef428770df780f1fa1c4f2fd6a60e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a818ef428770df780f1fa1c4f2fd6a60e">INCLUDE_ASM</a> (const s32, &quot;P2/vec&quot;, GetNormalVector)</td></tr>
+<tr class="memitem:a818ef428770df780f1fa1c4f2fd6a60e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a818ef428770df780f1fa1c4f2fd6a60e">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/vec&quot;, GetNormalVector)</td></tr>
 <tr class="separator:a818ef428770df780f1fa1c4f2fd6a60e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa23948bd248b32d26468bb5f61b0eee6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#aa23948bd248b32d26468bb5f61b0eee6">INCLUDE_ASM</a> (const s32, &quot;P2/vec&quot;, func_001ED900)</td></tr>
+<tr class="memitem:aa23948bd248b32d26468bb5f61b0eee6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#aa23948bd248b32d26468bb5f61b0eee6">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/vec&quot;, func_001ED900)</td></tr>
 <tr class="separator:aa23948bd248b32d26468bb5f61b0eee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae19ec3c13ea54c352c373f065e15dbb9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#ae19ec3c13ea54c352c373f065e15dbb9">INCLUDE_ASM</a> (const s32, &quot;P2/vec&quot;, RadBetweenVectors)</td></tr>
+<tr class="memitem:ae19ec3c13ea54c352c373f065e15dbb9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#ae19ec3c13ea54c352c373f065e15dbb9">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/vec&quot;, RadBetweenVectors)</td></tr>
 <tr class="separator:ae19ec3c13ea54c352c373f065e15dbb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bd10e995c42aaf3dfad7d6c3d9f3aa0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a6bd10e995c42aaf3dfad7d6c3d9f3aa0">INCLUDE_ASM</a> (const s32, &quot;P2/vec&quot;, FindClosestPointBetweenLines)</td></tr>
+<tr class="memitem:a6bd10e995c42aaf3dfad7d6c3d9f3aa0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a6bd10e995c42aaf3dfad7d6c3d9f3aa0">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/vec&quot;, FindClosestPointBetweenLines)</td></tr>
 <tr class="separator:a6bd10e995c42aaf3dfad7d6c3d9f3aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75bc6b7664bdb006433720baef478617"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a75bc6b7664bdb006433720baef478617">INCLUDE_ASM</a> (const s32, &quot;P2/vec&quot;, FindClosestPointBetweenLineSegments)</td></tr>
+<tr class="memitem:a75bc6b7664bdb006433720baef478617"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a75bc6b7664bdb006433720baef478617">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/vec&quot;, FindClosestPointBetweenLineSegments)</td></tr>
 <tr class="separator:a75bc6b7664bdb006433720baef478617"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36798915cec7f374402147376b0a4d7f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a36798915cec7f374402147376b0a4d7f">INCLUDE_ASM</a> (const s32, &quot;P2/vec&quot;, CalculateVectorPanTilt)</td></tr>
+<tr class="memitem:a36798915cec7f374402147376b0a4d7f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a36798915cec7f374402147376b0a4d7f">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/vec&quot;, CalculateVectorPanTilt)</td></tr>
 <tr class="separator:a36798915cec7f374402147376b0a4d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93693cafc75e109bb2416b4df8fb207b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a93693cafc75e109bb2416b4df8fb207b">INCLUDE_ASM</a> (const s32, &quot;P2/vec&quot;, ConvertDeulToW)</td></tr>
-<tr class="separator:a93693cafc75e109bb2416b4df8fb207b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10052042c23ea9d6788df401e0d59afc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a10052042c23ea9d6788df401e0d59afc">INCLUDE_ASM</a> (const s32, &quot;P2/vec&quot;, FCalculateMuzzleVelocity)</td></tr>
-<tr class="separator:a10052042c23ea9d6788df401e0d59afc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6132b182a3115f082e2340cd3ba98fd3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a6132b182a3115f082e2340cd3ba98fd3">INCLUDE_ASM</a> (const s32, &quot;P2/vec&quot;, FCalculateMuzzleVelocity1)</td></tr>
+<tr class="memitem:ac7cfb37c188835e3364053b7df9b6946"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#ac7cfb37c188835e3364053b7df9b6946">ConvertDeulToW</a> (<a class="el" href="structVECTOR.html">VECTOR</a> *peul, <a class="el" href="structVECTOR.html">VECTOR</a> *pdeul, <a class="el" href="structVECTOR.html">VECTOR</a> *pw)</td></tr>
+<tr class="memdesc:ac7cfb37c188835e3364053b7df9b6946"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a vector from a rotation vector and an offset vector.  <a href="vec_8c.html#ac7cfb37c188835e3364053b7df9b6946">More...</a><br /></td></tr>
+<tr class="separator:ac7cfb37c188835e3364053b7df9b6946"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56a76053364597d8a868b01c26f38b2e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a56a76053364597d8a868b01c26f38b2e">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/vec&quot;, FCalculateMuzzleVelocity__FP6VECTORT0fT0P2SO)</td></tr>
+<tr class="separator:a56a76053364597d8a868b01c26f38b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6132b182a3115f082e2340cd3ba98fd3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a6132b182a3115f082e2340cd3ba98fd3">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/vec&quot;, FCalculateMuzzleVelocity1)</td></tr>
 <tr class="separator:a6132b182a3115f082e2340cd3ba98fd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40497b509caf154ee6a10a5ac37726a3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a40497b509caf154ee6a10a5ac37726a3">INCLUDE_ASM</a> (const s32, &quot;P2/vec&quot;, FCalculateMuzzleVelocityAngle)</td></tr>
-<tr class="separator:a40497b509caf154ee6a10a5ac37726a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86700330ec3154a49b9ab7c1c04a7500"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a86700330ec3154a49b9ab7c1c04a7500">INCLUDE_ASM</a> (const s32, &quot;P2/vec&quot;, LimitVectorLength)</td></tr>
+<tr class="memitem:a608c52b6f62c384bcd91fecf3170bba4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a608c52b6f62c384bcd91fecf3170bba4">FCalculateMuzzleVelocityAngle</a> (<a class="el" href="structVECTOR.html">VECTOR</a> *pposLaunch, <a class="el" href="structVECTOR.html">VECTOR</a> *pposTarget, float radTilt, <a class="el" href="structVECTOR.html">VECTOR</a> *pvecMuzzle, <a class="el" href="structSO.html">SO</a> *psoLaunch)</td></tr>
+<tr class="memdesc:a608c52b6f62c384bcd91fecf3170bba4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the muzzle velocity angle of a projectile.  <a href="vec_8c.html#a608c52b6f62c384bcd91fecf3170bba4">More...</a><br /></td></tr>
+<tr class="separator:a608c52b6f62c384bcd91fecf3170bba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86700330ec3154a49b9ab7c1c04a7500"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8c.html#a86700330ec3154a49b9ab7c1c04a7500">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/vec&quot;, LimitVectorLength)</td></tr>
 <tr class="separator:a86700330ec3154a49b9ab7c1c04a7500"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ac7cfb37c188835e3364053b7df9b6946"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7cfb37c188835e3364053b7df9b6946">&#9670;&nbsp;</a></span>ConvertDeulToW()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConvertDeulToW </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVECTOR.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>peul</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVECTOR.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>pdeul</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVECTOR.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>pw</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a vector from a rotation vector and an offset vector. </p>
+<p>Use the peul vector to define euler angles for a vector, Using the forward vector as a reference direction, pdeul's X is a Rightward offset pdeul's Y is a Forward offset pdeul's Z is a Vertical offset</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">peul</td><td>Rotation vector, defines a "forward" </td></tr>
+    <tr><td class="paramname">pdeul</td><td>Offset vector </td></tr>
+    <tr><td class="paramname">pw</td><td>Resultant Vector </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00045">45</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
+
+</div>
+</div>
+<a id="a608c52b6f62c384bcd91fecf3170bba4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a608c52b6f62c384bcd91fecf3170bba4">&#9670;&nbsp;</a></span>FCalculateMuzzleVelocityAngle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FCalculateMuzzleVelocityAngle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVECTOR.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>pposLaunch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVECTOR.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>pposTarget</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radTilt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVECTOR.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>pvecMuzzle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structSO.html">SO</a> *&#160;</td>
+          <td class="paramname"><em>psoLaunch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the muzzle velocity angle of a projectile. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">param_1</td><td>Initial position </td></tr>
+    <tr><td class="paramname">param_2</td><td>Target position </td></tr>
+    <tr><td class="paramname">param_3</td><td>Target velocity </td></tr>
+    <tr><td class="paramname">param_4</td><td>Unknown</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The name/paremeters for this function are an educated guess and may not be accurate. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00064">64</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
+
+</div>
+</div>
 <a id="a36798915cec7f374402147376b0a4d7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a36798915cec7f374402147376b0a4d7f">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[1/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a36798915cec7f374402147376b0a4d7f">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[1/11]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -164,75 +276,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="vec_8h.html#ae15ec86b8218cdd5f2cfc6ba40102119">CalculateVectorPanTilt</a>&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a93693cafc75e109bb2416b4df8fb207b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93693cafc75e109bb2416b4df8fb207b">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[2/15]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/vec&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="vec_8h.html#af93911dce8abf485bb3f77bda71d6271">ConvertDeulToW</a>&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a10052042c23ea9d6788df401e0d59afc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10052042c23ea9d6788df401e0d59afc">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[3/15]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/vec&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="vec_8h.html#a89a1f820591b5a7815e66d32f53f4f7a">FCalculateMuzzleVelocity</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="vec_8h.html#a967dba61562083a531c12ba74387e2ee">CalculateVectorPanTilt</a>&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -246,7 +290,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a6132b182a3115f082e2340cd3ba98fd3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6132b182a3115f082e2340cd3ba98fd3">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[4/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6132b182a3115f082e2340cd3ba98fd3">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[2/11]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -279,8 +323,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a40497b509caf154ee6a10a5ac37726a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40497b509caf154ee6a10a5ac37726a3">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[5/15]</span></h2>
+<a id="a56a76053364597d8a868b01c26f38b2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56a76053364597d8a868b01c26f38b2e">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[3/11]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -300,7 +344,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="vec_8h.html#a9c95676808e64ff540fc545dccb79dbb">FCalculateMuzzleVelocityAngle</a>&#160;</td>
+          <td class="paramtype">FCalculateMuzzleVelocity__FP6VECTORT0fT0P2SO&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -314,7 +358,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a6bd10e995c42aaf3dfad7d6c3d9f3aa0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6bd10e995c42aaf3dfad7d6c3d9f3aa0">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[6/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bd10e995c42aaf3dfad7d6c3d9f3aa0">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[4/11]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -348,7 +392,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a75bc6b7664bdb006433720baef478617"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75bc6b7664bdb006433720baef478617">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[7/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a75bc6b7664bdb006433720baef478617">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[5/11]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -382,7 +426,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="aa23948bd248b32d26468bb5f61b0eee6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa23948bd248b32d26468bb5f61b0eee6">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[8/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa23948bd248b32d26468bb5f61b0eee6">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[6/11]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -416,7 +460,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a818ef428770df780f1fa1c4f2fd6a60e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a818ef428770df780f1fa1c4f2fd6a60e">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[9/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a818ef428770df780f1fa1c4f2fd6a60e">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[7/11]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -450,7 +494,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="adc5b30df0f48070868dcfcaa1604559c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc5b30df0f48070868dcfcaa1604559c">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[10/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#adc5b30df0f48070868dcfcaa1604559c">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[8/11]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -484,7 +528,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a86700330ec3154a49b9ab7c1c04a7500"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86700330ec3154a49b9ab7c1c04a7500">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[11/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a86700330ec3154a49b9ab7c1c04a7500">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[9/11]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -518,7 +562,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ae19ec3c13ea54c352c373f065e15dbb9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae19ec3c13ea54c352c373f065e15dbb9">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[12/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae19ec3c13ea54c352c373f065e15dbb9">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[10/11]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -551,76 +595,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="acaac6550a26652ad60b6a23307c53103"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acaac6550a26652ad60b6a23307c53103">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[13/15]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/vec&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="vec_8h.html#ae0af413de4b85f45d7cb15f6ffd51bf9">SetVectorCylind</a>&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5c4fe7291efeff56852d5a2bd268bda1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c4fe7291efeff56852d5a2bd268bda1">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[14/15]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/vec&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="vec_8h.html#a1cb93d990f5f9d706fcc349e184ad210">SetVectorSphere</a>&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="adee4cd235623c1a9db73d4c15c4c0c32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adee4cd235623c1a9db73d4c15c4c0c32">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[15/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#adee4cd235623c1a9db73d4c15c4c0c32">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[11/11]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -650,6 +626,112 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a162852370472ceb2729f094b7d989df8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a162852370472ceb2729f094b7d989df8">&#9670;&nbsp;</a></span>SetVectorCylind()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetVectorCylind </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVECTOR.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>pvec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>rad</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>sXY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>sZ</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the coordinates of a vector using cylindrical coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pvec</td><td>Pointer to the vector </td></tr>
+    <tr><td class="paramname">rad</td><td>Degrees in radians </td></tr>
+    <tr><td class="paramname">sXY</td><td>XY-Scale/Radius </td></tr>
+    <tr><td class="paramname">sZ</td><td>Z Offset </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00004">4</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
+
+</div>
+</div>
+<a id="a57366d43ede3d05db5ecd89d14eb9659"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57366d43ede3d05db5ecd89d14eb9659">&#9670;&nbsp;</a></span>SetVectorSphere()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetVectorSphere </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVECTOR.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>pvec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radPan</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radTilt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>s</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the coordinates of a vector using spherical coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pvec</td><td>Pointer to the vector </td></tr>
+    <tr><td class="paramname">radPan</td><td>Angle around Z axis </td></tr>
+    <tr><td class="paramname">radTilt</td><td>Angle above horizontal </td></tr>
+    <tr><td class="paramname">s</td><td>Scale/Radius </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00015">15</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
 
 </div>
 </div>

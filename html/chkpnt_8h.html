@@ -95,7 +95,8 @@ $(document).ready(function(){initNavTree('chkpnt_8h.html',''); initResizable(); 
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">chkpnt.h File Reference</div>  </div>
 </div><!--header-->
@@ -116,7 +117,7 @@ Include dependency graph for chkpnt.h:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="chkpnt_8h__dep__incl.svg" width="296" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="chkpnt_8h__dep__incl.svg" width="423" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -141,8 +142,8 @@ Functions</h2></td></tr>
 <tr class="separator:a59bb80ce28fc41f5e020f3ab39a7ff78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5908ff12a8007da76f566fa52430cd5d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="chkpnt_8h.html#a5908ff12a8007da76f566fa52430cd5d">RestoreChkmgrFromCheckpoint</a> (<a class="el" href="structCHKMGR.html">CHKMGR</a> *pchkmgr)</td></tr>
 <tr class="separator:a5908ff12a8007da76f566fa52430cd5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b608eb0d38c6a713f8d465e80cf87e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="chkpnt_8h.html#a5b608eb0d38c6a713f8d465e80cf87e2">IchkAllocChkmgr</a> (<a class="el" href="structCHKMGR.html">CHKMGR</a> *pchkmgr)</td></tr>
-<tr class="separator:a5b608eb0d38c6a713f8d465e80cf87e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeffcf4c55d69454f912c51edbad2dd71"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="chkpnt_8h.html#aeffcf4c55d69454f912c51edbad2dd71">IchkAllocChkmgr</a> (<a class="el" href="structCHKMGR.html">CHKMGR</a> *pchkmgr)</td></tr>
+<tr class="separator:aeffcf4c55d69454f912c51edbad2dd71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07c0719e0906c5c05e17b8bbc0aa0511"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="chkpnt_8h.html#a07c0719e0906c5c05e17b8bbc0aa0511">FGetChkmgrIchk</a> (<a class="el" href="structCHKMGR.html">CHKMGR</a> *pchkmgr, int ichk)</td></tr>
 <tr class="separator:a07c0719e0906c5c05e17b8bbc0aa0511"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7113df074085f10d9e03a1c4a14712ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="chkpnt_8h.html#a7113df074085f10d9e03a1c4a14712ce">SetChkmgrIchk</a> (<a class="el" href="structCHKMGR.html">CHKMGR</a> *pchkmgr, int ichk)</td></tr>
@@ -169,6 +170,11 @@ Functions</h2></td></tr>
 <tr class="separator:ae00034da17fc1668ce91d819eab35116"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bcbfff10dff0216dd20fd2b61b21d6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="chkpnt_8h.html#a0bcbfff10dff0216dd20fd2b61b21d6c">TriggerChkpnt</a> (<a class="el" href="structCHKPNT.html">CHKPNT</a> *pchkpnt)</td></tr>
 <tr class="separator:a0bcbfff10dff0216dd20fd2b61b21d6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a803ea9102ec11cbd45597fcac2ccae97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCHKMGR.html">CHKMGR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="chkpnt_8h.html#a803ea9102ec11cbd45597fcac2ccae97">g_chkmgr</a></td></tr>
+<tr class="separator:a803ea9102ec11cbd45597fcac2ccae97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Checkpoint system. </p>
@@ -322,14 +328,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5b608eb0d38c6a713f8d465e80cf87e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b608eb0d38c6a713f8d465e80cf87e2">&#9670;&nbsp;</a></span>IchkAllocChkmgr()</h2>
+<a id="aeffcf4c55d69454f912c51edbad2dd71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeffcf4c55d69454f912c51edbad2dd71">&#9670;&nbsp;</a></span>IchkAllocChkmgr()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void IchkAllocChkmgr </td>
+          <td class="memname">int IchkAllocChkmgr </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structCHKMGR.html">CHKMGR</a> *&#160;</td>
           <td class="paramname"><em>pchkmgr</em></td><td>)</td>
@@ -588,6 +594,21 @@ Functions</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a803ea9102ec11cbd45597fcac2ccae97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a803ea9102ec11cbd45597fcac2ccae97">&#9670;&nbsp;</a></span>g_chkmgr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCHKMGR.html">CHKMGR</a> g_chkmgr</td>
         </tr>
       </table>
 </div><div class="memdoc">
