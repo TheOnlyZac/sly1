@@ -4,7 +4,13 @@ INCLUDE_ASM(const s32, "P2/binoc", InitBei);
 
 INCLUDE_ASM(const s32, "P2/binoc", GEvaluateBei);
 
-INCLUDE_ASM(const s32, "P2/binoc", InitBinoc__FP5BINOC5BLOTK);
+void InitBinoc(BINOC *binoc, BLOTK blotk) {
+    binoc->dx = 640.0f;
+    binoc->dy = 492.80001f;
+    binoc->value0 = 15.0f;
+    binoc->value1 = 0x80ffffff;
+    InitBlot(binoc, blotk);
+}
 
 INCLUDE_ASM(const s32, "P2/binoc", ResetBinoc__FP5BINOC);
 

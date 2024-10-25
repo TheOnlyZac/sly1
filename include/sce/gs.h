@@ -3,8 +3,8 @@
  *
  * @brief Graphics Synthesizer.
  */
-#ifndef GS_H
-#define GS_H
+#ifndef SCE_GS_H
+#define SCE_GS_H
 
 #include "common.h"
 
@@ -23,4 +23,4 @@ extern "C"
     };
 }
 
-#endif // GS_H
+#endif // SCE_GS_H

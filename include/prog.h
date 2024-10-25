@@ -6,6 +6,7 @@
 
 #include "common.h"
 #include <binoc.h>
+#include <gs.h>
 
 class CProg
 {

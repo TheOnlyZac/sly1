@@ -7,6 +7,13 @@
 #define BINOC_H
 
 #include "common.h"
+#include <screen.h>
+
+struct BINOC : public BLOT {
+    undefined1 padding[0x90];
+    float value0;
+    undefined4 value1;
+};
 
 /**
  * @brief Horizontal text justification.
@@ -31,25 +38,6 @@ typedef enum JV
     JV_Bottom = 2,
     JV_Max = 3
 } JV;
-
-/**
- * @brief RGBA color value.
- */
-struct RGBA
-{
-    uchar bRed;
-    uchar bGreen;
-    uchar bBlue;
-    uchar bAlpha;
-
-    inline void operator=(const int rgba)
-    {
-        bRed = (rgba >> 24) & 0xFF;
-        bGreen = (rgba >> 16) & 0xFF;
-        bBlue = (rgba >> 8) & 0xFF;
-        bAlpha = rgba & 0xFF;
-    }
-};
 
 class CTextBox
 {
