@@ -9,6 +9,7 @@
 #include "include_asm.h"
 #include "include_rodata.h"
 #include "types.h"
+#include "vtables.h"
 
 /**
  * @brief RGBA color value.

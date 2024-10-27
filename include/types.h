@@ -52,5 +52,6 @@ typedef float f32;
 typedef double f64;
 
 typedef uint size_t;
+#define nullptr (void *)0x0
 
 #endif // TYPES_H

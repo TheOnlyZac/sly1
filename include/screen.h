@@ -53,7 +53,8 @@ struct BLOTI
 struct BLOT
 {
     union {
-        void *pvtblot;
+        VTBLOT *pvtblot;
+        VTNOTE *pvtnote;
     };
     CFont *pfont;
     char achzDraw[512];
@@ -144,8 +145,16 @@ extern TOTALS g_totals;
 
 struct NOTE : public BLOT
 {
-    // empty
+    u32 unk260;
+    u32 unk264;
+    u32 unk268;
+    u32 unk26C;
+    u32 unk270;
+    u32 unk274;
+    struct NOTE* unk278;
 };
+
+extern NOTE g_note;
 
 // MARK: Letterbox
 
