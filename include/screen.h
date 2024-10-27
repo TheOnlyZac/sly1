@@ -52,7 +52,10 @@ struct BLOTI
 
 struct BLOT
 {
-    void *pvtblot;
+    union {
+        VTBLOT *pvtblot;
+        VTNOTE *pvtnote;
+    };
     CFont *pfont;
     char achzDraw[512];
     RGBA rgba;
@@ -142,8 +145,16 @@ extern TOTALS g_totals;
 
 struct NOTE : public BLOT
 {
-    // empty
+    u32 unk260;
+    u32 unk264;
+    u32 unk268;
+    u32 unk26C;
+    u32 unk270;
+    u32 unk274;
+    struct NOTE* unk278;
 };
+
+extern NOTE g_note;
 
 // MARK: Letterbox
 
@@ -189,6 +200,12 @@ class CTextEdge
     float m_ryScaling;
     RGBA m_rgba;
 };
+
+// Global blots
+extern LIFECTR g_lifectr;
+extern CLUECTR g_cluectr;
+extern KEYCTR g_keyctr;
+extern COINCTR g_coinctr;
 
 void StartupScreen();
 

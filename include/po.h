@@ -10,13 +10,18 @@
 #include <so.h>
 
 /**
- * @brief TBD
+ * @brief Player object.
  *
- * @todo Implement struct.
+ * @todo Implement struct fields.
  */
 struct PO : public SO
 {
     // ...
 };
+
+/**
+ * @brief Gets a pointer to the current PO.
+ */
+PO *PpoCur();
 
 #endif // PO_H

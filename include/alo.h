@@ -83,6 +83,16 @@ void SnipAloObjects(ALO *palo, int csnip, SNIP *asnip);
 void UpdateAlo(ALO *palo, float dt);
 
 /**
+ * Fades in an ALO
+ */
+void FadeAloIn(ALO *palo, float dtFade);
+
+/**
+ * Fades out an ALO
+ */
+void FadeAloOut(ALO *palo, float dtFade);
+
+/**
  * @brief unknown
  */
 void LoadAloFromBrx(ALO *palo, CBinaryInputStream *pbis);

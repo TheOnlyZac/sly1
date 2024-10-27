@@ -146,7 +146,7 @@ struct GS
     GRFVAULT grfvault;        // Unlocked powerup flags
     unsigned int unlocked_cutscenes;
     unsigned int fgs;
-    int nPowerupLast; // Last selected powerup
+    int fspLast; // Last selected powerup
 };
 
 /**

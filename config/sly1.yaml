@@ -411,9 +411,10 @@ segments:
     #- [0x, data, P2/jlo]
 
     - [0x163a50, data, P2/joy]
-    - [0x163e10, data]
 
-    #- [0x, data, P2/jt]
+    - [0x163e10, data] # TODO fix jt splits
+    #- [0x163e10, data, P2/jt]
+    #- [0x163e41, data] # TBD
 
     #- [0x, data, P2/jp]
     #- [0x, data, P2/jsg]
@@ -492,7 +493,7 @@ segments:
     #- [0x, data, P2/stephide]
     #- [0x, data, P2/steppipe]
     #- [0x, data, P2/steppower]
-    #- [0x, data, P2/steprail] #? unconfirmed name
+    #- [0x175f90, data, P2/steprail]
     #- [0x, data, P2/steprun]
     #- [0x, data, P2/stepside]
     #- [0x, data, P2/stepzap]
