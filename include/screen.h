@@ -52,7 +52,9 @@ struct BLOTI
 
 struct BLOT
 {
-    void *pvtblot;
+    union {
+        void *pvtblot;
+    };
     CFont *pfont;
     char achzDraw[512];
     RGBA rgba;
@@ -189,6 +191,12 @@ class CTextEdge
     float m_ryScaling;
     RGBA m_rgba;
 };
+
+// Global blots
+extern LIFECTR g_lifectr;
+extern CLUECTR g_cluectr;
+extern KEYCTR g_keyctr;
+extern COINCTR g_coinctr;
 
 void StartupScreen();
 

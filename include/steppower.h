@@ -21,6 +21,17 @@ enum FSP
     FSP_Max = 4
 };
 
+/*static const char *s_mpfspachz[] = {
+    "&2T&.: Dive",
+    "&2T&.: Roll",
+    "&2T&.: Slow",
+    "&2T&.: Mine",
+    "&2T&.: Fast",
+    "&2T&.: Decoy",
+    "&2T&.: Stun"
+};*/
+extern const char *s_mpfspachz[];
+
 /**
  * @brief Set the selected powerup.
  */

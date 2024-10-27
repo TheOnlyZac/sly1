@@ -33,4 +33,9 @@ struct LO : public BASIC
     ulong dtickPerf;
 };
 
+/**
+ * Checks if the LO is currently in the world.
+ */
+int FIsLoInWorld(LO *PLO);
+
 #endif // LO_H

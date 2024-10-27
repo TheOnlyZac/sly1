@@ -80,7 +80,9 @@ InitAlo__FP3ALO = 0x123ED0; // type:func
 SnipAloObjects__FP3ALOiP4SNIP = 0x124DF8; // type:func
 UpdateAlo__FP3ALOf = 0x124FC0; // type:func
 LoadAloFromBrx__FP3ALOP18CBinaryInputStream = 0x1289C0; // type:func
-SetAloTargetHitTest__FP3ALOi = 0x12AA28; // type:func 
+FadeAloIn__FP3ALOf = 0x126cb8 = 0x126CB8; // type:func
+FadeAloOut__FP3ALOf = 0x126d60; // type:func
+SetAloTargetHitTest__FP3ALOi = 0x12AA28; // type:func
 
 ////////////////////////////////////////////////////////////////
 // P2/binoc.c
@@ -579,6 +581,14 @@ FIsJtSoundBase__FP2JT = 0x177E20; // type:func
 CollectJtPrize__FP2JT3PCKP3ALO = 0x177E70; // type:func
 PlayJtDialog__FP2JTP6DIALOG = 0x177F98; // type:func
 
+g_pjt = 0x262e10; // size:0x4
+
+
+////////////////////////////////////////////////////////////////
+// P2/lo.c
+////////////////////////////////////////////////////////////////
+FIsLoInWorld__FP2LO = 0x182fc8; // type:func
+
 
 ////////////////////////////////////////////////////////////////
 // P2/main.c
@@ -608,6 +618,12 @@ SetPhase__F5PHASE = 0x191E70; // type:func
 ClearPhase__Fv = 0x191EB0; // type:func
 
 g_phase = 0x269ba4; // size:0x4
+
+
+////////////////////////////////////////////////////////////////
+// P2/po.c
+////////////////////////////////////////////////////////////////
+PpoCur__Fv = 0x1925f0; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -728,7 +744,7 @@ g_unkblot6 = 0x26dfc8; // size:0x280
 g_unkblot7 = 0x26e248; // size:0x280
 g_unkblot8 = 0x26e4e0; // size:0x280
 g_unkblot9 = 0x26e760; // size:0x280
-g_unkblot10 = 0x26e9f8; // size:0x280
+g_note = 0x26e9f8; // size:0x280
 g_unkblot11 = 0x26eed0; // size:0x280
 g_totals = 0x26f138; // size:0x280
 
@@ -739,6 +755,12 @@ g_totals = 0x26f138; // size:0x280
 SetFsp__F3FSP = 0x1D29C8; // type:func
 UpdateJtActivePowerUp__FP2JTP3JOY = 0x1d2bb8; // type:func
 IRotatePowerUp__FP3JOYiiPi = 0x1d3100; // type:func
+
+s_mpfspachz = 0x274f58; //size:0x1c
+g_fsp = 0x274f74; //size:0x4
+// float[3] @ 0x274f78
+RT_JtSpeedUpClock = 0x274f84; // size:0x4
+RT_JtSlowDownClock = 0x274f88; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
