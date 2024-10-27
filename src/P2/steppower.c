@@ -4,9 +4,6 @@
 #include <screen.h>
 #include <clock.h>
 #include <steprail.h>
-#define N_POWERUP_MAX 7U
-
-//FSP g_fsp = FSP_Nil;
 
 void SetFsp(FSP fsp) {
     // Cleanup current powerup
@@ -43,8 +40,8 @@ void SetFsp(FSP fsp) {
     }
 
     // If fsp is unchanged or invalid, return
-    int nPowerupLast = g_pgsCur->nPowerupLast;
-    if (fsp == nPowerupLast || fsp >= N_POWERUP_MAX) {
+    int fspLast = g_pgsCur->fspLast;
+    if (fsp == fspLast || fsp >= (uint)FSP_Max) {
         return;
     }
 
@@ -54,8 +51,8 @@ void SetFsp(FSP fsp) {
     ((NOTE*)&g_note.unk278)->pvtnote->pfnSetNoteAchzDraw((NOTE*)&g_note.unk278, s_mpfspachz[fsp]);
     ((NOTE*)&g_note.unk278)->pvtnote->pfnShowBlot((NOTE*)&g_note.unk278);
 
-    // Update last powerup index
-    g_pgsCur->nPowerupLast = fsp;
+    // Update last fsp in game state
+    g_pgsCur->fspLast = fsp;
 }
 
 INCLUDE_ASM(const s32, "P2/steppower", UpdateJtActivePowerUp__FP2JTP3JOY);
