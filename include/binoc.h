@@ -10,9 +10,12 @@
 #include <screen.h>
 
 struct BINOC : public BLOT {
-    undefined1 padding[0x90];
+    void *vtbinoc;
+    undefined1 padding_0[116];
     float value0;
     undefined4 value1;
+    undefined1 padding_1[8];
+    float zoom;
 };
 
 /**
