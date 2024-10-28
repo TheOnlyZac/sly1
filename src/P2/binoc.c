@@ -80,7 +80,10 @@ INCLUDE_ASM(const s32, "P2/binoc", FUN_00136648);
 
 INCLUDE_ASM(const s32, "P2/binoc", DrawBinoc);
 
-INCLUDE_ASM(const s32, "P2/binoc", GetBinocReticleFocus);
+void GetBinocReticleFocus(BINOC *binoc, float *xFocus, float *yFocus) {
+    *xFocus = binoc->xFocus + 320.0f;
+    *yFocus = binoc->yFocus + 180.40001f;
+}
 
 INCLUDE_ASM(const s32, "P2/binoc", FUN_00136ef8);
 
