@@ -14,7 +14,8 @@ struct BINOC : public BLOT {
     undefined1 padding_0[116];
     float value0;
     undefined4 value1;
-    undefined1 padding_1[8];
+    undefined1 padding_1[4];
+    ALO *paloLookat;
     float zoom;
     float xFocus;
     float yFocus;

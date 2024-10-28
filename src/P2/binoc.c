@@ -1,4 +1,5 @@
 #include <binoc.h>
+#include <alo.h>
 
 INCLUDE_ASM(const s32, "P2/binoc", InitBei);
 
@@ -60,7 +61,9 @@ INCLUDE_ASM(const s32, "P2/binoc", SetBinocAchzDraw);
 
 INCLUDE_ASM(const s32, "P2/binoc", FDoneBinocAchz);
 
-INCLUDE_ASM(const s32, "P2/binoc", SetBinocLookat);
+void SetBinocLookat(BINOC *binoc, ALO *paloLookat) {
+    binoc->paloLookat = paloLookat;
+}
 
 void SetBinocZoom(BINOC *binoc, float zoom) {
     float cappedZoom = zoom * 0.01f;
