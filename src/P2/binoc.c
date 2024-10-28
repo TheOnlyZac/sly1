@@ -13,7 +13,14 @@ void InitBinoc(BINOC *binoc, BLOTK blotk) {
     InitBlot(binoc, blotk);
 }
 
-INCLUDE_ASM(const s32, "P2/binoc", ResetBinoc__FP5BINOC);
+void ResetBinoc(BINOC* binoc) {
+    binoc->pvtblot->pfnSetBlotAchzDraw(binoc, 0);
+    SetBinocLookat(binoc, (ALO *) 0);
+    binoc->dxReticle = 0.0f;
+    binoc->dyReticle = 0.0f;
+    binoc->uCompassBarOffset = 0.4f;
+    binoc->zoom = 0.0f;
+}
 
 INCLUDE_ASM(const s32, "P2/binoc", PostBinocLoad__FP5BINOC);
 
@@ -83,9 +90,9 @@ INCLUDE_ASM(const s32, "P2/binoc", FUN_00136648);
 
 INCLUDE_ASM(const s32, "P2/binoc", DrawBinoc);
 
-void GetBinocReticleFocus(BINOC *binoc, float *xFocus, float *yFocus) {
-    *xFocus = binoc->xFocus + 320.0f;
-    *yFocus = binoc->yFocus + 180.40001f;
+void GetBinocReticleFocus(BINOC *binoc, float *dxReticle, float *dyReticle) {
+    *dxReticle = binoc->dxReticle + 320.0f;
+    *dyReticle = binoc->dyReticle + 180.40001f;
 }
 
 INCLUDE_ASM(const s32, "P2/binoc", FUN_00136ef8);

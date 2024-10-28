@@ -17,9 +17,13 @@ struct BINOC : public BLOT {
     undefined1 padding_1[4];
     ALO *paloLookat;
     float zoom;
-    float xFocus;
-    float yFocus;
+    float dxReticle;
+    float dyReticle;
+    undefined1 padding_2[8];
+    float uCompassBarOffset;
 };
+
+void SetBinocLookat(BINOC *binoc, ALO *paloLookat);
 
 /**
  * @brief Horizontal text justification.
