@@ -62,7 +62,17 @@ INCLUDE_ASM(const s32, "P2/binoc", FDoneBinocAchz);
 
 INCLUDE_ASM(const s32, "P2/binoc", SetBinocLookat);
 
-INCLUDE_ASM(const s32, "P2/binoc", SetBinocZoom);
+void SetBinocZoom(BINOC *binoc, float zoom) {
+    float cappedZoom = zoom * 0.01f;
+    float one = 1.0f;
+    float zero = 0.0f;
+    if (cappedZoom < zero) {
+        cappedZoom = zero;
+    } else if (cappedZoom > one) {
+        cappedZoom = one;
+    }
+    binoc->zoom = cappedZoom;
+}
 
 INCLUDE_ASM(const s32, "P2/binoc", FUN_001365f0);
 
