@@ -1,6 +1,8 @@
 _start = 0x100008; // type:func
 _exit = 0x1000B8; // type:func
 
+__builtin_delete = 0x18d778; // type:func
+memcmp = 0x1F59C4; // type:func
 
 ////////////////////////////////////////////////////////////////
 // Unknown file
@@ -9,6 +11,27 @@ _exit = 0x1000B8; // type:func
 UpdateSave__FP4SAVE = 0x18bdc8; // type:func
 
 g_save = 0x264A40;
+
+
+////////////////////////////////////////////////////////////////
+// P2/splice/method.cpp
+////////////////////////////////////////////////////////////////
+PmethodNew__Fv              = 0x11AE78; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/splice/pair.cpp
+////////////////////////////////////////////////////////////////
+CloneTo__5CPairP5CPairP6CFrame  = 0x11AEB8; // type:func
+PpairNew__Fv                    = 0x11AF28; // type:func
+DeletePair__FP5CPair            = 0x11AF78; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/splice/proc.cpp
+////////////////////////////////////////////////////////////////
+CloneTo__5CProcP5CProcP6CFrame = 0x11af98; // type:func
+PprocNew__Fv = 0x11afc8; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -52,18 +75,268 @@ RefCoerceF32__4CRef = 0x11B9A8; // type:func
 
 
 ////////////////////////////////////////////////////////////////
-// P2/vecmat.cpp
+// P2/splice/eval.cpp
 ////////////////////////////////////////////////////////////////
+RefEvalSymbol__FP5CPairP6CFrame = 0x118D48; // type:func
+RefEvalSet__FP5CPairP6CFrame    = 0x118DB8; // type:func
+RefEvalDefine__FP5CPairP6CFrame = 0x118E80; // type:func
+RefEvalAssert__FP5CPairP6CFrame = 0x118F48; // type:func
+RefEvalIf__FP5CPairP6CFrame     = 0x119030; // type:func
+RefEvalOr__FP5CPairP6CFrame     = 0x119128; // type:func
+RefEvalAnd__FP5CPairP6CFrame    = 0x119218; // type:func
+RefEvalCond__FP5CPairP6CFrame   = 0x119310; // type:func
+RefEvalCase__FP5CPairP6CFrame   = 0x1194A8; // type:func
+RefEvalLet__FP5CPairP6CFrame    = 0x1196C8; // type:func
+RefEvalWhile__FP5CPairP6CFrame  = 0x119878; // type:func
+RefEvalLambda__FP5CPairP6CFrame = 0x119970; // type:func
+RefEvalLambdaBody__FP5CPairP6CFrame = 0x119A58; // type:func
+RefEvalBegin__FP5CPairP6CFrame  = 0x119AF8; // type:func
+RefEvalApply__FP5CPairP6CFrame  = 0x119BB0; // type:func
+RefEvalImport__FP5CPairP6CFrame = 0x119FA0; // type:func
+RefEval__FP5CPairP6CFrame       = 0x11A080; // type:func
+
+chzSpliceAssert                 = 0x249200; // size:0x10
+
+////////////////////////////////////////////////////////////////
+// P2/splice/bif.cpp
+////////////////////////////////////////////////////////////////
+RefOpAdd__FiP4CRefP6CFrame      = 0x112698; // type:func
+RefOpSub__FiP4CRefP6CFrame      = 0x112968; // type:func
+RefOpMult__FiP4CRefP6CFrame     = 0x112C38; // type:func
+RefOpDiv__FiP4CRefP6CFrame      = 0x113240; // type:func
+RefOpPrint__FiP4CRefP6CFrame    = 0x113730; // type:func
+RefOpPrintFrame__FiP4CRefP6CFrame = 0x113780; // type:func
+RefOpPrintSidebag__FiP4CRefP6CFrame = 0x1137D0; // type:func
+RefOpIntEqual__FiP4CRefP6CFrame = 0x113820; // type:func
+RefCmp__FP4CRef4CMPK            = 0x113888; // type:func
+RefOpL__FiP4CRefP6CFrame        = 0x1139E8; // type:func
+RefOpLE__FiP4CRefP6CFrame       = 0x113A18; // type:func
+RefOpG__FiP4CRefP6CFrame        = 0x113A48; // type:func
+RefOpGE__FiP4CRefP6CFrame       = 0x113A78; // type:func
+RefOpEqv__FiP4CRefP6CFrame      = 0x113AA8; // type:func
+RefEqualHelper__FP4CRefT0       = 0x113B60; // type:func
+RefOpEqual__FiP4CRefP6CFrame    = 0x113E48; // type:func
+RefOpIsBoolean__FiP4CRefP6CFrame = 0x113E78; // type:func
+RefOpIsNum__FiP4CRefP6CFrame    = 0x113EE0; // type:func
+RefOpIsFloat__FiP4CRefP6CFrame  = 0x113F48; // type:func
+RefOpIsInteger__FiP4CRefP6CFrame = 0x113FB0; // type:func
+RefOpIsSymbol__FiP4CRefP6CFrame = 0x114018; // type:func
+RefOpIsVector__FiP4CRefP6CFrame = 0x114080; // type:func
+RefOpIsMatrix__FiP4CRefP6CFrame = 0x1140E8; // type:func
+RefOpIsClq__FiP4CRefP6CFrame    = 0x114150; // type:func
+RefOpIsLm__FiP4CRefP6CFrame     = 0x1141B8; // type:func
+RefOpIsSmp__FiP4CRefP6CFrame    = 0x114220; // type:func
+RefOpIsList__FiP4CRefP6CFrame   = 0x114288; // type:func
+RefOpIsNull__FiP4CRefP6CFrame   = 0x114300; // type:func
+RefOpIsObject__FiP4CRefP6CFrame = 0x114360; // type:func
+RefOpIsNullObj__FiP4CRefP6CFrame = 0x1143C8; // type:func
+RefOpIsMethod__FiP4CRefP6CFrame = 0x114438; // type:func
+RefOpIsProcedure__FiP4CRefP6CFrame = 0x1144A0; // type:func
+RefOpAreNear__FiP4CRefP6CFrame  = 0x114518; // type:func
+RefOpNot__FiP4CRefP6CFrame      = 0x1145C8; // type:func
+RefOpCons__FiP4CRefP6CFrame     = 0x114638; // type:func
+RefOpCar__FiP4CRefP6CFrame      = 0x1146E0; // type:func
+RefOpCdr__FiP4CRefP6CFrame      = 0x114740; // type:func
+RefOpSetCadr__FiP4CRefP6CFrame4BIFK = 0x1147B8; // type:func
+RefOpSetCar__FiP4CRefP6CFrame   = 0x114858; // type:func
+RefOpSetCdr__FiP4CRefP6CFrame   = 0x114888; // type:func
+RefOpLength__FiP4CRefP6CFrame   = 0x1148B8; // type:func
+RefOpNth__FiP4CRefP6CFrame      = 0x114950; // type:func
+RefOpIsMember__FiP4CRefP6CFrame = 0x1149F0; // type:func
+RefOpList__FiP4CRefP6CFrame     = 0x114B80; // type:func
+RefOpAppend__FiP4CRefP6CFrame   = 0x114BB0; // type:func
+RefOpMap__FiP4CRefP6CFrame      = 0x114D18; // type:func
+RefOpFilter__FiP4CRefP6CFrame   = 0x114F48; // type:func
+RefOpForEach__FiP4CRefP6CFrame  = 0x1151C0; // type:func
+RefOpEval__FiP4CRefP6CFrame     = 0x115398; // type:func
+RefOpVector__FiP4CRefP6CFrame   = 0x115440; // type:func
+RefOpMatrix__FiP4CRefP6CFrame   = 0x115510; // type:func
+RefOpSetMusicRegister__FiP4CRefP6CFrame = 0x1156B0; // type:func
+RefOpClq__FiP4CRefP6CFrame      = 0x115710; // type:func
+RefOpLm__FiP4CRefP6CFrame       = 0x1157E0; // type:func
+RefOpSmp__FiP4CRefP6CFrame      = 0x1158B8; // type:func
+RefOpGetElement__FiP4CRefP6CFrame = 0x1159B8; // type:func
+RefOpRandomSeed__FiP4CRefP6CFrame = 0x115B78; // type:func
+RefOpRandom__FiP4CRefP6CFrame   = 0x115C00; // type:func
+RefUfo__FP4CRef4UFOK            = 0x115CA0; // type:func
+RefOpSqrt__FiP4CRefP6CFrame     = 0x115D48; // type:func
+RefOpSin__FiP4CRefP6CFrame      = 0x115D78; // type:func
+RefOpCos__FiP4CRefP6CFrame      = 0x115DA8; // type:func
+RefOpTan__FiP4CRefP6CFrame      = 0x115DD8; // type:func
+RefOpAsin__FiP4CRefP6CFrame     = 0x115E08; // type:func
+RefOpAcos__FiP4CRefP6CFrame     = 0x115E38; // type:func
+RefOpAtan__FiP4CRefP6CFrame     = 0x115E68; // type:func
+RefOpRadNormalize__FiP4CRefP6CFrame = 0x115E98; // type:func
+RefOpAtan2__FiP4CRefP6CFrame    = 0x115EC8; // type:func
+RefOpVectorDotProduct__FiP4CRefP6CFrame = 0x115F70; // type:func
+RefOpVectorCrossProduct__FiP4CRefP6CFrame = 0x115FF8; // type:func
+RefOpVectorLth__FiP4CRefP6CFrame = 0x116080; // type:func
+RefOpVectorDistance__FiP4CRefP6CFrame = 0x116108; // type:func
+RefOpVectorDistanceSquared__FiP4CRefP6CFrame = 0x1161F8; // type:func
+RefOpVectorNormalize__FiP4CRefP6CFrame = 0x1162D0; // type:func
+RefOpVectorProjectNormal__FiP4CRefP6CFrame  = 0x116400; // type:func
+RefOpVectorProjectTangent__FiP4CRefP6CFrame = 0x116490; // type:func
+RefOpVectorBallisticVelocity__FiP4CRefP6CFrame = 0x116520; // type:func
+RefOpVectorRadianNormal__FiP4CRefP6CFrame = 0x116600; // type:func
+RefOpMatrixTranspose__FiP4CRefP6CFrame = 0x1166C0; // type:func
+RefOpMatrixInvert__FiP4CRefP6CFrame = 0x116740; // type:func
+RefOpMatrixCalculateDmat__FiP4CRefP6CFrame = 0x1167C0; // type:func
+RefOpMatrixInterpolateRotate__FiP4CRefP6CFrame = 0x116840; // type:func
+RefOpMatrixDecomposeToTranslate__FiP4CRefP6CFrame = 0x116978; // type:func
+RefOpMatrixDecomposeToRotate__FiP4CRefP6CFrame = 0x1169E8; // type:func
+RefOpMatrixDecomposeToEuler__FiP4CRefP6CFrame = 0x116A88; // type:func
+RefOpMatrixDecomposeToRadianNormal__FiP4CRefP6CFrame = 0x116B08; // type:func
+RefOpMatrixLookAt__FiP4CRefP6CFrame = 0x116BC8; // type:func
+RefOpMatrixTiltUpright__FiP4CRefP6CFrame = 0x116C80; // type:func
+RefOpClqEvaluate__FiP4CRefP6CFrame = 0x116D20; // type:func
+RefOpClqEvaluateLm__FiP4CRefP6CFrame = 0x116DC8; // type:func
+RefOpClqFit__FiP4CRefP6CFrame   = 0x116EA8; // type:func
+RefOpLmLimit__FiP4CRefP6CFrame  = 0x116FE8; // type:func
+RefOpLmCheck__FiP4CRefP6CFrame  = 0x117080; // type:func
+RefOpFloor__FiP4CRefP6CFrame    = 0x117118; // type:func
+RefOpCeiling__FiP4CRefP6CFrame  = 0x117180; // type:func
+RefOpRound__FiP4CRefP6CFrame    = 0x1171F0; // type:func
+RefOpTruncate__FiP4CRefP6CFrame = 0x117260; // type:func
+RefOpAbs__FiP4CRefP6CFrame      = 0x1172C8; // type:func
+RefOpMaximum__FiP4CRefP6CFrame  = 0x117360; // type:func
+RefOpMinimum__FiP4CRefP6CFrame  = 0x117478; // type:func
+RefOpModulo__FiP4CRefP6CFrame   = 0x117598; // type:func
+RefOpCurrentTime__FiP4CRefP6CFrame = 0x117610; // type:func
+RefOpScheduleCallback__FiP4CRefP6CFrame = 0x117668; // type:func
+RefOpDeferObjectUpdate__FiP4CRefP6CFrame = 0x117880; // type:func
+RefOpObjectOption__FiP4CRefP6CFrame4BIFK = 0x117910; // type:func
+RefOpAddO__FiP4CRefP6CFrame     = 0x117A30; // type:func
+RefOpEnsureO__FiP4CRefP6CFrame  = 0x117A60; // type:func
+RefOpSetO__FiP4CRefP6CFrame     = 0x117A90; // type:func
+RefOpGetO__FiP4CRefP6CFrame     = 0x117AC0; // type:func
+RefPairFromAplo__FiPP2LO        = 0x117AF0; // type:func
+RefOpFindObject__FiP4CRefP6CFrame = 0x117BC8; // type:func
+RefOpFindObjects__FiP4CRefP6CFrame = 0x117C48; // type:func
+RefOpFindNearestObject__FiP4CRefP6CFrame = 0x117D00; // type:func
+RefOpFindNearestObjects__FiP4CRefP6CFrame = 0x117D78; // type:func
+RefOpFindPlayerObject__FiP4CRefP6CFrame = 0x117E20; // type:func
+RefOpFindWorldObject__FiP4CRefP6CFrame = 0x117E78; // type:func
+RefOpFindCameraObject__FiP4CRefP6CFrame = 0x117ED0; // type:func
+RefOpFindClassObjects__FiP4CRefP6CFrame = 0x117F28; // type:func
+RefOpFindObjectsInBoundingBox__FiP4CRefP6CFrame = 0x117FE0; // type:func
+RefOpFindObjectsInBoundingSphere__FiP4CRefP6CFrame = 0x1180C0; // type:func
+RefOpHitTestObjectsImpl__F4BIFKiP4CRefP6CFrame = 0x118198; // type:func
+RefOpHitTestObjects__FiP4CRefP6CFrame = 0x1183B8; // type:func
+RefOpHitTestObjectsFirst__FiP4CRefP6CFrame = 0x118458; // type:func
+RefOpConvertObjectPosition__FiP4CRefP6CFrame = 0x1184F8; // type:func
+RefOpConvertObjectVector__FiP4CRefP6CFrame = 0x118580; // type:func
+RefOpConvertObjectMatrix__FiP4CRefP6CFrame = 0x118608; // type:func
+RefOpNearClipCenter__FiP4CRefP6CFrame = 0x118698; // type:func
+RefOpStartSound__FiP4CRefP6CFrame = 0x118720; // type:func
+RefOpStopSound__FiP4CRefP6CFrame = 0x1187E8; // type:func
+RefOpStartRumble__FiP4CRefP6CFrame = 0x118850; // type:func
+RefOpEmitSmokeCloud__FiP4CRefP6CFrame = 0x1188F0; // type:func
+RefOpPredictAnimationEffect__FiP4CRefP6CFrame = 0x118988; // type:func
+__8VU_FLOATf                    = 0x118CF0; // type:func
+__9VU_VECTORRC6VECTOR           = 0x118D10; // type:func
+__as__6VECTORG9VU_VECTOR        = 0x118D20; // type:func
+__ml__FG8VU_FLOATG9VU_VECTOR    = 0x118D30; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/splice/frame.cpp
+////////////////////////////////////////////////////////////////
+SetSingleParent__6CFrameP6CFrame = 0x11a328; // type:func
+AddParent__6CFrameP6CFrame = 0x11A338; // type:func
+RefAddBinding__6CFrameUiP4CRef = 0x11A358; // type:func
+RefSetBinding__6CFrameUiP4CRef = 0x11A400; // type:func
+FFindBinding__6CFrameUiiP4CRef = 0x11A498; // type:func
+PrefFindBinding__6CFrameUii = 0x11A4D8; // type:func
+CloneTo__6CFrameP6CFrame = 0x11A5B0; // type:func
+PframeNew__Fv = 0x11A630; // type:func
+DeleteFrame__FP6CFrame          = 0x11A670; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/splice/gc.cpp
+////////////////////////////////////////////////////////////////
+__3CGc                          = 0x11A678; // type:func
+_$_3CGc                         = 0x11A680; // type:func
+Startup__3CGc                   = 0x11A6A8; // type:func
+Shutdown__3CGc                  = 0x11A6B8; // type:func
+AddRootFrame__3CGcP6CFrame      = 0x11A6C0; // type:func
+AddRootSidebag__3CGcP8CSidebag  = 0x11A708; // type:func
+PushFrame__3CGcP6CFrame         = 0x11A728; // type:func
+PframePop__3CGc                 = 0x11A748; // type:func
+PushPair__3CGcP5CPair           = 0x11A770; // type:func
+PpairPop__3CGc                  = 0x11A790; // type:func
+PushProc__3CGcP5CProc           = 0x11A7B8; // type:func
+PprocPop__3CGc                  = 0x11A7D8; // type:func
+UpdateRecyclable__3CGc          = 0x11A800; // type:func
+MarkLiveObjects__3CGc           = 0x11A850; // type:func
+Collect__3CGc                   = 0x11AB58; // type:func
+__static_initialization_and_destruction_0 = 0x11ADF8; // type:func
+_GLOBAL_$I$g_gc                 = 0x11AE38; // type:func
+_GLOBAL_$D$g_gc                 = 0x11AE58; // type:func
+
+g_gc                            = 0x259F38; // size:0x2314
+
+
+////////////////////////////////////////////////////////////////
+// P2/splice/sidebag.cpp
+////////////////////////////////////////////////////////////////
+RefAddBinding__8CSidebagiP4CRef = 0x11BD28; // type:func
+RefSetBinding__8CSidebagiP4CRef = 0x11BDD0; // type:func
+FFindBinding__8CSidebagiP4CRef  = 0x11BE90; // type:func
+CloneTo__8CSidebagP8CSidebag    = 0x11BEE0; // type:func
+PsidebagNew__Fv                 = 0x11BF30; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/splice/splotheap.cpp
+////////////////////////////////////////////////////////////////
+Startup__10CSplotheapii         = 0x11C128; // type:func
+Shutdown__10CSplotheap          = 0x11C1D0; // type:func
+PvAllocUnsafe__10CSplotheap     = 0x11C1D8; // type:func
+PvAllocClear__10CSplotheap      = 0x11C240; // type:func
+PsplotLookup__10CSplotheapi     = 0x11C288; // type:func
+UpdateRecyclable__10CSplotheap  = 0x11C2A0; // type:func
+UnmarkAll__10CSplotheap         = 0x11C2B0; // type:func
+FreeGarbage__10CSplotheap       = 0x11C2E8; // type:func
+PvFromPsplot__FP5SPLOT          = 0x11C3B8; // type:func
+PsplotFromPv__FPv               = 0x11C3C0; // type:func
+FIsPvGarbage__FPv               = 0x11C3C8; // type:func
+MarkPvAlive__FPv                = 0x11C3F0; // type:func
+
+g_splotheapPair                 = 0x25C250; // size:0x1C
+g_splotheapFrame                = 0x25C270; // size:0x1C
+g_splotheapUnk1                 = 0x25C290; // size:0x1C
+g_splotheapProc                 = 0x25C2B0; // size:0x1C
+g_splotheapMethod               = 0x25C2D0; // size:0x1C
+
+
+////////////////////////////////////////////////////////////////
+// P2/splice/splotheap.cpp
+////////////////////////////////////////////////////////////////
+PpairSerializeIn__FP18CBinaryInputStream = 0x11BA28; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/splice/vecmat.cpp
+////////////////////////////////////////////////////////////////
+PvectorNew__Fv = 0x11c508; // type:func
 IncrefVector__FP6VECTOR = 0x11c580; // type:func
 DecrefVector__FP6VECTOR = 0x11c5b0; // type:func
+PmatrixNew__Fv = 0x11c618; // type:func
 IncrefMatrix__FP7MATRIX4 = 0x11c690; // type:func
 DecrefMatrix__FP7MATRIX4 = 0x11c6c0; // type:func
+DeleteMatrix__FP7MATRIX4 = 0x11c720; // type:func
+PclqNew__Fv = 0x11c748; // type:func
 IncrefClq__FP3CLQ = 0x11c7c0; // type:func
 DecrefClq__FP3CLQ = 0x11c7f0; // type:func
+PlmNew__Fv = 0x11c858; // type:func
 IncrefLm__FP2LM = 0x11c8d0; // type:func
 DecrefLm__FP2LM = 0x11c900; // type:func
+PsmpNew__Fv = 0x11c968; // type:func
 IncrefSmp__FP3SMP = 0x11c9e0; // type:func
 DecrefSmp__FP3SMP = 0x11ca20; // type:func
+StartupSpliceStructuredTypeFactories__Fv = 0x11ca90; // type:func
+ShutdownSpliceStructuredTypeFactories__Fv = 0x11cbb0; // type:func
 
 
 ////////////////////////////////////////////////////////////////

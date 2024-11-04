@@ -8,6 +8,8 @@
 
 #include "common.h"
 
+class CRef;
+
 // todo Find where this struct should be implemented.
 struct SBB
 {
@@ -16,7 +18,10 @@ struct SBB
 class CSidebag
 {
 public:
-    //todo
+    CSidebag& RefAddBinding(int, CRef*);
+    CSidebag& RefSetBinding(int, CRef*);
+    bool FFindBinding(int, CRef*);
+    void CloneTo(CSidebag*);
 
 private:
     int m_csbb;
