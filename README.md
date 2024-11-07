@@ -4,9 +4,9 @@
 [build-url]:https://github.com/TheOnlyZac/sly1/actions/workflows/build.yml
 [build-badge]: https://img.shields.io/github/actions/workflow/status/theonlyzac/sly1/build.yml?branch=main&label=build
 
-[code-progress-badge]: https://img.shields.io/endpoint?label=code&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fslycooper1%2Fus%2Fall%2F%3Fmode%3Dshield%26measure%3DP2
+[code-progress-badge]: https://img.shields.io/endpoint?label=progress&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fslycooper1%2Fus%2Fall%2F%3Fmode%3Dshield%26measure%3DP2
 
-[data-progress-badge]: https://img.shields.io/endpoint?label=data&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fslycooper1%2Fus%2Fall%2F%3Fmode%3Dshield%26measure%3Ddata
+<!--[data-progress-badge]: https://img.shields.io/endpoint?label=data&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fslycooper1%2Fus%2Fall%2F%3Fmode%3Dshield%26measure%3Ddata-->
 
 <!-- Contributors shield -->
 [contributors-url]: https://github.com/theonlyzac/sly1/graphs/contributors
@@ -18,14 +18,14 @@
 
 <!-- Docs shield -->
 [docs-url]: https://theonlyzac.github.io/sly1
-[docs-badge]: https://img.shields.io/badge/docs-doxygen-2C4AA8
+[docs-badge]: https://img.shields.io/badge/docs-github.io-2C4AA8
 
 <!-- Wiki shield -->
 [wiki-url]: https://slymods.info
 [wiki-badge]: https://img.shields.io/badge/wiki-slymods.info-2C4AA8
 
 <!-- Shields -->
-[![Build][build-badge]][build-url] ![code-progress-badge] ![data-progress-badge] [![Contributors][contributors-badge]][contributors-url] [![Discord Channel][discord-badge]][discord-url] [![Docs][docs-badge]][docs-url] [![Wiki][wiki-badge]][wiki-url]
+[![Build][build-badge]][build-url] ![code-progress-badge] <!--![data-progress-badge]--> [![Contributors][contributors-badge]][contributors-url] [![Discord Channel][discord-badge]][discord-url] [![Docs][docs-badge]][docs-url] [![Wiki][wiki-badge]][wiki-url]
 
 [<img src="logo.png" style="margin:7px" align="right" width="33%" alt="Sly 1 Decompilation Logo by Cooper941">][docs-url]
 
