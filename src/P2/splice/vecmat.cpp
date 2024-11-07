@@ -40,5 +40,7 @@ INCLUDE_ASM(const s32, "P2/splice/vecmat", DecrefSmp__FP3SMP);
 
 INCLUDE_ASM(const s32, "P2/splice/vecmat", StartupSpliceStructuredTypeFactories__Fv);
 
-void ShutdownSpliceStructuredTypeFactories(void) {
+void ShutdownSpliceStructuredTypeFactories(void)
+{
+    return;
 }

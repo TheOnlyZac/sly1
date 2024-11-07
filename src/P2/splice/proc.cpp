@@ -3,8 +3,10 @@
 #include <splice/proc.h>
 #include <splice/splotheap.h>
 
-void CProc::CloneTo(CProc* pprocClone, CFrame* pframeClone) {
-    if (pframeClone == nullptr) {
+void CProc::CloneTo(CProc *pprocClone, CFrame *pframeClone)
+{
+    if (pframeClone == nullptr)
+    {
         pframeClone = m_pframe;
     }
     pprocClone->m_pframe = pframeClone;

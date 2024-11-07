@@ -11,14 +11,17 @@ INCLUDE_ASM(const s32, "P2/splice/splotheap", PvAllocClear__10CSplotheap);
 
 INCLUDE_ASM(const s32, "P2/splice/splotheap", PsplotLookup__10CSplotheapi);
 
-void CSplotheap::UpdateRecyclable(void) {
+void CSplotheap::UpdateRecyclable(void)
+{
     m_psplotRecyclable = m_psplotAlloc;
 }
 
-void CSplotheap::UnmarkAll(void) {
-    SPLOT* psplot = m_psplotAlloc;
+void CSplotheap::UnmarkAll(void)
+{
+    SPLOT *psplot = m_psplotAlloc;
 
-    while (psplot != nullptr) {
+    while (psplot != nullptr)
+    {
         psplot->fAlive = 0;
         psplot = psplot->psplotNext;
     }
@@ -26,12 +29,14 @@ void CSplotheap::UnmarkAll(void) {
 
 INCLUDE_ASM(const s32, "P2/splice/splotheap", FreeGarbage__10CSplotheap);
 
-static void* PvFromPsplot(SPLOT* psplot) {
-    return (byte*)psplot + sizeof(SPLOT);
+static void *PvFromPsplot(SPLOT *psplot)
+{
+    return (byte *)psplot + sizeof(SPLOT);
 }
 
-static SPLOT* PsplotFromPv(void* pv) {
-    return (SPLOT*)((byte*)pv - sizeof(SPLOT));
+static SPLOT *PsplotFromPv(void *pv)
+{
+    return (SPLOT *)((byte *)pv - sizeof(SPLOT));
 }
 
 // todo: both below functions are matching but blocked by reference in CGc::MarkLiveObjects

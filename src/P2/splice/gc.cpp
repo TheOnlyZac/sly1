@@ -4,64 +4,85 @@
 #include <splice/splotheap.h>
 #include <splice/spliceutils.h>
 
-CGc::CGc() {}
+CGc::CGc()
+{
+    return;
+}
 
-CGc::~CGc() {}
+CGc::~CGc()
+{
+    return;
+}
 
-void CGc::Startup() {
+void CGc::Startup()
+{
     m_cpframeRoot = 0;
     m_cpsidebagRoot = 0;
 }
 
 void CGc::Shutdown() {}
 
-void CGc::AddRootFrame(CFrame* pframe) {
-    for (int i = 0; i < m_cpframeRoot; ++i) {
-        if (m_apframeRoot[i] == pframe) {
+void CGc::AddRootFrame(CFrame *pframe)
+{
+    for (int i = 0; i < m_cpframeRoot; ++i)
+    {
+        if (m_apframeRoot[i] == pframe)
+        {
             return;
         }
     }
     m_apframeRoot[m_cpframeRoot++] = pframe;
 }
 
-void CGc::AddRootSidebag(CSidebag* psidebag) {
+void CGc::AddRootSidebag(CSidebag *psidebag)
+{
     m_apsidebagRoot[m_cpsidebagRoot++] = psidebag;
 }
 
-void CGc::PushFrame(CFrame* pframe) {
+void CGc::PushFrame(CFrame *pframe)
+{
     m_apframeStack[m_cpframeStack++] = pframe;
 }
 
-CFrame* CGc::PframePop() {
-    if (m_cpframeStack >= 1) {
+CFrame *CGc::PframePop()
+{
+    if (m_cpframeStack >= 1)
+    {
         return m_apframeStack[--m_cpframeStack];
     }
-    return (CFrame*)nullptr;
+    return (CFrame *)nullptr;
 }
 
-void CGc::PushPair(CPair* ppair) {
+void CGc::PushPair(CPair *ppair)
+{
     m_appairStack[m_cppairStack++] = ppair;
 }
 
-CPair* CGc::PpairPop() {
-    if (m_cppairStack >= 1) {
+CPair *CGc::PpairPop()
+{
+    if (m_cppairStack >= 1)
+    {
         return m_appairStack[--m_cppairStack];
     }
-    return (CPair*)nullptr;
+    return (CPair *)nullptr;
 }
 
-void CGc::PushProc(CProc* pproc) {
+void CGc::PushProc(CProc *pproc)
+{
     m_approcStack[m_cpprocStack++] = pproc;
 }
 
-CProc* CGc::PprocPop() {
-    if (m_cpprocStack >= 1) {
+CProc *CGc::PprocPop()
+{
+    if (m_cpprocStack >= 1)
+    {
         return m_approcStack[--m_cpprocStack];
     }
-    return (CProc*)nullptr;
+    return (CProc *)nullptr;
 }
 
-void CGc::UpdateRecyclable() {
+void CGc::UpdateRecyclable()
+{
     g_splotheapPair.UpdateRecyclable();
     g_splotheapFrame.UpdateRecyclable();
     g_splotheapUnk1.UpdateRecyclable();

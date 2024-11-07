@@ -1,6 +1,5 @@
 #include <splice/ref.h>
 #include <splice/vecmat.h>
-#include <string.h>
 
 CRef::CRef()
 {
@@ -19,15 +18,15 @@ INCLUDE_ASM(const s32, "P2/splice/ref", __as__4CRefRC4CRef);
 // todo: fix rodata misalignment
 INCLUDE_ASM(const s32, "P2/splice/ref", __eq__4CRefRC4CRef);
 // bool CRef::operator==(const CRef& ref)
-// {  
+// {
 //   if (m_tagk != ref.m_tagk) {
 //     return false;
 //   }
 //   switch(m_tagk) {
 //     case TAGK_F32:
-//         return m_tag.m_g == ref.m_tag.m_g; 
+//         return m_tag.m_g == ref.m_tag.m_g;
 //     case TAGK_S32:
-//         return m_tag.m_n == ref.m_tag.m_n;    
+//         return m_tag.m_n == ref.m_tag.m_n;
 //     case TAGK_Symid:
 //         return m_tag.m_symid == ref.m_tag.m_symid;
 //     case TAGK_Bifk:
@@ -37,13 +36,13 @@ INCLUDE_ASM(const s32, "P2/splice/ref", __eq__4CRefRC4CRef);
 //     case TAGK_Proc:
 //         return m_tag.m_pproc == ref.m_tag.m_pproc;
 //     case TAGK_Method:
-//         return m_tag.m_pmethod == ref.m_tag.m_pmethod;    
+//         return m_tag.m_pmethod == ref.m_tag.m_pmethod;
 //     case TAGK_Basic:
 //         return (!m_tag.m_pbasic && !ref.m_tag.m_pbasic) || (m_tag.m_pbasic && ref.m_tag.m_pbasic);
 //     case TAGK_Matrix:
 //         return memcmp(m_tag.m_pmatrix,ref.m_tag.m_pmatrix, 0x40) == 0;
 //     case TAGK_Lm:
-//         return (m_tag.m_plm->gMin == ref.m_tag.m_plm->gMin) && 
+//         return (m_tag.m_plm->gMin == ref.m_tag.m_plm->gMin) &&
 //                (m_tag.m_plm->gMax == ref.m_tag.m_plm->gMax);
 //     case TAGK_Vector:
 //         return (m_tag.m_pvector->x == ref.m_tag.m_pvector->x) &&
@@ -56,7 +55,7 @@ INCLUDE_ASM(const s32, "P2/splice/ref", __eq__4CRefRC4CRef);
 //     case TAGK_Smp:
 //         return (m_tag.m_psmp->svFast == ref.m_tag.m_psmp->svFast) &&
 //                (m_tag.m_psmp->svSlow == ref.m_tag.m_psmp->svSlow) &&
-//                (m_tag.m_psmp->dtFast == ref.m_tag.m_psmp->dtFast);              
+//                (m_tag.m_psmp->dtFast == ref.m_tag.m_psmp->dtFast);
 //     case TAGK_Bool:
 //         return m_tag.m_bool == ref.m_tag.m_bool;
 //     default:
