@@ -6,6 +6,9 @@
 
 #include "common.h"
 
+class CFrame;
+class CPair;
+
 /**
  * @class CProc
  *
@@ -13,7 +16,17 @@
  */
 class CProc
 {
-    // ...
+private:
+    CFrame* m_pframe;
+    CPair* m_ppair;
+    int m_crefReq;
+    int m_fVarArg;
+    CPair* m_ppairCodeExpr;
+
+public:
+    void CloneTo(CProc* pprocClone, CFrame* pframeClone);
 };
+
+static CProc* PprocNew(void);
 
 #endif // SPLICE_PROC_H

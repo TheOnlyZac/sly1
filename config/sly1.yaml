@@ -56,19 +56,19 @@ segments:
     # Splice sources
     # All .cpp files
     #--------------------------------------------------------
-    - [0x13698, asm, P2/splice/bif] #MARK: P2/splice
-    - [0x19d48, asm, P2/splice/eval]
+    - [0x13698, cpp, P2/splice/bif] #MARK: P2/splice
+    - [0x19d48, cpp, P2/splice/eval]
     - [0x1b328, asm, P2/splice/frame]
-    - [0x1b678, asm, P2/splice/gc]
-    - [0x1be78, asm, P2/splice/method]
-    #- [0x1bf98, asm, P2/splice/pair]
-    - [0x1bf98, asm, P2/splice/proc]
+    - [0x1b678, cpp, P2/splice/gc]
+    - [0x1be78, cpp, P2/splice/method]
+    - [0x1beb8, cpp, P2/splice/pair]
+    - [0x1bf98, cpp, P2/splice/proc]
     - [0x1c008, cpp, P2/splice/ref]
-    - [0x1ca28, asm, P2/splice/serialize]
-    - [0x1cd28, asm, P2/splice/sidebag]
+    - [0x1ca28, cpp, P2/splice/serialize]
+    - [0x1cd28, cpp, P2/splice/sidebag]
     - [0x1cf70, cpp, P2/splice/spliceutils]
-    - [0x1d128, asm, P2/splice/splotheap]
-    - [0x1d508, asm, P2/splice/vecmat]
+    - [0x1d128, cpp, P2/splice/splotheap]
+    - [0x1d508, cpp, P2/splice/vecmat]
 
     #--------------------------------------------------------
     # P2 sources
@@ -328,6 +328,12 @@ segments:
     - [0x118380, rodata] #MARK: rodata
     - [0x1225a0, rodata, P2/cm]
     - [0x141000, rodata] # todo
+    - [0x149FE0, .rodata, P2/splice/bif]
+    - [0x14A200, rodata] #todo: remove line and uncomment next for RefEvalAssert
+    # - [0x14A200, .rodata, P2/splice/eval] 
+    - [0x14A2F0, .rodata, P2/splice/ref]
+    - [0x14A3A0, .rodata, P2/splice/serialize]
+    - [0x14A428, rodata]
 
     #--------------------------------------------------------
     # Data

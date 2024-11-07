@@ -5,6 +5,7 @@
 #define SPLICE_PAIR_H
 
 #include "common.h"
+#include "splice/ref.h"
 
 /**
  * @class CPair
@@ -13,7 +14,13 @@
  */
 class CPair
 {
-    // ...
+    CRef m_ref;
+    CPair* m_ppairNext;
+
+    void CloneTo(CPair* ppairClone, CFrame* pframeClone);
 };
+
+static CPair* PpairNew(void);
+static void DeletePair(CPair* ppair);
 
 #endif // SPLICE_PAIR_H

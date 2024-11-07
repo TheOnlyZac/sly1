@@ -5,6 +5,11 @@
 #define SPLICE_VECMAT_H
 
 #include "common.h"
+#include <vec.h>
+#include <mat.h>
+#include <util.h>
+
+VECTOR* PvectorNew(void);
 
 void IncrefVector(VECTOR *pvector);
 
@@ -22,8 +27,14 @@ void IncrefLm(LM *plm);
 
 void DecrefLm(LM *plm);
 
+SMP* PsmpNew(void);
+
 void IncrefSmp(SMP *psmp);
 
 void DecrefSmp(SMP *psmp);
+
+void StartupSpliceStructuredTypeFactories(void);
+
+void ShutdownSpliceStructuredTypeFactories(void);
 
 #endif // SPLICE_VECMAT_H

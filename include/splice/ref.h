@@ -5,12 +5,13 @@
 #define SPLICE_REF_H
 
 #include "common.h"
-#include <splice/pair.h>
 #include <splice/proc.h>
 #include <splice/method.h>
 #include <splice/bif.h>
 #include <basic.h>
 #include <util.h>
+
+class CPair;
 
 enum TAGK
 {
