@@ -1,5 +1,6 @@
 var types_8h =
 [
+    [ "nullptr", "types_8h.html#ab979d9d4b4923f7c54d6caa6e1a61936", null ],
     [ "byte", "types_8h.html#a0c8186d9b9b7880309c27230bbb5e69d", null ],
     [ "f32", "types_8h.html#a5f6906312a689f27d70e9d086649d3fd", null ],
     [ "f64", "types_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5", null ],

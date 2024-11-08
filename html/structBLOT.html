@@ -111,8 +111,13 @@ Inheritance diagram for BLOT:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ae2ea2fcc27c28d25649d31d587d04e2c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBLOT.html#ae2ea2fcc27c28d25649d31d587d04e2c">pvtblot</a></td></tr>
-<tr class="separator:ae2ea2fcc27c28d25649d31d587d04e2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a632dc3979106501a8f06d1fe0d023e41"><td class="memItemLeft" >union {</td></tr>
+<tr class="memitem:a4afa673ec2943b1729af4fa0fcee2489"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="structVTBLOT.html">VTBLOT</a> *&#160;&#160;&#160;<a class="el" href="structBLOT.html#a3a2aa4fdf10603801ffe65c20f7ba519">pvtblot</a></td></tr>
+<tr class="separator:a4afa673ec2943b1729af4fa0fcee2489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6980a28c37b4a49663dc2628188dc0e5"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="structVTNOTE.html">VTNOTE</a> *&#160;&#160;&#160;<a class="el" href="structBLOT.html#a631533622e1ce5c5b0aae4b7d3a88237">pvtnote</a></td></tr>
+<tr class="separator:a6980a28c37b4a49663dc2628188dc0e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a632dc3979106501a8f06d1fe0d023e41"><td class="memItemLeft" valign="top">};&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
+<tr class="separator:a632dc3979106501a8f06d1fe0d023e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a396582a72fd29200f8d5b24c432f8f35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFont.html">CFont</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBLOT.html#a396582a72fd29200f8d5b24c432f8f35">pfont</a></td></tr>
 <tr class="separator:a396582a72fd29200f8d5b24c432f8f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d986b1a82cc287848dc109d7b26d75b"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBLOT.html#a0d986b1a82cc287848dc109d7b26d75b">achzDraw</a> [512]</td></tr>
@@ -166,6 +171,20 @@ Public Attributes</h2></td></tr>
 <div class="textblock">
 <p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00053">53</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a632dc3979106501a8f06d1fe0d023e41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a632dc3979106501a8f06d1fe0d023e41">&#9670;&nbsp;</a></span>@1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">union { ... } </td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a0d986b1a82cc287848dc109d7b26d75b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0d986b1a82cc287848dc109d7b26d75b">&#9670;&nbsp;</a></span>achzDraw</h2>
 
@@ -178,7 +197,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00057">57</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00060">60</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -194,7 +213,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00062">62</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00065">65</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -210,7 +229,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00061">61</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00064">64</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -226,7 +245,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00072">72</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00075">75</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -242,7 +261,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00068">68</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00071">71</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -258,7 +277,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00071">71</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00074">74</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -274,7 +293,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00070">70</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00073">73</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -290,7 +309,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00069">69</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00072">72</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -306,7 +325,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00066">66</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00069">69</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -322,7 +341,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00066">66</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00069">69</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -338,7 +357,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00075">75</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00078">78</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -354,7 +373,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00056">56</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00059">59</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -370,7 +389,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00060">60</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00063">63</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -386,23 +405,39 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00074">74</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00077">77</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
-<a id="ae2ea2fcc27c28d25649d31d587d04e2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2ea2fcc27c28d25649d31d587d04e2c">&#9670;&nbsp;</a></span>pvtblot</h2>
+<a id="a3a2aa4fdf10603801ffe65c20f7ba519"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a2aa4fdf10603801ffe65c20f7ba519">&#9670;&nbsp;</a></span>pvtblot</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* BLOT::pvtblot</td>
+          <td class="memname"><a class="el" href="structVTBLOT.html">VTBLOT</a>* BLOT::pvtblot</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00055">55</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00056">56</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+
+</div>
+</div>
+<a id="a631533622e1ce5c5b0aae4b7d3a88237"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a631533622e1ce5c5b0aae4b7d3a88237">&#9670;&nbsp;</a></span>pvtnote</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVTNOTE.html">VTNOTE</a>* BLOT::pvtnote</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00057">57</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -418,7 +453,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00059">59</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00062">62</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -434,7 +469,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00058">58</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00061">61</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -450,7 +485,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00073">73</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00076">76</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -466,7 +501,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00067">67</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00070">70</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -482,7 +517,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00063">63</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00066">66</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -498,7 +533,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00065">65</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00068">68</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -514,7 +549,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00064">64</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00067">67</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -530,7 +565,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00063">63</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00066">66</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -546,7 +581,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00065">65</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00068">68</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>
@@ -562,7 +597,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00064">64</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="screen_8h_source.html#l00067">67</a> of file <a class="el" href="screen_8h_source.html">screen.h</a>.</p>
 
 </div>
 </div>

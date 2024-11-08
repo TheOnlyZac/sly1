@@ -100,16 +100,19 @@ $(document).ready(function(){initNavTree('vecmat_8h.html',''); initResizable(); 
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="common_8h_source.html">common.h</a>&quot;</code><br />
+<code>#include &lt;<a class="el" href="vec_8h_source.html">vec.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="mat_8h_source.html">mat.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="util_8h_source.html">util.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for vecmat.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="vecmat_8h__incl.svg" width="378" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="vecmat_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="vecmat_8h__dep__incl.svg" width="187" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="vecmat_8h__dep__incl.svg" width="387" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -117,6 +120,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a6ca98b4b215d4ae1ed18fdcd1e8e948a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVECTOR.html">VECTOR</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vecmat_8h.html#a6ca98b4b215d4ae1ed18fdcd1e8e948a">PvectorNew</a> (void)</td></tr>
+<tr class="separator:a6ca98b4b215d4ae1ed18fdcd1e8e948a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c19f184878e2fd33622622225f97da0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vecmat_8h.html#a4c19f184878e2fd33622622225f97da0">IncrefVector</a> (<a class="el" href="structVECTOR.html">VECTOR</a> *pvector)</td></tr>
 <tr class="separator:a4c19f184878e2fd33622622225f97da0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9d344cb55989eda69f3a442193115c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vecmat_8h.html#ac9d344cb55989eda69f3a442193115c7">DecrefVector</a> (<a class="el" href="structVECTOR.html">VECTOR</a> *pvector)</td></tr>
@@ -133,10 +138,16 @@ Functions</h2></td></tr>
 <tr class="separator:a022765351986d56099443d87d5fca846"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46b0a8799a94e8a889ddd1288413cfd9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vecmat_8h.html#a46b0a8799a94e8a889ddd1288413cfd9">DecrefLm</a> (<a class="el" href="structLM.html">LM</a> *plm)</td></tr>
 <tr class="separator:a46b0a8799a94e8a889ddd1288413cfd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a943de4329ab936ce621cb4eccd0f7f94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSMP.html">SMP</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vecmat_8h.html#a943de4329ab936ce621cb4eccd0f7f94">PsmpNew</a> (void)</td></tr>
+<tr class="separator:a943de4329ab936ce621cb4eccd0f7f94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fadc62e2b243cda3fb2ead240950f8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vecmat_8h.html#a7fadc62e2b243cda3fb2ead240950f8e">IncrefSmp</a> (<a class="el" href="structSMP.html">SMP</a> *psmp)</td></tr>
 <tr class="separator:a7fadc62e2b243cda3fb2ead240950f8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01b2c66969ede13d40cf10f3da6dbd12"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vecmat_8h.html#a01b2c66969ede13d40cf10f3da6dbd12">DecrefSmp</a> (<a class="el" href="structSMP.html">SMP</a> *psmp)</td></tr>
 <tr class="separator:a01b2c66969ede13d40cf10f3da6dbd12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6115294055bab002ee2420ef00441a0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vecmat_8h.html#a6115294055bab002ee2420ef00441a0d">StartupSpliceStructuredTypeFactories</a> (void)</td></tr>
+<tr class="separator:a6115294055bab002ee2420ef00441a0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad859b43b1ef3e4868bf916e0aff366b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vecmat_8h.html#ad859b43b1ef3e4868bf916e0aff366b4">ShutdownSpliceStructuredTypeFactories</a> (void)</td></tr>
+<tr class="separator:ad859b43b1ef3e4868bf916e0aff366b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="afa1e8d3c599d5094a9d1c7ccb3dbe8c5"></a>
@@ -312,6 +323,80 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structVECTOR.html">VECTOR</a> *&#160;</td>
           <td class="paramname"><em>pvector</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a943de4329ab936ce621cb4eccd0f7f94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a943de4329ab936ce621cb4eccd0f7f94">&#9670;&nbsp;</a></span>PsmpNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structSMP.html">SMP</a>* PsmpNew </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6ca98b4b215d4ae1ed18fdcd1e8e948a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ca98b4b215d4ae1ed18fdcd1e8e948a">&#9670;&nbsp;</a></span>PvectorNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVECTOR.html">VECTOR</a>* PvectorNew </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad859b43b1ef3e4868bf916e0aff366b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad859b43b1ef3e4868bf916e0aff366b4">&#9670;&nbsp;</a></span>ShutdownSpliceStructuredTypeFactories()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ShutdownSpliceStructuredTypeFactories </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vecmat_8cpp_source.html#l00043">43</a> of file <a class="el" href="vecmat_8cpp_source.html">vecmat.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a6115294055bab002ee2420ef00441a0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6115294055bab002ee2420ef00441a0d">&#9670;&nbsp;</a></span>StartupSpliceStructuredTypeFactories()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StartupSpliceStructuredTypeFactories </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>

@@ -73,9 +73,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "jt.h", "jt_8h.html", "jt_8h" ],
     [ "jump.h", "jump_8h.html", null ],
     [ "light.h", "light_8h.html", null ],
-    [ "lo.h", "lo_8h.html", [
-      [ "LO", "structLO.html", "structLO" ]
-    ] ],
+    [ "lo.h", "lo_8h.html", "lo_8h" ],
     [ "lookat.h", "lookat_8h.html", null ],
     [ "macro.inc", "macro_8inc.html", null ],
     [ "main.h", "main_8h.html", null ],
@@ -90,9 +88,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "phasemem.h", "phasemem_8h.html", null ],
     [ "pipe.h", "pipe_8h.html", null ],
     [ "pnt.h", "pnt_8h.html", null ],
-    [ "po.h", "po_8h.html", [
-      [ "PO", "structPO.html", null ]
-    ] ],
+    [ "po.h", "po_8h.html", "po_8h" ],
     [ "prog.h", "prog_8h.html", [
       [ "CProg", "classCProg.html", "classCProg" ]
     ] ],
@@ -136,6 +132,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "stephide.h", "stephide_8h.html", null ],
     [ "steppipe.h", "steppipe_8h.html", null ],
     [ "steppower.h", "steppower_8h.html", "steppower_8h" ],
+    [ "steprail.h", "steprail_8h.html", "steprail_8h" ],
     [ "steprun.h", "steprun_8h.html", null ],
     [ "stepside.h", "stepside_8h.html", null ],
     [ "stepzap.h", "stepzap_8h.html", null ],
@@ -147,6 +144,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     ] ],
     [ "sw.h", "sw_8h.html", "sw_8h" ],
     [ "text.h", "text_8h.html", null ],
+    [ "tmp.c", "tmp_8c.html", "tmp_8c" ],
     [ "transition.h", "transition_8h.html", "transition_8h" ],
     [ "turret.h", "turret_8h.html", null ],
     [ "tv.h", "tv_8h.html", null ],
@@ -159,6 +157,10 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "vis.h", "vis_8h.html", null ],
     [ "vol.h", "vol_8h.html", [
       [ "VOL", "structVOL.html", "structVOL" ]
+    ] ],
+    [ "vtables.h", "vtables_8h.html", [
+      [ "VTBLOT", "structVTBLOT.html", "structVTBLOT" ],
+      [ "VTNOTE", "structVTNOTE.html", "structVTNOTE" ]
     ] ],
     [ "water.h", "water_8h.html", null ],
     [ "waypoint.h", "waypoint_8h.html", null ],

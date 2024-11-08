@@ -19,6 +19,7 @@ var dir_df4299048442539871e543823f2c944f =
     [ "prog.c", "prog_8c.html", "prog_8c" ],
     [ "screen.c", "screen_8c.html", "screen_8c" ],
     [ "steppower.c", "steppower_8c.html", "steppower_8c" ],
+    [ "steprail.c", "steprail_8c.html", null ],
     [ "ui.c", "ui_8c.html", "ui_8c" ],
     [ "util.c", "util_8c.html", "util_8c" ],
     [ "vec.c", "vec_8c.html", "vec_8c" ],

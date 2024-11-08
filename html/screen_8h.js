@@ -11,7 +11,7 @@ var screen_8h =
     [ "KEYCTR", "structKEYCTR.html", null ],
     [ "COINCTR", "structCOINCTR.html", null ],
     [ "TOTALS", "structTOTALS.html", "structTOTALS" ],
-    [ "NOTE", "structNOTE.html", null ],
+    [ "NOTE", "structNOTE.html", "structNOTE" ],
     [ "LETTERBOX", "structLETTERBOX.html", null ],
     [ "TITLE", "structTITLE.html", "structTITLE" ],
     [ "ATTRACT", "structATTRACT.html", "structATTRACT" ],
@@ -126,5 +126,10 @@ var screen_8h =
     [ "UpdateBlots", "screen_8h.html#a1ee78fd73e07161a860bc999d680e024", null ],
     [ "UpdateCtr", "screen_8h.html#a6ffaa36d2d672b123a3e43fe6c52854b", null ],
     [ "UpdateTimer", "screen_8h.html#a9f5f4088444640441f522c88b5ebe898", null ],
+    [ "g_cluectr", "screen_8h.html#afde64c97568be9422d255b75ad867bb2", null ],
+    [ "g_coinctr", "screen_8h.html#ae3b5dcac6ac6e420ca4e160bfbf8edd7", null ],
+    [ "g_keyctr", "screen_8h.html#a0265a2fd6355ac5f32432ef9429fcb77", null ],
+    [ "g_lifectr", "screen_8h.html#a933dbc1eecfc19dcb61a5e09425dbf45", null ],
+    [ "g_note", "screen_8h.html#a8c16a6e629557984764dc8caae11e82d", null ],
     [ "g_totals", "screen_8h.html#acd4b674a359cf2ce01916cc2c4875150", null ]
 ];

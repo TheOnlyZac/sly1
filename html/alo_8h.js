@@ -3,6 +3,8 @@ var alo_8h =
     [ "FICG", "structFICG.html", "structFICG" ],
     [ "SNIP", "structSNIP.html", "structSNIP" ],
     [ "ALO", "structALO.html", "structALO" ],
+    [ "FadeAloIn", "alo_8h.html#a98c06c267325fbc3b17096eb16bafc77", null ],
+    [ "FadeAloOut", "alo_8h.html#aec61d2dc413f18603b509519ad13661e", null ],
     [ "InitAlo", "alo_8h.html#ab55a7d691b4fffb0dd8b040d73731f33", null ],
     [ "LoadAloFromBrx", "alo_8h.html#af7997930dccd117b1cdb53367791dae5", null ],
     [ "SetAloTargetHitTest", "alo_8h.html#a080e24ad88ccf345ebd7b6194c313d43", null ],

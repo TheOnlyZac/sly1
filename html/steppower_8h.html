@@ -95,7 +95,8 @@ $(document).ready(function(){initNavTree('steppower_8h.html',''); initResizable(
 <div class="header">
   <div class="summary">
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">steppower.h File Reference</div>  </div>
 </div><!--header-->
@@ -121,13 +122,17 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a47fb7fbe26f0daf1339754d7c2a4e523"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523">FSP</a> { <br />
-&#160;&#160;<a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523a193f422380e809e4647dec5d6720a66b">FSP_Nil</a> = -1, 
-<a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523a24af2ac5ca699e84104d5cead1e6cc39">FSP_Dive</a> = 0, 
-<a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523a6751db29a34468ad4e4bfa953e9fb4e0">FSP_SpeedUpClock</a> = 1, 
-<a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523a4d4c888c590c8ec30f5fddd00be33ba4">FSP_SlowDownClock</a> = 2, 
+&#160;&#160;<a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523a193f422380e809e4647dec5d6720a66b">FSP_Nil</a> =-1, 
+<a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523a24af2ac5ca699e84104d5cead1e6cc39">FSP_Dive</a> =0, 
+<a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523af730d209a7f71554a93c8a262f354f8c">FSP_Ball</a> =1, 
+<a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523a4d4c888c590c8ec30f5fddd00be33ba4">FSP_SlowDownClock</a> =2, 
 <br />
-&#160;&#160;<a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523af730d209a7f71554a93c8a262f354f8c">FSP_Ball</a> = 3, 
-<a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523af0bd4e7f86d07eff1aceca3f5b501512">FSP_Max</a> = 4
+&#160;&#160;<a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523a97a309b02f8d838c451aac570974e49f">FSP_Mine</a> =3, 
+<a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523a6751db29a34468ad4e4bfa953e9fb4e0">FSP_SpeedUpClock</a> =4, 
+<a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523a6c8e5bd365d5072948a3b066211b351f">FSP_Decoy</a> =5, 
+<a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523ae0c8283fbcfab7990c3086fb4747a351">FSP_Stun</a> =6, 
+<br />
+&#160;&#160;<a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523af0bd4e7f86d07eff1aceca3f5b501512">FSP_Max</a> =7
 <br />
  }</td></tr>
 <tr class="memdesc:a47fb7fbe26f0daf1339754d7c2a4e523"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selected powerup flags.  <a href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523">More...</a><br /></td></tr>
@@ -144,6 +149,17 @@ Functions</h2></td></tr>
 <tr class="memitem:a40c92f7d9031586952b24d62343a475a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="steppower_8h.html#a40c92f7d9031586952b24d62343a475a">IRotatePowerUp</a> (<a class="el" href="structJOY.html">JOY</a> *pjoy, int iCur, int iMax, int *mpigrfvault)</td></tr>
 <tr class="memdesc:a40c92f7d9031586952b24d62343a475a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotate the selected powerup.  <a href="steppower_8h.html#a40c92f7d9031586952b24d62343a475a">More...</a><br /></td></tr>
 <tr class="separator:a40c92f7d9031586952b24d62343a475a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a6f2c6764e8b646998342bddd1f321833"><td class="memItemLeft" align="right" valign="top"><a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523">FSP</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="steppower_8h.html#a6f2c6764e8b646998342bddd1f321833">g_fsp</a></td></tr>
+<tr class="separator:a6f2c6764e8b646998342bddd1f321833"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af227d63e95f11ce3fbc88bd131efb7f7"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="steppower_8h.html#af227d63e95f11ce3fbc88bd131efb7f7">s_mpfspachz</a> []</td></tr>
+<tr class="separator:af227d63e95f11ce3fbc88bd131efb7f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a780aaa172fadb5652dad79e68e49ef6f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="steppower_8h.html#a780aaa172fadb5652dad79e68e49ef6f">RT_JtSpeedUpClock</a></td></tr>
+<tr class="separator:a780aaa172fadb5652dad79e68e49ef6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2af7e8c2eeb9d7239a93c108f86899f4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="steppower_8h.html#a2af7e8c2eeb9d7239a93c108f86899f4">RT_JtSlowDownClock</a></td></tr>
+<tr class="separator:a2af7e8c2eeb9d7239a93c108f86899f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a47fb7fbe26f0daf1339754d7c2a4e523"></a>
@@ -162,9 +178,12 @@ Functions</h2></td></tr>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a47fb7fbe26f0daf1339754d7c2a4e523a193f422380e809e4647dec5d6720a66b"></a>FSP_Nil&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a47fb7fbe26f0daf1339754d7c2a4e523a24af2ac5ca699e84104d5cead1e6cc39"></a>FSP_Dive&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a47fb7fbe26f0daf1339754d7c2a4e523a6751db29a34468ad4e4bfa953e9fb4e0"></a>FSP_SpeedUpClock&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a47fb7fbe26f0daf1339754d7c2a4e523a4d4c888c590c8ec30f5fddd00be33ba4"></a>FSP_SlowDownClock&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a47fb7fbe26f0daf1339754d7c2a4e523af730d209a7f71554a93c8a262f354f8c"></a>FSP_Ball&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a47fb7fbe26f0daf1339754d7c2a4e523a4d4c888c590c8ec30f5fddd00be33ba4"></a>FSP_SlowDownClock&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a47fb7fbe26f0daf1339754d7c2a4e523a97a309b02f8d838c451aac570974e49f"></a>FSP_Mine&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a47fb7fbe26f0daf1339754d7c2a4e523a6751db29a34468ad4e4bfa953e9fb4e0"></a>FSP_SpeedUpClock&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a47fb7fbe26f0daf1339754d7c2a4e523a6c8e5bd365d5072948a3b066211b351f"></a>FSP_Decoy&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a47fb7fbe26f0daf1339754d7c2a4e523ae0c8283fbcfab7990c3086fb4747a351"></a>FSP_Stun&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a47fb7fbe26f0daf1339754d7c2a4e523af0bd4e7f86d07eff1aceca3f5b501512"></a>FSP_Max&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
@@ -213,7 +232,7 @@ Functions</h2></td></tr>
 
 <p>Rotate the selected powerup. </p>
 
-<p class="definition">Definition at line <a class="el" href="steppower_8c_source.html#l00008">8</a> of file <a class="el" href="steppower_8c_source.html">steppower.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="steppower_8c_source.html#l00060">60</a> of file <a class="el" href="steppower_8c_source.html">steppower.c</a>.</p>
 
 </div>
 </div>
@@ -234,6 +253,8 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Set the selected powerup. </p>
+
+<p class="definition">Definition at line <a class="el" href="steppower_8c_source.html#l00008">8</a> of file <a class="el" href="steppower_8c_source.html">steppower.c</a>.</p>
 
 </div>
 </div>
@@ -264,6 +285,63 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Update the currently selected powerup. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a6f2c6764e8b646998342bddd1f321833"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f2c6764e8b646998342bddd1f321833">&#9670;&nbsp;</a></span>g_fsp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523">FSP</a> g_fsp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2af7e8c2eeb9d7239a93c108f86899f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2af7e8c2eeb9d7239a93c108f86899f4">&#9670;&nbsp;</a></span>RT_JtSlowDownClock</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float RT_JtSlowDownClock</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a780aaa172fadb5652dad79e68e49ef6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a780aaa172fadb5652dad79e68e49ef6f">&#9670;&nbsp;</a></span>RT_JtSpeedUpClock</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float RT_JtSpeedUpClock</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af227d63e95f11ce3fbc88bd131efb7f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af227d63e95f11ce3fbc88bd131efb7f7">&#9670;&nbsp;</a></span>s_mpfspachz</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* s_mpfspachz[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

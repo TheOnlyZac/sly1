@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['xfm_2132',['XFM',['../structXFM.html',1,'']]]
+  ['warp_2349',['WARP',['../structWARP.html',1,'']]],
+  ['wipe_2350',['WIPE',['../structWIPE.html',1,'']]],
+  ['ws_2351',['WS',['../structWS.html',1,'']]]
 ];

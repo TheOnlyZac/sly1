@@ -103,15 +103,26 @@ $(document).ready(function(){initNavTree('method_8h_source.html',''); initResiza
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="common_8h.html">common.h</a>&quot;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">struct </span><a class="code" href="structBASIC.html">BASIC</a>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classCMethod.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCMethod.html">CMethod</a></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="comment">// ...</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;};</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#endif // SPLICE_METHOD_H</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classCMethod.html#ab3a9d6f13a486e47d2adf03e498793a1">   16</a></span>&#160;    <a class="code" href="structBASIC.html">BASIC</a>* <a class="code" href="classCMethod.html#ab3a9d6f13a486e47d2adf03e498793a1">m_pbasic</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classCMethod.html#a8cbf2d7491f6aa85da23c934e95ea150">   17</a></span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="classCMethod.html#a8cbf2d7491f6aa85da23c934e95ea150">m_pfnthunk</a>; <span class="comment">//todo: fix type?</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classCMethod.html#ae0b8819cedd46f446e585020a7a5d568">   18</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classCMethod.html#ae0b8819cedd46f446e585020a7a5d568">m_crefReq</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;};</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">static</span> <a class="code" href="classCMethod.html">CMethod</a>* <a class="code" href="method_8h.html#af93d50e537e8276f37bf488fcafc89c2">PMethodNew</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif // SPLICE_METHOD_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="aclassCMethod_html_ae0b8819cedd46f446e585020a7a5d568"><div class="ttname"><a href="classCMethod.html#ae0b8819cedd46f446e585020a7a5d568">CMethod::m_crefReq</a></div><div class="ttdeci">int m_crefReq</div><div class="ttdef"><b>Definition:</b> <a href="method_8h_source.html#l00018">method.h:18</a></div></div>
+<div class="ttc" id="aclassCMethod_html_ab3a9d6f13a486e47d2adf03e498793a1"><div class="ttname"><a href="classCMethod.html#ab3a9d6f13a486e47d2adf03e498793a1">CMethod::m_pbasic</a></div><div class="ttdeci">BASIC * m_pbasic</div><div class="ttdef"><b>Definition:</b> <a href="method_8h_source.html#l00016">method.h:16</a></div></div>
+<div class="ttc" id="amethod_8h_html_af93d50e537e8276f37bf488fcafc89c2"><div class="ttname"><a href="method_8h.html#af93d50e537e8276f37bf488fcafc89c2">PMethodNew</a></div><div class="ttdeci">static CMethod * PMethodNew()</div></div>
+<div class="ttc" id="astructBASIC_html"><div class="ttname"><a href="structBASIC.html">BASIC</a></div><div class="ttdoc">Basic object.</div><div class="ttdef"><b>Definition:</b> <a href="basic_8h_source.html#l00019">basic.h:19</a></div></div>
 <div class="ttc" id="aclassCMethod_html"><div class="ttname"><a href="classCMethod.html">CMethod</a></div><div class="ttdef"><b>Definition:</b> <a href="method_8h_source.html#l00014">method.h:14</a></div></div>
+<div class="ttc" id="aclassCMethod_html_a8cbf2d7491f6aa85da23c934e95ea150"><div class="ttname"><a href="classCMethod.html#a8cbf2d7491f6aa85da23c934e95ea150">CMethod::m_pfnthunk</a></div><div class="ttdeci">void * m_pfnthunk</div><div class="ttdef"><b>Definition:</b> <a href="method_8h_source.html#l00017">method.h:17</a></div></div>
 <div class="ttc" id="acommon_8h_html"><div class="ttname"><a href="common_8h.html">common.h</a></div><div class="ttdoc">Common header file.</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

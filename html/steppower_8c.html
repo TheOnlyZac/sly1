@@ -101,6 +101,10 @@ $(document).ready(function(){initNavTree('steppower_8c.html',''); initResizable(
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="steppower_8h_source.html">steppower.h</a>&quot;</code><br />
 <code>#include &lt;<a class="el" href="game_8h_source.html">game.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="jt_8h_source.html">jt.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="screen_8h_source.html">screen.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="clock_8h_source.html">clock.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="steprail_8h_source.html">steprail.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for steppower.c:</div>
 <div class="dyncontent">
@@ -112,8 +116,9 @@ Include dependency graph for steppower.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad4a45a97c95da90d475d488d2ca7a027"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="steppower_8c.html#ad4a45a97c95da90d475d488d2ca7a027">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/steppower&quot;, SetFsp__F3FSP)</td></tr>
-<tr class="separator:ad4a45a97c95da90d475d488d2ca7a027"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c77f6ac1b4f6f453b83a280526e9f05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="steppower_8c.html#a7c77f6ac1b4f6f453b83a280526e9f05">SetFsp</a> (<a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523">FSP</a> fsp)</td></tr>
+<tr class="memdesc:a7c77f6ac1b4f6f453b83a280526e9f05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the selected powerup.  <a href="steppower_8c.html#a7c77f6ac1b4f6f453b83a280526e9f05">More...</a><br /></td></tr>
+<tr class="separator:a7c77f6ac1b4f6f453b83a280526e9f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a576ef5d876521e8aca9dc889afcad4b0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="steppower_8c.html#a576ef5d876521e8aca9dc889afcad4b0">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/steppower&quot;, UpdateJtActivePowerUp__FP2JTP3JOY)</td></tr>
 <tr class="separator:a576ef5d876521e8aca9dc889afcad4b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40c92f7d9031586952b24d62343a475a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="steppower_8c.html#a40c92f7d9031586952b24d62343a475a">IRotatePowerUp</a> (<a class="el" href="structJOY.html">JOY</a> *pjoy, int iCur, int iMax, int *mpigrfvault)</td></tr>
@@ -121,42 +126,8 @@ Functions</h2></td></tr>
 <tr class="separator:a40c92f7d9031586952b24d62343a475a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ad4a45a97c95da90d475d488d2ca7a027"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4a45a97c95da90d475d488d2ca7a027">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/steppower&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SetFsp__F3FSP&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a576ef5d876521e8aca9dc889afcad4b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a576ef5d876521e8aca9dc889afcad4b0">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a576ef5d876521e8aca9dc889afcad4b0">&#9670;&nbsp;</a></span>INCLUDE_ASM()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -228,6 +199,28 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Rotate the selected powerup. </p>
+
+<p class="definition">Definition at line <a class="el" href="steppower_8c_source.html#l00060">60</a> of file <a class="el" href="steppower_8c_source.html">steppower.c</a>.</p>
+
+</div>
+</div>
+<a id="a7c77f6ac1b4f6f453b83a280526e9f05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c77f6ac1b4f6f453b83a280526e9f05">&#9670;&nbsp;</a></span>SetFsp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetFsp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="steppower_8h.html#a47fb7fbe26f0daf1339754d7c2a4e523">FSP</a>&#160;</td>
+          <td class="paramname"><em>fsp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the selected powerup. </p>
 
 <p class="definition">Definition at line <a class="el" href="steppower_8c_source.html#l00008">8</a> of file <a class="el" href="steppower_8c_source.html">steppower.c</a>.</p>
 

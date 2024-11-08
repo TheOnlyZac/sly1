@@ -101,18 +101,19 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "989snd_8h.html",
-"cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a78996484bce54cc3e7151bf5747e47dd",
-"clock_8c.html#a6c750280b75f2a6d96f17f18b706157d",
-"difficulty_8h.html#aa0470d6e9156b9c9b478d90e73f9d290",
-"game_8h.html#a73a5f862a351662bf22487f62e26cb5ea5030cc35ea8642650916525f846bf7c3",
-"joy_8h.html#a5d72ae8c56502814dfd0044b83de8b59",
-"ref_8h.html#a4e55c80470e633730d036482bd72bd52a1a4a629fbf3f0ce50ad537d50649cfc5",
-"shd_8h.html#a17156c86ed7fd6d9586270b8c90ea4e3a1e032f0af0656db38296b1f10aa6d231",
-"structCLQ.html#ab998b48863dd4eb6440bdc13e70369b6",
-"structDifficultyLevel.html#a4036b5ef37e69c6c4a8bec5b07914e57",
-"structSAA.html#a83fb65109194db926cd2ffaac52afab2",
-"types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1",
-"xform_8h.html#a6d6b0d51d65bbb253972f9aa23a7cd7e"
+"bis_8h.html#a0f16a19ad9c62cc7c24a95f63f2ef73c",
+"classCBinaryInputStream.html#a6321d1634afab11e9e06028e08501965",
+"cm_8c.html#a5da2c88162a48d644e2cfd89c5b15d15",
+"files.html",
+"game_8h.html#a73a5f862a351662bf22487f62e26cb5eae7a1d0111b29e546d2c56ed62ef643c5",
+"joy_8h.html#ab0a5ef0700b1060619e90b2c89643043af2c74aec845c8002906defa38c8975da",
+"pair_8cpp_source.html",
+"screen_8h.html#a7e942b8858760660a00cf4dbc3cd5840",
+"structAMB.html#a9cfb25ac516825b21a517fc39feeae49",
+"structCPMAN.html#a87304469500f9e5328174e6f254c8361",
+"structLETTERBOX.html",
+"structTITLE.html#a7a2b1cd2b8b60e3f7052915d277939e3",
+"unionTAG.html#a9a2036d1f624331916efa5d2a471ae72"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

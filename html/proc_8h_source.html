@@ -103,16 +103,38 @@ $(document).ready(function(){initNavTree('proc_8h_source.html',''); initResizabl
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="common_8h.html">common.h</a>&quot;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classCProc.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCProc.html">CProc</a></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="comment">// ...</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;};</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#endif // SPLICE_PROC_H</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">class </span><a class="code" href="classCFrame.html">CFrame</a>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">class </span><a class="code" href="classCPair.html">CPair</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classCProc.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCProc.html">CProc</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classCProc.html#a56837c9c99681c9740bfdb962a9ddebf">   20</a></span>&#160;    <a class="code" href="classCFrame.html">CFrame</a>* <a class="code" href="classCProc.html#a56837c9c99681c9740bfdb962a9ddebf">m_pframe</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classCProc.html#a32874d31173d22365fe95c696284800b">   21</a></span>&#160;    <a class="code" href="classCPair.html">CPair</a>* <a class="code" href="classCProc.html#a32874d31173d22365fe95c696284800b">m_ppair</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classCProc.html#a63af4aeed9b566c940d9bc584be7f3d6">   22</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classCProc.html#a63af4aeed9b566c940d9bc584be7f3d6">m_crefReq</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classCProc.html#a470eacd466b954ef5a2d60acb0e50ce8">   23</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classCProc.html#a470eacd466b954ef5a2d60acb0e50ce8">m_fVarArg</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classCProc.html#abd0e45fe9805e5aa46aaf640a2afe7b1">   24</a></span>&#160;    <a class="code" href="classCPair.html">CPair</a>* <a class="code" href="classCProc.html#abd0e45fe9805e5aa46aaf640a2afe7b1">m_ppairCodeExpr</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCProc.html#ae6dc1b6386c7f8fa2e4d4fc061f9600e">CloneTo</a>(<a class="code" href="classCProc.html">CProc</a>* pprocClone, <a class="code" href="classCFrame.html">CFrame</a>* pframeClone);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">static</span> <a class="code" href="classCProc.html">CProc</a>* <a class="code" href="proc_8h.html#ada780e76b1b05d4492b28e8a0ba78931">PprocNew</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif // SPLICE_PROC_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="aclassCProc_html_a63af4aeed9b566c940d9bc584be7f3d6"><div class="ttname"><a href="classCProc.html#a63af4aeed9b566c940d9bc584be7f3d6">CProc::m_crefReq</a></div><div class="ttdeci">int m_crefReq</div><div class="ttdef"><b>Definition:</b> <a href="proc_8h_source.html#l00022">proc.h:22</a></div></div>
+<div class="ttc" id="aproc_8h_html_ada780e76b1b05d4492b28e8a0ba78931"><div class="ttname"><a href="proc_8h.html#ada780e76b1b05d4492b28e8a0ba78931">PprocNew</a></div><div class="ttdeci">static CProc * PprocNew(void)</div></div>
+<div class="ttc" id="aclassCFrame_html"><div class="ttname"><a href="classCFrame.html">CFrame</a></div><div class="ttdef"><b>Definition:</b> <a href="frame_8h_source.html#l00009">frame.h:9</a></div></div>
+<div class="ttc" id="aclassCProc_html_a32874d31173d22365fe95c696284800b"><div class="ttname"><a href="classCProc.html#a32874d31173d22365fe95c696284800b">CProc::m_ppair</a></div><div class="ttdeci">CPair * m_ppair</div><div class="ttdef"><b>Definition:</b> <a href="proc_8h_source.html#l00021">proc.h:21</a></div></div>
 <div class="ttc" id="acommon_8h_html"><div class="ttname"><a href="common_8h.html">common.h</a></div><div class="ttdoc">Common header file.</div></div>
-<div class="ttc" id="aclassCProc_html"><div class="ttname"><a href="classCProc.html">CProc</a></div><div class="ttdef"><b>Definition:</b> <a href="proc_8h_source.html#l00014">proc.h:14</a></div></div>
+<div class="ttc" id="aclassCPair_html"><div class="ttname"><a href="classCPair.html">CPair</a></div><div class="ttdef"><b>Definition:</b> <a href="pair_8h_source.html#l00015">pair.h:15</a></div></div>
+<div class="ttc" id="aclassCProc_html_ae6dc1b6386c7f8fa2e4d4fc061f9600e"><div class="ttname"><a href="classCProc.html#ae6dc1b6386c7f8fa2e4d4fc061f9600e">CProc::CloneTo</a></div><div class="ttdeci">void CloneTo(CProc *pprocClone, CFrame *pframeClone)</div><div class="ttdef"><b>Definition:</b> <a href="proc_8cpp_source.html#l00006">proc.cpp:6</a></div></div>
+<div class="ttc" id="aclassCProc_html"><div class="ttname"><a href="classCProc.html">CProc</a></div><div class="ttdef"><b>Definition:</b> <a href="proc_8h_source.html#l00017">proc.h:17</a></div></div>
+<div class="ttc" id="aclassCProc_html_abd0e45fe9805e5aa46aaf640a2afe7b1"><div class="ttname"><a href="classCProc.html#abd0e45fe9805e5aa46aaf640a2afe7b1">CProc::m_ppairCodeExpr</a></div><div class="ttdeci">CPair * m_ppairCodeExpr</div><div class="ttdef"><b>Definition:</b> <a href="proc_8h_source.html#l00024">proc.h:24</a></div></div>
+<div class="ttc" id="aclassCProc_html_a56837c9c99681c9740bfdb962a9ddebf"><div class="ttname"><a href="classCProc.html#a56837c9c99681c9740bfdb962a9ddebf">CProc::m_pframe</a></div><div class="ttdeci">CFrame * m_pframe</div><div class="ttdef"><b>Definition:</b> <a href="proc_8h_source.html#l00020">proc.h:20</a></div></div>
+<div class="ttc" id="aclassCProc_html_a470eacd466b954ef5a2d60acb0e50ce8"><div class="ttname"><a href="classCProc.html#a470eacd466b954ef5a2d60acb0e50ce8">CProc::m_fVarArg</a></div><div class="ttdeci">int m_fVarArg</div><div class="ttdef"><b>Definition:</b> <a href="proc_8h_source.html#l00023">proc.h:23</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
