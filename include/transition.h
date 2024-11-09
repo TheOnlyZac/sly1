@@ -46,6 +46,7 @@ struct TRANS
 class CTransition
 {
 protected:
+    int  m_fPending;        // Basically like a level pending flag.
     char *m_pchzWorld;      // This is the ptr to enc level sector offset and size in memory
     OID   m_oidWarp;        // Which checkpoint you spawn at when you start a level
     OID   m_oidWarpContext;
@@ -53,10 +54,9 @@ protected:
 public:
     GRFTRANS grftrans;       // Flags that affect level loading, one of them checks if you lost all lives when you die.
     char m_achzWorldCur[64]; // File description contents.
-    int  m_fPending;         // Basically like a level pending flag.
 
-    // Reloads the current level. The value of FTRANS affects the load.
-    void ResetWorld(FTRANS ftrans);
+    // Constructor
+    CTransition();
 
     // Sets the conditions on the level if you died or loading a level
     void Set(char *pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS grftrans);
@@ -64,5 +64,8 @@ public:
     // Executes the conditions from CTransition::Set by setting some engine vaules to default and loading the level file
     void Execute();
 };
+
+// Reloads the current level. The value of FTRANS affects the load.
+void ResetWorld(FTRANS ftrans);
 
 #endif // TRANSITION_H

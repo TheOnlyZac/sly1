@@ -280,7 +280,7 @@ segments:
     #- [0x, asm, P2/thread]
     #- [0x, asm, P2/tn]
 
-    - [0xe5e38, asm, P2/transition]
+    - [0xe5e38, c, P2/transition]
     - [0xe6378, asm, P2/turret]
     - [0xe6e70, asm, P2/tv]
     - [0xe98d0, asm, P2/ub]
