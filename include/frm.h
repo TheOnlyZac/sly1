@@ -10,4 +10,8 @@
 
 // ...
 
+void FrameRenderLoop(void*);
+
+extern u8 g_abRenderLoopStack[0x20000];
+
 #endif // FRM_H

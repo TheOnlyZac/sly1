@@ -4,6 +4,8 @@ _exit = 0x1000B8; // type:func
 __builtin_delete = 0x18d778; // type:func
 memcmp = 0x1F59C4; // type:func
 
+_gpReg = 0x2832F0;
+
 ////////////////////////////////////////////////////////////////
 // Unknown file
 // Related to save files
@@ -1070,6 +1072,19 @@ g_psw = 0x275710; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
+// P2/thread.c
+////////////////////////////////////////////////////////////////
+SemaCreate__Fii = 0x1e2268; // type:func
+InitCritSect__FP8CRITSECT = 0x1e22c0; // type:func
+EnterCritSect__FP8CRITSECT = 0x1e22f8; // type:func
+LeaveCritSect__FP8CRITSECT = 0x1e2358; // type:func
+StartupThread__Fv = 0x1e2398; // type:func
+
+g_athread = 0x275958; // size:0xC
+
+g_abRenderLoopStack = 0x6056d0; // size:0x20000
+
+////////////////////////////////////////////////////////////////
 // P2/transition.c
 ////////////////////////////////////////////////////////////////
 __11CTransition = 0x1E4E38; // type:func
@@ -1218,6 +1233,17 @@ sceCdBreak = 0x203e28; // type:func
 // sce/filestub.c
 ////////////////////////////////////////////////////////////////
 sceClose = 0x1f8c38; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// sce/klib.c
+////////////////////////////////////////////////////////////////
+CreateThread = 0x1F6A10; // type:func
+ChangeThreadPriority = 0x1F6A50; // type:func
+GetThreadId = 0x1F6A90; // type:func
+CreateSema = 0x1F6B20; // type:func
+SignalSema = 0x1F6B40; // type:func
+WaitSema = 0x1F6B60; // type:func
 
 
 ////////////////////////////////////////////////////////////////
