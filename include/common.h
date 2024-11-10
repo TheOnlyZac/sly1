@@ -11,6 +11,8 @@
 #include "types.h"
 #include "vtables.h"
 
+extern int _gpReg; // Global pointer register
+
 /**
  * @brief RGBA color value.
  */
