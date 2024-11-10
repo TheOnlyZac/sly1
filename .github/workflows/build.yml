@@ -10,6 +10,7 @@ on:
 
 jobs:
   build:
+    if: github.repository_owner == 'theonlyzac'
     runs-on: ubuntu-latest
 
     steps:
