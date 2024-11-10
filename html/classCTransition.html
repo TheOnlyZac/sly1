@@ -110,8 +110,8 @@ $(document).ready(function(){initNavTree('classCTransition.html',''); initResiza
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4eadde724a9f68bc582710d12b68ba5b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTransition.html#a4eadde724a9f68bc582710d12b68ba5b">ResetWorld</a> (<a class="el" href="transition_8h.html#a4f51cfc2d370d8a616b56c9ae61eee74">FTRANS</a> ftrans)</td></tr>
-<tr class="separator:a4eadde724a9f68bc582710d12b68ba5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec02e07b0bbb1b61d5b7277be244d266"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTransition.html#aec02e07b0bbb1b61d5b7277be244d266">CTransition</a> ()</td></tr>
+<tr class="separator:aec02e07b0bbb1b61d5b7277be244d266"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bd7ce4ba8de3f19b616b5a733d8f222"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTransition.html#a1bd7ce4ba8de3f19b616b5a733d8f222">Set</a> (char *pchzWorld, <a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> oidWarp, <a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> oidWarpContext, <a class="el" href="transition_8h.html#ad6c4dcfee29abc553b6b3c6bd0ac26b8">GRFTRANS</a> <a class="el" href="classCTransition.html#ac2a3657aea1fa457b2c8201ff76e0108">grftrans</a>)</td></tr>
 <tr class="separator:a1bd7ce4ba8de3f19b616b5a733d8f222"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d1722a9b0862259a9e8f2bc52eef451"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTransition.html#a8d1722a9b0862259a9e8f2bc52eef451">Execute</a> ()</td></tr>
@@ -123,11 +123,11 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ac2a3657aea1fa457b2c8201ff76e0108"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5911d7e42363d1db991e0c68799f947e"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTransition.html#a5911d7e42363d1db991e0c68799f947e">m_achzWorldCur</a> [64]</td></tr>
 <tr class="separator:a5911d7e42363d1db991e0c68799f947e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6407690b2f392abd545fd65348213cf5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTransition.html#a6407690b2f392abd545fd65348213cf5">m_fPending</a></td></tr>
-<tr class="separator:a6407690b2f392abd545fd65348213cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a6407690b2f392abd545fd65348213cf5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTransition.html#a6407690b2f392abd545fd65348213cf5">m_fPending</a></td></tr>
+<tr class="separator:a6407690b2f392abd545fd65348213cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c4fce4fc11722e6ed7ca50482d25d92"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTransition.html#a2c4fce4fc11722e6ed7ca50482d25d92">m_pchzWorld</a></td></tr>
 <tr class="separator:a2c4fce4fc11722e6ed7ca50482d25d92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67705e29954a806052f8ae6655071459"><td class="memItemLeft" align="right" valign="top"><a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTransition.html#a67705e29954a806052f8ae6655071459">m_oidWarp</a></td></tr>
@@ -139,7 +139,27 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><p>Transition. </p>
 
 <p class="definition">Definition at line <a class="el" href="transition_8h_source.html#l00046">46</a> of file <a class="el" href="transition_8h_source.html">transition.h</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aec02e07b0bbb1b61d5b7277be244d266"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec02e07b0bbb1b61d5b7277be244d266">&#9670;&nbsp;</a></span>CTransition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTransition::CTransition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="transition_8c_source.html#l00008">8</a> of file <a class="el" href="transition_8c_source.html">transition.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a8d1722a9b0862259a9e8f2bc52eef451"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8d1722a9b0862259a9e8f2bc52eef451">&#9670;&nbsp;</a></span>Execute()</h2>
 
@@ -150,24 +170,6 @@ Protected Attributes</h2></td></tr>
           <td class="memname">void CTransition::Execute </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a4eadde724a9f68bc582710d12b68ba5b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4eadde724a9f68bc582710d12b68ba5b">&#9670;&nbsp;</a></span>ResetWorld()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CTransition::ResetWorld </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="transition_8h.html#a4f51cfc2d370d8a616b56c9ae61eee74">FTRANS</a>&#160;</td>
-          <td class="paramname"><em>ftrans</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -213,6 +215,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="transition_8c_source.html#l00017">17</a> of file <a class="el" href="transition_8c_source.html">transition.c</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -228,7 +232,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="transition_8h_source.html#l00054">54</a> of file <a class="el" href="transition_8h_source.html">transition.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="transition_8h_source.html#l00055">55</a> of file <a class="el" href="transition_8h_source.html">transition.h</a>.</p>
 
 </div>
 </div>
@@ -244,7 +248,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="transition_8h_source.html#l00055">55</a> of file <a class="el" href="transition_8h_source.html">transition.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="transition_8h_source.html#l00056">56</a> of file <a class="el" href="transition_8h_source.html">transition.h</a>.</p>
 
 </div>
 </div>
@@ -253,14 +257,22 @@ Protected Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int CTransition::m_fPending</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="transition_8h_source.html#l00056">56</a> of file <a class="el" href="transition_8h_source.html">transition.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="transition_8h_source.html#l00049">49</a> of file <a class="el" href="transition_8h_source.html">transition.h</a>.</p>
 
 </div>
 </div>
@@ -284,7 +296,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="transition_8h_source.html#l00050">50</a> of file <a class="el" href="transition_8h_source.html">transition.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="transition_8h_source.html#l00051">51</a> of file <a class="el" href="transition_8h_source.html">transition.h</a>.</p>
 
 </div>
 </div>
@@ -308,7 +320,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="transition_8h_source.html#l00051">51</a> of file <a class="el" href="transition_8h_source.html">transition.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="transition_8h_source.html#l00052">52</a> of file <a class="el" href="transition_8h_source.html">transition.h</a>.</p>
 
 </div>
 </div>
@@ -332,12 +344,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="transition_8h_source.html#l00049">49</a> of file <a class="el" href="transition_8h_source.html">transition.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="transition_8h_source.html#l00050">50</a> of file <a class="el" href="transition_8h_source.html">transition.h</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="transition_8h_source.html">transition.h</a></li>
+<li>src/P2/<a class="el" href="transition_8c_source.html">transition.c</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

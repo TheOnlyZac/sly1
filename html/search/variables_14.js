@@ -1,9 +1,19 @@
 var searchData=
 [
-  ['x_3750',['x',['../structJOY.html#ad8cb7cb5f1dae1d40acd92d6ec17ab91',1,'JOY::x()'],['../structBLOTI.html#a6ae21352c4b7b2575c55ac94d2dbb6d3',1,'BLOTI::x()'],['../structBLOT.html#ab157a079bb0e114cd9827dfe7febfdb9',1,'BLOT::x()'],['../structCLQ.html#a3fca460b2fddb9dcd6886aaeeb1e58ae',1,'CLQ::x()'],['../structVECTOR.html#a089769eb3e23fb95cda35b45b3434cd5',1,'VECTOR::x()'],['../structVECTOR4.html#ae1b2a9e4f7c5b97bb249dc3be2db47b5',1,'VECTOR4::x()']]],
-  ['x2_3751',['x2',['../structJOY.html#aa8f9867e439949cf9835d19ce608fe88',1,'JOY']]],
-  ['xoff_3752',['xOff',['../structBLOT.html#a0e39718a1d7b29e48f31d2420b2960ce',1,'BLOT']]],
-  ['xon_3753',['xOn',['../structBLOT.html#add6d1a3abc3674bafb5d1804c315d299',1,'BLOT']]],
-  ['xscreenrange_3754',['xScreenRange',['../structCM.html#a57cb87bfde40752034d0d6cc7d324b05',1,'CM']]],
-  ['xymanual_3755',['xyManual',['../structCPTN.html#a7e7ce259fd563037ddad29cda632e07e',1,'CPTN']]]
+  ['v_3836',['v',['../structCLQ.html#ab998b48863dd4eb6440bdc13e70369b6',1,'CLQ::v()'],['../structWARP.html#affedd819a106d0e33fe796a3a8673cc9',1,'WARP::v()']]],
+  ['vadjust_3837',['vAdjust',['../structCM.html#a558053c01e770af6938fe550bacef6f9',1,'CM']]],
+  ['value0_3838',['value0',['../structBINOC.html#a1fb5c7f2c24521b68e25b2021d7de50f',1,'BINOC']]],
+  ['value1_3839',['value1',['../structBINOC.html#a96b3b48ae7a0b3d2a36c2ba6ca4c6a7a',1,'BINOC']]],
+  ['vbase_3840',['vBase',['../structCPDEFI.html#a89a579f09874dca7f3047442fb8d5aa5',1,'CPDEFI']]],
+  ['vcenter_3841',['vCenter',['../structCM.html#af27173b19b9eb3a0185a1f5a8e3a02b8',1,'CM::vCenter()'],['../structDPRIZE.html#a9ca3dbc033fa748916f4ae4f9d969f5a',1,'DPRIZE::vCenter()']]],
+  ['vec_3842',['vec',['../unionQW.html#abb19d65decfba1b0582c4e502e4550e0',1,'QW']]],
+  ['vec4_3843',['vec4',['../unionQW.html#a778b3807ffa7e4709d9b48dd4fa8113a',1,'QW']]],
+  ['vecup_3844',['vecUp',['../structCAMERA.html#add462f0be64b7ee3a718464706d34845',1,'CAMERA']]],
+  ['vecview_3845',['vecView',['../structCAMERA.html#a0b1c9d0e33bc8847358b218301d070f8',1,'CAMERA']]],
+  ['vfocus_3846',['vFocus',['../structCM.html#a6d51c129758088fb0e56776649feeef1',1,'CM']]],
+  ['volattenuated_3847',['volAttenuated',['../structAMB.html#a4c01cad88381e277bca5ab28c79f6bf9',1,'AMB']]],
+  ['vscreen_3848',['vScreen',['../structCM.html#ac3540ec97371e2d58d22200a110d3ab9',1,'CM']]],
+  ['vtable_3849',['vtable',['../structCPLCY.html#ab801104d0c937f9e1f733653d375c030',1,'CPLCY']]],
+  ['vxy_3850',['vxy',['../structCPTN.html#ac9734c40d7ce655c84213b592e95f3f4',1,'CPTN']]],
+  ['vz_3851',['vz',['../structCPTN.html#aaa869c013c738f4895a554e66d5f92a7',1,'CPTN']]]
 ];

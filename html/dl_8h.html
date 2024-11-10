@@ -120,7 +120,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDL.html">DL</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unknown.  <a href="structDL.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Doubly Linked list.  <a href="structDL.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDLE.html">DLE</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,9 +137,41 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a9a51742381a1ad6110e71ef01c3f43b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dl_8h.html#a9a51742381a1ad6110e71ef01c3f43b4">InitDl</a> (<a class="el" href="structDL.html">DL</a> *pdl, int ibDle)</td></tr>
+<tr class="memdesc:a9a51742381a1ad6110e71ef01c3f43b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a doubly linked list.  <a href="dl_8h.html#a9a51742381a1ad6110e71ef01c3f43b4">More...</a><br /></td></tr>
 <tr class="separator:a9a51742381a1ad6110e71ef01c3f43b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae76b69d4ccbfef2b2dd32ab7fbbe0efa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dl_8h.html#ae76b69d4ccbfef2b2dd32ab7fbbe0efa">ClearDl</a> (<a class="el" href="structDL.html">DL</a> *pdl)</td></tr>
+<tr class="memdesc:ae76b69d4ccbfef2b2dd32ab7fbbe0efa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear a doubly linked list.  <a href="dl_8h.html#ae76b69d4ccbfef2b2dd32ab7fbbe0efa">More...</a><br /></td></tr>
+<tr class="separator:ae76b69d4ccbfef2b2dd32ab7fbbe0efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53f50be2a6a8a6f738da6f1e0d9cad2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dl_8h.html#a53f50be2a6a8a6f738da6f1e0d9cad2a">ClearDle</a> (<a class="el" href="structDLE.html">DLE</a> *pdle)</td></tr>
+<tr class="memdesc:a53f50be2a6a8a6f738da6f1e0d9cad2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear a doubly linked list element.  <a href="dl_8h.html#a53f50be2a6a8a6f738da6f1e0d9cad2a">More...</a><br /></td></tr>
+<tr class="separator:a53f50be2a6a8a6f738da6f1e0d9cad2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71bbf848cd0a555d32a22ebe71ba56ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structDLE.html">DLE</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dl_8h.html#a71bbf848cd0a555d32a22ebe71ba56ff">PdleFromDlEntry</a> (<a class="el" href="structDL.html">DL</a> *pdl, void *pv)</td></tr>
+<tr class="memdesc:a71bbf848cd0a555d32a22ebe71ba56ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="structDLE.html">DLE</a> structure from a list element.  <a href="dl_8h.html#a71bbf848cd0a555d32a22ebe71ba56ff">More...</a><br /></td></tr>
+<tr class="separator:a71bbf848cd0a555d32a22ebe71ba56ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b683f3068bfb917a09751d9abe7edf3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dl_8h.html#a4b683f3068bfb917a09751d9abe7edf3">AppendDlEntry</a> (<a class="el" href="structDL.html">DL</a> *pdl, void *pv)</td></tr>
+<tr class="memdesc:a4b683f3068bfb917a09751d9abe7edf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append an element to the end of the doubly linked list.  <a href="dl_8h.html#a4b683f3068bfb917a09751d9abe7edf3">More...</a><br /></td></tr>
 <tr class="separator:a4b683f3068bfb917a09751d9abe7edf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6407e3f21645eaac7bb3de6367e08fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dl_8h.html#aa6407e3f21645eaac7bb3de6367e08fc">PrependDlEntry</a> (<a class="el" href="structDL.html">DL</a> *pdl, void *pv)</td></tr>
+<tr class="memdesc:aa6407e3f21645eaac7bb3de6367e08fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepend an element to the beginning of the doubly linked list.  <a href="dl_8h.html#aa6407e3f21645eaac7bb3de6367e08fc">More...</a><br /></td></tr>
+<tr class="separator:aa6407e3f21645eaac7bb3de6367e08fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4727586655bb8c6bc7b0836123da5621"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dl_8h.html#a4727586655bb8c6bc7b0836123da5621">InsertDlEntryBefore</a> (<a class="el" href="structDL.html">DL</a> *pdl, void *pvNext, void *pv)</td></tr>
+<tr class="memdesc:a4727586655bb8c6bc7b0836123da5621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert an element before a specified element in the doubly linked list.  <a href="dl_8h.html#a4727586655bb8c6bc7b0836123da5621">More...</a><br /></td></tr>
+<tr class="separator:a4727586655bb8c6bc7b0836123da5621"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e6821044f09f72fa57ba1fe072cc1db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dl_8h.html#a6e6821044f09f72fa57ba1fe072cc1db">RemoveDlEntry</a> (<a class="el" href="structDL.html">DL</a> *pdl, void *pv)</td></tr>
+<tr class="memdesc:a6e6821044f09f72fa57ba1fe072cc1db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove an element from the doubly linked list.  <a href="dl_8h.html#a6e6821044f09f72fa57ba1fe072cc1db">More...</a><br /></td></tr>
+<tr class="separator:a6e6821044f09f72fa57ba1fe072cc1db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a247c49d70735c14c58b19e3da64a0655"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dl_8h.html#a247c49d70735c14c58b19e3da64a0655">FFindDlEntry</a> (<a class="el" href="structDL.html">DL</a> *pdl, void *pv)</td></tr>
+<tr class="memdesc:a247c49d70735c14c58b19e3da64a0655"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine if a list element is in the doubly linked list.  <a href="dl_8h.html#a247c49d70735c14c58b19e3da64a0655">More...</a><br /></td></tr>
+<tr class="separator:a247c49d70735c14c58b19e3da64a0655"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab13107e40afb2082245a37f2b104b606"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dl_8h.html#ab13107e40afb2082245a37f2b104b606">FIsDlEmpty</a> (<a class="el" href="structDL.html">DL</a> *pdl)</td></tr>
+<tr class="memdesc:ab13107e40afb2082245a37f2b104b606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the doubly linked list is empty.  <a href="dl_8h.html#ab13107e40afb2082245a37f2b104b606">More...</a><br /></td></tr>
+<tr class="separator:ab13107e40afb2082245a37f2b104b606"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a792bf66930e6a2bbe3602692bcf71a57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dl_8h.html#a792bf66930e6a2bbe3602692bcf71a57">MergeDl</a> (<a class="el" href="structDL.html">DL</a> *pdlDst, <a class="el" href="structDL.html">DL</a> *pdlSrc)</td></tr>
+<tr class="memdesc:a792bf66930e6a2bbe3602692bcf71a57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge two doubly linked lists.  <a href="dl_8h.html#a792bf66930e6a2bbe3602692bcf71a57">More...</a><br /></td></tr>
+<tr class="separator:a792bf66930e6a2bbe3602692bcf71a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a202b411721c198ff0fe36f5687f6bcfe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dl_8h.html#a202b411721c198ff0fe36f5687f6bcfe">CPvDl</a> (<a class="el" href="structDL.html">DL</a> *pdl)</td></tr>
+<tr class="memdesc:a202b411721c198ff0fe36f5687f6bcfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Traverse a doubly linked list starting from the head and count the number of elements.  <a href="dl_8h.html#a202b411721c198ff0fe36f5687f6bcfe">More...</a><br /></td></tr>
+<tr class="separator:a202b411721c198ff0fe36f5687f6bcfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a4b683f3068bfb917a09751d9abe7edf3"></a>
@@ -168,6 +200,167 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Append an element to the end of the doubly linked list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdl</td><td>Pointer to the doubly linked list. </td></tr>
+    <tr><td class="paramname">pv</td><td>Pointer to the list element. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="dl_8c_source.html#l00026">26</a> of file <a class="el" href="dl_8c_source.html">dl.c</a>.</p>
+
+</div>
+</div>
+<a id="ae76b69d4ccbfef2b2dd32ab7fbbe0efa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae76b69d4ccbfef2b2dd32ab7fbbe0efa">&#9670;&nbsp;</a></span>ClearDl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ClearDl </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structDL.html">DL</a> *&#160;</td>
+          <td class="paramname"><em>pdl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clear a doubly linked list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdl</td><td>Pointer to the doubly linked list. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="dl_8c_source.html#l00009">9</a> of file <a class="el" href="dl_8c_source.html">dl.c</a>.</p>
+
+</div>
+</div>
+<a id="a53f50be2a6a8a6f738da6f1e0d9cad2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53f50be2a6a8a6f738da6f1e0d9cad2a">&#9670;&nbsp;</a></span>ClearDle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ClearDle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structDLE.html">DLE</a> *&#160;</td>
+          <td class="paramname"><em>pdle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clear a doubly linked list element. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdle</td><td>Pointer to the doubly linked list element. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="dl_8c_source.html#l00015">15</a> of file <a class="el" href="dl_8c_source.html">dl.c</a>.</p>
+
+</div>
+</div>
+<a id="a202b411721c198ff0fe36f5687f6bcfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a202b411721c198ff0fe36f5687f6bcfe">&#9670;&nbsp;</a></span>CPvDl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CPvDl </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structDL.html">DL</a> *&#160;</td>
+          <td class="paramname"><em>pdl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Traverse a doubly linked list starting from the head and count the number of elements. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdl</td><td>Pointer to the doubly linked list. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of elements in the doubly linked list. </dd></dl>
+
+</div>
+</div>
+<a id="a247c49d70735c14c58b19e3da64a0655"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a247c49d70735c14c58b19e3da64a0655">&#9670;&nbsp;</a></span>FFindDlEntry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FFindDlEntry </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structDL.html">DL</a> *&#160;</td>
+          <td class="paramname"><em>pdl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Determine if a list element is in the doubly linked list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdl</td><td>Doubly linked list to search. </td></tr>
+    <tr><td class="paramname">pv</td><td>List element to search for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the element is in the list, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ab13107e40afb2082245a37f2b104b606"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab13107e40afb2082245a37f2b104b606">&#9670;&nbsp;</a></span>FIsDlEmpty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FIsDlEmpty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structDL.html">DL</a> *&#160;</td>
+          <td class="paramname"><em>pdl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if the doubly linked list is empty. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdl</td><td>Pointer to the doubly linked list. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the list is empty, false otherwise. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="dl_8c_source.html#l00088">88</a> of file <a class="el" href="dl_8c_source.html">dl.c</a>.</p>
+
 </div>
 </div>
 <a id="a9a51742381a1ad6110e71ef01c3f43b4"></a>
@@ -195,6 +388,216 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initialize a doubly linked list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdl</td><td>Pointer to the doubly linked list. </td></tr>
+    <tr><td class="paramname">ibDle</td><td>Offset to the <a class="el" href="structDLE.html">DLE</a> structure within the list element. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="dl_8c_source.html#l00004">4</a> of file <a class="el" href="dl_8c_source.html">dl.c</a>.</p>
+
+</div>
+</div>
+<a id="a4727586655bb8c6bc7b0836123da5621"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4727586655bb8c6bc7b0836123da5621">&#9670;&nbsp;</a></span>InsertDlEntryBefore()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InsertDlEntryBefore </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structDL.html">DL</a> *&#160;</td>
+          <td class="paramname"><em>pdl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvNext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Insert an element before a specified element in the doubly linked list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdl</td><td>Pointer to the doubly linked list. </td></tr>
+    <tr><td class="paramname">pvNext</td><td>Pointer to the element before which the new element will be inserted. </td></tr>
+    <tr><td class="paramname">pv</td><td>Pointer to the new list element. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="dl_8c_source.html#l00059">59</a> of file <a class="el" href="dl_8c_source.html">dl.c</a>.</p>
+
+</div>
+</div>
+<a id="a792bf66930e6a2bbe3602692bcf71a57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a792bf66930e6a2bbe3602692bcf71a57">&#9670;&nbsp;</a></span>MergeDl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MergeDl </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structDL.html">DL</a> *&#160;</td>
+          <td class="paramname"><em>pdlDst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structDL.html">DL</a> *&#160;</td>
+          <td class="paramname"><em>pdlSrc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Merge two doubly linked lists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdlDst</td><td>Destination doubly linked list. </td></tr>
+    <tr><td class="paramname">pdlSrc</td><td>Source doubly linked list. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a71bbf848cd0a555d32a22ebe71ba56ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71bbf848cd0a555d32a22ebe71ba56ff">&#9670;&nbsp;</a></span>PdleFromDlEntry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structDLE.html">DLE</a>* PdleFromDlEntry </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structDL.html">DL</a> *&#160;</td>
+          <td class="paramname"><em>pdl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the <a class="el" href="structDLE.html">DLE</a> structure from a list element. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdl</td><td>Pointer to the doubly linked list. </td></tr>
+    <tr><td class="paramname">pv</td><td>Pointer to the list element. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the <a class="el" href="structDLE.html">DLE</a> structure. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="dl_8c_source.html#l00021">21</a> of file <a class="el" href="dl_8c_source.html">dl.c</a>.</p>
+
+</div>
+</div>
+<a id="aa6407e3f21645eaac7bb3de6367e08fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6407e3f21645eaac7bb3de6367e08fc">&#9670;&nbsp;</a></span>PrependDlEntry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PrependDlEntry </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structDL.html">DL</a> *&#160;</td>
+          <td class="paramname"><em>pdl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prepend an element to the beginning of the doubly linked list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdl</td><td>Pointer to the doubly linked list. </td></tr>
+    <tr><td class="paramname">pv</td><td>Pointer to the list element. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="dl_8c_source.html#l00042">42</a> of file <a class="el" href="dl_8c_source.html">dl.c</a>.</p>
+
+</div>
+</div>
+<a id="a6e6821044f09f72fa57ba1fe072cc1db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e6821044f09f72fa57ba1fe072cc1db">&#9670;&nbsp;</a></span>RemoveDlEntry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RemoveDlEntry </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structDL.html">DL</a> *&#160;</td>
+          <td class="paramname"><em>pdl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove an element from the doubly linked list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pdl</td><td>Doubly linked list to remove the element from. </td></tr>
+    <tr><td class="paramname">pv</td><td>Element to remove. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

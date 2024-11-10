@@ -104,16 +104,17 @@ var NAVTREEINDEX =
 "bis_8h.html#a0f16a19ad9c62cc7c24a95f63f2ef73c",
 "classCBinaryInputStream.html#a6321d1634afab11e9e06028e08501965",
 "cm_8c.html#a5da2c88162a48d644e2cfd89c5b15d15",
-"files.html",
-"game_8h.html#a73a5f862a351662bf22487f62e26cb5eae7a1d0111b29e546d2c56ed62ef643c5",
-"joy_8h.html#ab0a5ef0700b1060619e90b2c89643043af2c74aec845c8002906defa38c8975da",
-"pair_8cpp_source.html",
-"screen_8h.html#a7e942b8858760660a00cf4dbc3cd5840",
-"structAMB.html#a9cfb25ac516825b21a517fc39feeae49",
-"structCPMAN.html#a87304469500f9e5328174e6f254c8361",
-"structLETTERBOX.html",
-"structTITLE.html#a7a2b1cd2b8b60e3f7052915d277939e3",
-"unionTAG.html#a9a2036d1f624331916efa5d2a471ae72"
+"emitter_8h_source.html",
+"game_8h.html#a73a5f862a351662bf22487f62e26cb5ea4f7d89cdf6442659318e5f43c4b164a6",
+"joy_8h.html#a5b18afa05738a875043b663fef5ca73ea71002892aff82e0d3d03b65f6f4a14ca",
+"mq_8h.html#a7b3cf6396e3e361f51817756f0f372cea4eb0ca14c6d9f985bd122002179e0f72",
+"screen_8h.html#a2cff0cdc1d047cd1df9e065812c80f8d",
+"stream_8h_source.html",
+"structCPALIGN.html#aa7845b3d95d20b54283f27cd6600a49c",
+"structJOY.html#a2091035a03af902200d5067c2f447cf1",
+"structSURF.html#a93b168f90dab5fc66925b3a7ce7fe08c",
+"types_8h.html#a10e94b422ef0c20dcdec20d31a1f5049",
+"wm_8h_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

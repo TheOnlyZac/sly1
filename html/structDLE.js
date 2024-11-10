@@ -1,5 +1,5 @@
 var structDLE =
 [
-    [ "unk_1", "structDLE.html#a6c216dd2bfb53ff420a3b7f3283fe33e", null ],
-    [ "unk_2", "structDLE.html#a13762367fbbc632d285439656f14b11d", null ]
+    [ "next", "structDLE.html#a2bfe4a37f5fe7bceb8e2e0fd6578d886", null ],
+    [ "prev", "structDLE.html#aa1a90b3aff68d131b65e608bfd42822b", null ]
 ];

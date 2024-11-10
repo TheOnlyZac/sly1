@@ -93,6 +93,7 @@ var hierarchy =
     [ "CProc", "classCProc.html", null ],
     [ "CProg", "classCProg.html", null ],
     [ "CRef", "classCRef.html", null ],
+    [ "CRITSECT", "structCRITSECT.html", null ],
     [ "CSidebag", "classCSidebag.html", null ],
     [ "CSplotheap", "classCSplotheap.html", null ],
     [ "CTextBox", "classCTextBox.html", null ],
@@ -136,6 +137,7 @@ var hierarchy =
     [ "sceCdRMode", "structsceCdRMode.html", null ],
     [ "sceGsTex0", "structsceGsTex0.html", null ],
     [ "sceGsTex2", "structsceGsTex2.html", null ],
+    [ "SemaParam", "structSemaParam.html", null ],
     [ "SFR", "structSFR.html", null ],
     [ "SHD", "structSHD.html", null ],
     [ "SHDF", "structSHDF.html", null ],
@@ -153,6 +155,7 @@ var hierarchy =
     [ "TEXF", "structTEXF.html", [
       [ "TEX", "structTEX.html", null ]
     ] ],
+    [ "ThreadParam", "structThreadParam.html", null ],
     [ "TRANS", "structTRANS.html", null ],
     [ "TSURF", "structTSURF.html", null ],
     [ "UI", "structUI.html", null ],

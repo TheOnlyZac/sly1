@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['z_3761',['z',['../structVECTOR.html#a95f342c4402f2ef9755ae8c515db31cd',1,'VECTOR::z()'],['../structVECTOR4.html#af1efc5d779733aafc317cb3166f6146b',1,'VECTOR4::z()']]],
-  ['zmanual_3762',['zManual',['../structCPTN.html#a4c4c5ffe67dff1f0b6bd4146d23712c2',1,'CPTN']]]
+  ['x_3863',['x',['../structJOY.html#ad8cb7cb5f1dae1d40acd92d6ec17ab91',1,'JOY::x()'],['../structBLOTI.html#a6ae21352c4b7b2575c55ac94d2dbb6d3',1,'BLOTI::x()'],['../structBLOT.html#ab157a079bb0e114cd9827dfe7febfdb9',1,'BLOT::x()'],['../structCLQ.html#a3fca460b2fddb9dcd6886aaeeb1e58ae',1,'CLQ::x()'],['../structVECTOR.html#a089769eb3e23fb95cda35b45b3434cd5',1,'VECTOR::x()'],['../structVECTOR4.html#ae1b2a9e4f7c5b97bb249dc3be2db47b5',1,'VECTOR4::x()']]],
+  ['x2_3864',['x2',['../structJOY.html#aa8f9867e439949cf9835d19ce608fe88',1,'JOY']]],
+  ['xoff_3865',['xOff',['../structBLOT.html#a0e39718a1d7b29e48f31d2420b2960ce',1,'BLOT']]],
+  ['xon_3866',['xOn',['../structBLOT.html#add6d1a3abc3674bafb5d1804c315d299',1,'BLOT']]],
+  ['xscreenrange_3867',['xScreenRange',['../structCM.html#a57cb87bfde40752034d0d6cc7d324b05',1,'CM']]],
+  ['xymanual_3868',['xyManual',['../structCPTN.html#a7e7ce259fd563037ddad29cda632e07e',1,'CPTN']]]
 ];

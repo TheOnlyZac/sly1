@@ -39,9 +39,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "cm.h", "cm_8h.html", "cm_8h" ],
     [ "cnvo.h", "cnvo_8h.html", null ],
     [ "coin.h", "coin_8h.html", "coin_8h" ],
-    [ "common.h", "common_8h.html", [
-      [ "RGBA", "structRGBA.html", "structRGBA" ]
-    ] ],
+    [ "common.h", "common_8h.html", "common_8h" ],
     [ "cplcy.h", "cplcy_8h.html", null ],
     [ "credit.h", "credit_8h.html", null ],
     [ "crout.h", "crout_8h.html", null ],
@@ -58,7 +56,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "fly.h", "fly_8h.html", null ],
     [ "font.h", "font_8h.html", "font_8h" ],
     [ "freeze.h", "freeze_8h.html", null ],
-    [ "frm.h", "frm_8h.html", null ],
+    [ "frm.h", "frm_8h.html", "frm_8h" ],
     [ "frzg.h", "frzg_8h.html", null ],
     [ "game.h", "game_8h.html", "game_8h" ],
     [ "geom.h", "geom_8h.html", [
@@ -144,6 +142,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     ] ],
     [ "sw.h", "sw_8h.html", "sw_8h" ],
     [ "text.h", "text_8h.html", null ],
+    [ "thread.h", "thread_8h.html", "thread_8h" ],
     [ "tmp.c", "tmp_8c.html", "tmp_8c" ],
     [ "transition.h", "transition_8h.html", "transition_8h" ],
     [ "turret.h", "turret_8h.html", null ],
