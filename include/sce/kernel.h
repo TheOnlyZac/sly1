@@ -9,6 +9,9 @@
 #include "common.h"
 
 extern "C" {
+    /**
+     * @brief Thread parameters for initialization
+     */
     struct ThreadParam {
         int status;             // Thread status
         void (*entry)(void *);  // Thread entry point
@@ -24,6 +27,9 @@ extern "C" {
         int	wakeupCount;        // Wakeup request count
     };
 
+    /**
+     * @brief Semaphore parameters for initialization
+     */
     struct SemaParam {
         int currentCount;    // Current semaphore count
         int maxCount;        // Maximum semaphore count

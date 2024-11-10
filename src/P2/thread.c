@@ -1,8 +1,8 @@
 #include "common.h"
 #include <sce/kernel.h>
 #include <sce/memset.h>
-#include <thread.h>
 #include <frm.h>
+#include <thread.h>
 
 int SemaCreate(int initCount, int maxCount)
 {

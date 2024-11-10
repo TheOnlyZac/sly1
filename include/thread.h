@@ -1,13 +1,16 @@
 /**
  * @file thread.h
  * 
- * @brief Thread and critical section utilities
+ * @brief Semaphore, Thread, and Critical Section utilities
  */
 #ifndef THREAD_H
 #define THREAD_H
 
 #include "common.h"
 
+/**
+ * @brief Details for a critical section
+ */
 struct CRITSECT
 {
     int cEnter;
