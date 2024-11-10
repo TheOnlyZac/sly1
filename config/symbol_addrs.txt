@@ -654,7 +654,18 @@ g_difficulty = 0x261ef0; // size:0x20
 ////////////////////////////////////////////////////////////////
 // P2/dl.c
 ////////////////////////////////////////////////////////////////
+InitDl__FP2DLi = 0x152438; // type:func
+ClearDl__FP2DL = 0x152440; // type:func
+ClearDle__FP3DLE = 0x152450; // type:func
+PdleFromDlEntry__FP2DLPv = 0x152460; // type:func
 AppendDlEntry__FP2DLPv = 0x152470; // type:func
+PrependDlEntry__FP2DLPv = 0x1524D8; // type:func
+InsertDlEntryBefore__FP2DLPvT1 = 0x152540; // type:func
+RemoveDlEntry__FP2DLPv = 0x152600; // type:func
+FFindDlEntry__FP2DLPv = 0x1526D0; // type:func
+FIsDlEmpty__FP2DL = 0x152720; // type:func
+MergeDl__FP2DLT0 = 0x152730; // type:func
+CPvDl__FP2DL = 0x1527D8; // type:func
 
 ////////////////////////////////////////////////////////////////
 // P2/find.c
