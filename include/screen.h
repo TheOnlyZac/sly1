@@ -74,6 +74,7 @@ struct BLOT
     {
         VTBLOT *pvtblot;
         VTNOTE *pvtnote;
+        VTBINOC *pvtbinoc;
     };
     CFont *pfont;
     undefined1 achzDraw[512];

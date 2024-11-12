@@ -49,4 +49,27 @@ struct VTNOTE
     int  (*pfnFIncludeBlotForPeg)(BLOT *);
 };
 
+struct VTBINOC
+{
+    void (*pfnInitBinoc)(BLOT *);
+    void (*pfnPostBinocLoad)(BLOT *);
+    void (*pfnUpdateBlot)(BLOT *);
+    void (*pfnOnBinocActive)(BLOT *);
+    void (*pfnUpdateBinocActive)(BLOT *);
+    void (*pfnOnBinocReset)(BLOT *);
+    void (*pfnOnBinocPush)(BLOT *);
+    void (*pfnOnBinocPop)(BLOT *);
+    void (*pfnSetBinocAchzDraw)(BLOT *, const char *);
+    void (*pfnDrawBinoc)(BLOT *);
+    void (*pfnRenderBlot)(BLOT *);
+    void (*pfnDtAppearBinoc)(BLOT *);
+    void (*pfnDtVisibleBlot)(BLOT *);
+    void (*pfnDtDisappearBinoc)(BLOT *);
+    void (*pfnShowBlot)(BLOT *);
+    void (*pfnHideBlot)(BLOT *);
+    void (*pfnSetBinocBlots)(BLOT *);
+    void (*pfnSetBlotClock)(BLOT *);
+    int  (*pfnFIncludeBlotForPeg)(BLOT *);
+};
+
 #endif // VTABLES_H
