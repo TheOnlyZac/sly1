@@ -113,7 +113,9 @@ void SetTimerSpeed(TIMER *ptimer, float svt) {
 
 INCLUDE_ASM(const s32, "P2/screen", SetTimerExpire__FP5TIMERfPFP5TIMER9TIMERNOTK_v);
 
-INCLUDE_ASM(const s32, "P2/screen", StartTimer__FP5TIMER);
+void StartTimer(TIMER *ptimer) {
+    SetTimerTimers(ptimer, TIMERS_Running);
+}
 
 INCLUDE_ASM(const s32, "P2/screen", StopTimer__FP5TIMER);
 
