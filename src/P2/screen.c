@@ -121,7 +121,9 @@ INCLUDE_ASM(const s32, "P2/screen", SetTimerTimers__FP5TIMER6TIMERS);
 
 INCLUDE_ASM(const s32, "P2/screen", DtVisibleTrunkctr__FP8TRUNKCTR);
 
-INCLUDE_ASM(const s32, "P2/screen", DtVisibleCrusherctr__FP10CRUSHERCTR);
+float DtVisibleCrusherctr(CRUSHERCTR *pcrusherctr) {
+    return 0.0;
+}
 
 INCLUDE_ASM(const s32, "P2/screen", func_001ABE60);
 
