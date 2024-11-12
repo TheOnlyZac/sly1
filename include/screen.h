@@ -87,7 +87,7 @@ struct BLOT
     float xOn, yOn;
     float dx, dy;
     float width, height;
-    float easing;
+    float uOn;
     float dtAppear;
     float dtVisible;
     float dtDisappear;
@@ -95,13 +95,7 @@ struct BLOT
     BLOTS blots;
     float tBlots;
     float *ptNow;
-    UIS uis;
-    int blotMode;
-    int selectedIndex;
-    undefined4 unk_0;
-    float dgDisplayMax;
-    undefined4 unk_1;
-    undefined4 *pfnsmack;
+    int fActive;
 };
 
 // MARK: Timer
@@ -186,6 +180,7 @@ extern TOTALS g_totals;
 
 struct NOTE : public BLOT
 {
+    undefined1 padding_0[24];
     struct NOTE *unk278;
 };
 
