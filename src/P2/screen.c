@@ -117,7 +117,10 @@ void StartTimer(TIMER *ptimer) {
     SetTimerTimers(ptimer, TIMERS_Running);
 }
 
-INCLUDE_ASM(const s32, "P2/screen", StopTimer__FP5TIMER);
+void StopTimer(TIMER *ptimer) {
+    ptimer->fStopped = 1;
+    SetTimerTimers(ptimer, TIMERS_Expired);
+}
 
 INCLUDE_ASM(const s32, "P2/screen", RebuildTimerAchzDraw__FP5TIMERf);
 
