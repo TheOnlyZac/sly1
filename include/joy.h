@@ -7,6 +7,7 @@
 #define JOY_H
 
 #include "common.h"
+#include <rumble.h>
 #include <util.h>
 
 // MARK:Pad
@@ -48,59 +49,6 @@ enum BTNP
     BTNP_L2 = 10,
     BTNP_R2 = 11,
     BTNP_Max = 12
-};
-
-// MARK:Rumble
-
-/**
- * @brief Rumble state
- */
-enum RUMS
-{
-    RUMS_Dead = 0,
-    RUMS_Idle = 1,
-    RUMS_Rumble = 2,
-    RUMS_Stop = 3,
-    RUMS_Kill = 4,
-    RUMS_Max = 5
-};
-
-/**
- * @brief Rumble intensity
- */
-struct RUMINS
-{
-    int fHighSpeedMotor;
-    byte bLowSpeedMotor;
-    byte unk1;
-    byte unk2;
-    float dt;
-};
-
-/**
- * @brief Rumble pattern
- */
-struct RUMPAT
-{
-    int crumins;
-    RUMINS arumins[32];
-};
-
-/**
- * @brief Rumble
- *
- * Combines the rumble state, rumble pattern, and rumble intensity along with the
- * port and slot of the controller.
- */
-struct RUMBLE
-{
-    int nPort;
-    int nSlot;
-    RUMS rums;
-    RUMPAT *prumpat;
-    int irumins;
-    float dtRumble;
-    float dtRumins;
 };
 
 // MARK:Joy
@@ -155,6 +103,7 @@ struct JOY
     int dxLatch;
     int dyLatch;
     float tLatchX;
+    float dtLatchX;
     float tLatchY;
     float dtLatchY;
 
@@ -174,8 +123,6 @@ struct JOY
     int fStickMoved2;
     LM almDeflect2[4];
 
-    undefined4 unk_not_real; // only needed to make grfbtnPressed the right offset (0xaa)
-
     // face buttons
     GRFBTN grfbtn;
     GRFBTN grfbtnPressed;
@@ -188,12 +135,18 @@ struct JOY
     int fRumbleEnabled;
 };
 
+extern JOY g_joy;
+
 // MARK:User
 
 /**
  * @brief User flags integer type.
  */
 typedef int GRFUSR;
+
+extern GRFUSR g_grfusr;
+
+extern int g_grfjoyt;
 
 /**
  * @brief User Flags.
@@ -209,14 +162,17 @@ enum FUSR
 
 struct CODE
 {
-    short *ajbc;       // Pointer to code sequence
+    ushort *ajbc;      // Pointer to code sequence
     int cjbc;          // Code sequence length
-    void *pfn;         // Callback function pointer
+    void (*pfn)(int);  // Callback function pointer
     int nParam;        // Param for callback function
     int nInputCounter; // Counter for correct inputs
     int index;         // Index of cheat code in linked list
     CODE *pchtNext;    // Pointer to next cheat code
 };
+
+extern CODE *g_pcode;
+extern float g_tCodeCheck;
 
 /**
  * @brief Cheat flags.
@@ -235,6 +191,8 @@ enum FCHT
  * @brief Cheat flags integer type.
  */
 typedef int GRFCHT;
+
+extern GRFCHT g_grfcht;
 
 /**
  * @brief Cheat type.
