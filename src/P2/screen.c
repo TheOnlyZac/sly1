@@ -107,7 +107,9 @@ INCLUDE_ASM(const s32, "P2/screen", DrawTimer__FP5TIMER);
 
 INCLUDE_ASM(const s32, "P2/screen", SetTimer__FP5TIMERf);
 
-INCLUDE_ASM(const s32, "P2/screen", SetTimerSpeed__FP5TIMERf);
+void SetTimerSpeed(TIMER *ptimer, float svt) {
+    ptimer->svt = svt;
+}
 
 INCLUDE_ASM(const s32, "P2/screen", SetTimerExpire__FP5TIMERfPFP5TIMER9TIMERNOTK_v);
 
