@@ -4,6 +4,8 @@ _exit = 0x1000B8; // type:func
 __builtin_delete = 0x18d778; // type:func
 memcmp = 0x1F59C4; // type:func
 
+PvAllocGlobalImpl__Fi = 0x18D4B0; // type:func
+
 _gpReg = 0x2832F0;
 
 ////////////////////////////////////////////////////////////////
@@ -798,7 +800,7 @@ SetJoyJoys__FP3JOY4JOYS4JOYK = 0x16E630; // type:func
 GetJoyXYDeflection__FP3JOYUcUcPfN23PUcT6PiP2LM = 0x16E738; // type:func
 FReadJoy__FP3JOY = 0x16E940; // type:func
 SetJoyBtnHandled__FP3JOYUs = 0x16EC20; // type:func
-TriggerJoyRumbleRumk__FP6RUMBLEP3JOYf = 0x16EC38; // type:func
+TriggerJoyRumbleRumk__FP3JOY4RUMKf = 0x16EC38; // type:func
 StartJoySelection__FP3JOY = 0x16EC88; // type:func
 DxSelectionJoy__FP3JOY = 0x16EC98; // type:func
 DySelectionJoy__FP3JOY = 0x16EED0; // type:func
@@ -812,8 +814,15 @@ AddFcht__Fi = 0x16F430; // type:func
 Chetkido__Fv = 0x16F478; // type:func
 StartupCodes__Fv = 0x16F588; // type:func
 
-// size of g_joy might be wrong
+g_aja = 0x262A30; // size:0x20
+g_mpbtnpfbtn = 0x262A50; // size:0x18
+g_grfcht = 0x262C64; // size:0x4
+g_grfjoyt = 0x262C68; // size:0x4
+g_grfusr = 0x262C6C; // size:0x4
 g_joy = 0x262C70; // size:0xc4
+g_joyZero = 0x262D38; // size:0xc4
+g_pcode = 0x262DFC; // size:0x4
+g_tCodeCheck = 0x262E00;
 
 
 ////////////////////////////////////////////////////////////////
@@ -927,6 +936,12 @@ Draw__5CProg = 0x193318; // type:func
 ////////////////////////////////////////////////////////////////
 RenderSw__FP2SWP2CM = 0x19d6c0; // type:func
 DrawSw__FP2SWP2CM = 0x19DC98; // type:func
+
+////////////////////////////////////////////////////////////////
+// P2/rumble.c
+////////////////////////////////////////////////////////////////
+InitRumble__FP6RUMBLEii = 0x1A7B20; // type:func
+TriggerRumbleRumk__FP6RUMBLE4RUMKf = 0x1A7CE8; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -1244,6 +1259,20 @@ GetThreadId = 0x1F6A90; // type:func
 CreateSema = 0x1F6B20; // type:func
 SignalSema = 0x1F6B40; // type:func
 WaitSema = 0x1F6B60; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// sce/pad.c
+////////////////////////////////////////////////////////////////
+scePadInit = 0x2040E8; // type:func
+scePadPortOpen = 0x2042C8; // type:func
+scePadGetState = 0x204678; // type:func
+scePadInfoAct = 0x2046D0; // type:func
+scePadInfoMode = 0x2047F8; // type:func
+scePadSetMainMode = 0x204930; // type:func
+scePadSetActAlign = 0x204AA8; // type:func
+scePadInfoPressMode = 0x204CE8; // type:func
+scePadEnterPressMode = 0x204D48; // type:func
 
 
 ////////////////////////////////////////////////////////////////
