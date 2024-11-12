@@ -63,14 +63,15 @@ enum UIS
     UIS_Paused = 4,
     UIS_Unpausing = 5,
     UIS_WorldMap = 6,
-    //todo What is 7?
+    // todo What is 7?
     UIS_Wiping = 8,
     UIS_Max = 9
 };
 
 struct BLOT
 {
-    union {
+    union
+    {
         VTBLOT *pvtblot;
         VTNOTE *pvtnote;
     };
@@ -101,7 +102,6 @@ struct BLOT
     undefined4 unk_1;
     undefined4 *pfnsmack;
 };
-
 
 // MARK: Timer
 
@@ -147,12 +147,24 @@ struct CTR : public BLOT
     void *pv;
 };
 
-struct TRUNKCTR : public CTR { };
-struct CRUSHERCTR : public CTR { };
-struct LIFECTR : public CTR { };
-struct CLUECTR : public CTR { };
-struct KEYCTR : public CTR { };
-struct COINCTR : public CTR { };
+struct TRUNKCTR : public CTR
+{
+};
+struct CRUSHERCTR : public CTR
+{
+};
+struct LIFECTR : public CTR
+{
+};
+struct CLUECTR : public CTR
+{
+};
+struct KEYCTR : public CTR
+{
+};
+struct COINCTR : public CTR
+{
+};
 
 extern LIFECTR g_lifectr;
 extern CLUECTR g_cluectr;
@@ -173,7 +185,7 @@ extern TOTALS g_totals;
 
 struct NOTE : public BLOT
 {
-    struct NOTE* unk278;
+    struct NOTE *unk278;
 };
 
 extern NOTE g_note;

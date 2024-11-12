@@ -9,7 +9,8 @@
 #include "common.h"
 #include <screen.h>
 
-struct BINOC : public BLOT {
+struct BINOC : public BLOT
+{
     void *vtbinoc;
     undefined1 padding_0[116];
     float value0;
