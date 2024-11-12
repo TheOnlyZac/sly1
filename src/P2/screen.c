@@ -124,7 +124,12 @@ void StopTimer(TIMER *ptimer) {
 
 INCLUDE_ASM(const s32, "P2/screen", RebuildTimerAchzDraw__FP5TIMERf);
 
-INCLUDE_ASM(const s32, "P2/screen", SetTimerTimers__FP5TIMER6TIMERS);
+void SetTimerTimers(TIMER *ptimer, TIMERS timers) {
+    if (ptimer->timers != timers) {
+        ptimer->timers = timers;
+        ptimer->tTimers = g_clock.t;
+    }
+}
 
 float DtVisibleTrunkctr(TRUNKCTR *ptrunkctr) {
     return 0.0;
