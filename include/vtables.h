@@ -72,4 +72,27 @@ struct VTBINOC
     int  (*pfnFIncludeBlotForPeg)(BLOT *);
 };
 
+struct VTTIMER
+{
+    void (*pfnInitBlot)(BLOT *);
+    void (*pfnPostTimerLoad)(BLOT *);
+    void (*pfnUpdateTimer)(BLOT *);
+    void (*pfnOnBlotActive)(BLOT *);
+    void (*pfnUpdateBlotActive)(BLOT *);
+    void (*pfnOnBlotReset)(BLOT *);
+    void (*pfnOnBlotPush)(BLOT *);
+    void (*pfnOnBlotPop)(BLOT *);
+    void (*pfnSetBlotAchzDraw)(BLOT *, const char *);
+    void (*pfnDrawTimer)(BLOT *);
+    void (*pfnRenderBlot)(BLOT *);
+    void (*pfnDtAppearBlot)(BLOT *);
+    void (*pfnDtVisibleBlot)(BLOT *);
+    void (*pfnDtDisappearBlot)(BLOT *);
+    void (*pfnShowBlot)(BLOT *);
+    void (*pfnHideBlot)(BLOT *);
+    void (*pfnSetBlotBlots)(BLOT *);
+    void (*pfnSetBlotClock)(BLOT *);
+    int  (*pfnFIncludeBlotForPeg)(BLOT *);
+};
+
 #endif // VTABLES_H

@@ -105,7 +105,23 @@ INCLUDE_ASM(const s32, "P2/screen", UpdateTimer__FP5TIMER);
 
 INCLUDE_ASM(const s32, "P2/screen", DrawTimer__FP5TIMER);
 
-INCLUDE_ASM(const s32, "P2/screen", SetTimer__FP5TIMERf);
+void SetTimer(TIMER *ptimer, float dt) {
+    float threshold = D_0024CD4C;
+    ptimer->pfntnThreshold = (undefined1 *)0;
+    ptimer->fThreshold = 0;
+    ptimer->dtExpire = 0.0;
+    ptimer->pfntnExpire = (undefined1 *)0;
+    ptimer->fStopped = 0;
+    *(int*)&ptimer->rgba = 0xff808080; // Union?
+    ptimer->svt = -1.0;
+    ptimer->nSecondsLast = -1;
+    ptimer->nTenthsLast = -1;
+    ptimer->dtThreshold = threshold;
+    ptimer->dt = dt;
+    SetTimerTimers(ptimer, TIMERS_Paused);
+    RebuildTimerAchzDraw(ptimer, 0.0);
+    ptimer->pvttimer->pfnShowBlot(ptimer);
+}
 
 void SetTimerSpeed(TIMER *ptimer, float svt) {
     ptimer->svt = svt;
