@@ -1,18 +1,28 @@
 #include <binoc.h>
+#include <alo.h>
 
 INCLUDE_ASM(const s32, "P2/binoc", InitBei);
 
 INCLUDE_ASM(const s32, "P2/binoc", GEvaluateBei);
 
-void InitBinoc(BINOC *binoc, BLOTK blotk) {
-    binoc->dx = 640.0f;
-    binoc->dy = 492.80001f;
+void InitBinoc(BINOC *binoc, BLOTK blotk)
+{
+    binoc->width = 640.0f;
+    binoc->height = 492.80001f;
     binoc->value0 = 15.0f;
     binoc->value1 = 0x80ffffff;
     InitBlot(binoc, blotk);
 }
 
-INCLUDE_ASM(const s32, "P2/binoc", ResetBinoc__FP5BINOC);
+void ResetBinoc(BINOC *binoc)
+{
+    binoc->pvtblot->pfnSetBlotAchzDraw(binoc, 0);
+    SetBinocLookat(binoc, (ALO *)0);
+    binoc->dxReticle = 0.0f;
+    binoc->dyReticle = 0.0f;
+    binoc->uCompassBarOffset = 0.4f;
+    binoc->zoom = 0.0f;
+}
 
 INCLUDE_ASM(const s32, "P2/binoc", PostBinocLoad__FP5BINOC);
 
@@ -60,9 +70,26 @@ INCLUDE_ASM(const s32, "P2/binoc", SetBinocAchzDraw);
 
 INCLUDE_ASM(const s32, "P2/binoc", FDoneBinocAchz);
 
-INCLUDE_ASM(const s32, "P2/binoc", SetBinocLookat);
+void SetBinocLookat(BINOC *binoc, ALO *paloLookat)
+{
+    binoc->paloLookat = paloLookat;
+}
 
-INCLUDE_ASM(const s32, "P2/binoc", SetBinocZoom);
+void SetBinocZoom(BINOC *binoc, float zoom)
+{
+    float cappedZoom = zoom * 0.01f;
+    float one = 1.0f;
+    float zero = 0.0f;
+    if (cappedZoom < zero)
+    {
+        cappedZoom = zero;
+    }
+    else if (cappedZoom > one)
+    {
+        cappedZoom = one;
+    }
+    binoc->zoom = cappedZoom;
+}
 
 INCLUDE_ASM(const s32, "P2/binoc", FUN_001365f0);
 
@@ -70,7 +97,11 @@ INCLUDE_ASM(const s32, "P2/binoc", FUN_00136648);
 
 INCLUDE_ASM(const s32, "P2/binoc", DrawBinoc);
 
-INCLUDE_ASM(const s32, "P2/binoc", GetBinocReticleFocus);
+void GetBinocReticleFocus(BINOC *binoc, float *dxReticle, float *dyReticle)
+{
+    *dxReticle = binoc->dxReticle + 320.0f;
+    *dyReticle = binoc->dyReticle + 180.40001f;
+}
 
 INCLUDE_ASM(const s32, "P2/binoc", FUN_00136ef8);
 
