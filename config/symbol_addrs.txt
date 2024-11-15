@@ -773,6 +773,7 @@ CcharmMost__Fv = 0x160D98; // type:func
 reload_post_death = 0x160DA0; // type:func
 
 // data
+D_00247AB0 = 0x247ab0; // size:0x2c
 g_pgsCur = 0x2623c0; // size:0x4
 g_pwsCur = 0x2623c4; // size:0x4
 g_plsCur = 0x2623c8; // size:0x4
@@ -1188,6 +1189,8 @@ LimitVectorLength = 0x1EE2B0; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/wipe.c
 ////////////////////////////////////////////////////////////////
+func_001F0428 = 0x1F0428; // type:func
+
 g_pwipe = 0x275f80;
 g_wipe = 0x275f84;
 

@@ -225,6 +225,12 @@ struct GAME
     int cgoldLatest;
 };
 
+struct LevelLoadData
+{
+};
+
+extern const LevelLoadData *D_00247AB0[];
+
 /**
  * @brief Calls StartGame.
  */
