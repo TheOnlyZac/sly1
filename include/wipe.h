@@ -6,6 +6,7 @@
 
 #include "common.h"
 #include <transition.h>
+#include <oid.h>
 
 /**
  * @brief Wipe Kind
@@ -47,5 +48,9 @@ struct WIPE
 
 extern WIPE *g_pwipe;
 extern WIPE g_wipe;
+
+extern "C" {
+    void WipeToWorldWarp(const void *pchzWorld, OID oidWarp, WIPEK wipek);
+}
 
 #endif // WIPE_H

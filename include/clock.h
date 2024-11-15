@@ -24,6 +24,8 @@ struct CLOCK
     TICK tickFrame;
 };
 
+extern float D_0024CD4C;
+
 extern float g_rtClock;
 extern float g_rtClockPowerUp;
 extern CLOCK g_clock;

@@ -16,7 +16,7 @@ void InitBinoc(BINOC *binoc, BLOTK blotk)
 
 void ResetBinoc(BINOC *binoc)
 {
-    binoc->pvtblot->pfnSetBlotAchzDraw(binoc, 0);
+    binoc->pvtbinoc->pfnSetBinocAchzDraw(binoc, 0);
     SetBinocLookat(binoc, (ALO *)0);
     binoc->dxReticle = 0.0f;
     binoc->dyReticle = 0.0f;

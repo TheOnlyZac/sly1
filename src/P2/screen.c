@@ -105,23 +105,55 @@ INCLUDE_ASM(const s32, "P2/screen", UpdateTimer__FP5TIMER);
 
 INCLUDE_ASM(const s32, "P2/screen", DrawTimer__FP5TIMER);
 
-INCLUDE_ASM(const s32, "P2/screen", SetTimer__FP5TIMERf);
+void SetTimer(TIMER *ptimer, float dt) {
+    float threshold = D_0024CD4C;
+    ptimer->pfntnThreshold = (undefined1 *)0;
+    ptimer->fThreshold = 0;
+    ptimer->dtExpire = 0.0;
+    ptimer->pfntnExpire = (undefined1 *)0;
+    ptimer->fStopped = 0;
+    *(int*)&ptimer->rgba = 0xff808080; // Union?
+    ptimer->svt = -1.0;
+    ptimer->nSecondsLast = -1;
+    ptimer->nTenthsLast = -1;
+    ptimer->dtThreshold = threshold;
+    ptimer->dt = dt;
+    SetTimerTimers(ptimer, TIMERS_Paused);
+    RebuildTimerAchzDraw(ptimer, 0.0);
+    ptimer->pvttimer->pfnShowBlot(ptimer);
+}
 
-INCLUDE_ASM(const s32, "P2/screen", SetTimerSpeed__FP5TIMERf);
+void SetTimerSpeed(TIMER *ptimer, float svt) {
+    ptimer->svt = svt;
+}
 
 INCLUDE_ASM(const s32, "P2/screen", SetTimerExpire__FP5TIMERfPFP5TIMER9TIMERNOTK_v);
 
-INCLUDE_ASM(const s32, "P2/screen", StartTimer__FP5TIMER);
+void StartTimer(TIMER *ptimer) {
+    SetTimerTimers(ptimer, TIMERS_Running);
+}
 
-INCLUDE_ASM(const s32, "P2/screen", StopTimer__FP5TIMER);
+void StopTimer(TIMER *ptimer) {
+    ptimer->fStopped = 1;
+    SetTimerTimers(ptimer, TIMERS_Expired);
+}
 
 INCLUDE_ASM(const s32, "P2/screen", RebuildTimerAchzDraw__FP5TIMERf);
 
-INCLUDE_ASM(const s32, "P2/screen", SetTimerTimers__FP5TIMER6TIMERS);
+void SetTimerTimers(TIMER *ptimer, TIMERS timers) {
+    if (ptimer->timers != timers) {
+        ptimer->timers = timers;
+        ptimer->tTimers = g_clock.t;
+    }
+}
 
-INCLUDE_ASM(const s32, "P2/screen", DtVisibleTrunkctr__FP8TRUNKCTR);
+float DtVisibleTrunkctr(TRUNKCTR *ptrunkctr) {
+    return 0.0;
+}
 
-INCLUDE_ASM(const s32, "P2/screen", DtVisibleCrusherctr__FP10CRUSHERCTR);
+float DtVisibleCrusherctr(CRUSHERCTR *pcrusherctr) {
+    return 0.0;
+}
 
 INCLUDE_ASM(const s32, "P2/screen", func_001ABE60);
 

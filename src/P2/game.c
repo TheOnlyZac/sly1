@@ -1,4 +1,5 @@
 #include <game.h>
+#include <wipe.h>
 
 void StartupGame(void)
 {
@@ -51,7 +52,11 @@ INCLUDE_ASM(const s32, "P2/game", UnloadGame__Fv);
 
 INCLUDE_ASM(const s32, "P2/game", RetryGame__Fv);
 
-INCLUDE_ASM(const s32, "P2/game", StartGame__Fv);
+void StartGame()
+{
+    UnloadGame();
+    WipeToWorldWarp(D_00247AB0, OID_Nil, WIPEK_Fade);
+}
 
 INCLUDE_ASM(const s32, "P2/game", FUN_00160948);
 

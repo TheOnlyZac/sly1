@@ -11,8 +11,7 @@
 
 struct BINOC : public BLOT
 {
-    void *vtbinoc;
-    undefined1 padding_0[116];
+    undefined1 padding_0[144];
     float value0;
     undefined4 value1;
     undefined1 padding_1[4];
