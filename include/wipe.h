@@ -50,7 +50,7 @@ extern WIPE *g_pwipe;
 extern WIPE g_wipe;
 
 extern "C" {
-    void func_001F0428(const void *pchzWorld, OID oidWarp, WIPEK wipek);
+    void WipeToWorldWarp(const void *pchzWorld, OID oidWarp, WIPEK wipek);
 }
 
 #endif // WIPE_H

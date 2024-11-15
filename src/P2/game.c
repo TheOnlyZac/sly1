@@ -55,7 +55,7 @@ INCLUDE_ASM(const s32, "P2/game", RetryGame__Fv);
 void StartGame()
 {
     UnloadGame();
-    func_001F0428(D_00247AB0, OID_Nil, WIPEK_Fade);
+    WipeToWorldWarp(D_00247AB0, OID_Nil, WIPEK_Fade);
 }
 
 INCLUDE_ASM(const s32, "P2/game", FUN_00160948);
