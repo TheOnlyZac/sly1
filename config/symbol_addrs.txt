@@ -671,6 +671,32 @@ FIsDlEmpty__FP2DL = 0x152720; // type:func
 MergeDl__FP2DLT0 = 0x152730; // type:func
 CPvDl__FP2DL = 0x1527D8; // type:func
 
+
+////////////////////////////////////////////////////////////////
+// P2/dmas.c
+////////////////////////////////////////////////////////////////
+StartupDma__Fv = 0x152810; // type:func
+__4DMAS = 0x152888; // type:func
+Clear__4DMAS = 0x1528C8; // type:func
+Reset__4DMAS = 0x1528E0; // type:func
+AllocGlobal__4DMASi = 0x1528F0; // type:func
+AllocSw__4DMASii = 0x152938; // type:func
+AllocStack__4DMASi = 0x152980; // type:func
+AllocStatic__4DMASiP2QW = 0x1529C8; // type:func
+Detach__4DMASPiPP2QW = 0x1529E0; // type:func
+DetachCopySw__4DMASPiPP2QWT2i = 0x152A50; // type:func
+Send__4DMASP10sceDmaChan = 0x152AE0; // type:func
+AddDmaCnt__4DMAS = 0x152B38; // type:func
+AddDmaRefs__4DMASiP2QW = 0x152B80; // type:func
+AddDmaCall__4DMASP2QW = 0x152C18; // type:func
+AddDmaRet__4DMAS = 0x152CA0; // type:func
+AddDmaBulk__4DMASiP2QW = 0x152CE0; // type:func
+AddDmaEnd__4DMAS = 0x152D30; // type:func
+EndDmaCnt__4DMAS = 0x152D70; // type:func
+EndPrim__4DMASi = 0x152E18; // type:func
+
+_vt$4DMAS = 0x24A0E0; // size:0x10
+
 ////////////////////////////////////////////////////////////////
 // P2/find.c
 ////////////////////////////////////////////////////////////////
@@ -1239,6 +1265,14 @@ fmodf = 0x2058a0; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// sce/dma.c
+////////////////////////////////////////////////////////////////
+sceDmaGetChan = 0x2027A0; // type:func
+sceDmaReset = 0x2027C8; // type:func
+sceDmaSend = 0x202A80; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // sce/eecdvd.c
 ////////////////////////////////////////////////////////////////
 sceCdBreak = 0x203e28; // type:func
@@ -1259,6 +1293,7 @@ GetThreadId = 0x1F6A90; // type:func
 CreateSema = 0x1F6B20; // type:func
 SignalSema = 0x1F6B40; // type:func
 WaitSema = 0x1F6B60; // type:func
+FlushCache = 0x1F6C20; // type:func
 
 
 ////////////////////////////////////////////////////////////////
