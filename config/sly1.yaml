@@ -130,8 +130,8 @@ segments:
     - [0x529e0, c, P2/difficulty]
     - [0x53438, c, P2/dl]
 
-    - [0x53810, asm, P2/dmas]
-    #- [0x, asm, P2/dsp]
+    - [0x53810, c, P2/dmas]
+    - [0x53E28, asm, P2/dsp]
     #- [0x, asm, P2/dysh]
     #- [0x, asm, P2/dzg]
 
@@ -334,6 +334,8 @@ segments:
     - [0x14A2F0, .rodata, P2/splice/ref]
     - [0x14A3A0, .rodata, P2/splice/serialize]
     - [0x14A428, rodata]
+    - [0x14B0E0, .rodata, P2/dmas]
+    - [0x14B0F8, rodata]
 
     #--------------------------------------------------------
     # Data
