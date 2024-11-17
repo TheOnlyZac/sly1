@@ -1,6 +1,10 @@
-# Contributing
+# So you want to decompile Sly 1...
 
-Welcome to the **Sly Cooper Decompilation Project**! This guide will help you start contributing to the project. We are a volunteer-driven project, so we appreciate all contribution. If you need any help, feel free to ask in the #sly-research channel of the [Discord server](https://discord.gg/2GSXcEzPJA).
+You've come to the right place! We welcome new contributors of all skill levels. Even if you've never tried game hacking, modding, or reverse-engineering, we have a dedicated community of modders and reverse-engineers to help you get started. Feel feel to join our [Discord server](https://discord.gg/2GSXcEzPJA) and ask for help in #sly-research.
+
+This guide will help you start contributing to the project. This is a 100% volunteer-driven project, all contributions are greatly appreciated. The current goal is to decompile and match as many game functions as possible, while imitating the style and structure of the original code to understand the inner workings of the game engine.
+
+By following this guide, you will learn how to fork the repo on GitHub, choose a function to reverse-engineer, write code to match it, and integrate that code into the project. Once you've done that, and your pull request is merged, you will get the Decomp Contributor role in the Discord Server.
 
 # Contents
 
