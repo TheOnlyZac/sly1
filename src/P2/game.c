@@ -44,14 +44,9 @@ INCLUDE_ASM(const s32, "P2/game", SetupGame__FPci);
 
 void UpdateGameState(float dt)
 {
-  WS *wsCur;
-  LS *lsCur;
-  wsCur = g_pwsCur;
-  g_pgsCur->dt = g_pgsCur-> dt + dt;
-  lsCur = g_plsCur;
-  wsCur->dt = wsCur->dt + dt;
-  lsCur->dt = lsCur->dt + dt;
-  return;
+    g_pgsCur->dt += dt;
+    g_pwsCur->dt += dt;
+    g_plsCur->dt += dt;
 }
 
 INCLUDE_ASM(const s32, "P2/game", LsFromWid);
@@ -83,10 +78,11 @@ INCLUDE_ASM(const s32, "P2/game", func_00160C90);
 
 int PfLookupDialog(LS *pls, OID oidDialog)
 {
-  if (((oidDialog) - (0x33bU)) >= 0xc) {
-    return 0;
-  }
-    return  + -0xcd8 + (int)pls + (oidDialog * 4);
+    // todo figure out what these magic numbers represent
+    if (oidDialog - 0x33bU >= 0xc) {
+        return 0;
+    }
+    return -0xcd8 + (int)pls + (oidDialog * 4);
 }
 
 INCLUDE_ASM(const s32, "P2/game", clr_8_bytes_1);
