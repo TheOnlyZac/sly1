@@ -8,7 +8,11 @@ INCLUDE_ASM(const s32, "P2/chkpnt", ReturnChkmgrToCheckpoint__FP6CHKMGR);
 
 INCLUDE_ASM(const s32, "P2/chkpnt", RestoreChkmgrFromCheckpoint__FP6CHKMGR);
 
-INCLUDE_ASM(const s32, "P2/chkpnt", IchkAllocChkmgr__FP6CHKMGR);
+int IchkAllocChkmgr(CHKMGR *pchkmgr)
+{
+    pchkmgr->cbitChk = pchkmgr->cbitChk + 1;
+    return pchkmgr->cbitChk;
+}
 
 INCLUDE_ASM(const s32, "P2/chkpnt", FGetChkmgrIchk__FP6CHKMGRi);
 
