@@ -28,6 +28,7 @@ struct CHKPNT : public ALO
  */
 struct CHKMGR
 {
+    int unknown_0x0;
 	int cbitChk; // Count of values in abitChk.
 	int *abitChk; // Unknown, name/type may be wrong.
 	int padding[128]; // Temporary padding
