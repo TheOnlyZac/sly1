@@ -18,7 +18,7 @@
  */
 struct CHKPNT : public ALO
 {
-	// ...
+    // ...
 };
 
 /**
@@ -29,15 +29,15 @@ struct CHKPNT : public ALO
 struct CHKMGR
 {
     int unknown_0x0;
-	int cbitChk; // Count of values in abitChk.
-	int *abitChk; // Unknown, name/type may be wrong.
-	int padding[128]; // Temporary padding
-	int fChkDirty;
-	VECTOR posVolChkpnt;
-	int csSaved[129]; // type may be wrong
-	OID unk_oid_0x424;
-	OID unk_oid_0x428;
-	int fCheckpoint;
+    int cbitChk;      // Count of values in abitChk.
+    int *abitChk;     // Unknown, name/type may be wrong.
+    int padding[128]; // Temporary padding
+    int fChkDirty;
+    VECTOR posVolChkpnt;
+    int csSaved[129]; // type may be wrong
+    OID unk_oid_0x424;
+    OID unk_oid_0x428;
+    int fCheckpoint;
 };
 extern CHKMGR g_chkmgr;
 
