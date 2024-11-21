@@ -361,6 +361,19 @@ FadeAloIn__FP3ALOf = 0x126cb8 = 0x126CB8; // type:func
 FadeAloOut__FP3ALOf = 0x126d60; // type:func
 SetAloTargetHitTest__FP3ALOi = 0x12AA28; // type:func
 
+
+////////////////////////////////////////////////////////////////
+// P2/brx.c
+////////////////////////////////////////////////////////////////
+StartupBrx__Fv = 0x11e560; // type:func
+PloNew__F3CIDP2SWP3ALO3OIDi = 0x11E580; // type:func
+LoadOptionFromBrx__FPvP5EOPIDP18CBinaryInputStream = 0x11E680; // type:func
+LoadOptionsFromBrx__FPvP18CBinaryInputStream = 0x11EC40; // type:func
+IploFromStockOid__Fi = 0x11ECA0; // type:func
+LoadSwObjectsFromBrx__FP2SWP3ALOP18CBinaryInputStream = 0x11ECB8; // type:func
+SetLoDefaults__FP2LO = 0x11EDA8; // type:func
+
+
 ////////////////////////////////////////////////////////////////
 // P2/binoc.c
 ////////////////////////////////////////////////////////////////
