@@ -654,21 +654,21 @@ s_asnipDprize = 0x2619A0; // size:0x3c
 ////////////////////////////////////////////////////////////////
 // P2/credit.c
 ////////////////////////////////////////////////////////////////
-InitCredit = 0x14ABD0; // type:func
-PostCreditLoad = 0x14AC48; // type:func
-SetCreditClock = 0x14AD00; // type:func
-UpdateCredit = 0x14AD70; // type:func
-DrawCredit = 0x14ADE0; // type:func
-PlaceCredit = 0x14AEA0; // type:func
-VacateCredit = 0x14AF10; // type:func
-SetCreditLine = 0x14AF38; // type:func
+InitCredit__FP6CREDIT5BLOTK = 0x14ABD0; // type:func
+PostCreditLoad__FP6CREDIT = 0x14AC48; // type:func
+SetCreditClock__FP6CREDITPf = 0x14AD00; // type:func
+UpdateCredit__FP6CREDIT = 0x14AD70; // type:func
+DrawCredit__FP6CREDIT = 0x14ADE0; // type:func
+PlaceCredit__FP6CREDITffi = 0x14AEA0; // type:func
+VacateCredit__FP6CREDIT = 0x14AF10; // type:func
+SetCreditLine__FP6CREDITiPcf = 0x14AF38; // type:func
 
 
 ////////////////////////////////////////////////////////////////
 // P2/crout.c
 ////////////////////////////////////////////////////////////////
-CroutDecomp = 0x14B0C0; // type:func
-CroutSolve = 0x14B3E0; // type:func
+CroutDecomp__FiPfT1 = 0x14B0C0; // type:func
+CroutSolve__FiPfN21 = 0x14B3E0; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -1180,6 +1180,15 @@ IncrementSwHandsOff__FP2SW = 0x1dda20; // type:func
 DecrementSwHandsOff__FP2SW = 0x1dda50; // type:func
 
 g_psw = 0x275710; // size:0x4
+
+
+////////////////////////////////////////////////////////////////
+// P2/tail.c
+////////////////////////////////////////////////////////////////
+InitTail__FP4TAIL = 0x1DDCE0; // type:func
+PostTailLoad__FP4TAIL = 0x1DDD18; // type:func
+UpdateTailConstraints__FP4TAIL = 0x1DDE90; // type:func
+MatchTailOtherObject__FP4TAILP3ALO = 0x1DE768; // type:func
 
 
 ////////////////////////////////////////////////////////////////
