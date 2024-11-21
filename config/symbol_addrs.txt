@@ -361,6 +361,19 @@ FadeAloIn__FP3ALOf = 0x126cb8 = 0x126CB8; // type:func
 FadeAloOut__FP3ALOf = 0x126d60; // type:func
 SetAloTargetHitTest__FP3ALOi = 0x12AA28; // type:func
 
+
+////////////////////////////////////////////////////////////////
+// P2/brx.c
+////////////////////////////////////////////////////////////////
+StartupBrx__Fv = 0x11e560; // type:func
+PloNew__F3CIDP2SWP3ALO3OIDi = 0x11E580; // type:func
+LoadOptionFromBrx__FPvP5EOPIDP18CBinaryInputStream = 0x11E680; // type:func
+LoadOptionsFromBrx__FPvP18CBinaryInputStream = 0x11EC40; // type:func
+IploFromStockOid__Fi = 0x11ECA0; // type:func
+LoadSwObjectsFromBrx__FP2SWP3ALOP18CBinaryInputStream = 0x11ECB8; // type:func
+SetLoDefaults__FP2LO = 0x11EDA8; // type:func
+
+
 ////////////////////////////////////////////////////////////////
 // P2/binoc.c
 ////////////////////////////////////////////////////////////////
@@ -636,6 +649,27 @@ FUN_00149168 = 0x149168; // type:func
 break_bottle = 0x149190; // type:func
 
 s_asnipDprize = 0x2619A0; // size:0x3c
+
+
+////////////////////////////////////////////////////////////////
+// P2/credit.c
+////////////////////////////////////////////////////////////////
+InitCredit__FP6CREDIT5BLOTK = 0x14ABD0; // type:func
+PostCreditLoad__FP6CREDIT = 0x14AC48; // type:func
+SetCreditClock__FP6CREDITPf = 0x14AD00; // type:func
+UpdateCredit__FP6CREDIT = 0x14AD70; // type:func
+DrawCredit__FP6CREDIT = 0x14ADE0; // type:func
+PlaceCredit__FP6CREDITffi = 0x14AEA0; // type:func
+VacateCredit__FP6CREDIT = 0x14AF10; // type:func
+SetCreditLine__FP6CREDITiPcf = 0x14AF38; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/crout.c
+////////////////////////////////////////////////////////////////
+CroutDecomp__FiPfT1 = 0x14B0C0; // type:func
+CroutSolve__FiPfN21 = 0x14B3E0; // type:func
+
 
 ////////////////////////////////////////////////////////////////
 // P2/difficulty.c
@@ -1146,6 +1180,15 @@ IncrementSwHandsOff__FP2SW = 0x1dda20; // type:func
 DecrementSwHandsOff__FP2SW = 0x1dda50; // type:func
 
 g_psw = 0x275710; // size:0x4
+
+
+////////////////////////////////////////////////////////////////
+// P2/tail.c
+////////////////////////////////////////////////////////////////
+InitTail__FP4TAIL = 0x1DDCE0; // type:func
+PostTailLoad__FP4TAIL = 0x1DDD18; // type:func
+UpdateTailConstraints__FP4TAIL = 0x1DDE90; // type:func
+MatchTailOtherObject__FP4TAILP3ALO = 0x1DE768; // type:func
 
 
 ////////////////////////////////////////////////////////////////
