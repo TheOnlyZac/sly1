@@ -809,11 +809,45 @@ chz_none = 0x2623d0; // size:0x7
 // static
 g_gsCur = 0xea0; // size:0x1a00
 
+
 ////////////////////////////////////////////////////////////////
 // P2/gs.c
 // Graphics synthesizer
 ////////////////////////////////////////////////////////////////
+BlendDisplayOnBufferMismatch__Fv = 0x168130; // type:func
+VBlankS_Interrupt__Fi = 0x1682C0; // type:func
+SyncVBlank__Fv = 0x1683B8; // type:func
+SwapGsBuffers__Fv = 0x1683E8; // type:func
+RestoreGsBuffers__Fv = 0x1684E8; // type:func
+GS_Interrupt__Fi = 0x1685B8; // type:func
+ResetGs__Fv = 0x168698; // type:func
+SendDmaSyncGsFinish__FP10sceDmaChanP2QW = 0x1686E8; // type:func
+BuildClearGifs__FP2QWG4RGBAi = 0x168770; // type:func
+StartupGs__Fv = 0x1688B8; // type:func
+BlastAqwGifsBothFrames__FP2QW = 0x168A48; // type:func
 ClearFrameBuffers__Fv = 0x168AF8; // type:func
+FadeFramesToBlack__Ff = 0x168B68; // type:func
+ResetGsMemory__Fv = 0x168D00; // type:func
+NLog2__FUi = 0x168D30; // type:func
+InitGsb__FP3GSBii = 0x168D68; // type:func
+ResetGsb__FP3GSB = 0x168D78; // type:func
+IgsAllocGsb__FP3GSBi = 0x168D88; // type:func
+BuildImageGifs__FiiiiiiP4GIFS = 0x168D98; // type:func
+BuildClutTex2__FP4CLUTi = 0x168E78; // type:func
+BuildClutGifs__FP4CLUTiP4GIFS = 0x168F48; // type:func
+BuildBmpTex0__FP3BMPi = 0x168FB0; // type:func
+BuildBmpGifs__FP3BMPiP4GIFS = 0x169088; // type:func
+FBuildUploadBitmapGifs__FiP3GSBP4GIFS = 0x1690C0; // type:func
+UploadBitmaps__FiP3GSB = 0x1692B0; // type:func
+PqwGifsBitmapUpload__Fi = 0x1693A8; // type:func
+PropagateSur__FP3SUR = 0x1694A0; // type:func
+ReferenceShaderAqwRegs__FP3SHDP4SHDPP2QWiiP3SAI = 0x1694F8; // type:func
+ReferenceUVAnimation__FP2QWiP3SAI = 0x169608; // type:func
+RebaseSurs__FiiPvT2 = 0x1696B8; // type:func
+PropagateSurs__Fv = 0x169718; // type:func
+PqwVifsBitmapUpload__Fi = 0x169780; // type:func
+DrawOnBitmap__FP3BMPP4GIFS = 0x169B18; // type:func
+
 
 ////////////////////////////////////////////////////////////////
 // P2/joy.c
