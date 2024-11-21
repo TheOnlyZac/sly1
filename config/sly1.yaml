@@ -116,10 +116,9 @@ segments:
     - [0x47100, asm, P2/cnvo]
     - [0x47340, c, P2/coin]
     - [0x4a398, asm, P2/cplcy]
-    - [0x4bbd0, asm, P2/credit]
-
-    - [0x4c0c0, asm, P2/crout]
-    #- [0x, asm, P2/crusher]
+    - [0x4bbd0, c, P2/credit]
+    - [0x4c0c0, c, P2/crout]
+    - [0x4c550, asm, P2/crusher]
 
     - [0x4e0a8, asm, P2/crv]
 
