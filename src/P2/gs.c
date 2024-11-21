@@ -1,4 +1,5 @@
 #include "common.h"
+#include <gs.h>
 
 INCLUDE_ASM(const s32, "P2/gs", BlendDisplayOnBufferMismatch__Fv);
 
@@ -30,7 +31,13 @@ INCLUDE_ASM(const s32, "P2/gs", ResetGsMemory__Fv);
 
 INCLUDE_ASM(const s32, "P2/gs", NLog2__FUi);
 
-INCLUDE_ASM(const s32, "P2/gs", InitGsb__FP3GSBii);
+void InitGsb(GSB *set_igs_value,int igs_initial_amount,int igs_maximum_amount)
+
+{
+  set_igs_value->igsMac = igs_initial_amount;
+  set_igs_value->igsMin = igs_initial_amount;
+  set_igs_value->igsMax = igs_maximum_amount;
+}
 
 INCLUDE_ASM(const s32, "P2/gs", ResetGsb__FP3GSB);
 

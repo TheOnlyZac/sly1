@@ -8,7 +8,12 @@
 
 #include "common.h"
 
-// ...
+struct GSB
+{
+   int igsMin;
+   int igsMac;
+   int igsMax;
+};
 
 /**
  * 
