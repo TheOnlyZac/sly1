@@ -157,7 +157,7 @@ segments:
     #- [0x, asm, P2/glob]
     #- [0x, asm, P2/gomer]
 
-    - [0x69130, asm, P2/gs]
+    - [0x69130, c, P2/gs]
 
     - [0x6ac58, asm, P2/hide]
     #- [0x, asm, P2/hnd]
@@ -330,7 +330,7 @@ segments:
     - [0x141000, rodata] # todo
     - [0x149FE0, .rodata, P2/splice/bif]
     - [0x14A200, rodata] #todo: remove line and uncomment next for RefEvalAssert
-    # - [0x14A200, .rodata, P2/splice/eval] 
+    # - [0x14A200, .rodata, P2/splice/eval]
     - [0x14A2F0, .rodata, P2/splice/ref]
     - [0x14A3A0, .rodata, P2/splice/serialize]
     - [0x14A428, rodata]
