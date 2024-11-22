@@ -12,14 +12,20 @@ INCLUDE_ASM(const s32, "P2/brx", snd_SendIOPCommandNoWait);
 
 INCLUDE_ASM(const s32, "P2/brx", LoadOptionsFromBrx__FPvP18CBinaryInputStream);
 
-uint IploFromStockOid(int oid) {
+uint IploFromStockOid(int oid)
+{
     int iplo;
 
-    if (oid >= 0xC && oid <= 0x2a) {
-        iplo = oid - 0xC;
-    } else {
+    // Ensure oid is a stock object (between )
+    if (oid >= 12 && oid <= 42)
+    {
+        iplo = oid - 12;
+    }
+    else
+    {
         iplo = -1;
     }
+
     return iplo;
 }
 

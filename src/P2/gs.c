@@ -31,12 +31,11 @@ INCLUDE_ASM(const s32, "P2/gs", ResetGsMemory__Fv);
 
 INCLUDE_ASM(const s32, "P2/gs", NLog2__FUi);
 
-void igsMin(GSB *pgsb,int igsMin,int igsMax)
-
+void InitGsb(GSB *pgsb, int igsMin, int igsMax)
 {
-  pgsb->igsMac = igsMin;
-  pgsb->igsMin = igsMin;
-  pgsb->igsMax = igsMax;
+    pgsb->igsMac = igsMin;
+    pgsb->igsMin = igsMin;
+    pgsb->igsMax = igsMax;
 }
 
 INCLUDE_ASM(const s32, "P2/gs", ResetGsb__FP3GSB);
