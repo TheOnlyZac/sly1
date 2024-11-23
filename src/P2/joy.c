@@ -222,12 +222,11 @@ void _MatchCodes(JOY *pjoy, GRFBTN button)
 
 INCLUDE_ASM(const s32, "P2/joy", UpdateCodes__Fv);
 
-INCLUDE_ASM(const s32, "P2/joy", ClearFchts__Fv);
-// void ClearFchts()
-// {
-//     g_grfcht = FCHT_None;
-//     ResetWorld(FTRANS_None);
-// }
+void ClearFchts(void)
+{
+    g_grfcht = FCHT_None;
+    ResetWorld(FTRANS_None);
+}
 
 INCLUDE_ASM(const s32, "P2/joy", AddFcht__Fi);
 // void AddFcht(int nParam)

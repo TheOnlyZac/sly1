@@ -29,7 +29,7 @@ void CTransition::Set(char *pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS
 INCLUDE_ASM(const s32, "P2/transition", Execute__11CTransition);
 
 // Matching, blocked by broken references in joy.c
-INCLUDE_ASM(const s32, "P2/transition", ResetWorld__F6TRANS);
+INCLUDE_ASM(const s32, "P2/transition", ResetWorld__F6FTRANS);
 // void ResetWorld(FTRANS ftrans)
 // {
 //     GRFTRANS grftrans;
