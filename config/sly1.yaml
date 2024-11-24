@@ -128,7 +128,7 @@ segments:
 
     - [0x529e0, c, P2/difficulty]
     - [0x53438, c, P2/dl]
-
+    - [0x5380C, asm, dl_padding] # Needed to align dmas
     - [0x53810, c, P2/dmas]
     - [0x53E28, asm, P2/dsp]
     #- [0x, asm, P2/dysh]

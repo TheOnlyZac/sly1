@@ -38,7 +38,10 @@ void InitGsb(GSB *pgsb, int igsMin, int igsMax)
     pgsb->igsMax = igsMax;
 }
 
-INCLUDE_ASM(const s32, "P2/gs", ResetGsb__FP3GSB);
+void ResetGsb(GSB* pGsb)
+{
+  pGsb->igsMac = pGsb->igsMin;
+}
 
 INCLUDE_ASM(const s32, "P2/gs", IgsAllocGsb__FP3GSBi);
 
