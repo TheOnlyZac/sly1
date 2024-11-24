@@ -92,4 +92,18 @@ bool FIsDlEmpty(DL *pdl)
 
 INCLUDE_ASM(const s32, "P2/dl", MergeDl__FP2DLT0);
 
-INCLUDE_ASM(const s32, "P2/dl", CPvDl__FP2DL);
+int CPvDl(DL* pdl)
+{
+  void* pCurItem = pdl->head;
+  int iCount = 0;
+    
+  if (pCurItem != 0) {   
+    while(pCurItem) {
+      DLE* pDle = (DLE*)((unsigned char*)pCurItem + pdl->ibDle);
+
+      pCurItem = pDle->next;
+      iCount++;
+    }
+  }
+  return iCount;
+}
