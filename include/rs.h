@@ -9,6 +9,11 @@
 #include "common.h"
 #include <oid.h>
 
+/**
+ * @brief Unknown.
+ *
+ * @todo Figure out what this function represents.
+ */
 struct RSMG
 {
     OID oidRoot;

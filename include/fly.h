@@ -1,7 +1,7 @@
 /**
  * @file fly.h
  *
- * @brief Flies.
+ * @brief Flying insects.
  */
 #ifndef FLY_H
 #define FLY_H

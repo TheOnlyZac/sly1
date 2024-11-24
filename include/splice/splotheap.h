@@ -27,13 +27,13 @@ private:
 
 public:
     void Startup(int cb, int c);
-    void Shutdown(void);
-    int PvAllocUnsafe(void);
+    void Shutdown();
+    int PvAllocUnsafe();
     void *PvAllocClear();
     int PsplotLookup(int);
-    void UpdateRecyclable(void);
-    void UnmarkAll(void);
-    void FreeGarbage(void);
+    void UpdateRecyclable();
+    void UnmarkAll();
+    void FreeGarbage();
 };
 
 extern CSplotheap g_splotheapPair;

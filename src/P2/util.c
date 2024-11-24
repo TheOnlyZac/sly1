@@ -4,6 +4,7 @@
 #include <sce/math.h>
 
 static const float PI = 3.14159265359f;
+const int PRIME_MOD = 0x95675;
 
 float RadNormalize(float rad)
 {
@@ -24,29 +25,25 @@ INCLUDE_ASM(const s32, "P2/util", func_001EA720);
 
 float RadSmooth(float radCur, float radTarget, float dt, SMP *psmp, float *pdradNext)
 {
-    float result;
-
-    result = RadNormalize(radTarget - radCur);
-    result = GSmooth(0.0, result, dt, psmp, pdradNext);
-    result = RadNormalize(radCur + result);
-    return result;
+    float rad;
+    rad = RadNormalize(radTarget - radCur);
+    rad = GSmooth(0.0, rad, dt, psmp, pdradNext);
+    rad = RadNormalize(radCur + rad);
+    return rad;
 }
 
 float RadSmoothA(float radCur, float dradCur, float radTarget, float dt, SMPA *psmpa, float *pdradNext)
 {
-    float result;
-
-    result = RadNormalize(radTarget - radCur);
-    result = GSmoothA(0.0, dradCur, result, dt, psmpa, pdradNext);
-    result = RadNormalize(radCur + result);
-    return result;
+    float rad;
+    rad = RadNormalize(radTarget - radCur);
+    rad = GSmoothA(0.0, dradCur, rad, dt, psmpa, pdradNext);
+    rad = RadNormalize(radCur + rad);
+    return rad;
 }
 
 INCLUDE_ASM(const s32, "P2/util", PosSmooth);
 
 INCLUDE_ASM(const s32, "P2/util", SmoothMatrix);
-
-const int PRIME_MOD = 0x95675;
 
 // Generates a random integer in the range [nLow, nHi]
 int NRandInRange(int nLow, int nHi)
@@ -65,7 +62,7 @@ int NRandInRange(int nLow, int nHi)
     return nLow + (randVal % range);
 }
 
-float GRandInRange(float gHi,float gLow)
+float GRandInRange(float gHi, float gLow)
 {
     int rand_result;
     float delta;
@@ -85,21 +82,16 @@ float GRandInRange(float gHi,float gLow)
 
 INCLUDE_ASM(const s32, "P2/util", GRandGaussian);
 
-int FFloatsNear(float g1,float g2,float gEpsilon)
+int FFloatsNear(float g1, float g2, float gEpsilon)
 {
-    float x = 1.0f;
-    g2 = g1-g2;
+    g2 = g1 - g2;
     g1 = g1 > 0.0f ? g1 : -g1;
     g2 = g2 > 0.0f ? g2 : -g2;
+
+    float x = 1.0f;
     x = g1 > x ? g1 : x;
 
-
-    g2 = g2 / x;
-    if(g2 < gEpsilon)
-    {
-        return 1;
-    }
-    return 0;
+    return (g2 / x) < gEpsilon;
 }
 
 INCLUDE_ASM(const s32, "P2/util", CSolveQuadratic);
@@ -129,54 +121,49 @@ float GModPositive(float gDividend, float gDivisor)
 
 void FitClq(float g0, float g1, float u, float gU, CLQ *pclq)
 {
-    float fVar1;
-
     pclq->u = g0;
-    fVar1 = ((gU - g0) / u - (g1 - g0)) / (u - 1.0f);
-    pclq->w = fVar1;
-    pclq->v = (g1 - g0) - fVar1;
+    float f = ((gU - g0) / u - (g1 - g0)) / (u - 1.0f);
+    pclq->w = f;
+    pclq->v = (g1 - g0) - f;
 }
 
-int FCheckLm(LM* plm, float g)
+int FCheckLm(LM *plm, float g)
 {
-	return (plm->gMin < g) && (g < plm->gMax);
+    return (plm->gMin < g) && (g < plm->gMax);
 }
 
 INCLUDE_ASM(const s32, "P2/util", FCheckAlm);
 
-float GLimitLm(struct LM* plm, float g)
+float GLimitLm(struct LM *plm, float g)
 {
-	if (g < plm->gMin)
-	{
-		return plm->gMin;
-	}
-	if (g > plm->gMax)
-	{
-		return plm->gMax;
-	}
-	return g;
+    if (g < plm->gMin)
+    {
+        return plm->gMin;
+    }
+    if (g > plm->gMax)
+    {
+        return plm->gMax;
+    }
+    return g;
 }
 
-int SgnCompareG(float *pg1,float *pg2)
+int SgnCompareG(float *pg1, float *pg2)
 {
-    int result;
-
-    result = 1;
     if (*pg1 > *pg2)
     {
-        return result;
+        return 1;
     }
-    result = -1;
-    if(*pg2 > *pg1)
+    else if (*pg2 > *pg1)
     {
-        return result;
+        return -1;
     }
     return 0;
 }
 
 void Force(void *pv)
 {
-	// Stubbed, does nothing.
+    // Does nothing.
+    return;
 }
 
 INCLUDE_ASM(const s32, "P2/util", MinimizeRange);

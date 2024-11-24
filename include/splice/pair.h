@@ -17,10 +17,11 @@ class CPair
     CRef m_ref;
     CPair* m_ppairNext;
 
+public:
     void CloneTo(CPair* ppairClone, CFrame* pframeClone);
 };
 
-static CPair* PpairNew(void);
+static CPair* PpairNew();
 static void DeletePair(CPair* ppair);
 
 #endif // SPLICE_PAIR_H

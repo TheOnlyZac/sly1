@@ -1,5 +1,7 @@
 /**
  * @file dmas.h
+ *
+ * @brief Direct memory access.
  */
 #ifndef DMAS_H
 #define DMAS_H
@@ -18,6 +20,7 @@ class DMAS
     int m_fPad;
     int m_fEndPrim;
 
+public:
     DMAS();
 
     void Clear();

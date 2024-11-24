@@ -3,7 +3,7 @@
  *
  * @brief Camera policy.
  *
- * @todo Delete this file, or move camera policy structs from cm.h.
+ * @todo Either move the camera policy structs from cm.h here, or delete this header.
  */
 #ifndef CPLCY_H
 #define CPLCY_H

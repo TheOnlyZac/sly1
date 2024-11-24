@@ -1,4 +1,4 @@
-#include "common.h"
+#include <brx.h>
 
 INCLUDE_ASM(const s32, "P2/brx", StartupBrx__Fv);
 
@@ -16,7 +16,7 @@ uint IploFromStockOid(int oid)
 {
     int iplo;
 
-    // Ensure oid is a stock object (between )
+    // Ensure oid is a stock object (OID between 12 and 42)
     if (oid >= 12 && oid <= 42)
     {
         iplo = oid - 12;

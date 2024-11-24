@@ -1,3 +1,6 @@
+/**
+ * @note Should be merged with jt1.c, but UpdateJtActive must be matched first.
+ */
 #include <jt.h>
 
 INCLUDE_ASM(const s32, "P2/jt2", UpdateJt__FP2JTf);
@@ -12,7 +15,7 @@ INCLUDE_ASM(const s32, "P2/jt2", SetJtJts__FP2JT3JTS4JTBS);
 
 //INCLUDE_ASM(const s32, "P2/jt2", ProfileJt__FP2JTi);
 void ProfileJt(JT* pjt, int fProfile) {
-    // Stubbed, does nothing.
+    // Does nothing.
     return;
 }
 

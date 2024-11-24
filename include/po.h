@@ -1,7 +1,7 @@
 /**
  * @file po.h
  *
- * @brief Player object(?).
+ * @brief Player object.
  */
 #ifndef PO_H
 #define PO_H

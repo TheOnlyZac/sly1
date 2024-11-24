@@ -1,4 +1,4 @@
-#include "common.h"
+#include <splice/sidebag.h>
 
 INCLUDE_ASM(const s32, "P2/splice/sidebag", RefAddBinding__8CSidebagiP4CRef);
 

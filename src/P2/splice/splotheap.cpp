@@ -1,9 +1,11 @@
-#include "common.h"
 #include <splice/splotheap.h>
 
 INCLUDE_ASM(const s32, "P2/splice/splotheap", Startup__10CSplotheapii);
 
-void CSplotheap::Shutdown(void) {}
+void CSplotheap::Shutdown()
+{
+    return;
+}
 
 INCLUDE_ASM(const s32, "P2/splice/splotheap", PvAllocUnsafe__10CSplotheap);
 
@@ -11,15 +13,14 @@ INCLUDE_ASM(const s32, "P2/splice/splotheap", PvAllocClear__10CSplotheap);
 
 INCLUDE_ASM(const s32, "P2/splice/splotheap", PsplotLookup__10CSplotheapi);
 
-void CSplotheap::UpdateRecyclable(void)
+void CSplotheap::UpdateRecyclable()
 {
     m_psplotRecyclable = m_psplotAlloc;
 }
 
-void CSplotheap::UnmarkAll(void)
+void CSplotheap::UnmarkAll()
 {
     SPLOT *psplot = m_psplotAlloc;
-
     while (psplot != nullptr)
     {
         psplot->fAlive = 0;

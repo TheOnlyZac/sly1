@@ -1,4 +1,3 @@
-#include "common.h"
 #include <splice/bif.h>
 #include <splice/ref.h>
 #include <splice/frame.h>

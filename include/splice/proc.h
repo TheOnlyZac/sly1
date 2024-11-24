@@ -27,6 +27,6 @@ public:
     void CloneTo(CProc* pprocClone, CFrame* pframeClone);
 };
 
-static CProc* PprocNew(void);
+static CProc* PprocNew();
 
 #endif // SPLICE_PROC_H

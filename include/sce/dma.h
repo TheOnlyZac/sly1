@@ -1,7 +1,7 @@
 /**
  * @file dma.h
- * 
- * @brief Direct Memory Access (DMA) module.
+ *
+ * @brief Direct Memory Access (DMA).
  */
 #ifndef SCE_DMA_H
 #define SCE_DMA_H
@@ -54,7 +54,7 @@ extern "C"
 
     /**
      * @brief Reset the DMA controller
-     * 
+     *
      * @param mode 0 = disable, 1 = enable
      * @return Previous mode before reset
      */
@@ -62,7 +62,7 @@ extern "C"
 
     /**
      * @brief Start DMA transfer from memory to a device using Source Chain Mode.
-     * 
+     *
      * @param chan DMA channel for performing the transfer
      * @param tag Starting address of the transfer list
      */
@@ -70,9 +70,9 @@ extern "C"
 
     /**
      * @brief Get a DMA channel structure by ID
-     * 
+     *
      * @param id Channel number
-     * @return sceDmaChan* 
+     * @return sceDmaChan*
      */
     sceDmaChan *sceDmaGetChan(int id);
 }

@@ -1,5 +1,7 @@
 /**
  * @file wipe.h
+ *
+ * @brief Screen wipes.
  */
 #ifndef WIPE_H
 #define WIPE_H

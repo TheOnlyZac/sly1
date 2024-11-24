@@ -1,7 +1,7 @@
 /**
  * @file pad.h
  *
- * @brief Joypad/Controller Library
+ * @brief Joypad/Controller library.
  */
 #ifndef PAD_H
 #define PAD_H

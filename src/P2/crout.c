@@ -1,4 +1,4 @@
-#include "common.h"
+#include <crout.h>
 
 INCLUDE_ASM(const s32, "P2/crout", CroutDecomp__FiPfT1);
 
