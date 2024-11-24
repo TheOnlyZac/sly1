@@ -18,6 +18,7 @@ class DMAS
     int m_fPad;
     int m_fEndPrim;
 
+public:
     DMAS();
 
     void Clear();

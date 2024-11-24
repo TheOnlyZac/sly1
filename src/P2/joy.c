@@ -26,28 +26,25 @@ void RemoveGrfusr(int mask)
 }
 
 void UpdateGrfjoytFromGrfusr()
-{   
-    // Unknown state
+{
     if (g_grfusr & 0x84)
     {
+        // Unknown state
         g_grfjoyt = 0;
     }
-
-    // Pause menu/dialog box is open
     else if (g_grfusr & FUSR_Menu)
     {
+        // Pause menu/dialog box is open
         g_grfjoyt = 5;
     }
-
-    // In-game cutscene/transition/animation is playing
     else if (g_grfusr & FUSR_HandsOff)
     {
+        // In-game cutscene/transition/animation is playing
         g_grfjoyt = 4;
     }
-
-    // Game is running normally
     else
     {
+        // Game is running normally
         g_grfjoyt = 7;
     }
 }
@@ -93,7 +90,7 @@ void SetJoyJoys(JOY *pjoy,JOYS joys,JOYK joyk)
         {
             InitRumble(pjoy->prumble,pjoy->nPort,pjoy->nSlot);
         }
-    
+
         if (joys == JOYS_Ready)
         {
             i = 0;
@@ -195,9 +192,9 @@ void _ResetCodes(void)
     }
 }
 
-void _MatchCodes(JOY *pjoy, GRFBTN button)
+void _MatchCodes(JOY *pjoy, GRFBTN btn)
 {
-    if (g_pcode != nullptr && pjoy == &g_joy && button != g_joy.grfbtn && g_joy.grfbtn != 0)
+    if (g_pcode != nullptr && pjoy == &g_joy && btn != g_joy.grfbtn && g_joy.grfbtn != 0)
     {
         CODE * pcode = g_pcode;
 
@@ -222,7 +219,7 @@ void _MatchCodes(JOY *pjoy, GRFBTN button)
 
 INCLUDE_ASM(const s32, "P2/joy", UpdateCodes__Fv);
 
-void ClearFchts(void)
+void ClearFchts()
 {
     g_grfcht = FCHT_None;
     ResetWorld(FTRANS_None);

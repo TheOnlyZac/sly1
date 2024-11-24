@@ -17,6 +17,7 @@ class CPair
     CRef m_ref;
     CPair* m_ppairNext;
 
+public:
     void CloneTo(CPair* ppairClone, CFrame* pframeClone);
 };
 

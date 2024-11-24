@@ -3,7 +3,10 @@
 
 INCLUDE_ASM(const s32, "P2/splice/splotheap", Startup__10CSplotheapii);
 
-void CSplotheap::Shutdown(void) {}
+void CSplotheap::Shutdown(void)
+{
+    return;
+}
 
 INCLUDE_ASM(const s32, "P2/splice/splotheap", PvAllocUnsafe__10CSplotheap);
 
@@ -19,7 +22,6 @@ void CSplotheap::UpdateRecyclable(void)
 void CSplotheap::UnmarkAll(void)
 {
     SPLOT *psplot = m_psplotAlloc;
-
     while (psplot != nullptr)
     {
         psplot->fAlive = 0;
