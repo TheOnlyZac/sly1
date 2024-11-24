@@ -39,7 +39,6 @@ void InitGsb(GSB *pgsb, int igsMin, int igsMax)
 }
 
 void ResetGsb(GSB* pGsb)
-
 {
   pGsb->igsMac = pGsb->igsMin;
 }
