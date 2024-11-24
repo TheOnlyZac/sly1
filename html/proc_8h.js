@@ -1,5 +1,5 @@
 var proc_8h =
 [
     [ "CProc", "classCProc.html", "classCProc" ],
-    [ "PprocNew", "proc_8h.html#ada780e76b1b05d4492b28e8a0ba78931", null ]
+    [ "PprocNew", "proc_8h.html#a3df01ae63446cb9add564e65992b071b", null ]
 ];

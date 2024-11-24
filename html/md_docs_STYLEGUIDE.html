@@ -202,7 +202,7 @@ Example Code</h1>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> <a class="code" href="joy_8h.html#ae261cbec62ade3862fbbe36313ea7b13">AddFcht</a>(<span class="keywordtype">int</span> nParam)</div>
 <div class="line">{</div>
-<div class="line">    g_grfcht |= nParam &amp; ~(int)<a class="code" href="joy_8h.html#a020a94afbc4629e6cbaf9a777eb85f55a69eb3a378ed7ae4893ac9dc0bfca1af6">FCHT_ResetWorld</a>;</div>
+<div class="line">    <a class="code" href="joy_8h.html#a139dff3103f523b2fe33f375209bc07a">g_grfcht</a> |= nParam &amp; ~(int)<a class="code" href="joy_8h.html#a020a94afbc4629e6cbaf9a777eb85f55a69eb3a378ed7ae4893ac9dc0bfca1af6">FCHT_ResetWorld</a>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Check if reload flag is set</span></div>
 <div class="line">    <span class="keywordflow">if</span> ((nParam &amp; 0x4000) != 0)</div>
@@ -232,7 +232,7 @@ Example Code</h1>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
-<div class="ttc" id="ajoy_8h_html_a020a94afbc4629e6cbaf9a777eb85f55a69eb3a378ed7ae4893ac9dc0bfca1af6"><div class="ttname"><a href="joy_8h.html#a020a94afbc4629e6cbaf9a777eb85f55a69eb3a378ed7ae4893ac9dc0bfca1af6">FCHT_ResetWorld</a></div><div class="ttdeci">@ FCHT_ResetWorld</div><div class="ttdef"><b>Definition:</b> <a href="joy_8h_source.html#l00231">joy.h:231</a></div></div>
+<div class="ttc" id="ajoy_8h_html_a020a94afbc4629e6cbaf9a777eb85f55a69eb3a378ed7ae4893ac9dc0bfca1af6"><div class="ttname"><a href="joy_8h.html#a020a94afbc4629e6cbaf9a777eb85f55a69eb3a378ed7ae4893ac9dc0bfca1af6">FCHT_ResetWorld</a></div><div class="ttdeci">@ FCHT_ResetWorld</div><div class="ttdef"><b>Definition:</b> <a href="joy_8h_source.html#l00187">joy.h:187</a></div></div>
 <div class="ttc" id="avec_8c_html_a162852370472ceb2729f094b7d989df8"><div class="ttname"><a href="vec_8c.html#a162852370472ceb2729f094b7d989df8">SetVectorCylind</a></div><div class="ttdeci">void SetVectorCylind(VECTOR *pvec, float rad, float sXY, float sZ)</div><div class="ttdoc">Sets the coordinates of a vector using cylindrical coordinates.</div><div class="ttdef"><b>Definition:</b> <a href="vec_8c_source.html#l00004">vec.c:4</a></div></div>
 <div class="ttc" id="astructVECTOR_html"><div class="ttname"><a href="structVECTOR.html">VECTOR</a></div><div class="ttdoc">Vector3 with X, Y, and Z.</div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00014">vec.h:14</a></div></div>
 <div class="ttc" id="ajoy_8h_html_ae261cbec62ade3862fbbe36313ea7b13"><div class="ttname"><a href="joy_8h.html#ae261cbec62ade3862fbbe36313ea7b13">AddFcht</a></div><div class="ttdeci">void AddFcht(uint nParam)</div></div>
@@ -240,6 +240,7 @@ Example Code</h1>
 <div class="ttc" id="astructVECTOR_html_a089769eb3e23fb95cda35b45b3434cd5"><div class="ttname"><a href="structVECTOR.html#a089769eb3e23fb95cda35b45b3434cd5">VECTOR::x</a></div><div class="ttdeci">float x</div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00016">vec.h:16</a></div></div>
 <div class="ttc" id="astructVECTOR_html_a4ec1837e436862330f4c0ea543ba08b6"><div class="ttname"><a href="structVECTOR.html#a4ec1837e436862330f4c0ea543ba08b6">VECTOR::y</a></div><div class="ttdeci">float y</div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00016">vec.h:16</a></div></div>
 <div class="ttc" id="atransition_8h_html_a2a3f9e2ef7cb2ed95ef51ece88f6b6b7"><div class="ttname"><a href="transition_8h.html#a2a3f9e2ef7cb2ed95ef51ece88f6b6b7">ResetWorld</a></div><div class="ttdeci">void ResetWorld(FTRANS ftrans)</div></div>
+<div class="ttc" id="ajoy_8h_html_a139dff3103f523b2fe33f375209bc07a"><div class="ttname"><a href="joy_8h.html#a139dff3103f523b2fe33f375209bc07a">g_grfcht</a></div><div class="ttdeci">GRFCHT g_grfcht</div></div>
 <div class="ttc" id="atransition_8h_html_a4f51cfc2d370d8a616b56c9ae61eee74a48c219e689fcc55bd3f5bb8bdb41d160"><div class="ttname"><a href="transition_8h.html#a4f51cfc2d370d8a616b56c9ae61eee74a48c219e689fcc55bd3f5bb8bdb41d160">FTRANS_None</a></div><div class="ttdeci">@ FTRANS_None</div><div class="ttdef"><b>Definition:</b> <a href="transition_8h_source.html#l00016">transition.h:16</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -26,7 +26,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
       [ "BOMB", "structBOMB.html", null ]
     ] ],
     [ "break.h", "break_8h.html", null ],
-    [ "brx.h", "brx_8h.html", null ],
+    [ "brx.h", "brx_8h.html", "brx_8h" ],
     [ "cat.h", "cat_8h.html", [
       [ "FCL", "structFCL.html", "structFCL" ],
       [ "CFileLocation", "classCFileLocation.html", "classCFileLocation" ]
@@ -47,7 +47,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "dart.h", "dart_8h.html", null ],
     [ "difficulty.h", "difficulty_8h.html", "difficulty_8h" ],
     [ "dl.h", "dl_8h.html", "dl_8h" ],
-    [ "dmas.h", "dmas_8h.html", null ],
+    [ "dmas.h", "dmas_8h.html", "dmas_8h" ],
     [ "emitter.h", "emitter_8h.html", null ],
     [ "eyes.h", "eyes_8h.html", null ],
     [ "fader.h", "fader_8h.html", null ],
@@ -74,7 +74,6 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "lo.h", "lo_8h.html", "lo_8h" ],
     [ "lookat.h", "lookat_8h.html", null ],
     [ "macro.inc", "macro_8inc.html", null ],
-    [ "main.h", "main_8h.html", null ],
     [ "mark.h", "mark_8h.html", null ],
     [ "mat.h", "mat_8h.html", [
       [ "MATRIX4", "structMATRIX4.html", "structMATRIX4" ],
@@ -99,7 +98,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "rs.h", "rs_8h.html", [
       [ "RSMG", "structRSMG.html", "structRSMG" ]
     ] ],
-    [ "rumble.h", "rumble_8h.html", null ],
+    [ "rumble.h", "rumble_8h.html", "rumble_8h" ],
     [ "rwm.h", "rwm_8h.html", null ],
     [ "screen.h", "screen_8h.html", "screen_8h" ],
     [ "shadow.h", "shadow_8h.html", null ],
@@ -141,14 +140,18 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
       [ "TSURF", "structTSURF.html", "structTSURF" ]
     ] ],
     [ "sw.h", "sw_8h.html", "sw_8h" ],
+    [ "tail.h", "tail_8h.html", [
+      [ "TAIL", "structTAIL.html", null ]
+    ] ],
     [ "text.h", "text_8h.html", null ],
     [ "thread.h", "thread_8h.html", "thread_8h" ],
-    [ "tmp.c", "tmp_8c.html", "tmp_8c" ],
     [ "transition.h", "transition_8h.html", "transition_8h" ],
     [ "turret.h", "turret_8h.html", null ],
     [ "tv.h", "tv_8h.html", null ],
     [ "types.h", "types_8h.html", "types_8h" ],
-    [ "ui.h", "ui_8h.html", "ui_8h" ],
+    [ "ui.h", "ui_8h.html", [
+      [ "UI", "structUI.html", "structUI" ]
+    ] ],
     [ "update.h", "update_8h.html", null ],
     [ "util.h", "util_8h.html", "util_8h" ],
     [ "vec.h", "vec_8h.html", "vec_8h" ],
@@ -159,7 +162,9 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     ] ],
     [ "vtables.h", "vtables_8h.html", [
       [ "VTBLOT", "structVTBLOT.html", "structVTBLOT" ],
-      [ "VTNOTE", "structVTNOTE.html", "structVTNOTE" ]
+      [ "VTNOTE", "structVTNOTE.html", "structVTNOTE" ],
+      [ "VTBINOC", "structVTBINOC.html", "structVTBINOC" ],
+      [ "VTTIMER", "structVTTIMER.html", "structVTTIMER" ]
     ] ],
     [ "water.h", "water_8h.html", null ],
     [ "waypoint.h", "waypoint_8h.html", null ],

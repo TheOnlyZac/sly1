@@ -8,5 +8,6 @@ var structCHKMGR =
     [ "padding", "structCHKMGR.html#a48cc40f68d618e71b0d8e6bca2a3f921", null ],
     [ "posVolChkpnt", "structCHKMGR.html#ac51a4ab7b1cde8dbc5056e80a358b9a7", null ],
     [ "unk_oid_0x424", "structCHKMGR.html#a859e5ab9875599a26df48972f95c7a4e", null ],
-    [ "unk_oid_0x428", "structCHKMGR.html#a78c0fb99291b3e738ac2af0d531f4b04", null ]
+    [ "unk_oid_0x428", "structCHKMGR.html#a78c0fb99291b3e738ac2af0d531f4b04", null ],
+    [ "unknown_0x0", "structCHKMGR.html#a59b02c225394aed3a3e2e1218dce2b73", null ]
 ];

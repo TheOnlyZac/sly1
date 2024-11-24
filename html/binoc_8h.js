@@ -17,5 +17,6 @@ var binoc_8h =
       [ "JV_Center", "binoc_8h.html#a7d751d90987cd2c189fdcfc10946b078a32617b2ca728afcefc91a09ef5ce5599", null ],
       [ "JV_Bottom", "binoc_8h.html#a7d751d90987cd2c189fdcfc10946b078afe5d7e1cdb97d66f9eea46dafda5cbb0", null ],
       [ "JV_Max", "binoc_8h.html#a7d751d90987cd2c189fdcfc10946b078a38dafb7c42ac173c738ba3d3c0731012", null ]
-    ] ]
+    ] ],
+    [ "SetBinocLookat", "binoc_8h.html#a56881cc4077adfaf059534f3b7353467", null ]
 ];

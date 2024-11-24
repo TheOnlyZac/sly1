@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['contributing_4574',['Contributing',['../md_docs_CONTRIBUTING.html',1,'']]]
+  ['deprecated_20list_4854',['Deprecated List',['../deprecated.html',1,'']]]
 ];

@@ -41,7 +41,7 @@ var NAVTREE =
       [ "Star History", "index.html#autotoc_md38", null ]
     ] ],
     [ "Beginner's Guide", "md_docs_BEGINNERSGUIDE.html", null ],
-    [ "Contributing", "md_docs_CONTRIBUTING.html", [
+    [ "So you want to decompile Sly 1...", "md_docs_CONTRIBUTING.html", [
       [ "Contents", "md_docs_CONTRIBUTING.html#autotoc_md2", [
         [ "Getting Started", "md_docs_CONTRIBUTING.html#autotoc_md3", null ],
         [ "Find a function to match", "md_docs_CONTRIBUTING.html#autotoc_md4", null ],
@@ -101,19 +101,20 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "989snd_8h.html",
-"bis_8h.html#a0f16a19ad9c62cc7c24a95f63f2ef73c",
-"classCBinaryInputStream.html#a6321d1634afab11e9e06028e08501965",
-"cm_8c.html#a5da2c88162a48d644e2cfd89c5b15d15",
-"emitter_8h_source.html",
-"game_8h.html#a73a5f862a351662bf22487f62e26cb5ea4f7d89cdf6442659318e5f43c4b164a6",
-"joy_8h.html#a5b18afa05738a875043b663fef5ca73ea71002892aff82e0d3d03b65f6f4a14ca",
-"mq_8h.html#a7b3cf6396e3e361f51817756f0f372cea4eb0ca14c6d9f985bd122002179e0f72",
-"screen_8h.html#a2cff0cdc1d047cd1df9e065812c80f8d",
-"stream_8h_source.html",
-"structCPALIGN.html#aa7845b3d95d20b54283f27cd6600a49c",
-"structJOY.html#a2091035a03af902200d5067c2f447cf1",
-"structSURF.html#a93b168f90dab5fc66925b3a7ce7fe08c",
-"types_8h.html#a10e94b422ef0c20dcdec20d31a1f5049",
+"bis_8h.html",
+"classCBinaryInputStream.html#a0c066c927d4bfc8d8de19f8dbfb70718",
+"clock_8h.html#a3a8c7bc1502dc3ae9014e2b0f3c90204",
+"difficulty_8h.html#a70dd4cbb9b20eb1d2c4a53ed9db7a96d",
+"game_8c.html#a3d695a8d23f6fa5f507e7fd460389b36",
+"gs_8c.html#a5a206112c34ddbd719ea4fe986e7b692",
+"jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02ead1a3562923fd25ecf4a0502a297ee895",
+"ref_8h.html#a4e55c80470e633730d036482bd72bd52ab65e7fef0a89b373240ae224da6a8ba8",
+"screen_8h.html#aeaf0ae870b66f47d251818bb15753c6f",
+"structBLOT.html#a702774f27622ae41c84ae5e2b066265f",
+"structCRUSHERCTR.html",
+"structLS.html#a454f647cd0796cf78621b4459800d6d3",
+"structThreadParam.html#a37ec95d86fe64f88a99c9c58602f571e",
+"turret_8h_source.html",
 "wm_8h_source.html"
 ];
 

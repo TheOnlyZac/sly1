@@ -10,8 +10,8 @@ var vecmat_8h =
     [ "IncrefMatrix", "vecmat_8h.html#a068a286e1ea2cf78579298fd01a9682e", null ],
     [ "IncrefSmp", "vecmat_8h.html#a7fadc62e2b243cda3fb2ead240950f8e", null ],
     [ "IncrefVector", "vecmat_8h.html#a4c19f184878e2fd33622622225f97da0", null ],
-    [ "PsmpNew", "vecmat_8h.html#a943de4329ab936ce621cb4eccd0f7f94", null ],
-    [ "PvectorNew", "vecmat_8h.html#a6ca98b4b215d4ae1ed18fdcd1e8e948a", null ],
-    [ "ShutdownSpliceStructuredTypeFactories", "vecmat_8h.html#ad859b43b1ef3e4868bf916e0aff366b4", null ],
-    [ "StartupSpliceStructuredTypeFactories", "vecmat_8h.html#a6115294055bab002ee2420ef00441a0d", null ]
+    [ "PsmpNew", "vecmat_8h.html#a385b30ab5eed7f87bad181529db99e36", null ],
+    [ "PvectorNew", "vecmat_8h.html#aef57ac13b2e69fcaa8e8e002a2d06cdd", null ],
+    [ "ShutdownSpliceStructuredTypeFactories", "vecmat_8h.html#ab69b038f0aab8448acefba36433fd5ff", null ],
+    [ "StartupSpliceStructuredTypeFactories", "vecmat_8h.html#a892bb9ec1216c4d8079bb6a1e90aa3c4", null ]
 ];

@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['y_3869',['y',['../structJOY.html#abc3c30159f09ded6c5eb4fb97b9b8d72',1,'JOY::y()'],['../structBLOTI.html#acd1206a27cb49127202616e0a860780b',1,'BLOTI::y()'],['../structBLOT.html#afeda0b8280b8a172b4812a21f0ab5dc8',1,'BLOT::y()'],['../structVECTOR.html#a4ec1837e436862330f4c0ea543ba08b6',1,'VECTOR::y()'],['../structVECTOR4.html#a0c5ad126135db794c5691cbda1589660',1,'VECTOR4::y()']]],
-  ['y2_3870',['y2',['../structJOY.html#a859e6fdd10bc42c73255c133e36a1c4b',1,'JOY']]],
-  ['yoff_3871',['yOff',['../structBLOT.html#a1276ce06065a2925bee35ae4a19239fc',1,'BLOT']]],
-  ['yon_3872',['yOn',['../structBLOT.html#afd117a721d0a95b83901947dbe7c5d87',1,'BLOT']]],
-  ['yscreenrange_3873',['yScreenRange',['../structCM.html#abe15bcacf0517fc827c4f470172e593e',1,'CM']]]
+  ['x_4126',['x',['../structJOY.html#ad8cb7cb5f1dae1d40acd92d6ec17ab91',1,'JOY::x()'],['../structBLOTI.html#a6ae21352c4b7b2575c55ac94d2dbb6d3',1,'BLOTI::x()'],['../structBLOT.html#ab157a079bb0e114cd9827dfe7febfdb9',1,'BLOT::x()'],['../structCLQ.html#a3fca460b2fddb9dcd6886aaeeb1e58ae',1,'CLQ::x()'],['../structVECTOR.html#a089769eb3e23fb95cda35b45b3434cd5',1,'VECTOR::x()'],['../structVECTOR4.html#ae1b2a9e4f7c5b97bb249dc3be2db47b5',1,'VECTOR4::x()']]],
+  ['x2_4127',['x2',['../structJOY.html#aa8f9867e439949cf9835d19ce608fe88',1,'JOY']]],
+  ['xon_4128',['xOn',['../structBLOT.html#add6d1a3abc3674bafb5d1804c315d299',1,'BLOT']]],
+  ['xscreenrange_4129',['xScreenRange',['../structCM.html#a57cb87bfde40752034d0d6cc7d324b05',1,'CM']]],
+  ['xymanual_4130',['xyManual',['../structCPTN.html#a7e7ce259fd563037ddad29cda632e07e',1,'CPTN']]]
 ];

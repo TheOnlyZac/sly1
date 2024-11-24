@@ -20,5 +20,5 @@ var vecmat_8cpp =
     [ "INCLUDE_ASM", "vecmat_8cpp.html#a962dab636ca1ca4f3174cee77515860d", null ],
     [ "INCLUDE_ASM", "vecmat_8cpp.html#ace3508ebf2c653bc20c3c7bfe06196cc", null ],
     [ "INCLUDE_ASM", "vecmat_8cpp.html#aed6ffe63164c1637ae2462620a8a5c5b", null ],
-    [ "ShutdownSpliceStructuredTypeFactories", "vecmat_8cpp.html#ad859b43b1ef3e4868bf916e0aff366b4", null ]
+    [ "ShutdownSpliceStructuredTypeFactories", "vecmat_8cpp.html#ab69b038f0aab8448acefba36433fd5ff", null ]
 ];

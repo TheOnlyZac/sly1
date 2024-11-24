@@ -1,8 +1,5 @@
 var joy_8h =
 [
-    [ "RUMINS", "structRUMINS.html", "structRUMINS" ],
-    [ "RUMPAT", "structRUMPAT.html", "structRUMPAT" ],
-    [ "RUMBLE", "structRUMBLE.html", "structRUMBLE" ],
     [ "JOY", "structJOY.html", "structJOY" ],
     [ "CODE", "structCODE.html", "structCODE" ],
     [ "GRFBTN", "joy_8h.html#a11b2d8de1bd111fd6b1ee53ca802adf1", null ],
@@ -76,16 +73,8 @@ var joy_8h =
       [ "PAD_DOWN_ARROW", "joy_8h.html#a5b18afa05738a875043b663fef5ca73ea18eb22831c5cf35233cf301014acf545", null ],
       [ "PAD_LEFT_ARROW", "joy_8h.html#a5b18afa05738a875043b663fef5ca73ea71002892aff82e0d3d03b65f6f4a14ca", null ]
     ] ],
-    [ "RUMS", "joy_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0f", [
-      [ "RUMS_Dead", "joy_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0faf3f06a542658b86bee2a23bea94e230a", null ],
-      [ "RUMS_Idle", "joy_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa091e469bf6075a481e8ef168a45298c7", null ],
-      [ "RUMS_Rumble", "joy_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa7c6c4cf5a7c761bcd39ba2a04bf759ad", null ],
-      [ "RUMS_Stop", "joy_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa2972609cecd4f97e0c2492a26f6016aa", null ],
-      [ "RUMS_Kill", "joy_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa56b51ed29c64c27e3ac333201f60152c", null ],
-      [ "RUMS_Max", "joy_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa72b058661e02b3c95ad855a51b55e604", null ]
-    ] ],
     [ "_MatchCodes", "joy_8h.html#a16f6c921649763a48e5e89c67f2dab4c", null ],
-    [ "_ResetCodes", "joy_8h.html#adafd6a7644ab32453a43095156f1b10f", null ],
+    [ "_ResetCodes", "joy_8h.html#ad857e78b1ee87bda696d5f5c752d1997", null ],
     [ "AddCode", "joy_8h.html#a72a7943d9c0e1a77b3013ed038353521", null ],
     [ "AddFcht", "joy_8h.html#ae261cbec62ade3862fbbe36313ea7b13", null ],
     [ "AddGrfusr", "joy_8h.html#ae1b2604acc7936f03b25776ec42f527a", null ],
@@ -106,5 +95,11 @@ var joy_8h =
     [ "UBtnpJoy", "joy_8h.html#ab44fef55d66cd811e7ec15f4f3d53fd5", null ],
     [ "UpdateCodes", "joy_8h.html#a792e8692cb813b8f2d37120ad3d5413a", null ],
     [ "UpdateGrfjoytFromGrfusr", "joy_8h.html#ac987ccc8ebf81c9ab5b574f4ded366c9", null ],
-    [ "UpdateJoy", "joy_8h.html#a49022be84d409d9ca307575b01fe158c", null ]
+    [ "UpdateJoy", "joy_8h.html#a49022be84d409d9ca307575b01fe158c", null ],
+    [ "g_grfcht", "joy_8h.html#a139dff3103f523b2fe33f375209bc07a", null ],
+    [ "g_grfjoyt", "joy_8h.html#a95464161d12c23af6407536fb806d189", null ],
+    [ "g_grfusr", "joy_8h.html#ab407cfa6c2ff0243c14f9e6f918a778c", null ],
+    [ "g_joy", "joy_8h.html#a70565d6d6966e1b44214f269ab63ce60", null ],
+    [ "g_pcode", "joy_8h.html#a83c1434a0c57f3f6dac80e1bf795a7d4", null ],
+    [ "g_tCodeCheck", "joy_8h.html#acda069e9c7373203f67d0a3d5112caa1", null ]
 ];

@@ -100,6 +100,10 @@ $(document).ready(function(){initNavTree('joy_8c.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="joy_8h_source.html">joy.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="clock_8h_source.html">clock.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="transition_8h_source.html">transition.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="memset_8h_source.html">sce/memset.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="pad_8h_source.html">sce/pad.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for joy.c:</div>
 <div class="dyncontent">
@@ -111,50 +115,52 @@ Include dependency graph for joy.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8de359f00a58b961f1fdc9b7d4599df8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a8de359f00a58b961f1fdc9b7d4599df8">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, StartupJoy__Fv)</td></tr>
-<tr class="separator:a8de359f00a58b961f1fdc9b7d4599df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0077a0f68fda477dc133eb209eb521c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#aa0077a0f68fda477dc133eb209eb521c">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, AddGrfusr__Fi)</td></tr>
-<tr class="separator:aa0077a0f68fda477dc133eb209eb521c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88e97f8b5236cabf9b85e836f0c060f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a88e97f8b5236cabf9b85e836f0c060f9">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, RemoveGrfusr__Fi)</td></tr>
-<tr class="separator:a88e97f8b5236cabf9b85e836f0c060f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5dad34fda99e3591fb1f3c1a5f7ea978"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a5dad34fda99e3591fb1f3c1a5f7ea978">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, UpdateGrfjoytFromGrfusr__Fv)</td></tr>
-<tr class="separator:a5dad34fda99e3591fb1f3c1a5f7ea978"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb3718b46b309effa14b9d61b6d8b584"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#acb3718b46b309effa14b9d61b6d8b584">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, InitJoy__FP3JOYii)</td></tr>
-<tr class="separator:acb3718b46b309effa14b9d61b6d8b584"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aceaa34b202533c85fb5a401785a2cbf0"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#aceaa34b202533c85fb5a401785a2cbf0">PvAllocGlobalImpl</a> (int)</td></tr>
+<tr class="separator:aceaa34b202533c85fb5a401785a2cbf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1643ae6c8e3c59aa41b828035a8c8d8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a1643ae6c8e3c59aa41b828035a8c8d8a">StartupJoy</a> ()</td></tr>
+<tr class="separator:a1643ae6c8e3c59aa41b828035a8c8d8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06bd5c71f5308931f8888a3ee894a9ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a06bd5c71f5308931f8888a3ee894a9ec">AddGrfusr</a> (int mask)</td></tr>
+<tr class="separator:a06bd5c71f5308931f8888a3ee894a9ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fb47e95134e50b3d55f66540ae2fafd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a6fb47e95134e50b3d55f66540ae2fafd">RemoveGrfusr</a> (int mask)</td></tr>
+<tr class="separator:a6fb47e95134e50b3d55f66540ae2fafd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac987ccc8ebf81c9ab5b574f4ded366c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#ac987ccc8ebf81c9ab5b574f4ded366c9">UpdateGrfjoytFromGrfusr</a> ()</td></tr>
+<tr class="separator:ac987ccc8ebf81c9ab5b574f4ded366c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0889f2c44237e0ce8eb98bf4f8c4955b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a0889f2c44237e0ce8eb98bf4f8c4955b">InitJoy</a> (<a class="el" href="structJOY.html">JOY</a> *pjoy, int nPort, int nSlot)</td></tr>
+<tr class="separator:a0889f2c44237e0ce8eb98bf4f8c4955b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada6eae72b07ed78b05f4e51e96b730b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#ada6eae72b07ed78b05f4e51e96b730b4">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, UpdateJoy__FP3JOY)</td></tr>
 <tr class="separator:ada6eae72b07ed78b05f4e51e96b730b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ad77e052de50ba354e6ae3404434afe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a6ad77e052de50ba354e6ae3404434afe">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, SetJoyJoys__FP3JOY4JOYS4JOYK)</td></tr>
-<tr class="separator:a6ad77e052de50ba354e6ae3404434afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a636f994e6308715ae7ce93ad677f962a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a636f994e6308715ae7ce93ad677f962a">SetJoyJoys</a> (<a class="el" href="structJOY.html">JOY</a> *pjoy, <a class="el" href="joy_8h.html#ab0a5ef0700b1060619e90b2c89643043">JOYS</a> joys, <a class="el" href="joy_8h.html#ad3186335c21a86b3a1c03262495b1775">JOYK</a> joyk)</td></tr>
+<tr class="separator:a636f994e6308715ae7ce93ad677f962a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a171708a5708f56956e3cbed5171e0237"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a171708a5708f56956e3cbed5171e0237">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, GetJoyXYDeflection__FP3JOYUcUcPfN23PUcT6PiP2LM)</td></tr>
 <tr class="separator:a171708a5708f56956e3cbed5171e0237"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f772d95a191d11a26a8c819bdd33a26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a2f772d95a191d11a26a8c819bdd33a26">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, FReadJoy__FP3JOY)</td></tr>
 <tr class="separator:a2f772d95a191d11a26a8c819bdd33a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68e197d35af8bf3ca8aa57952b91e8ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a68e197d35af8bf3ca8aa57952b91e8ed">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, SetJoyBtnHandled__FP3JOYUs)</td></tr>
-<tr class="separator:a68e197d35af8bf3ca8aa57952b91e8ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a537424813f70b438b5d0d32036d7e989"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a537424813f70b438b5d0d32036d7e989">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, TriggerJoyRumbleRumk__FP6RUMBLEP3JOYf)</td></tr>
-<tr class="separator:a537424813f70b438b5d0d32036d7e989"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab80175f86dab719931b376e361b89b7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#ab80175f86dab719931b376e361b89b7c">SetJoyBtnHandled</a> (<a class="el" href="structJOY.html">JOY</a> *pjoy, <a class="el" href="joy_8h.html#a11b2d8de1bd111fd6b1ee53ca802adf1">GRFBTN</a> btn)</td></tr>
+<tr class="separator:ab80175f86dab719931b376e361b89b7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a50899171813a3d813cc02cfe7116b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a4a50899171813a3d813cc02cfe7116b3">TriggerJoyRumbleRumk</a> (<a class="el" href="structJOY.html">JOY</a> *pjoy, <a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8">RUMK</a> rumk, float dt)</td></tr>
+<tr class="separator:a4a50899171813a3d813cc02cfe7116b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39087f5d2a88b6e73cf1fcadfb2491b6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a39087f5d2a88b6e73cf1fcadfb2491b6">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, func_0016EC80)</td></tr>
 <tr class="separator:a39087f5d2a88b6e73cf1fcadfb2491b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40534cdd757963efcc30353549743ea3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a40534cdd757963efcc30353549743ea3">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, StartJoySelection__FP3JOY)</td></tr>
-<tr class="separator:a40534cdd757963efcc30353549743ea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8346488b34dd9b9bbdff75c95744f534"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a8346488b34dd9b9bbdff75c95744f534">StartJoySelection</a> (<a class="el" href="structJOY.html">JOY</a> *pjoy)</td></tr>
+<tr class="separator:a8346488b34dd9b9bbdff75c95744f534"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac1e312f7d16446476774b25836e97ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#aac1e312f7d16446476774b25836e97ab">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, DxSelectionJoy__FP3JOY)</td></tr>
 <tr class="separator:aac1e312f7d16446476774b25836e97ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c3530b100520554e29e149a2ebdc7d9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a5c3530b100520554e29e149a2ebdc7d9">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, DySelectionJoy__FP3JOY)</td></tr>
 <tr class="separator:a5c3530b100520554e29e149a2ebdc7d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08eaec71dbdcfc059a59d94951a0ec3d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a08eaec71dbdcfc059a59d94951a0ec3d">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, UBtnpJoy__FP3JOY4BTNP)</td></tr>
 <tr class="separator:a08eaec71dbdcfc059a59d94951a0ec3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49efc92e0dd8ae91d150d61f5e91fe65"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a49efc92e0dd8ae91d150d61f5e91fe65">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, AddCode__FP4CODE)</td></tr>
-<tr class="separator:a49efc92e0dd8ae91d150d61f5e91fe65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72a7943d9c0e1a77b3013ed038353521"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a72a7943d9c0e1a77b3013ed038353521">AddCode</a> (<a class="el" href="structCODE.html">CODE</a> *pcode)</td></tr>
+<tr class="separator:a72a7943d9c0e1a77b3013ed038353521"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91310400d853a821c2f7cc142353ae26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a91310400d853a821c2f7cc142353ae26">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, func_0016F1F0)</td></tr>
 <tr class="separator:a91310400d853a821c2f7cc142353ae26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accfad8e9dd6782026988096413784dbc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#accfad8e9dd6782026988096413784dbc">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, _ResetCodes__Fv)</td></tr>
-<tr class="separator:accfad8e9dd6782026988096413784dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2a7ca2eedc80bb01aaf8d72496e6a79"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#ac2a7ca2eedc80bb01aaf8d72496e6a79">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, _MatchCodes__FP3JOYUs)</td></tr>
-<tr class="separator:ac2a7ca2eedc80bb01aaf8d72496e6a79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad857e78b1ee87bda696d5f5c752d1997"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#ad857e78b1ee87bda696d5f5c752d1997">_ResetCodes</a> ()</td></tr>
+<tr class="separator:ad857e78b1ee87bda696d5f5c752d1997"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5b82dd3408eed46ac8a2f8306fdab00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#ae5b82dd3408eed46ac8a2f8306fdab00">_MatchCodes</a> (<a class="el" href="structJOY.html">JOY</a> *pjoy, <a class="el" href="joy_8h.html#a11b2d8de1bd111fd6b1ee53ca802adf1">GRFBTN</a> btn)</td></tr>
+<tr class="separator:ae5b82dd3408eed46ac8a2f8306fdab00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c5063255c78d467b4880cc000e8e210"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a7c5063255c78d467b4880cc000e8e210">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, UpdateCodes__Fv)</td></tr>
 <tr class="separator:a7c5063255c78d467b4880cc000e8e210"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6f64bdfba89791331fccd41c5312406"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#af6f64bdfba89791331fccd41c5312406">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, ClearFchts__Fv)</td></tr>
-<tr class="separator:af6f64bdfba89791331fccd41c5312406"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13717a0dd0fe6bc10a8bbc8ffe0328dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a13717a0dd0fe6bc10a8bbc8ffe0328dd">ClearFchts</a> ()</td></tr>
+<tr class="separator:a13717a0dd0fe6bc10a8bbc8ffe0328dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07f825bd61b1812a081494ab8c6bb4b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a07f825bd61b1812a081494ab8c6bb4b9">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, AddFcht__Fi)</td></tr>
 <tr class="separator:a07f825bd61b1812a081494ab8c6bb4b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22442b7b8b5ec009225e8ee32646a8bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="joy_8c.html#a22442b7b8b5ec009225e8ee32646a8bb">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/joy&quot;, func_0016F470)</td></tr>
@@ -165,29 +171,23 @@ Functions</h2></td></tr>
 <tr class="separator:ab8e5f64f063b504e083787cc65d1e2bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ac2a7ca2eedc80bb01aaf8d72496e6a79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2a7ca2eedc80bb01aaf8d72496e6a79">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[1/26]</span></h2>
+<a id="ae5b82dd3408eed46ac8a2f8306fdab00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5b82dd3408eed46ac8a2f8306fdab00">&#9670;&nbsp;</a></span>_MatchCodes()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname">void _MatchCodes </td>
           <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
+          <td class="paramtype"><a class="el" href="structJOY.html">JOY</a> *&#160;</td>
+          <td class="paramname"><em>pjoy</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">&quot;P2/joy&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">_MatchCodes__FP3JOYUs&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype"><a class="el" href="joy_8h.html#a11b2d8de1bd111fd6b1ee53ca802adf1">GRFBTN</a>&#160;</td>
+          <td class="paramname"><em>btn</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -197,78 +197,90 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="joy_8c_source.html#l00195">195</a> of file <a class="el" href="joy_8c_source.html">joy.c</a>.</p>
+
 </div>
 </div>
-<a id="accfad8e9dd6782026988096413784dbc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#accfad8e9dd6782026988096413784dbc">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[2/26]</span></h2>
+<a id="ad857e78b1ee87bda696d5f5c752d1997"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad857e78b1ee87bda696d5f5c752d1997">&#9670;&nbsp;</a></span>_ResetCodes()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname">void _ResetCodes </td>
           <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">&quot;P2/joy&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">_ResetCodes__Fv&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="joy_8c_source.html#l00182">182</a> of file <a class="el" href="joy_8c_source.html">joy.c</a>.</p>
+
 </div>
 </div>
-<a id="a49efc92e0dd8ae91d150d61f5e91fe65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49efc92e0dd8ae91d150d61f5e91fe65">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[3/26]</span></h2>
+<a id="a72a7943d9c0e1a77b3013ed038353521"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72a7943d9c0e1a77b3013ed038353521">&#9670;&nbsp;</a></span>AddCode()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname">void AddCode </td>
           <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="structCODE.html">CODE</a> *&#160;</td>
+          <td class="paramname"><em>pcode</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">&quot;P2/joy&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">AddCode__FP4CODE&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8c_source.html#l00155">155</a> of file <a class="el" href="joy_8c_source.html">joy.c</a>.</p>
+
+</div>
+</div>
+<a id="a06bd5c71f5308931f8888a3ee894a9ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06bd5c71f5308931f8888a3ee894a9ec">&#9670;&nbsp;</a></span>AddGrfusr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AddGrfusr </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mask</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8c_source.html#l00016">16</a> of file <a class="el" href="joy_8c_source.html">joy.c</a>.</p>
+
+</div>
+</div>
+<a id="a13717a0dd0fe6bc10a8bbc8ffe0328dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13717a0dd0fe6bc10a8bbc8ffe0328dd">&#9670;&nbsp;</a></span>ClearFchts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ClearFchts </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8c_source.html#l00222">222</a> of file <a class="el" href="joy_8c_source.html">joy.c</a>.</p>
 
 </div>
 </div>
 <a id="a07f825bd61b1812a081494ab8c6bb4b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07f825bd61b1812a081494ab8c6bb4b9">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[4/26]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a07f825bd61b1812a081494ab8c6bb4b9">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[1/13]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -301,42 +313,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa0077a0f68fda477dc133eb209eb521c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa0077a0f68fda477dc133eb209eb521c">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[5/26]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/joy&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">AddGrfusr__Fi&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a96c1ff3ec08cf61a46297563846b298f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96c1ff3ec08cf61a46297563846b298f">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[6/26]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a96c1ff3ec08cf61a46297563846b298f">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[2/13]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -369,42 +347,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af6f64bdfba89791331fccd41c5312406"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af6f64bdfba89791331fccd41c5312406">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[7/26]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/joy&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">ClearFchts__Fv&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="aac1e312f7d16446476774b25836e97ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac1e312f7d16446476774b25836e97ab">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[8/26]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aac1e312f7d16446476774b25836e97ab">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[3/13]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -438,7 +382,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a5c3530b100520554e29e149a2ebdc7d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c3530b100520554e29e149a2ebdc7d9">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[9/26]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c3530b100520554e29e149a2ebdc7d9">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[4/13]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -472,7 +416,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a2f772d95a191d11a26a8c819bdd33a26"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f772d95a191d11a26a8c819bdd33a26">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[10/26]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f772d95a191d11a26a8c819bdd33a26">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[5/13]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -506,7 +450,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a39087f5d2a88b6e73cf1fcadfb2491b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39087f5d2a88b6e73cf1fcadfb2491b6">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[11/26]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a39087f5d2a88b6e73cf1fcadfb2491b6">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[6/13]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -540,7 +484,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a91310400d853a821c2f7cc142353ae26"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91310400d853a821c2f7cc142353ae26">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[12/26]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a91310400d853a821c2f7cc142353ae26">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[7/13]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -574,7 +518,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a22442b7b8b5ec009225e8ee32646a8bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a22442b7b8b5ec009225e8ee32646a8bb">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[13/26]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a22442b7b8b5ec009225e8ee32646a8bb">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[8/13]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -608,7 +552,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a171708a5708f56956e3cbed5171e0237"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a171708a5708f56956e3cbed5171e0237">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[14/26]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a171708a5708f56956e3cbed5171e0237">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[9/13]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -641,178 +585,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="acb3718b46b309effa14b9d61b6d8b584"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb3718b46b309effa14b9d61b6d8b584">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[15/26]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/joy&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">InitJoy__FP3JOYii&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a88e97f8b5236cabf9b85e836f0c060f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a88e97f8b5236cabf9b85e836f0c060f9">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[16/26]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/joy&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">RemoveGrfusr__Fi&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a68e197d35af8bf3ca8aa57952b91e8ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68e197d35af8bf3ca8aa57952b91e8ed">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[17/26]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/joy&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SetJoyBtnHandled__FP3JOYUs&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6ad77e052de50ba354e6ae3404434afe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ad77e052de50ba354e6ae3404434afe">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[18/26]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/joy&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SetJoyJoys__FP3JOY4JOYS4JOYK&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a40534cdd757963efcc30353549743ea3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40534cdd757963efcc30353549743ea3">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[19/26]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/joy&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">StartJoySelection__FP3JOY&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ab8e5f64f063b504e083787cc65d1e2bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8e5f64f063b504e083787cc65d1e2bc">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[20/26]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8e5f64f063b504e083787cc65d1e2bc">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[10/13]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -845,76 +619,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a8de359f00a58b961f1fdc9b7d4599df8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8de359f00a58b961f1fdc9b7d4599df8">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[21/26]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/joy&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">StartupJoy__Fv&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a537424813f70b438b5d0d32036d7e989"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a537424813f70b438b5d0d32036d7e989">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[22/26]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/joy&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">TriggerJoyRumbleRumk__FP6RUMBLEP3JOYf&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a08eaec71dbdcfc059a59d94951a0ec3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a08eaec71dbdcfc059a59d94951a0ec3d">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[23/26]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a08eaec71dbdcfc059a59d94951a0ec3d">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[11/13]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -948,7 +654,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a7c5063255c78d467b4880cc000e8e210"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c5063255c78d467b4880cc000e8e210">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[24/26]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c5063255c78d467b4880cc000e8e210">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[12/13]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -981,42 +687,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5dad34fda99e3591fb1f3c1a5f7ea978"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5dad34fda99e3591fb1f3c1a5f7ea978">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[25/26]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/joy&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">UpdateGrfjoytFromGrfusr__Fv&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ada6eae72b07ed78b05f4e51e96b730b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada6eae72b07ed78b05f4e51e96b730b4">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[26/26]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ada6eae72b07ed78b05f4e51e96b730b4">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[13/13]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1046,6 +718,240 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0889f2c44237e0ce8eb98bf4f8c4955b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0889f2c44237e0ce8eb98bf4f8c4955b">&#9670;&nbsp;</a></span>InitJoy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InitJoy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJOY.html">JOY</a> *&#160;</td>
+          <td class="paramname"><em>pjoy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nPort</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nSlot</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8c_source.html#l00053">53</a> of file <a class="el" href="joy_8c_source.html">joy.c</a>.</p>
+
+</div>
+</div>
+<a id="aceaa34b202533c85fb5a401785a2cbf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aceaa34b202533c85fb5a401785a2cbf0">&#9670;&nbsp;</a></span>PvAllocGlobalImpl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* PvAllocGlobalImpl </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6fb47e95134e50b3d55f66540ae2fafd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fb47e95134e50b3d55f66540ae2fafd">&#9670;&nbsp;</a></span>RemoveGrfusr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RemoveGrfusr </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mask</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8c_source.html#l00022">22</a> of file <a class="el" href="joy_8c_source.html">joy.c</a>.</p>
+
+</div>
+</div>
+<a id="ab80175f86dab719931b376e361b89b7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab80175f86dab719931b376e361b89b7c">&#9670;&nbsp;</a></span>SetJoyBtnHandled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetJoyBtnHandled </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJOY.html">JOY</a> *&#160;</td>
+          <td class="paramname"><em>pjoy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="joy_8h.html#a11b2d8de1bd111fd6b1ee53ca802adf1">GRFBTN</a>&#160;</td>
+          <td class="paramname"><em>btn</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8c_source.html#l00128">128</a> of file <a class="el" href="joy_8c_source.html">joy.c</a>.</p>
+
+</div>
+</div>
+<a id="a636f994e6308715ae7ce93ad677f962a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a636f994e6308715ae7ce93ad677f962a">&#9670;&nbsp;</a></span>SetJoyJoys()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetJoyJoys </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJOY.html">JOY</a> *&#160;</td>
+          <td class="paramname"><em>pjoy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="joy_8h.html#ab0a5ef0700b1060619e90b2c89643043">JOYS</a>&#160;</td>
+          <td class="paramname"><em>joys</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="joy_8h.html#ad3186335c21a86b3a1c03262495b1775">JOYK</a>&#160;</td>
+          <td class="paramname"><em>joyk</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8c_source.html#l00067">67</a> of file <a class="el" href="joy_8c_source.html">joy.c</a>.</p>
+
+</div>
+</div>
+<a id="a8346488b34dd9b9bbdff75c95744f534"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8346488b34dd9b9bbdff75c95744f534">&#9670;&nbsp;</a></span>StartJoySelection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StartJoySelection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJOY.html">JOY</a> *&#160;</td>
+          <td class="paramname"><em>pjoy</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8c_source.html#l00143">143</a> of file <a class="el" href="joy_8c_source.html">joy.c</a>.</p>
+
+</div>
+</div>
+<a id="a1643ae6c8e3c59aa41b828035a8c8d8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1643ae6c8e3c59aa41b828035a8c8d8a">&#9670;&nbsp;</a></span>StartupJoy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StartupJoy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8c_source.html#l00009">9</a> of file <a class="el" href="joy_8c_source.html">joy.c</a>.</p>
+
+</div>
+</div>
+<a id="a4a50899171813a3d813cc02cfe7116b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a50899171813a3d813cc02cfe7116b3">&#9670;&nbsp;</a></span>TriggerJoyRumbleRumk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TriggerJoyRumbleRumk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJOY.html">JOY</a> *&#160;</td>
+          <td class="paramname"><em>pjoy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8">RUMK</a>&#160;</td>
+          <td class="paramname"><em>rumk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8c_source.html#l00133">133</a> of file <a class="el" href="joy_8c_source.html">joy.c</a>.</p>
+
+</div>
+</div>
+<a id="ac987ccc8ebf81c9ab5b574f4ded366c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac987ccc8ebf81c9ab5b574f4ded366c9">&#9670;&nbsp;</a></span>UpdateGrfjoytFromGrfusr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UpdateGrfjoytFromGrfusr </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="joy_8c_source.html#l00028">28</a> of file <a class="el" href="joy_8c_source.html">joy.c</a>.</p>
 
 </div>
 </div>

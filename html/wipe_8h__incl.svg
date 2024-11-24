@@ -12,9 +12,9 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title=" ">
-<polygon fill="#bfbfbf" stroke="black" points="152,-224.5 152,-243.5 239,-243.5 239,-224.5 152,-224.5"/>
-<text text-anchor="middle" x="195.5" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">include/wipe.h</text>
+<g id="a_node1"><a xlink:title="Screen wipes.">
+<polygon fill="#bfbfbf" stroke="black" points="171,-224.5 171,-243.5 258,-243.5 258,-224.5 171,-224.5"/>
+<text text-anchor="middle" x="214.5" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">include/wipe.h</text>
 </a>
 </g>
 </g>
@@ -30,23 +30,38 @@
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M192.16,-224.2C188.95,-215.24 184.32,-200.88 182.5,-188 177.35,-151.65 187.79,-109.29 195.13,-85.57"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="198.55,-86.38 198.31,-75.79 191.89,-84.22 198.55,-86.38"/>
+<path fill="none" stroke="midnightblue" d="M201.44,-224.44C190.59,-216.47 175.93,-203.52 169.5,-188 154.81,-152.54 175.63,-108.4 189.95,-84.44"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="193.04,-86.1 195.39,-75.77 187.11,-82.38 193.04,-86.1"/>
 </g>
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
 <g id="a_node7"><a xlink:href="transition_8h.html" target="_top" xlink:title="Level transitions.">
-<polygon fill="white" stroke="black" points="191.5,-168.5 191.5,-187.5 263.5,-187.5 263.5,-168.5 191.5,-168.5"/>
-<text text-anchor="middle" x="227.5" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">transition.h</text>
+<polygon fill="white" stroke="black" points="178.5,-168.5 178.5,-187.5 250.5,-187.5 250.5,-168.5 178.5,-168.5"/>
+<text text-anchor="middle" x="214.5" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">transition.h</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node7 -->
 <g id="edge6" class="edge">
 <title>Node1&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M200.78,-224.08C205.21,-216.61 211.66,-205.72 217.12,-196.52"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="220.23,-198.14 222.31,-187.75 214.21,-194.57 220.23,-198.14"/>
+<path fill="none" stroke="midnightblue" d="M214.5,-224.08C214.5,-217.01 214.5,-206.86 214.5,-197.99"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="218,-197.75 214.5,-187.75 211,-197.75 218,-197.75"/>
+</g>
+<!-- Node8 -->
+<g id="node8" class="node">
+<title>Node8</title>
+<g id="a_node8"><a xlink:href="oid_8h.html" target="_top" xlink:title="Object IDs.">
+<polygon fill="white" stroke="black" points="230,-112.5 230,-131.5 271,-131.5 271,-112.5 230,-112.5"/>
+<text text-anchor="middle" x="250.5" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">oid.h</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node8 -->
+<g id="edge10" class="edge">
+<title>Node1&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M227.56,-224.44C238.41,-216.47 253.07,-203.52 259.5,-188 265.69,-173.05 262.24,-154.68 257.94,-141.29"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="261.19,-139.98 254.48,-131.78 254.61,-142.37 261.19,-139.98"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
@@ -81,7 +96,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="types_8h.html" target="_top" xlink:title="Types used throughout the engine.">
+<g id="a_node5"><a xlink:href="types_8h.html" target="_top" xlink:title="Common types used across the codebase.">
 <polygon fill="white" stroke="black" points="222,-0.5 222,-19.5 275,-19.5 275,-0.5 222,-0.5"/>
 <text text-anchor="middle" x="248.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">types.h</text>
 </a>
@@ -96,7 +111,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="vtables_8h.html" target="_top" xlink:title=" ">
+<g id="a_node6"><a xlink:href="vtables_8h.html" target="_top" xlink:title="Manually crafted vtables for various structs.">
 <polygon fill="white" stroke="black" points="293.5,-0.5 293.5,-19.5 355.5,-19.5 355.5,-0.5 293.5,-0.5"/>
 <text text-anchor="middle" x="324.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">vtables.h</text>
 </a>
@@ -111,23 +126,14 @@
 <!-- Node7&#45;&gt;Node2 -->
 <g id="edge7" class="edge">
 <title>Node7&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M225.46,-168.37C221.26,-150.62 211.58,-109.67 205.9,-85.6"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="209.24,-84.52 203.53,-75.59 202.42,-86.13 209.24,-84.52"/>
-</g>
-<!-- Node8 -->
-<g id="node8" class="node">
-<title>Node8</title>
-<g id="a_node8"><a xlink:href="oid_8h.html" target="_top" xlink:title="Object IDs.">
-<polygon fill="white" stroke="black" points="230,-112.5 230,-131.5 271,-131.5 271,-112.5 230,-112.5"/>
-<text text-anchor="middle" x="250.5" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">oid.h</text>
-</a>
-</g>
+<path fill="none" stroke="midnightblue" d="M213.48,-168.37C211.38,-150.62 206.54,-109.67 203.7,-85.6"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="207.16,-85.11 202.52,-75.59 200.21,-85.93 207.16,-85.11"/>
 </g>
 <!-- Node7&#45;&gt;Node8 -->
 <g id="edge8" class="edge">
 <title>Node7&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M231.3,-168.08C234.41,-160.77 238.92,-150.18 242.79,-141.1"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="246.07,-142.32 246.77,-131.75 239.63,-139.58 246.07,-142.32"/>
+<path fill="none" stroke="midnightblue" d="M220.44,-168.08C225.48,-160.53 232.84,-149.49 239.01,-140.23"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="242.03,-142.01 244.67,-131.75 236.21,-138.13 242.03,-142.01"/>
 </g>
 <!-- Node8&#45;&gt;Node2 -->
 <g id="edge9" class="edge">

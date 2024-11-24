@@ -15,6 +15,7 @@ var wipe_8h =
       [ "WIPES_WipingIn", "wipe_8h.html#aeff8d3dc736be7dce50a7aa301655281aaa8c0c9b1d08d356bd7c81ddd8ede0a4", null ],
       [ "WIPES_Max", "wipe_8h.html#aeff8d3dc736be7dce50a7aa301655281a84c09288081be3272f3034f569c16bff", null ]
     ] ],
+    [ "WipeToWorldWarp", "wipe_8h.html#a6ebbea80b79f5a5fae82e3756a054f78", null ],
     [ "g_pwipe", "wipe_8h.html#a10eca766100f29f4f7f4bf465624ec95", null ],
     [ "g_wipe", "wipe_8h.html#adb4e04a29c80838db3d036f9d34e5fac", null ]
 ];

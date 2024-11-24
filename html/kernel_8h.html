@@ -95,13 +95,14 @@ $(document).ready(function(){initNavTree('kernel_8h.html',''); initResizable(); 
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">kernel.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Control for Semaphores and Threads.  
+<p>Control for semaphores and threads.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="common_8h_source.html">common.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -113,7 +114,7 @@ Include dependency graph for kernel.h:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="kernel_8h__dep__incl.svg" width="162" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="kernel_8h__dep__incl.svg" width="275" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -127,6 +128,17 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSemaParam.html">SemaParam</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semaphore parameters for initialization.  <a href="structSemaParam.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:acfa397eedb9a85059f3e45a147f9246a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8h.html#acfa397eedb9a85059f3e45a147f9246a">WRITEBACK_DCACHE</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:acfa397eedb9a85059f3e45a147f9246a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af23c899f60614c24dffcecd36203ff8c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8h.html#af23c899f60614c24dffcecd36203ff8c">INVALIDATE_DCACHE</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:af23c899f60614c24dffcecd36203ff8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a204bf3760256fd4c97bc5527826e7eb9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8h.html#a204bf3760256fd4c97bc5527826e7eb9">INVALIDATE_ICACHE</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a204bf3760256fd4c97bc5527826e7eb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23aef16d4e0351fd101945d529c78d9e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8h.html#a23aef16d4e0351fd101945d529c78d9e">INVALIDATE_CACHE</a>&#160;&#160;&#160;(<a class="el" href="kernel_8h.html#af23c899f60614c24dffcecd36203ff8c">INVALIDATE_DCACHE</a> | <a class="el" href="kernel_8h.html#a204bf3760256fd4c97bc5527826e7eb9">INVALIDATE_ICACHE</a>) /* XXX this is a bit extra, but should match SCE headers */</td></tr>
+<tr class="separator:a23aef16d4e0351fd101945d529c78d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -142,18 +154,86 @@ Functions</h2></td></tr>
 <tr class="memitem:ac415e46bb5e61bad5f678d063bd77f2a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8h.html#ac415e46bb5e61bad5f678d063bd77f2a">CreateThread</a> (struct <a class="el" href="structThreadParam.html">ThreadParam</a> *tparam)</td></tr>
 <tr class="memdesc:ac415e46bb5e61bad5f678d063bd77f2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new thread.  <a href="kernel_8h.html#ac415e46bb5e61bad5f678d063bd77f2a">More...</a><br /></td></tr>
 <tr class="separator:ac415e46bb5e61bad5f678d063bd77f2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae04dba9cc8e631ee08a87fa16ed6be7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8h.html#aae04dba9cc8e631ee08a87fa16ed6be7">GetThreadId</a> (void)</td></tr>
-<tr class="memdesc:aae04dba9cc8e631ee08a87fa16ed6be7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the ID of the calling thread.  <a href="kernel_8h.html#aae04dba9cc8e631ee08a87fa16ed6be7">More...</a><br /></td></tr>
-<tr class="separator:aae04dba9cc8e631ee08a87fa16ed6be7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad794bf24bd9def7a20bf0d12d27d1e36"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8h.html#ad794bf24bd9def7a20bf0d12d27d1e36">GetThreadId</a> ()</td></tr>
+<tr class="memdesc:ad794bf24bd9def7a20bf0d12d27d1e36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the ID of the calling thread.  <a href="kernel_8h.html#ad794bf24bd9def7a20bf0d12d27d1e36">More...</a><br /></td></tr>
+<tr class="separator:ad794bf24bd9def7a20bf0d12d27d1e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac93eb8b037c5011317a0f25c3de9c6d9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8h.html#ac93eb8b037c5011317a0f25c3de9c6d9">ChangeThreadPriority</a> (int tid, int priority)</td></tr>
 <tr class="memdesc:ac93eb8b037c5011317a0f25c3de9c6d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the priority of a thread.  <a href="kernel_8h.html#ac93eb8b037c5011317a0f25c3de9c6d9">More...</a><br /></td></tr>
 <tr class="separator:ac93eb8b037c5011317a0f25c3de9c6d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae79240dec6e7cd6cbe2edf48d348f540"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8h.html#ae79240dec6e7cd6cbe2edf48d348f540">FlushCache</a> (int mode)</td></tr>
+<tr class="memdesc:ae79240dec6e7cd6cbe2edf48d348f540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flushes the cache.  <a href="kernel_8h.html#ae79240dec6e7cd6cbe2edf48d348f540">More...</a><br /></td></tr>
+<tr class="separator:ae79240dec6e7cd6cbe2edf48d348f540"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Control for Semaphores and Threads. </p>
+<div class="textblock"><p>Control for semaphores and threads. </p>
 
 <p class="definition">Definition in file <a class="el" href="kernel_8h_source.html">kernel.h</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a23aef16d4e0351fd101945d529c78d9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23aef16d4e0351fd101945d529c78d9e">&#9670;&nbsp;</a></span>INVALIDATE_CACHE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define INVALIDATE_CACHE&#160;&#160;&#160;(<a class="el" href="kernel_8h.html#af23c899f60614c24dffcecd36203ff8c">INVALIDATE_DCACHE</a> | <a class="el" href="kernel_8h.html#a204bf3760256fd4c97bc5527826e7eb9">INVALIDATE_ICACHE</a>) /* XXX this is a bit extra, but should match SCE headers */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="kernel_8h_source.html#l00015">15</a> of file <a class="el" href="kernel_8h_source.html">kernel.h</a>.</p>
+
+</div>
+</div>
+<a id="af23c899f60614c24dffcecd36203ff8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af23c899f60614c24dffcecd36203ff8c">&#9670;&nbsp;</a></span>INVALIDATE_DCACHE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define INVALIDATE_DCACHE&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="kernel_8h_source.html#l00013">13</a> of file <a class="el" href="kernel_8h_source.html">kernel.h</a>.</p>
+
+</div>
+</div>
+<a id="a204bf3760256fd4c97bc5527826e7eb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a204bf3760256fd4c97bc5527826e7eb9">&#9670;&nbsp;</a></span>INVALIDATE_ICACHE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define INVALIDATE_ICACHE&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="kernel_8h_source.html#l00014">14</a> of file <a class="el" href="kernel_8h_source.html">kernel.h</a>.</p>
+
+</div>
+</div>
+<a id="acfa397eedb9a85059f3e45a147f9246a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfa397eedb9a85059f3e45a147f9246a">&#9670;&nbsp;</a></span>WRITEBACK_DCACHE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define WRITEBACK_DCACHE&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="kernel_8h_source.html#l00012">12</a> of file <a class="el" href="kernel_8h_source.html">kernel.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="ac93eb8b037c5011317a0f25c3de9c6d9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac93eb8b037c5011317a0f25c3de9c6d9">&#9670;&nbsp;</a></span>ChangeThreadPriority()</h2>
 
@@ -249,8 +329,34 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aae04dba9cc8e631ee08a87fa16ed6be7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae04dba9cc8e631ee08a87fa16ed6be7">&#9670;&nbsp;</a></span>GetThreadId()</h2>
+<a id="ae79240dec6e7cd6cbe2edf48d348f540"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae79240dec6e7cd6cbe2edf48d348f540">&#9670;&nbsp;</a></span>FlushCache()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FlushCache </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flushes the cache. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>Can be WRITEBACK_DCACHE, INVALIDATE_DCACHE, INVALIDATE_ICACHE, or INVALIDATE_CACHE </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad794bf24bd9def7a20bf0d12d27d1e36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad794bf24bd9def7a20bf0d12d27d1e36">&#9670;&nbsp;</a></span>GetThreadId()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -258,7 +364,6 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int GetThreadId </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>

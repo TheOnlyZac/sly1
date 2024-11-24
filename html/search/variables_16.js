@@ -1,9 +1,15 @@
 var searchData=
 [
-  ['x_3863',['x',['../structJOY.html#ad8cb7cb5f1dae1d40acd92d6ec17ab91',1,'JOY::x()'],['../structBLOTI.html#a6ae21352c4b7b2575c55ac94d2dbb6d3',1,'BLOTI::x()'],['../structBLOT.html#ab157a079bb0e114cd9827dfe7febfdb9',1,'BLOT::x()'],['../structCLQ.html#a3fca460b2fddb9dcd6886aaeeb1e58ae',1,'CLQ::x()'],['../structVECTOR.html#a089769eb3e23fb95cda35b45b3434cd5',1,'VECTOR::x()'],['../structVECTOR4.html#ae1b2a9e4f7c5b97bb249dc3be2db47b5',1,'VECTOR4::x()']]],
-  ['x2_3864',['x2',['../structJOY.html#aa8f9867e439949cf9835d19ce608fe88',1,'JOY']]],
-  ['xoff_3865',['xOff',['../structBLOT.html#a0e39718a1d7b29e48f31d2420b2960ce',1,'BLOT']]],
-  ['xon_3866',['xOn',['../structBLOT.html#add6d1a3abc3674bafb5d1804c315d299',1,'BLOT']]],
-  ['xscreenrange_3867',['xScreenRange',['../structCM.html#a57cb87bfde40752034d0d6cc7d324b05',1,'CM']]],
-  ['xymanual_3868',['xyManual',['../structCPTN.html#a7e7ce259fd563037ddad29cda632e07e',1,'CPTN']]]
+  ['w_4114',['w',['../structCLQ.html#a803fd52cfcd57c344235213fb5c01919',1,'CLQ::w()'],['../structVECTOR4.html#a9baf0e6a42e3fb90572a1fb238c28403',1,'VECTOR4::w()']]],
+  ['waitid_4115',['waitId',['../structThreadParam.html#a37ec95d86fe64f88a99c9c58602f571e',1,'ThreadParam']]],
+  ['waittype_4116',['waitType',['../structThreadParam.html#a991e3b9c436330474dba7bbbd2b565b9',1,'ThreadParam']]],
+  ['wakeupcount_4117',['wakeupCount',['../structThreadParam.html#a50b1233ff905db5c80ecfa0512a40ad4',1,'ThreadParam']]],
+  ['widalt_4118',['widAlt',['../structEXIT.html#acd6c61049ddb1e0cadc81831051da184',1,'EXIT']]],
+  ['widmenu_4119',['widMenu',['../structWARP.html#a74ce62ad9ca5fc8704e307b9a0cfbb23',1,'WARP']]],
+  ['width_4120',['width',['../structBLOT.html#af2a182b75b363c63e7ec7be9851c3cef',1,'BLOT']]],
+  ['widwarp_4121',['widWarp',['../structEXIT.html#a5b63f2ecaf57cfb129a76a39106a4690',1,'EXIT']]],
+  ['wipek_4122',['wipek',['../structWIPE.html#a633aa35ae3d316ecee39ccffcc207962',1,'WIPE::wipek()'],['../structEXIT.html#ad4af24656eb280f6a9e738c90b1bf549',1,'EXIT::wipek()']]],
+  ['wipekbutton_4123',['wipekButton',['../structWIPE.html#a9a888e5178eda6f136da6b4e4797da96',1,'WIPE']]],
+  ['wipes_4124',['wipes',['../structWIPE.html#a16030835cd3bc7392f4dc8adaf96ae56',1,'WIPE']]],
+  ['worldlevelcur_4125',['worldlevelCur',['../structGS.html#ad32bb98affcc5cdc347e61c40fb58575',1,'GS']]]
 ];

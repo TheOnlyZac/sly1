@@ -1,5 +1,6 @@
 var binoc_8c =
 [
+    [ "GetBinocReticleFocus", "binoc_8c.html#a9256d1e8cc67f576fc5a8af3cb352485", null ],
     [ "INCLUDE_ASM", "binoc_8c.html#a9b67145c664e0dee46864248af847947", null ],
     [ "INCLUDE_ASM", "binoc_8c.html#a345220a2047cf34b99ea4cea4153b916", null ],
     [ "INCLUDE_ASM", "binoc_8c.html#a59acb9e77a9764a86da4dcb6708a1bde", null ],
@@ -26,15 +27,14 @@ var binoc_8c =
     [ "INCLUDE_ASM", "binoc_8c.html#aab66e9e3f95aecf5a88f5c374a6e9d2f", null ],
     [ "INCLUDE_ASM", "binoc_8c.html#a95251b9f2ae899a33d305e49226f01cf", null ],
     [ "INCLUDE_ASM", "binoc_8c.html#a6fe0cd6f6a45a0005f732fe0dccb7a98", null ],
-    [ "INCLUDE_ASM", "binoc_8c.html#a896208006edb6e30fd8d4f13dea174ee", null ],
     [ "INCLUDE_ASM", "binoc_8c.html#a312acf368f4ab821f29a5013323a431d", null ],
     [ "INCLUDE_ASM", "binoc_8c.html#aed15579532c0b2f20f411b41246ed7c9", null ],
     [ "INCLUDE_ASM", "binoc_8c.html#a3387a79bab079805d04e1edfc8187c95", null ],
     [ "INCLUDE_ASM", "binoc_8c.html#abf7536652101abe32c4a20f55f525fea", null ],
-    [ "INCLUDE_ASM", "binoc_8c.html#a0c19ae1f7f3122968e586d91cd783205", null ],
     [ "INCLUDE_ASM", "binoc_8c.html#a73ffe4df67d1274754d240891365973e", null ],
     [ "INCLUDE_ASM", "binoc_8c.html#afa8ba4460d1a07e6ea2013c3d93b91be", null ],
-    [ "INCLUDE_ASM", "binoc_8c.html#a5dc5b36d0a2c6f2e33f852d4cff0ca8f", null ],
-    [ "INCLUDE_ASM", "binoc_8c.html#a25fab7c8537bde49454ac40fe33fd450", null ],
-    [ "InitBinoc", "binoc_8c.html#ae83782cff909d06e9cfcef16fcfdcf7a", null ]
+    [ "InitBinoc", "binoc_8c.html#ae83782cff909d06e9cfcef16fcfdcf7a", null ],
+    [ "ResetBinoc", "binoc_8c.html#af4b5e32e00feb1c6d32c7d2323a6ef3a", null ],
+    [ "SetBinocLookat", "binoc_8c.html#a56881cc4077adfaf059534f3b7353467", null ],
+    [ "SetBinocZoom", "binoc_8c.html#ac83ded7b55c39debeea8c167abc30a4a", null ]
 ];

@@ -58,7 +58,7 @@ var sectionId = 'dynsection-0';
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title="User interface manager.">
+<g id="a_node1"><a xlink:title="GUI elements.">
 <polygon fill="#bfbfbf" stroke="black" points="34,-560.5 34,-579.5 130,-579.5 130,-560.5 34,-560.5"/>
 <text text-anchor="middle" x="82" y="-567.5" font-family="Helvetica,sans-Serif" font-size="10.00">include/screen.h</text>
 </a>
@@ -157,7 +157,7 @@ var sectionId = 'dynsection-0';
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="types_8h.html" target="_top" xlink:title="Types used throughout the engine.">
+<g id="a_node5"><a xlink:href="types_8h.html" target="_top" xlink:title="Common types used across the codebase.">
 <polygon fill="white" stroke="black" points="366.5,-0.5 366.5,-19.5 419.5,-19.5 419.5,-0.5 366.5,-0.5"/>
 <text text-anchor="middle" x="393" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">types.h</text>
 </a>
@@ -172,7 +172,7 @@ var sectionId = 'dynsection-0';
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="vtables_8h.html" target="_top" xlink:title=" ">
+<g id="a_node6"><a xlink:href="vtables_8h.html" target="_top" xlink:title="Manually crafted vtables for various structs.">
 <polygon fill="white" stroke="black" points="438,-0.5 438,-19.5 500,-19.5 500,-0.5 438,-0.5"/>
 <text text-anchor="middle" x="469" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">vtables.h</text>
 </a>
@@ -214,7 +214,7 @@ var sectionId = 'dynsection-0';
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="cid_8h.html" target="_top" xlink:title="Class ID.">
+<g id="a_node10"><a xlink:href="cid_8h.html" target="_top" xlink:title="Class IDs.">
 <polygon fill="white" stroke="black" points="66,-112.5 66,-131.5 106,-131.5 106,-112.5 66,-112.5"/>
 <text text-anchor="middle" x="86" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">cid.h</text>
 </a>
@@ -262,7 +262,7 @@ var sectionId = 'dynsection-0';
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="surf_8h.html" target="_top" xlink:title="Surface?">
+<g id="a_node13"><a xlink:href="surf_8h.html" target="_top" xlink:title="Surfaces?">
 <polygon fill="white" stroke="black" points="530,-448.5 530,-467.5 574,-467.5 574,-448.5 530,-448.5"/>
 <text text-anchor="middle" x="552" y="-455.5" font-family="Helvetica,sans-Serif" font-size="10.00">surf.h</text>
 </a>
@@ -277,7 +277,7 @@ var sectionId = 'dynsection-0';
 <!-- Node14 -->
 <g id="node14" class="node">
 <title>Node14</title>
-<g id="a_node14"><a xlink:href="vec_8h.html" target="_top" xlink:title="Vector math functions.">
+<g id="a_node14"><a xlink:href="vec_8h.html" target="_top" xlink:title="Vector math.">
 <polygon fill="white" stroke="black" points="278.5,-392.5 278.5,-411.5 321.5,-411.5 321.5,-392.5 278.5,-392.5"/>
 <text text-anchor="middle" x="300" y="-399.5" font-family="Helvetica,sans-Serif" font-size="10.00">vec.h</text>
 </a>
@@ -292,7 +292,7 @@ var sectionId = 'dynsection-0';
 <!-- Node24 -->
 <g id="node24" class="node">
 <title>Node24</title>
-<g id="a_node24"><a xlink:href="sce_2gs_8h.html" target="_top" xlink:title="Graphics Synthesizer.">
+<g id="a_node24"><a xlink:href="sce_2gs_8h.html" target="_top" xlink:title="Graphics synthesizer.">
 <polygon fill="white" stroke="black" points="130,-280.5 130,-299.5 186,-299.5 186,-280.5 130,-280.5"/>
 <text text-anchor="middle" x="158" y="-287.5" font-family="Helvetica,sans-Serif" font-size="10.00">sce/gs.h</text>
 </a>
@@ -382,7 +382,7 @@ var sectionId = 'dynsection-0';
 <!-- Node20 -->
 <g id="node20" class="node">
 <title>Node20</title>
-<g id="a_node20"><a xlink:href="dl_8h.html" target="_top" xlink:title=" ">
+<g id="a_node20"><a xlink:href="dl_8h.html" target="_top" xlink:title="Doubly&#45;linked list.">
 <polygon fill="white" stroke="black" points="282.5,-168.5 282.5,-187.5 317.5,-187.5 317.5,-168.5 282.5,-168.5"/>
 <text text-anchor="middle" x="300" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">dl.h</text>
 </a>
@@ -460,7 +460,7 @@ var sectionId = 'dynsection-0';
 <!-- Node23 -->
 <g id="node23" class="node">
 <title>Node23</title>
-<g id="a_node23"><a xlink:href="mq_8h.html" target="_top" xlink:title="Message queue(?).">
+<g id="a_node23"><a xlink:href="mq_8h.html" target="_top" xlink:title="Message queue.">
 <polygon fill="white" stroke="black" points="677.5,-168.5 677.5,-187.5 718.5,-187.5 718.5,-168.5 677.5,-168.5"/>
 <text text-anchor="middle" x="698" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">mq.h</text>
 </a>

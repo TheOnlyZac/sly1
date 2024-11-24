@@ -93,12 +93,16 @@ $(document).ready(function(){initNavTree('rumble_8h.html',''); initResizable(); 
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">rumble.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Joypad rumble system.  
+<p>Joypad rumble.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="common_8h_source.html">common.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -107,13 +111,204 @@ Include dependency graph for rumble.h:</div>
 <div class="center"><iframe scrolling="no" frameborder="0" src="rumble_8h__incl.svg" width="486" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="rumble_8h__dep__incl.svg" width="283" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 </div>
 <p><a href="rumble_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRUMINS.html">RUMINS</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rumble intensity.  <a href="structRUMINS.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRUMPAT.html">RUMPAT</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rumble pattern.  <a href="structRUMPAT.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRUMBLE.html">RUMBLE</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rumble.  <a href="structRUMBLE.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a6d5d8122f09c957bc5514c4a73b9ec0f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0f">RUMS</a> { <br />
+&#160;&#160;<a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0faf3f06a542658b86bee2a23bea94e230a">RUMS_Dead</a> = 0, 
+<a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa091e469bf6075a481e8ef168a45298c7">RUMS_Idle</a> = 1, 
+<a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa7c6c4cf5a7c761bcd39ba2a04bf759ad">RUMS_Rumble</a> = 2, 
+<a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa2972609cecd4f97e0c2492a26f6016aa">RUMS_Stop</a> = 3, 
+<br />
+&#160;&#160;<a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa56b51ed29c64c27e3ac333201f60152c">RUMS_Kill</a> = 4, 
+<a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa72b058661e02b3c95ad855a51b55e604">RUMS_Max</a> = 5
+<br />
+ }</td></tr>
+<tr class="memdesc:a6d5d8122f09c957bc5514c4a73b9ec0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rumble state.  <a href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0f">More...</a><br /></td></tr>
+<tr class="separator:a6d5d8122f09c957bc5514c4a73b9ec0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76ef29bd51d1244b6a0e57440206d8e8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8">RUMK</a> { <br />
+&#160;&#160;<a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8a7924fc0ab8c17365ec2bec8e422d2890">RUMK_Nil</a> = -1, 
+<a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8aeef77302106257ee106b362337176318">RUMK_SteadyBuzz</a> = 0, 
+<a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8a3bb3de06584893100b4ab7a3e24e4de5">RUMK_LowThrob</a> = 1, 
+<a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8a88627186555899ccb8a68d1764bf939f">RUMK_MediumThrob</a> = 2, 
+<br />
+&#160;&#160;<a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8a860861b3a737d4361f0f36ec2e125a0a">RUMK_HardThrob</a> = 3, 
+<a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8a5d9dfe5b9cf4bdb26772bfea64f50f05">RUMK_Blunt</a> = 4, 
+<a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8a75124522669dda525089214d36b27178">RUMK_Electric</a> = 5, 
+<a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8ad56baddc1199d9c669273dda94da4539">RUMK_Fire</a> = 6, 
+<br />
+&#160;&#160;<a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8a19c9753bac6542355fdd63b2623ac345">RUMK_Water</a> = 7, 
+<a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8a4547ebc44eb9688625c66eb35149dd06">RUMK_Crush</a> = 8, 
+<a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8adffd731fa46548af3ad1f37cbbfda7f0">RUMK_Break</a> = 9, 
+<a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8a79d2ec4103c904ec68cc0061d85090c3">RUMK_Bomb</a> = 10, 
+<br />
+&#160;&#160;<a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8a389ca6531b562403d6c93841202bd103">RUMK_Max</a> = 11
+<br />
+ }</td></tr>
+<tr class="memdesc:a76ef29bd51d1244b6a0e57440206d8e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rumble kind.  <a href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8">More...</a><br /></td></tr>
+<tr class="separator:a76ef29bd51d1244b6a0e57440206d8e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a22a347bba35744030a7f57363defa7ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8h.html#a22a347bba35744030a7f57363defa7ab">InitRumble</a> (<a class="el" href="structRUMBLE.html">RUMBLE</a> *prumble, int nPort, int nSlot)</td></tr>
+<tr class="separator:a22a347bba35744030a7f57363defa7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab353ad72a3fee627405e3cd498f84c2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8h.html#ab353ad72a3fee627405e3cd498f84c2e">TriggerRumbleRumk</a> (<a class="el" href="structRUMBLE.html">RUMBLE</a> *prumble, <a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8">RUMK</a> rumk, float dt)</td></tr>
+<tr class="separator:ab353ad72a3fee627405e3cd498f84c2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Joypad rumble system. </p>
+<div class="textblock"><p>Joypad rumble. </p>
 
 <p class="definition">Definition in file <a class="el" href="rumble_8h_source.html">rumble.h</a>.</p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a76ef29bd51d1244b6a0e57440206d8e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76ef29bd51d1244b6a0e57440206d8e8">&#9670;&nbsp;</a></span>RUMK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8">RUMK</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rumble kind. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a76ef29bd51d1244b6a0e57440206d8e8a7924fc0ab8c17365ec2bec8e422d2890"></a>RUMK_Nil&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a76ef29bd51d1244b6a0e57440206d8e8aeef77302106257ee106b362337176318"></a>RUMK_SteadyBuzz&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a76ef29bd51d1244b6a0e57440206d8e8a3bb3de06584893100b4ab7a3e24e4de5"></a>RUMK_LowThrob&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a76ef29bd51d1244b6a0e57440206d8e8a88627186555899ccb8a68d1764bf939f"></a>RUMK_MediumThrob&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a76ef29bd51d1244b6a0e57440206d8e8a860861b3a737d4361f0f36ec2e125a0a"></a>RUMK_HardThrob&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a76ef29bd51d1244b6a0e57440206d8e8a5d9dfe5b9cf4bdb26772bfea64f50f05"></a>RUMK_Blunt&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a76ef29bd51d1244b6a0e57440206d8e8a75124522669dda525089214d36b27178"></a>RUMK_Electric&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a76ef29bd51d1244b6a0e57440206d8e8ad56baddc1199d9c669273dda94da4539"></a>RUMK_Fire&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a76ef29bd51d1244b6a0e57440206d8e8a19c9753bac6542355fdd63b2623ac345"></a>RUMK_Water&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a76ef29bd51d1244b6a0e57440206d8e8a4547ebc44eb9688625c66eb35149dd06"></a>RUMK_Crush&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a76ef29bd51d1244b6a0e57440206d8e8adffd731fa46548af3ad1f37cbbfda7f0"></a>RUMK_Break&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a76ef29bd51d1244b6a0e57440206d8e8a79d2ec4103c904ec68cc0061d85090c3"></a>RUMK_Bomb&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a76ef29bd51d1244b6a0e57440206d8e8a389ca6531b562403d6c93841202bd103"></a>RUMK_Max&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="rumble_8h_source.html#l00029">29</a> of file <a class="el" href="rumble_8h_source.html">rumble.h</a>.</p>
+
+</div>
+</div>
+<a id="a6d5d8122f09c957bc5514c4a73b9ec0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d5d8122f09c957bc5514c4a73b9ec0f">&#9670;&nbsp;</a></span>RUMS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0f">RUMS</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rumble state. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0faf3f06a542658b86bee2a23bea94e230a"></a>RUMS_Dead&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0fa091e469bf6075a481e8ef168a45298c7"></a>RUMS_Idle&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0fa7c6c4cf5a7c761bcd39ba2a04bf759ad"></a>RUMS_Rumble&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0fa2972609cecd4f97e0c2492a26f6016aa"></a>RUMS_Stop&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0fa56b51ed29c64c27e3ac333201f60152c"></a>RUMS_Kill&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0fa72b058661e02b3c95ad855a51b55e604"></a>RUMS_Max&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="rumble_8h_source.html#l00016">16</a> of file <a class="el" href="rumble_8h_source.html">rumble.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a22a347bba35744030a7f57363defa7ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22a347bba35744030a7f57363defa7ab">&#9670;&nbsp;</a></span>InitRumble()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InitRumble </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structRUMBLE.html">RUMBLE</a> *&#160;</td>
+          <td class="paramname"><em>prumble</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nPort</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nSlot</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab353ad72a3fee627405e3cd498f84c2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab353ad72a3fee627405e3cd498f84c2e">&#9670;&nbsp;</a></span>TriggerRumbleRumk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TriggerRumbleRumk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structRUMBLE.html">RUMBLE</a> *&#160;</td>
+          <td class="paramname"><em>prumble</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8">RUMK</a>&#160;</td>
+          <td class="paramname"><em>rumk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

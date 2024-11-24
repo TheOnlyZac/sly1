@@ -100,6 +100,7 @@ $(document).ready(function(){initNavTree('binoc_8c.html',''); initResizable(); }
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="binoc_8h_source.html">binoc.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="alo_8h_source.html">alo.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for binoc.c:</div>
 <div class="dyncontent">
@@ -117,8 +118,8 @@ Functions</h2></td></tr>
 <tr class="separator:a312acf368f4ab821f29a5013323a431d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae83782cff909d06e9cfcef16fcfdcf7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#ae83782cff909d06e9cfcef16fcfdcf7a">InitBinoc</a> (<a class="el" href="structBINOC.html">BINOC</a> *binoc, <a class="el" href="screen_8h.html#a672bb57057845c469aa1f00f4c85b030">BLOTK</a> blotk)</td></tr>
 <tr class="separator:ae83782cff909d06e9cfcef16fcfdcf7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c19ae1f7f3122968e586d91cd783205"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#a0c19ae1f7f3122968e586d91cd783205">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/binoc&quot;, ResetBinoc__FP5BINOC)</td></tr>
-<tr class="separator:a0c19ae1f7f3122968e586d91cd783205"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4b5e32e00feb1c6d32c7d2323a6ef3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#af4b5e32e00feb1c6d32c7d2323a6ef3a">ResetBinoc</a> (<a class="el" href="structBINOC.html">BINOC</a> *binoc)</td></tr>
+<tr class="separator:af4b5e32e00feb1c6d32c7d2323a6ef3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf7536652101abe32c4a20f55f525fea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#abf7536652101abe32c4a20f55f525fea">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/binoc&quot;, PostBinocLoad__FP5BINOC)</td></tr>
 <tr class="separator:abf7536652101abe32c4a20f55f525fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8e7aa433afcfca5274d175563303872"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#aa8e7aa433afcfca5274d175563303872">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/binoc&quot;, DrawBinocCompass)</td></tr>
@@ -165,18 +166,18 @@ Functions</h2></td></tr>
 <tr class="separator:a73ffe4df67d1274754d240891365973e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee69641c1bdb7012beb5aad40377cb3c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#aee69641c1bdb7012beb5aad40377cb3c">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/binoc&quot;, FDoneBinocAchz)</td></tr>
 <tr class="separator:aee69641c1bdb7012beb5aad40377cb3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5dc5b36d0a2c6f2e33f852d4cff0ca8f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#a5dc5b36d0a2c6f2e33f852d4cff0ca8f">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/binoc&quot;, SetBinocLookat)</td></tr>
-<tr class="separator:a5dc5b36d0a2c6f2e33f852d4cff0ca8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25fab7c8537bde49454ac40fe33fd450"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#a25fab7c8537bde49454ac40fe33fd450">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/binoc&quot;, SetBinocZoom)</td></tr>
-<tr class="separator:a25fab7c8537bde49454ac40fe33fd450"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56881cc4077adfaf059534f3b7353467"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#a56881cc4077adfaf059534f3b7353467">SetBinocLookat</a> (<a class="el" href="structBINOC.html">BINOC</a> *binoc, <a class="el" href="structALO.html">ALO</a> *paloLookat)</td></tr>
+<tr class="separator:a56881cc4077adfaf059534f3b7353467"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac83ded7b55c39debeea8c167abc30a4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#ac83ded7b55c39debeea8c167abc30a4a">SetBinocZoom</a> (<a class="el" href="structBINOC.html">BINOC</a> *binoc, float zoom)</td></tr>
+<tr class="separator:ac83ded7b55c39debeea8c167abc30a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade2919f37cb6fe4a2e70383a4250b781"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#ade2919f37cb6fe4a2e70383a4250b781">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/binoc&quot;, FUN_001365f0)</td></tr>
 <tr class="separator:ade2919f37cb6fe4a2e70383a4250b781"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ccd2b1082b75f348699e9b09121473d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#a7ccd2b1082b75f348699e9b09121473d">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/binoc&quot;, FUN_00136648)</td></tr>
 <tr class="separator:a7ccd2b1082b75f348699e9b09121473d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59acb9e77a9764a86da4dcb6708a1bde"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#a59acb9e77a9764a86da4dcb6708a1bde">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/binoc&quot;, DrawBinoc)</td></tr>
 <tr class="separator:a59acb9e77a9764a86da4dcb6708a1bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a896208006edb6e30fd8d4f13dea174ee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#a896208006edb6e30fd8d4f13dea174ee">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/binoc&quot;, GetBinocReticleFocus)</td></tr>
-<tr class="separator:a896208006edb6e30fd8d4f13dea174ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9256d1e8cc67f576fc5a8af3cb352485"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#a9256d1e8cc67f576fc5a8af3cb352485">GetBinocReticleFocus</a> (<a class="el" href="structBINOC.html">BINOC</a> *binoc, float *dxReticle, float *dyReticle)</td></tr>
+<tr class="separator:a9256d1e8cc67f576fc5a8af3cb352485"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa9f7f74b045b9c6f9e87e1972f518b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#afa9f7f74b045b9c6f9e87e1972f518b8">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/binoc&quot;, FUN_00136ef8)</td></tr>
 <tr class="separator:afa9f7f74b045b9c6f9e87e1972f518b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ac5dc9cc4b5a291d9f1894f3db4bedf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binoc_8c.html#a1ac5dc9cc4b5a291d9f1894f3db4bedf">INCLUDE_ASM</a> (const <a class="el" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a>, &quot;P2/binoc&quot;, FUN_00136fa8)</td></tr>
@@ -187,8 +188,44 @@ Functions</h2></td></tr>
 <tr class="separator:a9b67145c664e0dee46864248af847947"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a9256d1e8cc67f576fc5a8af3cb352485"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9256d1e8cc67f576fc5a8af3cb352485">&#9670;&nbsp;</a></span>GetBinocReticleFocus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GetBinocReticleFocus </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structBINOC.html">BINOC</a> *&#160;</td>
+          <td class="paramname"><em>binoc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>dxReticle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>dyReticle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="binoc_8c_source.html#l00100">100</a> of file <a class="el" href="binoc_8c_source.html">binoc.c</a>.</p>
+
+</div>
+</div>
 <a id="a9b67145c664e0dee46864248af847947"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b67145c664e0dee46864248af847947">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[1/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b67145c664e0dee46864248af847947">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[1/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -222,7 +259,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a345220a2047cf34b99ea4cea4153b916"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a345220a2047cf34b99ea4cea4153b916">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[2/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a345220a2047cf34b99ea4cea4153b916">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[2/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -256,7 +293,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a59acb9e77a9764a86da4dcb6708a1bde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a59acb9e77a9764a86da4dcb6708a1bde">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[3/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a59acb9e77a9764a86da4dcb6708a1bde">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[3/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -290,7 +327,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="aa8e7aa433afcfca5274d175563303872"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa8e7aa433afcfca5274d175563303872">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[4/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8e7aa433afcfca5274d175563303872">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[4/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -324,7 +361,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="aa117ec779a1f9e31e8fa1a27dc09102f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa117ec779a1f9e31e8fa1a27dc09102f">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[5/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa117ec779a1f9e31e8fa1a27dc09102f">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[5/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -358,7 +395,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a4c65f1de760366279f51fef128adb7ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c65f1de760366279f51fef128adb7ad">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[6/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c65f1de760366279f51fef128adb7ad">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[6/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -392,7 +429,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ae7d4771d650288381a3e2c80eb6f253b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7d4771d650288381a3e2c80eb6f253b">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[7/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7d4771d650288381a3e2c80eb6f253b">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[7/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -426,7 +463,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a6acca76045365a9d45b363bcf7536fce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6acca76045365a9d45b363bcf7536fce">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[8/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6acca76045365a9d45b363bcf7536fce">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[8/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -460,7 +497,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="aee69641c1bdb7012beb5aad40377cb3c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee69641c1bdb7012beb5aad40377cb3c">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[9/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aee69641c1bdb7012beb5aad40377cb3c">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[9/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -494,7 +531,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a14caa8e834e9d58b55d77372110e8dd6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14caa8e834e9d58b55d77372110e8dd6">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[10/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a14caa8e834e9d58b55d77372110e8dd6">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[10/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -528,7 +565,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a7eab6fac5116175eff5b5551ef9a35b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7eab6fac5116175eff5b5551ef9a35b6">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[11/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eab6fac5116175eff5b5551ef9a35b6">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[11/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -562,7 +599,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a2702936c6788e0aca64fddaa4606e421"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2702936c6788e0aca64fddaa4606e421">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[12/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2702936c6788e0aca64fddaa4606e421">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[12/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -596,7 +633,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a5a075cb201e790bcf186ecf657c868dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a075cb201e790bcf186ecf657c868dd">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[13/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a075cb201e790bcf186ecf657c868dd">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[13/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -630,7 +667,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a67c9811d8d13ae57752561c2dd45b52a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a67c9811d8d13ae57752561c2dd45b52a">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[14/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a67c9811d8d13ae57752561c2dd45b52a">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[14/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -664,7 +701,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a466ee77578f7fa1357cf20c219e2edb1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a466ee77578f7fa1357cf20c219e2edb1">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[15/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a466ee77578f7fa1357cf20c219e2edb1">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[15/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -698,7 +735,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a87c7b100a2187fd8dafb9d2a3c41fd53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87c7b100a2187fd8dafb9d2a3c41fd53">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[16/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a87c7b100a2187fd8dafb9d2a3c41fd53">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[16/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -732,7 +769,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a87c38573aea9973aea93020b11c88212"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87c38573aea9973aea93020b11c88212">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[17/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a87c38573aea9973aea93020b11c88212">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[17/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -766,7 +803,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a3ca8f5445d03d4f76d1d6a8b995a10d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ca8f5445d03d4f76d1d6a8b995a10d9">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[18/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ca8f5445d03d4f76d1d6a8b995a10d9">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[18/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -800,7 +837,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="abf22903eedfa9852403dbd544ceaf7d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf22903eedfa9852403dbd544ceaf7d3">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[19/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abf22903eedfa9852403dbd544ceaf7d3">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[19/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -834,7 +871,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ade2919f37cb6fe4a2e70383a4250b781"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade2919f37cb6fe4a2e70383a4250b781">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[20/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ade2919f37cb6fe4a2e70383a4250b781">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[20/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -868,7 +905,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a7ccd2b1082b75f348699e9b09121473d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ccd2b1082b75f348699e9b09121473d">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[21/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ccd2b1082b75f348699e9b09121473d">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[21/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -902,7 +939,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="afa9f7f74b045b9c6f9e87e1972f518b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa9f7f74b045b9c6f9e87e1972f518b8">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[22/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afa9f7f74b045b9c6f9e87e1972f518b8">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[22/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -936,7 +973,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a1ac5dc9cc4b5a291d9f1894f3db4bedf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ac5dc9cc4b5a291d9f1894f3db4bedf">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[23/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ac5dc9cc4b5a291d9f1894f3db4bedf">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[23/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -970,7 +1007,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="aab66e9e3f95aecf5a88f5c374a6e9d2f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab66e9e3f95aecf5a88f5c374a6e9d2f">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[24/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aab66e9e3f95aecf5a88f5c374a6e9d2f">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[24/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1004,7 +1041,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a95251b9f2ae899a33d305e49226f01cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a95251b9f2ae899a33d305e49226f01cf">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[25/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a95251b9f2ae899a33d305e49226f01cf">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[25/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1038,7 +1075,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a6fe0cd6f6a45a0005f732fe0dccb7a98"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6fe0cd6f6a45a0005f732fe0dccb7a98">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[26/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fe0cd6f6a45a0005f732fe0dccb7a98">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[26/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1071,42 +1108,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a896208006edb6e30fd8d4f13dea174ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a896208006edb6e30fd8d4f13dea174ee">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[27/36]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/binoc&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">GetBinocReticleFocus&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a312acf368f4ab821f29a5013323a431d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a312acf368f4ab821f29a5013323a431d">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[28/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a312acf368f4ab821f29a5013323a431d">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[27/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1140,7 +1143,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="aed15579532c0b2f20f411b41246ed7c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed15579532c0b2f20f411b41246ed7c9">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[29/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aed15579532c0b2f20f411b41246ed7c9">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[28/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1174,7 +1177,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a3387a79bab079805d04e1edfc8187c95"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3387a79bab079805d04e1edfc8187c95">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[30/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3387a79bab079805d04e1edfc8187c95">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[29/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1208,7 +1211,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="abf7536652101abe32c4a20f55f525fea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf7536652101abe32c4a20f55f525fea">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[31/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abf7536652101abe32c4a20f55f525fea">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[30/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1241,42 +1244,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0c19ae1f7f3122968e586d91cd783205"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c19ae1f7f3122968e586d91cd783205">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[32/36]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/binoc&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">ResetBinoc__FP5BINOC&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a73ffe4df67d1274754d240891365973e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73ffe4df67d1274754d240891365973e">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[33/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a73ffe4df67d1274754d240891365973e">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[31/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1310,7 +1279,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="afa8ba4460d1a07e6ea2013c3d93b91be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa8ba4460d1a07e6ea2013c3d93b91be">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[34/36]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afa8ba4460d1a07e6ea2013c3d93b91be">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[32/32]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1331,74 +1300,6 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">SetBinocBfk&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5dc5b36d0a2c6f2e33f852d4cff0ca8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5dc5b36d0a2c6f2e33f852d4cff0ca8f">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[35/36]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/binoc&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SetBinocLookat&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a25fab7c8537bde49454ac40fe33fd450"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a25fab7c8537bde49454ac40fe33fd450">&#9670;&nbsp;</a></span>INCLUDE_ASM() <span class="overload">[36/36]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">const&#160;</td>
-          <td class="paramname"><em>s32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;P2/binoc&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SetBinocZoom&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -1437,7 +1338,87 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="binoc_8c_source.html#l00007">7</a> of file <a class="el" href="binoc_8c_source.html">binoc.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="binoc_8c_source.html#l00008">8</a> of file <a class="el" href="binoc_8c_source.html">binoc.c</a>.</p>
+
+</div>
+</div>
+<a id="af4b5e32e00feb1c6d32c7d2323a6ef3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4b5e32e00feb1c6d32c7d2323a6ef3a">&#9670;&nbsp;</a></span>ResetBinoc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ResetBinoc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structBINOC.html">BINOC</a> *&#160;</td>
+          <td class="paramname"><em>binoc</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="binoc_8c_source.html#l00017">17</a> of file <a class="el" href="binoc_8c_source.html">binoc.c</a>.</p>
+
+</div>
+</div>
+<a id="a56881cc4077adfaf059534f3b7353467"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56881cc4077adfaf059534f3b7353467">&#9670;&nbsp;</a></span>SetBinocLookat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetBinocLookat </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structBINOC.html">BINOC</a> *&#160;</td>
+          <td class="paramname"><em>binoc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structALO.html">ALO</a> *&#160;</td>
+          <td class="paramname"><em>paloLookat</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="binoc_8c_source.html#l00073">73</a> of file <a class="el" href="binoc_8c_source.html">binoc.c</a>.</p>
+
+</div>
+</div>
+<a id="ac83ded7b55c39debeea8c167abc30a4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac83ded7b55c39debeea8c167abc30a4a">&#9670;&nbsp;</a></span>SetBinocZoom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetBinocZoom </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structBINOC.html">BINOC</a> *&#160;</td>
+          <td class="paramname"><em>binoc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>zoom</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="binoc_8c_source.html#l00078">78</a> of file <a class="el" href="binoc_8c_source.html">binoc.c</a>.</p>
 
 </div>
 </div>
