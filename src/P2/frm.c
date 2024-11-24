@@ -1,4 +1,4 @@
-#include "common.h"
+#include <frm.h>
 
 INCLUDE_ASM(const s32, "P2/frm", StartupFrame__Fv);
 

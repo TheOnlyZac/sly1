@@ -1,4 +1,3 @@
-#include "common.h"
 #include <dl.h>
 
 void InitDl(DL *pdl, int ibDle)

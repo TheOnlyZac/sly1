@@ -1,4 +1,3 @@
-#include "common.h"
 #include <splice/splotheap.h>
 
 INCLUDE_ASM(const s32, "P2/splice/splotheap", Startup__10CSplotheapii);

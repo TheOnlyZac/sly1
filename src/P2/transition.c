@@ -1,7 +1,6 @@
-#include "common.h"
-#include <chkpnt.h>
-#include <transition.h>
 #include <sce/memset.h>
+#include <transition.h>
+#include <chkpnt.h>
 
 extern void SetMvgkRvol(float); // todo: replace with header file/declaration
 

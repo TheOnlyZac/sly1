@@ -1,4 +1,4 @@
-#include "common.h"
+#include <credit.h>
 
 INCLUDE_ASM(const s32, "P2/credit", InitCredit__FP6CREDIT5BLOTK);
 

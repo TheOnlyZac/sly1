@@ -1,4 +1,4 @@
-#include "common.h"
+#include <splice/spliceutils.h>
 #include <splice/frame.h>
 #include <splice/gc.h>
 #include <splice/pair.h>

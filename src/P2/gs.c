@@ -1,4 +1,3 @@
-#include "common.h"
 #include <gs.h>
 
 INCLUDE_ASM(const s32, "P2/gs", BlendDisplayOnBufferMismatch__Fv);

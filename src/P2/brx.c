@@ -1,4 +1,4 @@
-#include "common.h"
+#include <brx.h>
 
 INCLUDE_ASM(const s32, "P2/brx", StartupBrx__Fv);
 

@@ -1,4 +1,4 @@
-#include "common.h"
+#include <splice/vecmat.h>
 
 INCLUDE_ASM(const s32, "P2/splice/vecmat", PvectorNew__Fv);
 

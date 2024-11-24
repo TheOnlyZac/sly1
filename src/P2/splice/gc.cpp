@@ -1,5 +1,3 @@
-#include "common.h"
-
 #include <splice/gc.h>
 #include <splice/splotheap.h>
 #include <splice/spliceutils.h>

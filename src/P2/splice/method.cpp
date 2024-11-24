@@ -1,4 +1,3 @@
-#include "common.h"
 #include <sce/memset.h>
 #include <splice/method.h>
 #include <splice/splotheap.h>
