@@ -8,6 +8,12 @@
 
 #include "common.h"
 
+// FlushCache modes
+#define WRITEBACK_DCACHE 0
+#define INVALIDATE_DCACHE 1
+#define INVALIDATE_ICACHE 2
+#define INVALIDATE_CACHE (INVALIDATE_DCACHE | INVALIDATE_ICACHE) /* XXX this is a bit extra, but should match SCE headers */
+
 extern "C" {
     /**
      * @brief Thread parameters for initialization
@@ -101,6 +107,12 @@ extern "C" {
      * @return The previous priority of the thread on success, -1 on failure
      */
     int ChangeThreadPriority(int tid, int priority);
+
+    /**
+     * @brief Flushes the cache.
+     * @param mode Can be WRITEBACK_DCACHE, INVALIDATE_DCACHE, INVALIDATE_ICACHE, or INVALIDATE_CACHE
+     */
+    void FlushCache(int mode);
 }
 
 #endif // KERNEL_H

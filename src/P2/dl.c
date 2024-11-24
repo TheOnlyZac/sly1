@@ -70,7 +70,7 @@ void InsertDlEntryBefore(DL *pdl, void *pvNext, void *pv)
     {
         DLE *newEntry = PdleFromDlEntry(pdl, pv);
         DLE *nextEntry = PdleFromDlEntry(pdl, pvNext);
-        void* prevEntryPointer = nextEntry->prev;
+        void *prevEntryPointer = nextEntry->prev;
         DLE *prevEntry = PdleFromDlEntry(pdl, prevEntryPointer);
         newEntry->next = pvNext;
         newEntry->prev = prevEntryPointer;
@@ -83,7 +83,11 @@ INCLUDE_ASM(const s32, "P2/dl", func_001525F8);
 
 INCLUDE_ASM(const s32, "P2/dl", RemoveDlEntry__FP2DLPv);
 
-INCLUDE_ASM(const s32, "P2/dl", FFindDlEntry__FP2DLPv);
+bool FFindDlEntry(DL *pdl, void *pv)
+{
+    DLE *pdle = PdleFromDlEntry(pdl, pv);
+    return (pdle->next != 0) || (pdl->tail == pv);
+}
 
 bool FIsDlEmpty(DL *pdl)
 {
@@ -92,18 +96,20 @@ bool FIsDlEmpty(DL *pdl)
 
 INCLUDE_ASM(const s32, "P2/dl", MergeDl__FP2DLT0);
 
-int CPvDl(DL* pdl)
+int CPvDl(DL *pdl)
 {
-  void* pCurItem = pdl->head;
-  int iCount = 0;
-    
-  if (pCurItem != 0) {   
-    while(pCurItem) {
-      DLE* pDle = (DLE*)((unsigned char*)pCurItem + pdl->ibDle);
+    void *pCurItem = pdl->head;
+    int iCount = 0;
 
-      pCurItem = pDle->next;
-      iCount++;
+    if (pCurItem != 0)
+    {
+        while (pCurItem)
+        {
+            DLE *pDle = (DLE *)((unsigned char *)pCurItem + pdl->ibDle);
+
+            pCurItem = pDle->next;
+            iCount++;
+        }
     }
-  }
-  return iCount;
+    return iCount;
 }

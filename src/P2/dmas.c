@@ -51,7 +51,7 @@ INCLUDE_ASM(const s32, "P2/dmas", DetachCopySw__4DMASPiPP2QWT2i);
 void DMAS::Send(sceDmaChan* chan)
 {
     EndDmaCnt();
-    FlushCache(0);
+    FlushCache(WRITEBACK_DCACHE);
     sceDmaSend(chan, m_ab);
     m_pb = m_ab;
 }
