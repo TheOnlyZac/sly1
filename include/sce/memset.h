@@ -5,12 +5,11 @@
  */
 #ifndef MEMSET_H
 #define MEMSET_H
-
-#include "common.h"
+#include <stddef.h>
 
 extern "C"
 {
-    void* memset(void* ptr, s32 value, size_t num);
+    void* memset(void* ptr, int value, size_t num);
 }
 
 #endif // MEMSET_H

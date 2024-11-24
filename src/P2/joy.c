@@ -1,8 +1,8 @@
+#include <sce/memset.h>
+#include <sdk/ee/libpad.h>
 #include <joy.h>
 #include <clock.h>
 #include <transition.h>
-#include <sce/memset.h>
-#include <sce/pad.h>
 
 extern void* PvAllocGlobalImpl(int); // todo: remove when function is known
 

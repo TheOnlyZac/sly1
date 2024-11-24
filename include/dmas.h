@@ -6,10 +6,10 @@
 #ifndef DMAS_H
 #define DMAS_H
 
+#include <sdk/ee/dma.h>
+#include <sdk/ee/eekernel.h>
 #include "common.h"
 #include <shd.h>
-#include <sce/dma.h>
-#include <sce/kernel.h>
 
 class DMAS
 {

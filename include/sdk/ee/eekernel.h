@@ -6,8 +6,6 @@
 #ifndef KERNEL_H
 #define KERNEL_H
 
-#include "common.h"
-
 // FlushCache modes
 #define WRITEBACK_DCACHE 0
 #define INVALIDATE_DCACHE 1

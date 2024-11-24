@@ -1,7 +1,7 @@
+#include <gcc/math.h>
+#include <sce/rand.h>
 #include <util.h>
 #include <vec.h>
-#include <sce/rand.h>
-#include <sce/math.h>
 
 static const float PI = 3.14159265359f;
 const int PRIME_MOD = 0x95675;
