@@ -31,7 +31,7 @@
 
 This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoonus*](https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus) for the PlayStation 2. It builds the NTSC-U version of the game, `SCUS_971.98` (SHA1: `57dc305d`).
 
-The goal of this project is to better understand the game engine. This repo does not contain any game assets or code from the game's executable; It requires your own copy of the game to build and run.
+The goal of this project is to better understand the game engine. This repo does not contain any game assets or original code from the game's executable; It requires your own copy of the game to build and run.
 
 Documentation of the code can be found at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1). For further reading on the game's internal structures and mechanics, visit the [SlyMods Wiki][wiki-url].
 
@@ -39,24 +39,23 @@ New contributors are welcome and encouraged to make a pull request! If you would
 
 ## Quickstart
 
-**1. Setup build environment.**
+You can quickly setup the project on Linux (or WSL) using the quickstart script. Follow these three steps get started.
 
-Copy and paste this into your terminal:
+### 1. Clone the repo and run quickstart.sh.
+
+Copy and run the following command. It may ask for your password to install dependencies.
 
 ```bash
 git clone https://github.com/theonlyzac/sly1 && \
 cd sly1 && \
-pip install -U -r requirements.txt && \
-sudo ./scripts/setup_build_environment.sh
+./scripts/quickstart.sh
 ```
 
-**2. Extract your original ELF file.**
+### 2. Extract the executable from your disc.
 
-Copy the file `SCUS_971.98` from your Sly 1 game disc to the `disc` directory of the project.
+Copy the file `SCUS_971.98` from your Sly 1 game disc to the `disc` directory of the project. It is needed to build.
 
-**3. Build the project.**
-
-Run the build script with this command:
+### 3. Build the project.
 
 ```bash
 ./scripts/build.sh
