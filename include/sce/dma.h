@@ -52,8 +52,6 @@ extern "C"
         uint p8[3];
     };
 
-    void FlushCache(int);
-
     /**
      * @brief Reset the DMA controller
      * 

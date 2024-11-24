@@ -7,6 +7,7 @@
 #include "common.h"
 #include <shd.h>
 #include <sce/dma.h>
+#include <sce/kernel.h>
 
 class DMAS
 {
