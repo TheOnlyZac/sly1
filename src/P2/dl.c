@@ -83,7 +83,17 @@ INCLUDE_ASM(const s32, "P2/dl", func_001525F8);
 
 INCLUDE_ASM(const s32, "P2/dl", RemoveDlEntry__FP2DLPv);
 
-INCLUDE_ASM(const s32, "P2/dl", FFindDlEntry__FP2DLPv);
+bool FFindDlEntry(DL *pdl, void *pv)
+{
+    DLE *pdle = PdleFromDlEntry(pdl, pv);
+    bool bInList = false;
+
+    if ((pdle->next != 0) || (pdl->tail == pv)) {
+        bInList = true;
+    }
+    
+    return bInList;
+}
 
 bool FIsDlEmpty(DL *pdl)
 {
