@@ -86,13 +86,7 @@ INCLUDE_ASM(const s32, "P2/dl", RemoveDlEntry__FP2DLPv);
 bool FFindDlEntry(DL *pdl, void *pv)
 {
     DLE *pdle = PdleFromDlEntry(pdl, pv);
-    bool bInList = false;
-
-    if ((pdle->next != 0) || (pdl->tail == pv)) {
-        bInList = true;
-    }
-    
-    return bInList;
+    return (pdle->next != 0) || (pdl->tail == pv);
 }
 
 bool FIsDlEmpty(DL *pdl)
@@ -106,8 +100,8 @@ int CPvDl(DL* pdl)
 {
   void* pCurItem = pdl->head;
   int iCount = 0;
-    
-  if (pCurItem != 0) {   
+
+  if (pCurItem != 0) {
     while(pCurItem) {
       DLE* pDle = (DLE*)((unsigned char*)pCurItem + pdl->ibDle);
 
