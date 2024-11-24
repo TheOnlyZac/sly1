@@ -1,7 +1,7 @@
 /**
  * @file types.h
  *
- * @brief Types used throughout the engine.
+ * @brief Common types used across the codebase.
 */
 #ifndef TYPES_H
 #define TYPES_H

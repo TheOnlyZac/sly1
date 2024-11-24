@@ -1,7 +1,7 @@
 /**
  * @file thread.h
- * 
- * @brief Semaphore, Thread, and Critical Section utilities
+ *
+ * @brief Semaphore, thread, and critical section utilities.
  */
 #ifndef THREAD_H
 #define THREAD_H
@@ -20,7 +20,7 @@ struct CRITSECT
 
 /**
  * @brief Create a semaphore.
- * 
+ *
  * @param initCount Initial count.
  * @param maxCount Maximum count.
  * @return The semaphore ID.
@@ -29,21 +29,21 @@ int SemaCreate(int initCount, int maxCount);
 
 /**
  * @brief Initialize a critical section.
- * 
+ *
  * @param pcritsect Critical section.
  */
 void InitCritSect(CRITSECT* pcritsect);
 
 /**
  * @brief Enter a critical section.
- * 
+ *
  * @param pcritsect Critical section.
  */
 void EnterCritSect(CRITSECT* pcritsect);
 
 /**
  * @brief Leave a critical section.
- * 
+ *
  * @param pcritsect Critical section.
  */
 void LeaveCritSect(CRITSECT* pcritsect);

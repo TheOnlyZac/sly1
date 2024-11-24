@@ -1,7 +1,7 @@
 /**
  * @file surf.h
  *
- * @brief Surface?
+ * @brief Surfaces?
  */
 #ifndef SURF_H
 #define SURF_H

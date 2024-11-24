@@ -1,5 +1,7 @@
 /**
- * @file filestub.h
+ * @file eedvd.h
+ *
+ * @brief DVD handler.
  */
 #ifndef EEDVD_H
 #define EEDVD_H

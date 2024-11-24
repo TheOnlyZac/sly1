@@ -1,5 +1,7 @@
 /**
  * @file dmas.h
+ *
+ * @brief Direct memory access.
  */
 #ifndef DMAS_H
 #define DMAS_H

@@ -1,7 +1,7 @@
 /**
  * @file dart.h
  *
- * @brief Dart gun projectiles.
+ * @brief Dartgun projectiles.
  */
 #ifndef DART_H
 #define DART_H

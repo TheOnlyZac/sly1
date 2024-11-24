@@ -1,7 +1,7 @@
 /**
  * @file rumble.h
  *
- * @brief Joypad rumble system.
+ * @brief Joypad rumble.
  */
 #ifndef RUMBLE_H
 #define RUMBLE_H

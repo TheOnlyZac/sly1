@@ -1,3 +1,6 @@
+/**
+ * @note Should be merged with jt2.c, but UpdateJtActive must be matched first.
+ */
 #include <jt.h>
 
 INCLUDE_ASM(const s32, "P2/jt1", InitJt__FP2JT);

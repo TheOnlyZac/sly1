@@ -1,5 +1,7 @@
 /**
  * @file spliceobj.h
+ *
+ * @brief Splice objects.
  */
 #ifndef SPLICEOBJ_H
 #define SPLICEOBJ_H

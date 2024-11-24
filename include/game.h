@@ -3,7 +3,7 @@
  *
  * @brief Game state and level management.
  *
- * @todo Cleanup function names and parameters, add documentation.
+ * @todo Cleanup/update structs and function names+git parameters.
  */
 #ifndef GAME_H
 #define GAME_H
@@ -225,8 +225,14 @@ struct GAME
     int cgoldLatest;
 };
 
+/**
+ * @brief Used to locate level data by its location on the disc.
+ *
+ * @todo implement
+ */
 struct LevelLoadData
 {
+    // ...
 };
 
 extern const LevelLoadData *D_00247AB0[];

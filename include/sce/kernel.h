@@ -1,7 +1,7 @@
 /**
  * @file kernel.h
  *
- * @brief Control for Semaphores and Threads
+ * @brief Control for semaphores and threads.
  */
 #ifndef KERNEL_H
 #define KERNEL_H

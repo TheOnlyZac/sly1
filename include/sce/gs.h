@@ -1,7 +1,7 @@
 /**
  * @file gs.h
  *
- * @brief Graphics Synthesizer.
+ * @brief Graphics synthesizer.
  */
 #ifndef SCE_GS_H
 #define SCE_GS_H

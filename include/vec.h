@@ -1,7 +1,7 @@
 /**
  * @file vec.h
  *
- * @brief Vector math functions.
+ * @brief Vector math.
  */
 #ifndef VEC_H
 #define VEC_H
@@ -125,7 +125,7 @@ void CalculateVectorPanTilt(VECTOR *pvec, float *pradPan, float *pradTilt);
  * pdeul's X is a Rightward offset
  * pdeul's Y is a Forward offset
  * pdeul's Z is a Vertical offset
- * 
+ *
  * @param peul Rotation vector, defines a "forward"
  * @param pdeul Offset vector
  * @param pw Resultant Vector

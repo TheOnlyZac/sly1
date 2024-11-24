@@ -1,3 +1,8 @@
+/**
+ * @file vtables.h
+ *
+ * @brief Manually crafted vtables for various structs.
+ */
 #ifndef VTABLES_H
 #define VTABLES_H
 

@@ -1,7 +1,7 @@
 /**
  * @file cid.h
  *
- * @brief Class ID.
+ * @brief Class IDs.
  */
 #ifndef CID_H
 #define CID_H
