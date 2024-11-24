@@ -179,7 +179,7 @@ void AddCode(CODE *pcode)
 
 INCLUDE_ASM(const s32, "P2/joy", func_0016F1F0);
 
-void _ResetCodes(void)
+void _ResetCodes()
 {
     CODE *pcode = g_pcode;
     if (g_pcode != nullptr)

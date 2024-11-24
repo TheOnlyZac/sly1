@@ -238,7 +238,7 @@ float UBtnpJoy(JOY *pjoy, BTNP btnp);
 
 void AddCode(CODE *pcode);
 
-void _ResetCodes(void);
+void _ResetCodes();
 
 void _MatchCodes(JOY *pjoy, short grfbtnPrev);
 

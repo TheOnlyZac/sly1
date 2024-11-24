@@ -72,7 +72,7 @@ INCLUDE_ASM(const s32, "P2/dmas", AddDmaEnd__4DMAS);
 
 INCLUDE_ASM(const s32, "P2/dmas", EndDmaCnt__4DMAS);
 
-void DMAS::EndPrim(void)
+void DMAS::EndPrim()
 {
     return;
 }

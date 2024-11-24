@@ -152,7 +152,7 @@ char CBinaryInputStream::S8Read()
     }
 }
 
-short CBinaryInputStream::S16Read(void)
+short CBinaryInputStream::S16Read()
 {
     if (m_cb >= 2)
     {

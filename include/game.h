@@ -266,7 +266,7 @@ void tally_world_completion(int world_id, int *qty_keys, int *qty_vaults, int *q
 /**
  * @brief Get the game completion flags based on the current game state.
  */
-FGS get_game_completion(void);
+FGS get_game_completion();
 
 /**
  * @brief Unlocks the intro cutscene for a world.

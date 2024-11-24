@@ -9,7 +9,7 @@
 #include <mat.h>
 #include <util.h>
 
-VECTOR* PvectorNew(void);
+VECTOR* PvectorNew();
 
 void IncrefVector(VECTOR *pvector);
 
@@ -27,14 +27,14 @@ void IncrefLm(LM *plm);
 
 void DecrefLm(LM *plm);
 
-SMP* PsmpNew(void);
+SMP* PsmpNew();
 
 void IncrefSmp(SMP *psmp);
 
 void DecrefSmp(SMP *psmp);
 
-void StartupSpliceStructuredTypeFactories(void);
+void StartupSpliceStructuredTypeFactories();
 
-void ShutdownSpliceStructuredTypeFactories(void);
+void ShutdownSpliceStructuredTypeFactories();
 
 #endif // SPLICE_VECMAT_H

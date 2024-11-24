@@ -8,7 +8,7 @@
 extern CGc g_gc;
 
 INCLUDE_ASM(const s32, "P2/splice/spliceutils", StartupSplice__Fv);
-// void StartupSplice(void)
+// void StartupSplice()
 // {
 //     g_gc.Startup();
 //     g_splotheapPair.Startup(0xc, 0x2000);
@@ -22,7 +22,7 @@ INCLUDE_ASM(const s32, "P2/splice/spliceutils", StartupSplice__Fv);
 //     g_splotheapMethod.Startup(0xc,0x80);
 // }
 
-void ShutdownSplice(void)
+void ShutdownSplice()
 {
     g_splotheapPair.Shutdown();
     g_splotheapFrame.Shutdown();

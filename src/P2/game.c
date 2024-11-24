@@ -1,7 +1,7 @@
 #include <game.h>
 #include <wipe.h>
 
-void StartupGame(void)
+void StartupGame()
 {
     StartGame();
 }
