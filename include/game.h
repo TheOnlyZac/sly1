@@ -108,9 +108,9 @@ struct LS
     int sceneVars[2][4];    // Scene variables
     int cclue;              // Count of clues collected
     unsigned int fclue;     // Clue collected flags
-    int unk_field_0x6c;
-    int unk_field_0x70;
-    char *unk_field_0x74;
+    int unk_field_0x6c;     // Unknown
+    int unk_field_0x70;     // Unknown
+    char *unk_field_0x74;   // Unknown
 };
 
 /**
@@ -218,7 +218,7 @@ enum WID
 
 struct GAME
 {
-    undefined4 field_0x0; // vtgame pointer?
+    VTGAME *pvtgame;
     int cAlarmsTriggered;
     int fTimedChallenge;
     float dtChallenge;
@@ -262,12 +262,12 @@ uint get_level_completion_by_id(int level_id);
 /**
  * @brief Tally the completion of a world.
  *
- * @param world_id World ID.
- * @param qty_keys Result of the tally of keys.
- * @param qty_vaults Result of the tally of vaults.
- * @param qty_mts Result of the tally of Master Thief Sprints
+ * @param wid World ID.
+ * @param ckey Result of the tally of keys.
+ * @param cvault Result of the tally of vaults.
+ * @param cmts Result of the tally of Master Thief Sprints
  */
-void tally_world_completion(int world_id, int *qty_keys, int *qty_vaults, int *qty_mts);
+void tally_world_completion(int wid, int *ckey, int *cvault, int *cmts);
 
 /**
  * @brief Get the game completion flags based on the current game state.

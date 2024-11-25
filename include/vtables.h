@@ -8,6 +8,9 @@
 
 struct BLOT;
 
+/**
+ * @brief VT for generic blots.
+ */
 struct VTBLOT
 {
     void (*pfnInitBlot)(BLOT *);
@@ -31,6 +34,9 @@ struct VTBLOT
     int  (*pfnFIncludeBlotForPeg)(BLOT *);
 };
 
+/**
+ * @brief VT for the note blot.
+ */
 struct VTNOTE
 {
     void (*pfnInitBlot)(BLOT *);
@@ -54,6 +60,9 @@ struct VTNOTE
     int  (*pfnFIncludeBlotForPeg)(BLOT *);
 };
 
+/**
+ * @brief VT for the binoc blot.
+ */
 struct VTBINOC
 {
     void (*pfnInitBinoc)(BLOT *);
@@ -77,6 +86,9 @@ struct VTBINOC
     int  (*pfnFIncludeBlotForPeg)(BLOT *);
 };
 
+/**
+ * @brief VT for the timer blot.
+ */
 struct VTTIMER
 {
     void (*pfnInitBlot)(BLOT *);
@@ -98,6 +110,16 @@ struct VTTIMER
     void (*pfnSetBlotBlots)(BLOT *);
     void (*pfnSetBlotClock)(BLOT *);
     int  (*pfnFIncludeBlotForPeg)(BLOT *);
+};
+
+struct GAME;
+
+/**
+ * @brief VT for the game struct.
+ */
+struct VTGAME
+{
+    // ...
 };
 
 #endif // VTABLES_H
