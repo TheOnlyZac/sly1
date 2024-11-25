@@ -1,5 +1,6 @@
 """
-Configure the project for building.
+Configures the project for building. Invokes splat to split the binary and
+creates build files for ninja.
 """
 #! /usr/bin/env python3
 import argparse
@@ -200,7 +201,7 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False):
         ninja.build(
             ELF_PATH + ".ok",
             "sha1sum",
-            "checksum.sha1",
+            "config/checksum.sha1",
             implicit=[ELF_PATH],
         )
     else:

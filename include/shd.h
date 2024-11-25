@@ -6,10 +6,9 @@
 #ifndef SHD_H
 #define SHD_H
 
-#include "common.h"
+#include <sdk/ee/eestruct.h>
 #include <geom.h>
 #include <surf.h>
-#include <sce/gs.h>
 
 typedef struct SHD; // Forward declaration
 typedef struct SHDP; // Forward declaration

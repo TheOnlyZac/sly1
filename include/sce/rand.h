@@ -1,12 +1,14 @@
 /**
  * @file rand.h
+ * @note /sce/ee/gcc/src/newlib/libc/stdlib/rand.c
  *
- * @brief Random number generator.
+ * @brief Random number generation.
  */
 #ifndef RAND_H
 #define RAND_H
 
-#include "common.h"
+typedef unsigned int undefined4;
+typedef unsigned int u_int;
 
 extern "C"
 {
@@ -33,18 +35,18 @@ extern "C"
         undefined4 field19_0x4c;
         undefined4 field20_0x50;
         undefined4 field21_0x54;
-        uint next;
+        u_int next;
     };
 
     /**
      * @brief Seed the random number generator.
      */
-    void srand(uint seed);
+    void srand(u_int seed);
 
     /**
      * @brief Generate a random number.
      */
-    uint rand();
+    u_int rand();
 
     extern struct RNG g_rng;
     extern struct RNG *g_prng;

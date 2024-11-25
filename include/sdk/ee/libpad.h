@@ -1,12 +1,12 @@
 /**
- * @file pad.h
+ * @file include/sdk/ee/libpad.h
  *
- * @brief Joypad/Controller library.
+ * @brief Joypad (controller) library.
  */
 #ifndef PAD_H
 #define PAD_H
 
-#include "common.h"
+typedef unsigned char u_char;
 
 extern "C"
 {
@@ -16,7 +16,7 @@ extern "C"
     int scePadInfoAct(int port, int slot, int actno, int term);
     int scePadInfoMode(int port, int slow, int term, int offs);
     int scePadSetMainMode(int port, int slow, int offs, int lock);
-    int scePadSetActAlign(int port, int slow, const uchar* data);
+    int scePadSetActAlign(int port, int slow, const u_char* data);
     int scePadInfoPressMode(int port, int slot);
     int scePadEnterPressMode(int port, int slot);
     int scePadExitPressMode(int port, int slot);

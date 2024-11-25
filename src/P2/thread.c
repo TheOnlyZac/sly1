@@ -1,4 +1,4 @@
-#include <sce/kernel.h>
+#include <sdk/ee/eekernel.h>
 #include <sce/memset.h>
 #include <thread.h>
 #include <frm.h>

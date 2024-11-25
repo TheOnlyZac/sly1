@@ -1,5 +1,5 @@
-#include <difficulty.h>
 #include <sce/memset.h>
+#include <difficulty.h>
 #include <game.h>
 
 INCLUDE_ASM(const s32, "P2/difficulty", PdifficultyEnsureSw);

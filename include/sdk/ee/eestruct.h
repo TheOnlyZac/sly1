@@ -1,12 +1,10 @@
 /**
- * @file gs.h
+ * @file include/sdk/ee/eestruct.h
  *
  * @brief Graphics synthesizer.
  */
-#ifndef SCE_GS_H
-#define SCE_GS_H
-
-#include "common.h"
+#ifndef SCE_EESTRUCT_H
+#define SCE_EESTRUCT_H
 
 extern "C"
 {
@@ -23,4 +21,4 @@ extern "C"
     };
 }
 
-#endif // SCE_GS_H
+#endif // SCE_EESTRUCT_H
