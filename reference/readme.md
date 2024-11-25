@@ -1,8 +1,13 @@
-This directory contains reference files you can use to help with decompiling game functions. They are all source code files we wrote by hand before we used Splat to decompile and reassemble the game to a byte-matching executable. Because of this, none of the functions in this directory match, but we tried to make them as close as possible to the original game functions.
+# Reference files
 
-The include directory contains header files that are used by the source files in the src dir. Many of the short data structures/enums are correct and can be copied directly into the actual decomp. The longer ones are probably not correct (missing fields, wrong field types, etc), but they can be used as a reference.
+This directory contains reference files you can use to help with decompiling game functions. They are all source code files we wrote by hand before we used Splat to decompile and reassemble the game to a byte-matching executable.
 
-The src/P2 directory contains the source code for the game engine. The following is a list of all known source code file names from a prototype build of the game. Some of them are not present in the final game.
+It is organized as follows:
+- `include/` contains header files for the game engine Many of the very short structs/enums are correct. The longer ones are probably not correct (missing fields, wrong field types, etc), but they can be used as a reference.
+- `src/P2/` contains source code files for the game engine. None of the code is matching, though at the time we tried to make them resemble the original code as closely as possible, so they may help you understand the logic and control flow of certain functions.
+
+## Source files
+The following is a list of all known source code file names from a **prototype build** of the game. Some of them are not present in the final game, and the final game has some that are not present here.
 ac.c
 act.c
 actseg.c

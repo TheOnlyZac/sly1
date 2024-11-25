@@ -27,7 +27,7 @@
 <!-- Shields -->
 [![Build][build-badge]][build-url] ![code-progress-badge] <!--![data-progress-badge]--> [![Contributors][contributors-badge]][contributors-url] [![Discord Channel][discord-badge]][discord-url] [![Docs][docs-badge]][docs-url] [![Wiki][wiki-badge]][wiki-url]
 
-[<img src="logo.png" style="margin:7px" align="right" width="33%" alt="Sly 1 Decompilation Logo by Cooper941">][docs-url]
+[<img src=".github/logo.png" style="margin:7px" align="right" width="33%" alt="Sly 1 Decompilation Logo by Cooper941">][docs-url]
 
 This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoonus*](https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus) for the PlayStation 2. It builds the NTSC-U version of the game, `SCUS_971.98` (SHA1: `57dc305d`).
 
@@ -63,7 +63,7 @@ Copy the file `SCUS_971.98` from your Sly 1 game disc to the `disc` directory of
 
 If it works, you will see this:
 ```
-[XXX/XXX] sha1sum checksum.sha1
+[XXX/XXX] sha1sum config/checksum.sha1
 out/SCUS_971.98: OK
 ```
 
