@@ -82,6 +82,16 @@ enum JTBS
 };
 
 /**
+ * JT cane state.
+ *
+ * @note Copied from May proto, may be outdated/out of order.
+ */
+enum JTCS
+{
+    // ...
+};
+
+/**
  * @brief Sly entity.
  *
  * JT = "jewel thief" = codename for Sly.
@@ -115,8 +125,8 @@ void SetJtJts(JT *pjt, JTS jts, JTBS jtbs);
  *
  * @deprecated
  */
-void ProfileJt(JT* pjt, int fProfile);
+void ProfileJt(JT *pjt, int fProfile);
 
-extern JT* g_pjt;
+extern JT *g_pjt;
 
 #endif // JT_H

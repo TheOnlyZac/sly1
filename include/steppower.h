@@ -13,15 +13,15 @@
  */
 enum FSP
 {
-    FSP_Nil=-1,
-    FSP_Dive=0,
-    FSP_Ball=1,
-    FSP_SlowDownClock=2,
-    FSP_Mine=3,
-    FSP_SpeedUpClock=4,
-    FSP_Decoy=5,
-    FSP_Stun=6,
-    FSP_Max=7
+    FSP_Nil = -1,
+    FSP_Dive = 0,
+    FSP_Ball = 1,
+    FSP_SlowDownClock = 2,
+    FSP_Mine = 3,
+    FSP_SpeedUpClock = 4,
+    FSP_Decoy = 5,
+    FSP_Stun = 6,
+    FSP_Max = 7
 };
 
 extern FSP g_fsp;
