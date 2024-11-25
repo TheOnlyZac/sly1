@@ -101,46 +101,44 @@ $(document).ready(function(){initNavTree('anim_8h_source.html',''); initResizabl
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef ANIM_H</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define ANIM_H</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="common_8h.html">common.h</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="lo_8h.html">lo.h</a>&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// Forward declarations.</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">struct </span><a class="code" href="structASEG.html">ASEG</a>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">struct </span><a class="code" href="structASEGA.html">ASEGA</a>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">struct </span><a class="code" href="structASEGD.html">ASEGD</a>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">struct </span><a class="code" href="structASEGBL.html">ASEGBL</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structASEG.html">   23</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structASEG.html">ASEG</a> : <span class="keyword">public</span> <a class="code" href="structLO.html">LO</a></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">// ...</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;};</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="structASEGA.html">   31</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structASEGA.html">ASEGA</a> : <span class="keyword">public</span> <a class="code" href="structBASIC.html">BASIC</a></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">// ...</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;};</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="structASEGD.html">   39</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structASEGD.html">ASEGD</a></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// ...</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;};</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="structASEGBL.html">   47</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structASEGBL.html">ASEGBL</a> : <span class="keyword">public</span> <a class="code" href="structASEG.html">ASEG</a></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// ...</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;};</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif // ANIM_H</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="lo_8h.html">lo.h</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// Forward declarations.</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">struct </span><a class="code" href="structASEG.html">ASEG</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">struct </span><a class="code" href="structASEGA.html">ASEGA</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">struct </span><a class="code" href="structASEGD.html">ASEGD</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">struct </span><a class="code" href="structASEGBL.html">ASEGBL</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structASEG.html">   22</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structASEG.html">ASEG</a> : <span class="keyword">public</span> <a class="code" href="structLO.html">LO</a></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">// ...</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structASEGA.html">   30</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structASEGA.html">ASEGA</a> : <span class="keyword">public</span> <a class="code" href="structBASIC.html">BASIC</a></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">// ...</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;};</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structASEGD.html">   38</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structASEGD.html">ASEGD</a></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="comment">// ...</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;};</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structASEGBL.html">   46</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structASEGBL.html">ASEGBL</a> : <span class="keyword">public</span> <a class="code" href="structASEG.html">ASEG</a></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// ...</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif // ANIM_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="astructASEGBL_html"><div class="ttname"><a href="structASEGBL.html">ASEGBL</a></div><div class="ttdoc">Animation segment blend.</div><div class="ttdef"><b>Definition:</b> <a href="anim_8h_source.html#l00047">anim.h:47</a></div></div>
-<div class="ttc" id="astructBASIC_html"><div class="ttname"><a href="structBASIC.html">BASIC</a></div><div class="ttdoc">Basic object.</div><div class="ttdef"><b>Definition:</b> <a href="basic_8h_source.html#l00019">basic.h:19</a></div></div>
+<div class="ttc" id="astructASEGBL_html"><div class="ttname"><a href="structASEGBL.html">ASEGBL</a></div><div class="ttdoc">Animation segment blend.</div><div class="ttdef"><b>Definition:</b> <a href="anim_8h_source.html#l00046">anim.h:46</a></div></div>
+<div class="ttc" id="astructBASIC_html"><div class="ttname"><a href="structBASIC.html">BASIC</a></div><div class="ttdoc">Basic object.</div><div class="ttdef"><b>Definition:</b> <a href="basic_8h_source.html#l00018">basic.h:18</a></div></div>
 <div class="ttc" id="alo_8h_html"><div class="ttname"><a href="lo_8h.html">lo.h</a></div><div class="ttdoc">Level objects.</div></div>
-<div class="ttc" id="astructASEG_html"><div class="ttname"><a href="structASEG.html">ASEG</a></div><div class="ttdoc">Animation segment.</div><div class="ttdef"><b>Definition:</b> <a href="anim_8h_source.html#l00023">anim.h:23</a></div></div>
-<div class="ttc" id="acommon_8h_html"><div class="ttname"><a href="common_8h.html">common.h</a></div><div class="ttdoc">Common header file.</div></div>
-<div class="ttc" id="astructASEGA_html"><div class="ttname"><a href="structASEGA.html">ASEGA</a></div><div class="ttdoc">Animation segment something(?).</div><div class="ttdef"><b>Definition:</b> <a href="anim_8h_source.html#l00031">anim.h:31</a></div></div>
-<div class="ttc" id="astructASEGD_html"><div class="ttname"><a href="structASEGD.html">ASEGD</a></div><div class="ttdoc">Animation segment something(?).</div><div class="ttdef"><b>Definition:</b> <a href="anim_8h_source.html#l00039">anim.h:39</a></div></div>
-<div class="ttc" id="astructLO_html"><div class="ttname"><a href="structLO.html">LO</a></div><div class="ttdoc">&quot;LO&quot;</div><div class="ttdef"><b>Definition:</b> <a href="lo_8h_source.html#l00022">lo.h:22</a></div></div>
+<div class="ttc" id="astructASEG_html"><div class="ttname"><a href="structASEG.html">ASEG</a></div><div class="ttdoc">Animation segment.</div><div class="ttdef"><b>Definition:</b> <a href="anim_8h_source.html#l00022">anim.h:22</a></div></div>
+<div class="ttc" id="astructASEGA_html"><div class="ttname"><a href="structASEGA.html">ASEGA</a></div><div class="ttdoc">Animation segment something(?).</div><div class="ttdef"><b>Definition:</b> <a href="anim_8h_source.html#l00030">anim.h:30</a></div></div>
+<div class="ttc" id="astructASEGD_html"><div class="ttname"><a href="structASEGD.html">ASEGD</a></div><div class="ttdoc">Animation segment something(?).</div><div class="ttdef"><b>Definition:</b> <a href="anim_8h_source.html#l00038">anim.h:38</a></div></div>
+<div class="ttc" id="astructLO_html"><div class="ttname"><a href="structLO.html">LO</a></div><div class="ttdoc">&quot;LO&quot;</div><div class="ttdef"><b>Definition:</b> <a href="lo_8h_source.html#l00021">lo.h:21</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

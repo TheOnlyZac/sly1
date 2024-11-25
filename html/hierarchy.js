@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "_sceDmaTag", "struct__sceDmaTag.html", null ],
     [ "AMB", "structAMB.html", null ],
     [ "ASEGD", "structASEGD.html", null ],
     [ "BASIC", "structBASIC.html", [
@@ -139,7 +140,6 @@ var hierarchy =
     [ "SBB", "structSBB.html", null ],
     [ "sceCdRMode", "structsceCdRMode.html", null ],
     [ "sceDmaChan", "structsceDmaChan.html", null ],
-    [ "sceDmaTag", "structsceDmaTag.html", null ],
     [ "sceGsTex0", "structsceGsTex0.html", null ],
     [ "sceGsTex2", "structsceGsTex2.html", null ],
     [ "SemaParam", "structSemaParam.html", null ],

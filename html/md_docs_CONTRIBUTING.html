@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sly Cooper Decompilation: So you want to decompile Sly 1...</title>
+<title>Sly Cooper Decompilation: Contributing Guide</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -94,29 +94,34 @@ $(document).ready(function(){initNavTree('md_docs_CONTRIBUTING.html',''); initRe
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">So you want to decompile Sly 1... </div>  </div>
+<div class="title">Contributing Guide </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>You've come to the right place! We welcome new contributors of all skill levels. Even if you've never tried game hacking, modding, or reverse-engineering, we have a dedicated community of modders and reverse-engineers to help you get started. Feel feel to join our <a href="https://discord.gg/2GSXcEzPJA">Discord server</a> and ask for help in #sly-research.</p>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md2"></a>
+So you want to decompile Sly 1...</h1>
+<p>You've come to the right place! We welcome new contributors of all skill levels. Even if you've never tried game hacking, modding, or reverse-engineering, we have a dedicated community of modders and reverse-engineers to help you get started. Feel feel to join our <a href="https://discord.gg/2GSXcEzPJA">Discord server</a> and ask for help in #sly-research.</p>
 <p>This guide will help you start contributing to the project. This is a 100% volunteer-driven project, all contributions are greatly appreciated. The current goal is to decompile and match as many game functions as possible, while imitating the style and structure of the original code to understand the inner workings of the game engine.</p>
 <p>By following this guide, you will learn how to fork the repo on GitHub, choose a function to reverse-engineer, write code to match it, and integrate that code into the project. Once you've done that, and your pull request is merged, you will get the Decomp Contributor role in the Discord Server.</p>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Contents</h1>
 <ol type="1">
 <li><a href="#getting-started">Getting Started</a></li>
 <li><a href="#find-a-function-to-match">Find a function to match</a></li>
 <li><a href="#match-the-function-using-decompme">Match the function using Decomp.me</a></li>
 <li><a href="#integrate-the-matched-code">Integrate the matched code</a></li>
+<li><a href="#make-a-pull-request">Make a Pull Request</a></li>
+</ol>
+<ol type="1">
 <li><a href="#conclusion">Conclusion</a></li>
 </ol>
-<h2><a class="anchor" id="autotoc_md3"></a>
-Getting Started</h2>
-<p>If you haven't used Git before, follow the <a class="el" href="BEGINNERSGUIDE_8md.html">Beginner's Guide</a> to learn how to fork the repo, make changes, and submit a pull request. If you are already familiar with Git, continue on with this guide.</p>
-<p>Start by following the instructions in the <a class="el" href="README_8md.html">README</a> to build the project. If you see the following in the terminal, you're ready to start contributing:</p>
-<div class="fragment"><div class="line">[XXX/XXX] sha1sum checksum.sha1</div>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Getting started</h2>
+<p>If you haven't used Git before, follow the <a class="el" href="BEGINNERSGUIDE_8md.html">Beginner's Guide</a> to learn how to fork the repo, make changes, and submit a pull request when you're done. If you're already familiar with Git, continue on with this guide.</p>
+<p>First, follow the instructions in the <a class="el" href="README_8md.html">README</a> to build the project. If you see the following in the terminal, you're ready to start contributing:</p>
+<div class="fragment"><div class="line">[XXX/XXX] sha1sum config/checksum.sha1</div>
 <div class="line">out/SCUS_971.98: OK</div>
 </div><!-- fragment --><p>The goal of this project is to match the original code closely enough that it compiles to a byte-matching executable. This means writing functions that compiles to the same assembly as the original functions. You will know it matches if you build the project and it says <code>SCUS_971.98: OK</code> with no errors.</p>
-<h2><a class="anchor" id="autotoc_md4"></a>
+<h2><a class="anchor" id="autotoc_md5"></a>
 Find a function to match</h2>
 <p>First, find a function in the game that you want to match. There are a few ways to do this:</p><ul>
 <li>Browse Ghidra for interesting functions.</li>
@@ -127,11 +132,11 @@ Find a function to match</h2>
 <li>Look through the <code>asm/nonmatchings</code> folder.</li>
 <li>Ask for suggestions on Discord.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md5"></a>
+<h2><a class="anchor" id="autotoc_md6"></a>
 Match the function using Decomp.me</h2>
 <p>Once you have chosen a function, you can use the website <a href="https://decomp.me/">decomp.me</a> to match it.</p><ol type="1">
 <li>Go the website and click "Start decomping".</li>
-<li>Under "Preset", select "Sly Cooper and the Thievius Raccoonus".</li>
+<li>Click "PS2", then under "Preset", select "Sly Cooper and the Thievius Raccoonus".</li>
 <li>Under "Diff label", enter the name of the function.</li>
 <li>Find the <code>.s</code> file corresponding to the function you want to match in the <code>asm/nonmatchings</code> directory. Copy the contents of the file into the "Target assembly" box.</li>
 <li>Copy any functions, global variables, or data types used by the function from the headers in the <code>include</code> directory into the "Context" box.<ul>
@@ -140,11 +145,11 @@ Match the function using Decomp.me</h2>
 </ul>
 </li>
 <li>Click "Create scratch".</li>
-<li>(Optional) Go to the "Options" tab and under "Debug information" select <code>-g3 (Macro expansions)</code>. This will show you which line numbers the source code coreespond to each line in the assembly.</li>
+<li>**(Recommended)** Go to the "Options" tab and under "Debug information" select <code>-g3 (Macro expansions)</code>. This will show you which line numbers the source code correspond to each line in the assembly.</li>
 </ol>
 <p>Then start writing your code under the "Source code" tab. It will tell you what percent of the code matches the original. Tweak the code until it matches 100%. An example scratch can be found here: <a href="https://decomp.me/scratch/hmmyP">https://decomp.me/scratch/hmmyP</a></p>
 <p><em>Note: You can use the code in the <code>reference</code> directory to help you during matching. The code in that directory does not match, but it may be useful as an outline for certain functions.</em></p>
-<h2><a class="anchor" id="autotoc_md6"></a>
+<h2><a class="anchor" id="autotoc_md7"></a>
 Integrate the matched code</h2>
 <p>Once the function matches 100%, follow these steps to integrate it into the project:</p><ol type="1">
 <li>Replace the <code>INCLUDE_ASM</code> macro in the <code>.c</code> file with the matched function.<ul>
@@ -152,25 +157,24 @@ Integrate the matched code</h2>
 </ul>
 </li>
 <li>Check <code>config/symbol_addrs.txt</code> to see if the mangled name of the function is present.<ul>
-<li>If it is not, add the <b>mangled name</b> of the function with it's address. The mangled name of the function can be found by searching the strings in the May 19 prototype elf, if it's the same as the release version. If you don't know how to do this, ask for help in the Discord server; Someone will be able to find it for you easily.</li>
-<li>The symbol_addrs.txt file is sorted alphabetically by filename, then by address within the file.</li>
+<li>If it is not, add the <b>mangled name</b> of the function with it's address. The mangled name of the function can be found in the debug symbols for the May 2002 prototype. If you don't know how to find it, ask for help in the Discord server; someone will be able to find it for you easily.</li>
+<li>The symbol_addrs.txt file is grouped alphabetically by filename, then sorted by address within the file.</li>
 </ul>
 </li>
 </ol>
-<p>The project should build and match. Here are some tips for troubleshooting common issues:</p><ul>
-<li>Undefined reference errors usually mean the entry in the symbol_addrs.txt is wrong. Make sure the function name is mangled in symbol_addrs.txt and normal/un-mangled in the source code, and the mangled version matches the signature of the function. Also ensure that the address is correct in symbol_addrs.txt.</li>
-<li>Checksum failed means the compiled elf doesn't match the original. If it matches on decomp.me, it might be an issue with the compiler, so open an issue on GitHub or let someone know on Discord.</li>
+<p>The project should build and match. Here are some common troubleshooting tips:</p><ul>
+<li><code>undefined reference error</code> usually means the entry in the symbol_addrs.txt is wrong. Make sure the function name is mangled in symbol_addrs.txt and unmangled in the source code, and the mangled version matches the signature of the function. Also ensure that the address is correct in symbol_addrs.txt.</li>
+<li><code>checksum failed</code> means the compiled elf with your added code doesn't match the original. If it matches on decomp.me but not in the project, it might be an issue with the compiler, so open an issue on GitHub or let someone know on Discord.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md7"></a>
-Code Review Process</h2>
+<h2><a class="anchor" id="autotoc_md8"></a>
+Make a pull request</h2>
 <p>Once you add your code to the project and it builds + matches, you can open a pull request to merge your fork into the main branch of the project. A code reviewer will need to approve it before it can be merged into the main branch.</p>
-<p>We are a volunteer-driven project, so please be patient while we review your code. These are the main things we will look for in your code:</p>
-<ul>
+<p>We are a volunteer-driven project, so please be patient while we review your code. These are the main things we will look for in your code:</p><ul>
 <li>It compiles without any errors.</li>
 <li>The compiled elf matches the original elf.</li>
 </ul>
-<p>If everything looks good, we will merge your pull request as soon as possible. If anything needs to be fixed, we will let you know.</p>
-<h2><a class="anchor" id="autotoc_md8"></a>
+<p>If everything looks good, we will merge your pull request as soon as possible. If anything needs to be addressd, we will let you know.</p>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Conclusion</h2>
 <p>Thank you for reading, and we appreciate any contributions you make to the project! The project is 100% volunteern-driven, so perfection is not required. The most important thing is to have fun and learn something new about the game.</p>
 <p>If you have any questions or concerns, feel free to ask in the <a href="https://discord.gg/2Y8b8Z2">Discord server</a> or <a href="https://github.com/TheOnlyZac/sly1/issues/new">open an issue</a> on GitHub. </p>

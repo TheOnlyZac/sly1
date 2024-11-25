@@ -1,43 +1,38 @@
 <map id="include/cm.h" name="include/cm.h">
-<area shape="rect" id="node1" title="Game camera." alt="" coords="353,5,458,32"/>
-<area shape="rect" id="node2" href="$common_8h.html" title="Common header file." alt="" coords="1013,1051,1104,1077"/>
-<area shape="rect" id="node7" href="$lo_8h.html" title="Level objects." alt="" coords="449,827,495,853"/>
-<area shape="rect" id="node15" href="$util_8h.html" title="Utility functions." alt="" coords="421,528,475,555"/>
-<area shape="rect" id="node22" href="$binoc_8h.html" title="Binoc&#45;u&#45;com." alt="" coords="1715,304,1784,331"/>
-<area shape="rect" id="node31" href="$xform_8h.html" title="Transform." alt="" coords="817,80,890,107"/>
-<area shape="rect" id="node41" href="$sound_8h.html" title="Sound playback." alt="" coords="319,453,393,480"/>
-<area shape="rect" id="node3" href="$include__asm_8h.html" title=" " alt="" coords="790,1125,906,1152"/>
-<area shape="rect" id="node4" href="$include__rodata_8h.html" title=" " alt="" coords="931,1125,1061,1152"/>
-<area shape="rect" id="node5" href="$types_8h.html" title="Common types used across the codebase." alt="" coords="1086,1125,1157,1152"/>
-<area shape="rect" id="node6" href="$vtables_8h.html" title="Manually crafted vtables for various structs." alt="" coords="1181,1125,1264,1152"/>
-<area shape="rect" id="node8" href="$oid_8h.html" title="Object IDs." alt="" coords="966,976,1021,1003"/>
-<area shape="rect" id="node9" href="$basic_8h.html" title="Basic object." alt="" coords="422,901,490,928"/>
-<area shape="rect" id="node11" href="$dl_8h.html" title="Doubly&#45;linked list." alt="" coords="667,901,714,928"/>
-<area shape="rect" id="node12" href="$sw_8h.html" title="Scene world?" alt="" coords="637,976,688,1003"/>
-<area shape="rect" id="node13" href="$frame_8h.html" title=" " alt="" coords="245,976,360,1003"/>
-<area shape="rect" id="node14" href="$mq_8h.html" title="Message queue." alt="" coords="241,901,295,928"/>
-<area shape="rect" id="node10" href="$sidebag_8h.html" title="Sidebag for splice." alt="" coords="486,976,613,1003"/>
-<area shape="rect" id="node16" href="$mat_8h.html" title="3x3 and 4x4 matrix types." alt="" coords="445,603,505,629"/>
-<area shape="rect" id="node17" href="$vec_8h.html" title="Vector math." alt="" coords="1206,603,1263,629"/>
-<area shape="rect" id="node20" href="$sm_8h.html" title="State machines." alt="" coords="290,677,345,704"/>
-<area shape="rect" id="node18" href="$so_8h.html" title="Scene objects." alt="" coords="993,677,1042,704"/>
-<area shape="rect" id="node19" href="$alo_8h.html" title=" " alt="" coords="638,752,693,779"/>
-<area shape="rect" id="node21" href="$anim_8h.html" title="Animation." alt="" coords="460,752,527,779"/>
-<area shape="rect" id="node23" href="$screen_8h.html" title="GUI elements." alt="" coords="1716,379,1793,405"/>
-<area shape="rect" id="node24" href="$font_8h.html" title="Font system." alt="" coords="1758,752,1818,779"/>
-<area shape="rect" id="node25" href="$game_8h.html" title="Game state and level management." alt="" coords="1489,901,1559,928"/>
-<area shape="rect" id="node27" href="$shd_8h.html" title="Shaders." alt="" coords="1557,453,1614,480"/>
-<area shape="rect" id="node26" href="$cid_8h.html" title="Class IDs." alt="" coords="1488,976,1541,1003"/>
-<area shape="rect" id="node28" href="$geom_8h.html" title="Geometry." alt="" coords="1391,603,1462,629"/>
-<area shape="rect" id="node29" href="$surf_8h.html" title="Surfaces?" alt="" coords="1339,528,1397,555"/>
-<area shape="rect" id="node30" href="$sce_2gs_8h.html" title="Graphics synthesizer." alt="" coords="1640,827,1715,853"/>
-<area shape="rect" id="node32" href="$wipe_8h.html" title="Screen wipes." alt="" coords="959,827,1025,853"/>
-<area shape="rect" id="node34" href="$bis_8h.html" title="Binary Input Stream." alt="" coords="1297,155,1351,181"/>
-<area shape="rect" id="node39" href="$proxy_8h.html" title=" " alt="" coords="747,677,816,704"/>
-<area shape="rect" id="node40" href="$rs_8h.html" title=" " alt="" coords="1163,901,1210,928"/>
-<area shape="rect" id="node33" href="$transition_8h.html" title="Level transitions." alt="" coords="992,901,1088,928"/>
-<area shape="rect" id="node35" href="$prog_8h.html" title=" " alt="" coords="1442,229,1505,256"/>
-<area shape="rect" id="node37" href="$clock_8h.html" title="Engine clock." alt="" coords="1582,379,1650,405"/>
-<area shape="rect" id="node38" href="$cat_8h.html" title="Catalog." alt="" coords="1635,229,1690,256"/>
-<area shape="rect" id="node36" href="$gs_8h.html" title="Graphics synthesizer." alt="" coords="1414,304,1463,331"/>
+<area shape="rect" id="node1" title="Game camera." alt="" coords="157,5,263,32"/>
+<area shape="rect" id="node2" href="$lo_8h.html" title="Level objects." alt="" coords="192,827,239,853"/>
+<area shape="rect" id="node10" href="$util_8h.html" title="Utility functions." alt="" coords="267,155,321,181"/>
+<area shape="rect" id="node17" href="$binoc_8h.html" title="Binoc&#45;u&#45;com." alt="" coords="397,304,466,331"/>
+<area shape="rect" id="node26" href="$xform_8h.html" title="Transform." alt="" coords="852,80,925,107"/>
+<area shape="rect" id="node36" href="$sound_8h.html" title="Sound playback." alt="" coords="173,80,247,107"/>
+<area shape="rect" id="node3" href="$oid_8h.html" title="Object IDs." alt="" coords="965,976,1020,1003"/>
+<area shape="rect" id="node4" href="$basic_8h.html" title="Basic object." alt="" coords="97,901,165,928"/>
+<area shape="rect" id="node6" href="$dl_8h.html" title="Doubly&#45;linked list." alt="" coords="803,901,849,928"/>
+<area shape="rect" id="node7" href="$sw_8h.html" title="Scene world?" alt="" coords="190,901,241,928"/>
+<area shape="rect" id="node8" href="$frame_8h.html" title=" " alt="" coords="265,901,379,928"/>
+<area shape="rect" id="node9" href="$mq_8h.html" title="Message queue." alt="" coords="5,901,60,928"/>
+<area shape="rect" id="node5" href="$sidebag_8h.html" title="Sidebag for splice." alt="" coords="68,976,195,1003"/>
+<area shape="rect" id="node11" href="$mat_8h.html" title="3x3 and 4x4 matrix types." alt="" coords="380,229,440,256"/>
+<area shape="rect" id="node12" href="$vec_8h.html" title="Vector math." alt="" coords="797,603,855,629"/>
+<area shape="rect" id="node15" href="$sm_8h.html" title="State machines." alt="" coords="177,677,232,704"/>
+<area shape="rect" id="node13" href="$so_8h.html" title="Scene objects." alt="" coords="801,677,851,704"/>
+<area shape="rect" id="node14" href="$alo_8h.html" title=" " alt="" coords="799,752,853,779"/>
+<area shape="rect" id="node16" href="$anim_8h.html" title="Animation." alt="" coords="171,752,238,779"/>
+<area shape="rect" id="node18" href="$screen_8h.html" title="GUI elements." alt="" coords="406,379,483,405"/>
+<area shape="rect" id="node19" href="$font_8h.html" title="Font system." alt="" coords="332,453,392,480"/>
+<area shape="rect" id="node20" href="$game_8h.html" title="Game state and level management." alt="" coords="416,453,487,480"/>
+<area shape="rect" id="node22" href="$shd_8h.html" title="Shaders." alt="" coords="604,453,661,480"/>
+<area shape="rect" id="node21" href="$cid_8h.html" title="Class IDs." alt="" coords="382,528,435,555"/>
+<area shape="rect" id="node23" href="$eestruct_8h.html" title="Graphics synthesizer." alt="" coords="460,528,595,555"/>
+<area shape="rect" id="node24" href="$geom_8h.html" title="Geometry." alt="" coords="699,603,769,629"/>
+<area shape="rect" id="node25" href="$surf_8h.html" title="Surfaces?" alt="" coords="771,528,830,555"/>
+<area shape="rect" id="node27" href="$wipe_8h.html" title="Screen wipes." alt="" coords="1096,827,1161,853"/>
+<area shape="rect" id="node29" href="$bis_8h.html" title="Binary Input Stream." alt="" coords="661,155,714,181"/>
+<area shape="rect" id="node34" href="$proxy_8h.html" title=" " alt="" coords="1006,379,1075,405"/>
+<area shape="rect" id="node35" href="$rs_8h.html" title=" " alt="" coords="299,304,345,331"/>
+<area shape="rect" id="node28" href="$transition_8h.html" title="Level transitions." alt="" coords="1081,901,1177,928"/>
+<area shape="rect" id="node30" href="$prog_8h.html" title=" " alt="" coords="464,229,527,256"/>
+<area shape="rect" id="node32" href="$clock_8h.html" title="Engine clock." alt="" coords="653,229,721,256"/>
+<area shape="rect" id="node33" href="$cat_8h.html" title="Catalog." alt="" coords="745,229,800,256"/>
+<area shape="rect" id="node31" href="$gs_8h.html" title="Graphics synthesizer." alt="" coords="491,304,540,331"/>
 </map>

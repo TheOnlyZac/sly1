@@ -101,41 +101,39 @@ $(document).ready(function(){initNavTree('sidebag_8h_source.html',''); initResiz
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef SPLICE_SIDEBAG_H</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define SPLICE_SIDEBAG_H</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="common_8h.html">common.h</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">class </span><a class="code" href="classCRef.html">CRef</a>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// todo Find where this struct should be implemented.</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structSBB.html">   14</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structSBB.html">SBB</a></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;};</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classCSidebag.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCSidebag.html">CSidebag</a></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classCSidebag.html">CSidebag</a>&amp; <a class="code" href="classCSidebag.html#a10cdd8544067391fade8fed358578bc8">RefAddBinding</a>(<span class="keywordtype">int</span>, <a class="code" href="classCRef.html">CRef</a>*);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classCSidebag.html">CSidebag</a>&amp; <a class="code" href="classCSidebag.html#a7f2721e913a78e5217ffeb7170f53e33">RefSetBinding</a>(<span class="keywordtype">int</span>, <a class="code" href="classCRef.html">CRef</a>*);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCSidebag.html#a477c3712fa0d683c54c745f0173a67fd">FFindBinding</a>(<span class="keywordtype">int</span>, <a class="code" href="classCRef.html">CRef</a>*);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCSidebag.html#a65d9e63cdcb83b5264da3675546b2a34">CloneTo</a>(<a class="code" href="classCSidebag.html">CSidebag</a>*);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classCSidebag.html#ae3db16ec2efbc8d618db947fc74e9282">   27</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classCSidebag.html#ae3db16ec2efbc8d618db947fc74e9282">m_csbb</a>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classCSidebag.html#a12a719a5a248f5aeb5ffc0a63136930a">   28</a></span>&#160;    <a class="code" href="structSBB.html">SBB</a> <a class="code" href="classCSidebag.html#a12a719a5a248f5aeb5ffc0a63136930a">m_asbb</a>[16];</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;};</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#endif // SPLICE_SIDEBAG_H</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">class </span><a class="code" href="classCRef.html">CRef</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// todo Find where this struct should be implemented.</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="structSBB.html">   13</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structSBB.html">SBB</a></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;};</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classCSidebag.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCSidebag.html">CSidebag</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classCSidebag.html">CSidebag</a>&amp; <a class="code" href="classCSidebag.html#a10cdd8544067391fade8fed358578bc8">RefAddBinding</a>(<span class="keywordtype">int</span>, <a class="code" href="classCRef.html">CRef</a>*);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classCSidebag.html">CSidebag</a>&amp; <a class="code" href="classCSidebag.html#a7f2721e913a78e5217ffeb7170f53e33">RefSetBinding</a>(<span class="keywordtype">int</span>, <a class="code" href="classCRef.html">CRef</a>*);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCSidebag.html#a477c3712fa0d683c54c745f0173a67fd">FFindBinding</a>(<span class="keywordtype">int</span>, <a class="code" href="classCRef.html">CRef</a>*);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCSidebag.html#a65d9e63cdcb83b5264da3675546b2a34">CloneTo</a>(<a class="code" href="classCSidebag.html">CSidebag</a>*);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classCSidebag.html#ae3db16ec2efbc8d618db947fc74e9282">   26</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classCSidebag.html#ae3db16ec2efbc8d618db947fc74e9282">m_csbb</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classCSidebag.html#a12a719a5a248f5aeb5ffc0a63136930a">   27</a></span>&#160;    <a class="code" href="structSBB.html">SBB</a> <a class="code" href="classCSidebag.html#a12a719a5a248f5aeb5ffc0a63136930a">m_asbb</a>[16];</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif // SPLICE_SIDEBAG_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="astructSBB_html"><div class="ttname"><a href="structSBB.html">SBB</a></div><div class="ttdef"><b>Definition:</b> <a href="sidebag_8h_source.html#l00014">sidebag.h:14</a></div></div>
-<div class="ttc" id="aclassCRef_html"><div class="ttname"><a href="classCRef.html">CRef</a></div><div class="ttdef"><b>Definition:</b> <a href="ref_8h_source.html#l00076">ref.h:76</a></div></div>
+<div class="ttc" id="astructSBB_html"><div class="ttname"><a href="structSBB.html">SBB</a></div><div class="ttdef"><b>Definition:</b> <a href="sidebag_8h_source.html#l00013">sidebag.h:13</a></div></div>
+<div class="ttc" id="aclassCRef_html"><div class="ttname"><a href="classCRef.html">CRef</a></div><div class="ttdef"><b>Definition:</b> <a href="ref_8h_source.html#l00075">ref.h:75</a></div></div>
 <div class="ttc" id="aclassCSidebag_html_a65d9e63cdcb83b5264da3675546b2a34"><div class="ttname"><a href="classCSidebag.html#a65d9e63cdcb83b5264da3675546b2a34">CSidebag::CloneTo</a></div><div class="ttdeci">void CloneTo(CSidebag *)</div></div>
 <div class="ttc" id="aclassCSidebag_html_a10cdd8544067391fade8fed358578bc8"><div class="ttname"><a href="classCSidebag.html#a10cdd8544067391fade8fed358578bc8">CSidebag::RefAddBinding</a></div><div class="ttdeci">CSidebag &amp; RefAddBinding(int, CRef *)</div></div>
 <div class="ttc" id="aclassCSidebag_html_a7f2721e913a78e5217ffeb7170f53e33"><div class="ttname"><a href="classCSidebag.html#a7f2721e913a78e5217ffeb7170f53e33">CSidebag::RefSetBinding</a></div><div class="ttdeci">CSidebag &amp; RefSetBinding(int, CRef *)</div></div>
 <div class="ttc" id="aclassCSidebag_html_a477c3712fa0d683c54c745f0173a67fd"><div class="ttname"><a href="classCSidebag.html#a477c3712fa0d683c54c745f0173a67fd">CSidebag::FFindBinding</a></div><div class="ttdeci">bool FFindBinding(int, CRef *)</div></div>
-<div class="ttc" id="aclassCSidebag_html_ae3db16ec2efbc8d618db947fc74e9282"><div class="ttname"><a href="classCSidebag.html#ae3db16ec2efbc8d618db947fc74e9282">CSidebag::m_csbb</a></div><div class="ttdeci">int m_csbb</div><div class="ttdef"><b>Definition:</b> <a href="sidebag_8h_source.html#l00027">sidebag.h:27</a></div></div>
-<div class="ttc" id="acommon_8h_html"><div class="ttname"><a href="common_8h.html">common.h</a></div><div class="ttdoc">Common header file.</div></div>
-<div class="ttc" id="aclassCSidebag_html_a12a719a5a248f5aeb5ffc0a63136930a"><div class="ttname"><a href="classCSidebag.html#a12a719a5a248f5aeb5ffc0a63136930a">CSidebag::m_asbb</a></div><div class="ttdeci">SBB m_asbb[16]</div><div class="ttdef"><b>Definition:</b> <a href="sidebag_8h_source.html#l00028">sidebag.h:28</a></div></div>
-<div class="ttc" id="aclassCSidebag_html"><div class="ttname"><a href="classCSidebag.html">CSidebag</a></div><div class="ttdef"><b>Definition:</b> <a href="sidebag_8h_source.html#l00018">sidebag.h:18</a></div></div>
+<div class="ttc" id="aclassCSidebag_html_ae3db16ec2efbc8d618db947fc74e9282"><div class="ttname"><a href="classCSidebag.html#ae3db16ec2efbc8d618db947fc74e9282">CSidebag::m_csbb</a></div><div class="ttdeci">int m_csbb</div><div class="ttdef"><b>Definition:</b> <a href="sidebag_8h_source.html#l00026">sidebag.h:26</a></div></div>
+<div class="ttc" id="aclassCSidebag_html_a12a719a5a248f5aeb5ffc0a63136930a"><div class="ttname"><a href="classCSidebag.html#a12a719a5a248f5aeb5ffc0a63136930a">CSidebag::m_asbb</a></div><div class="ttdeci">SBB m_asbb[16]</div><div class="ttdef"><b>Definition:</b> <a href="sidebag_8h_source.html#l00027">sidebag.h:27</a></div></div>
+<div class="ttc" id="aclassCSidebag_html"><div class="ttname"><a href="classCSidebag.html">CSidebag</a></div><div class="ttdef"><b>Definition:</b> <a href="sidebag_8h_source.html#l00017">sidebag.h:17</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

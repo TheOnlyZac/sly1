@@ -101,41 +101,39 @@ $(document).ready(function(){initNavTree('thread_8h_source.html',''); initResiza
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef THREAD_H</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define THREAD_H</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="common_8h.html">common.h</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structCRITSECT.html">   14</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCRITSECT.html">CRITSECT</a></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structCRITSECT.html#a639efa18251f871c72d98d10260eb46e">   16</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structCRITSECT.html#a639efa18251f871c72d98d10260eb46e">cEnter</a>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structCRITSECT.html#a4e3169a2f0d9d57d633bd36f22b57d36">   17</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structCRITSECT.html#a4e3169a2f0d9d57d633bd36f22b57d36">thread</a>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structCRITSECT.html#a356c4707646513e1b11efde61f0f2d2c">   18</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structCRITSECT.html#a356c4707646513e1b11efde61f0f2d2c">sema</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;};</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">int</span> <a class="code" href="thread_8h.html#a8cc3a1844adba02c66e4b61ae65b3c6b">SemaCreate</a>(<span class="keywordtype">int</span> initCount, <span class="keywordtype">int</span> maxCount);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span> <a class="code" href="thread_8h.html#a9a58dd7c4bd35d8bf7191bd21ea90759">InitCritSect</a>(<a class="code" href="structCRITSECT.html">CRITSECT</a>* pcritsect);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="thread_8h.html#a733b7d2f598a5e2dde6107d5f6885796">EnterCritSect</a>(<a class="code" href="structCRITSECT.html">CRITSECT</a>* pcritsect);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> <a class="code" href="thread_8h.html#ae971797adfaa0b33aea3607c30b79070">LeaveCritSect</a>(<a class="code" href="structCRITSECT.html">CRITSECT</a>* pcritsect);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">void</span> <a class="code" href="thread_8h.html#a4e0270548f91812ec5092d055f73a1b3">StartupThread</a>();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">extern</span> <a class="code" href="structCRITSECT.html">CRITSECT</a> <a class="code" href="thread_8h.html#a8908c90991f8db2b3f2b68e0b4a571dd">g_athread</a>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif // THREAD_H</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="structCRITSECT.html">   13</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCRITSECT.html">CRITSECT</a></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structCRITSECT.html#a639efa18251f871c72d98d10260eb46e">   15</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structCRITSECT.html#a639efa18251f871c72d98d10260eb46e">cEnter</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structCRITSECT.html#a4e3169a2f0d9d57d633bd36f22b57d36">   16</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structCRITSECT.html#a4e3169a2f0d9d57d633bd36f22b57d36">thread</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structCRITSECT.html#a356c4707646513e1b11efde61f0f2d2c">   17</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structCRITSECT.html#a356c4707646513e1b11efde61f0f2d2c">sema</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;};</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">int</span> <a class="code" href="thread_8h.html#a8cc3a1844adba02c66e4b61ae65b3c6b">SemaCreate</a>(<span class="keywordtype">int</span> initCount, <span class="keywordtype">int</span> maxCount);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">void</span> <a class="code" href="thread_8h.html#a9a58dd7c4bd35d8bf7191bd21ea90759">InitCritSect</a>(<a class="code" href="structCRITSECT.html">CRITSECT</a>* pcritsect);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> <a class="code" href="thread_8h.html#a733b7d2f598a5e2dde6107d5f6885796">EnterCritSect</a>(<a class="code" href="structCRITSECT.html">CRITSECT</a>* pcritsect);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">void</span> <a class="code" href="thread_8h.html#ae971797adfaa0b33aea3607c30b79070">LeaveCritSect</a>(<a class="code" href="structCRITSECT.html">CRITSECT</a>* pcritsect);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">void</span> <a class="code" href="thread_8h.html#a4e0270548f91812ec5092d055f73a1b3">StartupThread</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">extern</span> <a class="code" href="structCRITSECT.html">CRITSECT</a> <a class="code" href="thread_8h.html#a8908c90991f8db2b3f2b68e0b4a571dd">g_athread</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif // THREAD_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="athread_8h_html_a9a58dd7c4bd35d8bf7191bd21ea90759"><div class="ttname"><a href="thread_8h.html#a9a58dd7c4bd35d8bf7191bd21ea90759">InitCritSect</a></div><div class="ttdeci">void InitCritSect(CRITSECT *pcritsect)</div><div class="ttdoc">Initialize a critical section.</div><div class="ttdef"><b>Definition:</b> <a href="thread_8c_source.html#l00018">thread.c:18</a></div></div>
 <div class="ttc" id="athread_8h_html_a733b7d2f598a5e2dde6107d5f6885796"><div class="ttname"><a href="thread_8h.html#a733b7d2f598a5e2dde6107d5f6885796">EnterCritSect</a></div><div class="ttdeci">void EnterCritSect(CRITSECT *pcritsect)</div><div class="ttdoc">Enter a critical section.</div><div class="ttdef"><b>Definition:</b> <a href="thread_8c_source.html#l00024">thread.c:24</a></div></div>
 <div class="ttc" id="athread_8h_html_ae971797adfaa0b33aea3607c30b79070"><div class="ttname"><a href="thread_8h.html#ae971797adfaa0b33aea3607c30b79070">LeaveCritSect</a></div><div class="ttdeci">void LeaveCritSect(CRITSECT *pcritsect)</div><div class="ttdoc">Leave a critical section.</div><div class="ttdef"><b>Definition:</b> <a href="thread_8c_source.html#l00040">thread.c:40</a></div></div>
-<div class="ttc" id="astructCRITSECT_html_a356c4707646513e1b11efde61f0f2d2c"><div class="ttname"><a href="structCRITSECT.html#a356c4707646513e1b11efde61f0f2d2c">CRITSECT::sema</a></div><div class="ttdeci">int sema</div><div class="ttdef"><b>Definition:</b> <a href="thread_8h_source.html#l00018">thread.h:18</a></div></div>
+<div class="ttc" id="astructCRITSECT_html_a356c4707646513e1b11efde61f0f2d2c"><div class="ttname"><a href="structCRITSECT.html#a356c4707646513e1b11efde61f0f2d2c">CRITSECT::sema</a></div><div class="ttdeci">int sema</div><div class="ttdef"><b>Definition:</b> <a href="thread_8h_source.html#l00017">thread.h:17</a></div></div>
 <div class="ttc" id="athread_8h_html_a8908c90991f8db2b3f2b68e0b4a571dd"><div class="ttname"><a href="thread_8h.html#a8908c90991f8db2b3f2b68e0b4a571dd">g_athread</a></div><div class="ttdeci">CRITSECT g_athread</div></div>
 <div class="ttc" id="athread_8h_html_a8cc3a1844adba02c66e4b61ae65b3c6b"><div class="ttname"><a href="thread_8h.html#a8cc3a1844adba02c66e4b61ae65b3c6b">SemaCreate</a></div><div class="ttdeci">int SemaCreate(int initCount, int maxCount)</div><div class="ttdoc">Create a semaphore.</div><div class="ttdef"><b>Definition:</b> <a href="thread_8c_source.html#l00006">thread.c:6</a></div></div>
-<div class="ttc" id="acommon_8h_html"><div class="ttname"><a href="common_8h.html">common.h</a></div><div class="ttdoc">Common header file.</div></div>
 <div class="ttc" id="athread_8h_html_a4e0270548f91812ec5092d055f73a1b3"><div class="ttname"><a href="thread_8h.html#a4e0270548f91812ec5092d055f73a1b3">StartupThread</a></div><div class="ttdeci">void StartupThread()</div><div class="ttdoc">Initialize parameters for a rendering thread.</div><div class="ttdef"><b>Definition:</b> <a href="thread_8c_source.html#l00053">thread.c:53</a></div></div>
-<div class="ttc" id="astructCRITSECT_html_a4e3169a2f0d9d57d633bd36f22b57d36"><div class="ttname"><a href="structCRITSECT.html#a4e3169a2f0d9d57d633bd36f22b57d36">CRITSECT::thread</a></div><div class="ttdeci">int thread</div><div class="ttdef"><b>Definition:</b> <a href="thread_8h_source.html#l00017">thread.h:17</a></div></div>
-<div class="ttc" id="astructCRITSECT_html"><div class="ttname"><a href="structCRITSECT.html">CRITSECT</a></div><div class="ttdoc">Details for a critical section.</div><div class="ttdef"><b>Definition:</b> <a href="thread_8h_source.html#l00014">thread.h:14</a></div></div>
-<div class="ttc" id="astructCRITSECT_html_a639efa18251f871c72d98d10260eb46e"><div class="ttname"><a href="structCRITSECT.html#a639efa18251f871c72d98d10260eb46e">CRITSECT::cEnter</a></div><div class="ttdeci">int cEnter</div><div class="ttdef"><b>Definition:</b> <a href="thread_8h_source.html#l00016">thread.h:16</a></div></div>
+<div class="ttc" id="astructCRITSECT_html_a4e3169a2f0d9d57d633bd36f22b57d36"><div class="ttname"><a href="structCRITSECT.html#a4e3169a2f0d9d57d633bd36f22b57d36">CRITSECT::thread</a></div><div class="ttdeci">int thread</div><div class="ttdef"><b>Definition:</b> <a href="thread_8h_source.html#l00016">thread.h:16</a></div></div>
+<div class="ttc" id="astructCRITSECT_html"><div class="ttname"><a href="structCRITSECT.html">CRITSECT</a></div><div class="ttdoc">Details for a critical section.</div><div class="ttdef"><b>Definition:</b> <a href="thread_8h_source.html#l00013">thread.h:13</a></div></div>
+<div class="ttc" id="astructCRITSECT_html_a639efa18251f871c72d98d10260eb46e"><div class="ttname"><a href="structCRITSECT.html#a639efa18251f871c72d98d10260eb46e">CRITSECT::cEnter</a></div><div class="ttdeci">int cEnter</div><div class="ttdef"><b>Definition:</b> <a href="thread_8h_source.html#l00015">thread.h:15</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

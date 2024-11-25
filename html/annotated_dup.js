@@ -1,5 +1,6 @@
 var annotated_dup =
 [
+    [ "_sceDmaTag", "struct__sceDmaTag.html", "struct__sceDmaTag" ],
     [ "ALO", "structALO.html", "structALO" ],
     [ "AMB", "structAMB.html", "structAMB" ],
     [ "ASEG", "structASEG.html", null ],
@@ -110,7 +111,6 @@ var annotated_dup =
     [ "SBB", "structSBB.html", null ],
     [ "sceCdRMode", "structsceCdRMode.html", "structsceCdRMode" ],
     [ "sceDmaChan", "structsceDmaChan.html", "structsceDmaChan" ],
-    [ "sceDmaTag", "structsceDmaTag.html", "structsceDmaTag" ],
     [ "sceGsTex0", "structsceGsTex0.html", "structsceGsTex0" ],
     [ "sceGsTex2", "structsceGsTex2.html", "structsceGsTex2" ],
     [ "SemaParam", "structSemaParam.html", "structSemaParam" ],

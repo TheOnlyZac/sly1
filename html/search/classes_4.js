@@ -1,11 +1,12 @@
 var searchData=
 [
-  ['edge_2463',['EDGE',['../structEDGE.html',1,'']]],
-  ['exit_2464',['EXIT',['../structEXIT.html',1,'']]],
-  ['expl_2465',['EXPL',['../structEXPL.html',1,'']]],
-  ['explg_2466',['EXPLG',['../structEXPLG.html',1,'']]],
-  ['explo_2467',['EXPLO',['../structEXPLO.html',1,'']]],
-  ['expls_2468',['EXPLS',['../structEXPLS.html',1,'']]],
-  ['explso_2469',['EXPLSO',['../structEXPLSO.html',1,'']]],
-  ['explste_2470',['EXPLSTE',['../structEXPLSTE.html',1,'']]]
+  ['difficulty_2459',['DIFFICULTY',['../structDIFFICULTY.html',1,'']]],
+  ['difficultylevel_2460',['DifficultyLevel',['../structDifficultyLevel.html',1,'']]],
+  ['dl_2461',['DL',['../structDL.html',1,'']]],
+  ['dle_2462',['DLE',['../structDLE.html',1,'']]],
+  ['dli_2463',['DLI',['../structDLI.html',1,'']]],
+  ['dlim_2464',['DLIM',['../structDLIM.html',1,'']]],
+  ['dlr_2465',['DLR',['../structDLR.html',1,'']]],
+  ['dmas_2466',['DMAS',['../classDMAS.html',1,'']]],
+  ['dprize_2467',['DPRIZE',['../structDPRIZE.html',1,'']]]
 ];

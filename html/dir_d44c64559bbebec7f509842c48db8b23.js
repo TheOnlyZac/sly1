@@ -1,6 +1,9 @@
 var dir_d44c64559bbebec7f509842c48db8b23 =
 [
+    [ "gcc", "dir_969e0773b27e378cdc2da0845b5406f4.html", "dir_969e0773b27e378cdc2da0845b5406f4" ],
+    [ "lib", "dir_a61f22007e0f347cded0d82030ee545d.html", "dir_a61f22007e0f347cded0d82030ee545d" ],
     [ "sce", "dir_cd78c0b4510bca7204a44a61df6f442c.html", "dir_cd78c0b4510bca7204a44a61df6f442c" ],
+    [ "sdk", "dir_1ede18532ce6284c46efe733029b594d.html", "dir_1ede18532ce6284c46efe733029b594d" ],
     [ "splice", "dir_23baffee792579c8d813c328b6f753b1.html", "dir_23baffee792579c8d813c328b6f753b1" ],
     [ "989snd.h", "989snd_8h.html", "989snd_8h" ],
     [ "ac.h", "ac_8h.html", null ],

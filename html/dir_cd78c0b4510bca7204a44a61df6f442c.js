@@ -1,15 +1,5 @@
 var dir_cd78c0b4510bca7204a44a61df6f442c =
 [
-    [ "dma.h", "dma_8h.html", "dma_8h" ],
-    [ "eedvd.h", "eedvd_8h.html", "eedvd_8h" ],
-    [ "filestub.h", "filestub_8h.html", "filestub_8h" ],
-    [ "gs.h", "sce_2gs_8h.html", [
-      [ "sceGsTex0", "structsceGsTex0.html", "structsceGsTex0" ],
-      [ "sceGsTex2", "structsceGsTex2.html", "structsceGsTex2" ]
-    ] ],
-    [ "kernel.h", "kernel_8h.html", "kernel_8h" ],
-    [ "math.h", "math_8h.html", "math_8h" ],
     [ "memset.h", "memset_8h.html", "memset_8h" ],
-    [ "pad.h", "pad_8h.html", "pad_8h" ],
     [ "rand.h", "rand_8h.html", "rand_8h" ]
 ];

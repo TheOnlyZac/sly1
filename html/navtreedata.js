@@ -24,52 +24,57 @@ var NAVTREE =
 [
   [ "Sly Cooper Decompilation", "index.html", [
     [ "Sly Cooper and the Thievius Raccoonus", "index.html", [
-      [ "Quickstart", "index.html#autotoc_md21", null ],
-      [ "Manual Setup", "index.html#autotoc_md22", [
-        [ "Clone the repository", "index.html#autotoc_md23", null ],
-        [ "Extract your original ELF file", "index.html#autotoc_md24", null ],
-        [ "Install python packages", "index.html#autotoc_md25", null ],
-        [ "Setup build environment", "index.html#autotoc_md26", null ]
+      [ "Quickstart", "index.html#autotoc_md22", [
+        [ "1. Clone the repo and run quickstart.sh.", "index.html#autotoc_md23", null ],
+        [ "2. Extract the executable from your disc.", "index.html#autotoc_md24", null ],
+        [ "3. Build the project.", "index.html#autotoc_md25", null ]
       ] ],
-      [ "Running", "index.html#autotoc_md27", [
-        [ "1. Autorun script", "index.html#autotoc_md28", null ],
-        [ "2. Run from command line", "index.html#autotoc_md29", null ],
-        [ "3. Run from PCSX2 GUI", "index.html#autotoc_md30", null ]
+      [ "Manual Setup", "index.html#autotoc_md26", [
+        [ "Clone the repository", "index.html#autotoc_md27", null ],
+        [ "Extract your original ELF file", "index.html#autotoc_md28", null ],
+        [ "Install python packages", "index.html#autotoc_md29", null ],
+        [ "Setup build environment", "index.html#autotoc_md30", null ]
       ] ],
-      [ "Project Structure", "index.html#autotoc_md31", null ],
-      [ "FAQ", "index.html#autotoc_md32", null ],
-      [ "Star History", "index.html#autotoc_md38", null ]
+      [ "Running", "index.html#autotoc_md31", [
+        [ "1. Autorun script", "index.html#autotoc_md32", null ],
+        [ "2. Run from command line", "index.html#autotoc_md33", null ],
+        [ "3. Run from PCSX2 GUI", "index.html#autotoc_md34", null ]
+      ] ],
+      [ "Project Structure", "index.html#autotoc_md35", null ],
+      [ "FAQ", "index.html#autotoc_md36", null ],
+      [ "Star History", "index.html#autotoc_md42", null ]
     ] ],
     [ "Beginner's Guide", "md_docs_BEGINNERSGUIDE.html", null ],
-    [ "So you want to decompile Sly 1...", "md_docs_CONTRIBUTING.html", [
-      [ "Contents", "md_docs_CONTRIBUTING.html#autotoc_md2", [
-        [ "Getting Started", "md_docs_CONTRIBUTING.html#autotoc_md3", null ],
-        [ "Find a function to match", "md_docs_CONTRIBUTING.html#autotoc_md4", null ],
-        [ "Match the function using Decomp.me", "md_docs_CONTRIBUTING.html#autotoc_md5", null ],
-        [ "Integrate the matched code", "md_docs_CONTRIBUTING.html#autotoc_md6", null ],
-        [ "Code Review Process", "md_docs_CONTRIBUTING.html#autotoc_md7", null ],
-        [ "Conclusion", "md_docs_CONTRIBUTING.html#autotoc_md8", null ]
+    [ "Contributing Guide", "md_docs_CONTRIBUTING.html", [
+      [ "So you want to decompile Sly 1...", "md_docs_CONTRIBUTING.html#autotoc_md2", null ],
+      [ "Contents", "md_docs_CONTRIBUTING.html#autotoc_md3", [
+        [ "Getting started", "md_docs_CONTRIBUTING.html#autotoc_md4", null ],
+        [ "Find a function to match", "md_docs_CONTRIBUTING.html#autotoc_md5", null ],
+        [ "Match the function using Decomp.me", "md_docs_CONTRIBUTING.html#autotoc_md6", null ],
+        [ "Integrate the matched code", "md_docs_CONTRIBUTING.html#autotoc_md7", null ],
+        [ "Make a pull request", "md_docs_CONTRIBUTING.html#autotoc_md8", null ],
+        [ "Conclusion", "md_docs_CONTRIBUTING.html#autotoc_md9", null ]
       ] ]
     ] ],
     [ "Style Guide", "md_docs_STYLEGUIDE.html", [
-      [ "Contents", "md_docs_STYLEGUIDE.html#autotoc_md10", null ],
-      [ "General Rules", "md_docs_STYLEGUIDE.html#autotoc_md11", null ],
-      [ "Symbol Names", "md_docs_STYLEGUIDE.html#autotoc_md12", [
-        [ "Capitalization", "md_docs_STYLEGUIDE.html#autotoc_md13", null ]
+      [ "Contents", "md_docs_STYLEGUIDE.html#autotoc_md11", null ],
+      [ "General Rules", "md_docs_STYLEGUIDE.html#autotoc_md12", null ],
+      [ "Symbol Names", "md_docs_STYLEGUIDE.html#autotoc_md13", [
+        [ "Capitalization", "md_docs_STYLEGUIDE.html#autotoc_md14", null ]
       ] ],
-      [ "Documentation", "md_docs_STYLEGUIDE.html#autotoc_md14", [
-        [ "File Comments", "md_docs_STYLEGUIDE.html#autotoc_md15", null ],
-        [ "Function Comments", "md_docs_STYLEGUIDE.html#autotoc_md16", [
-          [ "What is a decompilation?", "index.html#autotoc_md33", null ],
-          [ "How does it work?", "index.html#autotoc_md34", null ],
-          [ "Has this ever been done before?", "index.html#autotoc_md35", null ],
-          [ "Is this a matching decomp?", "index.html#autotoc_md36", null ],
-          [ "How can I help?", "index.html#autotoc_md37", null ],
-          [ "Class Comments", "md_docs_STYLEGUIDE.html#autotoc_md17", null ]
+      [ "Documentation", "md_docs_STYLEGUIDE.html#autotoc_md15", [
+        [ "File Comments", "md_docs_STYLEGUIDE.html#autotoc_md16", null ],
+        [ "Function Comments", "md_docs_STYLEGUIDE.html#autotoc_md17", [
+          [ "What is a decompilation?", "index.html#autotoc_md37", null ],
+          [ "How does it work?", "index.html#autotoc_md38", null ],
+          [ "Has this ever been done before?", "index.html#autotoc_md39", null ],
+          [ "Is this a matching decomp?", "index.html#autotoc_md40", null ],
+          [ "How can I help?", "index.html#autotoc_md41", null ],
+          [ "Class Comments", "md_docs_STYLEGUIDE.html#autotoc_md18", null ]
         ] ],
-        [ "Todo and Notes", "md_docs_STYLEGUIDE.html#autotoc_md18", null ]
+        [ "Todo and Notes", "md_docs_STYLEGUIDE.html#autotoc_md19", null ]
       ] ],
-      [ "Example Code", "md_docs_STYLEGUIDE.html#autotoc_md19", null ]
+      [ "Example Code", "md_docs_STYLEGUIDE.html#autotoc_md20", null ]
     ] ],
     [ "Todo List", "todo.html", null ],
     [ "Deprecated List", "deprecated.html", null ],
@@ -105,17 +110,17 @@ var NAVTREEINDEX =
 "classCBinaryInputStream.html#a0c066c927d4bfc8d8de19f8dbfb70718",
 "clock_8h.html#a3a8c7bc1502dc3ae9014e2b0f3c90204",
 "difficulty_8h.html#a70dd4cbb9b20eb1d2c4a53ed9db7a96d",
-"game_8c.html#a3d695a8d23f6fa5f507e7fd460389b36",
-"gs_8c.html#a5a206112c34ddbd719ea4fe986e7b692",
-"jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02ead1a3562923fd25ecf4a0502a297ee895",
-"ref_8h.html#a4e55c80470e633730d036482bd72bd52ab65e7fef0a89b373240ae224da6a8ba8",
-"screen_8h.html#aeaf0ae870b66f47d251818bb15753c6f",
-"structBLOT.html#a702774f27622ae41c84ae5e2b066265f",
-"structCRUSHERCTR.html",
-"structLS.html#a454f647cd0796cf78621b4459800d6d3",
-"structThreadParam.html#a37ec95d86fe64f88a99c9c58602f571e",
-"turret_8h_source.html",
-"wm_8h_source.html"
+"functions_vars_w.html",
+"globals_s.html",
+"jt2_8c.html#aa3d7fe514b8593fbee5522f660109815",
+"ref_8h.html#a4e55c80470e633730d036482bd72bd52a4cbb0497f9db78b12112ea4efde567bc",
+"screen_8h.html#ac05ab6e6f8b116e872f0b8c72da306b7",
+"structBINOC.html#a4aa5c61a2fb5869ca1635d907097cf01",
+"structCPTN.html#a7895bb96770edfbf74ddb133f56d569c",
+"structLO.html#a1793783b1fa7b17653d3fd5b2903619d",
+"structTOTALS.html#af8189c84690b68d78763dae81edcd574",
+"transition_8c.html#a9179837b23ee475b8e522f20ff42e910",
+"wipe_8h.html#aafe8282a667a264b047cc5c193e32791"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

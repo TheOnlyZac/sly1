@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['joy_2479',['JOY',['../structJOY.html',1,'']]],
-  ['jt_2480',['JT',['../structJT.html',1,'']]]
+  ['game_2480',['GAME',['../structGAME.html',1,'']]],
+  ['geom_2481',['GEOM',['../structGEOM.html',1,'']]],
+  ['gs_2482',['GS',['../structGS.html',1,'']]],
+  ['gsb_2483',['GSB',['../structGSB.html',1,'']]]
 ];

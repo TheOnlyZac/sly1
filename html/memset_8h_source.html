@@ -100,20 +100,17 @@ $(document).ready(function(){initNavTree('memset_8h_source.html',''); initResiza
 <a href="memset_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef MEMSET_H</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define MEMSET_H</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="common_8h.html">common.h</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="memset_8h.html#a412513bbce1234b8460e2560816ff75d">memset</a>(<span class="keywordtype">void</span>* ptr, <a class="code" href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a> value, <span class="keywordtype">size_t</span> num);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;}</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#endif // MEMSET_H</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="memset_8h.html#a4cb469bec7b722064b97a406346acb61">memset</a>(<span class="keywordtype">void</span>* ptr, <span class="keywordtype">int</span> value, <span class="keywordtype">size_t</span> num);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#endif // MEMSET_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="amemset_8h_html_a412513bbce1234b8460e2560816ff75d"><div class="ttname"><a href="memset_8h.html#a412513bbce1234b8460e2560816ff75d">memset</a></div><div class="ttdeci">void * memset(void *ptr, s32 value, size_t num)</div></div>
-<div class="ttc" id="acommon_8h_html"><div class="ttname"><a href="common_8h.html">common.h</a></div><div class="ttdoc">Common header file.</div></div>
-<div class="ttc" id="atypes_8h_html_a0ce6887c26c1c49ad3be5710dd42bfd6"><div class="ttname"><a href="types_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6">s32</a></div><div class="ttdeci">signed int s32</div><div class="ttdef"><b>Definition:</b> <a href="types_8h_source.html#l00048">types.h:48</a></div></div>
+<div class="ttc" id="amemset_8h_html_a4cb469bec7b722064b97a406346acb61"><div class="ttname"><a href="memset_8h.html#a4cb469bec7b722064b97a406346acb61">memset</a></div><div class="ttdeci">void * memset(void *ptr, int value, size_t num)</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

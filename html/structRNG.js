@@ -22,5 +22,5 @@ var structRNG =
     [ "field7_0x1c", "structRNG.html#a21018203bb1e08676514dfe5235d9f5f", null ],
     [ "field8_0x20", "structRNG.html#a05a531869f0dc94c7083d77cbc43b0bd", null ],
     [ "field9_0x24", "structRNG.html#ae79ff5166a2c5e8abef5bcf05444a7b3", null ],
-    [ "next", "structRNG.html#a52a500203272d742425aa9f66ee05284", null ]
+    [ "next", "structRNG.html#aa18203eaf32786fcf0b96e2c58901976", null ]
 ];
