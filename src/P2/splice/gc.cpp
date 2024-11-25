@@ -95,7 +95,7 @@ INCLUDE_ASM(const s32, "P2/splice/gc", Collect__3CGc);
 // The functions below are compiler generated and their INCLUDE_ASM can just be removed once g_gc is defined
 // Currently blocked until references to g_gc are resolved
 
-INCLUDE_ASM(const s32, "P2/splice/gc", __static_initialization_and_destruction_0);
+INCLUDE_ASM(const s32, "P2/splice/gc", gc__static_initialization_and_destruction_0);
 
 INCLUDE_ASM(const s32, "P2/splice/gc", _GLOBAL_$I$g_gc);
 

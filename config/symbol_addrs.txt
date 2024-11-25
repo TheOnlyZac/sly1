@@ -274,7 +274,7 @@ PprocPop__3CGc                  = 0x11A7D8; // type:func
 UpdateRecyclable__3CGc          = 0x11A800; // type:func
 MarkLiveObjects__3CGc           = 0x11A850; // type:func
 Collect__3CGc                   = 0x11AB58; // type:func
-__static_initialization_and_destruction_0 = 0x11ADF8; // type:func
+gc__static_initialization_and_destruction_0 = 0x11ADF8; // type:func
 _GLOBAL_$I$g_gc                 = 0x11AE38; // type:func
 _GLOBAL_$D$g_gc                 = 0x11AE58; // type:func
 
@@ -1014,7 +1014,33 @@ g_phase = 0x269ba4; // size:0x4
 ////////////////////////////////////////////////////////////////
 // P2/po.c
 ////////////////////////////////////////////////////////////////
-PpoCur__Fv = 0x1925f0; // type:func
+InitPo__FP2PO = 0x1921A8; // type:func
+ClonePo__FP2POT0 = 0x1921E8; // type:func
+HandlePoMessage__FP2PO5MSGIDPv = 0x192230; // type:func
+OnPoActive__FP2POiT0 = 0x1922E8; // type:func
+GetPoCpdefi__FP2POfP6CPDEFI = 0x192380; // type:func
+MakePoActive__FP2PO = 0x192418; // type:func
+FUN_00192450 = 0x192450; // type:func
+FUN_00192498 = 0x192498; // type:func
+CollectPoPrize__FP2PO3PCKP3ALO = 0x1924C8; // type:func
+PpoCur__Fv = 0x1925F0; // type:func
+PpoStart__Fv = 0x192620; // type:func
+_IppoFindPo__FP2PO = 0x192688; // type:func
+AddPoToList__FP2PO = 0x1926D0; // type:func
+RemovePoFromList__FP2PO = 0x192780; // type:func
+OnPoAdd__FP2PO = 0x192820; // type:func
+OnPoRemove__FP2PO = 0x192850; // type:func
+SwitchToIppo__Fi = 0x192880; // type:func
+SetPoPlayable__FP2POi = 0x192990; // type:func
+SwitchToPo__FP2PO = 0x1929D0; // type:func
+PpziCur__Fv = 0x1929F8; // type:func
+PlayPoDialog__FP2POP6DIALOG = 0x192A38; // type:func
+FUN_00192a70 = 0x192A70; // type:func
+UpdatePo__FP2POf = 0x192B58; // type:func
+UsePoCharm__FP2PO = 0x192C58; // type:func
+FUN_00192dd0 = 0x192DD0; // type:func
+po__static_initialization_and_destruction_04 = 0x1930B8; // type:func
+_GLOBAL_$I$InitPo__FP2PO = 0x1931F0; // type:func
 
 
 ////////////////////////////////////////////////////////////////

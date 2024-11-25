@@ -1,4 +1,4 @@
-#include "common.h"
+#include <suv.h>
 
 INCLUDE_ASM(const s32, "P2/suv", InitSuv__FP3SUV);
 
