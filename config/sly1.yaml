@@ -76,18 +76,14 @@ segments:
     #--------------------------------------------------------
     - [0x1dbb8, asm, P2/989snd] #MARK: P2
     - [0x1f560, c, P2/brx]
-
     - [0x1fe70, asm, P2/ac]
     #- [0x, asm, P2/act]
     #- [0x, asm, P2/actseg]
-
     - [0x243c0, asm, P2/alarm]
-
     - [0x24dc0, asm, P2/alo]
     #- [0x, asm, P2/aseg]
     #- [0x, asm, P2/asega]
     #- [0x, asm, P2/barrier]
-
     - [0x30cf0, asm, P2/bas]
     - [0x310e8, asm, P2/basic]
     - [0x31168, asm, P2/bez]
@@ -96,18 +92,14 @@ segments:
     - [0x395a0, asm, P2/bbmark]
     - [0x39ff0, asm, P2/blend]
     - [0x3ab70, asm, P2/blip]
-
     - [0x3c4c0, asm, P2/bomb]
     #- [0x, asm, P2/bone]
     #- [0x, asm, P2/bq]
-
     - [0x3dcf8, asm, P2/break]
-
     - [0x3efd8, asm, P2/bsp]
     #- [0x, asm, P2/button]
-    #- [0x, asm, P2/cat] (might not be in release)
+    #- [0x, asm, P2/cat] # (might not be in release)
     #- [0x, asm, P2/can]
-
     - [0x417a8, asm, P2/cd]
     - [0x41d90, c, P2/chkpnt]
     - [0x429e8, asm, P2/clip]
@@ -119,29 +111,23 @@ segments:
     - [0x4bbd0, c, P2/credit]
     - [0x4c0c0, c, P2/crout]
     - [0x4c550, asm, P2/crusher]
-
     - [0x4e0a8, asm, P2/crv]
-
     - [0x4fe40, asm, P2/dart]
     #- [0x, asm, P2/dartgun]
     #- [0x, asm, P2/dialog]
-
     - [0x529e0, c, P2/difficulty]
     - [0x53438, c, P2/dl]
-    - [0x5380C, asm, P2/dl_padding] # Needed to align dmas
+    - [0x5380C, asm, P2/dl_padding] # 4 bytes padding to align dmas
     - [0x53810, c, P2/dmas]
     - [0x53E28, asm, P2/dsp]
     #- [0x, asm, P2/dysh]
     #- [0x, asm, P2/dzg]
-
     - [0x559c8, asm, P2/emitter]
     - [0x5a6e0, asm, P2/eyes]
     - [0x5aad0, asm, P2/fader]
-
     - [0x5aca0, asm, P2/unk_f] # unknown file, falls alphabetically between fader and find
-
     - [0x5af20, c, P2/find]
-    - [0x5b8ac, asm, P2/find_padding] # Needed to align P2/find
+    - [0x5b8ac, asm, P2/find_padding] # 4 bytes padding to align P2/find
     - [0x5b8b0, c, P2/flash]
     - [0x5bae0, asm, P2/fly]
     - [0x5d188, asm, P2/font]
@@ -149,42 +135,33 @@ segments:
     - [0x60678, asm, P2/freeze]
     - [0x60f88, asm, P2/frzg]
     - [0x61070, c, P2/game]
-
     - [0x61e80, asm, P2/geom]
     #- [0x, asm, P2/gifs]
     #- [0x, asm, P2/glbs]
     #- [0x, asm, P2/glob]
     #- [0x, asm, P2/gomer]
-
     - [0x69130, c, P2/gs]
-
     - [0x6ac58, asm, P2/hide]
     #- [0x, asm, P2/hnd]
     #- [0x, asm, P2/ik]
     #- [0x, asm, P2/jack]
     #- [0x, asm, P2/jlo]
-
     - [0x6f0b8, c, P2/joy]
-
     - [0x70608, c, P2/jt1]
-    - [0x74888, asm, P2/jt_UpdateJtActive] # should be in P2/jt but doesn't match when split
+    - [0x74888, asm, P2/jt_UpdateJtActive] # Should be in P2/jt but doesn't match when linked with INCLUDE_ASM
     - [0x75808, c, P2/jt2]
-
     - [0x79008, asm, P2/jp]
     #- [0x, asm, P2/jsg]
-
     - [0x7e248, asm, P2/jump]
     #- [0x, asm, P2/keyhole]
     #- [0x, asm, P2/landing]
     #- [0x, asm, P2/lgn]
-
     - [0x83c18, asm, P2/lo]
     - [0x84cc8, asm, P2/light]
     - [0x86358, asm, P2/lookat]
     - [0x86758, c, P2/main]
     - [0x86c18, asm, P2/mark]
     - [0x894c0, asm, P2/mat]
-
     - [0x8b388, asm, P2/mecha]
     #- [0x, asm, P2/mb]
     #- [0x, asm, P2/memcard]
@@ -196,51 +173,37 @@ segments:
     #- [0x, asm, P2/mrkv]
     #- [0x, asm, P2/ms]
     #- [0x, asm, P2/murray]
-
     - [0x917e0, asm, P2/path]
     - [0x92e70, asm, P2/phasemem]
     - [0x92ec0, asm, P2/pipe]
-
     - [0x93068, asm, P2/pnt]
     #- [0x, asm, P2/po]
-
     - [0x94210, c, P2/prog]
-
     - [0x94598, asm, P2/prompt]
     #- [0x, asm, P2/proxy]
     #- [0x, asm, P2/puffer]
     #- [0x, asm, P2/pzo]
     #- [0x, asm, P2/rail]
-
     - [0x9c038, asm, P2/rat]
     - [0x9d440, asm, P2/rchm]
     - [0x9e410, asm, P2/render]
-
     - [0x9f040, asm, P2/rip]
     #- [0x, asm, P2/rog]
     #- [0x, asm, P2/rope]
-
     - [0xa8b20, asm, P2/rumble]
-
     - [0xa8fe8, asm, P2/rwm]
-    #- [0x, asm, P2/sampler] (might not be in release)
+    #- [0x, asm, P2/sampler] # (might not be in release)
     #- [0x, asm, P2/sc]
-
     - [0xaac68, c, P2/screen]
     - [0xaf510, asm, P2/sensor]
-
     - [0xb2ac8, asm, P2/shadow]
     #- [0x, asm, P2/shape]
-
     - [0xb3988, asm, P2/shd]
-
     - [0xb5920, asm, P2/shdanim]
     #- [0x, asm, P2/sky]
     #- [0x, asm, P2/slotheap]
-
     - [0xb6f50, asm, P2/sm]
     #- [0x, asm, P2/smartguard]
-
     - [0xb8968, asm, P2/so]
     - [0xbd760, asm, P2/solve]
     - [0xbf068, asm, P2/sort]
@@ -248,11 +211,9 @@ segments:
     - [0xc1f30, asm, P2/speaker]
     - [0xc2190, asm, P2/splicemap]
     - [0xc24c0, asm, P2/spliceobj]
-
     - [0xc3430, asm, P2/sprbuf]
     #- [0x, asm, P2/sqtr]
     #- [0x, asm, P2/squish]
-
     - [0xc5458, asm, P2/step]
     - [0xc6f18, asm, P2/stepact]
     - [0xc71e0, asm, P2/stepcane]
@@ -261,25 +222,21 @@ segments:
     - [0xcefb8, asm, P2/stephide]
     - [0xd24f0, asm, P2/steppipe]
     - [0xd39c8, c, P2/steppower]
-    - [0xd41cc, asm, P2/steppower_padding] # Needed to align steprail
-    - [0xd41d0, asm, P2/steprail] #? unconfirmed name
+    - [0xd41cc, asm, P2/steppower_padding] # 4 bytes padding to align steprail
+    - [0xd41d0, asm, P2/steprail]
     - [0xd46f0, asm, P2/steprun]
     - [0xd5148, asm, P2/stepside]
     - [0xd5848, asm, P2/stepzap]
-
     - [0xd8120, asm, P2/stream]
-    #- [0x, asm, P2/suv]
-
+    - [0xd83a8, c, P2/suv]
     - [0xdc480, asm, P2/sw]
     - [0xdeb20, asm, P2/unk_st] # unknown file, falls alphabetically between sw and tail
     - [0xdece0, c, P2/tail]
     - [0xdf798, asm, P2/tank]
     #- [0x, asm, P2/target]
-
     - [0xe18f8, asm, P2/text]
     - [0xe3268, c, P2/thread]
     - [0xe3420, asm, P2/tn]
-
     - [0xe5e38, c, P2/transition]
     - [0xe6378, asm, P2/turret]
     - [0xe6e70, asm, P2/tv]
@@ -295,11 +252,9 @@ segments:
     - [0xf0838, asm, P2/waypoint]
     - [0xf0ce8, asm, P2/wipe]
     - [0xf1758, asm, P2/wm] # not confident
-
     - [0xf49f8, c, P2/xform1]
-    - [0xf4c38, asm, P2/xform_PwarpFromOid]
+    - [0xf4c38, asm, P2/xform_PwarpFromOid] # Should be in P2/xform but doesn't match when linked with INCLUDE_ASM
     - [0xf4d80, c, P2/xform2]
-
     - [0xf5f20, asm, P2/zap]
 
     ## Source files in May proto that aren't in release:
@@ -524,7 +479,7 @@ segments:
     #- [0x, data, P2/ui]
     #- [0x, data, P2/update]
     #- [0x, data, P2/util]
-    #- [0x, data, P2/uv_unk] #? unknown file
+    #- [0x, data, P2/unk_uv] #? unknown file
     #- [0x, data, P2/vec]
     #- [0x, data, P2/vifs]
     #- [0x, data, P2/vis]

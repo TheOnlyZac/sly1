@@ -1174,6 +1174,47 @@ func_001D31D0__FP2LOi = 0x1D31D0; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/suv.c
+////////////////////////////////////////////////////////////////
+InitSuv__FP3SUV = 0x1D73A8; // type:func
+PostSuvLoad__FP3SUV = 0x1D7440; // type:func
+PresetSuvAccel__FP3SUVf = 0x1D7778; // type:func
+GExcludeAlm__FiP2LMf = 0x1D8470; // type:func
+UpdateSuvBalance__FP3SUV = 0x1D8578; // type:func
+DsGetTrackRelative__Ffff = 0x1D86F8; // type:func
+FIsSuvAheadOf__FP3SUVT0 = 0x1D8740; // type:func
+UpdateSuvLine__FP3SUVPi = 0x1D87C8; // type:func
+UpdateSuvHeading__FP3SUV = 0x1D8BD0; // type:func
+UpdateSuvWheels__FP3SUV = 0x1D8D90; // type:func
+UpdateSuvExpls__FP3SUV = 0x1D8E40; // type:func
+BoostSuv__FP3SUV = 0x1D92F0; // type:func
+FUN_001d9338 = 0x1D9338; // type:func
+UpdateSuvVolumes__FP3SUVi = 0x1D9488; // type:func
+UpdateSuvSounds__FP3SUVf = 0x1D9678; // type:func
+UpdateSuvPuncher__FP3SUV = 0x1D9AC8; // type:func
+UpdateSuv__FP3SUVf = 0x1D9C98; // type:func
+UpdateSuvActive__FP3SUVP3JOYf = 0x1D9D78; // type:func
+FUN_001da170 = 0x1DA170; // type:func
+AddSuvCustomXps__FP3SUVP2SOiP3BSPT3PP2XP = 0x1DA320; // type:func
+UpdateSuvInfluences__FP3SUVP2RO = 0x1DA7E0; // type:func
+RenderSuvSelf__FP3SUVP2CMP2RO = 0x1DAA18; // type:func
+UpdateSuvBounds__FP3SUV = 0x1DAC20; // type:func
+CollectSuvPrize__FP3SUV3PCKP3ALO = 0x1DACB0; // type:func
+UpdateSuvShapes__FP3SUV = 0x1DAD28; // type:func
+UpdateSuvXfWorld__FP3SUV = 0x1DAE18; // type:func
+GetSuvCpdefi__FP3SUVfP6CPDEFI = 0x1DAE48; // type:func
+OnSuvActive__FP3SUViP2PO = 0x1DAE68; // type:func
+HandleSuvMessage__FP3SUV5MSGIDPv = 0x1DAF08; // type:func
+SetSuvTrack__FP3SUVP5SHAPE = 0x1DAFB8; // type:func
+SetSuvLine__FP3SUVP5SHAPE = 0x1DB0C8; // type:func
+AddSuvCheckPoint__FP3SUVP3VOL = 0x1DB110; // type:func
+AddSuvFeature__FP3SUVP3VOLffP4EXPLT4 = 0x1DB1E8; // type:func
+SetSuvSuvs__FP3SUV4SUVS = 0x1DB238; // type:func
+ResetSuv__FP3SUV = 0x1DB290; // type:func
+VecCombo__FG8VU_FLOATG9VU_VECTORT0T1 = 0x1DB460; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/sw.c
 ////////////////////////////////////////////////////////////////
 IncrementSwHandsOff__FP2SW = 0x1dda20; // type:func
