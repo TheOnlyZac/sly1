@@ -15,9 +15,16 @@ git submodule update --init --recursive
 # Clone the codebase
 git clone https://github.com/theonlyzac/sly1
 
-# Generate docs
+# Copy doxyfile into the codebase
 cp Doxyfile sly1
 cd sly1
+
+# Delete "#include "common.h" from all hedaers in include/
+for file in $(find include/ -name "*.h"); do
+    sed -i '/#include "common.h"/d' $file
+done
+
+# Generate docs
 doxygen Doxyfile
 cp -r docs html
 mv html/ ..
