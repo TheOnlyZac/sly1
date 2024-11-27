@@ -375,6 +375,18 @@ SetLoDefaults__FP2LO = 0x11EDA8; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/actseg.c
+////////////////////////////////////////////////////////////////
+RetractActseg__FP6ACTSEGi = 0x122F28; // type:func
+CloneActseg__FP6ACTSEGT0 = 0x122F88; // type:func
+GetActsegPositionGoal__FP6ACTSEGfP6VECTORT2 = 0x122FE0; // type:func
+GetActsegRotationGoal__FP6ACTSEGfP7MATRIX3P6VECTOR = 0x123120; // type:func
+GetActsegTwistGoal__FP6ACTSEGPfT1 = 0x123270; // type:func
+GetActsegScale__FP6ACTSEGP7MATRIX3 = 0x1232E8; // type:func
+GGetActsegPoseGoal__FP6ACTSEGi = 0x123358; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/binoc.c
 ////////////////////////////////////////////////////////////////
 InitBei = 0x130F48; // type:func
@@ -1170,6 +1182,13 @@ g_unkblot9 = 0x26e760; // size:0x280
 g_note = 0x26e9f8; // size:0x280
 g_unkblot11 = 0x26eed0; // size:0x280
 g_totals = 0x26f138; // size:0x280
+
+
+////////////////////////////////////////////////////////////////
+// P2/sky.c
+////////////////////////////////////////////////////////////////
+PostSkyLoad__FP3SKY = 0x1c9a18; // type:func
+UpdateSky__FP3SKYf = 0x1c9a58; // type:func
 
 
 ////////////////////////////////////////////////////////////////
