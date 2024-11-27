@@ -387,6 +387,25 @@ GGetActsegPoseGoal__FP6ACTSEGi = 0x123358; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/basic.c
+////////////////////////////////////////////////////////////////
+FIsBasicDerivedFrom__FP5BASIC3CID = 0x1300e8; // type:func
+EnsureBasicSidebag__FP5BASIC = 0x130110; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/bez.c
+////////////////////////////////////////////////////////////////
+EvaluateBezierWeightedFloat__FfffffffffPfN29 = 0x130168; // type:func
+EvaluateBezierFloat__FfffffffPfN27 = 0x1303F0; // type:func
+EvaluateBezierPos__FfffP6VECTORN63 = 0x130540; // type:func
+EvaluateBezierMat__FfffP7MATRIX3P6VECTORT3T4T3T4T4 = 0x130748; // type:func
+TesselateBezier__FfffP6VECTORN33iT3 = 0x130B48; // type:func
+SBezierPosLength__FffP6VECTORN32 = 0x130C20; // type:func
+LimitBezierMulti__Fie = 0x130C58; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/binoc.c
 ////////////////////////////////////////////////////////////////
 InitBei = 0x130F48; // type:func
