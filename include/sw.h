@@ -17,4 +17,6 @@ struct SW
 
 extern SW *g_psw;
 
+void IncrementSwHandsOff(SW *psw);
+
 #endif // SW_H
