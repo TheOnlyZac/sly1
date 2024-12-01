@@ -3,7 +3,7 @@
 This directory contains config files for splat, the tool we use to split and disassemble the game binary. The config files are used to tell splat how to split the binary and what to name the output files.
 
 ## Files in this directory
-- `sly1.yaml` - Main config file for splat. Contains the offsets of each file split in the game binary. Creating new `.c` files involves modifying this file to create a `c` split and then running `python configure.py` to generate the new files.
+- `sly1.yaml` - Main config file for splat. Contains the offsets of each file split in the game binary. Creating new `.c` files involves modifying this file to create a `c` split and then running `python3 configure.py` to generate the new files.
 - `symbol_addrs.txt` - Contains the addresses of symbols in the game binary. Used by splat to properly reference functions and variables in the game code when splitting the binary.
 - `checksum.sha1` - SHA1 checksum of the original game binary. Used to verify the integrity of the binary after compilation.
 

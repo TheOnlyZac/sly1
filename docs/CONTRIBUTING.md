@@ -61,7 +61,7 @@ Then start writing your code under the "Source code" tab. It will tell you what 
 
 Once the function matches 100%, follow these steps to integrate it into the project:
 1. Replace the `INCLUDE_ASM` macro in the `.c` file with the matched function.
-   * If the function is in a new file, **do not create a new file**. Creating new `.c` files is done by editing the `config/sly1.yaml` file to change the file split from `asm` to `c`, then running `python configure.py` to generate the new file. If you don't know how to do this, feel free to ask for help in the Discord server.
+   * If the function is in a new file, **do not create a new file**. Creating new `.c` files is done by editing the `config/sly1.yaml` file to change the file split from `asm` to `c`, then running `python3 configure.py` to generate the new file. If you don't know how to do this, feel free to ask for help in the Discord server.
 2. Check `config/symbol_addrs.txt` to see if the mangled name of the function is present.
    * If it is not, add the **mangled name** of the function with it's address. The mangled name of the function can be found in the debug symbols for the May 2002 prototype. If you don't know how to find it, ask for help in the Discord server; someone will be able to find it for you easily.
    * The symbol_addrs.txt file is grouped alphabetically by filename, then sorted by address within the file.
