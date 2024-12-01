@@ -13,5 +13,5 @@ if [ ! -f disc/SCUS_971.98 ]; then
 fi
 
 # Configure and build
-python configure.py --clean
+python3 configure.py --clean
 ninja
