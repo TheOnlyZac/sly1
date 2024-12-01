@@ -88,15 +88,19 @@ To build the project, you will need to extract the original ELF file from your o
 
 ### Install python packages
 
-You will need Python 3.8 or higher.
+If you don't have Python 3.8 or higher, install it:
 
 ```bash
-pip install -U -r requirements.txt
+sudo apt-get install python3 python3-pip
+```
+
+Then install the required Python packages:
+
+```bash
+pip3 install -U -r requirements.txt
 ```
 
 ### Setup build environment
-
-<!--#### Linux/WSL-->
 
 1. Setup wine:
 ```bash
@@ -136,20 +140,20 @@ choco install 7zip
 The project builds the executable `SCUS_971.98`.
 
 ```bash
-python configure.py
+python3 configure.py
 ninja
 ```
 
 If you update any config files or add any source files, you will need run a clean reconfigure:
 
 ```bash
-python configure.py --clean
+python3 configure.py --clean
 ```
 
 To only clean without reconfiguring (i.e. delete build files) use:
 
 ```bash
-python configure.py --only-clean
+python3 configure.py --only-clean
 ```
 
 ## Running
