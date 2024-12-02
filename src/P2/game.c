@@ -26,7 +26,7 @@ INCLUDE_ASM(const s32, "P2/game", get_level_completion_by_id);
 
 INCLUDE_ASM(const s32, "P2/game", tally_world_completion);
 
-INCLUDE_ASM(const s32, "P2/game", get_game_completion);
+INCLUDE_ASM(const s32, "P2/game", get_game_completion__Fv);
 
 INCLUDE_ASM(const s32, "P2/game", UnlockIntroCutsceneFromWid);
 

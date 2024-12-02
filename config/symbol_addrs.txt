@@ -1,12 +1,19 @@
 _start = 0x100008; // type:func
 _exit = 0x1000B8; // type:func
 
+////////////////////////////////////////////////////////////////
+// UNKNOWN MISCELLANEOUS
+////////////////////////////////////////////////////////////////
 __builtin_delete = 0x18d778; // type:func
 memcmp = 0x1F59C4; // type:func
 
 PvAllocGlobalImpl__Fi = 0x18D4B0; // type:func
 
 _gpReg = 0x2832F0;
+
+g_chzCiphertext = 0x2483b8; // size:0x9
+g_chzThePasswordIs = 0x24a848; // size:0x14
+
 
 ////////////////////////////////////////////////////////////////
 // Unknown file
@@ -815,6 +822,7 @@ g_cframe = 0x2622cc; // size:0x4
 
 ////////////////////////////////////////////////////////////////
 // P2/game.c
+// TODO mangle function names
 ////////////////////////////////////////////////////////////////
 StartupGame__Fv = 0x160070; // type:func
 
@@ -825,7 +833,7 @@ call_search_level_by_id = 0x160180; // type:func
 FFindLevel = 0x1601A0; // type:func
 get_level_completion_by_id = 0x1601D8; // type:func
 tally_world_completion = 0x160208; // type:func
-get_game_completion = 0x1602A0; // type:func
+get_game_completion__Fv = 0x1602A0; // type:func
 UnlockIntroCutsceneFromWid = 0x160340; // type:func
 DefeatBossFromWid = 0x1603E8; // type:func
 UnlockEndgameCutscenesFromFgs = 0x1604B8; // type:func

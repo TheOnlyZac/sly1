@@ -132,7 +132,7 @@ extern "C"
      *
      * @param pchz The string to count.
      */
-    uint strlen(char *pchz);
+    //uint strlen(char *pchz); // conflicts with built-in strlen
 
     /**
      * @brief Copy a string.
@@ -140,7 +140,7 @@ extern "C"
      * @param pchzDst The destination string.
      * @param pchzSrc The source string.
      */
-    char *strcpy(char *pchzDst, char *pchzSrc);
+    //char *strcpy(char *pchzDst, char *pchzSrc); // conflicts with built-in strcpy
 
     /**
      * @brief Search for a character in a string.
