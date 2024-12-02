@@ -3,6 +3,14 @@
 #include <joy.h>
 #include <clock.h>
 #include <transition.h>
+#include <game.h>
+#include <text.h>
+#include <screen.h>
+
+//static char g_chzThePasswordIs[] = "The password is: %s";
+//static char g_chzCiphertext[] = "@KFWHJGL"; // decrypts to "chetkido"
+extern char g_chzThePasswordIs[];
+extern char g_chzCiphertext[];
 
 extern void* PvAllocGlobalImpl(int); // todo: remove when function is known
 
@@ -237,6 +245,39 @@ INCLUDE_ASM(const s32, "P2/joy", AddFcht__Fi);
 
 INCLUDE_ASM(const s32, "P2/joy", func_0016F470);
 
-INCLUDE_ASM(const s32, "P2/joy", Chetkido__Fv);
+void Chetkido() {
+    // Check preconditions
+    int widCur;
+    FGS cmpFlags;
+    GS *gsCur;
+
+    widCur = (g_pgsCur->gameworldCur << 8) | (g_pgsCur->worldlevelCur);
+    if (widCur != 0x400) // level is "A Perilous Ascent"
+        return;
+
+    cmpFlags = get_game_completion();
+    if ((cmpFlags & (FGS_HalfClues|FGS_AllClues)) != (FGS_HalfClues|FGS_AllClues)) // clues collected
+        return;
+
+    gsCur = g_pgsCur;
+    if (gsCur->ccoin != 99 || gsCur->clife != 0) // 99 coins and 0 lives
+        return;
+
+    // Decrypt chetkido using XOR cipher, key 0x23
+    char buf[64];
+    char achzPlaintext[16];
+    char *pchCur = &achzPlaintext[0];
+
+    strcpy(achzPlaintext, g_chzCiphertext);
+    while (*pchCur != '\0') {
+        *pchCur++ ^= 0x23;
+    }
+
+    // Show note blot with message
+    sprintf(buf, g_chzThePasswordIs, achzPlaintext);
+    ((NOTE*)&g_note.unk278)->pvtnote->pfnSetNoteAchzDraw((NOTE*)&g_note.unk278, buf);
+    SetBlotDtVisible((NOTE *)&g_note.unk278, 10.0f);
+    ((NOTE*)&g_note.unk278)->pvtnote->pfnShowBlot((NOTE*)&g_note.unk278);
+}
 
 INCLUDE_ASM(const s32, "P2/joy", StartupCodes__Fv);
