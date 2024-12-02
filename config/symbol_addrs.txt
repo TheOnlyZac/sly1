@@ -1297,6 +1297,37 @@ MatchTailOtherObject__FP4TAILP3ALO = 0x1DE768; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/text.c
+////////////////////////////////////////////////////////////////
+CchParsePchzInt__FPcPi = 0x1E08F8; // type:func
+CchParsePchzTft__FPcP3TFTPPc = 0x1E0978; // type:func
+WriteTftPchz__FP3TFTP5OSTRMPc = 0x1E0CD0; // type:func
+FNegTftUl__FP3TFTP2UL = 0x1E0E18; // type:func
+UnRadixFromChConversion__Fc = 0x1E0EF8; // type:func
+CchAchFromUl__FPciUlUi = 0x1E0F58; // type:func
+WriteTftUl__FP3TFTP5OSTRMUl = 0x1E1028; // type:func
+ExpFirstFromG__Fd = 0x1E1330; // type:func
+ChDigitFromG__Fdii = 0x1E13D0; // type:func
+CchAchFromDouble__FPciP3TFTd = 0x1E1498; // type:func
+WriteTftDouble__FP3TFTP5OSTRMd = 0x1E17A8; // type:func
+WriteTft__FP3TFTP5OSTRMPPcPci = 0x1E1A08; // type:func
+CchOstrmPrintf__FP5OSTRMPcT1 = 0x1E1DB8; // type:func
+
+vprintf = 0x1E1EB0; // type:func
+printf = 0x1E1F10; // type:func
+vsprintf = 0x1E1F58; // type:func
+sprintf = 0x1E1FD0; // type:func
+_vsnprintf = 0x1E2018; // type:func
+_snprintf = 0x1E20B8; // type:func
+strlen = 0x1E2100; // type:func
+strcpy = 0x1E2138; // type:func
+strcpy1 = 0x1E2180; // type:func
+strchr = 0x1E21D8; // type:func
+
+UpperizePchz__FPc = 0x1E2218; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/thread.c
 ////////////////////////////////////////////////////////////////
 SemaCreate__Fii = 0x1e2268; // type:func
