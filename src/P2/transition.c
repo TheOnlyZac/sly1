@@ -27,35 +27,34 @@ void CTransition::Set(char *pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS
 
 INCLUDE_ASM(const s32, "P2/transition", Execute__11CTransition);
 
-// Matching, blocked by broken references in joy.c
-INCLUDE_ASM(const s32, "P2/transition", ResetWorld__F6FTRANS);
-// void ResetWorld(FTRANS ftrans)
-// {
-//     GRFTRANS grftrans;
+void ResetWorld(FTRANS ftrans)
+{
+    GRFTRANS grftrans;
 
-//     SetMvgkRvol(0.0f);
-//     switch (ftrans)
-//     {
-//         case FTRANS_None:
-//             /* Reload with no transition */
-//             grftrans = FTRANS_None;
-//             break;
+    SetMvgkRvol(0.0f);
+    switch (ftrans)
+    {
+        case FTRANS_None:
+            /* Reload with no transition */
+            grftrans = FTRANS_None;
+            break;
 
-//         case FTRANS_Checkpoint:
-//             ReturnChkmgrToCheckpoint(&g_chkmgr);
-//             return;
+        case FTRANS_Checkpoint:
+            ReturnChkmgrToCheckpoint(&g_chkmgr);
+            return;
 
-//         case FTRANS_RetryWorld:
-//             grftrans = FTRANS_RetryWorld;
-//             break;
+        case FTRANS_RetryWorld:
+            grftrans = FTRANS_RetryWorld;
+            break;
 
-//         case (FTRANS_Checkpoint | FTRANS_RetryWorld):
-//             /* Transition with the Sly Cooper logo wipe */
-//             grftrans = 4;
-//             break;
-//     }
-//     g_transition.Set(g_transition.m_achzWorldCur, OID_Nil, OID_Nil, grftrans);
-// }
+        case (FTRANS_Checkpoint | FTRANS_RetryWorld):
+            /* Transition with the Sly Cooper logo wipe */
+            grftrans = 4;
+            break;
+    }
+
+    g_transition.Set(g_transition.m_achzWorldCur, OID_Nil, OID_Nil, grftrans);
+}
 
 INCLUDE_ASM(const s32, "P2/transition", transition__static_initialization_and_destruction_0);
 
