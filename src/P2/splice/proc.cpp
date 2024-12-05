@@ -15,10 +15,9 @@ void CProc::CloneTo(CProc *pprocClone, CFrame *pframeClone)
     pprocClone->m_ppairCodeExpr = m_ppairCodeExpr;
 }
 
-// todo: matches but blocked by references in CRef::CloneTo and RefEvalLambda
-INCLUDE_ASM(const s32, "P2/splice/proc", PprocNew__Fv);
-// static CProc* PprocNew() {
-//     CProc* proc = (CProc*)g_splotheapProc.PvAllocClear();
-//     memset(proc, 0, sizeof(CProc));
-//     return proc;
-// }
+CProc *PprocNew()
+{
+    CProc *proc = (CProc *)g_splotheapProc.PvAllocClear();
+    memset(proc, 0, sizeof(CProc));
+    return proc;
+}

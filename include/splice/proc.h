@@ -17,16 +17,16 @@ class CPair;
 class CProc
 {
 private:
-    CFrame* m_pframe;
-    CPair* m_ppair;
+    CFrame *m_pframe;
+    CPair *m_ppair;
     int m_crefReq;
     int m_fVarArg;
-    CPair* m_ppairCodeExpr;
+    CPair *m_ppairCodeExpr;
 
 public:
-    void CloneTo(CProc* pprocClone, CFrame* pframeClone);
+    void CloneTo(CProc *pprocClone, CFrame *pframeClone);
 };
 
-static CProc* PprocNew();
+CProc *PprocNew();
 
 #endif // SPLICE_PROC_H

@@ -233,15 +233,14 @@ void ClearFchts()
     ResetWorld(FTRANS_None);
 }
 
-INCLUDE_ASM(const s32, "P2/joy", AddFcht__Fi);
-// void AddFcht(int nParam)
-// {
-//     g_grfcht |= nParam & ~FCHT_ResetWorld;
-//     if (nParam & FCHT_ResetWorld)
-//     {
-//         ResetWorld(FTRANS_None);
-//     }
-// }
+void AddFcht(int nParam)
+{
+    g_grfcht |= nParam & ~FCHT_ResetWorld;
+    if (nParam & FCHT_ResetWorld)
+    {
+        ResetWorld(FTRANS_None);
+    }
+}
 
 INCLUDE_ASM(const s32, "P2/joy", func_0016F470);
 

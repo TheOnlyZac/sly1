@@ -18,6 +18,6 @@ class CMethod
     int m_crefReq;
 };
 
-static CMethod* PMethodNew();
+CMethod* PmethodNew();
 
 #endif // SPLICE_METHOD_H

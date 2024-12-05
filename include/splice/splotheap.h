@@ -23,9 +23,10 @@ private:
     SPLOT *m_psplotFree;
     SPLOT *m_psplotAlloc;
     SPLOT *m_psplotRecyclable;
-    PFNDELETE m_pfndelete;
 
 public:
+    PFNDELETE m_pfndelete;
+
     void Startup(int cb, int c);
     void Shutdown();
     int PvAllocUnsafe();
@@ -44,7 +45,7 @@ extern CSplotheap g_splotheapMethod;
 
 static void *PvFromPsplot(SPLOT *psplot);
 static SPLOT *PsplotFromPv(void *pv);
-static bool FIsPvGarbage(void *pv);
-static void MarkPvAlive(void *pv);
+bool FIsPvGarbage(void *pv);
+void MarkPvAlive(void *pv);
 
 #endif // SPLICE_SPLOTHEAP_H
