@@ -21,7 +21,7 @@ public:
     void CloneTo(CPair* ppairClone, CFrame* pframeClone);
 };
 
-static CPair* PpairNew();
-static void DeletePair(CPair* ppair);
+CPair* PpairNew();
+void DeletePair(CPair* ppair);
 
 #endif // SPLICE_PAIR_H

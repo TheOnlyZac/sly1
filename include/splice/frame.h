@@ -11,4 +11,11 @@ class CFrame
     // todo Implement class.
 };
 
+// ...
+
+/**
+ * @brief Deletes the frame.
+ */
+void DeleteFrame(CFrame *pframe);
+
 #endif // SPLICE_FRAME_H

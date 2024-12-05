@@ -23,9 +23,10 @@ private:
     SPLOT *m_psplotFree;
     SPLOT *m_psplotAlloc;
     SPLOT *m_psplotRecyclable;
-    PFNDELETE m_pfndelete;
 
 public:
+    PFNDELETE m_pfndelete;
+
     void Startup(int cb, int c);
     void Shutdown();
     int PvAllocUnsafe();
