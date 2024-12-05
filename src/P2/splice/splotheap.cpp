@@ -40,21 +40,17 @@ static SPLOT *PsplotFromPv(void *pv)
     return (SPLOT *)((byte *)pv - sizeof(SPLOT));
 }
 
-// todo: both below functions are matching but blocked by reference in CGc::MarkLiveObjects
+bool FIsPvGarbage(void *pv)
+{
+    SPLOT *psplot = PsplotFromPv(pv);
+    return psplot->fAlive == 0;
+}
 
-INCLUDE_ASM(const s32, "P2/splice/splotheap", FIsPvGarbage__FPv);
-// static bool FIsPvGarbage(void* pv) {
-//     SPLOT* psplot = PsplotFromPv(pv);
-
-//     return psplot->fAlive == 0;
-// }
-
-INCLUDE_ASM(const s32, "P2/splice/splotheap", MarkPvAlive__FPv);
-// static void MarkPvAlive(void* pv) {
-//     SPLOT* psplot = PsplotFromPv(pv);
-
-//     psplot->fAlive = 1;
-// }
+void MarkPvAlive(void *pv)
+{
+    SPLOT *psplot = PsplotFromPv(pv);
+    psplot->fAlive = 1;
+}
 
 INCLUDE_ASM(const s32, "P2/splice/splotheap", func_0011C418);
 

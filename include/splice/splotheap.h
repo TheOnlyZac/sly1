@@ -44,7 +44,7 @@ extern CSplotheap g_splotheapMethod;
 
 static void *PvFromPsplot(SPLOT *psplot);
 static SPLOT *PsplotFromPv(void *pv);
-static bool FIsPvGarbage(void *pv);
-static void MarkPvAlive(void *pv);
+bool FIsPvGarbage(void *pv);
+void MarkPvAlive(void *pv);
 
 #endif // SPLICE_SPLOTHEAP_H
