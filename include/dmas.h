@@ -6,10 +6,16 @@
 #ifndef DMAS_H
 #define DMAS_H
 
-#include <sdk/ee/dma.h>
+#include <sce/libdma.h>
 #include <sdk/ee/eekernel.h>
 #include "common.h"
 #include <shd.h>
+
+extern sceDmaChan *g_pdcVif0;
+extern sceDmaChan *g_pdcVif1;
+extern sceDmaChan *g_pdcGif;
+extern sceDmaChan *g_pdcFromSpr;
+extern sceDmaChan *g_pdcToSpr;
 
 class DMAS
 {

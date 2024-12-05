@@ -47,9 +47,6 @@ extern "C"
      * @brief Generate a random number.
      */
     u_int rand();
-
-    extern struct RNG g_rng;
-    extern struct RNG *g_prng;
 };
 
 #endif // RAND_H
