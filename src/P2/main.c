@@ -1,9 +1,12 @@
 #include "common.h"
-// #include <game.h>
-// #include <prog.h>
+#include <sdk/ee/eekernel.h>
+#include <sce/libdma.h>
+#include <dmas.h>
 
 // extern g_chpzArgs;
 // extern g_aphzArgs;
+extern void *D_00211E10;
+extern void *D_00212110;
 
 /**
  * @brief Main function.
@@ -19,40 +22,34 @@ INCLUDE_ASM(const s32, "P2/main", main_epilogue);
 
 /**
  * @brief Starts up the VU0.
- *
- * @note Matching, but blocked by data definitions.
  */
-INCLUDE_ASM(const s32, "P2/main", StartupVU0__Fv);
-// void StartupVU0(void)
-// {
-//     D_00261F14->chcr.TTE = 1;
-//     FlushCache(0); /* XXX: bring in eekernel defs and use WRITEBACK_DCACHE */
+// INCLUDE_ASM(const s32, "P2/main", StartupVU0__Fv);
+void StartupVU0()
+{
+    g_pdcVif0->chcr.TTE = 1;
+    FlushCache(0); /* XXX: bring in eekernel defs and use WRITEBACK_DCACHE */
 
-//     // Send VU0 init DMAtag
-//     sceDmaSend(D_00261F14, (void *)&D_00211E10);
-//     func_00202C38(D_00261F14, 0, 0);
+    // Send VU0 init DMAtag
+    sceDmaSend(g_pdcVif0, &D_00211E10); // D_00211E10 is start of .vutext
+    sceDmaSync(g_pdcVif0, 0, 0);
 
-//     D_00261F14->chcr.TTE = 0;
-// }
+    g_pdcVif0->chcr.TTE = 0;
+}
 
 /**
  * @brief Starts up the VU1.
- *
- * @note Matching, but blocked by data definitions.
  */
-INCLUDE_ASM(const s32, "P2/main", StartupVU1__Fv);
-// void StartupVU1(void)
-// {
-//     // Enable tag transfer
-//     g_pdcVif1->chcr.TTE = 1;
-//     FlushCache(0); /* XXX: bring in eekernel defs and use WRITEBACK_DCACHE */
-//     // Send initialization DMAtag and wait.
-//     // Afterwards, disable tag transfer again.
-//     sceDmaSend(g_pdcVif1,(void*)&D_00212110);
-//     sceDmaSync(g_pdcVif1,0,0);
-//     g_pdcVif1->chcr.TTE = 0;
-//     return;
-// }
+void StartupVU1(void)
+{
+    // Enable tag transfer
+    g_pdcVif1->chcr.TTE = 1;
+    FlushCache(0); /* XXX: bring in eekernel defs and use WRITEBACK_DCACHE */
+
+    // Send initialization DMAtag and wait. Then, disable tag transfer again.
+    sceDmaSend(g_pdcVif1, &D_00212110);
+    sceDmaSync(g_pdcVif1, 0, 0);
+    g_pdcVif1->chcr.TTE = 0;
+}
 
 /**
  * @brief Starts each game system.

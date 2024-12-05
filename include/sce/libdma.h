@@ -1,10 +1,10 @@
 /**
- * @file include/sdk/ee/libdma.h
+ * @file libdma.h
  *
- * @brief Direct Memory Access library.
+ * @brief Direct memory access library.
  */
-#ifndef SCE_DMA_H
-#define SCE_DMA_H
+#ifndef LIBDMA_H
+#define LIBDMA_H
 
 typedef unsigned char u_char;
 typedef unsigned short u_short;
@@ -62,12 +62,22 @@ extern "C"
     };
 
     /**
+     * @brief Get a DMA channel structure by ID
+     *
+     * @param id Channel number
+     * @return sceDmaChan*
+     */
+    sceDmaChan *sceDmaGetChan(int id);
+
+    /**
      * @brief Reset the DMA controller
      *
      * @param mode 0 = disable, 1 = enable
      * @return Previous mode before reset
      */
     int sceDmaReset(int mode);
+
+    // ...
 
     /**
      * @brief Start DMA transfer from memory to a device using Source Chain Mode.
@@ -78,12 +88,9 @@ extern "C"
     void sceDmaSend(sceDmaChan *chan, void *tag);
 
     /**
-     * @brief Get a DMA channel structure by ID
-     *
-     * @param id Channel number
-     * @return sceDmaChan*
+     * @todo Document this function.
      */
-    sceDmaChan *sceDmaGetChan(int id);
+    u_int sceDmaSync(sceDmaChan *pdmaChan, int mode, int timeout);
 }
 
-#endif // SCE_DMA_H
+#endif // LIBDMA_H

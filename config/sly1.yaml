@@ -339,20 +339,18 @@ segments:
     #- [0x, data, P2/dialog]
 
     - [0x162d70, data, P2/difficulty]
-    - [0x162f14, data]
-
-    #- [0x162f14, data, P2/dl]
-    #- [0x, data, P2/dmas]
-    #- [0x, data, P2/dsp]
-    #- [0x, data, P2/dysh]
-    #- [0x, data, P2/dzg]
-    #- [0x, data, P2/emitter]
+    #- [n/a, data, P2/dl]
+    - [0x162f14, data, P2/dmas]
+    #- [n/a, data, P2/dsp]
+    - [0x162f30, data, P2/dysh]
+    #- [n/a, data, P2/dzg]
+    - [0x162f80, data, P2/emitter]
     #- [0x, data, P2/eyes]
     #- [0x, data, P2/fader]
-    #- [0x, data] #? unknown file
+    #- [0x, data, P2/???] #? unknown file
     #- [0x, data, P2/find]
     #- [0x, data, P2/flash]
-    #- [0x, data, P2/fly]
+    - [0x163180, data, P2/fly]
     #- [0x, data, P2/font]
     #- [0x, data, P2/frm]
     #- [0x, data, P2/freeze]
