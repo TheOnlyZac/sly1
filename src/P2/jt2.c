@@ -13,9 +13,8 @@ INCLUDE_ASM(const s32, "P2/jt2", EnableJtActadj__FP2JTi);
 
 INCLUDE_ASM(const s32, "P2/jt2", SetJtJts__FP2JT3JTS4JTBS);
 
-//INCLUDE_ASM(const s32, "P2/jt2", ProfileJt__FP2JTi);
-void ProfileJt(JT* pjt, int fProfile) {
-    // Does nothing.
+void ProfileJt(JT *pjt, int fProfile)
+{
     return;
 }
 

@@ -7,6 +7,7 @@
 
 extern CGc g_gc;
 
+// todo: fix blocked references
 INCLUDE_ASM(const s32, "P2/splice/spliceutils", StartupSplice__Fv);
 // void StartupSplice()
 // {
