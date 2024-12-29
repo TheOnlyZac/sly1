@@ -370,6 +370,7 @@ snd_SendIOPCommandNoWait = 0x11e8c8; // type:func
 InitAlo__FP3ALO = 0x123ED0; // type:func
 SnipAloObjects__FP3ALOiP4SNIP = 0x124DF8; // type:func
 UpdateAlo__FP3ALOf = 0x124FC0; // type:func
+CloneAlo__FP3ALOT0 = 0x127048; // type:func
 LoadAloFromBrx__FP3ALOP18CBinaryInputStream = 0x1289C0; // type:func
 FadeAloIn__FP3ALOf = 0x126cb8 = 0x126CB8; // type:func
 FadeAloOut__FP3ALOf = 0x126d60; // type:func

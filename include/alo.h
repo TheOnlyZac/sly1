@@ -83,6 +83,12 @@ void SnipAloObjects(ALO *palo, int csnip, SNIP *asnip);
 void UpdateAlo(ALO *palo, float dt);
 
 /**
+ * @brief Clones an ALO
+ * 
+ */
+void CloneAlo(ALO *palo, ALO *paloBase);
+
+/**
  * Fades in an ALO
  */
 void FadeAloIn(ALO *palo, float dtFade);

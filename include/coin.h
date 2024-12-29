@@ -124,6 +124,16 @@ void InitDprize(DPRIZE *pdprize);
 void LoadDprizeFromBrx(DPRIZE *pdprize, CBinaryInputStream *pbis);
 
 /**
+ * @brief Clone a DPrize
+ * 
+ * @param pdprize DPrize clone target
+ * @param pdprizeBase DPrize clone source
+ * 
+ * @note ichkCollected and dle will not be overwritten
+ */
+void CloneDprize(DPRIZE *pdprize, DPRIZE *pdprizeBase);
+
+/**
  * @brief Initializes a DPrize
  *
  * @param pdprize DPrize to initialize
