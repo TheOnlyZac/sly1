@@ -5,7 +5,6 @@
 #define PHASEMEM_H
 
 #include "common.h"
-#include <sdk/ee/eekernel.h>
 
 enum PHASE {
     PHASE_Nil = -1,
@@ -17,6 +16,6 @@ enum PHASE {
     PHASE_Max = 0x5
 };
 
-static PHASE g_phase;
+extern PHASE g_phase;
 
 #endif // PHASEMEM_H
