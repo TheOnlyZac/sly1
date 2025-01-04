@@ -32,7 +32,7 @@ sudo ./setup_progd_linux.sh
 
 # Check if disc/SCUS_971.98 exists
 echo "Setup complete!"
-if [ ! -f ../disc/SCUS_971.98 ] then
+if [ ! -f ../disc/SCUS_971.98 ]; then
   echo "Now, copy SCUS_971.98 from your copy of the game to the 'disc' directory of this project."
   echo "Then build the project by running the 'build.sh' script."
   exit
