@@ -25,7 +25,13 @@ void LoadDprizeFromBrx(DPRIZE *pdprize, CBinaryInputStream *pbis)
     SnipAloObjects(pdprize, 5, s_asnipDprize);
 }
 
-INCLUDE_ASM(const s32, "P2/coin", CloneDprize__FP6DPRIZET0);
+void CloneDprize(DPRIZE *pdprize, DPRIZE *pdprizeBase) {
+    int ichkCollected = pdprize->ichkCollected;
+    DLE dle = pdprize->dle;
+    CloneAlo((ALO*)pdprize, (ALO*)pdprizeBase);
+    pdprize->dle = dle;
+    pdprize->ichkCollected = ichkCollected;
+}
 
 INCLUDE_ASM(const s32, "P2/coin", PostDprizeLoad__FP6DPRIZE);
 
