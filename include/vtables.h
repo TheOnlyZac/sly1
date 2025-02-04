@@ -6,7 +6,20 @@
 #ifndef VTABLES_H
 #define VTABLES_H
 
+#include <cid.h>
+
 struct BLOT;
+
+/**
+ * @brief VT for basic objects.
+ * 
+ * @todo pvtSuper should be VT* according to prototype.
+ */
+struct VTBASIC
+{
+    VTBASIC *pvtSuper;
+    CID cid;
+};
 
 /**
  * @brief VT for generic blots.
