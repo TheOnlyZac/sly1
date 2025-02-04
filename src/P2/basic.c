@@ -6,7 +6,7 @@ extern CGc g_gc;
 
 int FIsBasicDerivedFrom(BASIC *pbasic, CID cid) {
     VTBASIC *vt = pbasic->pvtbasic;
-    while (vt != 0) {
+    while (vt != nullptr) {
         if (vt->cid == cid) return 1;
         vt = vt->pvtSuper;
     }
@@ -15,7 +15,7 @@ int FIsBasicDerivedFrom(BASIC *pbasic, CID cid) {
 }
 
 void EnsureBasicSidebag(BASIC *pbasic) {
-    if (pbasic->psidebag == 0) {
+    if (pbasic->psidebag == nullptr) {
         CSidebag *psidebag = PsidebagNew();
         pbasic->psidebag = psidebag;
         g_gc.AddRootSidebag(psidebag);
@@ -23,4 +23,6 @@ void EnsureBasicSidebag(BASIC *pbasic) {
     return;
 }
 
-INCLUDE_ASM(const s32, "P2/basic", func_00130158);
+void GetBasicCid(BASIC *pbasic, CID* pcid) {
+    *pcid = pbasic->pvtbasic->cid;
+}
