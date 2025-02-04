@@ -28,4 +28,6 @@ private:
     SBB m_asbb[16];
 };
 
+CSidebag* PsidebagNew();
+
 #endif // SPLICE_SIDEBAG_H

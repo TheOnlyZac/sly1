@@ -1,4 +1,8 @@
 #include <basic.h>
+#include <splice/gc.h>
+#include <splice/sidebag.h>
+
+extern CGc g_gc;
 
 int FIsBasicDerivedFrom(BASIC *pbasic, CID cid) {
     VTBASIC *vt = pbasic->pvtbasic;
@@ -10,6 +14,13 @@ int FIsBasicDerivedFrom(BASIC *pbasic, CID cid) {
     return 0;
 }
 
-INCLUDE_ASM(const s32, "P2/basic", EnsureBasicSidebag__FP5BASIC);
+void EnsureBasicSidebag(BASIC *pbasic) {
+    if (pbasic->psidebag == 0) {
+        CSidebag *psidebag = PsidebagNew();
+        pbasic->psidebag = psidebag;
+        g_gc.AddRootSidebag(psidebag);
+    }
+    return;
+}
 
 INCLUDE_ASM(const s32, "P2/basic", func_00130158);
