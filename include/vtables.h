@@ -7,19 +7,77 @@
 #define VTABLES_H
 
 #include <cid.h>
+#include <mq.h>
 
-struct BLOT;
+/**
+ * @brief Generic VT struct. Used to determine which VTables an entity inherits at runtime.
+ */
+struct VT
+{
+    VT *pvtSuper;
+    CID cid;
+    int grfcid;
+    int cb;
+};
+
+struct CBinaryInputStream;
+struct LO;
+
+/**
+ * @brief VT for LO objects.
+ */
+struct VTLO
+{
+    VT *pvtSuper;
+    CID cid;
+    int grfcid;
+    int cb;
+
+    void (*pfnInitLo)(LO *);
+    void (*pfnSetLoDefaults)(LO *);
+    void (*pfnAddLo)(LO *);
+    void (*pfnRemoveLo)(LO *);
+    void (*pfnAddLoHierarchy)(LO *);
+    void (*pfnRemoveLoHierarchy)(LO *);
+    void (*pfnOnLoAdd)(LO *);
+    void (*pfnOnLoRemove)(LO *);
+    void (*pfnCloneLoHierarchy)(LO *, LO *);
+    void (*pfnCloneLo)(LO *, LO *);
+    void (*pfnLoadLoFromBrx)(LO *, CBinaryInputStream *);
+    void (*pfnAddLoRecursive)(/* @todo: null in release & proto? */);
+    void (*pfnRemoveLoRecursive)(/* @todo: null in release & proto? */);
+    void (*pfnHandleLoMessage)(LO *, MSGID, void *);
+    void (*pfnSendLoMessage)(LO *, MSGID, void *);
+    void (*pfnBindLo)(LO *);
+    void (*pfnPostLoLoad)(LO *);
+
+    /**
+     * @todo From prototype, not confirmed if in release
+     */
+    void (*pfnUpdateLo)();
+    void (*pfnUpdateLoXfWorld)();
+    void (*pfnUpdateLoXfWorldHierarchy)();
+    void (*pfnFreezeLo)();
+    void (*pfnSetLoParent)();
+    void (*pfnApplyLoProxy)();
+    void (*pfnSubscribeLoObject)();
+    void (*pfnUnsubscribeLoObject)();
+    void (*pfnSubscribeLoStruct)();
+    void (*pfnUnsubscribeLoStruct)();
+    void (*pfnGetLoParams)();
+    void (*pfnUpdateLoLiveEdit)();
+};
 
 /**
  * @brief VT for basic objects.
- * 
- * @todo pvtSuper should be VT* according to prototype.
  */
 struct VTBASIC
 {
-    VTBASIC *pvtSuper;
+    VT *pvtSuper;
     CID cid;
 };
+
+struct BLOT;
 
 /**
  * @brief VT for generic blots.

@@ -156,7 +156,7 @@ segments:
     #- [0x, asm, P2/keyhole]
     #- [0x, asm, P2/landing]
     #- [0x, asm, P2/lgn]
-    - [0x83c18, asm, P2/lo]
+    - [0x83c18, c, P2/lo]
     - [0x84cc8, asm, P2/light]
     - [0x86358, asm, P2/lookat]
     - [0x86758, c, P2/main]

@@ -1035,7 +1035,47 @@ g_pjt = 0x262e10; // size:0x4
 ////////////////////////////////////////////////////////////////
 // P2/lo.c
 ////////////////////////////////////////////////////////////////
+InitLo__FP2LO = 0x182c18; // type:func
+PostLoLoad__FP2LO = 0x182c58; // type:func
+AddLo__FP2LO = 0x182c80; // type:func
+AddLoHierarchy__FP2LO = 0x182d00; // type:func
+OnLoAdd__Fv = 0x182d48; // type:func
+RemoveLo__FP2LO = 0x182d50; // type:func
+DeferLoRemove__FP2LO = 0x182dd8; // type:func
+SetLoSuckHideLimits__FP2LOP2LM = 0x182e40; // type:func
+RemoveLoHierarchy__FP2LO = 0x182e88; // type:func
+OnLoRemove__FP2LO = 0x182ed0; // type:func
+SnipLo__FP2LO = 0x182ed8; // type:func
+FFindLoParent__FP2LOP3ALO = 0x182f40; // type:func
+SetLoParent__FP2LOP3ALO = 0x182f78; // type:func
 FIsLoInWorld__FP2LO = 0x182fc8; // type:func
+GetLoInWorld__FP2LOPi = 0x183028; // type:func
+GetLoInWorld_padding = 0x183050; // type:func
+PloCloneLo__FP2LOP2SWP3ALO = 0x183058; // type:func
+CloneLoHierarchy__FP2LOT0 = 0x1830b0; // type:func
+CloneLo__FP2LOT0 = 0x1830d8; // type:func
+SubscribeSwPpmqStruct__FP2SWPP2MQPFPv5MSGIDPv_vPv = 0x1831e8; // type:func
+UnsubscribeSwPpmqStruct__FP2SWPP2MQPFPv5MSGIDPv_vPv = 0x183238; // type:func
+SubscribeLoStruct__FP2LOPFPv5MSGIDPv_vPv = 0x183290; // type:func
+UnsubscribeLoStruct__FP2LOPFPv5MSGIDPv_vPv = 0x1832c0; // type:func
+SubscribeLoObject__FP2LOT0 = 0x1832f0; // type:func
+UnsubscribeLoObject__FP2LOT0 = 0x183320; // type:func
+SendLoMessage__FP2LO5MSGIDPv = 0x183350; // type:func
+LoadLoFromBrx__FP2LOP18CBinaryInputStream = 0x1833d0; // type:func
+FMatchesLoName__FP2LO3OID = 0x1833f0; // type:func
+OidProxyLo__FP2LO = 0x183438; // type:func
+OidProxyLoPreferred__FP2LO = 0x183458; // type:func
+GetLoOidProxy__FP2LOP3OID = 0x183478; // type:func
+PostSpliceEventCallback__FP2LOUiPv = 0x1834a0; // type:func
+FFilterSpliceEvent__FP2LO7SYMEVIDiPPv = 0x183668; // type:func
+HandleLoSpliceEvent__FP2LOUiiPPv = 0x1837e0; // type:func
+EnsureLoSidebagBool__FP2LO5OPTIDi = 0x183910; // type:func
+EnsureLoSidebagInt__FP2LO5OPTIDi = 0x183990; // type:func
+EnsureLoSidebagFloat__FP2LO5OPTIDf = 0x183a10; // type:func
+EnsureLoSidebagClq__FP2LO5OPTIDP3CLQ = 0x183a90; // type:func
+EnsureLoSidebagLm__FP2LO5OPTIDP2LM = 0x183b20; // type:func
+EnsureLoSidebagOid__FP2LO5OPTID3OID = 0x183bb8; // type:func
+EnsureLoSidebagVector__FP2LO5OPTIDP6VECTOR = 0x183c38; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -1313,6 +1353,8 @@ VecCombo__FG8VU_FLOATG9VU_VECTORT0T1 = 0x1DB460; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/sw.c
 ////////////////////////////////////////////////////////////////
+PmqAllocSw__FP2SW = 0x1dbbd8; // type:func
+FreeSwMqList__FP2SWP2MQ = 0x1dbc18; // type:func
 IncrementSwHandsOff__FP2SW = 0x1dda20; // type:func
 DecrementSwHandsOff__FP2SW = 0x1dda50; // type:func
 

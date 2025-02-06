@@ -55,10 +55,10 @@ struct ALO : public LO
     //XF xf;
     //VECTOR pso
 
-    undefined4 padding[0x88];
+    undefined4 padding[0x8b];
     FICG ficg;
 
-    undefined1 padding2[0x16];
+    undefined1 padding2[0x1a];
     // ...
 };
 

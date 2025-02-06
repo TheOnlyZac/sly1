@@ -5,7 +5,7 @@
 extern CGc g_gc;
 
 int FIsBasicDerivedFrom(BASIC *pbasic, CID cid) {
-    VTBASIC *vt = pbasic->pvtbasic;
+    VT *vt = (VT*)pbasic->pvtbasic;
     while (vt != nullptr) {
         if (vt->cid == cid) return 1;
         vt = vt->pvtSuper;

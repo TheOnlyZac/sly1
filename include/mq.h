@@ -45,12 +45,14 @@ enum MSGID
     MSGID_Max = 26
 };
 
+typedef void (*PFNMQ)(void*, MSGID, void*);
+
 /**
  * @brief Message queue(?)
  */
 struct MQ
 {
-    void *pfnmq;
+    PFNMQ pfnmq;
     void *pvContext;
     MSGID msgid;
     void *pvCallbackData;
