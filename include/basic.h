@@ -8,7 +8,7 @@
 
 #include "common.h"
 #include <splice/sidebag.h>
-#include <cid.h>
+#include <vtables.h>
 
 /**
  * @brief Basic object.
@@ -19,7 +19,7 @@
  */
 struct BASIC
 {
-    int field_0x0; // placeholder for vtable
+    VTBASIC *pvtbasic;
     CSidebag *psidebag;
 };
 
