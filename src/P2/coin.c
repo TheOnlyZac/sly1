@@ -1,6 +1,7 @@
 #include <coin.h>
 #include <chkpnt.h>
 #include <bis.h>
+#include <sw.h>
 
 void InitDprize(DPRIZE *pdprize)
 {

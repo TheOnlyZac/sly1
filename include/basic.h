@@ -8,7 +8,6 @@
 
 #include "common.h"
 #include <splice/sidebag.h>
-#include <vtables.h>
 
 /**
  * @brief Basic object.
@@ -19,7 +18,10 @@
  */
 struct BASIC
 {
-    VTBASIC *pvtbasic;
+    union {
+        VTBASIC *pvtbasic;
+        VTLO *pvtlo;
+    };
     CSidebag *psidebag;
 };
 
