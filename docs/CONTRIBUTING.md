@@ -15,7 +15,7 @@ By following this guide, you will learn how to fork the repo on GitHub, choose a
 3. [Match the function using Decomp.me](#match-the-function-using-decompme)
 4. [Integrate the matched code](#integrate-the-matched-code)
 5. [Make a Pull Request](#make-a-pull-request)
-5. [Conclusion](#conclusion)
+6. [Conclusion](#conclusion)
 
 
 ## Getting started
