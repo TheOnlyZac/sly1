@@ -1,6 +1,9 @@
 #include <brx.h>
 
-INCLUDE_ASM(const s32, "P2/brx", StartupBrx__Fv);
+void StartupBrx()
+{
+    BuildEopids();
+}
 
 INCLUDE_ASM(const s32, "P2/brx", PloNew__F3CIDP2SWP3ALO3OIDi);
 
