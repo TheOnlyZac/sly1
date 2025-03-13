@@ -107,7 +107,9 @@ INCLUDE_ASM(const s32, "P2/util", CSolveQuadratic);
 //     a = a * 2;
 
 //     if (alpha < 0.0f)
+//     {
 //         return 0;
+//     }
 
 //     beta = b / a;
 //     alpha = sqrtf(alpha) / a;
@@ -188,7 +190,6 @@ int SgnCompareG(float *pg1, float *pg2)
 
 void Force(void *pv)
 {
-    // Does nothing.
     return;
 }
 

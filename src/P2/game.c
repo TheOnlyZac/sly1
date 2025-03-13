@@ -31,7 +31,7 @@ INCLUDE_ASM(const s32, "P2/game", get_game_completion__Fv);
 /**
  * @todo Close to matching but there's a problem with the rodata.
  */
-INCLUDE_ASM(const s32, "P2/game", UnlockIntroCutsceneFromWid);
+INCLUDE_ASM(const s32, "P2/game", UnlockIntroCutsceneFromWid__Fi);
 // void UnlockIntroCutsceneFromWid(int wid)
 // {
 //     /* Check the unlocked cutscene by setting the corresponding
