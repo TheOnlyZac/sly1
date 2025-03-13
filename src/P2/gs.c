@@ -37,12 +37,17 @@ void InitGsb(GSB *pgsb, int igsMin, int igsMax)
     pgsb->igsMax = igsMax;
 }
 
-void ResetGsb(GSB* pGsb)
+void ResetGsb(GSB *pGsb)
 {
-  pGsb->igsMac = pGsb->igsMin;
+    pGsb->igsMac = pGsb->igsMin;
 }
 
-INCLUDE_ASM(const s32, "P2/gs", IgsAllocGsb__FP3GSBi);
+int IgsAllocGsb(GSB *pgsb, int iCount)
+{
+    int igsOld = pgsb->igsMac;
+    pgsb->igsMac += iCount;
+    return igsOld;
+}
 
 INCLUDE_ASM(const s32, "P2/gs", BuildImageGifs__FiiiiiiP4GIFS);
 

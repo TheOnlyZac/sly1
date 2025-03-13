@@ -10,6 +10,7 @@
 #include "include_rodata.h"
 #include "types.h"
 #include "vtables.h"
+#include "spaprops.h"
 
 extern int _gpReg; // Global pointer register
 

@@ -17,6 +17,8 @@ g_chzThePasswordIs = 0x24a848; // size:0x14
  // start of .vutext section
 D_00211E10 = 0x211E10; // size:0x4
 
+BuildEopids__Fv = 0x109488; // type:func
+
 
 ////////////////////////////////////////////////////////////////
 // Unknown file
@@ -852,7 +854,7 @@ FFindLevel = 0x1601A0; // type:func
 get_level_completion_by_id = 0x1601D8; // type:func
 tally_world_completion = 0x160208; // type:func
 get_game_completion__Fv = 0x1602A0; // type:func
-UnlockIntroCutsceneFromWid = 0x160340; // type:func
+UnlockIntroCutsceneFromWid__Fi = 0x160340; // type:func
 DefeatBossFromWid = 0x1603E8; // type:func
 UnlockEndgameCutscenesFromFgs = 0x1604B8; // type:func
 PlayEndingFromCompletionFlags = 0x160578; // type:func
@@ -1167,7 +1169,7 @@ DrawSw__FP2SWP2CM = 0x19DC98; // type:func
 ////////////////////////////////////////////////////////////////
 InitRumble__FP6RUMBLEii = 0x1A7B20; // type:func
 TriggerRumbleRumk__FP6RUMBLE4RUMKf = 0x1A7CE8; // type:func
-
+SetRumbleRums__FP6RUMBLE4RUMS = 0x1A7D98; // type:func
 
 ////////////////////////////////////////////////////////////////
 // P2/screen.c

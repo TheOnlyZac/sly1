@@ -94,7 +94,35 @@ int FFloatsNear(float g1, float g2, float gEpsilon)
     return (g2 / x) < gEpsilon;
 }
 
+/**
+ * @todo 94.29% matched
+ */
 INCLUDE_ASM(const s32, "P2/util", CSolveQuadratic);
+// int CSolveQuadratic(float a, float b, float c, float *ax)
+// {
+//     float alpha;
+//     float beta;
+
+//     alpha = b * b - 4.f * a * c;
+//     a = a * 2;
+
+//     if (alpha < 0.0f)
+//     {
+//         return 0;
+//     }
+
+//     beta = b / a;
+//     alpha = sqrtf(alpha) / a;
+//     if (fabsf(alpha) < 0.0001f)
+//     {
+//         *ax = -beta;
+//         return 1;
+//     }
+
+//     *ax = -beta + alpha;
+//     ax[1] = -beta - alpha;
+//     return 2;
+// }
 
 void PrescaleClq(CLQ *pclqSrc, float ru, float du, CLQ *pclqDst)
 {
@@ -162,7 +190,6 @@ int SgnCompareG(float *pg1, float *pg2)
 
 void Force(void *pv)
 {
-    // Does nothing.
     return;
 }
 

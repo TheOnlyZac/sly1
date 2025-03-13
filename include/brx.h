@@ -9,13 +9,18 @@
 #include "common.h"
 
 /**
- * @todo 
+ * @brief Builds the eopids array.
  */
-void LoadOptionsFromBrx(void *pvStruct, CBinaryInputStream *pbis);
+void StartupBrx();
 
 /**
  * @brief Get the PLO index from a stock OID.
  */
 uint IploFromStockOid(int oid);
+
+/**
+ * @todo
+ */
+void LoadOptionsFromBrx(void *pvStruct, CBinaryInputStream *pbis);
 
 #endif // BRX_H

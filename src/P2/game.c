@@ -28,7 +28,37 @@ INCLUDE_ASM(const s32, "P2/game", tally_world_completion);
 
 INCLUDE_ASM(const s32, "P2/game", get_game_completion__Fv);
 
-INCLUDE_ASM(const s32, "P2/game", UnlockIntroCutsceneFromWid);
+/**
+ * @todo Close to matching but there's a problem with the rodata.
+ */
+INCLUDE_ASM(const s32, "P2/game", UnlockIntroCutsceneFromWid__Fi);
+// void UnlockIntroCutsceneFromWid(int wid)
+// {
+//     /* Check the unlocked cutscene by setting the corresponding
+//        flag on the unlocked_cutscenes in the game state */
+//     switch (wid)
+//     {
+//     case 1:
+//         /* Unlock cutscene "Tide of Terror" */
+//         g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x10;
+//         return;
+//     case 2:
+//         /* Unlock cutscene "Sunset Snake Eyes" */
+//         g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x40;
+//         return;
+//     case 3:
+//         /* Unlock cutscene "Vicious Voodoo" */
+//         g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x100;
+//         return;
+//     case 4:
+//         /* Unlock cutscene "Fire in the Sky" */
+//         g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x400;
+//         return;
+//     case 5:
+//         /* Unlock cutscene "The Cold Heart of Hate" */
+//         g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x1000;
+//     }
+// }
 
 INCLUDE_ASM(const s32, "P2/game", DefeatBossFromWid);
 
@@ -79,7 +109,8 @@ INCLUDE_ASM(const s32, "P2/game", func_00160C90);
 int PfLookupDialog(LS *pls, OID oidDialog)
 {
     // todo figure out what these magic numbers represent
-    if (oidDialog - 0x33bU >= 0xc) {
+    if (oidDialog - 0x33bU >= 0xc)
+    {
         return 0;
     }
     return -0xcd8 + (int)pls + (oidDialog * 4);

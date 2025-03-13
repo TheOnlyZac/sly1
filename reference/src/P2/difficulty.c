@@ -96,7 +96,6 @@ void OnDifficultyWorldPostLoad(DIFFICULTY* pdifficulty)
 /**
  * @note This funciton is not implemented. It may be leftover from previous versions
  * of the game where there was a teleport powerup.
- * @note Matching 100%
 */
 void OnDifficultyInitialTeleport(DIFFICULTY* pdifficulty)
 {

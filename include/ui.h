@@ -8,6 +8,7 @@
 
 #include "common.h"
 #include <screen.h>
+#include <joy.h>
 
 /**
  * @brief User interface.
@@ -23,6 +24,25 @@ struct UI
     UIS uisPlaying;
     float rvolMusicPrepause;
     float rvolEffectsPrepause;
+    int unk1;
+    int unk2;
+    int unk3;
+    int unk4;
+    int unk5;
+    int unk6;
 };
+
+void StartupUi();
+void InitUi(UI *pui);
+void PostUiLoad(UI *pui);
+void UpdateUi(UI *pui);
+void PushUiActiveBlot(UI *pui, BLOT *pblot);
+void PopUiActiveBlot(UI *pui);
+void DrawUi();
+void RenderUi();
+void ResetUi(UI *pui);
+void SetUiUis(UI *pui, UIS uis);
+void SetUiUPause(UI *pui, float rPause);
+// ...more functions...
 
 #endif // UI_H
