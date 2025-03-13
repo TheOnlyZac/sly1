@@ -16,7 +16,18 @@ float RadNormalize(float rad)
     return rad;
 }
 
-INCLUDE_ASM(const s32, "P2/util", GLimitAbs);
+float GLimitAbs(float g,float absLimit)
+{
+    if (g > absLimit)
+    {
+        g = absLimit;
+    }
+    else if (g < -absLimit)
+    {
+        g = -absLimit;
+    }
+    return g;
+}
 
 INCLUDE_ASM(const s32, "P2/util", GSmooth__FfffP3SMPPf);
 
