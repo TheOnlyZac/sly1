@@ -316,7 +316,7 @@ void SetTimer(TIMER *ptimer, float dt);
 
 void SetTimerSpeed(TIMER *ptimer, float svt);
 
-void SetTimerExpire(TIMER *ptimer, float dt, undefined1 *pfntn);
+void SetTimerExpire(TIMER *ptimer, float dt, void *pfntn);
 
 void StartTimer(TIMER *ptimer);
 

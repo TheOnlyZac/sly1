@@ -118,6 +118,9 @@ int FFloatsNear(float g1, float g2, float gEpsilon);
  */
 int CSolveQuadratic(float a, float b, float c, float *ax);
 
+/**
+ * @todo Add documentation for this function.
+ */
 void PrescaleClq(CLQ *pclqSrc, float ru, float du, CLQ *pclqDst);
 
 /**
