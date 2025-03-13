@@ -95,7 +95,7 @@ int FFloatsNear(float g1, float g2, float gEpsilon)
 }
 
 /**
- * @note 94.29% matched
+ * @todo 94.29% matched
  */
 INCLUDE_ASM(const s32, "P2/util", CSolveQuadratic);
 // int CSolveQuadratic(float a, float b, float c, float *ax)

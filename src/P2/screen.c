@@ -128,7 +128,7 @@ void SetTimerSpeed(TIMER *ptimer, float svt) {
 }
 
 /**
- * @note Matches but there's issues with the signature.
+ * @todo Matches but there's issues with the signature.
  */
 INCLUDE_ASM(const s32, "P2/screen", SetTimerExpire__FP5TIMERfPFP5TIMER9TIMERNOTK_v);
 // void SetTimerExpire(TIMER *ptimer, float dt, void *pfntn) {

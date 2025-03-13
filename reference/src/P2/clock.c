@@ -102,17 +102,11 @@ void MarkClockTickRealOnly(CLOCK* pClock)
 	pClock->tReal = pClock->tReal + dtReal * CLOCK_EE_TICK_DURATION;
 }
 
-/**
- * @note Matching 100%
-*/
 void ResetClock(CLOCK* pclock, float t)
 {
 	pclock->t = t;
 }
 
-/**
- * @note Matching 100%
-*/
 void SetClockEnabled(CLOCK* pclock, int fEnabled)
 {
 	pclock->fEnabled = fEnabled;

@@ -217,9 +217,6 @@ float GModPositive(float gDividend, float gDivisor)
 
 //INCLUDE_ASM(const s32, "P2/util", FitClq);
 
-/**
- * @note Matching 100%
-*/
 BOOL FCheckLm(LM* plm, float g)
 {
 	return (plm->gMin < g) && (g < plm->gMax);
@@ -266,12 +263,8 @@ int SgnCompareG(float* pg1, float* pg2)
 	return result;
 }
 
-/**
- * @note Matching 100%
-*/
 void Force(void *)
 {
-	// This function is empty.
 	return;
 }
 
