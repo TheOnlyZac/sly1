@@ -160,7 +160,17 @@ int FCheckLm(LM *plm, float g)
     return (plm->gMin < g) && (g < plm->gMax);
 }
 
-INCLUDE_ASM(const s32, "P2/util", FCheckAlm);
+bool FCheckAlm(int clm, LM* alm, float g)
+{
+    for (int i = 0; i < clm; i++)
+    {
+        if (FCheckLm(alm+i, g) != 0) 
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
 float GLimitLm(struct LM *plm, float g)
 {
