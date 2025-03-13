@@ -83,5 +83,6 @@ struct RUMBLE
 
 void InitRumble(RUMBLE *prumble, int nPort, int nSlot);
 void TriggerRumbleRumk(RUMBLE *prumble, RUMK rumk, float dt);
+void SetRumbleRums(RUMBLE *prumble, RUMS rums);
 
 #endif // RUMBLE_H

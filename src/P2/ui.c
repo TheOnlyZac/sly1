@@ -16,7 +16,20 @@ INCLUDE_ASM(const s32, "P2/ui", DrawUi__Fv);
 
 INCLUDE_ASM(const s32, "P2/ui", RenderUi__Fv);
 
-INCLUDE_ASM(const s32, "P2/ui", ResetUi__FP2UI);
+void ResetUi(UI *pui)
+{
+    while (pui->unk5 >= 2)
+    {
+        PopUiActiveBlot(pui);
+    }
+
+    pui->unk5 = 1;
+    pui->cpblotActive = 0;
+    pui->unk6 = -1;
+
+    SetRumbleRums(g_joy.prumble, RUMS_Stop);
+    ResetBlots();
+}
 
 INCLUDE_ASM(const s32, "P2/ui", SetUiUis__FP2UI3UIS);
 
