@@ -256,7 +256,7 @@ segments:
     - [0xf49f8, c, P2/xform1]
     - [0xf4c38, asm, P2/xform_PwarpFromOid] # Should be in P2/xform but doesn't match when linked with INCLUDE_ASM
     - [0xf4d80, c, P2/xform2]
-    - [0xf5f20, asm, P2/zap]
+    - [0xf5f20, c, P2/zap]
 
     ## Source files in May proto that aren't in release:
     # P2/cycle.c - some kind of wheeled vehicle

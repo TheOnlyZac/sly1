@@ -162,10 +162,10 @@ enum EDK
 struct EXIT : public ALO
 {
     int fDefault;
+    EXITS exits;
     EXITS fKeyed;
     float fFollowDefault;
     int fTotals;
-    EXITS exits;
     float tExits;
     int ctsurf;
     TSURF *atsurf;
