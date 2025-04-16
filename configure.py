@@ -20,7 +20,7 @@ ROOT = Path(__file__).parent.resolve()
 TOOLS_DIR = ROOT / "tools"
 OUTDIR = "out"
 
-YAML_FILE = "config/sly1.yaml"
+YAML_FILE = Path("config/sly1.yaml")
 BASENAME = "SCUS_971.98"
 LD_PATH = f"{BASENAME}.ld"
 ELF_PATH = f"{OUTDIR}/{BASENAME}"

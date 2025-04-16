@@ -10,6 +10,8 @@ options:
   platform: ps2
   compiler: GCC
 
+  use_legacy_include_asm: True
+
   # Output paths
   asm_path: asm
   src_path: src
@@ -35,7 +37,7 @@ options:
 
   # ELF sections
   section_order: [".text", ".vutext", ".rodata", ".data", ".bss"]
-  auto_all_sections: [".rodata", ".data", ".bss"]
+  auto_link_sections: [".rodata", ".data", ".bss"]
 
   # Linker script options
   subalign: 4
@@ -282,7 +284,7 @@ segments:
     # Rodata
     #--------------------------------------------------------
     - [0x118380, rodata] #MARK: rodata
-    - [0x1225a0, rodata, P2/cm]
+    # - [0x1225a0, .rodata, P2/cm]
     - [0x141000, rodata] # todo
     - [0x149FE0, .rodata, P2/splice/bif]
     - [0x14A200, rodata] #todo: remove line and uncomment next for RefEvalAssert

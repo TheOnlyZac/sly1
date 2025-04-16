@@ -88,7 +88,7 @@ To build the project, you will need to extract the original ELF file from your o
 
 ### Install python packages
 
-If you don't have Python 3.8 or higher, install it:
+If you don't have Python 3.9 or higher, install it:
 
 ```bash
 sudo apt-get install python3 python3-pip
