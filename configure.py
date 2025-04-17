@@ -186,7 +186,7 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
                     if "P2/splice/" in name:
                         category = CATEGORY_MAP["splice"]
                     else:
-                        category = CATEGORY_MAP[name.split("/")[0]]
+                        category = CATEGORY_MAP.get(name.split("/")[0], "unknown")
                     unit = {
                         "name": name,
                         "target_path": target_path,
