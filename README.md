@@ -163,7 +163,7 @@ The default behavior is to split the binary using Splat, build the object files 
 You can alter the behavior by passing any of the following arguments to  `configure.py`:
 
 * `--clean` - Delete any existing build files and configure the project.
-* `--only-clean` - Delete any existing build files **without** configuring the project.
+* `--clean-only` - Delete any existing build files **without** configuring the project.
 * `--skip-checksum` - Skip the checksum verification step. This is necessary if you are intentionally changing the code, but note that the elf may not boot.
 * `--objects` - Builds the object files for matching with objdiff and generates an objdiff config file. Outputs two sets of object files: `obj/target` and `obj/matching` (the latter of which will be updated automatically by objdiff as you edit the source code).
 

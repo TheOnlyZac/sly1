@@ -170,17 +170,20 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
                     name = object_path.stem
                 if "target" in str(object_path):
                     target_path = str(object_path)
-                    base_path = str(object_path).replace("target", "current")
-                else:
-                    base_path = str(object_path)
-                    target_path = str(object_path).replace("current", "target")
-                if "target" in str(object_path):
-                    objdiff_units.append({
+                    # Determine if a .c or .cpp file exists in src/ for this unit (recursively)
+                    src_base = rel.with_suffix("")
+                    src_c_files = list(Path("src").rglob(src_base.name + ".c"))
+                    src_cpp_files = list(Path("src").rglob(src_base.name + ".cpp"))
+                    has_src = bool(src_c_files or src_cpp_files)
+                    unit = {
                         "name": name,
                         "target_path": target_path,
-                        "base_path": base_path,
                         "metadata": {}
-                    })
+                    }
+                    if has_src:
+                        base_path = str(object_path).replace("target", "current")
+                        unit["base_path"] = base_path
+                    objdiff_units.append(unit)
 
     ninja = ninja_syntax.Writer(open(str(ROOT / "build.ninja"), "w", encoding="utf-8"), width=9999)
 
@@ -342,7 +345,7 @@ def main():
     )
     parser.add_argument(
         "-C",
-        "--only-clean",
+        "--clean-only",
         help="Only clean artifacts",
         action="store_true",
     )
@@ -359,13 +362,13 @@ def main():
     )
     args = parser.parse_args()
 
-    do_clean = (args.clean or args.only_clean) or False
+    do_clean = (args.clean or args.clean_only) or False
     do_skip_checksum = args.skip_checksum or False
     do_objects = args.objects or False
 
     if do_clean:
         clean()
-        if args.only_clean:
+        if args.clean_only:
             return
 
     split.main([YAML_FILE], modes="all", verbose=False)

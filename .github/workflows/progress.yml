@@ -1,22 +1,23 @@
-name: Check build status
+name: Upload progress report
 
 on:
   push:
     branches:
-      - "*"
+      - main
+      - progress
 
 jobs:
-  build:
-    if: github.repository_owner == 'theonlyzac'
+  report-upload:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.x"
+          python-version: "3.9.x"
 
       - name: Install dependencies
         run: |
@@ -35,7 +36,14 @@ jobs:
           scripts/setup_progd_linux.sh
           curl -o disc/SCUS_971.98 "${{ secrets.FILE_URL }}"
 
-      - name: Run build script
+      - name: Configure and generate report
         run: |
-          python configure.py
+          python configure.py --objects
           ninja
+          ./tools/objdiff/objdiff-cli report generate > report.json
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SCUS_971.98_report
+          path: ./report.json
