@@ -1,4 +1,4 @@
-name: Post progress to Frogress
+name: Upload progress report
 
 on:
   push:
@@ -7,11 +7,12 @@ on:
       - progress
 
 jobs:
-  frogress-upload:
+  report-upload:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -35,11 +36,14 @@ jobs:
           scripts/setup_progd_linux.sh
           curl -o disc/SCUS_971.98 "${{ secrets.FILE_URL }}"
 
-      - name: Run build script
+      - name: Configure and generate report
         run: |
-          python configure.py
+          python configure.py --objects
           ninja
+          ./tools/objdiff/objdiff-cli report generate > report.json
 
-      - name: Post to frogress endpoint
-        run: |
-          python3 scripts/upload_progress.py --frogress_api_key ${{ secrets.FROGRESS_API_KEY }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SCUS_971.98_report
+          path: ./report.json

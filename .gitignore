@@ -6,12 +6,17 @@ SCUS_*.*
 *.elf
 disc/*
 reference/*
-objdiff.json
 
+# Objdiff files
+objdiff.json
+report.json
+
+# Compiler
 prodg*
 tools/cc/
 usr/
 
+# Documentation
 html/
 
 # Splat files
