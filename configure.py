@@ -40,6 +40,13 @@ COMPILE_CMD = f"{GAME_GCC_CMD}"
 if sys.platform == "linux" or sys.platform == "linux2":
     COMPILE_CMD = f"{WINE} {GAME_GCC_CMD}"
 
+CATEGORY_MAP = {
+    "P2": "Engine",
+    "splice": "Splice",
+    "sce": "Libs",
+    "data": "Data",
+}
+
 def clean():
     """
     Clean all products of the build process.
@@ -175,10 +182,20 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
                     src_c_files = list(Path("src").rglob(src_base.name + ".c"))
                     src_cpp_files = list(Path("src").rglob(src_base.name + ".cpp"))
                     has_src = bool(src_c_files or src_cpp_files)
+                    # Determine the category based on the name
+                    category = "Unknown"
+                    if "P2/splice" in name:
+                        category = CATEGORY_MAP["splice"]
+                    else:
+                        category = CATEGORY_MAP[name.split("/")[0]]
                     unit = {
                         "name": name,
                         "target_path": target_path,
-                        "metadata": {}
+                        "metadata": {
+                            "progress_categories": [
+                                category
+                            ]
+                        }
                     }
                     if has_src:
                         base_path = str(object_path).replace("target", "current")
