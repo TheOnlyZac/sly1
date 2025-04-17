@@ -317,7 +317,8 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
                     "src/**/*.txt",
                     "src/**/*.json"
                 ],
-                "units": objdiff_units
+                "units": objdiff_units,
+                "progress_categories": [ {"id": id, "name": name} for id, name in CATEGORY_MAP.items() ],
             }
             with open("objdiff.json", "w", encoding="utf-8") as f:
                 json.dump(objdiff, f, indent=2)
