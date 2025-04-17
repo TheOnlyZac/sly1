@@ -72,7 +72,7 @@ To use Objdiff, follow these steps:
     * Replace `FunctionName` with the **mangled name** of the function you want to match, and `P2/objname
     * E.g. to match `OnDifficultyGameLoad` defined in `difficulty.c`, run this command:
     ```bash
-    ./tools/objdiff/objdiff diff OnDifficultyGameLoad__FP10DIFFICULTY --project . -u P2/difficulty
+    ./tools/objdiff/objdiff-cli diff OnDifficultyGameLoad__FP10DIFFICULTY --project . -u P2/difficulty
     ```
 3. Edit the source code until the function matches. The CURRENT assembly will update each time you save the file.
 
