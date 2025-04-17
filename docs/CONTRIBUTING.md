@@ -8,15 +8,14 @@ This guide will help you start contributing to the project. This is a 100% volun
 
 By following this guide, you will learn how to fork the repo on GitHub, choose a function to reverse-engineer, write code to match it, and integrate that code into the project. Once you've done that, and your pull request is merged, you will get the Decomp Contributor role in the Discord Server.
 
-# Contents
+## Contents
 
 1. [Getting Started](#getting-started)
 2. [Find a function to match](#find-a-function-to-match)
-3. [Match the function using Decomp.me](#match-the-function-using-decompme)
+3. [Match the function](#match-the-function)
 4. [Integrate the matched code](#integrate-the-matched-code)
 5. [Make a Pull Request](#make-a-pull-request)
 6. [Conclusion](#conclusion)
-
 
 ## Getting started
 
@@ -40,9 +39,16 @@ First, find a function in the game that you want to match. There are a few ways 
 * Look through the `asm/nonmatchings` folder.
 * Ask for suggestions on Discord.
 
-## Match the function using Decomp.me
+## Match the function
 
-Once you have chosen a function, you can use the website [decomp.me](https://decomp.me/) to match it.
+Once you have a function selected, you can start matching it using either **Objdiff** or **Decomp.me**. Both tools are used to match assembly code to C code, but they have different workflows.
+
+### Decomp.me
+
+[decomp.me](https://decomp.me/) is a website for collaborative decompilation. It allows you to upload assembly code and create a "scratch" which can be used to match the function. This is recommended if you are new to matching, as it is easier to use than Objdiff, or if you are asking others for help with matching.
+
+To use decomp.me, follow these steps:
+
 1. Go the website and click "Start decomping".
 2. Click "PS2", then under "Preset", select "Sly Cooper and the Thievius Raccoonus".
 3. Under "Diff label", enter the name of the function.
@@ -55,11 +61,26 @@ Once you have chosen a function, you can use the website [decomp.me](https://dec
 
 Then start writing your code under the "Source code" tab. It will tell you what percent of the code matches the original. Tweak the code until it matches 100%. An example scratch can be found here: https://decomp.me/scratch/hmmyP
 
+### Objdiff
+
+[Objdiff](https://github.com/encounter/objdiff), as the name implies, is a tool for showing the diff between a symbol in two object files. It can be used to match functions just like decomp.me, but it is faster and more convenient since it is included in the project and doesn't require uploading anything to a website.
+
+To use Objdiff, follow these steps:
+
+1. Reconfigure the project using `python3 configure.py --objects`. This will generate the object files and the `objdiff.json` config file, but it won't build the final elf or run the checksum.
+2. From the project root, run `./toold/objdiff/objdiff diff FunctionName --project . -u objname`.
+    * Replace `FunctionName` with the **mangled name** of the function you want to match, and `P2/objname
+    * E.g. to match `OnDifficultyGameLoad` defined in `difficulty.c`, run this command:
+    ```bash
+    ./tools/objdiff/objdiff diff OnDifficultyGameLoad__FP10DIFFICULTY --project . -u P2/difficulty
+    ```
+3. Edit the source code until the function matches. The CURRENT assembly will update each time you save the file.
+
 *Note: You can use the code in the `reference` directory to help you during matching. The code in that directory does not match, but it may be useful as an outline for certain functions.*
 
 ## Integrate the matched code
 
-Once the function matches 100%, follow these steps to integrate it into the project:
+Once the function matches 100%, follow these steps to integrate it into the project. If you used objdiff, you probably already did this.
 1. Replace the `INCLUDE_ASM` macro in the `.c` file with the matched function.
    * If the function is in a new file, **do not create a new file**. Creating new `.c` files is done by editing the `config/sly1.yaml` file to change the file split from `asm` to `c`, then running `python3 configure.py` to generate the new file. If you don't know how to do this, feel free to ask for help in the Discord server.
 2. Check `config/symbol_addrs.txt` to see if the mangled name of the function is present.
@@ -69,6 +90,7 @@ Once the function matches 100%, follow these steps to integrate it into the proj
 The project should build and match. Here are some common troubleshooting tips:
 * `undefined reference error` usually means the entry in the symbol_addrs.txt is wrong. Make sure the function name is mangled in symbol_addrs.txt and unmangled in the source code, and the mangled version matches the signature of the function. Also ensure that the address is correct in symbol_addrs.txt.
 * `checksum failed` means the compiled elf with your added code doesn't match the original. If it matches on decomp.me but not in the project, it might be an issue with the compiler, so open an issue on GitHub or let someone know on Discord.
+* `ninja: no work to do` in objdiff likely means the name of the function is wrong in your objdiff command and/or in the symbol_addrs.txt. Make sure you are using the correct mangled name of the function in both places.
 
 <!--### CodeMatcher
 
@@ -76,17 +98,16 @@ You can use [CodeMatcher](https://github.com/felinis/CodeMatcher) to help match 
 
 If you are adding new code, it is strongly recommended that you run CodeMatcher before submitting a pull request. We will accept pull requests that don't match as long as the code is clean and readable, but in the future we may require that your code matches before merging it into the main branch.-->
 
-
 ## Make a pull request
 
 Once you add your code to the project and it builds + matches, you can open a pull request to merge your fork into the main branch of the project. A code reviewer will need to approve it before it can be merged into the main branch.
 
 We are a volunteer-driven project, so please be patient while we review your code. These are the main things we will look for in your code:
+
 * It compiles without any errors.
 * The compiled elf matches the original elf.
 
 If everything looks good, we will merge your pull request as soon as possible. If anything needs to be addressd, we will let you know.
-
 
 ## Conclusion
 

@@ -41,7 +41,7 @@ New contributors are welcome and encouraged to make a pull request! If you would
 
 You can quickly setup the project on Linux (or WSL) using the quickstart script. Follow these three steps get started.
 
-### 1. Clone the repo and run quickstart.sh.
+### 1. Clone the repo and run quickstart.sh
 
 Copy and run the following command. It may ask for your password to install dependencies.
 
@@ -51,17 +51,18 @@ cd sly1 && \
 ./scripts/quickstart.sh
 ```
 
-### 2. Extract the executable from your disc.
+### 2. Extract the executable from your disc
 
 Copy the file `SCUS_971.98` from your Sly 1 game disc to the `disc` directory of the project. It is needed to build.
 
-### 3. Build the project.
+### 3. Build the project
 
 ```bash
 ./scripts/build.sh
 ```
 
 If it works, you will see this:
+
 ```
 [XXX/XXX] sha1sum config/checksum.sha1
 out/SCUS_971.98: OK
@@ -86,12 +87,24 @@ cd sly1
 
 To build the project, you will need to extract the original ELF file from your own legally obtained copy of the game. Mount the disc on your PC and copy the file `SCUS_971.98` from your disc to the `disc` directory of this project.
 
-### Install python packages
+### Setup Python environment
 
 If you don't have Python 3.9 or higher, install it:
 
 ```bash
 sudo apt-get install python3 python3-pip
+```
+
+Create a Python environment for the project:
+
+```bash
+python3 -m venv env
+```
+
+Activate the environment:
+
+```bash
+source env/bin/activate
 ```
 
 Then install the required Python packages:
@@ -102,22 +115,24 @@ pip3 install -U -r requirements.txt
 
 ### Setup build environment
 
-1. Setup wine:
+Setup wine:
+
 ```bash
 sudo dpkg --add-architecture i386
 sudo apt-get update
 sudo apt-get install wine32
 ```
 
-2. Install MIPS assembler:
+Install the MIPS assembler:
+
 ```bash
 sudo apt-get install binutils-mips-linux-gnu
 ```
 
-3. Setup compiler:
+Setup the compiler using the provided script:
+
 ```bash
-cd scripts
-./setup-progd-linux.sh
+./scripts/setup-progd-linux.sh
 ```
 
 <!--#### Windows
@@ -134,53 +149,50 @@ choco install 7zip
 .\scripts\setup-progd-windows.bat
 ```-->
 
+### Configure and build the project
 
-### Build the project
-
-The project builds the executable `SCUS_971.98`.
+Run these commands to configure and build the project:
 
 ```bash
 python3 configure.py
 ninja
 ```
 
-If you update any config files or add any source files, you will need run a clean reconfigure:
+The default behavior is to split the binary using Splat, build the object files (inserting the split assembly files in plcae of non-matching functions), link a matching executable, and confirm that the checksum of the built executable matches the original.
 
-```bash
-python3 configure.py --clean
-```
+You can alter the behavior by passing any of the following arguments to  `configure.py`:
 
-To only clean without reconfiguring (i.e. delete build files) use:
-
-```bash
-python3 configure.py --only-clean
-```
+* `--clean` - Delete any existing build files before configuring the project.
+* `--only-clean` - Delete any existing build files **without** configuring the project.
+* `--skip-checksum` - Skip the checksum verification step. This is necessary if you are intentionally changing the code, but note that the elf may not boot.
+* `--objects` - Build only the object files (both matching and nonmatching versions) and generate a config file for objdiff.
 
 ## Running
 
 Running the executable requires [PCSX2 2.0](https://pcsx2.net/). You must have your own copy of the original game and the BIOS from your own PS2. They are not included in this repo and we cannot provide them for you.
 
-Once you have those and you have built the executable, you can run it in one of three ways:
+Once you have those and you have built the executable, you can run it using one of three methods:
 
-### 1. Autorun script
+### Method 1: Autorun script
 
 The `run.sh` script in the `scripts` dir will automatically rebuild the executable and run it in the PCSX2 emulator. To use it, you must first edit the script to set the `PCSX2_PATH` and `ISO_PATH` variables to the correct paths on your system.
 
-### 2. Run from command line
+### Method 2: Run from command line
 
 To boot the elf in PCSX2 from the command line, use the following command:
 
 ```bash
-pcsx2.exe -elf ".../sly1/bin/debug/SCUS_971.98" "/path/to/game/backup.iso"
+pcsx2.exe -elf ".../sly1/out/SCUS_971.98" "/path/to/game/backup.iso"
 ```
 
-Replace `pcsx2.exe` with the path to your PCSX2 v2.0 executable (for Linux it will be an **.appimage** file).
-- The `-elf` parameter specifies the path to the SCUS_971.98 you built from this project. Replace `...` with the path to this repository. The emulator will use this ELF to boot the game.
-- The last argument is the path to your game ISO. Replace `/path/to/game/backup.iso` with the path to a backup of your own game disc. This is where the game will load the assets from.
+Replace `pcsx2.exe` with the path to your PCSX2 v2.0 executable (it will be an `.appimage` file on Linux or `.exe` file on Windows).
 
-### 3. Run from PCSX2 GUI
+* The `-elf` parameter specifies the path to the `SCUS_971.98` you built from this project. Replace `...` with the path to this repository. The emulator will use this ELF to boot the game.
+* The last argument is the path to your game ISO. Replace `/path/to/game/backup.iso` with the path to a backup of your own game disc. This is where the game will load the assets from.
 
-Copy `SCUS_971.98` from the `out` dir to your PCSX2 Games folder and rename it to `SCUS_971.98.elf`. Right click on the game in PCSX2 and click "Properties...". Go to "Disc Path", click "Browse", and select the ISO of your game backup. Then click "Close" and start the game as normal.
+### Method 3: Run from PCSX2 GUI
+
+In your PCSX2 game dir, make an alias (Linux) or symbolic link (Windows) called `SCUS_971.98.elf` which points to the `SCUS_971.98` file built by this project. The alias/link will be recognized as a game in PCSX2. Right click on the elf in PCSX2 and click "Properties..." > "Disc Path" > "Browse" > Select the ISO of your game backup. Then click "Close" and start the game as normal.
 
 ## Project Structure
 
@@ -205,23 +217,23 @@ When you build the executable, the following directories will be created:
 
 ## FAQ
 
-#### What is a decompilation?
+### What is a decompilation?
 
 When the developers created the game, they wrote source code and compiled it to assembly code that can run on the PS2. A decompilation involves reverse-engineering the assembly code to produce new, original code that compiles to matching assembly. This process leaves us with source code that is similar to and behaves the same as the source code (though not necessarily identical), which helps us understand what the programmers were thinking when they made the game.
 
-#### How does it work?
+### How does it work?
 
 We use a tool called [Splat](https://github.com/ethteck/splat/) to split the binary into assembly files representing each individual function. We then reimplement every function and data structure by writing C++ code that compiles to the same assembly code. We do not include any data or code from the original game binary in the decompilation.
 
-#### Has this ever been done before?
+### Has this ever been done before?
 
 This was one the first PS2 decompilations; Several others have been started since we began in 2020. Our main inspiration was other projects such as the [Super Mario 64 decomp](https://github.com/n64decomp/sm64) for the N64 and the [Breath of the Wild decomp](https://github.com/zeldaret/botw) for the Wii U (the latter being more similar in scope to this project). There is also a Jak & Daxter decomp/PC port called [OpenGOAL](https://github.com/open-goal/jak-project), though that game is 98% GOAL language rather than C/C++.
 
-#### Is this a matching decomp?
+### Is this a matching decomp?
 
 Yes. This was the first PS2 decompilation project that targeted the PS2 and utilized function matching, before it was even possible to produce a byte-matching executable. We have built a matching elf since July 2024. The ultimate goal is to match 100% of the game's functions.
 
-#### How can I help?
+### How can I help?
 
 If you want to contribute, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our discord server](https://discord.gg/gh5xwfj) if you have any questions!
 
