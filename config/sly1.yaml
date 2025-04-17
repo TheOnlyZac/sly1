@@ -10,6 +10,8 @@ options:
   platform: ps2
   compiler: GCC
 
+  use_legacy_include_asm: True
+
   # Output paths
   asm_path: asm
   src_path: src
@@ -35,7 +37,7 @@ options:
 
   # ELF sections
   section_order: [".text", ".vutext", ".rodata", ".data", ".bss"]
-  auto_all_sections: [".rodata", ".data", ".bss"]
+  auto_link_sections: [".rodata", ".data", ".bss"]
 
   # Linker script options
   subalign: 4
@@ -279,10 +281,10 @@ segments:
     - [0x112E10, textbin, vutext] #MARK: vutext
 
     #--------------------------------------------------------
-    # Rodata
+    # Rodata (read-only data)
     #--------------------------------------------------------
     - [0x118380, rodata] #MARK: rodata
-    - [0x1225a0, rodata, P2/cm]
+    # - [0x1225a0, .rodata, P2/cm] # todo causes errors
     - [0x141000, rodata] # todo
     - [0x149FE0, .rodata, P2/splice/bif]
     - [0x14A200, rodata] #todo: remove line and uncomment next for RefEvalAssert
@@ -294,7 +296,7 @@ segments:
     - [0x14B0F8, rodata]
 
     #--------------------------------------------------------
-    # Data
+    # Data (variable data)
     #--------------------------------------------------------
     - [0x151580, data] #MARK: data
 

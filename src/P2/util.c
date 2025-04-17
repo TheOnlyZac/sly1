@@ -108,7 +108,7 @@ int FFloatsNear(float g1, float g2, float gEpsilon)
 /**
  * @todo 94.29% matched
  */
-INCLUDE_ASM(const s32, "P2/util", CSolveQuadratic);
+INCLUDE_ASM(const s32, "P2/util", CSolveQuadratic__FfffPf);
 // int CSolveQuadratic(float a, float b, float c, float *ax)
 // {
 //     float alpha;
@@ -175,7 +175,7 @@ bool FCheckAlm(int clm, LM* alm, float g)
 {
     for (int i = 0; i < clm; i++)
     {
-        if (FCheckLm(alm+i, g) != 0) 
+        if (FCheckLm(alm+i, g) != 0)
         {
             return true;
         }

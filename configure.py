@@ -7,6 +7,7 @@ import argparse
 import os
 import shutil
 import sys
+import json
 from pathlib import Path
 from typing import Dict, List, Set, Union
 
@@ -20,7 +21,7 @@ ROOT = Path(__file__).parent.resolve()
 TOOLS_DIR = ROOT / "tools"
 OUTDIR = "out"
 
-YAML_FILE = "config/sly1.yaml"
+YAML_FILE = Path("config/sly1.yaml")
 BASENAME = "SCUS_971.98"
 LD_PATH = f"{BASENAME}.ld"
 ELF_PATH = f"{OUTDIR}/{BASENAME}"
@@ -48,6 +49,7 @@ def clean():
         ".ninja_log",
         "build.ninja",
         "permuter_settings.toml",
+        "objdiff.json",
         LD_PATH
     ]
     for filename in files_to_clean:
@@ -76,11 +78,14 @@ compiler_type = "gcc"
 """)
 
 #MARK: Build
-def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False):
+def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_only=False, dual_objects=False):
     """
     Build the objects and the final ELF file.
+    If objects_only is True, only build objects and skip linking/checksum.
+    If dual_objects is True, build objects twice: once normally, once with -DSKIP_ASM.
     """
     built_objects: Set[Path] = set()
+    objdiff_units = []  # For objdiff.json
 
     def build(
         object_paths: Union[Path, List[Path]],
@@ -88,6 +93,10 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False):
         task: str,
         variables: Dict[str, str] = None,
         implicit_outputs: List[str] = None,
+        out_dir: str = None,
+        extra_flags: str = "",
+        collect_objdiff: bool = False,
+        orig_entry=None,
     ):
         """
         Helper function to build objects.
@@ -103,20 +112,75 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False):
         if not isinstance(object_paths, list):
             object_paths = [object_paths]
 
+        # Only rewrite output path to .o if out_dir is set (i.e. --objects mode)
+        if out_dir:
+            new_object_paths = []
+            for obj in object_paths:
+                obj = Path(obj)
+                stem = obj.stem
+                if obj.suffix in [".s", ".c"]:
+                    stem = obj.stem
+                else:
+                    if obj.suffix == ".o" and obj.with_suffix("").suffix in [".s", ".c"]:
+                        stem = obj.with_suffix("").stem
+                target_dir = out_dir if out_dir else obj.parent
+                new_obj = Path(target_dir) / (stem + ".o")
+                new_object_paths.append(new_obj)
+            object_paths = new_object_paths
+
+        # Otherwise, use the original object_paths (with .s.o, .c.o, etc.)
+
         # Convert paths to strings
         object_strs = [str(obj) for obj in object_paths]
 
         # Add object paths to built_objects
-        for object_path in object_paths:
+        for idx, object_path in enumerate(object_paths):
             if object_path.suffix == ".o":
                 built_objects.add(object_path)
+            # Add extra_flags to variables if present
+            build_vars = variables.copy()
+            if extra_flags:
+                build_vars["cflags"] = extra_flags
             ninja.build(
-                outputs=object_strs,
+                outputs=[str(object_path)],
                 rule=task,
                 inputs=[str(s) for s in src_paths],
-                variables=variables,
+                variables=build_vars,
                 implicit_outputs=implicit_outputs,
             )
+            # Collect for objdiff.json if requested
+            if collect_objdiff and orig_entry is not None:
+                src = src_paths[0] if src_paths else None
+                if src:
+                    src = Path(src)
+                    # Always use the final "matched" name, i.e. as if it will be in src/ with no asm/ prefix
+                    try:
+                        # If the file is in asm/, replace asm/ with nothing (just drop asm/)
+                        if src.parts[0] == "asm":
+                            rel = Path(*src.parts[1:])
+                        elif src.parts[0] == "src":
+                            rel = Path(*src.parts[1:])
+                        else:
+                            rel = src
+                        # Remove extension for the name
+                        name = str(rel.with_suffix(""))
+                    except Exception:
+                        name = str(src.with_suffix(""))
+                else:
+                    name = object_path.stem
+                if "target" in str(object_path):
+                    target_path = str(object_path)
+                    base_path = str(object_path).replace("target", "current")
+                else:
+                    base_path = str(object_path)
+                    target_path = str(object_path).replace("current", "target")
+                if "target" in str(object_path):
+                    objdiff_units.append({
+                        "name": name,
+                        "target_path": target_path,
+                        "base_path": base_path,
+                        "metadata": {}
+                    })
 
     ninja = ninja_syntax.Writer(open(str(ROOT / "build.ninja"), "w", encoding="utf-8"), width=9999)
 
@@ -134,7 +198,7 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False):
     ninja.rule(
         "cc",
         description="cc $in",
-        command=f"{COMPILE_CMD} -o $out && {cross}strip $out -N dummy-symbol-name",
+        command=f"{COMPILE_CMD} $cflags -o $out && {cross}strip $out -N dummy-symbol-name",
     )
 
     ninja.rule(
@@ -168,20 +232,77 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False):
         if isinstance(seg, splat.segtypes.common.asm.CommonSegAsm) or isinstance(
             seg, splat.segtypes.common.data.CommonSegData
         ):
-            build(entry.object_path, entry.src_paths, "as")
+            if dual_objects:
+                build(entry.object_path, entry.src_paths, "as", out_dir="obj/target", collect_objdiff=True, orig_entry=entry)
+                build(entry.object_path, entry.src_paths, "as", out_dir="obj/current", extra_flags="-DSKIP_ASM")
+            else:
+                build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.c.CommonSegC):
-            build(entry.object_path, entry.src_paths, "cc")
+            if dual_objects:
+                build(entry.object_path, entry.src_paths, "cc", out_dir="obj/target", collect_objdiff=True, orig_entry=entry)
+                build(entry.object_path, entry.src_paths, "cc", out_dir="obj/current", extra_flags="-DSKIP_ASM")
+            else:
+                build(entry.object_path, entry.src_paths, "cc")
         elif isinstance(seg, splat.segtypes.common.databin.CommonSegDatabin):
-            build(entry.object_path, entry.src_paths, "as")
+            if dual_objects:
+                build(entry.object_path, entry.src_paths, "as", out_dir="obj/target", collect_objdiff=True, orig_entry=entry)
+                build(entry.object_path, entry.src_paths, "as", out_dir="obj/current", extra_flags="-DSKIP_ASM")
+            else:
+                build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.rodatabin.CommonSegRodatabin):
-            build(entry.object_path, entry.src_paths, "as")
+            if dual_objects:
+                build(entry.object_path, entry.src_paths, "as", out_dir="obj/target", collect_objdiff=True, orig_entry=entry)
+                build(entry.object_path, entry.src_paths, "as", out_dir="obj/current", extra_flags="-DSKIP_ASM")
+            else:
+                build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.textbin.CommonSegTextbin):
-            build(entry.object_path, entry.src_paths, "as")
+            if dual_objects:
+                build(entry.object_path, entry.src_paths, "as", out_dir="obj/target", collect_objdiff=True, orig_entry=entry)
+                build(entry.object_path, entry.src_paths, "as", out_dir="obj/current", extra_flags="-DSKIP_ASM")
+            else:
+                build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.bin.CommonSegBin):
-            build(entry.object_path, entry.src_paths, "as")
+            if dual_objects:
+                build(entry.object_path, entry.src_paths, "as", out_dir="obj/target", collect_objdiff=True, orig_entry=entry)
+                build(entry.object_path, entry.src_paths, "as", out_dir="obj/current", extra_flags="-DSKIP_ASM")
+            else:
+                build(entry.object_path, entry.src_paths, "as")
         else:
             print(f"ERROR: Unsupported build segment type {seg.type}")
             sys.exit(1)
+
+    if objects_only:
+        # Write objdiff.json if dual_objects (i.e. --objects)
+        if dual_objects:
+            objdiff = {
+                "$schema": "https://raw.githubusercontent.com/encounter/objdiff/main/config.schema.json",
+                "custom_make": "ninja",
+                "custom_args": [],
+                "build_target": False,
+                "build_base": True,
+                "watch_patterns": [
+                    "src/**/*.c",
+                    "src/**/*.cp",
+                    "src/**/*.cpp",
+                    "src/**/*.cxx",
+                    "src/**/*.h",
+                    "src/**/*.hp",
+                    "src/**/*.hpp",
+                    "src/**/*.hxx",
+                    "src/**/*.s",
+                    "src/**/*.S",
+                    "src/**/*.asm",
+                    "src/**/*.inc",
+                    "src/**/*.py",
+                    "src/**/*.yml",
+                    "src/**/*.txt",
+                    "src/**/*.json"
+                ],
+                "units": objdiff_units
+            }
+            with open("objdiff.json", "w", encoding="utf-8") as f:
+                json.dump(objdiff, f, indent=2)
+        return
 
     ninja.build(
         PRE_ELF_PATH,
@@ -231,10 +352,16 @@ def main():
         help="Skip the checksum step",
         action="store_true",
     )
+    parser.add_argument(
+        "--objects",
+        help="Build objects to obj/target and obj/current (with -DSKIP_ASM), skip linking and checksum",
+        action="store_true",
+    )
     args = parser.parse_args()
 
     do_clean = (args.clean or args.only_clean) or False
     do_skip_checksum = args.skip_checksum or False
+    do_objects = args.objects or False
 
     if do_clean:
         clean()
@@ -245,7 +372,10 @@ def main():
 
     linker_entries = split.linker_writer.entries
 
-    build_stuff(linker_entries, do_skip_checksum)
+    if do_objects:
+        build_stuff(linker_entries, skip_checksum=True, objects_only=True, dual_objects=True)
+    else:
+        build_stuff(linker_entries, do_skip_checksum)
 
     write_permuter_settings()
 
