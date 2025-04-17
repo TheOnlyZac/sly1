@@ -183,8 +183,7 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
                     src_cpp_files = list(Path("src").rglob(src_base.name + ".cpp"))
                     has_src = bool(src_c_files or src_cpp_files)
                     # Determine the category based on the name
-                    category = "Unknown"
-                    if "P2/splice" in name:
+                    if "P2/splice/" in name:
                         category = CATEGORY_MAP["splice"]
                     else:
                         category = CATEGORY_MAP[name.split("/")[0]]
