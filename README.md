@@ -151,21 +151,21 @@ choco install 7zip
 
 ### Configure and build the project
 
-Run these commands to configure and build the project:
+Run the configure script and the build with ninja:
 
 ```bash
 python3 configure.py
 ninja
 ```
 
-The default behavior is to split the binary using Splat, build the object files (inserting the split assembly files in plcae of non-matching functions), link a matching executable, and confirm that the checksum of the built executable matches the original.
+The default behavior is to split the binary using Splat, build the object files (inserting the split assembly in place of non-matching functions), link the matching executable, and confirm that the checksum of the built executable matches the original.
 
 You can alter the behavior by passing any of the following arguments to  `configure.py`:
 
-* `--clean` - Delete any existing build files before configuring the project.
+* `--clean` - Delete any existing build files and configure the project.
 * `--only-clean` - Delete any existing build files **without** configuring the project.
 * `--skip-checksum` - Skip the checksum verification step. This is necessary if you are intentionally changing the code, but note that the elf may not boot.
-* `--objects` - Build only the object files (both matching and nonmatching versions) and generate a config file for objdiff.
+* `--objects` - Builds the object files for matching with objdiff and generates an objdiff config file. Outputs two sets of object files: `obj/target` and `obj/matching` (the latter of which will be updated automatically by objdiff as you edit the source code).
 
 ## Running
 
