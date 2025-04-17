@@ -165,7 +165,7 @@ You can alter the behavior by passing any of the following arguments to  `config
 * `--clean` - Delete any existing build files and configure the project.
 * `--clean-only` - Delete any existing build files **without** configuring the project.
 * `--skip-checksum` - Skip the checksum verification step. This is necessary if you are intentionally changing the code, but note that the elf may not boot.
-* `--objects` - Builds the object files for matching with objdiff and generates an objdiff config file. Outputs two sets of object files: `obj/target` and `obj/matching` (the latter of which will be updated automatically by objdiff as you edit the source code).
+* `--objects` - Builds the object files for matching with objdiff and generates an objdiff config file. Outputs two sets of object files: `obj/target` and `obj/current` (the latter of which will be updated automatically by objdiff as you edit the source code).
 
 ## Running
 
@@ -173,11 +173,11 @@ Running the executable requires [PCSX2 2.0](https://pcsx2.net/). You must have y
 
 Once you have those and you have built the executable, you can run it using one of three methods:
 
-### Method 1: Autorun script
+### Method 1: Boot from PCSX2 GUI (Recommended)
 
-The `run.sh` script in the `scripts` dir will automatically rebuild the executable and run it in the PCSX2 emulator. To use it, you must first edit the script to set the `PCSX2_PATH` and `ISO_PATH` variables to the correct paths on your system.
+In your PCSX2 game dir, make an alias (Linux) or symbolic link (Windows) called `SCUS_971.98.elf` which points to the `SCUS_971.98` file built by this project. The alias/link will be recognized as a game in PCSX2. Right click on the elf in PCSX2 and click "Properties..." > "Disc Path" > "Browse" > Select the ISO of your game backup. Then click "Close" and start the game as normal.
 
-### Method 2: Run from command line
+### Method 2: Run PCSX2 from command line
 
 To boot the elf in PCSX2 from the command line, use the following command:
 
@@ -190,9 +190,9 @@ Replace `pcsx2.exe` with the path to your PCSX2 v2.0 executable (it will be an `
 * The `-elf` parameter specifies the path to the `SCUS_971.98` you built from this project. Replace `...` with the path to this repository. The emulator will use this ELF to boot the game.
 * The last argument is the path to your game ISO. Replace `/path/to/game/backup.iso` with the path to a backup of your own game disc. This is where the game will load the assets from.
 
-### Method 3: Run from PCSX2 GUI
+### Method 3: Autorun script
 
-In your PCSX2 game dir, make an alias (Linux) or symbolic link (Windows) called `SCUS_971.98.elf` which points to the `SCUS_971.98` file built by this project. The alias/link will be recognized as a game in PCSX2. Right click on the elf in PCSX2 and click "Properties..." > "Disc Path" > "Browse" > Select the ISO of your game backup. Then click "Close" and start the game as normal.
+The `run.sh` script in the `scripts` dir will automatically rebuild the executable and run it in the PCSX2 emulator. To use it, you must first edit the script to set the `PCSX2_PATH` and `ISO_PATH` variables to the correct paths on your system.
 
 ## Project Structure
 
