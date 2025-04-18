@@ -184,9 +184,9 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
                     has_src = bool(src_c_files or src_cpp_files)
                     # Determine the category based on the name
                     if "P2/splice/" in name:
-                        category = CATEGORY_MAP["splice"]
+                        category = "splice"
                     else:
-                        category = CATEGORY_MAP.get(name.split("/")[0], "unknown")
+                        category = name.split("/")[0]
                     unit = {
                         "name": name,
                         "target_path": target_path,
