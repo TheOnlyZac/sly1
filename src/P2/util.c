@@ -107,6 +107,7 @@ int FFloatsNear(float g1, float g2, float gEpsilon)
 
 /**
  * @todo 94.29% matched
+ * https://decomp.me/scratch/A4VOu
  */
 INCLUDE_ASM(const s32, "P2/util", CSolveQuadratic__FfffPf);
 #ifdef SKIP_ASM
@@ -135,7 +136,7 @@ int CSolveQuadratic(float a, float b, float c, float *ax)
     ax[1] = -beta - alpha;
     return 2;
 }
-#endif
+#endif // SKIP_ASM
 
 void PrescaleClq(CLQ *pclqSrc, float ru, float du, CLQ *pclqDst)
 {

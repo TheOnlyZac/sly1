@@ -23,7 +23,45 @@ INCLUDE_ASM(const s32, "P2/xform2", LoadExitFromBrx__FP4EXITP18CBinaryInputStrea
 
 INCLUDE_ASM(const s32, "P2/xform2", PostExitLoad__FP4EXIT);
 
+/**
+ * @todo 96.19% matched
+ * https://decomp.me/scratch/t75bf
+ */
 INCLUDE_ASM(const s32, "P2/xform2", SetExitExits__FP4EXIT5EXITS);
+#ifdef SKIP_ASM
+void SetExitExits(EXIT *pexit, EXITS exits) {
+    uint64_t uVar1;
+
+    if (exits == pexit->exits) {
+        return;
+    }
+
+    if (pexit->exits == EXITS_Totals && exits != EXITS_Exiting) {
+        BLOT *totals = (BLOT *)&g_totals;
+        g_totals.pvttotals->pfnHideBlot(totals);
+    }
+
+    if (exits == EXITS_Exiting) {
+        pexit->exits = exits;
+        pexit->tExits = g_clock.t;
+        return;
+    }
+
+    // Read the 64-bit value from offset 0x2c8
+    uVar1 = *((uint64_t *)((char *)pexit + 0x2c8));
+
+    // Apply bitwise mask and OR operation
+    uVar1 = (uVar1 & ~0x30100000000ULL) | (0x8000ULL << 0x19);
+
+    // Store back the modified value
+    *((uint64_t *)((char *)pexit + 0x2c8)) = uVar1;
+
+    IncrementSwHandsOff(pexit->psw);
+
+    pexit->exits = exits;
+    pexit->tExits = g_clock.t;
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM(const s32, "P2/xform2", TriggerExit__FP4EXIT);
 

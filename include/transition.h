@@ -49,13 +49,12 @@ struct TRANS
  */
 class CTransition
 {
-protected:
+public:
     int m_fPending;    // Basically like a level pending flag.
     char *m_pchzWorld; // This is the ptr to enc level sector offset and size in memory
     OID m_oidWarp;     // Which checkpoint you spawn at when you start a level
     OID m_oidWarpContext;
 
-public:
     GRFTRANS grftrans;       // Flags that affect level loading, one of them checks if you lost all lives when you die.
     char m_achzWorldCur[64]; // File description contents.
 

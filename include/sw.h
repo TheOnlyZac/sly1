@@ -18,6 +18,9 @@ struct SW : public LO
     DL dlChild;
     undefined1 padding2[0x1bff];
     DL dlDprize;
+
+    // MISALIGNED:
+    void (*pcbUpdate)(f32 fDelta);
 };
 
 extern SW *g_psw;

@@ -183,6 +183,29 @@ struct VTTIMER
     int  (*pfnFIncludeBlotForPeg)(BLOT *);
 };
 
+struct VTTOTALS
+{
+    void (*pfnInitBlot)(BLOT *);
+    void (*pfnPostBlotLoad)(BLOT *);
+    void (*pfnUpdateBlot)(BLOT *);
+    void (*pfnOnBlotActive)(BLOT *);
+    void (*pfnUpdateBlotActive)(BLOT *);
+    void (*pfnOnBlotReset)(BLOT *);
+    void (*pfnOnBlotPush)(BLOT *);
+    void (*pfnOnBlotPop)(BLOT *);
+    void (*pfnSetBlotAchzDraw)(BLOT *, const char *);
+    void (*pfnDrawBlot)(BLOT *);
+    void (*pfnRenderBlot)(BLOT *);
+    void (*pfnDtAppearBlot)(BLOT *);
+    void (*pfnDtVisibleBlot)(BLOT *);
+    void (*pfnDtDisappearBlot)(BLOT *);
+    void (*pfnShowBlot)(BLOT *);
+    void (*pfnHideBlot)(BLOT *);
+    void (*pfnSetBlotBlots)(BLOT *);
+    void (*pfnSetBlotClock)(BLOT *);
+    int (*pfnFIncludeBlotForPeg)(BLOT *);
+};
+
 struct GAME;
 
 /**

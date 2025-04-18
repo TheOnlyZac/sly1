@@ -45,4 +45,6 @@ void SetUiUis(UI *pui, UIS uis);
 void SetUiUPause(UI *pui, float rPause);
 // ...more functions...
 
+extern UI g_ui; // Global UI object
+
 #endif // UI_H

@@ -18,4 +18,8 @@ enum PHASE {
 
 extern PHASE g_phase;
 
+void SetPhase(PHASE phase);
+
+void ClearPhase();
+
 #endif // PHASEMEM_H

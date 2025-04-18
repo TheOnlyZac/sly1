@@ -12,9 +12,31 @@ INCLUDE_ASM(const s32, "P2/ui", PushUiActiveBlot__FP2UIP4BLOT);
 
 INCLUDE_ASM(const s32, "P2/ui", PopUiActiveBlot__FP2UI);
 
+/**
+ * @todo 87.5% matched
+ * https://decomp.me/scratch/ZyuiC
+ *
+ * @note Target has an extra nop at the end?
+ */
 INCLUDE_ASM(const s32, "P2/ui", DrawUi__Fv);
+#ifdef SKIP_ASM
+void DrawUi() {
+    DrawBlots();
+}
+#endif
 
+/**
+ * @todo 87.5% matched
+ * https://decomp.me/scratch/vu3pp
+ *
+ * @note Target has an extra nop at the end?
+ */
 INCLUDE_ASM(const s32, "P2/ui", RenderUi__Fv);
+#ifdef SKIP_ASM
+void RenderUi() {
+    RenderBlots();
+}
+#endif
 
 void ResetUi(UI *pui)
 {

@@ -1,19 +1,89 @@
 #include "common.h"
 #include <sdk/ee/eekernel.h>
 #include <sce/libdma.h>
+#include <mpeg.h>
+#include <wipe.h>
+#include <frm.h>
+#include <joy.h>
+#include <ui.h>
+#include <save.h>
+#include <clock.h>
+#include <sw.h>
+#include <cm.h>
+#include <render.h>
 #include <dmas.h>
+#include <prog.h>
+#include <phasemem.h>
 
-// extern g_chpzArgs;
-// extern g_aphzArgs;
 extern void *D_00211E10;
 extern void *D_00212110;
+extern void *g_startupSampler[29];
+extern int g_chpzArgs;
+extern char **g_apchzArgs;
 
 /**
  * @brief Main function.
  *
  * Invoked by the startup routine, starts the main game loop.
+ *
+ * @todo 80.99% matched
+ * https://decomp.me/scratch/4XwiN
  */
 INCLUDE_ASM(const s32, "P2/main", main);
+#ifdef SKIP_ASM
+void Startup();
+
+int main(char **argv, int argc) {
+    g_apchzArgs = argv;
+    g_chpzArgs = argc;
+
+    // These appear to be loaded into registers in the target assembly
+    Startup();
+    CMpeg* mpeg = &g_mpeg;
+
+    while(true) {
+        if (g_mpeg.oid_1 && g_pwipe->wipes != WIPES_WipingOut) {
+            FlushFrames(1);
+            mpeg->ExecuteOids();
+        }
+
+        if (g_transition.m_fPending) {
+            FlushFrames(1);
+            g_transition.Execute();
+        }
+
+        if (g_mpeg.oid_1 && g_pwipe->wipes != WIPES_WipingOut) {
+            FlushFrames(1);
+            mpeg->ExecuteOids();
+        }
+
+        UpdateJoy(&g_joy);
+        UpdateCodes();
+        UpdateSave(&g_save);
+        UpdateUi(&g_ui);
+        UpdateGameState(g_clock.dt);
+
+        if (g_psw != nullptr) {
+            SetupCm(g_pcm);
+            OpenFrame();
+
+            MarkClockTick(&g_clock);
+
+            if (g_psw->pcbUpdate) {
+                 g_psw->pcbUpdate(g_clock.dt);
+            }
+
+            RenderSw(g_psw, g_pcm);
+            RenderUi();
+            DrawSw(g_psw, g_pcm);
+            DrawUi();
+            CloseFrame();
+        }
+
+        g_cframe += 1;
+    }
+}
+#endif
 
 /**
  * @note This function isn't called but it is present immediately following main.
@@ -23,7 +93,6 @@ INCLUDE_ASM(const s32, "P2/main", main_epilogue);
 /**
  * @brief Starts up the VU0.
  */
-// INCLUDE_ASM(const s32, "P2/main", StartupVU0__Fv);
 void StartupVU0()
 {
     g_pdcVif0->chcr.TTE = 1;
@@ -53,5 +122,37 @@ void StartupVU1(void)
 
 /**
  * @brief Starts each game system.
+ *
+ * @todo 98.23% matched
+ * https://decomp.me/scratch/IOVxc
  */
 INCLUDE_ASM(const s32, "P2/main", Startup__Fv);
+#ifdef SKIP_ASM
+void Startup()
+{
+    // Hex RGBA values?
+    uint rgbaComplete = 0x007f0000;
+    uint rgbaRemain = 0x003f3f3f;
+    uint rgbaWarning = 0x00003f3f;
+    uint rgbaTrouble = 0x0000003f;
+
+    int remaining = 26;
+
+    CProg prog = CProg((RGBA*)&rgbaComplete, (RGBA*)&rgbaRemain, (RGBA*)&rgbaWarning, (RGBA*)&rgbaTrouble);
+    SetPhase(PHASE_Startup);
+    prog.Begin();
+    for (int i = 0; i < sizeof(g_startupSampler) / sizeof(g_startupSampler[0]); i++) // TODO Check if this is actually called startup sampler
+    {
+        if (i > 2)
+        {
+            prog.SetRemain(remaining);
+        }
+
+        remaining--;
+        ((void (*)(void))g_startupSampler[i])(); // Cast to function pointer before calling
+    }
+    prog.SetRemain(0);
+    prog.End();
+    ClearPhase();
+}
+#endif

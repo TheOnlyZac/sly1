@@ -14,7 +14,7 @@ g_chzThePasswordIs = 0x24a848; // size:0x14
 //g_rng = 0x276680; // size:0x5c
 //g_prng = 0x27696c; // size:0x4
 
- // start of .vutext section
+// start of .vutext section
 D_00211E10 = 0x211E10; // size:0x4
 
 BuildEopids__Fv = 0x109488; // type:func
@@ -886,7 +886,7 @@ OnGameAlarmTriggered__FP4GAME = 0x160CF0; // type:func
 OnGameAlarmDisabled__FP4GAME = 0x160D00; // type:func
 grfvault_something__Fv = 0x160D10; // type:func
 
-GetBlueprintInfo = 0x160D30; // type:func
+GetBlueprintInfo__FPiT0 = 0x160D30; // type:func
 CcharmMost__Fv = 0x160D98; // type:func
 
 reload_post_death = 0x160DA0; // type:func
@@ -1089,8 +1089,9 @@ StartupVU0__Fv = 0x185A58; // type:func
 StartupVU1__Fv = 0x185AC8; // type:func
 Startup__Fv = 0x185B38; // type:func
 
+g_startupSampler = 0x2647C0; // size = 0x74
 g_chpzArgs = 0x264834; // size:0x4
-g_aphzArgs = 0x264838; // size:0x4
+g_apchzArgs = 0x264838; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
@@ -1213,7 +1214,7 @@ UpdateTimer__FP5TIMER = 0x1AB660; // type:func
 DrawTimer__FP5TIMER = 0x1AB710; // type:func
 SetTimer__FP5TIMERf = 0x1AB890; // type:func
 SetTimerSpeed__FP5TIMERf = 0x1AB920; // type:func
-SetTimerExpire__FP5TIMERfPFP5TIMER9TIMERNOTK_v = 0x1AB928; // type:func
+SetTimerExpire__FP5TIMERfPv = 0x1AB928; // type:func
 StartTimer__FP5TIMER = 0x1AB938; // type:func
 StopTimer__FP5TIMER = 0x1AB958; // type:func
 RebuildTimerAchzDraw__FP5TIMERf = 0x1AB980; // type:func
