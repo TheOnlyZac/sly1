@@ -141,7 +141,7 @@ void Startup()
     CProg prog = CProg((RGBA*)&rgbaComplete, (RGBA*)&rgbaRemain, (RGBA*)&rgbaWarning, (RGBA*)&rgbaTrouble);
     SetPhase(PHASE_Startup);
     prog.Begin();
-    for (int i = 0; i < sizeof(g_startupSampler); i++) // TODO Check if this is actually called startup sampler
+    for (int i = 0; i < sizeof(g_startupSampler) / sizeof(g_startupSampler[0]); i++) // TODO Check if this is actually called startup sampler
     {
         if (i > 2)
         {
