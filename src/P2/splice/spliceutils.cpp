@@ -9,24 +9,26 @@ extern CGc g_gc;
 
 // todo: match and fix blocked references
 INCLUDE_ASM(const s32, "P2/splice/spliceutils", StartupSplice__Fv);
-// void StartupSplice()
-// {
-//     g_gc.Startup();
+#ifdef SKIP_ASM
+void StartupSplice()
+{
+    g_gc.Startup();
 
-//     g_splotheapPair.Startup(0xc, 0x2000);
-//     g_splotheapPair.m_pfndelete = reinterpret_cast<PFNDELETE>(DeletePair);
+    g_splotheapPair.Startup(0xc, 0x2000);
+    g_splotheapPair.m_pfndelete = reinterpret_cast<PFNDELETE>(DeletePair);
 
-//     g_splotheapFrame.Startup(0x1c, 0x190);
-//     g_splotheapFrame.m_pfndelete = reinterpret_cast<PFNDELETE>(DeleteFrame);
+    g_splotheapFrame.Startup(0x1c, 0x190);
+    g_splotheapFrame.m_pfndelete = reinterpret_cast<PFNDELETE>(DeleteFrame);
 
-//     g_splotheapUnk1.Startup(0x10, 0x800);
-//     g_splotheapUnk1.m_pfndelete = reinterpret_cast<PFNDELETE>(0x11C4E8);
+    g_splotheapUnk1.Startup(0x10, 0x800);
+    g_splotheapUnk1.m_pfndelete = reinterpret_cast<PFNDELETE>(0x11C4E8);
 
-//     g_splotheapProc.Startup(0x14, 0x800);
-//     StartupSpliceStructuredTypeFactories();
+    g_splotheapProc.Startup(0x14, 0x800);
+    StartupSpliceStructuredTypeFactories();
 
-//     g_splotheapMethod.Startup(0xc,0x80);
-// }
+    g_splotheapMethod.Startup(0xc, 0x80);
+}
+#endif // SKIP_ASM
 
 void ShutdownSplice()
 {

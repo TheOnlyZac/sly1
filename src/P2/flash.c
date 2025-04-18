@@ -3,7 +3,28 @@
 
 extern CLOCK g_clock;
 
+/**
+ * @todo 88.42% matched
+ * https://decomp.me/scratch/rIdzw
+ */
 INCLUDE_ASM(const s32, "P2/flash", InitFlash__FP5FLASH);
+#ifdef SKIP_ASM
+void InitFlash(FLASH* pflash) {
+    InitAlo(pflash);
+
+    float fOne   = 1.0f;
+    float fSmall = 0.2f;
+    float fTiny  = 0.1f;
+
+    float* p = (float*)((char*)pflash + 0x2e0);
+
+    pflash->gScaleTarget = fOne;
+    pflash->gScaleCur    = fOne;
+    p[0] = fOne;   // smpScale.svSlow (0x2e0)
+    p[1] = fSmall; // smpScale.dtFast+4 (0x2e4)
+    p[2] = fTiny;  // smpScale.dtFast (0x2e8)
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM(const s32, "P2/flash", LoadFlashFromBrx__FP5FLASHP18CBinaryInputStream);
 

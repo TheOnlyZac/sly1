@@ -326,10 +326,19 @@ extern CM *g_pcm;
  */
 void SetSwCameraRgbaFog(SW *psw, RGBA *prgbaFog);
 
+// ...
+
 /**
  * @brief Sets the RGBA fog color for the camera.
  */
 void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog);
+
+// ...
+
+/**
+ * @brief Sets up the given camera.
+ */
+void SetupCm(CM *pcm);
 
 // todo fix undefined reference errors
 // extern VECTOR4 g_posEyeDefault;

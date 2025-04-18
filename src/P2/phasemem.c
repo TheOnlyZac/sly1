@@ -10,6 +10,6 @@ void SetPhase(PHASE phase) {
     }
 }
 
-void ClearPhase(void) {
+void ClearPhase() {
     g_phase = PHASE_None;
 }

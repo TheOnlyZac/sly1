@@ -1,6 +1,13 @@
 #include <po.h>
 
+/**
+ * @todo 100% matched but not integrated
+ * https://decomp.me/scratch/Ktol3
+ */
 INCLUDE_ASM(const s32, "P2/po", InitPo__FP2PO);
+#ifdef SKIP_ASM
+// todo
+#endif
 
 INCLUDE_ASM(const s32, "P2/po", ClonePo__FP2POT0);
 

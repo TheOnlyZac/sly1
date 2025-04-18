@@ -128,13 +128,15 @@ void SetTimerSpeed(TIMER *ptimer, float svt) {
 }
 
 /**
- * @todo Matches but there's issues with the signature.
+ * @todo Matches but timer struct offsets are wrong.
  */
-INCLUDE_ASM(const s32, "P2/screen", SetTimerExpire__FP5TIMERfPFP5TIMER9TIMERNOTK_v);
-// void SetTimerExpire(TIMER *ptimer, float dt, void *pfntn) {
-//     ptimer->dt = dt;
-//     ptimer->pfntnThreshold = pfntn;
-// }
+INCLUDE_ASM(const s32, "P2/screen", SetTimerExpire__FP5TIMERfPv);
+#ifdef SKIP_ASM
+void SetTimerExpire(TIMER *ptimer, float dt, void *pfntn) {
+    ptimer->dt = dt;
+    ptimer->pfntnThreshold = pfntn;
+}
+#endif // SKIP_ASM
 
 void StartTimer(TIMER *ptimer) {
     SetTimerTimers(ptimer, TIMERS_Running);

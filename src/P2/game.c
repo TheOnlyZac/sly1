@@ -32,33 +32,35 @@ INCLUDE_ASM(const s32, "P2/game", get_game_completion__Fv);
  * @todo Close to matching but there's a problem with the rodata.
  */
 INCLUDE_ASM(const s32, "P2/game", UnlockIntroCutsceneFromWid__Fi);
-// void UnlockIntroCutsceneFromWid(int wid)
-// {
-//     /* Check the unlocked cutscene by setting the corresponding
-//        flag on the unlocked_cutscenes in the game state */
-//     switch (wid)
-//     {
-//     case 1:
-//         /* Unlock cutscene "Tide of Terror" */
-//         g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x10;
-//         return;
-//     case 2:
-//         /* Unlock cutscene "Sunset Snake Eyes" */
-//         g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x40;
-//         return;
-//     case 3:
-//         /* Unlock cutscene "Vicious Voodoo" */
-//         g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x100;
-//         return;
-//     case 4:
-//         /* Unlock cutscene "Fire in the Sky" */
-//         g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x400;
-//         return;
-//     case 5:
-//         /* Unlock cutscene "The Cold Heart of Hate" */
-//         g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x1000;
-//     }
-// }
+#ifdef SKIP_ASM
+void UnlockIntroCutsceneFromWid(int wid)
+{
+    /* Check the unlocked cutscene by setting the corresponding
+       flag on the unlocked_cutscenes in the game state */
+    switch (wid)
+    {
+    case 1:
+        /* Unlock cutscene "Tide of Terror" */
+        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x10;
+        return;
+    case 2:
+        /* Unlock cutscene "Sunset Snake Eyes" */
+        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x40;
+        return;
+    case 3:
+        /* Unlock cutscene "Vicious Voodoo" */
+        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x100;
+        return;
+    case 4:
+        /* Unlock cutscene "Fire in the Sky" */
+        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x400;
+        return;
+    case 5:
+        /* Unlock cutscene "The Cold Heart of Hate" */
+        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x1000;
+    }
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM(const s32, "P2/game", DefeatBossFromWid);
 
@@ -135,7 +137,43 @@ void OnGameAlarmDisabled(GAME *pgame)
 
 INCLUDE_ASM(const s32, "P2/game", grfvault_something__Fv);
 
-INCLUDE_ASM(const s32, "P2/game", GetBlueprintInfo);
+/**
+ * @todo 97.65% matched
+ * https://decomp.me/scratch/l86al
+ */
+INCLUDE_ASM(const s32, "P2/game", GetBlueprintInfo__FPiT0);
+#ifdef SKIP_ASM
+void GetBlueprintInfo(int *pgrfvault, int *pipdialog)
+{
+    switch(g_pgsCur->gameworldCur) {
+        case GAMEWORLD_Snow:
+            pipdialog = (int*)0x00000000;
+            break;
+        case GAMEWORLD_Intro:
+            pipdialog = (int *)0x10000000;
+            break;
+        case GAMEWORLD_Clockwerk:
+            pipdialog = (int *)0x20000000;
+            break;
+        case GAMEWORLD_Underwater:
+            pipdialog = (int *)0x40000000;
+            break;
+        case GAMEWORLD_Muggshot:
+            pipdialog = (int *)0x60000000;
+            break;
+        case GAMEWORLD_Voodoo:
+            pipdialog = (int *)0x60000000;
+            break;
+        default:
+            pipdialog = (int *)0x00000000;
+            break;
+    }
+
+    if (pgrfvault != (int *)0x0) {
+        *pgrfvault = (int)pipdialog;
+    }
+}
+#endif // SKIP_ASM
 
 int CcharmMost()
 {

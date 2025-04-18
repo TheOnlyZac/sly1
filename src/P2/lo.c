@@ -154,7 +154,14 @@ void CloneLoHierarchy(LO *plo, LO *ploBase) {
     plo->pvtlo->pfnCloneLo(plo, ploBase);
 }
 
+/**
+ * @todo 100% matched but not integrated
+ * https://decomp.me/scratch/NwZqr
+ */
 INCLUDE_ASM(const s32, "P2/lo", CloneLo__FP2LOT0);
+#ifdef SKIP_ASM
+// todo
+#endif // SKIP_ASM
 
 void SubscribeSwPpmqStruct(SW *psw, MQ **ppmqFirst, PFNMQ pfnmq, void *pvContext) {
     MQ *pmq = PmqAllocSw(psw);

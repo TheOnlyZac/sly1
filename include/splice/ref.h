@@ -80,8 +80,8 @@ public:
     CRef(const CRef &ref);
     ~CRef();
     CRef &operator=(const CRef &ref);
-    bool operator==(const CRef &ref) const;
-    void CloneTo(CRef *prefClone, CFrame *pframeClone) const;
+    bool operator==(const CRef &ref);
+    void CloneTo(CRef *prefClone, CFrame *pframeClone);
     void Decref();
     void Incref();
     void SetTag(TAGK tagk);
