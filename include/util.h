@@ -11,6 +11,10 @@
 #include <vec.h>
 #include <sm.h>
 
+#ifdef SKIP_ASM
+extern LM g_lmZeroOne;
+#endif
+
 /**
  * @brief Unknown.
  *

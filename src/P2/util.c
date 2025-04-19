@@ -6,6 +6,10 @@
 static const float PI = 3.14159265359f;
 const int PRIME_MOD = 0x95675;
 
+#ifdef SKIP_ASM
+LM g_lmZeroOne = {0.0f, 1.0f};
+#endif
+
 float RadNormalize(float rad)
 {
     if ((rad < -PI) || (PI < rad))

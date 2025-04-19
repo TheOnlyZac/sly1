@@ -106,6 +106,9 @@ void OnDifficultyInitialTeleport(DIFFICULTY* pdifficulty) {
 
 INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyPlayerDeath);
 #ifdef SKIP_ASM
+/**
+ * @todo 88.43% matched.
+ */
 void OnDifficultyPlayerDeath(float scalar, DIFFICULTY* pdifficulty)
 {
 	DIFFICULTYLEVEL* pdifflevel = pdifficulty->pDifficultyLevel;
