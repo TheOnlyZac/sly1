@@ -25,6 +25,7 @@ class DMAS
     uchar* m_pb;
     int m_fPad;
     int m_fEndPrim;
+    //byte padding[0x450];
 
 public:
     DMAS();
