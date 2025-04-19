@@ -6,6 +6,7 @@
 #ifndef VEC_H
 #define VEC_H
 
+#include "common.h"
 #include <so.h>
 
 /**

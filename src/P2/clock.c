@@ -81,6 +81,33 @@ void SetClockEnabled(CLOCK *pclock, int fEnabled)
 }
 
 INCLUDE_ASM(const s32, "P2/clock", StartupClock__Fv);
+#ifdef SKIP_ASM
+/**
+ * @todo 69.58% matched.
+ */
+void StartupClock()
+{
+	// todo: what is count?
+	// s_tickLastRaw = (long)Count;
+	g_clock.tickFrame = TickNow();
+}
+#endif
 
 INCLUDE_ASM(const s32, "P2/clock", TickNow__Fv);
 INCLUDE_ASM(const s32, "P2/clock", func_00143140); // empty, not really a function
+#ifdef SKIP_ASM
+/**
+ * @todo 7.78% matched.
+ */
+const TICK TickNow()
+{
+	// todo: what is Count?
+	// TICK countLow = (long)Count & 0xffffffff;
+	// if (countLow < s_tickLastRaw) {
+	// 	cWrapAround.1014 += 1;
+	// }
+	// s_tickLastRaw = countLow;
+	// return cWrapAround.1014 << 0x20 | countLow;
+	return (TICK)1.0; // temp
+}
+#endif

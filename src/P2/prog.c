@@ -1,7 +1,7 @@
 #include <prog.h>
 #include <dmas.h>
 #include <util.h>
-#include <shd.h>
+#include <render.h>
 
 CProg::CProg(RGBA *rgbaComplete, RGBA *rgbaRemain, RGBA *rgbaWarning, RGBA *rgbaTrouble)
 {
@@ -58,63 +58,54 @@ void CProg::End()
 }
 
 /**
- * @todo 34.96% matched
+ * @todo 34.05% matched
  * https://decomp.me/scratch/06mco
  *
  * @note Stack frame doesn't line up.
  */
 INCLUDE_ASM(const s32, "P2/prog", Draw__5CProg);
 #ifdef SKIP_ASM
-#define UNK_CONST (float)0x43CE745D
 void CProg::Draw() {
-    DMAS dmas;
-    RGBA bgColor;
-    uint nMax;
-    float truncated;
-    float truncated2;
-    float ratio;
-    uint nMaxOriginal;
-    int cRetry;
-    byte bGreenFg;
-    byte bBlueFg;
-    byte bRedFg;
+    QW aqwProgress[64];
+    GIFS gifs = GIFS();
+    RGBA fgColor, bgColor;
+    float xLeft, yTop, xRight, yBottom;
 
-    nMax = this->m_nMax;
-    nMaxOriginal = nMax;
-    ratio = (this->m_nTarget * 620.0f) / nMax;
+    const float width = 620.0f;
+    const float offsetY = 412.9091f;
 
-    //func_001611B8();
-    dmas.AllocStatic(0x40, (QW *)0x0);
-    dmas.AddDmaCnt();
+    int totalWidth = (int)(((float)m_nTarget * width) / (float)m_nMax);
+    int filledWidth = (int)((float)totalWidth * (float)(m_nTarget - m_nRemain) / (float)m_nTarget);
 
-    bRedFg = this->m_rgbaComplete.bRed;
-    bGreenFg = this->m_rgbaComplete.bGreen;
-    bBlueFg = this->m_rgbaComplete.bBlue;
+    gifs.AllocStatic(0x40, aqwProgress);
+    gifs.AddDmaCnt();
 
-    truncated = GTrunc(UNK_CONST) * 1.1f;
-    GTrunc(UNK_CONST);
+    fgColor = m_rgbaComplete;
 
-    //DrawRect_19DDA0(10.0f, (float) ((s32) ratio + 0xA), bRedFg, bGreenFg, bBlueFg, 0xFF);
+    xLeft = 10.0f;
+    yTop = GTrunc(offsetY) * 1.1;
+    xRight = (float)filledWidth + 10.0f;
+    yBottom = GTrunc(offsetY) * 1.1 + 6.6;
+    FillScreenRect(fgColor.bRed, fgColor.bGreen, fgColor.bBlue, 0xFF, xLeft, yTop, xRight, yBottom, &gifs);
 
-    cRetry = this->m_cRetry;
-    if (cRetry <= 0) {
-        bgColor = this->m_rgbaRemain;
-    } else if (cRetry == 1) {
-        bgColor = this->m_rgbaWarning;
+    if (m_cRetry < 1) {
+        bgColor = m_rgbaRemain;
+    } else if (m_cRetry == 1) {
+        bgColor = m_rgbaWarning;
     } else {
-        bgColor = this->m_rgbaTrouble;
+        bgColor = m_rgbaTrouble;
     }
 
-    truncated2 = GTrunc(UNK_CONST) * 1.1f;
-    GTrunc(UNK_CONST);
+    xLeft = filledWidth + 10.0f;
+    yTop = GTrunc(offsetY) * 1.1;
+    xRight = (float)totalWidth + 10.0f;
+    yBottom = GTrunc(offsetY) * 1.1 + 6.6;
+    FillScreenRect(bgColor.bRed, bgColor.bGreen, bgColor.bBlue, 0xFF, xLeft, yTop, xRight, yBottom, &gifs);
 
-    //DrawRect_19DDA0((f32) ((s32) ratio + 0xA), (f32) ((s32) nMaxOriginal + 0xA), bgColor.bRed, bgColor.bGreen, bgColor.bBlue, 0xFF);
-
-    //func_00161200(); // might pass dmas as argument or be class method
-    dmas.AddDmaEnd();
-    dmas.EndDmaCnt();
-    dmas.Detach(0, 0);
-
-    //BlastAqwGifsBothFrames(0x0);
+    gifs.AddPrimEnd();
+    gifs.AddDmaEnd();
+    gifs.EndDmaCnt();
+    gifs.Detach(0x0, 0x0);
+    BlastAqwGifsBothFrames(aqwProgress);
 }
 #endif

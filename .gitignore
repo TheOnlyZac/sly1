@@ -7,7 +7,7 @@ SCUS_*.*
 disc/*
 reference/*
 
-# Objdiff files
+# Objdiff
 objdiff.json
 report.json
 
@@ -16,10 +16,7 @@ prodg*
 tools/cc/
 usr/
 
-# Documentation
-html/
-
-# Splat files
+# Splat
 splat/
 assets/
 asm/
@@ -30,11 +27,17 @@ undefined_syms_auto.txt
 *.ninja
 permuter_settings.toml
 
+# Documentation
+html/
+
 ## MacOS
 .DS_Store
 
 ## Linux
 *.swp
+
+## WSL
+*:Zone.Identifier
 
 ## Binary/object products
 **/bin/
@@ -81,3 +84,4 @@ __pycache__/
 # Miscellaneous
 .vscode
 temp/
+*.diff

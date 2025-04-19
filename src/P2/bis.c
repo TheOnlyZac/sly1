@@ -1,9 +1,18 @@
 #include <bis.h>
 #include <989snd.h>
+#include <lib/libkernl/filestub.h>
+#include <sdk/libcdvd.h>
+#include <memory.h>
 
 INCLUDE_ASM(const s32, "P2/bis", __18CBinaryInputStreamiPvi);
 
 INCLUDE_ASM(const s32, "P2/bis", DESTRUCTOR__CBinaryInputStream);
+#ifdef SKIP_ASM
+CBinaryInputStream::~CBinaryInputStream()
+{
+    Close();
+}
+#endif
 
 int CBinaryInputStream::FOpenSector(uint isector, uint cb)
 {
@@ -53,6 +62,49 @@ int CBinaryInputStream::FOpenFile(CFileLocation *pfl)
 }
 
 INCLUDE_ASM(const s32, "P2/bis", Close__18CBinaryInputStream);
+#ifdef SKIP_ASM
+/**
+ * @todo 81.16% matched
+ */
+void CBinaryInputStream::Close()
+{
+    if (m_bisk == BISK_Host) {
+        if (-1 < m_fd) {
+            sceClose(m_fd);
+        }
+    }
+    else {
+        if (m_bisk != BISK_Cd) {
+            m_cbSpillOver = 0;
+            m_bisk = BISK_Nil;
+            m_pbRaw = 0x0;
+            m_pb = 0x0;
+            m_cbRaw = 0;
+            m_cb = 0;
+            m_grfDecomp = 0;
+            return;
+        }
+        if (m_cbAsyncRequest != 0) {
+            if ((m_grfbis & 2U) == 0) {
+                sceCdBreak();
+            }
+            else {
+                snd_StreamSafeCdBreak();
+            }
+        }
+    }
+
+    m_cbSpillOver = 0;
+    m_bisk = BISK_Nil;
+    m_pbRaw = 0x0;
+    m_pb = 0x0;
+    m_cbRaw = 0;
+    m_cb = 0;
+    m_grfDecomp = 0;
+    return;
+}
+
+#endif
 
 void CBinaryInputStream::DecrementCdReadLimit(int cb)
 {
@@ -68,6 +120,58 @@ INCLUDE_ASM(const s32, "P2/bis", Pump__18CBinaryInputStream);
 INCLUDE_ASM(const s32, "P2/bis", Decompress__18CBinaryInputStream);
 
 INCLUDE_ASM(const s32, "P2/bis", Read__18CBinaryInputStreamiPv);
+#ifdef SKIP_ASM
+/**
+ * @brief Reads a certain number of bytes from the stream.
+ *
+ * @param cb Count of bytes to read.
+ * @param pv Pointer to the memory destination.
+ *
+ *@todo  74.27% matched
+ */
+void CBinaryInputStream::Read(int cb, void *pv)
+{
+    uint32_t uVar1;
+    uint32_t cb_00;
+
+    if ((-1 < m_cb) && (0 < cb)) {
+        for (int i = 0; i < cb; i++)
+        {
+            uVar1 = m_cb;
+            if (uVar1 == 0) {
+                if ((m_grfbis & 4U) == 0) {
+                    Decompress();
+                    Pump();
+                    m_cb = m_cbRaw;
+                    m_pb = m_pbRaw;
+                    m_pbRaw = m_pbRaw + m_cbRaw;
+                    m_cbRaw = 0;
+                    uVar1 = m_cb;
+                }
+                else {
+                    uVar1 = m_cb;
+                }
+                if (uVar1 == 0) {
+                    m_cb = -1;
+                    return;
+                }
+            }
+            cb_00 = cb;
+            if ((int)uVar1 <= cb) {
+                cb_00 = uVar1;
+            }
+            if (pv != nullptr) {
+                byte* pb = reinterpret_cast<byte*>(pv);
+                CopyAb(pb, m_pb, cb_00);
+                pv = reinterpret_cast<void*>(pb + cb_00);
+            }
+
+            m_pb = m_pb + cb_00;
+            m_cb = m_cb - cb_00;
+        }
+    }
+}
+#endif
 
 void CBinaryInputStream::Align(int n)
 {

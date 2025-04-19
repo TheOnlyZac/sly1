@@ -6,6 +6,7 @@
 #ifndef TYPES_H
 #define TYPES_H
 
+// Common types
 typedef unsigned char byte;
 
 typedef unsigned char uchar;
@@ -53,5 +54,7 @@ typedef double f64;
 
 typedef uint size_t;
 #define nullptr (void *)0x0
+
+typedef union QW;
 
 #endif // TYPES_H
