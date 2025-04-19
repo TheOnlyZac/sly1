@@ -12,16 +12,16 @@
 
 class CProg
 {
-    int m_fActive; // 0
-    int m_nMax; // 4
-    int m_nTarget; // 8
-    int m_nRemain; // c
-    int m_cRetry; // 10
+    int m_fActive;
+    int m_nMax;
+    int m_nTarget;
+    int m_nRemain;
+    int m_cRetry;
 
-    RGBA m_rgbaComplete; // 14
-    RGBA m_rgbaRemain; // 18
-    RGBA m_rgbaWarning; // 1c
-    RGBA m_rgbaTrouble; // 20
+    RGBA m_rgbaComplete;
+    RGBA m_rgbaRemain;
+    RGBA m_rgbaWarning;
+    RGBA m_rgbaTrouble;
 
 public:
     /**
