@@ -21,6 +21,8 @@ struct CHKPNT : public ALO
     // ...
 };
 
+typedef struct VTCHKMGR;
+
 /**
  * @brief Checkpoint Manager.
  *
@@ -28,10 +30,11 @@ struct CHKPNT : public ALO
  */
 struct CHKMGR
 {
-    int unknown_0x0;
+    VTCHKMGR *pvtchkmgr;
     int cbitChk;      // Count of values in abitChk.
     int *abitChk;     // Unknown, name/type may be wrong.
-    int padding[128]; // Temporary padding
+    undefined4 unk_0x8;
+    int padding[127]; // Temporary padding
     int fChkDirty;
     VECTOR posVolChkpnt;
     int csSaved[129]; // type may be wrong

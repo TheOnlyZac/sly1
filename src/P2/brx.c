@@ -6,6 +6,15 @@ void StartupBrx()
 }
 
 INCLUDE_ASM(const s32, "P2/brx", PloNew__F3CIDP2SWP3ALO3OIDi);
+#ifdef SKIP_ASM
+/**
+ * @todo 2.19% matched.
+ */
+SW *PloNew(CID cid, SW *psw, ALO *paloParent, OID oid, int isplice)
+{
+    return psw;
+}
+#endif
 
 INCLUDE_ASM(const s32, "P2/brx", LoadOptionFromBrx__FPvP5EOPIDP18CBinaryInputStream);
 

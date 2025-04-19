@@ -167,9 +167,8 @@ segments:
     - [0x8b388, asm, P2/mecha]
     #- [0x, asm, P2/mb]
     #- [0x, asm, P2/memcard]
-    #- [0x, asm, P2/memory]
-    #- [0x, asm, P2/menu]
-    #- [0x, asm, P2/missile]
+    - [0x8e4b0, asm, P2/memory]
+    - [0x8e8e0, asm, P2/missile]
     #- [0x, asm, P2/mouthgame]
     #- [0x, asm, P2/mpeg]
     #- [0x, asm, P2/mrkv]
@@ -265,6 +264,7 @@ segments:
     # P2/hg.c - hang glider
     # P2/stepski.c - skiing
     # P2/map2d.c - unknown
+    # P2/menu - unknown
     # P2/vife.c - vif encoder
     # P2/wibu_ee.c - wibukey encryption
 

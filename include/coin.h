@@ -10,6 +10,7 @@
 #include <alo.h>
 #include <oid.h>
 #include <sm.h>
+#include <sw.h>
 #include <xform.h>
 
 // Forward declarations
@@ -49,7 +50,7 @@ struct DPRIZE : public ALO
     DPRIZES dprizesInit;
     DPRIZES dprizes; // State
     float dtInitialSkip;
-    SM *psm; // State machine
+    SM *psm;   // State machine
     SMA *psma; // State machine action
     TARGET *ptarget;
     VECTOR posCenter;
@@ -73,7 +74,7 @@ struct DPRIZE : public ALO
     float radSmooth;
     VECTOR normalSmooth;
     int fSwirlDone;
-    undefined4 unk_1; 
+    undefined4 unk_1;
     DLE dle;
     int ichkCollected;
     EXPL *pexplCollect;
@@ -99,13 +100,11 @@ struct KEY : public DPRIZE
     // ...
 };
 
-
 /**
  * @brief Charm.
  */
 struct CHARM : public DPRIZE
 {
-
 };
 
 /**
@@ -125,10 +124,10 @@ void LoadDprizeFromBrx(DPRIZE *pdprize, CBinaryInputStream *pbis);
 
 /**
  * @brief Clone a DPrize
- * 
+ *
  * @param pdprize DPrize clone target
  * @param pdprizeBase DPrize clone source
- * 
+ *
  * @note ichkCollected and dle will not be overwritten
  */
 void CloneDprize(DPRIZE *pdprize, DPRIZE *pdprizeBase);
@@ -160,6 +159,11 @@ void InitCharm(CHARM *pcharm);
  */
 void InitKey(KEY *pkey);
 
+void SetKeyDprizes(KEY *pkey, DPRIZES dprizes);
+
+int CpdprizeAttractSwDprizes(SW *psw, CID cid, VECTOR *pposCenter, int cpdprizeMax, DPRIZE **apdprize);
+
+void RemoveSwExtraneousCharms(SW *psw);
 
 extern SNIP s_asnipDprize[5];
 

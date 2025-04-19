@@ -1,6 +1,36 @@
 #include <chkpnt.h>
+#include <sce/memset.h>
 
 INCLUDE_ASM(const s32, "P2/chkpnt", ResetChkmgrCheckpoints__FP6CHKMGR);
+#ifdef SKIP_ASM
+/**
+ * @brief Resets the checkpoints on the checkpoint manager.
+ *
+ * @param pchkmgr Pointer to the checkpoint manager.
+ *
+ * @todo 73.41% matched.
+ */
+void ResetChkmgrCheckpoints(CHKMGR* pchkmgr)
+{
+	pchkmgr->cbitChk = 0;
+	pchkmgr->unk_0x8 = 0;
+
+	memset(pchkmgr->padding, 0, 0x200);
+	pchkmgr->fChkDirty = 0;
+
+	float temp_should_be_global_var = 0.0f;
+	pchkmgr->posVolChkpnt.x = temp_should_be_global_var;
+	pchkmgr->posVolChkpnt.z = temp_should_be_global_var;
+	pchkmgr->posVolChkpnt.x = temp_should_be_global_var;
+	pchkmgr->posVolChkpnt.x = (float)((int)temp_should_be_global_var >> 0x1f);
+
+	memset(pchkmgr->csSaved, 0, 0x20c);
+	pchkmgr->fCheckpoint = 0;
+
+	pchkmgr->unk_oid_0x424 = (OID)0xFFFFFFFF;
+	pchkmgr->unk_oid_0x428 = (OID)0xFFFFFFFF;
+}
+#endif
 
 INCLUDE_ASM(const s32, "P2/chkpnt", SaveChkmgrCheckpoint__FP6CHKMGR3OIDT1);
 

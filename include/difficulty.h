@@ -24,10 +24,10 @@ enum DPS
 /**
  * @brief Values for a particular difficulty level.
  */
-struct DifficultyLevel
+struct DIFFICULTYLEVEL
 {
     struct LM suck_lm; // Clamp the suck to this limit
-    undefined4 field1_0x8;
+    LM unk_lm_0x8;
     float field4_0xc;
     float duSuckDeath;
     float duSuckChkpntTrigger;   // Suck gain from triggering a checkpoint for the first time
@@ -53,14 +53,14 @@ struct DifficultyLevel
  */
 struct DIFFICULTY
 {
-    struct LM *unk_lm;
+    LM *unk_lm;
     int ccoinRichMin;
     int ccoinRichMax;
     int ccoinPoorMin;
     int ccoinPoorMax;
     int uRichLow;
     int uRichHigh;
-    struct DifficultyLevel *p_difficulty_level;
+    DIFFICULTYLEVEL *pDifficultyLevel;
     enum DPS dps;
 };
 

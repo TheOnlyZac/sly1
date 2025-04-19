@@ -7,20 +7,42 @@
 #define BRX_H
 
 #include "common.h"
+#include <sw.h>
 
 /**
  * @brief Builds the eopids array.
  */
 void StartupBrx();
 
+// ...
+
 /**
- * @brief Get the PLO index from a stock OID.
+ * @brief Creates a new PLO from the given parameters.
+ *
+ * @param cid Class ID.
+ * @param psw Pointer to the SW object.
+ * @param paloParent Pointer to the parent ALO object.
+ * @param oid Object ID.
+ * @param isplice Splice index.
+ *
+ * @return Pointer to the new SW object.
  */
-uint IploFromStockOid(int oid);
+SW* PloNew(CID cid, SW* psw, ALO* paloParent, OID oid, int isplice);
+
+ // ...
 
 /**
  * @todo
  */
 void LoadOptionsFromBrx(void *pvStruct, CBinaryInputStream *pbis);
+
+// ...
+
+/**
+ * @brief Get the PLO index from a stock OID.
+ *
+ * @param oid The OID to get the index of.
+ */
+uint IploFromStockOid(int oid);
 
 #endif // BRX_H
