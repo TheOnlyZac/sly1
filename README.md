@@ -8,10 +8,10 @@
 [code-progress-badge]: https://decomp.dev/TheOnlyZac/sly1.svg?mode=shield&measure=code&label=code
 [data-progress-badge]: https://decomp.dev/TheOnlyZac/sly1.svg?mode=shield&measure=data&label=data
 
-[engine-url]: https://decomp.dev/TheOnlyZac/sly1/SCUS_971.98/0268a5f7ec7431715c213a66c44e8ad518de33fd?category=P2
+[engine-url]: https://decomp.dev/TheOnlyZac/sly1/SCUS_971.98?category=P2
 [engine-progress-badge]: https://decomp.dev/TheOnlyZac/sly1.svg?mode=shield&measure=code&category=P2&label=engine
 
-[splice-url]: https://decomp.dev/TheOnlyZac/sly1/SCUS_971.98/0268a5f7ec7431715c213a66c44e8ad518de33fd?category=splice
+[splice-url]: https://decomp.dev/TheOnlyZac/sly1/SCUS_971.98?category=splice
 [splice-progress-badge]: https://decomp.dev/TheOnlyZac/sly1.svg?mode=shield&measure=code&category=splice&label=splice
 
 <!-- Contributors shield -->
