@@ -17,6 +17,25 @@ extern sceDmaChan *g_pdcGif;
 extern sceDmaChan *g_pdcFromSpr;
 extern sceDmaChan *g_pdcToSpr;
 
+/**
+ * @brief Union for 16-byte aligned data.
+ */
+union QW
+{
+    VECTOR vec;
+    VECTOR4 vec4;
+    uint16 ull;
+    ulong aul[2];
+    uint aun[4];
+    short aus[8];
+    uchar ab[16];
+    int16 ll;
+    long al[2];
+    int an[4];
+    ushort as[8];
+    float ag[4];
+};
+
 class DMAS
 {
     uchar* m_pbMax;

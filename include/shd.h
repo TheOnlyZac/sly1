@@ -7,8 +7,10 @@
 #define SHD_H
 
 #include <sdk/ee/eestruct.h>
+#include "common.h"
 #include <geom.h>
 #include <surf.h>
+#include <dmas.h>
 
 typedef struct SHD; // Forward declaration
 typedef struct SHDP; // Forward declaration
@@ -71,27 +73,6 @@ struct TEX : public TEXF
     SHD *pshd;
     BMP **apbmp;
     CLUT **apclut;
-};
-
-// MARK: QW
-//tood move to separate file
-
-#include <vec.h>
-
-union QW
-{
-    VECTOR vec;
-    VECTOR4 vec4;
-    uint16 ull;
-    ulong aul[2];
-    uint aun[4];
-    short aus[8];
-    uchar ab[16];
-    int16 ll;
-    long al[2];
-    int an[4];
-    ushort as[8];
-    float ag[4];
 };
 
 // MARK: SAIR
