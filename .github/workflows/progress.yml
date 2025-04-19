@@ -1,10 +1,11 @@
-name: Upload progress report
+name: Upload objdiff report
 
 on:
   push:
     branches:
       - main
       - progress
+  pull_request:
 
 jobs:
   report-upload:
