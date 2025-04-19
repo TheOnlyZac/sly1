@@ -7,6 +7,7 @@
 #define GS_H
 
 #include "common.h"
+#include <shd.h>
 
 struct GSB
 {
@@ -41,9 +42,7 @@ void ResetGsb(GSB *pGsb);
  */
 int IgsAllocGsb(GSB *pgsb, int iCount);
 
-/**
- *
-*/
+void BlastAqwGifsBothFrames(QW *);
 void ClearFrameBuffers();
 
 #endif // GS_H

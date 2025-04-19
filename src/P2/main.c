@@ -21,6 +21,8 @@ extern void *g_startupSampler[29];
 extern int g_chpzArgs;
 extern char **g_apchzArgs;
 
+void Startup(); // Forward declaration
+
 /**
  * @brief Main function.
  *
@@ -31,8 +33,6 @@ extern char **g_apchzArgs;
  */
 INCLUDE_ASM(const s32, "P2/main", main);
 #ifdef SKIP_ASM
-void Startup();
-
 int main(char **argv, int argc) {
     g_apchzArgs = argv;
     g_chpzArgs = argc;
@@ -125,32 +125,36 @@ void StartupVU1(void)
  *
  * @todo 98.23% matched
  * https://decomp.me/scratch/IOVxc
+ *
+ * @note Stack frame 48 bytes smaller than expected.
  */
 INCLUDE_ASM(const s32, "P2/main", Startup__Fv);
 #ifdef SKIP_ASM
 void Startup()
 {
-    // Hex RGBA values?
-    uint rgbaComplete = 0x007f0000;
-    uint rgbaRemain = 0x003f3f3f;
-    uint rgbaWarning = 0x00003f3f;
-    uint rgbaTrouble = 0x0000003f;
+    // Set up progress bar
+    int nRemain = 26;
+    int rgbaComplete = 0x007f0000; // blue
+    int rgbaRemain = 0x003f3f3f; // gray
+    int rgbaWarning = 0x00003f3f; // yellow
+    int rgbaTrouble = 0x0000003f; // red
+    CProg prog = CProg((RGBA *)&rgbaComplete, (RGBA *)&rgbaRemain, (RGBA *)&rgbaWarning, (RGBA *)&rgbaTrouble);
 
-    int remaining = 26;
-
-    CProg prog = CProg((RGBA*)&rgbaComplete, (RGBA*)&rgbaRemain, (RGBA*)&rgbaWarning, (RGBA*)&rgbaTrouble);
+    // Begin startup phase, iterating over and calling each function in the startup sampler
     SetPhase(PHASE_Startup);
     prog.Begin();
     for (int i = 0; i < sizeof(g_startupSampler) / sizeof(g_startupSampler[0]); i++) // TODO Check if this is actually called startup sampler
     {
         if (i > 2)
         {
-            prog.SetRemain(remaining);
+            prog.SetRemain(nRemain);
         }
 
-        remaining--;
+        nRemain--;
         ((void (*)(void))g_startupSampler[i])(); // Cast to function pointer before calling
     }
+
+    // Cleanup
     prog.SetRemain(0);
     prog.End();
     ClearPhase();

@@ -123,18 +123,20 @@ int CSolveQuadratic(float a, float b, float c, float *ax)
     {
         return 0;
     }
-
-    beta = b / a;
-    alpha = sqrtf(alpha) / a;
-    if (fabsf(alpha) < 0.0001f)
+    else
     {
-        *ax = -beta;
-        return 1;
-    }
+        beta = b / a;
+        alpha = sqrtf(alpha) / a;
+        if (fabsf(alpha) < 0.0001f)
+        {
+            *ax = -beta;
+            return 1;
+        }
 
-    *ax = -beta + alpha;
-    ax[1] = -beta - alpha;
-    return 2;
+        *ax = -beta + alpha;
+        ax[1] = -beta - alpha;
+        return 2;
+    }
 }
 #endif // SKIP_ASM
 
@@ -147,9 +149,9 @@ void PrescaleClq(CLQ *pclqSrc, float ru, float du, CLQ *pclqDst)
 
 INCLUDE_ASM(const s32, "P2/util", CalculateSinCos__FfPfT1);
 
-INCLUDE_ASM(const s32, "P2/util", GTrunc);
+INCLUDE_ASM(const s32, "P2/util", GTrunc); // double version
 
-INCLUDE_ASM(const s32, "P2/util", GTrunc1);
+INCLUDE_ASM(const s32, "P2/util", GTrunc1); // float version
 
 float GModPositive(float gDividend, float gDivisor)
 {
