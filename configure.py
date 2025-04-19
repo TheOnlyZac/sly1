@@ -183,17 +183,14 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
                     src_cpp_files = list(Path("src").rglob(src_base.name + ".cpp"))
                     has_src = bool(src_c_files or src_cpp_files)
                     # Determine the category based on the name
+                    categories = [name.split("/")[0]]
                     if "P2/splice/" in name:
-                        category = "splice"
-                    else:
-                        category = name.split("/")[0]
+                        categories.append("splice")
                     unit = {
                         "name": name,
                         "target_path": target_path,
                         "metadata": {
-                            "progress_categories": [
-                                category
-                            ]
+                            "progress_categories": categories,
                         }
                     }
                     if has_src:
