@@ -4,9 +4,15 @@
 [build-url]:https://github.com/TheOnlyZac/sly1/actions/workflows/build.yml
 [build-badge]: https://img.shields.io/github/actions/workflow/status/theonlyzac/sly1/build.yml?branch=main&label=build
 
-[code-progress-badge]: https://img.shields.io/endpoint?label=progress&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fslycooper1%2Fus%2Fall%2F%3Fmode%3Dshield%26measure%3DP2
+[decompdev-url]: https://decomp.dev/TheOnlyZac/sly1
+[code-progress-badge]: https://decomp.dev/TheOnlyZac/sly1.svg?mode=shield&measure=code&label=code
+[data-progress-badge]: https://decomp.dev/TheOnlyZac/sly1.svg?mode=shield&measure=data&label=data
 
-<!--[data-progress-badge]: https://img.shields.io/endpoint?label=data&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fslycooper1%2Fus%2Fall%2F%3Fmode%3Dshield%26measure%3Ddata-->
+[engine-url]: https://decomp.dev/TheOnlyZac/sly1/SCUS_971.98/0268a5f7ec7431715c213a66c44e8ad518de33fd?category=P2
+[engine-progress-badge]: https://decomp.dev/TheOnlyZac/sly1.svg?mode=shield&measure=code&category=P2&label=engine
+
+[splice-url]: https://decomp.dev/TheOnlyZac/sly1/SCUS_971.98/0268a5f7ec7431715c213a66c44e8ad518de33fd?category=splice
+[splice-progress-badge]: https://decomp.dev/TheOnlyZac/sly1.svg?mode=shield&measure=code&category=splice&label=splice
 
 <!-- Contributors shield -->
 [contributors-url]: https://github.com/theonlyzac/sly1/graphs/contributors
@@ -25,7 +31,7 @@
 [wiki-badge]: https://img.shields.io/badge/wiki-slymods.info-2C4AA8
 
 <!-- Shields -->
-[![Build][build-badge]][build-url] ![code-progress-badge] <!--![data-progress-badge]--> [![Contributors][contributors-badge]][contributors-url] [![Discord Channel][discord-badge]][discord-url] [![Docs][docs-badge]][docs-url] [![Wiki][wiki-badge]][wiki-url]
+[![Build][build-badge]][build-url] [![Engine Progress][engine-progress-badge]][engine-url] [![Splice Progress][splice-progress-badge]][splice-url] [![Data Progress][data-progress-badge]][decompdev-url] [![Contributors][contributors-badge]][contributors-url] [![Discord Channel][discord-badge]][discord-url] [![Docs][docs-badge]][docs-url] [![Wiki][wiki-badge]][wiki-url]
 
 [<img src="./logo.png" style="margin:7px" align="right" width="33%" alt="Sly 1 Decompilation Logo by Cooper941">][docs-url]
 
