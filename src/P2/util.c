@@ -20,7 +20,7 @@ float RadNormalize(float rad)
     return rad;
 }
 
-float GLimitAbs(float g,float absLimit)
+float GLimitAbs(float g, float absLimit)
 {
     if (g > absLimit)
     {
@@ -95,7 +95,42 @@ float GRandInRange(float gHi, float gLow)
     return result;
 }
 
-INCLUDE_ASM(const s32, "P2/util", GRandGaussian);
+INCLUDE_ASM(const s32, "P2/util", GRandGaussian__Ffff);
+#ifdef SKIP_ASM
+/**
+ * @todo 64.35% matched.
+ * log function needs to be defined. Does it use sce math lib?
+ */
+float GRandGaussian(float param_1, float param_2, float param_3)
+{
+    float fVar1;
+    float fVar2;
+    float fVar3;
+    float fVar4;
+
+    fVar3 = -1.0f;
+    fVar4 = 0.0f;
+    do
+    {
+        do
+        {
+            fVar1 = (float)GRandInRange(fVar3, 1.0f);
+            fVar2 = (float)GRandInRange(fVar3, 1.0f);
+            fVar1 = fVar1 * fVar1 + fVar2 * fVar2;
+        } while (1.0f < fVar1);
+    } while (fVar1 == fVar4);
+    // fVar3 = logf(fVar1);
+    fVar4 = param_1 + param_2 * fVar2 * sqrtf((fVar3 * -2.0f) / fVar1);
+    fVar3 = fVar4;
+    if (param_3 != 0.0f)
+    {
+        fVar3 = param_1 - param_3;
+        if ((param_1 - param_3 <= fVar4) && (fVar3 = fVar4, param_1 + param_3 < fVar4))
+            fVar3 = param_1 + param_3;
+    }
+    return fVar3;
+}
+#endif // SKIP_ASM
 
 int FFloatsNear(float g1, float g2, float gEpsilon)
 {
@@ -109,12 +144,12 @@ int FFloatsNear(float g1, float g2, float gEpsilon)
     return (g2 / x) < gEpsilon;
 }
 
+INCLUDE_ASM(const s32, "P2/util", CSolveQuadratic__FfffPf);
+#ifdef SKIP_ASM
 /**
  * @todo 94.29% matched
  * https://decomp.me/scratch/A4VOu
  */
-INCLUDE_ASM(const s32, "P2/util", CSolveQuadratic__FfffPf);
-#ifdef SKIP_ASM
 int CSolveQuadratic(float a, float b, float c, float *ax)
 {
     float alpha;
@@ -152,10 +187,124 @@ void PrescaleClq(CLQ *pclqSrc, float ru, float du, CLQ *pclqDst)
 }
 
 INCLUDE_ASM(const s32, "P2/util", CalculateSinCos__FfPfT1);
+#ifdef SKIP_ASM
+/**
+ * @tod 86.55% matched.
+ */
+void CalculateSinCos(float angle, float *sin, float *cos)
+{
+    // Constants from the assembly (hex to float)
+    const float PI_OVER_2 = 1.57079637051f; // 0x3FC90FDB
+    const float INV_PI = 0.31830987334f;    // 0x3EA2F983
+    const float PI = 3.14159274101f;        // 0x40490FDB
 
-INCLUDE_ASM(const s32, "P2/util", GTrunc); // double version
+    // Polynomial coefficients (from hex in asm)
+    const float C1 = -0.1666666279f;   // 0xBE2AAAA4
+    const float C2 = 0.00833302546f;   // 0x3C08873E
+    const float C3 = -0.000198074187f; // 0xB94FB21F
+    const float C4 = 2.601887e-06f;    // 0x362E9C14
 
-INCLUDE_ASM(const s32, "P2/util", GTrunc1); // float version
+    float x = (angle + PI_OVER_2) * INV_PI;
+    int n = (int)x;
+    if (x < 0.0f)
+        n -= 1;
+    int odd = n & 1;
+    float xn = (float)n;
+    float theta = angle - xn * PI;
+    if (odd)
+        theta = -theta;
+
+    float theta2 = theta * theta;
+    float s = theta;
+    float t = theta2 * theta;
+    float u = t * theta2;
+    float v = u * theta2;
+    float w = v * theta2;
+
+    float result = s + t * C1 + u * C2 + v * C3 + w * C4;
+
+    float result2 = 1.0f - result * result;
+    if (odd)
+        result2 = -result2;
+
+    *sin = result;
+    *cos = result2;
+}
+#endif // SKIP_ASM
+
+INCLUDE_ASM(const s32, "P2/util", GTrunc__Fd); // double version
+#ifdef SKIP_ASM
+/**
+ * @todo 34.18% matched.
+ */
+double GTrunc(double param_1)
+{
+    union
+    {
+        double d;
+        uint64_t u;
+    } conv;
+    conv.d = param_1;
+
+    int exp = (int)((conv.u >> 52) & 0x7FF) - 0x3FF;
+    if (exp < 0)
+        return 0.0;
+    if (exp >= 52)
+        return param_1;
+
+    uint64_t mask = (1ULL << (52 - exp)) - 1;
+    uint64_t frac = conv.u & 0xFFFFFFFFFFFFF;
+    uint64_t intpart = conv.u & ~mask;
+
+    if ((frac & mask) == mask)
+    {
+        // Special case: all masked bits set, round up
+        intpart += (1ULL << (52 - exp));
+        // Clear fraction bits
+        intpart &= ~mask;
+    }
+
+    conv.u = intpart;
+    return conv.d;
+}
+#endif
+
+INCLUDE_ASM(const s32, "P2/util", GTrunc__Ff); // float version
+#ifdef SKIP_ASM
+/**
+ * @todo 36.07% matched.
+ */
+float GTrunc(float param_1)
+{
+    union
+    {
+        float f;
+        uint32_t u;
+    } conv;
+    conv.f = param_1;
+
+    int exp = ((conv.u >> 23) & 0xFF) - 0x7F;
+    if (exp < 0)
+        return 0.0f;
+    if (exp >= 0x17)
+        return param_1;
+
+    uint32_t mask = (1u << (0x17 - exp)) - 1;
+    uint32_t frac = conv.u & 0x7FFFFF;
+    if ((frac & mask) == mask)
+    {
+        // All masked bits set, round up
+        conv.u = (conv.u & 0xFF800000) | (frac & ~mask);
+        conv.f += 1.0f;
+        return conv.f;
+    }
+    else
+    {
+        conv.u = (conv.u & 0xFF800000) | (frac & ~mask);
+        return conv.f;
+    }
+}
+#endif // SKIP_ASM
 
 float GModPositive(float gDividend, float gDivisor)
 {
@@ -180,11 +329,11 @@ int FCheckLm(LM *plm, float g)
     return (plm->gMin < g) && (g < plm->gMax);
 }
 
-bool FCheckAlm(int clm, LM* alm, float g)
+bool FCheckAlm(int clm, LM *alm, float g)
 {
     for (int i = 0; i < clm; i++)
     {
-        if (FCheckLm(alm+i, g) != 0)
+        if (FCheckLm(alm + i, g) != 0)
         {
             return true;
         }

@@ -26,21 +26,45 @@ void SetVectorSphere(VECTOR *pvec, float radPan, float radTilt, float s)
     pvec->y = gCosTilt * gSinPan * s;
 }
 
-INCLUDE_ASM(const s32, "P2/vec", SProjectVector);
+INCLUDE_ASM(const s32, "P2/vec", SProjectVector__FP6VECTORT0);
 
-INCLUDE_ASM(const s32, "P2/vec", GetNormalVectors);
+INCLUDE_ASM(const s32, "P2/vec", GetNormalVectors__FP6VECTORN30);
 
-INCLUDE_ASM(const s32, "P2/vec", GetNormalVector);
+INCLUDE_ASM(const s32, "P2/vec", GetNormalVector__FP6VECTORT0);
 
 INCLUDE_ASM(const s32, "P2/vec", func_001ED900);
 
-INCLUDE_ASM(const s32, "P2/vec", RadBetweenVectors);
+INCLUDE_ASM(const s32, "P2/vec", RadBetweenVectors__FP6VECTORN20);
 
-INCLUDE_ASM(const s32, "P2/vec", FindClosestPointBetweenLines);
+INCLUDE_ASM(const s32, "P2/vec", FindClosestPointBetweenLines__FP6VECTORN30PfT4T0);
 
-INCLUDE_ASM(const s32, "P2/vec", FindClosestPointBetweenLineSegments);
+INCLUDE_ASM(const s32, "P2/vec", FindClosestPointBetweenLineSegments__FP6VECTORN40PfT0);
 
-INCLUDE_ASM(const s32, "P2/vec", CalculateVectorPanTilt);
+INCLUDE_ASM(const s32, "P2/vec", CalculateVectorPanTilt__FP6VECTORPfT1);
+#ifdef SKIP_ASM
+/**
+ * @todo 51.53% matched.
+ * Depends on trig functions that aren't implemented.
+ */
+void CalculateVectorPanTilt(VECTOR* pvec, float* ppan, float* ptilt)
+{
+    float val;
+
+    if (*ppan != 0.0)
+    {
+        // val = atan2f(pvec->y, pvec->x);
+        // fVar1 = FUN_001ea408(fVar1);
+        *ppan = val;
+    }
+    if (*ptilt != 0.0)
+    {
+        // val = atan2f(pvec->z, sqrt(pvec->x * pvec->x + pvec->y * pvec->y));
+        // val = FUN_001ea408(val); // todo implement function
+        *ptilt = val;
+    }
+    return;
+}
+#endif // SKIP_ASM
 
 void ConvertDeulToW(VECTOR *peul, VECTOR *pdeul, VECTOR *pw)
 {
@@ -51,7 +75,7 @@ void ConvertDeulToW(VECTOR *peul, VECTOR *pdeul, VECTOR *pw)
 
     CalculateSinCos(peul->y, &ySin, &yCos);
     CalculateSinCos(peul->z, &zSin, &zCos);
-    
+
     pw->x = yCos * zCos * pdeul->x - zSin * pdeul->y;
     pw->y = yCos * zSin * pdeul->x + zCos * pdeul->y;
     pw->z = -ySin * pdeul->x + pdeul->z;

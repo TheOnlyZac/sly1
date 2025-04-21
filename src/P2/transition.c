@@ -1,6 +1,11 @@
 #include <sce/memset.h>
 #include <transition.h>
 #include <chkpnt.h>
+#include <phasemem.h>
+#include <sw.h>
+#include <joy.h>
+#include <brx.h>
+
 
 extern void SetMvgkRvol(float); // todo: replace with header file/declaration
 
@@ -26,6 +31,45 @@ void CTransition::Set(char *pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS
 }
 
 INCLUDE_ASM(const s32, "P2/transition", Execute__11CTransition);
+#ifdef SKIP_ASM
+/**
+ * @todo 13.18% matched.
+ * Several functions called in this function are not implemented yet.
+ */
+void CTransition::Execute()
+{
+    CFileLocation fileLocation;
+    LevelTableStruct levelInfo = {};
+
+    SetPhase(PHASE_Load);
+    if (levelInfo.fileLocation.m_fcl.cb != 0)
+    {
+        // fileLocation.Clear();
+
+        // Decrypting the sector offsets and file size
+        fileLocation.m_fcl.cb = levelInfo.fileLocation.m_fcl.cb ^ levelInfo.level_name;
+        fileLocation.m_fcl.isector = levelInfo.fileLocation.m_fcl.isector ^ levelInfo.for_size;
+
+        if (fileLocation.m_fcl.cb == 0)
+        {
+            //FUN_001C06D8();
+            //SetMvgkRvol();
+            ClearPhase();
+            levelInfo.fileLocation.m_fcl.isector = 0;
+            return;
+        }
+
+        // DeleteSw(g_psw);
+        g_psw = 0;
+        // SetupBulkDataFromBrx()
+        ResetClock(&g_clock, 0.0);
+        AddGrfusr(0x80);
+        // SetupGame(levelInfo.level_id);
+        g_psw = PloNew(CID_SW, 0, 0, OID__WORLD, -1);
+
+    }
+}
+#endif // SKIP_ASM
 
 void ResetWorld(FTRANS ftrans)
 {

@@ -141,9 +141,34 @@ void OnDifficultyPlayerDeath(float scalar, DIFFICULTY* pdifficulty)
 }
 #endif
 
-INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyTriggerCheckpoint);
+INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyTriggerCheckpoint__FP10DIFFICULTYP6CHKPNT);
+#ifdef SKIP_ASM
+/**
+ * @todo 3.33% matched.
+ */
+void OnDifficultyTriggerCheckpoint(DIFFICULTY *pdifficulty, CHKPNT *pchkpnt)
+{
+	DIFFICULTYLEVEL* pdifflevel;
 
-INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyCollectKey);
+	if (pchkpnt == NULL)
+	{
+		pdifflevel = pdifficulty->pDifficultyLevel;
+	}
+
+	// todo: implement CHKPNT struct and finish this function
+	// ...
+}
+#endif
+
+void OnDifficultyCollectKey(DIFFICULTY* pdifficulty)
+{
+	ChangeSuck(0.0f, pdifficulty);
+
+	g_plsCur->unk_suck_0x10 = 0.0f;
+	g_plsCur->unk_field_0x70 = 0;
+
+	memset(&g_plsCur->unk_field_0x74, 0, 1);
+}
 
 INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyBreak);
 

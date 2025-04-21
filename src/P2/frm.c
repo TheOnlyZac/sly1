@@ -1,8 +1,30 @@
 #include <frm.h>
+#include <phasemem.h>
+#include <sdk/ee/eekernel.h>
 
 INCLUDE_ASM(const s32, "P2/frm", StartupFrame__Fv);
 
 INCLUDE_ASM(const s32, "P2/frm", OpenFrame__Fv);
+#ifdef SKIP_ASM
+/**
+ * @todo 11.12% matched.
+ * Missing some global data definitions.
+ */
+void OpenFrame()
+{
+	SetPhase(PHASE_Main);
+	//WaitSema(DAT_002623b4);
+
+	// int i = g_ifrmMax * 72;
+	// g_ifrmMax += 1;
+
+	// ...
+
+	// ClearPendingFrame(g_pfrmOpen);
+
+	// ...
+}
+#endif
 
 INCLUDE_ASM(const s32, "P2/frm", EnsureVu1Code__FP4VIFSPvT1);
 

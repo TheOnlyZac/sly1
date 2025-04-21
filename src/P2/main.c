@@ -120,16 +120,15 @@ void StartupVU1(void)
     g_pdcVif1->chcr.TTE = 0;
 }
 
+INCLUDE_ASM(const s32, "P2/main", Startup__Fv);
+#ifdef SKIP_ASM
 /**
  * @brief Starts each game system.
  *
- * @todo 98.23% matched
+ * @todo 98.23% matched.
+ * Stack frame is 48 bytes smaller than expected.
  * https://decomp.me/scratch/IOVxc
- *
- * @note Stack frame 48 bytes smaller than expected.
  */
-INCLUDE_ASM(const s32, "P2/main", Startup__Fv);
-#ifdef SKIP_ASM
 void Startup()
 {
     // Set up progress bar

@@ -1,5 +1,27 @@
 #include <game.h>
+#include <sce/memset.h>
 #include <wipe.h>
+#include <difficulty.h>
+#include <joy.h>
+#include <chkpnt.h>
+
+// I know these functions are here somewhere but I don't know which one they are. -Zac
+// void SetClife(int nParam)
+// {
+// 	g_pgsCur->clife = nParam;
+// }
+// void ClearLs(LS* pls)
+// {
+// 	memset(pls, 0, sizeof(LS));
+// }
+// void SetCcoin(int nParam)
+// {
+// 	g_pgsCur->ccoin = nParam;
+// }
+// void OnGameLoad(GAME* pgame)
+// {
+// 	memset(pgame, 0, sizeof(GAME));
+// }
 
 void StartupGame()
 {
@@ -28,11 +50,11 @@ INCLUDE_ASM(const s32, "P2/game", tally_world_completion);
 
 INCLUDE_ASM(const s32, "P2/game", get_game_completion__Fv);
 
+INCLUDE_ASM(const s32, "P2/game", UnlockIntroCutsceneFromWid__Fi);
+#ifdef SKIP_ASM
 /**
  * @todo Close to matching but there's a problem with the rodata.
  */
-INCLUDE_ASM(const s32, "P2/game", UnlockIntroCutsceneFromWid__Fi);
-#ifdef SKIP_ASM
 void UnlockIntroCutsceneFromWid(int wid)
 {
     /* Check the unlocked cutscene by setting the corresponding
@@ -69,6 +91,24 @@ INCLUDE_ASM(const s32, "P2/game", UnlockEndgameCutscenesFromFgs);
 INCLUDE_ASM(const s32, "P2/game", PlayEndingFromCompletionFlags);
 
 INCLUDE_ASM(const s32, "P2/game", InitGameState__FP2GS);
+/**
+ * @todo 86.46% matched.
+ */
+#ifdef SKIP_ASM
+void InitGameState(GS *pgs)
+{
+    memset(pgs, 0, sizeof(GS));
+    pgs->gameworldCur = GAMEWORLD_Intro;
+    pgs->grfvault = 0;
+    pgs->gsv = 0x12;
+    pgs->cbThis = sizeof(GS);
+    pgs->worldlevelCur = WORLDLEVEL_Level2;
+    pgs->clife = 5;
+    pgs->fspLast = -1;
+    // todo: implement function (name is wrong)
+    // reset_settings(pgs);
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM(const s32, "P2/game", FUN_00160650);
 
@@ -86,8 +126,31 @@ INCLUDE_ASM(const s32, "P2/game", LsFromWid);
 INCLUDE_ASM(const s32, "P2/game", GrflsFromWid);
 
 INCLUDE_ASM(const s32, "P2/game", UnloadGame__Fv);
+#ifdef SKIP_ASM
+/**
+ * @todo 60.42% matched.
+ */
+void UnloadGame()
+{
+	InitGameState(g_pgsCur);
+	//unk_gs? = NULL;
+	//clear_something_8_bytes(unknown);
+	OnDifficultyGameLoad(&g_difficulty);
+	g_grfcht = static_cast<GRFCHT>(FCHT_None);
+	// worldlevelPrev = static_cast<WORLDLEVEL>(-1);
+	RetryGame();
+}
+#endif // SKIP_ASM
 
-INCLUDE_ASM(const s32, "P2/game", RetryGame__Fv);
+void RetryGame()
+{
+	GS* gsCur = g_pgsCur;
+
+	g_pgsCur->clife = 5; // Set lives to 5
+	gsCur->ccharm = 0; // Set charms to 0
+
+	ResetChkmgrCheckpoints(&g_chkmgr);
+}
 
 void StartGame()
 {
@@ -97,7 +160,117 @@ void StartGame()
 
 INCLUDE_ASM(const s32, "P2/game", FUN_00160948);
 
-INCLUDE_ASM(const s32, "P2/game", calculate_percent_completion);
+INCLUDE_ASM(const s32, "P2/game", CalculatePercentCompletion__FP2GS);
+
+#ifdef SKIP_ASM
+PchzLevel pchzLevelTable[0x2e];
+/**
+ * @todo 59.54% matched.
+ */
+int CalculatePercentCompletion(GS* pgs)
+{
+    int cTasksChecked = 0;
+    int cTasksCompleted = 0;
+
+    // Iterate over all the levels in the PchzLevel table
+    for (int i = 0; i < 0x2e; i++)
+    {
+        int levelId = *(int*)&((pchzLevelTable[0].level_id)) + i * sizeof(PchzLevel);
+        int world = levelId >> 8;
+
+        // if world is part of Intro (ie. Splash, Paris, Hideout), skip it
+        if (world != static_cast<int>(GAMEWORLD_Intro))
+        {
+            // get all tasks for the current level
+            int levelTasks = static_cast<int>(pchzLevelTable[0].tasks) + i;
+
+            // get save data for the current level
+            LS* currLs = pgs->aws[world].als + (levelId & 0xff);
+            int currFls = (int)(currLs->fls);
+
+            // check if the level is visited
+            cTasksChecked++;
+            cTasksCompleted = cTasksCompleted + (currFls & (int)(FLS_Visited));
+
+            /* Loop over the bits in the FLS cmp and count how many are set,
+            * but only if those bits are also set in the level_tasks the pchz table */
+            int flsMask = static_cast<int>(FLS_KeyCollected);
+            int tasksToCheck = (int)(levelTasks) & (int)(FLS_KeyCollected);
+            while ((flsMask & ((int)(FLS_KeyCollected) | (int)(FLS_Secondary) | (int)(FLS_Tertiary))) != 0)
+            {
+                if (tasksToCheck != 0)
+                {
+                    cTasksChecked++;
+                    if ((currFls & flsMask) != 0)
+                    {
+                        cTasksCompleted++;
+                    }
+                }
+                flsMask = flsMask << 1;
+                tasksToCheck = levelTasks & flsMask;
+            }
+        }
+    }
+
+    FWS* pCurrFws = &pgs->aws[1].fws;
+    int i = 4;
+    while (i > -1)
+    {
+        FWS fws_cmp = static_cast<FWS>(*pCurrFws);
+        cTasksChecked++;
+        pCurrFws += 1;
+        i--;
+        if (((int)(fws_cmp) & 0x20) != 0)
+        {
+            cTasksCompleted++;
+        }
+    }
+
+    /* This check ensures we only calculate the % if we have to.
+    *
+    * If cTasksCompleted is 0, finalPercent is left as 0 and
+    * the if block is skipped.
+    *
+    * If cTasksCompleted == cTasksChecked (ie. all tasks are completed),
+    * finalPercent is set to 100 and the if block is skipped.
+    *
+    * In all other cases, the if block sets finalPercent to a calculated value.
+    */
+    int finalPercent = 0;
+    if ((cTasksCompleted != 0) &&
+        (finalPercent = 100, cTasksCompleted != cTasksChecked))
+    {
+        // if cTasksChecked is 0 then something has gone wrong
+        if (cTasksChecked == 0)
+        {
+            return -1;
+        }
+
+        // convert the number of tasks completed to a value between 1 and 100
+        int percent = (cTasksCompleted * 100) / cTasksChecked;
+
+        /* This check accounts for integer division errors.
+        *
+        * If cTasksChecked is <= 0, finalPercent is left as 1 and the
+        * if block is skipped because we already know we have completed at least
+        * one task.
+        *
+        * If the calclated percent is >= 100, finalPercent is set to 99 and the
+        * if block is skipped because we already know all tasks are not complete.
+        *
+        * In all other cases, finalPercent is set to the calculated percent.
+        */
+        finalPercent = 1;
+        if ((cTasksChecked > 0) &&
+            (finalPercent = 99, percent < 100))
+        {
+            finalPercent = percent;
+        }
+    }
+
+    return finalPercent;
+}
+#endif // SKIP_ASM
 
 void SetCcharm(int nParam)
 {
@@ -105,6 +278,21 @@ void SetCcharm(int nParam)
 }
 
 INCLUDE_ASM(const s32, "P2/game", FCharmAvailable__Fv);
+#ifdef SKIP_ASM
+/**
+ * @todo 77.50% matched.
+ */
+bool FCharmAvailable()
+{
+	if ((g_pgsCur->ccharm > 0)
+        || ((g_grfcht & (GRFCHT)FCHT_InfiniteCharms) != (GRFCHT)FCHT_None))
+	{
+		return true;
+	}
+	return false;
+
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM(const s32, "P2/game", func_00160C90);
 
@@ -137,39 +325,41 @@ void OnGameAlarmDisabled(GAME *pgame)
 
 INCLUDE_ASM(const s32, "P2/game", grfvault_something__Fv);
 
+INCLUDE_ASM(const s32, "P2/game", GetBlueprintInfo__FPiT0);
+#ifdef SKIP_ASM
 /**
  * @todo 97.65% matched
  * https://decomp.me/scratch/l86al
  */
-INCLUDE_ASM(const s32, "P2/game", GetBlueprintInfo__FPiT0);
-#ifdef SKIP_ASM
 void GetBlueprintInfo(int *pgrfvault, int *pipdialog)
 {
-    switch(g_pgsCur->gameworldCur) {
-        case GAMEWORLD_Snow:
-            pipdialog = (int*)0x00000000;
-            break;
-        case GAMEWORLD_Intro:
-            pipdialog = (int *)0x10000000;
-            break;
-        case GAMEWORLD_Clockwerk:
-            pipdialog = (int *)0x20000000;
-            break;
-        case GAMEWORLD_Underwater:
-            pipdialog = (int *)0x40000000;
-            break;
-        case GAMEWORLD_Muggshot:
-            pipdialog = (int *)0x60000000;
-            break;
-        case GAMEWORLD_Voodoo:
-            pipdialog = (int *)0x60000000;
-            break;
-        default:
-            pipdialog = (int *)0x00000000;
-            break;
+    switch (g_pgsCur->gameworldCur)
+    {
+    case GAMEWORLD_Snow:
+        pipdialog = (int *)0x00000000;
+        break;
+    case GAMEWORLD_Intro:
+        pipdialog = (int *)0x10000000;
+        break;
+    case GAMEWORLD_Clockwerk:
+        pipdialog = (int *)0x20000000;
+        break;
+    case GAMEWORLD_Underwater:
+        pipdialog = (int *)0x40000000;
+        break;
+    case GAMEWORLD_Muggshot:
+        pipdialog = (int *)0x60000000;
+        break;
+    case GAMEWORLD_Voodoo:
+        pipdialog = (int *)0x60000000;
+        break;
+    default:
+        pipdialog = (int *)0x00000000;
+        break;
     }
 
-    if (pgrfvault != (int *)0x0) {
+    if (pgrfvault != (int *)0x0)
+    {
         *pgrfvault = (int)pipdialog;
     }
 }
@@ -177,7 +367,7 @@ void GetBlueprintInfo(int *pgrfvault, int *pipdialog)
 
 int CcharmMost()
 {
-    // Holdover from when there was a powerup that increased the charm limit
+    // Leftover from when there was a powerup that increased the charm limit.
     return 2;
 }
 

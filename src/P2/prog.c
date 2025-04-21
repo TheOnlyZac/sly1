@@ -57,14 +57,13 @@ void CProg::End()
     m_nMax = 0;
 }
 
-/**
- * @todo 34.05% matched
- * https://decomp.me/scratch/06mco
- *
- * @note Stack frame doesn't line up.
- */
 INCLUDE_ASM(const s32, "P2/prog", Draw__5CProg);
 #ifdef SKIP_ASM
+/**
+ * @todo 34.05% matched.
+ * Stack frame doesn't line up.
+ * https://decomp.me/scratch/06mco
+ */
 void CProg::Draw() {
     QW aqwProgress[64];
     GIFS gifs = GIFS();

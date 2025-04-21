@@ -17,6 +17,10 @@ public:
     // todo
 
     void ExecuteOids();
+    // void Execute(OID* oid);
+    // void Start();
+    // void Update();
+    // void Finish();
 };
 
 extern CMpeg g_mpeg;

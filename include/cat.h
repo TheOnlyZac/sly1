@@ -23,7 +23,9 @@ struct FCL
 class CFileLocation
 {
 public:
-    FCL fcl; // File sector and size.
+    FCL m_fcl; // File sector and size.
+
+    // void Clear();
 };
 
 #endif // CAT_H

@@ -6,13 +6,14 @@
 #include <game.h>
 #include <text.h>
 #include <screen.h>
+#include <sound.h>
 
-//static char g_chzThePasswordIs[] = "The password is: %s";
-//static char g_chzCiphertext[] = "@KFWHJGL"; // decrypts to "chetkido"
+// static char g_chzThePasswordIs[] = "The password is: %s";
+// static char g_chzCiphertext[] = "@KFWHJGL"; // decrypts to "chetkido"
 extern char g_chzThePasswordIs[];
 extern char g_chzCiphertext[];
 
-extern void* PvAllocGlobalImpl(int); // todo: remove when function is known
+extern void *PvAllocGlobalImpl(int); // todo: remove when function is known
 
 void StartupJoy()
 {
@@ -64,15 +65,115 @@ void InitJoy(JOY *pjoy, int nPort, int nSlot)
     SetJoyJoys(pjoy, JOYS_Searching, JOYK_Unknown);
     pjoy->nPort = nPort;
     pjoy->nSlot = nSlot;
-    pjoy->aullDma = (uint*)(((int)PvAllocGlobalImpl(0x140) + 0x3F) & ~0x3F);
+    pjoy->aullDma = (uint *)(((int)PvAllocGlobalImpl(0x140) + 0x3F) & ~0x3F);
     scePadPortOpen(pjoy->nPort, pjoy->nSlot, pjoy->aullDma);
     pjoy->prumble = (RUMBLE *)PvAllocGlobalImpl(0x20);
     pjoy->fRumbleEnabled = true;
 }
 
 INCLUDE_ASM(const s32, "P2/joy", UpdateJoy__FP3JOY);
+#ifdef SKIP_ASM
+/**
+ * @todo 31.94% matched.
+ */
+void UpdateJoy(JOY *pjoy)
+{
+    bool cond = false;
+    JOYS joysNew;
+    JOYK joykNew, joyk;
+    uint padState;
 
-void SetJoyJoys(JOY *pjoy,JOYS joys,JOYK joyk)
+    // if the joy manager is initializing, early return
+    if (pjoy->joys == JOYS_Initing)
+        return;
+
+    padState = scePadGetState(pjoy->nPort, pjoy->nSlot);
+    if (padState == 6 || padState == 2) // todo: enum for padState
+    {
+        cond = true; // todo: what is this condition?
+    }
+    joysNew = pjoy->joys;
+
+    if (joysNew != JOYS_Ready)
+    {
+        if (pjoy->joyk != JOYK_Unknown)
+        {
+            if (g_clock.tReal - pjoy->tJoys >= 2.0f)
+            {
+                padState = 0;
+            }
+        }
+    }
+
+    if (pjoy->joyk != JOYK_Unknown && padState == 0)
+    {
+        SetJoyJoys(pjoy, JOYS_Searching, JOYK_Unknown);
+    }
+
+    // Return if condition not met
+    if (!cond)
+        return;
+
+    joysNew = pjoy->joys;
+    joykNew = pjoy->joyk;
+    if (joysNew == JOYS_Waiting)
+    {
+        padState = scePadGetState(pjoy->nPort, pjoy->nSlot);
+        if (padState != '\x01')
+        {
+            if (padState > '\x01')
+            {
+                if (padState != '\x02')
+                {
+                    joykNew = JOYK_Unknown;
+                }
+                SetJoyJoys(pjoy, joysNew, joykNew);
+                return;
+            }
+            joykNew = JOYK_Unknown;
+            if (padState != '\0')
+            {
+                SetJoyJoys(pjoy, joysNew, joykNew);
+                return;
+            }
+
+            joyk = pjoy->joyk;
+            if (joyk == JOYK_Analog)
+            {
+                joykNew = JOYK_Shock;
+            }
+            else
+            {
+                if (static_cast<int>(joyk) > 2)
+                {
+                    joykNew = JOYK_Unknown;
+
+                    if (joyk != JOYK_Shock)
+                    {
+                        SetJoyJoys(pjoy, joysNew, joykNew);
+                        return;
+                    }
+                    joykNew = JOYK_Shock2;
+                    joysNew = JOYS_Ready;
+                    SetJoyJoys(pjoy, joysNew, joykNew);
+                    return;
+                }
+                // todo
+                //...
+            }
+        }
+    }
+    else
+    {
+        // todo
+        // ...
+    }
+
+    SetJoyJoys(pjoy, joysNew, joykNew);
+}
+#endif // SKIP_ASM
+
+void SetJoyJoys(JOY *pjoy, JOYS joys, JOYK joyk)
 {
     JOYK joykPrev;
     LM *almDeflect2;
@@ -96,7 +197,7 @@ void SetJoyJoys(JOY *pjoy,JOYS joys,JOYK joyk)
 
         if (joykPrev < 3 && 2 < joyk)
         {
-            InitRumble(pjoy->prumble,pjoy->nPort,pjoy->nSlot);
+            InitRumble(pjoy->prumble, pjoy->nPort, pjoy->nSlot);
         }
 
         if (joys == JOYS_Ready)
@@ -111,7 +212,8 @@ void SetJoyJoys(JOY *pjoy,JOYS joys,JOYK joyk)
             almDeflect = pjoy->almDeflect;
             almDeflect2 = pjoy->almDeflect2;
 
-            for (; i < 4; i++) {
+            for (; i < 4; i++)
+            {
                 almDeflect2->gMin = -0.75;
                 almDeflect->gMin = -0.75;
                 almDeflect2++;
@@ -204,9 +306,9 @@ void _MatchCodes(JOY *pjoy, GRFBTN btn)
 {
     if (g_pcode != nullptr && pjoy == &g_joy && btn != g_joy.grfbtn && g_joy.grfbtn != 0)
     {
-        CODE * pcode = g_pcode;
+        CODE *pcode = g_pcode;
 
-        while(pcode != nullptr)
+        while (pcode != nullptr)
         {
             if (pcode->nInputCounter < pcode->cjbc)
             {
@@ -226,6 +328,70 @@ void _MatchCodes(JOY *pjoy, GRFBTN btn)
 }
 
 INCLUDE_ASM(const s32, "P2/joy", UpdateCodes__Fv);
+#ifdef SKIP_ASM
+/**
+ * @todo 45.89% matched.
+ */
+void UpdateCodes()
+{
+    int i;
+    CODE **ppcht;
+    CODE *pchtToExecute;
+    CODE *pcht;
+
+    if (g_tCodeCheck != 0x0f && g_tCodeCheck <= g_clock.tReal)
+    {
+        pchtToExecute = NULL;
+        pcht = g_pcode;
+
+        if (g_pcode != NULL)
+        {
+            i = g_pcode->index;
+            pcht = g_pcode;
+            while (true)
+            {
+                if (i == 0)
+                {
+                    if (pcht->nInputCounter < pcht->cjbc)
+                    {
+                        ppcht = &pcht->pchtNext;
+                    }
+                    else if ((/* pchtToExecute == NULL || */ // todo fix
+                              ppcht = &pcht->pchtNext,
+                              pchtToExecute->cjbc < pcht->cjbc))
+                    {
+                        ppcht = &pcht->pchtNext;
+                        pchtToExecute = pcht;
+                    }
+                }
+                else
+                {
+                    *ppcht = pcht->pchtNext;
+                    pcht->pchtNext = NULL;
+                    pcht->nInputCounter = 0;
+                    pcht->index = 0;
+                }
+                pcht = *ppcht;
+                if (pcht == NULL)
+                    break;
+
+                i = pcht->index;
+            }
+        }
+
+        // Check if we found a match
+        if (pchtToExecute != NULL)
+        {
+            // Execute the cheat
+            StartSound(SFXID_UiTick, NULL, NULL, NULL, 3000, 300, 1, 0, 0, NULL, NULL);
+            //(pchtToExecute->pfn)(pchtToExecute->nParam); //todo fix function pointer
+        }
+
+        _ResetCodes();
+        g_tCodeCheck = 0.0f;
+    }
+}
+#endif
 
 void ClearFchts()
 {
@@ -244,7 +410,8 @@ void AddFcht(int nParam)
 
 INCLUDE_ASM(const s32, "P2/joy", func_0016F470);
 
-void Chetkido() {
+void Chetkido()
+{
     // Check preconditions
     int widCur;
     FGS cmpFlags;
@@ -255,7 +422,7 @@ void Chetkido() {
         return;
 
     cmpFlags = get_game_completion();
-    if ((cmpFlags & (FGS_HalfClues|FGS_AllClues)) != (FGS_HalfClues|FGS_AllClues)) // clues collected
+    if ((cmpFlags & (FGS_HalfClues | FGS_AllClues)) != (FGS_HalfClues | FGS_AllClues)) // clues collected
         return;
 
     gsCur = g_pgsCur;
@@ -268,15 +435,33 @@ void Chetkido() {
     char *pchCur = &achzPlaintext[0];
 
     strcpy(achzPlaintext, g_chzCiphertext);
-    while (*pchCur != '\0') {
+    while (*pchCur != '\0')
+    {
         *pchCur++ ^= 0x23;
     }
 
     // Show note blot with message
     sprintf(buf, g_chzThePasswordIs, achzPlaintext);
-    ((NOTE*)&g_note.unk278)->pvtnote->pfnSetNoteAchzDraw((NOTE*)&g_note.unk278, buf);
+    ((NOTE *)&g_note.unk278)->pvtnote->pfnSetNoteAchzDraw((NOTE *)&g_note.unk278, buf);
     SetBlotDtVisible((NOTE *)&g_note.unk278, 10.0f);
-    ((NOTE*)&g_note.unk278)->pvtnote->pfnShowBlot((NOTE*)&g_note.unk278);
+    ((NOTE *)&g_note.unk278)->pvtnote->pfnShowBlot((NOTE *)&g_note.unk278);
 }
 
 INCLUDE_ASM(const s32, "P2/joy", StartupCodes__Fv);
+#ifdef SKIP_ASM
+/**
+ * @todo 4.38% matched.
+ */
+void StartupCodes()
+{
+    ////AddCode(&cheat_reload_level.pCodeSeq);
+    ////AddCode(&cheat_reload_no_cheats.pCodeSeq);
+    ////AddCode(&cheat_reload_slippery_movement.pCodeSeq);
+    ////AddCode(&cheat_slippery_objects.pCodeSeq);
+    ////AddCode(&cheat_infinite_charms.pCodeSeq);
+    ////AddCode(&cheat_collect_bottles.pCodeSeq);
+    ////AddCode(&cheat_unlock_pages.pCodeSeq);
+    ////AddCode(&cheat_unlock_all_worlds.pCodeSeq);
+    ////AddCode(&cheat_chetkido_password.pCodeSeq);
+}
+#endif // SKIP_ASM

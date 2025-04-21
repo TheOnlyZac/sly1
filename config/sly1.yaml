@@ -10,18 +10,19 @@ options:
   platform: ps2
   compiler: GCC
 
-  use_legacy_include_asm: True
-
   # Output paths
   asm_path: asm
   src_path: src
   build_path: obj
 
-  rodata_string_guesser_level: 0 # improve string detection
 
+  # Output options
+  use_legacy_include_asm: True
+  rodata_string_guesser_level: 0 # improve string detection
+  suggestion_rodata_section_start: False
+  named_regs_for_c_funcs: False
   find_file_boundaries: False
   disasm_unknown: True
-  named_regs_for_c_funcs: False
 
   # Auto-generate undefined functions and symbols
   create_undefined_funcs_auto: True

@@ -12,7 +12,9 @@
 
 enum SFXID
 {
-    // todo
+    SFXID_UiTick = 0, // inaccurate
+    // ...
+
 };
 
 /**
@@ -50,5 +52,22 @@ struct AMB
     undefined4 unk_3;
     undefined4 unk_4;
 };
+
+/**
+ * @brief Starts sound playback.
+ *
+ * @param sfxid The sound effect ID
+ * @param ppamb Pointer to the ambient sound object
+ * @param palo Pointer to the ALO object
+ * @param ppos Position of the sound source
+ * @param sStart The start time(?)
+ * @param sFull The full time(?)
+ * @param uVolAtSource Volume at the source
+ * @param frq Frequency
+ * @param uDoppler Doppler effect
+ * @param plmRepeat Pointer to the repeat limit
+ * @param plmRepDis Pointer to the repeat distance limit
+ */
+void StartSound(SFXID sfxid, AMB **ppamb, ALO *palo, VECTOR *ppos, float sStart, float sFull, float uVolAtSource, float frq, float uDoppler, LM *plmRepeat, LM *plmRepDis);
 
 #endif // SOUND_H

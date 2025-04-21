@@ -371,7 +371,7 @@ int FUN_00160948();
  *
  * @param pgs Game state.
  */
-int calculate_percent_completion(GS *pgs);
+int CalculatePercentCompletion(GS *pgs);
 
 /**
  * @brief Sets the number of charms the player has.
@@ -463,5 +463,32 @@ extern LS g_lsCur;
 extern GS *g_pgsCur;
 extern WS *g_pwsCur;
 extern LS *g_plsCur;
+
+#ifdef SKIP_ASM
+// For CalculatePercentCompletion
+
+/**
+ * @brief Level Info
+ *
+ * Used by the game to load the level.
+*/
+struct PchzLevel // maybe wrong name
+{
+    double lsn_and_unk_ciphers;
+    int search_Val;
+    unsigned int unk_0xc;
+    unsigned int unk_0x10;
+    unsigned int unk_0x14;
+    unsigned int unk_0x18;
+    unsigned int for_lsn;
+    int search_cipher;
+    unsigned int for_size;
+    unsigned int level_id;
+    char* level_name;
+    FLS tasks;
+};
+
+extern PchzLevel pchzLevelTable[]; // Level table
+#endif
 
 #endif // GAME_H

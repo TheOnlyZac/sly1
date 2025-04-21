@@ -23,12 +23,12 @@ INCLUDE_ASM(const s32, "P2/xform2", LoadExitFromBrx__FP4EXITP18CBinaryInputStrea
 
 INCLUDE_ASM(const s32, "P2/xform2", PostExitLoad__FP4EXIT);
 
-/**
- * @todo 96.19% matched
- * https://decomp.me/scratch/t75bf
- */
 INCLUDE_ASM(const s32, "P2/xform2", SetExitExits__FP4EXIT5EXITS);
 #ifdef SKIP_ASM
+/**
+ * @todo 96.19% matched.
+ * https://decomp.me/scratch/t75bf
+ */
 void SetExitExits(EXIT *pexit, EXITS exits) {
     uint64_t uVar1;
 
