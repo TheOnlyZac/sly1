@@ -29,4 +29,8 @@ MQ *PmqAllocSw(SW *psw);
 void IncrementSwHandsOff(SW *psw);
 void FreeSwMqList(SW *psw, MQ *pmq);
 
+void DeleteSw(SW *psw); // todo check order of functions
+
+extern SW *g_psw;
+
 #endif // SW_H

@@ -319,7 +319,8 @@ struct CM : public LO
     CPTN cptn;
 };
 
-extern CM *g_pcm;
+// extern CM g_cm; // Main game camera
+extern CM *g_pcm; // Pointer to the main game camera
 
 /**
  * @brief Calls SetCmRgbaFog with the global camera.

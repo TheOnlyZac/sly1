@@ -220,6 +220,12 @@ void LoadExitFromBrx(EXIT *pexit, CBinaryInputStream *pbis);
 
 void PostExitLoad(EXIT *pexit);
 
+/**
+ * @brief Sets the EXIT state.
+ *
+ * @param pexit Pointer to the EXIT.
+ * @param exits EXIT state.
+*/
 void SetExitExits(EXIT *pexit, EXITS exits);
 
 void TriggerExit(EXIT *pexit);

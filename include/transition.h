@@ -8,9 +8,30 @@
 
 #include "common.h"
 #include <oid.h>
+#include <cat.h>
+#include <game.h>
 
 class CTransition;
 extern CTransition g_transition;
+
+/**
+ * @brief Level Table Struct
+ *
+ * Holds data about the level file.
+ *
+ * @note Name is not official.
+*/
+struct LevelTableStruct
+{
+    CFileLocation fileLocation; /* Ciphers for lsn and size */
+    uint32_t search_val;
+    uint32_t for_lsn;
+    uint32_t search_cipher; /* Cipher for search val */
+    uint32_t for_size;
+    uint32_t level_id; /* Level ID */
+    uint32_t level_name;  /* Pointer to level name string */
+    FLS tasks;         /* Tasks to complete (visited, key, vault, mts) */
+};
 
 /**
  * @brief Transition flags.
@@ -38,7 +59,7 @@ typedef int GRFTRANS;
 struct TRANS
 {
     uint fSet;
-    struct LevelTableStruct *pchzWorld; // Current file thats loading struct
+    LevelTableStruct *pchzWorld; // Current file thats loading struct
     OID oidWarp;                        // Checkpoint Warps
     OID oidWarpContet;
     GRFTRANS grftrans; // Lost all lives flags

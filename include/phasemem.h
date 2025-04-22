@@ -18,8 +18,14 @@ enum PHASE {
 
 extern PHASE g_phase;
 
+/**
+ * @brief Set the current engine phase.
+ */
 void SetPhase(PHASE phase);
 
+/**
+ * @brief Clear the current engine phase.
+ */
 void ClearPhase();
 
 #endif // PHASEMEM_H

@@ -36,6 +36,8 @@ void RenderSw(SW *psw, CM *pcm);
  */
 void DrawSw(SW *psw, CM *pcm);
 
+// ...
+
 /**
  * @brief Fills a rectangular area of the screen with a specified color and alpha value.
  *
@@ -50,5 +52,7 @@ void DrawSw(SW *psw, CM *pcm);
  * @param pgifs Pointer to a GIFS structure used for rendering.
  */
 void FillScreenRect(int r, int g, int b, int alpha, float xLeft, float yTop, float xRight, float yBottom, GIFS *pgifs);
+
+// ...
 
 #endif // RENDER_H

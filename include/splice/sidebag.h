@@ -17,17 +17,23 @@ struct SBB
 
 class CSidebag
 {
+private:
+    int m_csbb;
+    SBB m_asbb[16];
+
 public:
     CSidebag& RefAddBinding(int, CRef*);
     CSidebag& RefSetBinding(int, CRef*);
     bool FFindBinding(int, CRef*);
     void CloneTo(CSidebag*);
 
-private:
-    int m_csbb;
-    SBB m_asbb[16];
 };
 
+/**
+ * @brief Creates a new sidebag.
+ *
+ * @return A pointer to the newly created sidebag.
+ */
 CSidebag* PsidebagNew();
 
 #endif // SPLICE_SIDEBAG_H
