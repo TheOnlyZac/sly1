@@ -21,7 +21,7 @@ struct CHKPNT : public ALO
     // ...
 };
 
-typedef struct VTCHKMGR;
+typedef struct VTCHKMGR; // todo move to vtables header
 
 /**
  * @brief Checkpoint Manager.

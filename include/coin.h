@@ -140,10 +140,39 @@ void CloneDprize(DPRIZE *pdprize, DPRIZE *pdprizeBase);
 void InitCoin(COIN *pcoin);
 
 /**
+ * @brief Updates the coin.
+ *
+ * @param pcoin Pointer to the coin.
+ * @param dt Time elapsed since the last frame.
+ *
+ * @todo Implement this function.
+ */
+void UpdateCoin(COIN *pcoin, float dt);
+
+// ...
+
+/**
  * @brief Add a life
  *
  */
 void AddLife(void *ptr);
+
+/**
+ * @brief Handles when the player touches a coin.
+ *
+ * @param pcoin Pointer to the coin.
+ */
+void OnCoinSmack(COIN *pcoin);
+
+/**
+ * @brief Sets the coin's prize.
+ *
+ * @param pcoin Pointer to the coin.
+ * @param dprizes The new prize.
+ *
+ * @todo Implement this function.
+ */
+void SetcoinDprizes(COIN *pcoin, DPRIZES dprizes);
 
 /**
  * @brief Initializes a Charm

@@ -76,8 +76,6 @@ To use Objdiff, follow these steps:
     ```
 3. Edit the source code until the function matches. The CURRENT assembly will update each time you save the file.
 
-*Note: You can use the code in the `reference` directory to help you during matching. The code in that directory does not match, but it may be useful as an outline for certain functions.*
-
 ## Integrate the matched code
 
 Once the function matches 100%, follow these steps to integrate it into the project. If you used objdiff, you probably already did this.

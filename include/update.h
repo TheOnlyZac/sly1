@@ -9,7 +9,13 @@
 
 // ...
 
-void UpdateSwObjects(SW* psw, float dt);
+/**
+ * @brief Updates all objects in the given SW.
+ *
+ * @param psw The SW to update.
+ * @param dt Delta time.
+ */
+void UpdateSwObjects(SW *psw, float dt);
 
 // ...
 

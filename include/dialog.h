@@ -2,7 +2,7 @@
  * @file dialog.h
  *
  * @brief Declarations for the dialog system.
-*/
+ */
 #ifndef DIALOG_H
 #define DIALOG_H
 
@@ -14,7 +14,7 @@ typedef unsigned char byte;
 
 /**
  * @brief Dialog Kind
-*/
+ */
 enum DIALOGK
 {
     DIALOGK_Binoc = 0,
@@ -25,7 +25,7 @@ enum DIALOGK
 
 /**
  * @brief Dialog State
-*/
+ */
 enum DIALOGS
 {
     DIALOGS_Enabled = 0,
@@ -39,7 +39,7 @@ enum DIALOGS
 
 /**
  * @brief Dialog
-*/
+ */
 struct DIALOG
 {
     int padding[0xB8];
@@ -49,14 +49,18 @@ struct DIALOG
     int cde;
     undefined4 field_0x2f0;
     int ideCur;
-    //struct DP dp;
+    // struct DP dp;
     OID oidPntAnchor;
-    int* pfPlayed;
+    int *pfPlayed;
     int fPlayed;
     int cpfEquivalence;
-    int* apfEquivalence[4];
+    int *apfEquivalence[4];
     int fDefault;
     int fCrucial;
 };
+
+DIALOG *g_pdialogCalling; // Dialog currently being called
+
+// ...
 
 #endif // DIALOG_H

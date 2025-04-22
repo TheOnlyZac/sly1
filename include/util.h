@@ -187,4 +187,11 @@ float GLimitLm(LM *plm, float g);
  */
 void Force(void *pv);
 
+// todo: see if these exist and/or in the right oder
+//int CSolveClq(CLQ* pclq, float g, float* ag);
+//float DtSmooth(float gCur, float gTarget, SMP* psmp, float* pdg);
+//void ExtendRange(PFNGG pfn, void* pv, float g, float dg, float gMax, float* pgMic, float* pgMac);
+//int NRoundG(float g);
+//void SmoothMulti(int c, float dt, float r);
+
 #endif // UTIL_H

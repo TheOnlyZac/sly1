@@ -1,12 +1,13 @@
 /**
  * @file zap.h
  *
- * @brief Damage system.
+ * @brief Zap (damage) system.
  */
 #ifndef ZAP_H
 #define ZAP_H
 
 #include "common.h"
+#include <oid.h>
 #include <so.h>
 
 /**
@@ -23,6 +24,21 @@ enum ZPK {
     ZPK_Max = 6
 };
 
+/**
+ * @brief Zap _?_ Kind
+ *
+ * @todo Figure out what the O stands for.
+*/
+enum ZOK
+{
+    ZOK_Inherit = 0,
+    ZOK_Zap = 1,
+    ZOK_NoZap = 2,
+    ZOK_Ignore = 3,
+    ZOK_ZapAndIgnore = 4,
+    ZOK_Max = 5
+};
+
 struct ZPD {
     SO *pso;
     ZPK zpk;
@@ -32,6 +48,18 @@ struct ZPD {
     OID aoidThrow[32];
     int cploThrow;
     LO *aploThrow[32];
+};
+
+/**
+ * @brief Zap.
+ *
+ * A volume that damages the player upon contact.
+ *
+ * @todo Fill in struct.
+*/
+struct ZAP
+{
+    // ...
 };
 
 #endif // ZAP_H

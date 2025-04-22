@@ -7,8 +7,25 @@
 #define UI_H
 
 #include "common.h"
-#include <screen.h>
 #include <joy.h>
+
+/**
+ * @brief User interface state.
+ */
+enum UIS
+{
+    UIS_Nil = -1,
+    UIS_Splash = 0,
+    UIS_Attract = 1,
+    UIS_Playing = 2,
+    UIS_Pausing = 3,
+    UIS_Paused = 4,
+    UIS_Unpausing = 5,
+    UIS_WorldMap = 6,
+    // todo: What is 7?
+    UIS_Wiping = 8,
+    UIS_Max = 9
+};
 
 /**
  * @brief User interface.
@@ -33,16 +50,50 @@ struct UI
 };
 
 void StartupUi();
+
 void InitUi(UI *pui);
+
 void PostUiLoad(UI *pui);
+
 void UpdateUi(UI *pui);
+
 void PushUiActiveBlot(UI *pui, BLOT *pblot);
+
 void PopUiActiveBlot(UI *pui);
+
+/**
+ * @brief Calls DrawBlots to draw the UI.
+ */
 void DrawUi();
+
+/**
+ * @brief Calls RenderBlots to render the UI.
+ */
 void RenderUi();
+
+/**
+ * @brief Resets the UI to its initial state.
+ *
+ * @param pui Pointer to UI struct
+ */
 void ResetUi(UI *pui);
+
+/**
+ * @brief Sets the UI state.
+ *
+ * @param pui Pointer to UI struct
+ * @param uis UI state
+ */
 void SetUiUis(UI *pui, UIS uis);
+
+/**
+ * @brief Sets the UI pause state.
+ *
+ * @param pui Pointer to UI struct
+ * @param rPause Pause state
+ */
 void SetUiUPause(UI *pui, float rPause);
+
 // ...more functions...
 
 extern UI g_ui; // Global UI object
