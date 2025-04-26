@@ -363,9 +363,111 @@ ShutdownSpliceStructuredTypeFactories__Fv = 0x11cbb0; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/989snd.c
 ////////////////////////////////////////////////////////////////
-snd_StreamSafeCdBreak = 0x11e2a0; // type:func
-snd_SendIOPCommandAndWait = 0x11e6b8; // type:func
-snd_SendIOPCommandNoWait = 0x11e8c8; // type:func
+// Unmangled names were in the header with extern "C"
+snd_StartSoundSystem = 0x0011cbb8; //type:func size:632
+snd_FlushSoundCommands__Fv = 0x0011ce30; //type:func size:556
+junk_0x0011d060 = 0x0011d060; //type:func size:24
+snd_GotReturns__Fv = 0x0011d078; //type:func size:152
+snd_PrepareReturnBuffer__FPUii = 0x0011d110; //type:func size:36
+junk_0x0011d138 = 0x0011d138; //type:func size:8
+snd_BankLoadByLoc = 0x0011d140; //type:func size:356
+snd_BankLoadByLoc_CB = 0x0011d2a8; //type:func size:316
+junk_0x0011d3e8 = 0x0011d3e8; //type:func size:56
+snd_ResolveBankXREFS = 0x0011d420; //type:func size:44
+snd_UnloadBank = 0x0011d450; //type:func size:48
+snd_SetMasterVolume = 0x0011d480; //type:func size:52
+snd_GetMasterVolume = 0x0011d4b8; //type:func size:40
+snd_SetPlaybackMode = 0x0011d4e0; //type:func size:48
+junk_0x0011d510 = 0x0011d510; //type:func size:16
+snd_SetMixerMode = 0x0011d520; //type:func size:52
+snd_SetGroupVoiceRange = 0x0011d558; //type:func size:60
+snd_PlaySoundVolPanPMPB = 0x0011d598; //type:func size:60
+junk_0x0011d5d8 = 0x0011d5d8; //type:func size:40
+snd_StopSound = 0x0011d600; //type:func size:48
+junk_0x0011d630 = 0x0011d630; //type:func size:16
+snd_PauseSound = 0x0011d640; //type:func size:48
+snd_ContinueSound = 0x0011d670; //type:func size:48
+junk_0x0011d6a0 = 0x0011d6a0; //type:func size:8
+snd_PauseAllSoundsInGroup = 0x0011d6a8; //type:func size:48
+snd_ContinueAllSoundsInGroup = 0x0011d6d8; //type:func size:48
+snd_SoundIsStillPlaying = 0x0011d708; //type:func size:40
+snd_SoundIsStillPlaying_CB = 0x0011d730; //type:func size:48
+snd_IsSoundALooper = 0x0011d760; //type:func size:44
+junk_0x0011d790 = 0x0011d790; //type:func size:8
+snd_SetSoundVolPan = 0x0011d798; //type:func size:60
+snd_GetSoundOriginalPitch = 0x0011d7d8; //type:func size:44
+junk_0x0011d808 = 0x0011d808; //type:func size:8
+snd_SetSoundPitch = 0x0011d810; //type:func size:52
+junk_0x0011d848 = 0x0011d848; //type:func size:24
+snd_AutoVol = 0x0011d860; //type:func size:60
+junk_0x0011d8a0 = 0x0011d8a0; //type:func size:16
+snd_SetMIDIRegister = 0x0011d8b0; //type:func size:60
+snd_GetMIDIRegister = 0x0011d8f0; //type:func size:44
+junk_0x0011d920 = 0x0011d920; //type:func size:8
+snd_SetGlobalExcite = 0x0011d928; //type:func size:48
+junk_0x0011d958 = 0x0011d958; //type:func size:16
+snd_SendIOPCommandAndWait__FiiPc = 0x0011d968; //type:func size:404
+snd_SendIOPCommandNoWait__FiiPcPFiUl_vUl = 0x0011db00; //type:func size:724
+snd_PostMessage__Fv = 0x0011ddd8; //type:func size:64
+snd_SendCurrentBatch__Fv = 0x0011de18; //type:func size:316
+snd_InitVAGStreamingEx = 0x0011df58; //type:func size:180
+snd_StopAllStreams = 0x0011e010; //type:func size:44
+junk_0x0011e040 = 0x0011e040; //type:func size:8
+snd_PlayVAGStreamByLoc = 0x0011e048; //type:func size:96
+junk_0x0011e0a8 = 0x0011e0a8; //type:func size:8
+snd_ContinueVAGStream = 0x0011e0b0; //type:func size:48
+snd_IsVAGStreamBuffered_CB = 0x0011e0e0; //type:func size:48
+snd_StreamSafeCheckCDIdle = 0x0011e110; //type:func size:40
+snd_StreamSafeCdRead = 0x0011e138; //type:func size:188
+snd_StreamSafeCdSync = 0x0011e1f8; //type:func size:168
+snd_StreamSafeCdBreak = 0x0011e2a0; //type:func size:72
+snd_StreamSafeCdGetError = 0x0011e2e8; //type:func size:60
+snd_SetReverbType = 0x0011e328; //type:func size:52
+snd_SetReverbDepth = 0x0011e360; //type:func size:60
+snd_PreAllocReverbWorkArea = 0x0011e3a0; //type:func size:52
+junk_0x0011e3d8 = 0x0011e3d8; //type:func size:80
+snd_InitMovieSound = 0x0011e428; //type:func size:56
+snd_ResetMovieSound = 0x0011e460; //type:func size:36
+junk_0x0011e488 = 0x0011e488; //type:func size:16
+snd_CloseMovieSound = 0x0011e498; //type:func size:36
+snd_StartMovieSound = 0x0011e4c0; //type:func size:56
+snd_GetTransStatus = 0x0011e4f8; //type:func size:36
+junk_0x0011e520 = 0x0011e520; //type:func size:24
+snd_GetDopplerPitchMod = 0x0011e538; //type:func size:36
+
+gCommBusy = 0x0025c340; // size:0x4
+gAwaitingInts = 0x0025c344; // size:0x4
+gUnkBankLoadError = 0x0025c348; // size:0x4
+gStreamingInited = 0x0025c34c; // size:0x4
+gCdCallback = 0x0025c350; // size:0x4
+gSSRead = 0x0025c354; // size:0x4
+gSSReadDone = 0x0025c358; // size:0x4
+gLoadingFromFS = 0x0025c35c; // size:0x4
+gSndCommandBuffePtr = 0x0025c360; // size:0x8
+gCommandBuffeBytesAvail = 0x0025c368; // size:0x8
+gSndCommandReturnDefPtr = 0x0025c370; // size:0x8
+gReturnValuesPtr = 0x0025c378; // size:0x8
+gCommandFillBuffer = 0x0025c380; // size:0x4
+gCaching = 0x0025c384; // size:0x4
+gLoadBusy = 0x0025c388; // size:0x4
+gLoadReturnDef = 0x0025c390; // size:0x10
+gLoadCB = 0x0025c3a0; // size:0x4
+gLoadUserData = 0x0025c3a8; // size:0x8
+gSyncBuffer = 0x0025c3c0; // size:0x40
+gSyncSendBuffer = 0x0025c400; // size:0x40
+gSyncStringBuffer = 0x0025c440; // size:0x100
+gSndCommandBuffer1 = 0x0025c540; // size:0x1000
+gSndCommandBuffer2 = 0x0025d540; // size:0x1000
+gSndCommandReturnDef1 = 0x0025e540; // size:0x1000
+gSndCommandReturnDef2 = 0x0025f540; // size:0x1000
+gActualReturnValues1 = 0x00260540; // size:0x420
+gActualReturnValues2 = 0x00260980; // size:0x420
+gStats = 0x00260dc0; // size:0x20
+gLoadReturnValue = 0x00260e00; // size:0x10
+gLoadParams = 0x00260e40; // size:0x20
+gSLClientData = 0x0027b4c8; // size:0x28
+gSLClientLoaderData = 0x027b4f0; // size:0x28
+
 
 ////////////////////////////////////////////////////////////////
 // P2/alo.c
@@ -1636,7 +1738,10 @@ sceDmaSync = 0x202c38; // type:func
 ////////////////////////////////////////////////////////////////
 // ../eecdvd.c
 ////////////////////////////////////////////////////////////////
+sceCdGetError = 0x203d90; // type:func
 sceCdBreak = 0x203e28; // type:func
+sceCdSync = 0x2032c8; // type:func
+sceCdRead = 0x203b18; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -1663,6 +1768,15 @@ atan2f = 0x205778; // type:func
 // sce/ee/gcc/src/newlib/libm/math/wf_atan2.c
 ////////////////////////////////////////////////////////////////
 fmodf = 0x2058a0; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// sifrpc.c
+////////////////////////////////////////////////////////////////
+sceSifInitRpc = 0x1f7be8; // type:func
+sceSifBindRpc = 0x1f80c0; // type:func
+sceSifCallRpc = 0x1f8290; // type:func
+sceSifCheckStatRpc = 0x1f8480; // type:func
 
 
 ////////////////////////////////////////////////////////////////
