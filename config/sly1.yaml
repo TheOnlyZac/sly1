@@ -292,7 +292,8 @@ segments:
     # - [0x14A200, .rodata, P2/splice/eval]
     - [0x14A2F0, .rodata, P2/splice/ref]
     - [0x14A3A0, .rodata, P2/splice/serialize]
-    - [0x14A428, rodata]
+    - [0x14A428, rodata] #, P2/989snd]
+    - [0x14A870, rodata]
     - [0x14B0E0, .rodata, P2/dmas]
     - [0x14B0F8, rodata]
 
@@ -300,7 +301,7 @@ segments:
     # Data (variable data)
     #--------------------------------------------------------
     - [0x151580, data] #MARK: data
-    - [0x15d340, data, P2/989snd]
+    - [0x15d340, .data, P2/989snd]
     - [0x161e60, data]
 
     #- [0x, data, P2/brx]
