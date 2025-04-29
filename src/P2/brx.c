@@ -18,10 +18,6 @@ SW *PloNew(CID cid, SW *psw, ALO *paloParent, OID oid, int isplice)
 
 INCLUDE_ASM(const s32, "P2/brx", LoadOptionFromBrx__FPvP5EOPIDP18CBinaryInputStream);
 
-INCLUDE_ASM(const s32, "P2/brx", snd_SendIOPCommandAndWait);
-
-INCLUDE_ASM(const s32, "P2/brx", snd_SendIOPCommandNoWait);
-
 INCLUDE_ASM(const s32, "P2/brx", LoadOptionsFromBrx__FPvP18CBinaryInputStream);
 
 uint IploFromStockOid(int oid)
