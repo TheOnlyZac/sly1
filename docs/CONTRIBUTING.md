@@ -68,7 +68,7 @@ Then start writing your code under the "Source code" tab. It will tell you what 
 To use Objdiff, follow these steps:
 
 1. Reconfigure the project using `python3 configure.py --objects`. This will generate the object files and the `objdiff.json` config file, but it won't build the final elf or run the checksum.
-2. From the project root, run `./toold/objdiff/objdiff diff FunctionName --project . -u objname`.
+2. From the project root, run `./tools/objdiff/objdiff-cli diff FunctionName --project . -u objname`.
     * Replace `FunctionName` with the **mangled name** of the function you want to match, and `P2/objname
     * E.g. to match `OnDifficultyGameLoad` defined in `difficulty.c`, run this command:
     ```bash
