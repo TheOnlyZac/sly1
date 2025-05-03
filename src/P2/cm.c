@@ -189,7 +189,13 @@ INCLUDE_ASM(const s32, "P2/cm", LookkPopCm);
 
 INCLUDE_ASM(const s32, "P2/cm", LookkCurCm);
 
-INCLUDE_ASM(const s32, "P2/cm", SetCmSniperFocus);
+//INCLUDE_ASM(const s32, "P2/cm", SetCmSniperFocus__FP2CMUiff);
+void SetCmSniperFocus(CM *pcm, undefined4 param_2, float param_3, float param_4)
+{
+    pcm->cpalign.field_6_0x14 = param_2;
+    pcm->cpalign.field_7_0x18 = param_3;
+    pcm->cpalign.field_8_0x1c = param_4;
+}
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00146028);
 
