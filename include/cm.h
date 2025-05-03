@@ -177,10 +177,14 @@ struct CPLOOK : public CPLCY
  */
 struct CPALIGN : public CPLCY
 {
-    undefined4 fielf_1_0x0;
+    undefined4 field_1_0x0;
     undefined4 field_2_0x4;
     VECTOR posLocal;
-    MATRIX3 matLocal;
+    undefined4 field_4_0xc;
+    undefined4 field_5_0x10;
+    undefined4 field_6_0x14;
+    float field_7_0x18;
+    float field_8_0x1c;
 };
 
 /**
@@ -340,6 +344,8 @@ void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog);
  * @brief Sets up the given camera.
  */
 void SetupCm(CM *pcm);
+
+void ClearCmFadeObjects(CM *pcm);
 
 // todo fix undefined reference errors
 // extern VECTOR4 g_posEyeDefault;
