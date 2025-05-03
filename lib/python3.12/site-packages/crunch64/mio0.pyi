@@ -1,0 +1,6 @@
+#!/usr/bin/env python3
+
+from __future__ import annotations
+
+def decompress(data: bytes) -> bytes: ...
+def compress(data: bytes) -> bytes: ...

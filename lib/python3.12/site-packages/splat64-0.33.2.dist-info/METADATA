@@ -1,0 +1,89 @@
+Metadata-Version: 2.4
+Name: splat64
+Version: 0.33.2
+Summary: A binary splitting tool to assist with decompilation and modding projects
+Project-URL: Repository, https://github.com/ethteck/splat
+Project-URL: Issues, https://github.com/ethteck/splat/issues
+Project-URL: Changelog, https://github.com/ethteck/splat/blob/master/CHANGELOG.md
+License: MIT License
+        
+        Copyright (c) 2021 Ethan Roseman
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+License-File: LICENSE
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.9
+Requires-Dist: colorama
+Requires-Dist: intervaltree
+Requires-Dist: pylibyaml
+Requires-Dist: pyyaml
+Requires-Dist: tqdm
+Provides-Extra: dev
+Requires-Dist: black; extra == 'dev'
+Requires-Dist: crunch64<1.0.0,>=0.5.1; extra == 'dev'
+Requires-Dist: mypy; extra == 'dev'
+Requires-Dist: n64img>=0.3.3; extra == 'dev'
+Requires-Dist: pygfxd; extra == 'dev'
+Requires-Dist: rabbitizer<2.0.0,>=1.12.0; extra == 'dev'
+Requires-Dist: spimdisasm<2.0.0,>=1.32.0; extra == 'dev'
+Requires-Dist: types-colorama; extra == 'dev'
+Requires-Dist: types-pyyaml; extra == 'dev'
+Provides-Extra: mips
+Requires-Dist: crunch64<1.0.0,>=0.5.1; extra == 'mips'
+Requires-Dist: n64img>=0.3.3; extra == 'mips'
+Requires-Dist: pygfxd; extra == 'mips'
+Requires-Dist: rabbitizer<2.0.0,>=1.12.0; extra == 'mips'
+Requires-Dist: spimdisasm<2.0.0,>=1.32.0; extra == 'mips'
+Description-Content-Type: text/markdown
+
+# splat
+
+[![PyPI](https://img.shields.io/pypi/v/splat64)](https://pypi.org/project/splat64/)
+
+A binary splitting tool to assist with decompilation and modding projects
+
+Currently, only N64, PSX, PS2 and PSP binaries are supported. More platforms may come in the future.
+
+Please check out the [wiki](https://github.com/ethteck/splat/wiki) for more information including [examples](https://github.com/ethteck/splat/wiki/Examples) of projects that use splat.
+
+## Installing
+
+The recommended way to install is using from the PyPi release, via `pip`:
+
+```bash
+python3 -m pip install -U splat64[mips]
+```
+
+The brackets corresponds to the optional dependencies to install while installing splat. Refer to [Optional dependencies](#optional-dependencies) to see the list of available groups.
+
+If you use a `requirements.txt` file in your repository, then you can add this library with the following line:
+
+```txt
+splat64[mips]>=0.33.2,<1.0.0
+```
+
+### Optional dependencies
+
+- `mips`: Required when using the N64, PSX, PS2 or PSP platforms.
+- `dev`: Installs all the available dependencies groups and other packages for development.
+
+### Gamecube / Wii
+
+For Gamecube / Wii projects, see [decomp-toolkit](https://github.com/encounter/decomp-toolkit)!

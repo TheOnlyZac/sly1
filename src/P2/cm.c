@@ -103,7 +103,11 @@ INCLUDE_ASM(const s32, "P2/cm", SetCmMrdRatio__FP2CMf);
 
 INCLUDE_ASM(const s32, "P2/cm", ResetCm);
 
-INCLUDE_ASM(const s32, "P2/cm", ClearCmFadeObjects);
+//INCLUDE_ASM(const s32, "P2/cm", ClearCmFadeObjects__FP2CM);
+void ClearCmFadeObjects(CM *pcm)
+{
+    pcm->field77_0x3ac = 0;
+}
 
 INCLUDE_ASM(const s32, "P2/cm", AddCmFadeObject);
 

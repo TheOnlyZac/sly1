@@ -341,6 +341,8 @@ void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog);
  */
 void SetupCm(CM *pcm);
 
+void ClearCmFadeObjects(CM *pcm);
+
 // todo fix undefined reference errors
 // extern VECTOR4 g_posEyeDefault;
 // extern VECTOR4 g_posCenterDefault;

@@ -1,0 +1,6 @@
+[console_scripts]
+disasmdis = spimdisasm.disasmdis:disasmdisMain
+elfObjDisasm = spimdisasm.elfObjDisasm:elfObjDisasmMain
+rspDisasm = spimdisasm.rspDisasm:rspDisasmMain
+singleFileDisasm = spimdisasm.singleFileDisasm:disassemblerMain
+spimdisasm = spimdisasm.frontendCommon.FrontendUtilities:cliMain
