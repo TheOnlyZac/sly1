@@ -666,7 +666,7 @@ FUN_00143860 = 0x143860; // type:func
 FUN_00143888 = 0x143888; // type:func
 SetSwCameraRgbaFog__FP2SWP4RGBA = 0x1438B0; // type:func
 FUN_001438d8 = 0x1438D8; // type:func
-FUN_00143900 = 0x143900; // type:func
+SetCmPos__FP2CMP6VECTOR = 0x143900; // type:func
 FUN_00143920 = 0x143920; // type:func
 FUN_00143940 = 0x143940; // type:func
 FUN_00143968 = 0x143968; // type:func
@@ -690,7 +690,7 @@ CombineEyeLookAtProj = 0x1442C8; // type:func
 BuildFrustrum = 0x1443C8; // type:func
 UpdateCmMat4 = 0x144540; // type:func
 DrawCm = 0x144848; // type:func
-SetCmPosMat = 0x1448C8; // type:func
+SetCmPosMat__FP2CMP6VECTORP7MATRIX3 = 0x1448C8; // type:func
 SetCmLookAt = 0x144938; // type:func
 ConvertWorldToCylindVelocity = 0x144978; // type:func
 ConvertCylindToWorldVelocity = 0x144AA0; // type:func
@@ -702,9 +702,9 @@ RevokeCmPolicy = 0x1451F0; // type:func
 FInsideCmMrd = 0x1453B0; // type:func
 DecomposeCylind = 0x145438; // type:func
 DecomposeSphere = 0x1454E0; // type:func
-SetCmCut = 0x1455C0; // type:func
-FUN_001455e0 = 0x1455E0; // type:func
-FUN_001455f0 = 0x1455F0; // type:func
+SetCmCut__FP2CMi = 0x1455C0; // type:func
+SetResetFlag__FP2CM = 0x1455E0; // type:func
+ClearCmCut__FP2CM = 0x1455F0; // type:func
 AdaptCm = 0x145610; // type:func
 SetCm = 0x145718; // type:func
 PsoEnemyStepguard = 0x145810; // type:func
@@ -714,9 +714,9 @@ FUN_00145de8 = 0x145DE8; // type:func
 FUN_00145e68 = 0x145E68; // type:func
 FUN_00145fb8 = 0x145FB8; // type:func
 LookkPopCm = 0x145FD8; // type:func
-LookkCurCm = 0x145FF8; // type:func
+LookkCurCm__FP2CM = 0x145FF8; // type:func
 SetCmSniperFocus__FP2CMUiff = 0x146018; // type:func
-FUN_00146028 = 0x146028; // type:func
+FUN_00146028__FP2CM = 0x146028; // type:func
 FUN_00146038 = 0x146038; // type:func
 cm__static_initialization_and_destruction_0 = 0x1460B8; // type:func
 _GLOBAL_$I$StartupCm__Fv = 0x1460E0; // type:func
@@ -801,6 +801,31 @@ FUN_00149168 = 0x149168; // type:func
 break_bottle = 0x149190; // type:func
 
 s_asnipDprize = 0x2619A0; // size:0x3c
+
+
+////////////////////////////////////////////////////////////////
+// P2/cplcy.c
+////////////////////////////////////////////////////////////////
+InitCplcy = 0x149398; // type:func
+FActiveCplcy = 0x1493A0; // type:func
+SetCpmanCpmt = 0x1493B8; // type:func
+FUN_001493c0 = 0x1493C0; // type:func
+PosCplookAnchor = 0x1493C8; // type:func
+FUN_00149458 = 0x149458; // type:func
+plays_binoc_sfx = 0x149508; // type:func
+PushCplookLookk = 0x1495E8; // type:func
+LookkPopCplook = 0x149610; // type:func
+LookkCurCplook = 0x149638; // type:func
+InitCplook = 0x149660; // type:func
+FUN_001496c0 = 0x1496C0; // type:func
+UpdateCplook = 0x149760; // type:func
+FUN_0014a7b8 = 0x14A7B8; // type:func
+InitCpalign = 0x14A888; // type:func
+FUN_0014a8d0 = 0x14A8D0; // type:func
+UpdateCpalign = 0x14A8F8; // type:func
+FUN_0014aa90 = 0x14AA90; // type:func
+FUN_0014aa98 = 0x14AA98; // type:func
+UpdateCpaseg = 0x14AAA0; // type:func
 
 
 ////////////////////////////////////////////////////////////////

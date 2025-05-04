@@ -81,7 +81,11 @@ void SetSwCameraRgbaFog(SW *psw, RGBA *prgbaFog)
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_001438d8);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00143900);
+void SetCmPos(CM *pcm,VECTOR *ppos)
+{
+    SetCmPosMat(pcm,ppos,0x0);
+    return;
+}
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00143920);
 
@@ -103,7 +107,6 @@ INCLUDE_ASM(const s32, "P2/cm", SetCmMrdRatio__FP2CMf);
 
 INCLUDE_ASM(const s32, "P2/cm", ResetCm);
 
-//INCLUDE_ASM(const s32, "P2/cm", ClearCmFadeObjects__FP2CM);
 void ClearCmFadeObjects(CM *pcm)
 {
     pcm->field77_0x3ac = 0;
@@ -135,7 +138,7 @@ INCLUDE_ASM(const s32, "P2/cm", UpdateCmMat4);
 
 INCLUDE_ASM(const s32, "P2/cm", DrawCm);
 
-INCLUDE_ASM(const s32, "P2/cm", SetCmPosMat);
+INCLUDE_ASM(const s32, "P2/cm", SetCmPosMat__FP2CMP6VECTORP7MATRIX3);
 
 INCLUDE_ASM(const s32, "P2/cm", SetCmLookAt);
 
@@ -161,11 +164,17 @@ INCLUDE_ASM(const s32, "P2/cm", DecomposeCylind);
 
 INCLUDE_ASM(const s32, "P2/cm", DecomposeSphere);
 
-INCLUDE_ASM(const s32, "P2/cm", SetCmCut);
+INCLUDE_ASM(const s32, "P2/cm", SetCmCut__FP2CMi);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_001455e0);
+void SetResetFlag(CM *pcm)
+{
+    pcm->reset_flag = true;
+}
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_001455f0);
+void ClearCmCut(CM *pcm)
+{
+    SetCmCut(pcm,0);
+}
 
 INCLUDE_ASM(const s32, "P2/cm", AdaptCm);
 
@@ -187,9 +196,8 @@ INCLUDE_ASM(const s32, "P2/cm", FUN_00145fb8);
 
 INCLUDE_ASM(const s32, "P2/cm", LookkPopCm);
 
-INCLUDE_ASM(const s32, "P2/cm", LookkCurCm);
+INCLUDE_ASM(const s32, "P2/cm", LookkCurCm__FP2CM);
 
-//INCLUDE_ASM(const s32, "P2/cm", SetCmSniperFocus__FP2CMUiff);
 void SetCmSniperFocus(CM *pcm, undefined4 param_2, float param_3, float param_4)
 {
     pcm->cpalign.field_6_0x14 = param_2;
@@ -197,7 +205,10 @@ void SetCmSniperFocus(CM *pcm, undefined4 param_2, float param_3, float param_4)
     pcm->cpalign.field_8_0x1c = param_4;
 }
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00146028);
+void FUN_00146028(CM *pcm)
+{
+    pcm->vCenter.z = g_clock.t;
+}
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00146038);
 

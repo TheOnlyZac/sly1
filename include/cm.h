@@ -12,6 +12,7 @@
 #include <binoc.h> // only for RGBA
 #include <xform.h>
 #include <sound.h>
+#include <clock.h>
 
 struct CM; // Forward declaration
 
@@ -280,8 +281,10 @@ struct CM : public LO
     undefined4 field47_0x228;
     undefined4 field48_0x22c;
     VECTOR dposCenter;
-    VECTOR vCenter;
-    VECTOR dposAdjust;
+    VECTOR vCenter; //NOTE: this might not be a VECTOR... -Kestin
+    undefined4 field52_0x244;
+    bool reset_flag;
+    undefined4 field54_0x24c;
     VECTOR vAdjust;
     VECTOR dposFocus;
     VECTOR vFocus;
@@ -345,7 +348,37 @@ void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog);
  */
 void SetupCm(CM *pcm);
 
+/**
+ * @brief Clears fading objects from the given camera.
+ */
 void ClearCmFadeObjects(CM *pcm);
+
+/**
+ * @brief Sets the position matrix on the given camera.
+ */
+void SetCmPosMat(CM *pcm,VECTOR *ppos,MATRIX3 *pmat);
+
+/**
+ * @brief Sets sniper focus on the given camera.
+ */
+void SetCmSniperFocus(CM *pcm, undefined4 param_2, float param_3, float param_4);
+
+/**
+ * @brief Sets Cut on the given camera.
+ */
+void SetCmCut(CM *pcm, int cut);
+
+/**
+ * @brief Sets the reset flag on the given camera.
+ */
+void SetResetFlag(CM *pcm);
+
+/**
+ * @brief Clears cut from the given camera.
+ */
+void ClearCmCut(CM *pcm);
+
+void FUN_00146028(CM *pcm); //TODO: Rename function
 
 // todo fix undefined reference errors
 // extern VECTOR4 g_posEyeDefault;
