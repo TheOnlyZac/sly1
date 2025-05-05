@@ -9,7 +9,8 @@
 #define CPLCY_H
 
 #include "common.h"
+#include <cm.h>
 
-// ...
+LOOKK LookkPopCplook(CPLOOK *pcplook);
 
 #endif // CPLCY_H

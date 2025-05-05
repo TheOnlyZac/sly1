@@ -165,10 +165,10 @@ struct CPLOOK : public CPLCY
     int fSoundPaused;
     AMB *pambBinoc;
     AMB *pambAmbient;
-    ALO *paloFocusSniper;
-    float rScreenSniper;
-    float sRadiusSniper;
     PNT *ppntAnchor;
+    ALO *paloFocusSniper;
+    float sRadiusSniper;
+    float rScreenSniper;
 };
 
 /**
@@ -316,14 +316,14 @@ struct CM : public LO
     int ccpr;
     CPR acpr[8];
     CPMAN cpman;
+    undefined8 field76_0x504;
+    undefined8 field77_0x504;
+    undefined8 field78_0x504;
+    undefined8 field79_0x504;
+    undefined8 field80_0x504;
+    undefined8 field81_0x504;
+    undefined8 field82_0x504;
     CPLOOK cplook;
-    undefined4 field84_0x504;
-    undefined4 field85_0x508;
-    undefined4 field86_0x50c;
-    CPALIGN cpalign;
-    CPASEG cpaseg;
-    undefined4 field89_0x56c;
-    CPTN cptn;
 };
 
 // extern CM g_cm; // Main game camera

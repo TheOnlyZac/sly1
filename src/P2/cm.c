@@ -4,6 +4,7 @@
 #include <cm.h>
 #include <util.h>
 #include <binoc.h>
+#include <cplcy.h>
 
 // todo fix data and rodata
 // VECTOR4 g_posEyeDefault = { 0.0f, -2000.0f, 500.0f, 0.0f };
@@ -194,15 +195,18 @@ INCLUDE_ASM(const s32, "P2/cm", FUN_00145e68);
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00145fb8);
 
-INCLUDE_ASM(const s32, "P2/cm", LookkPopCm);
+LOOKK LookkPopCm(CM *pcm)
+{
+    return LookkPopCplook(&pcm->cplook);
+}
 
 INCLUDE_ASM(const s32, "P2/cm", LookkCurCm__FP2CM);
 
-void SetCmSniperFocus(CM *pcm, undefined4 param_2, float param_3, float param_4)
+void SetCmSniperFocus(CM *pcm, ALO *paloFocusSniper, float sRadiusSniper, float rScreenSniper)
 {
-    pcm->cpalign.field_6_0x14 = param_2;
-    pcm->cpalign.field_7_0x18 = param_3;
-    pcm->cpalign.field_8_0x1c = param_4;
+    pcm->cplook.paloFocusSniper = paloFocusSniper;
+    pcm->cplook.sRadiusSniper = sRadiusSniper;
+    pcm->cplook.rScreenSniper = rScreenSniper;
 }
 
 void FUN_00146028(CM *pcm)
