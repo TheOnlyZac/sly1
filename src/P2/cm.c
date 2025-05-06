@@ -110,7 +110,7 @@ INCLUDE_ASM(const s32, "P2/cm", ResetCm);
 
 void ClearCmFadeObjects(CM *pcm)
 {
-    pcm->field77_0x3ac = 0;
+    pcm->field67_0x340 = 0;
 }
 
 INCLUDE_ASM(const s32, "P2/cm", AddCmFadeObject);
@@ -200,7 +200,10 @@ LOOKK LookkPopCm(CM *pcm)
     return LookkPopCplook(&pcm->cplook);
 }
 
-INCLUDE_ASM(const s32, "P2/cm", LookkCurCm__FP2CM);
+LOOKK LookkCurCm(CM *pcm)
+{
+    return LookkCurCplook(&pcm->cplook);
+}
 
 void SetCmSniperFocus(CM *pcm, ALO *paloFocusSniper, float sRadiusSniper, float rScreenSniper)
 {

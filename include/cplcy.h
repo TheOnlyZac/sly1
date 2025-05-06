@@ -13,4 +13,6 @@
 
 LOOKK LookkPopCplook(CPLOOK *pcplook);
 
+LOOKK LookkCurCplook(CPLOOK *pcplook);
+
 #endif // CPLCY_H

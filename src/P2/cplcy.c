@@ -22,7 +22,7 @@ INCLUDE_ASM(const s32, "P2/cplcy", PushCplookLookk);
 
 INCLUDE_ASM(const s32, "P2/cplcy", LookkPopCplook__FP6CPLOOK);
 
-INCLUDE_ASM(const s32, "P2/cplcy", LookkCurCplook);
+INCLUDE_ASM(const s32, "P2/cplcy", LookkCurCplook__FP6CPLOOK);
 
 INCLUDE_ASM(const s32, "P2/cplcy", InitCplook);
 
