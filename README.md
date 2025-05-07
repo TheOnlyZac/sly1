@@ -5,14 +5,13 @@
 [build-badge]: https://img.shields.io/github/actions/workflow/status/theonlyzac/sly1/build.yml?branch=main&label=build
 
 [decompdev-url]: https://decomp.dev/TheOnlyZac/sly1
-[code-progress-badge]: https://decomp.dev/TheOnlyZac/sly1.svg?mode=shield&measure=code&label=code
-[data-progress-badge]: https://decomp.dev/TheOnlyZac/sly1.svg?mode=shield&measure=data&label=data
+[data-progress-badge]: https://decomp.dev/TheOnlyZac/sly1.svg?mode=shield&label=data&measure=matched_data_percent
 
 [engine-url]: https://decomp.dev/TheOnlyZac/sly1/SCUS_971.98?category=P2
-[engine-progress-badge]: https://decomp.dev/TheOnlyZac/sly1.svg?mode=shield&measure=code&category=P2&label=engine
+[engine-progress-badge]: https://decomp.dev/TheOnlyZac/sly1.svg?mode=shield&category=P2&label=engine&measure=fuzzy_match_percent
 
 [splice-url]: https://decomp.dev/TheOnlyZac/sly1/SCUS_971.98?category=splice
-[splice-progress-badge]: https://decomp.dev/TheOnlyZac/sly1.svg?mode=shield&measure=code&category=splice&label=splice
+[splice-progress-badge]: https://decomp.dev/TheOnlyZac/sly1.svg?mode=shield&category=splice&label=splice&measure=fuzzy_match_percent
 
 <!-- Contributors shield -->
 [contributors-url]: https://github.com/theonlyzac/sly1/graphs/contributors
@@ -37,7 +36,7 @@
 
 This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoonus*](https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus) for the PlayStation 2. It builds the NTSC-U version of the game, `SCUS_971.98` (SHA1: `57dc305d`).
 
-The goal of this project is to better understand the game engine. This repo does not contain any game assets or original code from the game's executable; It requires your own copy of the game to build and run.
+The goal of this project is to decompile the game engine to matching source code. This repo does not contain any game assets or original code from the game's executable; It requires your own copy of the game to build and run.
 
 Documentation of the code can be found at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1). For further reading on the game's internal structures and mechanics, visit the [SlyMods Wiki][wiki-url].
 
