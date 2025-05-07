@@ -12,6 +12,7 @@
 #include <binoc.h> // only for RGBA
 #include <xform.h>
 #include <sound.h>
+#include <clock.h>
 
 struct CM; // Forward declaration
 
@@ -164,10 +165,10 @@ struct CPLOOK : public CPLCY
     int fSoundPaused;
     AMB *pambBinoc;
     AMB *pambAmbient;
-    ALO *paloFocusSniper;
-    float rScreenSniper;
-    float sRadiusSniper;
     PNT *ppntAnchor;
+    ALO *paloFocusSniper;
+    float sRadiusSniper;
+    float rScreenSniper;
 };
 
 /**
@@ -177,10 +178,14 @@ struct CPLOOK : public CPLCY
  */
 struct CPALIGN : public CPLCY
 {
-    undefined4 fielf_1_0x0;
+    undefined4 field_1_0x0;
     undefined4 field_2_0x4;
     VECTOR posLocal;
-    MATRIX3 matLocal;
+    undefined4 field_4_0xc;
+    undefined4 field_5_0x10;
+    undefined4 field_6_0x14;
+    float field_7_0x18;
+    float field_8_0x1c;
 };
 
 /**
@@ -243,9 +248,9 @@ struct CM : public LO
     VECTOR4 anormalFrustrumTranspose[3];
     MATRIX3 mat;
     float rMRDAdjust;
-    undefined4 field17_0xb4;
-    undefined4 field18_0xb8;
-    undefined4 field19_0xbc;
+    undefined4 field5_0x98;
+    undefined4 field6_0x9c;
+    undefined4 field7_0xa0;
     MATRIX4 matProj;
     MATRIX4 matWorldToClip;
     MATRIX4 matClipToWorld;
@@ -273,11 +278,13 @@ struct CM : public LO
     float uPanProgress;
     float uTiltProgress;
     float uSProgress;
-    undefined4 field47_0x228;
-    undefined4 field48_0x22c;
+    undefined4 field35_0x1fc;
+    undefined4 field36_0x200;
     VECTOR dposCenter;
-    VECTOR vCenter;
-    VECTOR dposAdjust;
+    VECTOR vCenter; //NOTE: this might not be a VECTOR... -Kestin
+    undefined4 field39_0x21c;
+    bool reset_flag;
+    undefined4 field41_0x224;
     VECTOR vAdjust;
     VECTOR dposFocus;
     VECTOR vFocus;
@@ -288,34 +295,37 @@ struct CM : public LO
     float sv;
     float swPanMat;
     float swTiltMat;
-    undefined4 field62_0x2c4;
-    undefined4 field63_0x2c8;
-    undefined4 field64_0x2cc;
+    undefined4 field52_0x278;
+    undefined4 field53_0x27c;
+    undefined4 field54_0x280;
     VECTOR posCenterPrev;
     VECTOR posClear;
     MATRIX3 matClear;
     SO *psoFocusPrev;
-    undefined4 field69_0x324;
-    undefined4 field70_0x328;
-    undefined4 field71_0x32c;
+    undefined4 field59_0x2c4;
+    undefined4 field60_0x2c8;
+    undefined4 field61_0x2cc;
     CPDEFI cpdefiPrev;
     int cpaloFade;
     ALO *apaloFade[8];
     float tActivateCplcy;
-    undefined4 field76_0x3a8;
-    undefined4 field77_0x3ac;
+    undefined4 field66_0x33c;
+    undefined4 field67_0x340;
     MATRIX3 matRotateToCam;
     MATRIX3 matRotateTiltToCam;
     int ccpr;
     CPR acpr[8];
     CPMAN cpman;
+    undefined8 field73_0x428;
+    undefined8 field74_0x430;
+    undefined8 field75_0x438;
+    undefined8 field76_0x440;
+    undefined8 field77_0x448;
+    undefined8 field78_0x450;
+    undefined8 field79_0x458;
     CPLOOK cplook;
-    undefined4 field84_0x504;
-    undefined4 field85_0x508;
-    undefined4 field86_0x50c;
     CPALIGN cpalign;
     CPASEG cpaseg;
-    undefined4 field89_0x56c;
     CPTN cptn;
 };
 
@@ -340,6 +350,38 @@ void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog);
  * @brief Sets up the given camera.
  */
 void SetupCm(CM *pcm);
+
+/**
+ * @brief Clears fading objects from the given camera.
+ */
+void ClearCmFadeObjects(CM *pcm);
+
+/**
+ * @brief Sets the position matrix on the given camera.
+ */
+void SetCmPosMat(CM *pcm,VECTOR *ppos,MATRIX3 *pmat);
+
+/**
+ * @brief Sets sniper focus on the given camera.
+ */
+void SetCmSniperFocus(CM *pcm, undefined4 param_2, float param_3, float param_4);
+
+/**
+ * @brief Sets Cut on the given camera.
+ */
+void SetCmCut(CM *pcm, int cut);
+
+/**
+ * @brief Sets the reset flag on the given camera.
+ */
+void SetResetFlag(CM *pcm);
+
+/**
+ * @brief Clears cut from the given camera.
+ */
+void ClearCmCut(CM *pcm);
+
+void FUN_00146028(CM *pcm); //TODO: Rename function
 
 // todo fix undefined reference errors
 // extern VECTOR4 g_posEyeDefault;

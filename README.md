@@ -138,7 +138,7 @@ sudo apt-get install binutils-mips-linux-gnu
 Setup the compiler using the provided script:
 
 ```bash
-./scripts/setup-progd-linux.sh
+./scripts/setup_progd_linux.sh
 ```
 
 <!--#### Windows
@@ -152,7 +152,7 @@ choco install 7zip
 
 2. Setup build environment:
 ```powershell
-.\scripts\setup-progd-windows.bat
+.\scripts\setup_progd_windows.bat
 ```-->
 
 ### Configure and build the project

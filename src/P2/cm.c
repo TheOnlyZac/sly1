@@ -4,6 +4,7 @@
 #include <cm.h>
 #include <util.h>
 #include <binoc.h>
+#include <cplcy.h>
 
 // todo fix data and rodata
 // VECTOR4 g_posEyeDefault = { 0.0f, -2000.0f, 500.0f, 0.0f };
@@ -81,7 +82,11 @@ void SetSwCameraRgbaFog(SW *psw, RGBA *prgbaFog)
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_001438d8);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00143900);
+void SetCmPos(CM *pcm,VECTOR *ppos)
+{
+    SetCmPosMat(pcm,ppos,0x0);
+    return;
+}
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00143920);
 
@@ -103,7 +108,10 @@ INCLUDE_ASM(const s32, "P2/cm", SetCmMrdRatio__FP2CMf);
 
 INCLUDE_ASM(const s32, "P2/cm", ResetCm);
 
-INCLUDE_ASM(const s32, "P2/cm", ClearCmFadeObjects);
+void ClearCmFadeObjects(CM *pcm)
+{
+    pcm->field67_0x340 = 0;
+}
 
 INCLUDE_ASM(const s32, "P2/cm", AddCmFadeObject);
 
@@ -131,7 +139,7 @@ INCLUDE_ASM(const s32, "P2/cm", UpdateCmMat4);
 
 INCLUDE_ASM(const s32, "P2/cm", DrawCm);
 
-INCLUDE_ASM(const s32, "P2/cm", SetCmPosMat);
+INCLUDE_ASM(const s32, "P2/cm", SetCmPosMat__FP2CMP6VECTORP7MATRIX3);
 
 INCLUDE_ASM(const s32, "P2/cm", SetCmLookAt);
 
@@ -157,11 +165,17 @@ INCLUDE_ASM(const s32, "P2/cm", DecomposeCylind);
 
 INCLUDE_ASM(const s32, "P2/cm", DecomposeSphere);
 
-INCLUDE_ASM(const s32, "P2/cm", SetCmCut);
+INCLUDE_ASM(const s32, "P2/cm", SetCmCut__FP2CMi);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_001455e0);
+void SetResetFlag(CM *pcm)
+{
+    pcm->reset_flag = true;
+}
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_001455f0);
+void ClearCmCut(CM *pcm)
+{
+    SetCmCut(pcm,0);
+}
 
 INCLUDE_ASM(const s32, "P2/cm", AdaptCm);
 
@@ -181,13 +195,27 @@ INCLUDE_ASM(const s32, "P2/cm", FUN_00145e68);
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00145fb8);
 
-INCLUDE_ASM(const s32, "P2/cm", LookkPopCm);
+LOOKK LookkPopCm(CM *pcm)
+{
+    return LookkPopCplook(&pcm->cplook);
+}
 
-INCLUDE_ASM(const s32, "P2/cm", LookkCurCm);
+LOOKK LookkCurCm(CM *pcm)
+{
+    return LookkCurCplook(&pcm->cplook);
+}
 
-INCLUDE_ASM(const s32, "P2/cm", SetCmSniperFocus);
+void SetCmSniperFocus(CM *pcm, ALO *paloFocusSniper, float sRadiusSniper, float rScreenSniper)
+{
+    pcm->cplook.paloFocusSniper = paloFocusSniper;
+    pcm->cplook.sRadiusSniper = sRadiusSniper;
+    pcm->cplook.rScreenSniper = rScreenSniper;
+}
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00146028);
+void FUN_00146028(CM *pcm)
+{
+    pcm->vCenter.z = g_clock.t;
+}
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00146038);
 
