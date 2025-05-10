@@ -165,8 +165,8 @@ struct CPLOOK : public CPLCY
     int fSoundPaused;
     AMB *pambBinoc;
     AMB *pambAmbient;
-    PNT *ppntAnchor;
     ALO *paloFocusSniper;
+    PNT *ppntAnchor;
     float sRadiusSniper;
     float rScreenSniper;
 };
@@ -278,7 +278,7 @@ struct CM : public LO
     float uPanProgress;
     float uTiltProgress;
     float uSProgress;
-    undefined4 field35_0x1fc;
+    float field35_0x1fc;
     undefined4 field36_0x200;
     VECTOR dposCenter;
     VECTOR vCenter; //NOTE: this might not be a VECTOR... -Kestin
@@ -333,23 +333,39 @@ struct CM : public LO
 extern CM *g_pcm; // Pointer to the main game camera
 
 /**
- * @brief Calls SetCmRgbaFog with the global camera.
+ * @brief Calls RecalcCmFrustrum on the given camera.
+ */
+void RecalcCmFrustrum(CM *pcm);
+
+/**
+ * @brief Sets Fog on the global camera.
  */
 void SetSwCameraRgbaFog(SW *psw, RGBA *prgbaFog);
 
-// ...
+/**
+ * @brief Sets position on the given camera.
+ */
+void SetCmPos(CM *pcm,VECTOR *ppos);
+
+/**
+ * @brief Sets SProgress on the given camera.
+ */
+void SetCmSProgress(CM *pcm, float uSProgress);
+
+/**
+ * @brief Sets field35_0x1fc on the given camera.
+ */
+void FUN_001439c8(CM *pcm, float param_2); //TODO: Rename function
 
 /**
  * @brief Sets the RGBA fog color for the camera.
  */
 void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog);
 
-// ...
-
 /**
- * @brief Sets up the given camera.
+ * @brief Calls SetCmMrdRatio on the given camera.
  */
-void SetupCm(CM *pcm);
+void SetCmMrdRatio(CM *pcm);
 
 /**
  * @brief Clears fading objects from the given camera.
@@ -357,14 +373,14 @@ void SetupCm(CM *pcm);
 void ClearCmFadeObjects(CM *pcm);
 
 /**
+ * @brief Sets up the given camera.
+ */
+void SetupCm(CM *pcm);
+
+/**
  * @brief Sets the position matrix on the given camera.
  */
 void SetCmPosMat(CM *pcm,VECTOR *ppos,MATRIX3 *pmat);
-
-/**
- * @brief Sets sniper focus on the given camera.
- */
-void SetCmSniperFocus(CM *pcm, undefined4 param_2, float param_3, float param_4);
 
 /**
  * @brief Sets Cut on the given camera.
@@ -381,6 +397,29 @@ void SetResetFlag(CM *pcm);
  */
 void ClearCmCut(CM *pcm);
 
+/**
+ * @brief Push lookk on the given camera.
+ */
+void PushLookkCm(CM *pcm, LOOKK lookk);
+
+/**
+ * @brief Calls LookkPopCm on the given camera.
+ */
+LOOKK LookkPopCm(CM *pcm);
+
+/**
+ * @brief Calls LookkCurCm on the given camera.
+ */
+LOOKK LookkCurCm(CM *pcm);
+
+/**
+ * @brief Sets sniper focus on the given camera.
+ */
+void SetCmSniperFocus(CM *pcm, PNT *ppntAnchor, float sRadiusSniper, float rScreenSniper);
+
+/**
+ * @brief Calls FUN_00146028 on the given camera.
+ */
 void FUN_00146028(CM *pcm); //TODO: Rename function
 
 // todo fix undefined reference errors

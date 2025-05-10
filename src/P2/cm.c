@@ -85,7 +85,6 @@ INCLUDE_ASM(const s32, "P2/cm", FUN_001438d8);
 void SetCmPos(CM *pcm,VECTOR *ppos)
 {
     SetCmPosMat(pcm,ppos,0x0);
-    return;
 }
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00143920);
@@ -96,9 +95,17 @@ INCLUDE_ASM(const s32, "P2/cm", FUN_00143968);
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00143988);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_001439a8);
+void SetCmSProgress(CM *pcm, float uSProgress)
+{
+    pcm->uSProgress = uSProgress;
+    RecalcCmFrustrum(pcm);
+}
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_001439c8);
+void FUN_001439c8(CM *pcm, float param_2)
+{
+    pcm->field35_0x1fc = param_2;
+    RecalcCmFrustrum(pcm);
+}
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_001439e8);
 
@@ -193,7 +200,10 @@ INCLUDE_ASM(const s32, "P2/cm", FUN_00145de8);
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00145e68);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00145fb8);
+void PushLookkCm(CM *pcm, LOOKK lookk)
+{
+    PushCplookLookk(&pcm->cplook, lookk);
+}
 
 LOOKK LookkPopCm(CM *pcm)
 {
@@ -205,9 +215,9 @@ LOOKK LookkCurCm(CM *pcm)
     return LookkCurCplook(&pcm->cplook);
 }
 
-void SetCmSniperFocus(CM *pcm, ALO *paloFocusSniper, float sRadiusSniper, float rScreenSniper)
+void SetCmSniperFocus(CM *pcm, PNT *ppntAnchor, float sRadiusSniper, float rScreenSniper)
 {
-    pcm->cplook.paloFocusSniper = paloFocusSniper;
+    pcm->cplook.ppntAnchor = ppntAnchor;
     pcm->cplook.sRadiusSniper = sRadiusSniper;
     pcm->cplook.rScreenSniper = rScreenSniper;
 }

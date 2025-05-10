@@ -18,7 +18,7 @@ INCLUDE_ASM(const s32, "P2/cplcy", FUN_00149458);
 
 INCLUDE_ASM(const s32, "P2/cplcy", plays_binoc_sfx);
 
-INCLUDE_ASM(const s32, "P2/cplcy", PushCplookLookk);
+INCLUDE_ASM(const s32, "P2/cplcy", PushCplookLookk__FP6CPLOOK5LOOKK);
 
 INCLUDE_ASM(const s32, "P2/cplcy", LookkPopCplook__FP6CPLOOK);
 
