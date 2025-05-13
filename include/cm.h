@@ -258,8 +258,6 @@ struct CM : public LO
     float rMRD;
     float radFOV;
     float rAspect;
-    float sNearClip;
-    float sFarClip;
     float sRadiusNearClip;
     float xScreenRange;
     float yScreenRange;
@@ -274,18 +272,23 @@ struct CM : public LO
     int fCut;
     int fRadCut;
     float radCut;
+    float sNearClip;
+    float sFarClip;
     int fDisplaced;
     float uPanProgress;
     float uTiltProgress;
     float uSProgress;
     float field35_0x1fc;
-    undefined4 field36_0x200;
+    float field36_0x200;
     VECTOR dposCenter;
     VECTOR vCenter; //NOTE: this might not be a VECTOR... -Kestin
     undefined4 field39_0x21c;
     bool reset_flag;
-    undefined4 field41_0x224;
-    VECTOR vAdjust;
+    int field41_0x224;
+    int field42_0x228;
+    float field43_0x22c;
+    undefined4 field44_0x230;
+    //VECTOR vAdjust;
     VECTOR dposFocus;
     VECTOR vFocus;
     VECTOR posScreen;
@@ -348,6 +351,21 @@ void SetSwCameraRgbaFog(SW *psw, RGBA *prgbaFog);
 void SetCmPos(CM *pcm,VECTOR *ppos);
 
 /**
+ * @brief Sets matrix on the given camera.
+ */
+void SetCmMat(CM *pcm, MATRIX3 *pmat);
+
+/**
+ * @brief Sets near clip plane on the given camera.
+ */
+void SetCmNearClip(CM *pcm, float sNearClip);
+
+/**
+ * @brief Sets far clip plane on the given camera.
+ */
+void SetCmFarClip(CM *pcm, float sFarClip);
+
+/**
  * @brief Sets SProgress on the given camera.
  */
 void SetCmSProgress(CM *pcm, float uSProgress);
@@ -356,6 +374,11 @@ void SetCmSProgress(CM *pcm, float uSProgress);
  * @brief Sets field35_0x1fc on the given camera.
  */
 void FUN_001439c8(CM *pcm, float param_2); //TODO: Rename function
+
+/**
+ * @brief Sets field36_0x200 on the given camera.
+ */
+void FUN_001439e8(CM *pcm,float param_2); //TODO: Rename function
 
 /**
  * @brief Sets the RGBA fog color for the camera.
@@ -385,7 +408,7 @@ void SetCmPosMat(CM *pcm,VECTOR *ppos,MATRIX3 *pmat);
 /**
  * @brief Sets Cut on the given camera.
  */
-void SetCmCut(CM *pcm, int cut);
+void SetCmCut(CM *pcm, float cut[]);
 
 /**
  * @brief Sets the reset flag on the given camera.
