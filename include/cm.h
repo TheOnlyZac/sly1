@@ -341,6 +341,11 @@ extern CM *g_pcm; // Pointer to the main game camera
 void RecalcCmFrustrum(CM *pcm);
 
 /**
+ * @brief Sets far clip plane on the global camera.
+ */
+void SetSwCameraFarClip(float sFarClip);
+
+/**
  * @brief Sets Fog on the global camera.
  */
 void SetSwCameraRgbaFog(SW *psw, RGBA *prgbaFog);
@@ -444,6 +449,16 @@ void SetCmSniperFocus(CM *pcm, PNT *ppntAnchor, float sRadiusSniper, float rScre
  * @brief Calls FUN_00146028 on the given camera.
  */
 void FUN_00146028(CM *pcm); //TODO: Rename function
+
+/**
+ * @brief Initializes Camera.
+ */
+void cm__static_initialization_and_destruction_0(int __initialize_p,int __priority);
+
+/**
+ * @brief Startsup Camera.
+ */
+void _GLOBAL_$I$StartupCm();
 
 // todo fix undefined reference errors
 // extern VECTOR4 g_posEyeDefault;

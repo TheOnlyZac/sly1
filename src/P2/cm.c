@@ -67,7 +67,10 @@ INCLUDE_ASM(const s32, "P2/cm", SetSwCameraFov__Ff);
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_001437e8);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00143810);
+void SetSwCameraFarClip(float sFarClip)
+{
+    SetCmFarClip(g_pcm, sFarClip);
+}
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00143838);
 
@@ -251,6 +254,9 @@ void FUN_00146028(CM *pcm)
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00146038);
 
-INCLUDE_ASM(const s32, "P2/cm", cm__static_initialization_and_destruction_0);
+INCLUDE_ASM(const s32, "P2/cm", cm__static_initialization_and_destruction_0__Fii);
 
-INCLUDE_ASM(const s32, "P2/cm", _GLOBAL_$I$StartupCm__Fv);
+void _GLOBAL_$I$StartupCm()
+{
+    cm__static_initialization_and_destruction_0(1,0xffff);
+}

@@ -660,7 +660,7 @@ RecalcCmFrustrum__FP2CM = 0x143560; // type:func
 InitCm__FP2CM = 0x143648; // type:func
 SetSwCameraFov__Ff = 0x1437C0; // type:func
 FUN_001437e8 = 0x1437E8; // type:func
-FUN_00143810 = 0x143810; // type:func
+SetSwCameraFarClip__Ff = 0x143810; // type:func
 FUN_00143838 = 0x143838; // type:func
 FUN_00143860 = 0x143860; // type:func
 FUN_00143888 = 0x143888; // type:func
@@ -718,7 +718,7 @@ LookkCurCm__FP2CM = 0x145FF8; // type:func
 SetCmSniperFocus__FP2CMP3PNTff = 0x146018; // type:func
 FUN_00146028__FP2CM = 0x146028; // type:func
 FUN_00146038 = 0x146038; // type:func
-cm__static_initialization_and_destruction_0 = 0x1460B8; // type:func
+cm__static_initialization_and_destruction_0__Fii = 0x1460B8; // type:func
 _GLOBAL_$I$StartupCm__Fv = 0x1460E0; // type:func
 
 g_posEyeDefault = 0x261880; // size:0x10
