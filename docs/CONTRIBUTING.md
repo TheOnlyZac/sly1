@@ -2,7 +2,7 @@
 
 ## So you want to decompile Sly 1...
 
-You've come to the right place! We welcome new contributors of all skill levels. Even if you've never tried game hacking, modding, or reverse-engineering, we have a dedicated community of modders and reverse-engineers to help you get started. Feel feel to join our [Discord server](https://discord.gg/2GSXcEzPJA) and ask for help in #sly-research.
+You've come to the right place! We welcome new contributors of all skill levels. Even if you've never tried game hacking, modding, or reverse-engineering, we have a dedicated community of modders and reverse-engineers to help you get started. Feel free to join our [Discord server](https://discord.gg/2GSXcEzPJA) and ask for help in #sly-research.
 
 This guide will help you start contributing to the project. This is a 100% volunteer-driven project, all contributions are greatly appreciated. The current goal is to decompile and match as many game functions as possible, while imitating the style and structure of the original code to understand the inner workings of the game engine.
 
@@ -14,7 +14,7 @@ By following this guide, you will learn how to fork the repo on GitHub, choose a
 2. [Find a function to match](#find-a-function-to-match)
 3. [Match the function](#match-the-function)
 4. [Integrate the matched code](#integrate-the-matched-code)
-5. [Make a Pull Request](#make-a-pull-request)
+5. [Make a pull request](#make-a-pull-request)
 6. [Conclusion](#conclusion)
 
 ## Getting started
@@ -35,7 +35,7 @@ The goal of this project is to match the original code closely enough that it co
 First, find a function in the game that you want to match. There are a few ways to do this:
 * Browse Ghidra for interesting functions.
 * Look through the `src` directory to find functions in `.c` files that haven't been matched yet.
-  * Functions that haven't been matched will have an `INCLUDE_ASM` macro as as placeholder.
+  * Functions that haven't been matched will have an `INCLUDE_ASM` macro as a placeholder.
 * Look through the `asm/nonmatchings` folder.
 * Ask for suggestions on Discord.
 
@@ -49,7 +49,7 @@ Once you have a function selected, you can start matching it using either **Objd
 
 To use decomp.me, follow these steps:
 
-1. Go the website and click "Start decomping".
+1. Go to the website and click "Start decomping".
 2. Click "PS2", then under "Preset", select "Sly Cooper and the Thievius Raccoonus".
 3. Under "Diff label", enter the name of the function.
 4. Find the `.s` file corresponding to the function you want to match in the `asm/nonmatchings` directory. Copy the contents of the file into the "Target assembly" box.
@@ -69,7 +69,7 @@ To use Objdiff, follow these steps:
 
 1. Reconfigure the project using `python3 configure.py --objects`. This will generate the object files and the `objdiff.json` config file, but it won't build the final elf or run the checksum.
 2. From the project root, run `./tools/objdiff/objdiff-cli diff FunctionName --project . -u objname`.
-    * Replace `FunctionName` with the **mangled name** of the function you want to match, and `P2/objname
+    * Replace `FunctionName` with the **mangled name** of the function you want to match, and `objname` with the name of the object file.
     * E.g. to match `OnDifficultyGameLoad` defined in `difficulty.c`, run this command:
     ```bash
     ./tools/objdiff/objdiff-cli diff OnDifficultyGameLoad__FP10DIFFICULTY --project . -u P2/difficulty
@@ -82,7 +82,7 @@ Once the function matches 100%, follow these steps to integrate it into the proj
 1. Replace the `INCLUDE_ASM` macro in the `.c` file with the matched function.
    * If the function is in a new file, **do not create a new file**. Creating new `.c` files is done by editing the `config/sly1.yaml` file to change the file split from `asm` to `c`, then running `python3 configure.py` to generate the new file. If you don't know how to do this, feel free to ask for help in the Discord server.
 2. Check `config/symbol_addrs.txt` to see if the mangled name of the function is present.
-   * If it is not, add the **mangled name** of the function with it's address. The mangled name of the function can be found in the debug symbols for the May 2002 prototype. If you don't know how to find it, ask for help in the Discord server; someone will be able to find it for you easily.
+   * If it is not, add the **mangled name** of the function with its address. The mangled name of the function can be found in the debug symbols for the May 2002 prototype. If you don't know how to find it, ask for help in the Discord server; someone will be able to find it for you easily.
    * The symbol_addrs.txt file is grouped alphabetically by filename, then sorted by address within the file.
 
 The project should build and match. Here are some common troubleshooting tips:
@@ -105,10 +105,10 @@ We are a volunteer-driven project, so please be patient while we review your cod
 * It compiles without any errors.
 * The compiled elf matches the original elf.
 
-If everything looks good, we will merge your pull request as soon as possible. If anything needs to be addressd, we will let you know.
+If everything looks good, we will merge your pull request as soon as possible. If anything needs to be addressed, we will let you know.
 
 ## Conclusion
 
-Thank you for reading, and we appreciate any contributions you make to the project! The project is 100% volunteern-driven, so perfection is not required. The most important thing is to have fun and learn something new about the game.
+Thank you for reading, and we appreciate any contributions you make to the project! The project is 100% volunteer-driven, so perfection is not required. The most important thing is to have fun and learn something new about the game.
 
-If you have any questions or concerns, feel free to ask in the [Discord server](https://discord.gg/2Y8b8Z2) or [open an issue](https://github.com/TheOnlyZac/sly1/issues/new) on GitHub.
+If you have any questions or concerns, feel free to ask in the [Discord server](https://discord.gg/2GSXcEzPJA) or [open an issue](https://github.com/TheOnlyZac/sly1/issues/new) on GitHub.
