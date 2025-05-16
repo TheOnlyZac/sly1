@@ -111,4 +111,4 @@ If everything looks good, we will merge your pull request as soon as possible. I
 
 Thank you for reading, and we appreciate any contributions you make to the project! The project is 100% volunteer-driven, so perfection is not required. The most important thing is to have fun and learn something new about the game.
 
-If you have any questions or concerns, feel free to ask in the [Discord server](https://discord.gg/2Y8b8Z2) or [open an issue](https://github.com/TheOnlyZac/sly1/issues/new) on GitHub.
+If you have any questions or concerns, feel free to ask in the [Discord server](https://discord.gg/2GSXcEzPJA) or [open an issue](https://github.com/TheOnlyZac/sly1/issues/new) on GitHub.
