@@ -67,7 +67,10 @@ INCLUDE_ASM(const s32, "P2/cm", SetSwCameraFov__Ff);
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_001437e8);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00143810);
+void SetSwCameraFarClip(float sFarClip)
+{
+    SetCmFarClip(g_pcm, sFarClip);
+}
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00143838);
 
@@ -82,25 +85,47 @@ void SetSwCameraRgbaFog(SW *psw, RGBA *prgbaFog)
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_001438d8);
 
-void SetCmPos(CM *pcm,VECTOR *ppos)
+void SetCmPos(CM *pcm, VECTOR *ppos)
 {
     SetCmPosMat(pcm,ppos,0x0);
-    return;
 }
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00143920);
+void SetCmMat(CM *pcm, MATRIX3 *pmat)
+{
+    SetCmPosMat(pcm, 0x0, pmat);
+}
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00143940);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00143968);
+void SetCmNearClip(CM *pcm, float sNearClip)
+{
+    pcm->sNearClip = sNearClip;
+    RecalcCmFrustrum(pcm);
+}
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00143988);
+void SetCmFarClip(CM *pcm, float sFarClip)
+{
+    pcm->sFarClip = sFarClip;
+    RecalcCmFrustrum(pcm);
+}
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_001439a8);
+void SetCmSProgress(CM *pcm, float uSProgress)
+{
+    pcm->uSProgress = uSProgress;
+    RecalcCmFrustrum(pcm);
+}
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_001439c8);
+void FUN_001439c8(CM *pcm, float param_2)
+{
+    pcm->field35_0x1fc = param_2;
+    RecalcCmFrustrum(pcm);
+}
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_001439e8);
+void FUN_001439e8(CM *pcm,float param_2)
+{
+    pcm->field36_0x200 = param_2;
+    RecalcCmFrustrum(pcm);
+}
 
 INCLUDE_ASM(const s32, "P2/cm", SetCmRgbaFog__FP2CMP4RGBA);
 
@@ -165,7 +190,14 @@ INCLUDE_ASM(const s32, "P2/cm", DecomposeCylind);
 
 INCLUDE_ASM(const s32, "P2/cm", DecomposeSphere);
 
-INCLUDE_ASM(const s32, "P2/cm", SetCmCut__FP2CMi);
+void SetCmCut(CM *pcm, float cut[]) //NOTE: I have no idea what i wrote here... But it gives matching code...
+{
+    pcm->field41_0x224 = 1;
+    if (cut != 0) {
+        pcm->field42_0x228 = 1;
+        pcm->field43_0x22c = cut[0];
+    }
+}
 
 void SetResetFlag(CM *pcm)
 {
@@ -174,7 +206,7 @@ void SetResetFlag(CM *pcm)
 
 void ClearCmCut(CM *pcm)
 {
-    SetCmCut(pcm,0);
+    SetCmCut(pcm, 0);
 }
 
 INCLUDE_ASM(const s32, "P2/cm", AdaptCm);
@@ -193,7 +225,10 @@ INCLUDE_ASM(const s32, "P2/cm", FUN_00145de8);
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00145e68);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00145fb8);
+void PushLookkCm(CM *pcm, LOOKK lookk)
+{
+    PushCplookLookk(&pcm->cplook, lookk);
+}
 
 LOOKK LookkPopCm(CM *pcm)
 {
@@ -205,9 +240,9 @@ LOOKK LookkCurCm(CM *pcm)
     return LookkCurCplook(&pcm->cplook);
 }
 
-void SetCmSniperFocus(CM *pcm, ALO *paloFocusSniper, float sRadiusSniper, float rScreenSniper)
+void SetCmSniperFocus(CM *pcm, PNT *ppntAnchor, float sRadiusSniper, float rScreenSniper)
 {
-    pcm->cplook.paloFocusSniper = paloFocusSniper;
+    pcm->cplook.ppntAnchor = ppntAnchor;
     pcm->cplook.sRadiusSniper = sRadiusSniper;
     pcm->cplook.rScreenSniper = rScreenSniper;
 }
@@ -219,6 +254,9 @@ void FUN_00146028(CM *pcm)
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_00146038);
 
-INCLUDE_ASM(const s32, "P2/cm", cm__static_initialization_and_destruction_0);
+INCLUDE_ASM(const s32, "P2/cm", cm__static_initialization_and_destruction_0__Fii);
 
-INCLUDE_ASM(const s32, "P2/cm", _GLOBAL_$I$StartupCm__Fv);
+void _GLOBAL_$I$StartupCm()
+{
+    cm__static_initialization_and_destruction_0(1,0xffff);
+}
