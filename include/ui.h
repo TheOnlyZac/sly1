@@ -35,9 +35,9 @@ enum UIS
 struct UI
 {
     UIS uis;
-    float tUis;
+    int tUis;
     BLOT *apblotActive;
-    int cpblotActive;
+    BLOT *cpblotActive;
     UIS uisPlaying;
     float rvolMusicPrepause;
     float rvolEffectsPrepause;

@@ -1,9 +1,19 @@
 #include <ui.h>
 #include <screen.h>
 
-INCLUDE_ASM(const s32, "P2/ui", StartupUi__Fv);
+void StartupUi()
+{
+    InitUi(&g_ui);
+}
 
-INCLUDE_ASM(const s32, "P2/ui", InitUi__FP2UI);
+void InitUi(UI *pui)
+{
+    pui->unk6 = -1;
+    pui->tUis = -1;
+    SetUiUis(pui, UIS_Pausing);
+    pui->cpblotActive = (BLOT *)nullptr;
+    pui->unk5 = 1;
+}
 
 INCLUDE_ASM(const s32, "P2/ui", PostUiLoad__FP2UI);
 
