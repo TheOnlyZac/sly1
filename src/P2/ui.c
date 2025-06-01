@@ -15,7 +15,10 @@ void InitUi(UI *pui)
     pui->unk5 = 1;
 }
 
-INCLUDE_ASM(const s32, "P2/ui", PostUiLoad__FP2UI);
+void PostUiLoad(UI *pui)
+{
+    SetUiUis(pui, UIS_Pausing);
+}
 
 INCLUDE_ASM(const s32, "P2/ui", UpdateUi__FP2UI);
 
