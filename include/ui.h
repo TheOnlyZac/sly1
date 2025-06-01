@@ -37,7 +37,7 @@ struct UI
     UIS uis;
     int tUis;
     BLOT *apblotActive;
-    BLOT *cpblotActive;
+    int cpblotActive;
     UIS uisPlaying;
     float rvolMusicPrepause;
     float rvolEffectsPrepause;

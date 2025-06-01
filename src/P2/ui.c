@@ -11,7 +11,7 @@ void InitUi(UI *pui)
     pui->unk6 = -1;
     pui->tUis = -1;
     SetUiUis(pui, UIS_Pausing);
-    pui->cpblotActive = (BLOT *)nullptr;
+    pui->cpblotActive = 0;
     pui->unk5 = 1;
 }
 
