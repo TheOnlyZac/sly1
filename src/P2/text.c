@@ -41,6 +41,23 @@ INCLUDE_ASM(const s32, "P2/text", _snprintf);
 INCLUDE_ASM(const s32, "P2/text", func_001E20F8);
 
 INCLUDE_ASM(const s32, "P2/text", strlen);
+/**
+ * @todo 100% matched, but it conflicts with built-in strlen.
+ * https://decomp.me/scratch/cJZam
+ */
+/*
+uint strlen(char *pchz)
+{
+    uint len = 0;
+    
+    while(*pchz != '\0') {
+        pchz++;
+        len++;
+    }
+    
+    return len;
+}
+*/
 
 INCLUDE_ASM(const s32, "P2/text", strcpy);
 
