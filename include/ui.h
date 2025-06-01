@@ -35,7 +35,7 @@ enum UIS
 struct UI
 {
     UIS uis;
-    float tUis;
+    int tUis;
     BLOT *apblotActive;
     int cpblotActive;
     UIS uisPlaying;
