@@ -46,7 +46,19 @@ INCLUDE_ASM(const s32, "P2/text", strcpy);
 
 INCLUDE_ASM(const s32, "P2/text", strcpy1);
 
-INCLUDE_ASM(const s32, "P2/text", strchr);
+char *strchr(char *pchz, int ch)
+{
+    while(*pchz != '\0')
+    {
+        if(*pchz == ch)
+        {
+            return pchz;
+        }
+        pchz++;
+    }
+    return (char *)nullptr;
+}
+
 INCLUDE_ASM(const s32, "P2/text", func_001E2210);
 
 INCLUDE_ASM(const s32, "P2/text", UpperizePchz__FPc);
