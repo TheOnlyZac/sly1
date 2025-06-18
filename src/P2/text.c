@@ -40,13 +40,35 @@ INCLUDE_ASM(const s32, "P2/text", func_001E20B0);
 INCLUDE_ASM(const s32, "P2/text", _snprintf);
 INCLUDE_ASM(const s32, "P2/text", func_001E20F8);
 
-INCLUDE_ASM(const s32, "P2/text", strlen);
+extern "C" uint strlen(const char *pchz)
+{
+    uint len = 0;
+
+    while(*pchz != '\0') {
+        pchz++;
+        len++;
+    }
+
+    return len;
+}
 
 INCLUDE_ASM(const s32, "P2/text", strcpy);
 
 INCLUDE_ASM(const s32, "P2/text", strcpy1);
 
-INCLUDE_ASM(const s32, "P2/text", strchr);
+extern "C" char *strchr(char *pchz, int ch)
+{
+    while(*pchz != '\0')
+    {
+        if(*pchz == ch)
+        {
+            return pchz;
+        }
+        pchz++;
+    }
+    return (char *)nullptr;
+}
+
 INCLUDE_ASM(const s32, "P2/text", func_001E2210);
 
 INCLUDE_ASM(const s32, "P2/text", UpperizePchz__FPc);
