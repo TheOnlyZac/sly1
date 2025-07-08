@@ -59,7 +59,14 @@ extern "C" char *strcpy(char *dst, const char *src)
     return dst;
 }
 
-INCLUDE_ASM(const s32, "P2/text", strcpy1);
+// INCLUDE_ASM(const s32, "P2/text", strcpy1);
+extern "C" char *strcpy1(char *dst, char *src)
+{
+    uint dstLength = strlen(dst);
+    uint srcLength = strlen(src);
+    CopyAb(dst + dstLength, src, srcLength + 1);
+    return dst;
+}
 
 extern "C" char *strchr(char *pchz, int ch)
 {
