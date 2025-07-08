@@ -30,17 +30,24 @@ INCLUDE_ASM(const s32, "P2/text", CchOstrmPrintf__FP5OSTRMPcT1);
 
 INCLUDE_ASM(const s32, "P2/text", vprintf);
 
-extern "C" int printf(char *format, ...) {
+extern "C" int printf(char *pchzFormat, ...) {
     va_list arg;
-    va_start(arg, format);
-    int ret = vprintf(format, arg);
+    va_start(arg, pchzFormat);
+    int ret = vprintf(pchzFormat, arg);
     va_end(arg);
     return ret;
 }
 
 INCLUDE_ASM(const s32, "P2/text", vsprintf);
 
-INCLUDE_ASM(const s32, "P2/text", sprintf);
+extern "C" int sprintf(char *pchzDest, char *pchzFormat, ...)
+{
+    va_list arg;
+    va_start(arg, pchzFormat);
+    int ret = vsprintf(pchzDest, pchzFormat, arg);
+    va_end(arg);
+    return ret;
+}
 
 INCLUDE_ASM(const s32, "P2/text", _vsnprintf);
 INCLUDE_ASM(const s32, "P2/text", func_001E20B0);
@@ -60,18 +67,18 @@ extern "C" uint strlen(const char *pchz)
     return len;
 }
 
-extern "C" char *strcpy(char *dst, const char *src)
+extern "C" char *strcpy(char *pchzDst, const char *pchzSrc)
 {
-    CopyAb(dst, (char *)src, strlen(src) + 1);
-    return dst;
+    CopyAb(pchzDst, (char *)pchzSrc, strlen(pchzSrc) + 1);
+    return pchzDst;
 }
 
-extern "C" char *strcpy1(char *dst, char *src)
+extern "C" char *strcpy1(char *pchzDst, char *pchzSrc)
 {
-    uint dstLength = strlen(dst);
-    uint srcLength = strlen(src);
-    CopyAb(dst + dstLength, src, srcLength + 1);
-    return dst;
+    uint dstLength = strlen(pchzDst);
+    uint srcLength = strlen(pchzSrc);
+    CopyAb(pchzDst + dstLength, pchzSrc, srcLength + 1);
+    return pchzDst;
 }
 
 extern "C" char *strchr(char *pchz, int ch)
