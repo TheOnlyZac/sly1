@@ -1,5 +1,6 @@
 #include <text.h>
 #include <memory.h>
+#include <stdarg.h>
 
 INCLUDE_ASM(const s32, "P2/text", CchParsePchzInt__FPcPi);
 
@@ -29,7 +30,13 @@ INCLUDE_ASM(const s32, "P2/text", CchOstrmPrintf__FP5OSTRMPcT1);
 
 INCLUDE_ASM(const s32, "P2/text", vprintf);
 
-INCLUDE_ASM(const s32, "P2/text", printf);
+extern "C" int printf(char *format, ...) {
+    va_list arg;
+    va_start(arg, format);
+    int ret = vprintf(format, arg);
+    va_end(arg);
+    return ret;
+}
 
 INCLUDE_ASM(const s32, "P2/text", vsprintf);
 
