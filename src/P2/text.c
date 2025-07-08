@@ -1,4 +1,5 @@
 #include <text.h>
+#include <memory.h>
 
 INCLUDE_ASM(const s32, "P2/text", CchParsePchzInt__FPcPi);
 
@@ -52,7 +53,11 @@ extern "C" uint strlen(const char *pchz)
     return len;
 }
 
-INCLUDE_ASM(const s32, "P2/text", strcpy);
+extern "C" char *strcpy(char *dst, const char *src)
+{
+    CopyAb(dst, (char *)src, strlen(src) + 1);
+    return dst;
+}
 
 INCLUDE_ASM(const s32, "P2/text", strcpy1);
 
