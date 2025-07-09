@@ -129,7 +129,7 @@ void CBinaryInputStream::Pump()
             break;
     }
 
-    // FIXME: This code matches perfectly, but it look much better.
+    // FIXME: This code matches perfectly, but it could look much better.
     // I am pretty sure that m_cbRemaining is actually a pointer
     // or the value at offset 0x24 is an integer.
     int iVar1 = this->m_cbRemaining - *(int *)((uint8_t *)this + 0x24);
