@@ -33,15 +33,10 @@ uint NLog2(uint value)
     uint log2 = 0;
     uint bit = 1;
 
-    if(bit < value)
+    while (bit < value && log2 < 31)
     {
-        do
-        {
-            bit <<= 1;
-            log2++;
-            if(!(bit < value) || log2 >= 31)
-                break;
-        } while(true);
+        bit <<= 1;
+        log2++;
     }
 
     return log2;
