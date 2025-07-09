@@ -61,50 +61,43 @@ int CBinaryInputStream::FOpenFile(CFileLocation *pfl)
     return FOpenSector(pfl->m_fcl.isector, pfl->m_fcl.cb);
 }
 
-INCLUDE_ASM(const s32, "P2/bis", Close__18CBinaryInputStream);
-#ifdef SKIP_ASM
-/**
- * @todo 81.16% matched
- */
 void CBinaryInputStream::Close()
 {
-    if (m_bisk == BISK_Host) {
-        if (-1 < m_fd) {
-            sceClose(m_fd);
+    switch(m_bisk)
+    {
+        case BISK_Host:
+        {
+            // NOTE: This is m_fd if m_tickWait is removed.
+            if(*(int *)((uint8_t *)&m_tickWait - 0x4) >= 0)
+                sceClose(*(int *)((uint8_t *)&m_tickWait - 0x4));
+            break;
         }
-    }
-    else {
-        if (m_bisk != BISK_Cd) {
-            m_cbSpillOver = 0;
-            m_bisk = BISK_Nil;
-            m_pbRaw = 0x0;
-            m_pb = 0x0;
-            m_cbRaw = 0;
-            m_cb = 0;
-            m_grfDecomp = 0;
-            return;
-        }
-        if (m_cbAsyncRequest != 0) {
-            if ((m_grfbis & 2U) == 0) {
-                sceCdBreak();
+        case BISK_Cd:
+        {
+            // NOTE: This is m_cbAsyncComplete if m_tickWait is removed.
+            if(*(int *)((uint8_t *)this + 0x3c))
+            {
+                if(m_grfbis & 0x2)
+    			{
+                    sceCdBreak();
+                }
+    			else
+    			{
+                    snd_StreamSafeCdBreak();
+                }
             }
-            else {
-                snd_StreamSafeCdBreak();
-            }
+            break;
         }
     }
 
-    m_cbSpillOver = 0;
     m_bisk = BISK_Nil;
-    m_pbRaw = 0x0;
-    m_pb = 0x0;
+    m_pbRaw = 0;
+    m_pb = 0;
     m_cbRaw = 0;
     m_cb = 0;
     m_grfDecomp = 0;
-    return;
+    m_cbSpillOver = 0;
 }
-
-#endif
 
 void CBinaryInputStream::DecrementCdReadLimit(int cb)
 {
@@ -117,13 +110,13 @@ INCLUDE_ASM(const s32, "P2/bis", PumpHost__18CBinaryInputStream);
 
 void CBinaryInputStream::Pump()
 {
-    switch(this->m_bisk)
+    switch(m_bisk)
     {
         case BISK_Host:
-            this->PumpHost();
+            PumpHost();
             break;
         case BISK_Cd:
-            this->PumpCd();
+            PumpCd();
             break;
         default:
             break;
@@ -132,15 +125,15 @@ void CBinaryInputStream::Pump()
     // FIXME: This code matches perfectly, but it could look much better.
     // I am pretty sure that m_cbRemaining is actually a pointer
     // or the value at offset 0x24 is an integer.
-    int iVar1 = this->m_cbRemaining - *(int *)((uint8_t *)this + 0x24);
+    int iVar1 = m_cbRemaining - *(int *)((uint8_t *)this + 0x24);
     int zero = 0;
     int remain = (iVar1 > zero) ? iVar1 : 0;
 
-    this->m_cbRemaining = remain;
+    m_cbRemaining = remain;
 
-    if(this->m_pprog)
+    if(m_pprog)
     {
-        this->m_pprog->SetRemain(remain);
+        m_pprog->SetRemain(remain);
     }
 }
 
