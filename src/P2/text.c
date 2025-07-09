@@ -30,7 +30,8 @@ INCLUDE_ASM(const s32, "P2/text", CchOstrmPrintf__FP5OSTRMPcT1);
 
 INCLUDE_ASM(const s32, "P2/text", vprintf);
 
-extern "C" int printf(char *pchzFormat, ...) {
+extern "C" int printf(char *pchzFormat, ...)
+{
     va_list arg;
     va_start(arg, pchzFormat);
     int ret = vprintf(pchzFormat, arg);
@@ -68,7 +69,7 @@ extern "C" uint strlen(const char *pchz)
     uint len = 0;
 
     while(*pchz != '\0')
-	{
+    {
         pchz++;
         len++;
     }
