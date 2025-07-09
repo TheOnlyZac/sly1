@@ -52,14 +52,23 @@ extern "C" int sprintf(char *pchzDest, char *pchzFormat, ...)
 INCLUDE_ASM(const s32, "P2/text", _vsnprintf);
 INCLUDE_ASM(const s32, "P2/text", func_001E20B0);
 
-INCLUDE_ASM(const s32, "P2/text", _snprintf);
+int _snprintf(char *pchzDest, int cchDest, char *pchzFormat, ...)
+{
+    va_list arg;
+    va_start(arg, pchzFormat);
+    int ret = _vsnprintf(pchzDest, cchDest, pchzFormat, arg);
+    va_end(arg);
+    return ret;
+}
+
 INCLUDE_ASM(const s32, "P2/text", func_001E20F8);
 
 extern "C" uint strlen(const char *pchz)
 {
     uint len = 0;
 
-    while(*pchz != '\0') {
+    while(*pchz != '\0')
+	{
         pchz++;
         len++;
     }
