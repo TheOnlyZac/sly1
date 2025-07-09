@@ -115,7 +115,34 @@ INCLUDE_ASM(const s32, "P2/bis", PumpCd__18CBinaryInputStream);
 
 INCLUDE_ASM(const s32, "P2/bis", PumpHost__18CBinaryInputStream);
 
-INCLUDE_ASM(const s32, "P2/bis", Pump__18CBinaryInputStream);
+void CBinaryInputStream::Pump()
+{
+    switch(this->m_bisk)
+    {
+        case BISK_Host:
+            this->PumpHost();
+            break;
+        case BISK_Cd:
+            this->PumpCd();
+            break;
+        default:
+            break;
+    }
+
+    // FIXME: This code matches perfectly, but it look much better.
+    // I am pretty sure that m_cbRemaining is actually a pointer
+    // or the value at offset 0x24 is an integer.
+    int iVar1 = this->m_cbRemaining - *(int *)((uint8_t *)this + 0x24);
+    int zero = 0;
+    int remain = (iVar1 > zero) ? iVar1 : 0;
+
+    this->m_cbRemaining = remain;
+
+    if(this->m_pprog)
+    {
+        this->m_pprog->SetRemain(remain);
+    }
+}
 
 INCLUDE_ASM(const s32, "P2/bis", Decompress__18CBinaryInputStream);
 
