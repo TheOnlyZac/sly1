@@ -78,11 +78,11 @@ void CBinaryInputStream::Close()
             if(*(int *)((uint8_t *)this + 0x3c))
             {
                 if(m_grfbis & 0x2)
-    			{
+                {
                     sceCdBreak();
                 }
-    			else
-    			{
+                else
+                {
                     snd_StreamSafeCdBreak();
                 }
             }
