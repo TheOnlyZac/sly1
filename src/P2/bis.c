@@ -353,6 +353,14 @@ INCLUDE_ASM(const s32, "P2/bis", ReadBspc__18CBinaryInputStreamP4GEOMP4BSPC);
 
 INCLUDE_ASM(const s32, "P2/bis", ReadVbsp__18CBinaryInputStreamPiPP4VBSP);
 
-INCLUDE_ASM(const s32, "P2/bis", ReadStringSw__18CBinaryInputStreamPPc);
+void CBinaryInputStream::ReadStringSw(char **pachz)
+{
+    uint16_t length = U16Read();
+    char *buffer = (char *)PvAllocSwImpl((int)length + 1);
+    Read((int)length, buffer);
+    buffer[length] = 0;
+    *pachz = buffer;
+}
+
 INCLUDE_ASM(const s32, "P2/bis", func_00138510);
 INCLUDE_ASM(const s32, "P2/bis", func_00138550);
