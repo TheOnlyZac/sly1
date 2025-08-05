@@ -80,11 +80,8 @@ void InsertDlEntryBefore(DL *pdl, void *pvNext, void *pv)
 
 INCLUDE_ASM(const s32, "P2/dl", func_001525F8);
 
-// Matched 100% https://decomp.me/scratch/kdpqE.
-void MergeDl(DL* pdlDst, DL* pdlSrc) {
-
-    DLE* dstTail = nullptr;
-    DLE* srcHead = nullptr;
+void MergeDl(DL *pdlDst, DL *pdlSrc) 
+{
 
     if (pdlSrc->head)
     {
@@ -97,8 +94,8 @@ void MergeDl(DL* pdlDst, DL* pdlSrc) {
             return;
         }
 
-        dstTail = PdleFromDlEntry__FP2DLPv(pdlDst, pdlDst->tail);
-        srcHead = PdleFromDlEntry__FP2DLPv(pdlSrc, pdlSrc->head);
+        DLE *dstTail = PdleFromDlEntry__FP2DLPv(pdlDst, pdlDst->tail);
+        DLE *srcHead = PdleFromDlEntry__FP2DLPv(pdlSrc, pdlSrc->head);
 
         dstTail->next = pdlSrc->head;
         srcHead->prev = pdlDst->tail;
