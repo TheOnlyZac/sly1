@@ -1,4 +1,6 @@
 #include <text.h>
+#include <memory.h>
+#include <stdarg.h>
 
 INCLUDE_ASM(const s32, "P2/text", CchParsePchzInt__FPcPi);
 
@@ -28,23 +30,46 @@ INCLUDE_ASM(const s32, "P2/text", CchOstrmPrintf__FP5OSTRMPcT1);
 
 INCLUDE_ASM(const s32, "P2/text", vprintf);
 
-INCLUDE_ASM(const s32, "P2/text", printf);
+extern "C" int printf(char *pchzFormat, ...)
+{
+    va_list arg;
+    va_start(arg, pchzFormat);
+    int ret = vprintf(pchzFormat, arg);
+    va_end(arg);
+    return ret;
+}
 
 INCLUDE_ASM(const s32, "P2/text", vsprintf);
 
-INCLUDE_ASM(const s32, "P2/text", sprintf);
+extern "C" int sprintf(char *pchzDest, char *pchzFormat, ...)
+{
+    va_list arg;
+    va_start(arg, pchzFormat);
+    int ret = vsprintf(pchzDest, pchzFormat, arg);
+    va_end(arg);
+    return ret;
+}
 
 INCLUDE_ASM(const s32, "P2/text", _vsnprintf);
 INCLUDE_ASM(const s32, "P2/text", func_001E20B0);
 
-INCLUDE_ASM(const s32, "P2/text", _snprintf);
+int _snprintf(char *pchzDest, int cchDest, char *pchzFormat, ...)
+{
+    va_list arg;
+    va_start(arg, pchzFormat);
+    int ret = _vsnprintf(pchzDest, cchDest, pchzFormat, arg);
+    va_end(arg);
+    return ret;
+}
+
 INCLUDE_ASM(const s32, "P2/text", func_001E20F8);
 
 extern "C" uint strlen(const char *pchz)
 {
     uint len = 0;
 
-    while(*pchz != '\0') {
+    while(*pchz != '\0')
+    {
         pchz++;
         len++;
     }
@@ -52,9 +77,19 @@ extern "C" uint strlen(const char *pchz)
     return len;
 }
 
-INCLUDE_ASM(const s32, "P2/text", strcpy);
+extern "C" char *strcpy(char *pchzDst, const char *pchzSrc)
+{
+    CopyAb(pchzDst, (char *)pchzSrc, strlen(pchzSrc) + 1);
+    return pchzDst;
+}
 
-INCLUDE_ASM(const s32, "P2/text", strcpy1);
+extern "C" char *strcpy1(char *pchzDst, char *pchzSrc)
+{
+    uint dstLength = strlen(pchzDst);
+    uint srcLength = strlen(pchzSrc);
+    CopyAb(pchzDst + dstLength, pchzSrc, srcLength + 1);
+    return pchzDst;
+}
 
 extern "C" char *strchr(char *pchz, int ch)
 {

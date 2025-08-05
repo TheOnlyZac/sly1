@@ -28,7 +28,19 @@ INCLUDE_ASM(const s32, "P2/gs", FadeFramesToBlack__Ff);
 
 INCLUDE_ASM(const s32, "P2/gs", ResetGsMemory__Fv);
 
-INCLUDE_ASM(const s32, "P2/gs", NLog2__FUi);
+uint NLog2(uint value)
+{
+    uint log2 = 0;
+    uint bit = 1;
+
+    while (bit < value && log2 < 31)
+    {
+        bit <<= 1;
+        log2++;
+    }
+
+    return log2;
+}
 
 void InitGsb(GSB *pgsb, int igsMin, int igsMax)
 {

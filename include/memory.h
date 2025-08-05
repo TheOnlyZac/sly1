@@ -15,4 +15,11 @@
  */
 void CopyAb(void *pvDst, void *pvSrc, uint cb);
 
+/**
+ * @brief Allocate a block of memory.
+ *
+ * @param size Size of the block in bytes.
+ */
+void *PvAllocSwImpl(long size);
+
 #endif // MEMORY_H
