@@ -93,7 +93,29 @@ bool FIsDlEmpty(DL *pdl)
     return pdl->head == nullptr;
 }
 
-INCLUDE_ASM(const s32, "P2/dl", MergeDl__FP2DLT0);
+void MergeDl(DL* pdlDst, DL* pdlSrc)
+{
+
+    if (pdlSrc->head)
+    {
+
+        if (pdlDst->head == nullptr)
+        {
+            memcpy(pdlDst, pdlSrc, 12);
+            ClearDl(pdlSrc);
+            return;
+        }
+
+        DLE* pdstTail = PdleFromDlEntry(pdlDst, pdlDst->tail);
+        DLE* psrcHead = PdleFromDlEntry(pdlSrc, pdlSrc->head);
+
+        pdstTail->next = pdlSrc->head;
+        psrcHead->prev = pdlDst->tail;
+
+        pdlDst->tail = pdlSrc->tail;
+        ClearDl(pdlSrc);
+    }
+}
 
 int CPvDl(DL *pdl)
 {
