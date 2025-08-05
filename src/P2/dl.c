@@ -80,6 +80,8 @@ void InsertDlEntryBefore(DL *pdl, void *pvNext, void *pv)
 
 INCLUDE_ASM(const s32, "P2/dl", func_001525F8);
 
+INCLUDE_ASM(const s32, "P2/dl", RemoveDlEntry__FP2DLPv);
+
 void MergeDl(DL *pdlDst, DL *pdlSrc) 
 {
 
