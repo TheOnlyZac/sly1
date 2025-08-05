@@ -2,11 +2,11 @@
 
 ## So you want to decompile Sly 1...
 
-You've come to the right place! We welcome new contributors of all skill levels. Even if you've never tried game hacking, modding, or reverse-engineering, we have a dedicated community of modders and reverse-engineers to help you get started. Feel free to join our [Discord server](https://discord.gg/2GSXcEzPJA) and ask for help in #sly-research.
+You've come to the right place! We welcome new contributors of all skill levels. This is a 100% volunteer-driven project, so all contributions are greatly appreciated. The current goal is to decompile and match as many game functions as possible.
 
-This guide will help you start contributing to the project. This is a 100% volunteer-driven project, all contributions are greatly appreciated. The current goal is to decompile and match as many game functions as possible, while imitating the style and structure of the original code to understand the inner workings of the game engine.
+By following this guide, you will learn how to fork the repo on GitHub, choose a function to reverse-engineer, write code to match it, and integrate that code into the project. Once your pull request is merged, you may get the Decomp Contributor role in the Discord Server.
 
-By following this guide, you will learn how to fork the repo on GitHub, choose a function to reverse-engineer, write code to match it, and integrate that code into the project. Once you've done that, and your pull request is merged, you will get the Decomp Contributor role in the Discord Server.
+If you're new to this, feel free to join our [Discord server](https://discord.gg/2GSXcEzPJA) and ask for help in #sly-research!
 
 ## Contents
 
@@ -19,24 +19,20 @@ By following this guide, you will learn how to fork the repo on GitHub, choose a
 
 ## Getting started
 
-If you haven't used Git before, follow the [Beginner's Guide](/docs/BEGINNERSGUIDE.md) to learn how to fork the repo, make changes, and submit a pull request when you're done. If you're already familiar with Git, continue on with this guide.
+If you haven't used Git before, follow the [Beginner's Guide](/docs/BEGINNERSGUIDE.md) to learn how to fork the repo, make changes, and create a pull request. Then follow the instructions in [README.md](/README.md) to build the project. If you see the following in the terminal, you're ready to start contributing:
 
-First, follow the instructions in the [README](/README.md) to build the project. If you see the following in the terminal, you're ready to start contributing:
-
-```
+```bash
 [XXX/XXX] sha1sum config/checksum.sha1
 out/SCUS_971.98: OK
 ```
 
-The goal of this project is to match the original code closely enough that it compiles to a byte-matching executable. This means writing functions that compiles to the same assembly as the original functions. You will know it matches if you build the project and it says `SCUS_971.98: OK` with no errors.
-
 ## Find a function to match
 
 First, find a function in the game that you want to match. There are a few ways to do this:
+
 * Browse Ghidra for interesting functions.
-* Look through the `src` directory to find functions in `.c` files that haven't been matched yet.
-  * Functions that haven't been matched will have an `INCLUDE_ASM` macro as a placeholder.
-* Look through the `asm/nonmatchings` folder.
+* Look in the the source files in the `src` folder for non-matching functions (they have an `INCLUDE_ASM` macro as a placeholder).
+* Look in assembly files in the `asm/nonmatchings` folder to find .
 * Ask for suggestions on Discord.
 
 ## Match the function
