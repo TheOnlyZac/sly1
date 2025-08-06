@@ -1,4 +1,4 @@
-# Sly Cooper and the Thievius Raccoonus
+# 🦝 Sly Cooper and the Thievius Raccoonus
 
 <!-- Build status shield -->
 [build-url]:https://github.com/TheOnlyZac/sly1/actions/workflows/build.yml
@@ -36,19 +36,24 @@
 
 This is a work-in-progress decompilation of [*Sly Cooper and the Thievius Raccoonus*](https://en.wikipedia.org/wiki/Sly_Cooper_and_the_Thievius_Raccoonus) for the PlayStation 2. It builds the NTSC-U version of the game, `SCUS_971.98` (SHA1: `57dc305d`).
 
-The goal of this project is to decompile the game engine to matching source code. This repo does not contain any game assets or original code from the game's executable; It requires your own copy of the game to build and run.
+Our goal is to fully decompile the game engine to matching source code. This repo does **not** contain any assets or original code from the game's files; you need your own copy of the game to build and run it.
 
-Documentation of the code can be found at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1). For further reading on the game's internal structures and mechanics, visit the [SlyMods Wiki][wiki-url].
+Documentation of the code is hosted at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1). For more info on the game's internal systems and mechanics, check out the [SlyMods Wiki][wiki-url].
 
-New contributors are welcome and encouraged to make a pull request! If you would like to help but aren't sure where to start, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our Discord server][discord-url] for guidance.
+New contributors are welcome to make a pull request! If you would like to help but aren't sure where to start, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our Discord server][discord-url] if you have any questions.
 
-## Quickstart
+| | | | | | |
+| - | - | - | - | - | - |
+| [⚡ Quickstart](#⚡-quickstart) | [⚙️ Manual Setup](#⚙️-manual-setup) | [🎮 Running the Game](#🎮-running-the-game) | [📁 Project Structure](#📁-project-structure) | [❓ FAQ](#❓-frequently-asked-questions) | [⭐ Star History](#⭐-star-history) |
+| | | | | | |
+
+## ⚡ Quickstart
 
 You can quickly setup the project on Linux (or WSL) using the quickstart script. Follow these three steps get started.
 
 ### 1. Clone the repo and run quickstart.sh
 
-Copy and run the following command. It may ask for your password to install dependencies.
+Copy and run the following block of commands. It may ask for your password to install dependencies.
 
 ```bash
 git clone https://github.com/theonlyzac/sly1 && \
@@ -75,7 +80,7 @@ out/SCUS_971.98: OK
 
 If you have any issues, or you prefer to set up the project manually, follow the instructions below. Instructions to run the game are also provided below.
 
-## Manual Setup
+## ⚙️ Manual Setup
 
 The project can be built on Linux (or Windows using WSL). Follow the instructions below to set up the build environment.
 
@@ -172,7 +177,7 @@ You can alter the behavior by passing any of the following arguments to  `config
 * `--skip-checksum` - Skip the checksum verification step. This is necessary if you are intentionally changing the code, but note that the elf may not boot.
 * `--objects` - Builds the object files for matching with objdiff and generates an objdiff config file. Outputs two sets of object files: `obj/target` and `obj/current` (the latter of which will be updated automatically by objdiff as you edit the source code).
 
-## Running
+## 🎮 Running the Game
 
 Running the executable requires [PCSX2 2.0](https://pcsx2.net/). You must have your own copy of the original game and the BIOS from your own PS2. They are not included in this repo and we cannot provide them for you.
 
@@ -180,7 +185,12 @@ Once you have those and you have built the executable, you can run it using one 
 
 ### Method 1: Boot from PCSX2 GUI (Recommended)
 
-In your PCSX2 game dir, make an alias (Linux) or symbolic link (Windows) called `SCUS_971.98.elf` which points to the `SCUS_971.98` file built by this project. The alias/link will be recognized as a game in PCSX2. Right click on the elf in PCSX2 and click "Properties..." > "Disc Path" > "Browse" > Select the ISO of your game backup. Then click "Close" and start the game as normal.
+1. In your PCSX2 games folder, make an alias (Linux) or symbolic link (Windows) called `SCUS_971.98.elf`, which points to the `out/SCUS_971.98` file built by this project.
+    * Note: The alias/symlink must point to `out/SCUS_971.98`, not `out/SCUS_971.98.elf`.
+2. The alias/symlink will be recognized as a game in PCSX2. Right click on it, then click `Properties... > Disc Path > Browse` and select the ISO of your game backup.
+3. Click "Close" and boot the game as normal.
+
+You only have make the alias/symlink once, and it will update every time you build the project.
 
 ### Method 2: Run PCSX2 from command line
 
@@ -190,18 +200,17 @@ To boot the elf in PCSX2 from the command line, use the following command:
 pcsx2.exe -elf ".../sly1/out/SCUS_971.98" "/path/to/game/backup.iso"
 ```
 
-Replace `pcsx2.exe` with the path to your PCSX2 v2.0 executable (it will be an `.appimage` file on Linux or `.exe` file on Windows).
-
+* Replace `pcsx2.exe` with the path to your PCSX2 v2.0 executable (it will be an `.appimage` file on Linux or `.exe` file on Windows).
 * The `-elf` parameter specifies the path to the `SCUS_971.98` you built from this project. Replace `...` with the path to this repository. The emulator will use this ELF to boot the game.
-* The last argument is the path to your game ISO. Replace `/path/to/game/backup.iso` with the path to a backup of your own game disc. This is where the game will load the assets from.
+* The last argument is the path to your game ISO. Replace `/path/to/game/backup.iso` with the path to a backup of your own game disc. This is where the game will load assets from.
 
 ### Method 3: Autorun script
 
 The `run.sh` script in the `scripts` dir will automatically rebuild the executable and run it in the PCSX2 emulator. To use it, you must first edit the script to set the `PCSX2_PATH` and `ISO_PATH` variables to the correct paths on your system.
 
-## Project Structure
+## 📁 Project Structure
 
-The project is divided into the following directories:
+The project files are sorted into the following directories. Many of them have their own readme with more info about what they contain.
 
 * `include` - Header files for the game engine.
 * `src` - The decompiled source code.
@@ -213,36 +222,40 @@ The project is divided into the following directories:
 * `tools` - Utilities for function matching.
 * `reference` - Reference files for functions and data structures.
 
-When you build the executable, the following directories will be created:
+When you build the executable, the following directories will be created.
 
 * `asm` - Disassembled assembly code from the elf.
 * `assets`- Binary data extracted from the elf.
 * `obj` - Compiled object files.
 * `out` - Compiled executables.
 
-## FAQ
+## ❓ Frequently Asked Questions
 
 ### What is a decompilation?
 
-When the developers created the game, they wrote source code and compiled it to assembly code that can run on the PS2. A decompilation involves reverse-engineering the assembly code to produce new, original code that compiles to matching assembly. This process leaves us with source code that is similar to and behaves the same as the source code (though not necessarily identical), which helps us understand what the programmers were thinking when they made the game.
+When the developers created the game, they wrote source code and compiled it to assembly code that can run on the PS2. A decompilation involves reverse-engineering the assembly code to produce new, original code that compiles to the same assembly. This process leaves us with source code that is similar to and behaves the same as the source code (though not necessarily identical), which helps us understand what the programmers were thinking when they made the game.
 
-### How does it work?
+### How do you decompile the code?
 
-We use a tool called [Splat](https://github.com/ethteck/splat/) to split the binary into assembly files representing each individual function. We then reimplement every function and data structure by writing C++ code that compiles to the same assembly code. We do not include any data or code from the original game binary in the decompilation.
+We use a tool called [Splat](https://github.com/ethteck/splat/) to split the binary into assembly files representing each individual function. We then reimplement every function and data structure by writing C++ code that compiles to the same assembly code. We do not copy any code from the original game binary into the decompilation.
 
 ### Has this ever been done before?
 
-This was one the first PS2 decompilations; Several others have been started since we began in 2020. Our main inspiration was other projects such as the [Super Mario 64 decomp](https://github.com/n64decomp/sm64) for the N64 and the [Breath of the Wild decomp](https://github.com/zeldaret/botw) for the Wii U (the latter being more similar in scope to this project). There is also a Jak & Daxter decomp/PC port called [OpenGOAL](https://github.com/open-goal/jak-project), though that game is 98% GOAL language rather than C/C++.
+There are many other decompilation projects, but this was one of the first ones for the PS2. Our inspirations include as the [Super Mario 64 decomp](https://github.com/n64decomp/sm64) for the N64 and the [Breath of the Wild decomp](https://github.com/zeldaret/botw) for the Wii U (the latter being more similar in scope to this project). There is also a Jak & Daxter decomp/PC port called [OpenGOAL](https://github.com/open-goal/jak-project), though that game is 98% GOAL language rather than C/C++.
 
 ### Is this a matching decomp?
 
-Yes. This was the first PS2 decompilation project that targeted the PS2 and utilized function matching, before it was even possible to produce a byte-matching executable. We have built a matching elf since July 2024. The ultimate goal is to match 100% of the game's functions.
+Yes. This was the first PS2 decompilation project that targeted the PS2 and utilized function matching, before it was even possible to produce a byte-matching executable. We have built a matching elf since July 2024. Our ultimate goal is to match 100% of the game's functions.
+
+### What is Splice?
+
+Splice is the game's scripting engine; it handles things like scripted events, animated cutscenes, and guard spawning by executing scripts stored in the level files. The code for Splice is a distinct subset of the game engine code, which is why it has its own folder and progress percentage.
 
 ### How can I help?
 
-If you want to contribute, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our discord server](https://discord.gg/gh5xwfj) if you have any questions!
+If you want to contribute, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our discord server](https://discord.gg/gh5xwfj)!
 
-## Star History
+## ⭐ Star History
 
 <a href="https://star-history.com/#theonlyzac/sly1&Date">
   <picture>
