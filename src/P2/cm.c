@@ -101,8 +101,8 @@ void SetCmMat(CM *pcm, MATRIX3 *pmat)
 void SetCmFov(float fov, CM *pcm)
 {
     *(float *)((int)pcm + 0x1c4) = fov;
-	*(float *)((int)pcm + 0x1c8) = fov;
-	*(int *)((int)pcm + 0x1cc) = 0;
+    *(float *)((int)pcm + 0x1c8) = fov;
+    *(int *)((int)pcm + 0x1cc) = 0;
     RecalcCmFrustrum(pcm);
 }
 
