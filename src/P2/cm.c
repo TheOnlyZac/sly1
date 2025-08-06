@@ -65,7 +65,7 @@ INCLUDE_ASM(const s32, "P2/cm", InitCm__FP2CM);
 
 void SetSwCameraFov(float fov)
 {
-    SetCmFov(fov, g_pcm);
+    SetCmFov(g_pcm, fov);
 }
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_001437e8);
@@ -98,7 +98,7 @@ void SetCmMat(CM *pcm, MATRIX3 *pmat)
     SetCmPosMat(pcm, 0x0, pmat);
 }
 
-void SetCmFov(float fov, CM *pcm)
+void SetCmFov(CM *pcm, float fov)
 {
     *(float *)((int)pcm + 0x1c4) = fov;
     *(float *)((int)pcm + 0x1c8) = fov;
