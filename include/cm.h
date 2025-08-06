@@ -377,9 +377,8 @@ void SetCmSProgress(CM *pcm, float uSProgress);
 
 /**
  * @brief Changes the FOV of the camera and then calls RecalcCmFrustrum.
- * @todo Rename the function.
  */
-void FUN_00143940(float fov, CM *pcm);
+void SetCmFov(float fov, CM *pcm);
 
 /**
  * @brief Sets field35_0x1fc on the given camera.
