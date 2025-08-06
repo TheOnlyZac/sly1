@@ -42,10 +42,13 @@ Documentation of the code is hosted at [theonlyzac.github.io/sly1](https://theon
 
 New contributors are welcome to make a pull request! If you would like to help but aren't sure where to start, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our Discord server][discord-url] if you have any questions.
 
-| | | | | | |
-| - | - | - | - | - | - |
-| [⚡ Quickstart](#⚡-quickstart) | [⚙️ Manual Setup](#⚙️-manual-setup) | [🎮 Running the Game](#🎮-running-the-game) | [📁 Project Structure](#📁-project-structure) | [❓ FAQ](#❓-frequently-asked-questions) | [⭐ Star History](#⭐-star-history) |
-| | | | | | |
+[![Quickstart](https://img.shields.io/badge/⚡%20Quickstart-093fbe?style=for-the-badge)](#⚡-quickstart)
+[![Manual Setup](https://img.shields.io/badge/⚙️%20Manual%20Setup-093fbe?style=for-the-badge)](#⚙️-manual-setup)
+[![Running the Game](https://img.shields.io/badge/🎮%20Running%20the%20Game-093fbe?style=for-the-badge)](#🎮-running-the-game)
+[![Project Structure](https://img.shields.io/badge/📁%20Project%20Structure-093fbe?style=for-the-badge)](#📁-project-structure)
+[![FAQ](https://img.shields.io/badge/❓%20FAQ-093fbe?style=for-the-badge)](#❓-frequently-asked-questions)
+[![Star History](https://img.shields.io/badge/⭐%20Star%20History-093fbe?style=for-the-badge)](#⭐-star-history)
+[![Discord](https://img.shields.io/badge/Discord-093fbe?style=for-the-badge&logo=discord)](https://discord.gg/2GSXcEzPJA)
 
 ## ⚡ Quickstart
 
