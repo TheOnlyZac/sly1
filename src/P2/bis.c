@@ -147,7 +147,7 @@ INCLUDE_ASM(const s32, "P2/bis", Read__18CBinaryInputStreamiPv);
  * @param cb Count of bytes to read.
  * @param pv Pointer to the memory destination.
  *
- *@todo  74.27% matched
+ * @todo  74.27% matched
  */
 void CBinaryInputStream::Read(int cb, void *pv)
 {
