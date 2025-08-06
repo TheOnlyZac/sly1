@@ -138,7 +138,11 @@ void FUN_001439e8(CM *pcm,float param_2)
 
 INCLUDE_ASM(const s32, "P2/cm", SetCmRgbaFog__FP2CMP4RGBA);
 
-INCLUDE_ASM(const s32, "P2/cm", SetCmMrdRatio__FP2CMf);
+void SetCmMrdRatio(CM *cm, float ratio)
+{
+    cm->fgfn.ruFog = ratio;
+	RecalcCmFrustrum(g_pcm);
+}
 
 INCLUDE_ASM(const s32, "P2/cm", ResetCm);
 

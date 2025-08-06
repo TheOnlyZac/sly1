@@ -398,7 +398,7 @@ void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog);
 /**
  * @brief Calls SetCmMrdRatio on the given camera.
  */
-void SetCmMrdRatio(CM *pcm);
+void SetCmMrdRatio(CM *cm, float ratio);
 
 /**
  * @brief Clears fading objects from the given camera.
