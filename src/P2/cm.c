@@ -63,7 +63,10 @@ INCLUDE_ASM(const s32, "P2/cm", RecalcCmFrustrum__FP2CM);
 
 INCLUDE_ASM(const s32, "P2/cm", InitCm__FP2CM);
 
-INCLUDE_ASM(const s32, "P2/cm", SetSwCameraFov__Ff);
+void SetSwCameraFov(float fov)
+{
+    SetCmFov(g_pcm, fov);
+}
 
 INCLUDE_ASM(const s32, "P2/cm", FUN_001437e8);
 
@@ -87,7 +90,7 @@ INCLUDE_ASM(const s32, "P2/cm", FUN_001438d8);
 
 void SetCmPos(CM *pcm, VECTOR *ppos)
 {
-    SetCmPosMat(pcm,ppos,0x0);
+    SetCmPosMat(pcm, ppos, 0x0);
 }
 
 void SetCmMat(CM *pcm, MATRIX3 *pmat)
@@ -95,7 +98,13 @@ void SetCmMat(CM *pcm, MATRIX3 *pmat)
     SetCmPosMat(pcm, 0x0, pmat);
 }
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00143940);
+void SetCmFov(CM *pcm, float fov)
+{
+    *(float *)((int)pcm + 0x1c4) = fov;
+    *(float *)((int)pcm + 0x1c8) = fov;
+    *(int *)((int)pcm + 0x1cc) = 0;
+    RecalcCmFrustrum(pcm);
+}
 
 void SetCmNearClip(CM *pcm, float sNearClip)
 {
@@ -129,7 +138,11 @@ void FUN_001439e8(CM *pcm,float param_2)
 
 INCLUDE_ASM(const s32, "P2/cm", SetCmRgbaFog__FP2CMP4RGBA);
 
-INCLUDE_ASM(const s32, "P2/cm", SetCmMrdRatio__FP2CMf);
+void SetCmMrdRatio(CM *cm, float ratio)
+{
+    cm->fgfn.ruFog = ratio;
+    RecalcCmFrustrum(g_pcm);
+}
 
 INCLUDE_ASM(const s32, "P2/cm", ResetCm);
 

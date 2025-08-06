@@ -128,17 +128,17 @@ public:
     void DecrementCdReadLimit(int cb);
 
     /**
-     * @brief TBD.
+     * @brief Pumps data from the CD.
      */
     void PumpCd();
 
     /**
-     * @brief TBD.
+     * @brief Pumps data from the host pc.
      */
     void PumpHost();
 
     /**
-     * @brief TBD.
+     * @brief Pumps data from either the host or the CD.
      */
     void Pump();
 

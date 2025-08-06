@@ -376,6 +376,11 @@ void SetCmFarClip(CM *pcm, float sFarClip);
 void SetCmSProgress(CM *pcm, float uSProgress);
 
 /**
+ * @brief Changes the FOV of the camera and then calls RecalcCmFrustrum.
+ */
+void SetCmFov(CM *pcm, float fov);
+
+/**
  * @brief Sets field35_0x1fc on the given camera.
  */
 void FUN_001439c8(CM *pcm, float param_2); //TODO: Rename function
@@ -393,7 +398,7 @@ void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog);
 /**
  * @brief Calls SetCmMrdRatio on the given camera.
  */
-void SetCmMrdRatio(CM *pcm);
+void SetCmMrdRatio(CM *cm, float ratio);
 
 /**
  * @brief Clears fading objects from the given camera.

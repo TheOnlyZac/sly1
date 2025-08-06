@@ -147,7 +147,7 @@ INCLUDE_ASM(const s32, "P2/bis", Read__18CBinaryInputStreamiPv);
  * @param cb Count of bytes to read.
  * @param pv Pointer to the memory destination.
  *
- *@todo  74.27% matched
+ * @todo  74.27% matched
  */
 void CBinaryInputStream::Read(int cb, void *pv)
 {
@@ -343,7 +343,12 @@ void CBinaryInputStream::ReadVector4(VECTOR4 *pvec)
     Read(sizeof(VECTOR4), pvec);
 }
 
-INCLUDE_ASM(const s32, "P2/bis", ReadMatrix__18CBinaryInputStreamP7MATRIX3);
+void CBinaryInputStream::ReadMatrix(MATRIX3 *pmat) {
+    int size = sizeof(pmat->mat[0]);
+    Read(size, &pmat->mat[0]);
+    Read(size, &pmat->mat[1][1]);
+    Read(size, &pmat->mat[2][2]);
+}
 
 INCLUDE_ASM(const s32, "P2/bis", ReadMatrix4__18CBinaryInputStreamP7MATRIX4);
 
