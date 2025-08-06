@@ -90,7 +90,7 @@ INCLUDE_ASM(const s32, "P2/cm", FUN_001438d8);
 
 void SetCmPos(CM *pcm, VECTOR *ppos)
 {
-    SetCmPosMat(pcm,ppos,0x0);
+    SetCmPosMat(pcm, ppos, 0x0);
 }
 
 void SetCmMat(CM *pcm, MATRIX3 *pmat)
@@ -98,7 +98,13 @@ void SetCmMat(CM *pcm, MATRIX3 *pmat)
     SetCmPosMat(pcm, 0x0, pmat);
 }
 
-INCLUDE_ASM(const s32, "P2/cm", SetCmFov__FfP2CM);
+void SetCmFov(float fov, CM *pcm)
+{
+    *(float *)((int)pcm + 0x1c4) = fov;
+	*(float *)((int)pcm + 0x1c8) = fov;
+	*(int *)((int)pcm + 0x1cc) = 0;
+    RecalcCmFrustrum(pcm);
+}
 
 void SetCmNearClip(CM *pcm, float sNearClip)
 {
