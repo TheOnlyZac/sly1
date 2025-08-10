@@ -1,5 +1,8 @@
 #include <dl.h>
 
+extern void *D_0027B314; // global iterator list (DLI::s_pdliFirst)
+#define s_pdliFirst (*(DLI**)&D_0027B314)
+
 void InitDl(DL *pdl, int ibDle)
 {
     pdl->ibDle = ibDle;
@@ -78,9 +81,77 @@ void InsertDlEntryBefore(DL *pdl, void *pvNext, void *pv)
     }
 }
 
+//  Pretty sure this is a STUB func. Asm shows the function is void and empty. -Zryu
 INCLUDE_ASM(const s32, "P2/dl", func_001525F8);
 
-INCLUDE_ASM(const s32, "P2/dl", RemoveDlEntry__FP2DLPv);
+void RemoveDlEntry(DL* pdl, void* pv)
+{
+
+    DLE* pentry;
+    DLI* pcurrent;
+    void* pprev;
+    DLE* ptemp;
+
+    pentry = PdleFromDlEntry(pdl, pv);
+    pcurrent = s_pdliFirst; 
+
+    // Loop through global iterator list to find DLI that houses the DLE we're looking for.
+    while (pcurrent != nullptr)
+    {
+
+        if ((DLE *)pcurrent->m_ppv == pentry)
+        {
+
+            // If the DLE is the current index of the DLI, replace the with prev.
+            pprev = pentry->prev;
+            if (pprev != nullptr)
+            {
+
+                ptemp = PdleFromDlEntry(pdl, pprev);
+                (DLE *)pcurrent->m_ppv = ptemp;
+            }
+            else
+            {
+
+                (DLE *)pcurrent->m_ppv = pdl;
+            }
+        }
+
+        pcurrent = pcurrent->m_pdliNext;
+    }
+
+    // Adjust head
+    pprev = pentry->prev;
+    if (pprev != nullptr)
+    {
+
+        ptemp = PdleFromDlEntry(pdl, pprev);
+        ptemp->next = pentry->next;
+    }
+    else
+    {
+
+        pdl->head = pentry->next;
+    }
+
+    // Adjust tail
+    pprev = pentry->next;
+    if (pprev != nullptr)
+    {
+
+        ptemp = PdleFromDlEntry(pdl, pprev);
+        ptemp->prev = pentry->prev;
+    }
+    else
+    {
+
+        pdl->tail = pentry->prev;
+    }
+
+    // Clear links
+    pentry->next = nullptr;
+    pentry->prev = nullptr;
+}
 
 bool FFindDlEntry(DL *pdl, void *pv)
 {

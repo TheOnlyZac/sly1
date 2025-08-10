@@ -20,7 +20,10 @@ struct DL
 };
 
 /**
- * Doubly Linked list Element
+ * @brief Doubly Linked list Element
+ *
+ * @param next Points to the next element in the chain.
+ * @param prev Points to the previous element in the chain.
  */
 struct DLE
 {
@@ -29,7 +32,12 @@ struct DLE
 };
 
 /**
- * @brief Unknown.
+ * @brief Doubly Linked-list Iterator. Used to iterate through DLs in the global list (Singly Linked-list).
+ * 
+ * @param m_pdl The actual doubly linked list the iterator is navigating.
+ * @param m_ppv A pointer to the current element/node inside that list.
+ * @param m_ibDle Offset the the DLE structure.
+ * @param m_pdliNext Next DLI in the chain.
  */
 struct DLI
 {
@@ -113,7 +121,7 @@ void PrependDlEntry(DL *pdl, void *pv);
 void InsertDlEntryBefore(DL *pdl, void *pvNext, void *pv);
 
 /**
- * @brief Remove an element from the doubly linked list.
+ * @brief Remove an element from the doubly linked list and manage the doubly linked list iterator, incase the element being removed is a current iterator for an DLI instance.
  *
  * @param pdl Doubly linked list to remove the element from.
  * @param pv Element to remove.
