@@ -31,6 +31,7 @@ extern float g_rtClockPowerUp;
 extern CLOCK g_clock;
 //extern TICK s_tickLastRaw;; // Should be static?
 
+
 /**
  * @brief Sets the rate of the global clock.
  *
