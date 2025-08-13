@@ -136,7 +136,13 @@ void FUN_001439e8(CM *pcm,float param_2)
     RecalcCmFrustrum(pcm);
 }
 
-INCLUDE_ASM(const s32, "P2/cm", SetCmRgbaFog__FP2CMP4RGBA);
+void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog)
+{
+    // NOTE: The rgbaFog field is probably not at the correct place in the struct.
+    // Currently using this temporarily.
+    *(RGBA *)((uint8_t *)pcm + 0x204) = *prgbaFog;
+    RecalcCmFrustrum(pcm);
+}
 
 void SetCmMrdRatio(CM *cm, float ratio)
 {
