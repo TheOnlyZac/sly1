@@ -130,7 +130,7 @@ void FUN_001439c8(CM *pcm, float param_2)
     RecalcCmFrustrum(pcm);
 }
 
-void FUN_001439e8(CM *pcm,float param_2)
+void FUN_001439e8(CM *pcm, float param_2)
 {
     pcm->field36_0x200 = param_2;
     RecalcCmFrustrum(pcm);
@@ -144,9 +144,11 @@ void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog)
     RecalcCmFrustrum(pcm);
 }
 
-void SetCmMrdRatio(CM *cm, float ratio)
+void SetCmMrdRatio(CM *pcm, float ratio)
 {
-    cm->fgfn.ruFog = ratio;
+    // TODO: Figure out the correct name for this?
+    // This is probably not the correct field, but it matches.
+    pcm->fgfn.ruFog = ratio;
     RecalcCmFrustrum(g_pcm);
 }
 
