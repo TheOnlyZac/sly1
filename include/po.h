@@ -17,8 +17,6 @@
 struct PO : public SO
 {
     // ...
-    char padding_0x550[0x550];
-    int field_0x550;
 };
 
 /**
