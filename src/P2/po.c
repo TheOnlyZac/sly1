@@ -60,6 +60,9 @@ void OnPoRemove(PO *ppo)
 INCLUDE_ASM(const s32, "P2/po", SwitchToIppo__Fi);
 INCLUDE_ASM(const s32, "P2/po", func_00192988);
 
+/**
+ * @todo Fix ppo fields once PO struct is complete.
+ */
 void SetPoPlayable(PO *ppo, int playable)
 {
     if (*(int *)((uint8_t *)ppo + 0x550) != playable)

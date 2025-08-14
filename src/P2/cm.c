@@ -98,6 +98,9 @@ void SetCmMat(CM *pcm, MATRIX3 *pmat)
     SetCmPosMat(pcm, 0x0, pmat);
 }
 
+/**
+ * @todo Fix pcm fields once CM struct is complete.
+ */
 void SetCmFov(CM *pcm, float fov)
 {
     *(float *)((int)pcm + 0x1c4) = fov;
@@ -136,6 +139,9 @@ void FUN_001439e8(CM *pcm, float param_2)
     RecalcCmFrustrum(pcm);
 }
 
+/**
+ * @todo Fix pcm fields once CM struct is complete.
+ */
 void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog)
 {
     // NOTE: The rgbaFog field is probably not at the correct place in the struct.
@@ -144,6 +150,9 @@ void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog)
     RecalcCmFrustrum(pcm);
 }
 
+/**
+ * @todo Fix pcm fields once CM struct is complete.
+ */
 void SetCmMrdRatio(CM *pcm, float ratio)
 {
     // TODO: Figure out the correct name for this?
@@ -211,6 +220,9 @@ INCLUDE_ASM(const s32, "P2/cm", DecomposeCylind);
 
 INCLUDE_ASM(const s32, "P2/cm", DecomposeSphere);
 
+/**
+ * @todo Fix pcm fields once CM struct is complete.
+ */
 void SetCmCut(CM *pcm, float cut[]) //NOTE: I have no idea what i wrote here... But it gives matching code...
 {
     pcm->field41_0x224 = 1;
