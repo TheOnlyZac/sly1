@@ -75,7 +75,8 @@ void SetPoPlayable(PO *ppo, int playable)
         {
             AddPoToList(ppo);
         }
-        else {
+        else
+        {
             RemovePoFromList(ppo);
         }
     }
