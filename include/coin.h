@@ -98,11 +98,11 @@ struct COIN : public DPRIZE
  */
 struct KEY : public DPRIZE
 {
-    uint8_t unk_uint8_pad[0x14];         // 0x0 - 0x13 Padding?
-    SW* psw;                             // 0x14
-    uint8_t unk_uint8_pad1[0x2b - 0x18]; // 0x18-0x2b Pading?
-    CFrame* pcframe;                     // 0x2c
-    uint8_t unk_uint_pad2[0x2cf - 0x31]; // 0x31 - 0x2cf Padding?
+    uint8_t unk_uint8_Pad[0x14];         // 0x0 - 0x13 Padding?
+    SW* pSw;                             // 0x14
+    uint8_t unk_uint8_Pad1[0x2b - 0x18]; // 0x18-0x2b Pading?
+    CFrame* pCFrame;                     // 0x2c
+    uint8_t unk_uint_Pad2[0x2cf - 0x31]; // 0x31 - 0x2cf Padding?
     DPRIZES dprizes;                     // 0x2d0
 };
 
@@ -111,7 +111,7 @@ struct KEY : public DPRIZE
  */
 struct CHARM : public DPRIZE
 {
-
+    //...
 };
 
 /**
@@ -145,7 +145,6 @@ void CloneDprize(DPRIZE *pdprize, DPRIZE *pdprizeBase);
  * @param pdprize DPRIZE whose enum needs to be set.
  * @param dprizes New DPRIZES value.
  *
- * @note ichkCollected and dle will not be overwritten
  */
 void SetDprizeDprizes(DPRIZE *pdprize, DPRIZES dprizes);
 
