@@ -1,5 +1,11 @@
 #include <po.h>
 
+// TODO: These don't belong here. Move them elsewhere.
+// These functions are in files that are alphabetically
+// between P2/screen.c and P2/sky.c.
+void FUN_001B7A98(PO *ppo);
+void FUN_001B7B78(PO *ppo);
+
 /**
  * @todo 100% matched but not integrated
  * https://decomp.me/scratch/Ktol3
@@ -45,19 +51,27 @@ INCLUDE_ASM(const s32, "P2/po", AddPoToList__FP2PO);
 
 INCLUDE_ASM(const s32, "P2/po", RemovePoFromList__FP2PO);
 
-INCLUDE_ASM(const s32, "P2/po", OnPoAdd__FP2PO);
+void OnPoAdd(PO *ppo)
+{
+    FUN_001B7A98(ppo);
+    AddPoToList(ppo);
+}
 
-INCLUDE_ASM(const s32, "P2/po", OnPoRemove__FP2PO);
+void OnPoRemove(PO *ppo)
+{
+    FUN_001B7B78(ppo);
+    RemovePoFromList(ppo);
+}
 
 INCLUDE_ASM(const s32, "P2/po", SwitchToIppo__Fi);
 INCLUDE_ASM(const s32, "P2/po", func_00192988);
 
-void SetPoPlayable(PO *ppo, int param)
+void SetPoPlayable(PO *ppo, int playable)
 {
-    if (*(int *)((uint8_t *)ppo + 0x550) != param)
+    if (*(int *)((uint8_t *)ppo + 0x550) != playable)
     {
-        *(int *)((uint8_t *)ppo + 0x550) = param;
-        if (param != 0)
+        *(int *)((uint8_t *)ppo + 0x550) = playable;
+        if (playable != 0)
         {
             AddPoToList(ppo);
         }

@@ -45,6 +45,16 @@ void AddPoToList(PO *ppo);
 void RemovePoFromList(PO *ppo);
 
 /**
+ * @brief Adds the given PO to the list and then calls an unknown function.
+ */
+void OnPoAdd(PO *ppo);
+
+/**
+ * @brief Removes the given PO from the list and then calls an unknown function.
+ */
+void OnPoRemove(PO *ppo);
+
+/**
  * @brief Unknown.
  */
 void SwitchToIppo(int index);
@@ -52,7 +62,7 @@ void SwitchToIppo(int index);
 /**
  * @brief Unknown.
  */
-void SetPoPlayable(PO *ppo, int param);
+void SetPoPlayable(PO *ppo, int playable);
 
 /**
  * @brief Switch to the given PO.
