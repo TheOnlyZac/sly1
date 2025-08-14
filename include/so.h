@@ -32,4 +32,16 @@ struct SO : public ALO
     // ...
 };
 
+struct PO;
+
+/**
+ * @todo Rename function.
+ */
+void FUN_001B7A98(PO *ppo);
+
+/**
+ * @todo Rename function.
+ */
+void FUN_001B7B78(PO *ppo);
+
 #endif // SO_H

@@ -1,11 +1,5 @@
 #include <po.h>
 
-// TODO: These don't belong here. Move them elsewhere.
-// These functions are in files that are alphabetically
-// between P2/screen.c and P2/sky.c.
-void FUN_001B7A98(PO *ppo);
-void FUN_001B7B78(PO *ppo);
-
 /**
  * @todo 100% matched but not integrated
  * https://decomp.me/scratch/Ktol3

@@ -1408,8 +1408,9 @@ g_note = 0x26e9f8; // size:0x280
 g_unkblot11 = 0x26eed0; // size:0x280
 g_totals = 0x26f138; // size:0x280
 
-// TODO: This might not belong to P2/screen.c
-// There must be other source files between P2/screen.c and P2/sky.c
+////////////////////////////////////////////////////////////////
+// P2/so.c
+////////////////////////////////////////////////////////////////
 FUN_001B7A98__FP2PO = 0x1b7a98; // type:func
 FUN_001B7B78__FP2PO = 0x1b7b78; // type:func
 
