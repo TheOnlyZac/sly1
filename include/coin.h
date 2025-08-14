@@ -107,7 +107,7 @@ struct KEY : public DPRIZE
 };
 
 /**
- * @brief Charm.
+ * @brief Lucky charm.
  */
 struct CHARM : public DPRIZE
 {
@@ -115,50 +115,50 @@ struct CHARM : public DPRIZE
 };
 
 /**
- * @brief Initializes a DPrize
+ * @brief Initializes a dprize.
  *
- * @param pdprize DPrize to initialize
+ * @param pdprize Dprize to initialize.
  */
 void InitDprize(DPRIZE *pdprize);
 
 /**
- * @brief Loads a DPrize from an Input Stream
+ * @brief Loads a dprize from an Input Stream.
  *
- * @param pdprize DPrize to initialize
- * @param pbis Input Stream
+ * @param pdprize Dprize to load/initialize.
+ * @param pbis Binary input Stream.
  */
 void LoadDprizeFromBrx(DPRIZE *pdprize, CBinaryInputStream *pbis);
 
 /**
- * @brief Clone a DPrize
+ * @brief Clone a dprize.
  *
- * @param pdprize DPrize clone target
- * @param pdprizeBase DPrize clone source
+ * @param pdprize Dprize clone target.
+ * @param pdprizeBase Original dprize to clone.
  *
- * @note ichkCollected and dle will not be overwritten
+ * @note ichkCollected and dle will not be overwritten.
  */
 void CloneDprize(DPRIZE *pdprize, DPRIZE *pdprizeBase);
 
 /**
- * @brief Sets the DPRIZES enum of a given DPRIZE.
+ * @brief Sets the state of a given dprize.
  *
- * @param pdprize DPRIZE whose enum needs to be set.
- * @param dprizes New DPRIZES value.
+ * @param pdprize Dprize whose state to set.
+ * @param dprizes New state value.
  *
  */
 void SetDprizeDprizes(DPRIZE *pdprize, DPRIZES dprizes);
 
 /**
- * @brief Initializes a DPrize
+ * @brief Initializes a coin.
  *
- * @param pdprize DPrize to initialize
+ * @param pcoin Coin to initialize.
  */
 void InitCoin(COIN *pcoin);
 
 /**
- * @brief Updates the coin.
+ * @brief Updates a coin.
  *
- * @param pcoin Pointer to the coin.
+ * @param pcoin Coin to update.
  * @param dt Time elapsed since the last frame.
  *
  * @todo Implement this function.
@@ -168,7 +168,7 @@ void UpdateCoin(COIN *pcoin, float dt);
 // ...
 
 /**
- * @brief Add a life
+ * @brief Adds a life.
  *
  */
 void AddLife(void *ptr);
@@ -181,44 +181,59 @@ void AddLife(void *ptr);
 void OnCoinSmack(COIN *pcoin);
 
 /**
- * @brief Sets the coin's Dprizes enum.
+ * @brief Sets a coin's dprize state.
  *
- * @param pcoin Pointer to the coin.
- * @param dprizes The new prize.
+ * @param pcoin Coin whose state to update.
+ * @param dprizes New state value.
  *
  * @todo Implement this function.
  */
 void SetCoinDprizes(COIN *pcoin, DPRIZES dprizes);
 
 /**
- * @brief Initializes a Charm
+ * @brief Initializes a lucky charm.
  *
- * @param pcharm Charm to initialize
+ * @param pcharm Charm to initialize.
  */
 void InitCharm(CHARM *pcharm);
 
 /**
- * @brief Sets the Charm's Dprizes enum.
+ * @brief Sets a lucky charm's dprize state.
  *
- * @param pcharm Pointer to the charm.
- * @param dprizes The new prize.
+ * @param pcharm Charm whose state to update.
+ * @param dprizes New state value.
  *
  * @todo Fill CHARM struct.
  */
 void SetCharmDprizes(CHARM *pcharm, DPRIZES dprizes);
 
 /**
- * @brief Initializes a Charm
+ * @brief Initializes a treasure key.
  *
- * @param pcharm Charm to initialize
+ * @param pcharm Key to initialize.
  */
 void InitKey(KEY *pkey);
 
-
+/**
+ * @brief Sets a treasure key's dprize state.
+ *
+ * @param pkey Key whose state to set.
+ * @param dprizes New state value.
+ */
 void SetKeyDprizes(KEY *pkey, DPRIZES dprizes);
 
+/**
+ * @brief Unknown.
+ *
+ * @todo Investigate this function.
+ */
 int CpdprizeAttractSwDprizes(SW *psw, CID cid, VECTOR *pposCenter, int cpdprizeMax, DPRIZE **apdprize);
 
+/**
+ * @brief Unknown.
+ *
+ * @todo Investigate this function.
+ */
 void RemoveSwExtraneousCharms(SW *psw);
 
 extern SNIP s_asnipDprize[5];
