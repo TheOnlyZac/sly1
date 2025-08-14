@@ -11,10 +11,11 @@
 #include <alo.h>
 
 /**
- * @brief SFX ID. 
+ * @brief SFX ID.
  */
 enum SFXID
 {
+    SFXID_UiTick = 0, // This value for UiTick is probably wrong, but it's needed for UpdateCodes in joy.c
     SFXID_Click1 = 2,
     SFXID_Swoosh = 3,
     SFXID_JtFootfall1 = 4,
