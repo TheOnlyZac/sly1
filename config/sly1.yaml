@@ -128,7 +128,7 @@ segments:
     - [0x559c8, asm, P2/emitter]
     - [0x5a6e0, asm, P2/eyes]
     - [0x5aad0, asm, P2/fader]
-    - [0x5aca0, asm, P2/unk_f] # unknown file, falls alphabetically between fader and find
+    - [0x5aca0, asm, P2/filestub]
     - [0x5af20, c, P2/find]
     - [0x5b8ac, asm, P2/find_padding] # 4 bytes padding to align P2/find
     - [0x5b8b0, c, P2/flash]
@@ -233,7 +233,7 @@ segments:
     - [0xd8120, asm, P2/stream]
     - [0xd83a8, c, P2/suv]
     - [0xdc480, asm, P2/sw]
-    - [0xdeb20, asm, P2/unk_st] # unknown file, falls alphabetically between sw and tail
+    - [0xdeb20, asm, P2/UNKNOWN] # unknown file, falls alphabetically between sw and tail
     - [0xdece0, c, P2/tail]
     - [0xdf798, asm, P2/tank]
     #- [0x, asm, P2/target]
@@ -247,7 +247,7 @@ segments:
     - [0xea088, c, P2/ui]
     - [0xeac78, asm, P2/update]
     - [0xeb408, c, P2/util]
-    - [0xec518, asm, P2/unk_uv] # unknown file, falls alphabetically between util and vec
+    - [0xec518, asm, P2/var]
     - [0xee650, c, P2/vec]
     - [0xef318, asm, P2/vifs]
     - [0xef900, asm, P2/vis]
@@ -354,7 +354,7 @@ segments:
     - [0x162f80, data, P2/emitter]
     #- [0x, data, P2/eyes]
     #- [0x, data, P2/fader]
-    #- [0x, data, P2/???] #? unknown file
+    #- [0x, data, P2/filestub]
     #- [0x, data, P2/find]
     #- [0x, data, P2/flash]
     - [0x163180, data, P2/fly]
@@ -484,7 +484,7 @@ segments:
     #- [0x, data, P2/ui]
     #- [0x, data, P2/update]
     #- [0x, data, P2/util]
-    #- [0x, data, P2/unk_uv] #? unknown file
+    #- [0x, data, P2/var]
     #- [0x, data, P2/vec]
     #- [0x, data, P2/vifs]
     #- [0x, data, P2/vis]
