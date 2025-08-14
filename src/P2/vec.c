@@ -44,6 +44,8 @@ INCLUDE_ASM(const s32, "P2/vec", CalculateVectorPanTilt__FP6VECTORPfT1);
 #ifdef SKIP_ASM
 /**
  * @todo 92.50% matched.
+ * https://decomp.me/scratch/iS3Fn
+ * 
  * Register usage doesn't exactly match the original
  * and the sqrt.s instruction isn't matching properly.
  */
