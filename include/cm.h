@@ -229,7 +229,7 @@ struct CPTN : public CPLCY
 };
 
 /**
- * @brief Camera something.
+ * @brief Camera policy: (?).
  */
 struct CPR
 {
@@ -332,8 +332,8 @@ struct CM : public LO
     CPTN cptn;
 };
 
-// extern CM g_cm; // Main game camera
-extern CM *g_pcm; // Pointer to the main game camera
+// extern CM g_cm; // Main game camera.
+extern CM *g_pcm; // Pointer to the main game camera.
 
 /**
  * @brief Calls RecalcCmFrustrum on the given camera.
@@ -353,7 +353,7 @@ void SetSwCameraRgbaFog(SW *psw, RGBA *prgbaFog);
 /**
  * @brief Sets position on the given camera.
  */
-void SetCmPos(CM *pcm,VECTOR *ppos);
+void SetCmPos(CM *pcm, VECTOR *ppos);
 
 /**
  * @brief Sets matrix on the given camera.
@@ -376,6 +376,11 @@ void SetCmFarClip(CM *pcm, float sFarClip);
 void SetCmSProgress(CM *pcm, float uSProgress);
 
 /**
+ * @brief Changes the FOV of the camera and then calls RecalcCmFrustrum.
+ */
+void SetCmFov(CM *pcm, float fov);
+
+/**
  * @brief Sets field35_0x1fc on the given camera.
  */
 void FUN_001439c8(CM *pcm, float param_2); //TODO: Rename function
@@ -383,7 +388,7 @@ void FUN_001439c8(CM *pcm, float param_2); //TODO: Rename function
 /**
  * @brief Sets field36_0x200 on the given camera.
  */
-void FUN_001439e8(CM *pcm,float param_2); //TODO: Rename function
+void FUN_001439e8(CM *pcm, float param_2); //TODO: Rename function
 
 /**
  * @brief Sets the RGBA fog color for the camera.
@@ -391,9 +396,9 @@ void FUN_001439e8(CM *pcm,float param_2); //TODO: Rename function
 void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog);
 
 /**
- * @brief Calls SetCmMrdRatio on the given camera.
+ * @brief Sets the minimum render distance ratio (?) on the given camera.
  */
-void SetCmMrdRatio(CM *pcm);
+void SetCmMrdRatio(CM *pcm, float ratio);
 
 /**
  * @brief Clears fading objects from the given camera.
