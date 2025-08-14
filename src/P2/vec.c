@@ -45,22 +45,24 @@ INCLUDE_ASM(const s32, "P2/vec", CalculateVectorPanTilt__FP6VECTORPfT1);
 /**
  * @todo 92.50% matched.
  * https://decomp.me/scratch/iS3Fn
- * 
+ *
  * Register usage doesn't exactly match the original
  * and the sqrt.s instruction isn't matching properly.
+ *
+ * atan2f is not implemented?
  */
 void CalculateVectorPanTilt(VECTOR *pvec, float *ppan, float *ptilt)
 {
     if (ppan)
     {
-        *ppan = RadNormalize(atan2f(pvec->y, pvec->x));
+        // *ppan = RadNormalize(atan2f(pvec->y, pvec->x));
     }
     if (ptilt)
     {
         float denom;
         float sum = pvec->x * pvec->x + pvec->y * pvec->y;
         __asm__ volatile ("sqrt.s %0, %1" : "=f"(denom) : "f"(sum));
-        *ptilt = RadNormalize(atan2f(pvec->z, denom));
+        // *ptilt = RadNormalize(atan2f(pvec->z, denom));
     }
 }
 #endif // SKIP_ASM
