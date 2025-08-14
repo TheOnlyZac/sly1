@@ -1,5 +1,6 @@
 #include <vec.h>
 #include <util.h>
+#include <math.h>
 
 void SetVectorCylind(VECTOR *pvec, float rad, float sXY, float sZ)
 {
@@ -55,14 +56,14 @@ void CalculateVectorPanTilt(VECTOR *pvec, float *ppan, float *ptilt)
 {
     if (ppan)
     {
-        // *ppan = RadNormalize(atan2f(pvec->y, pvec->x));
+        *ppan = RadNormalize(atan2f(pvec->y, pvec->x));
     }
     if (ptilt)
     {
         float denom;
         float sum = pvec->x * pvec->x + pvec->y * pvec->y;
         __asm__ volatile ("sqrt.s %0, %1" : "=f"(denom) : "f"(sum));
-        // *ptilt = RadNormalize(atan2f(pvec->z, denom));
+        *ptilt = RadNormalize(atan2f(pvec->z, denom));
     }
 }
 #endif // SKIP_ASM
