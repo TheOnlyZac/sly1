@@ -86,33 +86,28 @@ INCLUDE_ASM(const s32, "P2/dl", func_001525F8);
 
 void RemoveDlEntry(DL* pdl, void* pv)
 {
-
     DLE* pentry;
     DLI* pcurrent;
     void* pprev;
     DLE* ptemp;
 
     pentry = PdleFromDlEntry(pdl, pv);
-    pcurrent = s_pdliFirst; 
+    pcurrent = s_pdliFirst;
 
     // Loop through global iterator list to find DLI that houses the DLE we're looking for.
     while (pcurrent != nullptr)
     {
-
         if ((DLE *)pcurrent->m_ppv == pentry)
         {
-
             // If the DLE is the current index of the DLI, replace the with prev.
             pprev = pentry->prev;
             if (pprev != nullptr)
             {
-
                 ptemp = PdleFromDlEntry(pdl, pprev);
                 (DLE *)pcurrent->m_ppv = ptemp;
             }
             else
             {
-
                 (DLE *)pcurrent->m_ppv = pdl;
             }
         }
@@ -124,13 +119,11 @@ void RemoveDlEntry(DL* pdl, void* pv)
     pprev = pentry->prev;
     if (pprev != nullptr)
     {
-
         ptemp = PdleFromDlEntry(pdl, pprev);
         ptemp->next = pentry->next;
     }
     else
     {
-
         pdl->head = pentry->next;
     }
 
@@ -138,13 +131,11 @@ void RemoveDlEntry(DL* pdl, void* pv)
     pprev = pentry->next;
     if (pprev != nullptr)
     {
-
         ptemp = PdleFromDlEntry(pdl, pprev);
         ptemp->prev = pentry->prev;
     }
     else
     {
-
         pdl->tail = pentry->prev;
     }
 
