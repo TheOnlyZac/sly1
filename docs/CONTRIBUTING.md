@@ -32,45 +32,42 @@ First, find a function in the game that you want to match. There are a few ways 
 
 * Browse Ghidra for interesting functions.
 * Look in the the source files in the `src` folder for non-matching functions (they have an `INCLUDE_ASM` macro as a placeholder).
-* Look in assembly files in the `asm/nonmatchings` folder to find .
+* Look in assembly files in the `asm/nonmatchings` folder.
 * Ask for suggestions on Discord.
 
 ## Match the function
 
 Once you have a function selected, you can start matching it using either **Objdiff** or **Decomp.me**. Both tools are used to match assembly code to C code, but they have different workflows.
 
+### Objdiff
+
+[Objdiff](https://github.com/encounter/objdiff), is a tool for showing the diff between a symbol in two object files. It is faster and more convenient then Decomp.me since it is included in the project, and doesn't require uploading anything to a website.
+
+1. Reconfigure the project using `python3 configure.py --objects`. This will generate the object files and the `objdiff.json` config file, but it won't build the final elf or run the checksum.
+2. From the project root, run `./tools/objdiff/objdiff-cli diff --project . -u P2/objname FunctionName`.
+    * Replace `objname` with the name of the object file the function is in.
+    * Replace `FunctionName` with the **mangled name** of the function you want to match.
+3. Edit the source code until the function matches. The CURRENT assembly will update every time you save the file.
+
+**Example:** To match `OnDifficultyGameLoad` defined in `difficulty.c`, run this command:
+```bash
+./tools/objdiff/objdiff-cli diff --project . -u P2/difficulty OnDifficultyGameLoad__FP10DIFFICULTY
+```
+
 ### Decomp.me
 
-[decomp.me](https://decomp.me/) is a website for collaborative decompilation. It allows you to upload assembly code and create a "scratch" which can be used to match the function. This is recommended if you are new to matching, as it is easier to use than Objdiff, or if you are asking others for help with matching.
+[decomp.me](https://decomp.me/) is a website for collaborative decompilation. It allows you to upload assembly code and create a "scratch" for matching the function. It is recommended if you are collaborating with others or need to ask for help with a function.
 
-To use decomp.me, follow these steps:
-
-1. Go to the website and click "Start decomping".
-2. Click "PS2", then under "Preset", select "Sly Cooper and the Thievius Raccoonus".
+1. Go to [the website](https://decomp.me) and click "Start decomping".
+2. Click "PS2" > "Preset" > "Sly Cooper and the Thievius Raccoonus".
 3. Under "Diff label", enter the name of the function.
-4. Find the `.s` file corresponding to the function you want to match in the `asm/nonmatchings` directory. Copy the contents of the file into the "Target assembly" box.
-5. Copy any functions, global variables, or data types used by the function from the headers in the `include` directory into the "Context" box.
-   * E.g. For the function `void ResetClock(struct CLOCK* pclock, float t)`, you will need to include the definition of `CLOCK` struct, and the `TICK` data type since it is used in the CLOCK struct.
-   * You should almost always copy the entirety of "types.h" to ensure you have all the necessary primitive types.
+4. Find the `.s` file of the function you want to match in the `asm/nonmatchings` folder. Copy the contents of the file into the "Target assembly" box.
+5. If the function references any other  functions, global variables, or data types, copy those from the relevant headers into the "Context" box.
+   * E.g. For the function `void ResetClock(struct CLOCK* pclock, float t)`, you will need to include the definition of `CLOCK` struct, as well as the `TICK` datatype since it is used in the CLOCK struct.
 6. Click "Create scratch".
 7. **(Recommended)** Go to the "Options" tab and under "Debug information" select `-g3 (Macro expansions)`. This will show you which line numbers the source code correspond to each line in the assembly.
 
 Then start writing your code under the "Source code" tab. It will tell you what percent of the code matches the original. Tweak the code until it matches 100%. An example scratch can be found here: https://decomp.me/scratch/hmmyP
-
-### Objdiff
-
-[Objdiff](https://github.com/encounter/objdiff), as the name implies, is a tool for showing the diff between a symbol in two object files. It can be used to match functions just like decomp.me, but it is faster and more convenient since it is included in the project and doesn't require uploading anything to a website.
-
-To use Objdiff, follow these steps:
-
-1. Reconfigure the project using `python3 configure.py --objects`. This will generate the object files and the `objdiff.json` config file, but it won't build the final elf or run the checksum.
-2. From the project root, run `./tools/objdiff/objdiff-cli diff FunctionName --project . -u objname`.
-    * Replace `FunctionName` with the **mangled name** of the function you want to match, and `objname` with the name of the object file.
-    * E.g. to match `OnDifficultyGameLoad` defined in `difficulty.c`, run this command:
-    ```bash
-    ./tools/objdiff/objdiff-cli diff OnDifficultyGameLoad__FP10DIFFICULTY --project . -u P2/difficulty
-    ```
-3. Edit the source code until the function matches. The CURRENT assembly will update each time you save the file.
 
 ## Integrate the matched code
 
@@ -84,7 +81,7 @@ Once the function matches 100%, follow these steps to integrate it into the proj
 The project should build and match. Here are some common troubleshooting tips:
 * `undefined reference error` usually means the entry in the symbol_addrs.txt is wrong. Make sure the function name is mangled in symbol_addrs.txt and unmangled in the source code, and the mangled version matches the signature of the function. Also ensure that the address is correct in symbol_addrs.txt.
 * `checksum failed` means the compiled elf with your added code doesn't match the original. If it matches on decomp.me but not in the project, it might be an issue with the compiler, so open an issue on GitHub or let someone know on Discord.
-* `ninja: no work to do` in objdiff likely means the name of the function is wrong in your objdiff command and/or in the symbol_addrs.txt. Make sure you are using the correct mangled name of the function in both places.
+* `ninja: no work to do` in objdiff likely means the name of the function is wrong in your objdiff command and/or in symbol_addrs.txt. Make sure you are using the correct mangled name of the function in both places.
 
 <!--### CodeMatcher
 
@@ -101,7 +98,7 @@ We are a volunteer-driven project, so please be patient while we review your cod
 * It compiles without any errors.
 * The compiled elf matches the original elf.
 
-If everything looks good, we will merge your pull request as soon as possible. If anything needs to be addressed, we will let you know.
+If everything looks good, we will merge your pull request as soon as possible. We may fix small typos and make style edits for you. If anything needs to be addressed, we will let you know.
 
 ## Conclusion
 

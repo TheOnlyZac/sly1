@@ -668,7 +668,7 @@ SetSwCameraRgbaFog__FP2SWP4RGBA = 0x1438B0; // type:func
 FUN_001438d8 = 0x1438D8; // type:func
 SetCmPos__FP2CMP6VECTOR = 0x143900; // type:func
 SetCmMat__FP2CMP7MATRIX3 = 0x143920; // type:func
-FUN_00143940 = 0x143940; // type:func
+SetCmFov__FP2CMf = 0x143940; // type:func
 SetCmNearClip__FP2CMf = 0x143968; // type:func
 SetCmFarClip__FP2CMf = 0x143988; // type:func
 SetCmSProgress__FP2CMf = 0x1439A8; // type:func
@@ -1296,12 +1296,14 @@ RenderSw__FP2SWP2CM = 0x19d6c0; // type:func
 DrawSw__FP2SWP2CM = 0x19DC98; // type:func
 FillScreenRect__FiiiiffffP4GIFS = 0x19dda0; // type:func
 
+
 ////////////////////////////////////////////////////////////////
 // P2/rumble.c
 ////////////////////////////////////////////////////////////////
 InitRumble__FP6RUMBLEii = 0x1A7B20; // type:func
 TriggerRumbleRumk__FP6RUMBLE4RUMKf = 0x1A7CE8; // type:func
 SetRumbleRums__FP6RUMBLE4RUMS = 0x1A7D98; // type:func
+
 
 ////////////////////////////////////////////////////////////////
 // P2/screen.c
@@ -1410,16 +1412,23 @@ g_totals = 0x26f138; // size:0x280
 
 
 ////////////////////////////////////////////////////////////////
-// P2/sky.c
+// P2/so.c
 ////////////////////////////////////////////////////////////////
-PostSkyLoad__FP3SKY = 0x1c9a18; // type:func
-UpdateSky__FP3SKYf = 0x1c9a58; // type:func
+FUN_001B7A98__FP2PO = 0x1b7a98; // type:func
+FUN_001B7B78__FP2PO = 0x1b7b78; // type:func
 
 
 ////////////////////////////////////////////////////////////////
 // P2/sound.c
 ////////////////////////////////////////////////////////////////
 SetMvgkRvol__Ff = 0x1c05d0; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/sky.c (out of order?)
+////////////////////////////////////////////////////////////////
+PostSkyLoad__FP3SKY = 0x1c9a18; // type:func
+UpdateSky__FP3SKYf = 0x1c9a58; // type:func
 
 
 ////////////////////////////////////////////////////////////////

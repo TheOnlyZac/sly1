@@ -18,7 +18,13 @@ INCLUDE_ASM(const s32, "P2/po", OnPoActive__FP2POiT0);
 INCLUDE_ASM(const s32, "P2/po", GetPoCpdefi__FP2POfP6CPDEFI);
 INCLUDE_ASM(const s32, "P2/po", func_00192410);
 
-INCLUDE_ASM(const s32, "P2/po", MakePoActive__FP2PO);
+void MakePoActive(PO *ppo)
+{
+    if (ppo != PpoCur())
+    {
+        SwitchToPo(ppo);
+    }
+}
 
 INCLUDE_ASM(const s32, "P2/po", FUN_00192450);
 INCLUDE_ASM(const s32, "P2/po", func_00192488);
@@ -39,16 +45,44 @@ INCLUDE_ASM(const s32, "P2/po", AddPoToList__FP2PO);
 
 INCLUDE_ASM(const s32, "P2/po", RemovePoFromList__FP2PO);
 
-INCLUDE_ASM(const s32, "P2/po", OnPoAdd__FP2PO);
+void OnPoAdd(PO *ppo)
+{
+    FUN_001B7A98(ppo);
+    AddPoToList(ppo);
+}
 
-INCLUDE_ASM(const s32, "P2/po", OnPoRemove__FP2PO);
+void OnPoRemove(PO *ppo)
+{
+    FUN_001B7B78(ppo);
+    RemovePoFromList(ppo);
+}
 
 INCLUDE_ASM(const s32, "P2/po", SwitchToIppo__Fi);
 INCLUDE_ASM(const s32, "P2/po", func_00192988);
 
-INCLUDE_ASM(const s32, "P2/po", SetPoPlayable__FP2POi);
+/**
+ * @todo Fix ppo fields once PO struct is complete.
+ */
+void SetPoPlayable(PO *ppo, int playable)
+{
+    if (*(int *)((uint8_t *)ppo + 0x550) != playable)
+    {
+        *(int *)((uint8_t *)ppo + 0x550) = playable;
+        if (playable != 0)
+        {
+            AddPoToList(ppo);
+        }
+        else
+        {
+            RemovePoFromList(ppo);
+        }
+    }
+}
 
-INCLUDE_ASM(const s32, "P2/po", SwitchToPo__FP2PO);
+void SwitchToPo(PO *ppo)
+{
+    SwitchToIppo(_IppoFindPo(ppo));
+}
 
 INCLUDE_ASM(const s32, "P2/po", PpziCur__Fv);
 INCLUDE_ASM(const s32, "P2/po", func_00192A28);
