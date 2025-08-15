@@ -17,6 +17,20 @@ enum SFXID
 
 };
 
+enum MVGK
+{
+    MVGK_Effects = 0x0,
+    MVGK_Music = 0x1,
+    MVGK_Dialog = 0x2,
+    MVGK_User1 = 0x3,
+    MVGK_User2 = 0x4,
+    MVGK_UIser3 = 0x5,
+    MVGK_User4 = 0x6,
+    MVGK_External = 0x7,
+    MVGK_Global = 0x8,
+    MVGK_Max = 0x9
+};
+
 /**
  * @brief Ambient sound.
  */
@@ -69,5 +83,15 @@ struct AMB
  * @param plmRepDis Pointer to the repeat distance limit
  */
 void StartSound(SFXID sfxid, AMB **ppamb, ALO *palo, VECTOR *ppos, float sStart, float sFull, float uVolAtSource, float frq, float uDoppler, LM *plmRepeat, LM *plmRepDis);
+
+/**
+ * @brief
+ */
+void SetMvgkRvol(MVGK mvgk, float rvol);
+
+/**
+ * @brief
+ */
+void SetMvgkUvol(MVGK mvgk, float uvol);
 
 #endif // SOUND_H
