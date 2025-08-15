@@ -1,5 +1,8 @@
-#include <sound.h>
+#include "sound.h"
 #include <989snd.h>
+#include <sce/memset.h>
+
+extern uchar D_00604790[]; // temp
 
 INCLUDE_ASM(const s32, "P2/sound", UnloadMusic__Fv);
 
@@ -10,7 +13,6 @@ INCLUDE_ASM(const s32, "P2/sound", SbpEnsureBank__F5SFXID);
 INCLUDE_ASM(const s32, "P2/sound", NewSfx__FPP3SFX);
 
 INCLUDE_ASM(const s32, "P2/sound", FContinuousSound__F5SFXID);
-
 INCLUDE_ASM(const s32, "P2/sound", func_001BE5D8);
 
 INCLUDE_ASM(const s32, "P2/sound", SetVagUnpaused__FUiUl);
@@ -28,7 +30,6 @@ INCLUDE_ASM(const s32, "P2/sound", RefreshPambVolPan__FP3AMB);
 INCLUDE_ASM(const s32, "P2/sound", FUN_001be8f8);
 
 INCLUDE_ASM(const s32, "P2/sound", FVagPlaying__Fv);
-
 INCLUDE_ASM(const s32, "P2/sound", func_001BE990);
 
 INCLUDE_ASM(const s32, "P2/sound", StopVag__Fv);
@@ -67,16 +68,27 @@ INCLUDE_ASM(const s32, "P2/sound", UnsetExcitement__FP3EXC);
 
 INCLUDE_ASM(const s32, "P2/sound", UnsetExcitementHyst__FP3EXC);
 
-INCLUDE_ASM(const s32, "P2/sound", StartupSound__Fv);
-
-INCLUDE_ASM(const s32, "P2/sound", func_001BF1E8);
+void StartupSound()
+{
+    memset(D_00604790, 0, 0x1c);
+    snd_StartSoundSystem();
+    SbpEnsureBank(0);
+    snd_InitVAGStreamingEx(1, 0x2000, 1, 1);
+    snd_SetGlobalExcite(0x14);
+    MvgkUnknown2();
+    snd_SetMixerMode(0, 1);
+    snd_SetGroupVoiceRange(0, 0, 0x2f);
+    snd_SetGroupVoiceRange(1, 0x18, 0x2f);
+    snd_SetGroupVoiceRange(3, 0x18, 0x2f);
+    snd_SetGroupVoiceRange(2, 0x18, 0x2f);
+    snd_PreAllocReverbWorkArea(2, 4);
+}
+INCLUDE_ASM(const s32, "P2/sound", func_001BF1E8); // nop
 
 INCLUDE_ASM(const s32, "P2/sound", FAmbientsPaused__Fv);
 
 INCLUDE_ASM(const s32, "P2/sound", CalculateVolPan__FfP6VECTORPfT2fff);
-
 INCLUDE_ASM(const s32, "P2/sound", func_001BF2E0);
-
 INCLUDE_ASM(const s32, "P2/sound", func_001BF398);
 
 INCLUDE_ASM(const s32, "P2/sound", PposEar__Fv);
@@ -108,7 +120,6 @@ INCLUDE_ASM(const s32, "P2/sound", ActivatePamb__FP3AMB5SFXID);
 INCLUDE_ASM(const s32, "P2/sound", ScheduleNextIntermittentSound__FP3AMB);
 
 INCLUDE_ASM(const s32, "P2/sound", StartSound__F5SFXIDPP3AMBP3ALOP6VECTORfffffP2LMT9);
-
 INCLUDE_ASM(const s32, "P2/sound", func_001BFFC8);
 
 INCLUDE_ASM(const s32, "P2/sound", HandleWipeHandleWipeVolumes__FifVolumes);
@@ -124,7 +135,7 @@ INCLUDE_ASM(const s32, "P2/sound", MvgkUnknown1);
 
 INCLUDE_ASM(const s32, "P2/sound", SetMvgkRvol__F4MVGKf);
 
-INCLUDE_ASM(const s32, "P2/sound", MvgkUnknown2);
+INCLUDE_ASM(const s32, "P2/sound", MvgkUnknown2__Fv);
 
 INCLUDE_ASM(const s32, "P2/sound", MvgkUnknown3);
 
@@ -139,11 +150,8 @@ INCLUDE_ASM(const s32, "P2/sound", PushSwReverb__FP2SW7REVERBKi);
 INCLUDE_ASM(const s32, "P2/sound", PopSwReverb__FP2SW);
 
 INCLUDE_ASM(const s32, "P2/sound", SetSwDefaultReverb__FP2SW7REVERBKi);
-
 INCLUDE_ASM(const s32, "P2/sound", func_001C0A50);
-
 INCLUDE_ASM(const s32, "P2/sound", func_001C0AB8);
-
 INCLUDE_ASM(const s32, "P2/sound", func_001C0B08);
 
 INCLUDE_ASM(const s32, "P2/sound", StartSwIntermittentSounds__FP2SW);

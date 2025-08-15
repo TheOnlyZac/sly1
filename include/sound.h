@@ -23,8 +23,8 @@
 enum SFXID
 {
     SFXID_UnkNeg2 = -2, // Found in FUN_001be8f8()
-    SFXID_None = -1,    // Used to call a sound in FUN_001a54f8() for some reason?
-    SFXID_UiTick = 0,   // This value for UiTick is probably wrong, but it's needed for UpdateCodes in joy.c. Also Found in FUN_001ed318
+    SFXID_Nil = -1,     // Used to call a sound in FUN_001a54f8() for some reason?
+    SFXID_UiTick = 0,   // Probably wrong value, but needed for UpdateCodes in joy.c. Also Found in FUN_001ed318
     SFXID_Unk1 = 1,     // Found in RebuildTimerAchzDraw()
     SFXID_Click1 = 2,
     SFXID_Swoosh = 3,
@@ -169,6 +169,16 @@ struct AMB
 };
 
 /**
+ * @brief Starts up the sound system.
+ */
+void StartupSound();
+
+/**
+ * @brief Ensures the soundbank is available.
+ */
+void SbpEnsureBank(int bank);
+
+/**
  * @brief Starts sound playback.
  *
  * @param sfxid The sound effect ID
@@ -186,13 +196,20 @@ struct AMB
 void StartSound(SFXID sfxid, AMB **ppamb, ALO *palo, VECTOR *ppos, float sStart, float sFull, float uVolAtSource, float frq, float uDoppler, LM *plmRepeat, LM *plmRepDis);
 
 /**
- * @brief
+ * @brief Sets the rvol of an mvgk.
  */
 void SetMvgkRvol(MVGK mvgk, float rvol);
 
 /**
- * @brief
+ * @brief Set the uvol of an mvgk.
+ *
+ * @note May version takes an mvgk as an argument, but this seems not to.
  */
 void SetMvgkUvol(float uvol);
+
+/**
+ * @brief Unknown.
+ */
+void MvgkUnknown2();
 
 #endif // SOUND_H

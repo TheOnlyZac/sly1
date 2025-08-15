@@ -1481,7 +1481,7 @@ UpdateSounds__Fv = 0x1C0070; // type:func
 SetMvgkUvol__Ff = 0x1c05d0; // type:func
 MvgkUnknown1 = 0x1C0600; // type:func
 SetMvgkRvol__F4MVGKf = 0x1C06A0; // type:func
-MvgkUnknown2 = 0x1C06D8; // type:func
+MvgkUnknown2__Fv = 0x1C06D8; // type:func
 MvgkUnknown3 = 0x1C0760; // type:func
 MvgkUnknown4 = 0x1C0790; // type:func
 KillSoundSystem__Fv = 0x1C07B0; // type:func
@@ -1496,6 +1496,8 @@ FUN_001c0c68 = 0x1C0C68; // type:func
 FUN_001c0cb0 = 0x1C0CB0; // type:func
 HsNextFootFall__Fv = 0x1C0CF0; // type:func
 NextSneakyFootstep__Fv = 0x1C0EC0; // type:func
+
+D_00604790 = 0x00604790; // size:0x1c
 
 
 ////////////////////////////////////////////////////////////////
