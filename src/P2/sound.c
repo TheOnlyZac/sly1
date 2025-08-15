@@ -115,9 +115,9 @@ INCLUDE_ASM(const s32, "P2/sound", HandleWipeHandleWipeVolumes__FifVolumes);
 
 INCLUDE_ASM(const s32, "P2/sound", UpdateSounds__Fv);
 
-void SetMvgkUvol(MVGK mvgk,float uvol)
+void SetMvgkUvol(float uvol)
 {
-    snd_SetMasterVolume(8, (int)(uvol * 1024.0));
+    snd_SetMasterVolume(8, (int)(uvol * 1024.0f));
 }
 
 INCLUDE_ASM(const s32, "P2/sound", MvgkUnknown1);

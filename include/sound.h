@@ -92,6 +92,6 @@ void SetMvgkRvol(MVGK mvgk, float rvol);
 /**
  * @brief
  */
-void SetMvgkUvol(MVGK mvgk, float uvol);
+void SetMvgkUvol(float uvol);
 
 #endif // SOUND_H

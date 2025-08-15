@@ -69,17 +69,14 @@ void CTransition::Execute()
 }
 #endif // SKIP_ASM
 
-INCLUDE_ASM(const s32, "P2/transition", ResetWorld__F6FTRANS);
-#ifdef SKIP_ASM
 void ResetWorld(FTRANS ftrans)
 {
-    SetMvgkUvol((MVGK)ftrans, 0.0f);
+    SetMvgkUvol(0.0f);
 
     GRFTRANS grftrans;
     switch (ftrans)
     {
     case FTRANS_None:
-        /* Reload with no transition */
         grftrans = FTRANS_None;
         break;
     case FTRANS_Checkpoint:
@@ -89,14 +86,13 @@ void ResetWorld(FTRANS ftrans)
         grftrans = FTRANS_RetryWorld;
         break;
     case (FTRANS_Checkpoint | FTRANS_RetryWorld):
-        /* Transition with the Sly Cooper logo wipe */
+        // Transitions with the Sly Cooper logo wipe
         grftrans = 4;
         break;
     }
 
     g_transition.Set(g_transition.m_achzWorldCur, OID_Nil, OID_Nil, grftrans);
 }
-#endif
 
 INCLUDE_ASM(const s32, "P2/transition", transition__static_initialization_and_destruction_0);
 
