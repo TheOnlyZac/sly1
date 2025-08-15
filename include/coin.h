@@ -12,6 +12,7 @@
 #include <sm.h>
 #include <sw.h>
 #include <xform.h>
+#include <sound.h>
 
 // Forward declarations
 struct DPRIZE;
@@ -97,52 +98,67 @@ struct COIN : public DPRIZE
  */
 struct KEY : public DPRIZE
 {
-    // ...
+    uint8_t unk_uint8_Pad[0x14];         // 0x0 - 0x13 Padding?
+    SW* pSw;                             // 0x14
+    uint8_t unk_uint8_Pad1[0x2b - 0x18]; // 0x18-0x2b Pading?
+    CFrame* pCFrame;                     // 0x2c
+    uint8_t unk_uint_Pad2[0x2cf - 0x31]; // 0x31 - 0x2cf Padding?
+    DPRIZES dprizes;                     // 0x2d0
 };
 
 /**
- * @brief Charm.
+ * @brief Lucky charm.
  */
 struct CHARM : public DPRIZE
 {
+    //...
 };
 
 /**
- * @brief Initializes a DPrize
+ * @brief Initializes a dprize.
  *
- * @param pdprize DPrize to initialize
+ * @param pdprize Dprize to initialize.
  */
 void InitDprize(DPRIZE *pdprize);
 
 /**
- * @brief Loads a DPrize from an Input Stream
+ * @brief Loads a dprize from an Input Stream.
  *
- * @param pdprize DPrize to initialize
- * @param pbis Input Stream
+ * @param pdprize Dprize to load/initialize.
+ * @param pbis Binary input Stream.
  */
 void LoadDprizeFromBrx(DPRIZE *pdprize, CBinaryInputStream *pbis);
 
 /**
- * @brief Clone a DPrize
+ * @brief Clone a dprize.
  *
- * @param pdprize DPrize clone target
- * @param pdprizeBase DPrize clone source
+ * @param pdprize Dprize clone target.
+ * @param pdprizeBase Original dprize to clone.
  *
- * @note ichkCollected and dle will not be overwritten
+ * @note ichkCollected and dle will not be overwritten.
  */
 void CloneDprize(DPRIZE *pdprize, DPRIZE *pdprizeBase);
 
 /**
- * @brief Initializes a DPrize
+ * @brief Sets the state of a given dprize.
  *
- * @param pdprize DPrize to initialize
+ * @param pdprize Dprize whose state to set.
+ * @param dprizes New state value.
+ *
+ */
+void SetDprizeDprizes(DPRIZE *pdprize, DPRIZES dprizes);
+
+/**
+ * @brief Initializes a coin.
+ *
+ * @param pcoin Coin to initialize.
  */
 void InitCoin(COIN *pcoin);
 
 /**
- * @brief Updates the coin.
+ * @brief Updates a coin.
  *
- * @param pcoin Pointer to the coin.
+ * @param pcoin Coin to update.
  * @param dt Time elapsed since the last frame.
  *
  * @todo Implement this function.
@@ -152,7 +168,7 @@ void UpdateCoin(COIN *pcoin, float dt);
 // ...
 
 /**
- * @brief Add a life
+ * @brief Adds a life.
  *
  */
 void AddLife(void *ptr);
@@ -165,33 +181,59 @@ void AddLife(void *ptr);
 void OnCoinSmack(COIN *pcoin);
 
 /**
- * @brief Sets the coin's prize.
+ * @brief Sets a coin's dprize state.
  *
- * @param pcoin Pointer to the coin.
- * @param dprizes The new prize.
+ * @param pcoin Coin whose state to update.
+ * @param dprizes New state value.
  *
  * @todo Implement this function.
  */
-void SetcoinDprizes(COIN *pcoin, DPRIZES dprizes);
+void SetCoinDprizes(COIN *pcoin, DPRIZES dprizes);
 
 /**
- * @brief Initializes a Charm
+ * @brief Initializes a lucky charm.
  *
- * @param pcharm Charm to initialize
+ * @param pcharm Charm to initialize.
  */
 void InitCharm(CHARM *pcharm);
 
 /**
- * @brief Initializes a Charm
+ * @brief Sets a lucky charm's dprize state.
  *
- * @param pcharm Charm to initialize
+ * @param pcharm Charm whose state to update.
+ * @param dprizes New state value.
+ *
+ * @todo Fill CHARM struct.
+ */
+void SetCharmDprizes(CHARM *pcharm, DPRIZES dprizes);
+
+/**
+ * @brief Initializes a treasure key.
+ *
+ * @param pcharm Key to initialize.
  */
 void InitKey(KEY *pkey);
 
+/**
+ * @brief Sets a treasure key's dprize state.
+ *
+ * @param pkey Key whose state to set.
+ * @param dprizes New state value.
+ */
 void SetKeyDprizes(KEY *pkey, DPRIZES dprizes);
 
+/**
+ * @brief Unknown.
+ *
+ * @todo Investigate this function.
+ */
 int CpdprizeAttractSwDprizes(SW *psw, CID cid, VECTOR *pposCenter, int cpdprizeMax, DPRIZE **apdprize);
 
+/**
+ * @brief Unknown.
+ *
+ * @todo Investigate this function.
+ */
 void RemoveSwExtraneousCharms(SW *psw);
 
 extern SNIP s_asnipDprize[5];

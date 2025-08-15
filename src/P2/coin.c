@@ -146,6 +146,23 @@ void InitCharm(CHARM *pcharm)
 }
 
 INCLUDE_ASM(const s32, "P2/coin", SetCharmDprizes__FP5CHARM7DPRIZES);
+#ifdef SKIP_ASM
+/** @todo Replace first if block once CHARM struct is filled.
+ *        Needs StartSound() to be implemented to continue.
+ *        https://decomp.me/scratch/2Mb5l. -Zryu
+ */
+void SetCharmDprizes(CHARM *pcharm, DPRIZES dprizes) {
+    if (*(DPRIZES *)((uint8_t *)pcharm + 0x2d0) != dprizes) {
+        if (dprizes == DPRIZES_Collect) {
+            dprizes = DPRIZES_Swirl;
+            StartSound(SFXID_Collect_Charm, (AMB **)0x0, pcharm, (VECTOR *) 0x0,
+                       1500.0f, 0.0f,1, 0.0f, 0.0f, (LM *)0x0, (LM *)0x0);
+            HandleLoSpliceEvent(pcharm, 2, 0, 0);
+        }
+        SetDprizeDprizes(pcharm, dprizes);
+    }
+}
+#endif
 
 void InitKey(KEY *pkey)
 {
