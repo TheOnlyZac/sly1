@@ -13,7 +13,6 @@
 #define READ_ONCE(x) (*(const volatile typeof(x)*)(&x))
 #define WRITE_ONCE(x, val) (*(volatile typeof(x)*)(&x) = (val))
 
-int snd_FlushSoundCommands(void);
 u_int snd_SendIOPCommandAndWait(int command, int data_used, char* in_data);
 void snd_SendIOPCommandNoWait(int command, int data_used, char* in_data, SndCompleteProc done, u_long u_data);
 int snd_GotReturns(void);

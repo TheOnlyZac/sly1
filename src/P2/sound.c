@@ -60,9 +60,21 @@ INCLUDE_ASM(const s32, "P2/sound", PreloadMusidSong__F5MUSID);
 INCLUDE_ASM(const s32, "P2/sound", StartMusidSong__F5MUSID);
 
 INCLUDE_ASM(const s32, "P2/sound", PauseMusic__Fv);
+#ifdef SKIP_ASM
+/**
+ * @todo 79.5% matching.
+ */
+void PauseMusic()
+{
+    SetMvgkRvol(MVGK_Music, 0.0f);
+}
+#endif
 
 INCLUDE_ASM(const s32, "P2/sound", ContinueMusic__Fv);
 #ifdef SKIP_ASM
+/**
+ * @todo 89.5% matching.
+ */
 void ContinueMusic()
 {
     SetMvgkRvol(MVGK_Music, 1.0f);
@@ -190,7 +202,19 @@ INCLUDE_ASM(const s32, "P2/sound", MvgkUnknown3);
 
 INCLUDE_ASM(const s32, "P2/sound", MvgkUnknown4);
 
-INCLUDE_ASM(const s32, "P2/sound", KillSoundSystem__Fv);
+/**
+ * @todo Figure out func_001c0cb0, and use appropriate enums for parameters.
+ */
+void KillSoundSystem()
+{
+    snd_StopAllStreams();
+    KillSounds(0);
+    KillExcitement();
+    FUN_001c0cb0();
+    do {} while (snd_FlushSoundCommands());
+    snd_StreamSafeCheckCDIdle(1);
+    snd_StreamSafeCdSync(0);
+}
 
 INCLUDE_ASM(const s32, "P2/sound", KillSounds__Fi);
 
@@ -201,6 +225,7 @@ INCLUDE_ASM(const s32, "P2/sound", PopSwReverb__FP2SW);
 INCLUDE_ASM(const s32, "P2/sound", SetSwDefaultReverb__FP2SW7REVERBKi);
 INCLUDE_ASM(const s32, "P2/sound", func_001C0A50);
 INCLUDE_ASM(const s32, "P2/sound", func_001C0AB8);
+
 INCLUDE_ASM(const s32, "P2/sound", func_001C0B08);
 
 INCLUDE_ASM(const s32, "P2/sound", StartSwIntermittentSounds__FP2SW);
@@ -211,7 +236,7 @@ INCLUDE_ASM(const s32, "P2/sound", FUN_001c0c50);
 
 INCLUDE_ASM(const s32, "P2/sound", FUN_001c0c68);
 
-INCLUDE_ASM(const s32, "P2/sound", FUN_001c0cb0);
+INCLUDE_ASM(const s32, "P2/sound", FUN_001c0cb0__Fv);
 
 INCLUDE_ASM(const s32, "P2/sound", HsNextFootFall__Fv);
 

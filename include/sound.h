@@ -169,6 +169,11 @@ struct AMB
 };
 
 /**
+ * @brief Unknown.
+ */
+void KillExcitement();
+
+/**
  * @brief Starts up the sound system.
  */
 void StartupSound();
@@ -216,5 +221,20 @@ void SetMvgkRvol(MVGK mvgk, float rvol);
  * @brief Unknown.
  */
 void MvgkUnknown2();
+
+/**
+ * @brief Stops everything related to the sound system.
+ */
+void KillSoundSystem();
+
+/**
+ * @brief Unknown.
+ */
+void KillSounds(int param_1);
+
+/**
+ * @brief Unknown.
+ */
+void FUN_001c0cb0();
 
 #endif // SOUND_H

@@ -365,7 +365,7 @@ ShutdownSpliceStructuredTypeFactories__Fv = 0x11cbb0; // type:func
 ////////////////////////////////////////////////////////////////
 // Unmangled names were in the header with extern "C"
 snd_StartSoundSystem = 0x0011cbb8; //type:func size:632
-snd_FlushSoundCommands__Fv = 0x0011ce30; //type:func size:556
+snd_FlushSoundCommands = 0x0011ce30; //type:func size:556
 junk_0x0011d060 = 0x0011d060; //type:func size:24
 snd_GotReturns__Fv = 0x0011d078; //type:func size:152
 snd_PrepareReturnBuffer__FPUii = 0x0011d110; //type:func size:36
@@ -1493,7 +1493,7 @@ StartSwIntermittentSounds__FP2SW = 0x1C0B38; // type:func
 FUN_001c0c08 = 0x1C0C08; // type:func
 FUN_001c0c50 = 0x1C0C50; // type:func
 FUN_001c0c68 = 0x1C0C68; // type:func
-FUN_001c0cb0 = 0x1C0CB0; // type:func
+FUN_001c0cb0__Fv = 0x1C0CB0; // type:func
 HsNextFootFall__Fv = 0x1C0CF0; // type:func
 NextSneakyFootstep__Fv = 0x1C0EC0; // type:func
 
