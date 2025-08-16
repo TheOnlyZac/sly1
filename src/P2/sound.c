@@ -4,6 +4,19 @@
 
 extern uchar D_00604790[]; // temp
 
+/**
+ * @brief Media volume float.
+ */
+struct MVG
+{
+    float vol; // Current volume
+    MVGK mvgk; // Media volume float kind
+    undefined4 unk2;
+    undefined4 unk3;
+};
+
+extern MVG D_00274838[10]; // temp
+
 INCLUDE_ASM(const s32, "P2/sound", UnloadMusic__Fv);
 
 INCLUDE_ASM(const s32, "P2/sound", SbpEnsureBank__Fi);
@@ -140,21 +153,14 @@ void SetMvgkUvol(float uvol)
 INCLUDE_ASM(const s32, "P2/sound", MvgkUnknown1__F4MVGK);
 #ifdef SKIP_ASM
 /**
- * This is a mess but it matches 53.35% so I'll take it for now. -Zac
+ * @todo This is a mess... but it matches 53.35% so I'll take it for now. -Zac
  */
-typedef struct
+void MvgkUnknown1(MVGK mvgk)
 {
-    float vol[4];
-} MVG;
-
-extern MVG D_00274838[10]; // temp
-
-void q(MVGK mvgk)
-{
-    float v = D_00274838[0].vol[mvgk];
+    float v = D_00274838[0].vol;
     for (int i = 1; i < 10; ++i)
     {
-        float x = D_00274838[i].vol[mvgk];
+        float x = D_00274838[i].vol;
         if (x > v) v = x;
     }
 
@@ -168,9 +174,13 @@ void q(MVGK mvgk)
 
 INCLUDE_ASM(const s32, "P2/sound", SetMvgkRvol__F4MVGKf);
 #ifdef SKIP_ASM
+/**
+ * @todo 61.79% matching.
+ */
 void SetMvgkRvol(MVGK mvgk, float rvol)
 {
-    return;
+    D_00274838[mvgk].vol = rvol;
+    MvgkUnknown1(mvgk);
 }
 #endif
 
