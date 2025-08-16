@@ -40,13 +40,14 @@ Our goal is to fully decompile the game engine to matching source code. This rep
 
 Documentation of the code is hosted at [theonlyzac.github.io/sly1](https://theonlyzac.github.io/sly1). For more info on the game's internal systems and mechanics, check out the [SlyMods Wiki][wiki-url].
 
-New contributors are welcome to make a pull request! If you would like to help but aren't sure where to start, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our Discord server][discord-url] if you have any questions.
+New contributors are welcome to make a pull request! If you would like to help but aren't sure where to start, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and [join our Discord server][discord-url] if you have any questions.
 
 [![Quickstart](https://img.shields.io/badge/⚡%20Quickstart-093fbe?style=for-the-badge)](#-quickstart)
 [![Manual Setup](https://img.shields.io/badge/⚙️%20Manual%20Setup-093fbe?style=for-the-badge)](#%EF%B8%8F-manual-setup)
 [![Running the Game](https://img.shields.io/badge/🎮%20Running%20the%20Game-093fbe?style=for-the-badge)](#-running-the-game)
 [![Project Structure](https://img.shields.io/badge/📁%20Project%20Structure-093fbe?style=for-the-badge)](#-project-structure)
 [![FAQ](https://img.shields.io/badge/❓%20FAQ-093fbe?style=for-the-badge)](#-frequently-asked-questions)
+[![Contributors](https://img.shields.io/badge/🩵%20Contributors-093fbe?style=for-the-badge)](#-contributors)
 [![Star History](https://img.shields.io/badge/⭐%20Star%20History-093fbe?style=for-the-badge)](#-star-history)
 [![Discord](https://img.shields.io/badge/Discord-093fbe?style=for-the-badge&logo=discord)](https://discord.gg/2GSXcEzPJA)
 
@@ -87,7 +88,7 @@ If you have any issues, or you prefer to set up the project manually, follow the
 
 The project can be built on Linux (or Windows using WSL). Follow the instructions below to set up the build environment.
 
-### Clone the repository
+### 1. Clone the repository
 
 Clone the repo to your local machine:
 
@@ -96,11 +97,11 @@ git clone https://github.com/TheOnlyZac/sly1
 cd sly1
 ```
 
-### Extract your original ELF file
+### 2. Extract your game's ELF file
 
 To build the project, you will need to extract the original ELF file from your own legally obtained copy of the game. Mount the disc on your PC and copy the file `SCUS_971.98` from your disc to the `disc` directory of this project.
 
-### Setup Python environment
+### 3. Setup Python environment
 
 If you don't have Python 3.9 or higher, install it:
 
@@ -126,7 +127,7 @@ Then install the required Python packages:
 pip3 install -U -r requirements.txt
 ```
 
-### Setup build environment
+### 4. Setup build environment
 
 Setup wine:
 
@@ -162,7 +163,7 @@ choco install 7zip
 .\scripts\setup_progd_windows.bat
 ```-->
 
-### Configure and build the project
+### 5. Configure and build the project
 
 Run the configure script and the build with ninja:
 
@@ -182,9 +183,9 @@ You can alter the behavior by passing any of the following arguments to  `config
 
 ## 🎮 Running the Game
 
-Running the executable requires [PCSX2 2.0](https://pcsx2.net/). You must have your own copy of the original game and the BIOS from your own PS2. They are not included in this repo and we cannot provide them for you.
+Running the compiled executable requires [PCSX2 2.0](https://pcsx2.net/). You must have your own copy of the original game and the BIOS from your own PS2. They are not included in this repo and we cannot provide them for you.
 
-Once you have those and you have built the executable, you can run it using one of three methods:
+Once you have those, and you have built the executable `SCUS_971.98`, you can run it using one of three methods:
 
 ### Method 1: Boot from PCSX2 GUI (Recommended)
 
@@ -200,12 +201,12 @@ You only have make the alias/symlink once, and it will update every time you bui
 To boot the elf in PCSX2 from the command line, use the following command:
 
 ```bash
-pcsx2.exe -elf ".../sly1/out/SCUS_971.98" "/path/to/game/backup.iso"
+pcsx2.exe -elf "C:/.../sly1/out/SCUS_971.98" "C:/.../GameBackup.iso"
 ```
 
 * Replace `pcsx2.exe` with the path to your PCSX2 v2.0 executable (it will be an `.appimage` file on Linux or `.exe` file on Windows).
-* The `-elf` parameter specifies the path to the `SCUS_971.98` you built from this project. Replace `...` with the path to this repository. The emulator will use this ELF to boot the game.
-* The last argument is the path to your game ISO. Replace `/path/to/game/backup.iso` with the path to a backup of your own game disc. This is where the game will load assets from.
+* The `-elf` parameter specifies the path to the `SCUS_971.98` you built from this project. Replace `...` with the path to this project on your computer. The emulator will use this ELF to boot the game.
+* The last argument is the path to your game ISO. Replace `...` with the path to a backup of your own game disc. This is where the emulator will load assets from.
 
 ### Method 3: Autorun script
 
@@ -257,6 +258,16 @@ Splice is the game's scripting engine; it handles things like scripted events, a
 ### How can I help?
 
 If you want to contribute, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our discord server](https://discord.gg/gh5xwfj)!
+
+## 🩵 Contributors
+
+Thank you to everyone who has volunteered their time to make this project possible!
+
+<a href="https://github.com/theonlyzac/sly1/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=theonlyzac/sly1" />
+</a>
+
+<small>Made with [contrib.rocks](https://contrib.rocks).</small>
 
 ## ⭐ Star History
 
