@@ -23,8 +23,8 @@
 enum SFXID
 {
     SFXID_UnkNeg2 = -2, // Found in FUN_001be8f8()
-    SFXID_None = -1,    // Used to call a sound in FUN_001a54f8() for some reason?
-    SFXID_UiTick = 0,   // This value for UiTick is probably wrong, but it's needed for UpdateCodes in joy.c. Also Found in FUN_001ed318
+    SFXID_Nil = -1,     // Used to call a sound in FUN_001a54f8() for some reason?
+    SFXID_UiTick = 0,   // Probably wrong value, but needed for UpdateCodes in joy.c. Also Found in FUN_001ed318
     SFXID_Unk1 = 1,     // Found in RebuildTimerAchzDraw()
     SFXID_Click1 = 2,
     SFXID_Swoosh = 3,
@@ -118,6 +118,20 @@ enum SFXID
     SFXID_Unk734 = 734,   // Found in init_burning_rubber()
 };
 
+enum MVGK
+{
+    // MVGK_Effects = 0x0,
+    MVGK_Music = 0x1,
+    // MVGK_Dialog = 0x2,
+    // MVGK_User1 = 0x3,
+    // MVGK_User2 = 0x4,
+    // MVGK_UIser3 = 0x5,
+    // MVGK_User4 = 0x6,
+    // MVGK_External = 0x7,
+    // MVGK_Global = 0x8,
+    MVGK_Max = 0x9
+};
+
 /**
  * @brief Ambient sound.
  */
@@ -155,6 +169,21 @@ struct AMB
 };
 
 /**
+ * @brief Unknown.
+ */
+void KillExcitement();
+
+/**
+ * @brief Starts up the sound system.
+ */
+void StartupSound();
+
+/**
+ * @brief Ensures the soundbank is available.
+ */
+void SbpEnsureBank(int bank);
+
+/**
  * @brief Starts sound playback.
  *
  * @param sfxid The sound effect ID
@@ -170,5 +199,42 @@ struct AMB
  * @param plmRepDis Pointer to the repeat distance limit
  */
 void StartSound(SFXID sfxid, AMB **ppamb, ALO *palo, VECTOR *ppos, float sStart, float sFull, float uVolAtSource, float frq, float uDoppler, LM *plmRepeat, LM *plmRepDis);
+
+/**
+ * @brief Set the uvol of an mvgk.
+ *
+ * @note May version takes an mvgk as an argument, but this seems not to.
+ */
+void SetMvgkUvol(float uvol);
+
+/**
+ * @brief Unknown.
+ */
+void MvgkUnknown1(MVGK mvgk);
+
+/**
+ * @brief Sets the rvol of an mvgk.
+ */
+void SetMvgkRvol(MVGK mvgk, float rvol);
+
+/**
+ * @brief Unknown.
+ */
+void MvgkUnknown2();
+
+/**
+ * @brief Stops everything related to the sound system.
+ */
+void KillSoundSystem();
+
+/**
+ * @brief Unknown.
+ */
+void KillSounds(int param_1);
+
+/**
+ * @brief Unknown.
+ */
+void FUN_001c0cb0();
 
 #endif // SOUND_H

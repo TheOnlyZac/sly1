@@ -5,9 +5,7 @@
 #include <sw.h>
 #include <joy.h>
 #include <brx.h>
-
-
-extern void SetMvgkRvol(float); // todo: replace with header file/declaration
+#include <sound.h>
 
 CTransition::CTransition()
 {
@@ -53,7 +51,7 @@ void CTransition::Execute()
         if (fileLocation.m_fcl.cb == 0)
         {
             //FUN_001C06D8();
-            //SetMvgkRvol();
+            // SetMvgkRvol();
             ClearPhase();
             levelInfo.fileLocation.m_fcl.isector = 0;
             return;
@@ -73,28 +71,24 @@ void CTransition::Execute()
 
 void ResetWorld(FTRANS ftrans)
 {
-    GRFTRANS grftrans;
+    SetMvgkUvol(0.0f);
 
-    SetMvgkRvol(0.0f);
+    GRFTRANS grftrans;
     switch (ftrans)
     {
-        case FTRANS_None:
-            /* Reload with no transition */
-            grftrans = FTRANS_None;
-            break;
-
-        case FTRANS_Checkpoint:
-            ReturnChkmgrToCheckpoint(&g_chkmgr);
-            return;
-
-        case FTRANS_RetryWorld:
-            grftrans = FTRANS_RetryWorld;
-            break;
-
-        case (FTRANS_Checkpoint | FTRANS_RetryWorld):
-            /* Transition with the Sly Cooper logo wipe */
-            grftrans = 4;
-            break;
+    case FTRANS_None:
+        grftrans = FTRANS_None;
+        break;
+    case FTRANS_Checkpoint:
+        ReturnChkmgrToCheckpoint(&g_chkmgr);
+        return;
+    case FTRANS_RetryWorld:
+        grftrans = FTRANS_RetryWorld;
+        break;
+    case (FTRANS_Checkpoint | FTRANS_RetryWorld):
+        // Transitions with the Sly Cooper logo wipe
+        grftrans = 4;
+        break;
     }
 
     g_transition.Set(g_transition.m_achzWorldCur, OID_Nil, OID_Nil, grftrans);

@@ -365,7 +365,7 @@ ShutdownSpliceStructuredTypeFactories__Fv = 0x11cbb0; // type:func
 ////////////////////////////////////////////////////////////////
 // Unmangled names were in the header with extern "C"
 snd_StartSoundSystem = 0x0011cbb8; //type:func size:632
-snd_FlushSoundCommands__Fv = 0x0011ce30; //type:func size:556
+snd_FlushSoundCommands = 0x0011ce30; //type:func size:556
 junk_0x0011d060 = 0x0011d060; //type:func size:24
 snd_GotReturns__Fv = 0x0011d078; //type:func size:152
 snd_PrepareReturnBuffer__FPUii = 0x0011d110; //type:func size:36
@@ -1421,7 +1421,83 @@ FUN_001B7B78__FP2PO = 0x1b7b78; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/sound.c
 ////////////////////////////////////////////////////////////////
-SetMvgkRvol__Ff = 0x1c05d0; // type:func
+UnloadMusic__Fv = 0x1BE1E8; // type:func
+SbpEnsureBank__Fi = 0x1BE268; // type:func
+SbpEnsureBank__F5SFXID = 0x1BE4A8; // type:func
+NewSfx__FPP3SFX = 0x1BE4D8; // type:func
+FContinuousSound__F5SFXID = 0x1BE568; // type:func
+SetVagUnpaused__FUiUl = 0x1BE5E8; // type:func
+PreloadVag__FPc2FK = 0x1BE5F8; // type:func
+
+FUN_001be708 = 0x1BE708; // type:func
+PreloadVag1 = 0x1BE728; // type:func
+
+FPauseForVag__Fv = 0x1BE810; // type:func
+RefreshPambVolPan__FP3AMB = 0x1BE860; // type:func
+
+FUN_001be8f8 = 0x1BE8F8; // type:func
+
+FVagPlaying__Fv = 0x1BE980; // type:func
+StopVag__Fv = 0x1BE998; // type:func
+PauseVag__Fv = 0x1BEA28; // type:func
+ContinueVag__Fv = 0x1BEA50; // type:func
+KillMusic__Fv = 0x1BEA78; // type:func
+PreloadMusidSongComplete__FUiUl = 0x1BEAC8; // type:func
+PreloadMusidSong__F5MUSID = 0x1BEB10; // type:func
+StartMusidSong__F5MUSID = 0x1BEC58; // type:func
+PauseMusic__Fv = 0x1BECF8; // type:func
+ContinueMusic__Fv = 0x1BED20; // type:func
+
+SfxhMusicUnknown1 = 0x1BED48; // type:func
+SfxhMusicUnknown2 = 0x1BED70; // type:func
+
+PexcAlloc__Fv = 0x1BED98; // type:func
+RemoveExc__FP3EXC = 0x1BEDF8; // type:func
+KillExcitement__Fv = 0x1BEE48; // type:func
+PexcSetExcitement__Fi = 0x1BEEF8; // type:func
+SetIexcCurHigh__FP3EXC = 0x1BEF88; // type:func
+UnsetExcitement__FP3EXC = 0x1BF048; // type:func
+UnsetExcitementHyst__FP3EXC = 0x1BF0D8; // type:func
+StartupSound__Fv = 0x1BF130; // type:func
+FAmbientsPaused__Fv = 0x1BF1F0; // type:func
+CalculateVolPan__FfP6VECTORPfT2fff = 0x1BF200; // type:func
+PposEar__Fv = 0x1BF3D0; // type:func
+SetDoppler__FP3AMB = 0x1BF428; // type:func
+PfneardistGet__Fv = 0x1BF578; // type:func
+SDistEar__FP6VECTOR = 0x1BF5E0; // type:func
+CalculateDistVolPan__FP6VECTORPfT1fff = 0x1BF620; // type:func
+PambAlloc__Fv = 0x1BF6B8; // type:func
+DropPamb__FPP3AMB = 0x1BF718; // type:func
+RemoveAmb__FP3AMB = 0x1BF728; // type:func
+StopSound__FP3AMBi = 0x1BF788; // type:func
+SetPambFrq__FP3AMBf = 0x1BF7F8; // type:func
+SetPambVol__FP3AMBf = 0x1BF8E8; // type:func
+FillPamb__FP3AMBPP3AMBiP3ALOP6VECTORfffffP2LMT10_ = 0x1BF920; // type:func
+ActivatePamb__FP3AMB5SFXID = 0x1BFAF8; // type:func
+ScheduleNextIntermittentSound__FP3AMB = 0x1BFBF8; // type:func
+StartSound__F5SFXIDPP3AMBP3ALOP6VECTORfffffP2LMT9 = 0x1BFCD8; // type:func
+HandleWipeHandleWipeVolumes__FifVolumes = 0x1C0000; // type:func
+UpdateSounds__Fv = 0x1C0070; // type:func
+SetMvgkUvol__Ff = 0x1c05d0; // type:func
+MvgkUnknown1__F4MVGK = 0x1C0600; // type:func
+SetMvgkRvol__F4MVGKf = 0x1C06A0; // type:func
+MvgkUnknown2__Fv = 0x1C06D8; // type:func
+MvgkUnknown3 = 0x1C0760; // type:func
+MvgkUnknown4 = 0x1C0790; // type:func
+KillSoundSystem__Fv = 0x1C07B0; // type:func
+KillSounds__Fi = 0x1C0808; // type:func
+PushSwReverb__FP2SW7REVERBKi = 0x1C08B0; // type:func
+PopSwReverb__FP2SW = 0x1C0950; // type:func
+SetSwDefaultReverb__FP2SW7REVERBKi = 0x1C09D8; // type:func
+StartSwIntermittentSounds__FP2SW = 0x1C0B38; // type:func
+FUN_001c0c08 = 0x1C0C08; // type:func
+FUN_001c0c50 = 0x1C0C50; // type:func
+FUN_001c0c68 = 0x1C0C68; // type:func
+FUN_001c0cb0__Fv = 0x1C0CB0; // type:func
+HsNextFootFall__Fv = 0x1C0CF0; // type:func
+NextSneakyFootstep__Fv = 0x1C0EC0; // type:func
+
+D_00604790 = 0x00604790; // size:0x1c
 
 
 ////////////////////////////////////////////////////////////////

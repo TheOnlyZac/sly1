@@ -16,6 +16,7 @@ typedef void (*SndCompleteProc)(int, u_long);
 typedef void* SoundBankPtr;
 
 void snd_StartSoundSystem(void);
+int snd_FlushSoundCommands(void);
 SoundBankPtr snd_BankLoadByLoc(int loc, int offset);
 void snd_BankLoadByLoc_CB(int loc, int offset, SndCompleteProc cb, u_long user_data);
 void snd_ResolveBankXREFS(void);
