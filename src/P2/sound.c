@@ -49,6 +49,12 @@ INCLUDE_ASM(const s32, "P2/sound", StartMusidSong__F5MUSID);
 INCLUDE_ASM(const s32, "P2/sound", PauseMusic__Fv);
 
 INCLUDE_ASM(const s32, "P2/sound", ContinueMusic__Fv);
+#ifdef SKIP_ASM
+void ContinueMusic()
+{
+    SetMvgkRvol(MVGK_Music, 1.0f);
+}
+#endif
 
 INCLUDE_ASM(const s32, "P2/sound", SfxhMusicUnknown1);
 
@@ -131,9 +137,42 @@ void SetMvgkUvol(float uvol)
     snd_SetMasterVolume(8, (int)(uvol * 1024.0f));
 }
 
-INCLUDE_ASM(const s32, "P2/sound", MvgkUnknown1);
+INCLUDE_ASM(const s32, "P2/sound", MvgkUnknown1__F4MVGK);
+#ifdef SKIP_ASM
+/**
+ * This is a mess but it matches 53.35% so I'll take it for now. -Zac
+ */
+typedef struct
+{
+    float vol[4];
+} MVG;
+
+extern MVG D_00274838[10]; // temp
+
+void q(MVGK mvgk)
+{
+    float v = D_00274838[0].vol[mvgk];
+    for (int i = 1; i < 10; ++i)
+    {
+        float x = D_00274838[i].vol[mvgk];
+        if (x > v) v = x;
+    }
+
+    if (v > 1.0f) v = 1.0f;
+    if (v < 0.0f) v = 0.0f;
+
+    int ivol = (int)(v * 1024.0f);
+    snd_SetMasterVolume(mvgk, ivol);
+}
+#endif
 
 INCLUDE_ASM(const s32, "P2/sound", SetMvgkRvol__F4MVGKf);
+#ifdef SKIP_ASM
+void SetMvgkRvol(MVGK mvgk, float rvol)
+{
+    return;
+}
+#endif
 
 INCLUDE_ASM(const s32, "P2/sound", MvgkUnknown2__Fv);
 

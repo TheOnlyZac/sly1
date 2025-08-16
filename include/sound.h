@@ -120,15 +120,15 @@ enum SFXID
 
 enum MVGK
 {
-    MVGK_Effects = 0x0,
+    // MVGK_Effects = 0x0,
     MVGK_Music = 0x1,
-    MVGK_Dialog = 0x2,
-    MVGK_User1 = 0x3,
-    MVGK_User2 = 0x4,
-    MVGK_UIser3 = 0x5,
-    MVGK_User4 = 0x6,
-    MVGK_External = 0x7,
-    MVGK_Global = 0x8,
+    // MVGK_Dialog = 0x2,
+    // MVGK_User1 = 0x3,
+    // MVGK_User2 = 0x4,
+    // MVGK_UIser3 = 0x5,
+    // MVGK_User4 = 0x6,
+    // MVGK_External = 0x7,
+    // MVGK_Global = 0x8,
     MVGK_Max = 0x9
 };
 
@@ -196,16 +196,21 @@ void SbpEnsureBank(int bank);
 void StartSound(SFXID sfxid, AMB **ppamb, ALO *palo, VECTOR *ppos, float sStart, float sFull, float uVolAtSource, float frq, float uDoppler, LM *plmRepeat, LM *plmRepDis);
 
 /**
- * @brief Sets the rvol of an mvgk.
- */
-void SetMvgkRvol(MVGK mvgk, float rvol);
-
-/**
  * @brief Set the uvol of an mvgk.
  *
  * @note May version takes an mvgk as an argument, but this seems not to.
  */
 void SetMvgkUvol(float uvol);
+
+/**
+ * @brief Unknown.
+ */
+void MvgkUnknown1(MVGK mvgk);
+
+/**
+ * @brief Sets the rvol of an mvgk.
+ */
+void SetMvgkRvol(MVGK mvgk, float rvol);
 
 /**
  * @brief Unknown.
