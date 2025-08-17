@@ -41,9 +41,18 @@ void *PvAllocSwClearImpl(uint cb)
 
 INCLUDE_ASM(const s32, "P2/memory", func_0018D608);
 
-INCLUDE_ASM(const s32, "P2/memory", func_0018D658);
+INCLUDE_ASM(const s32, "P2/memory", func_0018D658__FUi);
 
-INCLUDE_ASM(const s32, "P2/memory", func_0018D6A8);
+void *func_0018D6A8(uint cb)
+{
+    void *pvBlock = func_0018D658(cb);
+    if(pvBlock)
+    {
+        memset(pvBlock, 0, cb);
+    }
+	
+    return pvBlock;
+}
 
 INCLUDE_ASM(const s32, "P2/memory", func_0018D6F0);
 

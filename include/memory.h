@@ -22,6 +22,13 @@ void *PvAllocSwImpl(uint cb);
 void *PvAllocSwCopyImpl(uint cb, void *pvSrc);
 
 /**
+ * @brief Allocate a block of memory (?)
+ *
+ * @todo Rename function. This might be malloc?
+ */
+void *func_0018D658(uint cb);
+
+/**
  * @brief Allocate a block of memory and clear it.
  *
  * @param cb Size of the block in bytes.
