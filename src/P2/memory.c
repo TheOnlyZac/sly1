@@ -43,6 +43,9 @@ INCLUDE_ASM(const s32, "P2/memory", func_0018D608);
 
 INCLUDE_ASM(const s32, "P2/memory", func_0018D658__FUi);
 
+/**
+ * @todo Rename function.
+ */
 void *func_0018D6A8(uint cb)
 {
     void *pvBlock = func_0018D658(cb);
