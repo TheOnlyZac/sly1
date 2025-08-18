@@ -115,7 +115,7 @@ void CopyAqw(void *pvDst, void *pvSrc, int cqw);
  * @brief Copies an array of bytes (one byte at a time).
  *
  * @param pvDst Destination pointer.
- * @param pvSrc Sourcew pointer.
+ * @param pvSrc Source pointer.
  * @param cb Number of bytes to copy.
  */
 void CopyAb(void *pvDst, void *pvSrc, uint cb);
