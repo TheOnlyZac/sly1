@@ -80,11 +80,12 @@ segments:
     - [0x1dbb8, c, P2/989snd] #MARK: P2
     - [0x1f560, c, P2/brx]
     - [0x1fe70, asm, P2/ac]
-    #- [0x, asm, P2/act]
+    - [0x22228, asm, P2/act]
     - [0x23f28, c, P2/actseg]
     - [0x243c0, asm, P2/alarm]
     - [0x24dc0, asm, P2/alo]
-    #- [0x, asm, P2/aseg]
+    # Note: Integrity check for ITM firewall is 0x2c760, maybe it's own TU?
+    - [0x2c870, asm, P2/aseg]
     #- [0x, asm, P2/asega]
     #- [0x, asm, P2/barrier]
     - [0x30cf0, asm, P2/bas]
