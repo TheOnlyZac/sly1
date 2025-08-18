@@ -7,13 +7,12 @@
 #include <text.h>
 #include <screen.h>
 #include <sound.h>
+#include <memory.h>
 
 // static char g_chzThePasswordIs[] = "The password is: %s";
 // static char g_chzCiphertext[] = "@KFWHJGL"; // decrypts to "chetkido"
 extern char g_chzThePasswordIs[];
 extern char g_chzCiphertext[];
-
-extern void *PvAllocGlobalImpl(int); // todo: remove when function is known
 
 void StartupJoy()
 {

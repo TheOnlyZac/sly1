@@ -2,88 +2,87 @@
 #include <sce/memset.h>
 
 INCLUDE_ASM(const s32, "P2/memory", PvAllocGlobalImpl__Fi);
+INCLUDE_ASM(const s32, "P2/memory", LAB_0018D4F0);
 
-INCLUDE_ASM(const s32, "P2/memory", func_0018D4F0);
-
+#ifdef PROTO
 /**
- * @todo Rename function.
+ * @todo Implement debugging function (low-priority).
  */
-void func_0018D4F8()
+void HardLockError()
 {
+}
+#endif
+
+void CheckForOutOfMemory() {
     return;
 }
 
-INCLUDE_ASM(const s32, "P2/memory", PvAllocSwImpl__FUi);
+INCLUDE_ASM(const s32, "P2/memory", PvAllocSwImpl__Fi);
 
-INCLUDE_ASM(const s32, "P2/memory", func_0018D550);
+INCLUDE_ASM(const s32, "P2/memory", FreeSw__Fv);
 
-void *PvAllocSwCopyImpl(uint cb, void *pvSrc)
+void *PvAllocSwCopyImpl(int cb, void *pvBase)
 {
     void *pvDst = PvAllocSwImpl(cb);
     if (pvDst)
     {
-        CopyAb(pvDst, pvSrc, cb);
+        CopyAb(pvDst, pvBase, cb);
     }
-    
+
     return pvDst;
 }
 
-void *PvAllocSwClearImpl(uint cb)
+void *PvAllocSwClearImpl(int cb)
 {
     void *pvBlock = PvAllocSwImpl(cb);
     if(pvBlock)
     {
         memset(pvBlock, 0, cb);
     }
-    
+
     return pvBlock;
 }
 
-INCLUDE_ASM(const s32, "P2/memory", func_0018D608);
+INCLUDE_ASM(const s32, "P2/memory", InitStackImpl__Fv);
 
-INCLUDE_ASM(const s32, "P2/memory", func_0018D658__FUi);
+INCLUDE_ASM(const s32, "P2/memory", PvAllocStackImpl__Fi);
 
-/**
- * @todo Rename function.
- */
-void *func_0018D6A8(uint cb)
+void *PvAllocStackClearImpl(int cb)
 {
-    void *pvBlock = func_0018D658(cb);
+    void *pvBlock = PvAllocStackImpl(cb);
     if(pvBlock)
     {
         memset(pvBlock, 0, cb);
     }
-	
+
     return pvBlock;
 }
 
-INCLUDE_ASM(const s32, "P2/memory", func_0018D6F0);
+INCLUDE_ASM(const s32, "P2/memory", FreeStackImpl__Fv);
 
-INCLUDE_ASM(const s32, "P2/memory", func_0018D740);
-
-INCLUDE_ASM(const s32, "P2/memory", func_0018D748);
-
-/**
- * @todo Rename function.
- */
-void func_0018D750()
+void *malloc(uint __size)
 {
+    return (void *)0x0;
+}
+
+void *_malloc_r(_reent *pre, uint __size)
+{
+    return (void *)0x0;
+}
+
+void free(void *pv) {
     return;
 }
 
-/**
- * @todo Rename function.
- */
-void *func_0018D758(uint cb)
+void *__builtin_new(unsigned int cb)
 {
     return PvAllocSwClearImpl(cb);
 }
 
-void __builtin_delete()
-{
+void __builtin_delete() {
     return;
 }
 
-INCLUDE_ASM(const s32, "P2/memory", func_0018D780);
+INCLUDE_ASM(const s32, "P2/memory", CopyAqw__FPvT0i);
 
 INCLUDE_ASM(const s32, "P2/memory", CopyAb__FPvT0Ui);

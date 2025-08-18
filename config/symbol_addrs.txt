@@ -1224,22 +1224,22 @@ g_apchzArgs = 0x264838; // size:0x4
 // P2/memory.c
 ////////////////////////////////////////////////////////////////
 PvAllocGlobalImpl__Fi = 0x18D4B0; // type:func
-func_0018D4F0 = 0x18D4F0; // type:func
-func_0018D4F8__Fv = 0x18D4F8; // type:func
-PvAllocSwImpl__FUi = 0x18D500; // type:func
-func_0018D550 = 0x18D550; // type:func
-PvAllocSwCopyImpl__FUiPv = 0x18D568; // type:func
-PvAllocSwClearImpl__FUi = 0x18D5C0; // type:func
-func_0018D608 = 0x18D608; // type:func
-func_0018D658__FUi = 0x18D658; // type:func
-func_0018D6A8__FUi = 0x18D6A8; // type:func
-func_0018D6F0 = 0x18D6F0; // type:func
-func_0018D740 = 0x18D740; // type:func
-func_0018D748 = 0x18D748; // type:func
-func_0018D750__Fv = 0x18D750; // type:func
-func_0018D758__FUi = 0x18D758; // type:func
+LAB_0018D4F0 = 0x18D4F0; // type:label
+CheckForOutOfMemory__Fv = 0x18D4F8; // type:func
+PvAllocSwImpl__Fi = 0x18D500; // type:func
+FreeSw__Fv = 0x18D550; // type:func
+PvAllocSwCopyImpl__FiPv = 0x18D568; // type:func
+PvAllocSwClearImpl__Fi = 0x18D5C0; // type:func
+InitStackImpl__Fv = 0x18D608; // type:func
+PvAllocStackImpl__Fi = 0x18D658; // type:func
+PvAllocStackClearImpl__Fi = 0x18D6A8; // type:func
+FreeStackImpl__Fv = 0x18D6F0; // type:func
+malloc = 0x18D740; // type:func
+_malloc_r = 0x18D748; // type:func
+free = 0x18D750; // type:func
+__builtin_new = 0x18D758; // type:func
 __builtin_delete = 0x18D778; // type:func
-func_0018D780 = 0x18D780; // type:func
+CopyAqw__FPvT0i = 0x18D780; // type:func
 CopyAb__FPvT0Ui = 0x18D800; // type:func
 
 

@@ -6,40 +6,116 @@
 
 #include "common.h"
 
+typedef struct _reent;
+
 /**
- * @brief Allocate a block of memory.
+ * @todo
+ */
+void *PvAllocGlobalImpl(int cb);
+
+#ifdef PROTO
+/**
+ * @brief Shows an error message on the screen.
+ * @note Called if we have run out of memory on the stack.
+ *
+ * @param rgba Background color for the text box.
+ */
+void HardLockError(RGBA *rgba);
+#endif
+
+/**
+ * @brief Stubbed, does nothing.
+ *
+ * @note Would have checked to see if we are out of stack memory.
+ *
+ * @deprecated
+ */
+void CheckForOutOfMemory();
+
+/**
+ * @brief Allocates memory for an SW.
+ *
+ * @param cb Size in bytes.
+ *
+ * @return Pointer to the allocated memory.
+ */
+void *PvAllocSwImpl(int cb);
+
+/**
+ * @brief Clears the SW stack.
+ */
+void FreeSw();
+
+/**
+ * @brief Allocates memory for an SW and copies data to it.
  *
  * @param cb Size of the block in bytes.
+ * @param pvBase Data to copy.
+ *
+ * @return Pointer to the allocated memory.
  */
-void *PvAllocSwImpl(uint cb);
+void *PvAllocSwCopyImpl(int cb, void *pvBase);
 
 /**
- * @brief Allocate a block of memory and copy data to it from the given pointer.
+ * @brief Allocates memory for an SW and clears it.
  *
- * @param cb Size of the block in bytes.
- * @param pvSrc Data to copy.
+ * @param cb Size in bytes.
+ *
+ * @return Pointer to the allocated memory.
  */
-void *PvAllocSwCopyImpl(uint cb, void *pvSrc);
+void *PvAllocSwClearImpl(int cb);
 
 /**
- * @brief Allocate a block of memory (?)
- *
- * @todo Rename function. This might be malloc?
+ * @brief Initializes a new allocation frame on the stack.
  */
-void *func_0018D658(uint cb);
+void InitStackImpl();
 
 /**
- * @brief Allocate a block of memory and clear it.
+ * @brief Allocates memory on the stack.
  *
- * @param cb Size of the block in bytes.
+ * @param cb Size in bytes.
+ *
+ * @note Rounds up `cb` to next multiple of 16.
  */
-void *PvAllocSwClearImpl(uint cb);
+void *PvAllocStackImpl(int cb);
 
 /**
- * @brief Copies a block of memory from one location to another.
+ * @brief Allocates memory on the stack and clears it.
  *
- * @param pvDst Pointer to the destination memory location.
- * @param pvSrc Pointer to the source memory location.
+ * @param cb Size in bytes.
+ *
+ * @note Rounds up `cb` to next multiple of 16.
+ */
+void *PvAllocStackClearImpl(int cb);
+
+/**
+ * @brief Unravels the current stack allocation frame.
+ */
+int FreeStackImpl(void);
+
+extern "C"
+{
+    void *malloc(uint __size);
+    void *_malloc_r(_reent *pre, uint __size);
+    void free(void *pv);
+}
+
+/**
+ * @brief Copies an array of quadwords (16-byte blocks).
+ *
+ * @param pvDst Destination pointer.
+ * @param pvSrc Source pointer.
+ * @param cqw Number of quadwords to copy (16 bytes each).
+ *
+ * @note Total bytes copied will be `cqw * 16`.
+ */
+void CopyAqw(void *pvDst, void *pvSrc, int cqw);
+
+/**
+ * @brief Copies an array of bytes (one byte at a time).
+ *
+ * @param pvDst Destination pointer.
+ * @param pvSrc Sourcew pointer.
  * @param cb Number of bytes to copy.
  */
 void CopyAb(void *pvDst, void *pvSrc, uint cb);
