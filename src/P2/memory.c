@@ -26,12 +26,6 @@ void CheckForOutOfMemory()
     return;
 }
 
-/**
- * @todo 99.50% matching. Only a register mismatch.
- * https://decomp.me/scratch/It1kw
- */
-INCLUDE_ASM(const s32, "P2/memory", PvAllocSwImpl__Fi);
-#ifdef SKIP_ASM
 void *PvAllocSwImpl(int cb)
 {
     if(cb == 0)
@@ -40,10 +34,10 @@ void *PvAllocSwImpl(int cb)
     }
     
     CheckForOutOfMemory();
+    void *pvSw = (void *)g_swAllocPtr;
     g_swAllocPtr += (cb + 0x0f) & -0x10;
-    return (void *)g_swAllocPtr;
+    return pvSw;
 }
-#endif
 
 void FreeSw()
 {
