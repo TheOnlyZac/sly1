@@ -132,6 +132,40 @@ void __builtin_delete()
     return;
 }
 
+/**
+ * @todo 99.35% matching. Incorrect registers.
+ * https://decomp.me/scratch/6YrJZ
+ */
 INCLUDE_ASM(const s32, "P2/memory", CopyAqw__FPvT0i);
+#ifdef SKIP_ASM
+void CopyAqw(void *pvDst, void *pvSrc, int cqw)
+{
+    int remainder = cqw & 0x03;
+    int bulkCount = cqw - remainder;
+    
+    u128 *dst = (u128 *)pvDst;
+    u128 *src = (u128 *)pvSrc;
+    
+    for(int i = 0; i < remainder; i++)
+    {
+        *dst++ = *src++;
+    }
+    
+    for(int i = 0; i < bulkCount; i += 4)
+    {
+        u128 qw0 = src[0];
+        u128 qw1 = src[1];
+        u128 qw2 = src[2];
+        u128 qw3 = src[3];
+        src += 4;
+        
+        dst[0] = qw0;
+        dst[1] = qw1;
+        dst[2] = qw2;
+        dst[3] = qw3;
+        dst += 4;
+    }
+}
+#endif
 
 INCLUDE_ASM(const s32, "P2/memory", CopyAb__FPvT0Ui);
