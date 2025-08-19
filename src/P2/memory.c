@@ -2,12 +2,12 @@
 #include <thread.h>
 #include <sce/memset.h>
 
-extern int g_swAllocBase;
-extern int g_swAllocPtr;
-extern int g_stackAllocPtr;
-extern CRITSECT g_stackAllocCritSect;
-extern int g_stackAllocDepth;
-extern int g_stackAllocStack[];
+extern int s_pvWorldMin;
+extern int s_pvWorldMac;
+extern int s_pvStackMin;
+extern CRITSECT s_critsectStack;
+extern int s_ipvStackCur;
+extern int s_apvStackMin[];
 
 INCLUDE_ASM(const s32, "P2/memory", PvAllocGlobalImpl__Fi);
 INCLUDE_ASM(const s32, "P2/memory", LAB_0018D4F0);
@@ -34,14 +34,14 @@ void *PvAllocSwImpl(int cb)
     }
     
     CheckForOutOfMemory();
-    void *pvSw = (void *)g_swAllocPtr;
-    g_swAllocPtr += (cb + 0x0f) & -0x10;
+    void *pvSw = (void *)s_pvWorldMac;
+    s_pvWorldMac += (cb + 0x0f) & -0x10;
     return pvSw;
 }
 
 void FreeSw()
 {
-    g_swAllocPtr = g_swAllocBase;
+    s_pvWorldMac = s_pvWorldMin;
 }
 
 void *PvAllocSwCopyImpl(int cb, void *pvBase)
@@ -68,8 +68,8 @@ void *PvAllocSwClearImpl(int cb)
 
 void InitStackImpl()
 {
-    EnterCritSect(&g_stackAllocCritSect);
-    g_stackAllocStack[++g_stackAllocDepth] = g_stackAllocPtr;
+    EnterCritSect(&s_critsectStack);
+    s_apvStackMin[++s_ipvStackCur] = s_pvStackMin;
 }
 
 void *PvAllocStackImpl(int cb)
@@ -80,8 +80,8 @@ void *PvAllocStackImpl(int cb)
     }
     
     CheckForOutOfMemory();
-    g_stackAllocPtr -= (cb + 0x0f) & -0x10;
-    return (void *)g_stackAllocPtr;
+    s_pvStackMin -= (cb + 0x0f) & -0x10;
+    return (void *)s_pvStackMin;
 }
 
 void *PvAllocStackClearImpl(int cb)
@@ -97,8 +97,8 @@ void *PvAllocStackClearImpl(int cb)
 
 void FreeStackImpl()
 {
-    g_stackAllocPtr = g_stackAllocStack[g_stackAllocDepth--];
-    LeaveCritSect(&g_stackAllocCritSect);
+    s_pvStackMin = s_apvStackMin[s_ipvStackCur--];
+    LeaveCritSect(&s_critsectStack);
 }
 
 void *malloc(uint __size)
