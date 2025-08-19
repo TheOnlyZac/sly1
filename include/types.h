@@ -48,6 +48,7 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
 typedef unsigned long long u64;
+typedef unsigned long long u128 __attribute((mode(TI)));
 
 typedef signed char s8;
 typedef signed short s16;

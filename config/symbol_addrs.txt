@@ -1242,6 +1242,13 @@ __builtin_delete = 0x18D778; // type:func
 CopyAqw__FPvT0i = 0x18D780; // type:func
 CopyAb__FPvT0Ui = 0x18D800; // type:func
 
+s_pvWorldMin = 0x2C2A18; // size:0x4
+s_pvWorldMax = 0x2C2A1C; // size:0x4
+s_pvStackMin = 0x2C2A20; // size:0x4
+s_critsectStack = 0x2C2A28; // size:0xc
+s_ipvStackCur = 0x2C2A34; // size:0x4
+s_apvStackMin = 0x2C2A38; // size:0x4
+
 
 ////////////////////////////////////////////////////////////////
 // P2/mpeg.c

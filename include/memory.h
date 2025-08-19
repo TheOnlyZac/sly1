@@ -91,7 +91,7 @@ void *PvAllocStackClearImpl(int cb);
 /**
  * @brief Unravels the current stack allocation frame.
  */
-int FreeStackImpl(void);
+void FreeStackImpl();
 
 extern "C"
 {
