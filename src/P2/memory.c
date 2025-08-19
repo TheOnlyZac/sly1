@@ -2,8 +2,11 @@
 #include <thread.h>
 #include <sce/memset.h>
 
+/**
+ * @todo Change these to static when possible.
+ */
 extern int s_pvWorldMin;
-extern int s_pvWorldMac;
+extern int s_pvWorldMax;
 extern int s_pvStackMin;
 extern CRITSECT s_critsectStack;
 extern int s_ipvStackCur;
@@ -32,16 +35,16 @@ void *PvAllocSwImpl(int cb)
     {
         return nullptr;
     }
-    
+
     CheckForOutOfMemory();
-    void *pvSw = (void *)s_pvWorldMac;
-    s_pvWorldMac += (cb + 0x0f) & -0x10;
+    void *pvSw = (void *)s_pvWorldMax;
+    s_pvWorldMax += (cb + 0x0f) & -0x10;
     return pvSw;
 }
 
 void FreeSw()
 {
-    s_pvWorldMac = s_pvWorldMin;
+    s_pvWorldMax = s_pvWorldMin;
 }
 
 void *PvAllocSwCopyImpl(int cb, void *pvBase)
@@ -78,7 +81,7 @@ void *PvAllocStackImpl(int cb)
     {
         return nullptr;
     }
-    
+
     CheckForOutOfMemory();
     s_pvStackMin -= (cb + 0x0f) & -0x10;
     return (void *)s_pvStackMin;
@@ -136,15 +139,15 @@ void CopyAqw(void *pvDst, void *pvSrc, int cqw)
 {
     int remainder = cqw & 0x03;
     int bulkCount = cqw - remainder;
-    
+
     u128 *dst = (u128 *)pvDst;
     u128 *src = (u128 *)pvSrc;
-    
+
     for(int i = 0; i < remainder; i++)
     {
         *dst++ = *src++;
     }
-    
+
     for(int i = 0; i < bulkCount; i += 4)
     {
         u128 qw0 = src[0];
@@ -152,7 +155,7 @@ void CopyAqw(void *pvDst, void *pvSrc, int cqw)
         u128 qw2 = src[2];
         u128 qw3 = src[3];
         src += 4;
-        
+
         dst[0] = qw0;
         dst[1] = qw1;
         dst[2] = qw2;
