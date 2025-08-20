@@ -9,7 +9,11 @@
 typedef struct _reent;
 
 /**
- * @todo
+ * @brief Allocates memory from the global heap.
+ *
+ * @param cb Size in bytes.
+ *
+ * @return Pointer to the allocated memory.
  */
 void *PvAllocGlobalImpl(int cb);
 
