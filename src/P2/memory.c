@@ -5,6 +5,7 @@
 /**
  * @todo Change these to static when possible.
  */
+extern int s_pvGlobalMax;
 extern int s_pvWorldMin;
 extern int s_pvWorldMax;
 extern int s_pvStackMin;
@@ -12,7 +13,19 @@ extern CRITSECT s_critsectStack;
 extern int s_ipvStackCur;
 extern int s_apvStackMin[];
 
-INCLUDE_ASM(const s32, "P2/memory", PvAllocGlobalImpl__Fi);
+void *PvAllocGlobalImpl(int cb)
+{
+    if(cb == 0)
+    {
+        return 0;
+    }
+    
+    void *pv = (void *)s_pvGlobalMax;
+    s_pvGlobalMax += (cb + 0x0f) & -0x10;
+    s_pvWorldMin = s_pvWorldMax = s_pvGlobalMax;
+    return pv;
+}
+
 INCLUDE_ASM(const s32, "P2/memory", LAB_0018D4F0);
 
 #ifdef PROTO
