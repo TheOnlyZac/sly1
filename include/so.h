@@ -32,16 +32,20 @@ struct SO : public ALO
     // ...
 };
 
-struct PO;
+/**
+ * @brief Initialize the given SO.
+ * @todo Verify this is actually that function.
+ */
+void InitSo(SO *pso);
 
 /**
  * @todo Rename function (it might be OnSoAdd).
  */
-void FUN_001B7A98(PO *ppo);
+void OnSoAdd(SO *pso);
 
 /**
  * @todo Rename function (it might be OnSoRemove).
  */
-void FUN_001B7B78(PO *ppo);
+void OnSoRemove(SO *pso);
 
 #endif // SO_H
