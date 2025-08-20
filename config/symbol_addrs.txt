@@ -1232,6 +1232,7 @@ g_save = 0x264A40;
 ////////////////////////////////////////////////////////////////
 // P2/memory.c
 ////////////////////////////////////////////////////////////////
+StartupMemMgr__Fv = 0x18D430; // type:func
 PvAllocGlobalImpl__Fi = 0x18D4B0; // type:func
 LAB_0018D4F0 = 0x18D4F0; // type:label
 CheckForOutOfMemory__Fv = 0x18D4F8; // type:func
@@ -1251,13 +1252,20 @@ __builtin_delete = 0x18D778; // type:func
 CopyAqw__FPvT0i = 0x18D780; // type:func
 CopyAb__FPvT0Ui = 0x18D800; // type:func
 
+s_pvGlobalMin = 0x2C2A10; // size:0x4
 s_pvGlobalMac = 0x2C2A14; // size:0x4
 s_pvWorldMin = 0x2C2A18; // size:0x4
 s_pvWorldMac = 0x2C2A1C; // size:0x4
 s_pvStackMin = 0x2C2A20; // size:0x4
+s_pvStackMac = 0x2C2A24; // size:0x4
 s_critsectStack = 0x2C2A28; // size:0xc
 s_ipvStackCur = 0x2C2A34; // size:0x4
 s_apvStackMin = 0x2C2A38; // size:0x4
+
+// TODO: Move elsewhere?
+g_pvHeapMin = 0x2699A4; // size:0x4
+g_pvHeapMax = 0x2699A8; // size:0x4
+D_0064C70F = 0x64C70F; // size:0x04
 
 
 ////////////////////////////////////////////////////////////////

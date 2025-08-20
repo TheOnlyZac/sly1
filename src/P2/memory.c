@@ -5,13 +5,34 @@
 /**
  * @todo Change these to static when possible.
  */
+extern int s_pvGlobalMin;
 extern int s_pvGlobalMac;
 extern int s_pvWorldMin;
 extern int s_pvWorldMac;
 extern int s_pvStackMin;
+extern int s_pvStackMac;
 extern CRITSECT s_critsectStack;
 extern int s_ipvStackCur;
 extern int s_apvStackMin[];
+
+extern int g_pvHeapMin;
+extern int g_pvHeapMax;
+extern int D_0064C70F;
+
+void StartupMemMgr()
+{
+    int end = (int)&D_0064C70F & ~0x0f;
+    
+    g_pvHeapMin = end;
+    g_pvHeapMax = 0x02000000;
+    
+    s_pvGlobalMin = s_pvGlobalMac = s_pvWorldMin = s_pvWorldMac = end;
+    
+    s_pvStackMin = s_pvStackMac = 0x02000000;
+    s_ipvStackCur = -1;
+    
+    InitCritSect(&s_critsectStack);
+}
 
 void *PvAllocGlobalImpl(int cb)
 {
