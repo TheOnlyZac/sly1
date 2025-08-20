@@ -15,7 +15,7 @@ extern int s_apvStackMin[];
 
 void *PvAllocGlobalImpl(int cb)
 {
-    if(cb == 0)
+    if (cb == 0)
     {
         return 0;
     }
@@ -44,7 +44,7 @@ void CheckForOutOfMemory()
 
 void *PvAllocSwImpl(int cb)
 {
-    if(cb == 0)
+    if (cb == 0)
     {
         return nullptr;
     }
@@ -74,7 +74,7 @@ void *PvAllocSwCopyImpl(int cb, void *pvBase)
 void *PvAllocSwClearImpl(int cb)
 {
     void *pvBlock = PvAllocSwImpl(cb);
-    if(pvBlock)
+    if (pvBlock)
     {
         memset(pvBlock, 0, cb);
     }
@@ -90,7 +90,7 @@ void InitStackImpl()
 
 void *PvAllocStackImpl(int cb)
 {
-    if(cb == 0)
+    if (cb == 0)
     {
         return nullptr;
     }
@@ -103,7 +103,7 @@ void *PvAllocStackImpl(int cb)
 void *PvAllocStackClearImpl(int cb)
 {
     void *pvBlock = PvAllocStackImpl(cb);
-    if(pvBlock)
+    if (pvBlock)
     {
         memset(pvBlock, 0, cb);
     }
@@ -151,14 +151,14 @@ void CopyAqw(void *pvDst, void *pvSrc, int cqw)
     int nQWords = cqw - remainder;
     
     int processed = 0;
-    while(processed < remainder)
+    while (processed < remainder)
     {
         *dst++ = *src++;
         processed++;
     }
     
     processed = 0;
-    while(processed < nQWords)
+    while (processed < nQWords)
     {
         u128 qw0 = src[0];
         u128 qw1 = src[1];
@@ -179,11 +179,11 @@ void CopyAqw(void *pvDst, void *pvSrc, int cqw)
 void CopyAb(void *pvDst, void *pvSrc, uint cb)
 {
     // Do a byte copy, if not word aligned.
-    if(((uint)pvDst | (uint)pvSrc | cb) & 0x03)
+    if (((uint)pvDst | (uint)pvSrc | cb) & 0x03)
     {
         u8 *dst = (u8 *)pvDst;
         u8 *src = (u8 *)pvSrc;
-        for(uint i = 0; i < cb; i++)
+        for (uint i = 0; i < cb; i++)
         {
             *dst++ = *src++;
         }
@@ -192,7 +192,7 @@ void CopyAb(void *pvDst, void *pvSrc, uint cb)
     }
     
     // Copy 4 uints at a time, if aligned properly.
-    if(((uint)pvDst | (uint)pvSrc | cb) & 0x0f)
+    if (((uint)pvDst | (uint)pvSrc | cb) & 0x0f)
     {
         uint *dst = (uint *)pvDst;
         uint *src = (uint *)pvSrc;
@@ -201,7 +201,7 @@ void CopyAb(void *pvDst, void *pvSrc, uint cb)
         int nWords = (cb >> 2) - remainder;
         
         int processed = 0;
-        while(processed < remainder)
+        while (processed < remainder)
         {
             *dst++ = *src++;
             processed++;
@@ -210,7 +210,7 @@ void CopyAb(void *pvDst, void *pvSrc, uint cb)
         // TODO: This part might be possible to clean up,
         // but I wasn't able to. -545u
         processed = 0;
-        while(processed < nWords)
+        while (processed < nWords)
         {
             uint w0 = src[0];
             uint w1 = src[1];
