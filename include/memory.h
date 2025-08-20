@@ -9,7 +9,11 @@
 typedef struct _reent;
 
 /**
- * @todo
+ * @brief Allocates memory from the global heap.
+ *
+ * @param cb Size in bytes.
+ *
+ * @return Pointer to the allocated memory.
  */
 void *PvAllocGlobalImpl(int cb);
 
@@ -112,7 +116,7 @@ extern "C"
 void CopyAqw(void *pvDst, void *pvSrc, int cqw);
 
 /**
- * @brief Copies an array of bytes (one byte at a time).
+ * @brief Copies an array of bytes.
  *
  * @param pvDst Destination pointer.
  * @param pvSrc Source pointer.
