@@ -116,7 +116,7 @@ extern "C"
 void CopyAqw(void *pvDst, void *pvSrc, int cqw);
 
 /**
- * @brief Copies an array of bytes (one byte at a time).
+ * @brief Copies an array of bytes.
  *
  * @param pvDst Destination pointer.
  * @param pvSrc Source pointer.

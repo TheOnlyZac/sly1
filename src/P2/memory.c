@@ -178,4 +178,60 @@ void CopyAqw(void *pvDst, void *pvSrc, int cqw)
 }
 #endif
 
-INCLUDE_ASM(const s32, "P2/memory", CopyAb__FPvT0Ui);
+void CopyAb(void *pvDst, void *pvSrc, uint cb)
+{
+    // Do a byte copy, if not word aligned.
+    if(((uint)pvDst | (uint)pvSrc | cb) & 0x03)
+    {
+        u8 *dst = (u8 *)pvDst;
+        u8 *src = (u8 *)pvSrc;
+        for(uint i = 0; i < cb; i++)
+        {
+            *dst++ = *src++;
+        }
+        
+        return;
+    }
+    
+    // Copy 4 uints at a time, if aligned properly.
+    if(((uint)pvDst | (uint)pvSrc | cb) & 0x0f)
+    {
+        uint *dst = (uint *)pvDst;
+        uint *src = (uint *)pvSrc;
+        
+        int remainder = (cb >> 2) & 0x03;
+        int nWords = (cb >> 2) - remainder;
+        
+        int processed = 0;
+        while(processed < remainder)
+        {
+            *dst++ = *src++;
+            processed++;
+        }
+        
+        // TODO: This part might be possible to clean up,
+        // but I wasn't able to. -545u
+        processed = 0;
+        while(processed < nWords)
+        {
+            uint w0 = src[0];
+            uint w1 = src[1];
+            uint w2 = src[2];
+            uint w3 = src[3];
+            src += 4;
+            
+            dst[0] = w0;
+            dst[1] = w1;
+            dst[2] = w2;
+            dst[3] = w3;
+            dst += 4;
+            
+            processed += 4;
+        }
+        
+        return;
+    }
+    
+    // Use CopyAqw, if fully 16-byte aligned.
+    CopyAqw(pvDst, pvSrc, cb >> 4);
+}
