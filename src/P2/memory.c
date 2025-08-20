@@ -5,9 +5,9 @@
 /**
  * @todo Change these to static when possible.
  */
-extern int s_pvGlobalMax;
+extern int s_pvGlobalMac;
 extern int s_pvWorldMin;
-extern int s_pvWorldMax;
+extern int s_pvWorldMac;
 extern int s_pvStackMin;
 extern CRITSECT s_critsectStack;
 extern int s_ipvStackCur;
@@ -20,9 +20,9 @@ void *PvAllocGlobalImpl(int cb)
         return 0;
     }
     
-    void *pv = (void *)s_pvGlobalMax;
-    s_pvGlobalMax += (cb + 0x0f) & -0x10;
-    s_pvWorldMin = s_pvWorldMax = s_pvGlobalMax;
+    void *pv = (void *)s_pvGlobalMac;
+    s_pvGlobalMac += (cb + 0x0f) & -0x10;
+    s_pvWorldMin = s_pvWorldMac = s_pvGlobalMac;
     return pv;
 }
 
@@ -50,14 +50,14 @@ void *PvAllocSwImpl(int cb)
     }
 
     CheckForOutOfMemory();
-    void *pvSw = (void *)s_pvWorldMax;
-    s_pvWorldMax += (cb + 0x0f) & -0x10;
+    void *pvSw = (void *)s_pvWorldMac;
+    s_pvWorldMac += (cb + 0x0f) & -0x10;
     return pvSw;
 }
 
 void FreeSw()
 {
-    s_pvWorldMax = s_pvWorldMin;
+    s_pvWorldMac = s_pvWorldMin;
 }
 
 void *PvAllocSwCopyImpl(int cb, void *pvBase)
