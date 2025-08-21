@@ -17,7 +17,7 @@ bool CBinaryAsyncStream::FOpenFile(CFileLocation *pfl)
     return FOpenSector(pfl->m_fcl.isector, pfl->m_fcl.cb);
 }
 
-INCLUDE_ASM(const s32, "P2/bas", func_0012FD98);
+INCLUDE_ASM(const s32, "P2/bas", junk_0012FD98);
 
 bool CBinaryAsyncStream::FOpenSector(u32 isector, u32 cb)
 {
