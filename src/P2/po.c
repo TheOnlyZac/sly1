@@ -3,8 +3,8 @@
 void InitPo(PO* ppo) {
     InitSo((SO *)ppo);
 
-    *(PO **)((uint8_t *)ppo + 0x598) = ppo;
-    *(int *)((uint8_t *)ppo + 0x580) = 1;
+    STRUCT_OFFSET(ppo, 0x598, PO *) = ppo;
+    STRUCT_OFFSET(ppo, 0x580, int) = 1;
 
     SetPoPlayable(ppo, 1);
 }
@@ -60,14 +60,11 @@ void OnPoRemove(PO *ppo)
 INCLUDE_ASM(const s32, "P2/po", SwitchToIppo__Fi);
 INCLUDE_ASM(const s32, "P2/po", func_00192988);
 
-/**
- * @todo Fix ppo fields once PO struct is complete.
- */
 void SetPoPlayable(PO *ppo, int playable)
 {
-    if (*(int *)((uint8_t *)ppo + 0x550) != playable)
+    if (STRUCT_OFFSET(ppo, 0x550, int) != playable)
     {
-        *(int *)((uint8_t *)ppo + 0x550) = playable;
+        STRUCT_OFFSET(ppo, 0x550, int) = playable;
         if (playable != 0)
         {
             AddPoToList(ppo);

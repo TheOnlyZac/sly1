@@ -22,15 +22,15 @@ extern int D_0064C70F;
 void StartupMemMgr()
 {
     int end = (int)&D_0064C70F & ~0x0f;
-    
+
     g_pvHeapMin = end;
     g_pvHeapMax = 0x02000000;
-    
+
     s_pvGlobalMin = s_pvGlobalMac = s_pvWorldMin = s_pvWorldMac = end;
-    
+
     s_pvStackMin = s_pvStackMac = 0x02000000;
     s_ipvStackCur = -1;
-    
+
     InitCritSect(&s_critsectStack);
 }
 
@@ -40,7 +40,7 @@ void *PvAllocGlobalImpl(int cb)
     {
         return 0;
     }
-    
+
     void *pv = (void *)s_pvGlobalMac;
     s_pvGlobalMac += (cb + 0x0f) & -0x10;
     s_pvWorldMin = s_pvWorldMac = s_pvGlobalMac;
@@ -49,7 +49,7 @@ void *PvAllocGlobalImpl(int cb)
 
 INCLUDE_ASM(const s32, "P2/memory", LAB_0018D4F0);
 
-#ifdef PROTO
+#ifdef DEBUG
 /**
  * @todo Implement debugging function (low-priority).
  */
@@ -167,17 +167,17 @@ void CopyAqw(void *pvDst, void *pvSrc, int cqw)
 {
     u128 *dst = (u128 *)pvDst;
     u128 *src = (u128 *)pvSrc;
-    
+
     int remainder = cqw & 0x03;
     int nQWords = cqw - remainder;
-    
+
     int processed = 0;
     while (processed < remainder)
     {
         *dst++ = *src++;
         processed++;
     }
-    
+
     processed = 0;
     while (processed < nQWords)
     {
@@ -186,13 +186,13 @@ void CopyAqw(void *pvDst, void *pvSrc, int cqw)
         u128 qw2 = src[2];
         u128 qw3 = src[3];
         src += 4;
-        
+
         dst[0] = qw0;
         dst[1] = qw1;
         dst[2] = qw2;
         dst[3] = qw3;
         dst += 4;
-        
+
         processed += 4;
     }
 }
@@ -208,26 +208,26 @@ void CopyAb(void *pvDst, void *pvSrc, uint cb)
         {
             *dst++ = *src++;
         }
-        
+
         return;
     }
-    
+
     // Copy 4 uints at a time, if aligned properly.
     if (((uint)pvDst | (uint)pvSrc | cb) & 0x0f)
     {
         uint *dst = (uint *)pvDst;
         uint *src = (uint *)pvSrc;
-        
+
         int remainder = (cb >> 2) & 0x03;
         int nWords = (cb >> 2) - remainder;
-        
+
         int processed = 0;
         while (processed < remainder)
         {
             *dst++ = *src++;
             processed++;
         }
-        
+
         // TODO: This part might be possible to clean up,
         // but I wasn't able to. -545u
         processed = 0;
@@ -238,19 +238,19 @@ void CopyAb(void *pvDst, void *pvSrc, uint cb)
             uint w2 = src[2];
             uint w3 = src[3];
             src += 4;
-            
+
             dst[0] = w0;
             dst[1] = w1;
             dst[2] = w2;
             dst[3] = w3;
             dst += 4;
-            
+
             processed += 4;
         }
-        
+
         return;
     }
-    
+
     // Use CopyAqw, if fully 16-byte aligned.
     CopyAqw(pvDst, pvSrc, cb >> 4);
 }

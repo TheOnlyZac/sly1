@@ -194,7 +194,7 @@ segments:
     - [0x9f040, asm, P2/rip]
     #- [0x, asm, P2/rog]
     #- [0x, asm, P2/rope]
-    - [0xa8b20, asm, P2/rumble]
+    - [0xa8b20, c, P2/rumble]
     - [0xa8fe8, asm, P2/rwm]
     #- [0x, asm, P2/sampler] # (might not be in release)
     #- [0x, asm, P2/sc]

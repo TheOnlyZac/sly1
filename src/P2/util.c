@@ -147,7 +147,10 @@ int FFloatsNear(float g1, float g2, float gEpsilon)
 INCLUDE_ASM(const s32, "P2/util", CSolveQuadratic__FfffPf);
 #ifdef SKIP_ASM
 /**
- * @todo 94.29% matched
+ * @todo 95.96% matched.
+ *
+ * Compiler is using bc1f instead of bc1fl for (alpha < 0.0f) branch.
+ *
  * https://decomp.me/scratch/A4VOu
  */
 int CSolveQuadratic(float a, float b, float c, float *ax)

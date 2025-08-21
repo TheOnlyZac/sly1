@@ -8,24 +8,6 @@
 
 #include "common.h"
 
-/**
- * @todo This needs to go in rumble.c once it exists.
- */
-// void InitRumble(RUMBLE *prumble, int nPort, int nSlot)
-// {
-//     if (prumble->rums == RUMS_Dead)
-//     {
-//         SetRumbleRums(prumble, RUMS_Idle);
-//         prumble->nSlot = nSlot;
-//     }
-//     else
-//     {
-//         SetRumbleRums(prumble, RUMS_Stop);
-//         prumble->nSlot = nSlot;
-//     }
-//     prumble->nPort = nPort;
-// }
-
 struct JOY; // Forward declaration
 
 /**

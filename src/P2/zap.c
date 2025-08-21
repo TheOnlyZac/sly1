@@ -17,13 +17,10 @@ INCLUDE_ASM(const s32, "P2/zap", func_001F5208);
 
 /**
  * @brief Unknown.
- *
- * @todo Figure out what this is for.
- * @todo Fix TZP fields once struct implemented.
  */
 void PzpdEnsureTzp(TZP *ptzp, ENSK ensk)
 {
-    *(int *)((uint8_t *)ptzp + 0x5e4) = 0;
+    STRUCT_OFFSET(ptzp, 0x5e4, int) = 0;
 }
 
 INCLUDE_ASM(const s32, "P2/zap", InitVolzp__FP5VOLZP);

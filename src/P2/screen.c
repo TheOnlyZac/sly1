@@ -128,15 +128,12 @@ void SetTimerSpeed(TIMER *ptimer, float svt) {
 }
 
 /**
- * @todo Matches but timer struct offsets are wrong.
+ * @brief Sets the time until the timer expires, and callback function.
  */
-INCLUDE_ASM(const s32, "P2/screen", SetTimerExpire__FP5TIMERfPv);
-#ifdef SKIP_ASM
 void SetTimerExpire(TIMER *ptimer, float dt, void *pfntn) {
-    ptimer->dt = dt;
-    ptimer->pfntnThreshold = pfntn;
+    STRUCT_OFFSET(ptimer, 0x288, float) = dt; // ptimer->dt = dt;
+    STRUCT_OFFSET(ptimer, 0x28c, void *) = pfntn; // ptimer->pfntnThreshold = pfntn;
 }
-#endif // SKIP_ASM
 
 void StartTimer(TIMER *ptimer) {
     SetTimerTimers(ptimer, TIMERS_Running);
