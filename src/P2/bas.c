@@ -1,4 +1,5 @@
 #include <bas.h>
+#include <cd.h>
 #include <sdk/libcdvd.h>
 #include <lib/libkernl/filestub.h>
 
@@ -69,7 +70,41 @@ void CBinaryAsyncStream::Close()
     m_bask = BASK_Nil;
 }
 
-INCLUDE_ASM(const s32, "P2/bas", StartSpooling__18CBinaryAsyncStream);
+void CBinaryAsyncStream::StartSpooling()
+{
+    if(!FSpooling() && m_cbUnspooled != 0)
+    {
+        byte *pv = m_abSpool;
+        int cb = 0x4000;
+
+        if(m_cbUnspooled < cb)
+        {
+            cb = m_cbUnspooled;
+        }
+
+        if(m_pb == pv)
+        {
+            pv += 0x4000;
+        }
+        
+        m_pbSpooling = pv;
+        m_cbSpooling = cb;
+        
+        switch(m_bask)
+        {
+            case BASK_Host:
+            {
+                sceRead(m_fd, pv, cb);
+                break;
+            }
+            case BASK_Cd:
+            {
+                ReadCdDirect(m_isector, (unsigned)(m_cbSpooling + 0x7ff) >> 0xb, pv);
+                break;
+            }
+        }
+    }
+}
 
 bool CBinaryAsyncStream::FSpooling()
 {

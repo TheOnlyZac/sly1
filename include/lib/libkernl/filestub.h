@@ -8,6 +8,7 @@
 extern "C"
 {
     int sceClose(int fd);
+	void sceRead(int fd, void *pv, int cb);
 };
 
 #endif // FILESTUB_H
