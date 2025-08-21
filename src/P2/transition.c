@@ -31,7 +31,7 @@ void CTransition::Set(char *pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS
 INCLUDE_ASM(const s32, "P2/transition", Execute__11CTransition);
 #ifdef SKIP_ASM
 /**
- * @todo 13.18% matched.
+ * @todo 15.19% matched.
  *
  * Some functions called in this function are not implemented yet.
  */
