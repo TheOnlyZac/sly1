@@ -1,7 +1,7 @@
 /**
  * @file bas.h
  *
- * @brief Binary async stream.
+ * @brief Binary Async Stream.
 */
 #ifndef BAS_H
 #define BAS_H
@@ -21,8 +21,8 @@ enum BASK
 };
 
 /**
- * @brief Binary Async Stream
-*/
+ * @brief Binary Async Stream.
+ */
 class CBinaryAsyncStream
 {
 public:
@@ -30,10 +30,10 @@ public:
     int m_fd;
     uint32_t m_isector;
     int m_cbSpooling;
-    BYTE* m_pbSpooling;
-    BYTE* m_abSpool;
+    byte* m_pbSpooling;
+    byte* m_abSpool;
     int m_cb;
-    BYTE* m_pb;
+    byte* m_pb;
     int m_ibCur;
     int m_cbUnspooled;
     int m_cbFile;
@@ -42,19 +42,18 @@ public:
      * @brief Constructs a new CBinaryAsyncStream.
      *
      * @param pvSpool Pointer to the spool
-    */
+     */
     CBinaryAsyncStream(void* pvSpool);
 
     /**
      * @brief Destroys the CBinaryAsyncStream.
-    */
+     */
     ~CBinaryAsyncStream();
 
     /**
      * @brief Closes the stream.
-    */
+     */
     void Close();
 };
-
 
 #endif // BAS_H
