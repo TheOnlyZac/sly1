@@ -8,6 +8,7 @@
 
 #include "common.h"
 #include <util.h>
+#include <ensure.h>
 #include <chkpnt.h>
 #include <sw.h>
 
@@ -62,19 +63,6 @@ struct DIFFICULTY
     int uRichHigh;
     DIFFICULTYLEVEL *pDifficultyLevel;
     enum DPS dps;
-};
-
-/**
- * @brief Ensure kind.
- *
- * Unknown, more research needed.
- *
- * @todo Move to a more appropriate location.
- */
-enum ENSK
-{
-    ENSK_Get,
-    ENSK_Set
 };
 
 /**

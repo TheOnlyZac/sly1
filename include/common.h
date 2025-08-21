@@ -12,6 +12,15 @@
 #include "vtables.h"
 #include "spaprops.h"
 
+// Helper macros for decompilation
+
+/**
+ * @brief Helper macro for accessing struct fields when the struct itself is
+ * not implemented, incomplete or incorrect.
+ */
+#define STRUCT_OFFSET(pointer, offset, type) (*(type *)((uint8_t *)(pointer) + (offset)))
+
+// Global system values
 extern int _gpReg; // Global pointer register
 
 /**
@@ -32,5 +41,6 @@ struct RGBA
         bAlpha = rgba & 0xFF;
     }
 };
+
 
 #endif /* COMMON_H */

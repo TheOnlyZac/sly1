@@ -3,7 +3,7 @@
  *
  * @brief Game state and level management.
  *
- * @todo Cleanup/update structs and function names+git parameters.
+ * @todo Cleanup/update structs and function names/parameters.
  */
 #ifndef GAME_H
 #define GAME_H

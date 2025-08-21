@@ -277,22 +277,13 @@ void SetCcharm(int nParam)
     g_pgsCur->ccharm = nParam;
 }
 
-INCLUDE_ASM(const s32, "P2/game", FCharmAvailable__Fv);
-#ifdef SKIP_ASM
 /**
  * @todo 77.50% matched.
  */
 bool FCharmAvailable()
 {
-	if ((g_pgsCur->ccharm > 0)
-        || ((g_grfcht & (GRFCHT)FCHT_InfiniteCharms) != (GRFCHT)FCHT_None))
-	{
-		return true;
-	}
-	return false;
-
+	return (g_pgsCur->ccharm > 0) || (g_grfcht & (GRFCHT)FCHT_InfiniteCharms);
 }
-#endif // SKIP_ASM
 
 INCLUDE_ASM(const s32, "P2/game", func_00160C90);
 
@@ -310,7 +301,7 @@ INCLUDE_ASM(const s32, "P2/game", clr_8_bytes_1);
 
 void FUN_00160ce8(int param_1)
 {
-    *(undefined4 *)(param_1 + 4) = 0;
+    STRUCT_OFFSET(param_1, 4, undefined4) = 0;
 }
 
 void OnGameAlarmTriggered(GAME *pgame)

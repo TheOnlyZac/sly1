@@ -1,5 +1,5 @@
 /**
- * @todo Mangle all function names.
+ * @todo Mangle all function names in INCLUDE_ASM macros.
  */
 #include "common.h"
 #include "cplcy.h"

@@ -1,13 +1,13 @@
 #include <po.h>
 
-/**
- * @todo 100% matched but not integrated
- * https://decomp.me/scratch/Ktol3
- */
-INCLUDE_ASM(const s32, "P2/po", InitPo__FP2PO);
-#ifdef SKIP_ASM
-// todo
-#endif
+void InitPo(PO* ppo) {
+    InitSo((SO *)ppo);
+
+    STRUCT_OFFSET(ppo, 0x598, PO *) = ppo;
+    STRUCT_OFFSET(ppo, 0x580, int) = 1;
+
+    SetPoPlayable(ppo, 1);
+}
 
 INCLUDE_ASM(const s32, "P2/po", ClonePo__FP2POT0);
 
@@ -47,27 +47,24 @@ INCLUDE_ASM(const s32, "P2/po", RemovePoFromList__FP2PO);
 
 void OnPoAdd(PO *ppo)
 {
-    FUN_001B7A98(ppo);
+    OnSoAdd(ppo);
     AddPoToList(ppo);
 }
 
 void OnPoRemove(PO *ppo)
 {
-    FUN_001B7B78(ppo);
+    OnSoRemove((SO *)ppo);
     RemovePoFromList(ppo);
 }
 
 INCLUDE_ASM(const s32, "P2/po", SwitchToIppo__Fi);
 INCLUDE_ASM(const s32, "P2/po", func_00192988);
 
-/**
- * @todo Fix ppo fields once PO struct is complete.
- */
 void SetPoPlayable(PO *ppo, int playable)
 {
-    if (*(int *)((uint8_t *)ppo + 0x550) != playable)
+    if (STRUCT_OFFSET(ppo, 0x550, int) != playable)
     {
-        *(int *)((uint8_t *)ppo + 0x550) = playable;
+        STRUCT_OFFSET(ppo, 0x550, int) = playable;
         if (playable != 0)
         {
             AddPoToList(ppo);
