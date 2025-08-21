@@ -88,7 +88,7 @@ segments:
     - [0x2c870, asm, P2/aseg]
     #- [0x, asm, P2/asega]
     #- [0x, asm, P2/barrier]
-    - [0x30cf0, asm, P2/bas]
+    - [0x30cf0, c, P2/bas]
     - [0x310e8, c, P2/basic]
     - [0x31168, c, P2/bez]
     - [0x31f48, c, P2/binoc]
