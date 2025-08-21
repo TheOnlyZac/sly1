@@ -2,7 +2,7 @@
 #include <sdk/libcdvd.h>
 #include <lib/libkernl/filestub.h>
 
-// INCLUDE_ASM(const s32, "P2/bas", __18CBinaryAsyncStreamiPvi);
+// INCLUDE_ASM(const s32, "P2/bas", __18CBinaryAsyncStreamPvi);
 CBinaryAsyncStream::CBinaryAsyncStream(void *pvSpool)
 {
     m_isector = 0;
