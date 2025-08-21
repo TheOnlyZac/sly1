@@ -16,12 +16,34 @@ extern "C"
         uchar datapattern;
         uchar pad;
     };
+	
+	enum SCECdvdMediaType {
+        SCECdGDTFUNCFAIL = -1,
+        SCECdNODISC      = 0x00,
+        SCECdDETCT,
+        SCECdDETCTCD,
+        SCECdDETCTDVDS,
+        SCECdDETCTDVDD,
+        SCECdUNKNOWN,
 
+        SCECdPSCD = 0x10,
+        SCECdPSCDDA,
+        SCECdPS2CD,
+        SCECdPS2CDDA,
+        SCECdPS2DVD,
 
-    int sceCdBreak(void);
+        SCECdDVDVR = 0xFC,
+        SCECdCDDA = 0xFD,
+        SCECdDVDV,
+        SCECdIllegalMedia
+    };
+
+    int sceCdMmode(int mode);
     int sceCdGetError(void);
-    int sceCdRead(u_int lbn, u_int sectors, void *buf, sceCdRMode *mode);
+    int sceCdBreak(void);
     int sceCdSync(int mode);
+    int sceCdRead(u_int lbn, u_int sectors, void *buf, sceCdRMode *mode);
+    int sceCdGetDiskType(void);
 };
 
 #endif // EEDVD_H

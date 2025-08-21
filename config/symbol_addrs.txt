@@ -603,7 +603,23 @@ ReadStringSw__18CBinaryInputStreamPPc = 0x1384A0; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/cd.c
 ////////////////////////////////////////////////////////////////
-CdPath__FPcT0i = 0x140b60; // type:func
+CpchzTokenizePath__FPc = 0x1407A8; // type:func
+FValidCdMmode__Fv      = 0x140968; // type:func
+SetCdMmode__Fv         = 0x1409A8; // type:func
+StartupCd__Fv          = 0x1409D8; // type:func
+UpdateCd__Fv           = 0x1409E0; // type:func
+CdPath__FPcT0i         = 0x140B60; // type:func
+ReadCd__FUiUiPv        = 0x140C28; // type:func
+ReadCdDirect__FUiUiPv  = 0x140CC8; // type:func
+FCdCompleted__Fi       = 0x140D68; // type:func
+junk_00140D88          = 0x140D88; // type:func
+
+g_scecd = 0x2613F0; // size:0x4
+s_retCdRead = 0x2613F4; // size:0x4
+s_retCdError = 0x2613F8; // size:0x4
+
+s_cdmode = 0x247AA0; // size:0x4
+
 
 ////////////////////////////////////////////////////////////////
 // P2/chkpnt.c
@@ -1888,10 +1904,12 @@ sceDmaSync = 0x202c38; // type:func
 ////////////////////////////////////////////////////////////////
 // ../eecdvd.c
 ////////////////////////////////////////////////////////////////
-sceCdGetError = 0x203d90; // type:func
-sceCdBreak = 0x203e28; // type:func
-sceCdSync = 0x2032c8; // type:func
-sceCdRead = 0x203b18; // type:func
+sceCdMmode = 0x203A20; // type:func
+sceCdGetError = 0x203D90; // type:func
+sceCdBreak = 0x203E28; // type:func
+sceCdSync = 0x2032C8; // type:func
+sceCdRead = 0x203B18; // type:func
+sceCdGetDiskType = 0x203CF8; // type:func
 
 
 ////////////////////////////////////////////////////////////////
