@@ -9,8 +9,8 @@
 #include "common.h"
 
 /**
- * @brief CD State
-*/
+ * @brief CD State.
+ */
 enum CDS
 {
     CDS_Initing = 0,
@@ -32,7 +32,7 @@ void CpchzTokenizePath(char *pchzPath);
 bool FValidCdMmode(void);
 
 /**
- * @brief Sets the disk media mode.
+ * @brief Sets the disc media mode.
  */
 void SetCdMmode(void);
 
@@ -45,7 +45,7 @@ void StartupCd(void);
  * @brief Updates the CD system.
  *
  * @todo Implement this function.
-*/
+ */
 void UpdateCd(void);
 
 /**
@@ -54,7 +54,7 @@ void UpdateCd(void);
 void CdPath(char *pchzDest, char *pchzPath, int fIncludeDevice);
 
 /**
- * @brief Read sectors from the CD using the 989snd functions.
+ * @brief Reads sectors from the CD using the 989snd functions.
  *
  * @param isector Starting sector.
  * @param csector Number of sectors to read.
@@ -63,7 +63,7 @@ void CdPath(char *pchzDest, char *pchzPath, int fIncludeDevice);
 void ReadCd(uint isector, uint csector, void *pv);
 
 /**
- * @brief Read sectors from the CD using sce functions.
+ * @brief Reads sectors from the CD using sce functions.
  *
  * @param isector Starting sector.
  * @param csector Number of sectors to read.
