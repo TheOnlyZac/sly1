@@ -4,7 +4,6 @@
 
 INCLUDE_ASM(const s32, "P2/bas", __18CBinaryAsyncStreamiPvi);
 
-// INCLUDE_ASM(const s32, "P2/bas", _$_18CBinaryAsyncStream);
 CBinaryAsyncStream::~CBinaryAsyncStream()
 {
     Close();
