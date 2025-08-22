@@ -1,7 +1,5 @@
 #include <clock.h>
 
-#define cWrapAround (*(undefined8 *)0x0027c000)
-
 // constants
 static const int CLOCK_FRAMERATE = 60; // 60 FPS
 static const float CLOCK_FRAMETIME = 1.f / CLOCK_FRAMERATE; // 1/60th of a second
@@ -14,8 +12,7 @@ float g_rtClock = 1.0f;
 float g_rtClockPowerUp = 1.0f;
 CLOCK g_clock = { 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0 };
 TICK s_tickLastRaw; // Should be static?
-//undefined8 cWrapAround; // Checksum doesn't like this variable. Found at D_0027C000. -Zryu
-
+ulong cWrapAround; // Checksum doesn't like. (tried types: ptr cast, static, extern, uint64, uint64_t, ulong, ulonglong)
 
 // text
 void SetClockRate(float rt) {
@@ -95,51 +92,46 @@ void StartupClock()
     g_clock.tickFrame = TickNow();
 }
 
-INCLUDE_ASM(const s32, "P2/clock", TickNow__Fv);
-#ifdef SKIP_ASM
-/* 
- * Matched 91%. Should be functionally identical, but calling two instructions out of order.
- * https://decomp.me/scratch/OLNRt. Checksum doesnt like cWrapAround even if its added as an extern or a poitner (commented out at the top of this file).
- *  -Zryu
- */
+/**
+ * Matched 100%. Checksum doesn't like cWrapAround variable.
+ *
+ *
+*/
 const TICK TickNow()
 {
-
-    ulong ulCountLow;  // Lower 32 bites of the tick result.
+    ulong ulCountLow;  // Lower 32 bits of the tick result.
     ulong ulMask;      // Mask for tick value.
-    ulong ulValue;     // MIPS tick in coprocessor 0
+    ulong ulValue;     // MIPS tick in coprocessor 0 (reg 9 Count)
 
     // Get Count from CP0 reg 9
     __asm__ volatile (
     "mfc0 %0, $9" : "=r"(ulValue)
     );
 
-    // pre-loading Count like this matches the asm for wahtever reason....doubt they did it like this.
-    // Maybe a GCC optimize?
+    // Saving 32b Count value into a 64b var.
     ulCountLow = ulValue;
 
-    // They use a mask to add FFFF for some reason? DOnt know why
-    __asm__ volatile (
-    "lui %0, 0xFFFF\n\t"
-    "dsrl32 %0, %0, 0"
-    : "=r"(ulMask)
-    );
+    // Taking a 32b value and filling the upper 16b with 0xFFFF, 
+    // then shifting the entire 32b value into the bottom 32b.
+    ulMask = 0xFFFF << 16;
+    ulMask >>= 0x20;
 
-    // Actual combining of the bits to get the lower 32 bites
+    // Convert to Masked value
     ulCountLow = ulValue & ulMask;
 
-    // If the lower 32bites are less than last tick, inc cWrapAround.
+    // If the 64b value is less than last tick, inc cWrapAround, as the Count value has overflowed.
     if (ulCountLow < s_tickLastRaw) {
         cWrapAround++; // D_0027C000
     }
 
-    // Set LastTick
+    // Set LastTickRaw, which is the masked 32bit value.
     s_tickLastRaw = ulCountLow;
 
-    // Combine wrap count (upper 32 bits) with current count (lower 32 bits)
-    return (cWrapAround << 32) | ulCountLow;
+    // Put WrapAround value in the upper 32b and ulCountLow in the lower 32b. 
+    //Return the 64b value after preforming an or.
+    return (cWrapAround << 0x20) | ulCountLow;
 }
-#endif
+
 INCLUDE_ASM(const s32, "P2/clock", func_00143140); // empty, not really a function
 
 
