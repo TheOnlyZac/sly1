@@ -12,7 +12,6 @@ float g_rtClock = 1.0f;
 float g_rtClockPowerUp = 1.0f;
 CLOCK g_clock = { 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0 };
 TICK s_tickLastRaw; // Should be static?
-ulong cWrapAround; // Checksum doesn't like. (tried types: ptr cast, static, extern, uint64, uint64_t, ulong, ulonglong)
 
 // text
 void SetClockRate(float rt) {
@@ -83,7 +82,7 @@ void SetClockEnabled(CLOCK *pclock, int fEnabled)
 
 void StartupClock() 
 {
-    //	Count is the MIPS DeltaTime, its handled in the CP0. "Count increments automatically every EE cycle." 
+    //	Count is the MIPS DeltaTime, its a 32b value, and is the 9th reg of CoP0. "Count increments automatically every EE cycle." 
 	// https://psi-rockin.github.io/ps2tek/#eecop0timer:~:text=%2409%20%2D%20COP0.Count,every%20EE%20cycle -Zryu
 	ulong ulCountValue;
     __asm__ volatile ("mfc0 %0, $9" : "=r"(ulCountValue)); // Asm function that puts $9 (c0_count) from CP0 into $a0.
@@ -93,9 +92,8 @@ void StartupClock()
 }
 
 /**
- * Matched 100%. Checksum doesn't like cWrapAround variable.
- *
- *
+ * Matched 100%.
+ * @todo Correct cWrapAround once the bss section of the TU is migrated.
 */
 const TICK TickNow()
 {
@@ -128,7 +126,7 @@ const TICK TickNow()
     s_tickLastRaw = ulCountLow;
 
     // Put WrapAround value in the upper 32b and ulCountLow in the lower 32b. 
-    //Return the 64b value after preforming an or.
+    // Return the 64b value after preforming an or.
     return (cWrapAround << 0x20) | ulCountLow;
 }
 

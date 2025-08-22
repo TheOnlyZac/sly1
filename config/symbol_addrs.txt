@@ -679,6 +679,7 @@ g_rtClock = 0x261850; // size:0x4
 g_rtClockPowerUp = 0x261854; // size:0x4
 g_clock = 0x261858; // size:0x20
 s_tickLastRaw = 0x261878; // size:0x4
+cWrapAround = 0x27c000; // size:0x8
 
 ////////////////////////////////////////////////////////////////
 // P2/cm.c
