@@ -25,7 +25,7 @@ struct VECTOR4
 
 struct VU_VECTOR
 {
-    uint16 data;
+    ushort data;
 };
 
 /**

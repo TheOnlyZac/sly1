@@ -47,13 +47,13 @@ void SetExitExits(EXIT *pexit, EXITS exits)
     }
 
     // Read the 64-bit value from offset 0x2c8
-    uint64_t uVar1 = STRUCT_OFFSET(pexit, 0x2c8, uint64_t);
+    ulong uVar1 = STRUCT_OFFSET(pexit, 0x2c8, ulong);
 
     // Apply bitwise mask and OR operation
     uVar1 = (uVar1 & ~0x30100000000ULL) | (0x8000ULL << 0x19);
 
     // Store back the modified value
-    STRUCT_OFFSET(pexit, 0x2c8, uint64_t) = uVar1;
+    STRUCT_OFFSET(pexit, 0x2c8, ulong) = uVar1;
 
     IncrementSwHandsOff(pexit->psw);
 

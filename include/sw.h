@@ -20,7 +20,7 @@ struct SW : public LO
     DL dlDprize;
 
     // MISALIGNED:
-    void (*pcbUpdate)(f32 fDelta);
+    void (*pcbUpdate)(float fDelta);
 };
 
 extern SW *g_psw;

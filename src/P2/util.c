@@ -245,7 +245,7 @@ double GTrunc(double param_1)
     union
     {
         double d;
-        uint64_t u;
+        ulong u;
     } conv;
     conv.d = param_1;
 
@@ -255,9 +255,9 @@ double GTrunc(double param_1)
     if (exp >= 52)
         return param_1;
 
-    uint64_t mask = (1ULL << (52 - exp)) - 1;
-    uint64_t frac = conv.u & 0xFFFFFFFFFFFFF;
-    uint64_t intpart = conv.u & ~mask;
+    ulong mask = (1ULL << (52 - exp)) - 1;
+    ulong frac = conv.u & 0xFFFFFFFFFFFFF;
+    ulong intpart = conv.u & ~mask;
 
     if ((frac & mask) == mask)
     {
@@ -282,7 +282,7 @@ float GTrunc(float param_1)
     union
     {
         float f;
-        uint32_t u;
+        uint u;
     } conv;
     conv.f = param_1;
 
@@ -292,8 +292,8 @@ float GTrunc(float param_1)
     if (exp >= 0x17)
         return param_1;
 
-    uint32_t mask = (1u << (0x17 - exp)) - 1;
-    uint32_t frac = conv.u & 0x7FFFFF;
+    uint mask = (1u << (0x17 - exp)) - 1;
+    uint frac = conv.u & 0x7FFFFF;
     if ((frac & mask) == mask)
     {
         // All masked bits set, round up

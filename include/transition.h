@@ -24,12 +24,12 @@ extern CTransition g_transition;
 struct LevelTableStruct
 {
     CFileLocation fileLocation; /* Ciphers for lsn and size */
-    uint32_t search_val;
-    uint32_t for_lsn;
-    uint32_t search_cipher; /* Cipher for search val */
-    uint32_t for_size;
-    uint32_t level_id; /* Level ID */
-    uint32_t level_name;  /* Pointer to level name string */
+    uint search_val;
+    uint for_lsn;
+    uint search_cipher; /* Cipher for search val */
+    uint for_size;
+    uint level_id; /* Level ID */
+    uint level_name;  /* Pointer to level name string */
     FLS tasks;         /* Tasks to complete (visited, key, vault, mts) */
 };
 

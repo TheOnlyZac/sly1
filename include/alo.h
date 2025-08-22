@@ -84,7 +84,7 @@ void UpdateAlo(ALO *palo, float dt);
 
 /**
  * @brief Clones an ALO
- * 
+ *
  */
 void CloneAlo(ALO *palo, ALO *paloBase);
 

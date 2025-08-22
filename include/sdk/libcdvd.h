@@ -6,17 +6,18 @@
 #ifndef EEDVD_H
 #define EEDVD_H
 
-#include "common.h"
+typedef unsigned char u_char;
+typedef unsigned int u_int;
 
 extern "C"
 {
     struct sceCdRMode {
-        uchar trycount;
-        uchar spindlctrl;
-        uchar datapattern;
-        uchar pad;
+        u_char trycount;
+        u_char spindlctrl;
+        u_char datapattern;
+        u_char pad;
     };
-	
+
 	enum SCECdvdMediaType {
         SCECdGDTFUNCFAIL = -1,
         SCECdNODISC      = 0x00,

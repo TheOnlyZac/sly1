@@ -1,13 +1,15 @@
 #include "989snd.h"
 
-#include "common.h"
-#include "text.h"
-
 #include <sdk/ee/eekernel.h>
 #include <sdk/ee/sifrpc.h>
 #include <sdk/libcdvd.h>
 
 #include <stddef.h>
+
+#include <include_asm.h>
+
+typedef unsigned int u_int;
+typedef unsigned long u_long;
 
 // Linux style volatile access macro's
 #define READ_ONCE(x) (*(const volatile typeof(x)*)(&x))

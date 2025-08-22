@@ -43,6 +43,7 @@ if sys.platform == "linux" or sys.platform == "linux2":
 CATEGORY_MAP = {
     "P2": "Engine",
     "splice": "Splice",
+    "ps2t": "Tooling",
     "sce": "Libs",
     "data": "Data",
 }
@@ -177,15 +178,20 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
                     name = object_path.stem
                 if "target" in str(object_path):
                     target_path = str(object_path)
+
                     # Determine if a .c or .cpp file exists in src/ for this unit (recursively)
                     src_base = rel.with_suffix("")
                     src_c_files = list(Path("src").rglob(src_base.name + ".c"))
                     src_cpp_files = list(Path("src").rglob(src_base.name + ".cpp"))
                     has_src = bool(src_c_files or src_cpp_files)
+
                     # Determine the category based on the name
                     categories = [name.split("/")[0]]
                     if "P2/splice/" in name:
                         categories.append("splice")
+                    elif "P2/ps2t" in name:
+                        categories.append("ps2t")
+
                     unit = {
                         "name": name,
                         "target_path": target_path,
