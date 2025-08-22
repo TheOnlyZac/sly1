@@ -6,7 +6,8 @@
 
 #include <stddef.h>
 
-#include <include_asm.h>
+#include <common.h>
+#include <text.h>
 
 typedef unsigned int u_int;
 typedef unsigned long u_long;
