@@ -29,7 +29,7 @@ bool CBinaryAsyncStream::FOpenFile(CFileLocation *pfl)
 
 INCLUDE_ASM(const s32, "P2/bas", junk_0012FD98);
 
-bool CBinaryAsyncStream::FOpenSector(u32 isector, u32 cb)
+bool CBinaryAsyncStream::FOpenSector(uint isector, uint cb)
 {
     m_isector = isector;
     m_cbFile = cb;
@@ -66,7 +66,7 @@ void CBinaryAsyncStream::Close()
             break;
         }
     }
-    
+
     m_bask = BASK_Nil;
 }
 
@@ -86,10 +86,10 @@ void CBinaryAsyncStream::StartSpooling()
         {
             pv += 0x4000;
         }
-        
+
         m_pbSpooling = pv;
         m_cbSpooling = cb;
-        
+
         switch(m_bask)
         {
             case BASK_Host:

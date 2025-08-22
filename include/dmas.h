@@ -24,15 +24,15 @@ union QW
 {
     VECTOR vec;
     VECTOR4 vec4;
-    uint16 ull;
+    ulong ull;
     ulong aul[2];
     uint aun[4];
-    short aus[8];
+    ushort aus[8];
     uchar ab[16];
-    int16 ll;
+    long ll;
     long al[2];
     int an[4];
-    ushort as[8];
+    short as[8];
     float ag[4];
 };
 

@@ -6,9 +6,10 @@
 #ifndef SND989_H
 #define SND989_H
 
-#include "common.h"
-
 #include "sdk/libcdvd.h"
+
+typedef unsigned int u_int;
+typedef unsigned long u_long;
 
 extern "C" {
 

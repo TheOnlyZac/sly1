@@ -6,61 +6,33 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-// Common types
-typedef unsigned char byte;
+// Exact-width integers (don't use these in most cases)
+typedef signed char      int8_t;
+typedef short            int16_t;
+typedef int              int32_t;
+typedef long long        int64_t;
 
-typedef unsigned char uchar;
-typedef unsigned short ushort;
-typedef unsigned long ulong;
-typedef unsigned int uint;
-
-typedef unsigned char u_char;
-typedef unsigned short u_short;
-typedef unsigned long u_long;
-typedef unsigned int u_int;
-
-typedef short int16;
-
-typedef unsigned char uint8;
-typedef unsigned short uint16;
-typedef unsigned int uint32;
-typedef unsigned long long uint64;
-
-typedef long intptr_t;
-typedef unsigned long uintptr_t;
-
-typedef signed char int8_t;
-typedef short int16_t;
-typedef int int32_t;
-typedef long long int64_t;
-
-typedef unsigned char uint8_t;
-typedef unsigned short uint16_t;
-typedef unsigned int uint32_t;
+typedef unsigned char    uint8_t;
+typedef unsigned short   uint16_t;
+typedef unsigned int     uint32_t;
 typedef unsigned long long uint64_t;
 
-typedef unsigned char undefined1;
-typedef unsigned short undefined2;
-typedef unsigned int undefined4;
-typedef unsigned long undefined8;
+// Unsigned aliases
+typedef uint8_t     uchar;
+typedef uint16_t    ushort;
+typedef uint32_t    uint;
+typedef uint64_t    ulong;
 
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
-typedef unsigned long long u64;
-typedef unsigned long long u128 __attribute((mode(TI)));
+// Helper types for unknown struct fields
+typedef uchar     undefined1;
+typedef ushort    undefined2;
+typedef uint    undefined4;
+typedef ulong    undefined8;
 
-typedef signed char s8;
-typedef signed short s16;
-typedef signed int s32;
-typedef signed long long s64;
-
-typedef float f32;
-typedef double f64;
-
-typedef uint size_t;
+// Misc
+typedef uchar byte;
 #define nullptr (void *)0x0
-
 typedef union QW;
+typedef int32_t  s32; // used only by Splat
 
 #endif // TYPES_H

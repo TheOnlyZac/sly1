@@ -29,7 +29,7 @@ class CBinaryAsyncStream
 public:
     BASK m_bask;
     int m_fd;
-    uint32_t m_isector;
+    uint m_isector;
     int m_cbSpooling;
     byte* m_pbSpooling;
     byte* m_abSpool;
@@ -72,7 +72,7 @@ public:
      * @retval false Sector is not open.
      * @retval true Sector is open.
      */
-    bool FOpenSector(u32 isector, u32 cb);
+    bool FOpenSector(uint isector, uint cb);
 
     /**
      * @brief Closes the stream.
@@ -88,7 +88,7 @@ public:
      * @brief TODO.
      */
     bool FSpooling();
-    
+
     /**
      * @brief Check if spooling is complete.
      */

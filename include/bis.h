@@ -62,7 +62,7 @@ public:
     int m_cbAsyncRequest;
     int m_cbAsyncRemaining;
     int m_cbPartialRead;
-    uint32_t m_isector; /* Sector Offset in ISO */
+    uint m_isector; /* Sector Offset in ISO */
     int m_cbuf;
     int m_cbufFill;
     int m_ibufMic;

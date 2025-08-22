@@ -22,7 +22,7 @@ void ClearDle(DLE *pdle)
 
 DLE *PdleFromDlEntry(DL *pdl, void *pv)
 {
-    return (DLE *)((u8 *)pv + pdl->ibDle);
+    return (DLE *)((uchar *)pv + pdl->ibDle);
 }
 
 void AppendDlEntry(DL *pdl, void *pv)

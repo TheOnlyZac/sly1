@@ -2,6 +2,8 @@
 #include <thread.h>
 #include <sce/memset.h>
 
+typedef unsigned long long u128 __attribute((mode(TI)));
+
 /**
  * @todo Change these to static when possible.
  */
@@ -163,6 +165,9 @@ void __builtin_delete()
     return;
 }
 
+/**
+ * @todo Change u128 to qw and delete u128 typedef
+ */
 void CopyAqw(void *pvDst, void *pvSrc, int cqw)
 {
     u128 *dst = (u128 *)pvDst;
@@ -202,8 +207,8 @@ void CopyAb(void *pvDst, void *pvSrc, uint cb)
     // Do a byte copy, if not word aligned.
     if (((uint)pvDst | (uint)pvSrc | cb) & 0x03)
     {
-        u8 *dst = (u8 *)pvDst;
-        u8 *src = (u8 *)pvSrc;
+        uchar *dst = (uchar *)pvDst;
+        uchar *src = (uchar *)pvSrc;
         for (uint i = 0; i < cb; i++)
         {
             *dst++ = *src++;
