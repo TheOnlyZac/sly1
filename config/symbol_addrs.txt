@@ -683,10 +683,10 @@ SetVolbtnRsmg__FP6VOLBTNi3OIDN22                  = 0x140770; // type:func
 
 
 ////////////////////////////////////////////////////////////////
-// P2/can.c
+// P2/cat.c
 ////////////////////////////////////////////////////////////////
-FUN_00140790__Fv = 0x140790; // type:func
-FUN_001407A0     = 0x1407A0; // type:func
+StartupCatalog__Fv = 0x140790; // type:func
+FUN_001407A0       = 0x1407A0; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -703,6 +703,7 @@ ReadCdDirect__FUiUiPv  = 0x140CC8; // type:func
 FCdCompleted__Fi       = 0x140D68; // type:func
 junk_00140D88          = 0x140D88; // type:func
 
+g_cds = 0x2613EC; // size:0x4
 g_scecd = 0x2613F0; // size:0x4
 s_retCdRead = 0x2613F4; // size:0x4
 s_retCdError = 0x2613F8; // size:0x4
