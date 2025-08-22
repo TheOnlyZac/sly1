@@ -13,9 +13,7 @@
 #include <mat.h>
 #include <geom.h>
 #include <cat.h>
-
-typedef struct BSPC;
-typedef struct VBSP;
+#include <bsp.h>
 
 /**
  * @brief Binary Input Stream Kind.
