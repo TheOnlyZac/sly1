@@ -680,8 +680,13 @@ AddButtonNoPushClass__FP6BUTTON3CID               = 0x140710; // type:func
 AddVolbtnPushObject__FP6VOLBTN3OID                = 0x140730; // type:func
 SetButtonRsmg__FP6BUTTONi3OIDN22                  = 0x140750; // type:func
 SetVolbtnRsmg__FP6VOLBTNi3OIDN22                  = 0x140770; // type:func
-FUN_00140790__Fv                                  = 0x140790; // type:func
-FUN_001407A0                                      = 0x1407A0; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/can.c
+////////////////////////////////////////////////////////////////
+FUN_00140790__Fv = 0x140790; // type:func
+FUN_001407A0     = 0x1407A0; // type:func
 
 
 ////////////////////////////////////////////////////////////////

@@ -102,7 +102,3 @@ INCLUDE_ASM(const s32, "P2/button", AddVolbtnPushObject__FP6VOLBTN3OID);
 INCLUDE_ASM(const s32, "P2/button", SetButtonRsmg__FP6BUTTONi3OIDN22);
 
 INCLUDE_ASM(const s32, "P2/button", SetVolbtnRsmg__FP6VOLBTNi3OIDN22);
-
-INCLUDE_ASM(const s32, "P2/button", FUN_00140790__Fv);
-
-INCLUDE_ASM(const s32, "P2/button", FUN_001407A0);

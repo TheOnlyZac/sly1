@@ -102,8 +102,7 @@ segments:
     - [0x3dcf8, asm, P2/break]
     - [0x3efd8, c, P2/bsp]
     - [0x3f7c0, c, P2/button]
-    #- [0x, asm, P2/cat] # todo: remove?
-    #- [0x, asm, P2/can] # todo: remove?
+    - [0x41790, c, P2/can]
     - [0x417a8, c, P2/cd]
     - [0x41d90, c, P2/chkpnt]
     - [0x429e8, asm, P2/clip]
