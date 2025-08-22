@@ -14,8 +14,8 @@
 struct GIFS : DMAS
 {
     undefined4 unk_0x4;
-    u32 m_creg;
-    u32 m_cregAll;
+    uint m_creg;
+    uint m_cregAll;
 
     void AddPrimEnd();
 };

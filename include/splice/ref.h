@@ -85,10 +85,10 @@ public:
     void Decref();
     void Incref();
     void SetTag(TAGK tagk);
-    void SetS32(s32 n);
-    void SetF32(f32 g);
+    void SetS32(int n);
+    void SetF32(float g);
     void SetBool(int fBool);
-    void SetSymid(u32 symid);
+    void SetSymid(uint symid);
     void SetBifk(BIFK bifk);
     void SetPair(CPair *ppair);
     void SetProc(CProc *pproc);
@@ -99,8 +99,8 @@ public:
     void SetSmp(SMP *psmp);
     void SetBasic(BASIC *pbasic);
     void SetMethod(CMethod *pmethod);
-    s32 RefCoerceS32() const;
-    f32 RefCoerceF32() const;
+    int RefCoerceS32() const;
+    float RefCoerceF32() const;
 
 private:
     TAGK m_tagk;

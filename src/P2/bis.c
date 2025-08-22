@@ -68,8 +68,8 @@ void CBinaryInputStream::Close()
         case BISK_Host:
         {
             // NOTE: This is m_fd if m_tickWait is removed.
-            if (*(int *)((uint8_t *)&m_tickWait - 0x4) >= 0)
-                sceClose(*(int *)((uint8_t *)&m_tickWait - 0x4));
+            if (*(int *)((uchar *)&m_tickWait - 0x4) >= 0)
+                sceClose(*(int *)((uchar *)&m_tickWait - 0x4));
             break;
         }
         case BISK_Cd:
@@ -149,8 +149,8 @@ INCLUDE_ASM(const s32, "P2/bis", Read__18CBinaryInputStreamiPv);
  */
 void CBinaryInputStream::Read(int cb, void *pv)
 {
-    uint32_t uVar1;
-    uint32_t cb_00;
+    uint uVar1;
+    uint cb_00;
 
     if ((-1 < m_cb) && (0 < cb)) {
         for (int i = 0; i < cb; i++)
@@ -358,7 +358,7 @@ INCLUDE_ASM(const s32, "P2/bis", ReadVbsp__18CBinaryInputStreamPiPP4VBSP);
 
 void CBinaryInputStream::ReadStringSw(char **pachz)
 {
-    uint16_t length = U16Read();
+    ushort length = U16Read();
     char *buffer = (char *)PvAllocSwImpl((int)length + 1);
     Read((int)length, buffer);
     buffer[length] = 0;

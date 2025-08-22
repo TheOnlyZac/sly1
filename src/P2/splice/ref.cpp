@@ -138,7 +138,7 @@ void CRef::SetS32(s32 n)
     m_tagk = TAGK_S32;
 }
 
-void CRef::SetF32(f32 g)
+void CRef::SetF32(float g)
 {
     Decref();
     m_tag.m_g = g;
@@ -159,7 +159,7 @@ void CRef::SetBool(int fBool)
     m_tagk = TAGK_Bool;
 }
 
-void CRef::SetSymid(u32 symid)
+void CRef::SetSymid(uint symid)
 {
     Decref();
     m_tag.m_symid = symid;
