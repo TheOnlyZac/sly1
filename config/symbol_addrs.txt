@@ -5,8 +5,6 @@
 _start = 0x100008; // type:func
 _exit = 0x1000B8; // type:func
 
-__builtin_delete = 0x18d778; // type:func
-
 _gpReg = 0x2832F0;
 
 g_chzCiphertext = 0x2483b8; // size:0x9
@@ -18,16 +16,11 @@ g_chzThePasswordIs = 0x24a848; // size:0x14
 // start of .vutext section
 D_00211E10 = 0x211E10; // size:0x4
 
+
+////////////////////////////////////////////////////////////////
+// ps2t/spaprops.ic
+////////////////////////////////////////////////////////////////
 BuildEopids__Fv = 0x109488; // type:func
-
-
-////////////////////////////////////////////////////////////////
-// Unknown file
-// Related to save files
-////////////////////////////////////////////////////////////////
-UpdateSave__FP4SAVE = 0x18bdc8; // type:func
-
-g_save = 0x264A40;
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -483,6 +476,12 @@ SetAloTargetHitTest__FP3ALOi = 0x12AA28; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/aseg.c
+////////////////////////////////////////////////////////////////
+PasegaNew__FP2SW = 0x12d3f8; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/brx.c
 ////////////////////////////////////////////////////////////////
 StartupBrx__Fv = 0x11e560; // type:func
@@ -504,6 +503,23 @@ GetActsegRotationGoal__FP6ACTSEGfP7MATRIX3P6VECTOR = 0x123120; // type:func
 GetActsegTwistGoal__FP6ACTSEGPfT1 = 0x123270; // type:func
 GetActsegScale__FP6ACTSEGP7MATRIX3 = 0x1232E8; // type:func
 GGetActsegPoseGoal__FP6ACTSEGi = 0x123358; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/bas.c
+////////////////////////////////////////////////////////////////
+__18CBinaryAsyncStreamPv                        = 0x12FCF0; // type:func
+_$_18CBinaryAsyncStream                         = 0x12FD30; // type:func
+FOpenFile__18CBinaryAsyncStreamP13CFileLocation = 0x12FD78; // type:func
+junk_0012FD98                                   = 0x12FD98; // type:func
+FOpenSector__18CBinaryAsyncStreamUiUi           = 0x12FDA0; // type:func
+Close__18CBinaryAsyncStream                     = 0x12FDE8; // type:func
+StartSpooling__18CBinaryAsyncStream             = 0x12FE70; // type:func
+FSpooling__18CBinaryAsyncStream                 = 0x12FF10; // type:func
+FSpoolingComplete__18CBinaryAsyncStream         = 0x12FF20; // type:func
+FinishSpooling__18CBinaryAsyncStream            = 0x12FFE8; // type:func
+Spool__18CBinaryAsyncStream                     = 0x130070; // type:func
+Skip__18CBinaryAsyncStreami                     = 0x1300D8; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -569,6 +585,7 @@ SetHorizontalJust__8CTextBox2JH = 0x137260; // type:func
 SetVerticalJust__8CTextBox2JV = 0x137268; // type:func
 _GLOBAL_$I$InitBei__FP3BEIP3CLQffi = 0x137270; // type:func
 
+
 ////////////////////////////////////////////////////////////////
 // P2/bis.c
 ////////////////////////////////////////////////////////////////
@@ -604,7 +621,23 @@ ReadStringSw__18CBinaryInputStreamPPc = 0x1384A0; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/cd.c
 ////////////////////////////////////////////////////////////////
-CdPath__FPcT0i = 0x140b60; // type:func
+CpchzTokenizePath__FPc = 0x1407A8; // type:func
+FValidCdMmode__Fv      = 0x140968; // type:func
+SetCdMmode__Fv         = 0x1409A8; // type:func
+StartupCd__Fv          = 0x1409D8; // type:func
+UpdateCd__Fv           = 0x1409E0; // type:func
+CdPath__FPcT0i         = 0x140B60; // type:func
+ReadCd__FUiUiPv        = 0x140C28; // type:func
+ReadCdDirect__FUiUiPv  = 0x140CC8; // type:func
+FCdCompleted__Fi       = 0x140D68; // type:func
+junk_00140D88          = 0x140D88; // type:func
+
+g_scecd = 0x2613F0; // size:0x4
+s_retCdRead = 0x2613F4; // size:0x4
+s_retCdError = 0x2613F8; // size:0x4
+
+s_cdmode = 0x247AA0; // size:0x4
+
 
 ////////////////////////////////////////////////////////////////
 // P2/chkpnt.c
@@ -1223,11 +1256,50 @@ g_apchzArgs = 0x264838; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
+// P2/memcard
+////////////////////////////////////////////////////////////////
+UpdateSave__FP4SAVE = 0x18bdc8; // type:func
+
+g_save = 0x264A40;
+
+
+////////////////////////////////////////////////////////////////
 // P2/memory.c
 ////////////////////////////////////////////////////////////////
+StartupMemMgr__Fv = 0x18D430; // type:func
 PvAllocGlobalImpl__Fi = 0x18D4B0; // type:func
-PvAllocSwImpl__Fl = 0x18d500; // type:func
-CopyAb__FPvT0Ui = 0x18d800; // type:func
+LAB_0018D4F0 = 0x18D4F0; // type:label
+CheckForOutOfMemory__Fv = 0x18D4F8; // type:func
+PvAllocSwImpl__Fi = 0x18D500; // type:func
+FreeSw__Fv = 0x18D550; // type:func
+PvAllocSwCopyImpl__FiPv = 0x18D568; // type:func
+PvAllocSwClearImpl__Fi = 0x18D5C0; // type:func
+InitStackImpl__Fv = 0x18D608; // type:func
+PvAllocStackImpl__Fi = 0x18D658; // type:func
+PvAllocStackClearImpl__Fi = 0x18D6A8; // type:func
+FreeStackImpl__Fv = 0x18D6F0; // type:func
+malloc = 0x18D740; // type:func
+_malloc_r = 0x18D748; // type:func
+free = 0x18D750; // type:func
+__builtin_new = 0x18D758; // type:func
+__builtin_delete = 0x18D778; // type:func
+CopyAqw__FPvT0i = 0x18D780; // type:func
+CopyAb__FPvT0Ui = 0x18D800; // type:func
+
+s_pvGlobalMin = 0x2C2A10; // size:0x4
+s_pvGlobalMac = 0x2C2A14; // size:0x4
+s_pvWorldMin = 0x2C2A18; // size:0x4
+s_pvWorldMac = 0x2C2A1C; // size:0x4
+s_pvStackMin = 0x2C2A20; // size:0x4
+s_pvStackMac = 0x2C2A24; // size:0x4
+s_critsectStack = 0x2C2A28; // size:0xc
+s_ipvStackCur = 0x2C2A34; // size:0x4
+s_apvStackMin = 0x2C2A38; // size:0x4
+
+// TODO: Move elsewhere?
+g_pvHeapMin = 0x2699A4; // size:0x4
+g_pvHeapMax = 0x2699A8; // size:0x4
+D_0064C70F = 0x64C70F; // size:0x04
 
 
 ////////////////////////////////////////////////////////////////
@@ -1242,7 +1314,7 @@ g_mpeg = 0x269A00;
 // P2/phasemem.c
 ////////////////////////////////////////////////////////////////
 SetPhase__F5PHASE = 0x191E70; // type:func
-ClearPhase__Fv = 0x191EB0; // type:func
+ClearPhase__F5PHASE = 0x191EB0; // type:func
 
 g_phase = 0x269ba4; // size:0x4
 
@@ -1414,8 +1486,9 @@ g_totals = 0x26f138; // size:0x280
 ////////////////////////////////////////////////////////////////
 // P2/so.c
 ////////////////////////////////////////////////////////////////
-FUN_001B7A98__FP2PO = 0x1b7a98; // type:func
-FUN_001B7B78__FP2PO = 0x1b7b78; // type:func
+InitSo__FP2SO = 0x1b7968; // type:func
+OnSoAdd__FP2SO = 0x1b7a98; // type:func
+OnSoRemove__FP2SO = 0x1b7b78; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -1818,8 +1891,8 @@ FlushCache = 0x1F6C20; // type:func
 ////////////////////////////////////////////////////////////////
 // filestub.c
 ////////////////////////////////////////////////////////////////
-sceClose = 0x1f8c38; // type:func
-
+sceClose = 0x1F8C38; // type:func
+sceRead = 0x1F8DB8; // type:func
 
 ////////////////////////////////////////////////////////////////
 // /usr/local/sce/ee/gcc/src/newlib/libc/stdlib/rand.c
@@ -1849,10 +1922,12 @@ sceDmaSync = 0x202c38; // type:func
 ////////////////////////////////////////////////////////////////
 // ../eecdvd.c
 ////////////////////////////////////////////////////////////////
-sceCdGetError = 0x203d90; // type:func
-sceCdBreak = 0x203e28; // type:func
-sceCdSync = 0x2032c8; // type:func
-sceCdRead = 0x203b18; // type:func
+sceCdMmode = 0x203A20; // type:func
+sceCdGetError = 0x203D90; // type:func
+sceCdBreak = 0x203E28; // type:func
+sceCdSync = 0x2032C8; // type:func
+sceCdRead = 0x203B18; // type:func
+sceCdGetDiskType = 0x203CF8; // type:func
 
 
 ////////////////////////////////////////////////////////////////

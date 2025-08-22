@@ -203,7 +203,7 @@ INCLUDE_ASM(const s32, "P2/sound", MvgkUnknown3);
 INCLUDE_ASM(const s32, "P2/sound", MvgkUnknown4);
 
 /**
- * @todo Figure out func_001c0cb0, and use appropriate enums for parameters.
+ * @todo Figure out func_001c0cb0, and use enum values for params where applicable.
  */
 void KillSoundSystem()
 {

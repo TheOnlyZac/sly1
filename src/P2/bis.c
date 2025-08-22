@@ -63,21 +63,21 @@ int CBinaryInputStream::FOpenFile(CFileLocation *pfl)
 
 void CBinaryInputStream::Close()
 {
-    switch(m_bisk)
+    switch (m_bisk)
     {
         case BISK_Host:
         {
             // NOTE: This is m_fd if m_tickWait is removed.
-            if(*(int *)((uint8_t *)&m_tickWait - 0x4) >= 0)
+            if (*(int *)((uint8_t *)&m_tickWait - 0x4) >= 0)
                 sceClose(*(int *)((uint8_t *)&m_tickWait - 0x4));
             break;
         }
         case BISK_Cd:
         {
             // NOTE: This is m_cbAsyncComplete if m_tickWait is removed.
-            if(*(int *)((uint8_t *)this + 0x3c))
+            if (STRUCT_OFFSET(this, 0x3c, int))
             {
-                if(m_grfbis & 0x2)
+                if (m_grfbis & 0x2)
                 {
                     sceCdBreak();
                 }
@@ -110,7 +110,7 @@ INCLUDE_ASM(const s32, "P2/bis", PumpHost__18CBinaryInputStream);
 
 void CBinaryInputStream::Pump()
 {
-    switch(m_bisk)
+    switch (m_bisk)
     {
         case BISK_Host:
             PumpHost();
@@ -122,10 +122,8 @@ void CBinaryInputStream::Pump()
             break;
     }
 
-    // FIXME: This code matches perfectly, but it could look much better.
-    // I am pretty sure that m_cbRemaining is actually a pointer
-    // or the value at offset 0x24 is an integer.
-    int iVar1 = m_cbRemaining - *(int *)((uint8_t *)this + 0x24);
+    // TODO: This code matches perfectly, but it could look much better.
+    int iVar1 = m_cbRemaining - STRUCT_OFFSET(this, 0x24, int);
     int zero = 0;
     int remain = (iVar1 > zero) ? iVar1 : 0;
 

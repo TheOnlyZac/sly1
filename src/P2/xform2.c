@@ -26,12 +26,11 @@ INCLUDE_ASM(const s32, "P2/xform2", PostExitLoad__FP4EXIT);
 INCLUDE_ASM(const s32, "P2/xform2", SetExitExits__FP4EXIT5EXITS);
 #ifdef SKIP_ASM
 /**
- * @todo 96.19% matched.
+ * @todo 97.74% matched.
  * https://decomp.me/scratch/t75bf
  */
-void SetExitExits(EXIT *pexit, EXITS exits) {
-    uint64_t uVar1;
-
+void SetExitExits(EXIT *pexit, EXITS exits)
+{
     if (exits == pexit->exits) {
         return;
     }
@@ -41,20 +40,20 @@ void SetExitExits(EXIT *pexit, EXITS exits) {
         g_totals.pvttotals->pfnHideBlot(totals);
     }
 
-    if (exits == EXITS_Exiting) {
+    if (exits != EXITS_Exiting) {
         pexit->exits = exits;
         pexit->tExits = g_clock.t;
         return;
     }
 
     // Read the 64-bit value from offset 0x2c8
-    uVar1 = *((uint64_t *)((char *)pexit + 0x2c8));
+    uint64_t uVar1 = STRUCT_OFFSET(pexit, 0x2c8, uint64_t);
 
     // Apply bitwise mask and OR operation
     uVar1 = (uVar1 & ~0x30100000000ULL) | (0x8000ULL << 0x19);
 
     // Store back the modified value
-    *((uint64_t *)((char *)pexit + 0x2c8)) = uVar1;
+    STRUCT_OFFSET(pexit, 0x2c8, uint64_t) = uVar1;
 
     IncrementSwHandsOff(pexit->psw);
 

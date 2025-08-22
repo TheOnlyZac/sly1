@@ -26,6 +26,6 @@ void SetPhase(PHASE phase);
 /**
  * @brief Clear the current engine phase.
  */
-void ClearPhase();
+void ClearPhase(PHASE phase);
 
 #endif // PHASEMEM_H

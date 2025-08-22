@@ -32,16 +32,27 @@ struct SO : public ALO
     // ...
 };
 
-struct PO;
+/**
+ * @brief Initialize the given SO.
+ *
+ * @param pso Pointer to the SO.
+ *
+ * @todo Verify this is actually that function.
+ */
+void InitSo(SO *pso);
 
 /**
- * @todo Rename function (it might be OnSoAdd).
+ * @brief Event handler for SO added to world(?)
+ *
+ * @param pso Pointer to the SO.
  */
-void FUN_001B7A98(PO *ppo);
+void OnSoAdd(SO *pso);
 
 /**
- * @todo Rename function (it might be OnSoRemove).
+ * @brief Event handler for SO removed from world(?)
+ *
+ * @param pso Pointer to the SO.
  */
-void FUN_001B7B78(PO *ppo);
+void OnSoRemove(SO *pso);
 
 #endif // SO_H

@@ -1,7 +1,7 @@
 /**
  * @file rs.h
  *
- * @note No functions are defined in this file.
+ * @note No functions are declared here.
  */
 #ifndef RS_H
 #define RS_H
@@ -12,7 +12,7 @@
 /**
  * @brief Unknown.
  *
- * @todo Figure out what this function represents.
+ * @todo Figure out what this struct represents.
  */
 struct RSMG
 {

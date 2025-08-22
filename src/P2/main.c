@@ -125,7 +125,7 @@ INCLUDE_ASM(const s32, "P2/main", Startup__Fv);
 /**
  * @brief Starts each game system.
  *
- * @todo 98.23% matched.
+ * @todo 99.23% matched.
  * Stack frame is 48 bytes smaller than expected.
  * https://decomp.me/scratch/IOVxc
  */
@@ -156,6 +156,6 @@ void Startup()
     // Cleanup
     prog.SetRemain(0);
     prog.End();
-    ClearPhase();
+    ClearPhase(PHASE_Startup);
 }
 #endif

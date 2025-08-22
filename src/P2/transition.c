@@ -31,8 +31,9 @@ void CTransition::Set(char *pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS
 INCLUDE_ASM(const s32, "P2/transition", Execute__11CTransition);
 #ifdef SKIP_ASM
 /**
- * @todo 13.18% matched.
- * Several functions called in this function are not implemented yet.
+ * @todo 15.19% matched.
+ *
+ * Some functions called in this function are not implemented yet.
  */
 void CTransition::Execute()
 {
@@ -40,24 +41,36 @@ void CTransition::Execute()
     LevelTableStruct levelInfo = {};
 
     SetPhase(PHASE_Load);
+    // func_0018d410();
+
     if (levelInfo.fileLocation.m_fcl.cb != 0)
     {
         // fileLocation.Clear();
 
         // Decrypting the sector offsets and file size
-        fileLocation.m_fcl.cb = levelInfo.fileLocation.m_fcl.cb ^ levelInfo.level_name;
-        fileLocation.m_fcl.isector = levelInfo.fileLocation.m_fcl.isector ^ levelInfo.for_size;
+        uint cb = levelInfo.fileLocation.m_fcl.cb ^ levelInfo.level_name;
+        uint isector = levelInfo.fileLocation.m_fcl.isector ^ levelInfo.for_size;
+        fileLocation.m_fcl.cb = cb;
+        fileLocation.m_fcl.isector = isector;
 
-        if (fileLocation.m_fcl.cb == 0)
+        // Set up progress bar (temp, this was copied from Startup)
+        int nRemain = cb;
+        int rgbaComplete = 0x007f0000; // blue
+        int rgbaRemain = 0x003f3f3f; // gray
+        int rgbaWarning = 0x00003f3f; // yellow
+        int rgbaTrouble = 0x0000003f; // red
+        CProg prog = CProg((RGBA *)&rgbaComplete, (RGBA *)&rgbaRemain, (RGBA *)&rgbaWarning, (RGBA *)&rgbaTrouble);
+
+        if (cb == 0)
         {
-            //FUN_001C06D8();
-            // SetMvgkRvol();
-            ClearPhase();
+            MvgkUnknown1(MVGK_Music);
+            SetMvgkRvol(MVGK_Music, 1.0f);
+            ClearPhase(PHASE_None);
             levelInfo.fileLocation.m_fcl.isector = 0;
             return;
         }
 
-        // DeleteSw(g_psw);
+        DeleteSw(g_psw);
         g_psw = 0;
         // SetupBulkDataFromBrx()
         ResetClock(&g_clock, 0.0);

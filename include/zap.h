@@ -9,6 +9,7 @@
 #include "common.h"
 #include <oid.h>
 #include <so.h>
+#include <ensure.h>
 
 /**
  * @brief Zap kind.
@@ -58,6 +59,16 @@ struct ZPD {
  * @todo Fill in struct.
 */
 struct ZAP
+{
+    // ...
+};
+
+/**
+ * @brief Unknown.
+ *
+ * @todo Fill in struct, and confirm this is the right place for it.
+*/
+struct TZP
 {
     // ...
 };
