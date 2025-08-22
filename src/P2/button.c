@@ -1,4 +1,5 @@
-#include "common.h"
+#include <button.h>
+#include <chkpnt.h>
 
 INCLUDE_ASM(const s32, "P2/button", PostAshLoad__FP2SWP3ASHP3ALO);
 
@@ -8,7 +9,11 @@ INCLUDE_ASM(const s32, "P2/button", FAddAshAseg__FP3ASHP4ASEG);
 
 INCLUDE_ASM(const s32, "P2/button", FAddAshOid__FP3ASH3OID);
 
-INCLUDE_ASM(const s32, "P2/button", InitBtn__FP3BTN);
+void InitBtn(BTN *pbtn)
+{
+    STRUCT_OFFSET(pbtn, 0x120, int) = IchkAllocChkmgr(&g_chkmgr);
+    STRUCT_OFFSET(pbtn, 0x140, OID) = OID_Nil;
+}
 
 INCLUDE_ASM(const s32, "P2/button", LoadBtn__FP3BTNP3ALO);
 
