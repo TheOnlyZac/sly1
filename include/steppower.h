@@ -42,16 +42,28 @@ extern float RT_JtSlowDownClock;
 
 /**
  * @brief Set the selected powerup.
+ *
+ * @param fsp Bitflags representing a certain powerup.
  */
 void SetFsp(FSP fsp);
 
 /**
  * @brief Update the currently selected powerup.
+ *
+ * @param pjt Pointer to the jt to update.
+ * @param pjoy Pointer to the joypad input.
  */
 void UpdateJtActivePowerUp(JT *pjt, JOY *pjoy);
 
 /**
- * @brief Rotate the selected powerup.
+ * @brief Rotate the selected powerup, making the next one in the cycle active.
+ *
+ * @param pjoy Pointer to the joypad input.
+ * @param iCur Current powerup index.
+ * @param iMax Maximum powerup index.
+ * @param mpigrfvault Array of integer bitflags representing which powerups are available.
+ *
+ * @return Index of the newly active powerup.
  */
 int IRotatePowerUp(JOY *pjoy, int iCur, int iMax, int *mpigrfvault);
 
