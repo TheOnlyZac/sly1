@@ -35,7 +35,7 @@ enum BRKPS
     BRKPS_Max = 3,
 };
 
-struct BREAK
+struct BREAK : BRK
 {
     // ...
 };

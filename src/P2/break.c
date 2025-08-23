@@ -48,7 +48,7 @@ INCLUDE_ASM(const s32, "P2/break", FUN_0013DAB8);
 
 SFX *PsfxEnsureBrk(BRK *pbrk, ENSK ensk)
 {
-    if(!STRUCT_OFFSET(pbrk, 0x6b4, SFX *))
+    if (!STRUCT_OFFSET(pbrk, 0x6b4, SFX *))
     {
         NewSfx(&STRUCT_OFFSET(pbrk, 0x6b4, SFX *));
     }
@@ -68,7 +68,7 @@ INCLUDE_ASM(const s32, "P2/break", SetBrkpBrkps__FP4BRKP5BRKPS);
 
 void InitBreak(BREAK *pbreak)
 {
-    InitBrk((BRK *)pbreak);
+    InitBrk(pbreak);
     STRUCT_OFFSET(pbreak, 0x63c, int) = 5;
     STRUCT_OFFSET(pbreak, 0x698, int) = -1;
 }
