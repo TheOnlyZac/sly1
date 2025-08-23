@@ -57,4 +57,10 @@ public:
     // void Clear();
 };
 
+/**
+ * @brief Used to startup the catalog system,
+ * now it only sets the CD state to ready.
+ */
+void StartupCatalog();
+
 #endif // CAT_H

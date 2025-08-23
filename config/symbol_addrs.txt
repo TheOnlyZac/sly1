@@ -619,6 +619,82 @@ ReadVbsp__18CBinaryInputStreamPiPP4VBSP = 0x138398; // type:func
 ReadStringSw__18CBinaryInputStreamPPc = 0x1384A0; // type:func
 
 ////////////////////////////////////////////////////////////////
+// P2/break.c
+////////////////////////////////////////////////////////////////
+InitBrk__FP3BRK = 0x13CCF8; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/bsp.c
+////////////////////////////////////////////////////////////////
+ClsgClipEdgeToBsp__FP3BSPP6VECTORT1PiiP3LSG = 0x13DFD8; // type:func
+PruneBsp__FP3BSPP6VECTORfPP3BSP             = 0x13E430; // type:func
+PbspPointInBspQuick__FP6VECTORP3BSP         = 0x13E658; // type:func
+CloneBspc__FP4GEOMP4BSPCT0T1                = 0x13E6C8; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/button.c
+////////////////////////////////////////////////////////////////
+PostAshLoad__FP2SWP3ASHP3ALO                      = 0x13E7C0; // type:func
+FFoundAshAseg__FP3ASHP4ASEG                       = 0x13E868; // type:func
+FAddAshAseg__FP3ASHP4ASEG                         = 0x13E8D8; // type:func
+FAddAshOid__FP3ASH3OID                            = 0x13E8F8; // type:func
+InitBtn__FP3BTN                                   = 0x13E918; // type:func
+LoadBtn__FP3BTNP3ALO                              = 0x13E950; // type:func
+PostBtnLoad__FP3BTN                               = 0x13EA38; // type:func
+RestoreBtnFromCheckpointCallback__FP3BTN5MSGIDPv  = 0x13EAE0; // type:func
+SetBtnRsmg__FP3BTNi3OIDN22                        = 0x13EB30; // type:func
+SetBtnButtons__FP3BTN7BUTTONS                     = 0x13EB68; // type:func
+FAddRsmg__FP4RSMGiPii3OIDN24                      = 0x13EC00; // type:func
+TriggerRsmg__FP2SWiP4RSMGP2LOi                    = 0x13ECB0; // type:func
+RunBtnAsegs__FP3BTN4IASHi                         = 0x13ED90; // type:func
+TriggerBtn__FP3BTNii                              = 0x13EF50; // type:func
+UntriggerBtn__FP3BTNi                             = 0x13F070; // type:func
+InitButton__FP6BUTTON                             = 0x13F0E0; // type:func
+LoadButtonFromBrx__FP6BUTTONP18CBinaryInputStream = 0x13F110; // type:func
+InsertButtonPos__FP6BUTTONP3PNTP6VECTOR           = 0x13F140; // type:func
+InsertButtonMat__FP6BUTTONP3XFMP7MATRIX3          = 0x13F1D8; // type:func
+PostButtonLoad__FP6BUTTON                         = 0x13F290; // type:func
+CloneButton__FP6BUTTONT0                          = 0x13F6C0; // type:func
+SetButtonButtons__FP6BUTTON7BUTTONS               = 0x13F6F8; // type:func
+FCheckButtonObject__FP6BUTTONP2SO                 = 0x13F718; // type:func
+IposFindButtonClosest__FP6BUTTONPf                = 0x13F8A0; // type:func
+ImatFindButtonClosest__FP6BUTTONPf                = 0x13F940; // type:func
+PresetButtonAccel__FP6BUTTONf                     = 0x13FA10; // type:func
+UpdateButtonInternalXps__FP6BUTTON                = 0x13FAE8; // type:func
+UpdateButton__FP6BUTTONf                          = 0x13FD20; // type:func
+FAbsorbButtonWkr__FP6BUTTONP3WKR                  = 0x140028; // type:func
+InitVolbtn__FP6VOLBTN                             = 0x1400A8; // type:func
+LoadVolbtnFromBrx__FP6VOLBTNP18CBinaryInputStream = 0x140100; // type:func
+PostVolbtnLoad__FP6VOLBTN                         = 0x140140; // type:func
+CloneVolbtn__FP6VOLBTNT0                          = 0x140200; // type:func
+SetVolbtnButtons__FP6VOLBTN7BUTTONS               = 0x140238; // type:func
+UpdateVolbtn__FP6VOLBTNf                          = 0x140258; // type:func
+FGetVolbtnPushObjectsWithinList__FP6VOLBTNPv      = 0x140550; // type:func
+AddBtnAseg__FP3BTNP3ALO3OID                       = 0x1405D0; // type:func
+AddButtonAseg__FP6BUTTON3OID                      = 0x1405F0; // type:func
+AddVolbtnAseg__FP6VOLBTN3OID                      = 0x140618; // type:func
+AddBtnOffAseg__FP3BTNP3ALO3OID                    = 0x140640; // type:func
+AddButtonOffAseg__FP6BUTTON3OID                   = 0x140660; // type:func
+AddVolbtnOffAseg__FP6VOLBTN3OID                   = 0x140688; // type:func
+AddButtonPushObject__FP6BUTTON3OID                = 0x1406B0; // type:func
+AddButtonNoPushObject__FP6BUTTON3OID              = 0x1406D0; // type:func
+AddButtonPushClass__FP6BUTTON3CID                 = 0x1406F0; // type:func
+AddButtonNoPushClass__FP6BUTTON3CID               = 0x140710; // type:func
+AddVolbtnPushObject__FP6VOLBTN3OID                = 0x140730; // type:func
+SetButtonRsmg__FP6BUTTONi3OIDN22                  = 0x140750; // type:func
+SetVolbtnRsmg__FP6VOLBTNi3OIDN22                  = 0x140770; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/cat.c
+////////////////////////////////////////////////////////////////
+StartupCatalog__Fv = 0x140790; // type:func
+FUN_001407A0       = 0x1407A0; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/cd.c
 ////////////////////////////////////////////////////////////////
 CpchzTokenizePath__FPc = 0x1407A8; // type:func
@@ -632,6 +708,7 @@ ReadCdDirect__FUiUiPv  = 0x140CC8; // type:func
 FCdCompleted__Fi       = 0x140D68; // type:func
 junk_00140D88          = 0x140D88; // type:func
 
+g_cds = 0x2613EC; // size:0x4
 g_scecd = 0x2613F0; // size:0x4
 s_retCdRead = 0x2613F4; // size:0x4
 s_retCdError = 0x2613F8; // size:0x4

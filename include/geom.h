@@ -23,7 +23,6 @@ struct EDGE
 
 /**
  * @brief Geometry
-
  *
  * @todo Implement struct.
  */
