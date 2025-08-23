@@ -1,3 +1,4 @@
+#include <cat.h>
 #include "cd.h"
 
 extern CDS g_cds;
