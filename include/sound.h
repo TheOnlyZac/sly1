@@ -169,6 +169,21 @@ struct AMB
 };
 
 /**
+ * @brief Sound Effect.
+ */
+struct SFX
+{
+    SFXID sfxid;
+    float sStart;
+    float sFull;
+    float uVol;
+    float uPitch;
+    LM lmRepeat;
+    AMB *pamb;
+    float uDoppler;
+};
+
+/**
  * @brief Unknown.
  */
 void KillExcitement();
@@ -182,6 +197,11 @@ void StartupSound();
  * @brief Ensures the soundbank is available.
  */
 void SbpEnsureBank(int bank);
+
+/**
+ * @brief Create a new sound effect.
+ */
+void NewSfx(SFX **ppsfx);
 
 /**
  * @brief Starts sound playback.
