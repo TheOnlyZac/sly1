@@ -2,6 +2,8 @@
  * @file gs.h
  *
  * @brief Graphics synthesizer.
+ *
+ * @note Note to be confused with GS (game state), declared in game.h.
  */
 #ifndef GS_H
 #define GS_H

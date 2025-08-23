@@ -78,7 +78,7 @@ void UpdateJtActivePowerUp(JT *pjt, JOY *pjoy)
     FSP fsp;
     GRFVAULT grfvault;
 
-    grfvault = grfvault_something();
+    grfvault = GetGrfvault_unknown();
 
     // FFloatsNear(float, float, float);
     // g_rtClockPowerUp
@@ -90,7 +90,7 @@ void UpdateJtActivePowerUp(JT *pjt, JOY *pjoy)
     // g_rtClockPowerUp
     // g_grfusr
     // SetJoyBtnHandled(JOY*, ushort);
-    // grfvault_something();
+    // GetGrfvault_unknown();
     // RT_JtSlowDownClock
     // g_rtClockPowerUp
     // SetJoyBtnHandled(JOY*, ushort);
@@ -162,7 +162,7 @@ int IRotatePowerUp(JOY *pjoy, int iCur, int iMax, int *mpigrfvault)
         {
             iNew = 0;
         }
-        grfValue = grfvault_something();
+        grfValue = GetGrfvault_unknown();
     } while ((grfValue & mpigrfvault[iNew]) == 0);
 
     // Return the new powerup index.

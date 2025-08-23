@@ -314,7 +314,16 @@ void OnGameAlarmDisabled(GAME *pgame)
     pgame->cAlarmsTriggered--;
 }
 
-INCLUDE_ASM(const s32, "P2/game", grfvault_something__Fv);
+uint GetGrfvault_unknown()
+{
+    GS *pgsCur = g_pgsCur;
+    SW *pswCur = g_psw;
+
+    GRFVAULT grfvault = pgsCur->grfvault;
+    uint unk = STRUCT_OFFSET(pswCur, 0x235c, uint);
+
+    return grfvault & unk;
+}
 
 INCLUDE_ASM(const s32, "P2/game", GetBlueprintInfo__FPiT0);
 #ifdef SKIP_ASM
