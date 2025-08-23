@@ -621,7 +621,37 @@ ReadStringSw__18CBinaryInputStreamPPc = 0x1384A0; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/break.c
 ////////////////////////////////////////////////////////////////
-InitBrk__FP3BRK = 0x13CCF8; // type:func
+InitBrk__FP3BRK                             = 0x13CCF8; // type:func
+LoadBrkFromBrx__FP3BRKP18CBinaryInputStream = 0x13CD80; // type:func
+CloneBrk__FP3BRKT0                          = 0x13CDE8; // type:func
+PostBrkLoad__FP3BRK                         = 0x13CE40; // type:func
+PostBrkLoadCallbackHookup__FP3BRK5MSGIDPv   = 0x13CE80; // type:func
+UpdateBrk__FP3BRKf                          = 0x13D068; // type:func
+FAbsorbBrkWkr__FP3BRKP3WKR                  = 0x13D0B0; // type:func
+BreakBrk__FP3BRK                            = 0x13D278; // type:func
+SetBrkBroken__FP3BRKi                       = 0x13D820; // type:func
+SetBrkExclude__FP3BRK3OID                   = 0x13D868; // type:func
+SetBrkRemain__FP3BRK3OID                    = 0x13D8B0; // type:func
+SetBrkFixed__FP3BRK3OID                     = 0x13D900; // type:func
+SetBrkRemainFixed__FP3BRK3OID               = 0x13D950; // type:func
+SetBrkOnPlayer__FP3BRKi                     = 0x13D9A0; // type:func
+GetBrkOnPlayer__FP3BRKPi                    = 0x13D9E0; // type:func
+SetBrkOnBomb__FP3BRKi                       = 0x13D9F0; // type:func
+GetBrkOnBomb__FP3BRKPi                      = 0x13DA30; // type:func
+AddBrkTouchObject__FP3BRK3OID               = 0x13DA48; // type:func
+AddBrkTouchClass__FP3BRK3CID                = 0x13DA80; // type:func
+FUN_0013DAB8                                = 0x13DAB8; // type:func
+PsfxEnsureBrk__FP3BRK4ENSK                  = 0x13DAF0; // type:func
+FCheckBrkTouchObject__FP3BRKP2SO            = 0x13DB28; // type:func
+UpdateBrkp__FP4BRKPf                        = 0x13DC38; // type:func
+HandleBrkpMessage__FP4BRKP5MSGIDPv          = 0x13DCA8; // type:func
+FIgnoreBrkpIntersection__FP4BRKPP2SO        = 0x13DD08; // type:func
+SetBrkpBrkps__FP4BRKP5BRKPS                 = 0x13DD78; // type:func
+InitBreak__FP5BREAK                         = 0x13DDB8; // type:func
+InitFragile__FP7FRAGILE                     = 0x13DDF0; // type:func
+AdjustFragileNewXp__FP7FRAGILEP2XPi         = 0x13DE38; // type:func
+AdjustZapbreakNewXp__FP8ZAPBREAKP2XPi       = 0x13DEE8; // type:func
+UpdateZapbreak__FP8ZAPBREAKf                = 0x13df68; // type:func
 
 
 ////////////////////////////////////////////////////////////////
