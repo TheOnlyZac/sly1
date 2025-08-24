@@ -618,6 +618,21 @@ ReadBspc__18CBinaryInputStreamP4GEOMP4BSPC = 0x138278; // type:func
 ReadVbsp__18CBinaryInputStreamPiPP4VBSP = 0x138398; // type:func
 ReadStringSw__18CBinaryInputStreamPPc = 0x1384A0; // type:func
 
+
+////////////////////////////////////////////////////////////////
+// P2/bq.c
+////////////////////////////////////////////////////////////////
+Init__10CByteQueueiPv                 = 0x13C988; // type:func
+Reset__10CByteQueue                   = 0x13C9B0; // type:func
+CbFill__10CByteQueueiP11CQueueInput   = 0x13C9D0; // type:func
+CbDrain__10CByteQueueiP12CQueueOutput = 0x13CAD8; // type:func
+CbFill__10CByteQueueiPUc              = 0x13CC00; // type:func
+FreeDrain__10CByteQueuei              = 0x13CC48; // type:func
+CbRead__17CQueueInputMemoryiPv        = 0x13CC80; // type:func
+CbRead__15CQueueInputFileiPv          = 0x13CCE8; // type:func
+junk_0013CCF0                         = 0x13CCF0; // type:func
+
+
 ////////////////////////////////////////////////////////////////
 // P2/break.c
 ////////////////////////////////////////////////////////////////
