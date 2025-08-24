@@ -7,8 +7,8 @@
 #define UTIL_H
 
 #include "common.h"
-#include <mat.h>
 #include <vec.h>
+#include <mat.h>
 #include <sm.h>
 
 #ifdef SKIP_ASM

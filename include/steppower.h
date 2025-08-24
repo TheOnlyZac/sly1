@@ -7,6 +7,7 @@
 #include "common.h"
 #include <jt.h>
 #include <joy.h>
+#include <game.h>
 
 /**
  * @brief Selected powerup flags.
@@ -39,6 +40,9 @@ extern const char *s_mpfspachz[];
 
 extern float RT_JtSpeedUpClock;
 extern float RT_JtSlowDownClock;
+
+extern GRFVAULT s_mpfspgrfvault[]; // Should be static + initialized.
+extern SMP SMP_00274f78; // temp
 
 /**
  * @brief Set the selected powerup.

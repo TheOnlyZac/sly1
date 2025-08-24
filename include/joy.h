@@ -10,6 +10,8 @@
 #include <rumble.h>
 #include <util.h>
 
+#define JOY_BUTTON_PRESSED(pjoy, pad_button) (pjoy->grfbtnPressed & (pad_button) != _NOT_PRESSED)
+
 // MARK:Pad
 
 enum PAD

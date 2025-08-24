@@ -5,12 +5,50 @@
 #define ALO_H
 
 #include "common.h"
+#include <vec.h>
+#include <mat.h>
 #include <lo.h>
 #include <dl.h>
+#include <fader.h>
 
 // Forward
 struct CBinaryInputStream;
+struct SFX;
+struct SMPA;
+struct MRG;
+struct ASEGD;
+struct ACT;
+struct ACTLY;
+struct ACTBANK;
+struct IKH;
+struct ALOX;
+struct SHADOW;
+struct THROB;
+struct POSEC;
+struct ACTREF;
 
+/**
+ * @todo Unknown.
+ */
+enum ACK
+{
+    ACK_Nil = -1,
+    ACK_None = 0,
+    ACK_Spring = 1,
+    ACK_Velocity = 2,
+    ACK_Smooth = 3,
+    ACK_Spline = 4,
+    ACK_Drive = 5,
+    ACK_SmoothForce = 6,
+    ACK_SmoothLock = 7,
+    ACK_SpringLock = 8,
+    ACK_SmoothNoLock = 9,
+    ACK_Max = 10
+};
+
+/**
+ * @todo Unknown.
+ */
 struct FICG
 {
     uchar grficSweep;
@@ -21,13 +59,28 @@ struct FICG
 };
 
 /**
- * @brief Unknown
+ * @todo Unknown.
 */
 struct SNIP
 {
     int grfsnip;
     OID oid;
     int ib;
+};
+
+/**
+ * @brief Transform.
+ */
+struct XF
+{
+    MATRIX3 mat;
+    VECTOR pos;
+    MATRIX3 matWorld;
+    VECTOR posWorld;
+    VECTOR v;
+    VECTOR w;
+    VECTOR dv;
+    VECTOR dw;
 };
 
 /**
@@ -45,20 +98,56 @@ struct ALO : public LO
     DLE dleFreeze;
     DL dlFreeze;
     int cpmrg;
-    //MRG *apmrg[4];
+    MRG *apmrg;
     float sMRD;
     float sCelBorderMRD;
     int grfzon;
     float dsMRDSnap;
-    undefined4 unk_1;
-    //FRZ frz;
-    //XF xf;
-    //VECTOR pso
-
-    undefined4 padding[0x8b];
+    undefined4 unk_0x9c;
+    undefined1 frz[40]; // FRZ frz;
+    XF xf;
+    VECTOR posOrig;
+    MATRIX3 matOrig;
+    VECTOR eulOrig;
+    DL dlAct;
+    ACT *pactPos;
+    ACT *pactRot;
+    ACT *pactScale;
+    ACT **apactPost;
+    ACT *pactRestore;
+    ACTLY *pactla;
+    ACTBANK *pactbank;
+    IKH *pikh;
+    CLQ *pclqPosSpring;
+    CLQ *pclwPosDamping;
+    CLQ *pclqRotSpring;
+    CLQ *pclqRotDamping;
+    SMPA *psmpaPos;
+    SMPA *psmapaRot;
+    ALOX *palox;
+    int cframeStatic;
+    undefined1 globset[88]; //GLOBSET globset;
+    SHADOW *pshadow;
+    THROB *pthrob;
+    float sFastShadowRadius;
+    float sFastShadowDepth;
+    int fRealClock;
+    FADER *pfader;
+    float dtUpdatePause;
+    ASEGD *pasegd;
+    float sRadiusRenderSelf;
+    float sRadiusRenderAll;
+    SFX *psfx;
+    undefined1 padding_2[100];
     FICG ficg;
-
-    undefined1 padding2[0x1a];
+    undefined1 padding_3[4]; // ???
+    int cposed;
+    POSEC *aposec;
+    ACTREF *pactrefCombo;
+    DLR *pdlrFirst;
+    // ???
+    ACK ackRot;
+    // ???
     // ...
 };
 

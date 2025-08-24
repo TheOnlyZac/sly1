@@ -7,7 +7,8 @@
 #define VEC_H
 
 #include "common.h"
-#include <so.h>
+
+struct SO;
 
 /**
  * @brief Vector3 with X, Y, and Z

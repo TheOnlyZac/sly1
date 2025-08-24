@@ -16,22 +16,21 @@
  */
 enum JTS
 {
+    JTS_Nil = -1,
     JTS_Stand = 0,
     JTS_Run = 1,
     JTS_Jump = 2,
-    JTS_Hang = 3,
-    JTS_Zap = 4,
-    JTS_Sidestep = 5,
-    JTS_Hide = 6,
-    JTS_Pipe = 7,
-    JTS_Edge = 8,
-    JTS_Celebrate = 9,
-    JTS_Rush = 10,
-    JTS_Puppet = 11,
-    JTS_Peek = 12,
-    JTS_Ski = 13,
-    JTS_Ball = 14,
-    JTS_Max = 15
+    JTS_Zap = 3,
+    JTS_Sidestep = 4,
+    JTS_Hide = 5,
+    JTS_Pipe = 6,
+    JTS_Edge = 7,
+    JTS_Celebrate = 8,
+    JTS_Rush = 9,
+    JTS_Puppet = 10,
+    JTS_Peek = 11,
+    JTS_Ball = 12,
+    JTS_Max = 13
 };
 
 /**
@@ -78,7 +77,11 @@ enum JTBS
     JTBS_Zap_Blunt = 33,
     JTBS_Zap_Electric = 34,
     JTBS_Zap_Fire = 35,
-    JTBS_Zap_Water = 36
+    JTBS_Zap_Water = 36,
+    // ...
+    JTBS_Unk_54 = 54,
+    JTBS_Unk_55 = 55
+
 };
 
 /**
@@ -100,12 +103,14 @@ enum JTCS
  */
 struct JT : public STEP
 {
-    uchar padding[0x1248];
-    LO *ploMine_1518;
-    uchar padding2[0xd03];
-    int unk2220;
-    uchar padding3[0x52c];
-    int unk2750;
+    undefined1 padding[0x110A];
+    ALO *paloMine_0x1518;
+    undefined1 padding2[0xD02];
+    JTS jts;
+    int unk_0x2224;
+    JTBS jtbs;
+    undefined1 padding3[0x521];
+    int unk_0x2750;
 };
 
 /**

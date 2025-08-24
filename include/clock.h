@@ -29,9 +29,9 @@ extern float D_0024CD4C;
 extern float g_rtClock;
 extern float g_rtClockPowerUp;
 extern CLOCK g_clock;
-//extern TICK s_tickLastRaw;; // Should be static?
-extern ulong cWrapAround; // Should be static. Replace once bss section of the TU is migrated.
 
+//extern TICK s_tickLastRaw;; // Should be static.
+extern ulong cWrapAround; // Should be static, and not initialized. Replace once bss section of the TU is migrated.
 
 
 /**

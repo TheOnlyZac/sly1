@@ -8,6 +8,7 @@
 
 #include <sdk/ee/eestruct.h>
 #include "common.h"
+#include <oid.h>
 #include <geom.h>
 #include <surf.h>
 #include <dmas.h>

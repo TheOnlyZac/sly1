@@ -56,11 +56,6 @@ enum FGS
 };
 
 /**
- * @brief Game state flags integer type.
- */
-typedef int GRFGS;
-
-/**
  * @brief World state flags.
  */
 enum FWS
@@ -72,10 +67,6 @@ enum FWS
     FWS_Lock_3 = 0x10,
     FWS_Lock_All = 0x1e
 };
-/**
- * @brief World state flags integer type.
- */
-typedef int GRFWS;
 
 /**
  * @brief Level state flags.
@@ -90,9 +81,25 @@ enum FLS
 };
 
 /**
+ * @brief Game state flags integer type.
+ */
+typedef int GRFGS;
+
+/**
+ * @brief World state flags integer type.
+ */
+
+typedef int GRFWS;
+
+/**
  * @brief Level state flags integer type.
  */
 typedef int GRFLS;
+
+/**
+ * @brief Vault powerup flags integer type.
+ */
+typedef int GRFVAULT;
 
 /**
  * @brief Level State
@@ -129,7 +136,6 @@ struct WS
 /**
  * @brief Game State
  */
-typedef int GRFVAULT;
 struct GS
 {
     int gsv;                  // not sure why this isn't caled fgs

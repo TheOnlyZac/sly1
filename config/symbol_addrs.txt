@@ -16,9 +16,9 @@ g_chzThePasswordIs = 0x24a848; // size:0x14
 // start of .vutext section
 D_00211E10 = 0x211E10; // size:0x4
 
-D_00274F38 = 0x274F38; // size:0x4
-D_002701F8 = 0x2701F8; // size:0x4
 
+D_00270458 = 0x270458; // size:0x4
+SMP_00274f78 = 0x274f78; // size:0xC
 
 ////////////////////////////////////////////////////////////////
 // ps2t/spaprops.ic
@@ -1563,6 +1563,9 @@ g_note = 0x26e9f8; // size:0x280
 g_unkblot11 = 0x26eed0; // size:0x280
 g_totals = 0x26f138; // size:0x280
 
+// Maybe doesn't belong here?
+g_binoc = 0x2701F8; // size:0x4
+
 
 ////////////////////////////////////////////////////////////////
 // P2/so.c
@@ -1673,6 +1676,8 @@ g_fsp = 0x274f74; //size:0x4
 // float[3] @ 0x274f78
 RT_JtSpeedUpClock = 0x274f84; // size:0x4
 RT_JtSlowDownClock = 0x274f88; // size:0x4
+
+s_mpfspgrfvault = 0x274F38; // size:0x1c
 
 
 ////////////////////////////////////////////////////////////////
