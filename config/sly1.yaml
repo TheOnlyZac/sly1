@@ -102,6 +102,7 @@ segments:
     - [0x3dcf8, c, P2/break]
     - [0x3efd8, c, P2/bsp]
     - [0x3f7c0, c, P2/button]
+    - [0x4178c, asm, P2/button_padding] # 4 bytes to align P2/cat
     - [0x41790, c, P2/cat]
     - [0x417a8, c, P2/cd]
     - [0x41d90, c, P2/chkpnt]

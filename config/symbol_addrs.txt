@@ -1648,9 +1648,10 @@ g_totals = 0x26f138; // size:0x280
 ////////////////////////////////////////////////////////////////
 // P2/so.c
 ////////////////////////////////////////////////////////////////
-InitSo__FP2SO = 0x1b7968; // type:func
-OnSoAdd__FP2SO = 0x1b7a98; // type:func
-OnSoRemove__FP2SO = 0x1b7b78; // type:func
+InitSo__FP2SO = 0x1B7968; // type:func
+OnSoAdd__FP2SO = 0x1B7A98; // type:func
+OnSoRemove__FP2SO = 0x1B7B78; // type:func
+LoadSoFromBrx__FP2SOP18CBinaryInputStream = 0x1BAC30; // type:func
 
 
 ////////////////////////////////////////////////////////////////

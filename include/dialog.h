@@ -6,11 +6,8 @@
 #ifndef DIALOG_H
 #define DIALOG_H
 
-#include <iostream>
 #include <game.h>
 #include <util.h>
-
-typedef unsigned char byte;
 
 /**
  * @brief Dialog Kind
