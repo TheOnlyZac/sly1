@@ -721,7 +721,7 @@ SetVolbtnRsmg__FP6VOLBTNi3OIDN22                  = 0x140770; // type:func
 // P2/cat.c
 ////////////////////////////////////////////////////////////////
 StartupCatalog__Fv = 0x140790; // type:func
-FUN_001407A0       = 0x1407A0; // type:func
+FUN_001407A0__FPUi = 0x1407A0; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -1364,7 +1364,61 @@ g_apchzArgs = 0x264838; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
-// P2/memcard
+// P2/mat.c
+////////////////////////////////////////////////////////////////
+PostCopyMatrix3__7MATRIX4                                = 0x1884C0; // type:func
+__as__7MATRIX4RC7MATRIX3                                 = 0x1884E0; // type:func
+MatMulMatTransMat__FRC7MATRIX3T0                         = 0x188520; // type:func
+LoadIdentityMatrix4__FP7MATRIX4                          = 0x1885E0; // type:func
+__ml__FRC7MATRIX4G8VU_FLOAT                              = 0x188628; // type:func
+__ml__FRC7MATRIX4T0                                      = 0x188668; // type:func
+junk_001886F8                                            = 0x1886F8; // type:func
+MultiplyMatrix4Vector__FP7MATRIX4P6VECTORfT1             = 0x188700; // type:func
+__ml__FRC7MATRIX4G10VU_VECTOR4                           = 0x188740; // type:func
+TransposeMatrix4__FP7MATRIX4T0                           = 0x188770; // type:func
+AddMatrix4Matrix4__FP7MATRIX4N20                         = 0x188810; // type:func
+junk_00188848                                            = 0x188848; // type:func
+LoadRotateMatrixRad__FfP6VECTORP7MATRIX3                 = 0x188850; // type:func
+LoadRotateMatrix__FP6VECTORP7MATRIX3                     = 0x188978; // type:func
+LoadRotateMatrixEuler__FP6VECTORP7MATRIX3                = 0x188A20; // type:func
+LoadMatrixFromPosRot__FP6VECTORP7MATRIX3P7MATRIX4        = 0x188B08; // type:func
+LoadMatrixFromPosRotInverse__FP6VECTORP7MATRIX3P7MATRIX4 = 0x188B48; // type:func
+LoadMatrixFromPosRotScale__FP6VECTORP7MATRIX3T0P7MATRIX4 = 0x188C10; // type:func
+junk_00188CC8                                            = 0x188CC8; // type:func
+CosRotateMatrixMagnitude__FP7MATRIX3                     = 0x188CE0; // type:func
+DecomposeRotateMatrixRad__FP7MATRIX3PfP6VECTOR           = 0x188D28; // type:func
+junk_00188FD0                                            = 0x188FD0; // type:func
+DecomposeRotateMatrixEuler__FP7MATRIX3P6VECTOR           = 0x188FD8; // type:func
+NormalizeRotateMatrix3__FP7MATRIX3                       = 0x1890A0; // type:func
+CalculateDmat__FP7MATRIX3N20                             = 0x189150; // type:func
+CalculateDmat4__FP7MATRIX4N20                            = 0x1891C0; // type:func
+DecomposeRotateMatrixPanTilt__FP7MATRIX3PfT1             = 0x189230; // type:func
+LoadRotateMatrixPanTilt__FffP7MATRIX3                    = 0x1892A0; // type:func
+LoadLookAtMatrix__FP6VECTORP7MATRIX3                     = 0x189350; // type:func
+TiltMatUpright__FP7MATRIX3N20                            = 0x189378; // type:func
+junk_00189430                                            = 0x189430; // type:func
+FInvertMatrix__FiPfT1                                    = 0x189438; // type:func
+FInvertMatrix3__FP7MATRIX3T0                             = 0x1897F0; // type:func
+FInvertMatrix4__FP7MATRIX4T0                             = 0x189AF0; // type:func
+BuildOrthonormalMatrixY__FP6VECTORT0P7MATRIX3            = 0x189B18; // type:func
+BuildOrthonormalMatrixZ__FP6VECTORT0P7MATRIX3            = 0x189C28; // type:func
+BuildRotateVectorsMatrix__FP6VECTORT0P7MATRIX3           = 0x189D38; // type:func
+BuildSimpleProjectionMatrix__FffffffP7MATRIX4            = 0x189F58; // type:func
+LoadScaleMatrixScalar__FP6VECTORfP7MATRIX4               = 0x18A008; // type:func
+LoadScaleMatrixVector__FP6VECTORP7MATRIX3T0P7MATRIX4     = 0x18A040; // type:func
+LoadRotateVectorMatrix__FP6VECTORT0P7MATRIX3             = 0x18A160; // type:func
+
+g_normalZ = 0x248D20; // size:0xc
+
+
+////////////////////////////////////////////////////////////////
+// P2/mb.c
+////////////////////////////////////////////////////////////////
+InitMbg__FP3MBG = 0x18A388; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/memcard.c
 ////////////////////////////////////////////////////////////////
 UpdateSave__FP4SAVE = 0x18bdc8; // type:func
 
