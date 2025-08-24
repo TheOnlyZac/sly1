@@ -165,7 +165,9 @@ segments:
     - [0x86358, asm, P2/lookat]
     - [0x86758, c, P2/main]
     - [0x86c18, asm, P2/mark]
-    - [0x894c0, c, P2/mat]
+    - [0x894c0, c, P2/mat1]
+    - [0x89810, c, P2/mat_AddMatrix4Matrix4] # Should be in P2/mat but doesn't match when linked with INCLUDE_ASM
+    - [0x89850, c, P2/mat2]
     - [0x8b388, asm, P2/mb]
     #- [0x, asm, P2/mecha]
     #- [0x, asm, P2/memcard]
