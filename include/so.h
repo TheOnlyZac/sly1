@@ -8,6 +8,9 @@
 
 #include <alo.h>
 
+// Forward.
+class CBinaryInputStream;
+
 enum FSO
 {
     FSO_FindChild = 0x1,
@@ -54,5 +57,13 @@ void OnSoAdd(SO *pso);
  * @param pso Pointer to the SO.
  */
 void OnSoRemove(SO *pso);
+
+/**
+ * @brief Load SO from BRX.
+ *
+ * @param pso Pointer to the SO.
+ * @param pbis Pointer to the binary input stream.
+ */
+void LoadSoFromBrx(SO *pso, CBinaryInputStream *pbis);
 
 #endif // SO_H

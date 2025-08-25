@@ -44,11 +44,11 @@ bool CBinaryAsyncStream::FOpenSector(uint isector, uint cb)
 
 void CBinaryAsyncStream::Close()
 {
-    switch(m_bask)
+    switch (m_bask)
     {
         case BASK_Host:
         {
-            if(m_fd > -1)
+            if (m_fd > -1)
             {
                 sceClose(m_fd);
             }
@@ -57,7 +57,7 @@ void CBinaryAsyncStream::Close()
         }
         case BASK_Cd:
         {
-            if(FSpooling())
+            if (FSpooling())
             {
                 sceCdSync(0);
                 FinishSpooling();
@@ -72,17 +72,17 @@ void CBinaryAsyncStream::Close()
 
 void CBinaryAsyncStream::StartSpooling()
 {
-    if(!FSpooling() && m_cbUnspooled != 0)
+    if (!FSpooling() && m_cbUnspooled != 0)
     {
         byte *pv = m_abSpool;
         int cb = 0x4000;
 
-        if(m_cbUnspooled < cb)
+        if (m_cbUnspooled < cb)
         {
             cb = m_cbUnspooled;
         }
 
-        if(m_pb == pv)
+        if (m_pb == pv)
         {
             pv += 0x4000;
         }
@@ -90,7 +90,7 @@ void CBinaryAsyncStream::StartSpooling()
         m_pbSpooling = pv;
         m_cbSpooling = cb;
 
-        switch(m_bask)
+        switch (m_bask)
         {
             case BASK_Host:
             {
@@ -99,7 +99,7 @@ void CBinaryAsyncStream::StartSpooling()
             }
             case BASK_Cd:
             {
-                ReadCdDirect(m_isector, (unsigned)(m_cbSpooling + 0x7ff) >> 0xb, pv);
+                ReadCdDirect(m_isector, (m_cbSpooling + 0x7ffu) >> 0x0b, pv);
                 break;
             }
         }

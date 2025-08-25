@@ -8,4 +8,7 @@ void StartupCatalog()
     g_cds = CDS_Ready;
 }
 
-INCLUDE_ASM(const s32, "P2/cat", FUN_001407A0);
+int FUN_001407A0(uint *pui)
+{
+    return pui[1];
+}

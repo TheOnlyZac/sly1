@@ -63,4 +63,10 @@ public:
  */
 void StartupCatalog();
 
+/**
+ * @brief Unknown purpose. Returns the second integer of the given array.
+ * Called only once in FUN_0018C1E8 near P2/memcard (?).
+ */
+int FUN_001407A0(uint *pui);
+
 #endif // CAT_H

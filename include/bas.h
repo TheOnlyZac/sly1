@@ -31,10 +31,10 @@ public:
     int m_fd;
     uint m_isector;
     int m_cbSpooling;
-    byte* m_pbSpooling;
-    byte* m_abSpool;
+    byte *m_pbSpooling;
+    byte *m_abSpool;
     int m_cb;
-    byte* m_pb;
+    byte *m_pb;
     int m_ibCur;
     int m_cbUnspooled;
     int m_cbFile;
@@ -44,7 +44,7 @@ public:
      *
      * @param pvSpool Pointer to the spool
      */
-    CBinaryAsyncStream(void* pvSpool);
+    CBinaryAsyncStream(void *pvSpool);
 
     /**
      * @brief Destroys the CBinaryAsyncStream.
@@ -106,6 +106,8 @@ public:
 
     /**
      * @brief Skip bytes.
+	 *
+	 * @param cb Number of bytes to skip.
      */
     void Skip(int cb);
 };
