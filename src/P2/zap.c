@@ -16,7 +16,7 @@ INCLUDE_ASM(const s32, "P2/zap", FInflictTzpZap__FP3TZPP2XPP3ZPR);
 INCLUDE_ASM(const s32, "P2/zap", func_001F5208);
 
 /**
- * @brief Unknown.
+ * @todo This matches but what does it actually do?
  */
 void PzpdEnsureTzp(TZP *ptzp, ENSK ensk)
 {
@@ -27,7 +27,12 @@ INCLUDE_ASM(const s32, "P2/zap", InitVolzp__FP5VOLZP);
 
 INCLUDE_ASM(const s32, "P2/zap", UpdateVolzp__FP5VOLZPf);
 
-INCLUDE_ASM(const s32, "P2/zap", InitZpd__FP3ZPDP2SO);
+void InitZpd(ZPD *pzpd, SO *pso)
+{
+    pzpd->pso = pso;
+    pzpd->zpk = ZPK_Blunt;
+    pzpd->dzThrow = 150.0f;
+}
 
 INCLUDE_ASM(const s32, "P2/zap", PostZpdLoad__FP3ZPD);
 

@@ -17,6 +17,9 @@ g_chzThePasswordIs = 0x24a848; // size:0x14
 D_00211E10 = 0x211E10; // size:0x4
 
 
+D_00270458 = 0x270458; // size:0x4
+SMP_00274f78 = 0x274f78; // size:0xC
+
 ////////////////////////////////////////////////////////////////
 // ps2t/spaprops.ic
 ////////////////////////////////////////////////////////////////
@@ -1168,7 +1171,7 @@ clr_8_bytes_1 = 0x160CC8; // type:func
 FUN_00160ce8__Fi = 0x160CE8; // type:func
 OnGameAlarmTriggered__FP4GAME = 0x160CF0; // type:func
 OnGameAlarmDisabled__FP4GAME = 0x160D00; // type:func
-grfvault_something__Fv = 0x160D10; // type:func
+GetGrfvault_unknown__Fv = 0x160D10; // type:func
 
 GetBlueprintInfo__FPiT0 = 0x160D30; // type:func
 CcharmMost__Fv = 0x160D98; // type:func
@@ -1659,6 +1662,9 @@ g_note = 0x26e9f8; // size:0x280
 g_unkblot11 = 0x26eed0; // size:0x280
 g_totals = 0x26f138; // size:0x280
 
+// Maybe doesn't belong here?
+g_binoc = 0x2701F8; // size:0x4
+
 
 ////////////////////////////////////////////////////////////////
 // P2/so.c
@@ -1770,6 +1776,8 @@ g_fsp = 0x274f74; //size:0x4
 // float[3] @ 0x274f78
 RT_JtSpeedUpClock = 0x274f84; // size:0x4
 RT_JtSlowDownClock = 0x274f88; // size:0x4
+
+s_mpfspgrfvault = 0x274F38; // size:0x1c
 
 
 ////////////////////////////////////////////////////////////////

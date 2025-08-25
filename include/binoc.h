@@ -9,6 +9,8 @@
 #include "common.h"
 #include <screen.h>
 
+struct ALO;
+
 struct BINOC : public BLOT
 {
     undefined1 padding_0[144];

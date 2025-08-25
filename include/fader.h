@@ -6,6 +6,12 @@
 
 #include "common.h"
 
-// ...
+/**
+ * @todo
+ */
+struct FADER
+{
+    // ...
+};
 
 #endif // FADER_H

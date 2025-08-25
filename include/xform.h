@@ -7,6 +7,8 @@
 #define XFORM_H
 
 #include "common.h"
+#include <vec.h>
+#include <mat.h>
 #include <alo.h>
 #include <util.h>
 #include <dl.h>
@@ -20,6 +22,7 @@
 #include <rs.h>
 
 // Forward declarations
+struct XF;
 struct XFM;
 struct EXPL;
 struct EXPLG;
@@ -32,7 +35,7 @@ struct PNT;
 struct CAMERA;
 
 /**
- * @brief Transform.
+ * @brief Transform (?).
  */
 struct XFM : public LO
 {

@@ -9,14 +9,36 @@
 #include "common.h"
 #include <so.h>
 
+struct ALO;
+struct AMB;
+
+/**
+ * @todo Unknown.
+ * @note Based on proto, may be inaccurate.
+ */
+struct PZI
+{
+    int fCollectEnabled;
+    ALO *paloBag;
+    ALO *mpccharmpaloCharm[5];
+    float sAutoCollect;
+    ALO *paloCollect;
+};
+
 /**
  * @brief Player object.
  *
- * @todo Implement struct fields.
+ * @note Based on proto, may be inaccurate.
  */
 struct PO : public SO
 {
-    // ...
+    int fPlayable;
+    int fLockBase;
+    VECTOR posBasePrev;
+    float tWakeRipple;
+    AMB *pambWake;
+    PZI pzi;
+    ALO *paloUseCharm;
 };
 
 /**

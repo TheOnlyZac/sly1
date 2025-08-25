@@ -74,6 +74,8 @@ struct SMS
 
 /**
  * @brief State machine something(?).
+ *
+ * @note Used for the fast/slow powerups.
  */
 struct SMP
 {
