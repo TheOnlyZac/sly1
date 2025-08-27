@@ -1,0 +1,45 @@
+#include <mb.h>
+
+void InitMbg(MBG *pmbg)
+{
+    InitStepguard(pmbg);
+	STRUCT_OFFSET(pmbg, 0xe3c, int) = -1;
+}
+
+INCLUDE_ASM(const s32, "P2/mb", LoadMbgFromBrx__FP3MBGP18CBinaryInputStream);
+
+INCLUDE_ASM(const s32, "P2/mb", PostMbgLoad__FP3MBG);
+
+INCLUDE_ASM(const s32, "P2/mb", FUN_0018a510);
+
+INCLUDE_ASM(const s32, "P2/mb", FUN_0018a628);
+
+INCLUDE_ASM(const s32, "P2/mb", PsoHitTestCylinderObjects__FiP6VECTORT1fiPP2SOP3LSG);
+
+INCLUDE_ASM(const s32, "P2/mb", FFilterMbgAttackObjects__FP3MBGP2SO);
+
+INCLUDE_ASM(const s32, "P2/mb", FObstructedMbg__FP3MBGP6VECTORT1);
+
+INCLUDE_ASM(const s32, "P2/mb", FCanMbgAttack__FP3MBG);
+
+INCLUDE_ASM(const s32, "P2/mb", FDetectMbg__FP3MBG);
+
+INCLUDE_ASM(const s32, "P2/mb", FUN_0018ab88__Fi);
+
+INCLUDE_ASM(const s32, "P2/mb", FUN_0018abf0__Fi);
+
+INCLUDE_ASM(const s32, "P2/mb", FUN_0018ac58__Fi);
+
+INCLUDE_ASM(const s32, "P2/mb", FUN_0018acd0__Fv);
+
+INCLUDE_ASM(const s32, "P2/mb", FUN_0018acf0);
+
+INCLUDE_ASM(const s32, "P2/mb", UpdateMbgGoal__FP3MBGi);
+
+INCLUDE_ASM(const s32, "P2/mb", UpdateMbgSgs__FP3MBG);
+
+INCLUDE_ASM(const s32, "P2/mb", OnMgExitingSgs__FP3MBG3SGS);
+
+INCLUDE_ASM(const s32, "P2/mb", HandleMbgMessage__FP3MBG5MSGIDPv);
+
+INCLUDE_ASM(const s32, "P2/mb", FUN_0018b460);
