@@ -7,6 +7,7 @@
 #define GEOM_H
 
 #include <vec.h>
+#include <mat.h>
 
 /**
  * @todo Define struct
