@@ -28,10 +28,10 @@ void SetFsp(FSP fsp)
         // If cur powerup is mine, fade out the mine
         if (g_pjt != nullptr)
         {
-            ALO *palo = g_pjt->paloMine_1518;
-            if ((palo != nullptr) && (FIsLoInWorld((LO *)g_pjt->paloMine_1518)))
+            ALO *palo = g_pjt->paloMine_0x1518;
+            if ((palo != nullptr) && (FIsLoInWorld((LO *)g_pjt->paloMine_0x1518)))
             {
-                FadeAloOut(g_pjt->paloMine_1518, 0.5f);
+                FadeAloOut(g_pjt->paloMine_0x1518, 0.5f);
             }
         }
         break;
