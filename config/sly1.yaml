@@ -20,6 +20,7 @@ options:
   use_legacy_include_asm: True
   rodata_string_guesser_level: 0 # improve string detection
   suggestion_rodata_section_start: False
+  pair_rodata_to_text: False
   named_regs_for_c_funcs: False
   find_file_boundaries: False
   disasm_unknown: True
@@ -41,7 +42,7 @@ options:
   auto_link_sections: [".rodata", ".data", ".bss"]
 
   # Linker script options
-  subalign: 4
+  subalign: 8
 
 segments:
   - [0, databin, elf_header]
@@ -84,7 +85,7 @@ segments:
     - [0x23f28, c, P2/actseg]
     - [0x243c0, asm, P2/alarm]
     - [0x24dc0, asm, P2/alo]
-    # Note: Integrity check for ITM firewall is 0x2c760, maybe it's own TU?
+    # Note: Anticrack check for ITM firewall is 0x2c760, maybe it's own TU?
     - [0x2c870, asm, P2/aseg]
     #- [0x, asm, P2/asega]
     #- [0x, asm, P2/barrier]
@@ -102,7 +103,6 @@ segments:
     - [0x3dcf8, c, P2/break]
     - [0x3efd8, c, P2/bsp]
     - [0x3f7c0, c, P2/button]
-    - [0x4178c, asm, P2/button_padding] # 4 bytes to align P2/cat
     - [0x41790, c, P2/cat]
     - [0x417a8, c, P2/cd]
     - [0x41d90, c, P2/chkpnt]
@@ -121,7 +121,6 @@ segments:
     #- [0x, asm, P2/dialog]
     - [0x529e0, c, P2/difficulty]
     - [0x53438, c, P2/dl]
-    - [0x5380C, asm, P2/dl_padding] # 4 bytes padding to align dmas
     - [0x53810, c, P2/dmas]
     - [0x53E28, asm, P2/dsp]
     #- [0x, asm, P2/dysh]
@@ -131,7 +130,6 @@ segments:
     - [0x5aad0, asm, P2/fader]
     - [0x5aca0, asm, P2/filestub]
     - [0x5af20, c, P2/find]
-    - [0x5b8ac, asm, P2/find_padding] # 4 bytes padding to align P2/find
     - [0x5b8b0, c, P2/flash]
     - [0x5bae0, asm, P2/fly]
     - [0x5d188, asm, P2/font]
@@ -151,9 +149,7 @@ segments:
     #- [0x, asm, P2/jack]
     #- [0x, asm, P2/jlo]
     - [0x6f0b8, c, P2/joy]
-    - [0x70608, c, P2/jt1]
-    - [0x74888, asm, P2/jt_UpdateJtActive] # Should be in P2/jt but doesn't match when linked with INCLUDE_ASM
-    - [0x75808, c, P2/jt2]
+    - [0x70608, c, P2/jt]
     - [0x79008, asm, P2/jp]
     #- [0x, asm, P2/jsg]
     - [0x7e248, asm, P2/jump]
@@ -165,9 +161,7 @@ segments:
     - [0x86358, asm, P2/lookat]
     - [0x86758, c, P2/main]
     - [0x86c18, asm, P2/mark]
-    - [0x894c0, c, P2/mat1]
-    - [0x89810, c, P2/mat_AddMatrix4Matrix4] # Should be in P2/mat but doesn't match when linked with INCLUDE_ASM
-    - [0x89850, c, P2/mat2]
+    - [0x894c0, c, P2/mat]
     - [0x8b388, c, P2/mb]
     - [0x8c580, asm, P2/memcard]
     - [0x8e430, c, P2/memory]
@@ -179,7 +173,6 @@ segments:
     #- [0x, asm, P2/murray]
     - [0x917e0, asm, P2/path]
     - [0x92e70, c, P2/phasemem]
-    - [0x92ebc, asm, P2/phasemem_padding] # 4 bytes padding to align P2/phasemem
     - [0x92ec0, asm, P2/pipe]
     - [0x93068, asm, P2/pnt]
     - [0x931a8, c, P2/po]
@@ -197,7 +190,7 @@ segments:
     #- [0x, asm, P2/rope]
     - [0xa8b20, c, P2/rumble]
     - [0xa8fe8, asm, P2/rwm]
-    #- [0x, asm, P2/sampler] # (might not be in release)
+    #- [0x, asm, P2/sampler] # Might not be in release
     #- [0x, asm, P2/sc]
     - [0xaac68, c, P2/screen]
     - [0xaf510, asm, P2/sensor]
@@ -227,7 +220,6 @@ segments:
     - [0xcefb8, asm, P2/stephide]
     - [0xd24f0, asm, P2/steppipe]
     - [0xd39c8, c, P2/steppower]
-    - [0xd41cc, asm, P2/steppower_padding] # 4 bytes padding to align steprail
     - [0xd41d0, asm, P2/steprail]
     - [0xd46f0, asm, P2/steprun]
     - [0xd5148, asm, P2/stepside]
@@ -235,7 +227,7 @@ segments:
     - [0xd8120, asm, P2/stream]
     - [0xd83a8, c, P2/suv]
     - [0xdc480, asm, P2/sw]
-    - [0xdeb20, asm, P2/UNKNOWN] # unknown file, falls alphabetically between sw and tail
+    - [0xdeb20, asm, P2/UNKNOWN] # Unknown, falls alphabetically between sw and tail
     - [0xdece0, c, P2/tail]
     - [0xdf798, asm, P2/tank]
     #- [0x, asm, P2/target]
@@ -257,12 +249,10 @@ segments:
     - [0xf0838, asm, P2/waypoint]
     - [0xf0ce8, asm, P2/wipe]
     - [0xf1758, asm, P2/wm] # not confident
-    - [0xf49f8, c, P2/xform1]
-    - [0xf4c38, asm, P2/xform_PwarpFromOid] # Should be in P2/xform but doesn't match when linked with INCLUDE_ASM
-    - [0xf4d80, c, P2/xform2]
+    - [0xf49f8, c, P2/xform]
     - [0xf5f20, c, P2/zap]
 
-    ## Source files in May proto that aren't in release:
+    ## Segments in prototype confirmed not present in release:
     # P2/cycle.c - some kind of wheeled vehicle
     # P2/hg.c - hang glider
     # P2/stepski.c - skiing
@@ -273,8 +263,9 @@ segments:
 
     #--------------------------------------------------------
     # Libs
+    # TODO: Verify start address.
     #--------------------------------------------------------
-    - [0xF69C4, asm, sce/libs] # #MARK: libs
+    - [0xF69C0, asm, sce/libs] # #MARK: libs
     #- [0xF76F8, asm, sce/rand]
     #- [0xF7738, asm]
 
@@ -332,7 +323,7 @@ segments:
     #- [0x, data, P2/button]
     #- [0x, data, P2/cat] (might not be in release)
     #- [0x, data, P2/can]
-    - [0x1623ec, data, P2/cd]
+    - [0x1623f0, data, P2/cd]
     - [0x162420, data, P2/chkpnt]
     - [0x162850, .data, P2/clock]
     - [0x162880, data, P2/cm]
@@ -349,7 +340,7 @@ segments:
 
     - [0x162d70, data, P2/difficulty]
     #- [n/a, data, P2/dl]
-    - [0x162f14, data, P2/dmas]
+    - [0x162f10, data, P2/dmas] # TODO: Verify offset is correct.
     #- [n/a, data, P2/dsp]
     - [0x162f30, data, P2/dysh]
     #- [n/a, data, P2/dzg]
@@ -384,7 +375,7 @@ segments:
 
     - [0x163e10, data] # TODO fix jt splits
     #- [0x163e10, data, P2/jt]
-    #- [0x163e41, data] # TBD
+    #- [0x163e40, data] # TBD
 
     #- [0x, data, P2/jp]
     #- [0x, data, P2/jsg]
@@ -412,9 +403,9 @@ segments:
     #- [0x, data, P2/murray]
     #- [0x, data, P2/path]
 
-    - [0x16aba4, .data, P2/phasemem]
+    - [0x16aba0, data, P2/phasemem] # TODO: Fix data in phasemem.c
     - [0x16aba8, data, P2/pipe]
-    - [0x16abac, data]
+    - [0x16abc0, data]
 
     #- [0x, data, P2/pnt]
     #- [0x, data, P2/po]
@@ -471,7 +462,7 @@ segments:
     #- [0x, data, P2/suv]
 
     - [0x176710, data, P2/sw]
-    - [0x176714, data]
+    - [0x176718, data]
 
     #- [0x, data, P2/tail]
     #- [0x, data, P2/tank]

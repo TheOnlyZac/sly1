@@ -1,4 +1,4 @@
-#include <xform.h>
+#include "common.h"
 
 INCLUDE_ASM(const s32, "P2/xform1", InitXfm__FP3XFM);
 
