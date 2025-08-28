@@ -38,6 +38,7 @@ union QW
 
 class DMAS
 {
+public:
     uchar* m_pbMax;
     uchar* m_ab;
     QW* m_pqwCnt;
@@ -46,7 +47,6 @@ class DMAS
     int m_fEndPrim;
     //byte padding[0x450];
 
-public:
     DMAS();
 
     void Clear();

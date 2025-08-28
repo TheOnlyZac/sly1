@@ -70,7 +70,7 @@ struct DLR
  * @param pdl Pointer to the doubly linked list.
  * @param ibDle Offset to the DLE structure within the list element.
  */
-void InitDl(DL *pdl,int ibDle);
+void InitDl(DL *pdl, int ibDle);
 
 /**
  * @brief Clear a doubly linked list.

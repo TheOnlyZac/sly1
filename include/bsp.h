@@ -11,7 +11,6 @@
 
 #include "common.h"
 #include <geom.h>
-#include <surf.h>
 #include <vec.h>
 
 /**

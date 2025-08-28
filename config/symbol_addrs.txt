@@ -1026,6 +1026,7 @@ g_difficultyHard = 0x261e30; // size:0x5c
 g_difficultyEasy = 0x261e90; // size:0x5c
 g_difficulty = 0x261ef0; // size:0x20
 
+
 ////////////////////////////////////////////////////////////////
 // P2/dmas.c
 ////////////////////////////////////////////////////////////////
@@ -1034,6 +1035,7 @@ g_pdcVif1 = 0x261f18; // size:0x4
 g_pdcGiftag = 0x261f1c; // size:0x4
 g_pdcFromSpr = 0x261f20; // size:0x4
 g_pdcToSpr = 0x261f24; // size:0x4
+
 
 ////////////////////////////////////////////////////////////////
 // P2/dl.c
@@ -1077,6 +1079,7 @@ EndPrim__4DMASi = 0x152E18; // type:func
 
 _vt$4DMAS = 0x24A0E0; // size:0x10
 
+
 ////////////////////////////////////////////////////////////////
 // P2/find.c
 ////////////////////////////////////////////////////////////////
@@ -1093,6 +1096,7 @@ PaloFindLoCommonParent__FP2LOT0 = 0x15A868; // type:func
 
 g_mpcidpvt = 0x247448; // size:0x328
 
+
 ////////////////////////////////////////////////////////////////
 // P2/flash.c
 ////////////////////////////////////////////////////////////////
@@ -1107,6 +1111,7 @@ FPosFlashWithin__FP5FLASHP6VECTOR = 0x15AA50; // type:func
 // P2/font.c
 ////////////////////////////////////////////////////////////////
 g_pfont = 0x26227C; // size:0x4
+
 
 ////////////////////////////////////////////////////////////////
 // P2/frm.c
@@ -1126,6 +1131,7 @@ FlushFrames__Fi = 0x15F210; // type:func
 BlendPrevFrame__Fv = 0x15F320; // type:func
 
 g_cframe = 0x2622cc; // size:0x4
+
 
 ////////////////////////////////////////////////////////////////
 // P2/game.c
@@ -1191,6 +1197,95 @@ g_gsCur = 0xea0; // size:0x1a00
 
 
 ////////////////////////////////////////////////////////////////
+// P2/geom.c
+////////////////////////////////////////////////////////////////
+InitGeom__FP4GEOM             = 0x160E80; // type:func
+CloneGeom__FP4GEOMP7MATRIX4T0 = 0x160EA0; // type:func
+FUN_00161028                  = 0x161028; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/gifs.c
+////////////////////////////////////////////////////////////////
+__4GIFS                      = 0x1611B8; // type:func
+AddPrimEnd__4GIFS            = 0x161200; // type:func
+EndPrim__4GIFSi              = 0x161278; // type:func
+CheckReg__4GIFSii            = 0x1612E8; // type:func
+AddPrimBulk__4GIFSiiiUlPP2QW = 0x1612F8; // type:func
+AddPrimPack__4GIFSiiUl       = 0x1613C0; // type:func
+PackRGBA__4GIFSUi            = 0x161458; // type:func
+PackUV__4GIFSii              = 0x1614C8; // type:func
+PackSTQ__4GIFSfff            = 0x161520; // type:func
+PackXYZ__4GIFSiii            = 0x161588; // type:func
+PackXYZF__4GIFSiiii          = 0x1615F0; // type:func
+PackXYZFNoKick__4GIFSiiii    = 0x161670; // type:func
+PackAD__4GIFSll              = 0x161708; // type:func
+junk_00161760                = 0x161760; // type:func
+AddPrimList__4GIFSiUl        = 0x161768; // type:func
+ListRGBAQ__4GIFSUif          = 0x1617E8; // type:func
+junk_00161858                = 0x161858; // type:func
+ListUV__4GIFSii              = 0x161860; // type:func
+ListXYZF__4GIFSiiii          = 0x1618C0; // type:func
+junk_00161950                = 0x161950; // type:func
+AddImage__4GIFSi             = 0x161958; // type:func
+
+_vt$DMAS = 0x24A6F8;
+
+
+////////////////////////////////////////////////////////////////
+// P2/glbs.c
+////////////////////////////////////////////////////////////////
+__4GLBS                              = 0x1619C0; // type:func
+_$_4GLBS                             = 0x161A88; // type:func
+SetTransform__4GLBSP6VECTORP7MATRIX3 = 0x161AB0; // type:func
+FindLights__4GLBSP6VECTORf           = 0x161B10; // type:func
+ResetStrip__4GLBS                    = 0x161B80; // type:func
+BeginStrip__4GLBSP3SHD               = 0x161BB0; // type:func
+DrawPrelit__4GLBS                    = 0x161C00; // type:func
+DrawThreeWay__4GLBS                  = 0x161F70; // type:func
+EndStrip__4GLBS                      = 0x162508; // type:func
+SetNormal__4GLBSP6VECTOR             = 0x162680; // type:func
+junk_001626A0                        = 0x1626A0; // type:func
+SetRgba__4GLBSG4RGBA                 = 0x1626A8; // type:func
+SetUv__4GLBSP3UVF                    = 0x1626C0; // type:func
+AddVtx__4GLBSi                       = 0x1626D8; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/glob.c
+////////////////////////////////////////////////////////////////
+BuildGlobsetSaaArray__FP7GLOBSET                         = 0x162810; // type:func
+LoadGlobsetFromBrx__FP7GLOBSETP18CBinaryInputStreamP3ALO = 0x162890; // type:func
+EnsureBuffer__FiP4VIFS                                   = 0x163938; // type:func
+EnsureBufferCel__FiP4VIFS                                = 0x163990; // type:func
+BuildSubcel__FP7GLOBSETiP6SUBCELiP7VECTORFiP4TWEFP8SUBPOSEFT4PfP4VIFS = 0x1639E8; // type:func
+BuildSubglobSinglePass__FP7GLOBSETP4GLOBiP7SUBGLOBP3SHDP7VECTORFT5P4RGBAP3UVFiP4VTXFP8SUBPOSEFT5T5PfP4VIFSP4SGVR = 0x163ED8; // type:func
+BuildSubglobThreeWay__FP7GLOBSETP4GLOBiP7SUBGLOBP3SHDP7VECTORFT5P4RGBAP3UVFiP4VTXFP8SUBPOSEFT5T5PfP4VIFSP4SGVR   = 0x164868; // type:func
+BuildSubglobLighting__FP4GLOBP7SUBGLOBP8SUBGLOBI = 0x165588; // type:func
+PostGlobsetLoad__FP7GLOBSETP3ALO                 = 0x165728; // type:func
+BindGlobset__FP7GLOBSETP3ALO                     = 0x165828; // type:func
+CloneGlobset__FP7GLOBSETP3ALOT0                  = 0x165920; // type:func
+CloneGlob__FP7GLOBSETP4GLOBP5GLOBI               = 0x165AE8; // type:func
+UpdateGlobset__FP7GLOBSETP3ALOf                  = 0x165FE0; // type:func
+UpdateAloConstraints__FP3ALO                     = 0x1660A0; // type:func
+UpdateAloInfluences__FP3ALOP2RO                  = 0x1660E8; // type:func
+PredrawGlob__FP7GLOBSETP4GLOBP5GLOBIP3ALO        = 0x1662A8; // type:func
+RotateVu1Buffer__Fv                              = 0x166658; // type:func
+DrawGlob__FP3RPL                                 = 0x166690; // type:func
+__static_initialization_and_destruction_0        = 0x167D20; // type:func
+_GLOBAL_$I$g_dro                                 = 0x167D48; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/gomer.c
+////////////////////////////////////////////////////////////////
+InitGomer__FP5GOMER     = 0x167D68; // type:func
+PostGomerLoad__FP5GOMER = 0x167E08; // type:func
+FUN_00167ef0            = 0x167EF0; // type:func
+FDetectGomer__FP5GOMER  = 0x167F10; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/gs.c
 // Graphics synthesizer
 ////////////////////////////////////////////////////////////////
@@ -1227,6 +1322,42 @@ RebaseSurs__FiiPvT2 = 0x1696B8; // type:func
 PropagateSurs__Fv = 0x169718; // type:func
 PqwVifsBitmapUpload__Fi = 0x169780; // type:func
 DrawOnBitmap__FP3BMPP4GIFS = 0x169B18; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/hide.c
+////////////////////////////////////////////////////////////////
+StartupHide__Fv                                = 0x169C58; // type:func
+ResetHideList__Fv                              = 0x169CA0; // type:func
+InitHshape__FP6HSHAPE                          = 0x169CD8; // type:func
+OnHshapeAdd__FP6HSHAPE                         = 0x169D20; // type:func
+OnHshapeRemove__FP6HSHAPE                      = 0x169D58; // type:func
+BindHshape__FP6HSHAPE                          = 0x169D90; // type:func
+CloneHshape__FP6HSHAPET0                       = 0x169DD8; // type:func
+GetHshapeHidePos__FP6HSHAPEfP6VECTORPf         = 0x169E20; // type:func
+GetHshapeClosestHidePos__FP6HSHAPEPfP6VECTORT1 = 0x169FC0; // type:func
+InitHpnt__FP4HPNT                              = 0x16A100; // type:func
+OnHpntAdd__FP4HPNT                             = 0x16A140; // type:func
+OnHpntRemove__FP4HPNT                          = 0x16A178; // type:func
+BindHpnt__FP4HPNT                              = 0x16A1B0; // type:func
+CloneHpnt__FP4HPNTT0                           = 0x16A1F8; // type:func
+GetHpntClosestHidePos__FP4HPNTP6VECTORPf       = 0x16A240; // type:func
+FUN_0016a320                                   = 0x16A320; // type:func
+InitHbsk__FP4HBSK                              = 0x16A3A8; // type:func
+LoadHbskFromBrx__FP4HBSKP18CBinaryInputStream  = 0x16A420; // type:func
+OnHbskAdd__FP4HBSK                             = 0x16A490; // type:func
+OnHbskRemove__FP4HBSK                          = 0x16A4C8; // type:func
+CloneHbsk__FP4HBSKT0                           = 0x16A500; // type:func
+FIgnoreHbskIntersection__FP4HBSKP2SO           = 0x16A548; // type:func
+PresetHbskAccel__FP4HBSKf                      = 0x16A580; // type:func
+SetHbskHbsks__FP4HBSK5HBSKS                    = 0x16A5F0; // type:func
+CdartStuckHbsk__FP4HBSK                        = 0x16A758; // type:func
+PdartOldestHbskStuck__FP4HBSK                  = 0x16A820; // type:func
+GetHbskClosestHidePos__FP4HBSKP6VECTORPf       = 0x16A910; // type:func
+
+g_dlHshape = 0x2626E8; // size:0xc
+g_dlHpnt   = 0x2626F8; // size:0xc
+g_dlHbsk   = 0x262708; // size:0xc
 
 
 ////////////////////////////////////////////////////////////////

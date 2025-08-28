@@ -10,7 +10,6 @@
 #include "common.h"
 #include <oid.h>
 #include <geom.h>
-#include <surf.h>
 #include <dmas.h>
 
 typedef struct SHD; // Forward declaration

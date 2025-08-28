@@ -6,7 +6,13 @@
 #ifndef GEOM_H
 #define GEOM_H
 
-#include "common.h"
+#include <vec.h>
+#include <mat.h>
+
+/**
+ * @todo Define struct
+ */
+struct TBSP;
 
 /**
  * @brief Edge
@@ -21,14 +27,63 @@ struct EDGE
     EDGE *pedgeOtherNext;
 };
 
+struct SUR
+{
+    int cb;
+    void *pvSrc;
+    void *pvDst;
+    int cvtx;
+};
+
+struct SURF
+{
+    VECTOR normal;
+    float gDot;
+    EDGE *pedge;
+    EDGE *pedgeOther;
+    short grfsurf;
+    short ipos;
+};
+
+struct TSURF
+{
+    float gDot;
+    undefined4 unk1;
+    undefined4 unk2;
+    undefined4 unk3;
+    VECTOR normal;
+};
+
 /**
  * @brief Geometry
- *
- * @todo Implement struct.
  */
 struct GEOM
 {
-    // ...
+    float sRadius;
+    
+    int cpos;
+    VECTOR *apos;
+    
+    int csurf;
+    SURF *asurf;
+    
+    int cedge;
+    EDGE *aedge;
+    
+    int *mpiposiiedgeMac;
+    int *aiedge;
+    VECTOR *mpisurfposCenter;
+    float *mpisurfsRadius;
 };
+
+/**
+ * @brief Initializes the geometry struct.
+ */
+void InitGeom(GEOM *pgeom);
+
+/**
+ * @brief Clones the geometry struct.
+ */
+void CloneGeom(GEOM *pgeomSrc, MATRIX4 *pdmat, GEOM *pgeomDst);
 
 #endif // GEOM_H
