@@ -1432,14 +1432,80 @@ g_normalZ = 0x248D20; // size:0xc
 ////////////////////////////////////////////////////////////////
 // P2/mb.c
 ////////////////////////////////////////////////////////////////
-InitMbg__FP3MBG = 0x18A388; // type:func
+InitMbg__FP3MBG                                     = 0x18A388; // type:func
+LoadMbgFromBrx__FP3MBGP18CBinaryInputStream         = 0x18A3B8; // type:func
+PostMbgLoad__FP3MBG                                 = 0x18A3F0; // type:func
+FUN_0018a510                                        = 0x18A510; // type:func
+FUN_0018a628                                        = 0x18A628; // type:func
+PsoHitTestCylinderObjects__FiP6VECTORT1fiPP2SOP3LSG = 0x18A6C0; // type:func
+FFilterMbgAttackObjects__FP3MBGP2SO                 = 0x18A830; // type:func
+FObstructedMbg__FP3MBGP6VECTORT1                    = 0x18A910; // type:func
+FCanMbgAttack__FP3MBG                               = 0x18A9A8; // type:func
+FDetectMbg__FP3MBG                                  = 0x18AAE0; // type:func
+FUN_0018ab88__Fi                                    = 0x18AB88; // type:func
+FUN_0018abf0__Fi                                    = 0x18ABF0; // type:func
+FUN_0018ac58__Fi                                    = 0x18AC58; // type:func
+FUN_0018acd0__Fv                                    = 0x18ACD0; // type:func
+FUN_0018acf0                                        = 0x18ACF0; // type:func
+UpdateMbgGoal__FP3MBGi                              = 0x18AD88; // type:func
+UpdateMbgSgs__FP3MBG                                = 0x18AE38; // type:func
+OnMgExitingSgs__FP3MBG3SGS                          = 0x18B2E8; // type:func
+HandleMbgMessage__FP3MBG5MSGIDPv                    = 0x18B340; // type:func
+FUN_0018b460                                        = 0x18B460; // type:func
 
 
 ////////////////////////////////////////////////////////////////
 // P2/memcard.c
+// TODO: Mangle function names.
+// NOTE: These can be incorrect as they are not found in the may prototype.
 ////////////////////////////////////////////////////////////////
-UpdateSave__FP4SAVE = 0x18bdc8; // type:func
+StartupMemcard__Fv                   = 0x18B580; // type:func
+InitMemcard__FP7MEMCARD              = 0x18B5C0; // type:func
+FUN_0018b600__Fv                     = 0x18B600; // type:func
+CreateMemcardThread__FP7MEMCARDii    = 0x18B670; // type:func
+SetMemcardThreadHighPrio__FP7MEMCARD = 0x18B720; // type:func
+FCheckMemcardThread__FP7MEMCARD      = 0x18B770; // type:func
+FUN_0018b780                         = 0x18B780; // type:func
+FUN_0018b910__Fi                     = 0x18B910; // type:func
+FUN_0018b930__Fi                     = 0x18B930; // type:func
+FUN_0018b988                         = 0x18B988; // type:func
+FUN_0018bc90                         = 0x18BC90; // type:func
+FUN_0018bd00                         = 0x18BD00; // type:func
+InitSave__FP4SAVEii                  = 0x18BD58; // type:func
+UpdateSave__FP4SAVE                  = 0x18BDC8; // type:func
+CompareSaves__FP4SAVET0              = 0x18BFA8; // type:func
+FUN_0018c028                         = 0x18C028; // type:func
+FUN_0018c178_FP4SAVEi                = 0x18C178; // type:func
+FUN_0018c1a8                         = 0x18C1A8; // type:func
+FUN_0018c1e8                         = 0x18C1E8; // type:func
+FUN_0018c250                         = 0x18C250; // type:func
+FUN_0018c420                         = 0x18C420; // type:func
+FUN_0018c568                         = 0x18C568; // type:func
+FUN_0018c638                         = 0x18C638; // type:func
+FUN_0018c770                         = 0x18C770; // type:func
+FUN_0018c7f8__FP4SAVE                = 0x18C7F8; // type:func
+FUN_0018c888                         = 0x18C888; // type:func
+FUN_0018c9c0                         = 0x18C9C0; // type:func
+FUN_0018ca10                         = 0x18CA10; // type:func
+load_sly_icon_from_disc              = 0x18CDF8; // type:func
+load_file_from_disc                  = 0x18CC20; // type:func
+FUN_0018cdd8                         = 0x18CDD8; // type:func
+FUN_0018cfc0                         = 0x18CFC0; // type:func
+FUN_0018d028                         = 0x18D028; // type:func
+FUN_0018d0a0                         = 0x18D0A0; // type:func
+FUN_0018d168                         = 0x18D168; // type:func
+FUN_0018d1f8                         = 0x18D1F8; // type:func
+FUN_0018d228                         = 0x18D228; // type:func
+FUN_0018d268                         = 0x18D268; // type:func
+FUN_0018d2b0                         = 0x18D2B0; // type:func
+FUN_0018d2e8                         = 0x18D2E8; // type:func
+FUN_0018d328                         = 0x18D328; // type:func
+FUN_0018d368                         = 0x18D368; // type:func
+clear_8_bytes__Pv                    = 0x18D410; // type:func
 
+s_savePath = 0x24b3b0;
+
+g_memcard = 0x269990;
 g_save = 0x264A40;
 
 
@@ -1448,7 +1514,7 @@ g_save = 0x264A40;
 ////////////////////////////////////////////////////////////////
 StartupMemMgr__Fv = 0x18D430; // type:func
 PvAllocGlobalImpl__Fi = 0x18D4B0; // type:func
-LAB_0018D4F0 = 0x18D4F0; // type:label
+junk_0018D4F0 = 0x18D4F0; // type:label
 CheckForOutOfMemory__Fv = 0x18D4F8; // type:func
 PvAllocSwImpl__Fi = 0x18D500; // type:func
 FreeSw__Fv = 0x18D550; // type:func
@@ -1676,6 +1742,29 @@ LoadSoFromBrx__FP2SOP18CBinaryInputStream = 0x1BAC30; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/solve.c
+////////////////////////////////////////////////////////////////
+RenumberSo__FP2SOPiPP2SO               = 0x1BC760; // type:func
+CalculateSoEffect__FP2SOP6VECTORP2FXT1 = 0x1BC7f8; // type:func
+PropagateSoForce__FP2SOiP2XPiP2DZP2FX  = 0x1BC828; // type:func
+DistributeSoEffects__FP2SOiiPP2SOP2FX  = 0x1BC978; // type:func
+SolveSwGroup__FP2SWiPP2SOiPP2XPfi      = 0x1BCD00; // type:func
+CpxpBuildXpArray__FiPP2SOiPP2XP        = 0x1BD558; // type:func
+BuildContactGroup__FP2SOPiPP2SOT1T2    = 0x1BD678; // type:func
+SplitSoFreeze__FP2SOi                  = 0x1BD790; // type:func
+SortSwGroup__FiPP2SO                   = 0x1BD888; // type:func
+SplitSwGroup__FP2SWiPP2SOfi            = 0x1BDA50; // type:func
+SolveSw__FP2SWfi                       = 0x1BDD00; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/sort.c
+////////////////////////////////////////////////////////////////
+SwapEntries__FPviii     = 0x1BE068; // type:func
+HeapSort__FPviiPFPvPv_i = 0x1BE0A8; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/sound.c
 ////////////////////////////////////////////////////////////////
 UnloadMusic__Fv = 0x1BE1E8; // type:func
@@ -1755,6 +1844,12 @@ HsNextFootFall__Fv = 0x1C0CF0; // type:func
 NextSneakyFootstep__Fv = 0x1C0EC0; // type:func
 
 D_00604790 = 0x00604790; // size:0x1c
+
+
+////////////////////////////////////////////////////////////////
+// P2/stepguard.c
+////////////////////////////////////////////////////////////////
+InitStepguard__FP9STEPGUARD = 0x1C6F48; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -2080,6 +2175,7 @@ FlushCache = 0x1F6C20; // type:func
 sceClose = 0x1F8C38; // type:func
 sceRead = 0x1F8DB8; // type:func
 
+
 ////////////////////////////////////////////////////////////////
 // /usr/local/sce/ee/gcc/src/newlib/libc/stdlib/rand.c
 ////////////////////////////////////////////////////////////////
@@ -2140,6 +2236,12 @@ atan2f = 0x205778; // type:func
 // sce/ee/gcc/src/newlib/libm/math/wf_atan2.c
 ////////////////////////////////////////////////////////////////
 fmodf = 0x2058a0; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// libmc.c
+////////////////////////////////////////////////////////////////
+mcInit__Fv = 0x2093F0; // type:func
 
 
 ////////////////////////////////////////////////////////////////

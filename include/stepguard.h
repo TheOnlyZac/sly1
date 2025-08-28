@@ -6,6 +6,13 @@
 
 #include "common.h"
 
+struct STEPGUARD
+{
+    // ...
+};
+
+void InitStepguard(STEPGUARD *pstepguard);
+
 // ...
 
 #endif // STEPGUARD_H

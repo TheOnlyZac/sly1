@@ -49,7 +49,7 @@ void *PvAllocGlobalImpl(int cb)
     return pv;
 }
 
-INCLUDE_ASM(const s32, "P2/memory", LAB_0018D4F0);
+INCLUDE_ASM(const s32, "P2/memory", junk_0018D4F0);
 
 #ifdef DEBUG
 /**
