@@ -12,7 +12,7 @@
 #include <alo.h>
 #include <util.h>
 #include <dl.h>
-#include <surf.h>
+#include <geom.h>
 #include <game.h>
 #include <oid.h>
 #include <anim.h>
