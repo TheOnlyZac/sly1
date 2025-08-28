@@ -76,8 +76,13 @@ struct GEOM
 };
 
 /**
- * brief Initializes the geometry struct.
+ * @brief Initializes the geometry struct.
  */
 void InitGeom(GEOM *pgeom);
+
+/**
+ * @brief Clones the geometry struct.
+ */
+void CloneGeom(GEOM *pgeomSrc, MATRIX4 *pdmat, GEOM *pgeomDst);
 
 #endif // GEOM_H
