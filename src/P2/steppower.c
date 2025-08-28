@@ -10,8 +10,6 @@ extern BLOT g_binoc;   // todo: find where this belongs.
 extern int D_00270458; // temp
 // SMP SMP_00274f78; // initialized with { 2.0f, 0.0f, 0.1f }
 
-INCLUDE_ASM(const s32, "P2/steppower", SetFsp__F3FSP);
-#ifdef SKIP_ASM
 void SetFsp(FSP fsp)
 {
     // Cleanup current powerup
@@ -70,7 +68,6 @@ void SetFsp(FSP fsp)
     // Update last fsp in game state
     g_pgsCur->fspLast = fsp;
 }
-#endif
 
 INCLUDE_ASM(const s32, "P2/steppower", UpdateJtActivePowerUp__FP2JTP3JOY);
 // #ifdef SKIP_ASM
