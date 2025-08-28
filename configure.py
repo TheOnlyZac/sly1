@@ -8,6 +8,7 @@ import os
 import shutil
 import sys
 import json
+import re
 from pathlib import Path
 from typing import Dict, List, Set, Union
 
@@ -241,6 +242,7 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
         command=f"{cross}objcopy $in $out -O binary",
     )
 
+    #MARK: Build
     # Build all the objects
     for entry in linker_entries:
         seg = entry.segment
@@ -351,6 +353,46 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
     else:
         print("Skipping checksum step")
 
+#MARK: Short loop fix
+# Pattern to workaround unintended nops around loops
+COMMENT_PART = r"\/\* (.+) ([0-9A-Z]{2})([0-9A-Z]{2})([0-9A-Z]{2})([0-9A-Z]{2}) \*\/"
+INSTRUCTION_PART = r"(\b(bne|bnel|beq|beql|bnez|bnezl|beqzl|bgez|bgezl|bgtz|bgtzl|blez|blezl|bltz|bltzl|b)\b.*)"
+OPCODE_PATTERN = re.compile(f"{COMMENT_PART}  {INSTRUCTION_PART}")
+
+PROBLEMATIC_FUNCS = set(
+    [
+        "UpdateJtActive__FP2JTP3JOYf",
+        "AddMatrix4Matrix4__FP7MATRIX4N20",
+        "PwarpFromOid__F3OIDT0"
+    ]
+)
+
+def replace_instructions_with_opcodes(asm_folder: Path) -> None:
+    """
+    Replace branch instructions with raw opcodes for functions that trigger the short loop bug.
+    """
+    nm_folder = ROOT / asm_folder / "nonmatchings"
+
+    for p in nm_folder.rglob("*.s"):
+        if p.stem not in PROBLEMATIC_FUNCS:
+            continue
+
+        with p.open("r") as file:
+            content = file.read()
+
+        if re.search(OPCODE_PATTERN, content):
+            # Reference found
+            # Embed the opcode, we have to swap byte order for correct endianness
+            content = re.sub(
+                OPCODE_PATTERN,
+                r"/* \1 \2\3\4\5 */  .word      0x\5\4\3\2 /* \6 */",
+                content,
+            )
+
+            # Write the updated content back to the file
+            with p.open("w") as file:
+                file.write(content)
+
 #MARK: Main
 def main():
     """
@@ -380,6 +422,12 @@ def main():
         help="Build objects to obj/target and obj/current (with -DSKIP_ASM), skip linking and checksum",
         action="store_true",
     )
+    parser.add_argument(
+        "-noloop",
+        "--no-short-loop-workaround",
+        help="Do not replace branch instructions with raw opcodes for functions that trigger the short loop bug",
+        action="store_true",
+    )
     args = parser.parse_args()
 
     do_clean = (args.clean or args.clean_only) or False
@@ -401,6 +449,9 @@ def main():
         build_stuff(linker_entries, do_skip_checksum)
 
     write_permuter_settings()
+
+    if not args.no_short_loop_workaround:
+        replace_instructions_with_opcodes(split.config["options"]["asm_path"])
 
 if __name__ == "__main__":
     main()

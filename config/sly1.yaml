@@ -149,9 +149,7 @@ segments:
     #- [0x, asm, P2/jack]
     #- [0x, asm, P2/jlo]
     - [0x6f0b8, c, P2/joy]
-    - [0x70608, c, P2/jt1]
-    - [0x74888, asm, P2/jt_UpdateJtActive] # Should be in P2/jt but doesn't match when linked with INCLUDE_ASM
-    - [0x75808, c, P2/jt2]
+    - [0x70608, c, P2/jt]
     - [0x79008, asm, P2/jp]
     #- [0x, asm, P2/jsg]
     - [0x7e248, asm, P2/jump]
@@ -163,9 +161,7 @@ segments:
     - [0x86358, asm, P2/lookat]
     - [0x86758, c, P2/main]
     - [0x86c18, asm, P2/mark]
-    - [0x894c0, c, P2/mat1]
-    - [0x89810, c, P2/mat_AddMatrix4Matrix4] # Should be in P2/mat but doesn't match when linked with INCLUDE_ASM
-    - [0x89850, c, P2/mat2]
+    - [0x894c0, c, P2/mat]
     - [0x8b388, c, P2/mb]
     - [0x8c580, asm, P2/memcard]
     - [0x8e430, c, P2/memory]
@@ -231,7 +227,7 @@ segments:
     - [0xd8120, asm, P2/stream]
     - [0xd83a8, c, P2/suv]
     - [0xdc480, asm, P2/sw]
-    - [0xdeb20, asm, P2/UNKNOWN] # Unknown file, falls alphabetically between sw and tail
+    - [0xdeb20, asm, P2/UNKNOWN] # Unknown, falls alphabetically between sw and tail
     - [0xdece0, c, P2/tail]
     - [0xdf798, asm, P2/tank]
     #- [0x, asm, P2/target]
@@ -253,9 +249,7 @@ segments:
     - [0xf0838, asm, P2/waypoint]
     - [0xf0ce8, asm, P2/wipe]
     - [0xf1758, asm, P2/wm] # not confident
-    - [0xf49f8, c, P2/xform1]
-    - [0xf4c38, asm, P2/xform_PwarpFromOid] # Should be in P2/xform but doesn't match when linked with INCLUDE_ASM
-    - [0xf4d80, c, P2/xform2]
+    - [0xf49f8, c, P2/xform]
     - [0xf5f20, c, P2/zap]
 
     ## Segments in prototype confirmed not present in release:
