@@ -37,15 +37,15 @@ int FIsCidDerivedFrom(CID cid, CID cidAncestor)
 {
     void **value1 = (&g_mpcidpvt)[cid];
     while (value1)
-	{
+    {
         if (value1[1] == (void *)cidAncestor)
-		{
+        {
             return 1;
         }
-		
+
         value1 = (void **)*value1;
     }
-	
+
     return 0;
 }
 
@@ -57,20 +57,20 @@ ALO *PaloFindLoCommonParent(LO *plo, LO *ploOther)
 {
     ALO *current;
     while (plo)
-	{
+    {
         current = (ALO *)ploOther;
         while (current)
-		{
+        {
             if (plo == current)
-			{
+            {
                 return (ALO *)plo;
             }
-			
+
             current = (ALO *)current->paloParent;
         }
-		
+
         plo = (LO *)plo->paloParent;
     }
-	
+
     return (ALO *)0x0;
 }
