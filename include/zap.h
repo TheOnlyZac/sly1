@@ -73,4 +73,15 @@ struct TZP
     // ...
 };
 
+/**
+ * @brief Unknown.
+ */
+struct ZPR
+{
+    ZPK zpk;
+    LO *ploSource;
+    void *pv;
+    void *pfnzap; // NOTE: This is a function pointer.
+};
+
 #endif // ZAP_H

@@ -13,6 +13,7 @@
 #include <sw.h>
 #include <xform.h>
 #include <sound.h>
+#include <target.h>
 
 // Forward declarations
 struct DPRIZE;

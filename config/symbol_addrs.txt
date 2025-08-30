@@ -2081,6 +2081,41 @@ MatchTailOtherObject__FP4TAILP3ALO = 0x1DE768; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/tank.c
+////////////////////////////////////////////////////////////////
+InitTank__FP4TANK                  = 0x1DE798; // type:func
+PostTankLoad__FP4TANK              = 0x1DE808; // type:func
+UpdateTank__FP4TANKf               = 0x1DE910; // type:func
+FUN_001deb30                       = 0x1DEB30; // type:func
+UseTankCharm__FP4TANK              = 0x1DEBB8; // type:func
+UpdateTankActive__FP4TANKP3JOYf    = 0x1DEBE8; // type:func
+OnTankActive__FP4TANKiP2PO         = 0x1DF290; // type:func
+RenderTankAll__FP4TANKP2CMP2RO     = 0x1DF2C8; // type:func
+ImpactTank__FP4TANKi               = 0x1DF520; // type:func
+FInvulnerableTank__FP4TANK3ZPK     = 0x1DF5A0; // type:func
+ApplyTankThrow__FP4TANKP2PO        = 0x1DF600; // type:func
+FTakeTankDamage__FP4TANKP3ZPR      = 0x1DF700; // type:func
+FUN_001dfa10                       = 0x1DFA10; // type:func
+AdjustTankNewXp__FP4TANKP2XPi      = 0x1DFA40; // type:func
+HandleTankMessage__FP4TANK5MSGIDPv = 0x1DFB08; // type:func
+JthsCurrentTank__FP4TANK           = 0x1DFBD0; // type:func
+SetTankTanks__FP4TANK5TANKS        = 0x1DFBE0; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/target.c
+////////////////////////////////////////////////////////////////
+StartupTarget__Fv         = 0x1DFD48; // type:func
+ResetTargetList__Fv       = 0x1DFD70; // type:func
+InitTarget__FP6TARGET     = 0x1DFD90; // type:func
+OnTargetAdd__FP6TARGET    = 0x1DFDC8; // type:func
+OnTargetRemove__FP6TARGET = 0x1DFE00; // type:func
+CloneTarget__FP6TARGETT0  = 0x1DFE38; // type:func
+
+g_dlTarget = 0x2758D0; // size:0xc
+
+
+////////////////////////////////////////////////////////////////
 // P2/text.c
 ////////////////////////////////////////////////////////////////
 CchParsePchzInt__FPcPi = 0x1E08F8; // type:func

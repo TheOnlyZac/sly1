@@ -30,7 +30,6 @@ struct EXPLO;
 struct EXPLS;
 struct EXPLSO;
 struct EXPLSTE;
-struct TARGET;
 struct PNT;
 struct CAMERA;
 
@@ -71,20 +70,6 @@ struct EXPLSO
 struct EXPLSTE
 {
     // ...
-};
-
-/**
- * @brief Target.
- */
-struct TARGET : public XFM
-{
-    DLE dleTarget;
-    int grftak;
-    float sRadiusTarget;
-    int fHitTest;
-    undefined4 unk0;
-    undefined4 unk1;
-    undefined4 unk2;
 };
 
 /**

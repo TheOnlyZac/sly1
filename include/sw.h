@@ -10,13 +10,22 @@
 #include <lo.h>
 #include <mq.h>
 
-// todo Implement struct.
+/**
+ * @todo Implement struct.
+ */
 struct SW : public LO
 {
-    undefined1 padding1[0x8];
+    int cpsoAll;
+    int cpsoRoot;
     DL dlRoot;
     DL dlChild;
-    undefined1 padding2[0x1bff];
+    DL dlMRD;
+    DL dlBusy;
+    DL dlBusySo;
+    DL dlMRDRealClock;
+    DL adlHash[512];
+    LO *aploCidHead[162];
+    undefined1 padding2[0x148];
     DL dlDprize;
 
     // MISALIGNED:
@@ -26,11 +35,11 @@ struct SW : public LO
 extern SW *g_psw;
 
 MQ *PmqAllocSw(SW *psw);
+
 void IncrementSwHandsOff(SW *psw);
+
 void FreeSwMqList(SW *psw, MQ *pmq);
 
 void DeleteSw(SW *psw); // todo check order of functions
-
-extern SW *g_psw;
 
 #endif // SW_H

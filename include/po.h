@@ -91,4 +91,9 @@ void SetPoPlayable(PO *ppo, int playable);
  */
 void SwitchToPo(PO *ppo);
 
+/**
+ * @brief Use a charm.
+ */
+void UsePoCharm(PO *ppo);
+
 #endif // PO_H

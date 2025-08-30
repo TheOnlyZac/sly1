@@ -227,10 +227,11 @@ segments:
     - [0xd8120, asm, P2/stream]
     - [0xd83a8, c, P2/suv]
     - [0xdc480, asm, P2/sw]
-    - [0xdeb20, asm, P2/UNKNOWN] # Unknown, falls alphabetically between sw and tail
+    - [0xdeb20, asm, P2/UNKNOWN1] # Unknown, falls alphabetically between sw and tail
     - [0xdece0, c, P2/tail]
-    - [0xdf798, asm, P2/tank]
-    #- [0x, asm, P2/target]
+    - [0xdf798, c, P2/tank]
+    - [0xe0d48, c, P2/target]
+    - [0xe0e80, asm, P2/UNKNOWN2] # Not in the prototype. Related to master thief sprints.
     - [0xe18f8, c, P2/text]
     - [0xe3268, c, P2/thread]
     - [0xe3420, asm, P2/tn]
