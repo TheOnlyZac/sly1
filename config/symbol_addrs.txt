@@ -509,6 +509,29 @@ GGetActsegPoseGoal__FP6ACTSEGi = 0x123358; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/alarm.c
+////////////////////////////////////////////////////////////////
+BreakAlbrk__FP5ALBRK                          = 0x1233C0; // type:func
+SetAlbrkAlarm__FP5ALBRKP5ALARM                = 0x123400; // type:func
+InitAlarm__FP5ALARM                           = 0x123408; // type:func
+PostAlarmLoad__FP5ALARM                       = 0x123448; // type:func
+CloneAlarm__FP5ALARMT0                        = 0x123540; // type:func
+UpdateAlarm__FP5ALARMf                        = 0x123578; // type:func
+PostAlarmLoadCallbackHookup__FP5ALARM5MSGIDPv = 0x1236C8; // type:func
+SetAlarmAlarms__FP5ALARM6ALARMS               = 0x123888; // type:func
+TriggerAlarm__FP5ALARM4ALTK                   = 0x123AB0; // type:func
+DisableAlarmAlbrk__FP5ALARM                   = 0x123B18; // type:func
+EnableAlarmSensors__FP5ALARM                  = 0x123B28; // type:func
+DisableAlarmSensors__FP5ALARM                 = 0x123BB0; // type:func
+NotifyAlarmSensorsOnTrigger__FP5ALARM         = 0x123C20; // type:func
+AddAlarmAlbrk__FP5ALARM3OID                   = 0x123C90; // type:func
+AddAlarmSensor__FP5ALARM3OID                  = 0x123CB8; // type:func
+AddAlarmStepguard__FP5ALARM3OID               = 0x123CE0; // type:func
+SetAlarmRsmg__FP5ALARMi3OIDN22                = 0x123D08; // type:func
+FGetAlarmSensorList__FP5ALARMPv               = 0x123D40; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/bas.c
 ////////////////////////////////////////////////////////////////
 __18CBinaryAsyncStreamPv                        = 0x12FCF0; // type:func
@@ -1869,6 +1892,7 @@ g_binoc = 0x2701F8; // size:0x4
 InitSo__FP2SO = 0x1B7968; // type:func
 OnSoAdd__FP2SO = 0x1B7A98; // type:func
 OnSoRemove__FP2SO = 0x1B7B78; // type:func
+CloneSo__FP2SOT0 = 0x1BA130; // type:func
 LoadSoFromBrx__FP2SOP18CBinaryInputStream = 0x1BAC30; // type:func
 
 

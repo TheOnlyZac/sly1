@@ -59,6 +59,11 @@ void OnSoAdd(SO *pso);
 void OnSoRemove(SO *pso);
 
 /**
+ * @brief Clones an SO.
+ */
+void CloneSo(SO *pso, SO *psoBase);
+
+/**
  * @brief Load SO from BRX.
  *
  * @param pso Pointer to the SO.

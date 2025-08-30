@@ -83,7 +83,7 @@ segments:
     - [0x1fe70, asm, P2/ac]
     - [0x22228, asm, P2/act]
     - [0x23f28, c, P2/actseg]
-    - [0x243c0, asm, P2/alarm]
+    - [0x243c0, c, P2/alarm]
     - [0x24dc0, asm, P2/alo]
     # Note: Anticrack check for ITM firewall is 0x2c760, maybe it's own TU?
     - [0x2c870, asm, P2/aseg]

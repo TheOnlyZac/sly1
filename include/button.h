@@ -109,9 +109,9 @@ void SetBtnRsmg(BTN *pbtn, int fOnTrigger, OID oidRoot, OID oidSM, OID oidGoal);
 
 void SetBtnButtons(BTN *pbtn, BUTTONS buttons);
 
-/*
 int FAddRsmg(RSMG *arsmg, int crsmgMax, int *pcrsmg, int fOnTrigger, OID oidRoot, OID oidSM, OID oidGoal);
 
+/*
 void TriggerRsmg(SW *psw, int crsmg, RSMG *arsmg, LO *ploContext, int fTrigger);
 
 void RunBtnAsegs(BTN *pbtn, IASH asht, int fSeekToEnd);
