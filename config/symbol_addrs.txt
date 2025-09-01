@@ -1295,7 +1295,7 @@ UpdateAloInfluences__FP3ALOP2RO                  = 0x1660E8; // type:func
 PredrawGlob__FP7GLOBSETP4GLOBP5GLOBIP3ALO        = 0x1662A8; // type:func
 RotateVu1Buffer__Fv                              = 0x166658; // type:func
 DrawGlob__FP3RPL                                 = 0x166690; // type:func
-__static_initialization_and_destruction_0        = 0x167D20; // type:func
+glob__static_initialization_and_destruction_0    = 0x167D20; // type:func
 _GLOBAL_$I$g_dro                                 = 0x167D48; // type:func
 
 
@@ -1655,7 +1655,7 @@ FUN_0018d2b0                         = 0x18D2B0; // type:func
 FUN_0018d2e8                         = 0x18D2E8; // type:func
 FUN_0018d328                         = 0x18D328; // type:func
 FUN_0018d368                         = 0x18D368; // type:func
-clear_8_bytes__Pv                    = 0x18D410; // type:func
+Clear__13CFileLocation               = 0x18D410; // type:func
 
 s_savePath = 0x24b3b0;
 
@@ -1705,9 +1705,83 @@ D_0064C70F = 0x64C70F; // size:0x04
 ////////////////////////////////////////////////////////////////
 // P2/mpeg.c
 ////////////////////////////////////////////////////////////////
-ExecuteOids__5CMpeg = 0x18f148; // type:func
+StartupMpeg__Fv                                        = 0x18E5E8; // type:func
+Init__15CQueueOutputIopii                              = 0x18E678; // type:func
+Reset__15CQueueOutputIop                               = 0x18E6A0; // type:func
+CbWrite__15CQueueOutputIopiPv                          = 0x18E6C0; // type:func
+CbSend__15CQueueOutputIopiPv                           = 0x18E7C0; // type:func
+Update__15CQueueOutputIop                              = 0x18E838; // type:func
+FAsyncDrain__15CQueueOutputIop                         = 0x18E8C0; // type:func
+CbWrite__15CQueueOutputIpuiPv                          = 0x18E8C8; // type:func
+FAsyncDrain__15CQueueOutputIpu                         = 0x18E938; // type:func
+Init__10CMpegAudio                                     = 0x18E940; // type:func
+Reset__10CMpegAudio                                    = 0x18EA48; // type:func
+Close__10CMpegAudio                                    = 0x18EAA0; // type:func
+FAccept__10CMpegAudioiPUc                              = 0x18EAF8; // type:func
+Update__10CMpegAudio                                   = 0x18EB98; // type:func
+FMpegAcceptVideo__FP7sceMpegP16sceMpegCbDataStrP5CMpeg = 0x18EC40; // type:func
+FMpegAcceptAudio__FP7sceMpegP16sceMpegCbDataStrP5CMpeg = 0x18EC80; // type:func
+FMpegDecodeVideo__FP7sceMpegP13sceMpegCbDataP5CMpeg    = 0x18ECA8; // type:func
+FMpegDecoderIdle__FP7sceMpegP13sceMpegCbDataP5CMpeg    = 0x18ED78; // type:func
+FMpegDecoderError__FP7sceMpegP13sceMpegCbDataP5CMpeg   = 0x18EDA0; // type:func
+BuildMpegGifs__FP2QWP11sceIpuRGB32iiiii                = 0x18EDA8; // type:func
+FUN_0018ef78                                           = 0x18EF78; // type:func
+FUN_0018f0e8                                           = 0x18F0E8; // type:func
+ExecuteOids__5CMpeg                                    = 0x18F148; // type:func
+Execute__5CMpeg                                        = 0x18F198; // type:func
+Start__5CMpegP18CBinaryAsyncStream                     = 0x18F448; // type:func
+FUN_0018f610__5CMpeg                                   = 0x18F610; // type:func
+Update__5CMpeg                                         = 0x18F6E8; // type:func
+Finish__5CMpeg                                         = 0x18F7D0; // type:func
+CbDemuxed__5CMpegi                                     = 0x18F890; // type:func
+junk_0018F938                                          = 0x18F938; // type:func
+mpeg__static_initialization_and_destruction_0          = 0x18F940; // type:func
+_GLOBAL_$I$g_mpeg                                      = 0x18F968; // type:func
 
 g_mpeg = 0x269A00;
+
+
+////////////////////////////////////////////////////////////////
+// P2/mrkv.c
+////////////////////////////////////////////////////////////////
+InitMrkv__FP4MRKV = 0x18F988; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/ms.c
+////////////////////////////////////////////////////////////////
+RenderMsGlobset__FP2MSP2CMP2RO = 0x18F9D8; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/murray.c
+////////////////////////////////////////////////////////////////
+InitMurray__FP6MURRAY     = 0x18FEF8; // type:func
+PostMurrayLoad__FP6MURRAY = 0x18FF28; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/path.c
+////////////////////////////////////////////////////////////////
+PcbspExtract__FP4CBSP                                 = 0x1907E0; // type:func
+PcgtExtract__FP3CGT                                   = 0x1907F0; // type:func
+PcgtPointInCbspQuick__FP4CBSPP6VECTOR                 = 0x190810; // type:func
+PcgtPointInCbspSafe__FP4CBSPP6VECTOR                  = 0x1908C0; // type:func
+CbskFromG__Ff                                         = 0x1909B0; // type:func
+ClsgClipEdgeToCbsp__FP4CBSPP6VECTORT1iP3LSG           = 0x1909F0; // type:func
+FClipEdgeToCbsp__FP4CBSPP6VECTORT1                    = 0x190E30; // type:func
+IcgvFromPcgv__FP2CGP3CGV                              = 0x190EA8; // type:func
+FindPathAStar__FP2CGP3CGVT1iPiPP3CGV                  = 0x190EB8; // type:func
+SimplifyApcgvNeighbor__FP4CBSPPiPP3CGV                = 0x191128; // type:func
+CposFindPath__FP2CGP6VECTORT1iT1                      = 0x191290; // type:func
+FindClosestPointInCg__FP2CGP6VECTORT1                 = 0x191570; // type:func
+LoadPathzoneFromBrx__FP8PATHZONEP18CBinaryInputStream = 0x1916D0; // type:func
+HookupCg__FP2CG                                       = 0x1919F8; // type:func
+CposFindPathzonePath__FP8PATHZONEP6VECTORT1iT1        = 0x191A68; // type:func
+FindPathzoneClosestPoint__FP8PATHZONEP6VECTORT1       = 0x191A88; // type:func
+FUN_00191aa8                                          = 0x191AA8; // type:func
+FUN_00191ac8                                          = 0x191AC8; // type:func
+ChoosePathzoneRandomPoint__FP8PATHZONEP6VECTOR        = 0x191C78; // type:func
 
 
 ////////////////////////////////////////////////////////////////
