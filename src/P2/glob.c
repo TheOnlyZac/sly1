@@ -36,6 +36,6 @@ INCLUDE_ASM(const s32, "P2/glob", RotateVu1Buffer__Fv);
 
 INCLUDE_ASM(const s32, "P2/glob", DrawGlob__FP3RPL);
 
-INCLUDE_ASM(const s32, "P2/glob", __static_initialization_and_destruction_0);
+INCLUDE_ASM(const s32, "P2/glob", glob__static_initialization_and_destruction_0);
 
 INCLUDE_ASM(const s32, "P2/glob", _GLOBAL_$I$g_dro);

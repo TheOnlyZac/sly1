@@ -2,6 +2,8 @@
 #include <phasemem.h>
 #include <sdk/ee/eekernel.h>
 
+INCLUDE_ASM(const s32, "P2/frm", VU1_Interrupt__Fi);
+
 INCLUDE_ASM(const s32, "P2/frm", StartupFrame__Fv);
 
 INCLUDE_ASM(const s32, "P2/frm", OpenFrame__Fv);

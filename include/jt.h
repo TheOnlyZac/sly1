@@ -85,6 +85,18 @@ enum JTBS
 };
 
 /**
+ * @brief JT Health State.
+ */
+enum JTHS
+{
+    JTHS_Nil = -1,
+    JTHS_Normal = 0,
+    JTHS_Damaged = 1,
+    JTHS_Dead = 2,
+    JTHS_Max = 3
+};
+
+/**
  * JT cane state.
  *
  * @note Copied from May proto, may be outdated/out of order.

@@ -509,6 +509,29 @@ GGetActsegPoseGoal__FP6ACTSEGi = 0x123358; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/alarm.c
+////////////////////////////////////////////////////////////////
+BreakAlbrk__FP5ALBRK                          = 0x1233C0; // type:func
+SetAlbrkAlarm__FP5ALBRKP5ALARM                = 0x123400; // type:func
+InitAlarm__FP5ALARM                           = 0x123408; // type:func
+PostAlarmLoad__FP5ALARM                       = 0x123448; // type:func
+CloneAlarm__FP5ALARMT0                        = 0x123540; // type:func
+UpdateAlarm__FP5ALARMf                        = 0x123578; // type:func
+PostAlarmLoadCallbackHookup__FP5ALARM5MSGIDPv = 0x1236C8; // type:func
+SetAlarmAlarms__FP5ALARM6ALARMS               = 0x123888; // type:func
+TriggerAlarm__FP5ALARM4ALTK                   = 0x123AB0; // type:func
+DisableAlarmAlbrk__FP5ALARM                   = 0x123B18; // type:func
+EnableAlarmSensors__FP5ALARM                  = 0x123B28; // type:func
+DisableAlarmSensors__FP5ALARM                 = 0x123BB0; // type:func
+NotifyAlarmSensorsOnTrigger__FP5ALARM         = 0x123C20; // type:func
+AddAlarmAlbrk__FP5ALARM3OID                   = 0x123C90; // type:func
+AddAlarmSensor__FP5ALARM3OID                  = 0x123CB8; // type:func
+AddAlarmStepguard__FP5ALARM3OID               = 0x123CE0; // type:func
+SetAlarmRsmg__FP5ALARMi3OIDN22                = 0x123D08; // type:func
+FGetAlarmSensorList__FP5ALARMPv               = 0x123D40; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/bas.c
 ////////////////////////////////////////////////////////////////
 __18CBinaryAsyncStreamPv                        = 0x12FCF0; // type:func
@@ -1081,6 +1104,33 @@ _vt$4DMAS = 0x24A0E0; // size:0x10
 
 
 ////////////////////////////////////////////////////////////////
+// P2/eyes.c
+////////////////////////////////////////////////////////////////
+InitEyes__FP4EYESP4SAAF       = 0x159680; // type:func
+PostEyesLoad__FP4EYES         = 0x1596E0; // type:func
+SetEyesEyess__FP4EYES5EYESS   = 0x159770; // type:func
+UpdateEyes__FP4EYESf          = 0x159890; // type:func
+SetEyesClosed__FP4EYESf       = 0x159A00; // type:func
+PsaiFromEyesShd__FP4EYESP3SHD = 0x159A80; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/fader.c
+////////////////////////////////////////////////////////////////
+UpdateFader__FP5FADERf = 0x159AD0; // type:func
+PfaderNew__FP3ALO      = 0x159BB0; // type:func
+RemoveFader__FP5FADER  = 0x159C28; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/filestub.c
+////////////////////////////////////////////////////////////////
+FUN_00159ca0 = 0x159CA0; // type:func
+FUN_00159d00 = 0x159D00; // type:func
+FUN_00159ed0 = 0x159ED0; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/find.c
 ////////////////////////////////////////////////////////////////
 PdlFromSwOid__FP2SW3OID = 0x159F20; // type:func
@@ -1108,14 +1158,79 @@ FPosFlashWithin__FP5FLASHP6VECTOR = 0x15AA50; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/fly.c
+////////////////////////////////////////////////////////////////
+InitFly__FP3FLY                             = 0x15AAE0; // type:func
+LoadFlyFromBrx__FP3FLYP18CBinaryInputStream = 0x15AC08; // type:func
+CloneFly__FP3FLYT0                          = 0x15AD80; // type:func
+FreezeFly__FP3FLYi                          = 0x15AE38; // type:func
+PostFlyLoad__FP3FLY                         = 0x15AEB0; // type:func
+PresetFlyAccel__FP3FLYf                     = 0x15AF50; // type:func
+UpdateFly__FP3FLYf                          = 0x15B128; // type:func
+RenderFlySelf__FP3FLYP2CMP2RO               = 0x15B4D0; // type:func
+FAbsorbFlyWkr__FP3FLYP3WKR                  = 0x15B720; // type:func
+SetFlyFlys__FP3FLY4FLYS                     = 0x15B7B8; // type:func
+EmitFlyDroppings__FP3FLY                    = 0x15BC78; // type:func
+FFindFlyClosestLandingPos__FP3FLYP6VECTOR   = 0x15BD48; // type:func
+FlysAttemptedFlyLanding__FP3FLY             = 0x15BEF0; // type:func
+FShouldFlyFlee__FP3FLY                      = 0x15BFC0; // type:func
+FFilterFly__FPvP2SO                         = 0x15C058; // type:func
+FCheckFlyOpenSpaceBelow__FP3FLY             = 0x15C0A0; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/font.c
 ////////////////////////////////////////////////////////////////
+StartupFont__Fv                                = 0x15C178; // type:func
+FUN_0015c188                                   = 0x15C188; // type:func
+FUN_0015c1c0                                   = 0x15C1C0; // type:func
+FUN_0015c200                                   = 0x15C200; // type:func
+CopyTo__5CFontP5CFont                          = 0x15C260; // type:func
+SetupDraw__5CFontP8CTextBoxP4GIFS              = 0x15C2E8; // type:func
+CleanupDraw__5CFontP8CTextBoxP4GIFS            = 0x15C3C0; // type:func
+DxFromPchz__5CFontPc                           = 0x15C418; // type:func
+DyWrapPchz__5CFontPcf                          = 0x15C4A8; // type:func
+ClineWrapPchz__5CFontPcf                       = 0x15C4E8; // type:func
+junk_0015C630                                  = 0x15C630; // type:func
+DrawPchz__5CFontPcP8CTextBoxT2P4GIFS           = 0x15C638; // type:func
+PushScaling__5CFontff                          = 0x15C8b8; // type:func
+PopScaling__5CFont                             = 0x15C900; // type:func
+PfontClone__8CFontBrxff                        = 0x15C930; // type:func
+CopyTo__8CFontBrxP8CFontBrx                    = 0x15C9B0; // type:func
+FValid__8CFontBrxc                             = 0x15CA38; // type:func
+DxFromCh__8CFontBrxc                           = 0x15CA60; // type:func
+FEnsureLoaded__8CFontBrxP4GIFS                 = 0x15CAB8; // type:func
+SetupDraw__8CFontBrxP8CTextBoxP4GIFS           = 0x15CB88; // type:func
+SwitchTex0__8CFontBrxP4GIFS                    = 0x15CC80; // type:func
+DxDrawCh__8CFontBrxcffUiP4GIFS                 = 0x15CD18; // type:func
+FUN_0015cf70                                   = 0x15CF70; // type:func
+DrawPart__8CFontBrxffffffffUiP4GIFS            = 0x15D338; // type:func
+EdgeRect__8CFontBrxP9CTextEdgeP8CTextBoxP4GIFS = 0x15D4E0; // type:func
+LoadFromBrx__8CFontBrxP18CBinaryInputStream    = 0x15D8A8; // type:func
+PostLoad__8CFontBrxP3GSB                       = 0x15D998; // type:func
+PglyffFromCh__8CFontBrxc                       = 0x15DAB8; // type:func
+__9CRichTextPcP5CFont                          = 0x15DB28; // type:func
+Reset__9CRichText                              = 0x15DB80; // type:func
+SetBaseColor__9CRichTextG4RGBA                 = 0x15DBB8; // type:func
+ChNext__9CRichText                             = 0x15DBE0; // type:func
+Cch__9CRichText                                = 0x15DF58; // type:func
+Trim__9CRichTexti                              = 0x15DFA0; // type:func
+Dx__9CRichText                                 = 0x15DFF8; // type:func
+ClineWrap__9CRichTextf                         = 0x15E068; // type:func
+FUN_0015e1b0                                   = 0x15E1B0; // type:func
+DxMaxLine__9CRichText                          = 0x15E1F0; // type:func
+GetExtents__9CRichTextPfT1f                    = 0x15E290; // type:func
+Draw__9CRichTextP8CTextBoxT1P4GIFS             = 0x15E318; // type:func
+PostFontsLoad__Fv                              = 0x15E5F0; // type:func
+junk_0015E678                                  = 0x15E678; // type:func
+
 g_pfont = 0x26227C; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
 // P2/frm.c
 ////////////////////////////////////////////////////////////////
+VU1_Interrupt__Fi = 0x15E6A8; // type:func
 StartupFrame__Fv = 0x15E810; // type:func
 OpenFrame__Fv = 0x15E9F0; // type:func
 EnsureVu1Code__FP4VIFSPvT1 = 0x15EAE0; // type:func
@@ -1272,7 +1387,7 @@ UpdateAloInfluences__FP3ALOP2RO                  = 0x1660E8; // type:func
 PredrawGlob__FP7GLOBSETP4GLOBP5GLOBIP3ALO        = 0x1662A8; // type:func
 RotateVu1Buffer__Fv                              = 0x166658; // type:func
 DrawGlob__FP3RPL                                 = 0x166690; // type:func
-__static_initialization_and_destruction_0        = 0x167D20; // type:func
+glob__static_initialization_and_destruction_0    = 0x167D20; // type:func
 _GLOBAL_$I$g_dro                                 = 0x167D48; // type:func
 
 
@@ -1632,7 +1747,7 @@ FUN_0018d2b0                         = 0x18D2B0; // type:func
 FUN_0018d2e8                         = 0x18D2E8; // type:func
 FUN_0018d328                         = 0x18D328; // type:func
 FUN_0018d368                         = 0x18D368; // type:func
-clear_8_bytes__Pv                    = 0x18D410; // type:func
+Clear__13CFileLocation               = 0x18D410; // type:func
 
 s_savePath = 0x24b3b0;
 
@@ -1682,9 +1797,83 @@ D_0064C70F = 0x64C70F; // size:0x04
 ////////////////////////////////////////////////////////////////
 // P2/mpeg.c
 ////////////////////////////////////////////////////////////////
-ExecuteOids__5CMpeg = 0x18f148; // type:func
+StartupMpeg__Fv                                        = 0x18E5E8; // type:func
+Init__15CQueueOutputIopii                              = 0x18E678; // type:func
+Reset__15CQueueOutputIop                               = 0x18E6A0; // type:func
+CbWrite__15CQueueOutputIopiPv                          = 0x18E6C0; // type:func
+CbSend__15CQueueOutputIopiPv                           = 0x18E7C0; // type:func
+Update__15CQueueOutputIop                              = 0x18E838; // type:func
+FAsyncDrain__15CQueueOutputIop                         = 0x18E8C0; // type:func
+CbWrite__15CQueueOutputIpuiPv                          = 0x18E8C8; // type:func
+FAsyncDrain__15CQueueOutputIpu                         = 0x18E938; // type:func
+Init__10CMpegAudio                                     = 0x18E940; // type:func
+Reset__10CMpegAudio                                    = 0x18EA48; // type:func
+Close__10CMpegAudio                                    = 0x18EAA0; // type:func
+FAccept__10CMpegAudioiPUc                              = 0x18EAF8; // type:func
+Update__10CMpegAudio                                   = 0x18EB98; // type:func
+FMpegAcceptVideo__FP7sceMpegP16sceMpegCbDataStrP5CMpeg = 0x18EC40; // type:func
+FMpegAcceptAudio__FP7sceMpegP16sceMpegCbDataStrP5CMpeg = 0x18EC80; // type:func
+FMpegDecodeVideo__FP7sceMpegP13sceMpegCbDataP5CMpeg    = 0x18ECA8; // type:func
+FMpegDecoderIdle__FP7sceMpegP13sceMpegCbDataP5CMpeg    = 0x18ED78; // type:func
+FMpegDecoderError__FP7sceMpegP13sceMpegCbDataP5CMpeg   = 0x18EDA0; // type:func
+BuildMpegGifs__FP2QWP11sceIpuRGB32iiiii                = 0x18EDA8; // type:func
+FUN_0018ef78                                           = 0x18EF78; // type:func
+FUN_0018f0e8                                           = 0x18F0E8; // type:func
+ExecuteOids__5CMpeg                                    = 0x18F148; // type:func
+Execute__5CMpeg                                        = 0x18F198; // type:func
+Start__5CMpegP18CBinaryAsyncStream                     = 0x18F448; // type:func
+FUN_0018f610__5CMpeg                                   = 0x18F610; // type:func
+Update__5CMpeg                                         = 0x18F6E8; // type:func
+Finish__5CMpeg                                         = 0x18F7D0; // type:func
+CbDemuxed__5CMpegi                                     = 0x18F890; // type:func
+junk_0018F938                                          = 0x18F938; // type:func
+mpeg__static_initialization_and_destruction_0          = 0x18F940; // type:func
+_GLOBAL_$I$g_mpeg                                      = 0x18F968; // type:func
 
 g_mpeg = 0x269A00;
+
+
+////////////////////////////////////////////////////////////////
+// P2/mrkv.c
+////////////////////////////////////////////////////////////////
+InitMrkv__FP4MRKV = 0x18F988; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/ms.c
+////////////////////////////////////////////////////////////////
+RenderMsGlobset__FP2MSP2CMP2RO = 0x18F9D8; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/murray.c
+////////////////////////////////////////////////////////////////
+InitMurray__FP6MURRAY     = 0x18FEF8; // type:func
+PostMurrayLoad__FP6MURRAY = 0x18FF28; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/path.c
+////////////////////////////////////////////////////////////////
+PcbspExtract__FP4CBSP                                 = 0x1907E0; // type:func
+PcgtExtract__FP3CGT                                   = 0x1907F0; // type:func
+PcgtPointInCbspQuick__FP4CBSPP6VECTOR                 = 0x190810; // type:func
+PcgtPointInCbspSafe__FP4CBSPP6VECTOR                  = 0x1908C0; // type:func
+CbskFromG__Ff                                         = 0x1909B0; // type:func
+ClsgClipEdgeToCbsp__FP4CBSPP6VECTORT1iP3LSG           = 0x1909F0; // type:func
+FClipEdgeToCbsp__FP4CBSPP6VECTORT1                    = 0x190E30; // type:func
+IcgvFromPcgv__FP2CGP3CGV                              = 0x190EA8; // type:func
+FindPathAStar__FP2CGP3CGVT1iPiPP3CGV                  = 0x190EB8; // type:func
+SimplifyApcgvNeighbor__FP4CBSPPiPP3CGV                = 0x191128; // type:func
+CposFindPath__FP2CGP6VECTORT1iT1                      = 0x191290; // type:func
+FindClosestPointInCg__FP2CGP6VECTORT1                 = 0x191570; // type:func
+LoadPathzoneFromBrx__FP8PATHZONEP18CBinaryInputStream = 0x1916D0; // type:func
+HookupCg__FP2CG                                       = 0x1919F8; // type:func
+CposFindPathzonePath__FP8PATHZONEP6VECTORT1iT1        = 0x191A68; // type:func
+FindPathzoneClosestPoint__FP8PATHZONEP6VECTORT1       = 0x191A88; // type:func
+FUN_00191aa8                                          = 0x191AA8; // type:func
+FUN_00191ac8                                          = 0x191AC8; // type:func
+ChoosePathzoneRandomPoint__FP8PATHZONEP6VECTOR        = 0x191C78; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -1864,11 +2053,52 @@ g_binoc = 0x2701F8; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
+// P2/sky.c
+////////////////////////////////////////////////////////////////
+PostSkyLoad__FP3SKY = 0x1B5CD8; // type:func
+UpdateSky__FP3SKYf  = 0x1B5D28; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/slotheap.c
+////////////////////////////////////////////////////////////////
+_InitSlotheap__FP8SLOTHEAPii           = 0x1B5D80; // type:func
+CreateSlotheapSw__FP8SLOTHEAPii        = 0x1B5DD0; // type:func
+CreateSlotheapSwAlign64__FP8SLOTHEAPii = 0x1B5E30; // type:func
+junk_001B5E98                          = 0x1B5E98; // type:func
+PvAllocSlotheapUnsafe__FP8SLOTHEAP     = 0x1B5EA0; // type:func
+PvAllocSlotheapImpl__FP8SLOTHEAP       = 0x1B5EC0; // type:func
+PvAllocSlotheapClearImpl__FP8SLOTHEAP  = 0x1B5EE0; // type:func
+FreeSlotheapPv__FP8SLOTHEAPPv          = 0x1B5F28; // type:func
+junk_001B5F48                          = 0x1B5F48; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/smartguard.c
+////////////////////////////////////////////////////////////////
+InitSmartguard__FP10SMARTGUARD                        = 0x1B6EC8; // type:func
+PostSmartguardLoadFlashlight__FP10SMARTGUARD          = 0x1B6F50; // type:func
+UseSmartguardFlashlightTarget__FP10SMARTGUARD3SGS3OID = 0x1B70B0; // type:func
+FUN_001B7100                                          = 0x1B7100; // type:func
+PostSmartguardLoad__FP10SMARTGUARD                    = 0x1B7128; // type:func
+FFilterSmartguardDetect__FP10SMARTGUARDP2SO           = 0x1B71C8; // type:func
+FDetectSmartguard__FP10SMARTGUARD                     = 0x1B7280; // type:func
+UpdateSmartguard__FP10SMARTGUARDf                     = 0x1B7608; // type:func
+FUN_001B7638                                          = 0x1B7638; // type:func
+OnSmartguardEnteringSgs__FP10SMARTGUARD3SGSP4ASEG     = 0x1B7790; // type:func
+FCanSmartguardAttack__FP10SMARTGUARD                  = 0x1B7818; // type:func
+SgasGetSmartguard__FP10SMARTGUARD                     = 0x1B7860; // type:func
+HandleSmartguardMessage__FP10SMARTGUARD5MSGIDPv       = 0x1B78C0; // type:func
+FreezeSmartguard__FP10SMARTGUARDi                     = 0x1B7920; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/so.c
 ////////////////////////////////////////////////////////////////
 InitSo__FP2SO = 0x1B7968; // type:func
 OnSoAdd__FP2SO = 0x1B7A98; // type:func
 OnSoRemove__FP2SO = 0x1B7B78; // type:func
+CloneSo__FP2SOT0 = 0x1BA130; // type:func
 LoadSoFromBrx__FP2SOP18CBinaryInputStream = 0x1BAC30; // type:func
 
 
@@ -1978,16 +2208,26 @@ D_00604790 = 0x00604790; // size:0x1c
 
 
 ////////////////////////////////////////////////////////////////
+// P2/speaker.c
+////////////////////////////////////////////////////////////////
+InitSpeaker__FP7SPEAKER          = 0x1C0F30; // type:func
+PostSpeakerLoad__FP7SPEAKER      = 0x1C0FF0; // type:func
+SetSpeakerSmIdle__FP7SPEAKER3OID = 0x1C1030; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/spire.c
+////////////////////////////////////////////////////////////////
+InitSpire__FP5SPIRE     = 0x1C10A8; // type:func
+OnSpireAdd__FP5SPIRE    = 0x1C10D8; // type:func
+OnSpireRemove__FP5SPIRE = 0x1C1110; // type:func
+CloneSpire__FP5SPIRET0  = 0x1C1148; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/stepguard.c
 ////////////////////////////////////////////////////////////////
 InitStepguard__FP9STEPGUARD = 0x1C6F48; // type:func
-
-
-////////////////////////////////////////////////////////////////
-// P2/sky.c (out of order?)
-////////////////////////////////////////////////////////////////
-PostSkyLoad__FP3SKY = 0x1c9a18; // type:func
-UpdateSky__FP3SKYf = 0x1c9a58; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -2078,6 +2318,41 @@ InitTail__FP4TAIL = 0x1DDCE0; // type:func
 PostTailLoad__FP4TAIL = 0x1DDD18; // type:func
 UpdateTailConstraints__FP4TAIL = 0x1DDE90; // type:func
 MatchTailOtherObject__FP4TAILP3ALO = 0x1DE768; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/tank.c
+////////////////////////////////////////////////////////////////
+InitTank__FP4TANK                  = 0x1DE798; // type:func
+PostTankLoad__FP4TANK              = 0x1DE808; // type:func
+UpdateTank__FP4TANKf               = 0x1DE910; // type:func
+FUN_001deb30                       = 0x1DEB30; // type:func
+UseTankCharm__FP4TANK              = 0x1DEBB8; // type:func
+UpdateTankActive__FP4TANKP3JOYf    = 0x1DEBE8; // type:func
+OnTankActive__FP4TANKiP2PO         = 0x1DF290; // type:func
+RenderTankAll__FP4TANKP2CMP2RO     = 0x1DF2C8; // type:func
+ImpactTank__FP4TANKi               = 0x1DF520; // type:func
+FInvulnerableTank__FP4TANK3ZPK     = 0x1DF5A0; // type:func
+ApplyTankThrow__FP4TANKP2PO        = 0x1DF600; // type:func
+FTakeTankDamage__FP4TANKP3ZPR      = 0x1DF700; // type:func
+FUN_001dfa10                       = 0x1DFA10; // type:func
+AdjustTankNewXp__FP4TANKP2XPi      = 0x1DFA40; // type:func
+HandleTankMessage__FP4TANK5MSGIDPv = 0x1DFB08; // type:func
+JthsCurrentTank__FP4TANK           = 0x1DFBD0; // type:func
+SetTankTanks__FP4TANK5TANKS        = 0x1DFBE0; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/target.c
+////////////////////////////////////////////////////////////////
+StartupTarget__Fv         = 0x1DFD48; // type:func
+ResetTargetList__Fv       = 0x1DFD70; // type:func
+InitTarget__FP6TARGET     = 0x1DFD90; // type:func
+OnTargetAdd__FP6TARGET    = 0x1DFDC8; // type:func
+OnTargetRemove__FP6TARGET = 0x1DFE00; // type:func
+CloneTarget__FP6TARGETT0  = 0x1DFE38; // type:func
+
+g_dlTarget = 0x2758D0; // size:0xc
 
 
 ////////////////////////////////////////////////////////////////

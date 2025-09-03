@@ -9,7 +9,6 @@
 #include <mat.h>
 #include <lo.h>
 #include <dl.h>
-#include <fader.h>
 
 // Forward
 struct CBinaryInputStream;
@@ -26,6 +25,7 @@ struct SHADOW;
 struct THROB;
 struct POSEC;
 struct ACTREF;
+struct FADER;
 
 /**
  * @todo Unknown.

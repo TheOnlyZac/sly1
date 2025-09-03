@@ -6,6 +6,9 @@
 #ifndef SCE_EESTRUCT_H
 #define SCE_EESTRUCT_H
 
+// TODO: Remove this.
+#include "types.h"
+
 extern "C"
 {
     struct sceGsTex0

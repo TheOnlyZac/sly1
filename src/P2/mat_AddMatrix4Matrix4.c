@@ -1,5 +1,5 @@
 /**
- * @note Should be merged with mat1.c and mat2.c.
+ * @note Should be merged with mat.c.
  */
 #include <mat.h>
 

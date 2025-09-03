@@ -8,6 +8,7 @@
 
 #include "common.h"
 #include <oid.h>
+#include <bas.h>
 
 class CMpeg
 {
@@ -17,10 +18,10 @@ public:
     // todo
 
     void ExecuteOids();
-    // void Execute(OID* oid);
-    // void Start();
-    // void Update();
-    // void Finish();
+    void Execute(OID *poid);
+    void Start(CBinaryAsyncStream *pbas);
+    void Update();
+    void Finish();
 };
 
 extern CMpeg g_mpeg;
