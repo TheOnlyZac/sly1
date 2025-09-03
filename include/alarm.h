@@ -25,7 +25,7 @@ struct EXC
 };
 
 /**
- * @brief Alarm State (?)
+ * @brief Alarm State.
  */
 enum ALARMS
 {
@@ -37,7 +37,7 @@ enum ALARMS
 };
 
 /**
- * @brief Unknown.
+ * @brief Alarm Trigger Kind.
  */
 enum ALTK
 {

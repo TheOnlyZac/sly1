@@ -18,7 +18,7 @@ public:
     // todo
 
     void ExecuteOids();
-    void Execute(OID *oid);
+    void Execute(OID *poid);
     void Start(CBinaryAsyncStream *pbas);
     void Update();
     void Finish();
