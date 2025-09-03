@@ -5,8 +5,9 @@
 #define STEPGUARD_H
 
 #include "common.h"
+#include <step.h>
 
-struct STEPGUARD
+struct STEPGUARD : public STEP
 {
     // ...
 };

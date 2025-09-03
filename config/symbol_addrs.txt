@@ -2053,6 +2053,46 @@ g_binoc = 0x2701F8; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
+// P2/sky.c
+////////////////////////////////////////////////////////////////
+PostSkyLoad__FP3SKY = 0x1B5CD8; // type:func
+UpdateSky__FP3SKYf  = 0x1B5D28; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/slotheap.c
+////////////////////////////////////////////////////////////////
+_InitSlotheap__FP8SLOTHEAPii           = 0x1B5D80; // type:func
+CreateSlotheapSw__FP8SLOTHEAPii        = 0x1B5DD0; // type:func
+CreateSlotheapSwAlign64__FP8SLOTHEAPii = 0x1B5E30; // type:func
+junk_001B5E98                          = 0x1B5E98; // type:func
+PvAllocSlotheapUnsafe__FP8SLOTHEAP     = 0x1B5EA0; // type:func
+PvAllocSlotheapImpl__FP8SLOTHEAP       = 0x1B5EC0; // type:func
+PvAllocSlotheapClearImpl__FP8SLOTHEAP  = 0x1B5EE0; // type:func
+FreeSlotheapPv__FP8SLOTHEAPPv          = 0x1B5F28; // type:func
+junk_001B5F48                          = 0x1B5F48; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/smartguard.c
+////////////////////////////////////////////////////////////////
+InitSmartguard__FP10SMARTGUARD                        = 0x1B6EC8; // type:func
+PostSmartguardLoadFlashlight__FP10SMARTGUARD          = 0x1B6F50; // type:func
+UseSmartguardFlashlightTarget__FP10SMARTGUARD3SGS3OID = 0x1B70B0; // type:func
+FUN_001B7100                                          = 0x1B7100; // type:func
+PostSmartguardLoad__FP10SMARTGUARD                    = 0x1B7128; // type:func
+FFilterSmartguardDetect__FP10SMARTGUARDP2SO           = 0x1B71C8; // type:func
+FDetectSmartguard__FP10SMARTGUARD                     = 0x1B7280; // type:func
+UpdateSmartguard__FP10SMARTGUARDf                     = 0x1B7608; // type:func
+FUN_001B7638                                          = 0x1B7638; // type:func
+OnSmartguardEnteringSgs__FP10SMARTGUARD3SGSP4ASEG     = 0x1B7790; // type:func
+FCanSmartguardAttack__FP10SMARTGUARD                  = 0x1B7818; // type:func
+SgasGetSmartguard__FP10SMARTGUARD                     = 0x1B7860; // type:func
+HandleSmartguardMessage__FP10SMARTGUARD5MSGIDPv       = 0x1B78C0; // type:func
+FreezeSmartguard__FP10SMARTGUARDi                     = 0x1B7920; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/so.c
 ////////////////////////////////////////////////////////////////
 InitSo__FP2SO = 0x1B7968; // type:func
@@ -2168,16 +2208,26 @@ D_00604790 = 0x00604790; // size:0x1c
 
 
 ////////////////////////////////////////////////////////////////
+// P2/speaker.c
+////////////////////////////////////////////////////////////////
+InitSpeaker__FP7SPEAKER          = 0x1C0F30; // type:func
+PostSpeakerLoad__FP7SPEAKER      = 0x1C0FF0; // type:func
+SetSpeakerSmIdle__FP7SPEAKER3OID = 0x1C1030; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/spire.c
+////////////////////////////////////////////////////////////////
+InitSpire__FP5SPIRE     = 0x1C10A8; // type:func
+OnSpireAdd__FP5SPIRE    = 0x1C10D8; // type:func
+OnSpireRemove__FP5SPIRE = 0x1C1110; // type:func
+CloneSpire__FP5SPIRET0  = 0x1C1148; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/stepguard.c
 ////////////////////////////////////////////////////////////////
 InitStepguard__FP9STEPGUARD = 0x1C6F48; // type:func
-
-
-////////////////////////////////////////////////////////////////
-// P2/sky.c (out of order?)
-////////////////////////////////////////////////////////////////
-PostSkyLoad__FP3SKY = 0x1c9a18; // type:func
-UpdateSky__FP3SKYf = 0x1c9a58; // type:func
 
 
 ////////////////////////////////////////////////////////////////
