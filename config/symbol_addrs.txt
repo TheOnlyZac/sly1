@@ -1104,6 +1104,33 @@ _vt$4DMAS = 0x24A0E0; // size:0x10
 
 
 ////////////////////////////////////////////////////////////////
+// P2/eyes.c
+////////////////////////////////////////////////////////////////
+InitEyes__FP4EYESP4SAAF       = 0x159680; // type:func
+PostEyesLoad__FP4EYES         = 0x1596E0; // type:func
+SetEyesEyess__FP4EYES5EYESS   = 0x159770; // type:func
+UpdateEyes__FP4EYESf          = 0x159890; // type:func
+SetEyesClosed__FP4EYESf       = 0x159A00; // type:func
+PsaiFromEyesShd__FP4EYESP3SHD = 0x159A80; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/fader.c
+////////////////////////////////////////////////////////////////
+UpdateFader__FP5FADERf = 0x159AD0; // type:func
+PfaderNew__FP3ALO      = 0x159BB0; // type:func
+RemoveFader__FP5FADER  = 0x159C28; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/filestub.c
+////////////////////////////////////////////////////////////////
+FUN_00159ca0 = 0x159CA0; // type:func
+FUN_00159d00 = 0x159D00; // type:func
+FUN_00159ed0 = 0x159ED0; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/find.c
 ////////////////////////////////////////////////////////////////
 PdlFromSwOid__FP2SW3OID = 0x159F20; // type:func
@@ -1131,14 +1158,79 @@ FPosFlashWithin__FP5FLASHP6VECTOR = 0x15AA50; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/fly.c
+////////////////////////////////////////////////////////////////
+InitFly__FP3FLY                             = 0x15AAE0; // type:func
+LoadFlyFromBrx__FP3FLYP18CBinaryInputStream = 0x15AC08; // type:func
+CloneFly__FP3FLYT0                          = 0x15AD80; // type:func
+FreezeFly__FP3FLYi                          = 0x15AE38; // type:func
+PostFlyLoad__FP3FLY                         = 0x15AEB0; // type:func
+PresetFlyAccel__FP3FLYf                     = 0x15AF50; // type:func
+UpdateFly__FP3FLYf                          = 0x15B128; // type:func
+RenderFlySelf__FP3FLYP2CMP2RO               = 0x15B4D0; // type:func
+FAbsorbFlyWkr__FP3FLYP3WKR                  = 0x15B720; // type:func
+SetFlyFlys__FP3FLY4FLYS                     = 0x15B7B8; // type:func
+EmitFlyDroppings__FP3FLY                    = 0x15BC78; // type:func
+FFindFlyClosestLandingPos__FP3FLYP6VECTOR   = 0x15BD48; // type:func
+FlysAttemptedFlyLanding__FP3FLY             = 0x15BEF0; // type:func
+FShouldFlyFlee__FP3FLY                      = 0x15BFC0; // type:func
+FFilterFly__FPvP2SO                         = 0x15C058; // type:func
+FCheckFlyOpenSpaceBelow__FP3FLY             = 0x15C0A0; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/font.c
 ////////////////////////////////////////////////////////////////
+StartupFont__Fv                                = 0x15C178; // type:func
+FUN_0015c188                                   = 0x15C188; // type:func
+FUN_0015c1c0                                   = 0x15C1C0; // type:func
+FUN_0015c200                                   = 0x15C200; // type:func
+CopyTo__5CFontP5CFont                          = 0x15C260; // type:func
+SetupDraw__5CFontP8CTextBoxP4GIFS              = 0x15C2E8; // type:func
+CleanupDraw__5CFontP8CTextBoxP4GIFS            = 0x15C3C0; // type:func
+DxFromPchz__5CFontPc                           = 0x15C418; // type:func
+DyWrapPchz__5CFontPcf                          = 0x15C4A8; // type:func
+ClineWrapPchz__5CFontPcf                       = 0x15C4E8; // type:func
+junk_0015C630                                  = 0x15C630; // type:func
+DrawPchz__5CFontPcP8CTextBoxT2P4GIFS           = 0x15C638; // type:func
+PushScaling__5CFontff                          = 0x15C8b8; // type:func
+PopScaling__5CFont                             = 0x15C900; // type:func
+PfontClone__8CFontBrxff                        = 0x15C930; // type:func
+CopyTo__8CFontBrxP8CFontBrx                    = 0x15C9B0; // type:func
+FValid__8CFontBrxc                             = 0x15CA38; // type:func
+DxFromCh__8CFontBrxc                           = 0x15CA60; // type:func
+FEnsureLoaded__8CFontBrxP4GIFS                 = 0x15CAB8; // type:func
+SetupDraw__8CFontBrxP8CTextBoxP4GIFS           = 0x15CB88; // type:func
+SwitchTex0__8CFontBrxP4GIFS                    = 0x15CC80; // type:func
+DxDrawCh__8CFontBrxcffUiP4GIFS                 = 0x15CD18; // type:func
+FUN_0015cf70                                   = 0x15CF70; // type:func
+DrawPart__8CFontBrxffffffffUiP4GIFS            = 0x15D338; // type:func
+EdgeRect__8CFontBrxP9CTextEdgeP8CTextBoxP4GIFS = 0x15D4E0; // type:func
+LoadFromBrx__8CFontBrxP18CBinaryInputStream    = 0x15D8A8; // type:func
+PostLoad__8CFontBrxP3GSB                       = 0x15D998; // type:func
+PglyffFromCh__8CFontBrxc                       = 0x15DAB8; // type:func
+__9CRichTextPcP5CFont                          = 0x15DB28; // type:func
+Reset__9CRichText                              = 0x15DB80; // type:func
+SetBaseColor__9CRichTextG4RGBA                 = 0x15DBB8; // type:func
+ChNext__9CRichText                             = 0x15DBE0; // type:func
+Cch__9CRichText                                = 0x15DF58; // type:func
+Trim__9CRichTexti                              = 0x15DFA0; // type:func
+Dx__9CRichText                                 = 0x15DFF8; // type:func
+ClineWrap__9CRichTextf                         = 0x15E068; // type:func
+FUN_0015e1b0                                   = 0x15E1B0; // type:func
+DxMaxLine__9CRichText                          = 0x15E1F0; // type:func
+GetExtents__9CRichTextPfT1f                    = 0x15E290; // type:func
+Draw__9CRichTextP8CTextBoxT1P4GIFS             = 0x15E318; // type:func
+PostFontsLoad__Fv                              = 0x15E5F0; // type:func
+junk_0015E678                                  = 0x15E678; // type:func
+
 g_pfont = 0x26227C; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
 // P2/frm.c
 ////////////////////////////////////////////////////////////////
+VU1_Interrupt__Fi = 0x15E6A8; // type:func
 StartupFrame__Fv = 0x15E810; // type:func
 OpenFrame__Fv = 0x15E9F0; // type:func
 EnsureVu1Code__FP4VIFSPvT1 = 0x15EAE0; // type:func
