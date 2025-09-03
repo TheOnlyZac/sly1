@@ -4,6 +4,7 @@
 #ifndef EYES_H
 #define EYES_H
 
+#include "common.h"
 #include <shd.h>
 
 /**

@@ -2,7 +2,7 @@
 
 void StartupFont()
 {
-    g_pfont = 0;
+    g_pfont = (CFont *)nullptr;
 }
 
 INCLUDE_ASM(const s32, "P2/font", FUN_0015c188);

@@ -6,6 +6,7 @@
 #ifndef FLY_H
 #define FLY_H
 
+#include "common.h"
 #include <target.h>
 #include <flash.h>
 #include <sound.h>
