@@ -466,25 +466,6 @@ gSLClientLoaderData = 0x027b4f0; // size:0x28
 
 
 ////////////////////////////////////////////////////////////////
-// P2/alo.c
-////////////////////////////////////////////////////////////////
-InitAlo__FP3ALO = 0x123ED0; // type:func
-SnipAloObjects__FP3ALOiP4SNIP = 0x124DF8; // type:func
-UpdateAlo__FP3ALOf = 0x124FC0; // type:func
-CloneAlo__FP3ALOT0 = 0x127048; // type:func
-LoadAloFromBrx__FP3ALOP18CBinaryInputStream = 0x1289C0; // type:func
-FadeAloIn__FP3ALOf = 0x126cb8 = 0x126CB8; // type:func
-FadeAloOut__FP3ALOf = 0x126d60; // type:func
-SetAloTargetHitTest__FP3ALOi = 0x12AA28; // type:func
-
-
-////////////////////////////////////////////////////////////////
-// P2/aseg.c
-////////////////////////////////////////////////////////////////
-PasegaNew__FP2SW = 0x12d3f8; // type:func
-
-
-////////////////////////////////////////////////////////////////
 // P2/brx.c
 ////////////////////////////////////////////////////////////////
 StartupBrx__Fv = 0x11e560; // type:func
@@ -494,6 +475,7 @@ LoadOptionsFromBrx__FPvP18CBinaryInputStream = 0x11EC40; // type:func
 IploFromStockOid__Fi = 0x11ECA0; // type:func
 LoadSwObjectsFromBrx__FP2SWP3ALOP18CBinaryInputStream = 0x11ECB8; // type:func
 SetLoDefaults__FP2LO = 0x11EDA8; // type:func
+
 
 
 ////////////////////////////////////////////////////////////////
@@ -529,6 +511,67 @@ AddAlarmSensor__FP5ALARM3OID                  = 0x123CB8; // type:func
 AddAlarmStepguard__FP5ALARM3OID               = 0x123CE0; // type:func
 SetAlarmRsmg__FP5ALARMi3OIDN22                = 0x123D08; // type:func
 FGetAlarmSensorList__FP5ALARMPv               = 0x123D40; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/alo.c
+////////////////////////////////////////////////////////////////
+InitAlo__FP3ALO = 0x123ED0; // type:func
+SnipAloObjects__FP3ALOiP4SNIP = 0x124DF8; // type:func
+UpdateAlo__FP3ALOf = 0x124FC0; // type:func
+CloneAlo__FP3ALOT0 = 0x127048; // type:func
+LoadAloFromBrx__FP3ALOP18CBinaryInputStream = 0x1289C0; // type:func
+FadeAloIn__FP3ALOf = 0x126cb8 = 0x126CB8; // type:func
+FadeAloOut__FP3ALOf = 0x126d60; // type:func
+SetAloTargetHitTest__FP3ALOi = 0x12AA28; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/aseg.c
+////////////////////////////////////////////////////////////////
+StartupAseg__Fv   = 0x12B868; // type:func
+InitAseg__FP4ASEG = 0x12B870; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/asega.c
+////////////////////////////////////////////////////////////////
+PasegaNew__FP2SW                                       = 0x12D3F8; // type:func
+SetAsegaHandsOff__FP5ASEGAi                            = 0x12D448; // type:func
+UpdateAsegaIeaCur__FP5ASEGA                            = 0x12D4A8; // type:func
+PactsegFindAsega__FP5ASEGA3OID                         = 0x12D570; // type:func
+HandleAsegaEvent__FP5ASEGAP2EAPi                       = 0x12D5D0; // type:func
+HandleAsegaEventsFF__FP5ASEGAP4ASEGPi                  = 0x12E4E0; // type:func
+HandleAsegaEvents__FP5ASEGAP4ASEGPi                    = 0x12E5D0; // type:func
+RemoveAsega__FP5ASEGA                                  = 0x12E710; // type:func
+RetractAsega__FP5ASEGA                                 = 0x12E760; // type:func
+FUN_0012e928                                           = 0x12E928; // type:func
+UFromEaErrorFunc__FP2EAf                               = 0x12E968; // type:func
+FWrapAsegaTime__FP5ASEGAPfT1                           = 0x12E9E0; // type:func
+UpdateAsega__FP5ASEGAf                                 = 0x12EBD8; // type:func
+SeekAsega__FP5ASEGA4SEEKff                             = 0x12F0A0; // type:func
+SnapAsega__FP5ASEGAi                                   = 0x12F190; // type:func
+AdaptAsega__FP5ASEGA                                   = 0x12F1D8; // type:func
+FindChnClosestPointLocal__FP3CHNP3ALOP6VECTORfffPfT2T2 = 0x12F210; // type:func
+SetAsegaSpeed__FP5ASEGAf                               = 0x12F6B0; // type:func
+SetAsegaMasterSpeed__FP5ASEGAf                         = 0x12F6D0; // type:func
+SetAsegaPriority__FP5ASEGAi                            = 0x12F718; // type:func
+SendAsegaMessage__FP5ASEGA5MSGIDPv                     = 0x12F760; // type:func
+SubscribeAsegaStruct__FP5ASEGAPFPv5MSGIDPv_vPv         = 0x12F7E0; // type:func
+SubscribeAsegaObject__FP5ASEGAP2LO                     = 0x12F810; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/barrier.c
+////////////////////////////////////////////////////////////////
+InitBarrier__FP7BARRIER                    = 0x12F840; // type:func
+CloneBarrier__FP7BARRIERT0                 = 0x12F888; // type:func
+PostBarrierLoad__FP7BARRIER                = 0x12F8C8; // type:func
+UpdateBarrier__FP7BARRIERf                 = 0x12F9B8; // type:func
+FIgnoreBarrierIntersection__FP7BARRIERP2SO = 0x12FA88; // type:func
+NotifyBarrierImpact__FP7BARRIERP2XPi       = 0x12FB68; // type:func
+AddBarrierObject__FP7BARRIER3OID           = 0x12FCB0; // type:func
+AddBarrierClass__FP7BARRIER3CID            = 0x12FCD0; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -643,6 +686,83 @@ ReadGeom__18CBinaryInputStreamP4GEOM = 0x137FB0; // type:func
 ReadBspc__18CBinaryInputStreamP4GEOMP4BSPC = 0x138278; // type:func
 ReadVbsp__18CBinaryInputStreamPiPP4VBSP = 0x138398; // type:func
 ReadStringSw__18CBinaryInputStreamPPc = 0x1384A0; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/bbmark.c
+////////////////////////////////////////////////////////////////
+UpdateSwPox__FP2SWP3OXAT1UcUc         = 0x1385A0; // type:func
+PoxAddSw__FP2SWP3OXAT1                = 0x138738; // type:func
+PoxRemoveSw__FP2SWP3OXAT1             = 0x138788; // type:func
+PoxFromSoSo__FP2SOT0                  = 0x1387C0; // type:func
+PxpFirstFromSoSo__FP2SOT0             = 0x1387F8; // type:func
+AddSwAaobrObject__FP2SWP2SO           = 0x138828; // type:func
+RemoveSwAaobrObject__FP2SWP2SO        = 0x1388A0; // type:func
+InvalidateSwAaox__FP2SW               = 0x1389C8; // type:func
+UpdateSwAaox__FP2SW                   = 0x1389D0; // type:func
+InvalidateSwXpForObject__FP2SWP2SOi   = 0x138BE0; // type:func
+RecalcSwXpAll__FP2SWi                 = 0x138C00; // type:func
+RecalcSwOxfFilterForObject__FP2SWP2SO = 0x138F28; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/blend.c
+////////////////////////////////////////////////////////////////
+VerifyAeaEquivalence__FiP2EAiT1                  = 0x138FF0; // type:func
+EnsureAsegBlendDynamic__FP3ALOiiPviPiT5PP6ASEGBL = 0x139038; // type:func
+FillBlAmrsg__FiiPviiP3OID                        = 0x139600; // type:func
+CalculateBlendAmrsg__FiiPviiP4MRSGPf             = 0x139740; // type:func
+ImrsgLookUp__FffiP4MRSGPf                        = 0x139970; // type:func
+junk_001399F0                                    = 0x1399F0; // type:func
+ReblendAsegbl__FP6ASEGBLiiPv                     = 0x1399F8; // type:func
+SetAsegblSlerp__FP6ASEGBLP3ALO                   = 0x139B38; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/blip.c
+////////////////////////////////////////////////////////////////
+BuildBlipAqwGifs__FiPP2QW             = 0x139B70; // type:func
+StartupBlips__Fv                      = 0x139C38; // type:func
+PblipNew__FP5BLIPG                    = 0x139C70; // type:func
+RemoveBlip__FP4BLIP                   = 0x139D28; // type:func
+PblipgNew__FP2SW                      = 0x139D68; // type:func
+InitBlipg__FP5BLIPG                   = 0x139DE8; // type:func
+OnBlipgAdd__FP5BLIPG                  = 0x139E80; // type:func
+OnBlipgRemove__FP5BLIPG               = 0x139EC8; // type:func
+SetBlipgShader__FP5BLIPG3OID          = 0x139F80; // type:func
+PropagateBlipgShader__FP5BLIPG        = 0x13A008; // type:func
+SetBlipgEmitb__FP5BLIPGP5EMITB        = 0x13A128; // type:func
+UpdateBlipg__FP5BLIPGf                = 0x13A3A0; // type:func
+SubscribeBlipgObject__FP5BLIPGP2LO    = 0x13A418; // type:func
+CblipeProjectBlipTransformAccel__FP7MATRIX4G8VU_FLOATP5BLIPPP5BLIPVP5BLIPXi6BLIPOKP6VECTORT7 = 0x13A498; // type:func
+ProjectBlipgTransformAccel__FP5BLIPGf = 0x13A618; // type:func
+ProjectBlipgTransform__FP5BLIPGfi     = 0x13A940; // type:func
+RenderBlipgSelf__FP5BLIPGP2CMP2RO     = 0x13AD08; // type:func
+DrawBlipg__FP3RPL                     = 0x13AD80; // type:func
+PropagateBlipgShaders__Fi             = 0x13B430; // type:func
+
+g_aqwBlipeGifsNormal     = 0x261314; // size:0x4
+g_aqwBlipeGifsClampedAdd = 0x261318; // size:0x4
+
+
+////////////////////////////////////////////////////////////////
+// P2/bomb.c
+////////////////////////////////////////////////////////////////
+InitBomb__FP4BOMB                             = 0x13B4C0; // type:func
+LoadBombFromBrx__FP4BOMBP18CBinaryInputStream = 0x13B598; // type:func
+CloneBomb__FP4BOMBT0                          = 0x13B5C8; // type:func
+PostBombLoad__FP4BOMB                         = 0x13B610; // type:func
+HandleBombMessage__FP4BOMB5MSGIDPv            = 0x13B708; // type:func
+UpdateBomb__FP4BOMBf                          = 0x13B778; // type:func
+FUN_0013b828                                  = 0x13B828; // type:func
+FUN_0013b9d8                                  = 0x13B9D8; // type:func
+FUN_0013ba70                                  = 0x13BA70; // type:func
+FAbsorbBombWkr__FP4BOMBP3WKR                  = 0x13BBA0; // type:func
+FUN_0013bc80                                  = 0x13BC80; // type:func
+PrimeBomb__FP4BOMBf                           = 0x13BE00; // type:func
+ApplyBombThrow__FP4BOMBP2PO                   = 0x13BE18; // type:func
+DetonateBomb__FP4BOMB                         = 0x13BF68; // type:func
+PsfxEnsureBomb__FP4BOMB4ENSK                  = 0x13C950; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -811,6 +931,26 @@ TriggerChkpnt__FP6CHKPNT = 0x141870; // type:func
 
 g_chkmgr = 0x261420; //size:0x430
 
+
+////////////////////////////////////////////////////////////////
+// P2/clip.c
+////////////////////////////////////////////////////////////////
+PsoHitTestLineObjects__FiP6VECTORT1iPP2SOP3LSG         = 0x1419E8; // type:func
+FUN_00141b48                                           = 0x141B48; // type:func
+ClsgClipEdgeToObject__FP2SOP6VECTORT1iP3LSG            = 0x141C28; // type:func
+ClsgClipEdgeToObjectPruned__FP2SOP3BSPP6VECTORT2iP3LSG = 0x141C90; // type:func
+ClsgClipCylinderToObject__FP2SOP6VECTORT1fiP3LSG       = 0x141D00; // type:func
+ClsgClipLineToSphere__FP6VECTORfT0T0iP3LSG             = 0x141D88; // type:func
+ClsgClipEdgeToSphere__FP6VECTORfT0T0iP3LSG             = 0x141F48; // type:func
+ClsgClipCylinderToSphere__FP6VECTORfT0T0fiP3LSG        = 0x142170; // type:func
+ClsgClipEdgeToCylinder__FP6VECTORT0fT0T0iP3LSG         = 0x142278; // type:func
+junk_00142990                                          = 0x142990; // type:func
+SgnCompareMaa__FP3MAAT0                                = 0x142998; // type:func
+ClsgMergeAlsg__FiP3LSG                                 = 0x1429F8; // type:func
+ClsgClipCylinderToBsp__FP4BSPCP4GEOMP6VECTORT2fiP3LSG  = 0x142B78; // type:func
+junk_00142EC8                                          = 0x142EC8; // type:func
+
+
 ////////////////////////////////////////////////////////////////
 // P2/clock.c
 ////////////////////////////////////////////////////////////////
@@ -828,6 +968,7 @@ g_rtClockPowerUp = 0x261854; // size:0x4
 g_clock = 0x261858; // size:0x20
 s_tickLastRaw = 0x261878; // size:0x4
 cWrapAround = 0x27c000; // size:0x8
+
 
 ////////////////////////////////////////////////////////////////
 // P2/cm.c
@@ -937,6 +1078,18 @@ D_0026198C = 0x26198c; // size:0x4
 
 g_pcm = 0x261990; // size:0x4
 
+
+////////////////////////////////////////////////////////////////
+// P2/cnvo.c
+////////////////////////////////////////////////////////////////
+InitCnvo__FP4CNVO                             = 0x146100; // type:func
+LoadCnvoFromBrx__FP4CNVOP18CBinaryInputStream = 0x146130; // type:func
+PostCnvoLoad__FP4CNVO                         = 0x146178; // type:func
+AdjustCnvoXpVelocity__FP4CNVOP2XPi            = 0x1461A8; // type:func
+SetCnvoBeltSpeed__FP4CNVOf                    = 0x146240; // type:func
+MatchCnvoScrollerToBeltSpeed__FP4CNVO         = 0x146298; // type:func
+
+
 ////////////////////////////////////////////////////////////////
 // P2/coin.c
 ////////////////////////////////////////////////////////////////
@@ -1028,6 +1181,126 @@ SetCreditLine__FP6CREDITiPcf = 0x14AF38; // type:func
 ////////////////////////////////////////////////////////////////
 CroutDecomp__FiPfT1 = 0x14B0C0; // type:func
 CroutSolve__FiPfN21 = 0x14B3E0; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/crusher.c
+// TODO: The rest of the functions aren't in the prototype.
+// Figure out what they do and mangle the names.
+////////////////////////////////////////////////////////////////
+OnCrfodAdd__FP5CRFOD             = 0x14B550; // type:func
+OnCrfodRemove__FP5CRFOD          = 0x14B588; // type:func
+CloneCrfod__FP5CRFODT0           = 0x14B5C0; // type:func
+InitCrfodb__FP6CRFODB            = 0x14B608; // type:func
+PostCrfodbLoad__FP6CRFODB        = 0x14B640; // type:func
+CalcHeadingVector__FfP6VECTOR    = 0x14B678; // type:func
+UpdateCrfodbGoal__FP6CRFODBi     = 0x14B6A8; // type:func
+FDetectCrfodb__FP6CRFODB         = 0x14BB08; // type:func
+FAbsorbCrfodbWkr__FP6CRFODBP3WKR = 0x14BCE8; // type:func
+FUN_0014bd38                     = 0x14BD38; // type:func
+SgsNextCrfodkAI__FP6CRFODK       = 0x14BDC8; // type:func
+FDetectCrfodk__FP6CRFODK         = 0x14BEA8; // type:func
+FAbsorbCrfodkWkr__FP6CRFODKP3WKR = 0x14BEF8; // type:func
+FUN_0014bf88                     = 0x14BF88; // type:func
+FUN_0014c018                     = 0x14C018; // type:func
+FUN_0014c138                     = 0x14C138; // type:func
+FUN_0014c2f0                     = 0x14C2F0; // type:func
+FUN_0014c5e8                     = 0x14C5E8; // type:func
+FUN_0014c668                     = 0x14C668; // type:func
+FUN_0014c6e0                     = 0x14C6E0; // type:func
+FUN_0014c788                     = 0x14C788; // type:func
+FUN_0014c858                     = 0x14C858; // type:func
+FUN_0014cba8                     = 0x14CBA8; // type:func
+FUN_0014cd70                     = 0x14CD70; // type:func
+FUN_0014cdc8                     = 0x14CDC8; // type:func
+FUN_0014cf30                     = 0x14CF30; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/crv.c
+////////////////////////////////////////////////////////////////
+SMeasureApos__FiP6VECTORPf                                       = 0x14D0A8; // type:func
+GWrapApos__FfiPfi                                                = 0x14D138; // type:func
+IposFindAposG__FfiPfiT2T2                                        = 0x14D1A0; // type:func
+EvaluateAposG__FfiP6VECTORPfiT2T2                                = 0x14D280; // type:func
+FindAposClosestPointAll__FP6VECTORP6CONSTRiT0N20PiPf             = 0x14D3A8; // type:func
+FindAposClosestPointSegment__FP6VECTORP6CONSTRiT0iiT0T0PiPf      = 0x14D680; // type:func
+ConvertApos__FiP6VECTORP7MATRIX4T2                               = 0x14D938; // type:func
+PcrvNew__F4CRVK                                                  = 0x14D9A8; // type:func
+SFromCrvU__FP3CRVf                                               = 0x14DA18; // type:func
+UFromCrvS__FP3CRVf                                               = 0x14DA28; // type:func
+IcvFindCrvU__FP3CRVfPfT2                                         = 0x14DA38; // type:func
+IcvFindCrvS__FP3CRVfPfT2                                         = 0x14DA68; // type:func
+GMeasureCrvU__FP5CRVMCf                                          = 0x14DA98; // type:func
+UMaxCrv__FP3CRV                                                  = 0x14DB40; // type:func
+SMaxCrv__FP3CRV                                                  = 0x14DB58; // type:func
+junk_0014DB70                                                    = 0x14DB70; // type:func
+SMeasureCrvSegmentU__FP5CRVMSf                                   = 0x14DB78; // type:func
+FindCrvClosestPointOnLineSegmentFromU__FP3CRVP6VECTORT1fT1T1PfT6 = 0x14DBD0; // type:func
+junk_0014DCF8                                                    = 0x14DCF8; // type:func
+DuGetCrvSearchIncrement__FP3CRV                                  = 0x14DD00; // type:func
+LoadCrvlFromBrx__FP4CRVLP18CBinaryInputStream                    = 0x14DD28; // type:func
+EvaluateCrvlFromU__FP4CRVLfP6VECTORT2                            = 0x14DE08; // type:func
+EvaluateCrvlFromS__FP4CRVLfP6VECTORT2                            = 0x14DE40; // type:func
+RenderCrvlSegment__FP4CRVLiP7MATRIX4P2CMG4RGBAi                  = 0x14DE78; // type:func
+ConvertCrvl__FP4CRVLP7MATRIX4T1                                  = 0x14DF68; // type:func
+SFromCrvlU__FP4CRVLf                                             = 0x14DF98; // type:func
+UFromCrvlS__FP4CRVLf                                             = 0x14E000; // type:func
+MeasureCrvl__FP4CRVL                                             = 0x14E068; // type:func
+FindCrvlClosestPointAll__FP4CRVLP6VECTORP6CONSTRT1T1PfT5         = 0x14E090; // type:func
+FindCrvlClosestPointFromU__FP4CRVLP6VECTORfP6CONSTRT1T1PfT6      = 0x14E170; // type:func
+FindCrvlClosestPointFromS__FP4CRVLP6VECTORfP6CONSTRT1T1PfT6      = 0x14E2A0; // type:func
+LoadCrvcFromBrx__FP4CRVCP18CBinaryInputStream                    = 0x14E3D0; // type:func
+InvalidateCrvcCache__FP4CRVC                                     = 0x14E500; // type:func
+FillCrvcCache__FP4CRVCi                                          = 0x14E510; // type:func
+EvaluateCrvcFromU__FP4CRVCfP6VECTORT2                            = 0x14E5B8; // type:func
+EvaluateCrvcFromS__FP4CRVCfP6VECTORT2                            = 0x14E6A8; // type:func
+RenderCrvcSegment__FP4CRVCiP7MATRIX4P2CMG4RGBAi                  = 0x14E710; // type:func
+ConvertCrvc__FP4CRVCP7MATRIX4T1                                  = 0x14E828; // type:func
+SFromCrvcU__FP4CRVCf                                             = 0x14E910; // type:func
+UFromCrvcS__FP4CRVCf                                             = 0x14E990; // type:func
+MeasureCrvc__FP4CRVC                                             = 0x14EA48; // type:func
+FindCrvcClosestPointAll__FP4CRVCP6VECTORP6CONSTRT1T1PfT5         = 0x14EB10; // type:func
+FindCrvcClosestPointFromU__FP4CRVCP6VECTORfP6CONSTRT1T1PfT6      = 0x14EC70; // type:func
+FindCrvcClosestPointFromS__FP4CRVCP6VECTORfP6CONSTRT1T1PfT6      = 0x14ED98; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/dart.c
+////////////////////////////////////////////////////////////////
+InitDart__FP4DART                             = 0x14EE40; // type:func
+OnDartAdd__FP4DART                            = 0x14EE70; // type:func
+RemoveDart__FP4DART                           = 0x14EF00; // type:func
+CloneDart__FP4DARTT0                          = 0x14EF40; // type:func
+LoadDartFromBrx__FP4DARTP18CBinaryInputStream = 0x14EF88; // type:func
+HandleDartMessage__FP4DART5MSGIDPv            = 0x14EFB8; // type:func
+PostDartLoad__FP4DART                         = 0x14F020; // type:func
+UpdateDart__FP4DARTf                          = 0x14F058; // type:func
+SetDartDarts__FP4DART5DARTS                   = 0x14F110; // type:func
+ApplyDartThrow__FP4DARTP2PO                   = 0x14F168; // type:func
+UpdateDartAirborne__FP4DARTf                  = 0x14F270; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/dartgun.c
+////////////////////////////////////////////////////////////////
+InitDartgun__FP7DARTGUN                     = 0x14F740; // type:func
+HandleDartgunMessage__FP7DARTGUN5MSGIDPv    = 0x14F770; // type:func
+BindDartgun__FP7DARTGUN                     = 0x14F850; // type:func
+FUN_0014f900                                = 0x14F900; // type:func
+PostDartgunLoad__FP7DARTGUN                 = 0x14F920; // type:func
+UpdateDartgun__FP7DARTGUNf                  = 0x14FA88; // type:func
+FIgnoreDartgunIntersection__FP7DARTGUNP2SO  = 0x14FBE0; // type:func
+BreakDartgun__FP7DARTGUN                    = 0x14FC38; // type:func
+SetDartgunGoalState__FP7DARTGUN3OID         = 0x14FCE8; // type:func
+TrackDartgun__FP7DARTGUNP3OID               = 0x14FDA8; // type:func
+FPrepareDartgunToFire__FP7DARTGUN           = 0x14FEC0; // type:func
+FireDartgun__FP7DARTGUN                     = 0x150008; // type:func
+AgeDartgunStuckDart__FP7DARTGUN             = 0x150298; // type:func
+PratGetDartgunRatTarget__FP7DARTGUN         = 0x150338; // type:func
+AddDartgunRatTarget__FP7DARTGUN3OID         = 0x1503E0; // type:func
+StartDartgunTargetAreaChange__FP7DARTGUN    = 0x150408; // type:func
+AddDartgunTargetAreaTarget__FP7DARTGUNP3ALO = 0x150418; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -2576,10 +2849,20 @@ FlushCache = 0x1F6C20; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// sifrpc.c
+////////////////////////////////////////////////////////////////
+sceSifInitRpc = 0x1f7be8; // type:func
+sceSifBindRpc = 0x1f80c0; // type:func
+sceSifCallRpc = 0x1f8290; // type:func
+sceSifCheckStatRpc = 0x1f8480; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // filestub.c
 ////////////////////////////////////////////////////////////////
 sceClose = 0x1F8C38; // type:func
-sceRead = 0x1F8DB8; // type:func
+sceRead  = 0x1F8DB8; // type:func
+sceIoctl = 0x1F92E8; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -2648,15 +2931,6 @@ fmodf = 0x2058a0; // type:func
 // libmc.c
 ////////////////////////////////////////////////////////////////
 mcInit__Fv = 0x2093F0; // type:func
-
-
-////////////////////////////////////////////////////////////////
-// sifrpc.c
-////////////////////////////////////////////////////////////////
-sceSifInitRpc = 0x1f7be8; // type:func
-sceSifBindRpc = 0x1f80c0; // type:func
-sceSifCallRpc = 0x1f8290; // type:func
-sceSifCheckStatRpc = 0x1f8480; // type:func
 
 
 ////////////////////////////////////////////////////////////////

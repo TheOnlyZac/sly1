@@ -3,7 +3,7 @@
 void InitMbg(MBG *pmbg)
 {
     InitStepguard(pmbg);
-	STRUCT_OFFSET(pmbg, 0xe3c, int) = -1;
+    STRUCT_OFFSET(pmbg, 0xe3c, int) = -1;
 }
 
 INCLUDE_ASM(const s32, "P2/mb", LoadMbgFromBrx__FP3MBGP18CBinaryInputStream);
