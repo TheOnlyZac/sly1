@@ -146,6 +146,7 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
         for idx, object_path in enumerate(object_paths):
             if object_path.suffix == ".o":
                 built_objects.add(object_path)
+
             # Add extra_flags to variables if present
             build_vars = variables.copy()
             if extra_flags:
@@ -157,6 +158,7 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
                 variables=build_vars,
                 implicit_outputs=implicit_outputs,
             )
+
             # Collect for objdiff.json if requested
             if collect_objdiff and orig_entry is not None:
                 src = src_paths[0] if src_paths else None
@@ -177,6 +179,11 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
                         name = str(src.with_suffix(""))
                 else:
                     name = object_path.stem
+                    # Ensure `rel` is defined so later code can compute src-based paths
+                    try:
+                        rel = Path(object_path)
+                    except Exception:
+                        rel = Path(str(object_path))
                 if "target" in str(object_path):
                     target_path = str(object_path)
 
@@ -201,7 +208,15 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
                         }
                     }
                     if has_src:
-                        base_path = str(object_path).replace("target", "current")
+                        # Replace only the path segment named 'target' with 'current',
+                        # preserving any filenames that may contain the substring "target".
+                        op = Path(object_path)
+                        parts = list(op.parts)
+                        for idx, part in enumerate(parts):
+                            if part == "target":
+                                parts[idx] = "current"
+                                break
+                        base_path = str(Path(*parts))
                         unit["base_path"] = base_path
                     objdiff_units.append(unit)
 

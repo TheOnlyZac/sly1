@@ -4,6 +4,7 @@
 #ifndef TANK_H
 #define TANK_H
 
+#include "common.h"
 #include <jt.h>
 #include <cm.h>
 #include <po.h>
