@@ -111,9 +111,74 @@ bool CBinaryAsyncStream::FSpooling()
     return m_cbSpooling != 0;
 }
 
-INCLUDE_ASM(const s32, "P2/bas", FSpoolingComplete__18CBinaryAsyncStream);
+bool CBinaryAsyncStream::FSpoolingComplete()
+{
+    int status = 0;
+    bool fComplete = false;
 
-INCLUDE_ASM(const s32, "P2/bas", FinishSpooling__18CBinaryAsyncStream);
+    if(m_cb == m_ibCur && FSpooling())
+    {
+        switch(m_bask)
+        {
+            case BASK_Host:
+            {
+                int fExecuting;
+                status = sceIoctl(m_fd, 1, &fExecuting);
+                fComplete = (fExecuting == 0);
+                break;
+            }
+            case BASK_Cd:
+            {
+                fComplete = (sceCdSync(1) == 0);
+                if (fComplete)
+                {
+                    status = sceCdGetError();
+                }
+                break;
+            }
+        }
+    }
+
+    if (status != 0)
+    {
+        m_cbSpooling = 0;
+        m_pbSpooling = 0;
+        fComplete = false;
+    }
+
+    return fComplete;
+}
+
+void CBinaryAsyncStream::FinishSpooling()
+{
+    if (FSpoolingComplete())
+    {
+        if (m_bask == BASK_Cd)
+        {
+            int n;
+            if (m_cbSpooling <= -1)
+            {
+                n = m_cbSpooling + 0x7ffu;
+            }
+            else
+            {
+                n = m_cbSpooling;
+            }
+
+            m_isector += n >> 0x0b;
+        }
+
+        int cb = m_cbSpooling;
+
+        m_cbUnspooled -= cb;
+        m_pb = m_pbSpooling;
+        m_cb = cb;
+
+        m_cbSpooling = 0;
+        m_pbSpooling = 0;
+        m_ibCur = 0;
+    }
+}
 
 void CBinaryAsyncStream::Spool()
 {

@@ -14,6 +14,20 @@
 #include <vec.h>
 
 /**
+ * @brief Line Segment Kind (?)
+ */
+enum LSGK
+{
+    LSGK_Nil = -1,
+    LSGK_EdgeToBsp = 0,
+    LSGK_EdgeToSphere = 1,
+    LSGK_EdgeToCylinder = 2,
+    LSGK_EdgeToCbsp = 3,
+    LSGK_Merge = 4,
+    LSGK_Max = 5,
+};
+
+/**
  * @brief Unknown.
  */
 enum PRUNE
@@ -56,11 +70,19 @@ struct VBSP
 };
 
 /**
- * @brief Unknown.
+ * @brief Line Segment (?)
  */
 struct LSG
 {
-    // ...
+    VECTOR apos[2];
+    VECTOR anormal[2];
+    float au[2];
+    LSGK lsgk;
+    undefined4 unk1;
+    undefined8 unk2;
+    EDGE *pedge;
+    int iiposSwap;
+    LSG *plsgNext;
 };
 
 /**

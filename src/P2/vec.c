@@ -87,9 +87,9 @@ INCLUDE_ASM(const s32, "P2/vec", FCalculateMuzzleVelocity__FP6VECTORT0fT0P2SO);
 
 INCLUDE_ASM(const s32, "P2/vec", FCalculateMuzzleVelocity1);
 
-int FCalculateMuzzleVelocityAngle(VECTOR *pposLaunch,VECTOR *pposTarget,float radTilt,VECTOR *pvecMuzzle,SO *psoLaunch)
+int FCalculateMuzzleVelocityAngle(VECTOR *pposLaunch, VECTOR *pposTarget, float radTilt, VECTOR *pvecMuzzle, SO *psoLaunch)
 {
-  return FCalculateMuzzleVelocity(pposLaunch, pposTarget, radTilt, pvecMuzzle, psoLaunch);
+    return FCalculateMuzzleVelocity(pposLaunch, pposTarget, radTilt, pvecMuzzle, psoLaunch);
 }
 
 INCLUDE_ASM(const s32, "P2/vec", LimitVectorLength);

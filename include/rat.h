@@ -8,6 +8,15 @@
 
 #include "common.h"
 
+/**
+ * @brief Rat.
+ * @todo Implement the struct.
+ */
+struct RAT
+{
+    // ...
+};
+
 // ...
 
 #endif // RAT_H
