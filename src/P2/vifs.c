@@ -1,4 +1,4 @@
-#include "common.h"
+#include <vifs.h>
 
 INCLUDE_ASM(const s32, "P2/vifs", __4VIFS);
 
