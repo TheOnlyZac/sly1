@@ -237,19 +237,20 @@ segments:
     - [0xe3420, asm, P2/tn]
     - [0xe5e38, c, P2/transition]
     - [0xe6378, asm, P2/turret]
-    - [0xe6e70, asm, P2/tv]
-    - [0xe98d0, asm, P2/ub]
+    - [0xe6e70, c, P2/tv]
+    - [0xe98d0, c, P2/ub]
     - [0xea088, c, P2/ui]
-    - [0xeac78, asm, P2/update]
+    - [0xeac78, c, P2/update]
     - [0xeb408, c, P2/util]
-    - [0xec518, asm, P2/var]
+    - [0xec460, asm, P2/var]
     - [0xee650, c, P2/vec]
-    - [0xef318, asm, P2/vifs]
-    - [0xef900, asm, P2/vis]
-    - [0xefc60, asm, P2/water]
-    - [0xf0838, asm, P2/waypoint]
-    - [0xf0ce8, asm, P2/wipe]
-    - [0xf1758, asm, P2/wm] # not confident
+    - [0xef318, c, P2/vifs]
+    - [0xef900, c, P2/vis]
+    - [0xefc60, c, P2/water]
+    - [0xf0838, c, P2/waypoint]
+    - [0xf0ce8, c, P2/wipe]
+    - [0xf1468, c, P2/wm]
+    - [0xf3758, c, P2/wr]
     - [0xf49f8, c, P2/xform]
     - [0xf5f20, c, P2/zap]
 
@@ -258,7 +259,7 @@ segments:
     # P2/hg.c - hang glider
     # P2/stepski.c - skiing
     # P2/map2d.c - unknown
-    # P2/menu - unknown
+    # P2/menu - debug menu
     # P2/vife.c - vif encoder
     # P2/wibu_ee.c - wibukey encryption
 

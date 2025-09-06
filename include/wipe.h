@@ -2,6 +2,8 @@
  * @file wipe.h
  *
  * @brief Screen wipes.
+ *
+ * @todo Figure out if the function signatures are correct.
  */
 #ifndef WIPE_H
 #define WIPE_H
@@ -9,9 +11,10 @@
 #include "common.h"
 #include <transition.h>
 #include <oid.h>
+#include <joy.h>
 
 /**
- * @brief Wipe Kind
+ * @brief Wipe Kind.
  */
 enum WIPEK
 {
@@ -23,10 +26,11 @@ enum WIPEK
 };
 
 /**
- * @brief Wipe State
+ * @brief Wipe State.
  */
 enum WIPES
 {
+    WIPES_Nil = -1,
     WIPES_Idle = 0,
     WIPES_WipingOut = 1,
     WIPES_Black = 2,
@@ -35,7 +39,7 @@ enum WIPES
 };
 
 /**
- * @brief Screen wipe
+ * @brief Screen wipe.
  */
 struct WIPE
 {
@@ -51,8 +55,20 @@ struct WIPE
 extern WIPE *g_pwipe;
 extern WIPE g_wipe;
 
-extern "C" {
-    void WipeToWorldWarp(const void *pchzWorld, OID oidWarp, WIPEK wipek);
-}
+void InitWipe(WIPE *pwipe);
+
+void UpdateWipe(WIPE *pwipe, JOY *pjoy);
+
+void DrawWipe(WIPE *pwipe);
+
+void ActivateWipe(WIPE *pwipe, TRANS *ptrans, WIPEK wipek);
+
+void SetWipeButtonTrans(WIPE *pwipe, TRANS *ptrans, WIPEK wipek);
+
+int FCatchWipeButtonTrans(WIPE *pwipe, JOY *pjoy, WIPES wipesNew);
+
+void SetWipeWipes(WIPE *pwipe, WIPES wipes);
+
+extern "C" void WipeToWorldWarp(const void *pchzWorld, OID oidWarp, WIPEK wipek);
 
 #endif // WIPE_H
