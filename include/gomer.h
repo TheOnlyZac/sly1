@@ -5,7 +5,15 @@
 #define GOMER_H
 
 #include "common.h"
+#include <stepguard.h>
 
-// ...
+/**
+ * @brief Unknown.
+ * @todo Implement the struct.
+ */
+struct GOMER : public STEPGUARD
+{
+    // ...
+};
 
 #endif // GOMER_H

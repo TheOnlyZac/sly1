@@ -380,7 +380,8 @@ PROBLEMATIC_FUNCS = set(
         "AddMatrix4Matrix4__FP7MATRIX4N20",
         "PwarpFromOid__F3OIDT0",
         "RenderMsGlobset__FP2MSP2CMP2RO",
-        "ProjectBlipgTransform__FP5BLIPGfi"
+        "ProjectBlipgTransform__FP5BLIPGfi",
+		"DrawTvBands__FP2TVR4GIFS"
     ]
 )
 
