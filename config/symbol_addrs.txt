@@ -1012,7 +1012,7 @@ SetupCm__FP2CM = 0x144270; // type:func
 CombineEyeLookAtProj = 0x1442C8; // type:func
 BuildFrustrum = 0x1443C8; // type:func
 UpdateCmMat4 = 0x144540; // type:func
-DrawCm = 0x144848; // type:func
+DrawCm__FP2CM = 0x144848; // type:func
 SetCmPosMat__FP2CMP6VECTORP7MATRIX3 = 0x1448C8; // type:func
 SetCmLookAt = 0x144938; // type:func
 ConvertWorldToCylindVelocity = 0x144978; // type:func
@@ -1909,6 +1909,55 @@ g_pjt = 0x262e10; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
+// P2/keyhole.c
+////////////////////////////////////////////////////////////////
+InitKeyhole__FP7KEYHOLE                             = 0x17FE90; // type:func
+LoadKeyholeFromBrx__FP7KEYHOLEP18CBinaryInputStream = 0x17FEC0; // type:func
+DrawKeyholeMask__FP7KEYHOLEffff                     = 0x180108; // type:func
+DrawKeyhole__FP7KEYHOLEf                            = 0x180398; // type:func
+keyhole__static_initialization_and_destruction_0    = 0x180E38; // type:func
+_GLOBAL_$I$InitKeyhole__FP7KEYHOLE                  = 0x180E90; // type:func
+
+g_pkeyhole = 0x2640A4; // size:0x4
+
+
+////////////////////////////////////////////////////////////////
+// P2/landing.c
+////////////////////////////////////////////////////////////////
+OnLandingAdd__FP7LANDING    = 0x180EB0; // type:func
+OnLandingRemove__FP7LANDING = 0x180EE8; // type:func
+CloneLanding__FP7LANDINGT0  = 0x180F20; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/lgn.c
+////////////////////////////////////////////////////////////////
+InitLgn__FP3LGN                  = 0x180F68; // type:func
+PostLgnLoad__FP3LGN              = 0x180F98; // type:func
+UpdateLgnActive__FP3LGNP3JOYf    = 0x181078; // type:func
+UpdateLgn__FP3LGNf               = 0x181448; // type:func
+FUN_00181658                     = 0x181658; // type:func
+OnLgnActive__FP3LGNiP2PO         = 0x181780; // type:func
+RenderLgnAll__FP3LGNP2CMP2RO     = 0x181818; // type:func
+GetLgnCpdefi__FP3LGNfP6CPDEFI    = 0x181A58; // type:func
+FInvulnerableLgn__FP3LGN3ZPK     = 0x181A98; // type:func
+JthsCurrentLgn__FP3LGN           = 0x181AE0; // type:func
+UseLgnCharm__FP3LGN              = 0x181AF0; // type:func
+ApplyLgnThrow__FP3LGNP2PO        = 0x181B20; // type:func
+FTakeLgnDamage__FP3LGNP3ZPR      = 0x181BC8; // type:func
+HandleLgnMessage__FP3LGN5MSGIDPv = 0x181D28; // type:func
+FUN_00181d88                     = 0x181D88; // type:func
+SetLgnLgns__FP3LGN4LGNS          = 0x181DA8; // type:func
+UpdateLgnrAim__FP4LGNRP3JOY      = 0x181ED0; // type:func
+DrawLgnr__FP4LGNR                = 0x1821B0; // type:func
+InitSwp__FP3SWP                  = 0x182470; // type:func
+PostSwpLoad__FP3SWP              = 0x1824D8; // type:func
+UpdateSwp__FP3SWPf               = 0x182548; // type:func
+ProjectSwpTransform__FP3SWPfi    = 0x182748; // type:func
+SetSwpShape__FP3SWPP5SHAPEf      = 0x182948; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/lo.c
 ////////////////////////////////////////////////////////////////
 InitLo__FP2LO = 0x182c18; // type:func
@@ -1952,6 +2001,16 @@ EnsureLoSidebagClq__FP2LO5OPTIDP3CLQ = 0x183a90; // type:func
 EnsureLoSidebagLm__FP2LO5OPTIDP2LM = 0x183b20; // type:func
 EnsureLoSidebagOid__FP2LO5OPTID3OID = 0x183bb8; // type:func
 EnsureLoSidebagVector__FP2LO5OPTIDP6VECTOR = 0x183c38; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/lookat.c
+////////////////////////////////////////////////////////////////
+InitActla__FP5ACTLAP3ALO                         = 0x185358; // type:func
+SetActlaTarget__FP5ACTLAP3ALOP6VECTOR            = 0x1853F0; // type:func
+PaloGetActlaTarget__FP5ACTLA                     = 0x185468; // type:func
+UpdateActla__FP5ACTLAf                           = 0x185498; // type:func
+GetActlaRotationGoal__FP5ACTLAfP7MATRIX3P6VECTOR = 0x185538; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -2269,11 +2328,132 @@ Draw__5CProg = 0x193318; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/proxy.c
+////////////////////////////////////////////////////////////////
+InitProxy__FP5PROXY                             = 0x1963D8; // type:func
+LoadProxyFromBrx__FP5PROXYP18CBinaryInputStream = 0x196410; // type:func
+CloneProxy__FP5PROXYT0                          = 0x196810; // type:func
+PostProxyLoad__FP5PROXY                         = 0x196900; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/puffer.c
+////////////////////////////////////////////////////////////////
+// TODO
+
+
+////////////////////////////////////////////////////////////////
+// P2/pzo.c
+////////////////////////////////////////////////////////////////
+InitSprize__FP6SPRIZE                             = 0x198980; // type:func
+LoadSprizeFromBrx__FP6SPRIZEP18CBinaryInputStream = 0x1989B0; // type:func
+BindSprize__FP6SPRIZE                             = 0x198A88; // type:func
+PostSprizeLoad__FP6SPRIZE                         = 0x198B28; // type:func
+UpdateSprize__FP6SPRIZEf                          = 0x198BD8; // type:func
+CollectSprize__FP6SPRIZE                          = 0x198DA8; // type:func
+EmitSprizeExplosion__FP6SPRIZE                    = 0x198E58; // type:func
+PcsFromSprize__FP6SPRIZE                          = 0x198E98; // type:func
+AddSprizeAseg__FP6SPRIZE3OID                      = 0x198ED8; // type:func
+HandleSprizeMessage__FP6SPRIZE5MSGIDPv            = 0x198EF8; // type:func
+FIgnoreSprizeIntersection__FP6SPRIZEP2SO          = 0x198FB0; // type:func
+FUN_00199000                                      = 0x199000; // type:func
+InitScprize__FP7SCPRIZE                           = 0x199070; // type:func
+CloneScprize__FP7SCPRIZET0                        = 0x1990A8; // type:func
+PcsFromScprize__FP7SCPRIZE                        = 0x1990E0; // type:func
+CollectScprize__FP7SCPRIZE                        = 0x199138; // type:func
+LoadLockFromBrx__FP4LOCKP18CBinaryInputStream     = 0x199170; // type:func
+PostLockLoad__FP4LOCK                             = 0x1991A8; // type:func
+LoadLockgFromBrx__FP5LOCKGP18CBinaryInputStream   = 0x1991E0; // type:func
+PostLockgLoad__FP5LOCKG                           = 0x199218; // type:func
+SetLockgIndex__FP5LOCKGi                          = 0x199380; // type:func
+AddLockgLock__FP5LOCKG3OID                        = 0x199398; // type:func
+TriggerLockg__FP5LOCKG                            = 0x1993C0; // type:func
+InitClue__FP4CLUE                                 = 0x1993F0; // type:func
+LoadClueFromBrx__FP4CLUEP18CBinaryInputStream     = 0x199428; // type:func
+CloneClue__FP4CLUET0                              = 0x1994C8; // type:func
+PostClueLoad__FP4CLUE                             = 0x199500; // type:func
+UpdateClue                                        = 0x199698; // type:func
+OnClueSmack__FP4CLUE                              = 0x199850; // type:func
+CollectClue__FP4CLUE                              = 0x1999D0; // type:func
+BreakClue__FP4CLUE                                = 0x199AF0; // type:func
+CollectClueSilent__FP4CLUE                        = 0x199B18; // type:func
+FUN_00199c10                                      = 0x199C10; // type:func
+ImpactClue__FP4CLUEi                              = 0x199C58; // type:func
+FAbsorbClueWkr__FP4CLUEP3WKR                      = 0x199C78; // type:func
+RenderClueAll__FP4CLUEP2CMP2RO                    = 0x199D08; // type:func
+CollectAllClues__Fi                               = 0x199F38; // type:func
+SetGrfvault__Fi                                   = 0x199FF0; // type:func
+FUN_0019a000                                      = 0x19A000; // type:func
+FUN_0019a088                                      = 0x19A088; // type:func
+FUN_0019a0f0                                      = 0x19A0F0; // type:func
+InitVault__FP5VAULT                               = 0x19A148; // type:func
+PostTmblLoad__FP4TMBL3OID                         = 0x19A178; // type:func
+PostVaultLoad__FP5VAULT                           = 0x19A1E0; // type:func
+OnVaultActive__FP5VAULTiP2PO                      = 0x19A520; // type:func
+UpdateVaultActive__FP5VAULTP3JOYf                 = 0x19A6A8; // type:func
+HandleVaultMessage__FP5VAULT5MSGIDPv              = 0x19AB78; // type:func
+AddVaultGoadDialog__FP5VAULT5GOADK3OID            = 0x19AD30; // type:func
+OpenVault__FP5VAULT                               = 0x19AD68; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/rail.c
+////////////////////////////////////////////////////////////////
+InitRail__FP4RAIL     = 0x19AF00; // type:func
+OnRailAdd__FP4RAIL    = 0x19AF38; // type:func
+OnRailRemove__FP4RAIL = 0x19AF70; // type:func
+PostLoadRail__FP4RAIL = 0x19AFA8; // type:func
+CloneRail__FP4RAILT0  = 0x19AFF0; // type:func
+
+D_0024C8C4 = 0x24C8C4; // size:0x4
+
+
+////////////////////////////////////////////////////////////////
+// P2/rat.c
+////////////////////////////////////////////////////////////////
+InitRat__FP3RAT                             = 0x19B038; // type:func
+LoadRatFromBrx__FP3RATP18CBinaryInputStream = 0x19B0A0; // type:func
+PostRatLoad__FP3RAT                         = 0x19B188; // type:func
+OnRatAdd__FP3RAT                            = 0x19B1E0; // type:func
+OnRatRemove__FP3RAT                         = 0x19B218; // type:func
+CloneRat__FP3RATT0                          = 0x19B250; // type:func
+PresetRatAccel__FP3RATf                     = 0x19B298; // type:func
+UpdateRat__FP3RATf                          = 0x19B378; // type:func
+AdjustRatNewXp__FP3RATP2XPi                 = 0x19BB10; // type:func
+AdjustRatXpVelocity__FP3RATP2XPi            = 0x19BB90; // type:func
+RenderRatAll__FP3RATP2CMP2RO                = 0x19BC40; // type:func
+FAbsorbRatWkr__FP3RATP3WKR                  = 0x19BE08; // type:func
+ChooseRatFleeTarget__FP3RAT                 = 0x19BE80; // type:func
+HideRat__FP3RATi                            = 0x19C068; // type:func
+SetRatRats__FP3RAT4RATS                     = 0x19C1C0; // type:func
+OnRatholeAdd__FP7RATHOLE                    = 0x19C3D0; // type:func
+OnRatholeRemove__FP7RATHOLE                 = 0x19C408; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/render.c
 ////////////////////////////////////////////////////////////////
-RenderSw__FP2SWP2CM = 0x19d6c0; // type:func
-DrawSw__FP2SWP2CM = 0x19DC98; // type:func
-FillScreenRect__FiiiiffffP4GIFS = 0x19dda0; // type:func
+SubmitRpl__FP3RPL                 = 0x19D410; // type:func
+NCmpPrplReverseZ__FPP3RPLT0       = 0x19D468; // type:func
+CprplPartitionArpl__FiP3RPLPP3RPL = 0x19D4B0; // type:func
+RenderSw__FP2SWP2CM               = 0x19D6C0; // type:func
+EnsureRenderGlobals__Fv           = 0x19D860; // type:func
+EnsureCameraGlobals__Fv           = 0x19D930; // type:func
+EnsureScreenCleared__Fv           = 0x19D968; // type:func
+SetupRpDynamicTexture__FP3RPL     = 0x19DA30; // type:func
+SetupRpBackground__FP3RPL         = 0x19DA60; // type:func
+SetupRpBlotContext__FP3RPL        = 0x19DAD8; // type:func
+SetupRpGlob__FP3RPL               = 0x19DB20; // type:func
+SetupRpBlip__FP3RPL               = 0x19DB68; // type:func
+SetupRpWorldMap__FP3RPL           = 0x19DBB0; // type:func
+DrawSw__FP2SWP2CM                 = 0x19DC98; // type:func
+FillScreenRect__FiiiiffffP4GIFS   = 0x19DDA0; // type:func
+StartupRender__Fv                 = 0x19DF48; // type:func
+
+s_fFBCleared     = 0x604780; // size:0x4
+s_fZBCleared     = 0x604784; // size:0x4
+s_fCameraGlobals = 0x604788; // size:0x4
+s_fRenderGlobals = 0x60478c; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
@@ -2369,6 +2549,17 @@ FUN_001adff0 = 0x1ADFF0; // type:func
 FUN_001ae130 = 0x1AE130; // type:func
 UpdateAttract__FP7ATTRACT = 0x1AE178; // type:func
 DrawLineScreen__FUiUiUiUiUiUiG4RGBAi = 0x1AE3B8; // type:func
+
+
+// TODO: Integrate in to P2/screen.c?
+// FUN_001ae510 = 0x1AE510; // type:func
+// FUN_001ae5e0 = 0x1AE5E0; // type:func
+// FUN_001ae758 = 0x1AE758; // type:func
+// FUN_001ae7f8 = 0x1AE7F8; // type:func
+// FUN_001ae820 = 0x1AE820; // type:func
+// FUN_001aea08 = 0x1AEA08; // type:func
+// FUN_001aea70 = 0x1AEA70; // type:func
+// FUN_001aec90 = 0x1AEC90; // type:func
 
 // Global blots
 g_lifectr = 0x26c6c8; // size:0x280
@@ -2597,7 +2788,18 @@ func_001D31D0__FP2LOi = 0x1D31D0; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/stepzap.c
 ////////////////////////////////////////////////////////////////
-PostJtLoadZap__FP2JT = 0x1d4848; // type:func
+PostJtLoadZap__FP2JT    = 0x1D4848; // type:func
+InitZpr__FP3ZPR3ZPKP2LO = 0x1D7098; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/stream.c
+////////////////////////////////////////////////////////////////
+__5OSTRMi          = 0x1D7100; // type:func
+__5OSTRMPvi        = 0x1D7120; // type:func
+_$_5OSTRM          = 0x1D7148; // type:func
+CbWrite__5OSTRMPvi = 0x1D7190; // type:func
+Flush__5OSTRM      = 0x1D72C8; // type:func
 
 
 ////////////////////////////////////////////////////////////////

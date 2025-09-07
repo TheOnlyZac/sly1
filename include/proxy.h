@@ -6,7 +6,12 @@
 
 #include "common.h"
 #include <alo.h>
+#include <bis.h>
+#include <dl.h>
 
+/**
+ * @brief Unknown.
+ */
 struct PROXY
 {
     DL dlProxyRoot;
@@ -15,5 +20,13 @@ struct PROXY
     undefined4 unk_0xC;
     undefined4 unk_0x10;
 };
+
+void InitProxy(PROXY *pproxy);
+
+void LoadProxyFromBrx(PROXY *pproxy, CBinaryInputStream *pbis);
+
+void CloneProxy(PROXY *pproxy, PROXY *pproxyBase);
+
+void PostProxyLoad(PROXY *pproxy);
 
 #endif // PROXY_H

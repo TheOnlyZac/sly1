@@ -179,7 +179,7 @@ INCLUDE_ASM(const s32, "P2/cm", BuildFrustrum);
 
 INCLUDE_ASM(const s32, "P2/cm", UpdateCmMat4);
 
-INCLUDE_ASM(const s32, "P2/cm", DrawCm);
+INCLUDE_ASM(const s32, "P2/cm", DrawCm__FP2CM);
 
 INCLUDE_ASM(const s32, "P2/cm", SetCmPosMat__FP2CMP6VECTORP7MATRIX3);
 
