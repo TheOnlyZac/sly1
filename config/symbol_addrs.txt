@@ -1304,6 +1304,29 @@ AddDartgunTargetAreaTarget__FP7DARTGUNP3ALO = 0x150418; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/dialog.c
+////////////////////////////////////////////////////////////////
+InitDialog__FP6DIALOG                             = 0x1504E0; // type:func
+LoadDialogFromBrx__FP6DIALOGP18CBinaryInputStream = 0x150528; // type:func
+LoadDialogEventsFromBrx__FP6DIALOGP18CBinaryInputStreamPiPP2DE = 0x150570; // type:func
+PostDialogLoad__FP6DIALOG                         = 0x1506F0; // type:func
+SetDialogInstruct__FP6DIALOG                      = 0x150750; // type:func
+SetDialogConfront__FP6DIALOG                      = 0x150760; // type:func
+GetDialogPlayed__FP6DIALOGPi                      = 0x150770; // type:func
+SetDialogPlayed__FP6DIALOGi                       = 0x150780; // type:func
+SetDialogDialogs__FP6DIALOG7DIALOGS               = 0x150790; // type:func
+UpdateDialog__FP6DIALOGf                          = 0x150AE8; // type:func
+HandleDialogEvent__FP6DIALOGP2DE                  = 0x150DC0; // type:func
+HandleDialogMessage__FP6DIALOG5MSGIDPv            = 0x1512A8; // type:func
+FPauseDialog__FP6DIALOG                           = 0x151300; // type:func
+FUN_001516c0                                      = 0x1516C0; // type:func
+HandleDialogEvents__FP6DIALOG                     = 0x1517C0; // type:func
+FUN_00151860                                      = 0x151860; // type:func
+TriggerDialog__FP6DIALOG                          = 0x1518B8; // type:func
+UntriggerDialog__FP6DIALOG                        = 0x1519A8; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/difficulty.c
 ////////////////////////////////////////////////////////////////
 PdifficultyEnsureSw = 0x1519E0; // type:func
@@ -1321,16 +1344,6 @@ g_difficultyMedium = 0x261d70; // size:0x5c
 g_difficultyHard = 0x261e30; // size:0x5c
 g_difficultyEasy = 0x261e90; // size:0x5c
 g_difficulty = 0x261ef0; // size:0x20
-
-
-////////////////////////////////////////////////////////////////
-// P2/dmas.c
-////////////////////////////////////////////////////////////////
-g_pdcVif0 = 0x261f14; // size:0x4
-g_pdcVif1 = 0x261f18; // size:0x4
-g_pdcGiftag = 0x261f1c; // size:0x4
-g_pdcFromSpr = 0x261f20; // size:0x4
-g_pdcToSpr = 0x261f24; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
@@ -1375,6 +1388,35 @@ EndPrim__4DMASi = 0x152E18; // type:func
 
 _vt$4DMAS = 0x24A0E0; // size:0x10
 
+g_pdcVif0 = 0x261f14; // size:0x4
+g_pdcVif1 = 0x261f18; // size:0x4
+g_pdcGiftag = 0x261f1c; // size:0x4
+g_pdcFromSpr = 0x261f20; // size:0x4
+g_pdcToSpr = 0x261f24; // size:0x4
+
+
+////////////////////////////////////////////////////////////////
+// P2/dysh.c
+////////////////////////////////////////////////////////////////
+InitDysh__FP4DYSH               = 0x152E28; // type:func
+SetDyshShadow__FP4DYSHP6SHADOW  = 0x152E48; // type:func
+RenderDyshSelf__FP4DYSHP2CMP2RO = 0x153328; // type:func
+DrawDysh__FP3RPL                = 0x1533A8; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/dzg.c
+////////////////////////////////////////////////////////////////
+InitDzg__FP3DZGi                     = 0x153528; // type:func
+ClearDzgSolution__FP3DZG             = 0x153608; // type:func
+AppendDzgDz__FP3DZGP2DZ              = 0x1536C8; // type:func
+FillDzgDz__FP3DZGiP2DZiPP2XPPiPPP2SO = 0x153780; // type:func
+EnforceDzgDz__FP3DZGP2DZ             = 0x153A50; // type:func
+SolveDzg__FP3DZGiiPP2XPPiPPP2SO      = 0x153EC0; // type:func
+SolveDzgFric__FP3DZGiiPP2XPPiPPP2SOf = 0x154088; // type:func
+ApplyDzg__FP3DZGiPiPPP2SOff          = 0x154370; // type:func
+SolveInequalities__FiPfN21           = 0x154880; // type:func
+
 
 ////////////////////////////////////////////////////////////////
 // P2/eyes.c
@@ -1396,7 +1438,7 @@ RemoveFader__FP5FADER  = 0x159C28; // type:func
 
 
 ////////////////////////////////////////////////////////////////
-// P2/filestub.c
+// P2/UNKNOWN1
 ////////////////////////////////////////////////////////////////
 FUN_00159ca0 = 0x159CA0; // type:func
 FUN_00159d00 = 0x159D00; // type:func
@@ -1519,6 +1561,32 @@ FlushFrames__Fi = 0x15F210; // type:func
 BlendPrevFrame__Fv = 0x15F320; // type:func
 
 g_cframe = 0x2622cc; // size:0x4
+
+
+////////////////////////////////////////////////////////////////
+// P2/freeze.c
+////////////////////////////////////////////////////////////////
+RemergeSwObject__FP2SWP3ALO       = 0x15F678; // type:func
+MergeSwFreezeGroups__FP2SWP3ALOT1 = 0x15F6C0; // type:func
+SplinterSwFreezeGroup__FP2SWP3ALO = 0x15F710; // type:func
+MergeSwGroup__FP2SWP3MRG          = 0x15F7D8; // type:func
+AddSwMergeGroup__FP2SWP3MRG       = 0x15F8B0; // type:func
+RemoveFromArray__FPiPPvPv         = 0x15F930; // type:func
+RemoveSwMergeGroup__FP2SWP3MRG    = 0x15F9A0; // type:func
+RemergeSwObjects__FP2SW           = 0x15FA58; // type:func
+FreezeAloHierarchy__FP3ALOi       = 0x15FB28; // type:func
+GetAloFrozen__FP3ALOPi            = 0x15FBA0; // type:func
+FreezeAlo__FP3ALOi                = 0x15FBB8; // type:func
+FreezeSo__FP2SOi                  = 0x15FCD8; // type:func
+RefreezeSwObjects__FP2SW          = 0x15FD78; // type:func
+UpdateSwBusyList__FP2SW           = 0x15FF58; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/frzg.c
+////////////////////////////////////////////////////////////////
+PostFrzgLoad__FP4FRZG      = 0x15FF88; // type:func
+AddFrzgObject__FP4FRZG3OID = 0x160050; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -2672,6 +2740,7 @@ g_athread = 0x275958; // size:0xC
 
 g_abRenderLoopStack = 0x6056d0; // size:0x20000
 
+
 ////////////////////////////////////////////////////////////////
 // P2/transition.c
 ////////////////////////////////////////////////////////////////
@@ -2683,6 +2752,25 @@ transition__static_initialization_and_destruction_0 = 0x1E5328; // type:func
 _GLOBAL_$I$g_transition = 0x1E5358; // type:func
 
 g_transition = 0x275af0; // size:0x54
+
+
+////////////////////////////////////////////////////////////////
+// P2/turret.c
+////////////////////////////////////////////////////////////////
+InitTurret__FP6TURRET                    = 0x1E5378; // type:func
+FUN_001e53f8                             = 0x1E53F8; // type:func
+PostTurretLoad__FP6TURRET                = 0x1E5428; // type:func
+UpdateTurret__FP6TURRETf                 = 0x1E55D0; // type:func
+UpdateTurretActive__FP6TURRETP3JOYf      = 0x1E56A0; // type:func
+OnTurretActive__FP6TURRETiP2PO           = 0x1E5750; // type:func
+FFilterTurret__FP6TURRETP2SO             = 0x1E5888; // type:func
+UpdateTurretAim__FP6TURRET               = 0x1E5938; // type:func
+FireTurret__FP6TURRET                    = 0x1E5C78; // type:func
+HandleTurretMessage__FP6TURRET5MSGIDPv   = 0x1E5CE8; // type:func
+FIgnoreTurretIntersection__FP6TURRETP2SO = 0x1E5DA8; // type:func
+CollectTurretPrize__FP6TURRET3PCKP3ALO   = 0x1E5E08; // type:func
+GetTurretDiapi__FP6TURRETP6DIALOGP5DIAPI = 0x1E5E50; // type:func
+FUN_001e5e60                             = 0x1E5E60; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -2808,15 +2896,6 @@ FCalculateMuzzleVelocity__FP6VECTORT0fT0P2SO = 0x1EDEF0; // type:func
 FCalculateMuzzleVelocity1 = 0x1EE090; // type:func
 FCalculateMuzzleVelocityAngle__FP6VECTORT0fT0P2SO = 0x1EE290; // type:func
 LimitVectorLength = 0x1EE2B0; // type:func
-
-
-////////////////////////////////////////////////////////////////
-// P2/var.c
-// TODO: Add and mangle the rest of the function names.
-////////////////////////////////////////////////////////////////
-InitVar        = 0x1EB460; // type:func
-LoadVarFromBrx = 0x1EB518; // type:func
-PostLoadVar    = 0x1EB598; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -3070,6 +3149,12 @@ __main__Fv = 0x1fae18; // type:func
 ////////////////////////////////////////////////////////////////
 dpcmp = 0x1FD308; // type:func
 fptodp = 0x1FD868; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// vu/vu.c
+////////////////////////////////////////////////////////////////
+sceGsResetPath = 0x2018E8; // type:func
 
 
 ////////////////////////////////////////////////////////////////

@@ -69,6 +69,6 @@ public:
     virtual void EndPrim();
 };
 
-static void StartupDma();
+void StartupDma();
 
 #endif // DMAS_H
