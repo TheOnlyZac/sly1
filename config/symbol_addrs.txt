@@ -1304,6 +1304,29 @@ AddDartgunTargetAreaTarget__FP7DARTGUNP3ALO = 0x150418; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/dialog.c
+////////////////////////////////////////////////////////////////
+InitDialog__FP6DIALOG                             = 0x1504E0; // type:func
+LoadDialogFromBrx__FP6DIALOGP18CBinaryInputStream = 0x150528; // type:func
+LoadDialogEventsFromBrx__FP6DIALOGP18CBinaryInputStreamPiPP2DE = 0x150570; // type:func
+PostDialogLoad__FP6DIALOG                         = 0x1506F0; // type:func
+SetDialogInstruct__FP6DIALOG                      = 0x150750; // type:func
+SetDialogConfront__FP6DIALOG                      = 0x150760; // type:func
+GetDialogPlayed__FP6DIALOGPi                      = 0x150770; // type:func
+SetDialogPlayed__FP6DIALOGi                       = 0x150780; // type:func
+SetDialogDialogs__FP6DIALOG7DIALOGS               = 0x150790; // type:func
+UpdateDialog__FP6DIALOGf                          = 0x150AE8; // type:func
+HandleDialogEvent__FP6DIALOGP2DE                  = 0x150DC0; // type:func
+HandleDialogMessage__FP6DIALOG5MSGIDPv            = 0x1512A8; // type:func
+FPauseDialog__FP6DIALOG                           = 0x151300; // type:func
+FUN_001516c0                                      = 0x1516C0; // type:func
+HandleDialogEvents__FP6DIALOG                     = 0x1517C0; // type:func
+FUN_00151860                                      = 0x151860; // type:func
+TriggerDialog__FP6DIALOG                          = 0x1518B8; // type:func
+UntriggerDialog__FP6DIALOG                        = 0x1519A8; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/difficulty.c
 ////////////////////////////////////////////////////////////////
 PdifficultyEnsureSw = 0x1519E0; // type:func
@@ -1321,16 +1344,6 @@ g_difficultyMedium = 0x261d70; // size:0x5c
 g_difficultyHard = 0x261e30; // size:0x5c
 g_difficultyEasy = 0x261e90; // size:0x5c
 g_difficulty = 0x261ef0; // size:0x20
-
-
-////////////////////////////////////////////////////////////////
-// P2/dmas.c
-////////////////////////////////////////////////////////////////
-g_pdcVif0 = 0x261f14; // size:0x4
-g_pdcVif1 = 0x261f18; // size:0x4
-g_pdcGiftag = 0x261f1c; // size:0x4
-g_pdcFromSpr = 0x261f20; // size:0x4
-g_pdcToSpr = 0x261f24; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
@@ -1375,6 +1388,35 @@ EndPrim__4DMASi = 0x152E18; // type:func
 
 _vt$4DMAS = 0x24A0E0; // size:0x10
 
+g_pdcVif0 = 0x261f14; // size:0x4
+g_pdcVif1 = 0x261f18; // size:0x4
+g_pdcGiftag = 0x261f1c; // size:0x4
+g_pdcFromSpr = 0x261f20; // size:0x4
+g_pdcToSpr = 0x261f24; // size:0x4
+
+
+////////////////////////////////////////////////////////////////
+// P2/dysh.c
+////////////////////////////////////////////////////////////////
+InitDysh__FP4DYSH               = 0x152E28; // type:func
+SetDyshShadow__FP4DYSHP6SHADOW  = 0x152E48; // type:func
+RenderDyshSelf__FP4DYSHP2CMP2RO = 0x153328; // type:func
+DrawDysh__FP3RPL                = 0x1533A8; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/dzg.c
+////////////////////////////////////////////////////////////////
+InitDzg__FP3DZGi                     = 0x153528; // type:func
+ClearDzgSolution__FP3DZG             = 0x153608; // type:func
+AppendDzgDz__FP3DZGP2DZ              = 0x1536C8; // type:func
+FillDzgDz__FP3DZGiP2DZiPP2XPPiPPP2SO = 0x153780; // type:func
+EnforceDzgDz__FP3DZGP2DZ             = 0x153A50; // type:func
+SolveDzg__FP3DZGiiPP2XPPiPPP2SO      = 0x153EC0; // type:func
+SolveDzgFric__FP3DZGiiPP2XPPiPPP2SOf = 0x154088; // type:func
+ApplyDzg__FP3DZGiPiPPP2SOff          = 0x154370; // type:func
+SolveInequalities__FiPfN21           = 0x154880; // type:func
+
 
 ////////////////////////////////////////////////////////////////
 // P2/eyes.c
@@ -1396,7 +1438,7 @@ RemoveFader__FP5FADER  = 0x159C28; // type:func
 
 
 ////////////////////////////////////////////////////////////////
-// P2/filestub.c
+// P2/UNKNOWN1
 ////////////////////////////////////////////////////////////////
 FUN_00159ca0 = 0x159CA0; // type:func
 FUN_00159d00 = 0x159D00; // type:func
@@ -1519,6 +1561,32 @@ FlushFrames__Fi = 0x15F210; // type:func
 BlendPrevFrame__Fv = 0x15F320; // type:func
 
 g_cframe = 0x2622cc; // size:0x4
+
+
+////////////////////////////////////////////////////////////////
+// P2/freeze.c
+////////////////////////////////////////////////////////////////
+RemergeSwObject__FP2SWP3ALO       = 0x15F678; // type:func
+MergeSwFreezeGroups__FP2SWP3ALOT1 = 0x15F6C0; // type:func
+SplinterSwFreezeGroup__FP2SWP3ALO = 0x15F710; // type:func
+MergeSwGroup__FP2SWP3MRG          = 0x15F7D8; // type:func
+AddSwMergeGroup__FP2SWP3MRG       = 0x15F8B0; // type:func
+RemoveFromArray__FPiPPvPv         = 0x15F930; // type:func
+RemoveSwMergeGroup__FP2SWP3MRG    = 0x15F9A0; // type:func
+RemergeSwObjects__FP2SW           = 0x15FA58; // type:func
+FreezeAloHierarchy__FP3ALOi       = 0x15FB28; // type:func
+GetAloFrozen__FP3ALOPi            = 0x15FBA0; // type:func
+FreezeAlo__FP3ALOi                = 0x15FBB8; // type:func
+FreezeSo__FP2SOi                  = 0x15FCD8; // type:func
+RefreezeSwObjects__FP2SW          = 0x15FD78; // type:func
+UpdateSwBusyList__FP2SW           = 0x15FF58; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/frzg.c
+////////////////////////////////////////////////////////////////
+PostFrzgLoad__FP4FRZG      = 0x15FF88; // type:func
+AddFrzgObject__FP4FRZG3OID = 0x160050; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -2672,6 +2740,7 @@ g_athread = 0x275958; // size:0xC
 
 g_abRenderLoopStack = 0x6056d0; // size:0x20000
 
+
 ////////////////////////////////////////////////////////////////
 // P2/transition.c
 ////////////////////////////////////////////////////////////////
@@ -2683,6 +2752,68 @@ transition__static_initialization_and_destruction_0 = 0x1E5328; // type:func
 _GLOBAL_$I$g_transition = 0x1E5358; // type:func
 
 g_transition = 0x275af0; // size:0x54
+
+
+////////////////////////////////////////////////////////////////
+// P2/turret.c
+////////////////////////////////////////////////////////////////
+InitTurret__FP6TURRET                    = 0x1E5378; // type:func
+FUN_001e53f8                             = 0x1E53F8; // type:func
+PostTurretLoad__FP6TURRET                = 0x1E5428; // type:func
+UpdateTurret__FP6TURRETf                 = 0x1E55D0; // type:func
+UpdateTurretActive__FP6TURRETP3JOYf      = 0x1E56A0; // type:func
+OnTurretActive__FP6TURRETiP2PO           = 0x1E5750; // type:func
+FFilterTurret__FP6TURRETP2SO             = 0x1E5888; // type:func
+UpdateTurretAim__FP6TURRET               = 0x1E5938; // type:func
+FireTurret__FP6TURRET                    = 0x1E5C78; // type:func
+HandleTurretMessage__FP6TURRET5MSGIDPv   = 0x1E5CE8; // type:func
+FIgnoreTurretIntersection__FP6TURRETP2SO = 0x1E5DA8; // type:func
+CollectTurretPrize__FP6TURRET3PCKP3ALO   = 0x1E5E08; // type:func
+GetTurretDiapi__FP6TURRETP6DIALOGP5DIAPI = 0x1E5E50; // type:func
+FUN_001e5e60                             = 0x1E5E60; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/tv.c
+////////////////////////////////////////////////////////////////
+InitTv__FP2TV5BLOTK                         = 0x1E5E70; // type:func
+PostTvLoad__FP2TV                           = 0x1E6188; // type:func
+GetTvItvbMinMax__FP2TVPiT1                  = 0x1E6268; // type:func
+DrawTvArea__FP2TVR4GIFSi                    = 0x1E62A8; // type:func
+DrawTvBands__FP2TVR4GIFS                    = 0x1E6600; // type:func
+DrawTvOutline__FP2TVR4GIFS                  = 0x1E6C20; // type:func
+DrawTv__FP2TV                               = 0x1E73B8; // type:func
+SetTvTvs__FP2TV3TVS                         = 0x1E7440; // type:func
+AcceptTvSpeaker__FP2TV                      = 0x1E7460; // type:func
+SetTvTvgs__FP2TV4TVGS                       = 0x1E7518; // type:func
+SetTvBlots__FP2TV5BLOTS                     = 0x1E76E0; // type:func
+UpdateTv__FP2TV                             = 0x1E77C0; // type:func
+RenderTv__FP2TV                             = 0x1E7C60; // type:func
+PreTvContext__FP3RPL                        = 0x1E80D8; // type:func
+PostTvContext__FP3RPL                       = 0x1E83E0; // type:func
+SetTvSpeaker__FP2TVP7SPEAKER                = 0x1E86E0; // type:func
+SetTvReplace__FP2TVP3ALO                    = 0x1E87F0; // type:func
+OnTvReset__FP2TV                            = 0x1E8840; // type:func
+tv__static_initialization_and_destruction_0 = 0x1E8878; // type:func
+_GLOBAL_$I$RGBA_Distortion                  = 0x1E88B0; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/ub.c
+////////////////////////////////////////////////////////////////
+InitUbg__FP3UBG                    = 0x1E88D0; // type:func
+PostUbgLoad__FP3UBG                = 0x1E8948; // type:func
+PsoPadUbgClosest__FP3UBGP6VECTOR   = 0x1E89F0; // type:func
+OnUbgEnteringSgs__FP3UBG3SGSP4ASEG = 0x1E8A50; // type:func
+SgsNextUbgAI__FP3UBG               = 0x1E8D58; // type:func
+FDetectUbg__FP3UBG                 = 0x1E8DB0; // type:func
+FCanUbgAttack__FP3UBG              = 0x1E8DD0; // type:func
+DoUbgFreefallJump__FP3UBG          = 0x1E8E08; // type:func
+DoUbgFreefallLanding__FP3UBG       = 0x1E8E48; // type:func
+UpdateUbgGoal__FP3UBGi             = 0x1E8EF8; // type:func
+UpdateUbgSgs__FP3UBG               = 0x1E8FA8; // type:func
+FUN_001e8fe8                       = 0x1E8FE8; // type:func
+FIgnoreUbgIntersection__FP3UBGP2SO = 0x1E9038; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -2706,6 +2837,16 @@ FUN_001e9ad8__Fv = 0x1E9AD8; // type:func
 check_anticrack_collectibles_Fv = 0x1E9B30; // type:func
 
 g_ui = 0x275BC0;
+
+
+////////////////////////////////////////////////////////////////
+// P2/update.c
+////////////////////////////////////////////////////////////////
+UpdateSwObjects__FP2SWf     = 0x1E9C78; // type:func
+UpdateSwPosWorldPrev__FP2SW = 0x1E9E30; // type:func
+UpdateSwRealClock__FP2SWf   = 0x1E9EE8; // type:func
+UpdateSwDarkening__FP2SWf   = 0x1EA0A8; // type:func
+UpdateSw__FP2SWf            = 0x1EA118; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -2758,12 +2899,144 @@ LimitVectorLength = 0x1EE2B0; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/vifs.c
+////////////////////////////////////////////////////////////////
+__4VIFS                             = 0x1EE318; // type:func
+Align__4VIFSi                       = 0x1EE368; // type:func
+AddVifBaseOffset__4VIFSii           = 0x1EE3B8; // type:func
+AddVifMscal__4VIFSPv                = 0x1EE3F0; // type:func
+AddVifMscalf__4VIFSPv               = 0x1EE420; // type:func
+AddVifFlush__4VIFS                  = 0x1EE450; // type:func
+AddVifFlusha__4VIFS                 = 0x1EE468; // type:func
+AddVifFlushe__4VIFS                 = 0x1EE480; // type:func
+AddVifStcycl__4VIFSii               = 0x1EE498; // type:func
+AddVifStrow__4VIFSP2QW              = 0x1EE4C0; // type:func
+AddVifStmask__4VIFSUi               = 0x1EE528; // type:func
+CbUnpackSetup__4VIFS3UPKii          = 0x1EE560; // type:func
+UnpackHelper__4VIFS3UPKiiPiPPUi     = 0x1EE5C8; // type:func
+AddVifUnpack__4VIFS3UPKiPvi         = 0x1EE668; // type:func
+AddVifUnpackRefs__4VIFS3UPKiPviPPPv = 0x1EE718; // type:func
+AddVifDirect__4VIFSiP2QWi           = 0x1EE7D0; // type:func
+AddVifDirectRefs__4VIFSiP2QWi       = 0x1EE850; // type:func
+AddVifGifs__4VIFSP4GIFS             = 0x1EE8D0; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/vis.c
+////////////////////////////////////////////////////////////////
+InitVismap__FP6VISMAP                               = 0x1EE900; // type:func
+LoadVismapFromBrx__FP6VISMAPP18CBinaryInputStream   = 0x1EE930; // type:func
+GrfzonOneHop__FP6VISMAPP4VBSP                       = 0x1EE9D0; // type:func
+ClipVbspSphereOneHop__FP6VISMAPP4VBSPG9VU_VECTORfPi = 0x1EEA40; // type:func
+ClipVismapPointNoHop__FP6VISMAPP6VECTORPi           = 0x1EEBB0; // type:func
+ClipVismapSphereOneHop__FP6VISMAPP6VECTORfPi        = 0x1EEB60; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/water.c
+////////////////////////////////////////////////////////////////
+InitWater__FP5WATER                          = 0x1EEC60; // type:func
+PostWaterLoad__FP5WATER                      = 0x1EECE0; // type:func
+CalculateWaterCurrent__FP5WATERP6VECTORN21   = 0x1EED68; // type:func
+UpdateSwXaList__FP2SWPP2XA                   = 0x1EEE50; // type:func
+UpdateWater__FP5WATERf                       = 0x1EEF90; // type:func
+AddWaterExternalAccelerations__FP5WATERP2XAf = 0x1EF3A8; // type:func
+HandleWaterMessage__FP5WATER5MSGIDPv         = 0x1EF3D8; // type:func
+UpdateWaterMergeGroup__FP5WATER              = 0x1EF520; // type:func
+UGetWaterSubmerged__FP5WATERP2SOP6VECTORT2   = 0x1EF5B8; // type:func
+UpdateWaterBounds__FP5WATER                  = 0x1EF768; // type:func
+FInflictWaterZap__FP5WATERP2XPP3ZPR          = 0x1EF808; // type:func
+PzpdEnsureWater__FP5WATER4ENSK               = 0x1EF828; // type:func
+FUN_001ef830                                 = 0x1EF830; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/waypoint.c
+////////////////////////////////////////////////////////////////
+InitWaypoint__FP8WAYPOINT                  = 0x1EF838; // type:func
+PostWaypointLoad__FP8WAYPOINT              = 0x1EF868; // type:func
+SetWaypointRsmg__FP8WAYPOINTi3OIDN22       = 0x1EF8C0; // type:func
+UpdateWaypoint__FP8WAYPOINTf               = 0x1EF8F8; // type:func
+SetWaypointWps__FP8WAYPOINT3WPS            = 0x1EF900; // type:func
+HandleWaypointMessage__FP8WAYPOINT5MSGIDPv = 0x1EF9C8; // type:func
+PwpsgNew__Fv                               = 0x1EFA30; // type:func
+AddWpsgWaypoint__FP4WPSGP8WAYPOINT         = 0x1EFA60; // type:func
+RemoveWpsgWaypoint__FP4WPSGP8WAYPOINT      = 0x1EFA88; // type:func
+UpdateWpsgCallback__FP4WPSG5MSGIDPv        = 0x1EFB20; // type:func
+EnsureWpsgCallback__FP4WPSG                = 0x1EFC98; // type:func
+junk_001EFCE0                              = 0x1EFCE0; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/wipe.c
 ////////////////////////////////////////////////////////////////
-WipeToWorldWarp = 0x1F0428; // type:func
+InitWipe__FP4WIPE                         = 0x1EFCE8; // type:func
+UpdateWipe__FP4WIPEP3JOY                  = 0x1EFD10; // type:func
+DrawWipe__FP4WIPE                         = 0x1EFEE0; // type:func
+ActivateWipe__FP4WIPEP5TRANS5WIPEK        = 0x1EFFA0; // type:func
+SetWipeButtonTrans__FP4WIPEP5TRANS5WIPEK  = 0x1F00C0; // type:func
+FCatchWipeButtonTrans__FP4WIPEP3JOY5WIPES = 0x1F00F0; // type:func
+junk_001F0218                             = 0x1F0218; // type:func
+SetWipeWipes__FP4WIPE5WIPES               = 0x1F0220; // type:func
+WipeToWorldWarp                           = 0x1F0428; // type:func
 
-g_pwipe = 0x275f80;
-g_wipe = 0x275f84;
+g_wipe = 0x275f80;
+g_pwipe = 0x275f84;
+
+
+////////////////////////////////////////////////////////////////
+// P2/wm.c
+////////////////////////////////////////////////////////////////
+FUN_001f0468                                   = 0x1F0468; // type:func
+FUN_001f0490                                   = 0x1F0490; // type:func
+FUN_001f0580                                   = 0x1F0580; // type:func
+PostWmLoad__FP2WM                              = 0x1F0660; // type:func
+BindWm__FP2WM                                  = 0x1F0758; // type:func
+RefreshWmMoveStats__FP2WM10WORLDLEVEL          = 0x1F0878; // type:func
+ThrowWmDisplayState__FP2WM10WORLDLEVELi        = 0x1F08F0; // type:func
+CatchWmDisplayState__FP2WM                     = 0x1F0908; // type:func
+UpdateWm__FP2WMf                               = 0x1F0AE0; // type:func
+RenderWmAll__FP2WMP2CMP2RO                     = 0x1F0EB8; // type:func
+HandleWmMessage__FP2WM5MSGIDPv                 = 0x1F0F70; // type:func
+SetWmWms__FP2WM3WMS                            = 0x1F1050; // type:func
+ShowWm__FP2WM10WORLDLEVEL3WMS                  = 0x1F1590; // type:func
+HideWm__FP2WM                                  = 0x1F1610; // type:func
+MoveWm__FP2WM3WMD                              = 0x1F1648; // type:func
+GetWmWorldPosScreen__FP2WM10WORLDLEVELP6VECTOR = 0x1F17A0; // type:func
+SetWmCursor__FP2WM10WORLDLEVEL                 = 0x1F18B0; // type:func
+PostWmcLoad__FP3WMC                            = 0x1F1960; // type:func
+UpdateWmcActive__FP3WMCP3JOY                   = 0x1F1A08; // type:func
+OnWmcActive__FP3WMCi                           = 0x1F1C90; // type:func
+DrawWmFan__FffffiG4RGBAT5i                     = 0x1F1E38; // type:func
+DrawWmc__FP3WMC                                = 0x1F20A8; // type:func
+wm__static_initialization_and_destruction_0    = 0x1F2688; // type:func
+junk_001F2728                                  = 0x1F2728; // type:func
+_GLOBAL_$I$U_WmFadedLevels                     = 0x1F2738; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/wr.c
+////////////////////////////////////////////////////////////////
+InitWr__FP2WR                                  = 0x1F2758; // type:func
+ApplyWrGlob__FP2WRP3ALOP4GLOB                  = 0x1F2798; // type:func
+UpdateWrStateVectors__FP2WR                    = 0x1F2840; // type:func
+WarpWrTransform__FP2WRfP6VECTORP7MATRIX3T2T3T2 = 0x1F2EF0; // type:func
+GetWrBounds__FP2WRP6VECTOR                     = 0x1F3140; // type:func
+UNoise__Fi                                     = 0x1F31F8; // type:func
+UNoise__Ffff                                   = 0x1F3250; // type:func
+UBias__Fff                                     = 0x1F3328; // type:func
+GFromOnz__FP3ONZ                               = 0x1F3358; // type:func
+UpdateWrMatrixes__FP2WR                        = 0x1F3408; // type:func
+AddWrCircleWarp__FP2WR                         = 0x1F36E8; // type:func
+AddWrBendWarp__FP2WR                           = 0x1F3768; // type:func
+PwreGetWrCur__FP2WR4ENSK4WREK                  = 0x1F37D8; // type:func
+PwreGetWrCircle__FP2WR4ENSK                    = 0x1F3810; // type:func
+PwreGetWrBend__FP2WR4ENSK                      = 0x1F3830; // type:func
+SetWrWavelength__FP2WRf                        = 0x1F3850; // type:func
+GetWrWavelength__FP2WRPf                       = 0x1F38A0; // type:func
+AddOnzOnze__FP3ONZffff                         = 0x1F38F0; // type:func
+AddWrBendNoise__FP2WRffff                      = 0x1F3928; // type:func
+AddWrSwivelNoise__FP2WRffff                    = 0x1F3990; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -2876,6 +3149,12 @@ __main__Fv = 0x1fae18; // type:func
 ////////////////////////////////////////////////////////////////
 dpcmp = 0x1FD308; // type:func
 fptodp = 0x1FD868; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// vu/vu.c
+////////////////////////////////////////////////////////////////
+sceGsResetPath = 0x2018E8; // type:func
 
 
 ////////////////////////////////////////////////////////////////

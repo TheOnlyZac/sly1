@@ -22,6 +22,11 @@ extern "C"
         undefined4 unk_0x0;
         undefined4 unk_0x4;
     };
+
+    /**
+     * @todo Figure out is this in the right place.
+     */
+    void sceGsResetPath();
 }
 
 #endif // SCE_EESTRUCT_H

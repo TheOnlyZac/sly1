@@ -6,6 +6,15 @@
 
 #include "common.h"
 
+/**
+ * @brief Shadow.
+ * @todo Implement the struct.
+ */
+struct SHADOW
+{
+    // ...
+};
+
 // ...
 
 #endif // SHADOW_H

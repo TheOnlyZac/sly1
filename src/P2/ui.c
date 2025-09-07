@@ -26,11 +26,13 @@ INCLUDE_ASM(const s32, "P2/ui", PushUiActiveBlot__FP2UIP4BLOT);
 
 INCLUDE_ASM(const s32, "P2/ui", PopUiActiveBlot__FP2UI);
 
-void DrawUi() {
+void DrawUi()
+{
     DrawBlots();
 }
 
-void RenderUi() {
+void RenderUi()
+{
     RenderBlots();
 }
 
