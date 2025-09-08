@@ -2023,7 +2023,7 @@ InitLo__FP2LO = 0x182c18; // type:func
 PostLoLoad__FP2LO = 0x182c58; // type:func
 AddLo__FP2LO = 0x182c80; // type:func
 AddLoHierarchy__FP2LO = 0x182d00; // type:func
-OnLoAdd__Fv = 0x182d48; // type:func
+OnLoAdd__FP2LO = 0x182d48; // type:func
 RemoveLo__FP2LO = 0x182d50; // type:func
 DeferLoRemove__FP2LO = 0x182dd8; // type:func
 SetLoSuckHideLimits__FP2LOP2LM = 0x182e40; // type:func
@@ -2396,6 +2396,8 @@ OnPipeAdd__FP4PIPE    = 0x191F68; // type:func
 OnPipeRemove__FP4PIPE = 0x191FA0; // type:func
 PostPipeLoad          = 0x191FD8; // type:func
 ClonePipe__FP4PIPET0  = 0x192020; // type:func
+
+g_dlPipe = 0x269ba8;
 
 
 ////////////////////////////////////////////////////////////////

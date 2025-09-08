@@ -6,12 +6,24 @@
 
 #include "common.h"
 
+// Forward.
+class CRef;
+
 class CFrame
 {
-    // todo Implement class.
+public:
+    void SetSingleParent(CFrame *pframeParent);
+    void AddParent(CFrame *pframeParent);
+    CFrame *RefAddBinding(int symid, CRef * pref);
+    CFrame *RefSetBinding(int symid, CRef *pref);
+    int FFindBinding(int symid, int fRecursive, CRef *pref);
+    CRef *PrefFindBinding(int symid, int fRecursive);
+    void CloneTo(CFrame *pframeClone);
 };
 
 // ...
+
+CFrame *PframeNew();
 
 /**
  * @brief Deletes the frame.

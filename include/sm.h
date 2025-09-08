@@ -8,8 +8,9 @@
 
 #include "common.h"
 #include <dl.h>
-#include <anim.h>
 #include <mq.h>
+#include <lo.h>
+#include <anim.h>
 
 // Forward declatations.
 struct SM;

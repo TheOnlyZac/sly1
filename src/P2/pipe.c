@@ -1,14 +1,31 @@
 #include <pipe.h>
+#include <dl.h>
 
-INCLUDE_ASM(const s32, "P2/pipe", StartupPipe__Fv);
+extern DL g_dlPipe;
 
-INCLUDE_ASM(const s32, "P2/pipe", ResetPipeList__Fv);
+void StartupPipe()
+{
+    InitDl(&g_dlPipe, 0x38);
+}
+
+void ResetPipeList()
+{
+    ClearDl(&g_dlPipe);
+}
 
 INCLUDE_ASM(const s32, "P2/pipe", InitPipe__FP4PIPE);
 
-INCLUDE_ASM(const s32, "P2/pipe", OnPipeAdd__FP4PIPE);
+void OnPipeAdd(PIPE *ppipe)
+{
+    OnLoAdd(ppipe);
+    AppendDlEntry(&g_dlPipe, ppipe);
+}
 
-INCLUDE_ASM(const s32, "P2/pipe", OnPipeRemove__FP4PIPE);
+void OnPipeRemove(PIPE *ppipe)
+{
+    OnLoRemove(ppipe);
+    RemoveDlEntry(&g_dlPipe, ppipe);
+}
 
 INCLUDE_ASM(const s32, "P2/pipe", PostPipeLoad);
 

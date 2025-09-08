@@ -1,68 +1,88 @@
 #include <lo.h>
+#include <sw.h>
 #include <alo.h>
 #include <brx.h>
-#include <sw.h>
 #include <util.h>
+#include <find.h>
 #include <game.h>
+#include <memory.h>
 #include <splice/gc.h>
 
 extern CGc g_gc;
 
-void InitLo(LO *plo) {
+void InitLo(LO *plo)
+{
     plo->pvtlo->pfnSetLoDefaults(plo);
     plo->pvtlo->pfnAddLo(plo);
 }
 
-void PostLoLoad(LO *plo) {
-    HandleLoSpliceEvent(plo, 0, 0, (void**)nullptr);
+void PostLoLoad(LO *plo)
+{
+    HandleLoSpliceEvent(plo, 0, 0, (void **)nullptr);
 }
 
-void AddLo(LO* plo) {
+void AddLo(LO* plo)
+{
     DL *pdl;
-    if (plo->paloParent) {
+    if (plo->paloParent)
+    {
         pdl = &plo->paloParent->dlChild;
-    } else {
+    }
+    else
+    {
         pdl = &plo->psw->dlChild;
     }
 
     bool fLoInDl = FFindDlEntry(pdl, plo);
 
-    if (!fLoInDl) {
+    if (!fLoInDl)
+    {
         AppendDlEntry(pdl, plo);
         bool fLoInWorld = FIsLoInWorld(plo);
 
-        if (fLoInWorld) {
+        if (fLoInWorld)
+        {
             plo->pvtlo->pfnAddLoHierarchy(plo);
         }
     }
 }
 
-void AddLoHierarchy(LO *plo) {
+void AddLoHierarchy(LO *plo)
+{
     plo->pvtlo->pfnOnLoAdd(plo);
     plo->pvtlo->pfnSendLoMessage(plo, MSGID_added, plo);
 }
 
-void OnLoAdd(void) {
+void OnLoAdd(LO *plo)
+{
     return;
 }
 
-void RemoveLo(LO *plo) {
+void RemoveLo(LO *plo)
+{
     DL *pdl;
-    if (plo->paloParent) {
+    if (plo->paloParent)
+    {
         pdl = &plo->paloParent->dlChild;
-    } else {
+    }
+    else
+    {
         pdl = &plo->psw->dlChild;
     }
 
     bool fLoInDl = FFindDlEntry(pdl, plo);
 
-    if (fLoInDl) {
+    if (fLoInDl)
+    {
         bool fLoInWorld = FIsLoInWorld(plo);
 
-        if (fLoInWorld) {
+        if (fLoInWorld)
+        {
             RemoveDlEntry(pdl, plo);
             plo->pvtlo->pfnRemoveLoHierarchy(plo);
-        } else {
+        }
+        else
+        {
             RemoveDlEntry(pdl, plo);
         }
     }
@@ -70,28 +90,35 @@ void RemoveLo(LO *plo) {
 
 INCLUDE_ASM(const s32, "P2/lo", DeferLoRemove__FP2LO);
 
-void SetLoSuckHideLimits(LO *plo, LM *plmUSuck) {
+void SetLoSuckHideLimits(LO *plo, LM *plmUSuck)
+{
     bool fHideLo = FCheckLm(plmUSuck, g_plsCur->uSuck);
 
-    if (fHideLo) {
+    if (fHideLo)
+    {
         DeferLoRemove(plo);
     }
 }
 
-void RemoveLoHierarchy(LO *plo) {
+void RemoveLoHierarchy(LO *plo)
+{
     plo->pvtlo->pfnOnLoRemove(plo);
     plo->pvtlo->pfnSendLoMessage(plo, MSGID_removed, plo);
 }
 
-void OnLoRemove(LO *plo) {
+void OnLoRemove(LO *plo)
+{
     return;
 }
 
-void SnipLo(LO *plo) {
+void SnipLo(LO *plo)
+{
     bool fIsLoInWorld = FIsLoInWorld(plo);
 
-    if (fIsLoInWorld) {
-        if (plo->pvtlo->pfnBindLo) {
+    if (fIsLoInWorld)
+    {
+        if (plo->pvtlo->pfnBindLo)
+        {
             plo->pvtlo->pfnBindLo(plo);
         }
 
@@ -100,13 +127,17 @@ void SnipLo(LO *plo) {
     }
 }
 
-int FFindLoParent(LO *plo, ALO *paloParent) {
-    if (plo == nullptr) {
+int FFindLoParent(LO *plo, ALO *paloParent)
+{
+    if (!plo)
+    {
         return 0;
     }
 
-    while (plo != nullptr) {
-        if (plo == paloParent) {
+    while (plo)
+    {
+        if (plo == paloParent)
+        {
             return 1;
         }
 
@@ -116,22 +147,30 @@ int FFindLoParent(LO *plo, ALO *paloParent) {
     return (paloParent == nullptr);
 }
 
-void SetLoParent(LO *plo, ALO *paloParent) {
+void SetLoParent(LO *plo, ALO *paloParent)
+{
     plo->pvtlo->pfnRemoveLo(plo);
     plo->paloParent = paloParent;
     plo->pvtlo->pfnAddLo(plo);
 }
 
-int FIsLoInWorld(LO *plo) {
-    while (plo) {
+int FIsLoInWorld(LO *plo)
+{
+    while (plo)
+    {
         ALO *paloParent = plo->paloParent;
 
-        if (paloParent) {
-            if (!FFindDlEntry(&paloParent->dlChild, plo)) {
+        if (paloParent)
+        {
+            if (!FFindDlEntry(&paloParent->dlChild, plo))
+            {
                 return 0;
             }
-        } else {
-            if (!FFindDlEntry(&plo->psw->dlChild, plo)) {
+        }
+        else
+        {
+            if (!FFindDlEntry(&plo->psw->dlChild, plo))
+            {
                 return 0;
             }
         }
@@ -142,7 +181,8 @@ int FIsLoInWorld(LO *plo) {
     return 1;
 }
 
-void GetLoInWorld(LO *plo, int *pfInWorld) {
+void GetLoInWorld(LO *plo, int *pfInWorld)
+{
     *pfInWorld = FIsLoInWorld(plo);
 }
 
@@ -150,20 +190,47 @@ INCLUDE_ASM(const s32, "P2/lo", GetLoInWorld_padding);
 
 INCLUDE_ASM(const s32, "P2/lo", PloCloneLo__FP2LOP2SWP3ALO);
 
-void CloneLoHierarchy(LO *plo, LO *ploBase) {
+void CloneLoHierarchy(LO *plo, LO *ploBase)
+{
     plo->pvtlo->pfnCloneLo(plo, ploBase);
 }
 
-/**
- * @todo 100% matched but not integrated
- * https://decomp.me/scratch/NwZqr
- */
-INCLUDE_ASM(const s32, "P2/lo", CloneLo__FP2LOT0);
-#ifdef SKIP_ASM
-// todo
-#endif // SKIP_ASM
+void CloneLo(LO *plo, LO *ploBase)
+{
+    if (ploBase->psidebag)
+    {
+        CSidebag *psidebag = PsidebagNew();
+        ploBase->psidebag->CloneTo(psidebag);
+        plo->psidebag = psidebag;
+        g_gc.AddRootSidebag(psidebag);
+    }
 
-void SubscribeSwPpmqStruct(SW *psw, MQ **ppmqFirst, PFNMQ pfnmq, void *pvContext) {
+    SW *psw = plo->psw;
+
+    // Adjusted arguments for target assembly alignment
+    CopyAb(&STRUCT_OFFSET(plo, 0x34, void *), &STRUCT_OFFSET(ploBase, 0x34, void *), ploBase->pvtlo->cb - 0x34);
+    
+    DL *pdl = PdlFromSwOid(psw, plo->oid);
+    RemoveDlEntry(pdl, plo);
+    pdl = PdlFromSwOid(psw, ploBase->oid);
+    AppendDlEntry(pdl, plo);
+
+    plo->oid = ploBase->oid;
+
+    if (ploBase->pframe)
+    {
+        g_gc.UpdateRecyclable();
+        CFrame *pframe = PframeNew();
+        ploBase->pframe->CloneTo(pframe);
+        plo->pframe = pframe;
+        g_gc.AddRootFrame(pframe);
+    }
+
+    plo->ppxr = ploBase->ppxr;
+}
+
+void SubscribeSwPpmqStruct(SW *psw, MQ **ppmqFirst, PFNMQ pfnmq, void *pvContext)
+{
     MQ *pmq = PmqAllocSw(psw);
     pmq->pfnmq = pfnmq;
     pmq->pvContext = pvContext;
@@ -175,11 +242,13 @@ void UnsubscribeSwPpmqStruct(struct SW *psw, struct MQ **ppmqFirst, PFNMQ pfnmq,
 {
     struct MQ *pmq;
 
-    while (pmq = *ppmqFirst) {
+    while (pmq = *ppmqFirst)
+    {
         struct MQ *pmqTarget;
         struct MQ **ppmqList = ppmqFirst;
 
-        if (pmq->pfnmq == pfnmq && pmq->pvContext == pvContext) {
+        if (pmq->pfnmq == pfnmq && pmq->pvContext == pvContext)
+        {
             *ppmqFirst = pmq->pmqnext;
             pmq->pmqnext = (MQ*)nullptr;
             pmqTarget = pmq;
@@ -188,39 +257,42 @@ void UnsubscribeSwPpmqStruct(struct SW *psw, struct MQ **ppmqFirst, PFNMQ pfnmq,
         }
 
         pmqTarget = *ppmqList;
-
-        // Required for match, maybe from a macro?
-        do {
-            pmq = pmqTarget;
-            ppmqFirst = &pmq->pmqnext;
-        } while (0);
+        pmq = pmqTarget;
+        ppmqFirst = &pmq->pmqnext;
     }
 }
 
-void SubscribeLoStruct(LO *plo, PFNMQ pfnmq, void *pvContext) {
+void SubscribeLoStruct(LO *plo, PFNMQ pfnmq, void *pvContext)
+{
     SubscribeSwPpmqStruct(plo->psw, &plo->pmqFirst, pfnmq, pvContext);
 }
 
-void UnsubscribeLoStruct(LO *plo, PFNMQ pfnmq, void *pvContext) {
+void UnsubscribeLoStruct(LO *plo, PFNMQ pfnmq, void *pvContext)
+{
     UnsubscribeSwPpmqStruct(plo->psw, &plo->pmqFirst, pfnmq, pvContext);
 }
 
-void SubscribeLoObject(LO *plo, LO *ploTarget) {
+void SubscribeLoObject(LO *plo, LO *ploTarget)
+{
     SubscribeSwPpmqStruct(plo->psw, &plo->pmqFirst, ploTarget->pvtlo->pfnHandleLoMessage, ploTarget);
 }
 
-void UnsubscribeLoObject(LO *plo, LO *ploTarget) {
+void UnsubscribeLoObject(LO *plo, LO *ploTarget)
+{
     UnsubscribeSwPpmqStruct(plo->psw, &plo->pmqFirst, ploTarget->pvtlo->pfnHandleLoMessage, ploTarget);
 }
 
-void SendLoMessage(LO * plo, MSGID msgid, void *pv) {
-    if (plo->pvtlo->pfnHandleLoMessage) {
+void SendLoMessage(LO * plo, MSGID msgid, void *pv)
+{
+    if (plo->pvtlo->pfnHandleLoMessage)
+    {
         plo->pvtlo->pfnHandleLoMessage(plo, msgid, pv);
     }
 
     MQ *pmq = plo->pmqFirst;
 
-    while (pmq) {
+    while (pmq)
+    {
         PFNMQ pfnmq = pmq->pfnmq;
         void *pmqContext = pmq->pvContext;
 
@@ -230,39 +302,48 @@ void SendLoMessage(LO * plo, MSGID msgid, void *pv) {
     }
 }
 
-void LoadLoFromBrx(LO *plo, CBinaryInputStream *pbis) {
+void LoadLoFromBrx(LO *plo, CBinaryInputStream *pbis)
+{
     LoadOptionsFromBrx(plo, pbis);
 }
 
-int FMatchesLoName(LO *plo, OID oid) {
-    if (oid == OID_Nil) {
+int FMatchesLoName(LO *plo, OID oid)
+{
+    if (oid == OID_Nil)
+    {
         return 0;
     }
 
-    if (plo->oid == oid || (plo->ppxr != nullptr && plo->ppxr->oidProxyRoot == oid)) {
+    if (plo->oid == oid || (plo->ppxr && plo->ppxr->oidProxyRoot == oid))
+    {
         return 1;
     }
 
     return 0;
 }
 
-OID OidProxyLo(LO *plo) {
-    if (plo->ppxr != nullptr) {
+OID OidProxyLo(LO *plo)
+{
+    if (plo->ppxr)
+    {
         return plo->ppxr->oidProxyRoot;
     }
 
     return OID_Nil;
 }
 
-OID OidProxyLoPreferred(LO *plo) {
-    if (plo->ppxr != nullptr) {
+OID OidProxyLoPreferred(LO *plo)
+{
+    if (plo->ppxr)
+    {
         return plo->ppxr->oidProxyRoot;
     }
 
     return plo->oid;
 }
 
-void GetLoOidProxy(LO *plo, OID *poid) {
+void GetLoOidProxy(LO *plo, OID *poid)
+{
     OID oid = OidProxyLo(plo);
     *poid = oid;
 }
