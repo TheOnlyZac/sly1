@@ -1,7 +1,7 @@
 /**
  * @file ac.h
  *
- * @brief Implement the structs.
+ * @todo Implement the structs.
  */
 #ifndef AC_H
 #define AC_H
