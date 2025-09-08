@@ -77,7 +77,7 @@ struct LOCK : public ALO
 };
 
 /**
- * @brief Lock (?)
+ * @brief Lock group.
  */
 struct LOCKG : public ALO
 {
