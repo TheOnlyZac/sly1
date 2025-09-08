@@ -46,7 +46,7 @@ enum RP
 struct RPL
 {
     undefined4 *pfndraw; // NOTE: This is a function pointer.
-	float z;
+    float z;
     RP rp;
     // ...
 };

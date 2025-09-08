@@ -7,13 +7,11 @@
 #define UB_H
 
 #include "common.h"
+#include <stepguard.h>
 #include <gomer.h>
 #include <anim.h>
 #include <vec.h>
 #include <so.h>
-
-// Forward.
-struct SGS;
 
 /**
  * @brief Unknown.

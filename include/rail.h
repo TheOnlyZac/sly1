@@ -13,7 +13,7 @@
  */
 struct RAIL : public SHAPE
 {
-	undefined4 unknown;
+    undefined4 unknown;
     DLE dleRail;
     int fSlippery;
     float svMax;

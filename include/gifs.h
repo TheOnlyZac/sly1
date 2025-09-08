@@ -9,7 +9,7 @@
 /**
  * @brief Unknown. Constructs primitives for rendering? 
  */
-struct GIFS : DMAS
+struct GIFS : public DMAS
 {
     QW *m_pqwPrim;
     uint m_creg;

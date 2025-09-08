@@ -15,17 +15,6 @@
 #include <mq.h>
 
 /**
- * @brief (?) kind.
- */
-enum PCK
-{
-    PCK_Nil = -1,
-    PCK_Key = 0,
-    PCK_Gold = 1,
-    PCK_Max = 2
-};
-
-/**
  * @brief Unknown.
  * @todo Determine whether this should be defined elsewhere.
  */

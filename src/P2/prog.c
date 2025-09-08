@@ -2,6 +2,7 @@
 #include <dmas.h>
 #include <util.h>
 #include <render.h>
+#include <gs.h>
 
 CProg::CProg(RGBA *rgbaComplete, RGBA *rgbaRemain, RGBA *rgbaWarning, RGBA *rgbaTrouble)
 {

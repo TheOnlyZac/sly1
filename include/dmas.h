@@ -6,10 +6,10 @@
 #ifndef DMAS_H
 #define DMAS_H
 
+#include "common.h"
 #include <sce/libdma.h>
 #include <sdk/ee/eekernel.h>
-#include "common.h"
-#include <shd.h>
+#include <vec.h>
 
 extern sceDmaChan *g_pdcVif0;
 extern sceDmaChan *g_pdcVif1;

@@ -13,6 +13,18 @@ struct ALO;
 struct AMB;
 
 /**
+ * @brief (?) kind.
+ * @todo This should maybe be moved to pzo.h?
+ */
+enum PCK
+{
+    PCK_Nil = -1,
+    PCK_Key = 0,
+    PCK_Gold = 1,
+    PCK_Max = 2
+};
+
+/**
  * @todo Unknown.
  * @note Based on proto, may be inaccurate.
  */
@@ -45,6 +57,11 @@ struct PO : public SO
  * @brief Switch to the given PO, if it isn't the currently active one.
  */
 void MakePoActive(PO *ppo);
+
+/**
+ * @brief Collect a prize.
+ */
+void CollectPoPrize(PO *ppo, PCK pck, ALO *paloOther);
 
 /**
  * @brief Gets a pointer to the current PO.

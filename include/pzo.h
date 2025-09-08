@@ -1,7 +1,7 @@
 /**
  * @file pzo.h
  *
- * @brief Values and clue bottles.
+ * @brief Vaults, clue bottles and keys.
  */
 #ifndef PZO_H
 #define PZO_H

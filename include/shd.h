@@ -6,14 +6,34 @@
 #ifndef SHD_H
 #define SHD_H
 
-#include <sdk/ee/eestruct.h>
 #include "common.h"
+#include <sdk/ee/eestruct.h>
+#include <bis.h>
 #include <oid.h>
 #include <geom.h>
 #include <dmas.h>
+#include <gifs.h>
 
 typedef struct SHD; // Forward declaration
 typedef struct SHDP; // Forward declaration
+
+typedef int GRFZON;
+
+/**
+ * @brief (?) kind.
+ */
+enum CTK
+{
+    CTK_Nil = -1,
+    CTK_Original = 0,
+    CTK_Pass0 = 0,
+    CTK_Ambient = 0,
+    CTK_Pass1 = 1,
+    CTK_Diffuse = 1,
+    CTK_Saturation = 2,
+    CTK_Pass2 = 2,
+    CTK_Max = 3,
+};
 
 // MARK: BMP
 
@@ -169,5 +189,49 @@ struct SHD
     int cframe;
     SAA *psaa;
 };
+
+sceGsTex0 Tex0FromTexIframeCtk(TEX *ptex, int iframe, CTK ctk);
+
+void PackTexGifs(TEX *ptex, int iframe, CTK ctk, SHDK shdk, GIFS *pgifs);
+
+void LoadClutFromBrx(CBinaryInputStream *pbis, CLUT *pclut);
+
+void LoadColorTablesFromBrx(CBinaryInputStream *pbis);
+
+void LoadBmpFromBrx(CBinaryInputStream *pbis, BMP *pbmp);
+
+void LoadBitmapsFromBrx(CBinaryInputStream *pbis);
+
+void LoadFontsFromBrx(CBinaryInputStream *pbis);
+
+void LoadTexFromBrx(CBinaryInputStream *pbis, TEX *ptex);
+
+void LoadShadersFromBrx(CBinaryInputStream *pbis);
+
+void UploadPermShaders();
+
+void PropagateShaders(GRFZON grfzonCamera);
+
+void FillShaders(GRFZON grfzon);
+
+void UnloadShaders();
+
+void ConvertRgbToHsv(VECTOR *pvecRGB, VECTOR *pvecHSV);
+
+void ConvertHsvToRgb(VECTOR *pvecHSV, VECTOR *pvecRGB);
+
+void ConvertUserHsvToUserRgb(VECTOR *pvecHSV, VECTOR *pvecRGB);
+
+void ConvertUserRgbToUserHsv(VECTOR *pvecRGB, VECTOR *pvecHSV);
+
+SHD *PshdFindShader(OID oid);
+
+void SetSaiIframe(SAI *psai, int iframe);
+
+void SetSaiDuDv(SAI *psai, float du, float dv);
+
+void PropagateSais();
+
+void UpdateShaders(float dt);
 
 #endif // SHD_H

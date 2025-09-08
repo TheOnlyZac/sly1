@@ -8,6 +8,8 @@
 #include <alo.h>
 #include <vec.h>
 
+typedef int GRFGLOB;
+
 /**
  * @todo Implement struct.
  */
