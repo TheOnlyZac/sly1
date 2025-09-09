@@ -7,13 +7,12 @@ extern int s_fRenderGlobals;
 
 INCLUDE_ASM(const s32, "P2/render", SubmitRpl__FP3RPL);
 
+INCLUDE_ASM(const s32, "P2/render", NCmpPrplReverseZ__FPP3RPLT0);
+#ifdef SKIP_ASM
 /**
- * @todo 100% match, but the checksum check still fails.
- * Maybes short loop bug?
+ * @todo 100% match on decomp.me, but the compiler is adding extra instructions here.
  * https://decomp.me/scratch/4xKRS
  */
-INCLUDE_ASM(const s32, "P2/render", NCmpPrplReverseZ__FPP3RPLT0);
-/*
 int NCmpPrplReverseZ(RPL **pprpl1, RPL **pprpl2)
 {
     RPL *plhs = *pprpl1;
@@ -33,7 +32,7 @@ int NCmpPrplReverseZ(RPL **pprpl1, RPL **pprpl2)
 
     return (plhs - prhs) >> 0x04;
 }
-*/
+#endif
 
 INCLUDE_ASM(const s32, "P2/render", CprplPartitionArpl__FiP3RPLPP3RPL);
 
