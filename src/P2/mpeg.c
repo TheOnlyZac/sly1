@@ -1,5 +1,15 @@
 #include <mpeg.h>
 
+INCLUDE_ASM(const s32, "P2/mpeg", FUN_0018e410);
+
+INCLUDE_ASM(const s32, "P2/mpeg", FUN_0018e480);
+
+INCLUDE_ASM(const s32, "P2/mpeg", FUN_0018e4c0);
+
+INCLUDE_ASM(const s32, "P2/mpeg", FUN_0018e4f0);
+
+INCLUDE_ASM(const s32, "P2/mpeg", FUN_0018e558);
+
 INCLUDE_ASM(const s32, "P2/mpeg", StartupMpeg__Fv);
 
 INCLUDE_ASM(const s32, "P2/mpeg", Init__15CQueueOutputIopii);
