@@ -10,15 +10,52 @@
 #include <sw.h>
 #include <cm.h>
 #include <dmas.h>
+#include <gifs.h>
 
-struct GIFS : DMAS
+/**
+ * @brief Unknown.
+ */
+enum RP
 {
-    undefined4 unk_0x4;
-    uint m_creg;
-    uint m_cregAll;
-
-    void AddPrimEnd();
+    RP_Nil = -1,
+    RP_DynamicTexture = 0,
+    RP_Background = 1,
+    RP_BlotContext = 2,
+    RP_Opaque = 3,
+    RP_Cutout = 4,
+    RP_CelBorder = 5,
+    RP_ProjVolume = 6,
+    RP_OpaqueAfterProjVolume = 7,
+    RP_CutoutAfterProjVolume = 8,
+    RP_CelBorderAfterProjVolume = 9,
+    RP_MurkClear = 10,
+    RP_MurkOpaque = 11,
+    RP_MurkFill = 12,
+    RP_Translucent = 13,
+    RP_TranslucentCelBorder = 14,
+    RP_Blip = 15,
+    RP_Foreground = 16,
+    RP_WorldMap = 17,
+    RP_Max = 18
 };
+
+/**
+ * @brief Render Primitive List (?)
+ * @todo Implement the struct.
+ */
+struct RPL
+{
+    undefined4 *pfndraw; // NOTE: This is a function pointer.
+    float z;
+    RP rp;
+    // ...
+};
+
+void SubmitRpl(RPL *prpl);
+
+int NCmpPrplReverseZ(RPL **pprpl1, RPL **pprpl2);
+
+int CprplPartitionArpl(int cprpl, RPL *arpl, RPL **aprpl);
 
 /**
  * @brief Renders the given SW with the given camera.
@@ -28,6 +65,24 @@ struct GIFS : DMAS
  */
 void RenderSw(SW *psw, CM *pcm);
 
+void EnsureRenderGlobals();
+
+void EnsureCameraGlobals();
+
+void EnsureScreenCleared();
+
+void SetupRpDynamicTexture(RPL *prpl);
+
+void SetupRpBackground(RPL *prpl);
+
+void SetupRpBlotContext(RPL *prpl);
+
+void SetupRpGlob(RPL *prpl);
+
+void SetupRpBlip(RPL *prpl);
+
+void SetupRpWorldMap(RPL *prpl);
+
 /**
  * @brief Draws the given SW with the given camera.
  *
@@ -35,8 +90,6 @@ void RenderSw(SW *psw, CM *pcm);
  * @param pcm Pointer to the camera.
  */
 void DrawSw(SW *psw, CM *pcm);
-
-// ...
 
 /**
  * @brief Fills a rectangular area of the screen with a specified color and alpha value.
@@ -53,6 +106,9 @@ void DrawSw(SW *psw, CM *pcm);
  */
 void FillScreenRect(int r, int g, int b, int alpha, float xLeft, float yTop, float xRight, float yBottom, GIFS *pgifs);
 
-// ...
+/**
+ * @briefs Starts up the rendering system.
+ */
+void StartupRender();
 
 #endif // RENDER_H

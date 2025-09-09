@@ -381,7 +381,9 @@ PROBLEMATIC_FUNCS = set(
         "PwarpFromOid__F3OIDT0",
         "RenderMsGlobset__FP2MSP2CMP2RO",
         "ProjectBlipgTransform__FP5BLIPGfi",
-        "DrawTvBands__FP2TVR4GIFS"
+        "DrawTvBands__FP2TVR4GIFS",
+        "LoadShadersFromBrx__FP18CBinaryInputStream",
+        "FillShaders__Fi"
     ]
 )
 

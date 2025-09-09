@@ -20,6 +20,7 @@
 #include <bis.h>
 #include <proxy.h>
 #include <rs.h>
+#include <pnt.h>
 
 // Forward declarations
 struct XF;
@@ -30,7 +31,6 @@ struct EXPLO;
 struct EXPLS;
 struct EXPLSO;
 struct EXPLSTE;
-struct PNT;
 struct CAMERA;
 
 /**
@@ -96,14 +96,6 @@ struct WARP : XFM
     undefined4 unk3;
     undefined4 unk4;
     undefined4 unk5;
-};
-
-/**
- * @brief Point.
- */
-struct PNT : public LO
-{
-    VECTOR posLocal;
 };
 
 /**

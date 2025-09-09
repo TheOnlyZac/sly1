@@ -9,12 +9,43 @@
 #include "common.h"
 #include <sw.h>
 
+typedef int GRFEOPID;
+
+/**
+ * @brief Object Type?
+ * @todo Populate the enum with values from the prototype.
+ */
+enum OTYP
+{
+    OTYP_Nil = -1
+};
+
+/**
+ * @brief Optional Data?
+ */
+struct OPTDAT
+{
+    undefined4 unknown1;
+    undefined4 unknown2[2];
+    undefined4 unknown3;
+    undefined4 unknown4;
+    undefined4 unknown5;
+};
+
+/**
+ * @brief Unknown.
+ */
+struct EOPID
+{
+    OTYP otyp;
+    GRFEOPID grfeopid;
+    OPTDAT optdat;
+};
+
 /**
  * @brief Builds the eopids array.
  */
 void StartupBrx();
-
-// ...
 
 /**
  * @brief Creates a new PLO from the given parameters.
@@ -29,7 +60,10 @@ void StartupBrx();
  */
 SW* PloNew(CID cid, SW* psw, ALO* paloParent, OID oid, int isplice);
 
- // ...
+/**
+ * @brief TODO.
+ */
+void LoadOptionFromBrx(void *pvStruct, EOPID *peopid, CBinaryInputStream *pbis);
 
 /**
  * @brief Loads the options from a BRX file.
@@ -39,8 +73,6 @@ SW* PloNew(CID cid, SW* psw, ALO* paloParent, OID oid, int isplice);
  */
 void LoadOptionsFromBrx(void *pvStruct, CBinaryInputStream *pbis);
 
-// ...
-
 /**
  * @brief Get the PLO index from a stock OID.
  *
@@ -49,5 +81,15 @@ void LoadOptionsFromBrx(void *pvStruct, CBinaryInputStream *pbis);
  * @return The level object index.
  */
 uint IploFromStockOid(int oid);
+
+/**
+ * @brief TODO.
+ */
+void LoadSwObjectsFromBrx(SW *psw, ALO *paloParent, CBinaryInputStream *pbis);
+
+/**
+ * @brief TODO.
+ */
+void SetLoDefaults(LO *plo);
 
 #endif // BRX_H

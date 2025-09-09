@@ -411,6 +411,11 @@ void ClearCmFadeObjects(CM *pcm);
 void SetupCm(CM *pcm);
 
 /**
+ * @brief TODO.
+ */
+void DrawCm(CM *pcm);
+
+/**
  * @brief Sets the position matrix on the given camera.
  */
 void SetCmPosMat(CM *pcm,VECTOR *ppos,MATRIX3 *pmat);

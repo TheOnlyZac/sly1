@@ -1,4 +1,7 @@
 #include <brx.h>
+#include <bis.h>
+
+extern EOPID g_aeopid[];
 
 void StartupBrx()
 {
@@ -18,7 +21,18 @@ SW *PloNew(CID cid, SW *psw, ALO *paloParent, OID oid, int isplice)
 
 INCLUDE_ASM(const s32, "P2/brx", LoadOptionFromBrx__FPvP5EOPIDP18CBinaryInputStream);
 
-INCLUDE_ASM(const s32, "P2/brx", LoadOptionsFromBrx__FPvP18CBinaryInputStream);
+void LoadOptionsFromBrx(void *pvStruct, CBinaryInputStream *pbis)
+{
+    while (true)
+    {
+        short eopid = pbis->S16Read();
+        if (eopid < 0)
+        {
+            break;
+        }
+        LoadOptionFromBrx(pvStruct, &g_aeopid[eopid], pbis);
+    }
+}
 
 uint IploFromStockOid(int oid)
 {

@@ -9,8 +9,8 @@
 #include "common.h"
 #include <font.h>
 #include <game.h>
-#include <shd.h>
 
+struct SHD; // Forward declaration.
 class CTextEdge; // Forward declaration
 
 // MARK: Blot

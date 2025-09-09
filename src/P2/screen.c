@@ -105,7 +105,8 @@ INCLUDE_ASM(const s32, "P2/screen", UpdateTimer__FP5TIMER);
 
 INCLUDE_ASM(const s32, "P2/screen", DrawTimer__FP5TIMER);
 
-void SetTimer(TIMER *ptimer, float dt) {
+void SetTimer(TIMER *ptimer, float dt)
+{
     float threshold = D_0024CD4C;
     ptimer->pfntnThreshold = (undefined1 *)0;
     ptimer->fThreshold = 0;
@@ -123,41 +124,49 @@ void SetTimer(TIMER *ptimer, float dt) {
     ptimer->pvttimer->pfnShowBlot(ptimer);
 }
 
-void SetTimerSpeed(TIMER *ptimer, float svt) {
+void SetTimerSpeed(TIMER *ptimer, float svt)
+{
     ptimer->svt = svt;
 }
 
 /**
  * @brief Sets the time until the timer expires, and callback function.
  */
-void SetTimerExpire(TIMER *ptimer, float dt, void *pfntn) {
+void SetTimerExpire(TIMER *ptimer, float dt, void *pfntn)
+{
     STRUCT_OFFSET(ptimer, 0x288, float) = dt; // ptimer->dt = dt;
     STRUCT_OFFSET(ptimer, 0x28c, void *) = pfntn; // ptimer->pfntnThreshold = pfntn;
 }
 
-void StartTimer(TIMER *ptimer) {
+void StartTimer(TIMER *ptimer)
+{
     SetTimerTimers(ptimer, TIMERS_Running);
 }
 
-void StopTimer(TIMER *ptimer) {
+void StopTimer(TIMER *ptimer)
+{
     ptimer->fStopped = 1;
     SetTimerTimers(ptimer, TIMERS_Expired);
 }
 
 INCLUDE_ASM(const s32, "P2/screen", RebuildTimerAchzDraw__FP5TIMERf);
 
-void SetTimerTimers(TIMER *ptimer, TIMERS timers) {
-    if (ptimer->timers != timers) {
+void SetTimerTimers(TIMER *ptimer, TIMERS timers)
+{
+    if (ptimer->timers != timers)
+    {
         ptimer->timers = timers;
         ptimer->tTimers = g_clock.t;
     }
 }
 
-float DtVisibleTrunkctr(TRUNKCTR *ptrunkctr) {
+float DtVisibleTrunkctr(TRUNKCTR *ptrunkctr)
+{
     return 0.0;
 }
 
-float DtVisibleCrusherctr(CRUSHERCTR *pcrusherctr) {
+float DtVisibleCrusherctr(CRUSHERCTR *pcrusherctr)
+{
     return 0.0;
 }
 

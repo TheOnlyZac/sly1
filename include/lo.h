@@ -7,11 +7,11 @@
 #define LO_H
 
 #include "common.h"
+#include <dl.h>
+#include <mq.h>
 #include <oid.h>
 #include <basic.h>
-#include <dl.h>
 #include <splice/frame.h>
-#include <mq.h>
 
 struct ALO; // Forward declaration.
 struct SW;
@@ -74,7 +74,7 @@ void AddLoHierarchy(LO *plo);
 /**
  * @brief Does nothing
  */
-void OnLoAdd();
+void OnLoAdd(LO *plo);
 
 /**
  * @brief Removes LO from 'dlChild' of either parent ALO, if present, or SW
