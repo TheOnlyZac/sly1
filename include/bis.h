@@ -71,11 +71,13 @@ public:
     /**
      * @brief Constructs a new CBinaryInputStream.
      *
-     * @param fileName Name of the file to open.
+     * @param pvSpool Pointer to data.
+     * @param cbSpool Size of data in bytes.
+     * @param grfbis  Flags.
      *
      * @todo Implement this constructor.
      */
-    CBinaryInputStream(int cbSpool, void *pvSpool, GRFBIS grfbis);
+    CBinaryInputStream(void *pvSpool, int cbSpool, GRFBIS grfbis);
 
     /**
      * @brief Destroys the CBinaryInputStream.

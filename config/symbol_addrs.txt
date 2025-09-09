@@ -717,7 +717,7 @@ _GLOBAL_$I$InitBei__FP3BEIP3CLQffi = 0x137270; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/bis.c
 ////////////////////////////////////////////////////////////////
-__18CBinaryInputStreamiPvi = 0x137290; // type:func
+__18CBinaryInputStreamPvii = 0x137290; // type:func
 DESTRUCTOR__CBinaryInputStream = 0x1372E0; // type:func
 FOpenSector__18CBinaryInputStreamUiUi = 0x137328; // type:func
 OpenMemory__18CBinaryInputStreamiPv = 0x137398; // type:func
@@ -2281,8 +2281,34 @@ D_0064C70F = 0x64C70F; // size:0x04
 
 
 ////////////////////////////////////////////////////////////////
+// P2/missile.c
+////////////////////////////////////////////////////////////////
+InitMissile__FP7MISSILE                             = 0x18D8E0; // type:func
+LoadMissileFromBrx__FP7MISSILEP18CBinaryInputStream = 0x18D910; // type:func
+OnMissileRemove__FP7MISSILE                         = 0x18D978; // type:func
+ProjectMissileTransform__FP7MISSILEfi               = 0x18D9B8; // type:func
+FireMissile__FP7MISSILEP3ALOP6VECTOR                = 0x18DA40; // type:func
+RenderMissileAll__FP7MISSILEP2CMP2RO                = 0x18DB20; // type:func
+FUN_0018dc88                                        = 0x18DC88; // type:func
+FUN_0018dd50                                        = 0x18DD50; // type:func
+FUN_0018dd78                                        = 0x18DD78; // type:func
+InitAccmiss__FP7ACCMISS                             = 0x18DDA0; // type:func
+FireAccmiss__FP7ACCMISSP3ALOP6VECTOR                = 0x18DDD8; // type:func
+PresetAccmissAccel__FP7ACCMISSf                     = 0x18DE70; // type:func
+FireSplmiss__FP7SPLMISSP3ALOP6VECTOR                = 0x18DEE8; // type:func
+ProjectSplmissTransform__FP7SPLMISSfi               = 0x18E040; // type:func
+
+s_asnipMissile = 0x2699b0;
+
+
+////////////////////////////////////////////////////////////////
 // P2/mpeg.c
 ////////////////////////////////////////////////////////////////
+FUN_0018e410                                           = 0x18E410; // type:func
+FUN_0018e480                                           = 0x18E480; // type:func
+FUN_0018e4c0                                           = 0x18E4C0; // type:func
+FUN_0018e4f0                                           = 0x18E4F0; // type:func
+FUN_0018e558                                           = 0x18E558; // type:func
 StartupMpeg__Fv                                        = 0x18E5E8; // type:func
 Init__15CQueueOutputIopii                              = 0x18E678; // type:func
 Reset__15CQueueOutputIop                               = 0x18E6A0; // type:func
@@ -2557,6 +2583,25 @@ OnRatholeRemove__FP7RATHOLE                 = 0x19C408; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/rchm.c
+////////////////////////////////////////////////////////////////
+InitRchm__FP4RCHM                                   = 0x19C440; // type:func
+LoadRchmFromBrx__FP4RCHMP18CBinaryInputStream       = 0x19C470; // type:func
+PostRchmLoad__FP4RCHM                               = 0x19C728; // type:func
+ReblendRchm__FP4RCHMP3TWRP6VECTOR                   = 0x19C9C8; // type:func
+BuildRchmCoefficients__FP4RCHMfffPf                 = 0x19CC10; // type:func
+ConvertRchmIposToRclIoLhub__FP4RCHMiPfN22           = 0x19CD90; // type:func
+SetRchmNaturalCoefficients__FP4RCHMfff              = 0x19CE28; // type:func
+SetRchmCenterCoefficients__FP4RCHMfff               = 0x19CE38; // type:func
+PredictRchmTargetPos__FP4RCHMP6TARGETfP6VECTOR      = 0x19CE50; // type:func
+PredictRchmTargetLocalPos__FP4RCHMP6TARGETfP6VECTOR = 0x19CEC0; // type:func
+PtwrMapRchmSafe__FP4RCHMP3BSPP6VECTOR               = 0x19CF68; // type:func
+FindRchmClosestPoint__FP4RCHMP6VECTORT1PP3TWRPf     = 0x19D0E0; // type:func
+TrackJtTarget__FP2JTP4RCHMP6TARGET                  = 0x19D2A8; // type:func
+TrackJtPipe__FP2JTP4RCHMP4PIPEPf                    = 0x19D338; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/render.c
 ////////////////////////////////////////////////////////////////
 SubmitRpl__FP3RPL                 = 0x19D410; // type:func
@@ -2675,17 +2720,15 @@ FUN_001adff0 = 0x1ADFF0; // type:func
 FUN_001ae130 = 0x1AE130; // type:func
 UpdateAttract__FP7ATTRACT = 0x1AE178; // type:func
 DrawLineScreen__FUiUiUiUiUiUiG4RGBAi = 0x1AE3B8; // type:func
-
-
-// TODO: Integrate in to P2/screen.c?
-// FUN_001ae510 = 0x1AE510; // type:func
-// FUN_001ae5e0 = 0x1AE5E0; // type:func
-// FUN_001ae758 = 0x1AE758; // type:func
-// FUN_001ae7f8 = 0x1AE7F8; // type:func
-// FUN_001ae820 = 0x1AE820; // type:func
-// FUN_001aea08 = 0x1AEA08; // type:func
-// FUN_001aea70 = 0x1AEA70; // type:func
-// FUN_001aec90 = 0x1AEC90; // type:func
+FUN_001ae510 = 0x1AE510; // type:func
+FUN_001ae5e0 = 0x1AE5E0; // type:func
+FUN_001ae758 = 0x1AE758; // type:func
+FUN_001ae7f8 = 0x1AE7F8; // type:func
+FUN_001ae820 = 0x1AE820; // type:func
+FUN_001aea08 = 0x1AEA08; // type:func
+FUN_001aea70 = 0x1AEA70; // type:func
+junk_001aec80 = 0x1AEC80; // type:func
+FUN_001aec90 = 0x1AEC90; // type:func
 
 // Global blots
 g_lifectr = 0x26c6c8; // size:0x280
@@ -2708,6 +2751,61 @@ g_totals = 0x26f138; // size:0x280
 
 // Maybe doesn't belong here?
 g_binoc = 0x2701F8; // size:0x4
+
+
+////////////////////////////////////////////////////////////////
+// P2/sensor.c
+////////////////////////////////////////////////////////////////
+InitSensor__FP6SENSOR                           = 0x1AECB0; // type:func
+SetSensorAlarm__FP6SENSORP5ALARM                = 0x1AECE0; // type:func
+SetSensorSensors__FP6SENSOR7SENSORS             = 0x1AECE8; // type:func
+FCheckSensorObject__FP6SENSORP2SO               = 0x1AED78; // type:func
+FIgnoreSensorObject__FP6SENSORP2SO              = 0x1AEE50; // type:func
+FOnlySensorTriggerObject__FP6SENSORP2SO         = 0x1AEF00; // type:func
+PauseSensor__FP6SENSOR                          = 0x1AEF68; // type:func
+UpdateSensor__FP6SENSORf                        = 0x1AEFA0; // type:func
+AddSensorTriggerObject__FP6SENSOR3OID           = 0x1AF000; // type:func
+AddSensorNoTriggerObject__FP6SENSOR3OID         = 0x1AF028; // type:func
+AddSensorTriggerClass__FP6SENSOR3CID            = 0x1AF050; // type:func
+AddSensorNoTriggerClass__FP6SENSOR3CID          = 0x1AF078; // type:func
+InitLasen__FP5LASEN                             = 0x1AF0A0; // type:func
+LoadLasenFromBrx__FP5LASENP18CBinaryInputStream = 0x1AF0D0; // type:func
+BindLasen__FP5LASEN                             = 0x1AF108; // type:func
+PostLasenLoad__FP5LASEN                         = 0x1AF3B8; // type:func
+UpdateBusyLasenSenseTimes__Fv                   = 0x1AF508; // type:func
+UpdateLasen__FP5LASENf                          = 0x1AF5C8; // type:func
+FreezeLasen__FP5LASENi                          = 0x1AF7A8; // type:func
+RenderLasenSelf__FP5LASENP2CMP2RO               = 0x1AF820; // type:func
+FUN_001afaf8                                    = 0x1AFAF8; // type:func
+SenseLasen__FP5LASENP7SENSORS                   = 0x1AFBB0; // type:func
+EnableLasen__FP5LASEN5SENSM                     = 0x1B00E8; // type:func
+DisableLasen__FP5LASEN                          = 0x1B0120; // type:func
+OnLasenAlarmTriggered__FP5LASEN                 = 0x1B0160; // type:func
+SetLasenSensors__FP5LASEN7SENSORS               = 0x1B01B0; // type:func
+SCalcLasenShapeExtent__FP5LASENP5LBEAM          = 0x1B0360; // type:func
+RetractLasen__FP5LASENf                         = 0x1B0470; // type:func
+ExtendLasen__FP5LASENf                          = 0x1B0488; // type:func
+InitCamsen__FP6CAMSEN                           = 0x1B04A0; // type:func
+PostCamsenLoad__FP6CAMSEN                       = 0x1B04D0; // type:func
+UpdateCamsen__FP6CAMSENf                        = 0x1B0578; // type:func
+RenderCamsenSelf__FP6CAMSENP2CMP2RO             = 0x1B0838; // type:func
+FIgnoreCamsenIntersection__FP6CAMSENP2SO        = 0x1B0BD8; // type:func
+FFilterCamsen__FPvP2SO                          = 0x1B0BE0; // type:func
+SenseCamsen__FP6CAMSENP7SENSORS                 = 0x1B0C68; // type:func
+EnableCamsen__FP6CAMSEN5SENSM                   = 0x1B0EA8; // type:func
+DisableCamsen__FP6CAMSEN                        = 0x1B0EE0; // type:func
+OnCamsenAlarmTriggered__FP6CAMSEN               = 0x1B0F70; // type:func
+SetCamsenSensors__FP6CAMSEN7SENSORS             = 0x1B0FC0; // type:func
+SetCamsenCsdts__FP6CAMSEN5CSDTS                 = 0x1B1070; // type:func
+InitPrsen__FP5PRSEN                             = 0x1B1158; // type:func
+PostPrsenLoad__FP5PRSEN                         = 0x1B11A0; // type:func
+UpdatePrsen__FP5PRSENf                          = 0x1B1238; // type:func
+SensePrsen__FP5PRSENP7SENSORS                   = 0x1B1438; // type:func
+EnablePrsen__FP5PRSEN5SENSM                     = 0x1B15D0; // type:func
+DisablePrsen__FP5PRSEN                          = 0x1B1608; // type:func
+OnPrsenAlarmTriggered__FP5PRSEN                 = 0x1B1698; // type:func
+SetPrsenSensors__FP5PRSEN7SENSORS               = 0x1B1710; // type:func
+UpdatePrsenLoopShader__FP5PRSEN                 = 0x1B1898; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -2789,6 +2887,33 @@ PvAllocSlotheapImpl__FP8SLOTHEAP       = 0x1B5EC0; // type:func
 PvAllocSlotheapClearImpl__FP8SLOTHEAP  = 0x1B5EE0; // type:func
 FreeSlotheapPv__FP8SLOTHEAPPv          = 0x1B5F28; // type:func
 junk_001B5F48                          = 0x1B5F48; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/sm.c
+////////////////////////////////////////////////////////////////
+LoadSmFromBrx__FP2SMP18CBinaryInputStream = 0x1B5F50; // type:func
+PostSmLoad__FP2SM                         = 0x1B61A8; // type:func
+PostSmLoadCallback__FP2SM5MSGIDPv         = 0x1B61F0; // type:func
+PsmaApplySm__FP2SMP3ALO3OIDi              = 0x1B6290; // type:func
+PsmaFindSm__FP2SMP3ALO                    = 0x1B6388; // type:func
+IsmsFindSmOptional__FP2SM3OID             = 0x1B63C0; // type:func
+IsmsFindSmRequired__FP2SM3OID             = 0x1B63F8; // type:func
+OidFromSmIsms__FP2SMi                     = 0x1B6420; // type:func
+RetractSma__FP3SMA                        = 0x1B6438; // type:func
+SetSmaGoal__FP3SMA3OID                    = 0x1B64D8; // type:func
+GetSmaGoal__FP3SMAP3OID                   = 0x1B6568; // type:func
+GetSmaCur__FP3SMAP3OID                    = 0x1B6598; // type:func
+GetSmaNext__FP3SMAP3OID                   = 0x1B65C8; // type:func
+SetSmaSvt__FP3SMAf                        = 0x1B65F8; // type:func
+SeekSma__FP3SMA3OID                       = 0x1B6628; // type:func
+ChooseSmaTransition__FP3SMA               = 0x1B66A0; // type:func
+EndSmaTransition__FP3SMA                  = 0x1B6C68; // type:func
+HandleSmaMessage__FP3SMA5MSGIDPv          = 0x1B6CA8; // type:func
+SkipSma__FP3SMAf                          = 0x1B6CF0; // type:func
+SendSmaMessage__FP3SMA5MSGIDPv            = 0x1B6D78; // type:func
+FUN_001b6df8                              = 0x1B6DF8; // type:func
+NotifySmaSpliceOnEnterState__FP3SMAii     = 0x1B6E28; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -3128,6 +3253,37 @@ StartupThread__Fv = 0x1e2398; // type:func
 g_athread = 0x275958; // size:0xC
 
 g_abRenderLoopStack = 0x6056d0; // size:0x20000
+
+
+////////////////////////////////////////////////////////////////
+// P2/tn.c
+////////////////////////////////////////////////////////////////
+PtnfnFromTn__FP2TN                                         = 0x1E2420; // type:func
+GetTnfnNose__FP4TNFNP6CPDEFIP6VECTORP2TN                   = 0x1E2438; // type:func
+InitTn__FP2TN                                              = 0x1E2520; // type:func
+OnTnRemove__FP2TN                                          = 0x1E25F8; // type:func
+LoadTnFromBrx__FP2TNP18CBinaryInputStream                  = 0x1E2648; // type:func
+PostTnLoad__FP2TN                                          = 0x1E2758; // type:func
+SetTnTns__FP2TN3TNS                                        = 0x1E2778; // type:func
+FUN_001e2840                                               = 0x1E2840; // type:func
+UpdateTnCallback__FP2TN5MSGIDPv                            = 0x1E2870; // type:func
+UpdateTn__FP2TNf                                           = 0x1E2940; // type:func
+RenderTnSelf__FP2TNP2CMP2RO                                = 0x1E2988; // type:func
+FreezeTn__FP2TNi                                           = 0x1E29A8; // type:func
+FUN_001e29e8                                               = 0x1E29E8; // type:func
+CalculateTnCrv__FP2TNP6VECTORN21                           = 0x1E2A00; // type:func
+CalculateTnPos__FP2TNP6VECTORffP3CLQP2LM4FTNDT1            = 0x1E2BF0; // type:func
+ActivateCptn__FP4CPTNPv                                    = 0x1E2E68; // type:func
+DeactivateCptn__FP4CPTNPv                                  = 0x1E30A0; // type:func
+SetCptn__FP4CPTNPv                                         = 0x1E30D8; // type:func
+RevokeCptn__FP4CPTNPv                                      = 0x1E30E0; // type:func
+FUN_001e30e8                                               = 0x1E30E8; // type:func
+UpdateCptn__FP4CPTNP6CPDEFIP3JOYf                          = 0x1E31F0; // type:func
+FUN_001e4578                                               = 0x1E4578; // type:func
+FUN_001e4880                                               = 0x1E4880; // type:func
+FUN_001e4888                                               = 0x1E4888; // type:func
+LoadTbspFromBrx__FP18CBinaryInputStreamPiPP5TSURFT1PP4TBSP = 0x1E4C48; // type:func
+FCheckTbspPoint__FP4TBSPP6VECTOR                           = 0x1E4DC0; // type:func
 
 
 ////////////////////////////////////////////////////////////////

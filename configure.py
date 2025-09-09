@@ -376,14 +376,17 @@ OPCODE_PATTERN = re.compile(f"{COMMENT_PART}  {INSTRUCTION_PART}")
 
 PROBLEMATIC_FUNCS = set(
     [
-        "UpdateJtActive__FP2JTP3JOYf",
-        "AddMatrix4Matrix4__FP7MATRIX4N20",
-        "PwarpFromOid__F3OIDT0",
-        "RenderMsGlobset__FP2MSP2CMP2RO",
-        "ProjectBlipgTransform__FP5BLIPGfi",
-        "DrawTvBands__FP2TVR4GIFS",
-        "LoadShadersFromBrx__FP18CBinaryInputStream",
-        "FillShaders__Fi"
+        "UpdateJtActive__FP2JTP3JOYf", # P2/jt
+        "AddMatrix4Matrix4__FP7MATRIX4N20", # P2/mat
+        "FInvertMatrix__FiPfT1", # P2/mat
+        "PwarpFromOid__F3OIDT0", # P2/xform
+        "RenderMsGlobset__FP2MSP2CMP2RO", # P2/ms
+        "ProjectBlipgTransform__FP5BLIPGfi", # P2/blip
+        "DrawTvBands__FP2TVR4GIFS", # P2/tv
+        "LoadShadersFromBrx__FP18CBinaryInputStream", # P2/shd
+        "FillShaders__Fi", # P2/shd
+        "FUN_001aea70", # P2/screen
+        "junk_001aec80" # P2/screen
     ]
 )
 

@@ -15,6 +15,7 @@
 #include <clock.h>
 
 struct CM; // Forward declaration
+struct TN;
 
 /**
  * @brief Unknown Kind.
@@ -75,6 +76,7 @@ enum LOOKK
 
 /**
  * @brief Unknown.
+ * @todo Move to tn.h?
  */
 enum FTND
 {
@@ -112,16 +114,6 @@ struct CPDEFI
     float tMoveLast;
     CFK cfk;
     VECTOR posAdjust;
-};
-
-/**
- * @brief Unknown.
- *
- * @todo Implement.
- */
-struct TN : public ALO
-{
-    // ...
 };
 
 /**

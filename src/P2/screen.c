@@ -245,3 +245,21 @@ INCLUDE_ASM(const s32, "P2/screen", UpdateAttract__FP7ATTRACT);
 INCLUDE_ASM(const s32, "P2/screen", func_001AE220);
 
 INCLUDE_ASM(const s32, "P2/screen", DrawLineScreen__FUiUiUiUiUiUiG4RGBAi);
+
+INCLUDE_ASM(const s32, "P2/screen", FUN_001ae510);
+
+INCLUDE_ASM(const s32, "P2/screen", FUN_001ae5e0);
+
+INCLUDE_ASM(const s32, "P2/screen", FUN_001ae758);
+
+INCLUDE_ASM(const s32, "P2/screen", FUN_001ae7f8);
+
+INCLUDE_ASM(const s32, "P2/screen", FUN_001ae820);
+
+INCLUDE_ASM(const s32, "P2/screen", FUN_001aea08);
+
+INCLUDE_ASM(const s32, "P2/screen", FUN_001aea70);
+
+INCLUDE_ASM(const s32, "P2/screen", junk_001aec80);
+
+INCLUDE_ASM(const s32, "P2/screen", FUN_001aec90);

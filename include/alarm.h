@@ -7,12 +7,14 @@
 #define ALARM_H
 
 #include "common.h"
-#include <sensor.h>
 #include <break.h>
 #include <sound.h>
 #include <oid.h>
 #include <dl.h>
 #include <so.h>
+
+// Forward.
+struct SENSOR;
 
 /**
  * @brief Unknown.

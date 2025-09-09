@@ -23,7 +23,13 @@ INCLUDE_ASM(const s32, "P2/mat", __ml__FRC7MATRIX4G10VU_VECTOR4);
 
 INCLUDE_ASM(const s32, "P2/mat", TransposeMatrix4__FP7MATRIX4T0);
 
-INCLUDE_ASM(const s32, "P2/mat", AddMatrix4Matrix4__FP7MATRIX4N20);
+void AddMatrix4Matrix4(MATRIX4 *pmatLeft, MATRIX4 *pmatRight, MATRIX4 *pmatDst)
+{
+    for (int i = 0; i < 16; i++)
+    {
+        pmatDst->mat[0][i] = pmatLeft->mat[0][i] + pmatRight->mat[0][i];
+    }
+}
 
 INCLUDE_ASM(const s32, "P2/mat", junk_00188848);
 
