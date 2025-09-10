@@ -8,7 +8,7 @@
 #include <lo.h>
 
 /**
- * @brief Unknown.
+ * @brief Pipe.
  * @todo Implement the struct.
  */
 struct PIPE : public LO

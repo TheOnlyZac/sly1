@@ -47,6 +47,11 @@
 
 // CM* g_pcm = (CM *)0x0;
 
+void StartupCm()
+{
+    return;
+}
+
 INCLUDE_ASM(const s32, "P2/cm", CalcCmAdjust__FP2CMP2SOP6CPDEFIP6VECTOR);
 
 INCLUDE_ASM(const s32, "P2/cm", SpringCm__FfffP2CMP6VECTORP6VECTORP6VECTOR);
@@ -207,12 +212,13 @@ INCLUDE_ASM(const s32, "P2/cm", DecomposeCylind);
 
 INCLUDE_ASM(const s32, "P2/cm", DecomposeSphere);
 
-void SetCmCut(CM *pcm, float cut[]) //NOTE: I have no idea what i wrote here... But it gives matching code...
+void SetCmCut(CM *pcm, float *pradCut)
 {
-    pcm->field41_0x224 = 1;
-    if (cut != 0) {
-        STRUCT_OFFSET(pcm, 0x228, int) = 1;
-        STRUCT_OFFSET(pcm, 0x22c, float) = cut[0];
+    pcm->field41_0x224 = 1; // Likely pcm->fCut
+    if (pradCut)
+    {
+        pcm->field42_0x228 = 1; // Likely pcm->fRadCut
+        pcm->field43_0x22c = pradCut[0]; // Likely pcm->radCut
     }
 }
 
@@ -275,5 +281,5 @@ INCLUDE_ASM(const s32, "P2/cm", cm__static_initialization_and_destruction_0__Fii
 
 void _GLOBAL_$I$StartupCm()
 {
-    cm__static_initialization_and_destruction_0(1,0xffff);
+    cm__static_initialization_and_destruction_0(1, 0xffff);
 }

@@ -328,6 +328,11 @@ struct CM : public LO
 extern CM *g_pcm; // Pointer to the main game camera.
 
 /**
+ * @brief Starts up the camera system.
+ */
+void StartupCm();
+
+/**
  * @brief Calls RecalcCmFrustrum on the given camera.
  */
 void RecalcCmFrustrum(CM *pcm);
@@ -410,12 +415,12 @@ void DrawCm(CM *pcm);
 /**
  * @brief Sets the position matrix on the given camera.
  */
-void SetCmPosMat(CM *pcm,VECTOR *ppos,MATRIX3 *pmat);
+void SetCmPosMat(CM *pcm, VECTOR *ppos, MATRIX3 *pmat);
 
 /**
  * @brief Sets Cut on the given camera.
  */
-void SetCmCut(CM *pcm, float cut[]);
+void SetCmCut(CM *pcm, float *pradCut);
 
 /**
  * @brief Sets the reset flag on the given camera.

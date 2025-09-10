@@ -28,15 +28,15 @@ DMAS::DMAS()
 
 void DMAS::Clear()
 {
-    m_pbMax = (uchar*)nullptr;
-    m_ab = (uchar*)nullptr;
-    m_pqwCnt = (QW*)nullptr;
-    m_pb = (uchar*)nullptr;
+    m_pbMax = (uchar *)nullptr;
+    m_ab = (uchar *)nullptr;
+    m_pqwCnt = (QW *)nullptr;
+    m_pb = (uchar *)nullptr;
 }
 
 void DMAS::Reset()
 {
-    m_pqwCnt = (QW*)nullptr;
+    m_pqwCnt = (QW *)nullptr;
     m_pb = m_ab;
 }
 
@@ -48,23 +48,23 @@ INCLUDE_ASM(const s32, "P2/dmas", AllocStack__4DMASi);
 
 INCLUDE_ASM(const s32, "P2/dmas", AllocStatic__4DMASiP2QW);
 
-void DMAS::Detach(int* arg0, QW** arg1)
+void DMAS::Detach(int *pcqw, QW **paqw)
 {
     EndDmaCnt();
-    if (arg0 != nullptr)
+    if (pcqw)
     {
-        *arg0 = (uint)(m_pb - m_ab) >> 4;
+        *pcqw = (uint)(m_pb - m_ab) >> 4;
     }
-    if (arg1 != nullptr)
+    if (paqw)
     {
-        *arg1 = (QW*)m_ab;
+        *paqw = (QW *)m_ab;
     }
     Clear();
 }
 
 INCLUDE_ASM(const s32, "P2/dmas", DetachCopySw__4DMASPiPP2QWT2i);
 
-void DMAS::Send(sceDmaChan* chan)
+void DMAS::Send(sceDmaChan *chan)
 {
     EndDmaCnt();
     FlushCache(WRITEBACK_DCACHE);
@@ -93,4 +93,4 @@ void DMAS::EndPrim()
     return;
 }
 
-INCLUDE_ASM(const s32, "P2/dmas", func_00152E20);
+INCLUDE_ASM(const s32, "P2/dmas", junk_00152E20);

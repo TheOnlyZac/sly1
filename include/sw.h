@@ -38,6 +38,8 @@ MQ *PmqAllocSw(SW *psw);
 
 void IncrementSwHandsOff(SW *psw);
 
+void DecrementSwHandsOff(SW *psw);
+
 void FreeSwMqList(SW *psw, MQ *pmq);
 
 void DeleteSw(SW *psw); // todo check order of functions

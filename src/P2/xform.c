@@ -47,16 +47,19 @@ INCLUDE_ASM(const s32, "P2/xform", SetExitExits__FP4EXIT5EXITS);
  */
 void SetExitExits(EXIT *pexit, EXITS exits)
 {
-    if (exits == pexit->exits) {
+    if (exits == pexit->exits)
+    {
         return;
     }
 
-    if (pexit->exits == EXITS_Totals && exits != EXITS_Exiting) {
+    if (pexit->exits == EXITS_Totals && exits != EXITS_Exiting)
+    {
         BLOT *totals = (BLOT *)&g_totals;
         g_totals.pvttotals->pfnHideBlot(totals);
     }
 
-    if (exits != EXITS_Exiting) {
+    if (exits != EXITS_Exiting)
+    {
         pexit->exits = exits;
         pexit->tExits = g_clock.t;
         return;

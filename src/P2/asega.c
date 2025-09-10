@@ -1,4 +1,4 @@
-#include "common.h"
+#include <asega.h>
 
 INCLUDE_ASM(const s32, "P2/asega", PasegaNew__FP2SW);
 
@@ -8,7 +8,7 @@ INCLUDE_ASM(const s32, "P2/asega", UpdateAsegaIeaCur__FP5ASEGA);
 
 INCLUDE_ASM(const s32, "P2/asega", PactsegFindAsega__FP5ASEGA3OID);
 
-INCLUDE_ASM(const s32, "P2/asega", func_0012D5C8);
+INCLUDE_ASM(const s32, "P2/asega", junk_0012D5C8);
 
 INCLUDE_ASM(const s32, "P2/asega", HandleAsegaEvent__FP5ASEGAP2EAPi);
 

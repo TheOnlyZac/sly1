@@ -4,10 +4,9 @@
 
 void SetVectorCylind(VECTOR *pvec, float rad, float sXY, float sZ)
 {
-    float gSin;
-    float gCos;
-
+    float gSin, gCos;
     CalculateSinCos(rad, &gSin, &gCos);
+
     pvec->z = sZ;
     pvec->x = gCos * sXY;
     pvec->y = gSin * sXY;
@@ -15,13 +14,10 @@ void SetVectorCylind(VECTOR *pvec, float rad, float sXY, float sZ)
 
 void SetVectorSphere(VECTOR *pvec, float radPan, float radTilt, float s)
 {
-    float gSinPan;
-    float gCosPan;
-    float gSinTilt;
-    float gCosTilt;
-
+    float gSinPan, gCosPan, gSinTilt, gCosTilt;
     CalculateSinCos(radPan,&gSinPan, &gCosPan);
     CalculateSinCos(radTilt, &gSinTilt, &gCosTilt);
+
     pvec->z = gSinTilt * s;
     pvec->x = gCosTilt * gCosPan * s;
     pvec->y = gCosTilt * gSinPan * s;
@@ -70,11 +66,7 @@ void CalculateVectorPanTilt(VECTOR *pvec, float *ppan, float *ptilt)
 
 void ConvertDeulToW(VECTOR *peul, VECTOR *pdeul, VECTOR *pw)
 {
-    float ySin;
-    float yCos;
-    float zSin;
-    float zCos;
-
+    float ySin, yCos, zSin, zCos;
     CalculateSinCos(peul->y, &ySin, &yCos);
     CalculateSinCos(peul->z, &zSin, &zCos);
 

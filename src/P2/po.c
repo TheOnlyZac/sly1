@@ -1,7 +1,8 @@
 #include <po.h>
 
-void InitPo(PO* ppo) {
-    InitSo((SO *)ppo);
+void InitPo(PO *ppo)
+{
+    InitSo(ppo);
 
     STRUCT_OFFSET(ppo, 0x598, PO *) = ppo;
     STRUCT_OFFSET(ppo, 0x580, int) = 1;
@@ -53,7 +54,7 @@ void OnPoAdd(PO *ppo)
 
 void OnPoRemove(PO *ppo)
 {
-    OnSoRemove((SO *)ppo);
+    OnSoRemove(ppo);
     RemovePoFromList(ppo);
 }
 

@@ -162,12 +162,12 @@ void SetTimerTimers(TIMER *ptimer, TIMERS timers)
 
 float DtVisibleTrunkctr(TRUNKCTR *ptrunkctr)
 {
-    return 0.0;
+    return 0.0f;
 }
 
 float DtVisibleCrusherctr(CRUSHERCTR *pcrusherctr)
 {
-    return 0.0;
+    return 0.0f;
 }
 
 INCLUDE_ASM(const s32, "P2/screen", func_001ABE60);

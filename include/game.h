@@ -17,6 +17,7 @@
  */
 enum GAMEWORLD
 {
+    GAMEWORLD_Nil = -1,
     GAMEWORLD_Intro = 0,
     GAMEWORLD_Underwater = 1,
     GAMEWORLD_Muggshot = 2,
@@ -31,6 +32,7 @@ enum GAMEWORLD
  */
 enum WORLDLEVEL
 {
+    WORLDLEVEL_Nil = -1,
     WORLDLEVEL_Approach = 0,
     WORLDLEVEL_Hub = 1,
     WORLDLEVEL_Level1 = 2,
@@ -102,7 +104,7 @@ typedef int GRFLS;
 typedef int GRFVAULT;
 
 /**
- * @brief Level State
+ * @brief Level State.
  */
 struct LS
 {
@@ -121,7 +123,7 @@ struct LS
 };
 
 /**
- * @brief World State
+ * @brief World State.
  */
 struct WS
 {
@@ -134,7 +136,7 @@ struct WS
 };
 
 /**
- * @brief Game State
+ * @brief Game State.
  */
 struct GS
 {
@@ -408,9 +410,9 @@ bool FCharmAvailable();
  * Used in UnloadGame and FUN_00160948.
  * Probably used to clear a pointer or something.
  *
- * @param ptr Pointer to the memory to clear.
+ * @param pv Pointer to the memory to clear.
  */
-undefined8 *clr_8_bytes_1(void *ptr);
+extern "C" void *clr_8_bytes_1(void *pv);
 
 /**
  * @brief Unknown function.

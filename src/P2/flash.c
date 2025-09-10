@@ -9,7 +9,8 @@ extern CLOCK g_clock;
  */
 INCLUDE_ASM(const s32, "P2/flash", InitFlash__FP5FLASH);
 #ifdef SKIP_ASM
-void InitFlash(FLASH* pflash) {
+void InitFlash(FLASH *pflash)
+{
     InitAlo(pflash);
 
     float fOne   = 1.0f;
@@ -30,7 +31,7 @@ INCLUDE_ASM(const s32, "P2/flash", LoadFlashFromBrx__FP5FLASHP18CBinaryInputStre
 
 void UpdateFlash(FLASH *pflash,float dt)
 {
-    UpdateAlo((ALO *)pflash,dt);
+    UpdateAlo((ALO *)pflash, dt);
     pflash->gScaleCur = GSmooth(pflash->gScaleCur, pflash->gScaleTarget, g_clock.dt, &pflash->smpScale, 0);
 }
 
