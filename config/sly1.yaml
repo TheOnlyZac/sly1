@@ -15,9 +15,8 @@ options:
   src_path: src
   build_path: obj
 
-
   # Output options
-  generate_asm_macros_files: True
+  generate_asm_macros_files: False
   rodata_string_guesser_level: 0 # improve string detection
   suggestion_rodata_section_start: False
   pair_rodata_to_text: False
