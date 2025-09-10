@@ -31,7 +31,7 @@ void Startup(); // Forward declaration
  * @todo 80.99% matched
  * https://decomp.me/scratch/4XwiN
  */
-INCLUDE_ASM(const s32, "P2/main", main);
+INCLUDE_ASM("asm/nonmatchings/P2/main", main);
 #ifdef SKIP_ASM
 int main(char **argv, int argc) {
     g_apchzArgs = argv;
@@ -94,7 +94,7 @@ int main(char **argv, int argc) {
 /**
  * @brief Starts up the PS2 subsystem interface.
  */
-INCLUDE_ASM(const s32, "P2/main", StartupSif__Fv);
+INCLUDE_ASM("asm/nonmatchings/P2/main", StartupSif__Fv);
 
 /**
  * @brief Starts up the VU0.
@@ -126,7 +126,7 @@ void StartupVU1()
     g_pdcVif1->chcr.TTE = 0;
 }
 
-INCLUDE_ASM(const s32, "P2/main", Startup__Fv);
+INCLUDE_ASM("asm/nonmatchings/P2/main", Startup__Fv);
 #ifdef SKIP_ASM
 /**
  * @brief Starts each game system.

@@ -17,7 +17,7 @@ options:
 
 
   # Output options
-  use_legacy_include_asm: True
+  generate_asm_macros_files: True
   rodata_string_guesser_level: 0 # improve string detection
   suggestion_rodata_section_start: False
   pair_rodata_to_text: False

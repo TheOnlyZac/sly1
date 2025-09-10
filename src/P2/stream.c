@@ -25,6 +25,6 @@ OSTRM::~OSTRM()
     Flush();
 }
 
-INCLUDE_ASM(const s32, "P2/stream", CbWrite__5OSTRMPvi);
+INCLUDE_ASM("asm/nonmatchings/P2/stream", CbWrite__5OSTRMPvi);
 
-INCLUDE_ASM(const s32, "P2/stream", Flush__5OSTRM);
+INCLUDE_ASM("asm/nonmatchings/P2/stream", Flush__5OSTRM);

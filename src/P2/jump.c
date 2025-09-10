@@ -3,33 +3,33 @@
 
 extern DL g_dlJmt;
 
-INCLUDE_ASM(const s32, "P2/jump", PresetJtAccelJump__FP2JT);
+INCLUDE_ASM("asm/nonmatchings/P2/jump", PresetJtAccelJump__FP2JT);
 
-INCLUDE_ASM(const s32, "P2/jump", UpdateJtActiveJump__FP2JTP3JOY);
+INCLUDE_ASM("asm/nonmatchings/P2/jump", UpdateJtActiveJump__FP2JTP3JOY);
 
-INCLUDE_ASM(const s32, "P2/jump", FCheckJtSingleEdge__FP2JTP2SOP4EDGEP6VECTOR);
+INCLUDE_ASM("asm/nonmatchings/P2/jump", FCheckJtSingleEdge__FP2JTP2SOP4EDGEP6VECTOR);
 
-INCLUDE_ASM(const s32, "P2/jump", FCheckJtEdgeNormal__FP2JTP6VECTORT1);
+INCLUDE_ASM("asm/nonmatchings/P2/jump", FCheckJtEdgeNormal__FP2JTP6VECTORT1);
 
-INCLUDE_ASM(const s32, "P2/jump", FCheckJtEdgeGrab__FP2JTP2SOP6VECTOR3XPKPvT2);
+INCLUDE_ASM("asm/nonmatchings/P2/jump", FCheckJtEdgeGrab__FP2JTP2SOP6VECTOR3XPKPvT2);
 
-INCLUDE_ASM(const s32, "P2/jump", PxpFindJtBestEdge__FP2JTPiP6VECTOR);
+INCLUDE_ASM("asm/nonmatchings/P2/jump", PxpFindJtBestEdge__FP2JTPiP6VECTOR);
 
-INCLUDE_ASM(const s32, "P2/jump", JtsResetJt__FP2JT);
+INCLUDE_ASM("asm/nonmatchings/P2/jump", JtsResetJt__FP2JT);
 
-INCLUDE_ASM(const s32, "P2/jump", HandleJtDiveEffect__FP2JT);
+INCLUDE_ASM("asm/nonmatchings/P2/jump", HandleJtDiveEffect__FP2JT);
 
-INCLUDE_ASM(const s32, "P2/jump", FUN_0017ece8);
+INCLUDE_ASM("asm/nonmatchings/P2/jump", FUN_0017ece8);
 
-INCLUDE_ASM(const s32, "P2/jump", UpdateJtJump__FP2JT);
+INCLUDE_ASM("asm/nonmatchings/P2/jump", UpdateJtJump__FP2JT);
 
-INCLUDE_ASM(const s32, "P2/jump", FTimeJtJumpToTarget__FP2JTP6VECTORN31Pf);
+INCLUDE_ASM("asm/nonmatchings/P2/jump", FTimeJtJumpToTarget__FP2JTP6VECTORN31Pf);
 
-INCLUDE_ASM(const s32, "P2/jump", GetJtJumpVelocity__FP2JTP6VECTOR);
+INCLUDE_ASM("asm/nonmatchings/P2/jump", GetJtJumpVelocity__FP2JTP6VECTOR);
 
-INCLUDE_ASM(const s32, "P2/jump", GetJtJumpToTargetVelocity__FP2JTP6VECTOR);
+INCLUDE_ASM("asm/nonmatchings/P2/jump", GetJtJumpToTargetVelocity__FP2JTP6VECTOR);
 
-INCLUDE_ASM(const s32, "P2/jump", GetJtJumpBoostVelocity__FP2JTP6VECTOR);
+INCLUDE_ASM("asm/nonmatchings/P2/jump", GetJtJumpBoostVelocity__FP2JTP6VECTOR);
 
 void StartupJmt()
 {
@@ -53,7 +53,7 @@ void OnJmtRemove(JMT *pjmt)
     RemoveDlEntry(&g_dlJmt, pjmt);
 }
 
-INCLUDE_ASM(const s32, "P2/jump", CloneJmt__FP3JMTT0);
+INCLUDE_ASM("asm/nonmatchings/P2/jump", CloneJmt__FP3JMTT0);
 
 void PostJmtLoad(JMT *pjmt)
 {

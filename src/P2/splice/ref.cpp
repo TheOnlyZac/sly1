@@ -6,19 +6,19 @@ CRef::CRef()
     m_tagk = TAGK_Nil;
 }
 
-INCLUDE_ASM(const s32, "P2/splice/ref", __4CRefRC4CRef);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/ref", __4CRefRC4CRef);
 
 CRef::~CRef()
 {
     Decref();
 }
 
-INCLUDE_ASM(const s32, "P2/splice/ref", __as__4CRefRC4CRef);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/ref", __as__4CRefRC4CRef);
 
 /**
  * @todo fix misalignment
  */
-INCLUDE_ASM(const s32, "P2/splice/ref", __eq__4CRefRC4CRef);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/ref", __eq__4CRefRC4CRef);
 #ifdef SKIP_ASM
 bool CRef::operator==(const CRef& ref)
 {
@@ -67,12 +67,12 @@ bool CRef::operator==(const CRef& ref)
 }
 #endif // SKIP_ASM
 
-INCLUDE_ASM(const s32, "P2/splice/ref", CloneTo__4CRefP4CRefP6CFrame);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/ref", CloneTo__4CRefP4CRefP6CFrame);
 
 /**
  * @todo match rodata
  */
-INCLUDE_ASM(const s32, "P2/splice/ref", Decref__4CRef);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/ref", Decref__4CRef);
 #ifdef SKIP_ASM
 void CRef::Decref()
 {
@@ -100,7 +100,7 @@ void CRef::Decref()
 /**
  * @todo match rodata
  */
-INCLUDE_ASM(const s32, "P2/splice/ref", Incref__4CRef);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/ref", Incref__4CRef);
 #ifdef SKIP_ASM
 void CRef::Incref()
 {
@@ -241,6 +241,6 @@ void CRef::SetMethod(CMethod* pmethod)
     m_tagk = TAGK_Method;
 }
 
-INCLUDE_ASM(const s32, "P2/splice/ref", RefCoerceS32__4CRef);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/ref", RefCoerceS32__4CRef);
 
-INCLUDE_ASM(const s32, "P2/splice/ref", RefCoerceF32__4CRef);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/ref", RefCoerceF32__4CRef);

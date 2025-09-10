@@ -8,7 +8,7 @@ void StartupBrx()
     BuildEopids();
 }
 
-INCLUDE_ASM(const s32, "P2/brx", PloNew__F3CIDP2SWP3ALO3OIDi);
+INCLUDE_ASM("asm/nonmatchings/P2/brx", PloNew__F3CIDP2SWP3ALO3OIDi);
 #ifdef SKIP_ASM
 /**
  * @todo 2.19% matched.
@@ -19,7 +19,7 @@ SW *PloNew(CID cid, SW *psw, ALO *paloParent, OID oid, int isplice)
 }
 #endif
 
-INCLUDE_ASM(const s32, "P2/brx", LoadOptionFromBrx__FPvP5EOPIDP18CBinaryInputStream);
+INCLUDE_ASM("asm/nonmatchings/P2/brx", LoadOptionFromBrx__FPvP5EOPIDP18CBinaryInputStream);
 
 void LoadOptionsFromBrx(void *pvStruct, CBinaryInputStream *pbis)
 {
@@ -51,6 +51,6 @@ uint IploFromStockOid(int oid)
     return iplo;
 }
 
-INCLUDE_ASM(const s32, "P2/brx", LoadSwObjectsFromBrx__FP2SWP3ALOP18CBinaryInputStream);
+INCLUDE_ASM("asm/nonmatchings/P2/brx", LoadSwObjectsFromBrx__FP2SWP3ALOP18CBinaryInputStream);
 
-INCLUDE_ASM(const s32, "P2/brx", SetLoDefaults__FP2LO);
+INCLUDE_ASM("asm/nonmatchings/P2/brx", SetLoDefaults__FP2LO);

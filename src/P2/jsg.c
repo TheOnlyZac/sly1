@@ -13,19 +13,19 @@ void InitJsg(JSG *pjsg)
     pjsg->unk3 = 1;
 }
 
-INCLUDE_ASM(const s32, "P2/jsg", GetJsgLocation__FP3JSGP2LOP6VECTORPf);
+INCLUDE_ASM("asm/nonmatchings/P2/jsg", GetJsgLocation__FP3JSGP2LOP6VECTORPf);
 
-INCLUDE_ASM(const s32, "P2/jsg", SetJsgFocus__FP3JSGP2LO);
+INCLUDE_ASM("asm/nonmatchings/P2/jsg", SetJsgFocus__FP3JSGP2LO);
 
-INCLUDE_ASM(const s32, "P2/jsg", SetJsgTn__FP3JSGP2TN);
+INCLUDE_ASM("asm/nonmatchings/P2/jsg", SetJsgTn__FP3JSGP2TN);
 
-INCLUDE_ASM(const s32, "P2/jsg", NextJsgJsge__FP3JSG);
+INCLUDE_ASM("asm/nonmatchings/P2/jsg", NextJsgJsge__FP3JSG);
 
-INCLUDE_ASM(const s32, "P2/jsg", FIsJsgJsgeComplete__FP3JSGP4JSGE);
+INCLUDE_ASM("asm/nonmatchings/P2/jsg", FIsJsgJsgeComplete__FP3JSGP4JSGE);
 
-INCLUDE_ASM(const s32, "P2/jsg", UpdateJsgJsge__FP3JSG);
+INCLUDE_ASM("asm/nonmatchings/P2/jsg", UpdateJsgJsge__FP3JSG);
 
-INCLUDE_ASM(const s32, "P2/jsg", ReadJsgJoystick__FP3JSGP3JOY);
+INCLUDE_ASM("asm/nonmatchings/P2/jsg", ReadJsgJoystick__FP3JSGP3JOY);
 
 int FIsJsgActive(JSG *pjsg)
 {
@@ -100,7 +100,7 @@ void RetractJsg(JSG *pjsg)
  * @todo Objdiff reports a 100% match, but compiler seemingly
  * adds extra instructions?
  */
-INCLUDE_ASM(const s32, "P2/jsg", PjsgeAllocJsg__FP3JSG5JSGEK3OIDi);
+INCLUDE_ASM("asm/nonmatchings/P2/jsg", PjsgeAllocJsg__FP3JSG5JSGEK3OIDi);
 #ifdef SKIP_ASM
 JSGE *PjsgeAllocJsg(JSG *pjsg, JSGEK jsgek, OID oid, int fAsync)
 {

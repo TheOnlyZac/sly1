@@ -1,5 +1,5 @@
 #include <crout.h>
 
-INCLUDE_ASM(const s32, "P2/crout", CroutDecomp__FiPfT1);
+INCLUDE_ASM("asm/nonmatchings/P2/crout", CroutDecomp__FiPfT1);
 
-INCLUDE_ASM(const s32, "P2/crout", CroutSolve__FiPfN21);
+INCLUDE_ASM("asm/nonmatchings/P2/crout", CroutSolve__FiPfN21);

@@ -58,7 +58,7 @@ void CProg::End()
     m_nMax = 0;
 }
 
-INCLUDE_ASM(const s32, "P2/prog", Draw__5CProg);
+INCLUDE_ASM("asm/nonmatchings/P2/prog", Draw__5CProg);
 #ifdef SKIP_ASM
 /**
  * @todo 34.05% matched.

@@ -6,19 +6,19 @@ void InitWipe(WIPE *pwipe)
     SetWipeWipes(pwipe, WIPES_Idle);
 }
 
-INCLUDE_ASM(const s32, "P2/wipe", UpdateWipe__FP4WIPEP3JOY);
+INCLUDE_ASM("asm/nonmatchings/P2/wipe", UpdateWipe__FP4WIPEP3JOY);
 
-INCLUDE_ASM(const s32, "P2/wipe", DrawWipe__FP4WIPE);
+INCLUDE_ASM("asm/nonmatchings/P2/wipe", DrawWipe__FP4WIPE);
 
-INCLUDE_ASM(const s32, "P2/wipe", ActivateWipe__FP4WIPEP5TRANS5WIPEK);
+INCLUDE_ASM("asm/nonmatchings/P2/wipe", ActivateWipe__FP4WIPEP5TRANS5WIPEK);
 
-INCLUDE_ASM(const s32, "P2/wipe", SetWipeButtonTrans__FP4WIPEP5TRANS5WIPEK);
+INCLUDE_ASM("asm/nonmatchings/P2/wipe", SetWipeButtonTrans__FP4WIPEP5TRANS5WIPEK);
 
-INCLUDE_ASM(const s32, "P2/wipe", FCatchWipeButtonTrans__FP4WIPEP3JOY5WIPES);
+INCLUDE_ASM("asm/nonmatchings/P2/wipe", FCatchWipeButtonTrans__FP4WIPEP3JOY5WIPES);
 
-INCLUDE_ASM(const s32, "P2/wipe", junk_001F0218);
+INCLUDE_ASM("asm/nonmatchings/P2/wipe", junk_001F0218);
 
-INCLUDE_ASM(const s32, "P2/wipe", SetWipeWipes__FP4WIPE5WIPES);
+INCLUDE_ASM("asm/nonmatchings/P2/wipe", SetWipeWipes__FP4WIPE5WIPES);
 
 void WipeToWorldWarp(const void *pchzWorld, OID oidWarp, WIPEK wipek)
 {

@@ -23,21 +23,21 @@ void SetVectorSphere(VECTOR *pvec, float radPan, float radTilt, float s)
     pvec->y = gCosTilt * gSinPan * s;
 }
 
-INCLUDE_ASM(const s32, "P2/vec", SProjectVector__FP6VECTORT0);
+INCLUDE_ASM("asm/nonmatchings/P2/vec", SProjectVector__FP6VECTORT0);
 
-INCLUDE_ASM(const s32, "P2/vec", GetNormalVectors__FP6VECTORN30);
+INCLUDE_ASM("asm/nonmatchings/P2/vec", GetNormalVectors__FP6VECTORN30);
 
-INCLUDE_ASM(const s32, "P2/vec", GetNormalVector__FP6VECTORT0);
+INCLUDE_ASM("asm/nonmatchings/P2/vec", GetNormalVector__FP6VECTORT0);
 
-INCLUDE_ASM(const s32, "P2/vec", func_001ED900);
+INCLUDE_ASM("asm/nonmatchings/P2/vec", func_001ED900);
 
-INCLUDE_ASM(const s32, "P2/vec", RadBetweenVectors__FP6VECTORN20);
+INCLUDE_ASM("asm/nonmatchings/P2/vec", RadBetweenVectors__FP6VECTORN20);
 
-INCLUDE_ASM(const s32, "P2/vec", FindClosestPointBetweenLines__FP6VECTORN30PfT4T0);
+INCLUDE_ASM("asm/nonmatchings/P2/vec", FindClosestPointBetweenLines__FP6VECTORN30PfT4T0);
 
-INCLUDE_ASM(const s32, "P2/vec", FindClosestPointBetweenLineSegments__FP6VECTORN40PfT0);
+INCLUDE_ASM("asm/nonmatchings/P2/vec", FindClosestPointBetweenLineSegments__FP6VECTORN40PfT0);
 
-INCLUDE_ASM(const s32, "P2/vec", CalculateVectorPanTilt__FP6VECTORPfT1);
+INCLUDE_ASM("asm/nonmatchings/P2/vec", CalculateVectorPanTilt__FP6VECTORPfT1);
 #ifdef SKIP_ASM
 /**
  * @todo 92.50% matched.
@@ -75,13 +75,13 @@ void ConvertDeulToW(VECTOR *peul, VECTOR *pdeul, VECTOR *pw)
     pw->z = -ySin * pdeul->x + pdeul->z;
 }
 
-INCLUDE_ASM(const s32, "P2/vec", FCalculateMuzzleVelocity__FP6VECTORT0fT0P2SO);
+INCLUDE_ASM("asm/nonmatchings/P2/vec", FCalculateMuzzleVelocity__FP6VECTORT0fT0P2SO);
 
-INCLUDE_ASM(const s32, "P2/vec", FCalculateMuzzleVelocity1);
+INCLUDE_ASM("asm/nonmatchings/P2/vec", FCalculateMuzzleVelocity1);
 
 int FCalculateMuzzleVelocityAngle(VECTOR *pposLaunch, VECTOR *pposTarget, float radTilt, VECTOR *pvecMuzzle, SO *psoLaunch)
 {
     return FCalculateMuzzleVelocity(pposLaunch, pposTarget, radTilt, pvecMuzzle, psoLaunch);
 }
 
-INCLUDE_ASM(const s32, "P2/vec", LimitVectorLength);
+INCLUDE_ASM("asm/nonmatchings/P2/vec", LimitVectorLength);

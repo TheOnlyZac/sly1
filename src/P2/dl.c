@@ -81,7 +81,7 @@ void InsertDlEntryBefore(DL *pdl, void *pvNext, void *pv)
     }
 }
 
-INCLUDE_ASM(const s32, "P2/dl", junk_001525F8);
+INCLUDE_ASM("asm/nonmatchings/P2/dl", junk_001525F8);
 
 void RemoveDlEntry(DL *pdl, void *pv)
 {
