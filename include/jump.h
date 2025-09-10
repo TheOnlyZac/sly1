@@ -22,10 +22,10 @@ struct XP;
  */
 struct JMT : public PNT
 {
-	undefined4 unk1;
-	undefined4 unk2;
-	undefined4 unk3;
-	undefined4 unk4;
+    undefined4 unk1;
+    undefined4 unk2;
+    undefined4 unk3;
+    undefined4 unk4;
     DLE dleJmt;
     float sRadius;
     OID oidSetIgnoreJt;
