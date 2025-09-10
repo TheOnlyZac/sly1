@@ -9,7 +9,8 @@
 #include <so.h>
 
 /**
- * @brief Flashlight guard.
+ * @class SMART_GUARD
+ * @brief non-flashlight guard.
  */
 struct SMARTGUARD : public STEPGUARD
 {

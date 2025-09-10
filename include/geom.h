@@ -15,9 +15,7 @@
 struct TBSP;
 
 /**
- * @brief Edge
- *
- * Represents an edge in a geometry.
+ * @brief Edge in a geometry.
  */
 struct EDGE
 {
@@ -27,6 +25,9 @@ struct EDGE
     EDGE *pedgeOtherNext;
 };
 
+/**
+ * @brief Unknown.
+ */
 struct SUR
 {
     int cb;
@@ -35,6 +36,9 @@ struct SUR
     int cvtx;
 };
 
+/**
+ * @brief Unknown.
+ */
 struct SURF
 {
     VECTOR normal;
@@ -45,6 +49,9 @@ struct SURF
     short ipos;
 };
 
+/**
+ * @brief Unknown.
+ */
 struct TSURF
 {
     float gDot;
@@ -55,21 +62,21 @@ struct TSURF
 };
 
 /**
- * @brief Geometry
+ * @brief Geometry.
  */
 struct GEOM
 {
     float sRadius;
-    
+
     int cpos;
     VECTOR *apos;
-    
+
     int csurf;
     SURF *asurf;
-    
+
     int cedge;
     EDGE *aedge;
-    
+
     int *mpiposiiedgeMac;
     int *aiedge;
     VECTOR *mpisurfposCenter;

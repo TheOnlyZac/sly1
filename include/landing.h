@@ -9,6 +9,7 @@
 #include <dl.h>
 
 /**
+ * @class LANDING
  * @brief Unknown.
  */
 struct LANDING : public SHAPE

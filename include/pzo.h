@@ -19,7 +19,7 @@ struct RO;
 struct WKR;
 
 /**
- * @brief (?) clue state?
+ * @brief Something (?) clue state?
  */
 enum PCS
 {
@@ -45,7 +45,8 @@ enum GOADK
 };
 
 /**
- * @brief Unknown.
+ * @class _SPRIZE
+ * @brief Base class for SPRIZEs.
  */
 struct SPRIZE : public SO
 {
@@ -53,7 +54,8 @@ struct SPRIZE : public SO
 };
 
 /**
- * @brief Unknown.
+ * @class _SCPRIZE
+ * @brief Base class for SCPRIZEs.
  */
 struct SCPRIZE : public SPRIZE
 {
@@ -61,6 +63,7 @@ struct SCPRIZE : public SPRIZE
 };
 
 /**
+ * @class CLUE
  * @brief Clue bottle.
  */
 struct CLUE : public SPRIZE
@@ -69,7 +72,8 @@ struct CLUE : public SPRIZE
 };
 
 /**
- * @brief Lock.
+ * @class LOCK
+ * @brief Treasure key lock.
  */
 struct LOCK : public ALO
 {
@@ -77,7 +81,8 @@ struct LOCK : public ALO
 };
 
 /**
- * @brief Lock group.
+ * @class LOCK_GROUP
+ * @brief Group of treasure key lock objects.
  */
 struct LOCKG : public ALO
 {
@@ -85,7 +90,8 @@ struct LOCKG : public ALO
 };
 
 /**
- * @brief Vault.
+ * @class VAULT
+ * @brief Vault used for unlocking thief moves in levels.
  */
 struct VAULT : public PO
 {
@@ -93,7 +99,7 @@ struct VAULT : public PO
 };
 
 /**
- * @brief Vault tumble.
+ * @brief Vault tumbler.
  */
 struct TMBL
 {

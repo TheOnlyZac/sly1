@@ -48,6 +48,7 @@ struct BLIP
 };
 
 /**
+ * @class BLIPG
  * @brief Unknown.
  */
 struct BLIPG

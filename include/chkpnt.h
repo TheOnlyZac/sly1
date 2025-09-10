@@ -12,7 +12,8 @@
 #include <bis.h>
 
 /**
- * @brief Checkpoint.
+ * @class CHECK_POINT
+ * @brief Checkpoints used throughout platforming levels.
  *
  * @todo Define struct.
  */

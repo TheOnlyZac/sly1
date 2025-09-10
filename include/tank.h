@@ -31,7 +31,8 @@ enum TANKS
 };
 
 /**
- * @brief Tank.
+ * @class HOVER_TANK
+ * @brief Hover tank used in A Ghastly Voyage and Rapid Fire Assault.
  */
 struct TANK : public STEP
 {

@@ -32,7 +32,8 @@ enum RATS
 };
 
 /**
- * @brief Rat.
+ * @class RAT
+ * @brief Rat animal.
  * @todo Implement the struct.
  */
 struct RAT : public SO
@@ -41,7 +42,8 @@ struct RAT : public SO
 };
 
 /**
- * @brief Rat hole.
+ * @class RATHOLE
+ * @brief Hole where rats come from/go to.
  * @todo Implement the struct.
  */
 struct RATHOLE : public LO

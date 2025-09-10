@@ -18,7 +18,8 @@ struct ASEGD;
 struct ASEGBL;
 
 /**
- * @brief Animation segment.
+ * @class ANIMATION_SEGMENT
+ * @brief Object representing an animation segment.
  */
 struct ASEG : public LO
 {
@@ -26,7 +27,8 @@ struct ASEG : public LO
 };
 
 /**
- * @brief Animation segment something(?).
+ * @class ANIMATION_SEGMENT_APPLICATION
+ * @brief Unknown.
  */
 struct ASEGA : public BASIC
 {
@@ -42,7 +44,8 @@ struct ASEGD
 };
 
 /**
- * @brief Animation segment blend.
+ * @class ASEGBL
+ * @brief Animation segment blend(?).
  */
 struct ASEGBL : public ASEG
 {

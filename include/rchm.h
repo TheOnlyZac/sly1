@@ -21,7 +21,8 @@ struct TWR
 };
 
 /**
- * @brief Unknown.
+ * @class REACH_MAP
+ * @brief Spatial map determining where JT can reach with his cane.
  * @todo Implement the struct.
  */
 struct RCHM : public LO

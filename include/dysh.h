@@ -16,6 +16,7 @@
 struct RPL;
 
 /**
+ * @class DYNAMIC_SHADOE
  * @brief Unknown.
  * @todo Implement the struct.
  */

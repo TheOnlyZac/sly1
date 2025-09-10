@@ -9,7 +9,8 @@
 #include <lo.h>
 
 /**
- * @brief Key hole.
+ * @class KEYHOLE
+ * @brief Spot where keys are inserted into locks?
  * @todo Implement the struct.
  */
 struct KEYHOLE : public LO

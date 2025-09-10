@@ -10,7 +10,8 @@
 #include <lo.h>
 
 /**
- * @brief Unknown.
+ * @class FREEZE_GROUP
+ * @brief Group of freeze objects.
  */
 struct FRZG : public LO
 {

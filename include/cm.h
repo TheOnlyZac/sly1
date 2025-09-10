@@ -232,7 +232,8 @@ struct CPR
 };
 
 /**
- * @brief Game camera.
+ * @class _CAMERA
+ * @brief Base class for cameras.
  */
 struct CM : public LO
 {

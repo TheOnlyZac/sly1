@@ -84,7 +84,8 @@ struct XF
 };
 
 /**
- * @brief "Lightweight"
+ * @class LIGHTWEIGHT
+ * @brief Unknown, probably used for instancing LOs.
  *
  * @todo Finish implementing struct.
  */
@@ -152,7 +153,7 @@ struct ALO : public LO
 };
 
 /**
- * @brief Initializes an ALO
+ * @brief Initializes an ALO.
  *
  * @param palo ALO to initialize
  */
@@ -160,30 +161,29 @@ void InitAlo(ALO *palo);
 
 /**
  * @brief unknown
- *
  */
 void SnipAloObjects(ALO *palo, int csnip, SNIP *asnip);
 
 /**
- * @brief Updates an ALO
+ * @brief Updates an ALO.
  *
  * @param palo ALO to initialize
  */
 void UpdateAlo(ALO *palo, float dt);
 
 /**
- * @brief Clones an ALO
+ * @brief Clones an ALO.
  *
  */
 void CloneAlo(ALO *palo, ALO *paloBase);
 
 /**
- * Fades in an ALO
+ * Fades in an ALO.
  */
 void FadeAloIn(ALO *palo, float dtFade);
 
 /**
- * Fades out an ALO
+ * Fades out an ALO.
  */
 void FadeAloOut(ALO *palo, float dtFade);
 

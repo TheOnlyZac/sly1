@@ -41,9 +41,8 @@ enum DPRIZES
 };
 
 /**
- * @brief DPRIZE.
- *
- * Base class for coins, keys, and other collectibles.
+ * @class _DPRIZE
+ * @brief Base class for collectibles.
  */
 struct DPRIZE : public ALO
 {
@@ -86,7 +85,8 @@ struct DPRIZE : public ALO
 };
 
 /**
- * @brief Coin.
+ * @class COIN
+ * @brief Treasure coin.
  */
 struct COIN : public DPRIZE
 {
@@ -95,6 +95,7 @@ struct COIN : public DPRIZE
 };
 
 /**
+ * @class KEY
  * @brief Treasure key.
  */
 struct KEY : public DPRIZE
@@ -108,7 +109,8 @@ struct KEY : public DPRIZE
 };
 
 /**
- * @brief Lucky charm.
+ * @class CHARM
+ * @brief Lucky charm worn by Sly and Murray.
  */
 struct CHARM : public DPRIZE
 {

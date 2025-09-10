@@ -9,7 +9,8 @@
 #include <xform.h>
 
 /**
- * @brief Target.
+ * @class TARGET
+ * @brief Target point defined by a transform, radius, and some other data.
  */
 struct TARGET : public XFM
 {

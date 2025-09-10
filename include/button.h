@@ -12,20 +12,6 @@
 #include <rs.h>
 
 /**
- * @brief Button State (?).
- */
-enum BUTTONS
-{
-    BUTTONS_Nil = -1,
-    BUTTONS_NoContact = 0,
-    BUTTONS_Contact = 1,
-    BUTTONS_Pushed = 2,
-    BUTTONS_Disabled = 3,
-    BUTTONS_Reset = 4,
-    BUTTONS_Max = 5
-};
-
-/**
  * @brief Unknown.
  */
 enum IASH
@@ -47,6 +33,22 @@ struct ASH
 };
 
 /**
+ * @brief Button state.
+ */
+enum BUTTONS
+{
+    BUTTONS_Nil = -1,
+    BUTTONS_NoContact = 0,
+    BUTTONS_Contact = 1,
+    BUTTONS_Pushed = 2,
+    BUTTONS_Disabled = 3,
+    BUTTONS_Reset = 4,
+    BUTTONS_Max = 5
+};
+
+/**
+ * @brief Button.
+ *
  * @todo Migrated from May 19 prototype. May be incorrect.
  */
 struct BTN
@@ -71,7 +73,8 @@ struct BTN
 };
 
 /**
- * @brief Unknown.
+ * @class VOL_BUTTON
+ * @brief Volume button.
  */
 struct VOLBTN
 {
@@ -79,6 +82,7 @@ struct VOLBTN
 };
 
 /**
+ * @class BUTTON
  * @brief Button.
  */
 struct BUTTON : public SO

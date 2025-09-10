@@ -11,7 +11,8 @@
 struct XP;
 
 /**
- * @brief Conveyor belt (?)
+ * @class CONVERYOR
+ * @brief Conveyor belt (probably used in Fire Down Below).
  * @todo Implement the struct.
  */
 struct CNVO : public SO

@@ -13,18 +13,17 @@
 typedef int GRFIC;
 typedef int GRFTAK;
 
+/**
+ * @class (_BRK)
+ * @brief Breakable base.
+ */
 struct BRK
 {
     // ...
 };
 
-struct BRKP
-{
-    // ...
-};
-
 /**
- * @brief BRKP State (?).
+ * @brief Breakable piece state.
  */
 enum BRKPS
 {
@@ -35,12 +34,28 @@ enum BRKPS
     BRKPS_Max = 3,
 };
 
+/**
+ * @brief BREAKABLE_PIECE
+ * @brief Shards of breakables that appear when it's broken.
+ */
+struct BRKP
+{
+    // ...
+};
+
+/**
+ * @class BREAKABLE
+ * @brief Breakable object.
+ */
 struct BREAK : BRK
 {
     // ...
 };
 
 /**
+ * @class ZAPBREAK
+ * @brief Unknown.
+ *
  * @todo Move to zap.h?
  */
 struct ZAPBREAK
@@ -48,16 +63,28 @@ struct ZAPBREAK
     // ...
 };
 
+/**
+ * @class FRAGILE.
+ * @brief Unknown.
+ */
 struct FRAGILE
 {
     // ...
 };
 
+/**
+ * @brief Unknown.
+ *
+ * @todo Should this be somewhere else?
+ */
 struct XP
 {
     // ...
 };
 
+/**
+ * @brief Unknown.
+ */
 struct WKR
 {
     LO *ploSource;

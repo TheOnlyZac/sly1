@@ -1,7 +1,7 @@
 /**
  * @file ub.h
  *
- * @brief Underwater Boss (?)
+ * @brief Underwater boss.
  */
 #ifndef UB_H
 #define UB_H
@@ -14,8 +14,8 @@
 #include <so.h>
 
 /**
- * @brief Unknown.
- * @todo Implement the struct.
+ * @class UW_BOSS_GOMER
+ * @brief Underwater boss gomer (Raleigh?).
  */
 struct UBG : public GOMER
 {

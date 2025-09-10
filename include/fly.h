@@ -48,6 +48,7 @@ enum FLYS
 };
 
 /**
+ * @class FLY
  * @brief Flying animal.
  */
 struct FLY : public SO

@@ -9,7 +9,8 @@
 #include "common.h"
 
 /**
- * @brief Skybox structure.
+ * @class SKY
+ * @brief Skyboxes.
  *
  * @todo Fill out the structure.
  */

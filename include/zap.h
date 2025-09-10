@@ -40,6 +40,9 @@ enum ZOK
     ZOK_Max = 5
 };
 
+/**
+ * @brief Unknown.
+ */
 struct ZPD {
     SO *pso;
     ZPK zpk;
@@ -53,10 +56,6 @@ struct ZPD {
 
 /**
  * @brief Zap.
- *
- * A volume that damages the player upon contact.
- *
- * @todo Fill in struct.
 */
 struct ZAP
 {
@@ -64,9 +63,10 @@ struct ZAP
 };
 
 /**
- * @brief Unknown.
+ * @brief TOUCH_ZAPPER
+ * @brief Zapper trigger on touching the player.
  *
- * @todo Fill in struct, and confirm this is the right place for it.
+ * @todo Does it inherit from ZAP?
 */
 struct TZP
 {

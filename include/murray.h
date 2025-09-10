@@ -15,7 +15,8 @@
 struct WKR;
 
 /**
- * @brief Murray.
+ * @class MURRAY
+ * @brief Used for Murray in Murray's Big Gamble and King of the Hill.
  * @todo Implement the struct.
  */
 struct MURRAY : public STEPGUARD

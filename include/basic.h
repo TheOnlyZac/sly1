@@ -10,11 +10,8 @@
 #include <splice/sidebag.h>
 
 /**
- * @brief Basic object.
- *
- * Base class for most objects.
- *
- * @todo Declare virtual methods.
+ * @class BASIC
+ * @brief Base object for most other kinds of objects.
  */
 struct BASIC
 {

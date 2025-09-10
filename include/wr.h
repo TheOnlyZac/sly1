@@ -109,6 +109,7 @@ struct WRBG
 };
 
 /**
+ * @class SPACE_WARM
  * @brief Unknown.
  */
 struct WR : public LO

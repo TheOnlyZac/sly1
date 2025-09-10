@@ -17,7 +17,8 @@ struct XA;
 struct XP;
 
 /**
- * @brief Water.
+ * @class WATER
+ * @brief Water?
  */
 struct WATER : public SO
 {

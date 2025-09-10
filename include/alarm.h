@@ -27,7 +27,7 @@ struct EXC
 };
 
 /**
- * @brief Alarm State.
+ * @brief Alarm state.
  */
 enum ALARMS
 {
@@ -39,7 +39,7 @@ enum ALARMS
 };
 
 /**
- * @brief Alarm Trigger Kind.
+ * @brief Alarm trigger kind.
  */
 enum ALTK
 {
@@ -51,7 +51,8 @@ enum ALTK
 };
 
 /**
- * @brief Unknown.
+ * @class ALARM_BREAKABLE
+ * @brief Breakable alarm.
  */
 struct ALBRK : public BRK
 {
@@ -59,7 +60,8 @@ struct ALBRK : public BRK
 };
 
 /**
- * @brief Alarm.
+ * @class ALARM
+ * @brief Alarm object that controls some sensors.
  */
 struct ALARM : public SO
 {

@@ -10,9 +10,8 @@
 #include <util.h>
 
 /**
- * @brief Standing/walking character.
- *
- * @todo Implement struct.
+ * @brief STEP_FIGURE
+ * @brief Moving/waking characters.
  */
 struct STEP : public PO
 {

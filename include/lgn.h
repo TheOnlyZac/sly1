@@ -19,7 +19,16 @@ struct RO;
 struct CPDEFI;
 
 /**
- * @brief (?) state.
+ * @class SWOOPER.
+ * @brief Unknown.
+ */
+struct SWP : public BRK
+{
+    // ...
+};
+
+/**
+ * @brief Light gun state.
  */
 enum LGNS
 {
@@ -32,15 +41,9 @@ enum LGNS
 };
 
 /**
- * @brief Unknown.
- */
-struct SWP : public BRK
-{
-    // ...
-};
-
-/**
- * @brief Unknown.
+ * @class LIGHT_GUN
+ * @brief Light gun weapon (maybe the one used by Carmelita).
+ *
  * @note Inherits from PO in the prototype but not in retail.
  */
 struct LGN
@@ -49,7 +52,7 @@ struct LGN
 };
 
 /**
- * @brief Unknown.
+ * @brief Light gun something (?).
  */
 struct LGNR : public BLOT
 {

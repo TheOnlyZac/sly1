@@ -11,7 +11,9 @@
 #include <mq.h>
 
 /**
- * @todo Implement struct.
+ * @class WORLD
+ * @brief Not fully understood, but everything in the game world is owned by
+ * an instance of this struct.
  */
 struct SW : public LO
 {

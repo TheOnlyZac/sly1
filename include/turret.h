@@ -25,7 +25,8 @@ struct DIAPI
 };
 
 /**
- * @brief Turret.
+ * @class TURRET
+ * @brief Stationary turret (maybe the one used in the murray levels).
  */
 struct TURRET : public PO
 {
