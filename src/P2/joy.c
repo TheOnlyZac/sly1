@@ -70,7 +70,7 @@ void InitJoy(JOY *pjoy, int nPort, int nSlot)
     pjoy->fRumbleEnabled = true;
 }
 
-INCLUDE_ASM(const s32, "P2/joy", UpdateJoy__FP3JOY);
+INCLUDE_ASM("asm/nonmatchings/P2/joy", UpdateJoy__FP3JOY);
 #ifdef SKIP_ASM
 /**
  * @todo 31.94% matched.
@@ -230,9 +230,9 @@ void SetJoyJoys(JOY *pjoy, JOYS joys, JOYK joyk)
     }
 }
 
-INCLUDE_ASM(const s32, "P2/joy", GetJoyXYDeflection__FP3JOYUcUcPfN23PUcT6PiP2LM);
+INCLUDE_ASM("asm/nonmatchings/P2/joy", GetJoyXYDeflection__FP3JOYUcUcPfN23PUcT6PiP2LM);
 
-INCLUDE_ASM(const s32, "P2/joy", FReadJoy__FP3JOY);
+INCLUDE_ASM("asm/nonmatchings/P2/joy", FReadJoy__FP3JOY);
 
 void SetJoyBtnHandled(JOY *pjoy, GRFBTN btn)
 {
@@ -247,7 +247,7 @@ void TriggerJoyRumbleRumk(JOY *pjoy, RUMK rumk, float dt)
     }
 }
 
-INCLUDE_ASM(const s32, "P2/joy", func_0016EC80);
+INCLUDE_ASM("asm/nonmatchings/P2/joy", func_0016EC80);
 
 void StartJoySelection(JOY *pjoy)
 {
@@ -255,11 +255,11 @@ void StartJoySelection(JOY *pjoy)
     pjoy->dyLatch = 0;
 }
 
-INCLUDE_ASM(const s32, "P2/joy", DxSelectionJoy__FP3JOY);
+INCLUDE_ASM("asm/nonmatchings/P2/joy", DxSelectionJoy__FP3JOY);
 
-INCLUDE_ASM(const s32, "P2/joy", DySelectionJoy__FP3JOY);
+INCLUDE_ASM("asm/nonmatchings/P2/joy", DySelectionJoy__FP3JOY);
 
-INCLUDE_ASM(const s32, "P2/joy", UBtnpJoy__FP3JOY4BTNP);
+INCLUDE_ASM("asm/nonmatchings/P2/joy", UBtnpJoy__FP3JOY4BTNP);
 
 void AddCode(CODE *pcode)
 {
@@ -286,7 +286,7 @@ void AddCode(CODE *pcode)
     }
 }
 
-INCLUDE_ASM(const s32, "P2/joy", func_0016F1F0);
+INCLUDE_ASM("asm/nonmatchings/P2/joy", func_0016F1F0);
 
 void _ResetCodes()
 {
@@ -326,7 +326,7 @@ void _MatchCodes(JOY *pjoy, GRFBTN btn)
     }
 }
 
-INCLUDE_ASM(const s32, "P2/joy", UpdateCodes__Fv);
+INCLUDE_ASM("asm/nonmatchings/P2/joy", UpdateCodes__Fv);
 #ifdef SKIP_ASM
 /**
  * @todo 45.89% matched.
@@ -407,7 +407,7 @@ void AddFcht(int nParam)
     }
 }
 
-INCLUDE_ASM(const s32, "P2/joy", func_0016F470);
+INCLUDE_ASM("asm/nonmatchings/P2/joy", func_0016F470);
 
 void Chetkido()
 {
@@ -446,7 +446,7 @@ void Chetkido()
     ((NOTE *)&g_note.unk278)->pvtnote->pfnShowBlot((NOTE *)&g_note.unk278);
 }
 
-INCLUDE_ASM(const s32, "P2/joy", StartupCodes__Fv);
+INCLUDE_ASM("asm/nonmatchings/P2/joy", StartupCodes__Fv);
 #ifdef SKIP_ASM
 /**
  * @todo 4.38% matched.

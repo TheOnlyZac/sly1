@@ -1,56 +1,58 @@
 #include <game.h>
-#include <sce/memset.h>
-#include <wipe.h>
-#include <difficulty.h>
 #include <joy.h>
+#include <wipe.h>
 #include <chkpnt.h>
+#include <difficulty.h>
+#include <sce/memset.h>
 
 // I know these functions are here somewhere but I don't know which one they are. -Zac
 // void SetClife(int nParam)
 // {
-// 	g_pgsCur->clife = nParam;
+//  g_pgsCur->clife = nParam;
 // }
 // void ClearLs(LS* pls)
 // {
-// 	memset(pls, 0, sizeof(LS));
+//  memset(pls, 0, sizeof(LS));
 // }
 // void SetCcoin(int nParam)
 // {
-// 	g_pgsCur->ccoin = nParam;
+//  g_pgsCur->ccoin = nParam;
 // }
 // void OnGameLoad(GAME* pgame)
 // {
-// 	memset(pgame, 0, sizeof(GAME));
+//  memset(pgame, 0, sizeof(GAME));
 // }
+
+extern WORLDLEVEL g_worldlevelPrev;
 
 void StartupGame()
 {
     StartGame();
 }
 
-INCLUDE_ASM(const s32, "P2/game", func_00160090);
+INCLUDE_ASM("asm/nonmatchings/P2/game", junk_00160090);
 
-INCLUDE_ASM(const s32, "P2/game", search_level_by_load_data);
+INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_load_data);
 
-INCLUDE_ASM(const s32, "P2/game", search_level_by_id);
+INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_id);
 
-INCLUDE_ASM(const s32, "P2/game", PchzFriendlyFromWid);
+INCLUDE_ASM("asm/nonmatchings/P2/game", PchzFriendlyFromWid);
 
-INCLUDE_ASM(const s32, "P2/game", func_00160178);
+INCLUDE_ASM("asm/nonmatchings/P2/game", junk_00160178);
 
-INCLUDE_ASM(const s32, "P2/game", call_search_level_by_id);
+INCLUDE_ASM("asm/nonmatchings/P2/game", call_search_level_by_id);
 
-INCLUDE_ASM(const s32, "P2/game", FFindLevel);
+INCLUDE_ASM("asm/nonmatchings/P2/game", FFindLevel);
 
-INCLUDE_ASM(const s32, "P2/game", func_001601D0);
+INCLUDE_ASM("asm/nonmatchings/P2/game", junk_001601D0);
 
-INCLUDE_ASM(const s32, "P2/game", get_level_completion_by_id);
+INCLUDE_ASM("asm/nonmatchings/P2/game", get_level_completion_by_id);
 
-INCLUDE_ASM(const s32, "P2/game", tally_world_completion);
+INCLUDE_ASM("asm/nonmatchings/P2/game", tally_world_completion);
 
-INCLUDE_ASM(const s32, "P2/game", get_game_completion__Fv);
+INCLUDE_ASM("asm/nonmatchings/P2/game", get_game_completion__Fv);
 
-INCLUDE_ASM(const s32, "P2/game", UnlockIntroCutsceneFromWid__Fi);
+INCLUDE_ASM("asm/nonmatchings/P2/game", UnlockIntroCutsceneFromWid__Fi);
 #ifdef SKIP_ASM
 /**
  * @todo Close to matching but there's a problem with the rodata.
@@ -84,13 +86,13 @@ void UnlockIntroCutsceneFromWid(int wid)
 }
 #endif // SKIP_ASM
 
-INCLUDE_ASM(const s32, "P2/game", DefeatBossFromWid);
+INCLUDE_ASM("asm/nonmatchings/P2/game", DefeatBossFromWid);
 
-INCLUDE_ASM(const s32, "P2/game", UnlockEndgameCutscenesFromFgs);
+INCLUDE_ASM("asm/nonmatchings/P2/game", UnlockEndgameCutscenesFromFgs);
 
-INCLUDE_ASM(const s32, "P2/game", PlayEndingFromCompletionFlags);
+INCLUDE_ASM("asm/nonmatchings/P2/game", PlayEndingFromCompletionFlags);
 
-INCLUDE_ASM(const s32, "P2/game", InitGameState__FP2GS);
+INCLUDE_ASM("asm/nonmatchings/P2/game", InitGameState__FP2GS);
 /**
  * @todo 86.46% matched.
  */
@@ -110,9 +112,9 @@ void InitGameState(GS *pgs)
 }
 #endif // SKIP_ASM
 
-INCLUDE_ASM(const s32, "P2/game", FUN_00160650);
+INCLUDE_ASM("asm/nonmatchings/P2/game", FUN_00160650);
 
-INCLUDE_ASM(const s32, "P2/game", SetupGame__FPci);
+INCLUDE_ASM("asm/nonmatchings/P2/game", SetupGame__FPci);
 
 void UpdateGameState(float dt)
 {
@@ -121,35 +123,35 @@ void UpdateGameState(float dt)
     g_plsCur->dt += dt;
 }
 
-INCLUDE_ASM(const s32, "P2/game", LsFromWid);
+INCLUDE_ASM("asm/nonmatchings/P2/game", LsFromWid);
 
-INCLUDE_ASM(const s32, "P2/game", GrflsFromWid);
+INCLUDE_ASM("asm/nonmatchings/P2/game", GrflsFromWid);
 
-INCLUDE_ASM(const s32, "P2/game", UnloadGame__Fv);
+INCLUDE_ASM("asm/nonmatchings/P2/game", UnloadGame__Fv);
 #ifdef SKIP_ASM
 /**
  * @todo 60.42% matched.
  */
 void UnloadGame()
 {
-	InitGameState(g_pgsCur);
-	//unk_gs? = NULL;
-	//clear_something_8_bytes(unknown);
-	OnDifficultyGameLoad(&g_difficulty);
-	g_grfcht = static_cast<GRFCHT>(FCHT_None);
-	// worldlevelPrev = static_cast<WORLDLEVEL>(-1);
-	RetryGame();
+    InitGameState(g_pgsCur);
+    // unk_gs? = NULL;
+    // clr_8_bytes_1(&DAT_002623d8);
+    OnDifficultyGameLoad(&g_difficulty);
+    g_grfcht = (GRFCHT)FCHT_None;
+    g_worldlevelPrev = WORLDLEVEL_Nil;
+    RetryGame();
 }
 #endif // SKIP_ASM
 
 void RetryGame()
 {
-	GS* gsCur = g_pgsCur;
+    GS* gsCur = g_pgsCur;
 
-	g_pgsCur->clife = 5; // Set lives to 5
-	gsCur->ccharm = 0; // Set charms to 0
+    g_pgsCur->clife = 5; // Set lives to 5
+    gsCur->ccharm = 0; // Set charms to 0
 
-	ResetChkmgrCheckpoints(&g_chkmgr);
+    ResetChkmgrCheckpoints(&g_chkmgr);
 }
 
 void StartGame()
@@ -158,16 +160,16 @@ void StartGame()
     WipeToWorldWarp(D_00247AB0, OID_Nil, WIPEK_Fade);
 }
 
-INCLUDE_ASM(const s32, "P2/game", FUN_00160948);
+INCLUDE_ASM("asm/nonmatchings/P2/game", FUN_00160948);
 
-INCLUDE_ASM(const s32, "P2/game", CalculatePercentCompletion__FP2GS);
+INCLUDE_ASM("asm/nonmatchings/P2/game", CalculatePercentCompletion__FP2GS);
 
 #ifdef SKIP_ASM
 PchzLevel pchzLevelTable[0x2e];
 /**
  * @todo 59.54% matched.
  */
-int CalculatePercentCompletion(GS* pgs)
+int CalculatePercentCompletion(GS *pgs)
 {
     int cTasksChecked = 0;
     int cTasksCompleted = 0;
@@ -272,9 +274,9 @@ int CalculatePercentCompletion(GS* pgs)
 }
 #endif // SKIP_ASM
 
-void SetCcharm(int nParam)
+void SetCcharm(int ccharm)
 {
-    g_pgsCur->ccharm = nParam;
+    g_pgsCur->ccharm = ccharm;
 }
 
 /**
@@ -282,10 +284,10 @@ void SetCcharm(int nParam)
  */
 bool FCharmAvailable()
 {
-	return (g_pgsCur->ccharm > 0) || (g_grfcht & (GRFCHT)FCHT_InfiniteCharms);
+    return (g_pgsCur->ccharm > 0) || (g_grfcht & (GRFCHT)FCHT_InfiniteCharms);
 }
 
-INCLUDE_ASM(const s32, "P2/game", func_00160C90);
+INCLUDE_ASM("asm/nonmatchings/P2/game", func_00160C90);
 
 int PfLookupDialog(LS *pls, OID oidDialog)
 {
@@ -297,7 +299,11 @@ int PfLookupDialog(LS *pls, OID oidDialog)
     return -0xcd8 + (int)pls + (oidDialog * 4);
 }
 
-INCLUDE_ASM(const s32, "P2/game", clr_8_bytes_1);
+// TODO: Come up with a name and mangle it.
+void *clr_8_bytes_1(void *pv)
+{
+    return memset(pv, 0, 8);
+}
 
 void FUN_00160ce8(int param_1)
 {
@@ -325,7 +331,7 @@ uint GetGrfvault_unknown()
     return grfvault & unk;
 }
 
-INCLUDE_ASM(const s32, "P2/game", GetBlueprintInfo__FPiT0);
+INCLUDE_ASM("asm/nonmatchings/P2/game", GetBlueprintInfo__FPiT0);
 #ifdef SKIP_ASM
 /**
  * @todo 97.65% matched
@@ -371,4 +377,4 @@ int CcharmMost()
     return 2;
 }
 
-INCLUDE_ASM(const s32, "P2/game", reload_post_death);
+INCLUDE_ASM("asm/nonmatchings/P2/game", reload_post_death);

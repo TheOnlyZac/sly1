@@ -8,22 +8,24 @@ options:
   elf_path: SCUS_971.98
   base_path: ../
   platform: ps2
-  compiler: GCC
+  compiler: EEGCC
 
   # Output paths
   asm_path: asm
   src_path: src
   build_path: obj
 
-
-  # Output options
-  use_legacy_include_asm: True
-  rodata_string_guesser_level: 0 # improve string detection
-  suggestion_rodata_section_start: False
-  pair_rodata_to_text: False
+  # Assembly options
+  generate_asm_macros_files: False
   named_regs_for_c_funcs: False
   find_file_boundaries: False
   disasm_unknown: True
+
+  # Rodata options
+  rodata_string_guesser_level: 0 # improve string detection
+  suggestion_rodata_section_start: True
+  pair_rodata_to_text: False
+  migrate_rodata_to_functions: True
 
   # Auto-generate undefined functions and symbols
   create_undefined_funcs_auto: True
@@ -107,7 +109,7 @@ segments:
     - [0x41d90, c, P2/chkpnt]
     - [0x429e8, c, P2/clip]
     - [0x43ed0, c, P2/clock]
-    - [0x44148, c, P2/cm]
+    - [0x44140, c, P2/cm]
     - [0x47100, c, P2/cnvo]
     - [0x47340, c, P2/coin]
     - [0x4a398, c, P2/cplcy]
@@ -142,15 +144,16 @@ segments:
     - [0x68d68, c, P2/gomer]
     - [0x69130, c, P2/gs]
     - [0x6ac58, c, P2/hide]
-    - [0x6ba18, asm, P2/hnd] # Might be something else
-    #- [0x, asm, P2/ik]
-    #- [0x, asm, P2/jack]
+    - [0x6ba18, asm, P2/UNKNOWN2] # Not in the prototype.
+    - [0x6d470, c, P2/hnd]
+    - [0x6d4e8, c, P2/ik]
+    - [0x6de00, asm, P2/jack] # Might be something else.
     #- [0x, asm, P2/jlo]
     - [0x6f0b8, c, P2/joy]
     - [0x70608, c, P2/jt]
-    - [0x79008, asm, P2/jp]
-    #- [0x, asm, P2/jsg]
-    - [0x7e248, asm, P2/jump]
+    - [0x79008, asm, P2/jp] # Might be something else.
+    - [0x7c998, c, P2/jsg]
+    - [0x7e248, c, P2/jump]
     - [0x80e90, c, P2/keyhole]
     - [0x81eb0, c, P2/landing]
     - [0x81f68, c, P2/lgn]
@@ -176,7 +179,7 @@ segments:
     - [0x94210, c, P2/prog]
     - [0x94598, asm, P2/prompt]
     - [0x973d8, c, P2/proxy]
-    - [0x97938, asm, P2/puffer]
+    - [0x97938, c, P2/puffer]
     - [0x99980, c, P2/pzo]
     - [0x9bf00, c, P2/rail]
     - [0x9c038, c, P2/rat]
@@ -186,9 +189,9 @@ segments:
     #- [0x, asm, P2/rog]
     #- [0x, asm, P2/rope]
     - [0xa8b20, c, P2/rumble]
-    - [0xa8fe8, asm, P2/rwm]
-    #- [0x, asm, P2/sampler] # Might not be in release
-    #- [0x, asm, P2/sc]
+    - [0xa8fe8, c, P2/rwm]
+    - [0xaa8f8, asm, P2/UNKNOWN3] # Not in the prototype.
+    #- [0x, asm, P2/sc] # Most likely not in retail.
     - [0xaac68, c, P2/screen]
     - [0xafcb0, c, P2/sensor]
     - [0xb2ac8, c, P2/shadow]
@@ -225,7 +228,7 @@ segments:
     - [0xd8100, c, P2/stream]
     - [0xd83a8, c, P2/suv]
     - [0xdc480, asm, P2/sw]
-    - [0xdeb20, asm, P2/UNKNOWN2] # Unknown, falls alphabetically between sw and tail
+    - [0xdeb20, asm, P2/UNKNOWN4] # Unknown, falls alphabetically between sw and tail
     - [0xdece0, c, P2/tail]
     - [0xdf798, c, P2/tank]
     - [0xe0d48, c, P2/target]
@@ -240,7 +243,7 @@ segments:
     - [0xea088, c, P2/ui]
     - [0xeac78, c, P2/update]
     - [0xeb408, c, P2/util]
-    - [0xec460, asm, P2/UNKNOWN3] # Not in the prototype.
+    - [0xec460, asm, P2/UNKNOWN5] # Not in the prototype.
     - [0xee650, c, P2/vec]
     - [0xef318, c, P2/vifs]
     - [0xef900, c, P2/vis]

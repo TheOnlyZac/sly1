@@ -28,7 +28,7 @@ DLE *PdleFromDlEntry(DL *pdl, void *pv)
 void AppendDlEntry(DL *pdl, void *pv)
 {
     DLE *newEntry = PdleFromDlEntry(pdl, pv);
-    if (pdl->tail == nullptr)
+    if (!pdl->tail)
     {
         pdl->head = pv;
     }
@@ -44,7 +44,7 @@ void AppendDlEntry(DL *pdl, void *pv)
 void PrependDlEntry(DL *pdl, void *pv)
 {
     DLE *newEntry = PdleFromDlEntry(pdl, pv);
-    if (pdl->head == nullptr)
+    if (!pdl->head)
     {
         pdl->tail = pv;
         pdl->head = pv;
@@ -60,7 +60,7 @@ void PrependDlEntry(DL *pdl, void *pv)
 
 void InsertDlEntryBefore(DL *pdl, void *pvNext, void *pv)
 {
-    if (pvNext == nullptr)
+    if (!pvNext)
     {
         AppendDlEntry(pdl, pv);
     }
@@ -81,30 +81,23 @@ void InsertDlEntryBefore(DL *pdl, void *pvNext, void *pv)
     }
 }
 
-//  Pretty sure this is a STUB func. Asm shows the function is void and empty. -Zryu
-INCLUDE_ASM(const s32, "P2/dl", func_001525F8);
+INCLUDE_ASM("asm/nonmatchings/P2/dl", junk_001525F8);
 
-void RemoveDlEntry(DL* pdl, void* pv)
+void RemoveDlEntry(DL *pdl, void *pv)
 {
-    DLE* pentry;
-    DLI* pcurrent;
-    void* pprev;
-    DLE* ptemp;
-
-    pentry = PdleFromDlEntry(pdl, pv);
-    pcurrent = s_pdliFirst;
+    DLE *pentry = PdleFromDlEntry(pdl, pv);
+    DLI *pcurrent = s_pdliFirst;
 
     // Loop through global iterator list to find DLI that houses the DLE we're looking for.
-    while (pcurrent != nullptr)
+    while (pcurrent)
     {
         if ((DLE *)pcurrent->m_ppv == pentry)
         {
             // If the DLE is the current index of the DLI, replace the with prev.
-            pprev = pentry->prev;
-            if (pprev != nullptr)
+            void *pprev = pentry->prev;
+            if (pprev)
             {
-                ptemp = PdleFromDlEntry(pdl, pprev);
-                (DLE *)pcurrent->m_ppv = ptemp;
+                (DLE *)pcurrent->m_ppv = PdleFromDlEntry(pdl, pprev);
             }
             else
             {
@@ -116,11 +109,11 @@ void RemoveDlEntry(DL* pdl, void* pv)
     }
 
     // Adjust head
-    pprev = pentry->prev;
-    if (pprev != nullptr)
+    void *pprev = pentry->prev;
+    if (pprev)
     {
-        ptemp = PdleFromDlEntry(pdl, pprev);
-        ptemp->next = pentry->next;
+        DLE *pdle = PdleFromDlEntry(pdl, pprev);
+        pdle->next = pentry->next;
     }
     else
     {
@@ -129,10 +122,10 @@ void RemoveDlEntry(DL* pdl, void* pv)
 
     // Adjust tail
     pprev = pentry->next;
-    if (pprev != nullptr)
+    if (pprev)
     {
-        ptemp = PdleFromDlEntry(pdl, pprev);
-        ptemp->prev = pentry->prev;
+        DLE *pdle = PdleFromDlEntry(pdl, pprev);
+        pdle->prev = pentry->prev;
     }
     else
     {
@@ -152,24 +145,22 @@ bool FFindDlEntry(DL *pdl, void *pv)
 
 bool FIsDlEmpty(DL *pdl)
 {
-    return pdl->head == nullptr;
+    return !pdl->head;
 }
 
-void MergeDl(DL* pdlDst, DL* pdlSrc)
+void MergeDl(DL *pdlDst, DL *pdlSrc)
 {
-
     if (pdlSrc->head)
     {
-
-        if (pdlDst->head == nullptr)
+        if (!pdlDst->head)
         {
             memcpy(pdlDst, pdlSrc, 12);
             ClearDl(pdlSrc);
             return;
         }
 
-        DLE* pdstTail = PdleFromDlEntry(pdlDst, pdlDst->tail);
-        DLE* psrcHead = PdleFromDlEntry(pdlSrc, pdlSrc->head);
+        DLE *pdstTail = PdleFromDlEntry(pdlDst, pdlDst->tail);
+        DLE *psrcHead = PdleFromDlEntry(pdlSrc, pdlSrc->head);
 
         pdstTail->next = pdlSrc->head;
         psrcHead->prev = pdlDst->tail;
@@ -188,11 +179,12 @@ int CPvDl(DL *pdl)
     {
         while (pCurItem)
         {
-            DLE *pDle = (DLE *)((unsigned char *)pCurItem + pdl->ibDle);
+            DLE *pDle = (DLE *)((uchar *)pCurItem + pdl->ibDle);
 
             pCurItem = pDle->next;
             iCount++;
         }
     }
+
     return iCount;
 }

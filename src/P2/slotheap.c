@@ -37,7 +37,7 @@ void CreateSlotheapSwAlign64(SLOTHEAP *pslotheap, int cb, int c)
     _InitSlotheap(pslotheap, cb, c);
 }
 
-INCLUDE_ASM(const s32, "P2/slotheap", junk_001B5E98);
+INCLUDE_ASM("asm/nonmatchings/P2/slotheap", junk_001B5E98);
 
 void *PvAllocSlotheapUnsafe(SLOTHEAP *pslotheap)
 {
@@ -72,4 +72,4 @@ void FreeSlotheapPv(SLOTHEAP *pslotheap, void *pv)
     }
 }
 
-INCLUDE_ASM(const s32, "P2/slotheap", junk_001B5F48);
+INCLUDE_ASM("asm/nonmatchings/P2/slotheap", junk_001B5F48);

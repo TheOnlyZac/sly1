@@ -13,7 +13,7 @@ void ResetPipeList()
     ClearDl(&g_dlPipe);
 }
 
-INCLUDE_ASM(const s32, "P2/pipe", InitPipe__FP4PIPE);
+INCLUDE_ASM("asm/nonmatchings/P2/pipe", InitPipe__FP4PIPE);
 
 void OnPipeAdd(PIPE *ppipe)
 {
@@ -27,6 +27,6 @@ void OnPipeRemove(PIPE *ppipe)
     RemoveDlEntry(&g_dlPipe, ppipe);
 }
 
-INCLUDE_ASM(const s32, "P2/pipe", PostPipeLoad);
+INCLUDE_ASM("asm/nonmatchings/P2/pipe", PostPipeLoad);
 
-INCLUDE_ASM(const s32, "P2/pipe", ClonePipe__FP4PIPET0);
+INCLUDE_ASM("asm/nonmatchings/P2/pipe", ClonePipe__FP4PIPET0);

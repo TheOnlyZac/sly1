@@ -7,9 +7,10 @@ extern CLOCK g_clock;
  * @todo 88.42% matched
  * https://decomp.me/scratch/rIdzw
  */
-INCLUDE_ASM(const s32, "P2/flash", InitFlash__FP5FLASH);
+INCLUDE_ASM("asm/nonmatchings/P2/flash", InitFlash__FP5FLASH);
 #ifdef SKIP_ASM
-void InitFlash(FLASH* pflash) {
+void InitFlash(FLASH *pflash)
+{
     InitAlo(pflash);
 
     float fOne   = 1.0f;
@@ -26,14 +27,14 @@ void InitFlash(FLASH* pflash) {
 }
 #endif // SKIP_ASM
 
-INCLUDE_ASM(const s32, "P2/flash", LoadFlashFromBrx__FP5FLASHP18CBinaryInputStream);
+INCLUDE_ASM("asm/nonmatchings/P2/flash", LoadFlashFromBrx__FP5FLASHP18CBinaryInputStream);
 
 void UpdateFlash(FLASH *pflash,float dt)
 {
-    UpdateAlo((ALO *)pflash,dt);
+    UpdateAlo((ALO *)pflash, dt);
     pflash->gScaleCur = GSmooth(pflash->gScaleCur, pflash->gScaleTarget, g_clock.dt, &pflash->smpScale, 0);
 }
 
-INCLUDE_ASM(const s32, "P2/flash", RenderFlashSelf__FP5FLASHP2CMP2RO);
+INCLUDE_ASM("asm/nonmatchings/P2/flash", RenderFlashSelf__FP5FLASHP2CMP2RO);
 
-INCLUDE_ASM(const s32, "P2/flash", FPosFlashWithin__FP5FLASHP6VECTOR);
+INCLUDE_ASM("asm/nonmatchings/P2/flash", FPosFlashWithin__FP5FLASHP6VECTOR);

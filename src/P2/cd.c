@@ -7,7 +7,7 @@ extern int s_retCdRead;
 extern int s_retCdError;
 extern sceCdRMode s_cdmode;
 
-INCLUDE_ASM(const s32, "P2/cd", CpchzTokenizePath__FPc);
+INCLUDE_ASM("asm/nonmatchings/P2/cd", CpchzTokenizePath__FPc);
 
 bool FValidCdMmode()
 {
@@ -39,9 +39,9 @@ void StartupCd()
     return;
 }
 
-INCLUDE_ASM(const s32, "P2/cd", UpdateCd__Fv);
+INCLUDE_ASM("asm/nonmatchings/P2/cd", UpdateCd__Fv);
 
-INCLUDE_ASM(const s32, "P2/cd", CdPath__FPcT0i);
+INCLUDE_ASM("asm/nonmatchings/P2/cd", CdPath__FPcT0i);
 
 void ReadCd(uint isector, uint csector, void *pv)
 {
@@ -78,4 +78,4 @@ bool FCdCompleted(int fBlock)
     return snd_StreamSafeCdSync(fBlock == 0) == 0;
 }
 
-INCLUDE_ASM(const s32, "P2/cd", junk_00140D88);
+INCLUDE_ASM("asm/nonmatchings/P2/cd", junk_00140D88);

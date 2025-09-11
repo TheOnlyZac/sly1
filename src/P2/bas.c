@@ -27,7 +27,7 @@ bool CBinaryAsyncStream::FOpenFile(CFileLocation *pfl)
     return FOpenSector(pfl->m_fcl.isector, pfl->m_fcl.cb);
 }
 
-INCLUDE_ASM(const s32, "P2/bas", junk_0012FD98);
+INCLUDE_ASM("asm/nonmatchings/P2/bas", junk_0012FD98);
 
 bool CBinaryAsyncStream::FOpenSector(uint isector, uint cb)
 {
@@ -116,9 +116,9 @@ bool CBinaryAsyncStream::FSpoolingComplete()
     int status = 0;
     bool fComplete = false;
 
-    if(m_cb == m_ibCur && FSpooling())
+    if (m_cb == m_ibCur && FSpooling())
     {
-        switch(m_bask)
+        switch (m_bask)
         {
             case BASK_Host:
             {

@@ -3,7 +3,7 @@
 /**
  * @todo 100% match, but checksum check fails.
  */
-INCLUDE_ASM(const s32, "P2/gifs", __4GIFS);
+INCLUDE_ASM("asm/nonmatchings/P2/gifs", __4GIFS);
 /*
 GIFS::GIFS()
 {
@@ -14,18 +14,18 @@ GIFS::GIFS()
 }
 */
 
-INCLUDE_ASM(const s32, "P2/gifs", AddPrimEnd__4GIFS);
+INCLUDE_ASM("asm/nonmatchings/P2/gifs", AddPrimEnd__4GIFS);
 
-INCLUDE_ASM(const s32, "P2/gifs", EndPrim__4GIFSi);
+INCLUDE_ASM("asm/nonmatchings/P2/gifs", EndPrim__4GIFSi);
 
 void GIFS::CheckReg(int fExpectPack, int regExpect)
 {
     m_cregAll++;
 }
 
-INCLUDE_ASM(const s32, "P2/gifs", AddPrimBulk__4GIFSiiiUlPP2QW);
+INCLUDE_ASM("asm/nonmatchings/P2/gifs", AddPrimBulk__4GIFSiiiUlPP2QW);
 
-INCLUDE_ASM(const s32, "P2/gifs", AddPrimPack__4GIFSiiUl);
+INCLUDE_ASM("asm/nonmatchings/P2/gifs", AddPrimPack__4GIFSiiUl);
 
 void GIFS::PackRGBA(uint rgba)
 {
@@ -45,7 +45,7 @@ void GIFS::PackUV(int u, int v)
     pqw->an[1] = v;
 }
 
-INCLUDE_ASM(const s32, "P2/gifs", PackSTQ__4GIFSfff);
+INCLUDE_ASM("asm/nonmatchings/P2/gifs", PackSTQ__4GIFSfff);
 
 void GIFS::PackXYZ(int x, int y, int z)
 {
@@ -66,7 +66,7 @@ void GIFS::PackXYZF(int x, int y, int z, int fog)
     pqw->an[3] = (fog & 0xff) << 4;
 }
 
-INCLUDE_ASM(const s32, "P2/gifs", PackXYZFNoKick__4GIFSiiii);
+INCLUDE_ASM("asm/nonmatchings/P2/gifs", PackXYZFNoKick__4GIFSiiii);
 
 void GIFS::PackAD(long int a, long int d)
 {
@@ -76,18 +76,18 @@ void GIFS::PackAD(long int a, long int d)
     pqw->aul[1] = a;
 }
 
-INCLUDE_ASM(const s32, "P2/gifs", junk_00161760);
+INCLUDE_ASM("asm/nonmatchings/P2/gifs", junk_00161760);
 
-INCLUDE_ASM(const s32, "P2/gifs", AddPrimList__4GIFSiUl);
+INCLUDE_ASM("asm/nonmatchings/P2/gifs", AddPrimList__4GIFSiUl);
 
-INCLUDE_ASM(const s32, "P2/gifs", ListRGBAQ__4GIFSUif);
+INCLUDE_ASM("asm/nonmatchings/P2/gifs", ListRGBAQ__4GIFSUif);
 
-INCLUDE_ASM(const s32, "P2/gifs", junk_00161858);
+INCLUDE_ASM("asm/nonmatchings/P2/gifs", junk_00161858);
 
-INCLUDE_ASM(const s32, "P2/gifs", ListUV__4GIFSii);
+INCLUDE_ASM("asm/nonmatchings/P2/gifs", ListUV__4GIFSii);
 
-INCLUDE_ASM(const s32, "P2/gifs", ListXYZF__4GIFSiiii);
+INCLUDE_ASM("asm/nonmatchings/P2/gifs", ListXYZF__4GIFSiiii);
 
-INCLUDE_ASM(const s32, "P2/gifs", junk_00161950);
+INCLUDE_ASM("asm/nonmatchings/P2/gifs", junk_00161950);
 
-INCLUDE_ASM(const s32, "P2/gifs", AddImage__4GIFSi);
+INCLUDE_ASM("asm/nonmatchings/P2/gifs", AddImage__4GIFSi);

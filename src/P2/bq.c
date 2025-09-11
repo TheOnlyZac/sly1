@@ -17,11 +17,11 @@ void CByteQueue::Reset()
     m_cbTotal = 0;
 }
 
-INCLUDE_ASM(const s32, "P2/bq", CbFill__10CByteQueueiP11CQueueInput);
+INCLUDE_ASM("asm/nonmatchings/P2/bq", CbFill__10CByteQueueiP11CQueueInput);
 
-INCLUDE_ASM(const s32, "P2/bq", CbDrain__10CByteQueueiP12CQueueOutput);
+INCLUDE_ASM("asm/nonmatchings/P2/bq", CbDrain__10CByteQueueiP12CQueueOutput);
 
-INCLUDE_ASM(const s32, "P2/bq", CbFill__10CByteQueueiPUc);
+INCLUDE_ASM("asm/nonmatchings/P2/bq", CbFill__10CByteQueueiPUc);
 
 void CByteQueue::FreeDrain(int cb)
 {
@@ -38,8 +38,8 @@ void CByteQueue::FreeDrain(int cb)
     m_cbDrain -= cb;
 }
 
-INCLUDE_ASM(const s32, "P2/bq", CbRead__17CQueueInputMemoryiPv);
+INCLUDE_ASM("asm/nonmatchings/P2/bq", CbRead__17CQueueInputMemoryiPv);
 
-INCLUDE_ASM(const s32, "P2/bq", CbRead__15CQueueInputFileiPv);
+INCLUDE_ASM("asm/nonmatchings/P2/bq", CbRead__15CQueueInputFileiPv);
 
-INCLUDE_ASM(const s32, "P2/bq", junk_0013CCF0);
+INCLUDE_ASM("asm/nonmatchings/P2/bq", junk_0013CCF0);

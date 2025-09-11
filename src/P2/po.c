@@ -1,7 +1,8 @@
 #include <po.h>
 
-void InitPo(PO* ppo) {
-    InitSo((SO *)ppo);
+void InitPo(PO *ppo)
+{
+    InitSo(ppo);
 
     STRUCT_OFFSET(ppo, 0x598, PO *) = ppo;
     STRUCT_OFFSET(ppo, 0x580, int) = 1;
@@ -9,14 +10,14 @@ void InitPo(PO* ppo) {
     SetPoPlayable(ppo, 1);
 }
 
-INCLUDE_ASM(const s32, "P2/po", ClonePo__FP2POT0);
+INCLUDE_ASM("asm/nonmatchings/P2/po", ClonePo__FP2POT0);
 
-INCLUDE_ASM(const s32, "P2/po", HandlePoMessage__FP2PO5MSGIDPv);
+INCLUDE_ASM("asm/nonmatchings/P2/po", HandlePoMessage__FP2PO5MSGIDPv);
 
-INCLUDE_ASM(const s32, "P2/po", OnPoActive__FP2POiT0);
+INCLUDE_ASM("asm/nonmatchings/P2/po", OnPoActive__FP2POiT0);
 
-INCLUDE_ASM(const s32, "P2/po", GetPoCpdefi__FP2POfP6CPDEFI);
-INCLUDE_ASM(const s32, "P2/po", func_00192410);
+INCLUDE_ASM("asm/nonmatchings/P2/po", GetPoCpdefi__FP2POfP6CPDEFI);
+INCLUDE_ASM("asm/nonmatchings/P2/po", func_00192410);
 
 void MakePoActive(PO *ppo)
 {
@@ -26,24 +27,24 @@ void MakePoActive(PO *ppo)
     }
 }
 
-INCLUDE_ASM(const s32, "P2/po", FUN_00192450);
-INCLUDE_ASM(const s32, "P2/po", func_00192488);
-INCLUDE_ASM(const s32, "P2/po", func_00192490);
+INCLUDE_ASM("asm/nonmatchings/P2/po", FUN_00192450);
+INCLUDE_ASM("asm/nonmatchings/P2/po", func_00192488);
+INCLUDE_ASM("asm/nonmatchings/P2/po", func_00192490);
 
-INCLUDE_ASM(const s32, "P2/po", FUN_00192498);
+INCLUDE_ASM("asm/nonmatchings/P2/po", FUN_00192498);
 
-INCLUDE_ASM(const s32, "P2/po", CollectPoPrize__FP2PO3PCKP3ALO);
-INCLUDE_ASM(const s32, "P2/po", func_001925C0);
+INCLUDE_ASM("asm/nonmatchings/P2/po", CollectPoPrize__FP2PO3PCKP3ALO);
+INCLUDE_ASM("asm/nonmatchings/P2/po", func_001925C0);
 
-INCLUDE_ASM(const s32, "P2/po", PpoCur__Fv);
+INCLUDE_ASM("asm/nonmatchings/P2/po", PpoCur__Fv);
 
-INCLUDE_ASM(const s32, "P2/po", PpoStart__Fv);
+INCLUDE_ASM("asm/nonmatchings/P2/po", PpoStart__Fv);
 
-INCLUDE_ASM(const s32, "P2/po", _IppoFindPo__FP2PO);
+INCLUDE_ASM("asm/nonmatchings/P2/po", _IppoFindPo__FP2PO);
 
-INCLUDE_ASM(const s32, "P2/po", AddPoToList__FP2PO);
+INCLUDE_ASM("asm/nonmatchings/P2/po", AddPoToList__FP2PO);
 
-INCLUDE_ASM(const s32, "P2/po", RemovePoFromList__FP2PO);
+INCLUDE_ASM("asm/nonmatchings/P2/po", RemovePoFromList__FP2PO);
 
 void OnPoAdd(PO *ppo)
 {
@@ -53,12 +54,12 @@ void OnPoAdd(PO *ppo)
 
 void OnPoRemove(PO *ppo)
 {
-    OnSoRemove((SO *)ppo);
+    OnSoRemove(ppo);
     RemovePoFromList(ppo);
 }
 
-INCLUDE_ASM(const s32, "P2/po", SwitchToIppo__Fi);
-INCLUDE_ASM(const s32, "P2/po", func_00192988);
+INCLUDE_ASM("asm/nonmatchings/P2/po", SwitchToIppo__Fi);
+INCLUDE_ASM("asm/nonmatchings/P2/po", func_00192988);
 
 void SetPoPlayable(PO *ppo, int playable)
 {
@@ -81,20 +82,20 @@ void SwitchToPo(PO *ppo)
     SwitchToIppo(_IppoFindPo(ppo));
 }
 
-INCLUDE_ASM(const s32, "P2/po", PpziCur__Fv);
-INCLUDE_ASM(const s32, "P2/po", func_00192A28);
+INCLUDE_ASM("asm/nonmatchings/P2/po", PpziCur__Fv);
+INCLUDE_ASM("asm/nonmatchings/P2/po", func_00192A28);
 
-INCLUDE_ASM(const s32, "P2/po", PlayPoDialog__FP2POP6DIALOG);
+INCLUDE_ASM("asm/nonmatchings/P2/po", PlayPoDialog__FP2POP6DIALOG);
 
-INCLUDE_ASM(const s32, "P2/po", FUN_00192a70);
+INCLUDE_ASM("asm/nonmatchings/P2/po", FUN_00192a70);
 
-INCLUDE_ASM(const s32, "P2/po", UpdatePo__FP2POf);
+INCLUDE_ASM("asm/nonmatchings/P2/po", UpdatePo__FP2POf);
 
-INCLUDE_ASM(const s32, "P2/po", UsePoCharm__FP2PO);
+INCLUDE_ASM("asm/nonmatchings/P2/po", UsePoCharm__FP2PO);
 
-INCLUDE_ASM(const s32, "P2/po", FUN_00192dd0);
-INCLUDE_ASM(const s32, "P2/po", func_001930B0);
+INCLUDE_ASM("asm/nonmatchings/P2/po", FUN_00192dd0);
+INCLUDE_ASM("asm/nonmatchings/P2/po", func_001930B0);
 
-INCLUDE_ASM(const s32, "P2/po", po__static_initialization_and_destruction_04);
+INCLUDE_ASM("asm/nonmatchings/P2/po", po__static_initialization_and_destruction_04);
 
-INCLUDE_ASM(const s32, "P2/po", _GLOBAL_$I$InitPo__FP2PO);
+INCLUDE_ASM("asm/nonmatchings/P2/po", _GLOBAL_$I$InitPo__FP2PO);

@@ -47,46 +47,51 @@
 
 // CM* g_pcm = (CM *)0x0;
 
-INCLUDE_ASM(const s32, "P2/cm", CalcCmAdjust__FP2CMP2SOP6CPDEFIP6VECTOR);
+void StartupCm()
+{
+    return;
+}
 
-INCLUDE_ASM(const s32, "P2/cm", SpringCm__FfffP2CMP6VECTORP6VECTORP6VECTOR);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", CalcCmAdjust__FP2CMP2SOP6CPDEFIP6VECTOR);
 
-INCLUDE_ASM(const s32, "P2/cm", AdjustCmCpdefi__FP2CMP2SOfP6CPDEFI);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", SpringCm__FfffP2CMP6VECTORP6VECTORP6VECTOR);
 
-INCLUDE_ASM(const s32, "P2/cm", ResetCmAdjust__FP2CMP2SOP6CPDEFI);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", AdjustCmCpdefi__FP2CMP2SOfP6CPDEFI);
 
-INCLUDE_ASM(const s32, "P2/cm", GetCmCpdefi__FP2CMP2SOfP6CPDEFI);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", ResetCmAdjust__FP2CMP2SOP6CPDEFI);
 
-INCLUDE_ASM(const s32, "P2/cm", BuildCmFgfn__FP2CMfP4FGFN);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", GetCmCpdefi__FP2CMP2SOfP6CPDEFI);
 
-INCLUDE_ASM(const s32, "P2/cm", RecalcCmFrustrum__FP2CM);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", BuildCmFgfn__FP2CMfP4FGFN);
 
-INCLUDE_ASM(const s32, "P2/cm", InitCm__FP2CM);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", RecalcCmFrustrum__FP2CM);
+
+INCLUDE_ASM("asm/nonmatchings/P2/cm", InitCm__FP2CM);
 
 void SetSwCameraFov(float fov)
 {
     SetCmFov(g_pcm, fov);
 }
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_001437e8);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_001437e8);
 
 void SetSwCameraFarClip(float sFarClip)
 {
     SetCmFarClip(g_pcm, sFarClip);
 }
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00143838);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00143838);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00143860);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00143860);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00143888);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00143888);
 
 void SetSwCameraRgbaFog(SW *psw, RGBA *prgbaFog)
 {
     SetCmRgbaFog(g_pcm, prgbaFog);
 }
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_001438d8);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_001438d8);
 
 void SetCmPos(CM *pcm, VECTOR *ppos)
 {
@@ -148,71 +153,72 @@ void SetCmMrdRatio(CM *pcm, float ratio)
     RecalcCmFrustrum(g_pcm);
 }
 
-INCLUDE_ASM(const s32, "P2/cm", ResetCm);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", ResetCm);
 
 void ClearCmFadeObjects(CM *pcm)
 {
     pcm->field67_0x340 = 0;
 }
 
-INCLUDE_ASM(const s32, "P2/cm", AddCmFadeObject);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", AddCmFadeObject);
 
-INCLUDE_ASM(const s32, "P2/cm", RemoveCmFadeObject);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", RemoveCmFadeObject);
 
-INCLUDE_ASM(const s32, "P2/cm", func_00143BA8);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", func_00143BA8);
 
-INCLUDE_ASM(const s32, "P2/cm", UpdateCmFade);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", UpdateCmFade);
 
-INCLUDE_ASM(const s32, "P2/cm", UpdateCmLast);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", UpdateCmLast);
 
-INCLUDE_ASM(const s32, "P2/cm", SetupCmRotateToCam);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", SetupCmRotateToCam);
 
-INCLUDE_ASM(const s32, "P2/cm", ConvertCmScreenToWorld);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCmScreenToWorld);
 
-INCLUDE_ASM(const s32, "P2/cm", ConvertCmWorldToScreen);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCmWorldToScreen);
 
-INCLUDE_ASM(const s32, "P2/cm", SetupCm__FP2CM);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", SetupCm__FP2CM);
 
-INCLUDE_ASM(const s32, "P2/cm", CombineEyeLookAtProj);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", CombineEyeLookAtProj);
 
-INCLUDE_ASM(const s32, "P2/cm", BuildFrustrum);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", BuildFrustrum);
 
-INCLUDE_ASM(const s32, "P2/cm", UpdateCmMat4);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", UpdateCmMat4);
 
-INCLUDE_ASM(const s32, "P2/cm", DrawCm__FP2CM);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", DrawCm__FP2CM);
 
-INCLUDE_ASM(const s32, "P2/cm", SetCmPosMat__FP2CMP6VECTORP7MATRIX3);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmPosMat__FP2CMP6VECTORP7MATRIX3);
 
-INCLUDE_ASM(const s32, "P2/cm", SetCmLookAt);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmLookAt);
 
-INCLUDE_ASM(const s32, "P2/cm", ConvertWorldToCylindVelocity);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertWorldToCylindVelocity);
 
-INCLUDE_ASM(const s32, "P2/cm", ConvertCylindToWorldVelocity);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCylindToWorldVelocity);
 
-INCLUDE_ASM(const s32, "P2/cm", ResetCmLookAtSmooth);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", ResetCmLookAtSmooth);
 
-INCLUDE_ASM(const s32, "P2/cm", SetCmLookAtSmooth);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmLookAtSmooth);
 
-INCLUDE_ASM(const s32, "P2/cm", AdjustCmJoy);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", AdjustCmJoy);
 
-INCLUDE_ASM(const s32, "P2/cm", func_00145080);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", func_00145080);
 
-INCLUDE_ASM(const s32, "P2/cm", SetCmPolicy);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmPolicy);
 
-INCLUDE_ASM(const s32, "P2/cm", RevokeCmPolicy);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", RevokeCmPolicy);
 
-INCLUDE_ASM(const s32, "P2/cm", FInsideCmMrd);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", FInsideCmMrd);
 
-INCLUDE_ASM(const s32, "P2/cm", DecomposeCylind);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", DecomposeCylind);
 
-INCLUDE_ASM(const s32, "P2/cm", DecomposeSphere);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", DecomposeSphere);
 
-void SetCmCut(CM *pcm, float cut[]) //NOTE: I have no idea what i wrote here... But it gives matching code...
+void SetCmCut(CM *pcm, float *pradCut)
 {
-    pcm->field41_0x224 = 1;
-    if (cut != 0) {
-        STRUCT_OFFSET(pcm, 0x228, int) = 1;
-        STRUCT_OFFSET(pcm, 0x22c, float) = cut[0];
+    pcm->field41_0x224 = 1; // Likely pcm->fCut
+    if (pradCut)
+    {
+        pcm->field42_0x228 = 1; // Likely pcm->fRadCut
+        pcm->field43_0x22c = pradCut[0]; // Likely pcm->radCut
     }
 }
 
@@ -226,21 +232,21 @@ void ClearCmCut(CM *pcm)
     SetCmCut(pcm, 0);
 }
 
-INCLUDE_ASM(const s32, "P2/cm", AdaptCm);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", AdaptCm);
 
-INCLUDE_ASM(const s32, "P2/cm", SetCm);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCm);
 
-INCLUDE_ASM(const s32, "P2/cm", PsoEnemyStepguard);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", PsoEnemyStepguard);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00145950);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145950);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00145b68);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145b68);
 
-INCLUDE_ASM(const s32, "P2/cm", func_00145DD8);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", func_00145DD8);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00145de8);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145de8);
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00145e68);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145e68);
 
 void PushLookkCm(CM *pcm, LOOKK lookk)
 {
@@ -269,11 +275,11 @@ void FUN_00146028(CM *pcm)
     pcm->vCenter.z = g_clock.t;
 }
 
-INCLUDE_ASM(const s32, "P2/cm", FUN_00146038);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00146038);
 
-INCLUDE_ASM(const s32, "P2/cm", cm__static_initialization_and_destruction_0__Fii);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", cm__static_initialization_and_destruction_0__Fii);
 
 void _GLOBAL_$I$StartupCm()
 {
-    cm__static_initialization_and_destruction_0(1,0xffff);
+    cm__static_initialization_and_destruction_0(1, 0xffff);
 }
