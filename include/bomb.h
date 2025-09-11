@@ -15,7 +15,8 @@
 struct WKR;
 
 /**
- * @brief Bomb.
+ * @class BOMB
+ * @brief Bomb (?).
  * @todo Implement the struct.
  */
 struct BOMB : public SO

@@ -8,7 +8,8 @@
 #include <stepguard.h>
 
 /**
- * @brief Unknown.
+ * @class GOMER
+ * @brief Unknown, related to bosses.
  * @todo Implement the struct.
  */
 struct GOMER : public STEPGUARD

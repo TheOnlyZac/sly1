@@ -9,7 +9,8 @@
 #include <dl.h>
 
 /**
- * @brief Rail.
+ * @class RAIL
+ * @brief Rail that JT can walk/slide on.
  */
 struct RAIL : public SHAPE
 {

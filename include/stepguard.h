@@ -46,6 +46,10 @@ enum SGS
     SGS_Max = 17
 };
 
+/**
+ * @class STEP_GUARD
+ * @brief Non-flashlight guard.
+ */
 struct STEPGUARD : public STEP
 {
     // ...

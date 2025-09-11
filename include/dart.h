@@ -28,7 +28,8 @@ enum DARTS
 };
 
 /**
- * @brief Dart.
+ * @class DART
+ * @brief Projectile for dartguns.
  * @todo Implement the struct.
  */
 struct DART : public SO

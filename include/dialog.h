@@ -12,23 +12,6 @@
 #include <alo.h>
 
 /**
- * @brief Dialog Event Kind.
- */
-enum DEK
-{
-    DEK_Nil = -1,
-    DEK_PreloadVag = 0,
-    DEK_SpeakerLeft = 1,
-    DEK_SpeakerRight = 2,
-    DEK_Talk = 3,
-    DEK_CallSplice = 4,
-    DEK_ShowLetterbox = 5,
-    DEK_HideLetterbox = 6,
-    DEK_ShowMovie = 7,
-    DEK_Max = 8
-};
-
-/**
  * @brief Dialog Kind.
  */
 enum DIALOGK
@@ -54,7 +37,8 @@ enum DIALOGS
 };
 
 /**
- * @brief Dialog.
+ * @class DIALOG.
+ * @brief Dialog line in a cutscene.
  */
 struct DIALOG : public ALO
 {
@@ -73,6 +57,23 @@ struct DIALOG : public ALO
     int *apfEquivalence[4];
     int fDefault;
     int fCrucial;
+};
+
+/**
+ * @brief Dialog Event Kind.
+ */
+enum DEK
+{
+    DEK_Nil = -1,
+    DEK_PreloadVag = 0,
+    DEK_SpeakerLeft = 1,
+    DEK_SpeakerRight = 2,
+    DEK_Talk = 3,
+    DEK_CallSplice = 4,
+    DEK_ShowLetterbox = 5,
+    DEK_HideLetterbox = 6,
+    DEK_ShowMovie = 7,
+    DEK_Max = 8
 };
 
 /**

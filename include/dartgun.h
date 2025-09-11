@@ -13,7 +13,8 @@
 #include <mq.h>
 
 /**
- * @brief Dart gun.
+ * @class DARTGUN
+ * @brief Dart gun used in High Class Heist?
  */
 struct DARTGUN : public BRK
 {

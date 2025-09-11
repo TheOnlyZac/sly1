@@ -26,7 +26,8 @@ enum FSO
 typedef int GRFFSO;
 
 /**
- * @brief Scene object.
+ * @class OBJECT
+ * @brief Unknown, related to level objects.
  *
  * @todo Implement struct.
  */

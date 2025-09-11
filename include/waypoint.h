@@ -25,7 +25,8 @@ enum WPS
 };
 
 /**
- * @brief Waypoint.
+ * @class WAY_POINT
+ * @brief Waypoint (maybe the green holographic markers?).
  */
 struct WAYPOINT : public ALO
 {

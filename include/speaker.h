@@ -10,7 +10,8 @@
 #include <alo.h>
 
 /**
- * @brief Speaker.
+ * @class SPEAKER
+ * @brief Sound speaker.
  * @todo Implement the struct.
  */
 struct SPEAKER : public ALO

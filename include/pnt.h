@@ -14,11 +14,39 @@
 #include <lo.h>
 
 /**
- * @brief Point.
+ * @class POINT
+ * @brief Object defined only by a point in space.
  */
 struct PNT : public LO
 {
     VECTOR posLocal;
+};
+
+/**
+ * @class POINT_WITH_SPEED
+ * @brief Object defined by a point in space a velocity.
+ */
+struct PNTSV : PNT
+{
+    // ...
+};
+
+/**
+ * @class POINT_WITH_DISTANCE
+ * @brief Object defined by a point in space with a distance.
+ */
+struct PNTS : PNT
+{
+    // ...
+};
+
+/**
+ * @class POINT_WITH_VECTOR
+ * @brief Object defined by a point in space with a vector.
+ */
+struct PNTVEC : PNT
+{
+    // ...
 };
 
 void LoadPntFromBrx(PNT *ppnt, CBinaryInputStream *pbis);

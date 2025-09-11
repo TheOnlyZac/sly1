@@ -12,6 +12,7 @@
 #include <dl.h>
 
 /**
+ * @class SHAPE
  * @brief Unknown.
  */
 struct SHAPE : public LO

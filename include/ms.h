@@ -8,6 +8,7 @@
 struct RO; // todo define this struct somewhere
 
 /**
+ * @class MERGED_STATICS
  * @brief Unknown.
  */
 struct MS

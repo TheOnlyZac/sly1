@@ -21,7 +21,8 @@ struct CLQ;
 struct VECTOR;
 
 /**
- * @brief "LO"
+ * @class LO
+ * @brief Unknown, maybe "level object".
  */
 struct LO : public BASIC
 {

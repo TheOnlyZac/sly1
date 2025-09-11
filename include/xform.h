@@ -34,7 +34,8 @@ struct EXPLSTE;
 struct CAMERA;
 
 /**
- * @brief Transform (?).
+ * @class TRANSFORM
+ * @brief Transform defined by position vector + local matrix.
  */
 struct XFM : public LO
 {
@@ -42,38 +43,61 @@ struct XFM : public LO
     MATRIX3 matLocal;
 };
 
+/**
+ * @class _EXPLODE_BASE
+ * @brief Base class for explodes.
+ */
 struct EXPL : public XFM
 {
     // ...
 };
 
+/**
+ * @class EXPLODE_GROUP
+ * @brief Group of explode objects.
+ */
 struct EXPLG : public EXPL
 {
     // ...
 };
 
+/**
+ * @class BLACK_HOLD
+ * @brief Unknown.
+ */
 struct EXPLO : public EXPL
 {
     // ...
 };
 
+/**
+ * @class EXPLODE_STYLE
+ * @brief Unknown.
+ */
 struct EXPLS : public EXPLO
 {
     // ...
 };
 
+/**
+ * @brief Unknown.
+ */
 struct EXPLSO
 {
     // ...
 };
 
+/**
+ * @brief Unknown.
+ */
 struct EXPLSTE
 {
     // ...
 };
 
 /**
- * @brief Warp.
+ * @class WARP
+ * @brief Unknown.
  */
 struct WARP : XFM
 {
@@ -99,10 +123,8 @@ struct WARP : XFM
 };
 
 /**
- * @brief Camera.
- *
- * @note Not the same as the game camera CM. More research needed.
- * Might be in the wrong header.
+ * @struct CAMERA
+ * @brief Game camera instance.
  */
 struct CAMERA : public ALO
 {
@@ -119,6 +141,9 @@ struct CAMERA : public ALO
     undefined4 unk_4;
 };
 
+/**
+ * @brief Exit state.
+ */
 enum EXITS
 {
     EXITS_Nil = -1,
@@ -131,6 +156,9 @@ enum EXITS
     EXITS_Max = 6
 };
 
+/**
+ * @brief Exit destination kind.
+ */
 enum EDK
 {
     EDK_Nil = -1,
@@ -139,6 +167,10 @@ enum EDK
     EDK_Max = 2
 };
 
+/**
+ * @class EXIT
+ * @brief Exit to another worldlevel.
+ */
 struct EXIT : public ALO
 {
     int fDefault;

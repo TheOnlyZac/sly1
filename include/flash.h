@@ -12,7 +12,7 @@
 #include <cm.h>
 
 /**
- * @brief Unknown.
+ * @brief Unknown (render options?).
  */
 struct RO
 {
@@ -24,7 +24,8 @@ struct RO
 };
 
 /**
- * @brief Flash.
+ * @class FLASHLIGHT
+ * @brief Flashlight guard's flashlight (maybe reused for spotlights?).
  */
 struct FLASH : public ALO
 {
@@ -41,14 +42,14 @@ struct FLASH : public ALO
 };
 
 /**
- * @brief Initializes the given flash.
+ * @brief Initializes the given flashlight.
  *
  * @param pflash Flash to initialize.
  */
 void InitFlash(FLASH *pflash);
 
 /**
- * @brief Loads a flash from the given binary input stream.
+ * @brief Loads a flashlight from the given binary input stream.
  *
  * @param pflash Where to load the flash.
  * @param pbis Binary input stream.
@@ -56,7 +57,7 @@ void InitFlash(FLASH *pflash);
 void LoadFlashFromBrx(FLASH *pflash, CBinaryInputStream *pbis);
 
 /**
- * @brief Updates the given flash.
+ * @brief Updates the given flashlight.
  *
  * @param pflash Flash to update.
  * @param dt Delta time.
@@ -64,10 +65,10 @@ void LoadFlashFromBrx(FLASH *pflash, CBinaryInputStream *pbis);
 void UpdateFlash(FLASH *pflash, float dt);
 
 /**
- * @brief Renders the given flash.
+ * @brief Renders the given flashlight.
  *
  * @param pflash Flash to render.
- * @param pcm Game camera.
+ * @param pcm Camera to render from.
  * @param pro Render options(?).
  */
 void RenderFlashSelf(FLASH *pflash, CM *pcm, RO *pro);

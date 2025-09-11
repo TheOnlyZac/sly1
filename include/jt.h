@@ -107,11 +107,10 @@ enum JTCS
 };
 
 /**
- * @brief Sly entity.
+ * @class JT
+ * @brief Jewel thief (AKA Sly Cooper).
  *
  * JT = "jewel thief" = codename for Sly.
- *
- * @todo Match all structs it inherits from.
  */
 struct JT : public STEP
 {

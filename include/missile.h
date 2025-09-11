@@ -15,7 +15,8 @@
 struct RO;
 
 /**
- * @brief Missile.
+ * @class MISSILE
+ * @brief Missile (maybe the ones fired by smartguards?).
  * @todo Implement the struct.
  */
 struct MISSILE : public BOMB
@@ -24,7 +25,8 @@ struct MISSILE : public BOMB
 };
 
 /**
- * @brief (?) missile.
+ * @class ACCEL_MISSILE
+ * @brief Accelerating missile.
  * @todo Implement the struct.
  */
 struct ACCMISS : public MISSILE
@@ -33,10 +35,31 @@ struct ACCMISS : public MISSILE
 };
 
 /**
- * @brief (?) missile.
+ * @class TARGET_MISSILE
+ * @brief Target missile.
+ * @todo Implement the struct.
+ */
+struct TARMISS : public MISSILE
+{
+    // ...
+};
+
+/**
+ * @class SPLINE_MISSILE
+ * @brief Spline missile.
  * @todo Implement the struct.
  */
 struct SPLMISS : public MISSILE
+{
+    // ...
+};
+
+/**
+ * @class GROUND_MISSILE
+ * @brief Ground missile.
+ * @todo Implement the struct.
+ */
+struct GROUNDMISS : public MISSILE
 {
     // ...
 };

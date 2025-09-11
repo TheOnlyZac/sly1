@@ -8,7 +8,10 @@
 
 #include "common.h"
 
-// todo Implement struct.
+/**
+ * @class TAIL
+ * @brief Used for Sly's tail, and the accessory on top of the Cooper van.
+ */
 struct TAIL
 {
     // ...

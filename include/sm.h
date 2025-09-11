@@ -1,7 +1,7 @@
 /**
  * @file sm.h
  *
- * @brief State machines.
+ * @brief Probabilistic finite state machines.
  */
 #ifndef SM_H
 #define SM_H
@@ -23,20 +23,22 @@ struct SMPA; // todo define
 typedef int GRFAPL;
 
 /**
- * @brief State machine.
+ * @class STATE_MACHINE
+ * @brief State machine defined by a number of states and transitions.
  */
 struct SM : public LO
 {
-    int csms;
-    SMS *asms;
-    int csmt;
-    SMT *asmt;
+    int csms; // Count of states
+    SMS *asms; // Array of states
+    int csmt; // Count of transitions
+    SMT *asmt; // Array of transitions
     int fDefault;
     DL dlSma;
 };
 
 /**
- * @brief State machine action.
+ * @class STATE_MACHINE_APPLICATION
+ * @brief Unknown.
  */
 struct SMA : public BASIC
 {
@@ -54,20 +56,22 @@ struct SMA : public BASIC
     MQ *pmqFirst;
 };
 
+typedef int GRFSMT; // State machine transition integer type
+
 /**
  * @brief State machine transition.
  */
 struct SMT
 {
     undefined4 unk_0;
-    int ismsFrom;
-    int ismsTo;
-    int grfsmt;
-    float gProbability;
+    int ismsFrom; // From state
+    int ismsTo; // To state
+    GRFSMT grfsmt; // Unknown
+    float gProbability; // Probability of transition
 };
 
 /**
- * @brief State machine state(?).
+ * @brief State machine state.
  */
 struct SMS
 {
@@ -76,9 +80,9 @@ struct SMS
 };
 
 /**
- * @brief State machine something(?).
+ * @brief State machine pace(?).
  *
- * @note Used for the fast/slow powerups.
+ * @note Used for the Fast/Slow powerups.
  */
 struct SMP
 {

@@ -8,7 +8,8 @@
 #include <xform.h>
 
 /**
- * @brief Unknown.
+ * @class SPIRE
+ * @brief Spire point that JT can balance on.
  */
 struct SPIRE : public PNT
 {

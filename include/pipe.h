@@ -8,7 +8,8 @@
 #include <lo.h>
 
 /**
- * @brief Pipe.
+ * @class PIPE
+ * @brief Pipe that JT can climb on.
  * @todo Implement the struct.
  */
 struct PIPE : public LO

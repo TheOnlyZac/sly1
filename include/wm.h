@@ -18,7 +18,7 @@
 typedef int GRFDS;
 
 /**
- * @brief World Map (?) State.
+ * @brief World map state.
  */
 enum WMS
 {
@@ -32,7 +32,7 @@ enum WMS
 };
 
 /**
- * @brief World Map Direction?.
+ * @brief World map direction.
  */
 enum WMD
 {
@@ -45,7 +45,7 @@ enum WMD
 };
 
 /**
- * @brief World Map (?)
+ * @brief World map something (?)
  * @todo Implement the struct.
  */
 struct WMC
@@ -54,7 +54,8 @@ struct WMC
 };
 
 /**
- * @brief World Map?
+ * @class WORLD_MAP
+ * @brief World map accessed from the hideout, by pressing Select, or Pause > View Map.
  * @todo Implement the struct.
  */
 struct WM : public ALO

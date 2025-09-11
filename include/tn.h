@@ -26,7 +26,8 @@ enum TNS
 };
 
 /**
- * @brief Tunnel?
+ * @class NEW_TUNNEL
+ * @brief Unknown.
  * @todo Implement the struct.
  */
 struct TN : public ALO
@@ -35,7 +36,7 @@ struct TN : public ALO
 };
 
 /**
- * @brief Tunnel (?)
+ * @brief Tunnel something (?)
  * @todo Implement the struct.
  */
 struct TNFN

@@ -15,6 +15,7 @@
 typedef int GRFZON;
 
 /**
+ * @class VISMAP
  * @brief Visibility map.
  */
 struct VISMAP : public LO

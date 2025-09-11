@@ -11,6 +11,8 @@
 
 /**
  * @brief Unknown.
+ *
+ * @todo Does this inherit from a base struct?
  */
 struct PROXY
 {

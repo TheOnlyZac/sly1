@@ -29,7 +29,7 @@ enum SENSORS
 };
 
 /**
- * @brief Sensor sense state?
+ * @brief Sensor mode.
  */
 enum SENSM
 {
@@ -53,7 +53,8 @@ enum CSDTS
 };
 
 /**
- * @brief Sensor.
+ * @class _SENSOR
+ * @brief Base class for sensors.
  * @todo Implement the struct.
  */
 struct SENSOR : public SO
@@ -63,7 +64,8 @@ struct SENSOR : public SO
 };
 
 /**
- * @brief (?) sensor.
+ * @class LASER_SENSOR
+ * @brief Laser sensor for alarm systems.
  * @todo Implement the struct.
  */
 struct LASEN : public SENSOR
@@ -72,7 +74,8 @@ struct LASEN : public SENSOR
 };
 
 /**
- * @brief Camera sensor?
+ * @class CAMERA_SENSOR
+ * @brief Camera sensor for alarm system.
  * @todo Implement the struct.
  */
 struct CAMSEN : public SENSOR
@@ -81,7 +84,8 @@ struct CAMSEN : public SENSOR
 };
 
 /**
- * @brief (?) sensor.
+ * @class PRESSURE_SENSOR
+ * @brief Pressusre sensor for alarm systems.
  * @todo Implement the struct.
  */
 struct PRSEN : public SENSOR

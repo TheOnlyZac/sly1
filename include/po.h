@@ -38,7 +38,8 @@ struct PZI
 };
 
 /**
- * @brief Player object.
+ * @class PO
+ * @brief Used for playable objects (e.g. JT).
  *
  * @note Based on proto, may be inaccurate.
  */
