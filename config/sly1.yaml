@@ -15,14 +15,17 @@ options:
   src_path: src
   build_path: obj
 
-  # Output options
+  # Assembly options
   generate_asm_macros_files: False
-  rodata_string_guesser_level: 0 # improve string detection
-  suggestion_rodata_section_start: False
-  pair_rodata_to_text: False
   named_regs_for_c_funcs: False
   find_file_boundaries: False
   disasm_unknown: True
+
+  # Rodata options
+  rodata_string_guesser_level: 0 # improve string detection
+  suggestion_rodata_section_start: True
+  pair_rodata_to_text: False
+  migrate_rodata_to_functions: True
 
   # Auto-generate undefined functions and symbols
   create_undefined_funcs_auto: True

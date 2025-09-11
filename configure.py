@@ -139,9 +139,6 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
 
         # Otherwise, use the original object_paths (with .s.o, .c.o, etc.)
 
-        # Convert paths to strings
-        object_strs = [str(obj) for obj in object_paths]
-
         # Add object paths to built_objects
         for idx, object_path in enumerate(object_paths):
             if object_path.suffix == ".o":
@@ -184,6 +181,7 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
                         rel = Path(object_path)
                     except Exception:
                         rel = Path(str(object_path))
+
                 if "target" in str(object_path):
                     target_path = str(object_path)
 
@@ -207,6 +205,7 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
                             "progress_categories": categories,
                         }
                     }
+
                     if has_src:
                         # Replace only the path segment named 'target' with 'current',
                         # preserving any filenames that may contain the substring "target".
