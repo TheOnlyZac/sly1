@@ -2,33 +2,33 @@
 #include <memory.h>
 #include <stdarg.h>
 
-INCLUDE_ASM(const s32, "P2/text", CchParsePchzInt__FPcPi);
+INCLUDE_ASM("asm/nonmatchings/P2/text", CchParsePchzInt__FPcPi);
 
-INCLUDE_ASM(const s32, "P2/text", CchParsePchzTft__FPcP3TFTPPc);
+INCLUDE_ASM("asm/nonmatchings/P2/text", CchParsePchzTft__FPcP3TFTPPc);
 
-INCLUDE_ASM(const s32, "P2/text", WriteTftPchz__FP3TFTP5OSTRMPc);
+INCLUDE_ASM("asm/nonmatchings/P2/text", WriteTftPchz__FP3TFTP5OSTRMPc);
 
-INCLUDE_ASM(const s32, "P2/text", FNegTftUl__FP3TFTP2UL);
+INCLUDE_ASM("asm/nonmatchings/P2/text", FNegTftUl__FP3TFTP2UL);
 
-INCLUDE_ASM(const s32, "P2/text", UnRadixFromChConversion__Fc);
+INCLUDE_ASM("asm/nonmatchings/P2/text", UnRadixFromChConversion__Fc);
 
-INCLUDE_ASM(const s32, "P2/text", CchAchFromUl__FPciUlUi);
+INCLUDE_ASM("asm/nonmatchings/P2/text", CchAchFromUl__FPciUlUi);
 
-INCLUDE_ASM(const s32, "P2/text", WriteTftUl__FP3TFTP5OSTRMUl);
+INCLUDE_ASM("asm/nonmatchings/P2/text", WriteTftUl__FP3TFTP5OSTRMUl);
 
-INCLUDE_ASM(const s32, "P2/text", ExpFirstFromG__Fd);
+INCLUDE_ASM("asm/nonmatchings/P2/text", ExpFirstFromG__Fd);
 
-INCLUDE_ASM(const s32, "P2/text", ChDigitFromG__Fdii);
+INCLUDE_ASM("asm/nonmatchings/P2/text", ChDigitFromG__Fdii);
 
-INCLUDE_ASM(const s32, "P2/text", CchAchFromDouble__FPciP3TFTd);
+INCLUDE_ASM("asm/nonmatchings/P2/text", CchAchFromDouble__FPciP3TFTd);
 
-INCLUDE_ASM(const s32, "P2/text", WriteTftDouble__FP3TFTP5OSTRMd);
+INCLUDE_ASM("asm/nonmatchings/P2/text", WriteTftDouble__FP3TFTP5OSTRMd);
 
-INCLUDE_ASM(const s32, "P2/text", WriteTft__FP3TFTP5OSTRMPPcPci);
+INCLUDE_ASM("asm/nonmatchings/P2/text", WriteTft__FP3TFTP5OSTRMPPcPci);
 
-INCLUDE_ASM(const s32, "P2/text", CchOstrmPrintf__FP5OSTRMPcT1);
+INCLUDE_ASM("asm/nonmatchings/P2/text", CchOstrmPrintf__FP5OSTRMPcT1);
 
-INCLUDE_ASM(const s32, "P2/text", vprintf);
+INCLUDE_ASM("asm/nonmatchings/P2/text", vprintf);
 
 extern "C" int printf(char *pchzFormat, ...)
 {
@@ -39,7 +39,7 @@ extern "C" int printf(char *pchzFormat, ...)
     return ret;
 }
 
-INCLUDE_ASM(const s32, "P2/text", vsprintf);
+INCLUDE_ASM("asm/nonmatchings/P2/text", vsprintf);
 
 extern "C" int sprintf(char *pchzDest, char *pchzFormat, ...)
 {
@@ -50,8 +50,8 @@ extern "C" int sprintf(char *pchzDest, char *pchzFormat, ...)
     return ret;
 }
 
-INCLUDE_ASM(const s32, "P2/text", _vsnprintf);
-INCLUDE_ASM(const s32, "P2/text", func_001E20B0);
+INCLUDE_ASM("asm/nonmatchings/P2/text", _vsnprintf);
+INCLUDE_ASM("asm/nonmatchings/P2/text", func_001E20B0);
 
 int _snprintf(char *pchzDest, int cchDest, char *pchzFormat, ...)
 {
@@ -62,7 +62,7 @@ int _snprintf(char *pchzDest, int cchDest, char *pchzFormat, ...)
     return ret;
 }
 
-INCLUDE_ASM(const s32, "P2/text", func_001E20F8);
+INCLUDE_ASM("asm/nonmatchings/P2/text", func_001E20F8);
 
 extern "C" uint strlen(const char *pchz)
 {
@@ -104,6 +104,6 @@ extern "C" char *strchr(char *pchz, int ch)
     return (char *)nullptr;
 }
 
-INCLUDE_ASM(const s32, "P2/text", func_001E2210);
+INCLUDE_ASM("asm/nonmatchings/P2/text", func_001E2210);
 
-INCLUDE_ASM(const s32, "P2/text", UpperizePchz__FPc);
+INCLUDE_ASM("asm/nonmatchings/P2/text", UpperizePchz__FPc);

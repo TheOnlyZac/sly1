@@ -40,13 +40,13 @@ void DMAS::Reset()
     m_pb = m_ab;
 }
 
-INCLUDE_ASM(const s32, "P2/dmas", AllocGlobal__4DMASi);
+INCLUDE_ASM("asm/nonmatchings/P2/dmas", AllocGlobal__4DMASi);
 
-INCLUDE_ASM(const s32, "P2/dmas", AllocSw__4DMASii);
+INCLUDE_ASM("asm/nonmatchings/P2/dmas", AllocSw__4DMASii);
 
-INCLUDE_ASM(const s32, "P2/dmas", AllocStack__4DMASi);
+INCLUDE_ASM("asm/nonmatchings/P2/dmas", AllocStack__4DMASi);
 
-INCLUDE_ASM(const s32, "P2/dmas", AllocStatic__4DMASiP2QW);
+INCLUDE_ASM("asm/nonmatchings/P2/dmas", AllocStatic__4DMASiP2QW);
 
 void DMAS::Detach(int *pcqw, QW **paqw)
 {
@@ -62,7 +62,7 @@ void DMAS::Detach(int *pcqw, QW **paqw)
     Clear();
 }
 
-INCLUDE_ASM(const s32, "P2/dmas", DetachCopySw__4DMASPiPP2QWT2i);
+INCLUDE_ASM("asm/nonmatchings/P2/dmas", DetachCopySw__4DMASPiPP2QWT2i);
 
 void DMAS::Send(sceDmaChan *chan)
 {
@@ -72,25 +72,25 @@ void DMAS::Send(sceDmaChan *chan)
     m_pb = m_ab;
 }
 
-INCLUDE_ASM(const s32, "P2/dmas", func_00152B30);
+INCLUDE_ASM("asm/nonmatchings/P2/dmas", func_00152B30);
 
-INCLUDE_ASM(const s32, "P2/dmas", AddDmaCnt__4DMAS);
+INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaCnt__4DMAS);
 
-INCLUDE_ASM(const s32, "P2/dmas", AddDmaRefs__4DMASiP2QW);
+INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaRefs__4DMASiP2QW);
 
-INCLUDE_ASM(const s32, "P2/dmas", AddDmaCall__4DMASP2QW);
+INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaCall__4DMASP2QW);
 
-INCLUDE_ASM(const s32, "P2/dmas", AddDmaRet__4DMAS);
+INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaRet__4DMAS);
 
-INCLUDE_ASM(const s32, "P2/dmas", AddDmaBulk__4DMASiP2QW);
+INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaBulk__4DMASiP2QW);
 
-INCLUDE_ASM(const s32, "P2/dmas", AddDmaEnd__4DMAS);
+INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaEnd__4DMAS);
 
-INCLUDE_ASM(const s32, "P2/dmas", EndDmaCnt__4DMAS);
+INCLUDE_ASM("asm/nonmatchings/P2/dmas", EndDmaCnt__4DMAS);
 
 void DMAS::EndPrim()
 {
     return;
 }
 
-INCLUDE_ASM(const s32, "P2/dmas", junk_00152E20);
+INCLUDE_ASM("asm/nonmatchings/P2/dmas", junk_00152E20);

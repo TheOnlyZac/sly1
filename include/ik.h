@@ -13,7 +13,8 @@
 struct RO;
 
 /**
- * @brief Unknown.
+ * @class IK_HANDLE
+ * @brief Inverse kinematics handle.
  * @todo Implement the struct.
  */
 struct IKH : public SO
@@ -22,7 +23,8 @@ struct IKH : public SO
 };
 
 /**
- * @brief Unknown.
+ * @class LIGHTWEIGHT_IK_HAN
+ * @brief Lightweight(?) inverse kinematics handle.
  * @todo Implement the struct.
  */
 struct LIKH : public ALO

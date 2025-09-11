@@ -8,13 +8,13 @@ void InitWr(WR *pwr)
     STRUCT_OFFSET(pwr, 0x6d0, int) = -1; // pwr->iwreCur
 }
 
-INCLUDE_ASM(const s32, "P2/wr", ApplyWrGlob__FP2WRP3ALOP4GLOB);
+INCLUDE_ASM("asm/nonmatchings/P2/wr", ApplyWrGlob__FP2WRP3ALOP4GLOB);
 
-INCLUDE_ASM(const s32, "P2/wr", UpdateWrStateVectors__FP2WR);
+INCLUDE_ASM("asm/nonmatchings/P2/wr", UpdateWrStateVectors__FP2WR);
 
-INCLUDE_ASM(const s32, "P2/wr", WarpWrTransform__FP2WRfP6VECTORP7MATRIX3T2T3T2);
+INCLUDE_ASM("asm/nonmatchings/P2/wr", WarpWrTransform__FP2WRfP6VECTORP7MATRIX3T2T3T2);
 
-INCLUDE_ASM(const s32, "P2/wr", GetWrBounds__FP2WRP6VECTOR);
+INCLUDE_ASM("asm/nonmatchings/P2/wr", GetWrBounds__FP2WRP6VECTOR);
 
 float UNoise(int n)
 {
@@ -25,22 +25,22 @@ float UNoise(int n)
     return (float)x / 2147483648.0f;
 }
 
-INCLUDE_ASM(const s32, "P2/wr", UNoise__Ffff);
+INCLUDE_ASM("asm/nonmatchings/P2/wr", UNoise__Ffff);
 
 float UBias(float u, float v)
 {
     return u / ((1.0f / v - 2.0f) * (1.0f - u) + 1.0f);
 }
 
-INCLUDE_ASM(const s32, "P2/wr", GFromOnz__FP3ONZ);
+INCLUDE_ASM("asm/nonmatchings/P2/wr", GFromOnz__FP3ONZ);
 
-INCLUDE_ASM(const s32, "P2/wr", UpdateWrMatrixes__FP2WR);
+INCLUDE_ASM("asm/nonmatchings/P2/wr", UpdateWrMatrixes__FP2WR);
 
-INCLUDE_ASM(const s32, "P2/wr", AddWrCircleWarp__FP2WR);
+INCLUDE_ASM("asm/nonmatchings/P2/wr", AddWrCircleWarp__FP2WR);
 
-INCLUDE_ASM(const s32, "P2/wr", AddWrBendWarp__FP2WR);
+INCLUDE_ASM("asm/nonmatchings/P2/wr", AddWrBendWarp__FP2WR);
 
-INCLUDE_ASM(const s32, "P2/wr", PwreGetWrCur__FP2WR4ENSK4WREK);
+INCLUDE_ASM("asm/nonmatchings/P2/wr", PwreGetWrCur__FP2WR4ENSK4WREK);
 /*
 WRE *PwreGetWrCur(WR *pwr, ENSK ensk, WREK wrek)
 {

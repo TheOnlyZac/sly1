@@ -12,6 +12,6 @@ void InitGeom(GEOM *pgeom)
     pgeom->aedge = 0;
 }
 
-INCLUDE_ASM(const s32, "P2/geom", CloneGeom__FP4GEOMP7MATRIX4T0);
+INCLUDE_ASM("asm/nonmatchings/P2/geom", CloneGeom__FP4GEOMP7MATRIX4T0);
 
-INCLUDE_ASM(const s32, "P2/geom", FUN_00161028);
+INCLUDE_ASM("asm/nonmatchings/P2/geom", FUN_00161028);

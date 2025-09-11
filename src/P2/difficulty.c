@@ -4,14 +4,14 @@
 #include <transition.h>
 #include <coin.h>
 
-INCLUDE_ASM(const s32, "P2/difficulty", PdifficultyEnsureSw);
-INCLUDE_ASM(const s32, "P2/difficulty", func_00151A58);
+INCLUDE_ASM("asm/nonmatchings/P2/difficulty", PdifficultyEnsureSw);
+INCLUDE_ASM("asm/nonmatchings/P2/difficulty", func_00151A58);
 
 void OnDifficultyGameLoad(DIFFICULTY* pdifficulty) {
     memset(pdifficulty, 0, sizeof(DIFFICULTY)); // note: DIFFICULTY should be 0x24 bytes
 }
 
-INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyWorldPreLoad);
+INCLUDE_ASM("asm/nonmatchings/P2/difficulty", OnDifficultyWorldPreLoad);
 #ifdef SKIP_ASM
 /**
  * @todo 16.92% matched.
@@ -52,7 +52,7 @@ void OnDifficultyWorldPreLoad(DIFFICULTY* pdifficulty)
 }
 #endif
 
-INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyWorldPostLoad);
+INCLUDE_ASM("asm/nonmatchings/P2/difficulty", OnDifficultyWorldPostLoad);
 #ifdef SKIP_ASM
 /**
  * @todo 30.85% matched.
@@ -104,7 +104,7 @@ void OnDifficultyInitialTeleport(DIFFICULTY* pdifficulty) {
     return;
 }
 
-INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyPlayerDeath);
+INCLUDE_ASM("asm/nonmatchings/P2/difficulty", OnDifficultyPlayerDeath);
 #ifdef SKIP_ASM
 /**
  * @todo 88.43% matched.
@@ -141,7 +141,7 @@ void OnDifficultyPlayerDeath(float scalar, DIFFICULTY* pdifficulty)
 }
 #endif
 
-INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyTriggerCheckpoint__FP10DIFFICULTYP6CHKPNT);
+INCLUDE_ASM("asm/nonmatchings/P2/difficulty", OnDifficultyTriggerCheckpoint__FP10DIFFICULTYP6CHKPNT);
 #ifdef SKIP_ASM
 /**
  * @todo 3.33% matched.
@@ -170,7 +170,7 @@ void OnDifficultyCollectKey(DIFFICULTY* pdifficulty)
 	memset(&g_plsCur->unk_field_0x74, 0, 1);
 }
 
-INCLUDE_ASM(const s32, "P2/difficulty", OnDifficultyBreak);
+INCLUDE_ASM("asm/nonmatchings/P2/difficulty", OnDifficultyBreak);
 
 void ChangeSuck(float nParam, DIFFICULTY *pdifficulty)
 {

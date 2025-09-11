@@ -28,7 +28,7 @@ void CTransition::Set(char *pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS
     }
 }
 
-INCLUDE_ASM(const s32, "P2/transition", Execute__11CTransition);
+INCLUDE_ASM("asm/nonmatchings/P2/transition", Execute__11CTransition);
 #ifdef SKIP_ASM
 /**
  * @todo 15.19% matched.
@@ -107,6 +107,6 @@ void ResetWorld(FTRANS ftrans)
     g_transition.Set(g_transition.m_achzWorldCur, OID_Nil, OID_Nil, grftrans);
 }
 
-INCLUDE_ASM(const s32, "P2/transition", transition__static_initialization_and_destruction_0);
+INCLUDE_ASM("asm/nonmatchings/P2/transition", transition__static_initialization_and_destruction_0);
 
-INCLUDE_ASM(const s32, "P2/transition", _GLOBAL_$I$g_transition);
+INCLUDE_ASM("asm/nonmatchings/P2/transition", _GLOBAL_$I$g_transition);

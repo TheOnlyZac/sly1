@@ -88,7 +88,7 @@ void RemoveLo(LO *plo)
     }
 }
 
-INCLUDE_ASM(const s32, "P2/lo", DeferLoRemove__FP2LO);
+INCLUDE_ASM("asm/nonmatchings/P2/lo", DeferLoRemove__FP2LO);
 
 void SetLoSuckHideLimits(LO *plo, LM *plmUSuck)
 {
@@ -186,9 +186,9 @@ void GetLoInWorld(LO *plo, int *pfInWorld)
     *pfInWorld = FIsLoInWorld(plo);
 }
 
-INCLUDE_ASM(const s32, "P2/lo", GetLoInWorld_padding);
+INCLUDE_ASM("asm/nonmatchings/P2/lo", GetLoInWorld_padding);
 
-INCLUDE_ASM(const s32, "P2/lo", PloCloneLo__FP2LOP2SWP3ALO);
+INCLUDE_ASM("asm/nonmatchings/P2/lo", PloCloneLo__FP2LOP2SWP3ALO);
 
 void CloneLoHierarchy(LO *plo, LO *ploBase)
 {
@@ -348,22 +348,22 @@ void GetLoOidProxy(LO *plo, OID *poid)
     *poid = oid;
 }
 
-INCLUDE_ASM(const s32, "P2/lo", PostSpliceEventCallback__FP2LOUiPv);
+INCLUDE_ASM("asm/nonmatchings/P2/lo", PostSpliceEventCallback__FP2LOUiPv);
 
-INCLUDE_ASM(const s32, "P2/lo", FFilterSpliceEvent__FP2LO7SYMEVIDiPPv);
+INCLUDE_ASM("asm/nonmatchings/P2/lo", FFilterSpliceEvent__FP2LO7SYMEVIDiPPv);
 
-INCLUDE_ASM(const s32, "P2/lo", HandleLoSpliceEvent__FP2LOUiiPPv);
+INCLUDE_ASM("asm/nonmatchings/P2/lo", HandleLoSpliceEvent__FP2LOUiiPPv);
 
-INCLUDE_ASM(const s32, "P2/lo", EnsureLoSidebagBool__FP2LO5OPTIDi);
+INCLUDE_ASM("asm/nonmatchings/P2/lo", EnsureLoSidebagBool__FP2LO5OPTIDi);
 
-INCLUDE_ASM(const s32, "P2/lo", EnsureLoSidebagInt__FP2LO5OPTIDi);
+INCLUDE_ASM("asm/nonmatchings/P2/lo", EnsureLoSidebagInt__FP2LO5OPTIDi);
 
-INCLUDE_ASM(const s32, "P2/lo", EnsureLoSidebagFloat__FP2LO5OPTIDf);
+INCLUDE_ASM("asm/nonmatchings/P2/lo", EnsureLoSidebagFloat__FP2LO5OPTIDf);
 
-INCLUDE_ASM(const s32, "P2/lo", EnsureLoSidebagClq__FP2LO5OPTIDP3CLQ);
+INCLUDE_ASM("asm/nonmatchings/P2/lo", EnsureLoSidebagClq__FP2LO5OPTIDP3CLQ);
 
-INCLUDE_ASM(const s32, "P2/lo", EnsureLoSidebagLm__FP2LO5OPTIDP2LM);
+INCLUDE_ASM("asm/nonmatchings/P2/lo", EnsureLoSidebagLm__FP2LO5OPTIDP2LM);
 
-INCLUDE_ASM(const s32, "P2/lo", EnsureLoSidebagOid__FP2LO5OPTID3OID);
+INCLUDE_ASM("asm/nonmatchings/P2/lo", EnsureLoSidebagOid__FP2LO5OPTID3OID);
 
-INCLUDE_ASM(const s32, "P2/lo", EnsureLoSidebagVector__FP2LO5OPTIDP6VECTOR);
+INCLUDE_ASM("asm/nonmatchings/P2/lo", EnsureLoSidebagVector__FP2LO5OPTIDP6VECTOR);

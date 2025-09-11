@@ -1,17 +1,17 @@
 #include <splice/splotheap.h>
 
-INCLUDE_ASM(const s32, "P2/splice/splotheap", Startup__10CSplotheapii);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", Startup__10CSplotheapii);
 
 void CSplotheap::Shutdown()
 {
     return;
 }
 
-INCLUDE_ASM(const s32, "P2/splice/splotheap", PvAllocUnsafe__10CSplotheap);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", PvAllocUnsafe__10CSplotheap);
 
-INCLUDE_ASM(const s32, "P2/splice/splotheap", PvAllocClear__10CSplotheap);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", PvAllocClear__10CSplotheap);
 
-INCLUDE_ASM(const s32, "P2/splice/splotheap", PsplotLookup__10CSplotheapi);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", PsplotLookup__10CSplotheapi);
 
 void CSplotheap::UpdateRecyclable()
 {
@@ -28,7 +28,7 @@ void CSplotheap::UnmarkAll()
     }
 }
 
-INCLUDE_ASM(const s32, "P2/splice/splotheap", FreeGarbage__10CSplotheap);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", FreeGarbage__10CSplotheap);
 
 static void *PvFromPsplot(SPLOT *psplot)
 {
@@ -52,8 +52,8 @@ void MarkPvAlive(void *pv)
     psplot->fAlive = 1;
 }
 
-INCLUDE_ASM(const s32, "P2/splice/splotheap", func_0011C418);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", func_0011C418);
 
-INCLUDE_ASM(const s32, "P2/splice/splotheap", func_0011C498);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", func_0011C498);
 
-INCLUDE_ASM(const s32, "P2/splice/splotheap", func_0011C4E8);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", func_0011C4E8);

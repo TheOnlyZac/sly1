@@ -69,7 +69,7 @@ void SetFsp(FSP fsp)
     g_pgsCur->fspLast = fsp;
 }
 
-INCLUDE_ASM(const s32, "P2/steppower", UpdateJtActivePowerUp__FP2JTP3JOY);
+INCLUDE_ASM("asm/nonmatchings/P2/steppower", UpdateJtActivePowerUp__FP2JTP3JOY);
 // #ifdef SKIP_ASM
 /**
  * @todo 46.12% match.

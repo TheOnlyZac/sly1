@@ -17,7 +17,8 @@
 struct XP;
 
 /**
- * @brief Unknown.
+ * @class JUMP_TARGET
+ * @brief Target point for a jump.
  * @todo Implement the struct.
  */
 struct JMT : public PNT

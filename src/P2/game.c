@@ -30,29 +30,29 @@ void StartupGame()
     StartGame();
 }
 
-INCLUDE_ASM(const s32, "P2/game", junk_00160090);
+INCLUDE_ASM("asm/nonmatchings/P2/game", junk_00160090);
 
-INCLUDE_ASM(const s32, "P2/game", search_level_by_load_data);
+INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_load_data);
 
-INCLUDE_ASM(const s32, "P2/game", search_level_by_id);
+INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_id);
 
-INCLUDE_ASM(const s32, "P2/game", PchzFriendlyFromWid);
+INCLUDE_ASM("asm/nonmatchings/P2/game", PchzFriendlyFromWid);
 
-INCLUDE_ASM(const s32, "P2/game", junk_00160178);
+INCLUDE_ASM("asm/nonmatchings/P2/game", junk_00160178);
 
-INCLUDE_ASM(const s32, "P2/game", call_search_level_by_id);
+INCLUDE_ASM("asm/nonmatchings/P2/game", call_search_level_by_id);
 
-INCLUDE_ASM(const s32, "P2/game", FFindLevel);
+INCLUDE_ASM("asm/nonmatchings/P2/game", FFindLevel);
 
-INCLUDE_ASM(const s32, "P2/game", junk_001601D0);
+INCLUDE_ASM("asm/nonmatchings/P2/game", junk_001601D0);
 
-INCLUDE_ASM(const s32, "P2/game", get_level_completion_by_id);
+INCLUDE_ASM("asm/nonmatchings/P2/game", get_level_completion_by_id);
 
-INCLUDE_ASM(const s32, "P2/game", tally_world_completion);
+INCLUDE_ASM("asm/nonmatchings/P2/game", tally_world_completion);
 
-INCLUDE_ASM(const s32, "P2/game", get_game_completion__Fv);
+INCLUDE_ASM("asm/nonmatchings/P2/game", get_game_completion__Fv);
 
-INCLUDE_ASM(const s32, "P2/game", UnlockIntroCutsceneFromWid__Fi);
+INCLUDE_ASM("asm/nonmatchings/P2/game", UnlockIntroCutsceneFromWid__Fi);
 #ifdef SKIP_ASM
 /**
  * @todo Close to matching but there's a problem with the rodata.
@@ -86,13 +86,13 @@ void UnlockIntroCutsceneFromWid(int wid)
 }
 #endif // SKIP_ASM
 
-INCLUDE_ASM(const s32, "P2/game", DefeatBossFromWid);
+INCLUDE_ASM("asm/nonmatchings/P2/game", DefeatBossFromWid);
 
-INCLUDE_ASM(const s32, "P2/game", UnlockEndgameCutscenesFromFgs);
+INCLUDE_ASM("asm/nonmatchings/P2/game", UnlockEndgameCutscenesFromFgs);
 
-INCLUDE_ASM(const s32, "P2/game", PlayEndingFromCompletionFlags);
+INCLUDE_ASM("asm/nonmatchings/P2/game", PlayEndingFromCompletionFlags);
 
-INCLUDE_ASM(const s32, "P2/game", InitGameState__FP2GS);
+INCLUDE_ASM("asm/nonmatchings/P2/game", InitGameState__FP2GS);
 /**
  * @todo 86.46% matched.
  */
@@ -112,9 +112,9 @@ void InitGameState(GS *pgs)
 }
 #endif // SKIP_ASM
 
-INCLUDE_ASM(const s32, "P2/game", FUN_00160650);
+INCLUDE_ASM("asm/nonmatchings/P2/game", FUN_00160650);
 
-INCLUDE_ASM(const s32, "P2/game", SetupGame__FPci);
+INCLUDE_ASM("asm/nonmatchings/P2/game", SetupGame__FPci);
 
 void UpdateGameState(float dt)
 {
@@ -123,11 +123,11 @@ void UpdateGameState(float dt)
     g_plsCur->dt += dt;
 }
 
-INCLUDE_ASM(const s32, "P2/game", LsFromWid);
+INCLUDE_ASM("asm/nonmatchings/P2/game", LsFromWid);
 
-INCLUDE_ASM(const s32, "P2/game", GrflsFromWid);
+INCLUDE_ASM("asm/nonmatchings/P2/game", GrflsFromWid);
 
-INCLUDE_ASM(const s32, "P2/game", UnloadGame__Fv);
+INCLUDE_ASM("asm/nonmatchings/P2/game", UnloadGame__Fv);
 #ifdef SKIP_ASM
 /**
  * @todo 60.42% matched.
@@ -160,9 +160,9 @@ void StartGame()
     WipeToWorldWarp(D_00247AB0, OID_Nil, WIPEK_Fade);
 }
 
-INCLUDE_ASM(const s32, "P2/game", FUN_00160948);
+INCLUDE_ASM("asm/nonmatchings/P2/game", FUN_00160948);
 
-INCLUDE_ASM(const s32, "P2/game", CalculatePercentCompletion__FP2GS);
+INCLUDE_ASM("asm/nonmatchings/P2/game", CalculatePercentCompletion__FP2GS);
 
 #ifdef SKIP_ASM
 PchzLevel pchzLevelTable[0x2e];
@@ -287,7 +287,7 @@ bool FCharmAvailable()
     return (g_pgsCur->ccharm > 0) || (g_grfcht & (GRFCHT)FCHT_InfiniteCharms);
 }
 
-INCLUDE_ASM(const s32, "P2/game", func_00160C90);
+INCLUDE_ASM("asm/nonmatchings/P2/game", func_00160C90);
 
 int PfLookupDialog(LS *pls, OID oidDialog)
 {
@@ -331,7 +331,7 @@ uint GetGrfvault_unknown()
     return grfvault & unk;
 }
 
-INCLUDE_ASM(const s32, "P2/game", GetBlueprintInfo__FPiT0);
+INCLUDE_ASM("asm/nonmatchings/P2/game", GetBlueprintInfo__FPiT0);
 #ifdef SKIP_ASM
 /**
  * @todo 97.65% matched
@@ -377,4 +377,4 @@ int CcharmMost()
     return 2;
 }
 
-INCLUDE_ASM(const s32, "P2/game", reload_post_death);
+INCLUDE_ASM("asm/nonmatchings/P2/game", reload_post_death);

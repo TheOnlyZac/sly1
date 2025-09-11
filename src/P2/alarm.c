@@ -24,7 +24,7 @@ void InitAlarm(ALARM *palarm)
     STRUCT_OFFSET(palarm, 0x6b0, int) = IchkAllocChkmgr(&g_chkmgr); // palarm->ichkDisabled
 }
 
-INCLUDE_ASM(const s32, "P2/alarm", PostAlarmLoad__FP5ALARM);
+INCLUDE_ASM("asm/nonmatchings/P2/alarm", PostAlarmLoad__FP5ALARM);
 
 void CloneAlarm(ALARM *palarm, ALARM *palarmBase)
 {
@@ -33,11 +33,11 @@ void CloneAlarm(ALARM *palarm, ALARM *palarmBase)
     STRUCT_OFFSET(palarm, 0x6b0, int) = ichkDisabled; // palarm->ichkDisabled
 }
 
-INCLUDE_ASM(const s32, "P2/alarm", UpdateAlarm__FP5ALARMf);
+INCLUDE_ASM("asm/nonmatchings/P2/alarm", UpdateAlarm__FP5ALARMf);
 
-INCLUDE_ASM(const s32, "P2/alarm", PostAlarmLoadCallbackHookup__FP5ALARM5MSGIDPv);
+INCLUDE_ASM("asm/nonmatchings/P2/alarm", PostAlarmLoadCallbackHookup__FP5ALARM5MSGIDPv);
 
-INCLUDE_ASM(const s32, "P2/alarm", SetAlarmAlarms__FP5ALARM6ALARMS);
+INCLUDE_ASM("asm/nonmatchings/P2/alarm", SetAlarmAlarms__FP5ALARM6ALARMS);
 
 void TriggerAlarm(ALARM *palarm, ALTK altk)
 {
@@ -66,17 +66,17 @@ void DisableAlarmAlbrk(ALARM *palarm)
     STRUCT_OFFSET(palarm, 0x61c, int)++; // palarm->calbrksDisabled
 }
 
-INCLUDE_ASM(const s32, "P2/alarm", EnableAlarmSensors__FP5ALARM);
+INCLUDE_ASM("asm/nonmatchings/P2/alarm", EnableAlarmSensors__FP5ALARM);
 
-INCLUDE_ASM(const s32, "P2/alarm", DisableAlarmSensors__FP5ALARM);
+INCLUDE_ASM("asm/nonmatchings/P2/alarm", DisableAlarmSensors__FP5ALARM);
 
-INCLUDE_ASM(const s32, "P2/alarm", NotifyAlarmSensorsOnTrigger__FP5ALARM);
+INCLUDE_ASM("asm/nonmatchings/P2/alarm", NotifyAlarmSensorsOnTrigger__FP5ALARM);
 
-INCLUDE_ASM(const s32, "P2/alarm", AddAlarmAlbrk__FP5ALARM3OID);
+INCLUDE_ASM("asm/nonmatchings/P2/alarm", AddAlarmAlbrk__FP5ALARM3OID);
 
-INCLUDE_ASM(const s32, "P2/alarm", AddAlarmSensor__FP5ALARM3OID);
+INCLUDE_ASM("asm/nonmatchings/P2/alarm", AddAlarmSensor__FP5ALARM3OID);
 
-INCLUDE_ASM(const s32, "P2/alarm", AddAlarmStepguard__FP5ALARM3OID);
+INCLUDE_ASM("asm/nonmatchings/P2/alarm", AddAlarmStepguard__FP5ALARM3OID);
 
 void SetAlarmRsmg(ALARM *palarm, int fOnTrigger, OID oidRoot, OID oidSM, OID oidGoal)
 {
@@ -84,4 +84,4 @@ void SetAlarmRsmg(ALARM *palarm, int fOnTrigger, OID oidRoot, OID oidSM, OID oid
     FAddRsmg(&STRUCT_OFFSET(palarm, 0x630, RSMG), 8, &STRUCT_OFFSET(palarm, 0x62c, int), fOnTrigger, oidRoot, oidSM, oidGoal);
 }
 
-INCLUDE_ASM(const s32, "P2/alarm", FGetAlarmSensorList__FP5ALARMPv);
+INCLUDE_ASM("asm/nonmatchings/P2/alarm", FGetAlarmSensorList__FP5ALARMPv);

@@ -20,4 +20,4 @@ void SwapEntries(void *afoo, int cb, int i1, int i2)
     }
 }
 
-INCLUDE_ASM(const s32, "P2/sort", HeapSort__FPviiPFPvPv_i);
+INCLUDE_ASM("asm/nonmatchings/P2/sort", HeapSort__FPviiPFPvPv_i);

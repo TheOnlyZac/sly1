@@ -33,10 +33,10 @@ float GLimitAbs(float g, float absLimit)
     return g;
 }
 
-INCLUDE_ASM(const s32, "P2/util", GSmooth__FfffP3SMPPf);
+INCLUDE_ASM("asm/nonmatchings/P2/util", GSmooth__FfffP3SMPPf);
 
-INCLUDE_ASM(const s32, "P2/util", GSmoothA__FffffP4SMPAPf);
-INCLUDE_ASM(const s32, "P2/util", func_001EA720);
+INCLUDE_ASM("asm/nonmatchings/P2/util", GSmoothA__FffffP4SMPAPf);
+INCLUDE_ASM("asm/nonmatchings/P2/util", func_001EA720);
 
 float RadSmooth(float radCur, float radTarget, float dt, SMP *psmp, float *pdradNext)
 {
@@ -56,9 +56,9 @@ float RadSmoothA(float radCur, float dradCur, float radTarget, float dt, SMPA *p
     return rad;
 }
 
-INCLUDE_ASM(const s32, "P2/util", PosSmooth);
+INCLUDE_ASM("asm/nonmatchings/P2/util", PosSmooth);
 
-INCLUDE_ASM(const s32, "P2/util", SmoothMatrix);
+INCLUDE_ASM("asm/nonmatchings/P2/util", SmoothMatrix);
 
 // Generates a random integer in the range [nLow, nHi]
 int NRandInRange(int nLow, int nHi)
@@ -95,7 +95,7 @@ float GRandInRange(float gHi, float gLow)
     return result;
 }
 
-INCLUDE_ASM(const s32, "P2/util", GRandGaussian__Ffff);
+INCLUDE_ASM("asm/nonmatchings/P2/util", GRandGaussian__Ffff);
 #ifdef SKIP_ASM
 /**
  * @todo 64.35% matched.
@@ -144,7 +144,7 @@ int FFloatsNear(float g1, float g2, float gEpsilon)
     return (g2 / x) < gEpsilon;
 }
 
-INCLUDE_ASM(const s32, "P2/util", CSolveQuadratic__FfffPf);
+INCLUDE_ASM("asm/nonmatchings/P2/util", CSolveQuadratic__FfffPf);
 #ifdef SKIP_ASM
 /**
  * @todo 95.96% matched.
@@ -189,7 +189,7 @@ void PrescaleClq(CLQ *pclqSrc, float ru, float du, CLQ *pclqDst)
     pclqDst->u = pclqSrc->w * du * du + pclqSrc->v * du + pclqSrc->u;
 }
 
-INCLUDE_ASM(const s32, "P2/util", CalculateSinCos__FfPfT1);
+INCLUDE_ASM("asm/nonmatchings/P2/util", CalculateSinCos__FfPfT1);
 #ifdef SKIP_ASM
 /**
  * @tod 86.55% matched.
@@ -235,7 +235,7 @@ void CalculateSinCos(float angle, float *sin, float *cos)
 }
 #endif // SKIP_ASM
 
-INCLUDE_ASM(const s32, "P2/util", GTrunc__Fd); // double version
+INCLUDE_ASM("asm/nonmatchings/P2/util", GTrunc__Fd); // double version
 #ifdef SKIP_ASM
 /**
  * @todo 34.18% matched.
@@ -272,7 +272,7 @@ double GTrunc(double param_1)
 }
 #endif
 
-INCLUDE_ASM(const s32, "P2/util", GTrunc__Ff); // float version
+INCLUDE_ASM("asm/nonmatchings/P2/util", GTrunc__Ff); // float version
 #ifdef SKIP_ASM
 /**
  * @todo 36.07% matched.
@@ -375,5 +375,5 @@ void Force(void *pv)
     return;
 }
 
-INCLUDE_ASM(const s32, "P2/util", MinimizeRange);
-INCLUDE_ASM(const s32, "P2/util", func_001EB458);
+INCLUDE_ASM("asm/nonmatchings/P2/util", MinimizeRange);
+INCLUDE_ASM("asm/nonmatchings/P2/util", func_001EB458);

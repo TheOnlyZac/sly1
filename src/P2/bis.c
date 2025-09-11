@@ -4,7 +4,7 @@
 #include <sdk/libcdvd.h>
 #include <memory.h>
 
-INCLUDE_ASM(const s32, "P2/bis", __18CBinaryInputStreamPvii);
+INCLUDE_ASM("asm/nonmatchings/P2/bis", __18CBinaryInputStreamPvii);
 #ifdef SKIP_ASM
 /**
  * @todo 92.85% match. Class fields might be incorrect,
@@ -33,7 +33,7 @@ CBinaryInputStream::CBinaryInputStream(void *pvSpool, int cbSpool, GRFBIS grfbis
 }
 #endif
 
-INCLUDE_ASM(const s32, "P2/bis", DESTRUCTOR__CBinaryInputStream);
+INCLUDE_ASM("asm/nonmatchings/P2/bis", DESTRUCTOR__CBinaryInputStream);
 #ifdef SKIP_ASM
 CBinaryInputStream::~CBinaryInputStream()
 {
@@ -131,9 +131,9 @@ void CBinaryInputStream::DecrementCdReadLimit(int cb)
     m_fd -= cb;
 }
 
-INCLUDE_ASM(const s32, "P2/bis", PumpCd__18CBinaryInputStream);
+INCLUDE_ASM("asm/nonmatchings/P2/bis", PumpCd__18CBinaryInputStream);
 
-INCLUDE_ASM(const s32, "P2/bis", PumpHost__18CBinaryInputStream);
+INCLUDE_ASM("asm/nonmatchings/P2/bis", PumpHost__18CBinaryInputStream);
 
 void CBinaryInputStream::Pump()
 {
@@ -162,9 +162,9 @@ void CBinaryInputStream::Pump()
     }
 }
 
-INCLUDE_ASM(const s32, "P2/bis", Decompress__18CBinaryInputStream);
+INCLUDE_ASM("asm/nonmatchings/P2/bis", Decompress__18CBinaryInputStream);
 
-INCLUDE_ASM(const s32, "P2/bis", Read__18CBinaryInputStreamiPv);
+INCLUDE_ASM("asm/nonmatchings/P2/bis", Read__18CBinaryInputStreamiPv);
 #ifdef SKIP_ASM
 /**
  * @brief Reads a certain number of bytes from the stream.
@@ -280,7 +280,7 @@ uint CBinaryInputStream::U32Read()
     }
 }
 
-INCLUDE_ASM(const s32, "P2/bis", func_00137CB8);
+INCLUDE_ASM("asm/nonmatchings/P2/bis", func_00137CB8);
 
 char CBinaryInputStream::S8Read()
 {
@@ -337,7 +337,7 @@ int CBinaryInputStream::S32Read()
     }
 }
 
-INCLUDE_ASM(const s32, "P2/bis", junk_00137DF0);
+INCLUDE_ASM("asm/nonmatchings/P2/bis", junk_00137DF0);
 
 float CBinaryInputStream::F32Read()
 {
@@ -375,13 +375,13 @@ void CBinaryInputStream::ReadMatrix(MATRIX3 *pmat)
     Read(size, &pmat->mat[2][2]);
 }
 
-INCLUDE_ASM(const s32, "P2/bis", ReadMatrix4__18CBinaryInputStreamP7MATRIX4);
+INCLUDE_ASM("asm/nonmatchings/P2/bis", ReadMatrix4__18CBinaryInputStreamP7MATRIX4);
 
-INCLUDE_ASM(const s32, "P2/bis", ReadGeom__18CBinaryInputStreamP4GEOM);
+INCLUDE_ASM("asm/nonmatchings/P2/bis", ReadGeom__18CBinaryInputStreamP4GEOM);
 
-INCLUDE_ASM(const s32, "P2/bis", ReadBspc__18CBinaryInputStreamP4GEOMP4BSPC);
+INCLUDE_ASM("asm/nonmatchings/P2/bis", ReadBspc__18CBinaryInputStreamP4GEOMP4BSPC);
 
-INCLUDE_ASM(const s32, "P2/bis", ReadVbsp__18CBinaryInputStreamPiPP4VBSP);
+INCLUDE_ASM("asm/nonmatchings/P2/bis", ReadVbsp__18CBinaryInputStreamPiPP4VBSP);
 
 void CBinaryInputStream::ReadStringSw(char **pachz)
 {
@@ -392,7 +392,7 @@ void CBinaryInputStream::ReadStringSw(char **pachz)
     *pachz = buffer;
 }
 
-INCLUDE_ASM(const s32, "P2/bis", junk_00138510);
+INCLUDE_ASM("asm/nonmatchings/P2/bis", junk_00138510);
 
 void CBinaryInputStream::Unknown1()
 {

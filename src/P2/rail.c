@@ -9,10 +9,10 @@ void InitRail(RAIL *prail)
     STRUCT_OFFSET(prail, 0x54, int) = -1; // prail->fSlippery
 }
 
-INCLUDE_ASM(const s32, "P2/rail", OnRailAdd__FP4RAIL);
+INCLUDE_ASM("asm/nonmatchings/P2/rail", OnRailAdd__FP4RAIL);
 
-INCLUDE_ASM(const s32, "P2/rail", OnRailRemove__FP4RAIL);
+INCLUDE_ASM("asm/nonmatchings/P2/rail", OnRailRemove__FP4RAIL);
 
-INCLUDE_ASM(const s32, "P2/rail", PostLoadRail__FP4RAIL);
+INCLUDE_ASM("asm/nonmatchings/P2/rail", PostLoadRail__FP4RAIL);
 
-INCLUDE_ASM(const s32, "P2/rail", CloneRail__FP4RAILT0);
+INCLUDE_ASM("asm/nonmatchings/P2/rail", CloneRail__FP4RAILT0);

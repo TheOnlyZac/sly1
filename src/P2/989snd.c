@@ -105,7 +105,7 @@ int gLoadParams[8] __attribute__((aligned(16))) = {};
 extern sceSifClientData gSLClientData;
 extern sceSifClientData gSLClientLoaderData;
 
-INCLUDE_ASM(const s32, "P2/989snd", snd_StartSoundSystem);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", snd_StartSoundSystem);
 #ifdef SKIP_ASM
 // Assembler delay slot diff
 void snd_StartSoundSystem(void)
@@ -224,9 +224,9 @@ int snd_FlushSoundCommands()
     return 0;
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011d060);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011d060);
 
-INCLUDE_ASM(const s32, "P2/989snd", snd_GotReturns__Fv);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", snd_GotReturns__Fv);
 #ifdef SKIP_ASM
 // Rodata
 int snd_GotReturns(void)
@@ -260,9 +260,9 @@ void snd_PrepareReturnBuffer(u_int* buffer, int num_ints)
     buffer[0] = 0;
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011d138);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011d138);
 
-INCLUDE_ASM(const s32, "P2/989snd", snd_BankLoadByLoc);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", snd_BankLoadByLoc);
 #ifdef SKIP_ASM
 SoundBankPtr snd_BankLoadByLoc(int loc, int offset)
 {
@@ -300,7 +300,7 @@ SoundBankPtr snd_BankLoadByLoc(int loc, int offset)
 }
 #endif
 
-INCLUDE_ASM(const s32, "P2/989snd", snd_BankLoadByLoc_CB);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", snd_BankLoadByLoc_CB);
 #ifdef SKIP_ASM
 void snd_BankLoadByLoc_CB(int loc, int offset, SndCompleteProc cb, u_long u_data)
 {
@@ -333,7 +333,7 @@ void snd_BankLoadByLoc_CB(int loc, int offset, SndCompleteProc cb, u_long u_data
 }
 #endif
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011d3e8);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011d3e8);
 
 void snd_ResolveBankXREFS(void)
 {
@@ -377,7 +377,7 @@ void snd_SetPlaybackMode(int mode)
     snd_SendIOPCommandNoWait(0xb, 4, (char*)data, NULL, 0);
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011d510);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011d510);
 
 void snd_SetMixerMode(int channel_mode, int reverb_mode)
 
@@ -415,7 +415,7 @@ u_int snd_PlaySoundVolPanPMPB(SoundBankPtr bank, int sound, int vol, int pan, in
     return snd_SendIOPCommandAndWait(0x11, 0x18, (char*)data);
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011d5d8);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011d5d8);
 
 void snd_StopSound(u_int handle)
 {
@@ -426,7 +426,7 @@ void snd_StopSound(u_int handle)
     snd_SendIOPCommandNoWait(0x15, 4, (char*)data, NULL, 0);
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011d630);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011d630);
 
 void snd_PauseSound(u_int handle)
 {
@@ -446,7 +446,7 @@ void snd_ContinueSound(u_int handle)
     snd_SendIOPCommandNoWait(0x14, 4, (char*)data, NULL, 0);
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011d6a0);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011d6a0);
 
 void snd_PauseAllSoundsInGroup(u_int groups)
 
@@ -496,7 +496,7 @@ int snd_IsSoundALooper(SoundBankPtr bank, u_int sound)
     return snd_SendIOPCommandAndWait(0x1a, 8, (char*)data);
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011d790);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011d790);
 
 void snd_SetSoundVolPan(u_int handle, int vol, int pan)
 {
@@ -519,7 +519,7 @@ int snd_GetSoundOriginalPitch(SoundBankPtr bank, int index)
     return snd_SendIOPCommandAndWait(0x1c, 8, (char*)data);
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011d808);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011d808);
 
 void snd_SetSoundPitch(u_int handle, int pitch)
 {
@@ -531,7 +531,7 @@ void snd_SetSoundPitch(u_int handle, int pitch)
     snd_SendIOPCommandNoWait(0x1e, 8, (char*)data, NULL, 0);
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011d848);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011d848);
 
 void snd_AutoVol(u_int handle, int vol, int delta_time, int delta_from)
 {
@@ -545,7 +545,7 @@ void snd_AutoVol(u_int handle, int vol, int delta_time, int delta_from)
     snd_SendIOPCommandNoWait(0x22, 0x10, (char*)data, NULL, 0);
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011d8a0);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011d8a0);
 
 void snd_SetMIDIRegister(u_int handle, int reg, int value)
 {
@@ -568,7 +568,7 @@ int snd_GetMIDIRegister(u_int handle, int reg)
     return snd_SendIOPCommandAndWait(0x28, 8, (char*)data);
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011d920);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011d920);
 
 void snd_SetGlobalExcite(int value)
 {
@@ -579,9 +579,9 @@ void snd_SetGlobalExcite(int value)
     snd_SendIOPCommandNoWait(0x27, 4, (char*)data, NULL, 0);
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011d958);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011d958);
 
-INCLUDE_ASM(const s32, "P2/989snd", snd_SendIOPCommandAndWait__FiiPc);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", snd_SendIOPCommandAndWait__FiiPc);
 #ifdef SKIP_ASM
 u_int snd_SendIOPCommandAndWait(int command, int data_used, char* in_data)
 {
@@ -623,7 +623,7 @@ u_int snd_SendIOPCommandAndWait(int command, int data_used, char* in_data)
 }
 #endif
 
-INCLUDE_ASM(const s32, "P2/989snd", snd_SendIOPCommandNoWait__FiiPcPFiUl_vUl);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", snd_SendIOPCommandNoWait__FiiPcPFiUl_vUl);
 #ifdef SKIP_ASM
 void snd_SendIOPCommandNoWait(int command, int data_used, char* in_data, SndCompleteProc done, u_long u_data)
 {
@@ -694,7 +694,7 @@ void snd_PostMessage(void)
     snd_FlushSoundCommands();
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", snd_SendCurrentBatch__Fv);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", snd_SendCurrentBatch__Fv);
 #ifdef SKIP_ASM
 void snd_SendCurrentBatch(void)
 {
@@ -746,7 +746,7 @@ void snd_StopAllStreams(void)
     snd_SendIOPCommandNoWait(0x34, 0, NULL, NULL, 0);
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011e040);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011e040);
 
 u_int snd_PlayVAGStreamByLoc(int loc1, int loc2, int offset1, int offset2, int vol, int pan, int vol_group, u_int queue, u_int flags)
 {
@@ -763,7 +763,7 @@ u_int snd_PlayVAGStreamByLoc(int loc1, int loc2, int offset1, int offset2, int v
     return snd_SendIOPCommandAndWait(0x2c, 0x1c, (char*)data);
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011e0a8);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011e0a8);
 
 void snd_ContinueVAGStream(u_int stream)
 {
@@ -892,7 +892,7 @@ void snd_PreAllocReverbWorkArea(int core, int type)
     snd_SendIOPCommandNoWait(0x51, 8, (char*)data, NULL, 0);
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011e3d8);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011e3d8);
 
 int snd_InitMovieSound(int sizeOfIOPBuffer, int volumeLevel, int panCenter, int volumeGroup, int type)
 {
@@ -912,7 +912,7 @@ void snd_ResetMovieSound(void)
     snd_SendIOPCommandAndWait(0x3d, 0, NULL);
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011e488);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011e488);
 
 void snd_CloseMovieSound(void)
 {
@@ -937,9 +937,9 @@ int snd_GetTransStatus()
     return snd_SendIOPCommandAndWait(0x40, 0, NULL);
 }
 
-INCLUDE_ASM(const s32, "P2/989snd", junk_0x0011e520);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011e520);
 
-INCLUDE_ASM(const s32, "P2/989snd", snd_GetDopplerPitchMod);
+INCLUDE_ASM("asm/nonmatchings/P2/989snd", snd_GetDopplerPitchMod);
 #ifdef SKIP_ASM
 // matches, TU padding problem
 int snd_GetDopplerPitchMod(int approaching_mph)
