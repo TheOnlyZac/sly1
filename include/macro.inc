@@ -25,7 +25,6 @@
     .\visibility "\label"
     .type "\label", @function
     "\label":
-        .aent "\label"
 .endm
 
 # A label referenced by an error handler table.

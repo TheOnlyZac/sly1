@@ -20,7 +20,6 @@
     .\visibility \label
     .type \label, @function
     \label:
-        .aent \label
 .endm
 
 # A label referenced by an error handler table.
@@ -31,7 +30,7 @@
 
 
 # A label referenced by a jumptable.
-.macro jlabel label, visibility=local
+.macro jlabel label, visibility=global
     .\visibility \label
     \label:
 .endm
