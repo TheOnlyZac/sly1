@@ -1,7 +1,7 @@
 /**
  * @file puffer.h
  *
- * @brief Piranha Lake in Vicious Voodoo. The name "PUFFER" was used earlier in development.
+ * @brief Piranha Lake in Vicious Voodoo (believed to be formerly called "Pufferfish Pond").
  */
 #ifndef PUFFER_H
 #define PUFFER_H
@@ -15,7 +15,8 @@
 #include <mq.h>
 
 /**
- * @brief Piranha.
+ * @class PUFFER
+ * @brief Piranha fish used in Piranha Lake.
  * @todo Implement the struct.
  */
 struct PUFFER : public PO
@@ -24,7 +25,8 @@ struct PUFFER : public PO
 };
 
 /**
- * @brief Piranha (?).
+ * @class PUFFER_COLLECTION
+ * @brief Collection of piranha fish.
  * @todo Implement the struct.
  */
 struct PUFFC : public ALO
@@ -33,7 +35,8 @@ struct PUFFC : public ALO
 };
 
 /**
- * @brief Piranha (?).
+ * @class PUFFER_BRAIN
+ * @brief AI controller for piranha fish.
  * @todo Implement the struct.
  */
 struct PUFFB : public ALO
@@ -42,7 +45,8 @@ struct PUFFB : public ALO
 };
 
 /**
- * @brief Piranha (?).
+ * @class PUFFER_TORCH
+ * @brief Tiki torch object in Piranha Lake.
  * @todo Implement the struct.
  */
 struct PUFFT : public SO

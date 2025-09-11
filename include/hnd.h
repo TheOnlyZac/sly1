@@ -9,6 +9,7 @@
 #include <bis.h>
 
 /**
+ * @class HANDLE
  * @brief Unknown.
  * @todo Implement the struct.
  */

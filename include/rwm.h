@@ -11,7 +11,8 @@
 #include <lo.h>
 
 /**
- * @brief Unknown.
+ * @class AMMO_MANAGER
+ * @brief Object represengin a manager for projectile ammo.
  * @todo Implement the struct.
  */
 struct RWM : public LO
