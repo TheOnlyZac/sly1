@@ -35,15 +35,15 @@ LO *PloFindSwChild(SW *psw, OID oid, ALO *paloAncestor)
 
 int FIsCidDerivedFrom(CID cid, CID cidAncestor)
 {
-    void **value1 = (&g_mpcidpvt)[cid];
-    while (value1)
+    void **ppv = (&g_mpcidpvt)[cid];
+    while (ppv)
     {
-        if (value1[1] == (void *)cidAncestor)
+        if (ppv[1] == (void *)cidAncestor)
         {
             return 1;
         }
 
-        value1 = (void **)*value1;
+        ppv = (void **)*ppv;
     }
 
     return 0;
@@ -72,5 +72,5 @@ ALO *PaloFindLoCommonParent(LO *plo, LO *ploOther)
         plo = (LO *)plo->paloParent;
     }
 
-    return (ALO *)0x0;
+    return (ALO *)nullptr;
 }

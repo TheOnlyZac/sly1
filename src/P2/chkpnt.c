@@ -10,7 +10,7 @@ INCLUDE_ASM(const s32, "P2/chkpnt", ResetChkmgrCheckpoints__FP6CHKMGR);
  *
  * @todo 73.41% matched.
  */
-void ResetChkmgrCheckpoints(CHKMGR* pchkmgr)
+void ResetChkmgrCheckpoints(CHKMGR *pchkmgr)
 {
 	pchkmgr->cbitChk = 0;
 	pchkmgr->unk_0x8 = 0;
@@ -69,6 +69,9 @@ INCLUDE_ASM(const s32, "P2/chkpnt", UpdateChkpnt__FP6CHKPNTf);
 INCLUDE_ASM(const s32, "P2/chkpnt", FUN_001417f0);
 
 INCLUDE_ASM(const s32, "P2/chkpnt", TriggerChkpnt__FP6CHKPNT);
+
 INCLUDE_ASM(const s32, "P2/chkpnt", func_001419A0);
+
 INCLUDE_ASM(const s32, "P2/chkpnt", func_001419C0);
+
 INCLUDE_ASM(const s32, "P2/chkpnt", func_001419E0);

@@ -116,9 +116,9 @@ bool CBinaryAsyncStream::FSpoolingComplete()
     int status = 0;
     bool fComplete = false;
 
-    if(m_cb == m_ibCur && FSpooling())
+    if (m_cb == m_ibCur && FSpooling())
     {
-        switch(m_bask)
+        switch (m_bask)
         {
             case BASK_Host:
             {

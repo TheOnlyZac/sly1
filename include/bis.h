@@ -264,6 +264,13 @@ public:
      * @param pachz Pointer where the string will be stored
      */
     void ReadStringSw(char **pachz);
+	
+	/**
+	 * @brief Reads a short from the stream and then skips the number of bytes it represents.
+	 */
+	void Unknown1();
+	
+	void Unknown2(void **ppv);
 };
 
 #endif // BIS_H

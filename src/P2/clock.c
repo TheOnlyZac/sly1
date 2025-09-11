@@ -14,77 +14,76 @@ CLOCK g_clock = { 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0 };
 TICK s_tickLastRaw; // Should be static?
 
 // text
-void SetClockRate(float rt) {
+void SetClockRate(float rt)
+{
     g_rtClock = rt;
     SetClockEnabled(&g_clock, rt > 0.0f);
 }
 
-void MarkClockTick(CLOCK* pclock)
+void MarkClockTick(CLOCK *pclock)
 {
-	float dt;
-	float t1;
+    const TICK tickFrame = TickNow();
+    const TICK deltaTick = tickFrame - pclock->tickFrame;
 
-	const TICK tickFrame = TickNow();
-	const TICK deltaTick = tickFrame - pclock->tickFrame;
+    float dt = deltaTick * CLOCK_EE_TICK_DURATION;
+    float t1 = CLOCK_FRAMETIME * 2;
+    if (dt < CLOCK_FRAMETIME)
+    {
+        dt = CLOCK_FRAMETIME;
+    }
+    else if (t1 < dt)
+    {
+        dt = t1;
+    }
 
-	dt = deltaTick * CLOCK_EE_TICK_DURATION;
+    pclock->dtReal = dt;
 
-    t1 = CLOCK_FRAMETIME * 2;
+    float dtFinal = 0.0f;
+    if (pclock->fEnabled)
+    {
+        dtFinal = dt;
+    }
 
-	if (dt < CLOCK_FRAMETIME) {
-		dt = CLOCK_FRAMETIME;
-	}
-	else if (t1 < dt) {
-		dt = t1;
-	}
+    dtFinal *= g_rtClockPowerUp * g_rtClock;
 
-	pclock->dtReal = dt;
+    if (CLOCK_FRAMETIME <= dtFinal)
+    {
+        pclock->dtReal = dtFinal;
+    }
 
-	float dtFinal = 0.0f;
-
-	if (pclock->fEnabled) {
-		dtFinal = dt;
-	}
-
-	dtFinal *= g_rtClockPowerUp * g_rtClock;
-
-	if (CLOCK_FRAMETIME <= dtFinal) {
-		pclock->dtReal = dtFinal;
-	}
-
-	pclock->t += dtFinal;
-	pclock->dtPrev = pclock->dt;
-	pclock->dt = dtFinal;
-	pclock->tReal += pclock->dtReal;
-	pclock->tickFrame = tickFrame;
+    pclock->t += dtFinal;
+    pclock->dtPrev = pclock->dt;
+    pclock->dt = dtFinal;
+    pclock->tReal += pclock->dtReal;
+    pclock->tickFrame = tickFrame;
 }
 
 void MarkClockTickRealOnly(CLOCK *pclock)
 {
-	const TICK tickFrame = TickNow();
-	const TICK deltaTick = tickFrame - pclock->tickFrame;
-	float dt = deltaTick * CLOCK_EE_TICK_DURATION;
+    const TICK tickFrame = TickNow();
+    const TICK deltaTick = tickFrame - pclock->tickFrame;
+    float dt = deltaTick * CLOCK_EE_TICK_DURATION;
 
-	pclock->dtReal = dt;
-	pclock->tReal += pclock->dtReal;
-	pclock->tickFrame = tickFrame;
+    pclock->dtReal = dt;
+    pclock->tReal += pclock->dtReal;
+    pclock->tickFrame = tickFrame;
 }
 
 void ResetClock(CLOCK *pclock, float t)
 {
-	pclock->t = t;
+    pclock->t = t;
 }
 
 void SetClockEnabled(CLOCK *pclock, int fEnabled)
 {
-	pclock->fEnabled = fEnabled;
+    pclock->fEnabled = fEnabled;
 }
 
 void StartupClock() 
 {
-    //	Count is the MIPS DeltaTime, its a 32b value, and is the 9th reg of CoP0. "Count increments automatically every EE cycle." 
-	// https://psi-rockin.github.io/ps2tek/#eecop0timer:~:text=%2409%20%2D%20COP0.Count,every%20EE%20cycle -Zryu
-	ulong ulCountValue;
+    // Count is the MIPS DeltaTime, its a 32b value, and is the 9th reg of CoP0. "Count increments automatically every EE cycle." 
+    // https://psi-rockin.github.io/ps2tek/#eecop0timer:~:text=%2409%20%2D%20COP0.Count,every%20EE%20cycle -Zryu
+    ulong ulCountValue;
     __asm__ volatile ("mfc0 %0, $9" : "=r"(ulCountValue)); // Asm function that puts $9 (c0_count) from CP0 into $a0.
 
     s_tickLastRaw = (TICK)ulCountValue; 
@@ -118,7 +117,8 @@ const TICK TickNow()
     ulCountLow = ulValue & ulMask;
 
     // If the 64b value is less than last tick, inc cWrapAround, as the Count value has overflowed.
-    if (ulCountLow < s_tickLastRaw) {
+    if (ulCountLow < s_tickLastRaw)
+    {
         cWrapAround++; // D_0027C000
     }
 
@@ -129,7 +129,3 @@ const TICK TickNow()
     // Return the 64b value after preforming an or.
     return (cWrapAround << 0x20) | ulCountLow;
 }
-
-INCLUDE_ASM(const s32, "P2/clock", func_00143140); // empty, not really a function
-
-

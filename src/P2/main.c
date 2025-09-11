@@ -41,18 +41,22 @@ int main(char **argv, int argc) {
     Startup();
     CMpeg* mpeg = &g_mpeg;
 
-    while(true) {
-        if (g_mpeg.oid_1 && g_pwipe->wipes != WIPES_WipingOut) {
+    while (true)
+    {
+        if (g_mpeg.oid_1 && g_pwipe->wipes != WIPES_WipingOut)
+        {
             FlushFrames(1);
             mpeg->ExecuteOids();
         }
 
-        if (g_transition.m_fPending) {
+        if (g_transition.m_fPending)
+        {
             FlushFrames(1);
             g_transition.Execute();
         }
 
-        if (g_mpeg.oid_1 && g_pwipe->wipes != WIPES_WipingOut) {
+        if (g_mpeg.oid_1 && g_pwipe->wipes != WIPES_WipingOut)
+        {
             FlushFrames(1);
             mpeg->ExecuteOids();
         }
@@ -63,14 +67,16 @@ int main(char **argv, int argc) {
         UpdateUi(&g_ui);
         UpdateGameState(g_clock.dt);
 
-        if (g_psw != nullptr) {
+        if (g_psw)
+        {
             SetupCm(g_pcm);
             OpenFrame();
 
             MarkClockTick(&g_clock);
 
-            if (g_psw->pcbUpdate) {
-                 g_psw->pcbUpdate(g_clock.dt);
+            if (g_psw->pcbUpdate)
+            {
+                g_psw->pcbUpdate(g_clock.dt);
             }
 
             RenderSw(g_psw, g_pcm);
@@ -86,9 +92,9 @@ int main(char **argv, int argc) {
 #endif
 
 /**
- * @note This function isn't called but it is present immediately following main.
+ * @brief Starts up the PS2 subsystem interface.
  */
-INCLUDE_ASM(const s32, "P2/main", main_epilogue);
+INCLUDE_ASM(const s32, "P2/main", StartupSif__Fv);
 
 /**
  * @brief Starts up the VU0.
@@ -108,7 +114,7 @@ void StartupVU0()
 /**
  * @brief Starts up the VU1.
  */
-void StartupVU1(void)
+void StartupVU1()
 {
     // Enable tag transfer
     g_pdcVif1->chcr.TTE = 1;
