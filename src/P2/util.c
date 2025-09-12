@@ -36,7 +36,8 @@ float GLimitAbs(float g, float absLimit)
 INCLUDE_ASM("asm/nonmatchings/P2/util", GSmooth__FfffP3SMPPf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/util", GSmoothA__FffffP4SMPAPf);
-INCLUDE_ASM("asm/nonmatchings/P2/util", func_001EA720);
+
+INCLUDE_ASM("asm/nonmatchings/P2/util", junk_001EA720);
 
 float RadSmooth(float radCur, float radTarget, float dt, SMP *psmp, float *pdradNext)
 {
@@ -376,4 +377,5 @@ void Force(void *pv)
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/util", MinimizeRange);
-INCLUDE_ASM("asm/nonmatchings/P2/util", func_001EB458);
+
+INCLUDE_ASM("asm/nonmatchings/P2/util", junk_001EB458);

@@ -5,9 +5,11 @@
 #include <coin.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/difficulty", PdifficultyEnsureSw);
-INCLUDE_ASM("asm/nonmatchings/P2/difficulty", func_00151A58);
 
-void OnDifficultyGameLoad(DIFFICULTY* pdifficulty) {
+INCLUDE_ASM("asm/nonmatchings/P2/difficulty", FUN_00151A58);
+
+void OnDifficultyGameLoad(DIFFICULTY *pdifficulty)
+{
     memset(pdifficulty, 0, sizeof(DIFFICULTY)); // note: DIFFICULTY should be 0x24 bytes
 }
 
@@ -16,14 +18,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/difficulty", OnDifficultyWorldPreLoad);
 /**
  * @todo 16.92% matched.
  */
-void OnDifficultyWorldPreLoad(DIFFICULTY* pdifficulty)
+void OnDifficultyWorldPreLoad(DIFFICULTY *pdifficulty)
 {
 	const GS* gsCur = g_pgsCur;
 	const LS* lsCur = g_plsCur;
 	const int gameworld = (int)(gsCur->gameworldCur);
 	const int worldlevel = (int)(gsCur->worldlevelCur);
 
-	DIFFICULTYLEVEL* difficultyProps;
+	DIFFICULTYLEVEL *difficultyProps;
 
 	pdifficulty->ccoinRichMin = 4;
 	pdifficulty->ccoinRichMax = 6;
@@ -57,9 +59,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/difficulty", OnDifficultyWorldPostLoad);
 /**
  * @todo 30.85% matched.
  */
-void OnDifficultyWorldPostLoad(DIFFICULTY* pdifficulty)
+void OnDifficultyWorldPostLoad(DIFFICULTY *pdifficulty)
 {
-	DIFFICULTYLEVEL* difficultyProps;
+	DIFFICULTYLEVEL *difficultyProps;
 	int csuckCharms;
 
 	// Case: The transition is a quit-game reload
@@ -100,7 +102,8 @@ void OnDifficultyWorldPostLoad(DIFFICULTY* pdifficulty)
 }
 #endif
 
-void OnDifficultyInitialTeleport(DIFFICULTY* pdifficulty) {
+void OnDifficultyInitialTeleport(DIFFICULTY *pdifficulty)
+{
     return;
 }
 
@@ -148,9 +151,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/difficulty", OnDifficultyTriggerCheckpoint__FP1
  */
 void OnDifficultyTriggerCheckpoint(DIFFICULTY *pdifficulty, CHKPNT *pchkpnt)
 {
-	DIFFICULTYLEVEL* pdifflevel;
+	DIFFICULTYLEVEL *pdifflevel;
 
-	if (pchkpnt == NULL)
+	if (!pchkpnt)
 	{
 		pdifflevel = pdifficulty->pDifficultyLevel;
 	}
@@ -160,7 +163,7 @@ void OnDifficultyTriggerCheckpoint(DIFFICULTY *pdifficulty, CHKPNT *pchkpnt)
 }
 #endif
 
-void OnDifficultyCollectKey(DIFFICULTY* pdifficulty)
+void OnDifficultyCollectKey(DIFFICULTY *pdifficulty)
 {
 	ChangeSuck(0.0f, pdifficulty);
 

@@ -280,7 +280,7 @@ uint CBinaryInputStream::U32Read()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/bis", func_00137CB8);
+INCLUDE_ASM("asm/nonmatchings/P2/bis", junk_00137CB8);
 
 char CBinaryInputStream::S8Read()
 {

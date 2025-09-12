@@ -13,7 +13,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/zap", CloneTzp__FP3TZPT0eTzp);
 INCLUDE_ASM("asm/nonmatchings/P2/zap", FUN_001f51c8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/zap", FInflictTzpZap__FP3TZPP2XPP3ZPR);
-INCLUDE_ASM("asm/nonmatchings/P2/zap", func_001F5208);
+
+/**
+ * @todo Rename function.
+ */
+ZPD *FUN_001F5208(TZP *ptzp)
+{
+    return &STRUCT_OFFSET(ptzp, 0x550, ZPD);
+}
 
 /**
  * @todo This matches but what does it actually do?
@@ -39,7 +46,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/zap", PostZpdLoad__FP3ZPD);
 INCLUDE_ASM("asm/nonmatchings/P2/zap", ApplyZpdThrow__FP3ZPDP2PO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/zap", InflictZpdZap__FP3ZPDP2XPP3ZPR);
-INCLUDE_ASM("asm/nonmatchings/P2/zap", func_001F5840);
+
+INCLUDE_ASM("asm/nonmatchings/P2/zap", FUN_001F5840);
 
 INCLUDE_ASM("asm/nonmatchings/P2/zap", AddZpdZapLo__FP3ZPDP2LO);
 

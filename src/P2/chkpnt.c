@@ -70,8 +70,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", FUN_001417f0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", TriggerChkpnt__FP6CHKPNT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", func_001419A0);
+INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", FUN_001419A0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", func_001419C0);
+INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", FUN_001419C0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", func_001419E0);
+INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", FUN_001419E0);

@@ -385,7 +385,8 @@ PROBLEMATIC_FUNCS = set(
         "LoadShadersFromBrx__FP18CBinaryInputStream", # P2/shd
         "FillShaders__Fi", # P2/shd
         "FUN_001aea70", # P2/screen
-        "ApplyDzg__FP3DZGiPiPPP2SOff" # P2/dzg
+        "ApplyDzg__FP3DZGiPiPPP2SOff", # P2/dzg
+        "BounceRipgRips__FP4RIPG" # P2/rip
     ]
 )
 

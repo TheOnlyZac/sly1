@@ -247,7 +247,7 @@ void TriggerJoyRumbleRumk(JOY *pjoy, RUMK rumk, float dt)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", func_0016EC80);
+INCLUDE_ASM("asm/nonmatchings/P2/joy", junk_0016EC80);
 
 void StartJoySelection(JOY *pjoy)
 {
@@ -286,7 +286,7 @@ void AddCode(CODE *pcode)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", func_0016F1F0);
+INCLUDE_ASM("asm/nonmatchings/P2/joy", junk_0016F1F0);
 
 void _ResetCodes()
 {
@@ -303,11 +303,11 @@ void _ResetCodes()
 
 void _MatchCodes(JOY *pjoy, GRFBTN btn)
 {
-    if (g_pcode != nullptr && pjoy == &g_joy && btn != g_joy.grfbtn && g_joy.grfbtn != 0)
+    if (g_pcode && pjoy == &g_joy && btn != g_joy.grfbtn && g_joy.grfbtn != 0)
     {
         CODE *pcode = g_pcode;
 
-        while (pcode != nullptr)
+        while (pcode)
         {
             if (pcode->nInputCounter < pcode->cjbc)
             {
@@ -407,7 +407,7 @@ void AddFcht(int nParam)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", func_0016F470);
+INCLUDE_ASM("asm/nonmatchings/P2/joy", junk_0016F470);
 
 void Chetkido()
 {

@@ -49,5 +49,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/frm", ClearPendingFrame__FP3FRM);
 INCLUDE_ASM("asm/nonmatchings/P2/frm", FlushFrames__Fi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/frm", BlendPrevFrame__Fv);
+
+/**
+ * @note These are automatically generated static initalization functions.
+ * Once the appropriate functions are matched these can be removed.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/frm", func_0015F618);
 INCLUDE_ASM("asm/nonmatchings/P2/frm", func_0015F658);

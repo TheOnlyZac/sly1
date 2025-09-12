@@ -261,16 +261,22 @@ public:
     /**
      * @brief Reads a string from the stream.
      *
-     * @param pachz Pointer where the string will be stored
+     * @param pachz Pointer where the string will be stored.
      */
     void ReadStringSw(char **pachz);
-	
-	/**
-	 * @brief Reads a short from the stream and then skips the number of bytes it represents.
-	 */
-	void Unknown1();
-	
-	void Unknown2(void **ppv);
+
+    /**
+     * @brief Reads a short from the stream and then skips the number of bytes it represents.
+     */
+    void Unknown1();
+
+    /**
+     * @brief Reads 32 bytes of data from the stream then it checks
+     * two values and either copies the data or gives back a nullptr.
+     *
+     * @param ppv Pointer to the destination.
+     */
+    void Unknown2(void **ppv);
 };
 
 #endif // BIS_H

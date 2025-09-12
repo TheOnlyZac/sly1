@@ -21,7 +21,7 @@ void CSplotheap::UpdateRecyclable()
 void CSplotheap::UnmarkAll()
 {
     SPLOT *psplot = m_psplotAlloc;
-    while (psplot != nullptr)
+    while (psplot)
     {
         psplot->fAlive = 0;
         psplot = psplot->psplotNext;
@@ -52,8 +52,8 @@ void MarkPvAlive(void *pv)
     psplot->fAlive = 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", func_0011C418);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", FUN_0011C418);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", func_0011C498);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", FUN_0011C498);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", func_0011C4E8);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", FUN_0011C4E8);

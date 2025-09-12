@@ -39,7 +39,7 @@ void SetBlotFontScale(float rFontScale, BLOT *pblot)
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawBlot__FP4BLOT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", func_001AA890);
+INCLUDE_ASM("asm/nonmatchings/P2/screen", junk_001AA890);
 
 float DtAppearBlot(BLOT *pblot)
 {
@@ -170,7 +170,13 @@ float DtVisibleCrusherctr(CRUSHERCTR *pcrusherctr)
     return 0.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", func_001ABE60);
+/**
+ * @todo Rename function.
+ */
+float FUN_001ABE60()
+{
+    return 0.0f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001abe70);
 
@@ -242,7 +248,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae130);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateAttract__FP7ATTRACT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", func_001AE220);
+INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawAttract__FP7ATTRACT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawLineScreen__FUiUiUiUiUiUiG4RGBAi);
 

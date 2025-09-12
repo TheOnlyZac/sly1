@@ -32,6 +32,7 @@ enum ZPK {
 */
 enum ZOK
 {
+    ZOK_Nil = -1,
     ZOK_Inherit = 0,
     ZOK_Zap = 1,
     ZOK_NoZap = 2,
@@ -43,7 +44,8 @@ enum ZOK
 /**
  * @brief Unknown.
  */
-struct ZPD {
+struct ZPD
+{
     SO *pso;
     ZPK zpk;
     float dzThrow;
@@ -56,7 +58,7 @@ struct ZPD {
 
 /**
  * @brief Zap.
-*/
+ */
 struct ZAP
 {
     // ...

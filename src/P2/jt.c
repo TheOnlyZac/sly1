@@ -59,7 +59,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtBounds__FP2JT);
 INCLUDE_ASM("asm/nonmatchings/P2/jt", PsoGetJtEffect__FP2JTPi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", AddJtCustomXps__FP2JTP2SOiP3BSPT3PP2XP);
-INCLUDE_ASM("asm/nonmatchings/P2/jt", func_00172EB8);
+
+INCLUDE_ASM("asm/nonmatchings/P2/jt", CtTorqueJt__FP2JT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00172ee0);
 
@@ -87,16 +88,19 @@ void ProfileJt(JT *pjt, int fProfile)
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", SetJtPuppet__FP2JTP5ASEGA);
-INCLUDE_ASM("asm/nonmatchings/P2/jt", func_00177828);
+
+INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00177828);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", PaloAbsorbWkr__FP3WKRiPP3ALO);
-INCLUDE_ASM("asm/nonmatchings/P2/jt", func_00177968);
+
+INCLUDE_ASM("asm/nonmatchings/P2/jt", NCmpWkr__FP3WKRT0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtEffect__FP2JT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FIsJtSoundBase__FP2JT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", CollectJtPrize__FP2JT3PCKP3ALO);
-INCLUDE_ASM("asm/nonmatchings/P2/jt", func_00177EE0);
+
+INCLUDE_ASM("asm/nonmatchings/P2/jt", GetJtDiapi__FP2JTP6DIALOGP5DIAPI);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", PlayJtDialog__FP2JTP6DIALOG);

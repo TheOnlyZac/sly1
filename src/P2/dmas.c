@@ -72,7 +72,7 @@ void DMAS::Send(sceDmaChan *chan)
     m_pb = m_ab;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", func_00152B30);
+INCLUDE_ASM("asm/nonmatchings/P2/dmas", junk_00152B30);
 
 INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaCnt__4DMAS);
 

@@ -191,7 +191,17 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148828);
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148888);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", func_00148910);
+int FUN_00148910(float *pf0, float *pf1)
+{
+    int val = -1;
+
+    if (*pf0 < *pf1)
+    {
+        val = 1;
+    }
+
+    return val;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148938);
 
