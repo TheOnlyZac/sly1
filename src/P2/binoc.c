@@ -9,8 +9,8 @@ void InitBinoc(BINOC *binoc, BLOTK blotk)
 {
     binoc->width = 640.0f;
     binoc->height = 492.80001f;
-    binoc->value0 = 15.0f;
-    binoc->value1 = 0x80ffffff;
+    binoc->unk0 = 15.0f;
+    binoc->unk1 = 0x80ffffff;
     InitBlot(binoc, blotk);
 }
 

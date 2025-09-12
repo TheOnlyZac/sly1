@@ -42,7 +42,7 @@ enum DIALOGS
  */
 struct DIALOG : public ALO
 {
-    int padding[0xB8];
+    PADDING(padding0, 184);
     DIALOGK dialogk;
     DIALOGS dialogs;
     float tDialogs;

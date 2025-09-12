@@ -164,7 +164,7 @@ extern TOTALS g_totals;
 
 struct NOTE : public BLOT
 {
-    undefined1 padding_0[24];
+    PADDING(padding1, 6);
     struct NOTE *unk278;
 };
 

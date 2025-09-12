@@ -100,12 +100,12 @@ struct COIN : public DPRIZE
  */
 struct KEY : public DPRIZE
 {
-    undefined1 padding1[0x14];         // 0x0 - 0x13 Padding?
-    SW* pSw;                             // 0x14
-    undefined1 padding2[0x2b - 0x18]; // 0x18-0x2b Pading?
-    CFrame* pCFrame;                     // 0x2c
-    undefined1 padding3[0x2cf - 0x31]; // 0x31 - 0x2cf Padding?
-    DPRIZES dprizes;                     // 0x2d0
+    PADDING(padding0, 5);   // 0x0 - 0x13 Padding?
+    SW* pSw;                // 0x14
+    PADDING(padding1, 19);  // 0x18-0x2b Pading?
+    CFrame* pCFrame;        // 0x2c
+    PADDING(padding2, 670); // 0x31 - 0x2cf Padding?
+    DPRIZES dprizes;        // 0x2d0
 };
 
 /**

@@ -131,7 +131,7 @@ void CRef::SetTag(TAGK tagk)
     m_tagk = tagk;
 }
 
-void CRef::SetS32(s32 n)
+void CRef::SetS32(int n)
 {
     Decref();
     m_tag.m_n = n;

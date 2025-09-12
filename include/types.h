@@ -24,15 +24,14 @@ typedef uint32_t    uint;
 typedef uint64_t    ulong;
 
 // Helper types for unknown struct fields
-typedef uchar     undefined1;
-typedef ushort    undefined2;
+typedef uchar   undefined1;
+typedef ushort  undefined2;
 typedef uint    undefined4;
-typedef ulong    undefined8;
+typedef ulong   undefined8;
 
 // Misc
 typedef uchar byte;
 #define nullptr (void *)0x0
 typedef union QW;
-typedef int32_t  s32; // used only by Splat
 
 #endif // TYPES_H

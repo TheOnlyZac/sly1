@@ -35,7 +35,7 @@ struct CHKMGR
     int cbitChk;      // Count of values in abitChk.
     int *abitChk;     // Unknown, name/type may be wrong.
     undefined4 unk_0x8;
-    int padding[127]; // Temporary padding
+    PADDING(padding0, 127);
     int fChkDirty;
     VECTOR posVolChkpnt;
     int csSaved[129]; // type may be wrong
