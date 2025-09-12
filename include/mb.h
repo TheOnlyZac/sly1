@@ -10,7 +10,7 @@
 
 /**
  * @class MS_BOSS_GUARD
- * @brief Mesa boss guard (Muggshot?).
+ * @brief Mesa boss guard (Muggshot).
  */
 struct MBG : public STEPGUARD
 {

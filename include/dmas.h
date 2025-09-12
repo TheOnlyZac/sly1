@@ -45,7 +45,7 @@ public:
     uchar* m_pb;
     int m_fPad;
     int m_fEndPrim;
-    //byte padding[0x450];
+    //STRUCT_PADDING(276);
 
     DMAS();
 

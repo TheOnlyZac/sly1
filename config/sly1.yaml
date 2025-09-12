@@ -144,7 +144,7 @@ segments:
     - [0x68d68, c, P2/gomer]
     - [0x69130, c, P2/gs]
     - [0x6ac58, c, P2/hide]
-    - [0x6ba18, asm, P2/UNKNOWN2] # Not in the prototype.
+    - [0x6ba18, asm, P2/hideout]
     - [0x6d470, c, P2/hnd]
     - [0x6d4e8, c, P2/ik]
     - [0x6de00, asm, P2/jack] # Might be something else.
@@ -190,7 +190,7 @@ segments:
     #- [0x, asm, P2/rope]
     - [0xa8b20, c, P2/rumble]
     - [0xa8fe8, c, P2/rwm]
-    - [0xaa8f8, asm, P2/UNKNOWN3] # Not in the prototype.
+    - [0xaa8f8, asm, P2/sb]
     #- [0x, asm, P2/sc] # Most likely not in retail.
     - [0xaac68, c, P2/screen]
     - [0xafcb0, c, P2/sensor]
@@ -243,7 +243,7 @@ segments:
     - [0xea088, c, P2/ui]
     - [0xeac78, c, P2/update]
     - [0xeb408, c, P2/util]
-    - [0xec460, asm, P2/UNKNOWN5] # Not in the prototype.
+    - [0xec460, asm, P2/vb]
     - [0xee650, c, P2/vec]
     - [0xef318, c, P2/vifs]
     - [0xef900, c, P2/vis]

@@ -27,7 +27,7 @@ struct SW : public LO
     DL dlMRDRealClock;
     DL adlHash[512];
     LO *aploCidHead[162];
-    undefined1 padding2[0x148];
+    STRUCT_PADDING(82);
     DL dlDprize;
 
     // MISALIGNED:

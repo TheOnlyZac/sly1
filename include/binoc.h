@@ -13,15 +13,16 @@ struct ALO;
 
 struct BINOC : public BLOT
 {
-    undefined1 padding_0[144];
-    float value0;
-    undefined4 value1;
-    undefined1 padding_1[4];
+    STRUCT_PADDING(36);
+    float unk0;
+    undefined4 unk1; // RGBA color value?
+    undefined4 unk2;
     ALO *paloLookat;
     float zoom;
     float dxReticle;
     float dyReticle;
-    undefined1 padding_2[8];
+    undefined4 unk3;
+    undefined4 unk4;
     float uCompassBarOffset;
 };
 
