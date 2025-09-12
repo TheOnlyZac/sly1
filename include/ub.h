@@ -7,7 +7,6 @@
 #define UB_H
 
 #include "common.h"
-#include <stepguard.h>
 #include <gomer.h>
 #include <anim.h>
 #include <vec.h>
@@ -15,7 +14,7 @@
 
 /**
  * @class UW_BOSS_GOMER
- * @brief Underwater boss gomer (Raleigh?).
+ * @brief Underwater boss gomer (Raleigh).
  */
 struct UBG : public GOMER
 {
