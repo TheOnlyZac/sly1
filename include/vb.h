@@ -1,7 +1,7 @@
 /**
  * @file vb.h
  *
- * @brief Voodo boss.
+ * @brief Voodoo boss.
  */
 #ifndef VB_H
 #define VB_H

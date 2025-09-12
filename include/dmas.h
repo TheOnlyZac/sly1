@@ -45,7 +45,7 @@ public:
     uchar* m_pb;
     int m_fPad;
     int m_fEndPrim;
-    //PADDING(padding0, 276);
+    //STRUCT_PADDING(padding0, 276);
 
     DMAS();
 

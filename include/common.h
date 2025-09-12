@@ -29,7 +29,7 @@
  * @param name Name of the padding field.
  * @param size Number of 4-byte words in the padding field.
  */
-#define PADDING(name, size) uint32_t padding_##name[(size)]
+#define STRUCT_PADDING(name, size) uint32_t padding_##name[(size)]
 
 // Global system values
 extern int _gpReg; // Global pointer register

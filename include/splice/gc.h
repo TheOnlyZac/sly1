@@ -17,7 +17,7 @@ private:
     int m_cpframeRoot;
     CFrame *m_apframeRoot[256];
 
-    PADDING(padding0, 64);
+    STRUCT_PADDING(padding0, 64);
 
     int m_cpsidebagRoot;
     CSidebag *m_apsidebagRoot[128];

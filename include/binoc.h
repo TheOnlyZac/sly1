@@ -13,7 +13,7 @@ struct ALO;
 
 struct BINOC : public BLOT
 {
-    PADDING(padding0, 36);
+    STRUCT_PADDING(padding0, 36);
     float unk0;
     undefined4 unk1; // RGBA color value?
     undefined4 unk2;

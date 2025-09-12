@@ -105,7 +105,7 @@ struct ALO : public LO
     int grfzon;
     float dsMRDSnap;
     undefined4 unk_0x9c;
-    PADDING(frz, 10); // int frz[10]; // Freeze-related?
+    STRUCT_PADDING(frz, 10); // int frz[10];
     XF xf;
     VECTOR posOrig;
     MATRIX3 matOrig;
@@ -127,7 +127,7 @@ struct ALO : public LO
     SMPA *psmapaRot;
     ALOX *palox;
     int cframeStatic;
-    PADDING(globset, 22); // GLOBSET globset;
+    STRUCT_PADDING(globset, 22); // GLOBSET globset;
     SHADOW *pshadow;
     THROB *pthrob;
     float sFastShadowRadius;
@@ -139,9 +139,9 @@ struct ALO : public LO
     float sRadiusRenderSelf;
     float sRadiusRenderAll;
     SFX *psfx;
-    PADDING(padding2, 25);
+    STRUCT_PADDING(padding2, 25);
     FICG ficg;
-    PADDING(padding3, 1); // ???
+    STRUCT_PADDING(padding3, 1); // ???
     int cposed;
     POSEC *aposec;
     ACTREF *pactrefCombo;

@@ -16,6 +16,8 @@
 enum CID
 {
     CID_Nil      = -1,  // None
+
+    // Classes present in prototype build
     CID_BASIC    = 0,   // BASIC
     CID_LO       = 1,   // LO
     CID_ALO      = 2,   // LIGHTWEIGHT
@@ -178,7 +180,12 @@ enum CID
     CID_ASEGA    = 159, // ANIMATION_SEGMENT_APPLICATION
     CID_SMA      = 160, // STATE_MACHINE_APPLICATION
     CID__FCST    = 161, // FOSTER_CONSTRAINT
-    CID_Max      = 162  // Max value
+
+    // Classes only present in release build (IDs may be inaccurate)
+    CID_SBG      = 162, // S_BOSS_GUARD
+    CID_VBG      = 163, // V_BOSS_GUARD
+
+    CID_Max      = 164 // Max value
 };
 
 #endif // CID_H
