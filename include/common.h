@@ -14,8 +14,8 @@
 // Helper macros for decompilation
 
 /**
- * @brief Helper macro for accessing struct fields when the struct itself is
- * not implemented, incomplete or incorrect.
+ * @brief Accesses a value on a struct by its offset and type. For use when the
+ * struct is unimplemented, incomplete or inaccurate.
  *
  * @param pointer Pointer to the struct.
  * @param offset Offset of the field within the struct.
@@ -23,13 +23,18 @@
  */
 #define STRUCT_OFFSET(pointer, offset, type) (*(type *)((uint8_t *)(pointer) + (offset)))
 
+// Helper macros for struct padding (workaround for eegcc not supporting macro expansion in struct fields)
+#define STRUCT_PADDING_CAT(a, b) a##b
+#define STRUCT_PADDING_INTERNAL(a, b) STRUCT_PADDING_CAT(a, b)
+
 /**
- * @brief Helper macro for padding between known struct fields.
+ * @brief Inserts an array of padding words into a struct. It generates a unique
+ * name for the padding field using the line number.
  *
  * @param name Name of the padding field.
  * @param size Number of 4-byte words in the padding field.
  */
-#define STRUCT_PADDING(name, size) uint32_t padding_##name[(size)]
+#define STRUCT_PADDING(size) uint32_t STRUCT_PADDING_INTERNAL(_pad_, __LINE__)[size]
 
 // Global system values
 extern int _gpReg; // Global pointer register

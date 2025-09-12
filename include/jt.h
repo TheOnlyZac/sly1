@@ -114,19 +114,19 @@ enum JTCS
  */
 struct JT : public STEP
 {
-    STRUCT_PADDING(padding0, 1090);
+    STRUCT_PADDING(1090);
     undefined2 padding0_extra;
 
     ALO *paloMine_0x1518;   // 0x1518
 
-    STRUCT_PADDING(padding1, 832);
+    STRUCT_PADDING(832);
     undefined2 padding1_extra;
 
     JTS jts;                // 0x2220
     int unk_0x2224;
     JTBS jtbs;              // 0x2228
 
-    STRUCT_PADDING(padding2, 328);
+    STRUCT_PADDING(328);
     undefined1 padding2_extra;
 
     int unk_0x2750;
