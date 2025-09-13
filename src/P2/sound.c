@@ -26,7 +26,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", SbpEnsureBank__F5SFXID);
 INCLUDE_ASM("asm/nonmatchings/P2/sound", NewSfx__FPP3SFX);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FContinuousSound__F5SFXID);
-INCLUDE_ASM("asm/nonmatchings/P2/sound", func_001BE5D8);
+
+INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BE5D8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SetVagUnpaused__FUiUl);
 
@@ -43,7 +44,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", RefreshPambVolPan__FP3AMB);
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001be8f8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FVagPlaying__Fv);
-INCLUDE_ASM("asm/nonmatchings/P2/sound", func_001BE990);
+
+INCLUDE_ASM("asm/nonmatchings/P2/sound", junk_001BE990);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StopVag__Fv);
 
@@ -114,13 +116,16 @@ void StartupSound()
     snd_SetGroupVoiceRange(2, 0x18, 0x2f);
     snd_PreAllocReverbWorkArea(2, 4);
 }
-INCLUDE_ASM("asm/nonmatchings/P2/sound", func_001BF1E8); // nop
+
+INCLUDE_ASM("asm/nonmatchings/P2/sound", junk_001BF1E8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FAmbientsPaused__Fv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", CalculateVolPan__FfP6VECTORPfT2fff);
-INCLUDE_ASM("asm/nonmatchings/P2/sound", func_001BF2E0);
-INCLUDE_ASM("asm/nonmatchings/P2/sound", func_001BF398);
+
+INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BF2E0);
+
+INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BF398);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PposEar__Fv);
 
@@ -151,7 +156,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", ActivatePamb__FP3AMB5SFXID);
 INCLUDE_ASM("asm/nonmatchings/P2/sound", ScheduleNextIntermittentSound__FP3AMB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSound__F5SFXIDPP3AMBP3ALOP6VECTORfffffP2LMT9);
-INCLUDE_ASM("asm/nonmatchings/P2/sound", func_001BFFC8);
+
+INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BFFC8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", HandleWipeHandleWipeVolumes__FifVolumes);
 
@@ -223,10 +229,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", PushSwReverb__FP2SW7REVERBKi);
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PopSwReverb__FP2SW);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SetSwDefaultReverb__FP2SW7REVERBKi);
-INCLUDE_ASM("asm/nonmatchings/P2/sound", func_001C0A50);
-INCLUDE_ASM("asm/nonmatchings/P2/sound", func_001C0AB8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", func_001C0B08);
+INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0A50);
+
+INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0AB8);
+
+INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0B08);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSwIntermittentSounds__FP2SW);
 

@@ -1,4 +1,9 @@
 #include <po.h>
+#include <jt.h>
+#include <zap.h>
+
+extern int g_ippoCur;
+extern PO *g_appo[];
 
 void InitPo(PO *ppo)
 {
@@ -10,14 +15,26 @@ void InitPo(PO *ppo)
     SetPoPlayable(ppo, 1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/po", ClonePo__FP2POT0);
+void ClonePo(PO *ppo, PO *ppoBase)
+{
+    CloneSo(ppo, ppoBase);
+    if (STRUCT_OFFSET(ppo, 0x550, int) == 0) // ppo->fPlayable
+    {
+        STRUCT_OFFSET(ppo, 0x550, int) = 1; // ppo->fPlayable
+        SetPoPlayable(ppo, 0);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", HandlePoMessage__FP2PO5MSGIDPv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", OnPoActive__FP2POiT0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", GetPoCpdefi__FP2POfP6CPDEFI);
-INCLUDE_ASM("asm/nonmatchings/P2/po", func_00192410);
+
+int FIsPoSoundBase(PO *ppo)
+{
+    return 1;
+}
 
 void MakePoActive(PO *ppo)
 {
@@ -27,16 +44,33 @@ void MakePoActive(PO *ppo)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/po", FUN_00192450);
-INCLUDE_ASM("asm/nonmatchings/P2/po", func_00192488);
-INCLUDE_ASM("asm/nonmatchings/P2/po", func_00192490);
+INCLUDE_ASM("asm/nonmatchings/P2/po", FInvulnerablePo__FP2PO3ZPK);
+
+int FTakePoDamage(PO *ppo, ZPR *pzpr)
+{
+    return 0;
+}
+
+JTHS JthsCurrentPo(PO *ppo)
+{
+    return JTHS_Normal;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", FUN_00192498);
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", CollectPoPrize__FP2PO3PCKP3ALO);
-INCLUDE_ASM("asm/nonmatchings/P2/po", func_001925C0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/po", PpoCur__Fv);
+INCLUDE_ASM("asm/nonmatchings/P2/po", FUN_001925C0);
+
+PO *PpoCur()
+{
+    if (g_ippoCur < 0)
+    {
+        return (PO *)nullptr;
+    }
+
+	return g_appo[g_ippoCur];
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", PpoStart__Fv);
 
@@ -59,14 +93,15 @@ void OnPoRemove(PO *ppo)
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", SwitchToIppo__Fi);
-INCLUDE_ASM("asm/nonmatchings/P2/po", func_00192988);
 
-void SetPoPlayable(PO *ppo, int playable)
+INCLUDE_ASM("asm/nonmatchings/P2/po", junk_00192988);
+
+void SetPoPlayable(PO *ppo, int fPlayable)
 {
-    if (STRUCT_OFFSET(ppo, 0x550, int) != playable)
+    if (STRUCT_OFFSET(ppo, 0x550, int) != fPlayable)
     {
-        STRUCT_OFFSET(ppo, 0x550, int) = playable;
-        if (playable != 0)
+        STRUCT_OFFSET(ppo, 0x550, int) = fPlayable;
+        if (fPlayable != 0)
         {
             AddPoToList(ppo);
         }
@@ -83,7 +118,12 @@ void SwitchToPo(PO *ppo)
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", PpziCur__Fv);
-INCLUDE_ASM("asm/nonmatchings/P2/po", func_00192A28);
+
+void GetPoDiapi(PO *ppo, DIALOG *pdialog, DIAPI *pdiapi)
+{
+    pdiapi->fPlayable = 1;
+    pdiapi->fCallable = 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", PlayPoDialog__FP2POP6DIALOG);
 
@@ -94,7 +134,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/po", UpdatePo__FP2POf);
 INCLUDE_ASM("asm/nonmatchings/P2/po", UsePoCharm__FP2PO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", FUN_00192dd0);
-INCLUDE_ASM("asm/nonmatchings/P2/po", func_001930B0);
+
+INCLUDE_ASM("asm/nonmatchings/P2/po", FUN_001930B0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", po__static_initialization_and_destruction_04);
 

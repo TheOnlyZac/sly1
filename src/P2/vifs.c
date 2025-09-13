@@ -2,7 +2,7 @@
 
 INCLUDE_ASM("asm/nonmatchings/P2/vifs", __4VIFS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vifs", func_001EE360);
+INCLUDE_ASM("asm/nonmatchings/P2/vifs", junk_001EE360);
 
 INCLUDE_ASM("asm/nonmatchings/P2/vifs", Align__4VIFSi);
 

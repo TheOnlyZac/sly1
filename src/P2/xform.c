@@ -27,7 +27,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/xform", TriggerWarp__FP4WARP);
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", SetWarpRsmg__FP4WARPi3OIDN22);
 
-INCLUDE_ASM("asm/nonmatchings/P2/xform", func_001F4308);
+INCLUDE_ASM("asm/nonmatchings/P2/xform", FUN_001F4308);
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", TeleportSwPlayer__FP2SW3OIDT1);
 

@@ -164,7 +164,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", AddCmFadeObject);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", RemoveCmFadeObject);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", func_00143BA8);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00143BA8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", UpdateCmFade);
 
@@ -200,7 +200,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmLookAtSmooth);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", AdjustCmJoy);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", func_00145080);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", junk_00145080);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmPolicy);
 
@@ -242,7 +242,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145950);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145b68);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", func_00145DD8);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145DD8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145de8);
 

@@ -7,6 +7,7 @@
 #define PO_H
 
 #include "common.h"
+#include <dialog.h>
 #include <so.h>
 
 struct ALO;

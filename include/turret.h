@@ -15,16 +15,6 @@
 #include <mq.h>
 
 /**
- * @brief Unknown.
- * @todo Determine whether this should be defined elsewhere.
- */
-struct DIAPI
-{
-    int fCallable;
-    int fPlayable;
-};
-
-/**
  * @class TURRET
  * @brief Stationary turret (maybe the one used in the murray levels).
  */

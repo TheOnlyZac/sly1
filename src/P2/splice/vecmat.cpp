@@ -6,7 +6,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/vecmat", IncrefVector__FP6VECTOR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/vecmat", DecrefVector__FP6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/vecmat", func_0011C610);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/vecmat", junk_0011C610);
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/vecmat", PmatrixNew__Fv);
 
@@ -22,7 +22,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/vecmat", IncrefClq__FP3CLQ);
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/vecmat", DecrefClq__FP3CLQ);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/vecmat", func_0011C850);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/vecmat", junk_0011C850);
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/vecmat", PlmNew__Fv);
 
@@ -30,7 +30,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/vecmat", IncrefLm__FP2LM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/vecmat", DecrefLm__FP2LM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/vecmat", func_0011C960);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/vecmat", junk_0011C960);
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/vecmat", PsmpNew__Fv);
 

@@ -50,11 +50,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00135858);
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_001358d0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/binoc", func_00135E20);
+INCLUDE_ASM("asm/nonmatchings/P2/binoc", junk_00135E20);
 
-INCLUDE_ASM("asm/nonmatchings/P2/binoc", func_00135E40);
+INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00135E30);
 
-INCLUDE_ASM("asm/nonmatchings/P2/binoc", func_00135E70);
+INCLUDE_ASM("asm/nonmatchings/P2/binoc", junk_00135E40);
+
+INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00135E48);
+
+INCLUDE_ASM("asm/nonmatchings/P2/binoc", junk_00135E70);
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", SetBinocBfk);
 

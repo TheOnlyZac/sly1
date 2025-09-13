@@ -84,6 +84,16 @@ struct DE
     DEK dek;
 };
 
+/**
+ * @brief Unknown.
+ * @todo Determine whether this should be defined elsewhere.
+ */
+struct DIAPI
+{
+    int fCallable;
+    int fPlayable;
+};
+
 void InitDialog(DIALOG *pdialog);
 
 void LoadDialogFromBrx(DIALOG *pdialog, CBinaryInputStream *pbis);

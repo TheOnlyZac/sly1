@@ -15,7 +15,8 @@
  */
 struct BASIC
 {
-    union {
+    union
+    {
         VTBASIC *pvtbasic;
         VTLO *pvtlo;
     };

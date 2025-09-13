@@ -287,7 +287,7 @@ bool FCharmAvailable()
     return (g_pgsCur->ccharm > 0) || (g_grfcht & (GRFCHT)FCHT_InfiniteCharms);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", func_00160C90);
+INCLUDE_ASM("asm/nonmatchings/P2/game", FUN_00160C90);
 
 int PfLookupDialog(LS *pls, OID oidDialog)
 {

@@ -29,7 +29,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/vec", GetNormalVectors__FP6VECTORN30);
 
 INCLUDE_ASM("asm/nonmatchings/P2/vec", GetNormalVector__FP6VECTORT0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vec", func_001ED900);
+INCLUDE_ASM("asm/nonmatchings/P2/vec", junk_001ED900);
 
 INCLUDE_ASM("asm/nonmatchings/P2/vec", RadBetweenVectors__FP6VECTORN20);
 

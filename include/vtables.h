@@ -9,6 +9,8 @@
 #include <cid.h>
 #include <mq.h>
 
+typedef int GRFCID;
+
 /**
  * @brief Generic VT struct. Used to determine which VTables an entity inherits at runtime.
  */
@@ -16,7 +18,7 @@ struct VT
 {
     VT *pvtSuper;
     CID cid;
-    int grfcid;
+    GRFCID grfcid;
     int cb;
 };
 

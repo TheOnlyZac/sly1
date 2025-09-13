@@ -37,10 +37,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuv__FP3SUVf);
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvActive__FP3SUVP3JOYf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", FUN_001da170);
-INCLUDE_ASM("asm/nonmatchings/P2/suv", func_001DA310);
+
+INCLUDE_ASM("asm/nonmatchings/P2/suv", junk_001DA310);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", AddSuvCustomXps__FP3SUVP2SOiP3BSPT3PP2XP);
-INCLUDE_ASM("asm/nonmatchings/P2/suv", func_001DA6E0);
+
+INCLUDE_ASM("asm/nonmatchings/P2/suv", FUN_001DA6E0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvInfluences__FP3SUVP2RO);
 
@@ -71,6 +73,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", AddSuvFeature__FP3SUVP3VOLffP4EXPLT4);
 INCLUDE_ASM("asm/nonmatchings/P2/suv", SetSuvSuvs__FP3SUV4SUVS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", ResetSuv__FP3SUV);
-INCLUDE_ASM("asm/nonmatchings/P2/suv", func_001DB448);
+
+INCLUDE_ASM("asm/nonmatchings/P2/suv", junk_001DB448);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", VecCombo__FG8VU_FLOATG9VU_VECTORT0T1);
