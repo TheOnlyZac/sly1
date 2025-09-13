@@ -25,6 +25,7 @@ enum JLOS
 };
 
 /**
+ * @class JLO
  * @brief Unknown.
  * @todo Implement the struct.
  */
@@ -34,6 +35,7 @@ struct JLO : public SO
 };
 
 /**
+ * @class JLO_VOLUME
  * @brief Unknown.
  * @todo Implement the struct.
  */
@@ -43,6 +45,7 @@ struct JLOVOL : public VOLBTN
 };
 
 /**
+ * @class JLO_CLUSTER
  * @brief Unknown.
  * @todo Implement the struct.
  */
