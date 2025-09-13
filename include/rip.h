@@ -15,6 +15,7 @@
 
 // Forward.
 struct RO;
+struct RIPG;
 
 // TODO: Does this belong here or puffer.h?
 struct PUFF;
@@ -104,6 +105,9 @@ enum TRLS
  */
 struct RIP
 {
+    STRUCT_PADDING(2);
+    int cref;
+    RIPG *pripg;
     // ...
 };
 

@@ -147,8 +147,7 @@ segments:
     - [0x6ba18, asm, P2/hideout]
     - [0x6d470, c, P2/hnd]
     - [0x6d4e8, c, P2/ik]
-    - [0x6de00, asm, P2/jack] # Might be something else.
-    #- [0x, asm, P2/jlo]
+    - [0x6de00, c, P2/jlo]
     - [0x6f0b8, c, P2/joy]
     - [0x70608, c, P2/jt]
     - [0x79008, asm, P2/jp] # Might be something else.
@@ -190,7 +189,6 @@ segments:
     - [0xa8b20, c, P2/rumble]
     - [0xa8fe8, c, P2/rwm]
     - [0xaa8f8, asm, P2/sb]
-    #- [0x, asm, P2/sc] # Most likely not in retail.
     - [0xaac68, c, P2/screen]
     - [0xafcb0, c, P2/sensor]
     - [0xb2ac8, c, P2/shadow]
@@ -264,6 +262,7 @@ segments:
     # P2/vife.c - vif encoder
     # P2/wibu_ee.c - wibukey encryption
     # P2/rope.c - unknown
+    # P2/sc.c - unknown
 
     #--------------------------------------------------------
     # Libs

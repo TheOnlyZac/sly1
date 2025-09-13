@@ -4,7 +4,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", PripgNew__FP2SW5RIPGT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitRipg__FP4RIPG);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", SetRipgEmitb__FP4RIPGP5EMITB);
+void SetRipgEmitb(RIPG *pripg, EMITB *pemitb)
+{
+    // pripg->sExpand & pemib->emitp.emitrip.sExpand
+    STRUCT_OFFSET(pripg, 0x554, float) = STRUCT_OFFSET(pemitb, 0x1e8, float);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", OnRipgRemove__FP4RIPG);
 
@@ -27,13 +31,26 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", PripNewRipg__F4RIPTP4RIPG);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitRip__FP3RIPP6VECTORfP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", RemoveRip__FP3RIP);
+void RemoveRip(RIP *prip)
+{
+	RemoveDlEntry(&STRUCT_OFFSET(prip->pripg, 0x558, DL), prip);
+    ReleaseRip(prip);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", AddRipRef__FP3RIP);
+void AddRipRef(RIP *prip)
+{
+    prip->cref++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", ReleaseRip__FP3RIP);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", TouchRip__FP3RIPi);
+void TouchRip(RIP *prip, int fTouching)
+{
+    if (fTouching != 0)
+    {
+        RemoveRip(prip);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", ForceRipFade__FP3RIPf);
 
