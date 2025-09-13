@@ -7,6 +7,8 @@
 #define SO_H
 
 #include <alo.h>
+#include <mat.h>
+#include <sm.h>
 
 // Forward.
 class CBinaryInputStream;
@@ -58,6 +60,16 @@ void OnSoAdd(SO *pso);
  * @param pso Pointer to the SO.
  */
 void OnSoRemove(SO *pso);
+
+/**
+ * @brief TODO.
+ */
+void PresetSoAccel(SO *pso, float dt);
+
+/**
+ * @brief TODO.
+ */
+void AccelSoTowardMatSmooth(SO *pso, float dt, MATRIX3 *pmat, SMP *psmp);
 
 /**
  * @brief Clones an SO.

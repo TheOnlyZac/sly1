@@ -1925,6 +1925,38 @@ SolveAloIK__FP3ALO              = 0x16C528; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/jlo.c
+////////////////////////////////////////////////////////////////
+InitJlo__FP3JLO                               = 0x16CE00; // type:func
+LoadJloFromBrx__FP3JLOP18CBinaryInputStream   = 0x16CE80; // type:func
+PostJloLoad__FP3JLO                           = 0x16CF70; // type:func
+FUN_0016d040                                  = 0x16D040; // type:func
+PresetJloAccel__FP3JLOf                       = 0x16D0C0; // type:func
+UpdateJlo__FP3JLOf                            = 0x16D128; // type:func
+JlosNextJlo__FP3JLO                           = 0x16D1E0; // type:func
+SetJloJlovol__FP3JLOP6JLOVOL                  = 0x16D3F0; // type:func
+FireJlo__FP3JLO                               = 0x16D490; // type:func
+LandJlo__FP3JLO                               = 0x16D788; // type:func
+JumpJlo__FP3JLO                               = 0x16D828; // type:func
+FUN_0016d928                                  = 0x16D928; // type:func
+FUN_0016d9a8                                  = 0x16D9A8; // type:func
+HandleJloMessage__FP3JLO5MSGIDPv              = 0x16DA00; // type:func
+SetJloJlos__FP3JLO4JLOS                       = 0x16DAC0; // type:func
+ActivateJlo__FP3JLO                           = 0x16DCF0; // type:func
+DeactivateJlo__FP3JLO                         = 0x16DD00; // type:func
+InitJloc__FP4JLOC                             = 0x16DD10; // type:func
+LoadJlocFromBrx__FP4JLOCP18CBinaryInputStream = 0x16DD90; // type:func
+PostJlocLoad__FP4JLOC                         = 0x16DDE8; // type:func
+PxfmChooseJloc__FP4JLOC                       = 0x16DE20; // type:func
+InitJlovol__FP6JLOVOL                         = 0x16DF30; // type:func
+BindJlovol__FP6JLOVOL                         = 0x16DF68; // type:func
+HandleJlovolMessage__FP6JLOVOL5MSGIDPv        = 0x16DFE0; // type:func
+
+g_pjloCur = 0x2629c8; // size:0x4
+s_asnipLoadJlo = 0x2629d0;
+
+
+////////////////////////////////////////////////////////////////
 // P2/joy.c
 ////////////////////////////////////////////////////////////////
 StartupJoy__Fv = 0x16E0B8; // type:func
@@ -3240,6 +3272,8 @@ FreezeSmartguard__FP10SMARTGUARDi                     = 0x1B7920; // type:func
 InitSo__FP2SO = 0x1B7968; // type:func
 OnSoAdd__FP2SO = 0x1B7A98; // type:func
 OnSoRemove__FP2SO = 0x1B7B78; // type:func
+PresetSoAccel__FP2SOf = 0x1B9338; // type:func
+AccelSoTowardMatSmooth__FP2SOfP7MATRIX3P3SMP = 0x1B9D10; // type:func
 CloneSo__FP2SOT0 = 0x1BA130; // type:func
 LoadSoFromBrx__FP2SOP18CBinaryInputStream = 0x1BAC30; // type:func
 

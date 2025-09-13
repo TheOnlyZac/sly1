@@ -151,9 +151,11 @@ void UpdateButtonInternalXps(BUTTON *pbutton);
 void UpdateButton(BUTTON *pbutton, float dt);
 
 int FAbsorbButtonWkr(BUTTON *pbutton, WKR *pwkr);
+*/
 
 void InitVolbtn(VOLBTN *pvolbtn);
 
+/*
 void LoadVolbtnFromBrx(VOLBTN *pvolbtn, CBinaryInputStream *pbis);
 
 void PostVolbtnLoad(VOLBTN *pvolbtn);
