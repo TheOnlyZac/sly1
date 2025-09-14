@@ -12,6 +12,7 @@ struct SO;
 
 /**
  * @brief Vector3 with X, Y, and Z
+ * @todo This probably needs to be 16-byte aligned?
  */
 struct VECTOR
 {

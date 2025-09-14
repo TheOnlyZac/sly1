@@ -155,9 +155,28 @@ struct ALO : public LO
 /**
  * @brief Initializes an ALO.
  *
- * @param palo ALO to initialize
+ * @param palo ALO to initialize.
  */
 void InitAlo(ALO *palo);
+
+/**
+ * @brief Adds an ALO.
+ *
+ * @param palo ALO to add.
+ */
+void OnAloAdd(ALO *palo);
+
+/**
+ * @brief Removes an ALO.
+ *
+ * @param palo ALO to remove.
+ */
+void OnAloRemove(ALO *palo);
+
+/**
+ * @brief TODO
+ */
+void PostAloLoad(ALO *palo);
 
 /**
  * @brief unknown
@@ -170,6 +189,11 @@ void SnipAloObjects(ALO *palo, int csnip, SNIP *asnip);
  * @param palo ALO to initialize
  */
 void UpdateAlo(ALO *palo, float dt);
+
+/**
+ * @brief TODO.
+ */
+void UpdateAloXfWorldHierarchy(ALO *palo);
 
 /**
  * @brief Clones an ALO.

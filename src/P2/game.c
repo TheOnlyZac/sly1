@@ -125,7 +125,7 @@ void UpdateGameState(float dt)
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", LsFromWid);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", GrflsFromWid);
+INCLUDE_ASM("asm/nonmatchings/P2/game", GrflsFromWid__F3WID);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", UnloadGame__Fv);
 #ifdef SKIP_ASM

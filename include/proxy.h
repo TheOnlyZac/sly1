@@ -11,10 +11,8 @@
 
 /**
  * @brief Unknown.
- *
- * @todo Does this inherit from a base struct?
  */
-struct PROXY
+struct PROXY : public ALO
 {
     DL dlProxyRoot;
     DLE dleProxy;
