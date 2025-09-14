@@ -237,7 +237,7 @@ struct CPR
  */
 struct CM : public LO
 {
-    VECTOR pos;
+    /* 0x40 */ VECTOR pos;
     VECTOR4 anormalFrustrumTranspose[3];
     MATRIX3 mat;
     float rMRDAdjust;

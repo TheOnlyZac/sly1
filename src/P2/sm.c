@@ -1,8 +1,16 @@
 #include <sm.h>
+#include <sw.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", LoadSmFromBrx__FP2SMP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", PostSmLoad__FP2SM);
+void PostSmLoad(SM *psm)
+{
+    PostLoLoad(psm);
+    if (psm->fDefault != 0)
+    {
+        PostSwCallback(psm->psw, PostSmLoadCallback, psm, MSGID_callback, nullptr);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", PostSmLoadCallback__FP2SM5MSGIDPv);
 

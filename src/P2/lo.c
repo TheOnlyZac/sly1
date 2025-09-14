@@ -6,7 +6,10 @@
 #include <find.h>
 #include <game.h>
 #include <memory.h>
+#include <spliceobj.h>
 #include <splice/gc.h>
+#include <splice/ref.h>
+#include <splice/vecmat.h>
 
 extern CGc g_gc;
 
@@ -186,7 +189,7 @@ void GetLoInWorld(LO *plo, int *pfInWorld)
     *pfInWorld = FIsLoInWorld(plo);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/lo", GetLoInWorld_padding);
+INCLUDE_ASM("asm/nonmatchings/P2/lo", junk_00183050);
 
 INCLUDE_ASM("asm/nonmatchings/P2/lo", PloCloneLo__FP2LOP2SWP3ALO);
 
@@ -238,14 +241,14 @@ void SubscribeSwPpmqStruct(SW *psw, MQ **ppmqFirst, PFNMQ pfnmq, void *pvContext
     *ppmqFirst = pmq;
 }
 
-void UnsubscribeSwPpmqStruct(struct SW *psw, struct MQ **ppmqFirst, PFNMQ pfnmq, void *pvContext)
+void UnsubscribeSwPpmqStruct(SW *psw, MQ **ppmqFirst, PFNMQ pfnmq, void *pvContext)
 {
-    struct MQ *pmq;
+    MQ *pmq;
 
     while (pmq = *ppmqFirst)
     {
-        struct MQ *pmqTarget;
-        struct MQ **ppmqList = ppmqFirst;
+        MQ *pmqTarget;
+        MQ **ppmqList = ppmqFirst;
 
         if (pmq->pfnmq == pfnmq && pmq->pvContext == pvContext)
         {
@@ -282,7 +285,7 @@ void UnsubscribeLoObject(LO *plo, LO *ploTarget)
     UnsubscribeSwPpmqStruct(plo->psw, &plo->pmqFirst, ploTarget->pvtlo->pfnHandleLoMessage, ploTarget);
 }
 
-void SendLoMessage(LO * plo, MSGID msgid, void *pv)
+void SendLoMessage(LO *plo, MSGID msgid, void *pv)
 {
     if (plo->pvtlo->pfnHandleLoMessage)
     {
@@ -344,8 +347,7 @@ OID OidProxyLoPreferred(LO *plo)
 
 void GetLoOidProxy(LO *plo, OID *poid)
 {
-    OID oid = OidProxyLo(plo);
-    *poid = oid;
+    *poid = OidProxyLo(plo);
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/lo", PostSpliceEventCallback__FP2LOUiPv);
@@ -354,16 +356,50 @@ INCLUDE_ASM("asm/nonmatchings/P2/lo", FFilterSpliceEvent__FP2LO7SYMEVIDiPPv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/lo", HandleLoSpliceEvent__FP2LOUiiPPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/lo", EnsureLoSidebagBool__FP2LO5OPTIDi);
+void EnsureLoSidebagBool(LO *plo, OPTID optid, int f)
+{
+    CRef ref = CRef();
+    ref.SetBool(f);
+    RefEnsureOption(plo, optid, &ref);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/lo", EnsureLoSidebagInt__FP2LO5OPTIDi);
+void EnsureLoSidebagInt(LO *plo, OPTID optid, int n)
+{
+    CRef ref = CRef();
+    ref.SetS32(n);
+    RefEnsureOption(plo, optid, &ref);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/lo", EnsureLoSidebagFloat__FP2LO5OPTIDf);
+void EnsureLoSidebagFloat(LO *plo, OPTID optid, float g)
+{
+    CRef ref = CRef();
+    ref.SetF32(g);
+    RefEnsureOption(plo, optid, &ref);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/lo", EnsureLoSidebagClq__FP2LO5OPTIDP3CLQ);
 
 INCLUDE_ASM("asm/nonmatchings/P2/lo", EnsureLoSidebagLm__FP2LO5OPTIDP2LM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/lo", EnsureLoSidebagOid__FP2LO5OPTID3OID);
+void EnsureLoSidebagOid(LO *plo, OPTID optid, OID oid)
+{
+    CRef ref = CRef();
+    ref.SetS32(oid);
+    RefEnsureOption(plo, optid, &ref);
+}
 
+/**
+ * @todo 92.29% match.
+ * https://decomp.me/scratch/uhZNV
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/lo", EnsureLoSidebagVector__FP2LO5OPTIDP6VECTOR);
+#ifdef SKIP_ASM
+void EnsureLoSidebagVector(LO *plo, OPTID optid, VECTOR *pvec)
+{
+    CRef ref = CRef();
+    VECTOR *pvector = PvectorNew();
+    *pvector = *pvec;
+    ref.SetVector(pvector);
+    RefEnsureOption(plo, optid, &ref);
+}
+#endif // SKIP_ASM

@@ -91,7 +91,7 @@ struct XF
  */
 struct ALO : public LO
 {
-    DL dlChild;
+    /* 0x34 */ DL dlChild;
     DLE dleBusy;
     DLE dleMRD;
     ALO *paloRoot;
@@ -173,17 +173,21 @@ void UpdateAlo(ALO *palo, float dt);
 
 /**
  * @brief Clones an ALO.
- *
  */
 void CloneAlo(ALO *palo, ALO *paloBase);
 
 /**
- * Fades in an ALO.
+ * @brief TODO.
+ */
+void ConvertAloPos(ALO *paloFrom, ALO *paloTo, VECTOR *pposFrom, VECTOR *pposTo);
+
+/**
+ * @brief Fades in an ALO.
  */
 void FadeAloIn(ALO *palo, float dtFade);
 
 /**
- * Fades out an ALO.
+ * @brief Fades out an ALO.
  */
 void FadeAloOut(ALO *palo, float dtFade);
 

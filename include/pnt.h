@@ -19,12 +19,13 @@
  */
 struct PNT : public LO
 {
-    VECTOR posLocal;
+    /* 0x34 */ STRUCT_PADDING(3); // This could be a vector, something like posGlobal?
+    /* 0x40 */ VECTOR posLocal;
 };
 
 /**
  * @class POINT_WITH_SPEED
- * @brief Object defined by a point in space a velocity.
+ * @brief Object defined by a point in space with a velocity.
  */
 struct PNTSV : PNT
 {

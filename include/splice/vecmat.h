@@ -9,7 +9,7 @@
 #include <mat.h>
 #include <util.h>
 
-VECTOR* PvectorNew();
+VECTOR *PvectorNew();
 
 void IncrefVector(VECTOR *pvector);
 
@@ -27,7 +27,7 @@ void IncrefLm(LM *plm);
 
 void DecrefLm(LM *plm);
 
-SMP* PsmpNew();
+SMP *PsmpNew();
 
 void IncrefSmp(SMP *psmp);
 

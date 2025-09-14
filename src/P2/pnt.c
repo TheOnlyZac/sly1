@@ -1,8 +1,16 @@
 #include <pnt.h>
+#include <brx.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/pnt", LoadPntFromBrx__FP3PNTP18CBinaryInputStream);
+void LoadPntFromBrx(PNT *ppnt, CBinaryInputStream *pbis)
+{
+    pbis->ReadVector(&STRUCT_OFFSET(ppnt, 0x40, VECTOR)); // ppnt->posLocal
+    LoadOptionsFromBrx(ppnt, pbis);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/pnt", GetPntPos__FP3PNTP6VECTOR);
+void GetPntPos(PNT *ppnt, VECTOR *ppos)
+{
+    ConvertAloPos(ppnt->paloParent, (ALO *)nullptr, &STRUCT_OFFSET(ppnt, 0x40, VECTOR), ppos); // ppnt->posLocal
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pnt", SetPntParent__FP3PNTP3ALO);
 

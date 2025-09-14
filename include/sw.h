@@ -44,6 +44,8 @@ void DecrementSwHandsOff(SW *psw);
 
 void FreeSwMqList(SW *psw, MQ *pmq);
 
+void PostSwCallback(SW *psw, PFNMQ pfnmq, void *pvContext, MSGID msgid, void *pvCallbackData);
+
 void DeleteSw(SW *psw); // todo check order of functions
 
 #endif // SW_H
