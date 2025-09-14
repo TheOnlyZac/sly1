@@ -42,8 +42,8 @@ struct SW : public LO
     /* 0x84   */ DL adlHash[512];
     /* 0x1884 */ LO *aploCidHead[162];
     /* 0x1b0c */ STRUCT_PADDING(55);
-	/* 0x1be8 */ DL dlLight;
-	/* 0x1bf4 */ STRUCT_PADDING(18);
+    /* 0x1be8 */ DL dlLight;
+    /* 0x1bf4 */ STRUCT_PADDING(18);
     /* 0x1c3c */ DL dlProxy;
     /* 0c1c48 */ DL dlFly;
     /* 0x1c54 */ DL dlDprize;
