@@ -17,10 +17,10 @@ struct BASIC
 {
     union
     {
-        VTBASIC *pvtbasic;
-        VTLO *pvtlo;
+        /* 0x00 */ VTBASIC *pvtbasic;
+        /* 0x00 */ VTLO *pvtlo;
     };
-    CSidebag *psidebag;
+    /* 0x04 */ CSidebag *psidebag;
 };
 
 /**

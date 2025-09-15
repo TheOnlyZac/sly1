@@ -1,13 +1,42 @@
 #include <pnt.h>
+#include <brx.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/pnt", LoadPntFromBrx__FP3PNTP18CBinaryInputStream);
+void LoadPntFromBrx(PNT *ppnt, CBinaryInputStream *pbis)
+{
+    pbis->ReadVector(&ppnt->posLocal);
+    LoadOptionsFromBrx(ppnt, pbis);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/pnt", GetPntPos__FP3PNTP6VECTOR);
+void GetPntPos(PNT *ppnt, VECTOR *ppos)
+{
+    ConvertAloPos(ppnt->paloParent, (ALO *)nullptr, &ppnt->posLocal, ppos);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/pnt", SetPntParent__FP3PNTP3ALO);
+void SetPntParent(PNT *ppnt, ALO *paloParent)
+{
+    ConvertAloPos(ppnt->paloParent, paloParent, &ppnt->posLocal, &ppnt->posLocal);
+    SetLoParent(ppnt, paloParent);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/pnt", ApplyPntProxy__FP3PNTP5PROXY);
+void ApplyPntProxy(PNT *ppnt, PROXY *pproxyApply)
+{
+    ConvertAloPos((ALO *)pproxyApply, (ALO *)nullptr, &ppnt->posLocal, &ppnt->posLocal);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/pnt", FUN_00192150);
+/**
+ * @todo Rename function and figure out what does it actually do.
+ */
+void FUN_00192150(PNT *ppnt, CBinaryInputStream *pbis)
+{
+    LoadPntFromBrx(ppnt, pbis);
+    pbis->ReadStringSw(&STRUCT_OFFSET(ppnt, 0x50, char *));
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/pnt", FUN_00192190);
+/**
+ * @todo Rename function and figure out what does it actually do.
+ */
+void FUN_00192190(PNT *ppnt)
+{
+    STRUCT_OFFSET(ppnt, 0x54, float) = 0.5f;
+    STRUCT_OFFSET(ppnt, 0x58, float) = 0.5f;
+}

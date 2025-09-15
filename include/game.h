@@ -349,7 +349,7 @@ int *LsFromWid(WID wid);
  *
  * @param wid World ID.
  */
-GRFLS GrflsFromWid(uint wid);
+GRFLS GrflsFromWid(WID wid);
 
 /**
  * @brief Unloads the game.

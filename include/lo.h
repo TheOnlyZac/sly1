@@ -21,22 +21,30 @@ struct CLQ;
 struct VECTOR;
 
 /**
+ * @brief Unknown.
+ * @todo Does this belong here?
+ */
+enum OPTID
+{
+    OPTID_Nil = -1
+};
+
+/**
  * @class LO
  * @brief Unknown, maybe "level object".
+ * @note The fields "pchzName" and "dtickPerf" present in the prototype are not in release.
  */
 struct LO : public BASIC
 {
-    OID oid;
-    DLE dleOid;
-    SW *psw;
-    ALO *paloParent;
-    DLE dleChild;
-    LO *ploCidNext;
-    MQ *pmqFirst;
-    // char *pchzName; // Not in release
-    CFrame *pframe;
-    PXR *ppxr;
-    // ulong dtickPerf; // Not in release
+    /* 0x08 */ OID oid;
+    /* 0x10 */ DLE dleOid;
+    /* 0x14 */ SW *psw;
+    /* 0x18 */ ALO *paloParent;
+    /* 0x1c */ DLE dleChild;
+    /* 0x24 */ LO *ploCidNext;
+    /* 0x28 */ MQ *pmqFirst;
+    /* 0x2c */ CFrame *pframe;
+    /* 0x30 */ PXR *ppxr;
 };
 
 /**
@@ -197,18 +205,18 @@ int FFilterSpliceEvent(LO *plo, /* SYMEVID */ int symevid, int cargs, void **ppv
 
 void HandleLoSpliceEvent(LO *plo, uint symidEvent, int cargs, void **ppvargs);
 
-void EnsureLoSidebagBool(LO *plo, uint optid, int f);
+void EnsureLoSidebagBool(LO *plo, OPTID optid, int f);
 
-void EnsureLoSidebagInt(LO *plo, uint optid, int n);
+void EnsureLoSidebagInt(LO *plo, OPTID optid, int n);
 
-void EnsureLoSidebagFoat(LO *plo, uint optid, float g);
+void EnsureLoSidebagFoat(LO *plo, OPTID optid, float g);
 
-void EnsureLoSidebagClq(LO *plo, uint optid, CLQ *pclq);
+void EnsureLoSidebagClq(LO *plo, OPTID optid, CLQ *pclq);
 
-void EnsureLoSidebagLm(LO *plo, uint optid, LM *plm);
+void EnsureLoSidebagLm(LO *plo, OPTID optid, LM *plm);
 
-void EnsureLoSidebagOid(LO *plo, uint optid, OID oid);
+void EnsureLoSidebagOid(LO *plo, OPTID optid, OID oid);
 
-void EnsureLoSidebagVector(LO *plo, uint optid, VECTOR *pvec);
+void EnsureLoSidebagVector(LO *plo, OPTID optid, VECTOR *pvec);
 
 #endif // LO_H

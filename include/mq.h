@@ -8,6 +8,8 @@
 
 #include "common.h"
 
+typedef int GRFCMQ; // TODO: Does this belong to mq.h?
+
 /**
  * @brief Message ID
  *
@@ -45,7 +47,7 @@ enum MSGID
     MSGID_Max = 26
 };
 
-typedef void (*PFNMQ)(void*, MSGID, void*);
+typedef void (*PFNMQ)(void *, MSGID, void *);
 
 /**
  * @brief Message queue(?)

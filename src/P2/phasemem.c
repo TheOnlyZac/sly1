@@ -5,10 +5,11 @@
 
 void SetPhase(PHASE phase)
 {
-    if (g_phase != phase) {
-        FlushCache(0);
-        g_phase = phase;
-    }
+    if (g_phase == phase)
+        return;
+
+    FlushCache(0);
+    g_phase = phase;
 }
 
 void ClearPhase(PHASE phase)

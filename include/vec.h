@@ -12,6 +12,7 @@ struct SO;
 
 /**
  * @brief Vector3 with X, Y, and Z
+ * @todo This probably needs to be 16-byte aligned?
  */
 struct VECTOR
 {
@@ -22,7 +23,6 @@ struct VECTOR4
 {
     float x, y, z, w;
 };
-
 
 struct VU_VECTOR
 {
@@ -82,13 +82,13 @@ void GetNormalVector(VECTOR *pvec, VECTOR *presult);
 /**
  * @brief Calculates the angle between vectors in radians.
  *
- * @param param_1 Unknown
- * @param param_2 Unknown
- * @param param_3 Unknown
+ * @param pvecStart Unknown
+ * @param pvecFinish Unknown
+ * @param pnormal Unknown
  *
- * @return Angle between vectors in radians
+ * @return Angle between vectors in radians.
  */
-long RadBetweenVectors(VECTOR *pvec1, VECTOR *pvec2, VECTOR *param_3);
+long RadBetweenVectors(VECTOR *pvecStart, VECTOR *pvecFinish, VECTOR *pnormal);
 
 /**
  * @brief Finds the closest point between the lines AB and CD.

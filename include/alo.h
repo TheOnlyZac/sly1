@@ -91,7 +91,7 @@ struct XF
  */
 struct ALO : public LO
 {
-    DL dlChild;
+    /* 0x34 */ DL dlChild;
     DLE dleBusy;
     DLE dleMRD;
     ALO *paloRoot;
@@ -155,9 +155,28 @@ struct ALO : public LO
 /**
  * @brief Initializes an ALO.
  *
- * @param palo ALO to initialize
+ * @param palo ALO to initialize.
  */
 void InitAlo(ALO *palo);
+
+/**
+ * @brief Adds an ALO.
+ *
+ * @param palo ALO to add.
+ */
+void OnAloAdd(ALO *palo);
+
+/**
+ * @brief Removes an ALO.
+ *
+ * @param palo ALO to remove.
+ */
+void OnAloRemove(ALO *palo);
+
+/**
+ * @brief TODO
+ */
+void PostAloLoad(ALO *palo);
 
 /**
  * @brief unknown
@@ -172,18 +191,27 @@ void SnipAloObjects(ALO *palo, int csnip, SNIP *asnip);
 void UpdateAlo(ALO *palo, float dt);
 
 /**
+ * @brief TODO.
+ */
+void UpdateAloXfWorldHierarchy(ALO *palo);
+
+/**
  * @brief Clones an ALO.
- *
  */
 void CloneAlo(ALO *palo, ALO *paloBase);
 
 /**
- * Fades in an ALO.
+ * @brief TODO.
+ */
+void ConvertAloPos(ALO *paloFrom, ALO *paloTo, VECTOR *pposFrom, VECTOR *pposTo);
+
+/**
+ * @brief Fades in an ALO.
  */
 void FadeAloIn(ALO *palo, float dtFade);
 
 /**
- * Fades out an ALO.
+ * @brief Fades out an ALO.
  */
 void FadeAloOut(ALO *palo, float dtFade);
 

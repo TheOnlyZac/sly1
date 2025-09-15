@@ -97,13 +97,24 @@ enum JTHS
 };
 
 /**
- * JT cane state.
+ * @brief JT cane state.
  *
  * @note Copied from May proto, may be outdated/out of order.
  */
 enum JTCS
 {
     // ...
+};
+
+/**
+ * @brief JT pipe direction kind.
+ */
+enum JTPDK
+{
+    JTPDK_Nil = -1,
+    JTPDK_Up = 0,
+    JTPDK_Down = 1,
+    JTPDK_Max = 2
 };
 
 /**
