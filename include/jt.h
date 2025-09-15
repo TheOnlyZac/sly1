@@ -107,7 +107,7 @@ enum JTCS
 };
 
 /**
- * @brief JT pipe (?) kind.
+ * @brief JT pipe direction kind.
  */
 enum JTPDK
 {
