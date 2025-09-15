@@ -146,10 +146,8 @@ void UnloadGame()
 
 void RetryGame()
 {
-    GS* gsCur = g_pgsCur;
-
     g_pgsCur->clife = 5; // Set lives to 5
-    gsCur->ccharm = 0; // Set charms to 0
+    g_pgsCur->ccharm = 0; // Set charms to 0
 
     ResetChkmgrCheckpoints(&g_chkmgr);
 }
@@ -322,13 +320,7 @@ void OnGameAlarmDisabled(GAME *pgame)
 
 uint GetGrfvault_unknown()
 {
-    GS *pgsCur = g_pgsCur;
-    SW *pswCur = g_psw;
-
-    GRFVAULT grfvault = pgsCur->grfvault;
-    uint unk = STRUCT_OFFSET(pswCur, 0x235c, uint);
-
-    return grfvault & unk;
+    return g_pgsCur->grfvault & STRUCT_OFFSET(g_psw, 0x235c, uint);
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", GetBlueprintInfo__FPiT0);
@@ -364,7 +356,7 @@ void GetBlueprintInfo(int *pgrfvault, int *pipdialog)
         break;
     }
 
-    if (pgrfvault != (int *)0x0)
+    if (pgrfvault)
     {
         *pgrfvault = (int)pipdialog;
     }

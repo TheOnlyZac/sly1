@@ -29,9 +29,9 @@ void InitFlash(FLASH *pflash)
 
 INCLUDE_ASM("asm/nonmatchings/P2/flash", LoadFlashFromBrx__FP5FLASHP18CBinaryInputStream);
 
-void UpdateFlash(FLASH *pflash,float dt)
+void UpdateFlash(FLASH *pflash, float dt)
 {
-    UpdateAlo((ALO *)pflash, dt);
+    UpdateAlo(pflash, dt);
     pflash->gScaleCur = GSmooth(pflash->gScaleCur, pflash->gScaleTarget, g_clock.dt, &pflash->smpScale, 0);
 }
 

@@ -139,7 +139,7 @@ bool CBinaryAsyncStream::FSpoolingComplete()
         }
     }
 
-    if (status != 0)
+    if (status)
     {
         m_cbSpooling = 0;
         m_pbSpooling = 0;

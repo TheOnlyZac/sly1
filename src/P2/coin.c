@@ -62,8 +62,8 @@ void InitCoin(COIN *pcoin)
     pcoin->rxyBounce = 0.6f;
     pcoin->rzBounce = 0.75f;
     pcoin->uGlintChance = 0.25f;
-    (pcoin->lmDtMaxLifetime).gMin = 8.0f;
-    (pcoin->lmDtMaxLifetime).gMax = 10.0f;
+    pcoin->lmDtMaxLifetime.gMin = 8.0f;
+    pcoin->lmDtMaxLifetime.gMax = 10.0f;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00147ed0);
@@ -76,11 +76,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", CreateSwCharm__FP2SW);
 
 void AddLife(void *ptr)
 {
-    int new_clife;
-    int capped_clife;
-
-    new_clife = g_pgsCur->clife + 1;
-    capped_clife = 99;
+    int new_clife = g_pgsCur->clife + 1;
+    int capped_clife = 99;
     if (new_clife < 99)
     {
         capped_clife = new_clife;
@@ -140,7 +137,7 @@ void InitCharm(CHARM *pcharm)
     pcharm->sRadiusCollect = 60.0f;
     pcharm->svLastBounceMax = 300.0f;
     pcharm->svLastBounce = 0.0f;
-    pcharm->rxyBounce = .75f;
+    pcharm->rxyBounce = 0.75f;
     pcharm->rzBounce = 0.5f;
     pcharm->uGlintChance = 0.35f;
 }
@@ -193,14 +190,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148888);
 
 int FUN_00148910(float *pf0, float *pf1)
 {
-    int val = -1;
-
-    if (*pf0 < *pf1)
-    {
-        val = 1;
-    }
-
-    return val;
+    return (*pf0 < *pf1) ? 1 : -1;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148938);

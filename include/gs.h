@@ -10,6 +10,7 @@
 
 #include "common.h"
 #include <shd.h>
+#include <sce/libdma.h>
 
 struct GSB
 {
@@ -45,6 +46,9 @@ void ResetGsb(GSB *pGsb);
 int IgsAllocGsb(GSB *pgsb, int iCount);
 
 void BlastAqwGifsBothFrames(QW *);
+
 void ClearFrameBuffers();
+
+void SendDmaSyncGsFinish(sceDmaChan *pdc,QW *pqw);
 
 #endif // GS_H

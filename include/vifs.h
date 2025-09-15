@@ -5,6 +5,16 @@
 #define VIFS_H
 
 #include "common.h"
+#include <dmas.h>
+
+/**
+ * @brief Unknown.
+ * @todo Implement the class.
+ */
+class VIFS : public DMAS
+{
+    // ...
+};
 
 // ...
 

@@ -40,8 +40,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", RestoreChkmgrFromCheckpoint__FP6CHKMGR
 
 int IchkAllocChkmgr(CHKMGR *pchkmgr)
 {
-    pchkmgr->cbitChk = pchkmgr->cbitChk + 1;
-    return pchkmgr->cbitChk;
+    return ++pchkmgr->cbitChk;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", FGetChkmgrIchk__FP6CHKMGRi);

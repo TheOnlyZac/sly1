@@ -1,6 +1,17 @@
 #include <frm.h>
+#include <gs.h>
+#include <dmas.h>
+#include <vifs.h>
+#include <gifs.h>
 #include <phasemem.h>
+#include <sce/libdma.h>
 #include <sdk/ee/eekernel.h>
+
+extern void *g_pvVu1Code;
+
+// TODO: Should these be defined here?
+extern SLI *g_psliCur;
+extern QW *g_aqwGifsBackgroundUpload;
 
 INCLUDE_ASM("asm/nonmatchings/P2/frm", VU1_Interrupt__Fi);
 
@@ -28,21 +39,55 @@ void OpenFrame()
 }
 #endif
 
-INCLUDE_ASM("asm/nonmatchings/P2/frm", EnsureVu1Code__FP4VIFSPvT1);
+void EnsureVu1Code(VIFS *pvifs, void *pvStart, void *pvEnd)
+{
+    if (g_pvVu1Code != pvStart)
+    {
+        g_pvVu1Code = pvStart;
+        uint cqw = (uint)((byte *)pvEnd - (byte *)pvStart + 0x0f) >> 0x04;
+        pvifs->AddDmaRefs(cqw, (QW *)pvStart);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/frm", FinalizeFrameGifs__FP4GIFSPiPP2QW);
+INCLUDE_ASM("asm/nonmatchings/P2/frm", FinalizeFrameVifs__FP4VIFSPiPP2QW);
 
-INCLUDE_ASM("asm/nonmatchings/P2/frm", FUN_0015ebf0);
+void FinalizeFrameGifs(GIFS *pgifs, int *pcqwGifs, QW **ppqwGifs)
+{
+    pgifs->AddPrimPack(0, 1, 0x0e);
+    pgifs->PackAD(0x61, 0);
+    pgifs->AddPrimEnd();
+    pgifs->AddDmaEnd();
+    pgifs->Detach(pcqwGifs, ppqwGifs);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/frm", CloseFrame__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/frm", PrepareGsForFrameRender__FP3FRM);
+void PrepareGsForFrameRender(FRM *pfrm)
+{
+    g_psliCur = pfrm->asli;
+    PropagateShaders(pfrm->grfzon);
+
+    if (pfrm->fBackgroundUploadRequired && g_aqwGifsBackgroundUpload)
+    {
+        *((volatile uint *)0x10003010) = 4; // REG_GIF_MODE
+        sceDmaSend(g_pdcGif, g_aqwGifsBackgroundUpload);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/frm", check_anticrack_antigrab__Fv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/frm", FrameRenderLoop__FPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/frm", RenderFrame__FP3FRMi);
+void RenderFrame(FRM *pfrm, int fRenderGifs)
+{
+    PrepareGsForFrameRender(pfrm);
+    SendDmaSyncGsFinish(g_pdcVif1, pfrm->aqwVifs);
+    if (fRenderGifs)
+    {
+        *((volatile uint *)0x10003010) = 0; // REG_GIF_MODE
+        SendDmaSyncGsFinish(g_pdcGif, pfrm->aqwGifs);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/frm", ClearPendingFrame__FP3FRM);
 

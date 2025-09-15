@@ -1,7 +1,6 @@
 #include <dl.h>
 
-extern void *D_0027B314; // global iterator list (DLI::s_pdliFirst)
-#define s_pdliFirst (*(DLI**)&D_0027B314)
+extern DLI *s_pdliFirst; // Global iterator list.
 
 void InitDl(DL *pdl, int ibDle)
 {
@@ -140,7 +139,7 @@ void RemoveDlEntry(DL *pdl, void *pv)
 bool FFindDlEntry(DL *pdl, void *pv)
 {
     DLE *pdle = PdleFromDlEntry(pdl, pv);
-    return (pdle->next != 0) || (pdl->tail == pv);
+    return (pdle->next) || (pdl->tail == pv);
 }
 
 bool FIsDlEmpty(DL *pdl)
@@ -150,24 +149,24 @@ bool FIsDlEmpty(DL *pdl)
 
 void MergeDl(DL *pdlDst, DL *pdlSrc)
 {
-    if (pdlSrc->head)
+    if (!pdlSrc->head)
+        return;
+
+    if (!pdlDst->head)
     {
-        if (!pdlDst->head)
-        {
-            memcpy(pdlDst, pdlSrc, 12);
-            ClearDl(pdlSrc);
-            return;
-        }
-
-        DLE *pdstTail = PdleFromDlEntry(pdlDst, pdlDst->tail);
-        DLE *psrcHead = PdleFromDlEntry(pdlSrc, pdlSrc->head);
-
-        pdstTail->next = pdlSrc->head;
-        psrcHead->prev = pdlDst->tail;
-
-        pdlDst->tail = pdlSrc->tail;
+        memcpy(pdlDst, pdlSrc, 12);
         ClearDl(pdlSrc);
+        return;
     }
+
+    DLE *pdstTail = PdleFromDlEntry(pdlDst, pdlDst->tail);
+    DLE *psrcHead = PdleFromDlEntry(pdlSrc, pdlSrc->head);
+
+    pdstTail->next = pdlSrc->head;
+    psrcHead->prev = pdlDst->tail;
+
+    pdlDst->tail = pdlSrc->tail;
+    ClearDl(pdlSrc);
 }
 
 int CPvDl(DL *pdl)
@@ -175,15 +174,11 @@ int CPvDl(DL *pdl)
     void *pCurItem = pdl->head;
     int iCount = 0;
 
-    if (pCurItem != 0)
+    while (pCurItem)
     {
-        while (pCurItem)
-        {
-            DLE *pDle = (DLE *)((uchar *)pCurItem + pdl->ibDle);
-
-            pCurItem = pDle->next;
-            iCount++;
-        }
+        DLE *pDle = (DLE *)((uchar *)pCurItem + pdl->ibDle);
+        pCurItem = pDle->next;
+        iCount++;
     }
 
     return iCount;
