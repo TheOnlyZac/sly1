@@ -190,6 +190,15 @@ struct SHD
     SAA *psaa;
 };
 
+/**
+ * @brief Unknown.
+ * @todo Does this belong here?
+ */
+struct SLI
+{
+
+};
+
 sceGsTex0 Tex0FromTexIframeCtk(TEX *ptex, int iframe, CTK ctk);
 
 void PackTexGifs(TEX *ptex, int iframe, CTK ctk, SHDK shdk, GIFS *pgifs);

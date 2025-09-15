@@ -1,7 +1,7 @@
-#include <sce/memset.h>
 #include <difficulty.h>
-#include <game.h>
 #include <transition.h>
+#include <sce/memset.h>
+#include <game.h>
 #include <coin.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/difficulty", PdifficultyEnsureSw);

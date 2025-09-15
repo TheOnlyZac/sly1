@@ -1453,6 +1453,8 @@ FIsDlEmpty__FP2DL = 0x152720; // type:func
 MergeDl__FP2DLT0 = 0x152730; // type:func
 CPvDl__FP2DL = 0x1527D8; // type:func
 
+s_pdliFirst = 0x27B314; // size:0x4
+
 
 ////////////////////////////////////////////////////////////////
 // P2/dmas.c
@@ -1483,7 +1485,7 @@ _vt$4DMAS = 0x24A0E0; // size:0x10
 
 g_pdcVif0 = 0x261f14; // size:0x4
 g_pdcVif1 = 0x261f18; // size:0x4
-g_pdcGiftag = 0x261f1c; // size:0x4
+g_pdcGif = 0x261f1c; // size:0x4
 g_pdcFromSpr = 0x261f20; // size:0x4
 g_pdcToSpr = 0x261f24; // size:0x4
 
@@ -1642,8 +1644,8 @@ VU1_Interrupt__Fi = 0x15E6A8; // type:func
 StartupFrame__Fv = 0x15E810; // type:func
 OpenFrame__Fv = 0x15E9F0; // type:func
 EnsureVu1Code__FP4VIFSPvT1 = 0x15EAE0; // type:func
-FinalizeFrameGifs__FP4GIFSPiPP2QW = 0x15EB20; // type:func
-FUN_0015ebf0 = 0x15EBF0; // type:func
+FinalizeFrameVifs__FP4VIFSPiPP2QW = 0x15EB20; // type:func
+FinalizeFrameGifs__FP4GIFSPiPP2QW = 0x15EBF0; // type:func
 CloseFrame__Fv = 0x15EC68; // type:func
 PrepareGsForFrameRender__FP3FRM = 0x15ED50; // type:func
 check_anticrack_antigrab__Fv = 0x15EDB8; // type:func
@@ -1653,7 +1655,12 @@ ClearPendingFrame__FP3FRM = 0x15EFE8; // type:func
 FlushFrames__Fi = 0x15F210; // type:func
 BlendPrevFrame__Fv = 0x15F320; // type:func
 
-g_cframe = 0x2622cc; // size:0x4
+g_cframe    = 0x2622cc; // size:0x4
+g_pvVu1Code = 0x26230c; // size:0x4
+
+// TODO: Should these be elsewhere?
+g_psliCur = 0x2622D4; // size:0x4
+g_aqwGifsBackgroundUpload = 0x274538; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////

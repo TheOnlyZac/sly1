@@ -75,7 +75,7 @@ void ReadCdDirect(uint isector, uint csector, void *pv)
 
 bool FCdCompleted(int fBlock)
 {
-    return snd_StreamSafeCdSync(fBlock == 0) == 0;
+    return !snd_StreamSafeCdSync(!fBlock);
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/cd", junk_00140D88);

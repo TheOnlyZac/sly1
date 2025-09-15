@@ -54,15 +54,15 @@ public:
     void AllocGlobal(int);
     void AllocSw(int, int);
     void AllocStack(int);
-    void AllocStatic(int, QW*);
-    void Detach(int*, QW**);
-    void DetachCopySw(int*, QW**, QW*, int);
-    void Send(sceDmaChan* chan);
+    void AllocStatic(int, QW *);
+    void Detach(int *, QW **);
+    void DetachCopySw(int *, QW **, QW *, int);
+    void Send(sceDmaChan *chan);
     void AddDmaCnt();
-    void AddDmaRefs(int, QW*);
-    void AddDmaCall(QW*);
+    void AddDmaRefs(int cqw, QW *aqw);
+    void AddDmaCall(QW *);
     void AddDmaRet();
-    void AddDmaBulk(int, QW*);
+    void AddDmaBulk(int, QW *);
     void AddDmaEnd();
     void EndDmaCnt();
 

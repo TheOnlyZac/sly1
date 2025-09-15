@@ -161,5 +161,4 @@ void MergeDl(DL *pdlDst, DL *pdlSrc);
  */
 int CPvDl(DL *pdl);
 
-
 #endif // DL_H

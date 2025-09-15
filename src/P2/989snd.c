@@ -939,11 +939,7 @@ int snd_GetTransStatus()
 
 INCLUDE_ASM("asm/nonmatchings/P2/989snd", junk_0x0011e520);
 
-INCLUDE_ASM("asm/nonmatchings/P2/989snd", snd_GetDopplerPitchMod);
-#ifdef SKIP_ASM
-// matches, TU padding problem
 int snd_GetDopplerPitchMod(int approaching_mph)
 {
     return (approaching_mph * 0x5f4) / 0x2e5;
 }
-#endif

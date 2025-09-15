@@ -375,7 +375,26 @@ void CBinaryInputStream::ReadMatrix(MATRIX3 *pmat)
     Read(size, &pmat->mat[2][2]);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/bis", ReadMatrix4__18CBinaryInputStreamP7MATRIX4);
+void CBinaryInputStream::ReadMatrix4(MATRIX4 *pmat)
+{
+    // TODO: This might be possible to clean up, but I wasn't able to.
+    // The compiler seems to insist that must we have pointer to each row. -545u
+    float *row0 = &pmat->mat[0][0];
+    float *row1 = &pmat->mat[1][0];
+    float *row2 = &pmat->mat[2][0];
+    float *row3 = &pmat->mat[3][0];
+
+    const int cbRow = sizeof(float) * 3;
+    Read(cbRow, row0);
+    Read(cbRow, row1);
+    Read(cbRow, row2);
+    Read(cbRow, row3);
+
+    row0[3] = 0.0f;
+    row1[3] = 0.0f;
+    row2[3] = 0.0f;
+    row3[3] = 1.0f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/bis", ReadGeom__18CBinaryInputStreamP4GEOM);
 

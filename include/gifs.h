@@ -21,7 +21,7 @@ struct GIFS : public DMAS
     void EndPrim(int fEOP);
     void CheckReg(int fExpectPack, int regExpect);
     void AddPrimBulk(int prim, int c, int creg, ulong regs, QW **paqwBulk);
-    void AddPrimPack(int prim, int creg, ulong regs);
+    void AddPrimPack(int prim, int creg, unsigned long regs);
     void PackRGBA(uint rgba);
     void PackUV(int u, int v);
     void PackSTQ(float s, float t, float q);
