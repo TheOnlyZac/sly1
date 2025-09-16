@@ -18,6 +18,18 @@ struct CM; // Forward declaration
 struct TN;
 
 /**
+ * @brief Camera (?) kind?
+ */
+enum CMK
+{
+    CMK_Nil = -1,
+    CMK_Translucent = 0,
+    CMK_Fade = 1,
+    CMK_Opaque = 2,
+    CMK_Max = 3
+};
+
+/**
  * @brief Unknown Kind.
  */
 enum CFK

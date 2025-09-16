@@ -47,6 +47,7 @@ struct SW : public LO
     /* 0x1c3c */ DL dlProxy;
     /* 0c1c48 */ DL dlFly;
     /* 0x1c54 */ DL dlDprize;
+    /* 0x1c60 */ DL dlRat;
 
     // MISALIGNED:
     void (*pcbUpdate)(float fDelta);
