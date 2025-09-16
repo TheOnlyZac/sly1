@@ -32,6 +32,7 @@ enum OPTID
 /**
  * @class LO
  * @brief Unknown, maybe "level object".
+ *
  * @note The fields "pchzName" and "dtickPerf" present in the prototype are not in release.
  */
 struct LO : public BASIC

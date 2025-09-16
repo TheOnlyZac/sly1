@@ -55,10 +55,21 @@ struct STEPGUARD : public STEP
     // ...
 };
 
+/**
+ * @brief Initializes the stepguard fields with default values.
+ */
 void InitStepguard(STEPGUARD *pstepguard);
+
+/**
+ * @todo
+ */
+void PostStepguardLoad(STEPGUARD *pstepguard);
 
 // ...
 
+/**
+ * @todo
+ */
 void SetStepguardSgs(STEPGUARD *pstepguard, SGS sgs, ASEG *pasegTargetOverride);
 
 #endif // STEPGUARD_H
