@@ -111,6 +111,11 @@ void SetPoPlayable(PO *ppo, int playable);
 void SwitchToPo(PO *ppo);
 
 /**
+ * @brief Update the PO.
+ */
+void UpdatePo(PO *ppo, float dt);
+
+/**
  * @brief Use a charm.
  */
 void UsePoCharm(PO *ppo);

@@ -8,11 +8,11 @@
 #include <geom.h>
 #include <bsp.h>
 #include <vec.h>
-#include <so.h>
 #include <sw.h>
 
-// TODO: Figure out where this should be defined at.
-struct XP;
+// Forward.
+struct SO;
+struct XP; // TODO: Figure out where this should be defined at.
 
 /**
  * @brief (?) kind.

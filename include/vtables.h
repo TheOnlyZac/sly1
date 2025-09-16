@@ -218,4 +218,12 @@ struct VTGAME
     // ...
 };
 
+/**
+ * @brief VT for a waypoint related struct.
+ */
+struct VTWPSG
+{
+    // ...
+};
+
 #endif // VTABLES_H

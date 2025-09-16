@@ -225,4 +225,9 @@ void LoadAloFromBrx(ALO *palo, CBinaryInputStream *pbis);
  */
 void SetAloTargetHitTest(ALO *palo, int fHitTest);
 
+/**
+ * @brief TODO
+ */
+void HandleAloMessage(ALO *palo, MSGID msgid, void *pv);
+
 #endif // ALO_H
