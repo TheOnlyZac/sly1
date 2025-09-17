@@ -15,7 +15,6 @@
 #include <geom.h>
 #include <game.h>
 #include <oid.h>
-#include <anim.h>
 #include <wipe.h>
 #include <bis.h>
 #include <proxy.h>
@@ -32,6 +31,7 @@ struct EXPLS;
 struct EXPLSO;
 struct EXPLSTE;
 struct CAMERA;
+struct ASEG;
 
 /**
  * @class TRANSFORM

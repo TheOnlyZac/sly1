@@ -5,9 +5,16 @@
 #define ASEGA_H
 
 #include "common.h"
-#include <anim.h>
+#include <basic.h>
 
-// TODO: Move ASEGA struct here?
+/**
+ * @class ANIMATION_SEGMENT_APPLICATION
+ * @brief Unknown.
+ */
+struct ASEGA : public BASIC
+{
+    // ...
+};
 
 // ...
 

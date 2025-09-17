@@ -28,14 +28,6 @@ struct EYES : public SAA
     // ...
 };
 
-/**
- * @brief Unknown.
- */
-struct SAAF
-{
-    // ...
-};
-
 void InitEyes(EYES *peyes, SAAF *psaaf);
 
 void PostEyesLoad(EYES *peyes);

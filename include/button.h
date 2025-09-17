@@ -6,10 +6,12 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include <anim.h>
 #include <oid.h>
 #include <so.h>
 #include <rs.h>
+
+// Forward.
+struct ASEG;
 
 /**
  * @brief Unknown.

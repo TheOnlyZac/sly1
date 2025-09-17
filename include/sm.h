@@ -10,7 +10,6 @@
 #include <dl.h>
 #include <mq.h>
 #include <lo.h>
-#include <anim.h>
 
 // Forward declatations.
 struct SM;
@@ -19,6 +18,7 @@ struct SMT;
 struct SMS;
 struct SMP;
 struct SMPA; // todo define
+struct ASEGA;
 
 typedef int GRFAPL;
 

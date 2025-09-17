@@ -600,8 +600,32 @@ SetAloTargetHitTest__FP3ALOi                = 0x12AA28; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/aseg.c
 ////////////////////////////////////////////////////////////////
-StartupAseg__Fv   = 0x12B868; // type:func
-InitAseg__FP4ASEG = 0x12B870; // type:func
+StartupAseg__Fv                                             = 0x12B868; // type:func
+InitAseg__FP4ASEG                                           = 0x12B870; // type:func
+LoadAsegFromBrx__FP4ASEGP18CBinaryInputStream               = 0x12B8C8; // type:func
+LoadAsegEventsFromBrx__FP4ASEGP18CBinaryInputStreamiPiPP2EA = 0x12BC38; // type:func
+CloneAseg__FP4ASEGP2LO                                      = 0x12C140; // type:func
+PostAsegLoad__FP4ASEG                                       = 0x12C160; // type:func
+PostAsegLoadCallback__FP4ASEG5MSGIDPv                       = 0x12C208; // type:func
+ApplyAsegOvr__FP4ASEGP3ALOiP3OVRffiPP5ASEGA                 = 0x12C288; // type:func
+ApplyAseg__FP4ASEGP3ALOffiPP5ASEGA                          = 0x12C7B0; // type:func
+PasegaApplyAseg__FP4ASEGP3ALOffi                            = 0x12C7D8; // type:func
+PasegaFindAseg__FP4ASEGP3ALO                                = 0x12C808; // type:func
+EnsureAseg__FP4ASEGP3ALO4SEEKffiPP5ASEGA                    = 0x12C840; // type:func
+PasegaEnsureAseg__FP4ASEGP3ALO4SEEKffi                      = 0x12C8F8; // type:func
+ApplyAsegCur__FP4ASEGP3ALOffiPP5ASEGA                       = 0x12C918; // type:func
+FWipingAseg__FP4ASEG                                        = 0x12C9A8; // type:func
+FindAsegClosestPoint__FP4ASEGP3ALOP6VECTORfPfT2T2           = 0x12C9E8; // type:func
+PeaFindAsegLabel__FP4ASEG3OID                               = 0x12CBE8; // type:func
+TFindAsegLabel__FP4ASEG3OID                                 = 0x12CCC0; // type:func
+PchnFindAseg__FP4ASEGP3ALO                                  = 0x12CCE8; // type:func
+PredictAsegEffect__FP4ASEGffP3ALOT3iP6VECTORP7MATRIX3T6T6   = 0x12CD78; // type:func
+GetAsegWaypoints__FP4ASEGP3ALOPiPPP8WAYPOINT                = 0x12D1B0; // type:func
+StripAsegChn__FP4ASEGP3CHN                                  = 0x12D2A8; // type:func
+StripAsegAlo__FP4ASEGP3ALO                                  = 0x12D398; // type:func
+LoadAsegblFromBrx__FP6ASEGBLP18CBinaryInputStream           = 0x12D3E0; // type:func
+PostAsegblLoad__FP6ASEGBL                                   = 0x12D3E8; // type:func
+CloneAsegbl__FP6ASEGBLP2LO                                  = 0x12D3F0; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -3257,6 +3281,47 @@ UpdateShaders__Ff                              = 0x1B4878; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/shdanim.c
+////////////////////////////////////////////////////////////////
+CbFromSaak__F4SAAK                                     = 0x1B4920; // type:func
+PvtsaaFromSaak__F4SAAK                                 = 0x1B4980; // type:func
+PsaaLoadFromBrx__FP18CBinaryInputStream                = 0x1B4A10; // type:func
+InitSaa__FP3SAAP4SAAF                                  = 0x1B4AA0; // type:func
+PostSaaLoad__FP3SAA                                    = 0x1B4AD0; // type:func
+FUpdatableSaa__FP3SAA                                  = 0x1B4B08; // type:func
+UCompleteSaa__FP3SAA                                   = 0x1B4B38; // type:func
+PsaiFromSaaShd__FP3SAAP3SHD                            = 0x1B4B48; // type:func
+InitLoop__FP4LOOPP4SAAF                                = 0x1B4B68; // type:func
+PostLoopLoad__FP4LOOP                                  = 0x1B4BC8; // type:func
+UpdateLoop__FP4LOOPf                                   = 0x1B4C30; // type:func
+UCompleteLoop__FP4LOOP                                 = 0x1B4D18; // type:func
+InitPingpong__FP8PINGPONGP4SAAF                        = 0x1B4D48; // type:func
+PostPingpongLoad__FP8PINGPONG                          = 0x1B4DA8; // type:func
+UpdatePingpong__FP8PINGPONGf                           = 0x1B4E18; // type:func
+UCompletePingpong__FP8PINGPONG                         = 0x1B4F18; // type:func
+InitShuffle__FP7SHUFFLEP4SAAF                          = 0x1B4F80; // type:func
+UpdateShuffle__FP7SHUFFLEf                             = 0x1B4FC0; // type:func
+InitHologram__FP8HOLOGRAMP4SAAF                        = 0x1B5060; // type:func
+PostHologramLoad__FP8HOLOGRAM                          = 0x1B5108; // type:func
+NotifyHologramRender__FP8HOLOGRAMP3ALOP3RPL            = 0x1B5160; // type:func
+InitScroller__FP8SCROLLERP4SAAF                        = 0x1B5200; // type:func
+UpdateScroller__FP8SCROLLERf                           = 0x1B5278; // type:func
+UCompleteScroller__FP8SCROLLER                         = 0x1B5308; // type:func
+SetScrollerMasterSpeeds__FP8SCROLLERff                 = 0x1B5388; // type:func
+InitCircler__FP7CIRCLERP4SAAF                          = 0x1B5398; // type:func
+UpdateCircler__FP7CIRCLERf                             = 0x1B5400; // type:func
+UCompleteCircler__FP7CIRCLER                           = 0x1B5488; // type:func
+InitLooker__FP6LOOKERP4SAAF                            = 0x1B54D0; // type:func
+SetLookerSgvr__FP6LOOKERP4SGVRP7GLOBSETP4GLOBP7SUBGLOB = 0x1B5568; // type:func
+SetVecPosad__FP6VECTORP5POSAD                          = 0x1B5588; // type:func
+SetUvPuvqd__FP3UVFP3UVQ                                = 0x1B55A8; // type:func
+NotifyLookerRender__FP6LOOKERP3ALOP3RPL                = 0x1B55C0; // type:func
+junk_001B5B48                                          = 0x1B5B48; // type:func
+FUN_001b5b58                                           = 0x1B5B58; // type:func
+FUN_001b5c40                                           = 0x1B5C40; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/sky.c
 ////////////////////////////////////////////////////////////////
 PostSkyLoad__FP3SKY = 0x1B5CD8; // type:func
@@ -3656,6 +3721,49 @@ ChooseJtSmashTarget__FP2JT                        = 0x1C6ED0; // type:func
 ////////////////////////////////////////////////////////////////
 InitStepguard__FP9STEPGUARD             = 0x1C6F48; // type:func
 SetStepguardSgs__FP9STEPGUARD3SGSP4ASEG = 0x1C8F20; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/stephang.c
+////////////////////////////////////////////////////////////////
+PostJtLoadSwing__FP2JTP2BLPP6ASEGBL        = 0x1CC410; // type:func
+AnticipateJtForce__FP2JTP2SOP6VECTORT2P2FX = 0x1CC490; // type:func
+CalculateJtHangAccel__FP2JT                = 0x1CC818; // type:func
+PresetJtAccelHang__FP2JT                   = 0x1CCF98; // type:func
+AddJtExternalAccelerations__FP2JTP2XAf     = 0x1CD088; // type:func
+UpdateJtActiveHang__FP2JTP3JOY             = 0x1CD0C8; // type:func
+CheckJtUnhook__FP2JT                       = 0x1CD6C0; // type:func
+UpdateJtHookOx__FP2JTP2LOi                 = 0x1CD7E0; // type:func
+AddJtHookXps__FP2JTiP2LOP6VECTORN23        = 0x1CD870; // type:func
+GetJtHangHeading__FP2JTPf                  = 0x1CDB28; // type:func
+UpdateJtIkHang__FP2JT                      = 0x1CDB70; // type:func
+FUN_001cdd98                               = 0x1CDD98; // type:func
+FUN_001cdf78                               = 0x1CDF78; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/stephide.c
+////////////////////////////////////////////////////////////////
+JtbsChooseJtHide__FP2JTP2LOP4JTHK                     = 0x1CDFB8; // type:func
+MeasureJtJumpToTarget__FP2JTP6VECTORP3ALOT1T1PfT5T1T1 = 0x1CE590; // type:func
+GetJtRailLanding__FP2JTP4RAILfP6VECTORT3              = 0x1CE800; // type:func
+GMeasureJumpRail__FP3MJRf                             = 0x1CE9E8; // type:func
+FUN_001cea58                                          = 0x1CEA58; // type:func
+GMeasureJumpHshape__FP3MJHf                           = 0x1CEAB8; // type:func
+FUN_001ceb18                                          = 0x1CEB18; // type:func
+FUN_001cedf8                                          = 0x1CEDF8; // type:func
+FUN_001cee30                                          = 0x1CEE30; // type:func
+FUN_001ceec8                                          = 0x1CEEC8; // type:func
+FUN_001cf138                                          = 0x1CF138; // type:func
+FUN_001cf158                                          = 0x1CF158; // type:func
+UpdateJtActiveHide__FP2JTP3JOY                        = 0x1CFFD0; // type:func
+MatchJtXmgRail__FP2JTP3XMGP6ACTADJ                    = 0x1D0B20; // type:func
+UpdateJtHide__FP2JT                                   = 0x1D0C78; // type:func
+UpdateJtInternalXpsHide__FP2JT                        = 0x1D0F20; // type:func
+SetJtHfdk__FP2JT4HFDK                                 = 0x1D1200; // type:func
+ResetJtDynamicTunnel__FP2JT                           = 0x1D1260; // type:func
+PresetJtAccelHide__FP2JT                              = 0x1D12F0; // type:func
+FUN_001d1478                                          = 0x1D1478; // type:func
 
 
 ////////////////////////////////////////////////////////////////
