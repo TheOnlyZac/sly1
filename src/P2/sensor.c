@@ -17,12 +17,92 @@ INCLUDE_ASM("asm/nonmatchings/P2/sensor", PauseSensor__FP6SENSOR);
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateSensor__FP6SENSORf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorTriggerObject__FP6SENSOR3OID);
+#ifdef SKIP_ASM
+/**
+ * @brief Add an object ID to the sensor's trigger list.
+ *
+ * @param psensor Pointer to the sensor.
+ * @param oid Object ID to add.
+ *
+ * @todo 100% matched but sensor struct offsets are wrong.
+ * Doesn't match with STRUCT_OFFSET macro due to regswaps.
+ */
+void AddSensorTriggerObject(SENSOR *psensor, OID oid)
+{
+	uint ccur = psensor->ctriggerObjects;
+	if (ccur >= 4)
+		return;
+
+	psensor->atriggerObjects[ccur] = oid;
+	psensor->ctriggerObjects = ccur + 1;
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorNoTriggerObject__FP6SENSOR3OID);
+#ifdef SKIP_ASM
+/**
+ * @brief Add an object ID to the sensor's no-trigger list.
+ *
+ * @param psensor Pointer to the sensor.
+ * @param oid Object ID to add.
+ *
+ * @todo 100% matched but sensor struct offsets are wrong.
+ * Doesn't match with STRUCT_OFFSET macro due to regswaps.
+ */
+void AddSensorNoTriggerObject(SENSOR *psensor, OID oid)
+{
+	uint ccur = psensor->cnoTriggerObjects;
+	if (ccur >= 4)
+		return;
+
+    psensor->anoTriggerObjects[ccur] = oid;
+    psensor->cnoTriggerObjects = ccur + 1;
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorTriggerClass__FP6SENSOR3CID);
+#ifdef SKIP_ASM
+/**
+ * @brief Add a class ID to the sensor's trigger class list.
+ *
+ * @param psensor Pointer to the sensor.
+ * @param cid Class ID to add.
+ *
+ * @todo 100% matched but sensor struct offsets are wrong.
+ * Doesn't match with STRUCT_OFFSET macro due to regswaps.
+ */
+void AddSensorTriggerClass(SENSOR *psensor, CID cid)
+{
+	uint ccur = psensor->ctriggerClasses;
+	if (ccur >= 4)
+		return;
+
+    psensor->atriggerClasses[ccur] = cid;
+    psensor->ctriggerClasses = ccur + 1;
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorNoTriggerClass__FP6SENSOR3CID);
+#ifdef SKIP_ASM
+/**
+ * @brief Add a class ID to the sensor's no-trigger class list.
+ *
+ * @param psensor Pointer to the sensor.
+ * @param cid Class ID to add.
+ *
+ * @todo 100% matched but sensor struct offsets are wrong.
+ * Doesn't match with STRUCT_OFFSET macro due to regswaps.
+ */
+void AddSensorNoTriggerClass(SENSOR *psensor, CID cid)
+{
+	uint ccur = psensor->cnoTriggerClasses;
+	if (ccur >= 4)
+		return;
+
+    psensor->anoTriggerClasses[ccur] = cid;
+    psensor->cnoTriggerClasses = ccur + 1;
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", InitLasen__FP5LASEN);
 

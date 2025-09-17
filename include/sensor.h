@@ -54,13 +54,23 @@ enum CSDTS
 
 /**
  * @class _SENSOR
- * @brief Base class for sensors.
+ * @brief Base class for security sensors.
  * @todo Implement the struct.
  */
 struct SENSOR : public SO
 {
-    undefined1 unknown[12];
-    // ...
+    STRUCT_PADDING(3);
+    /* 0x564 */ uint ctriggerObjects; // Current count of trigger object IDs.
+    /* 0x568 */ OID atriggerObjects[4]; // Array of trigger object IDs.
+    STRUCT_PADDING(4);
+    /* 0x578 */ uint cnoTriggerObjects; // Current count of no-trigger object IDs.
+    /* 0x57C */ OID anoTriggerObjects[4]; // Array of no-trigger object IDs.
+    STRUCT_PADDING(4);
+    /* 0x58c */ uint ctriggerClasses; // Current count of trigger class IDs.
+    /* 0x590 */ CID atriggerClasses[4]; // Array of trigger class IDs.
+    STRUCT_PADDING(4);
+    /* 0x5a0 */ uint cnoTriggerClasses; // Current count of no-trigger class IDs.
+    /* 0x5a4 */ CID anoTriggerClasses[4]; // Array of no-trigger class IDs.
 };
 
 /**
@@ -125,7 +135,6 @@ void AddSensorNoTriggerObject(SENSOR *psensor, OID oid);
 void AddSensorTriggerClass(SENSOR *psensor, CID cid);
 
 void AddSensorNoTriggerClass(SENSOR *psensor, CID cid);
-
 
 void InitLasen(LASEN *plasen);
 
