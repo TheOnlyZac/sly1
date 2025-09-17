@@ -8,9 +8,11 @@
 
 #include "common.h"
 #include <gomer.h>
-#include <anim.h>
 #include <vec.h>
 #include <so.h>
+
+// Forward.
+struct ASEG;
 
 /**
  * @class UW_BOSS_GOMER

@@ -226,4 +226,12 @@ struct VTWPSG
     // ...
 };
 
+/**
+ * @brief VT for a shader related struct.
+ */
+struct VTSAA
+{
+    // ...
+};
+
 #endif // VTABLES_H

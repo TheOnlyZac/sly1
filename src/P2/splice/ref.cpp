@@ -6,14 +6,26 @@ CRef::CRef()
     m_tagk = TAGK_Nil;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/ref", __4CRefRC4CRef);
+CRef::CRef(const CRef &ref)
+{
+    const_cast<CRef &>(ref).Incref();
+    m_tagk = ref.m_tagk;
+    m_tag = ref.m_tag;
+}
 
 CRef::~CRef()
 {
     Decref();
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/ref", __as__4CRefRC4CRef);
+CRef &CRef::operator=(const CRef &ref)
+{
+    const_cast<CRef &>(ref).Incref();
+    Decref();
+    m_tagk = ref.m_tagk;
+    m_tag = ref.m_tag;
+    return *this;
+}
 
 /**
  * @todo fix misalignment
@@ -173,21 +185,21 @@ void CRef::SetBifk(BIFK bifk)
     m_tagk = TAGK_Bifk;
 }
 
-void CRef::SetPair(CPair* ppair)
+void CRef::SetPair(CPair *ppair)
 {
     Decref();
     m_tag.m_ppair = ppair;
     m_tagk = TAGK_Pair;
 }
 
-void CRef::SetProc(CProc* pproc)
+void CRef::SetProc(CProc *pproc)
 {
     Decref();
     m_tag.m_pproc = pproc;
     m_tagk = TAGK_Proc;
 }
 
-void CRef::SetVector(VECTOR* pvector)
+void CRef::SetVector(VECTOR *pvector)
 {
     IncrefVector(pvector);
     Decref();
@@ -195,7 +207,7 @@ void CRef::SetVector(VECTOR* pvector)
     m_tagk = TAGK_Vector;
 }
 
-void CRef::SetMatrix(MATRIX4* pmatrix)
+void CRef::SetMatrix(MATRIX4 *pmatrix)
 {
     IncrefMatrix(pmatrix);
     Decref();
@@ -203,7 +215,7 @@ void CRef::SetMatrix(MATRIX4* pmatrix)
     m_tagk = TAGK_Matrix;
 }
 
-void CRef::SetClq(CLQ* pclq)
+void CRef::SetClq(CLQ *pclq)
 {
     IncrefClq(pclq);
     Decref();
@@ -211,7 +223,7 @@ void CRef::SetClq(CLQ* pclq)
     m_tagk = TAGK_Clq;
 }
 
-void CRef::SetLm(LM* plm)
+void CRef::SetLm(LM *plm)
 {
     IncrefLm(plm);
     Decref();
@@ -219,7 +231,7 @@ void CRef::SetLm(LM* plm)
     m_tagk = TAGK_Lm;
 }
 
-void CRef::SetSmp(SMP* psmp)
+void CRef::SetSmp(SMP *psmp)
 {
     IncrefSmp(psmp);
     Decref();
@@ -227,14 +239,14 @@ void CRef::SetSmp(SMP* psmp)
     m_tagk = TAGK_Smp;
 }
 
-void CRef::SetBasic(BASIC* pbasic)
+void CRef::SetBasic(BASIC *pbasic)
 {
     Decref();
     m_tag.m_pbasic = pbasic;
     m_tagk = TAGK_Basic;
 }
 
-void CRef::SetMethod(CMethod* pmethod)
+void CRef::SetMethod(CMethod *pmethod)
 {
     Decref();
     m_tag.m_pmethod = pmethod;

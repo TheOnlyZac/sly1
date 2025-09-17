@@ -7,9 +7,11 @@
 #include "common.h"
 #include <target.h>
 #include <break.h>
-#include <anim.h>
 #include <joy.h>
 #include <jt.h>
+
+// Forward.
+struct ASEGBL;
 
 /**
  * @brief Unknown.

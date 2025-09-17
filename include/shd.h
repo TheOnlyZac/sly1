@@ -143,6 +143,14 @@ struct SAA
     SAI sai;
 };
 
+/**
+ * @brief Unknown.
+ */
+struct SAAF
+{
+    // ...
+};
+
 // MARK: SHD
 
 enum SHDK

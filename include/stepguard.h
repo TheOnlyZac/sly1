@@ -6,7 +6,9 @@
 
 #include "common.h"
 #include <step.h>
-#include <anim.h>
+
+// Forward.
+struct ASEG;
 
 /**
  * @brief Unknown.

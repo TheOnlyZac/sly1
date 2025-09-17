@@ -26,6 +26,22 @@ struct GLOB
     // ...
 };
 
+/**
+ * @todo Implement struct.
+ */
+struct SUBGLOB
+{
+    // ...
+};
+
+/**
+ * @todo Implement the struct and figure out does it belong here.
+ */
+struct SGVR
+{
+    // ...
+};
+
 /*
 void BuildGlobsetSaaArray(GLOBSET *pglobset);
 
