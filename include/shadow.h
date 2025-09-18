@@ -25,7 +25,7 @@ struct SHADOW
     /* 0x08 */ float sFarRadius;
     /* 0x0c */ STRUCT_PADDING(13);
     /* 0x40 */ float sNearCast;
-	/* 0x44 */ float sFarCast;
+    /* 0x44 */ float sFarCast;
     /* 0x48 */ STRUCT_PADDING(26);
     /* 0xb0 */ OID oidDysh;
 };
