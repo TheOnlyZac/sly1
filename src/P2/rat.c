@@ -1,14 +1,31 @@
 #include <rat.h>
+#include <util.h>
+#include <sw.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/rat", InitRat__FP3RAT);
+void InitRat(RAT *prat)
+{
+    InitSo(prat);
+    STRUCT_OFFSET(prat, 0x608, LM).gMin = 0.5f; // prat->lmDtStop.gMin
+    STRUCT_OFFSET(prat, 0x608, LM).gMax = 1.0f; // prat->lmDtStop.gMax
+    STRUCT_OFFSET(prat, 0x55c, float) = GRandGaussian(g_clock.t + 3.0f, 1.0f, 2.5f); // prat->tRatSqueak
+    STRUCT_OFFSET(prat, 0x664, int) = -1; // prat->ccoin
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rat", LoadRatFromBrx__FP3RATP18CBinaryInputStream);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rat", PostRatLoad__FP3RAT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rat", OnRatAdd__FP3RAT);
+void OnRatAdd(RAT *prat)
+{
+    OnSoAdd(prat);
+    AppendDlEntry(&prat->psw->dlRat, prat);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rat", OnRatRemove__FP3RAT);
+void OnRatRemove(RAT *prat)
+{
+    OnSoRemove(prat);
+    RemoveDlEntry(&prat->psw->dlRat, prat);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rat", CloneRat__FP3RATT0);
 

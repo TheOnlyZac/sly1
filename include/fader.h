@@ -8,7 +8,7 @@
 #include <alo.h>
 
 /**
- * @todo
+ * @todo Implement the struct.
  */
 struct FADER
 {

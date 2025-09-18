@@ -225,14 +225,39 @@ struct VTGAME
     // ...
 };
 
+/**
+ * @brief VT for unknown(?)
+ */
+struct VTWPSG
+{
+    // ...
+};
+
+/**
+ * @brief VT for a shader related struct.
+ */
+struct VTSAA
+{
+    // ...
+};
+
+/**
+ * @brief VT for an act related struct.
+ */
+struct VTACT
+{
+    // ...
+};
+
+
 struct GOMER;
 
 /**
  * @brief VT for the gomer struct.
  */
 struct VTGOMER
-{
-    // ...
-};
+/**
+ * @brief VT for a waypoint related struct.
+ */
 
 #endif // VTABLES_H

@@ -42,11 +42,11 @@ struct WAYPOINT : public ALO
  */
 struct WPSG
 {
-    undefined1 unknown[4];
-    int cpwaypoint;
-    WAYPOINT *apwaypoint[8];
-    int fCallback;
-    SGG *psgg;
+    /* 0x00 */ VTWPSG *pvtwpsg;
+    /* 0x04 */ uint cpwaypoint;
+    /* 0x08 */ WAYPOINT *apwaypoint[8];
+    /* 0x28 */ int fCallback;
+    /* 0x2c */ SGG *psgg;
 };
 
 void InitWaypoint(WAYPOINT *pwaypoint);

@@ -8,7 +8,9 @@
 
 #include "common.h"
 #include <util.h>
-#include <alo.h>
+
+// Forward.
+struct ALO;
 
 /**
  * @brief SFX ID.
@@ -173,14 +175,14 @@ struct AMB
  */
 struct SFX
 {
-    SFXID sfxid;
-    float sStart;
-    float sFull;
-    float uVol;
+    /* 0x00 */ SFXID sfxid;
+    /* 0x04 */ float sStart;
+    /* 0x08 */ float sFull;
+    /* 0x0c */ float uVol;
     float uPitch;
     LM lmRepeat;
-    AMB *pamb;
-    float uDoppler;
+    /* 0x1c */ AMB *pamb;
+    /* 0x20 */ float uDoppler;
 };
 
 /**
@@ -219,6 +221,21 @@ void NewSfx(SFX **ppsfx);
  * @param plmRepDis Pointer to the repeat distance limit
  */
 void StartSound(SFXID sfxid, AMB **ppamb, ALO *palo, VECTOR *ppos, float sStart, float sFull, float uVolAtSource, float frq, float uDoppler, LM *plmRepeat, LM *plmRepDis);
+
+/**
+ * @brief TODO
+ */
+void StopSound(AMB *pamb, int msRampdown);
+
+/**
+ * @brief TODO
+ */
+void SetPambVol(AMB *pamb, float uVolAtSource);
+
+/**
+ * @brief TODO
+ */
+void SetPambFrq(AMB *pamb, float frq);
 
 /**
  * @brief Set the uvol of an mvgk.

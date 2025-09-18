@@ -143,6 +143,14 @@ struct SAA
     SAI sai;
 };
 
+/**
+ * @brief Unknown.
+ */
+struct SAAF
+{
+    // ...
+};
+
 // MARK: SHD
 
 enum SHDK
@@ -170,9 +178,9 @@ struct SHDP
 
 struct SHDF
 {
-    uchar shdk;
-    uchar grfshd;
-    ushort OID; // ?
+    /* 0x00 */ uchar shdk;
+    /* 0x01 */ uchar grfshd;
+    /* 0x02 */ ushort oid; // ?
     RGBA rgba;
     RGBA rgbaVolume;
     uint grfzon;
@@ -181,7 +189,7 @@ struct SHDF
     uchar ctex;
 };
 
-struct SHD
+struct SHD : public SHDF
 {
     TEX *atex;
     int cshdp;

@@ -386,7 +386,9 @@ PROBLEMATIC_FUNCS = set(
         "FillShaders__Fi", # P2/shd
         "FUN_001aea70", # P2/screen
         "ApplyDzg__FP3DZGiPiPPP2SOff", # P2/dzg
-        "BounceRipgRips__FP4RIPG" # P2/rip
+        "BounceRipgRips__FP4RIPG", # P2/rip
+        "UpdateStepPhys__FP4STEP", # P2/step
+        "PredictAsegEffect__FP4ASEGffP3ALOT3iP6VECTORP7MATRIX3T6T6" # P2/aseg
     ]
 )
 

@@ -107,6 +107,23 @@ enum JTCS
 };
 
 /**
+ * @brief JT hide kind?
+ */
+enum JTHK
+{
+    JTHK_Nil = -1,
+    JTHK_Flatten = 0,
+    JTHK_Duck = 1,
+    JTHK_Basket = 2,
+    JTHK_Nonchalant = 3,
+    JTHK_Rail = 4,
+    JTHK_Spire = 5,
+    JTHK_Reach = 6,
+    JTHK_Vault = 7,
+    JTHK_Max = 8
+};
+
+/**
  * @brief JT pipe direction kind.
  */
 enum JTPDK

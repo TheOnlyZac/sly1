@@ -16,8 +16,8 @@ struct TARGET : public XFM
 {
     DLE dleTarget;
     int grftak;
-    float sRadiusTarget;
-    int fHitTest;
+    /* 0x8c */ float sRadiusTarget;
+    /* 0x90 */ int fHitTest;
     undefined4 unk0;
     undefined4 unk1;
     undefined4 unk2;
