@@ -30,9 +30,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/gomer", PostGomerLoad__FP5GOMER);
 extern int func_0012D1B0(int worldLevel, GOMER *pgomer, int *outCount, void ***outArray);
 
 /**
- * @todo 99.74% matched.
- *
- * The call to func_0012D1B0 is problematic.
+ * @todo 99.74% matched. The call to func_0012D1B0 is problematic.
  */
 void PostGomerLoad(GOMER *pgomer)
 {
@@ -56,7 +54,7 @@ void PostGomerLoad(GOMER *pgomer)
             pgomer);
     }
 
-    /* if world/level pointer at 0x750 is zero, skip waypoint building */
+    // if world/level pointer at 0x750 is zero, skip waypoint building.
     if (!STRUCT_OFFSET(pgomer, 0x750, int))
     {
         return;
@@ -64,8 +62,8 @@ void PostGomerLoad(GOMER *pgomer)
 
     InitStackImpl();
 
-    /* Call helper to populate an array and count. func_0012D1B0 writes the
-       count and array pointer into memory we provide addresses for. */
+    // Call helper to populate an array and count. func_0012D1B0 writes the
+    // count and array pointer into memory we provide addresses for.
     void **arr;
     int count;
     func_0012D1B0(STRUCT_OFFSET(pgomer, 0x750, int), pgomer, &count, &arr);

@@ -73,13 +73,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/sensor", PauseSensor__FP6SENSOR);
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateSensor__FP6SENSORf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorTriggerObject__FP6SENSOR3OID);
-#ifdef SKIP_ASM
+ #ifdef SKIP_ASM
 /**
- * @brief Add an object ID to the sensor's trigger list.
- *
- * @param psensor Pointer to the sensor.
- * @param oid Object ID to add.
- *
  * @todo 100% matched but sensor struct offsets are wrong.
  * Doesn't match with STRUCT_OFFSET macro due to regswaps.
  */
@@ -95,13 +90,8 @@ void AddSensorTriggerObject(SENSOR *psensor, OID oid)
 #endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorNoTriggerObject__FP6SENSOR3OID);
-#ifdef SKIP_ASM
+ #ifdef SKIP_ASM
 /**
- * @brief Add an object ID to the sensor's no-trigger list.
- *
- * @param psensor Pointer to the sensor.
- * @param oid Object ID to add.
- *
  * @todo 100% matched but sensor struct offsets are wrong.
  * Doesn't match with STRUCT_OFFSET macro due to regswaps.
  */
@@ -117,13 +107,8 @@ void AddSensorNoTriggerObject(SENSOR *psensor, OID oid)
 #endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorTriggerClass__FP6SENSOR3CID);
-#ifdef SKIP_ASM
+ #ifdef SKIP_ASM
 /**
- * @brief Add a class ID to the sensor's trigger class list.
- *
- * @param psensor Pointer to the sensor.
- * @param cid Class ID to add.
- *
  * @todo 100% matched but sensor struct offsets are wrong.
  * Doesn't match with STRUCT_OFFSET macro due to regswaps.
  */
@@ -139,13 +124,8 @@ void AddSensorTriggerClass(SENSOR *psensor, CID cid)
 #endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorNoTriggerClass__FP6SENSOR3CID);
-#ifdef SKIP_ASM
+ #ifdef SKIP_ASM
 /**
- * @brief Add a class ID to the sensor's no-trigger class list.
- *
- * @param psensor Pointer to the sensor.
- * @param cid Class ID to add.
- *
  * @todo 100% matched but sensor struct offsets are wrong.
  * Doesn't match with STRUCT_OFFSET macro due to regswaps.
  */

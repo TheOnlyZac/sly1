@@ -131,12 +131,36 @@ void PauseSensor(SENSOR *psensor);
 
 void UpdateSensor(SENSOR *psensor, float dt);
 
+/**
+ * @brief Add an object ID to the sensor's trigger list.
+ *
+ * @param psensor Pointer to the sensor.
+ * @param oid Object ID to add.
+ */
 void AddSensorTriggerObject(SENSOR *psensor, OID oid);
 
+/**
+ * @brief Add an object ID to the sensor's no-trigger list.
+ *
+ * @param psensor Pointer to the sensor.
+ * @param oid Object ID to add.
+ */
 void AddSensorNoTriggerObject(SENSOR *psensor, OID oid);
 
+/**
+ * @brief Add a class ID to the sensor's trigger class list.
+ *
+ * @param psensor Pointer to the sensor.
+ * @param cid Class ID to add.
+ */
 void AddSensorTriggerClass(SENSOR *psensor, CID cid);
 
+/**
+ * @brief Add a class ID to the sensor's no-trigger class list.
+ *
+ * @param psensor Pointer to the sensor.
+ * @param cid Class ID to add.
+ */
 void AddSensorNoTriggerClass(SENSOR *psensor, CID cid);
 
 void InitLasen(LASEN *plasen);
