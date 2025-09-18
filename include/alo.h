@@ -258,16 +258,10 @@ void ApplyAloProxy(ALO *palo, PROXY *pproxyApply);
 
 void BindAlo(ALO *palo);
 
-/**
- * @brief TODO
- */
 void PostAloLoad(ALO *palo);
 
 void PostAloLoadCallback(ALO *palo, MSGID msgid, void *pvData);
 
-/**
- * @brief unknown
- */
 void SnipAloObjects(ALO *palo, int csnip, SNIP *asnip);
 
 void UpdateAloHierarchy(ALO *palo, float dt);
@@ -283,9 +277,6 @@ void InvalidateAloLighting(ALO *palo);
 
 void UpdateAloXfWorld__FP3ALO(ALO * palo);
 
-/**
- * @brief TODO.
- */
 void UpdateAloXfWorldHierarchy(ALO *palo);
 
 void PresetAloAccel(ALO *palo, float dt);
@@ -318,11 +309,17 @@ void EnsureAloFader(ALO *palo);
 
 /**
  * @brief Fades in an ALO.
+ *
+ * @param palo ALO to fade in.
+ * @param dtFade Time to fade in over.
  */
 void FadeAloIn(ALO *palo, float dtFade);
 
 /**
  * @brief Fades out an ALO.
+ *
+ * @param palo ALO to fade out.
+ * @param dtFade Time to fade out over.
  */
 void FadeAloOut(ALO *palo, float dtFade);
 
@@ -332,6 +329,9 @@ void CloneAloHierarchy(ALO *palo, ALO *paloBase);
 
 /**
  * @brief Clones an ALO.
+ *
+ * @param palo ALO to clone to.
+ * @param paloBase Base ALO to clone from.
  */
 void CloneAlo(ALO *palo, ALO *paloBase);
 
@@ -361,9 +361,6 @@ void CalculateAloTransform(ALO *paloLeaf, ALO *paloBasis, int cpaloPredict, VECT
 
 void CalculateAloTransformAdjust(ALO *paloLeaf, ALO *paloBasis, VECTOR *ppos, MATRIX3 *pmat, VECTOR *pv, VECTOR *pw);
 
-/**
- * @brief TODO.
- */
 void ConvertAloPos(ALO *paloFrom, ALO *paloTo, VECTOR *pposFrom, VECTOR *pposTo);
 
 void ConvertAloVec(ALO *paloFrom, ALO *paloTo, VECTOR *pvecFrom, VECTOR *pvecTo);
@@ -383,7 +380,10 @@ int FGetAloChildrenList(ALO *palo, void *pvstate);
 ACTSEG *PactsegNewAlo(ALO *palo);
 
 /**
- * @brief unknown
+ * @brief Loads an ALO from a BRX file.
+ *
+ * @param palo ALO to load into.
+ * @param pbis Binary input stream to read from.
  */
 void LoadAloFromBrx(ALO *palo, CBinaryInputStream *pbis);
 
@@ -553,9 +553,6 @@ void SetAloTargetAttacks(ALO *palo, GRFTAK grftak);
 
 void SetAloTargetRadius(ALO *palo, float sRadiusTarget);
 
-/**
- * @brief unknown
- */
 void SetAloTargetHitTest(ALO *palo, int fHitTest);
 
 void SetAloScrollingMasterSpeeds(ALO *palo, float svu, float svv);
