@@ -10,9 +10,6 @@
 #include <sound.h>
 #include <difficulty.h>
 
-typedef int GRFIC;
-typedef int GRFTAK;
-
 /**
  * @class (_BRK)
  * @brief Breakable base.
@@ -80,19 +77,6 @@ struct FRAGILE
 struct XP
 {
     // ...
-};
-
-/**
- * @brief Unknown.
- */
-struct WKR
-{
-    LO *ploSource;
-    LO *ploTarget;
-    float sftMax;
-    GRFIC grfic;
-    GRFTAK grftak;
-    float gSort;
 };
 
 void InitBrk(BRK *pbrk);

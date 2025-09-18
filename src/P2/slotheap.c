@@ -9,18 +9,15 @@ void _InitSlotheap(SLOTHEAP *pslotheap, int cb, int c)
     pslotheap->pslotFree = (SLOT *)pbBase;
 
     int i = 1;
-    if (i < c)
+    while (i < c)
     {
-        do
-        {
-            SLOT *pslotPrev = (SLOT *)pbBase;
-            pbBase = pslotheap->ab + i * pslotheap->cb;
-            pslotPrev->pslotNext = (SLOT *)pbBase;
-            i++;
-        } while (i < c);
+        SLOT *pslotPrev = (SLOT *)pbBase;
+        pbBase = &pslotheap->ab[i * pslotheap->cb];
+        pslotPrev->pslotNext = (SLOT *)pbBase;
+        i++;
     }
 
-    ((SLOT *)pbBase)->pslotNext = 0;
+    ((SLOT *)pbBase)->pslotNext = (SLOT *)nullptr;
 }
 
 void CreateSlotheapSw(SLOTHEAP *pslotheap, int cb, int c)
