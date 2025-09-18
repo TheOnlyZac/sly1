@@ -1,4 +1,5 @@
 #include <pzo.h>
+#include <find.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", InitSprize__FP6SPRIZE);
 
@@ -33,16 +34,117 @@ INCLUDE_ASM("asm/nonmatchings/P2/pzo", PcsFromScprize__FP7SCPRIZE);
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", CollectScprize__FP7SCPRIZE);
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", LoadLockFromBrx__FP4LOCKP18CBinaryInputStream);
+#ifdef SKIP_ASM
+/**
+ * @todo 44.86% matched. Need to define D_0026A928.
+ */
+void LoadLockFromBrx(LOCK *plock, CBinaryInputStream *pbis)
+{
+    LoadAloFromBrx(plock, pbis);
+    // SnipAloObjects(plock, 1, D_0026A928);
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", PostLockLoad__FP4LOCK);
+#ifdef SKIP_ASM
+/**
+ * @todo 44.86% matched. Need to define D_0026A928.
+ */
+void PostLockLoad(LOCK *plock)
+{
+    PostAloLoad(plock);
+    // SnipAloObjects(plock, 1, D_0026A928);
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", LoadLockgFromBrx__FP5LOCKGP18CBinaryInputStream);
+#ifdef SKIP_ASM
+/**
+ * @todo 44.86% matched. Need to define D_0026A938.
+ */
+void LoadLockgFromBrx(LOCKG *plockg, CBinaryInputStream *pbis)
+{
+    LoadAloFromBrx(plockg, pbis);
+    // SnipAloObjects(plockg, 1, D_0026A938);
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", PostLockgLoad__FP5LOCKG);
+#ifdef SKIP_ASM
+/**
+ * @todo 63.40% matched.
+ */
+void PostLockgLoad(LOCKG *plockg)
+{
+    PostAloLoad(plockg);
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", SetLockgIndex__FP5LOCKGi);
+    int count;
+    SW *psw = plockg->psw;
+    LO **aplo = STRUCT_OFFSET(plockg, 0x304, LO **);
+    count = CploFindSwObjectsByClass(psw, 1, (CID)0x5C, (LO *)plockg, 8, aplo);
+    STRUCT_OFFSET(plockg, 0x300, uint) = count;
+
+    count = STRUCT_OFFSET(plockg, 0x2DC, uint);
+    if (count > 0) {
+        LO **aploIn = STRUCT_OFFSET(plockg, 0x2E0, LO **);
+        LO **aploOut = STRUCT_OFFSET(plockg, 0x304, LO **);
+        for (int i = 0; i < count; i++) {
+            LO *plo = PloFindSwObject(psw, 4, STRUCT_OFFSET(aploIn, i * 4, OID), (LO *)plockg);
+            if (plo) {
+                uint curCount = STRUCT_OFFSET(plockg, 0x300, uint);
+                if (curCount < 8) {
+                    aploOut[curCount] = plo;
+                    curCount++;
+                    STRUCT_OFFSET(plockg, 0x300, uint) = curCount;
+                }
+            }
+        }
+    }
+
+    int mask = STRUCT_OFFSET(plockg, 0x2D0, int);
+    int goalStart = 0x22E;
+    int goalEnd = 0x22F;
+    if ((STRUCT_OFFSET(g_pwsCur, 0x448, int) & mask))
+        goalStart = goalEnd;
+
+    SMA *psma;
+    count = STRUCT_OFFSET(plockg, 0x300, uint);
+    if (count > 0) {
+        ALO **aploState = STRUCT_OFFSET(plockg, 0x304, ALO **);
+        for (int i = 0; i < count; i++) {
+            ALO *paloChild = aploState[i];
+            psma = PsmaApplySm(STRUCT_OFFSET(paloChild, 0x2D0, SM *), paloChild, (OID)-1, 0);
+            STRUCT_OFFSET(paloChild, 0x2D4, SMA *) = psma;
+            SetSmaGoal(psma, (OID)goalStart);
+        }
+    }
+
+    psma = PsmaApplySm(STRUCT_OFFSET(plockg, 0x2D4, SM *), (ALO *)plockg, OID_Nil, 0);
+    STRUCT_OFFSET(plockg, 0x2D8, SMA *) = psma;
+    SetSmaGoal(psma, (OID)goalStart);
+}
+#endif
+
+void SetLockgIndex(LOCKG *plockg, int ifws)
+{
+    STRUCT_OFFSET(plockg, 0x2D0, int) = 1 << ++ifws;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", AddLockgLock__FP5LOCKG3OID);
+#ifdef SKIP_ASM
+/**
+ * @todo 100% matched but lockg struct offsets are wrong.
+ */
+void AddLockgLock(LOCKG *plockg, OID oidLock)
+{
+    uint ccur = plockg->coidLock;
+    if (ccur >= 8)
+        return;
+
+    plockg->aoidLock[ccur] = oidLock;
+    plockg->coidLock = ++ccur;
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", TriggerLockg__FP5LOCKG);
 
