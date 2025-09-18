@@ -29,13 +29,13 @@ struct RO
  */
 struct FLASH : public ALO
 {
-    int ctsurf;
-    TSURF *atsurf;
-    int ctbsp;
-    TBSP *atbsp;
-    SMP smpScale;
-    float gScaleCur;
-    float gScaleTarget;
+    /* 0x2d0 */ int ctsurf;
+    /* 0x2d4 */ TSURF *atsurf;
+    /* 0x2d8 */ int ctbsp;
+    /* 0x2dc */ TBSP *atbsp;
+    /* 0x2e0 */ SMP smpScale;
+    /* 0x2ec */ float gScaleCur;
+    /* 0x2f0 */ float gScaleTarget;
     undefined4 unk0;
     undefined4 unk1;
     undefined4 unk2;

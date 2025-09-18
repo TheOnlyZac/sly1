@@ -1,33 +1,28 @@
 #include <flash.h>
 #include <clock.h>
+#include <tn.h>
 
-extern CLOCK g_clock;
+// NOTE: Could also belong to P2/find.c.
+INCLUDE_ASM("asm/nonmatchings/P2/flash", junk_0015A8B0);
 
-/**
- * @todo 88.42% matched
- * https://decomp.me/scratch/rIdzw
- */
-INCLUDE_ASM("asm/nonmatchings/P2/flash", InitFlash__FP5FLASH);
-#ifdef SKIP_ASM
 void InitFlash(FLASH *pflash)
 {
     InitAlo(pflash);
 
-    float fOne   = 1.0f;
-    float fSmall = 0.2f;
-    float fTiny  = 0.1f;
+    pflash->gScaleTarget = 1.0f;
+    pflash->gScaleCur = 1.0f;
 
-    float* p = (float*)((char*)pflash + 0x2e0);
-
-    pflash->gScaleTarget = fOne;
-    pflash->gScaleCur    = fOne;
-    p[0] = fOne;   // smpScale.svSlow (0x2e0)
-    p[1] = fSmall; // smpScale.dtFast+4 (0x2e4)
-    p[2] = fTiny;  // smpScale.dtFast (0x2e8)
+    SMP *psmpScale = &pflash->smpScale;
+    psmpScale->svFast = 1.0f;
+    psmpScale->svSlow = 0.2f;
+    psmpScale->dtFast = 0.1f;
 }
-#endif // SKIP_ASM
 
-INCLUDE_ASM("asm/nonmatchings/P2/flash", LoadFlashFromBrx__FP5FLASHP18CBinaryInputStream);
+void LoadFlashFromBrx(FLASH *pflash, CBinaryInputStream *pbis)
+{
+    LoadAloFromBrx(pflash, pbis);
+    LoadTbspFromBrx(pbis, &pflash->ctsurf, &pflash->atsurf, &pflash->ctbsp, &pflash->atbsp);
+}
 
 void UpdateFlash(FLASH *pflash, float dt)
 {

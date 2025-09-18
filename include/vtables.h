@@ -234,4 +234,12 @@ struct VTSAA
     // ...
 };
 
+/**
+ * @brief VT for an act related struct.
+ */
+struct VTACT
+{
+    // ...
+};
+
 #endif // VTABLES_H
