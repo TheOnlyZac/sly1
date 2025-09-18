@@ -59,7 +59,10 @@ enum CSDTS
  */
 struct SENSOR : public SO
 {
-    STRUCT_PADDING(3);
+    /* 0x550 */ ALARM *palarm; // Pointer to the alarm this sensor is associated with.
+    STRUCT_PADDING(1);
+    /* 0x558 */ SENSORS sensors; // Current sensor state.
+    STRUCT_PADDING(2);
     /* 0x564 */ uint ctriggerObjects; // Current count of trigger object IDs.
     /* 0x568 */ OID atriggerObjects[4]; // Array of trigger object IDs.
     STRUCT_PADDING(4);
