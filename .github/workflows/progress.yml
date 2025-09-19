@@ -44,7 +44,7 @@ jobs:
 
       - name: Run clean report script
         run: |
-          python ./scripts/clean_report.py
+          python ./scripts/clean_report.py report.json report.json
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
