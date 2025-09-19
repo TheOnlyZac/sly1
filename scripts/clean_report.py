@@ -2,6 +2,8 @@
 Cleans an objdiff report.json by removing any functions starting with "junk_".
 """
 import json
+import os
+import sys
 
 def clean_report(input_path: str, output_path: str) -> None:
     """
@@ -23,8 +25,27 @@ def clean_report(input_path: str, output_path: str) -> None:
 
     Finally, write the cleaned data to output_path.
     """
-    with open(input_path, 'r', encoding='utf-8') as infile:
-        data = json.load(infile)
+    # Input validation
+    if not os.path.exists(input_path):
+        raise FileNotFoundError(f"Input file not found: {input_path}")
+
+    try:
+        with open(input_path, 'r', encoding='utf-8') as infile:
+            data = json.load(infile)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Invalid JSON in {input_path}: {e}") from e
+    except IOError as e:
+        raise IOError(f"Error reading {input_path}: {e}") from e
+
+    # Validate data structure
+    if not isinstance(data, dict):
+        raise ValueError("JSON root must be an object")
+
+    if 'units' not in data:
+        raise ValueError("JSON must contain 'units' field")
+
+    if not isinstance(data['units'], list):
+        raise ValueError("'units' field must be a list")
 
     # Track global changes for updating the main measures
     total_junk_code_removed = 0
@@ -36,17 +57,30 @@ def clean_report(input_path: str, output_path: str) -> None:
         if not functions:
             continue
 
-        # Get current unit measures
+        # Get and normalize current unit measures
         measures = unit.get('measures', {})
-        total_code = measures.get('total_code', 0)
-        total_functions = measures.get('total_functions', 0)
-        matched_code_percent = measures.get('matched_code_percent', 0.0)
-        fuzzy_match_percent = measures.get('fuzzy_match_percent', 0.0)
-        matched_functions_percent = measures.get('matched_functions_percent', 0.0)
 
-        # Convert total_code to int if it's a string
-        if isinstance(total_code, str):
-            total_code = int(total_code)
+        # Remember original types for consistent output
+        total_code_orig = measures.get('total_code', 0)
+        total_functions_orig = measures.get('total_functions', 0)
+        matched_code_percent_orig = measures.get('matched_code_percent', 0.0)
+        fuzzy_match_percent_orig = measures.get('fuzzy_match_percent', 0.0)
+        matched_functions_percent_orig = measures.get('matched_functions_percent', 0.0)
+
+        # Convert to working types
+        total_code = int(total_code_orig) if isinstance(total_code_orig, str) else total_code_orig
+        total_functions = int(total_functions_orig) if isinstance(total_functions_orig, str) else total_functions_orig
+        matched_code_percent = float(matched_code_percent_orig) if isinstance(matched_code_percent_orig, str) else matched_code_percent_orig
+        fuzzy_match_percent = float(fuzzy_match_percent_orig) if isinstance(fuzzy_match_percent_orig, str) else fuzzy_match_percent_orig
+        matched_functions_percent = float(matched_functions_percent_orig) if isinstance(matched_functions_percent_orig, str) else matched_functions_percent_orig
+
+        # Remember originals for correct percentage calculation
+        orig_total_code = total_code
+        orig_total_functions = total_functions
+
+        # Validate that we have positive values
+        if total_code < 0 or total_functions < 0:
+            continue  # Skip units with invalid data
 
         # Process junk functions
         junk_functions = []
@@ -54,27 +88,27 @@ def clean_report(input_path: str, output_path: str) -> None:
         unit_junk_functions_removed = 0
 
         for i, function in enumerate(functions):
+            if not isinstance(function, dict):
+                continue  # Skip invalid function entries
+
             if function.get('name', '').startswith('junk_'):
                 junk_functions.append(i)
 
-                # Get function size
+                # Get function size with validation
                 function_size = function.get('size', 0)
                 if isinstance(function_size, str):
-                    function_size = int(function_size)
+                    try:
+                        function_size = int(function_size)
+                    except ValueError:
+                        function_size = 0
+
+                # Ensure function size is non-negative
+                if function_size < 0:
+                    function_size = 0
 
                 # Track removals for global measures
                 unit_junk_code_removed += function_size
                 unit_junk_functions_removed += 1
-
-                # Calculate percentages
-                if total_code > 0:
-                    junk_code_percent = (function_size / total_code) * 100
-                    matched_code_percent += junk_code_percent
-                    fuzzy_match_percent += junk_code_percent
-
-                if total_functions > 0:
-                    junk_function_percent = (1 / total_functions) * 100
-                    matched_functions_percent += junk_function_percent
 
                 # Update total_code and total_functions
                 total_code -= function_size
@@ -90,18 +124,19 @@ def clean_report(input_path: str, output_path: str) -> None:
 
         # Update measures with new values
         if junk_functions:  # Only update if we removed junk functions
-            # Check for approximately 100% and set to exactly 100.0
-            if abs(matched_code_percent - 100.0) < 0.001:
-                matched_code_percent = 100.0
-            if abs(fuzzy_match_percent - 100.0) < 0.001:
-                fuzzy_match_percent = 100.0
-            if abs(matched_functions_percent - 100.0) < 0.001:
-                matched_functions_percent = 100.0
+            # Add aggregated junk percentages based on original totals
+            if orig_total_code > 0 and unit_junk_code_removed > 0:
+                pct = unit_junk_code_removed / orig_total_code * 100
+                matched_code_percent += pct
+                fuzzy_match_percent += pct
+            if orig_total_functions > 0 and unit_junk_functions_removed > 0:
+                pctf = unit_junk_functions_removed / orig_total_functions * 100
+                matched_functions_percent += pctf
 
-            # Round percentages to 7 decimal places
-            matched_code_percent = round(matched_code_percent, 7)
-            fuzzy_match_percent = round(fuzzy_match_percent, 7)
-            matched_functions_percent = round(matched_functions_percent, 7)
+            # Clamp at 100%
+            matched_code_percent = min(round(matched_code_percent, 7), 100.0)
+            fuzzy_match_percent = min(round(fuzzy_match_percent, 7), 100.0)
+            matched_functions_percent = min(round(matched_functions_percent, 7), 100.0)
 
             # Update the measures
             measures['total_code'] = str(total_code) if isinstance(measures.get('total_code'), str) else total_code
@@ -114,19 +149,27 @@ def clean_report(input_path: str, output_path: str) -> None:
     if total_junk_code_removed > 0 or total_junk_functions_removed > 0:
         global_measures = data.get('measures', {})
 
+        # Remember original types for consistent output
+        global_total_code_orig = global_measures.get('total_code', 0)
+        global_total_functions_orig = global_measures.get('total_functions', 0)
+
         # Update global total_code and total_functions
-        global_total_code = global_measures.get('total_code', 0)
-        if isinstance(global_total_code, str):
-            global_total_code = int(global_total_code)
+        global_total_code = int(global_total_code_orig) if isinstance(global_total_code_orig, str) else global_total_code_orig
         global_total_code -= total_junk_code_removed
 
-        global_total_functions = global_measures.get('total_functions', 0)
+        global_total_functions = int(global_total_functions_orig) if isinstance(global_total_functions_orig, str) else global_total_functions_orig
         global_total_functions -= total_junk_functions_removed
 
         # Get current global percentages and add junk percentages to them
         global_matched_code_percent = global_measures.get('matched_code_percent', 0.0)
+        if isinstance(global_matched_code_percent, str):
+            global_matched_code_percent = float(global_matched_code_percent)
         global_fuzzy_match_percent = global_measures.get('fuzzy_match_percent', 0.0)
+        if isinstance(global_fuzzy_match_percent, str):
+            global_fuzzy_match_percent = float(global_fuzzy_match_percent)
         global_matched_functions_percent = global_measures.get('matched_functions_percent', 0.0)
+        if isinstance(global_matched_functions_percent, str):
+            global_matched_functions_percent = float(global_matched_functions_percent)
 
         # Calculate the original global total_code (before removing junk)
         original_global_total_code = global_total_code + total_junk_code_removed
@@ -142,18 +185,10 @@ def clean_report(input_path: str, output_path: str) -> None:
             global_junk_function_percent = (total_junk_functions_removed / original_global_total_functions) * 100
             global_matched_functions_percent += global_junk_function_percent
 
-        # Check for approximately 100% and set to exactly 100.0
-        if abs(global_matched_code_percent - 100.0) < 0.001:
-            global_matched_code_percent = 100.0
-        if abs(global_fuzzy_match_percent - 100.0) < 0.001:
-            global_fuzzy_match_percent = 100.0
-        if abs(global_matched_functions_percent - 100.0) < 0.001:
-            global_matched_functions_percent = 100.0
-
-        # Round global percentages to 7 decimal places
-        global_matched_code_percent = round(global_matched_code_percent, 7)
-        global_fuzzy_match_percent = round(global_fuzzy_match_percent, 7)
-        global_matched_functions_percent = round(global_matched_functions_percent, 7)
+        # Clamp global percentages at 100% after rounding
+        global_matched_code_percent = min(round(global_matched_code_percent, 7), 100.0)
+        global_fuzzy_match_percent = min(round(global_fuzzy_match_percent, 7), 100.0)
+        global_matched_functions_percent = min(round(global_matched_functions_percent, 7), 100.0)
 
         # Update global measures
         global_measures['total_code'] = str(global_total_code) if isinstance(global_measures.get('total_code'), str) else global_total_code
@@ -162,8 +197,17 @@ def clean_report(input_path: str, output_path: str) -> None:
         global_measures['fuzzy_match_percent'] = global_fuzzy_match_percent
         global_measures['matched_functions_percent'] = global_matched_functions_percent
 
-    with open(output_path, 'w', encoding='utf-8') as outfile:
-        json.dump(data, outfile, indent=4)
+    # Write output file
+    try:
+        with open(output_path, 'w', encoding='utf-8') as outfile:
+            json.dump(data, outfile, indent=4)
+    except IOError as e:
+        raise IOError(f"Error writing to {output_path}: {e}") from e
 
 if __name__ == "__main__":
-    clean_report('report.json', 'report.json')
+    if len(sys.argv) != 3:
+        print(f"Usage: {sys.argv[0]} <input_report.json> <output_report.json>")
+        sys.exit(1)
+    input_path = sys.argv[1]
+    output_path = sys.argv[2]
+    clean_report(input_path, output_path)
