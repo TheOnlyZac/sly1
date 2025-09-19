@@ -30,7 +30,7 @@ void PostGomerLoad(GOMER *pgomer)
 {
     PostStepguardLoad(pgomer);
 
-    // If OID at offset 0xC18 is not NIL, find nearest SW and store to 0xC1C.
+    // If OID at 0xC18 is not NIL, find nearest LO of OID at 0xc18, and save it to 0xC1C.
     if (STRUCT_OFFSET(pgomer, 0xC18, OID) != OID_Nil)
     {
         STRUCT_OFFSET(pgomer, 0xC1C, LO *) = PloFindSwNearest(
@@ -39,7 +39,7 @@ void PostGomerLoad(GOMER *pgomer)
             pgomer);
     }
 
-    // If OID at offset 0xC30 is not NIL, find nearest SW and store to 0xC34.
+    // If OID at 0xC30 is not NIL, find nearest LO of OID at 0xc30, and save it to 0xC34.
     if (STRUCT_OFFSET(pgomer, 0xC30, OID) != OID_Nil)
     {
         STRUCT_OFFSET(pgomer, 0xC34, LO *) = PloFindSwNearest(
@@ -48,7 +48,7 @@ void PostGomerLoad(GOMER *pgomer)
             pgomer);
     }
 
-    // if world/level pointer at 0x750 is zero, skip waypoint building.
+    // If aseg pointer at 0x750 is null, skip waypoint collection.
     if (!STRUCT_OFFSET(pgomer, 0x750, ASEG *))
     {
         return;
@@ -56,7 +56,7 @@ void PostGomerLoad(GOMER *pgomer)
 
     InitStackImpl();
 
-    // Get aseg waypoints for gomer
+    // Collect aseg waypoints.
     WAYPOINT **apwaypoint;
     int cpwaypoint;
     GetAsegWaypoints(STRUCT_OFFSET(pgomer, 0x750, ASEG *), pgomer, &cpwaypoint, &apwaypoint);
