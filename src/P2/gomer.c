@@ -2,6 +2,7 @@
 #include <stepguard.h>
 #include <find.h>
 #include <memory.h>
+#include <aseg.h>
 #include <waypoint.h>
 #include <basic.h>
 #include <sw.h>
@@ -25,13 +26,6 @@ void InitGomer(GOMER *pgomer)
     STRUCT_OFFSET(pgomer, 0x74C, float) = PI / 3.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/gomer", PostGomerLoad__FP5GOMER);
-#ifdef SKIP_ASM
-extern int func_0012D1B0(int worldLevel, GOMER *pgomer, int *outCount, void ***outArray);
-
-/**
- * @todo 99.74% matched. The call to func_0012D1B0 is problematic.
- */
 void PostGomerLoad(GOMER *pgomer)
 {
     PostStepguardLoad(pgomer);
@@ -55,33 +49,31 @@ void PostGomerLoad(GOMER *pgomer)
     }
 
     // if world/level pointer at 0x750 is zero, skip waypoint building.
-    if (!STRUCT_OFFSET(pgomer, 0x750, int))
+    if (!STRUCT_OFFSET(pgomer, 0x750, ASEG *))
     {
         return;
     }
 
     InitStackImpl();
 
-    // Call helper to populate an array and count. func_0012D1B0 writes the
-    // count and array pointer into memory we provide addresses for.
-    void **arr;
-    int count;
-    func_0012D1B0(STRUCT_OFFSET(pgomer, 0x750, int), pgomer, &count, &arr);
+    // Get aseg waypoints for gomer
+    WAYPOINT **apwaypoint;
+    int cpwaypoint;
+    GetAsegWaypoints(STRUCT_OFFSET(pgomer, 0x750, ASEG *), pgomer, &cpwaypoint, &apwaypoint);
 
-    for (int i = 0; i < count; i++)
+    for (int i = 0; i < cpwaypoint; i++)
     {
-        void *elem = arr[i];
-        if (!STRUCT_OFFSET(elem, 0x328, WPSG *))
+        WAYPOINT *waypoint = apwaypoint[i];
+        if (!STRUCT_OFFSET(waypoint, 0x328, WPSG *))
         {
             WPSG *newwpsg = PwpsgNew();
-            STRUCT_OFFSET(elem, 0x328, WPSG *) = newwpsg;
-            AddWpsgWaypoint(newwpsg, (WAYPOINT *)elem);
+            STRUCT_OFFSET(waypoint, 0x328, WPSG *) = newwpsg;
+            AddWpsgWaypoint(newwpsg, (WAYPOINT *)waypoint);
         }
     }
 
     FreeStackImpl();
 }
-#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/gomer", FUN_00167ef0);
 

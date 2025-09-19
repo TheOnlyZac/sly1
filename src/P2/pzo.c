@@ -49,7 +49,7 @@ void LoadLockFromBrx(LOCK *plock, CBinaryInputStream *pbis)
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", PostLockLoad__FP4LOCK);
 #ifdef SKIP_ASM
 /**
- * @todo 44.86% matched. s_asnip may not be defined correctly.
+ * @todo 95.00% matched. s_asnip may not be defined correctly.
  */
 void PostLockLoad(LOCK *plock)
 {
