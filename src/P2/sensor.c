@@ -19,15 +19,6 @@ void SetSensorAlarm(SENSOR *psensor, ALARM *palarm)
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", SetSensorSensors__FP6SENSOR7SENSORS);
 #ifdef SKIP_ASM
 /**
- * @brief Sets the sensor's state and handles triggering the sensor's alarm.
- *
- * @param psensor Pointer to the sensor.
- * @param sensors New sensor state.
- *
- * If the sensor is transitioning from SENSORS_SenseEnabled to SENSORS_SenseTriggered,
- * it will trigger the associated alarm if one is set. If the sensor's state changes,
- * it will also notify any listeners of the change via an LO splice event.
- *
  * @todo 82.08% matched.
  */
 void SetSensorSensors(SENSOR *psensor, SENSORS sensors)

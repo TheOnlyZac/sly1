@@ -115,10 +115,33 @@ struct LBEAM
     // ...
 };
 
+// MARK: SENSOR methods
+/**
+ * @brief Sets the default values for the sensor.
+ *
+ * @param psensor Pointer to the sensor to initialize.
+ */
 void InitSensor(SENSOR *psensor);
 
+/**
+ * @brief Sets the sensor's associated alarm.
+ *
+ * @param psensor Pointer to the sensor.
+ * @param palarm Pointer to the alarm to associate with the sensor.
+ */
 void SetSensorAlarm(SENSOR *psensor, ALARM *palarm);
 
+/**
+ * @brief Sets the sensor's state and handles triggering the sensor's alarm.
+ *
+ * @param psensor Pointer to the sensor.
+ * @param sensors New sensor state.
+ *
+ * If the sensor is transitioning from SENSORS_SenseEnabled to SENSORS_SenseTriggered,
+ * it will trigger the associated alarm if one is set. If the sensor's state changes,
+ * it will also notify any listeners of the change via an LO splice event.
+ *
+ */
 void SetSensorSensors(SENSOR *psensor, SENSORS sensors);
 
 int FCheckSensorObject(SENSOR *psensor, SO *psoOther);
@@ -163,6 +186,7 @@ void AddSensorTriggerClass(SENSOR *psensor, CID cid);
  */
 void AddSensorNoTriggerClass(SENSOR *psensor, CID cid);
 
+// MARK: LASEN methods
 void InitLasen(LASEN *plasen);
 
 void LoadLasenFromBrx(LASEN *plasen, CBinaryInputStream *pbis);
@@ -197,7 +221,7 @@ void RetractLasen(LASEN *plasen, float dtRetract);
 
 void ExtendLasen(LASEN *plasen, float dtExpand);
 
-
+// MARK: CAMSEN methods
 void InitCamsen(CAMSEN *pcamsen);
 
 void PostCamsenLoad(CAMSEN *pcamsen);
@@ -222,7 +246,7 @@ void SetCamsenSensors(CAMSEN *pcamsen, SENSORS sensors);
 
 void SetCamsenCsdts(CAMSEN *pcamsen, CSDTS csdts);
 
-
+// MARK: PRSEN methods
 void InitPrsen(PRSEN *pprsen);
 
 void PostPrsenLoad(PRSEN *pprsen);
