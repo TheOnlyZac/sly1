@@ -86,7 +86,7 @@ struct LOCK : public ALO
  */
 struct LOCKG : public ALO
 {
-    // ...
+    STRUCT_PADDING(3);
     /* 0x2DC */ uint coidLock;
     /* 0x2E0 */ OID aoidLock[8];
 };

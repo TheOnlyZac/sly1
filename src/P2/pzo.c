@@ -36,36 +36,38 @@ INCLUDE_ASM("asm/nonmatchings/P2/pzo", CollectScprize__FP7SCPRIZE);
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", LoadLockFromBrx__FP4LOCKP18CBinaryInputStream);
 #ifdef SKIP_ASM
 /**
- * @todo 44.86% matched. Need to define D_0026A928.
+ * @todo 95.800% matched. s_asnip may not be defined correctly.
  */
 void LoadLockFromBrx(LOCK *plock, CBinaryInputStream *pbis)
 {
+    static SNIP *s_asnip;
     LoadAloFromBrx(plock, pbis);
-    // SnipAloObjects(plock, 1, D_0026A928);
+    SnipAloObjects(plock, 1, s_asnip);
 }
 #endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", PostLockLoad__FP4LOCK);
 #ifdef SKIP_ASM
 /**
- * @todo 44.86% matched. Need to define D_0026A928.
+ * @todo 44.86% matched. s_asnip may not be defined correctly.
  */
 void PostLockLoad(LOCK *plock)
 {
+    static SNIP *s_asnip;
     PostAloLoad(plock);
-    // SnipAloObjects(plock, 1, D_0026A928);
+    SnipAloObjects(plock, 1, s_asnip);
 }
 #endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", LoadLockgFromBrx__FP5LOCKGP18CBinaryInputStream);
 #ifdef SKIP_ASM
 /**
- * @todo 44.86% matched. Need to define D_0026A938.
+ * @todo 95.00% matched. s_asnip may not be defined correctly.
  */
 void LoadLockgFromBrx(LOCKG *plockg, CBinaryInputStream *pbis)
 {
     LoadAloFromBrx(plockg, pbis);
-    // SnipAloObjects(plockg, 1, D_0026A938);
+    // SnipAloObjects(plockg, 1, PostLockgLoad);
 }
 #endif
 
@@ -130,10 +132,8 @@ void SetLockgIndex(LOCKG *plockg, int ifws)
     STRUCT_OFFSET(plockg, 0x2D0, int) = 1 << ++ifws;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", AddLockgLock__FP5LOCKG3OID);
-#ifdef SKIP_ASM
 /**
- * @todo 100% matched but lockg struct offsets are wrong.
+ * @note Will stop matching if ALO or LOCKG fields are changed.
  */
 void AddLockgLock(LOCKG *plockg, OID oidLock)
 {
@@ -144,7 +144,6 @@ void AddLockgLock(LOCKG *plockg, OID oidLock)
     plockg->aoidLock[ccur] = oidLock;
     plockg->coidLock = ++ccur;
 }
-#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", TriggerLockg__FP5LOCKG);
 
