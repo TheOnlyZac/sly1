@@ -22,19 +22,28 @@ struct VT
     int cb;
 };
 
+
+/*****************************************************************
+ * BASIC-DERIVED VTABLES
+ *****************************************************************/
+
 struct CBinaryInputStream;
 struct LO;
 
 /**
- * @brief VT for LO objects.
+ * @brief VT for basic objects.
  */
-struct VTLO
+struct VTBASIC
 {
     VT *pvtSuper;
     CID cid;
-    int grfcid;
-    int cb;
+};
 
+/**
+ * @brief VT for LO objects.
+ */
+struct VTLO : VT
+{
     void (*pfnInitLo)(LO *);
     void (*pfnSetLoDefaults)(LO *);
     void (*pfnAddLo)(LO *);
@@ -70,14 +79,9 @@ struct VTLO
     void (*pfnUpdateLoLiveEdit)();
 };
 
-/**
- * @brief VT for basic objects.
- */
-struct VTBASIC
-{
-    VT *pvtSuper;
-    CID cid;
-};
+/*****************************************************************
+ * BLOT-DERIVED VTABLES
+ *****************************************************************/
 
 struct BLOT;
 
@@ -185,6 +189,9 @@ struct VTTIMER
     int  (*pfnFIncludeBlotForPeg)(BLOT *);
 };
 
+/**
+ * @brief VT for the totals blot.
+ */
 struct VTTOTALS
 {
     void (*pfnInitBlot)(BLOT *);
@@ -214,6 +221,16 @@ struct GAME;
  * @brief VT for the game struct.
  */
 struct VTGAME
+{
+    // ...
+};
+
+struct GOMER;
+
+/**
+ * @brief VT for the gomer struct.
+ */
+struct VTGOMER
 {
     // ...
 };

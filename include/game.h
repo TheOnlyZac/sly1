@@ -438,7 +438,7 @@ void OnGameAlarmDisabled(GAME *pgame);
 /**
  * @brief Unknown function.
  */
-uint GetGrfvault_unknown();
+GRFVAULT GetGrfvault_unknown();
 
 /**
  * @brief Gets the blueprint info for a vault.

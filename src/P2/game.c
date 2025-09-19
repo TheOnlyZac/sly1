@@ -318,9 +318,9 @@ void OnGameAlarmDisabled(GAME *pgame)
     pgame->cAlarmsTriggered--;
 }
 
-uint GetGrfvault_unknown()
+GRFVAULT GetGrfvault_unknown()
 {
-    return g_pgsCur->grfvault & STRUCT_OFFSET(g_psw, 0x235c, uint);
+    return g_pgsCur->grfvault & STRUCT_OFFSET(g_psw, 0x235c, GRFVAULT);
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", GetBlueprintInfo__FPiT0);

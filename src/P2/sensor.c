@@ -1,10 +1,57 @@
 #include <sensor.h>
+#include <so.h>
+#include <lo.h>
+#include <alarm.h>
+#include <game.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", InitSensor__FP6SENSOR);
+void InitSensor(SENSOR *psensor)
+{
+	InitSo(psensor);
+	STRUCT_OFFSET(psensor, 0x558, SENSORS) = SENSORS_Nil;
+	STRUCT_OFFSET(psensor, 0x554, int) = 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", SetSensorAlarm__FP6SENSORP5ALARM);
+void SetSensorAlarm(SENSOR *psensor, ALARM *palarm)
+{
+	STRUCT_OFFSET(psensor, 0x550, ALARM *) = palarm; // psensor->palarm = palarm;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", SetSensorSensors__FP6SENSOR7SENSORS);
+#ifdef SKIP_ASM
+/**
+ * @todo 82.08% matched.
+ */
+void SetSensorSensors(SENSOR *psensor, SENSORS sensors)
+{
+	SENSORS sensorsCur = STRUCT_OFFSET(psensor, 0x558, SENSORS); // sensorsCur = psensor->sensors;
+
+	if (sensorsCur == sensors)
+	{
+		return;
+	}
+
+	if (sensorsCur == SENSORS_SenseEnabled && sensors == SENSORS_SenseTriggered)
+	{
+		ALARM *palarm = STRUCT_OFFSET(psensor, 0x550, ALARM *);
+		if (palarm)
+		{
+			TriggerAlarm(palarm, ALTK_Trigger);
+		}
+
+		// Recheck current sensor state: if it's not SENSORS_SenseEnabled,
+		// override the current sensors with the new one.
+		sensorsCur = STRUCT_OFFSET(psensor, 0x558, SENSORS);
+		if (sensorsCur != SENSORS_SenseEnabled)
+		{
+			sensors = sensorsCur;
+		}
+	}
+
+	HandleLoSpliceEvent(psensor, 2, 0, (void **)0);
+	STRUCT_OFFSET(psensor, 0x558, SENSORS) = sensors; // psensor->sensors = sensors;
+	STRUCT_OFFSET(psensor, 0x55C, float) = g_clock.t;
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", FCheckSensorObject__FP6SENSORP2SO);
 
@@ -17,12 +64,68 @@ INCLUDE_ASM("asm/nonmatchings/P2/sensor", PauseSensor__FP6SENSOR);
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateSensor__FP6SENSORf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorTriggerObject__FP6SENSOR3OID);
+ #ifdef SKIP_ASM
+/**
+ * @todo 100% matched but sensor struct offsets are wrong.
+ */
+void AddSensorTriggerObject(SENSOR *psensor, OID oid)
+{
+	uint ccur = psensor->ctriggerObjects;
+	if (ccur >= 4)
+		return;
+
+	psensor->atriggerObjects[ccur] = oid;
+	psensor->ctriggerObjects = ccur + 1;
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorNoTriggerObject__FP6SENSOR3OID);
+ #ifdef SKIP_ASM
+/**
+ * @todo 100% matched but sensor struct offsets are wrong.
+ */
+void AddSensorNoTriggerObject(SENSOR *psensor, OID oid)
+{
+	uint ccur = psensor->cnoTriggerObjects;
+	if (ccur >= 4)
+		return;
+
+	psensor->anoTriggerObjects[ccur] = oid;
+	psensor->cnoTriggerObjects = ccur + 1;
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorTriggerClass__FP6SENSOR3CID);
+ #ifdef SKIP_ASM
+/**
+ * @todo 100% matched but sensor struct offsets are wrong.
+ */
+void AddSensorTriggerClass(SENSOR *psensor, CID cid)
+{
+	uint ccur = psensor->ctriggerClasses;
+	if (ccur >= 4)
+		return;
+
+	psensor->atriggerClasses[ccur] = cid;
+	psensor->ctriggerClasses = ccur + 1;
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorNoTriggerClass__FP6SENSOR3CID);
+ #ifdef SKIP_ASM
+/**
+ * @todo 100% matched but sensor struct offsets are wrong.
+ */
+void AddSensorNoTriggerClass(SENSOR *psensor, CID cid)
+{
+	uint ccur = psensor->cnoTriggerClasses;
+	if (ccur >= 4)
+		return;
+
+	psensor->anoTriggerClasses[ccur] = cid;
+	psensor->cnoTriggerClasses = ccur + 1;
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", InitLasen__FP5LASEN);
 
@@ -40,7 +143,43 @@ INCLUDE_ASM("asm/nonmatchings/P2/sensor", FreezeLasen__FP5LASENi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", RenderLasenSelf__FP5LASENP2CMP2RO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", FUN_001afaf8);
+INCLUDE_ASM("asm/nonmatchings/P2/sensor", FUN_001afaf8__FP6SENSORP2SO);
+#ifdef SKIP_ASM
+/**
+ * @todo 73.57% matched.
+ */
+int FUN_001afaf8(SENSOR *psensor, SO *pso)
+{
+	extern void *g_pjt;
+	unsigned long long mask;
+	uint tmp2cc;
+
+	/* Mask: (0x8000 << 28) in 64-bits */
+	mask = ((ulong)0x8000) << 28;
+	if (STRUCT_OFFSET(pso, 0x538, ulong) & mask)
+		return 0;
+
+	if (STRUCT_OFFSET(pso, 0x50, uint) == STRUCT_OFFSET(psensor, 0x50, uint))
+		return 0;
+
+	if (FIgnoreSensorObject(psensor, pso))
+		return 0;
+
+	if (pso == g_pjt)
+	{
+		if (STRUCT_OFFSET(pso, 0x2220, uint) != 6)
+			return 0;
+		if (STRUCT_OFFSET(pso, 0x239C, uint) != 3)
+			return 0;
+		if (GetGrfvault_unknown() & 0x12000)
+			return 0;
+	}
+
+	tmp2cc = STRUCT_OFFSET(pso, 0x2CC, uint);
+	/* Invert lowest bit and mask to 1 */
+	return (int)(((tmp2cc ^ 1u) & 1u));
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", SenseLasen__FP5LASENP7SENSORS);
 

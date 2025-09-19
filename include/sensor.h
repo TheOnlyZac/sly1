@@ -54,13 +54,26 @@ enum CSDTS
 
 /**
  * @class _SENSOR
- * @brief Base class for sensors.
+ * @brief Base class for security sensors.
  * @todo Implement the struct.
  */
 struct SENSOR : public SO
 {
-    undefined1 unknown[12];
-    // ...
+    /* 0x550 */ ALARM *palarm; // Pointer to the alarm this sensor is associated with.
+    STRUCT_PADDING(1);
+    /* 0x558 */ SENSORS sensors; // Current sensor state.
+    STRUCT_PADDING(2);
+    /* 0x564 */ uint ctriggerObjects; // Current count of trigger object IDs.
+    /* 0x568 */ OID atriggerObjects[4]; // Array of trigger object IDs.
+    STRUCT_PADDING(4);
+    /* 0x578 */ uint cnoTriggerObjects; // Current count of no-trigger object IDs.
+    /* 0x57C */ OID anoTriggerObjects[4]; // Array of no-trigger object IDs.
+    STRUCT_PADDING(4);
+    /* 0x58c */ uint ctriggerClasses; // Current count of trigger class IDs.
+    /* 0x590 */ CID atriggerClasses[4]; // Array of trigger class IDs.
+    STRUCT_PADDING(4);
+    /* 0x5a0 */ uint cnoTriggerClasses; // Current count of no-trigger class IDs.
+    /* 0x5a4 */ CID anoTriggerClasses[4]; // Array of no-trigger class IDs.
 };
 
 /**
@@ -102,10 +115,33 @@ struct LBEAM
     // ...
 };
 
+// MARK: SENSOR methods
+/**
+ * @brief Sets the default values for the sensor.
+ *
+ * @param psensor Pointer to the sensor to initialize.
+ */
 void InitSensor(SENSOR *psensor);
 
+/**
+ * @brief Sets the sensor's associated alarm.
+ *
+ * @param psensor Pointer to the sensor.
+ * @param palarm Pointer to the alarm to associate with the sensor.
+ */
 void SetSensorAlarm(SENSOR *psensor, ALARM *palarm);
 
+/**
+ * @brief Sets the sensor's state and handles triggering the sensor's alarm.
+ *
+ * @param psensor Pointer to the sensor.
+ * @param sensors New sensor state.
+ *
+ * If the sensor is transitioning from SENSORS_SenseEnabled to SENSORS_SenseTriggered,
+ * it will trigger the associated alarm if one is set. If the sensor's state changes,
+ * it will also notify any listeners of the change via an LO splice event.
+ *
+ */
 void SetSensorSensors(SENSOR *psensor, SENSORS sensors);
 
 int FCheckSensorObject(SENSOR *psensor, SO *psoOther);
@@ -118,15 +154,39 @@ void PauseSensor(SENSOR *psensor);
 
 void UpdateSensor(SENSOR *psensor, float dt);
 
+/**
+ * @brief Add an object ID to the sensor's trigger list.
+ *
+ * @param psensor Pointer to the sensor.
+ * @param oid Object ID to add.
+ */
 void AddSensorTriggerObject(SENSOR *psensor, OID oid);
 
+/**
+ * @brief Add an object ID to the sensor's no-trigger list.
+ *
+ * @param psensor Pointer to the sensor.
+ * @param oid Object ID to add.
+ */
 void AddSensorNoTriggerObject(SENSOR *psensor, OID oid);
 
+/**
+ * @brief Add a class ID to the sensor's trigger class list.
+ *
+ * @param psensor Pointer to the sensor.
+ * @param cid Class ID to add.
+ */
 void AddSensorTriggerClass(SENSOR *psensor, CID cid);
 
+/**
+ * @brief Add a class ID to the sensor's no-trigger class list.
+ *
+ * @param psensor Pointer to the sensor.
+ * @param cid Class ID to add.
+ */
 void AddSensorNoTriggerClass(SENSOR *psensor, CID cid);
 
-
+// MARK: LASEN methods
 void InitLasen(LASEN *plasen);
 
 void LoadLasenFromBrx(LASEN *plasen, CBinaryInputStream *pbis);
@@ -161,7 +221,7 @@ void RetractLasen(LASEN *plasen, float dtRetract);
 
 void ExtendLasen(LASEN *plasen, float dtExpand);
 
-
+// MARK: CAMSEN methods
 void InitCamsen(CAMSEN *pcamsen);
 
 void PostCamsenLoad(CAMSEN *pcamsen);
@@ -186,7 +246,7 @@ void SetCamsenSensors(CAMSEN *pcamsen, SENSORS sensors);
 
 void SetCamsenCsdts(CAMSEN *pcamsen, CSDTS csdts);
 
-
+// MARK: PRSEN methods
 void InitPrsen(PRSEN *pprsen);
 
 void PostPrsenLoad(PRSEN *pprsen);

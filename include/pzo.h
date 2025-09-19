@@ -1,7 +1,7 @@
 /**
  * @file pzo.h
  *
- * @brief Vaults, clue bottles and keys.
+ * @brief Vaults, clue bottles, keys and locks.
  */
 #ifndef PZO_H
 #define PZO_H
@@ -86,7 +86,9 @@ struct LOCK : public ALO
  */
 struct LOCKG : public ALO
 {
-    // ...
+    STRUCT_PADDING(3);
+    /* 0x2DC */ uint coidLock;
+    /* 0x2E0 */ OID aoidLock[8];
 };
 
 /**
@@ -138,16 +140,50 @@ PCS PcsFromScprize(SCPRIZE *pscprize);
 
 void CollectScprize(SCPRIZE *pscprize);
 
+/**
+ * @brief Loads a LOCK object from a binary input stream.
+ *
+ * @param plock Pointer to the LOCK to initialize.
+ * @param pbis Pointer to the binary input stream to read from.
+ */
 void LoadLockFromBrx(LOCK *plock, CBinaryInputStream *pbis);
 
+/**
+ * @brief Sets up a LOCK object after loading.
+ *
+ * @param plock Pointer to the LOCK object.
+ */
 void PostLockLoad(LOCK *plock);
 
+/**
+ * @brief Loads a LOCKG object from a binary input stream.
+ *
+ * @param plockg Pointer to the LOCKG to initialize.
+ * @param pbis Pointer to the binary input stream to read from.
+ */
 void LoadLockgFromBrx(LOCKG *plockg, CBinaryInputStream *pbis);
 
+/**
+ * @brief Sets up a LOCKG object after loading.
+ *
+ * @param plockg Pointer to the LOCKG object.
+ */
 void PostLockgLoad(LOCKG *plockg);
 
+/**
+ * @brief Sets the index of the LOCKG object(?)
+ *
+ * @param plockg Pointer to the LOCKG object.
+ * @param ifws Index to set.
+ */
 void SetLockgIndex(LOCKG *plockg, int ifws);
 
+/**
+ * @brief Adds a lock to the given lock group.
+ *
+ * @param plockg Pointer to the LOCKG object.
+ * @param oidLock OID of the LOCK to add.
+ */
 void AddLockgLock(LOCKG *plockg, OID oidLock);
 
 void TriggerLockg(LOCKG *plockg);

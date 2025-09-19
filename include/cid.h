@@ -49,7 +49,7 @@ enum CID
     CID_SUV      = 28,  // SMASHUP_VEHICLE
     // CID_CYCLE    = 29,  // CYCLE
     CID_LGN      = 30,  // LIGHT_GUN
-    CID_JACK     = 31,  // JACK_HAMMER
+    // CID_JACK     = 31,  // JACK_HAMMER
     CID_RIPG     = 32,  // RIPG
     CID_WATER    = 33,  // WATER
     CID_BRK      = 34,  // _BRK
@@ -133,9 +133,9 @@ enum CID
     CID_PUFFB    = 112, // PUFFER_BRAIN
     CID_CRBRAIN  = 113, // CRUSHER_BRAIN
     // CID_MGC      = 114, // MOUTH_GAME_COLLECT
-    CID_JACKB    = 115, // JACK_BOSS
-    CID_JACKN    = 116, // JACK_NPC
-    CID_JACKF    = 117, // JACK_FRAGMENT
+    // CID_JACKB    = 115, // JACK_BOSS
+    // CID_JACKN    = 116, // JACK_NPC
+    // CID_JACKF    = 117, // JACK_FRAGMENT
     CID_SW       = 118, // WORLD
     CID_CM       = 119, // _CAMERA
     CID_SHAPE    = 120, // SHAPE
