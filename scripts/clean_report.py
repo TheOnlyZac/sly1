@@ -51,6 +51,9 @@ def clean_report(input_path: str, output_path: str) -> None:
     total_junk_code_removed = 0
     total_junk_functions_removed = 0
 
+    # Track category changes for updating category measures
+    category_junk_removals = {}  # category_id -> {'code': removed_code, 'functions': removed_functions}
+
     # Process each unit in the data
     for unit in data.get('units', []):
         functions = unit.get('functions', [])
@@ -117,6 +120,15 @@ def clean_report(input_path: str, output_path: str) -> None:
         # Add unit removals to global totals
         total_junk_code_removed += unit_junk_code_removed
         total_junk_functions_removed += unit_junk_functions_removed
+
+        # Add unit removals to category totals
+        if junk_functions and unit_junk_code_removed > 0:  # Only if we actually removed junk
+            unit_categories = unit.get('metadata', {}).get('progress_categories', [])
+            for category_id in unit_categories:
+                if category_id not in category_junk_removals:
+                    category_junk_removals[category_id] = {'code': 0, 'functions': 0}
+                category_junk_removals[category_id]['code'] += unit_junk_code_removed
+                category_junk_removals[category_id]['functions'] += unit_junk_functions_removed
 
         # Remove junk functions from the functions list (in reverse order to maintain indices)
         for i in reversed(junk_functions):
@@ -197,6 +209,72 @@ def clean_report(input_path: str, output_path: str) -> None:
         global_measures['fuzzy_match_percent'] = global_fuzzy_match_percent
         global_measures['matched_functions_percent'] = global_matched_functions_percent
 
+    # Update category measures if any junk was removed from categories
+    if category_junk_removals:
+        categories = data.get('categories', [])
+
+        for category in categories:
+            category_id = category.get('id', '')
+            if category_id not in category_junk_removals:
+                continue
+
+            removals = category_junk_removals[category_id]
+            junk_code_removed = removals['code']
+            junk_functions_removed = removals['functions']
+
+            if junk_code_removed == 0 and junk_functions_removed == 0:
+                continue
+
+            category_measures = category.get('measures', {})
+
+            # Remember original types for consistent output
+            cat_total_code_orig = category_measures.get('total_code', 0)
+            cat_total_functions_orig = category_measures.get('total_functions', 0)
+
+            # Update category total_code and total_functions
+            cat_total_code = int(cat_total_code_orig) if isinstance(cat_total_code_orig, str) else cat_total_code_orig
+            cat_total_code -= junk_code_removed
+
+            cat_total_functions = int(cat_total_functions_orig) if isinstance(cat_total_functions_orig, str) else cat_total_functions_orig
+            cat_total_functions -= junk_functions_removed
+
+            # Get current category percentages and add junk percentages to them
+            cat_matched_code_percent = category_measures.get('matched_code_percent', 0.0)
+            if isinstance(cat_matched_code_percent, str):
+                cat_matched_code_percent = float(cat_matched_code_percent)
+            cat_fuzzy_match_percent = category_measures.get('fuzzy_match_percent', 0.0)
+            if isinstance(cat_fuzzy_match_percent, str):
+                cat_fuzzy_match_percent = float(cat_fuzzy_match_percent)
+            cat_matched_functions_percent = category_measures.get('matched_functions_percent', 0.0)
+            if isinstance(cat_matched_functions_percent, str):
+                cat_matched_functions_percent = float(cat_matched_functions_percent)
+
+            # Calculate the original category totals (before removing junk)
+            original_cat_total_code = cat_total_code + junk_code_removed
+            original_cat_total_functions = cat_total_functions + junk_functions_removed
+
+            # Calculate category junk percentages and add them to existing percentages
+            if original_cat_total_code > 0:
+                cat_junk_code_percent = (junk_code_removed / original_cat_total_code) * 100
+                cat_matched_code_percent += cat_junk_code_percent
+                cat_fuzzy_match_percent += cat_junk_code_percent
+
+            if original_cat_total_functions > 0:
+                cat_junk_function_percent = (junk_functions_removed / original_cat_total_functions) * 100
+                cat_matched_functions_percent += cat_junk_function_percent
+
+            # Clamp category percentages at 100% after rounding
+            cat_matched_code_percent = min(round(cat_matched_code_percent, 7), 100.0)
+            cat_fuzzy_match_percent = min(round(cat_fuzzy_match_percent, 7), 100.0)
+            cat_matched_functions_percent = min(round(cat_matched_functions_percent, 7), 100.0)
+
+            # Update category measures
+            category_measures['total_code'] = str(cat_total_code) if isinstance(category_measures.get('total_code'), str) else cat_total_code
+            category_measures['total_functions'] = cat_total_functions
+            category_measures['matched_code_percent'] = cat_matched_code_percent
+            category_measures['fuzzy_match_percent'] = cat_fuzzy_match_percent
+            category_measures['matched_functions_percent'] = cat_matched_functions_percent
+
     # Write output file
     try:
         with open(output_path, 'w', encoding='utf-8') as outfile:
@@ -208,6 +286,6 @@ if __name__ == "__main__":
     if len(sys.argv) != 3:
         print(f"Usage: {sys.argv[0]} <input_report.json> <output_report.json>")
         sys.exit(1)
-    input_path = sys.argv[1]
-    output_path = sys.argv[2]
-    clean_report(input_path, output_path)
+    input_file = sys.argv[1]
+    output_file = sys.argv[2]
+    clean_report(input_file, output_file)
