@@ -39,7 +39,7 @@ void SetBlotFontScale(float rFontScale, BLOT *pblot)
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawBlot__FP4BLOT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", junk_001AA890);
+JUNK_ADDIU(10);
 
 float DtAppearBlot(BLOT *pblot)
 {
@@ -266,6 +266,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001aea08);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001aea70);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", junk_001aec80);
+JUNK_WORD(0xE48C0000);
+JUNK_WORD(0xE48C0008);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001aec90);

@@ -134,7 +134,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", UpdateSmack__FP5SMACKf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitOrbit__FP5ORBITP6VECTORfP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", junk_001A1028);
+JUNK_ADDIU(80);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", ProjectOrbitTransform__FP5ORBITf);
 
@@ -215,4 +215,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", PostRemitEmit__FP5REMITP5EMITB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", UpdateRemit__FP5REMITf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", junk_001A3AC8);
+JUNK_ADDIU(10);
+JUNK_WORD(0x7C450000);
+JUNK_WORD(0x48220800);

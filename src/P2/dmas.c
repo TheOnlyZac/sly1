@@ -72,7 +72,8 @@ void DMAS::Send(sceDmaChan *chan)
     m_pb = m_ab;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", junk_00152B30);
+JUNK_NOP();
+JUNK_ADDIU(10);
 
 INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaCnt__4DMAS);
 
@@ -93,4 +94,4 @@ void DMAS::EndPrim()
     return;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", junk_00152E20);
+JUNK_WORD(0x00021102);

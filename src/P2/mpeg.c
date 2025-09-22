@@ -68,7 +68,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/mpeg", Finish__5CMpeg);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", CbDemuxed__5CMpegi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mpeg", junk_0018F938);
+JUNK_WORD(0x0002102B);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", mpeg__static_initialization_and_destruction_0);
 

@@ -78,4 +78,4 @@ bool FCdCompleted(int fBlock)
     return !snd_StreamSafeCdSync(!fBlock);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cd", junk_00140D88);
+JUNK_ADDIU(10);

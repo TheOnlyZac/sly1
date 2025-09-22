@@ -3,7 +3,7 @@
 #include <tn.h>
 
 // NOTE: Could also belong to P2/find.c.
-INCLUDE_ASM("asm/nonmatchings/P2/flash", junk_0015A8B0);
+JUNK_ADDIU(60);
 
 void InitFlash(FLASH *pflash)
 {

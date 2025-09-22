@@ -36,6 +36,22 @@
  */
 #define STRUCT_PADDING(size) uint32_t STRUCT_PADDING_INTERNAL(_pad_, __LINE__)[size]
 
+/**
+ * @brief Inserts a four-byte word followed by four bytes of 0x00.
+ */
+#define JUNK_WORD(val) asm(".word " #val "\n\t" ".word 0x00000000\n\t")
+
+/**
+ * @brief Shortcut macro for junk `addiu $29, $29, imm` instructions.
+ * Takes the immediate value as a hex byte and emits the corresponding instruction word.
+ */
+#define JUNK_ADDIU(imm) JUNK_WORD(0x27BD00##imm)
+
+/**
+ * @brief Inserts a four-byte nop on it's own.
+ */
+#define JUNK_NOP() asm(".word 0x00000000\n\t")
+
 // Global system values
 extern int _gpReg; // Global pointer register
 

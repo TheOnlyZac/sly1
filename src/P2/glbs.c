@@ -20,7 +20,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/glbs", EndStrip__4GLBS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/glbs", SetNormal__4GLBSP6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/glbs", junk_001626A0);
+JUNK_WORD(0xE4800110);
 
 INCLUDE_ASM("asm/nonmatchings/P2/glbs", SetRgba__4GLBSG4RGBA);
 

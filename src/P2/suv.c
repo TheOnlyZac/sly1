@@ -38,6 +38,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvActive__FP3SUVP3JOYf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", FUN_001da170);
 
+// This junk is unlike other junk instructions; it may be actual code?
 INCLUDE_ASM("asm/nonmatchings/P2/suv", junk_001DA310);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", AddSuvCustomXps__FP3SUVP2SOiP3BSPT3PP2XP);
@@ -74,6 +75,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", SetSuvSuvs__FP3SUV4SUVS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", ResetSuv__FP3SUV);
 
-INCLUDE_ASM("asm/nonmatchings/P2/suv", junk_001DB448);
+JUNK_ADDIU(10);
+JUNK_WORD(0x7C450000);
+JUNK_WORD(0x48220800);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", VecCombo__FG8VU_FLOATG9VU_VECTORT0T1);

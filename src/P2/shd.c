@@ -26,7 +26,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/shd", FillShaders__Fi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", UnloadShaders__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/shd", junk_001B4180);
+JUNK_WORD(0xE4A00008);
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", ConvertRgbToHsv__FP6VECTORT0);
 
@@ -36,7 +36,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/shd", ConvertUserHsvToUserRgb__FP6VECTORT0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", ConvertUserRgbToUserHsv__FP6VECTORT0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/shd", junk_001B4670);
+JUNK_ADDIU(10);
+JUNK_NOP();
+JUNK_NOP();
+JUNK_ADDIU(50);
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", PshdFindShader__F3OID);
 

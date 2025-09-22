@@ -94,7 +94,7 @@ void OnPoRemove(PO *ppo)
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", SwitchToIppo__Fi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/po", junk_00192988);
+JUNK_ADDIU(10);
 
 void SetPoPlayable(PO *ppo, int fPlayable)
 {

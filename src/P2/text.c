@@ -52,7 +52,7 @@ extern "C" int sprintf(char *pchzDest, char *pchzFormat, ...)
 
 INCLUDE_ASM("asm/nonmatchings/P2/text", _vsnprintf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/text", junk_001E20B0);
+JUNK_ADDIU(10);
 
 int _snprintf(char *pchzDest, int cchDest, char *pchzFormat, ...)
 {
@@ -63,7 +63,7 @@ int _snprintf(char *pchzDest, int cchDest, char *pchzFormat, ...)
     return ret;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/text", junk_001E20F8);
+JUNK_WORD(0x27BD0450);
 
 extern "C" uint strlen(const char *pchz)
 {
@@ -105,6 +105,7 @@ extern "C" char *strchr(char *pchz, int ch)
     return (char *)nullptr;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/text", junk_001E2210);
+JUNK_NOP();
+JUNK_ADDIU(30);
 
 INCLUDE_ASM("asm/nonmatchings/P2/text", UpperizePchz__FPc);

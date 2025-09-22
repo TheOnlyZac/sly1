@@ -13,7 +13,8 @@ int SemaCreate(int initCount, int maxCount)
     return CreateSema(&sp);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/thread", junk_001E22B8);
+JUNK_NOP();
+JUNK_ADDIU(50);
 
 void InitCritSect(CRITSECT *pcritsect)
 {
@@ -48,7 +49,7 @@ void LeaveCritSect(CRITSECT *pcritsect)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/thread", junk_001E2390);
+JUNK_ADDIU(30);
 
 void StartupThread()
 {

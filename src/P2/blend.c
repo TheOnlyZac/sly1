@@ -10,7 +10,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/blend", CalculateBlendAmrsg__FiiPviiP4MRSGPf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/blend", ImrsgLookUp__FffiP4MRSGPf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/blend", junk_001399F0);
+JUNK_ADDIU(90);
 
 INCLUDE_ASM("asm/nonmatchings/P2/blend", ReblendAsegbl__FP6ASEGBLiiPv);
 

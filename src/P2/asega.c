@@ -8,7 +8,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/asega", UpdateAsegaIeaCur__FP5ASEGA);
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", PactsegFindAsega__FP5ASEGA3OID);
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", junk_0012D5C8);
+JUNK_ADDIU(10);
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", HandleAsegaEvent__FP5ASEGAP2EAPi);
 

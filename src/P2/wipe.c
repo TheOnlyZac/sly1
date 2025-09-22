@@ -16,7 +16,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/wipe", SetWipeButtonTrans__FP4WIPEP5TRANS5WIPEK
 
 INCLUDE_ASM("asm/nonmatchings/P2/wipe", FCatchWipeButtonTrans__FP4WIPEP3JOY5WIPES);
 
-INCLUDE_ASM("asm/nonmatchings/P2/wipe", junk_001F0218);
+JUNK_WORD(0x00A0102D);
 
 INCLUDE_ASM("asm/nonmatchings/P2/wipe", SetWipeWipes__FP4WIPE5WIPES);
 

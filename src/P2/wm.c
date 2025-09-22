@@ -46,6 +46,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/wm", DrawWmc__FP3WMC);
 
 INCLUDE_ASM("asm/nonmatchings/P2/wm", wm__static_initialization_and_destruction_0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/wm", junk_001F2728);
+JUNK_WORD(0xE48C0000);
+JUNK_WORD(0xE48C0008);
 
 INCLUDE_ASM("asm/nonmatchings/P2/wm", _GLOBAL_$I$U_WmFadedLevels);

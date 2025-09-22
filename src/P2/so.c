@@ -32,7 +32,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", UProjectVector__FP6VECTORN20);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", AdjustSoXpLocal__FP2SOP2XPi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", junk_001B8FE0);
+JUNK_WORD(0xF8C10000);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", CalculateSoAngularEffectWorld__FP2SOP6VECTORT1);
 
@@ -63,13 +63,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", RotateSoToMat__FP2SOP7MATRIX3);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", TranslateSoToPosSafe__FP2SOP6VECTORT1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", junk_001B9938);
+JUNK_ADDIU(40);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoVelocityVec__FP2SOP6VECTOR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoAngularVelocityVec__FP2SOP6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", junk_001B9AA8);
+JUNK_ADDIU(20);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", AddSoAcceleration__FP2SOP6VECTOR);
 
@@ -81,11 +81,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoParent__FP2SOP3ALO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", ApplySoProxy__FP2SOP5PROXY);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", junk_001B9D08);
+JUNK_WORD(0x27BD0150);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", AccelSoTowardMatSmooth__FP2SOfP7MATRIX3P3SMP);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", junk_001B9F28);
+JUNK_WORD(0x27BD01C0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", GetSoCpdefi__FP2SOfP6CPDEFI);
 

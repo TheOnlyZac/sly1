@@ -42,4 +42,4 @@ INCLUDE_ASM("asm/nonmatchings/P2/bq", CbRead__17CQueueInputMemoryiPv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/bq", CbRead__15CQueueInputFileiPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/bq", junk_0013CCF0);
+JUNK_WORD(0xAC80000C);

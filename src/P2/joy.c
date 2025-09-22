@@ -247,7 +247,8 @@ void TriggerJoyRumbleRumk(JOY *pjoy, RUMK rumk, float dt)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", junk_0016EC80);
+JUNK_NOP();
+JUNK_ADDIU(10);
 
 void StartJoySelection(JOY *pjoy)
 {
@@ -286,7 +287,8 @@ void AddCode(CODE *pcode)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", junk_0016F1F0);
+JUNK_NOP();
+JUNK_WORD(0xAC820014);
 
 void _ResetCodes()
 {
@@ -407,7 +409,8 @@ void AddFcht(int nParam)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", junk_0016F470);
+JUNK_NOP();
+JUNK_ADDIU(10);
 
 void Chetkido()
 {

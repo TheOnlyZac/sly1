@@ -37,7 +37,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/util", GSmooth__FfffP3SMPPf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/util", GSmoothA__FffffP4SMPAPf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/util", junk_001EA720);
+JUNK_ADDIU(40);
 
 float RadSmooth(float radCur, float radTarget, float dt, SMP *psmp, float *pdradNext)
 {
@@ -378,4 +378,4 @@ void Force(void *pv)
 
 INCLUDE_ASM("asm/nonmatchings/P2/util", MinimizeRange);
 
-INCLUDE_ASM("asm/nonmatchings/P2/util", junk_001EB458);
+JUNK_ADDIU(C0);
