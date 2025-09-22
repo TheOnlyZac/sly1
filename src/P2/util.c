@@ -314,7 +314,7 @@ float GModPositive(float gDividend, float gDivisor)
 
 void FitClq(float g0, float g1, float u, float gU, CLQ *pclq)
 {
-	pclq->u = g0;
+    pclq->u = g0;
     pclq->w = ((gU - g0) / u - (g1 - g0)) / (u - 1.0f);
     pclq->v = (g1 - g0) - pclq->w;
 }
