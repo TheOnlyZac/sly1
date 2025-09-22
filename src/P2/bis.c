@@ -1,8 +1,8 @@
 #include <bis.h>
-#include <989snd.h>
-#include <lib/libkernl/filestub.h>
-#include <sdk/libcdvd.h>
 #include <memory.h>
+#include <989snd.h>
+#include <sdk/libcdvd.h>
+#include <lib/libkernl/filestub.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/bis", __18CBinaryInputStreamPvii);
 #ifdef SKIP_ASM
@@ -33,18 +33,13 @@ CBinaryInputStream::CBinaryInputStream(void *pvSpool, int cbSpool, GRFBIS grfbis
 }
 #endif
 
-INCLUDE_ASM("asm/nonmatchings/P2/bis", DESTRUCTOR__CBinaryInputStream);
-#ifdef SKIP_ASM
 CBinaryInputStream::~CBinaryInputStream()
 {
     Close();
 }
-#endif
 
 int CBinaryInputStream::FOpenSector(uint isector, uint cb)
 {
-    int cbSpool = m_cbSpool;
-
     m_bisk = BISK_Cd;
     m_cbAsyncRequest = isector;
     m_cbFile = cb;
@@ -55,6 +50,7 @@ int CBinaryInputStream::FOpenSector(uint isector, uint cb)
     m_cbAsyncComplete = 0;
     *(uint *)((int)&m_tickWait + 4) = 0;
 
+    int cbSpool = m_cbSpool;
     if (cbSpool < 0)
     {
         cbSpool += 0xfffff;
@@ -222,7 +218,7 @@ void CBinaryInputStream::Align(int n)
 {
     int pbAligned = ((int)m_pb + (n - 1)) & -n;
     m_cb -= (pbAligned - (int)m_pb);
-    m_pb = (byte*)pbAligned;
+    m_pb = (byte *)pbAligned;
 }
 
 uchar CBinaryInputStream::U8Read()
@@ -230,16 +226,14 @@ uchar CBinaryInputStream::U8Read()
     if (m_cb >= 1)
     {
         uchar b = *m_pb;
-        m_pb += 1;
-        m_cb -= 1;
+        m_pb++;
+        m_cb--;
         return b;
     }
-    else
-    {
-        uchar b;
-        Read(1, &b);
-        return b;
-    }
+
+    uchar b;
+    Read(sizeof(uchar), &b);
+    return b;
 }
 
 ushort CBinaryInputStream::U16Read()
@@ -252,12 +246,10 @@ ushort CBinaryInputStream::U16Read()
         m_cb -= 2;
         return (v << 8) | u;
     }
-    else
-    {
-        ushort v;
-        Read(2, &v);
-        return v;
-    }
+
+    ushort v;
+    Read(sizeof(ushort), &v);
+    return v;
 }
 
 uint CBinaryInputStream::U32Read()
@@ -272,12 +264,10 @@ uint CBinaryInputStream::U32Read()
         m_cb -= 4;
         return u + (v * 0x100) + (w * 0x10000) + (x * 0x1000000);
     }
-    else
-    {
-        uint v;
-        Read(4, &v);
-        return v;
-    }
+
+    uint v;
+    Read(sizeof(uint), &v);
+    return v;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/bis", junk_00137CB8);
@@ -291,12 +281,10 @@ char CBinaryInputStream::S8Read()
         m_cb -= 1;
         return b;
     }
-    else
-    {
-        char b;
-        Read(1, &b);
-        return b;
-    }
+
+    char b;
+    Read(sizeof(char), &b);
+    return b;
 }
 
 short CBinaryInputStream::S16Read()
@@ -309,12 +297,10 @@ short CBinaryInputStream::S16Read()
         m_cb -= 2;
         return v;
     }
-    else
-    {
-        short v;
-        Read(2, &v);
-        return v;
-    }
+
+    short v;
+    Read(sizeof(short), &v);
+    return v;
 }
 
 int CBinaryInputStream::S32Read()
@@ -329,12 +315,10 @@ int CBinaryInputStream::S32Read()
         m_cb -= 4;
         return u + (v << 8) + (w << 16) + (x << 24);
     }
-    else
-    {
-        int v;
-        Read(4, &v);
-        return v;
-    }
+
+    int v;
+    Read(sizeof(int), &v);
+    return v;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/bis", junk_00137DF0);
@@ -343,18 +327,15 @@ float CBinaryInputStream::F32Read()
 {
     if (m_cb >= 4)
     {
-        int g;
-        g = (m_pb[0] + (m_pb[1] << 8) + (m_pb[2] << 16) + (m_pb[3] << 24));
+        int g = (m_pb[0] + (m_pb[1] << 8) + (m_pb[2] << 16) + (m_pb[3] << 24));
         m_pb += 4;
         m_cb -= 4;
-        return *(float*)&g;
+        return *(float *)&g;
     }
-    else
-    {
-        float g;
-        Read(4, &g);
-        return g;
-    }
+
+    float g;
+    Read(sizeof(float), &g);
+    return g;
 }
 
 void CBinaryInputStream::ReadVector(VECTOR *pvec)
@@ -424,12 +405,11 @@ void CBinaryInputStream::Unknown2(void **ppv)
     uint data[8];
     Read(0x20, &data);
 
-    if(data[1] != data[7])
+    if (data[1] != data[7])
     {
         *ppv = PvAllocSwCopyImpl(0x20, data);
+        return;
     }
-    else
-    {
-        *ppv = (void *)nullptr;
-    }
+
+    *ppv = (void *)nullptr;
 }

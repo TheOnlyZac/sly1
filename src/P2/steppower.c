@@ -17,17 +17,17 @@ void SetFsp(FSP fsp)
     {
     case FSP_Ball:
         // If cur powerup is roll, reset JT's body state
-        if (g_pjt != nullptr && g_pjt->jts == (JTS)13)
+        if (g_pjt && g_pjt->jts == (JTS)13)
         {
             SetJtJts(g_pjt, JTS_Stand, JTBS_Nil);
         }
         break;
     case FSP_Mine:
         // If cur powerup is mine, fade out the mine
-        if (g_pjt != nullptr)
+        if (g_pjt)
         {
             ALO *palo = g_pjt->paloMine_0x1518;
-            if ((palo != nullptr) && (FIsLoInWorld((LO *)g_pjt->paloMine_0x1518)))
+            if (palo && FIsLoInWorld((LO *)g_pjt->paloMine_0x1518))
             {
                 FadeAloOut(g_pjt->paloMine_0x1518, 0.5f);
             }
@@ -37,7 +37,7 @@ void SetFsp(FSP fsp)
         break;
     }
 
-    if (g_pjt != nullptr)
+    if (g_pjt)
     {
         g_rtClockPowerUp = 1.0f;
         if ((g_pjt->unk_0x2750 != 0) && FIsLoInWorld((JT *)g_pjt->unk_0x2750))
@@ -46,7 +46,7 @@ void SetFsp(FSP fsp)
         }
 
         func_001D31D0(g_pjt, 0);
-        if (g_pjt != nullptr && g_pjt == PpoCur())
+        if (g_pjt && g_pjt == PpoCur())
         {
             g_fsp = fsp;
         }
@@ -60,8 +60,8 @@ void SetFsp(FSP fsp)
     }
 
     // Show note
-    SetBlotDtVisible((NOTE *)&g_note.unk278, (g_pjt != nullptr) && (g_pjt == PpoCur()) ? 3.0 : 8.0);
-    SetBlotFontScale(0.6, (NOTE *)&g_note.unk278);
+    SetBlotDtVisible((NOTE *)&g_note.unk278, (g_pjt && g_pjt == PpoCur()) ? 3.0f : 8.0f);
+    SetBlotFontScale(0.6f, (NOTE *)&g_note.unk278);
     ((NOTE *)&g_note.unk278)->pvtnote->pfnSetNoteAchzDraw((NOTE *)&g_note.unk278, s_mpfspachz[fsp]);
     ((NOTE *)&g_note.unk278)->pvtnote->pfnShowBlot((NOTE *)&g_note.unk278);
 

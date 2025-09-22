@@ -11,8 +11,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/button", FAddAshOid__FP3ASH3OID);
 
 void InitBtn(BTN *pbtn)
 {
-    STRUCT_OFFSET(pbtn, 0x120, int) = IchkAllocChkmgr(&g_chkmgr);
-    STRUCT_OFFSET(pbtn, 0x140, OID) = OID_Nil;
+    STRUCT_OFFSET(pbtn, 0x120, int) = IchkAllocChkmgr(&g_chkmgr); // pbtn->ichkPushed
+    STRUCT_OFFSET(pbtn, 0x140, OID) = OID_Nil; // pbtn->oidDialog
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/button", LoadBtn__FP3BTNP3ALO);
@@ -38,13 +38,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/button", UntriggerBtn__FP3BTNi);
 void InitButton(BUTTON *pbutton)
 {
     InitSo(pbutton);
-    InitBtn(&STRUCT_OFFSET(pbutton, 0x554, BTN)); // pbutton->btn in proto.
+    InitBtn(&STRUCT_OFFSET(pbutton, 0x554, BTN)); // pbutton->btn
 }
 
 void LoadButtonFromBrx(BUTTON *pbutton, CBinaryInputStream *pbis)
 {
     LoadSoFromBrx(pbutton, pbis);
-    LoadBtn(&STRUCT_OFFSET(pbutton, 0x554, BTN), pbutton);
+    LoadBtn(&STRUCT_OFFSET(pbutton, 0x554, BTN), pbutton); // pbutton->btn
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/button", InsertButtonPos__FP6BUTTONP3PNTP6VECTOR);
@@ -109,10 +109,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/button", AddVolbtnPushObject__FP6VOLBTN3OID);
 
 void SetButtonRsmg(BUTTON *pbutton, int fOnTrigger, OID oidRoot, OID oidSM, OID oidGoal)
 {
-    SetBtnRsmg(&STRUCT_OFFSET(pbutton, 0x554, BTN), fOnTrigger, oidRoot, oidSM, oidGoal); // pbutton->btn in proto.
+    SetBtnRsmg(&STRUCT_OFFSET(pbutton, 0x554, BTN), fOnTrigger, oidRoot, oidSM, oidGoal); // pbutton->btn
 }
 
 void SetVolbtnRsmg(VOLBTN *pvolbtn, int fOnTrigger, OID oidRoot, OID oidSM, OID oidGoal)
 {
-    SetBtnRsmg(&STRUCT_OFFSET(pvolbtn, 0x5c0, BTN), fOnTrigger, oidRoot, oidSM, oidGoal); // pvolbtn->btn in proto.
+    SetBtnRsmg(&STRUCT_OFFSET(pvolbtn, 0x5c0, BTN), fOnTrigger, oidRoot, oidSM, oidGoal); // pvolbtn->btn
 }

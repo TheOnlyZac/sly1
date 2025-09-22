@@ -38,6 +38,7 @@ struct TARGET;
 
 typedef int GRFIC;
 typedef int GRFTAK;
+typedef int GRFSNIP;
 
 /**
  * @todo Unknown.
@@ -128,7 +129,7 @@ struct FICG
 */
 struct SNIP
 {
-    int grfsnip;
+    /* 0x00 */ GRFSNIP grfsnip;
     OID oid;
     int ib;
 };
@@ -158,16 +159,16 @@ struct ALO : public LO
 {
     /* 0x34 */ DL dlChild;
     DLE dleBusy;
-    DLE dleMRD;
+    /* 0x54 */ DLE dleMRD;
     ALO *paloRoot;
     ALO *paloFreezeRoot;
     DLE dleFreeze;
-    DL dlFreeze;
+    /* 0x60 */ DL dlFreeze;
     int cpmrg;
     MRG *apmrg;
-    float sMRD;
-    float sCelBorderMRD;
-    int grfzon;
+    /* 0x80 */ float sMRD;
+    /* 0x84 */ float sCelBorderMRD;
+    /* 0x88 */ int grfzon;
     float dsMRDSnap;
     undefined4 unk_0x9c;
     STRUCT_PADDING(10); // int frz[10];
@@ -175,7 +176,7 @@ struct ALO : public LO
     VECTOR posOrig;
     MATRIX3 matOrig;
     VECTOR eulOrig;
-    DL dlAct;
+    /* 0x1e0 */ DL dlAct;
     ACT *pactPos;
     ACT *pactRot;
     ACT *pactScale;
@@ -192,7 +193,7 @@ struct ALO : public LO
     SMPA *psmapaRot;
     ALOX *palox;
     /* 0x228 */ int cframeStatic;
-    STRUCT_PADDING(22); // GLOBSET globset;
+    /* 0x22c */ STRUCT_PADDING(22); // GLOBSET globset;
     /* 0x284 */ SHADOW *pshadow;
     /* 0x288 */ THROB *pthrob;
     /* 0x28c */ float sFastShadowRadius;

@@ -16,7 +16,7 @@
 struct ACTLA
 {
     int fUseTarget;
-    struct ALO *paloTarget;
+    ALO *paloTarget;
     VECTOR posTargetLocal;
     float sIgnore;
     int nPriorityEnabled;

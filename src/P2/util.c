@@ -12,7 +12,7 @@ LM g_lmZeroOne = {0.0f, 1.0f};
 
 float RadNormalize(float rad)
 {
-    if ((rad < -PI) || (PI < rad))
+    if (rad < -PI || PI < rad)
     {
         float modpos = GModPositive(rad + PI, 2 * PI);
         rad = modpos - PI;
@@ -43,7 +43,7 @@ float RadSmooth(float radCur, float radTarget, float dt, SMP *psmp, float *pdrad
 {
     float rad;
     rad = RadNormalize(radTarget - radCur);
-    rad = GSmooth(0.0, rad, dt, psmp, pdradNext);
+    rad = GSmooth(0.0f, rad, dt, psmp, pdradNext);
     rad = RadNormalize(radCur + rad);
     return rad;
 }
@@ -52,7 +52,7 @@ float RadSmoothA(float radCur, float dradCur, float radTarget, float dt, SMPA *p
 {
     float rad;
     rad = RadNormalize(radTarget - radCur);
-    rad = GSmoothA(0.0, dradCur, rad, dt, psmpa, pdradNext);
+    rad = GSmoothA(0.0f, dradCur, rad, dt, psmpa, pdradNext);
     rad = RadNormalize(radCur + rad);
     return rad;
 }
@@ -70,30 +70,22 @@ int NRandInRange(int nLow, int nHi)
     }
 
     int randVal = rand();
-    randVal = randVal % PRIME_MOD;
-
-    int range = (nHi - nLow) + 1;
+    randVal %= PRIME_MOD;
 
     // Return a value within the range [nLow, nHi]
+    int range = (nHi - nLow) + 1;
     return nLow + (randVal % range);
 }
 
 float GRandInRange(float gHi, float gLow)
 {
-    int rand_result;
-    float delta;
-    float result;
-    if (gHi != gLow)
+    if (gHi == gLow)
     {
-        rand_result = rand();
-        delta = gLow - gHi;
-        result = gHi + delta * (float)rand_result * 4.656613e-10f;
+        return gHi;
     }
-    else
-    {
-        result = gHi;
-    }
-    return result;
+
+    int nRand = rand();
+    return gHi + (gLow - gHi) * (float)nRand * 4.656613e-10f;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/util", GRandGaussian__Ffff);
@@ -323,9 +315,8 @@ float GModPositive(float gDividend, float gDivisor)
 void FitClq(float g0, float g1, float u, float gU, CLQ *pclq)
 {
     pclq->u = g0;
-    float f = ((gU - g0) / u - (g1 - g0)) / (u - 1.0f);
-    pclq->w = f;
-    pclq->v = (g1 - g0) - f;
+    pclq->w = ((gU - g0) / u - (g1 - g0)) / (u - 1.0f);
+    pclq->v = (g1 - g0) - pclq->w;
 }
 
 int FCheckLm(LM *plm, float g)
@@ -337,7 +328,7 @@ bool FCheckAlm(int clm, LM *alm, float g)
 {
     for (int i = 0; i < clm; i++)
     {
-        if (FCheckLm(alm + i, g) != 0)
+        if (FCheckLm(&alm[i], g))
         {
             return true;
         }
@@ -345,7 +336,7 @@ bool FCheckAlm(int clm, LM *alm, float g)
     return false;
 }
 
-float GLimitLm(struct LM *plm, float g)
+float GLimitLm(LM *plm, float g)
 {
     if (g < plm->gMin)
     {

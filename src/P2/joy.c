@@ -1,13 +1,13 @@
-#include <sce/memset.h>
-#include <sdk/ee/libpad.h>
 #include <joy.h>
-#include <clock.h>
-#include <transition.h>
 #include <game.h>
 #include <text.h>
-#include <screen.h>
+#include <clock.h>
 #include <sound.h>
 #include <memory.h>
+#include <screen.h>
+#include <transition.h>
+#include <sce/memset.h>
+#include <sdk/ee/libpad.h>
 
 // static char g_chzThePasswordIs[] = "The password is: %s";
 // static char g_chzCiphertext[] = "@KFWHJGL"; // decrypts to "chetkido"
@@ -174,60 +174,53 @@ void UpdateJoy(JOY *pjoy)
 
 void SetJoyJoys(JOY *pjoy, JOYS joys, JOYK joyk)
 {
-    JOYK joykPrev;
-    LM *almDeflect2;
-    LM *almDeflect;
-    float *almDeflect2Max;
-    float *almDeflectMax;
-    uint i;
+    if (joys == pjoy->joys && joyk == pjoy->joyk)
+        return;
 
-    if (joys != pjoy->joys || joyk != pjoy->joyk)
+    if (joyk == JOYK_Unknown)
     {
-        if (joyk == JOYK_Unknown)
-        {
-            pjoy->term = 0;
-            joys = JOYS_Searching;
-            joykPrev = pjoy->joyk;
-        }
-        else
-        {
-            joykPrev = pjoy->joyk;
-        }
-
-        if (joykPrev < 3 && 2 < joyk)
-        {
-            InitRumble(pjoy->prumble, pjoy->nPort, pjoy->nSlot);
-        }
-
-        if (joys == JOYS_Ready)
-        {
-            i = 0;
-            pjoy->tRead = 0.0;
-            pjoy->fStickMoved2 = 0;
-            almDeflectMax = &pjoy->almDeflect[0].gMax;
-            pjoy->fStickMoved = 0;
-            almDeflect2Max = &pjoy->almDeflect2[0].gMax;
-            pjoy->grfbtn = 0;
-            almDeflect = pjoy->almDeflect;
-            almDeflect2 = pjoy->almDeflect2;
-
-            for (; i < 4; i++)
-            {
-                almDeflect2->gMin = -0.75;
-                almDeflect->gMin = -0.75;
-                almDeflect2++;
-                *almDeflect2Max = 0.75;
-                almDeflect++;
-                *almDeflectMax = 0.75;
-                almDeflect2Max += 2;
-                almDeflectMax += 2;
-            }
-        }
-
-        pjoy->joys = joys;
-        pjoy->joyk = joyk;
-        pjoy->tJoys = g_clock.tReal;
+        pjoy->term = 0;
+        joys = JOYS_Searching;
     }
+
+    JOYK joykPrev = pjoy->joyk;
+    if (joykPrev < JOYK_Shock && joyk > JOYK_Analog)
+    {
+        InitRumble(pjoy->prumble, pjoy->nPort, pjoy->nSlot);
+    }
+
+    if (joys == JOYS_Ready)
+    {
+        uint i = 0;
+        pjoy->tRead = 0.0f;
+        pjoy->fStickMoved2 = 0;
+        pjoy->fStickMoved = 0;
+        pjoy->grfbtn = 0;
+
+        float *almDeflectMax = &pjoy->almDeflect[0].gMax;
+        float *almDeflect2Max = &pjoy->almDeflect2[0].gMax;
+        LM *almDeflect = pjoy->almDeflect;
+        LM *almDeflect2 = pjoy->almDeflect2;
+
+        for (; i < 4; i++)
+        {
+            almDeflect2->gMin = -0.75f;
+            almDeflect2++;
+
+            almDeflect->gMin = -0.75f;
+            almDeflect++;
+
+            *almDeflect2Max = 0.75f;
+            almDeflect2Max += 2;
+
+            *almDeflectMax = 0.75f;
+            almDeflectMax += 2;
+        }
+    }
+
+    pjoy->joys = joys;
+    pjoy->joyk = joyk;
+    pjoy->tJoys = g_clock.tReal;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/joy", GetJoyXYDeflection__FP3JOYUcUcPfN23PUcT6PiP2LM);
@@ -265,7 +258,7 @@ void AddCode(CODE *pcode)
 {
     CODE *p_inputs_counter = g_pcode;
 
-    while (p_inputs_counter != nullptr)
+    while (p_inputs_counter)
     {
         if (pcode == p_inputs_counter)
         {
@@ -291,39 +284,40 @@ INCLUDE_ASM("asm/nonmatchings/P2/joy", junk_0016F1F0);
 void _ResetCodes()
 {
     CODE *pcode = g_pcode;
-    if (g_pcode != nullptr)
+    if (!pcode)
+        return;
+
+    pcode->nInputCounter = 0;
+    while (pcode = pcode->pchtNext)
     {
-        g_pcode->nInputCounter = 0;
-        while (pcode = pcode->pchtNext, pcode != nullptr)
-        {
-            pcode->nInputCounter = 0;
-        }
+        pcode->nInputCounter = 0;
     }
 }
 
 void _MatchCodes(JOY *pjoy, GRFBTN btn)
 {
-    if (g_pcode && pjoy == &g_joy && btn != g_joy.grfbtn && g_joy.grfbtn != 0)
-    {
-        CODE *pcode = g_pcode;
+    if (!g_pcode || pjoy != &g_joy || btn == g_joy.grfbtn || g_joy.grfbtn == 0)
+        return;
 
-        while (pcode)
+    CODE *pcode = g_pcode;
+    while (pcode)
+    {
+        if (pcode->nInputCounter < pcode->cjbc)
         {
-            if (pcode->nInputCounter < pcode->cjbc)
+            if (g_joy.grfbtn == pcode->ajbc[pcode->nInputCounter])
             {
-                if (g_joy.grfbtn == pcode->ajbc[pcode->nInputCounter])
-                {
-                    pcode->nInputCounter++;
-                }
-                else
-                {
-                    pcode->nInputCounter = 0;
-                }
+                pcode->nInputCounter++;
             }
-            pcode = pcode->pchtNext;
+            else
+            {
+                pcode->nInputCounter = 0;
+            }
         }
-        g_tCodeCheck = g_clock.tReal + 1.0f;
+
+        pcode = pcode->pchtNext;
     }
+
+    g_tCodeCheck = g_clock.tReal + 1.0f;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/joy", UpdateCodes__Fv);
@@ -411,29 +405,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/joy", junk_0016F470);
 
 void Chetkido()
 {
-    // Check preconditions
-    int widCur;
-    FGS cmpFlags;
-    GS *gsCur;
-
-    widCur = (g_pgsCur->gameworldCur << 8) | (g_pgsCur->worldlevelCur);
+    // Check preconditions.
+    int widCur = (g_pgsCur->gameworldCur << 8) | (g_pgsCur->worldlevelCur);
     if (widCur != 0x400) // level is "A Perilous Ascent"
         return;
 
-    cmpFlags = get_game_completion();
+    FGS cmpFlags = get_game_completion();
     if ((cmpFlags & (FGS_HalfClues | FGS_AllClues)) != (FGS_HalfClues | FGS_AllClues)) // clues collected
         return;
 
-    gsCur = g_pgsCur;
+    GS *gsCur = g_pgsCur;
     if (gsCur->ccoin != 99 || gsCur->clife != 0) // 99 coins and 0 lives
         return;
 
     // Decrypt chetkido using XOR cipher, key 0x23
     char buf[64];
     char achzPlaintext[16];
-    char *pchCur = &achzPlaintext[0];
-
     strcpy(achzPlaintext, g_chzCiphertext);
+
+    char *pchCur = achzPlaintext;
     while (*pchCur != '\0')
     {
         *pchCur++ ^= 0x23;

@@ -1,8 +1,7 @@
 /**
  * @todo Mangle all function names in INCLUDE_ASM macros.
  */
-#include "common.h"
-#include "cplcy.h"
+#include <cplcy.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", InitCplcy);
 

@@ -1,7 +1,7 @@
 /**
  * @file dysh.h
  *
- * @brief Dynamic shader(?)
+ * @brief Dynamic shadow(?)
  */
 #ifndef DYSH_H
 #define DYSH_H
@@ -16,7 +16,7 @@
 struct RPL;
 
 /**
- * @class DYNAMIC_SHADOE
+ * @class DYNAMIC_SHADOW
  * @brief Unknown.
  * @todo Implement the struct.
  */

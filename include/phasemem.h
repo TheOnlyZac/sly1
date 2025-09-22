@@ -6,14 +6,18 @@
 
 #include "common.h"
 
-enum PHASE {
+/**
+ * @brief Engine phase.
+ */
+enum PHASE
+{
     PHASE_Nil = -1,
-    PHASE_None = 0x0,
-    PHASE_Startup = 0x1,
-    PHASE_Load = 0x2,
-    PHASE_Main = 0x3,
-    PHASE_Mpeg = 0x4,
-    PHASE_Max = 0x5
+    PHASE_None = 0,
+    PHASE_Startup = 1,
+    PHASE_Load = 2,
+    PHASE_Main = 3,
+    PHASE_Mpeg = 4,
+    PHASE_Max = 5
 };
 
 extern PHASE g_phase;
