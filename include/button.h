@@ -6,6 +6,7 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
+#include "common.h"
 #include <oid.h>
 #include <so.h>
 #include <rs.h>
@@ -60,7 +61,7 @@ struct BTN
     ASH aash[2];
     float svtAnimation;
     int fCheckpointed;
-    int ichkPushed;
+    /* 0x120 */ int ichkPushed;
     float tButtons;
     float dtRepush;
     BUTTONS buttons;
@@ -68,7 +69,7 @@ struct BTN
     int fSilent;
     int fReapplyAseg;
     int fManualReset;
-    OID oidDialog;
+    /* 0x140 */ OID oidDialog;
     // DIALOG *pdialog;
     int crsmg;
     RSMG arsmg[8];
@@ -89,11 +90,11 @@ struct VOLBTN
  */
 struct BUTTON : public SO
 {
-    BTN btn;
+    // ...
+    /* 0x554 */ BTN btn;
     // ...
 };
 
-/*
 void PostAshLoad(SW *psw, ASH *pash, ALO *paloOwner);
 
 int FFoundAshAseg(ASH *pash, ASEG *paseg);
@@ -101,7 +102,6 @@ int FFoundAshAseg(ASH *pash, ASEG *paseg);
 int FAddAshAseg(ASH *pash, ASEG *paseg);
 
 int FAddAshOid(ASH *pash, OID oid);
-*/
 
 void InitBtn(BTN *pbtn);
 
@@ -109,7 +109,7 @@ void LoadBtn(BTN *pbtn, ALO *paloOwner);
 
 void PostBtnLoad(BTN *pbtn);
 
-// void RestoreBtnFromCheckpointCallback(BTN *pbtn, MSGID msgid, void *pv);
+void RestoreBtnFromCheckpointCallback(BTN *pbtn, MSGID msgid, void *pv);
 
 void SetBtnRsmg(BTN *pbtn, int fOnTrigger, OID oidRoot, OID oidSM, OID oidGoal);
 
@@ -117,7 +117,6 @@ void SetBtnButtons(BTN *pbtn, BUTTONS buttons);
 
 int FAddRsmg(RSMG *arsmg, int crsmgMax, int *pcrsmg, int fOnTrigger, OID oidRoot, OID oidSM, OID oidGoal);
 
-/*
 void TriggerRsmg(SW *psw, int crsmg, RSMG *arsmg, LO *ploContext, int fTrigger);
 
 void RunBtnAsegs(BTN *pbtn, IASH asht, int fSeekToEnd);
@@ -153,11 +152,9 @@ void UpdateButtonInternalXps(BUTTON *pbutton);
 void UpdateButton(BUTTON *pbutton, float dt);
 
 int FAbsorbButtonWkr(BUTTON *pbutton, WKR *pwkr);
-*/
 
 void InitVolbtn(VOLBTN *pvolbtn);
 
-/*
 void LoadVolbtnFromBrx(VOLBTN *pvolbtn, CBinaryInputStream *pbis);
 
 void PostVolbtnLoad(VOLBTN *pvolbtn);
@@ -177,7 +174,6 @@ void AddButtonAseg(BUTTON *pbutton, OID oid);
 void AddVolbtnAseg(VOLBTN *pvolbtn, OID oid);
 
 void AddBtnOffAseg(BTN *pbtn, ALO *palo, OID oid);
-*/
 
 void AddButtonOffAseg(BUTTON *pbutton, OID oid);
 

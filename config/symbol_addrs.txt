@@ -967,7 +967,7 @@ _GLOBAL_$I$InitBei__FP3BEIP3CLQffi = 0x137270; // type:func
 // P2/bis.c
 ////////////////////////////////////////////////////////////////
 __18CBinaryInputStreamPvii = 0x137290; // type:func
-DESTRUCTOR__CBinaryInputStream = 0x1372E0; // type:func
+_$_18CBinaryInputStream = 0x1372E0; // type:func
 FOpenSector__18CBinaryInputStreamUiUi = 0x137328; // type:func
 OpenMemory__18CBinaryInputStreamiPv = 0x137398; // type:func
 FOpenFile__18CBinaryInputStreamP13CFileLocation = 0x1373B0; // type:func
@@ -4005,15 +4005,54 @@ s_mpfspgrfvault = 0x274F38; // size:0x1c
 ////////////////////////////////////////////////////////////////
 // P2/steprail.c
 ////////////////////////////////////////////////////////////////
+func_001D31D0__FP2LOi  = 0x1D31D0; // type:func
+post_load_steprail     = 0x1D3290; // type:func
 func_001D32D8__FiP2JTl = 0x1D32D8; // type:func
-func_001D31D0__FP2LOi = 0x1D31D0; // type:func
+update_steprail        = 0x1D3398; // type:func
+preset_steprail_accel  = 0x1D3470; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/steprun.c
+////////////////////////////////////////////////////////////////
+PostStepLoadRun__FP4STEPP5BLRUNPP6ASEGBL        = 0x1D36F0; // type:func
+CalculateBlrunV__FiP5BLRUNP4MRSGP6VECTOR        = 0x1D39E0; // type:func
+ProjectStepRunPlant__FP4STEPP5BLRUNffiiP6VECTOR = 0x1D3A38; // type:func
+FIntersectStepRunPlant__FP4STEPP6VECTORT1Pf     = 0x1D3B58; // type:func
+FReblendAbl2D__FiiiP2BLe                        = 0x1D3C68; // type:func
+AdjustStepRun__FP4STEPP5BLRUNP6ASEGBLP5ASEGA    = 0x1D3E00; // type:func
+SetStepRunTarget__FP4STEPffP5BLRUNP6ASEGBL      = 0x1D40A0; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/stepside.c
+////////////////////////////////////////////////////////////////
+PostJtLoadSidestep__FP2JTP4BLSSPP6ASEGBL   = 0x1D4148; // type:func
+AdjustJtSidestep__FP2JTP4BLSSP6ASEGBL      = 0x1D4348; // type:func
+SetJtSidestepTarget__FP2JTP4BLSSP6ASEGBLff = 0x1D4698; // type:func
 
 
 ////////////////////////////////////////////////////////////////
 // P2/stepzap.c
 ////////////////////////////////////////////////////////////////
-PostJtLoadZap__FP2JT    = 0x1D4848; // type:func
-InitZpr__FP3ZPR3ZPKP2LO = 0x1D7098; // type:func
+PostJtLoadZap__FP2JT                      = 0x1D4848; // type:func
+PresetJtAccelZap__FP2JT                   = 0x1D48E8; // type:func
+UpdateJtZap__FP2JT                        = 0x1D4A98; // type:func
+
+FTakeJtDamage__FP2JTP3ZPR                 = 0x1D4D08; // type:func
+
+DrawHaloSpks__FP6VECTORiP4SPKSP4SPKDP3RPL = 0x1D5678; // type:func
+DrawJtHaloElectric__FP3RPL                = 0x1D5FA8; // type:func
+DrawJtHaloFire__FP3RPL                    = 0x1D60B0; // type:func
+
+RenderJtSelfZap__FP2JTP2CMP2RO            = 0x1D62E0; // type:func
+JthsCurrentJt__FP2JT                      = 0x1D65D8; // type:func
+UseJtCharm__FP2JT                         = 0x1D6608; // type:func
+UpdateJtWater__FP2JT                      = 0x1D66A8; // type:func
+FFindJtWaterSurface__FP2JTP5WATERP6VECTOR = 0x1D6A18; // type:func
+AddJtWaterAcceleration__FP2JTP5WATERf     = 0x1D6B18; // type:func
+
+InitZpr__FP3ZPR3ZPKP2LO                   = 0x1D7098; // type:func
 
 
 ////////////////////////////////////////////////////////////////

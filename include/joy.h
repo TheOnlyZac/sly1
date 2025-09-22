@@ -73,7 +73,7 @@ enum JOYS
 };
 
 /**
- * @brief Joypad kind
+ * @brief Joypad kind.
  */
 enum JOYK
 {
@@ -86,7 +86,7 @@ enum JOYK
 };
 
 /**
- * @brief Joypad
+ * @brief Joypad.
  */
 struct JOY
 {

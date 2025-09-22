@@ -46,7 +46,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", ReleaseRip__FP3RIP);
 
 void TouchRip(RIP *prip, int fTouching)
 {
-    if (fTouching != 0)
+    if (fTouching)
     {
         RemoveRip(prip);
     }

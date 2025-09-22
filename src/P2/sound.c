@@ -217,7 +217,7 @@ void KillSoundSystem()
     KillSounds(0);
     KillExcitement();
     FUN_001c0cb0();
-    do {} while (snd_FlushSoundCommands());
+    while (snd_FlushSoundCommands()) {}
     snd_StreamSafeCheckCDIdle(1);
     snd_StreamSafeCdSync(0);
 }
