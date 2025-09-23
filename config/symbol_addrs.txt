@@ -546,7 +546,46 @@ PacgNew__F4ACGK                                        = 0x121160; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/act.c
 ////////////////////////////////////////////////////////////////
-PactNew__FP2SWP3ALOP5VTACT = 0x121228;
+PactNew__FP2SWP3ALOP5VTACT                             = 0x121228; // type:func
+PactNewClone__FP3ACTP2SWP3ALO                          = 0x121280; // type:func
+CloneAct__FP3ACTT0                                     = 0x1212D8; // type:func
+InitAct__FP3ACTP3ALO                                   = 0x121338; // type:func
+RetractAct__FP3ACTi                                    = 0x121358; // type:func
+GetActPositionGoal__FP3ACTfP6VECTORT2                  = 0x1214B8; // type:func
+GetActRotationGoal__FP3ACTfP7MATRIX3P6VECTOR           = 0x121508; // type:func
+GetActTwistGoal__FP3ACTPfT1                            = 0x121568; // type:func
+GetActScale__FP3ACTP7MATRIX3                           = 0x121580; // type:func
+GGetActPoseGoal__FP3ACTi                               = 0x1215A8; // type:func
+CalculateActDefaultAck__FP3ACT                         = 0x1215C0; // type:func
+SnapAct__FP3ACTi                                       = 0x121648; // type:func
+CalculateAloPositionSpring__FP3ALOfP6VECTORN22         = 0x121760; // type:func
+ProjectActPosition__FP3ACT                             = 0x1218C0; // type:func
+CalculateAloRotationSpring__FP3ALOfP7MATRIX3P6VECTORT3 = 0x121C48; // type:func
+ProjectActRotation__FP3ACT                             = 0x121DE0; // type:func
+ProjectActPose__FP3ACTi                                = 0x122488; // type:func
+PredictAloPosition__FP3ALOfP6VECTORT2                  = 0x122550; // type:func
+PredictAloRotation__FP3ALOfP7MATRIX3P6VECTOR           = 0x1225D0; // type:func
+AdaptAct__FP3ACT                                       = 0x1226D8; // type:func
+InitActval__FP6ACTVALP3ALO                             = 0x122708; // type:func
+GetActvalPositionGoal__FP6ACTVALfP6VECTORT2            = 0x1227B0; // type:func
+GetActvalRotationGoal__FP6ACTVALfP7MATRIX3P6VECTOR     = 0x1227F0; // type:func
+GetActvalTwistGoal__FP6ACTVALPfT1                      = 0x122840; // type:func
+GetActvalScale__FP6ACTVALP7MATRIX3                     = 0x122858; // type:func
+GGetActvalPoseGoal__FP6ACTVALi                         = 0x122878; // type:func
+InitActref__FP6ACTREFP3ALO                             = 0x122890; // type:func
+GetActrefPositionGoal__FP6ACTREFfP6VECTORT2            = 0x122920; // type:func
+GetActrefRotationGoal__FP6ACTREFfP7MATRIX3P6VECTOR     = 0x122968; // type:func
+GetActrefTwistGoal__FP6ACTREFPfT1                      = 0x1229C0; // type:func
+GetActrefScale__FP6ACTREFP7MATRIX3                     = 0x1229E0; // type:func
+GGetActrefPoseGoal__FP6ACTREFi                         = 0x122A00; // type:func
+InitActadj__FP6ACTADJP3ALO                             = 0x122A18; // type:func
+GetActadjPositionGoal__FP6ACTADJfP6VECTORT2            = 0x122A80; // type:func
+GetActadjRotationGoal__FP6ACTADJfP7MATRIX3P6VECTOR     = 0x122B30; // type:func
+GetActadjTwistGoal__FP6ACTADJPfT1                      = 0x122C48; // type:func
+GetActadjScale__FP6ACTADJP7MATRIX3                     = 0x122CB0; // type:func
+GGetActadjPoseGoal__FP6ACTADJi                         = 0x122D90; // type:func
+InitActbank__FP7ACTBANKP3ALO                           = 0x122DA0; // type:func
+GetActbankRotationGoal__FP7ACTBANKfP7MATRIX3P6VECTOR   = 0x122DE0; // type:func
 
 
 ////////////////////////////////////////////////////////////////

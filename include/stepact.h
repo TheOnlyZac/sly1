@@ -5,17 +5,7 @@
 #define STEPACT_H
 
 #include "common.h"
-#include <vec.h>
-#include <mat.h>
-
-/**
- * @brief Unknown.
- * @todo Should this be defined here?
- */
-struct ACT
-{
-    // ...
-};
+#include <act.h>
 
 /**
  * @brief Unknown.
