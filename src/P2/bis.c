@@ -270,7 +270,8 @@ uint CBinaryInputStream::U32Read()
     return v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/bis", junk_00137CB8);
+JUNK_NOP();
+JUNK_ADDIU(20);
 
 char CBinaryInputStream::S8Read()
 {
@@ -321,7 +322,8 @@ int CBinaryInputStream::S32Read()
     return v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/bis", junk_00137DF0);
+JUNK_NOP();
+JUNK_ADDIU(20);
 
 float CBinaryInputStream::F32Read()
 {
@@ -392,7 +394,8 @@ void CBinaryInputStream::ReadStringSw(char **pachz)
     *pachz = buffer;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/bis", junk_00138510);
+JUNK_NOP();
+JUNK_ADDIU(50);
 
 void CBinaryInputStream::Unknown1()
 {

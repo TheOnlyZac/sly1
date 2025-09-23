@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# A simple script to set up the ProDG compilers + SCE Runtime Library
-# to build the Sly 1 decompilation project.
+# Sets up the ProDG compilers + SCE Runtime Library to build the project.
 
 set -e
 

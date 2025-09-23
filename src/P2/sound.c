@@ -45,7 +45,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001be8f8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FVagPlaying__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", junk_001BE990);
+JUNK_WORD(0x0080102D);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StopVag__Fv);
 
@@ -117,7 +117,8 @@ void StartupSound()
     snd_PreAllocReverbWorkArea(2, 4);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", junk_001BF1E8);
+JUNK_NOP();
+JUNK_ADDIU(10);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FAmbientsPaused__Fv);
 

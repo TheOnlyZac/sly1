@@ -96,7 +96,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", HandleAloMessage__FP3ALO5MSGIDPv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", TranslateAloToPos__FP3ALOP6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", junk_00127468);
+JUNK_ADDIU(20);
+JUNK_ADDIU(20);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", RotateAloToMat__FP3ALOP7MATRIX3);
 
@@ -670,7 +671,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012b590);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012b5b8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", junk_0012B6A0);
+JUNK_ADDIU(10);
+JUNK_WORD(0x7c450000);
+JUNK_WORD(0x48220800);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012b6b8);
 

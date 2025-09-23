@@ -189,7 +189,7 @@ void GetLoInWorld(LO *plo, int *pfInWorld)
     *pfInWorld = FIsLoInWorld(plo);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/lo", junk_00183050);
+JUNK_ADDIU(30);
 
 INCLUDE_ASM("asm/nonmatchings/P2/lo", PloCloneLo__FP2LOP2SWP3ALO);
 
@@ -212,7 +212,7 @@ void CloneLo(LO *plo, LO *ploBase)
 
     // Adjusted arguments for target assembly alignment
     CopyAb(&STRUCT_OFFSET(plo, 0x34, void *), &STRUCT_OFFSET(ploBase, 0x34, void *), ploBase->pvtlo->cb - 0x34);
-    
+
     DL *pdl = PdlFromSwOid(psw, plo->oid);
     RemoveDlEntry(pdl, plo);
     pdl = PdlFromSwOid(psw, ploBase->oid);

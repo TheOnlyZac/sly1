@@ -18,7 +18,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/clip", ClsgClipCylinderToSphere__FP6VECTORfT0T0
 
 INCLUDE_ASM("asm/nonmatchings/P2/clip", ClsgClipEdgeToCylinder__FP6VECTORT0fT0T0iP3LSG);
 
-INCLUDE_ASM("asm/nonmatchings/P2/clip", junk_00142990);
+JUNK_WORD(0x27BD01C0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/clip", SgnCompareMaa__FP3MAAT0);
 
@@ -26,4 +26,4 @@ INCLUDE_ASM("asm/nonmatchings/P2/clip", ClsgMergeAlsg__FiP3LSG);
 
 INCLUDE_ASM("asm/nonmatchings/P2/clip", ClsgClipCylinderToBsp__FP4BSPCP4GEOMP6VECTORT2fiP3LSG);
 
-INCLUDE_ASM("asm/nonmatchings/P2/clip", junk_00142EC8);
+JUNK_WORD(0x27BD0120);

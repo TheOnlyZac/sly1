@@ -73,4 +73,4 @@ void EnsureWpsgCallback(WPSG *pwpsg)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/waypoint", junk_001EFCE0);
+JUNK_ADDIU(40);

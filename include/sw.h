@@ -149,7 +149,7 @@ void IncrementSwHandsOff(SW *psw);
 
 void DecrementSwHandsOff(SW *psw);
 
-// TODO: Add unknown function here.
+int FUN_001dda80(SW *psw); // Unknown
 
 void IsSwVagPlaying(SW *psw, int *pfPlaying);
 

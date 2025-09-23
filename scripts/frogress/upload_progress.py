@@ -1,5 +1,5 @@
 """
-Script for uploading progress to the frogress.
+Script for uploading progress reported by mapfile_parser to the Frogress API.
 
 Adapted from https://github.com/zeldaret/af/blob/aeb01dcb95e8281f89f355604dbeba519ef073d5/tools/progress.py
 MIT License: https://opensource.org/license/mit

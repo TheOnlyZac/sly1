@@ -8,6 +8,17 @@
 #include <stepguard.h>
 
 /**
+ * @brief Gomer state.
+ *
+ * @todo Populate enum values.
+ */
+enum GOMERS
+{
+    GOMERS_Nil = -1
+    // ...
+};
+
+/**
  * @class GOMER
  * @brief Unknown, related to bosses.
  * @todo Implement the struct.

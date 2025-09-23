@@ -28,8 +28,26 @@ int CploFindSwObjects(SW *psw, int grffso, OID oid, LO *ploContext, int cploMax,
 
 LO *PloFindSwObject(SW *psw, int grffso, OID oid, LO *ploContext);
 
+/**
+ * @brief Finds the nearest SW object with the given OID from the context LO.
+ *
+ * @param psw The SW object.
+ * @param oid The OID of the object to find.
+ * @param ploContext The LO to search from.
+ *
+ * @return The nearest LO with the given OID, or NULL if no such object was found.
+ */
 LO *PloFindSwNearest(SW *psw, OID oid, LO *ploContext);
 
+/**
+ * @brief Finds a child SW object with the given OID under the specified ancestor ALO.
+ *
+ * @param psw The SW object.
+ * @param oid The OID of the child object to find.
+ * @param paloAncestor The ancestor ALO under which to search for the child.
+ *
+ * @return The found child LO, or NULL if no such child was found.
+ */
 LO *PloFindSwChild(SW *psw, OID oid, ALO *paloAncestor);
 
 /**

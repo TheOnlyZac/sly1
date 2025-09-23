@@ -49,7 +49,8 @@ void *PvAllocGlobalImpl(int cb)
     return pv;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/memory", junk_0018D4F0);
+JUNK_NOP();
+JUNK_WORD(0xACC20004);
 
 #ifdef DEBUG
 /**

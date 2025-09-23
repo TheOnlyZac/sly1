@@ -30,7 +30,9 @@ void StartupGame()
     StartGame();
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", junk_00160090);
+JUNK_NOP();
+JUNK_WORD(0x00E0102D);
+JUNK_WORD(0x0000102D);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_load_data);
 
@@ -38,13 +40,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_id);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", PchzFriendlyFromWid);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", junk_00160178);
+JUNK_WORD(0x24420010);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", call_search_level_by_id);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", FFindLevel);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", junk_001601D0);
+JUNK_WORD(0x24420010);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", get_level_completion_by_id);
 
@@ -318,9 +320,9 @@ void OnGameAlarmDisabled(GAME *pgame)
     pgame->cAlarmsTriggered--;
 }
 
-uint GetGrfvault_unknown()
+GRFVAULT GetGrfvault_unknown()
 {
-    return g_pgsCur->grfvault & STRUCT_OFFSET(g_psw, 0x235c, uint);
+    return g_pgsCur->grfvault & STRUCT_OFFSET(g_psw, 0x235c, GRFVAULT);
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", GetBlueprintInfo__FPiT0);

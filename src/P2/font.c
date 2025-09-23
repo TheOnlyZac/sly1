@@ -23,7 +23,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/font", DyWrapPchz__5CFontPcf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", ClineWrapPchz__5CFontPcf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", junk_0015C630);
+JUNK_ADDIU(50);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", DrawPchz__5CFontPcP8CTextBoxT2P4GIFS);
 
@@ -85,4 +85,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/font", Draw__9CRichTextP8CTextBoxT1P4GIFS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", PostFontsLoad__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", junk_0015E678);
+JUNK_WORD(0x46000802);
+JUNK_WORD(0x46000802);
+JUNK_WORD(0x46000802);
+JUNK_ADDIU(10);
+JUNK_WORD(0x0002102A);
+JUNK_WORD(0xAC850030);

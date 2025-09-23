@@ -30,13 +30,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", UMaxCrv__FP3CRV);
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", SMaxCrv__FP3CRV);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", junk_0014DB70);
+JUNK_ADDIU(A0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", SMeasureCrvSegmentU__FP5CRVMSf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", FindCrvClosestPointOnLineSegmentFromU__FP3CRVP6VECTORT1fT1T1PfT6);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", junk_0014DCF8);
+JUNK_ADDIU(A0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", DuGetCrvSearchIncrement__FP3CRV);
 

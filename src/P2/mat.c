@@ -15,7 +15,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/mat", __ml__FRC7MATRIX4G8VU_FLOAT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", __ml__FRC7MATRIX4T0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mat", junk_001886F8);
+JUNK_ADDIU(50);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", MultiplyMatrix4Vector__FP7MATRIX4P6VECTORfT1);
 
@@ -31,7 +31,8 @@ void AddMatrix4Matrix4(MATRIX4 *pmatLeft, MATRIX4 *pmatRight, MATRIX4 *pmatDst)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/mat", junk_00188848);
+JUNK_NOP();
+JUNK_WORD(0x24020001);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", LoadRotateMatrixRad__FfP6VECTORP7MATRIX3);
 
@@ -45,13 +46,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/mat", LoadMatrixFromPosRotInverse__FP6VECTORP7M
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", LoadMatrixFromPosRotScale__FP6VECTORP7MATRIX3T0P7MATRIX4);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mat", junk_00188CC8);
+JUNK_WORD(0x7CC30020);
+JUNK_NOP();
+JUNK_NOP();
+JUNK_ADDIU(60);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", CosRotateMatrixMagnitude__FP7MATRIX3);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", DecomposeRotateMatrixRad__FP7MATRIX3PfP6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mat", junk_00188FD0);
+JUNK_ADDIU(50);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", DecomposeRotateMatrixEuler__FP7MATRIX3P6VECTOR);
 
@@ -72,7 +76,7 @@ void LoadLookAtMatrix(VECTOR *pdpos, MATRIX3 *pmat)
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", TiltMatUpright__FP7MATRIX3N20);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mat", junk_00189430);
+JUNK_WORD(0x27BD0130);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", FInvertMatrix__FiPfT1);
 

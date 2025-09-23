@@ -13,7 +13,7 @@
 struct SGG;
 
 /**
- * @brief Waypoint State.
+ * @brief Waypoint state.
  */
 enum WPS
 {
@@ -26,7 +26,7 @@ enum WPS
 
 /**
  * @class WAY_POINT
- * @brief Waypoint (maybe the green holographic markers?).
+ * @brief Waypoint.
  */
 struct WAYPOINT : public ALO
 {
@@ -38,7 +38,7 @@ struct WAYPOINT : public ALO
 };
 
 /**
- * @brief Waypoint (?).
+ * @brief Stepguard waypoint?
  */
 struct WPSG
 {

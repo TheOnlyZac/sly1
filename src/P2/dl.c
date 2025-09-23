@@ -80,7 +80,8 @@ void InsertDlEntryBefore(DL *pdl, void *pvNext, void *pv)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/dl", junk_001525F8);
+JUNK_NOP();
+JUNK_ADDIU(60);
 
 void RemoveDlEntry(DL *pdl, void *pv)
 {

@@ -66,7 +66,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/shdanim", SetUvPuvqd__FP3UVFP3UVQ);
 
 INCLUDE_ASM("asm/nonmatchings/P2/shdanim", NotifyLookerRender__FP6LOOKERP3ALOP3RPL);
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", junk_001B5B48);
+JUNK_ADDIU(60);
+JUNK_WORD(0x0003100B);
 
 INCLUDE_ASM("asm/nonmatchings/P2/shdanim", FUN_001b5b58);
 

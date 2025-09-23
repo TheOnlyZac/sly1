@@ -27,7 +27,7 @@ bool CBinaryAsyncStream::FOpenFile(CFileLocation *pfl)
     return FOpenSector(pfl->m_fcl.isector, pfl->m_fcl.cb);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/bas", junk_0012FD98);
+JUNK_ADDIU(30);
 
 bool CBinaryAsyncStream::FOpenSector(uint isector, uint cb)
 {

@@ -76,18 +76,18 @@ void GIFS::PackAD(long int a, long int d)
     pqw->aul[1] = a;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/gifs", junk_00161760);
+JUNK_ADDIU(30);
 
 INCLUDE_ASM("asm/nonmatchings/P2/gifs", AddPrimList__4GIFSiUl);
 
 INCLUDE_ASM("asm/nonmatchings/P2/gifs", ListRGBAQ__4GIFSUif);
 
-INCLUDE_ASM("asm/nonmatchings/P2/gifs", junk_00161858);
+JUNK_ADDIU(30);
 
 INCLUDE_ASM("asm/nonmatchings/P2/gifs", ListUV__4GIFSii);
 
 INCLUDE_ASM("asm/nonmatchings/P2/gifs", ListXYZF__4GIFSiiii);
 
-INCLUDE_ASM("asm/nonmatchings/P2/gifs", junk_00161950);
+JUNK_ADDIU(80);
 
 INCLUDE_ASM("asm/nonmatchings/P2/gifs", AddImage__4GIFSi);
