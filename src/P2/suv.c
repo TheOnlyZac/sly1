@@ -38,12 +38,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvActive__FP3SUVP3JOYf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", FUN_001da170);
 
-// This junk is unlike other junk instructions; it may be actual code?
-INCLUDE_ASM("asm/nonmatchings/P2/suv", junk_001DA310);
+INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvInternalXps__FP3SUV);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", AddSuvCustomXps__FP3SUVP2SOiP3BSPT3PP2XP);
 
-INCLUDE_ASM("asm/nonmatchings/P2/suv", FUN_001DA6E0);
+INCLUDE_ASM("asm/nonmatchings/P2/suv", AdjustSuvNewXp__FP3SUVP2XPi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvInfluences__FP3SUVP2RO);
 
