@@ -42,4 +42,4 @@ jobs:
 
       - name: Post to frogress endpoint
         run: |
-          python3 scripts/frogress.upload_progress.py --frogress_api_key ${{ secrets.FROGRESS_API_KEY }}
+          python3 scripts/frogress/upload_progress.py --frogress_api_key ${{ secrets.FROGRESS_API_KEY }}
