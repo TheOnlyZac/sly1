@@ -14,14 +14,33 @@
  */
 class CPair
 {
-    CRef m_ref;
-    CPair* m_ppairNext;
-
 public:
-    void CloneTo(CPair* ppairClone, CFrame* pframeClone);
+    CRef m_ref;
+
+    /**
+     * @brief Clones this pair to another pair, recursively cloning any next pairs.
+     *
+     * @param ppairClone Pointer to the pair to clone to.
+     * @param pframeClone Pointer to the frame to use for cloning references.
+     */
+    void CloneTo(CPair *ppairClone, CFrame *pframeClone);
+
+private:
+    CPair *m_ppairNext;
 };
 
-CPair* PpairNew();
-void DeletePair(CPair* ppair);
+/**
+ * @brief Allocates a new pair from the pair splot heap.
+ *
+ * @return Pointer to the newly allocated pair.
+ */
+CPair *PpairNew();
+
+/**
+ * @brief Deletes a pair by the calling destructor for its ref.
+ *
+ * @param ppair Pointer to the pair to delete.
+ */
+void DeletePair(CPair *ppair);
 
 #endif // SPLICE_PAIR_H
