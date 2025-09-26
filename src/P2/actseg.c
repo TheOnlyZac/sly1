@@ -1,4 +1,4 @@
-#include "common.h"
+#include <actseg.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/actseg", RetractActseg__FP6ACTSEGi);
 

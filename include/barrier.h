@@ -17,6 +17,11 @@ struct XP;
 struct BARRIER : public SO
 {
     // ...
+    /* 0x554 */ int coid;
+    /* 0x558 */ OID aoid[4];
+    /* 0x568 */ int ccid;
+    /* 0x56c */ CID acid[4];
+    // ...
 };
 
 void InitBarrier(BARRIER *pbarrier);

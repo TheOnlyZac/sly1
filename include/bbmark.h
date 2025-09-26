@@ -5,16 +5,39 @@
 #define BBMARK_H
 
 #include "common.h"
-#include <so.h>
-#include <sw.h>
 
 typedef int GRFPVA;
 
+// Forward.
+struct SW;
+struct SO;
+
 // TODO: Implement structs.
 struct XP;
-struct OX;
 struct OXA;
 struct OXF;
+
+/**
+ * @brief Unknown.
+ */
+struct OX
+{
+    XP *pxp;
+    OX *poxNext;
+    OX *poxOther;
+    SO *psoOther;
+};
+
+/**
+ * @brief Unknown.
+ */
+struct OXA
+{
+    OX *pox;
+    SO *pso;
+    OXA *poxaNext;
+    OXA *poxaPrev;
+};
 
 void UpdateSwPox(SW *psw, OXA *poxa0, OXA *poxa1, OXF oxfAdd, OXF oxfRemove);
 

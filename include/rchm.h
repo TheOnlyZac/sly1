@@ -27,6 +27,14 @@ struct TWR
  */
 struct RCHM : public LO
 {
+    /* 0x34 */ OID oidHost;
+    /* 0x38 */ OID oidTouch;
+    /* 0x3c */ STRUCT_PADDING(6);
+    /* 0x54 */ float rclNatural;
+    /* 0x58 */ float ioNatural;
+    /* 0x5c */ float lhubNatural;
+    /* 0x60 */ STRUCT_PADDING(8);
+    /* 0x80 */ int fCenterSet;
     // ...
 };
 
