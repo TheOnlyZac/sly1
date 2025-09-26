@@ -21,13 +21,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/bbmark", PoxFromSoSo__FP2SOT0);
 XP *PxpFirstFromSoSo(SO *pso, SO *psoOther)
 {
     OX *pox = PoxFromSoSo(pso, psoOther);
-    XP *pxp = (XP *)nullptr;
-    if (pox)
-    {
-        pxp = pox->pxp;
-    }
-
-    return pxp;
+    return pox ? pox->pxp : (XP *)nullptr;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/bbmark", AddSwAaobrObject__FP2SWP2SO);
