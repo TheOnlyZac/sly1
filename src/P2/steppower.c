@@ -1,4 +1,4 @@
-#include "steppower.h"
+#include <steppower.h>
 #include <game.h>
 #include <jt.h>
 #include <screen.h>
@@ -12,35 +12,34 @@ extern int D_00270458; // temp
 
 void SetFsp(FSP fsp)
 {
-    // Cleanup current powerup
+    // Cleanup current powerup.
     switch (g_fsp)
     {
-    case FSP_Ball:
-        // If cur powerup is roll, reset JT's body state
-        if (g_pjt && g_pjt->jts == (JTS)13)
+        case FSP_Ball:
         {
-            SetJtJts(g_pjt, JTS_Stand, JTBS_Nil);
+            // If current powerup is roll, reset JT's body state.
+            if (g_pjt && g_pjt->jts == (JTS)13)
+            {
+                SetJtJts(g_pjt, JTS_Stand, JTBS_Nil);
+            }
+            break;
         }
-        break;
-    case FSP_Mine:
-        // If cur powerup is mine, fade out the mine
-        if (g_pjt)
+        case FSP_Mine:
         {
-            ALO *palo = g_pjt->paloMine_0x1518;
-            if (palo && FIsLoInWorld((LO *)g_pjt->paloMine_0x1518))
+            // If current powerup is mine, fade out the mine.
+            if (g_pjt && g_pjt->paloMine_0x1518 && FIsLoInWorld(g_pjt->paloMine_0x1518))
             {
                 FadeAloOut(g_pjt->paloMine_0x1518, 0.5f);
             }
+            break;
         }
-        break;
-    default:
-        break;
+        default: break;
     }
 
     if (g_pjt)
     {
         g_rtClockPowerUp = 1.0f;
-        if ((g_pjt->unk_0x2750 != 0) && FIsLoInWorld((JT *)g_pjt->unk_0x2750))
+        if (g_pjt->unk_0x2750 && FIsLoInWorld((JT *)g_pjt->unk_0x2750))
         {
             func_001D32D8(g_pjt->unk_0x2750, g_pjt, 1);
         }
@@ -52,20 +51,19 @@ void SetFsp(FSP fsp)
         }
     }
 
-    // If fsp is unchanged or invalid, return
-    int fspLast = g_pgsCur->fspLast;
-    if (fsp == fspLast || fsp >= (uint)FSP_Max)
+    // If fsp is unchanged or invalid, return.
+    if (fsp == g_pgsCur->fspLast || fsp >= (uint)FSP_Max)
     {
         return;
     }
 
-    // Show note
+    // Show note.
     SetBlotDtVisible((NOTE *)&g_note.unk278, (g_pjt && g_pjt == PpoCur()) ? 3.0f : 8.0f);
     SetBlotFontScale(0.6f, (NOTE *)&g_note.unk278);
     ((NOTE *)&g_note.unk278)->pvtnote->pfnSetNoteAchzDraw((NOTE *)&g_note.unk278, s_mpfspachz[fsp]);
     ((NOTE *)&g_note.unk278)->pvtnote->pfnShowBlot((NOTE *)&g_note.unk278);
 
-    // Update last fsp in game state
+    // Update last fsp in game state.
     g_pgsCur->fspLast = fsp;
 }
 

@@ -1,18 +1,52 @@
 #include <dart.h>
+#include <emitter.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/dart", InitDart__FP4DART);
+extern SNIP s_asnipDart[];
+
+void InitDart(DART *pdart)
+{
+    InitSo(pdart);
+    SetDartDarts(pdart, DARTS_Nil);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/dart", OnDartAdd__FP4DART);
 
-INCLUDE_ASM("asm/nonmatchings/P2/dart", RemoveDart__FP4DART);
+void RemoveDart(DART *pdart)
+{
+    RemoveLo(pdart);
+    AppendDlEntry(&pdart->psw->dlDartFree, pdart);
+    SetDartDarts(pdart, DARTS_AvailToFire);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/dart", CloneDart__FP4DARTT0);
+void CloneDart(DART *pdart, DART *pdartBase)
+{
+    DLE dleDartFree = STRUCT_OFFSET(pdart, 0x56c, DLE); // pdart->dleDartFree
+    CloneSo(pdart, pdartBase);
+    STRUCT_OFFSET(pdart, 0x56c, DLE) = dleDartFree; // pdart->dleDartFree
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/dart", LoadDartFromBrx__FP4DARTP18CBinaryInputStream);
+void LoadDartFromBrx(DART *pdart, CBinaryInputStream *pbis)
+{
+    LoadSoFromBrx(pdart, pbis);
+    InferExpl(&STRUCT_OFFSET(pdart, 0x58c, EXPL *), pdart); // pdart->pexpl
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/dart", HandleDartMessage__FP4DART5MSGIDPv);
+void HandleDartMessage(DART *pdart, MSGID msgid, void *pv)
+{
+    HandleAloMessage(pdart, msgid, pv);
+    // pdart->pasegaSticking
+    if (msgid == MSGID_asega_retracted && (ASEGA *)pv == STRUCT_OFFSET(pdart, 0x578, ASEGA *))
+    {
+        STRUCT_OFFSET(pdart, 0x578, ASEGA *) = (ASEGA *)nullptr;
+        SetDartDarts(pdart, DARTS_Stuck);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/dart", PostDartLoad__FP4DART);
+void PostDartLoad(DART *pdart)
+{
+    PostAloLoad(pdart);
+    SnipAloObjects(pdart, 1, s_asnipDart);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/dart", UpdateDart__FP4DARTf);
 

@@ -36,7 +36,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/pzo", CollectScprize__FP7SCPRIZE);
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", LoadLockFromBrx__FP4LOCKP18CBinaryInputStream);
 #ifdef SKIP_ASM
 /**
- * @todo 95.800% matched. s_asnip may not be defined correctly.
+ * @todo 95.80% matched. s_asnip may not be defined correctly.
  */
 void LoadLockFromBrx(LOCK *plock, CBinaryInputStream *pbis)
 {

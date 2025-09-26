@@ -40,7 +40,8 @@ struct RAT : public SO
 {
     // ...
     /* 0x55c */ float tRatSqueak;
-    /* 0x560 */ STRUCT_PADDING(43);
+    /* 0x560 */ STRUCT_PADDING(40);
+    /* 0x600 */ DLE dleRat;
     /* 0x608 */ LM lmDtStop;
     /* 0x610 */ STRUCT_PADDING(21);
     /* 0x664 */ int ccoin;

@@ -12,6 +12,9 @@
 #include <so.h>
 #include <po.h>
 
+// Forward.
+struct EXPL;
+
 /**
  * @brief Dart State.
  */
@@ -34,6 +37,10 @@ enum DARTS
  */
 struct DART : public SO
 {
+    // ...
+    /* 0x56c */ DLE dleDartFree;
+    // ...
+    /* 0x58c */ EXPL *pexpl;
     // ...
 };
 

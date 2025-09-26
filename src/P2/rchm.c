@@ -1,6 +1,11 @@
 #include <rchm.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/rchm", InitRchm__FP4RCHM);
+void InitRchm(RCHM *prchm)
+{
+    InitLo(prchm);
+    prchm->oidTouch = OID_Nil;
+    prchm->oidHost = OID_Nil;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rchm", LoadRchmFromBrx__FP4RCHMP18CBinaryInputStream);
 
@@ -12,9 +17,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/rchm", BuildRchmCoefficients__FP4RCHMfffPf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rchm", ConvertRchmIposToRclIoLhub__FP4RCHMiPfN22);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rchm", SetRchmNaturalCoefficients__FP4RCHMfff);
+void SetRchmNaturalCoefficients(RCHM *prchm, float rcl, float io, float lhub)
+{
+    prchm->rclNatural = rcl;
+    prchm->ioNatural = io;
+    prchm->lhubNatural = lhub;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rchm", SetRchmCenterCoefficients__FP4RCHMfff);
+void SetRchmCenterCoefficients(RCHM *prchm, float rcl, float io, float lhub)
+{
+    prchm->fCenterSet = 1;
+    prchm->rclNatural = rcl;
+    prchm->ioNatural = io;
+    prchm->lhubNatural = lhub;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rchm", PredictRchmTargetPos__FP4RCHMP6TARGETfP6VECTOR);
 

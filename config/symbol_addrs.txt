@@ -1642,6 +1642,8 @@ SetDartDarts__FP4DART5DARTS                   = 0x14F110; // type:func
 ApplyDartThrow__FP4DARTP2PO                   = 0x14F168; // type:func
 UpdateDartAirborne__FP4DARTf                  = 0x14F270; // type:func
 
+s_asnipDart = 0x261CC8;
+
 
 ////////////////////////////////////////////////////////////////
 // P2/dartgun.c
@@ -1784,6 +1786,12 @@ SolveDzg__FP3DZGiiPP2XPPiPPP2SO      = 0x153EC0; // type:func
 SolveDzgFric__FP3DZGiiPP2XPPiPPP2SOf = 0x154088; // type:func
 ApplyDzg__FP3DZGiPiPPP2SOff          = 0x154370; // type:func
 SolveInequalities__FiPfN21           = 0x154880; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/emitter.c
+////////////////////////////////////////////////////////////////
+InferExpl__FPP4EXPLP3ALO = 0x159478; // type:func
 
 
 ////////////////////////////////////////////////////////////////

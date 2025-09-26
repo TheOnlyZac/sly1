@@ -18,7 +18,6 @@
 struct SHAPE : public LO
 {
     CRV *pcrv;
-    DLE dleShape;
 };
 
 void LoadShapeFromBrx(SHAPE *pshape, CBinaryInputStream *pbis);

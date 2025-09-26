@@ -39,7 +39,7 @@ void SetDartgunGoalState(DARTGUN *pdartgun, OID oidStateGoal);
 
 void TrackDartgun(DARTGUN *pdartgun, OID *poidStateGoal);
 
-int FPrepareDartgunToFire__FP7DARTGUN(DARTGUN *pdartgun);
+int FPrepareDartgunToFire(DARTGUN *pdartgun);
 
 void FireDartgun(DARTGUN *pdartgun);
 

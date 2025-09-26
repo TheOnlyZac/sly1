@@ -7,6 +7,7 @@
 #define SW_H
 
 #include "common.h"
+#include <slotheap.h>
 #include <game.h>
 #include <bis.h>
 #include <vec.h>
@@ -40,14 +41,25 @@ struct SW : public LO
     /* 0x6c   */ DL dlBusySo;
     /* 0x78   */ DL dlMRDRealClock;
     /* 0x84   */ DL adlHash[512];
-    /* 0x1884 */ LO *aploCidHead[162];
-    /* 0x1b0c */ STRUCT_PADDING(55);
+    /* 0x1884 */ LO *aploCidHead[154]; // Not the correct size?
+    /* 0x1aec */ int fAaoxValid;
+    /* 0x1af0 */ SLOTHEAP slotheapOx;
+    /* 0x1afc */ STRUCT_PADDING(23);
+    /* 0x1b58 */ SLOTHEAP slotheapAsega;
+    /* 0x1b64 */ STRUCT_PADDING(6);
+    /* 0x1b7c */ DL dlAsegaPending;
+    /* 0x1b88 */ STRUCT_PADDING(24);
     /* 0x1be8 */ DL dlLight;
     /* 0x1bf4 */ STRUCT_PADDING(18);
     /* 0x1c3c */ DL dlProxy;
     /* 0c1c48 */ DL dlFly;
     /* 0x1c54 */ DL dlDprize;
     /* 0x1c60 */ DL dlRat;
+    /* 0x1c6c */ DL dlRathole;
+    /* 0x1c78 */ DL dlDartFree;
+    /* 0x1c84 */ STRUCT_PADDING(3); // Likely a DL.
+    /* 0x1c90 */ DL dlRail;
+    // ...
 
     // MISALIGNED:
     void (*pcbUpdate)(float fDelta);

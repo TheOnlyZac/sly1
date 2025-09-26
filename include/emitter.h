@@ -8,6 +8,14 @@
 
 #include "common.h"
 
+// Forward.
+struct ALO;
+struct EXPL;
+
+// ...
+
+void InferExpl(EXPL **ppexpl, ALO *palo);
+
 // ...
 
 #endif // EMITTER_H
