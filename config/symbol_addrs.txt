@@ -2209,6 +2209,8 @@ InitHnd__FP3HND                             = 0x16C470; // type:func
 LoadHndFromBrx__FP3HNDP18CBinaryInputStream = 0x16C4B8; // type:func
 junk_0016c4d8                               = 0x16C4D8; // type:func
 
+D_0024A7DC = 0x24A7DC; // size:0x4
+
 
 ////////////////////////////////////////////////////////////////
 // P2/ik.c
@@ -3737,7 +3739,6 @@ FUN_001bc710                                           = 0x1BC710; // type:func
 FUN_001bc748                                           = 0x1BC748; // type:func
 
 
-
 ////////////////////////////////////////////////////////////////
 // P2/solve.c
 ////////////////////////////////////////////////////////////////
@@ -3867,6 +3868,8 @@ InitSpire__FP5SPIRE     = 0x1C10A8; // type:func
 OnSpireAdd__FP5SPIRE    = 0x1C10D8; // type:func
 OnSpireRemove__FP5SPIRE = 0x1C1110; // type:func
 CloneSpire__FP5SPIRET0  = 0x1C1148; // type:func
+
+DAT_0024d3b4 = 0x24D3B4; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
@@ -4052,12 +4055,17 @@ s_mpfspgrfvault = 0x274F38; // size:0x1c
 
 ////////////////////////////////////////////////////////////////
 // P2/steprail.c
+// TODO: Mangle the function names.
 ////////////////////////////////////////////////////////////////
-func_001D31D0__FP2LOi  = 0x1D31D0; // type:func
-post_load_steprail     = 0x1D3290; // type:func
-func_001D32D8__FiP2JTl = 0x1D32D8; // type:func
-update_steprail        = 0x1D3398; // type:func
-preset_steprail_accel  = 0x1D3470; // type:func
+func_001D31D0__FP2LOi   = 0x1D31D0; // type:func
+post_load_steprail      = 0x1D3290; // type:func
+func_001D32D8__FiP2JTl  = 0x1D32D8; // type:func
+update_steprail         = 0x1D3398; // type:func
+preset_steprail_accel   = 0x1D3470; // type:func
+FUN_001d34e0            = 0x1D34E0; // type:func
+FUN_001d3500            = 0x1D3500; // type:func
+FUN_001d35a8            = 0x1D35A8; // type:func
+update_steprail_message = 0x1D3678; // type:func
 
 
 ////////////////////////////////////////////////////////////////

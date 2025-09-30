@@ -57,7 +57,7 @@ struct SW : public LO
     /* 0x1c60 */ DL dlRat;
     /* 0x1c6c */ DL dlRathole;
     /* 0x1c78 */ DL dlDartFree;
-    /* 0x1c84 */ STRUCT_PADDING(3); // Likely a DL.
+    /* 0x1c84 */ DL dlSpire;
     /* 0x1c90 */ DL dlRail;
     // ...
 

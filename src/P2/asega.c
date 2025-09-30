@@ -5,19 +5,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/asega", PasegaNew__FP2SW);
 
 void SetAsegaHandsOff(ASEGA *pasega, int fHandsOff)
 {
-    if (fHandsOff != pasega->fHandsOff)
+    if (fHandsOff == pasega->fHandsOff)
+        return;
+
+    if (fHandsOff)
     {
-        if (fHandsOff)
-        {
-            IncrementSwHandsOff(g_psw);
-        }
-        else
-        {
-            DecrementSwHandsOff(g_psw);
-        }
-        
-        pasega->fHandsOff = fHandsOff;
+        IncrementSwHandsOff(g_psw);
     }
+    else
+    {
+        DecrementSwHandsOff(g_psw);
+    }
+
+    pasega->fHandsOff = fHandsOff;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", UpdateAsegaIeaCur__FP5ASEGA);

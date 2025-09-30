@@ -24,7 +24,7 @@ void PostLoLoad(LO *plo)
     HandleLoSpliceEvent(plo, 0, 0, (void **)nullptr);
 }
 
-void AddLo(LO* plo)
+void AddLo(LO *plo)
 {
     DL *pdl;
     if (plo->paloParent)
@@ -37,16 +37,15 @@ void AddLo(LO* plo)
     }
 
     bool fLoInDl = FFindDlEntry(pdl, plo);
+    if (fLoInDl)
+        return;
 
-    if (!fLoInDl)
+    AppendDlEntry(pdl, plo);
+
+    bool fLoInWorld = FIsLoInWorld(plo);
+    if (fLoInWorld)
     {
-        AppendDlEntry(pdl, plo);
-        bool fLoInWorld = FIsLoInWorld(plo);
-
-        if (fLoInWorld)
-        {
-            plo->pvtlo->pfnAddLoHierarchy(plo);
-        }
+        plo->pvtlo->pfnAddLoHierarchy(plo);
     }
 }
 
@@ -74,24 +73,41 @@ void RemoveLo(LO *plo)
     }
 
     bool fLoInDl = FFindDlEntry(pdl, plo);
+    if (!fLoInDl)
+        return;
 
-    if (fLoInDl)
+    bool fLoInWorld = FIsLoInWorld(plo);
+    if (fLoInWorld)
     {
-        bool fLoInWorld = FIsLoInWorld(plo);
-
-        if (fLoInWorld)
-        {
-            RemoveDlEntry(pdl, plo);
-            plo->pvtlo->pfnRemoveLoHierarchy(plo);
-        }
-        else
-        {
-            RemoveDlEntry(pdl, plo);
-        }
+        RemoveDlEntry(pdl, plo);
+        plo->pvtlo->pfnRemoveLoHierarchy(plo);
+    }
+    else
+    {
+        RemoveDlEntry(pdl, plo);
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/lo", DeferLoRemove__FP2LO);
+void DeferLoRemove(LO *plo)
+{
+    ALO *palo;
+    if((plo->pvtlo->grfcid & 1U) == 0)
+    {
+        palo = (ALO *)plo->paloParent;
+    }
+    else
+    {
+        palo = (ALO *)plo;
+    }
+
+    if (palo)
+    {
+        DLR *pdlr = (DLR *)PvAllocSwImpl(sizeof(DLR));
+        pdlr->oidChild = plo->oid;
+        pdlr->pdlrNext = STRUCT_OFFSET(palo, 0x2c4, DLR *); // palo->pdlrFirst
+        STRUCT_OFFSET(palo, 0x2c4, DLR *) = pdlr; // palo->pdlrFirst
+    }
+}
 
 void SetLoSuckHideLimits(LO *plo, LM *plmUSuck)
 {
@@ -117,17 +133,16 @@ void OnLoRemove(LO *plo)
 void SnipLo(LO *plo)
 {
     bool fIsLoInWorld = FIsLoInWorld(plo);
+    if (!fIsLoInWorld)
+        return;
 
-    if (fIsLoInWorld)
+    if (plo->pvtlo->pfnBindLo)
     {
-        if (plo->pvtlo->pfnBindLo)
-        {
-            plo->pvtlo->pfnBindLo(plo);
-        }
-
-        plo->pvtlo->pfnPostLoLoad(plo);
-        plo->pvtlo->pfnRemoveLo(plo);
+        plo->pvtlo->pfnBindLo(plo);
     }
+
+    plo->pvtlo->pfnPostLoLoad(plo);
+    plo->pvtlo->pfnRemoveLo(plo);
 }
 
 int FFindLoParent(LO *plo, ALO *paloParent)
@@ -191,7 +206,12 @@ void GetLoInWorld(LO *plo, int *pfInWorld)
 
 JUNK_ADDIU(30);
 
-INCLUDE_ASM("asm/nonmatchings/P2/lo", PloCloneLo__FP2LOP2SWP3ALO);
+LO *PloCloneLo(LO *plo, SW *psw, ALO *paloParent)
+{
+    LO *ploClone = PloNew(plo->pvtbasic->cid, psw, paloParent, plo->oid, -1);
+    ploClone->pvtlo->pfnCloneLoHierarchy(ploClone, plo);
+    return ploClone;
+}
 
 void CloneLoHierarchy(LO *plo, LO *ploBase)
 {

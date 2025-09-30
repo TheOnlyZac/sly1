@@ -11,15 +11,21 @@
 #include <util.h>
 #include <alo.h>
 
+// Forward.
+struct SPEAKER;
+
+typedef int GRFDP;
+
 /**
  * @brief Dialog Kind.
  */
 enum DIALOGK
 {
+    DIALOGK_Nil = -1,
     DIALOGK_Binoc = 0,
     DIALOGK_Instruct = 1,
     DIALOGK_Confront = 2,
-    DIALOGK_Max = 3,
+    DIALOGK_Max = 3
 };
 
 /**
@@ -27,13 +33,37 @@ enum DIALOGK
  */
 enum DIALOGS
 {
+    DIALOGS_Nil = -1,
     DIALOGS_Enabled = 0,
     DIALOGS_Triggered = 1,
     DIALOGS_Disabled = 2,
     DIALOGS_Playing = 3,
     DIALOGS_Calling = 4,
     DIALOGS_UnableToCall = 5,
-    DIALOGS_Max = 6,
+    DIALOGS_Max = 6
+};
+
+/**
+ * @brief Unknown.
+ * @todo Does this belong here?
+ */
+enum DPK
+{
+    // ...
+};
+
+/**
+ * @brief Unknown.
+ * @todo Does this belong here?
+ */
+struct DP
+{
+    /* 0x00 */ GRFDP grfdp;
+    /* 0x04 */ DPK dpk;
+    /* 0x08 */ SPEAKER *pspeakerLeft;
+    /* 0x0c */ SPEAKER *pspeakerRight;
+    /* 0x10 */ ASEGA *pasegaLipsync;
+    // ...
 };
 
 /**
@@ -43,15 +73,15 @@ enum DIALOGS
 struct DIALOG : public ALO
 {
     STRUCT_PADDING(184);
-    DIALOGK dialogk;
-    DIALOGS dialogs;
+    /* 0x2d0 */ DIALOGK dialogk;
+    /* 0x2d4 */ DIALOGS dialogs;
     float tDialogs;
-    int cde;
+    /* 0x2dc */ int cde;
     undefined4 field_0x2f0;
     int ideCur;
-    // struct DP dp;
+    /* 0x2e8 */ DP dp;
     OID oidPntAnchor;
-    int *pfPlayed;
+    /* 0x304 */ int *pfPlayed;
     int fPlayed;
     int cpfEquivalence;
     int *apfEquivalence[4];

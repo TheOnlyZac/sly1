@@ -1,6 +1,15 @@
 #include <sw.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", InitSwDlHash__FP2SW);
+void InitSwDlHash(SW *psw)
+{
+    DL *pdl = psw->adlHash;
+
+    for (uint i = 0; i < 512; i++)
+    {
+        InitDl(pdl, sizeof(DL));
+        pdl++;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", InitSw__FP2SW);
 
