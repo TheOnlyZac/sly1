@@ -76,8 +76,7 @@ void CTransition::Execute()
         ResetClock(&g_clock, 0.0);
         AddGrfusr(0x80);
         // SetupGame(levelInfo.level_id);
-        g_psw = PloNew(CID_SW, 0, 0, OID__WORLD, -1);
-
+        g_psw = (SW *)PloNew(CID_SW, 0, 0, OID__WORLD, -1);
     }
 }
 #endif // SKIP_ASM
