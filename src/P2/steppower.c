@@ -33,7 +33,10 @@ void SetFsp(FSP fsp)
             }
             break;
         }
-        default: break;
+        default:
+        {
+            break;
+        }
     }
 
     if (g_pjt)

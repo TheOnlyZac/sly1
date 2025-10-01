@@ -25,7 +25,7 @@ void SetBrkBroken(BRK *pbrk, int fBroken)
 {
     STRUCT_OFFSET(pbrk, 0x680, int) = fBroken; // pbrk->fBroken
 
-    if (fBroken != 0)
+    if (fBroken)
     {
         SetChkmgrIchk(&g_chkmgr, STRUCT_OFFSET(pbrk, 0x688, int)); // pbrk->ichkBroken
     }

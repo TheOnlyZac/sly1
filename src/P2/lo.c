@@ -26,24 +26,13 @@ void PostLoLoad(LO *plo)
 
 void AddLo(LO *plo)
 {
-    DL *pdl;
-    if (plo->paloParent)
-    {
-        pdl = &plo->paloParent->dlChild;
-    }
-    else
-    {
-        pdl = &plo->psw->dlChild;
-    }
-
-    bool fLoInDl = FFindDlEntry(pdl, plo);
-    if (fLoInDl)
+    DL *pdl = plo->paloParent ? &plo->paloParent->dlChild : &plo->psw->dlChild;
+    if (FFindDlEntry(pdl, plo))
         return;
 
     AppendDlEntry(pdl, plo);
 
-    bool fLoInWorld = FIsLoInWorld(plo);
-    if (fLoInWorld)
+    if (FIsLoInWorld(plo))
     {
         plo->pvtlo->pfnAddLoHierarchy(plo);
     }
@@ -62,22 +51,11 @@ void OnLoAdd(LO *plo)
 
 void RemoveLo(LO *plo)
 {
-    DL *pdl;
-    if (plo->paloParent)
-    {
-        pdl = &plo->paloParent->dlChild;
-    }
-    else
-    {
-        pdl = &plo->psw->dlChild;
-    }
-
-    bool fLoInDl = FFindDlEntry(pdl, plo);
-    if (!fLoInDl)
+    DL *pdl = plo->paloParent ? &plo->paloParent->dlChild : &plo->psw->dlChild;
+    if (!FFindDlEntry(pdl, plo))
         return;
 
-    bool fLoInWorld = FIsLoInWorld(plo);
-    if (fLoInWorld)
+    if (FIsLoInWorld(plo))
     {
         RemoveDlEntry(pdl, plo);
         plo->pvtlo->pfnRemoveLoHierarchy(plo);
@@ -90,30 +68,19 @@ void RemoveLo(LO *plo)
 
 void DeferLoRemove(LO *plo)
 {
-    ALO *palo;
-    if((plo->pvtlo->grfcid & 1U) == 0)
-    {
-        palo = (ALO *)plo->paloParent;
-    }
-    else
-    {
-        palo = (ALO *)plo;
-    }
+    ALO *palo = (plo->pvtlo->grfcid & 1U) ? (ALO *)plo : plo->paloParent;
+    if (!palo)
+        return;
 
-    if (palo)
-    {
-        DLR *pdlr = (DLR *)PvAllocSwImpl(sizeof(DLR));
-        pdlr->oidChild = plo->oid;
-        pdlr->pdlrNext = STRUCT_OFFSET(palo, 0x2c4, DLR *); // palo->pdlrFirst
-        STRUCT_OFFSET(palo, 0x2c4, DLR *) = pdlr; // palo->pdlrFirst
-    }
+    DLR *pdlr = (DLR *)PvAllocSwImpl(sizeof(DLR));
+    pdlr->oidChild = plo->oid;
+    pdlr->pdlrNext = STRUCT_OFFSET(palo, 0x2c4, DLR *); // palo->pdlrFirst
+    STRUCT_OFFSET(palo, 0x2c4, DLR *) = pdlr; // palo->pdlrFirst
 }
 
 void SetLoSuckHideLimits(LO *plo, LM *plmUSuck)
 {
-    bool fHideLo = FCheckLm(plmUSuck, g_plsCur->uSuck);
-
-    if (fHideLo)
+    if (FCheckLm(plmUSuck, g_plsCur->uSuck))
     {
         DeferLoRemove(plo);
     }
@@ -132,8 +99,7 @@ void OnLoRemove(LO *plo)
 
 void SnipLo(LO *plo)
 {
-    bool fIsLoInWorld = FIsLoInWorld(plo);
-    if (!fIsLoInWorld)
+    if (!FIsLoInWorld(plo))
         return;
 
     if (plo->pvtlo->pfnBindLo)
