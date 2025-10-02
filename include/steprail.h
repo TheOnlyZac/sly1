@@ -5,6 +5,7 @@
  */
 #ifndef STEPRAIL_H
 #define STEPRAIL_H
+
 #include "common.h"
 #include <jt.h>
 

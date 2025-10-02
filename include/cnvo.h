@@ -18,9 +18,9 @@ struct XP;
 struct CNVO : public SO
 {
     // ...
-    float svBelt;
-    float svuAvg;
-    float svvAvg;
+    /* 0x550 */ float svBelt;
+    /* 0x554 */ float svuAvg;
+    /* 0x558 */ float svvAvg;
     // ...
 };
 

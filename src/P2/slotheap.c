@@ -8,13 +8,11 @@ void _InitSlotheap(SLOTHEAP *pslotheap, int cb, int c)
     pslotheap->cb = cb;
     pslotheap->pslotFree = (SLOT *)pbBase;
 
-    int i = 1;
-    while (i < c)
+    for (int i = 1; i < c; i++)
     {
         SLOT *pslotPrev = (SLOT *)pbBase;
         pbBase = &pslotheap->ab[i * pslotheap->cb];
         pslotPrev->pslotNext = (SLOT *)pbBase;
-        i++;
     }
 
     ((SLOT *)pbBase)->pslotNext = (SLOT *)nullptr;
@@ -62,12 +60,14 @@ void *PvAllocSlotheapClearImpl(SLOTHEAP *pslotheap)
 
 void FreeSlotheapPv(SLOTHEAP *pslotheap, void *pv)
 {
-    if (pv)
+    if (!pv)
     {
-        SLOT *pslot = (SLOT *)pv;
-        pslot->pslotNext = pslotheap->pslotFree;
-        pslotheap->pslotFree = pslot;
+        return;
     }
+
+    SLOT *pslot = (SLOT *)pv;
+    pslot->pslotNext = pslotheap->pslotFree;
+    pslotheap->pslotFree = pslot;
 }
 
 JUNK_NOP();

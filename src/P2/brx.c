@@ -13,7 +13,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/brx", PloNew__F3CIDP2SWP3ALO3OIDi);
 /**
  * @todo 2.19% matched.
  */
-SW *PloNew(CID cid, SW *psw, ALO *paloParent, OID oid, int isplice)
+LO *PloNew(CID cid, SW *psw, ALO *paloParent, OID oid, int isplice)
 {
     return psw;
 }

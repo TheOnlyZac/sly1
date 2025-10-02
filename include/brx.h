@@ -48,7 +48,7 @@ struct EOPID
 void StartupBrx();
 
 /**
- * @brief Creates a new PLO from the given parameters.
+ * @brief Creates a new LO from the given parameters.
  *
  * @param cid Class ID.
  * @param psw Pointer to the SW object.
@@ -56,9 +56,9 @@ void StartupBrx();
  * @param oid Object ID.
  * @param isplice Splice index.
  *
- * @return Pointer to the new SW object.
+ * @return Pointer to the new LO object.
  */
-SW* PloNew(CID cid, SW* psw, ALO* paloParent, OID oid, int isplice);
+LO *PloNew(CID cid, SW *psw, ALO *paloParent, OID oid, int isplice);
 
 /**
  * @brief TODO.

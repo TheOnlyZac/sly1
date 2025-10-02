@@ -5,19 +5,13 @@
 #define BREAK_H
 
 #include "common.h"
+#include <so.h>
 #include <bis.h>
 #include <oid.h>
 #include <sound.h>
 #include <difficulty.h>
 
-/**
- * @class (_BRK)
- * @brief Breakable base.
- */
-struct BRK
-{
-    // ...
-};
+typedef int GRFBRK;
 
 /**
  * @brief Breakable piece state.
@@ -28,7 +22,45 @@ enum BRKPS
     BRKPS_Idle = 0,
     BRKPS_Pending = 1,
     BRKPS_Fading = 2,
-    BRKPS_Max = 3,
+    BRKPS_Max = 3
+};
+
+/**
+ * @brief Unknown.
+ */
+enum BRPT
+{
+    BRPT_Nil = -1,
+    BRPT_Disappear = 0,
+    BRPT_Remain = 1,
+    BRPT_Fixed = 2,
+    BRPT_RemainFixed = 3,
+    BRPT_Appear = 4,
+    BRPT_Max = 5
+};
+
+/**
+ * @brief Unknown.
+ */
+struct BRP
+{
+    /* 0x00 */ BRPT brpt;
+    /* 0x04 */ OID oid;
+    /* 0x08 */ LO *plo;
+};
+
+/**
+ * @class (_BRK)
+ * @brief Breakable base.
+ */
+struct BRK : public SO
+{
+    // ...
+    /* 0x550 */ int cbrp;
+    /* 0x554 */ BRP abrp[16];
+    // ...
+    /* 0x63c */ GRFBRK grfbrk;
+    // ...
 };
 
 /**

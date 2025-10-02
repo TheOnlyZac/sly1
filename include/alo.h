@@ -211,7 +211,7 @@ struct ALO : public LO
     int cposed;
     POSEC *aposec;
     ACTREF *pactrefCombo;
-    DLR *pdlrFirst;
+    /* 0x2c4 */ DLR *pdlrFirst;
     // ???
     ACK ackRot;
     // ???

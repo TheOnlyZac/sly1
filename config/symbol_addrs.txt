@@ -1642,6 +1642,8 @@ SetDartDarts__FP4DART5DARTS                   = 0x14F110; // type:func
 ApplyDartThrow__FP4DARTP2PO                   = 0x14F168; // type:func
 UpdateDartAirborne__FP4DARTf                  = 0x14F270; // type:func
 
+s_asnipDart = 0x261CC8;
+
 
 ////////////////////////////////////////////////////////////////
 // P2/dartgun.c
@@ -1784,6 +1786,12 @@ SolveDzg__FP3DZGiiPP2XPPiPPP2SO      = 0x153EC0; // type:func
 SolveDzgFric__FP3DZGiiPP2XPPiPPP2SOf = 0x154088; // type:func
 ApplyDzg__FP3DZGiPiPPP2SOff          = 0x154370; // type:func
 SolveInequalities__FiPfN21           = 0x154880; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/emitter.c
+////////////////////////////////////////////////////////////////
+InferExpl__FPP4EXPLP3ALO = 0x159478; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -2200,6 +2208,8 @@ g_dlHbsk   = 0x262708; // size:0xc
 InitHnd__FP3HND                             = 0x16C470; // type:func
 LoadHndFromBrx__FP3HNDP18CBinaryInputStream = 0x16C4B8; // type:func
 junk_0016c4d8                               = 0x16C4D8; // type:func
+
+D_0024A7DC = 0x24A7DC; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
@@ -3729,7 +3739,6 @@ FUN_001bc710                                           = 0x1BC710; // type:func
 FUN_001bc748                                           = 0x1BC748; // type:func
 
 
-
 ////////////////////////////////////////////////////////////////
 // P2/solve.c
 ////////////////////////////////////////////////////////////////
@@ -3859,6 +3868,8 @@ InitSpire__FP5SPIRE     = 0x1C10A8; // type:func
 OnSpireAdd__FP5SPIRE    = 0x1C10D8; // type:func
 OnSpireRemove__FP5SPIRE = 0x1C1110; // type:func
 CloneSpire__FP5SPIRET0  = 0x1C1148; // type:func
+
+DAT_0024d3b4 = 0x24D3B4; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
@@ -4044,12 +4055,17 @@ s_mpfspgrfvault = 0x274F38; // size:0x1c
 
 ////////////////////////////////////////////////////////////////
 // P2/steprail.c
+// TODO: Mangle the function names.
 ////////////////////////////////////////////////////////////////
-func_001D31D0__FP2LOi  = 0x1D31D0; // type:func
-post_load_steprail     = 0x1D3290; // type:func
-func_001D32D8__FiP2JTl = 0x1D32D8; // type:func
-update_steprail        = 0x1D3398; // type:func
-preset_steprail_accel  = 0x1D3470; // type:func
+func_001D31D0__FP2LOi   = 0x1D31D0; // type:func
+post_load_steprail      = 0x1D3290; // type:func
+func_001D32D8__FiP2JTl  = 0x1D32D8; // type:func
+update_steprail         = 0x1D3398; // type:func
+preset_steprail_accel   = 0x1D3470; // type:func
+FUN_001d34e0            = 0x1D34E0; // type:func
+FUN_001d3500            = 0x1D3500; // type:func
+FUN_001d35a8            = 0x1D35A8; // type:func
+update_steprail_message = 0x1D3678; // type:func
 
 
 ////////////////////////////////////////////////////////////////

@@ -1,4 +1,5 @@
 #include <turret.h>
+#include <dialog.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/turret", InitTurret__FP6TURRET);
 
@@ -24,6 +25,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/turret", FIgnoreTurretIntersection__FP6TURRETP2
 
 INCLUDE_ASM("asm/nonmatchings/P2/turret", CollectTurretPrize__FP6TURRET3PCKP3ALO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/turret", GetTurretDiapi__FP6TURRETP6DIALOGP5DIAPI);
+void GetTurretDiapi(TURRET *pturret, DIALOG *pdialog, DIAPI *pdiapi)
+{
+    pdiapi->fCallable = 0;
+    pdiapi->fPlayable = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/turret", FUN_001e5e60);

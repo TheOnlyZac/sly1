@@ -13,6 +13,8 @@
  */
 struct ASEGA : public BASIC
 {
+    /* 0x08 */ STRUCT_PADDING(7);
+    /* 0x24 */ char fHandsOff;
     // ...
 };
 

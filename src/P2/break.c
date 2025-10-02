@@ -1,4 +1,5 @@
 #include <break.h>
+#include <chkpnt.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", InitBrk__FP3BRK);
 
@@ -6,7 +7,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/break", LoadBrkFromBrx__FP3BRKP18CBinaryInputSt
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", CloneBrk__FP3BRKT0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", PostBrkLoad__FP3BRK);
+void PostBrkLoad(BRK *pbrk)
+{
+    PostAloLoad((ALO *)pbrk);
+    PostSwCallback(pbrk->psw, PostBrkLoadCallbackHookup, pbrk, MSGID_callback, nullptr);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", PostBrkLoadCallbackHookup__FP3BRK5MSGIDPv);
 
@@ -16,20 +21,65 @@ INCLUDE_ASM("asm/nonmatchings/P2/break", FAbsorbBrkWkr__FP3BRKP3WKR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", BreakBrk__FP3BRK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", SetBrkBroken__FP3BRKi);
+void SetBrkBroken(BRK *pbrk, int fBroken)
+{
+    STRUCT_OFFSET(pbrk, 0x680, int) = fBroken; // pbrk->fBroken
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", SetBrkExclude__FP3BRK3OID);
+    if (fBroken)
+    {
+        SetChkmgrIchk(&g_chkmgr, STRUCT_OFFSET(pbrk, 0x688, int)); // pbrk->ichkBroken
+    }
+    else
+    {
+        ClearChkmgrIchk(&g_chkmgr, STRUCT_OFFSET(pbrk, 0x688, int)); // pbrk->ichkBroken
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", SetBrkRemain__FP3BRK3OID);
+void SetBrkExclude(BRK *pbrk, OID oid)
+{
+    if (STRUCT_OFFSET(pbrk, 0x550, uint) >= 0x10)
+        return;
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", SetBrkFixed__FP3BRK3OID);
+    (&STRUCT_OFFSET(pbrk, 0x554, BRP))[STRUCT_OFFSET(pbrk, 0x550, uint)].oid = oid;
+    (&STRUCT_OFFSET(pbrk, 0x554, BRP))[STRUCT_OFFSET(pbrk, 0x550, uint)].brpt = BRPT_Disappear;
+    STRUCT_OFFSET(pbrk, 0x550, uint)++;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", SetBrkRemainFixed__FP3BRK3OID);
+void SetBrkRemain(BRK *pbrk, OID oid)
+{
+    if (STRUCT_OFFSET(pbrk, 0x550, uint) >= 0x10)
+        return;
+
+    (&STRUCT_OFFSET(pbrk, 0x554, BRP))[STRUCT_OFFSET(pbrk, 0x550, uint)].oid = oid;
+    (&STRUCT_OFFSET(pbrk, 0x554, BRP))[STRUCT_OFFSET(pbrk, 0x550, uint)].brpt = BRPT_Remain;
+    STRUCT_OFFSET(pbrk, 0x550, uint)++;
+}
+
+void SetBrkFixed(BRK *pbrk, OID oid)
+{
+    if (STRUCT_OFFSET(pbrk, 0x550, uint) >= 0x10)
+        return;
+
+    (&STRUCT_OFFSET(pbrk, 0x554, BRP))[STRUCT_OFFSET(pbrk, 0x550, uint)].oid = oid;
+    (&STRUCT_OFFSET(pbrk, 0x554, BRP))[STRUCT_OFFSET(pbrk, 0x550, uint)].brpt = BRPT_Fixed;
+    STRUCT_OFFSET(pbrk, 0x550, uint)++;
+}
+
+void SetBrkRemainFixed(BRK *pbrk, OID oid)
+{
+    if (STRUCT_OFFSET(pbrk, 0x550, uint) >= 0x10)
+        return;
+
+    (&STRUCT_OFFSET(pbrk, 0x554, BRP))[STRUCT_OFFSET(pbrk, 0x550, uint)].oid = oid;
+    (&STRUCT_OFFSET(pbrk, 0x554, BRP))[STRUCT_OFFSET(pbrk, 0x550, uint)].brpt = BRPT_RemainFixed;
+    STRUCT_OFFSET(pbrk, 0x550, uint)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", SetBrkOnPlayer__FP3BRKi);
 
 void GetBrkOnPlayer(BRK *pbrk, int *pfBreakOnPlayer)
 {
+    // pbrk->grfbrk
     *pfBreakOnPlayer = STRUCT_OFFSET(pbrk, 0x63c, int) & 1;
 }
 
@@ -37,6 +87,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/break", SetBrkOnBomb__FP3BRKi);
 
 void GetBrkOnBomb(BRK *pbrk, int *pfBreakOnBomb)
 {
+    // pbrk->grfbrk
     *pfBreakOnBomb = (STRUCT_OFFSET(pbrk, 0x63c, int) >> 2) & 1;
 }
 
@@ -48,6 +99,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/break", FUN_0013DAB8);
 
 SFX *PsfxEnsureBrk(BRK *pbrk, ENSK ensk)
 {
+    // pbrk->psfxBreak
     if (!STRUCT_OFFSET(pbrk, 0x6b4, SFX *))
     {
         NewSfx(&STRUCT_OFFSET(pbrk, 0x6b4, SFX *));

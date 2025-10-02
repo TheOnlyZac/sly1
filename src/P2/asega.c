@@ -1,8 +1,24 @@
 #include <asega.h>
+#include <sw.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", PasegaNew__FP2SW);
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", SetAsegaHandsOff__FP5ASEGAi);
+void SetAsegaHandsOff(ASEGA *pasega, int fHandsOff)
+{
+    if (fHandsOff == pasega->fHandsOff)
+        return;
+
+    if (fHandsOff)
+    {
+        IncrementSwHandsOff(g_psw);
+    }
+    else
+    {
+        DecrementSwHandsOff(g_psw);
+    }
+
+    pasega->fHandsOff = fHandsOff;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", UpdateAsegaIeaCur__FP5ASEGA);
 
@@ -16,7 +32,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/asega", HandleAsegaEventsFF__FP5ASEGAP4ASEGPi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", HandleAsegaEvents__FP5ASEGAP4ASEGPi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", RemoveAsega__FP5ASEGA);
+void RemoveAsega(ASEGA *pasega)
+{
+    RemoveDlEntry(&g_psw->dlAsegaPending, pasega);
+    FreeSlotheapPv(&g_psw->slotheapAsega, pasega);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", RetractAsega__FP5ASEGA);
 

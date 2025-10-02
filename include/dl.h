@@ -14,8 +14,8 @@
  */
 struct DL
 {
-    void* head;
-    void* tail;
+    void *head;
+    void *tail;
     int ibDle;
 };
 
@@ -27,8 +27,8 @@ struct DL
  */
 struct DLE
 {
-    void* next;
-    void* prev;
+    void *next;
+    void *prev;
 };
 
 /**
@@ -101,7 +101,7 @@ DLE *PdleFromDlEntry(DL *pdl, void *pv);
  * @param pdl Pointer to the doubly linked list.
  * @param pv Pointer to the list element.
  */
-void AppendDlEntry(DL *pdl,void *pv);
+void AppendDlEntry(DL *pdl, void *pv);
 
 /**
  * @brief Prepend an element to the beginning of the doubly linked list.

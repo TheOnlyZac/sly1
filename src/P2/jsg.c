@@ -68,31 +68,31 @@ void ApplyJsg(JSG *pjsg, JT *pjt)
 
 void RetractJsg(JSG *pjsg)
 {
-    if (pjsg->pjt)
+    if (!pjsg->pjt)
+        return;
+
+    SetJsgTn(pjsg, (TN *)nullptr);
+    SetJsgFocus(pjsg, (LO *)nullptr);
+
+    if (pjsg->pasegaCur)
     {
-        SetJsgTn(pjsg, (TN *)nullptr);
-        SetJsgFocus(pjsg, (LO *)nullptr);
+        RetractAsega(pjsg->pasegaCur);
+        pjsg->pasegaCur = 0;
+    }
 
-        if (pjsg->pasegaCur)
-        {
-            RetractAsega(pjsg->pasegaCur);
-            pjsg->pasegaCur = 0;
-        }
+    SetClockRate(1.0f);
+    pjsg->ijsgeCur = pjsg->cjsge;
+    pjsg->ploContext = (LO *)nullptr;
+    pjsg->pjsgeJoy = (JSGE *)nullptr;
+    STRUCT_OFFSET(pjsg->pjt, 0x2740, JSG *) = (JSG *)nullptr; // pjsg->pjt->pjsgCur
+    pjsg->pjt = (JT *)nullptr;
 
-        SetClockRate(1.0f);
-        pjsg->ijsgeCur = pjsg->cjsge;
-        pjsg->ploContext = (LO *)nullptr;
-        pjsg->pjsgeJoy = (JSGE *)nullptr;
-        STRUCT_OFFSET(pjsg->pjt, 0x2740, JSG *) = (JSG *)nullptr; // pjsg->pjt->pjsgCur
-        pjsg->pjt = (JT *)nullptr;
+    HandleLoSpliceEvent(pjsg, 0x19, 0, 0);
 
-        HandleLoSpliceEvent(pjsg, 0x19, 0, 0);
-
-        if (pjsg->unk3)
-        {
-            RemoveGrfusr(4);
-            DecrementSwHandsOff(pjsg->psw);
-        }
+    if (pjsg->unk3)
+    {
+        RemoveGrfusr(4);
+        DecrementSwHandsOff(pjsg->psw);
     }
 }
 

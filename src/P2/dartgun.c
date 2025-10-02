@@ -1,6 +1,10 @@
 #include <dartgun.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/dartgun", InitDartgun__FP7DARTGUN);
+void InitDartgun(DARTGUN *pdartgun)
+{
+    InitBreak((BREAK *)pdartgun);
+    STRUCT_OFFSET(pdartgun, 0x6c0, OID) = OID_Nil; // pdartgun->oidDart
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/dartgun", HandleDartgunMessage__FP7DARTGUN5MSGIDPv);
 

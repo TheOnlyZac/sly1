@@ -1,18 +1,41 @@
 #include <rail.h>
+#include <find.h>
+#include <sw.h>
 
 extern float D_0024C8C4;
 
 void InitRail(RAIL *prail)
 {
     InitLo(prail);
-    STRUCT_OFFSET(prail, 0x4c, float) = D_0024C8C4; // prail->rdvGravity
-    STRUCT_OFFSET(prail, 0x54, int) = -1; // prail->fSlippery
+    prail->unk1 = D_0024C8C4;
+    prail->oid = OID_Nil;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rail", OnRailAdd__FP4RAIL);
+void OnRailAdd(RAIL *prail)
+{
+    OnLoAdd(prail);
+    AppendDlEntry(&prail->psw->dlRail, prail);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rail", OnRailRemove__FP4RAIL);
+void OnRailRemove(RAIL *prail)
+{
+    OnLoRemove(prail);
+    RemoveDlEntry(&prail->psw->dlRail, prail);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rail", PostLoadRail__FP4RAIL);
+void PostLoadRail(RAIL *prail)
+{
+    PostLoLoad(prail);
+    if (prail->oid != OID_Nil)
+    {
+        // TODO: Check if the field at 0x58 is LO or something that inherits from it.
+        prail->plo = PloFindSwObject(prail->psw, 4, prail->oid, prail);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rail", CloneRail__FP4RAILT0);
+void CloneRail(RAIL *prail, RAIL *prailBase)
+{
+    DLE dleRail = prail->dleRail;
+    CloneLo(prail, prailBase);
+    prail->dleRail = dleRail;
+}

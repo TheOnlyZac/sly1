@@ -1,7 +1,13 @@
 #include <ik.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/ik", RenderIkhSelf__FP3IKHP2CMP2RO);
+void RenderIkhSelf(IKH *pikh, CM *pcm, RO *pro)
+{
+    RenderSoSelf(pikh, pcm, pro);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/ik", RenderLikhSelf__FP4LIKHP2CMP2RO);
+void RenderLikhSelf(LIKH *plikh, CM *pcm, RO *pro)
+{
+    RenderAloSelf(plikh, pcm, pro);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/ik", SolveAloIK__FP3ALO);

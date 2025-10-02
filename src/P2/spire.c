@@ -1,9 +1,33 @@
 #include <spire.h>
+#include <sw.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/spire", InitSpire__FP5SPIRE);
+/**
+ * @todo Rename.
+ */
+extern float DAT_0024d3b4;
 
-INCLUDE_ASM("asm/nonmatchings/P2/spire", OnSpireAdd__FP5SPIRE);
+void InitSpire(SPIRE *pspire)
+{
+    InitLo(pspire);
+    STRUCT_OFFSET(pspire, 0x58, float) = DAT_0024d3b4;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/spire", OnSpireRemove__FP5SPIRE);
+void OnSpireAdd(SPIRE *pspire)
+{
+    OnLoAdd(pspire);
+    AppendDlEntry(&pspire->psw->dlSpire, pspire);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/spire", CloneSpire__FP5SPIRET0);
+void OnSpireRemove(SPIRE *pspire)
+{
+    OnLoRemove(pspire);
+    RemoveDlEntry(&pspire->psw->dlSpire, pspire);
+}
+
+void CloneSpire(SPIRE *pspire, SPIRE *pspireBase)
+{
+    // pspire->dleSpire
+    DLE dleSpire = STRUCT_OFFSET(pspire, 0x50, DLE); 
+    CloneLo(pspire, pspireBase);
+    STRUCT_OFFSET(pspire, 0x50, DLE) = dleSpire;
+}

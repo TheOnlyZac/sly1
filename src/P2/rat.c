@@ -27,7 +27,12 @@ void OnRatRemove(RAT *prat)
     RemoveDlEntry(&prat->psw->dlRat, prat);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rat", CloneRat__FP3RATT0);
+void CloneRat(RAT *prat, RAT *pratBase)
+{
+    DLE dleRat = STRUCT_OFFSET(prat, 0x600, DLE); // prat->dleRat
+    CloneSo(prat, pratBase);
+    STRUCT_OFFSET(prat, 0x600, DLE) = dleRat; // prat->dleRat
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rat", PresetRatAccel__FP3RATf);
 
@@ -47,6 +52,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/rat", HideRat__FP3RATi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rat", SetRatRats__FP3RAT4RATS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rat", OnRatholeAdd__FP7RATHOLE);
+void OnRatholeAdd(RATHOLE *prathole)
+{
+    OnLoAdd(prathole);
+    AppendDlEntry(&prathole->psw->dlRathole, prathole);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rat", OnRatholeRemove__FP7RATHOLE);
+void OnRatholeRemove(RATHOLE *prathole)
+{
+    OnLoRemove(prathole);
+    RemoveDlEntry(&prathole->psw->dlRathole, prathole);
+}
