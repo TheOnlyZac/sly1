@@ -1,16 +1,47 @@
 #include <crusher.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/crusher", OnCrfodAdd__FP5CRFOD);
+/**
+ * @todo Rename.
+ */
+extern int DAT_0027c008;
 
-INCLUDE_ASM("asm/nonmatchings/P2/crusher", OnCrfodRemove__FP5CRFOD);
+void OnCrfodAdd(CRFOD *pcrfod)
+{
+    OnStepguardAdd(pcrfod);
+    AppendDlEntry(&pcrfod->psw->dlCrfod, pcrfod);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/crusher", CloneCrfod__FP5CRFODT0);
+void OnCrfodRemove(CRFOD *pcrfod)
+{
+    OnStepguardRemove(pcrfod);
+    RemoveDlEntry(&pcrfod->psw->dlCrfod, pcrfod);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/crusher", InitCrfodb__FP6CRFODB);
+void CloneCrfod(CRFOD *pcrfod, CRFOD *pcrfodBase)
+{
+    DLE dleCrfod = STRUCT_OFFSET(pcrfod, 0xc10, DLE);
+    CloneStepguard(pcrfod, pcrfodBase);
+    STRUCT_OFFSET(pcrfod, 0xc10, DLE) = dleCrfod;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/crusher", PostCrfodbLoad__FP6CRFODB);
+void InitCrfodb(CRFODB *pcrfodb)
+{
+    InitStepguard(pcrfodb);
+    STRUCT_OFFSET(pcrfodb, 0xc24, int) = 1;
+    DAT_0027c008 = 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/crusher", CalcHeadingVector__FfP6VECTOR);
+void PostCrfodbLoad(CRFODB *pcrfodb)
+{
+    PostStepguardLoad(pcrfodb);
+    STRUCT_OFFSET(pcrfodb, 0xc2c, int) = DAT_0027c008++;
+}
+
+void CalcHeadingVector(float rad, VECTOR *pvector)
+{
+    CalculateSinCos(rad, &pvector->y, (float *)pvector);
+    pvector->z = 0.0f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crusher", UpdateCrfodbGoal__FP6CRFODBi);
 

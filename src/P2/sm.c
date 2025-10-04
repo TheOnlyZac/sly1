@@ -6,7 +6,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/sm", LoadSmFromBrx__FP2SMP18CBinaryInputStream)
 void PostSmLoad(SM *psm)
 {
     PostLoLoad(psm);
-    if (psm->fDefault != 0)
+    if (psm->fDefault)
     {
         PostSwCallback(psm->psw, PostSmLoadCallback, psm, MSGID_callback, nullptr);
     }

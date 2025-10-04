@@ -28,6 +28,8 @@ struct SHADOW
     /* 0x44 */ float sFarCast;
     /* 0x48 */ STRUCT_PADDING(26);
     /* 0xb0 */ OID oidDysh;
+    /* 0xb4 */ STRUCT_PADDING(3);
+    /* 0xc0 */ int cqwVifs;
 };
 
 void InitShadow(SHADOW *pshadow);

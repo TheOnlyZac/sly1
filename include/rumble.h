@@ -48,7 +48,7 @@ enum RUMK
  */
 struct RUMINS
 {
-    int fHighSpeedMotor;
+    byte fHighSpeedMotor;
     byte bLowSpeedMotor;
     byte unk1;
     byte unk2;
@@ -72,9 +72,10 @@ struct RUMPAT
  */
 struct RUMBLE
 {
-    int nPort;
-    int nSlot;
-    RUMS rums;
+    /* 0x00 */ STRUCT_PADDING(1); // TODO: Add vtable.
+    /* 0x04 */ int nPort;
+    /* 0x08 */ int nSlot;
+    /* 0x0c */ RUMS rums;
     RUMPAT *prumpat;
     int irumins;
     float dtRumble;
@@ -82,7 +83,11 @@ struct RUMBLE
 };
 
 void InitRumble(RUMBLE *prumble, int nPort, int nSlot);
+
 void TriggerRumbleRumk(RUMBLE *prumble, RUMK rumk, float dt);
+
 void SetRumbleRums(RUMBLE *prumble, RUMS rums);
+
+void StopRumbleActuators(RUMBLE *prumble);
 
 #endif // RUMBLE_H
