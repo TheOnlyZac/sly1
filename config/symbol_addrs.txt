@@ -1577,6 +1577,8 @@ FUN_0014cd70                     = 0x14CD70; // type:func
 FUN_0014cdc8                     = 0x14CDC8; // type:func
 handle_crbrain_message           = 0x14CF30; // type:func
 
+DAT_0027c008 = 0x27C008; // size:0x4
+
 
 ////////////////////////////////////////////////////////////////
 // P2/crv.c
@@ -3330,16 +3332,18 @@ junk_001A3AC8                                  = 0x1A3AC8; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/rumble.c
 ////////////////////////////////////////////////////////////////
-InitRumble__FP6RUMBLEii            = 0x1A7B20; // type:func
-FUN_001A7B88                       = 0x1A7B88; // type:func
-TriggerRumbleRumk__FP6RUMBLE4RUMKf = 0x1A7CE8; // type:func
-FUN_001A7D18                       = 0x1A7D18; // type:func
-SetRumbleRums__FP6RUMBLE4RUMS      = 0x1A7D98; // type:func
-FUN_001A7E40                       = 0x1A7E40; // type:func
-FUN_001A7E70                       = 0x1A7E70; // type:func
-FUN_001A7E90                       = 0x1A7E90; // type:func
-FUN_001A7EE8                       = 0x1A7EE8; // type:func
-FUN_001A7F50                       = 0x1A7F50; // type:func
+InitRumble__FP6RUMBLEii                 = 0x1A7B20; // type:func
+UpdateRumble__FP6RUMBLE                 = 0x1A7B88; // type:func
+TriggerRumbleRumk__FP6RUMBLE4RUMKf      = 0x1A7CE8; // type:func
+TriggerRumbleRumpat__FP6RUMBLEP6RUMPATf = 0x1A7D18; // type:func
+SetRumbleRums__FP6RUMBLE4RUMS           = 0x1A7D98; // type:func
+StopRumbleActuators__FP6RUMBLE          = 0x1A7E40; // type:func
+FUN_001A7E70__Fv                        = 0x1A7E70; // type:func
+FUN_001A7E90                            = 0x1A7E90; // type:func
+FUN_001A7EE8                            = 0x1A7EE8; // type:func
+FUN_001A7F50                            = 0x1A7F50; // type:func
+
+DAT_0026c3dc = 0x26C3DC;
 
 
 ////////////////////////////////////////////////////////////////
@@ -4051,9 +4055,97 @@ ChooseJtSmashTarget__FP2JT                        = 0x1C6ED0; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/stepguard.c
 ////////////////////////////////////////////////////////////////
-InitStepguard__FP9STEPGUARD             = 0x1C6F48; // type:func
-PostStepguardLoad__FP9STEPGUARD         = 0x1C72A0; // type:func
-SetStepguardSgs__FP9STEPGUARD3SGSP4ASEG = 0x1C8F20; // type:func
+InitStepguard__FP9STEPGUARD                             = 0x1C6F48; // type:func
+LoadStepguardFromBrx__FP9STEPGUARDP18CBinaryInputStream = 0x1C7140; // type:func
+CloneStepguard__FP9STEPGUARDT0                          = 0x1C7188; // type:func
+BindStepguard__FP9STEPGUARD                             = 0x1C71E0; // type:func
+PostStepguardLoadCallback__FP9STEPGUARD5MSGIDPv         = 0x1C7278; // type:func
+PostStepguardLoad__FP9STEPGUARD                         = 0x1C72A0; // type:func
+FIgnoreStepguardIntersection__FP9STEPGUARDP2SO          = 0x1C7468; // type:func
+OnStepguardAdd__FP9STEPGUARD                            = 0x1C74E8; // type:func
+OnStepguardRemove__FP9STEPGUARD                         = 0x1C7520; // type:func
+PresetStepguardAccel__FP9STEPGUARDf                     = 0x1C75B0; // type:func
+DradEnemyStepguard__FP9STEPGUARD                        = 0x1C7A60; // type:func
+SetStepguardTargetHeading__FP9STEPGUARDff               = 0x1C7AE0; // type:func
+FUN_001c7b60                                            = 0x1C7B60; // type:func
+UpdateStepguardDrive__FP9STEPGUARD                      = 0x1C7BE8; // type:func
+UpdateStepguard__FP9STEPGUARDf                          = 0x1C7CB8; // type:func
+SgsNextStepguardAI__FP9STEPGUARD                        = 0x1C8010; // type:func
+SetStepguardGoal__FP9STEPGUARDP6VECTOR                  = 0x1C8418; // type:func
+FReachedStepguardGoal__FP9STEPGUARD                     = 0x1C84C0; // type:func
+FFilterStepguardJump__FP9STEPGUARDP2SO                  = 0x1C84E8; // type:func
+MoveStepguardToGoal__FP9STEPGUARD                       = 0x1C8590; // type:func
+FUN_001c8920                                            = 0x1C8920; // type:func
+LookStepguardAtGoal__FP9STEPGUARD                       = 0x1C8BC0; // type:func
+UpdateStepguardGoal__FP9STEPGUARDi                      = 0x1C8C08; // type:func
+FUN_001c8d40                                            = 0x1C8D40; // type:func
+OnStepguardWaypointActive__FP9STEPGUARD                 = 0x1C8D78; // type:func
+UpdateStepguardSgs__FP9STEPGUARD                        = 0x1C8E28; // type:func
+SetStepguardSgs__FP9STEPGUARD3SGSP4ASEG                 = 0x1C8F20; // type:func
+SetStepguardSgsExternal__FP9STEPGUARD3SGSP4ASEG         = 0x1C8FD0; // type:func
+OnStepguardExitingSgs__FP9STEPGUARD3SGS                 = 0x1C9008; // type:func
+OnStepguardEnteringSgs__FP9STEPGUARD3SGSP4ASEG          = 0x1C91C8; // type:func
+SggsGetStepguard__FP9STEPGUARD                          = 0x1C96B8; // type:func
+FAbsorbStepguardWkr__FP9STEPGUARDP3WKR                  = 0x1C96D8; // type:func
+FTakeStepguardDamage__FP9STEPGUARDP3ZPR                 = 0x1C9990; // type:func
+FUN_001c9a48                                            = 0x1C9A48; // type:func
+HandleStepguardGrfsgsc__FP9STEPGUARD                    = 0x1C9A58; // type:func
+DoStepguardFreefallJump__FP9STEPGUARD                   = 0x1C9AF8; // type:func
+DoStepguardFreefallLanding__FP9STEPGUARD                = 0x1C9CF8; // type:func
+FUN_001c9d50                                            = 0x1C9D50; // type:func
+HandleStepguardMessage__FP9STEPGUARD5MSGIDPv            = 0x1C9DE0; // type:func
+SgasGetStepguard__FP9STEPGUARD                          = 0x1CA460; // type:func
+FCanStepguardAttack__FP9STEPGUARD                       = 0x1CA468; // type:func
+RenderStepguardSelf__FP9STEPGUARDP2CMP2RO               = 0x1CA5E0; // type:func
+FValidSgs__F3SGS                                        = 0x1CA600; // type:func
+UseStepguardAnimation__FP9STEPGUARD3SGS3OID             = 0x1CA608; // type:func
+UseStepguardAnimationImmediate__FP9STEPGUARD3SGS3OID    = 0x1CA658; // type:func
+FUN_001ca6d0                                            = 0x1CA6D0; // type:func
+UseStepguardDeathAnimation__FP9STEPGUARDi3OID           = 0x1CA720; // type:func
+PasegFindStepguard__FP9STEPGUARD3OID                    = 0x1CA758; // type:func
+LoadStepguardAnimations__FP9STEPGUARD                   = 0x1CA7C0; // type:func
+UseStepguardExpl__FP9STEPGUARD3OID                      = 0x1CA878; // type:func
+UseStepguardRwm__FP9STEPGUARD3OID                       = 0x1CA888; // type:func
+UseStepguardPhys__FP9STEPGUARD3SGS3OID                  = 0x1CA898; // type:func
+LoadStepguardPhys__FP9STEPGUARD                         = 0x1CA8E8; // type:func
+AddStepguardEffect__FP9STEPGUARD3OID3ZPK                = 0x1CA960; // type:func
+SetStepguardPathzone__FP9STEPGUARD3OID                  = 0x1CA998; // type:func
+PsoEnemyStepguard__FP9STEPGUARD                         = 0x1CAA08; // type:func
+FUN_001caad0                                            = 0x1CAAD0; // type:func
+SetStepguardEnemyObject__FP9STEPGUARDP2SO               = 0x1CAB00; // type:func
+RebindStepguardEnemy__FP9STEPGUARD                      = 0x1CAB10; // type:func
+FUN_001cac28__FP9STEPGUARD                              = 0x1CAC28; // type:func
+FUN_001cac30                                            = 0x1CAC30; // type:func
+AdjustStepguardDz__FP9STEPGUARDiP2DZif                  = 0x1CACB0; // type:func
+SetStepguardAttackAngleMax__FP9STEPGUARDf               = 0x1CAD28; // type:func
+AddStepguardAlarm__FP9STEPGUARDP5ALARM                  = 0x1CAD40; // type:func
+MatchStepguardAnimationPhase__FP9STEPGUARD3OIDN31       = 0x1CAD60; // type:func
+AddStepguardCustomXps__FP9STEPGUARDP2SOiP3BSPT3PP2XP    = 0x1CAD98; // type:func
+FUN_001caee0                                            = 0x1CAEE0; // type:func
+UpdateStepguardEffect__FP9STEPGUARD                     = 0x1CAF38; // type:func
+SetStepguardPatrolAnimation__FP9STEPGUARDP4ASEG         = 0x1CB328; // type:func
+FInflictStepguardZap__FP9STEPGUARDP2XPP3ZPR             = 0x1CB3C0; // type:func
+FDetectStepguard__FP9STEPGUARD                          = 0x1CB3C8; // type:func
+FCheckStepguardEnemyHidden__FP9STEPGUARD                = 0x1CB3D0; // type:func
+FUN_001cb578                                            = 0x1CB578; // type:func
+PsggNew__FP2SW                                          = 0x1CB5B8; // type:func
+InitSgg__FP3SGG                                         = 0x1CB618; // type:func
+AddSggGuard__FP3SGGP9STEPGUARD                          = 0x1CB648; // type:func
+AddSggGuardName__FP3SGG3OID                             = 0x1CB6A8; // type:func
+AddSggSearchXfmName__FP3SGG3OID                         = 0x1CB6D0; // type:func
+RemoveSggGuard__FP3SGGP9STEPGUARD                       = 0x1CB6F8; // type:func
+BindSgg__FP3SGG                                         = 0x1CB7A0; // type:func
+PostSggLoadCallback__FP3SGG5MSGIDPv                     = 0x1CB8B8; // type:func
+EnsureSggCallback__FP3SGG                               = 0x1CBAA0; // type:func
+PsoEnemySgg__FP3SGG                                     = 0x1CBAF8; // type:func
+UpdateSggCallback__FP3SGG5MSGIDPv                       = 0x1CBB20; // type:func
+SggsNextSgg__FP3SGG                                     = 0x1CBB88; // type:func
+FDetectSgg__FP3SGG                                      = 0x1CBCB8; // type:func
+FAbandonSggSearch__FP3SGG                               = 0x1CBD58; // type:func
+EnsureSggAlarm__FP3SGGP5ALARM                           = 0x1CBE20; // type:func
+TriggerSggAlarms__FP3SGG4ALTK                           = 0x1CBE70; // type:func
+SetSggSggs__FP3SGG4SGGS                                 = 0x1CBEE8; // type:func
+AssignSggSearchPoints__FP3SGG                           = 0x1CC120; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -4894,6 +4986,7 @@ scePadGetState = 0x204678; // type:func
 scePadInfoAct = 0x2046D0; // type:func
 scePadInfoMode = 0x2047F8; // type:func
 scePadSetMainMode = 0x204930; // type:func
+scePadSetActDirect = 0x2049E8; // type:func
 scePadSetActAlign = 0x204AA8; // type:func
 scePadInfoPressMode = 0x204CE8; // type:func
 scePadEnterPressMode = 0x204D48; // type:func
@@ -4902,17 +4995,23 @@ scePadEnterPressMode = 0x204D48; // type:func
 ////////////////////////////////////////////////////////////////
 // /usr/local/sce/ee/gcc/src/newlib/libm/math/sf_cos.c
 ////////////////////////////////////////////////////////////////
-cosf = 0x205210;
+cosf = 0x205210; // type:func
 
 
 ////////////////////////////////////////////////////////////////
-// /usr/local/sce/ee/gcc/src/gcc/libgcc2.c
+// /usr/local/sce/ee/gcc/src/newlib/libm/math/sf_tan.c
+////////////////////////////////////////////////////////////////
+tanf = 0x2054F0; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// sce/ee/gcc/src/newlib/libm/math/wf_atan2.c
 ////////////////////////////////////////////////////////////////
 atan2f = 0x205778; // type:func
 
 
 ////////////////////////////////////////////////////////////////
-// sce/ee/gcc/src/newlib/libm/math/wf_atan2.c
+// /usr/local/sce/ee/gcc/src/newlib/libm/math/wf_fmod.c
 ////////////////////////////////////////////////////////////////
 fmodf = 0x2058a0; // type:func
 

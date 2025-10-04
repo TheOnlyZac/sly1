@@ -8,6 +8,7 @@
 
 extern "C"
 {
+    float tanf(float x);
     float atan2f(float x, float y);
     float fmodf(float x, float y);
     float cosf(float x);

@@ -39,7 +39,7 @@ struct ASEG;
  */
 struct XFM : public LO
 {
-    VECTOR posLocal;
+    /* 0x34 */ VECTOR posLocal;
     MATRIX3 matLocal;
 };
 

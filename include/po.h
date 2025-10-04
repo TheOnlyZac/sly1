@@ -55,6 +55,8 @@ struct PO : public SO
     ALO *paloUseCharm;
 };
 
+void OnPoActive(PO *ppo, int fActive, PO *ppoOther);
+
 /**
  * @brief Switch to the given PO, if it isn't the currently active one.
  */

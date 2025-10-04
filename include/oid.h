@@ -10,7 +10,6 @@
 
 /**
  * @brief Object ID.
-
  */
 enum OID {
     OID_Nil = -1,
@@ -22,6 +21,10 @@ enum OID {
     OID_jt = 0x5,
     OID_bentley = 0x6,
     OID_murray = 0x7,
+
+    // ...
+
+    OID_shd_stock_shadow = 0x2c,
 
     // ...
 
