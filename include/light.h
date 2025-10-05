@@ -167,6 +167,6 @@ int NCmpFindLight(LIGHT **pplight1, LIGHT **pplight2);
 
 void PrepareSwLightsForDraw(SW *psw);
 
-TWPS TwpsFindSwLights(SW *psw, VECTOR *ppos, float sRadius, int grffindlight, int cplightMax, int *pcplightStatic, int *pcplightAll, LIGHT **aplight, char *pchzTarget);
+TWPS TwpsFindSwLights(SW *psw, VECTOR *ppos, float sRadius, int grffindlight, int cplightMax, int *pcplightStatic, int *pcplightAll, LIGHT **aplight);
 
 #endif // LIGHT_H

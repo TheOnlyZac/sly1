@@ -31,90 +31,6 @@ BuildEopids__Fv = 0x109488; // type:func
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////
-// P2/splice/method.cpp
-////////////////////////////////////////////////////////////////
-PmethodNew__Fv = 0x11AE78; // type:func
-
-
-////////////////////////////////////////////////////////////////
-// P2/splice/pair.cpp
-////////////////////////////////////////////////////////////////
-CloneTo__5CPairP5CPairP6CFrame = 0x11AEB8; // type:func
-PpairNew__Fv = 0x11AF28; // type:func
-DeletePair__FP5CPair = 0x11AF78; // type:func
-
-
-////////////////////////////////////////////////////////////////
-// P2/splice/proc.cpp
-////////////////////////////////////////////////////////////////
-CloneTo__5CProcP5CProcP6CFrame = 0x11af98; // type:func
-PprocNew__Fv = 0x11afc8; // type:func
-
-
-////////////////////////////////////////////////////////////////
-// P2/splice/spliceutils.cpp
-////////////////////////////////////////////////////////////////
-StartupSplice__Fv = 0x11BF70; // type:func
-ShutdownSplice__Fv = 0x11C040; // type:func
-spliceutils__static_initialization_and_destruction_0 = 0x11C0A8; // type:func
-_GLOBAL_$I$g_splotheapPair = 0x11C0E8; // type:func
-_GLOBAL_$D$g_splotheapPair = 0x11C108; // type:func
-
-
-////////////////////////////////////////////////////////////////
-// P2/splice/ref.cpp
-////////////////////////////////////////////////////////////////
-__4CRef = 0x11B008; // type:func
-__4CRefRC4CRef = 0x11B018; // type:func
-_$_4CRef = 0x11B060; // type:func
-__as__4CRefRC4CRef = 0x11B0A8; // type:func
-__eq__4CRefRC4CRef = 0x11B0F8; // type:func
-CloneTo__4CRefP4CRefP6CFrame = 0x11B258; // type:func
-Decref__4CRef = 0x11B418; // type:func
-Incref__4CRef = 0x11B4A8; // type:func
-SetTag__4CRef4TAGK = 0x11B538; // type:func
-SetS32__4CRefi = 0x11B570; // type:func
-SetF32__4CReff = 0x11B5B0; // type:func
-SetBool__4CRefi = 0x11B5F0; // type:func
-SetSymid__4CRefUi = 0x11B640; // type:func
-SetBifk__4CRef4BIFK = 0x11B680; // type:func
-SetPair__4CRefP5CPair = 0x11B6C0; // type:func
-SetProc__4CRefP5CProc = 0x11B700; // type:func
-SetVector__4CRefP6VECTOR = 0x11B740; // type:func
-SetMatrix__4CRefP7MATRIX4 = 0x11B788; // type:func
-SetClq__4CRefP3CLQ = 0x11B7D0; // type:func
-SetLm__4CRefP2LM = 0x11B818; // type:func
-SetSmp__4CRefP3SMP = 0x11B860; // type:func
-SetBasic__4CRefP5BASIC = 0x11B8A8; // type:func
-SetMethod__4CRefP7CMethod = 0x11B8E8; // type:func
-RefCoerceS32__4CRef = 0x11B928; // type:func
-RefCoerceF32__4CRef = 0x11B9A8; // type:func
-
-
-////////////////////////////////////////////////////////////////
-// P2/splice/eval.cpp
-////////////////////////////////////////////////////////////////
-RefEvalSymbol__FP5CPairP6CFrame = 0x118D48; // type:func
-RefEvalSet__FP5CPairP6CFrame    = 0x118DB8; // type:func
-RefEvalDefine__FP5CPairP6CFrame = 0x118E80; // type:func
-RefEvalAssert__FP5CPairP6CFrame = 0x118F48; // type:func
-RefEvalIf__FP5CPairP6CFrame     = 0x119030; // type:func
-RefEvalOr__FP5CPairP6CFrame     = 0x119128; // type:func
-RefEvalAnd__FP5CPairP6CFrame    = 0x119218; // type:func
-RefEvalCond__FP5CPairP6CFrame   = 0x119310; // type:func
-RefEvalCase__FP5CPairP6CFrame   = 0x1194A8; // type:func
-RefEvalLet__FP5CPairP6CFrame    = 0x1196C8; // type:func
-RefEvalWhile__FP5CPairP6CFrame  = 0x119878; // type:func
-RefEvalLambda__FP5CPairP6CFrame = 0x119970; // type:func
-RefEvalLambdaBody__FP5CPairP6CFrame = 0x119A58; // type:func
-RefEvalBegin__FP5CPairP6CFrame  = 0x119AF8; // type:func
-RefEvalApply__FP5CPairP6CFrame  = 0x119BB0; // type:func
-RefEvalImport__FP5CPairP6CFrame = 0x119FA0; // type:func
-RefEval__FP5CPairP6CFrame       = 0x11A080; // type:func
-
-chzSpliceAssert                 = 0x249200; // size:0x10
-
-////////////////////////////////////////////////////////////////
 // P2/splice/bif.cpp
 ////////////////////////////////////////////////////////////////
 RefOpAdd__FiP4CRefP6CFrame      = 0x112698; // type:func
@@ -256,17 +172,41 @@ __ml__FG8VU_FLOATG9VU_VECTOR    = 0x118D30; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/splice/eval.cpp
+////////////////////////////////////////////////////////////////
+RefEvalSymbol__FP5CPairP6CFrame     = 0x118D48; // type:func
+RefEvalSet__FP5CPairP6CFrame        = 0x118DB8; // type:func
+RefEvalDefine__FP5CPairP6CFrame     = 0x118E80; // type:func
+RefEvalAssert__FP5CPairP6CFrame     = 0x118F48; // type:func
+RefEvalIf__FP5CPairP6CFrame         = 0x119030; // type:func
+RefEvalOr__FP5CPairP6CFrame         = 0x119128; // type:func
+RefEvalAnd__FP5CPairP6CFrame        = 0x119218; // type:func
+RefEvalCond__FP5CPairP6CFrame       = 0x119310; // type:func
+RefEvalCase__FP5CPairP6CFrame       = 0x1194A8; // type:func
+RefEvalLet__FP5CPairP6CFrame        = 0x1196C8; // type:func
+RefEvalWhile__FP5CPairP6CFrame      = 0x119878; // type:func
+RefEvalLambda__FP5CPairP6CFrame     = 0x119970; // type:func
+RefEvalLambdaBody__FP5CPairP6CFrame = 0x119A58; // type:func
+RefEvalBegin__FP5CPairP6CFrame      = 0x119AF8; // type:func
+RefEvalApply__FP5CPairP6CFrame      = 0x119BB0; // type:func
+RefEvalImport__FP5CPairP6CFrame     = 0x119FA0; // type:func
+RefEval__FP5CPairP6CFrame           = 0x11A080; // type:func
+
+chzSpliceAssert                     = 0x249200; // size:0x10
+
+
+////////////////////////////////////////////////////////////////
 // P2/splice/frame.cpp
 ////////////////////////////////////////////////////////////////
 SetSingleParent__6CFrameP6CFrame = 0x11a328; // type:func
-AddParent__6CFrameP6CFrame = 0x11A338; // type:func
-RefAddBinding__6CFrameUiP4CRef = 0x11A358; // type:func
-RefSetBinding__6CFrameUiP4CRef = 0x11A400; // type:func
-FFindBinding__6CFrameUiiP4CRef = 0x11A498; // type:func
-PrefFindBinding__6CFrameUii = 0x11A4D8; // type:func
-CloneTo__6CFrameP6CFrame = 0x11A5B0; // type:func
-PframeNew__Fv = 0x11A630; // type:func
-DeleteFrame__FP6CFrame          = 0x11A670; // type:func
+AddParent__6CFrameP6CFrame       = 0x11A338; // type:func
+RefAddBinding__6CFrameUiP4CRef   = 0x11A358; // type:func
+RefSetBinding__6CFrameUiP4CRef   = 0x11A400; // type:func
+FFindBinding__6CFrameUiiP4CRef   = 0x11A498; // type:func
+PrefFindBinding__6CFrameUii      = 0x11A4D8; // type:func
+CloneTo__6CFrameP6CFrame         = 0x11A5B0; // type:func
+PframeNew__Fv                    = 0x11A630; // type:func
+DeleteFrame__FP6CFrame           = 0x11A670; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -295,6 +235,63 @@ g_gc                            = 0x259F38; // size:0x2314
 
 
 ////////////////////////////////////////////////////////////////
+// P2/splice/method.cpp
+////////////////////////////////////////////////////////////////
+PmethodNew__Fv = 0x11AE78; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/splice/pair.cpp
+////////////////////////////////////////////////////////////////
+CloneTo__5CPairP5CPairP6CFrame = 0x11AEB8; // type:func
+PpairNew__Fv                   = 0x11AF28; // type:func
+DeletePair__FP5CPair           = 0x11AF78; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/splice/proc.cpp
+////////////////////////////////////////////////////////////////
+CloneTo__5CProcP5CProcP6CFrame = 0x11af98; // type:func
+PprocNew__Fv                   = 0x11afc8; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/splice/ref.cpp
+////////////////////////////////////////////////////////////////
+__4CRef = 0x11B008; // type:func
+__4CRefRC4CRef = 0x11B018; // type:func
+_$_4CRef = 0x11B060; // type:func
+__as__4CRefRC4CRef = 0x11B0A8; // type:func
+__eq__4CRefRC4CRef = 0x11B0F8; // type:func
+CloneTo__4CRefP4CRefP6CFrame = 0x11B258; // type:func
+Decref__4CRef = 0x11B418; // type:func
+Incref__4CRef = 0x11B4A8; // type:func
+SetTag__4CRef4TAGK = 0x11B538; // type:func
+SetS32__4CRefi = 0x11B570; // type:func
+SetF32__4CReff = 0x11B5B0; // type:func
+SetBool__4CRefi = 0x11B5F0; // type:func
+SetSymid__4CRefUi = 0x11B640; // type:func
+SetBifk__4CRef4BIFK = 0x11B680; // type:func
+SetPair__4CRefP5CPair = 0x11B6C0; // type:func
+SetProc__4CRefP5CProc = 0x11B700; // type:func
+SetVector__4CRefP6VECTOR = 0x11B740; // type:func
+SetMatrix__4CRefP7MATRIX4 = 0x11B788; // type:func
+SetClq__4CRefP3CLQ = 0x11B7D0; // type:func
+SetLm__4CRefP2LM = 0x11B818; // type:func
+SetSmp__4CRefP3SMP = 0x11B860; // type:func
+SetBasic__4CRefP5BASIC = 0x11B8A8; // type:func
+SetMethod__4CRefP7CMethod = 0x11B8E8; // type:func
+RefCoerceS32__4CRef = 0x11B928; // type:func
+RefCoerceF32__4CRef = 0x11B9A8; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/splice/serialize.cpp
+////////////////////////////////////////////////////////////////
+PpairSerializeIn__FP18CBinaryInputStream = 0x11BA28; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/splice/sidebag.cpp
 ////////////////////////////////////////////////////////////////
 RefAddBinding__8CSidebagiP4CRef = 0x11BD28; // type:func
@@ -302,6 +299,16 @@ RefSetBinding__8CSidebagiP4CRef = 0x11BDD0; // type:func
 FFindBinding__8CSidebagiP4CRef  = 0x11BE90; // type:func
 CloneTo__8CSidebagP8CSidebag    = 0x11BEE0; // type:func
 PsidebagNew__Fv                 = 0x11BF30; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// P2/splice/spliceutils.cpp
+////////////////////////////////////////////////////////////////
+StartupSplice__Fv = 0x11BF70; // type:func
+ShutdownSplice__Fv = 0x11C040; // type:func
+spliceutils__static_initialization_and_destruction_0 = 0x11C0A8; // type:func
+_GLOBAL_$I$g_splotheapPair = 0x11C0E8; // type:func
+_GLOBAL_$D$g_splotheapPair = 0x11C108; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -328,12 +335,6 @@ g_splotheapFrame                = 0x25C270; // size:0x1C
 g_splotheapUnk1                 = 0x25C290; // size:0x1C
 g_splotheapProc                 = 0x25C2B0; // size:0x1C
 g_splotheapMethod               = 0x25C2D0; // size:0x1C
-
-
-////////////////////////////////////////////////////////////////
-// P2/splice/splotheap.cpp
-////////////////////////////////////////////////////////////////
-PpairSerializeIn__FP18CBinaryInputStream = 0x11BA28; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -2585,41 +2586,41 @@ EnsureLoSidebagVector__FP2LO5OPTIDP6VECTOR = 0x183c38; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/light.c
 ////////////////////////////////////////////////////////////////
-InitLight__FP5LIGHT                              = 0x183CC8; // type:func
-UpdateLightXfWorldHierarchy__FP5LIGHT            = 0x183D88; // type:func
-RemoveLightFromSw__FP5LIGHT                      = 0x183DC0; // type:func
-AddLightToSw__FP5LIGHT                           = 0x183DF8; // type:func
-OnLightAdd__FP5LIGHT                             = 0x183E40; // type:func
-OnLightRemove__FP5LIGHT                          = 0x183E70; // type:func
-CloneLight__FP5LIGHTT0                           = 0x183EA0; // type:func
-FitLinearFunction__FffffPfT4                     = 0x183F40; // type:func
-FitRecipFunction__FffffPfT4                      = 0x183FE0; // type:func
-ConvertFallOff__FP2LMPfT1                        = 0x1840B8; // type:func
-ConvertAngleStrength__FffffPfT4                  = 0x1840F0; // type:func
-InvalidateLight__FP5LIGHT                        = 0x1841B0; // type:func
-RebuildLightVifs__FP5LIGHT                       = 0x1841D0; // type:func
-SetLightKind__FP5LIGHT6LIGHTK                    = 0x184768; // type:func
-SetLightHighlightColor__FP5LIGHTP6VECTOR         = 0x1847F0; // type:func
-SetLightMidtoneStrength__FP5LIGHTf               = 0x184818; // type:func
-SetLightShadowStrength__FP5LIGHTf                = 0x184838; // type:func
-SetLightHighlightAngle__FP5LIGHTf                = 0x184858; // type:func
-SetLightMidtoneAngle__FP5LIGHTf                  = 0x184878; // type:func
-SetLightShadowAngle__FP5LIGHTf                   = 0x184898; // type:func
-SetLightDirection__FP5LIGHTP6VECTOR              = 0x1848B8; // type:func
-SetLightDynamic__FP5LIGHTi                       = 0x184968; // type:func
-SetLightFallOff__FP5LIGHTP2LM                    = 0x184990; // type:func
-SetLightConeAngle__FP5LIGHTf                     = 0x1849D0; // type:func
-SetLightHotSpotAngle__FP5LIGHTf                  = 0x184A08; // type:func
-SetLightFrustrumUp__FP5LIGHTP6VECTOR             = 0x184A38; // type:func
-RebuildLightFrustrum__FP5LIGHT                   = 0x184A70; // type:func
-UpdateLightBeamGrfzon__FP5LIGHT                  = 0x184B58; // type:func
-SetLightDiffuse_Old__FP5LIGHTf                   = 0x184CD0; // type:func
-GetLightDiffuse_Old__FP5LIGHTPf                  = 0x184D10; // type:func
-SetLightSaturate_Old__FP5LIGHTP6VECTOR           = 0x184D20; // type:func
-GetLightSaturate_Old__FP5LIGHTP6VECTOR           = 0x184D58; // type:func
-NCmpFindLight__FPP5LIGHTT0                       = 0x184D78; // type:func
-PrepareSwLightsForDraw__FP2SW                    = 0x184DE8; // type:func
-TwpsFindSwLights__FP2SWP6VECTORfiiPiT5PP5LIGHTPc = 0x185150; // type:func
+InitLight__FP5LIGHT                            = 0x183CC8; // type:func
+UpdateLightXfWorldHierarchy__FP5LIGHT          = 0x183D88; // type:func
+RemoveLightFromSw__FP5LIGHT                    = 0x183DC0; // type:func
+AddLightToSw__FP5LIGHT                         = 0x183DF8; // type:func
+OnLightAdd__FP5LIGHT                           = 0x183E40; // type:func
+OnLightRemove__FP5LIGHT                        = 0x183E70; // type:func
+CloneLight__FP5LIGHTT0                         = 0x183EA0; // type:func
+FitLinearFunction__FffffPfT4                   = 0x183F40; // type:func
+FitRecipFunction__FffffPfT4                    = 0x183FE0; // type:func
+ConvertFallOff__FP2LMPfT1                      = 0x1840B8; // type:func
+ConvertAngleStrength__FffffPfT4                = 0x1840F0; // type:func
+InvalidateLight__FP5LIGHT                      = 0x1841B0; // type:func
+RebuildLightVifs__FP5LIGHT                     = 0x1841D0; // type:func
+SetLightKind__FP5LIGHT6LIGHTK                  = 0x184768; // type:func
+SetLightHighlightColor__FP5LIGHTP6VECTOR       = 0x1847F0; // type:func
+SetLightMidtoneStrength__FP5LIGHTf             = 0x184818; // type:func
+SetLightShadowStrength__FP5LIGHTf              = 0x184838; // type:func
+SetLightHighlightAngle__FP5LIGHTf              = 0x184858; // type:func
+SetLightMidtoneAngle__FP5LIGHTf                = 0x184878; // type:func
+SetLightShadowAngle__FP5LIGHTf                 = 0x184898; // type:func
+SetLightDirection__FP5LIGHTP6VECTOR            = 0x1848B8; // type:func
+SetLightDynamic__FP5LIGHTi                     = 0x184968; // type:func
+SetLightFallOff__FP5LIGHTP2LM                  = 0x184990; // type:func
+SetLightConeAngle__FP5LIGHTf                   = 0x1849D0; // type:func
+SetLightHotSpotAngle__FP5LIGHTf                = 0x184A08; // type:func
+SetLightFrustrumUp__FP5LIGHTP6VECTOR           = 0x184A38; // type:func
+RebuildLightFrustrum__FP5LIGHT                 = 0x184A70; // type:func
+UpdateLightBeamGrfzon__FP5LIGHT                = 0x184B58; // type:func
+SetLightDiffuse_Old__FP5LIGHTf                 = 0x184CD0; // type:func
+GetLightDiffuse_Old__FP5LIGHTPf                = 0x184D10; // type:func
+SetLightSaturate_Old__FP5LIGHTP6VECTOR         = 0x184D20; // type:func
+GetLightSaturate_Old__FP5LIGHTP6VECTOR         = 0x184D58; // type:func
+NCmpFindLight__FPP5LIGHTT0                     = 0x184D78; // type:func
+PrepareSwLightsForDraw__FP2SW                  = 0x184DE8; // type:func
+TwpsFindSwLights__FP2SWP6VECTORfiiPiT5PP5LIGHT = 0x185150; // type:func
 
 g_cframeStaticLightsInvalid = 0x264260; // size:0x4
 
@@ -2739,13 +2740,15 @@ FDetectMbg__FP3MBG                                  = 0x18AAE0; // type:func
 FUN_0018ab88__Fi                                    = 0x18AB88; // type:func
 FUN_0018abf0__Fi                                    = 0x18ABF0; // type:func
 FUN_0018ac58__Fi                                    = 0x18AC58; // type:func
-FUN_0018acd0__Fv                                    = 0x18ACD0; // type:func
+UpdateMbg__FP3MBGf                                  = 0x18ACD0; // type:func
 FUN_0018acf0                                        = 0x18ACF0; // type:func
 UpdateMbgGoal__FP3MBGi                              = 0x18AD88; // type:func
 UpdateMbgSgs__FP3MBG                                = 0x18AE38; // type:func
 OnMgExitingSgs__FP3MBG3SGS                          = 0x18B2E8; // type:func
 HandleMbgMessage__FP3MBG5MSGIDPv                    = 0x18B340; // type:func
 FUN_0018b460                                        = 0x18B460; // type:func
+
+s_asnipLoadMbg = 0x264910;
 
 
 ////////////////////////////////////////////////////////////////
@@ -3463,6 +3466,20 @@ GetRwacTilt__FP4RWACPf                  = 0x1A9868; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/sb.c
+////////////////////////////////////////////////////////////////
+PostSbgLoad__FP3SBG                = 0x1A98F8; // type:func
+FUN_001a9928__FP3SBG               = 0x1A9928; // type:func
+UpdateSbgGoal__FP3SBGi             = 0x1A9960; // type:func
+UpdateSbgSgs__FP3SBG               = 0x1A99B8; // type:func
+OnSbgEnteringSgs__FP3SBG3SGSP4ASEG = 0x1A99F8; // type:func
+UpdateSbg__FP3SBGf                 = 0x1A9A40; // type:func
+FUN_001a9a98                       = 0x1A9A98; // type:func
+FAbsorbSbgWkr__FP3SBGP3WKR         = 0x1A9AE8; // type:func
+FUN_001a9c58                       = 0x1A9C58; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // P2/screen.c
 ////////////////////////////////////////////////////////////////
 StartupScreen__Fv = 0x1A9C68; // type:func
@@ -3698,6 +3715,9 @@ SetSaiIframe__FP3SAIi                          = 0x1B46E0; // type:func
 SetSaiDuDv__FP3SAIff                           = 0x1B4750; // type:func
 PropagateSais__Fv                              = 0x1B47C0; // type:func
 UpdateShaders__Ff                              = 0x1B4878; // type:func
+
+g_grfzonShaders = 0x274518; // size:0x4
+g_pbBulkData    = 0x275718; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////

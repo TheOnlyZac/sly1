@@ -1,14 +1,41 @@
 #include <glbs.h>
+#include <sw.h>
+#include <sce/memset.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/glbs", __4GLBS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/glbs", _$_4GLBS);
+GLBS::~GLBS()
+{
+    // Empty.
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/glbs", SetTransform__4GLBSP6VECTORP7MATRIX3);
+void GLBS::SetTransform(VECTOR *ppos, MATRIX3 *pmat)
+{
+    EndStrip();
+    LoadMatrixFromPosRot(ppos, pmat, &m_rgld.matObjectToWorld);
+    LoadMatrixFromPosRotInverse(ppos, pmat, &m_rgld.matWorldToObject);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/glbs", FindLights__4GLBSP6VECTORf);
+void GLBS::FindLights(VECTOR *ppos, float sRadius)
+{
+    if (m_pshd->shdk != SHDK_ThreeWay)
+    {
+        m_cplightStatic = 0;
+        m_cplightAll = 0;
+        m_rgld.trlk = TRLK_Nil;
+        return;
+    }
 
-INCLUDE_ASM("asm/nonmatchings/P2/glbs", ResetStrip__4GLBS);
+    m_rgld.twps = TwpsFindSwLights(g_psw, ppos, sRadius, 1, 0x10, &m_cplightStatic, &m_cplightAll, m_aplight);
+    m_rgld.trlk = TRLK_Quick;
+}
+
+void GLBS::ResetStrip()
+{
+    m_pshd = (SHD *)nullptr;
+    m_cvtxg = 0;
+    memset(m_avtxg, 0, 148 * sizeof(VTXG));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/glbs", BeginStrip__4GLBSP3SHD);
 

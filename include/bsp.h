@@ -58,7 +58,7 @@ struct BSPC
 };
 
 /**
- * @brief (?) BSP.
+ * @brief Visibility BSP.
  */
 struct VBSP
 {
@@ -70,7 +70,7 @@ struct VBSP
 };
 
 /**
- * @brief Line Segment (?)
+ * @brief Line Segment Group?
  */
 struct LSG
 {

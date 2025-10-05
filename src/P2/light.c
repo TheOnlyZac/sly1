@@ -179,4 +179,4 @@ INCLUDE_ASM("asm/nonmatchings/P2/light", NCmpFindLight__FPP5LIGHTT0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/light", PrepareSwLightsForDraw__FP2SW);
 
-INCLUDE_ASM("asm/nonmatchings/P2/light", TwpsFindSwLights__FP2SWP6VECTORfiiPiT5PP5LIGHTPc);
+INCLUDE_ASM("asm/nonmatchings/P2/light", TwpsFindSwLights__FP2SWP6VECTORfiiPiT5PP5LIGHT);

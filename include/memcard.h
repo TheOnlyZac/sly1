@@ -11,11 +11,11 @@
  */
 struct MEMCARD
 {
-    int semaphoreId;
-    int threadId;
-    int field_0x08;
-    int field_0x0c;
-    int field_0x10;
+    /* 0x00 */ int semaphoreId;
+    /* 0x04 */ int threadId;
+    /* 0x08 */ int field_0x08;
+    /* 0x0c */ int field_0x0c;
+    /* 0x10 */ int field_0x10;
 };
 
 /**

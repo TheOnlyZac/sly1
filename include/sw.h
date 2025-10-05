@@ -21,6 +21,7 @@ typedef void (*PFNFILTER)(void *, SO *); // TODO: Figure out if this is correct.
 struct XA;
 struct OXA;
 struct STSO;
+struct VISMAP;
 
 /**
  * @class WORLD
@@ -59,9 +60,11 @@ struct SW : public LO
     /* 0x1c78 */ DL dlDartFree;
     /* 0x1c84 */ DL dlSpire;
     /* 0x1c90 */ DL dlRail;
-    /* 0x1c9c */ STRUCT_PADDING(12);
+    /* 0x1c9c */ DL dlLanding;
+    /* 0x1ca8 */ STRUCT_PADDING(9);
     /* 0x1ccc */ DL dlCrfod;
-    // ...
+    /* 0x1cd8 */ STRUCT_PADDING(123);
+    /* 0x1ec4 */ VISMAP *pvismap;
 
     // MISALIGNED:
     void (*pcbUpdate)(float fDelta);

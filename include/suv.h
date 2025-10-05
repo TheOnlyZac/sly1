@@ -19,4 +19,6 @@ struct SUV // : TBD
     // ...
 };
 
+void InitSuv(SUV *psuv);
+
 #endif // SUV_H

@@ -8,10 +8,13 @@
 
 #include "common.h"
 #include <dialog.h>
+#include <zap.h>
 #include <so.h>
 
+// Forward.
 struct ALO;
 struct AMB;
+struct CPDEFI;
 
 /**
  * @brief (?) kind.
@@ -46,7 +49,7 @@ struct PZI
  */
 struct PO : public SO
 {
-    int fPlayable;
+    /* 0x550 */ int fPlayable;
     int fLockBase;
     VECTOR posBasePrev;
     float tWakeRipple;
@@ -59,12 +62,24 @@ void InitPo(PO *ppo);
 
 void ClonePo(PO *ppo, PO *ppoBase);
 
+void HandlePoMessage(PO *ppo, MSGID msgid, void *pv);
+
 void OnPoActive(PO *ppo, int fActive, PO *ppoOther);
+
+void GetPoCpdefi(PO *ppo, float dt, CPDEFI *pcpdefi);
+
+int FIsPoSoundBase(PO * ppo);
 
 /**
  * @brief Switch to the given PO, if it isn't the currently active one.
  */
 void MakePoActive(PO *ppo);
+
+int FInvulnerablePo(PO *ppo, ZPK zpk);
+
+int FTakePoDamage(PO *ppo, ZPR *pzpr);
+
+// JTHS JthsCurrentPo(PO *ppo); // TODO: Fix includes.
 
 /**
  * @brief Collect a prize.
@@ -75,6 +90,8 @@ void CollectPoPrize(PO *ppo, PCK pck, ALO *paloOther);
  * @brief Gets a pointer to the current PO.
  */
 PO *PpoCur();
+
+PO *PpoStart(void);
 
 /**
  * @brief Finds the index of the given PO (?)
@@ -115,6 +132,12 @@ void SetPoPlayable(PO *ppo, int playable);
  * @brief Switch to the given PO.
  */
 void SwitchToPo(PO *ppo);
+
+PZI *PpziCur();
+
+void GetPoDiapi(PO *ppo, DIALOG *pdialog, DIAPI *pdiapi);
+
+void PlayPoDialog(PO *ppo, DIALOG *pdialog);
 
 /**
  * @brief Update the PO.

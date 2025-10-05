@@ -8,8 +8,8 @@ CBinaryAsyncStream::CBinaryAsyncStream(void *pvSpool)
     m_isector = 0;
     m_abSpool = (byte *)(((int)pvSpool + 0x3f) & ~0x3f);
     m_fd = -1;
-    m_pbSpooling = 0;
-    m_pb = 0;
+    m_pbSpooling = (byte *)nullptr;
+    m_pb = (byte *)nullptr;
     m_cbFile = 0;
     m_cbUnspooled = 0;
     m_cbSpooling = 0;
@@ -72,36 +72,35 @@ void CBinaryAsyncStream::Close()
 
 void CBinaryAsyncStream::StartSpooling()
 {
-    if (!FSpooling() && m_cbUnspooled != 0)
+    if (FSpooling() || m_cbUnspooled == 0)
+        return;
+
+    int cb = 0x4000;
+    if (m_cbUnspooled < cb)
     {
-        byte *pv = m_abSpool;
-        int cb = 0x4000;
+        cb = m_cbUnspooled;
+    }
 
-        if (m_cbUnspooled < cb)
+    byte *pv = m_abSpool;
+    if (m_pb == pv)
+    {
+        pv += 0x4000;
+    }
+
+    m_pbSpooling = pv;
+    m_cbSpooling = cb;
+
+    switch (m_bask)
+    {
+        case BASK_Host:
         {
-            cb = m_cbUnspooled;
+            sceRead(m_fd, pv, cb);
+            break;
         }
-
-        if (m_pb == pv)
+        case BASK_Cd:
         {
-            pv += 0x4000;
-        }
-
-        m_pbSpooling = pv;
-        m_cbSpooling = cb;
-
-        switch (m_bask)
-        {
-            case BASK_Host:
-            {
-                sceRead(m_fd, pv, cb);
-                break;
-            }
-            case BASK_Cd:
-            {
-                ReadCdDirect(m_isector, (m_cbSpooling + 0x7ffu) >> 0x0b, pv);
-                break;
-            }
+            ReadCdDirect(m_isector, (m_cbSpooling + 0x7ffu) >> 0x0b, pv);
+            break;
         }
     }
 }
@@ -151,33 +150,31 @@ bool CBinaryAsyncStream::FSpoolingComplete()
 
 void CBinaryAsyncStream::FinishSpooling()
 {
-    if (FSpoolingComplete())
-    {
-        if (m_bask == BASK_Cd)
-        {
-            int n;
-            if (m_cbSpooling <= -1)
-            {
-                n = m_cbSpooling + 0x7ffu;
-            }
-            else
-            {
-                n = m_cbSpooling;
-            }
+    if (!FSpoolingComplete())
+        return;
 
-            m_isector += n >> 0x0b;
+    if (m_bask == BASK_Cd)
+    {
+        int n;
+        if (m_cbSpooling <= -1)
+        {
+            n = m_cbSpooling + 0x7ffu;
+        }
+        else
+        {
+            n = m_cbSpooling;
         }
 
-        int cb = m_cbSpooling;
-
-        m_cbUnspooled -= cb;
-        m_pb = m_pbSpooling;
-        m_cb = cb;
-
-        m_cbSpooling = 0;
-        m_pbSpooling = 0;
-        m_ibCur = 0;
+        m_isector += n >> 0x0b;
     }
+
+    m_cbUnspooled -= m_cbSpooling;
+    m_pb = m_pbSpooling;
+    m_cb = m_cbSpooling;
+
+    m_cbSpooling = 0;
+    m_pbSpooling = 0;
+    m_ibCur = 0;
 }
 
 void CBinaryAsyncStream::Spool()
