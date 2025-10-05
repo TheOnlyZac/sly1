@@ -1,10 +1,27 @@
 #include <stepguard.h>
+#include <asega.h>
+
+extern SNIP s_asnipStepguardLoad;
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", InitStepguard__FP9STEPGUARD);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", LoadStepguardFromBrx__FP9STEPGUARDP18CBinaryInputStream);
+void LoadStepguardFromBrx(STEPGUARD *pstepguard, CBinaryInputStream *pbis)
+{
+    LoadSoFromBrx(pstepguard, pbis);
+    SnipAloObjects(pstepguard, 1, &s_asnipStepguardLoad);
+    LoadStepguardAnimations(pstepguard);
+    LoadStepguardPhys(pstepguard);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", CloneStepguard__FP9STEPGUARDT0);
+void CloneStepguard(STEPGUARD *pstepguard, STEPGUARD *pstepguardBase)
+{
+    int ichkDead = STRUCT_OFFSET(pstepguard, 0xb10, int); // pstepguard->ichkDead
+    SGG *psgg = STRUCT_OFFSET(pstepguard, 0x720, SGG *); // pstepguard->psgg
+    ClonePo(pstepguard, pstepguardBase);
+    STRUCT_OFFSET(pstepguard, 0xb10, int) = ichkDead; // pstepguard->ichkDead
+    STRUCT_OFFSET(pstepguard, 0x720, SGG *) = psgg; // pstepguard->psgg
+    STRUCT_OFFSET(pstepguard, 0xb74, STEPGUARD *) = pstepguardBase; // pstepguard->pstepguardBase
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", BindStepguard__FP9STEPGUARD);
 
@@ -25,7 +42,50 @@ void OnStepguardAdd(STEPGUARD *pstepguard)
     }
 }
 
+/**
+ * @todo 96.67% match.
+ * https://decomp.me/scratch/HcoZ7
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", OnStepguardRemove__FP9STEPGUARD);
+#ifdef SKIP_ASM
+extern float D_0024D654;
+
+void OnStepguardRemove(STEPGUARD *pstepguard)
+{
+    OnPoRemove(pstepguard);
+
+    ASEGA *pasegaSgs = STRUCT_OFFSET(pstepguard, 0x7e0, ASEGA *);
+    if (pasegaSgs)
+    {
+        RetractAsega(pasegaSgs);
+        STRUCT_OFFSET(pstepguard, 0x7e0, ASEGA *) = 0;
+    }
+
+    ASEGA *pasegaPatrol = STRUCT_OFFSET(pstepguard, 0x754, ASEGA *);
+    if (pasegaPatrol)
+    {
+        RetractAsega(pasegaPatrol);
+        STRUCT_OFFSET(pstepguard, 0x754, ASEGA *) = 0;
+    }
+
+    SGG *psgg = STRUCT_OFFSET(pstepguard, 0x720, SGG *);
+    if (psgg)
+    {
+        RemoveSggGuard(psgg, pstepguard);
+    }
+
+    const float val = D_0024D654;
+    STRUCT_OFFSET(pstepguard, 0xa60, int) = 0;
+    STRUCT_OFFSET(pstepguard, 0x748, int) = 0;
+    STRUCT_OFFSET(pstepguard, 0xba4, int) = 0;
+
+    STRUCT_OFFSET(pstepguard, 0xbf4, float) = val;
+    STRUCT_OFFSET(pstepguard, 0xbf8, float) = val;
+    STRUCT_OFFSET(pstepguard, 0xbfc, float) = val;
+    STRUCT_OFFSET(pstepguard, 0x72c, int) = 0;
+    STRUCT_OFFSET(pstepguard, 0xc00, float) = val;
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", PresetStepguardAccel__FP9STEPGUARDf);
 

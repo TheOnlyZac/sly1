@@ -430,6 +430,8 @@ void DrawCm(CM *pcm);
  */
 void SetCmPosMat(CM *pcm, VECTOR *ppos, MATRIX3 *pmat);
 
+void AdjustCmJoy(CM *pcm, JOY *pjoy, JOYID joyid, float *prad);
+
 /**
  * @brief Sets Cut on the given camera.
  */
