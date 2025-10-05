@@ -7,9 +7,9 @@ void InitDprize(DPRIZE *pdprize)
 {
     pdprize->dprizesInit = DPRIZES_Normal;
     pdprize->dprizes = DPRIZES_Nil;
-    pdprize->svcAttract = 30.0;
+    pdprize->svcAttract = 30.0f;
     pdprize->oidInitialState = OID_Nil;
-    InitAlo((ALO *)pdprize);
+    InitAlo(pdprize);
     AppendDlEntry(&pdprize->psw->dlDprize, pdprize);
     pdprize->ichkCollected = IchkAllocChkmgr(&g_chkmgr);
     pdprize->ficg.grficSmash = '\x10';
@@ -26,10 +26,11 @@ void LoadDprizeFromBrx(DPRIZE *pdprize, CBinaryInputStream *pbis)
     SnipAloObjects(pdprize, 5, s_asnipDprize);
 }
 
-void CloneDprize(DPRIZE *pdprize, DPRIZE *pdprizeBase) {
+void CloneDprize(DPRIZE *pdprize, DPRIZE *pdprizeBase)
+{
     int ichkCollected = pdprize->ichkCollected;
     DLE dle = pdprize->dle;
-    CloneAlo((ALO*)pdprize, (ALO*)pdprizeBase);
+    CloneAlo(pdprize, pdprizeBase);
     pdprize->dle = dle;
     pdprize->ichkCollected = ichkCollected;
 }
@@ -54,7 +55,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", SetDprizeDprizes__FP6DPRIZE7DPRIZES);
 
 void InitCoin(COIN *pcoin)
 {
-    InitDprize((DPRIZE *)pcoin);
+    InitDprize(pcoin);
     pcoin->sRadiusBounce = 45.0f;
     pcoin->svLastBounceMax = 250.0f;
     pcoin->sRadiusCollect = 50.0f;
@@ -132,7 +133,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", SetCoinDprizes__FP4COIN7DPRIZES);
 
 void InitCharm(CHARM *pcharm)
 {
-    InitDprize((DPRIZE *)pcharm);
+    InitDprize(pcharm);
     pcharm->sRadiusBounce = 60.0f;
     pcharm->sRadiusCollect = 60.0f;
     pcharm->svLastBounceMax = 300.0f;
@@ -144,23 +145,24 @@ void InitCharm(CHARM *pcharm)
 
 void SetCharmDprizes(CHARM *pcharm, DPRIZES dprizes)
 {
-    if (STRUCT_OFFSET(pcharm, 0x2d0, DPRIZES) != dprizes) // if (pcharm->dprizes != dprizes)
+    // if (pcharm->dprizes == dprizes)
+    if (STRUCT_OFFSET(pcharm, 0x2d0, DPRIZES) == dprizes)
+        return;
+
+    if (dprizes == DPRIZES_Collect)
     {
-        if (dprizes == DPRIZES_Collect)
-        {
-            dprizes = DPRIZES_Swirl;
-            StartSound(SFXID_Collect_Charm, (AMB **)0x0, pcharm, (VECTOR *) 0x0,
-                       1500.0f, 0.0f,1, 0.0f, 0.0f, (LM *)0x0, (LM *)0x0);
-            HandleLoSpliceEvent(pcharm, 2, 0, 0);
-        }
-        SetDprizeDprizes(pcharm, dprizes);
+        dprizes = DPRIZES_Swirl;
+        StartSound(SFXID_Collect_Charm, (AMB **)0x0, pcharm, (VECTOR *) 0x0,
+                   1500.0f, 0.0f,1, 0.0f, 0.0f, (LM *)0x0, (LM *)0x0);
+        HandleLoSpliceEvent(pcharm, 2, 0, 0);
     }
+
+    SetDprizeDprizes(pcharm, dprizes);
 }
 
 void InitKey(KEY *pkey)
 {
-    InitDprize((DPRIZE *)pkey);
-    LS *pLVar1 = g_plsCur;
+    InitDprize(pkey);
     pkey->sRadiusBounce = 35.0f;
     pkey->sRadiusCollect = 35.0f;
     pkey->svLastBounceMax = 500.0f;
@@ -168,7 +170,8 @@ void InitKey(KEY *pkey)
     pkey->rxyBounce = 0.6f;
     pkey->rzBounce = 0.6f;
     pkey->uGlintChance = 0.75f;
-    if ((pLVar1->fls & FLS_KeyCollected) != 0)
+
+    if (g_plsCur->fls & FLS_KeyCollected)
     {
         pkey->dprizesInit = DPRIZES_Removed;
     }

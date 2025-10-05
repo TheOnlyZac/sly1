@@ -86,6 +86,17 @@ enum JOYK
 };
 
 /**
+ * @brief Joypad id.
+ */
+enum JOYID
+{
+    JOYID_Nil = -1,
+    JOYID_Left = 0,
+    JOYID_Right = 1,
+    JOYID_Max = 2
+};
+
+/**
  * @brief Joypad.
  */
 struct JOY
@@ -111,7 +122,7 @@ struct JOY
 
     // left analog stick
     float x, y;
-    float uDeflect;
+    /* 0x48 */ float uDeflect;
     byte bX, bY;
     ushort unk_short;
     int fStickMoved;
@@ -119,7 +130,7 @@ struct JOY
 
     // right analog stick
     float x2, y2;
-    float uDeflect2;
+    /* 0x7c */ float uDeflect2;
     byte bX2, bY2;
     ushort unk_short2;
     int fStickMoved2;

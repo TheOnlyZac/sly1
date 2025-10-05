@@ -1,4 +1,5 @@
 #include <tank.h>
+#include <po.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/tank", InitTank__FP4TANK);
 
@@ -16,7 +17,14 @@ void UseTankCharm(TANK *ptank)
 
 INCLUDE_ASM("asm/nonmatchings/P2/tank", UpdateTankActive__FP4TANKP3JOYf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/tank", OnTankActive__FP4TANKiP2PO);
+void OnTankActive(TANK *ptank, int fActive, PO *ppoOther)
+{
+    OnPoActive(ptank, fActive, ppoOther);
+    if (!fActive)
+    {
+        STRUCT_OFFSET(ptank, 0x728, int) = 0; // ptank->fFlash
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/tank", RenderTankAll__FP4TANKP2CMP2RO);
 
@@ -34,6 +42,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/tank", AdjustTankNewXp__FP4TANKP2XPi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/tank", HandleTankMessage__FP4TANK5MSGIDPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/tank", JthsCurrentTank__FP4TANK);
+JTHS JthsCurrentTank(TANK *ptank)
+{
+    return (JTHS)(STRUCT_OFFSET(ptank, 0x728, int) != 0); // ptank->fFlash
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/tank", SetTankTanks__FP4TANK5TANKS);

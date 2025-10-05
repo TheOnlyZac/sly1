@@ -55,6 +55,12 @@ struct PO : public SO
     ALO *paloUseCharm;
 };
 
+void InitPo(PO *ppo);
+
+void ClonePo(PO *ppo, PO *ppoBase);
+
+void OnPoActive(PO *ppo, int fActive, PO *ppoOther);
+
 /**
  * @brief Switch to the given PO, if it isn't the currently active one.
  */

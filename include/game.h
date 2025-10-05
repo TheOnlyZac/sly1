@@ -90,7 +90,6 @@ typedef int GRFGS;
 /**
  * @brief World state flags integer type.
  */
-
 typedef int GRFWS;
 
 /**

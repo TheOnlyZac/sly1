@@ -41,7 +41,7 @@ struct SW : public LO
     /* 0x6c   */ DL dlBusySo;
     /* 0x78   */ DL dlMRDRealClock;
     /* 0x84   */ DL adlHash[512];
-    /* 0x1884 */ LO *aploCidHead[154]; // Not the correct size?
+    /* 0x1884 */ LO *aploCidHead[154];
     /* 0x1aec */ int fAaoxValid;
     /* 0x1af0 */ SLOTHEAP slotheapOx;
     /* 0x1afc */ STRUCT_PADDING(23);
@@ -59,6 +59,8 @@ struct SW : public LO
     /* 0x1c78 */ DL dlDartFree;
     /* 0x1c84 */ DL dlSpire;
     /* 0x1c90 */ DL dlRail;
+    /* 0x1c9c */ STRUCT_PADDING(12);
+    /* 0x1ccc */ DL dlCrfod;
     // ...
 
     // MISALIGNED:

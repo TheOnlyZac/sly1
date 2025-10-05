@@ -14,7 +14,8 @@
 /**
  * @brief Zap kind.
  */
-enum ZPK {
+enum ZPK
+{
     ZPK_Nil = -1,
     ZPK_Blunt = 0,
     ZPK_Electric = 1,

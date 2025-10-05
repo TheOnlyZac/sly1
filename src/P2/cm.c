@@ -198,7 +198,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", ResetCmLookAtSmooth);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmLookAtSmooth);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", AdjustCmJoy);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", AdjustCmJoy__FP2CMP3JOY5JOYIDPf);
 
 JUNK_WORD(0x0000102D);
 
