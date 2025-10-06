@@ -1,25 +1,36 @@
 #include "common.h"
+#include <lib/libkernl/filestub.h>
 #include <sdk/ee/eekernel.h>
+#include <sdk/ee/sifrpc.h>
+#include <sdk/libcdvd.h>
 #include <sce/libdma.h>
+#include <phasemem.h>
+#include <sce/iop.h>
+#include <render.h>
+#include <clock.h>
+#include <save.h>
 #include <mpeg.h>
 #include <wipe.h>
+#include <prog.h>
+#include <dmas.h>
 #include <frm.h>
 #include <joy.h>
 #include <ui.h>
-#include <save.h>
-#include <clock.h>
 #include <sw.h>
 #include <cm.h>
-#include <render.h>
-#include <dmas.h>
-#include <prog.h>
-#include <phasemem.h>
+#include <cd.h>
 
 extern void *D_00211E10;
 extern void *D_00212110;
-extern void *g_startupSampler[29];
+
+typedef void (*SFN)(void);
+extern SFN s_asfn[29];
+
 extern int g_chpzArgs;
 extern char **g_apchzArgs;
+
+extern char D_0024B248[]; // "ioprp243.img" TODO: Remove once data is migrated.
+extern char *s_apchzSifModules[];
 
 void Startup(); // Forward declaration
 
@@ -94,7 +105,54 @@ int main(char **argv, int argc) {
 /**
  * @brief Starts up the PS2 subsystem interface.
  */
-INCLUDE_ASM("asm/nonmatchings/P2/main", StartupSif__Fv);
+void StartupSif()
+{
+    // Create a path to the "ioprp243.img" image.
+    char achzPath[256];
+    CdPath(achzPath, D_0024B248, 1);
+    
+    // Initialize SIF RPC system and CD/DVD subsystem.
+    sceSifInitRpc(0);
+    sceCdInit(0);
+
+    // Hang if the CD media mode is invalid at startup.
+    if (!FValidCdMmode())
+    {
+        while (true) {}
+    }
+
+    // Set the CD media mode and reset the filesystem.
+    SetCdMmode();
+    sceFsReset();
+
+    // Reboot the IOP using the "ioprp243.img" image and wait until it completes.
+    while (!sceSifRebootIop(achzPath)) {}
+    while (!sceSifSyncIop()) {}
+
+    // Reinitialize SIF and CD/DVD systems after reboot.
+    sceSifInitRpc(0);
+    sceSifLoadFileReset();
+    sceCdInit(0);
+
+    // Hang if the CD media mode is invalid after reboot.
+    if (!FValidCdMmode())
+    {
+        while (true) {}
+    }
+
+    // Restore CD media mode and reset FS again after reboot.
+    SetCdMmode();
+    sceFsReset();
+    sceCdDiskReady(0);
+    FCdCompleted(1);
+
+    // Load IOP modules listed in s_apchzSifModules.
+    for (uint i = 0; i < 6; i++)
+    {
+        CdPath(achzPath, s_apchzSifModules[i], 1);
+        while (sceSifLoadModule(achzPath, 0, 0) < 0) {}
+    }
+}
 
 /**
  * @brief Starts up the VU0.
@@ -131,13 +189,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/main", Startup__Fv);
 /**
  * @brief Starts each game system.
  *
- * @todo 99.23% matched.
+ * @todo 99.71% matched.
  * Stack frame is 48 bytes smaller than expected.
  * https://decomp.me/scratch/IOVxc
+ * https://decomp.me/scratch/NNtNR
  */
 void Startup()
 {
-    // Set up progress bar
+    // Set up the progress bar.
     int nRemain = 26;
     int rgbaComplete = 0x007f0000; // blue
     int rgbaRemain = 0x003f3f3f; // gray
@@ -145,21 +204,24 @@ void Startup()
     int rgbaTrouble = 0x0000003f; // red
     CProg prog = CProg((RGBA *)&rgbaComplete, (RGBA *)&rgbaRemain, (RGBA *)&rgbaWarning, (RGBA *)&rgbaTrouble);
 
-    // Begin startup phase, iterating over and calling each function in the startup sampler
+    // Begin startup phase.
     SetPhase(PHASE_Startup);
     prog.Begin();
-    for (int i = 0; i < sizeof(g_startupSampler) / sizeof(g_startupSampler[0]); i++) // TODO Check if this is actually called startup sampler
+
+    // Call each function in the startup function array.
+    SFN *psfn = s_asfn;
+    for (int i = 0; i < sizeof(s_asfn) / sizeof(s_asfn[0]); i++)
     {
         if (i > 2)
         {
             prog.SetRemain(nRemain);
         }
 
+        (*psfn++)();
         nRemain--;
-        ((void (*)(void))g_startupSampler[i])(); // Cast to function pointer before calling
     }
 
-    // Cleanup
+    // Cleanup.
     prog.SetRemain(0);
     prog.End();
     ClearPhase(PHASE_Startup);

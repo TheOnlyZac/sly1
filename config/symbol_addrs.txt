@@ -2198,10 +2198,10 @@ _GLOBAL_$I$g_dro                                 = 0x167D48; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/gomer.c
 ////////////////////////////////////////////////////////////////
-InitGomer__FP5GOMER     = 0x167D68; // type:func
-PostGomerLoad__FP5GOMER = 0x167E08; // type:func
-FUN_00167ef0            = 0x167EF0; // type:func
-FDetectGomer__FP5GOMER  = 0x167F10; // type:func
+InitGomer__FP5GOMER               = 0x167D68; // type:func
+PostGomerLoad__FP5GOMER           = 0x167E08; // type:func
+RenderGomerSelf__FP5GOMERP2CMP2RO = 0x167EF0; // type:func
+FDetectGomer__FP5GOMER            = 0x167F10; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -2644,9 +2644,11 @@ StartupVU0__Fv = 0x185A58; // type:func
 StartupVU1__Fv = 0x185AC8; // type:func
 Startup__Fv = 0x185B38; // type:func
 
-g_startupSampler = 0x2647C0; // size = 0x74
-g_chpzArgs = 0x264834; // size:0x4
-g_apchzArgs = 0x264838; // size:0x4
+D_0024B248        = 0x24B248;
+s_apchzSifModules = 0x2647A8;
+s_asfn            = 0x2647C0; // size:0x74
+g_chpzArgs        = 0x264834; // size:0x4
+g_apchzArgs       = 0x264838; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
@@ -2721,6 +2723,9 @@ LoadScaleMatrixScalar__FP6VECTORfP7MATRIX4               = 0x18A008; // type:fun
 LoadScaleMatrixVector__FP6VECTORP7MATRIX3T0P7MATRIX4     = 0x18A040; // type:func
 LoadRotateVectorMatrix__FP6VECTORT0P7MATRIX3             = 0x18A160; // type:func
 
+// TODO: Do these belong here?
+g_normalX = 0x248D00; // size:0xc
+g_normalY = 0x248D10; // size:0xc
 g_normalZ = 0x248D20; // size:0xc
 
 
@@ -2985,7 +2990,7 @@ ResetPipeList__Fv     = 0x191EE8; // type:func
 InitPipe__FP4PIPE     = 0x191F08; // type:func
 OnPipeAdd__FP4PIPE    = 0x191F68; // type:func
 OnPipeRemove__FP4PIPE = 0x191FA0; // type:func
-PostPipeLoad          = 0x191FD8; // type:func
+PostPipeLoad__FP4PIPE = 0x191FD8; // type:func
 ClonePipe__FP4PIPET0  = 0x192020; // type:func
 
 g_dlPipe = 0x269BA8;
@@ -5040,18 +5045,33 @@ FlushCache = 0x1F6C20; // type:func
 ////////////////////////////////////////////////////////////////
 // sifrpc.c
 ////////////////////////////////////////////////////////////////
-sceSifInitRpc = 0x1f7be8; // type:func
-sceSifBindRpc = 0x1f80c0; // type:func
-sceSifCallRpc = 0x1f8290; // type:func
-sceSifCheckStatRpc = 0x1f8480; // type:func
+sceSifInitRpc      = 0x1F7BE8; // type:func
+sceSifBindRpc      = 0x1F80C0; // type:func
+sceSifCallRpc      = 0x1F8290; // type:func
+sceSifCheckStatRpc = 0x1F8480; // type:func
 
 
 ////////////////////////////////////////////////////////////////
 // filestub.c
 ////////////////////////////////////////////////////////////////
-sceClose = 0x1F8C38; // type:func
-sceRead  = 0x1F8DB8; // type:func
-sceIoctl = 0x1F92E8; // type:func
+sceFsReset = 0x1F8BF8; // type:func
+sceClose   = 0x1F8C38; // type:func
+sceRead    = 0x1F8DB8; // type:func
+sceIoctl   = 0x1F92E8; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// eeloadfile.c
+////////////////////////////////////////////////////////////////
+sceSifLoadFileReset = 0x1F9820; // type:func
+sceSifLoadModule    = 0x1F9A90; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// iopreset.c
+////////////////////////////////////////////////////////////////
+sceSifSyncIop   = 0x1F9C18; // type:func
+sceSifRebootIop = 0x1F9C50; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -5088,12 +5108,14 @@ sceDmaSync = 0x202c38; // type:func
 ////////////////////////////////////////////////////////////////
 // ../eecdvd.c
 ////////////////////////////////////////////////////////////////
-sceCdMmode = 0x203A20; // type:func
-sceCdGetError = 0x203D90; // type:func
-sceCdBreak = 0x203E28; // type:func
-sceCdSync = 0x2032C8; // type:func
-sceCdRead = 0x203B18; // type:func
+sceCdSync        = 0x2032C8; // type:func
+sceCdInit        = 0x203548; // type:func
+sceCdDiskReady   = 0x203828; // type:func
+sceCdMmode       = 0x203A20; // type:func
+sceCdRead        = 0x203B18; // type:func
 sceCdGetDiskType = 0x203CF8; // type:func
+sceCdGetError    = 0x203D90; // type:func
+sceCdBreak       = 0x203E28; // type:func
 
 
 ////////////////////////////////////////////////////////////////

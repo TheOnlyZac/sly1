@@ -20,6 +20,9 @@ enum PHASE
     PHASE_Max = 5
 };
 
+/**
+ * @brief Current engine phase.
+ */
 extern PHASE g_phase;
 
 /**

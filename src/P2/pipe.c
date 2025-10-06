@@ -1,4 +1,5 @@
 #include <pipe.h>
+#include <find.h>
 #include <dl.h>
 
 extern DL g_dlPipe;
@@ -27,6 +28,19 @@ void OnPipeRemove(PIPE *ppipe)
     RemoveDlEntry(&g_dlPipe, ppipe);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/pipe", PostPipeLoad);
+void PostPipeLoad(PIPE *ppipe)
+{
+    PostLoLoad(ppipe);
+    if (ppipe->oid != OID_Nil)
+    {
+        // TODO: Check whether this is LO or something that inherits from it.
+        ppipe->plo = PloFindSwObject(ppipe->psw, 4, ppipe->oid, ppipe);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/pipe", ClonePipe__FP4PIPET0);
+void ClonePipe(PIPE *ppipe, PIPE *ppipeBase)
+{
+    DLE dlePipe = ppipe->dlePipe;
+    CloneLo(ppipe, ppipeBase);
+    ppipe->dlePipe = dlePipe;
+}
