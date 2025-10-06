@@ -65,6 +65,7 @@ struct SW : public LO
     /* 0x1ccc */ DL dlCrfod;
     /* 0x1cd8 */ STRUCT_PADDING(123);
     /* 0x1ec4 */ VISMAP *pvismap;
+    // ...
 
     // MISALIGNED:
     void (*pcbUpdate)(float fDelta);

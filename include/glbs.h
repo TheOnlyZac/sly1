@@ -60,9 +60,9 @@ struct GLBS
     /* 0x00  */ RGLD m_rgld;
     /* 0xb0  */ int m_cplightStatic;
     /* 0xb4  */ int m_cplightAll;
-    /*       */ LIGHT *m_aplight[16];
+    LIGHT *m_aplight[16];
     /* 0xf8  */ SHD *m_pshd;
-    /*       */ VTXG m_vtxg;
+    VTXG m_vtxg;
     /* 0x124 */ int m_cvtxg;
     /* 0x128 */ VTXG m_avtxg[148];
 
