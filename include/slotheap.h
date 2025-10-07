@@ -13,7 +13,7 @@
  */
 struct SLOT
 {
-    SLOT *pslotNext;
+    /* 0x00 */ SLOT *pslotNext;
 };
 
 /**
@@ -21,17 +21,17 @@ struct SLOT
  */
 struct SLOTHEAP
 {
-    int cb;
-    byte *ab;
-    SLOT *pslotFree;
+    /* 0x00 */ int cb;
+    /* 0x04 */ byte *ab;
+    /* 0x08 */ SLOT *pslotFree;
 };
 
 /**
  * @brief Initializes a slot heap with a linked list of free slots.
  *
  * @param pslotheap Pointer to the slot heap.
- * @param cb Size of a slot in bytes.
- * @param c Number of slots to allocate.
+ * @param cb        Size of a slot in bytes.
+ * @param c         Number of slots to allocate.
  */
 void _InitSlotheap(SLOTHEAP *pslotheap, int cb, int c);
 
@@ -39,8 +39,8 @@ void _InitSlotheap(SLOTHEAP *pslotheap, int cb, int c);
  * @brief Creates the slot heap with slots aligned to 8 bytes.
  *
  * @param pslotheap Pointer to the slot heap.
- * @param cb Size of a slot in bytes.
- * @param c Number of slots to allocate.
+ * @param cb        Size of a slot in bytes.
+ * @param c         Number of slots to allocate.
  */
 void CreateSlotheapSw(SLOTHEAP *pslotheap, int cb, int c);
 
@@ -48,8 +48,8 @@ void CreateSlotheapSw(SLOTHEAP *pslotheap, int cb, int c);
  * @brief Creates the slot heap with slots aligned to 64 bytes.
  *
  * @param pslotheap Pointer to the slot heap.
- * @param cb Size of a slot in bytes.
- * @param c Number of slots to allocate.
+ * @param cb        Size of a slot in bytes.
+ * @param c         Number of slots to allocate.
  */
 void CreateSlotheapSwAlign64(SLOTHEAP *pslotheap, int cb, int c);
 
@@ -84,8 +84,7 @@ void *PvAllocSlotheapClearImpl(SLOTHEAP *pslotheap);
  * @brief Frees a slot and returns it to the slot heap.
  *
  * @param pslotheap Pointer to the slot heap.
- *
- * @param Pointer to the slot being freed.
+ * @param pv        Pointer to the slot being freed.
  */
 void FreeSlotheapPv(SLOTHEAP *pslotheap, void *pv);
 

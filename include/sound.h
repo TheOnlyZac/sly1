@@ -186,6 +186,21 @@ struct SFX
 };
 
 /**
+ * @brief Excitement.
+ * @todo Implement the struct.
+ */
+struct EXC
+{
+    int iexc;
+    DLE dle;
+};
+
+/**
+ * @brief Unknown.
+ */
+void UnsetExcitement(EXC *pexc);
+
+/**
  * @brief Unknown.
  */
 void KillExcitement();

@@ -1,8 +1,29 @@
 #include <actseg.h>
+#include <asega.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/actseg", RetractActseg__FP6ACTSEGi);
+void RetractActseg(ACTSEG *pactseg, GRFRA grfra)
+{
+    ASEGA *pasega = pactseg->pasega;
+    RemoveDlEntry(&pasega->dlActseg, pactseg);
 
-INCLUDE_ASM("asm/nonmatchings/P2/actseg", CloneActseg__FP6ACTSEGT0);
+    if (pasega->pactsegError == pactseg)
+    {
+        pasega->pactsegError = (ACTSEG *)nullptr;
+    }
+
+    RetractAct(pactseg, grfra);
+}
+
+void CloneActseg(ACTSEG *pactseg, ACTSEG *pactsegBase)
+{
+    ASEGA *pasega = pactseg->pasega;
+    DLE dleAsega = pactseg->dleAsega;
+
+    CloneAct(pactseg, pactsegBase);
+
+    pactseg->dleAsega = dleAsega;
+    pactseg->pasega = pasega;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/actseg", GetActsegPositionGoal__FP6ACTSEGfP6VECTORT2);
 

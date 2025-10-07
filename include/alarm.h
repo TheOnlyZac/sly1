@@ -17,16 +17,6 @@
 struct SENSOR;
 
 /**
- * @brief Unknown.
- * @todo Move elsewhere?
- */
-struct EXC
-{
-    int iexc;
-    DLE dle;
-};
-
-/**
  * @brief Alarm state.
  */
 enum ALARMS

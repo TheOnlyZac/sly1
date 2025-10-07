@@ -62,11 +62,12 @@ struct BSPC
  */
 struct VBSP
 {
-    VECTOR normal;
-    float gDot;
-    VBSP *pvbspNeg;
-    VBSP *pvbspPos;
-    // Might contain other fields?
+    /* 0x00 */ VECTOR normal;
+    /* 0x0c */ uint padding; // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x10 */ float gDot;
+    /* 0x14 */ VBSP *pvbspNeg;
+    /* 0x18 */ VBSP *pvbspPos;
+    /* 0x1c */ uint unk;
 };
 
 /**

@@ -362,6 +362,24 @@ DecrefSmp__FP3SMP = 0x11ca20; // type:func
 StartupSpliceStructuredTypeFactories__Fv = 0x11ca90; // type:func
 ShutdownSpliceStructuredTypeFactories__Fv = 0x11cbb0; // type:func
 
+_t18CStructTypeFactory1Z6VECTOR$s_cmax  = 0x25C2F0; // size:0x4
+_t18CStructTypeFactory1Z7MATRIX4$s_cmax = 0x25C2F4; // size:0x4
+_t18CStructTypeFactory1Z3CLQ$s_cmax     = 0x25C2F8; // size:0x4
+_t18CStructTypeFactory1Z2LM$s_cmax      = 0x25C2FC; // size:0x4
+_t18CStructTypeFactory1Z3SMP$s_cmax     = 0x25C300; // size:0x4
+
+_t18CStructTypeFactory1Z6VECTOR$s_acref  = 0x27B300; // size:0x4
+_t18CStructTypeFactory1Z7MATRIX4$s_acref = 0x27B304; // size:0x4
+_t18CStructTypeFactory1Z3CLQ$s_acref     = 0x27B308; // size:0x4
+_t18CStructTypeFactory1Z2LM$s_acref      = 0x27B30C; // size:0x4
+_t18CStructTypeFactory1Z3SMP$s_acref     = 0x27B310; // size:0x4
+
+_t18CStructTypeFactory1Z6VECTOR$s_slotheap  = 0x62C558; // size:0x10
+_t18CStructTypeFactory1Z7MATRIX4$s_slotheap = 0x62C568; // size:0x10
+_t18CStructTypeFactory1Z3CLQ$s_slotheap     = 0x62C578; // size:0x10
+_t18CStructTypeFactory1Z2LM$s_slotheap      = 0x62C588; // size:0x10
+_t18CStructTypeFactory1Z3SMP$s_slotheap     = 0x62C598; // size:0x10
+
 
 ////////////////////////////////////////////////////////////////
 // P2/989snd.c
@@ -3825,7 +3843,7 @@ PostSmartguardLoad__FP10SMARTGUARD                    = 0x1B7128; // type:func
 FFilterSmartguardDetect__FP10SMARTGUARDP2SO           = 0x1B71C8; // type:func
 FDetectSmartguard__FP10SMARTGUARD                     = 0x1B7280; // type:func
 UpdateSmartguard__FP10SMARTGUARDf                     = 0x1B7608; // type:func
-FUN_001B7638                                          = 0x1B7638; // type:func
+UpdateSmartguardFlashlight__FP10SMARTGUARD            = 0x1B7638; // type:func
 OnSmartguardEnteringSgs__FP10SMARTGUARD3SGSP4ASEG     = 0x1B7790; // type:func
 FCanSmartguardAttack__FP10SMARTGUARD                  = 0x1B7818; // type:func
 SgasGetSmartguard__FP10SMARTGUARD                     = 0x1B7860; // type:func

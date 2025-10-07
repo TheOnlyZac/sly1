@@ -2,10 +2,10 @@
 #include <lib/libkernl/filestub.h>
 #include <sdk/ee/eekernel.h>
 #include <sdk/ee/sifrpc.h>
+#include <sdk/ee/sifdev.h>
 #include <sdk/libcdvd.h>
 #include <sce/libdma.h>
 #include <phasemem.h>
-#include <sce/iop.h>
 #include <render.h>
 #include <clock.h>
 #include <save.h>

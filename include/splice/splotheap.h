@@ -29,9 +29,9 @@ public:
 
     void Startup(int cb, int c);
     void Shutdown();
-    int PvAllocUnsafe();
+    void *PvAllocUnsafe();
     void *PvAllocClear();
-    int PsplotLookup(int);
+    SPLOT *PsplotLookup(int i);
     void UpdateRecyclable();
     void UnmarkAll();
     void FreeGarbage();

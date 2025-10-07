@@ -6,7 +6,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/glbs", __4GLBS);
 
 GLBS::~GLBS()
 {
-    // Empty.
+    return;
 }
 
 void GLBS::SetTransform(VECTOR *ppos, MATRIX3 *pmat)
