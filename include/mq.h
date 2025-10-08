@@ -54,11 +54,11 @@ typedef void (*PFNMQ)(void *, MSGID, void *);
  */
 struct MQ
 {
-    PFNMQ pfnmq;
-    void *pvContext;
-    MSGID msgid;
-    void *pvCallbackData;
-    MQ *pmqnext;
+    /* 0x00 */ PFNMQ pfnmq;
+    /* 0x04 */ void *pvContext;
+    /* 0x08 */ MSGID msgid;
+    /* 0x0c */ void *pvCallbackData;
+    /* 0x10 */ MQ *pmqNext;
 };
 
 #endif // MQ_H

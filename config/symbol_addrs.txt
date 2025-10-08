@@ -1710,6 +1710,9 @@ FUN_00151860                                      = 0x151860; // type:func
 TriggerDialog__FP6DIALOG                          = 0x1518B8; // type:func
 UntriggerDialog__FP6DIALOG                        = 0x1519A8; // type:func
 
+// TODO: Is this in the right place?
+g_pdialogPlaying = 0x27051C;
+
 
 ////////////////////////////////////////////////////////////////
 // P2/difficulty.c
@@ -3740,7 +3743,6 @@ PropagateSais__Fv                              = 0x1B47C0; // type:func
 UpdateShaders__Ff                              = 0x1B4878; // type:func
 
 g_grfzonShaders = 0x274518; // size:0x4
-g_pbBulkData    = 0x275718; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
@@ -4036,7 +4038,7 @@ HandleWipeHandleWipeVolumes__FifVolumes = 0x1C0000; // type:func
 UpdateSounds__Fv = 0x1C0070; // type:func
 SetMvgkUvol__Ff = 0x1c05d0; // type:func
 MvgkUnknown1__F4MVGK = 0x1C0600; // type:func
-SetMvgkRvol__F4MVGKf = 0x1C06A0; // type:func
+SetMvgkRvol__Fi4MVGKf = 0x1C06A0; // type:func
 MvgkUnknown2__Fv = 0x1C06D8; // type:func
 MvgkUnknown3 = 0x1C0760; // type:func
 MvgkUnknown4 = 0x1C0790; // type:func
@@ -4057,6 +4059,8 @@ HsNextFootFall__Fv = 0x1C0CF0; // type:func
 NextSneakyFootstep__Fv = 0x1C0EC0; // type:func
 
 D_00604790 = 0x00604790; // size:0x1c
+
+g_iexcHyst = 0x274738; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
@@ -4535,13 +4539,18 @@ SetSwPlayerSuck__FP2SWf                                           = 0x1DD9D8; //
 GetSwPlayerSuck__FP2SWPf                                          = 0x1DDA08; // type:func
 IncrementSwHandsOff__FP2SW                                        = 0x1DDA20; // type:func
 DecrementSwHandsOff__FP2SW                                        = 0x1DDA50; // type:func
-FUN_001dda80                                                      = 0x1DDA80; // type:func
+IsSwHandsOff__FP2SW                                               = 0x1DDA80; // type:func
 IsSwVagPlaying__FP2SWPi                                           = 0x1DDA90; // type:func
 SetSwDarken__FP2SWf                                               = 0x1DDAB8; // type:func
 SetSwDarkenSmooth__FP2SWf                                         = 0x1DDAC8; // type:func
 CancelSwDialogPlaying__FP2SW                                      = 0x1DDAD0; // type:func
 
-g_psw = 0x275710; // size:0x4
+g_psw                      = 0x275710; // size:0x4
+g_pbBulkData               = 0x275718; // size:0x4
+g_fLoadBulkData            = 0x27571C; // size:0x4
+g_cbBulkData               = 0x275720; // size:0x4
+g_nBulkDataSig             = 0x275724; // size:0x4
+g_cbBulkDataReadAdjustment = 0x275728; // size:0x8
 
 
 ////////////////////////////////////////////////////////////////
@@ -4807,6 +4816,8 @@ SgnCompareG__FPfT0 = 0x1EB128; // type:func
 Force__FPv = 0x1EB160; // type:func
 MinimizeRange = 0x1EB168; // type:func
 junk_001EB458 = 0x1EB458; // type:func
+
+g_lmZeroOne = 0x275C60;
 
 
 ////////////////////////////////////////////////////////////////

@@ -1,4 +1,4 @@
-#include "sound.h"
+#include <sound.h>
 #include <989snd.h>
 #include <sce/memset.h>
 
@@ -6,6 +6,7 @@ extern uchar D_00604790[]; // temp
 
 /**
  * @brief Media volume float.
+ * @todo Does this even exist?
  */
 struct MVG
 {
@@ -15,7 +16,7 @@ struct MVG
     undefined4 unk3;
 };
 
-extern MVG D_00274838[10]; // temp
+extern float D_00274838[10][4]; // temp
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", UnloadMusic__Fv);
 
@@ -61,27 +62,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadMusidSong__F5MUSID);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StartMusidSong__F5MUSID);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PauseMusic__Fv);
-#ifdef SKIP_ASM
-/**
- * @todo 79.5% matching.
- */
 void PauseMusic()
 {
-    SetMvgkRvol(MVGK_Music, 0.0f);
+    SetMvgkRvol(2, MVGK_Music, 0.0f);
 }
-#endif
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", ContinueMusic__Fv);
-#ifdef SKIP_ASM
-/**
- * @todo 89.5% matching.
- */
 void ContinueMusic()
 {
-    SetMvgkRvol(MVGK_Music, 1.0f);
+    SetMvgkRvol(2, MVGK_Music, 1.0f);
 }
-#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SfxhMusicUnknown1);
 
@@ -172,36 +161,33 @@ void SetMvgkUvol(float uvol)
 INCLUDE_ASM("asm/nonmatchings/P2/sound", MvgkUnknown1__F4MVGK);
 #ifdef SKIP_ASM
 /**
- * @todo This is a mess... but it matches 53.35% so I'll take it for now. -Zac
+ * @todo 90.38% match.
+ * https://decomp.me/scratch/p3Gcq
  */
 void MvgkUnknown1(MVGK mvgk)
 {
-    float v = D_00274838[0].vol;
-    for (int i = 1; i < 10; ++i)
+    float v = 1.0f;
+    for (int i = 0; i < 11; ++i)
     {
-        float x = D_00274838[i].vol;
-        if (x > v) v = x;
+        v *= D_00274838[i][mvgk];
     }
 
-    if (v > 1.0f) v = 1.0f;
-    if (v < 0.0f) v = 0.0f;
-
-    int ivol = (int)(v * 1024.0f);
-    snd_SetMasterVolume(mvgk, ivol);
+    // TODO: This is just plain wrong, but it produces the best match.
+    if (v < 1.0f) v = 0.0f;
+    if (v > 0.0f) v = 1.0f;
+    
+    snd_SetMasterVolume(mvgk, (int)(v * 1024.0f));
 }
 #endif
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SetMvgkRvol__F4MVGKf);
-#ifdef SKIP_ASM
 /**
- * @todo 61.79% matching.
+ * @todo 100% match, but types might be wrong?
  */
-void SetMvgkRvol(MVGK mvgk, float rvol)
+void SetMvgkRvol(int channel, MVGK mvgk, float rvol)
 {
-    D_00274838[mvgk].vol = rvol;
+    D_00274838[channel][mvgk] = rvol;
     MvgkUnknown1(mvgk);
 }
-#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", MvgkUnknown2__Fv);
 

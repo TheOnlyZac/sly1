@@ -115,7 +115,7 @@ struct LS
     int afDialogPlayed[12]; // Dialog played flags
     int sceneVars[2][4];    // Scene variables
     int cclue;              // Count of clues collected
-    unsigned int fclue;     // Clue collected flags
+    uint fclue;             // Clue collected flags
     int unk_field_0x6c;     // Unknown
     int unk_field_0x70;     // Unknown
     char *unk_field_0x74;   // Unknown

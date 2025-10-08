@@ -4,8 +4,6 @@
 #include <frm.h>
 #include <sw.h>
 
-extern int g_cframeStaticLightsInvalid;
-
 INCLUDE_ASM("asm/nonmatchings/P2/light", InitLight__FP5LIGHT);
 
 void UpdateLightXfWorldHierarchy(LIGHT *plight)

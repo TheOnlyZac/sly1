@@ -8,6 +8,7 @@
 
 #include "common.h"
 #include <slotheap.h>
+#include <light.h>
 #include <game.h>
 #include <bis.h>
 #include <vec.h>
@@ -18,9 +19,7 @@
 typedef void (*PFNFILTER)(void *, SO *); // TODO: Figure out if this is correct.
 
 // Forward.
-struct XA;
 struct OXA;
-struct STSO;
 struct VISMAP;
 
 /**
@@ -45,15 +44,20 @@ struct SW : public LO
     /* 0x1884 */ LO *aploCidHead[154];
     /* 0x1aec */ int fAaoxValid;
     /* 0x1af0 */ SLOTHEAP slotheapOx;
-    /* 0x1afc */ STRUCT_PADDING(23);
+    /* 0x1afc */ STRUCT_PADDING(3); // Likely a SLOTHEAP.
+    /* 0x1b08 */ SLOTHEAP slotheapXa;
+    /* 0x1b14 */ SLOTHEAP slotheapMq;
+    /* 0x1b20 */ STRUCT_PADDING(14);
     /* 0x1b58 */ SLOTHEAP slotheapAsega;
     /* 0x1b64 */ STRUCT_PADDING(6);
     /* 0x1b7c */ DL dlAsegaPending;
     /* 0x1b88 */ STRUCT_PADDING(24);
     /* 0x1be8 */ DL dlLight;
-    /* 0x1bf4 */ STRUCT_PADDING(18);
+    /* 0x1bf4 */ STRUCT_PADDING(6);
+    /* 0x1c0c */ SLOTHEAP slotheapStso;
+    /* 0x1c18 */ STRUCT_PADDING(9);
     /* 0x1c3c */ DL dlProxy;
-    /* 0c1c48 */ DL dlFly;
+    /* 0x1c48 */ DL dlFly;
     /* 0x1c54 */ DL dlDprize;
     /* 0x1c60 */ DL dlRat;
     /* 0x1c6c */ DL dlRathole;
@@ -61,15 +65,45 @@ struct SW : public LO
     /* 0x1c84 */ DL dlSpire;
     /* 0x1c90 */ DL dlRail;
     /* 0x1c9c */ DL dlLanding;
-    /* 0x1ca8 */ STRUCT_PADDING(9);
+    /* 0x1ca8 */ STRUCT_PADDING(9); // Likely 3 DL's.
     /* 0x1ccc */ DL dlCrfod;
-    /* 0x1cd8 */ STRUCT_PADDING(123);
+    /* 0x1cd8 */ STRUCT_PADDING(36);
+    /* 0x1d68 */ LSM lsmDefault;
+    /* 0x1d70 */ STRUCT_PADDING(85);
     /* 0x1ec4 */ VISMAP *pvismap;
+    /* 0x1ec8 */ MQ *pmqCallbackFirst;
+    /* 0x1ecc */ MQ *pmqCallbackLast;
+    /* 0x1ed0 */ STRUCT_PADDING(274);
+    /* 0x2318 */ float gexcMenu;
+    /* 0x231c */ int cHandsOff;
+    /* 0x2320 */ STRUCT_PADDING(11);
+    /* 0x234c */ float rDarken;
+    /* 0x2350 */ float rDarkenSmooth;
     // ...
 
     // MISALIGNED:
     void (*pcbUpdate)(float fDelta);
 };
+
+/**
+ * @brief Unknown.
+ * @todo Implement the struct and figure out where it belongs.
+ */
+struct XA
+{
+    /* 0x00 */ STRUCT_PADDING(3);
+    /* 0x0c */ XA *pxaNextTarget;
+}; // 0x10 bytes.
+
+/**
+ * @brief Unknown.
+ * @todo Implement the struct and figure out where it belongs.
+ */
+struct STSO
+{
+    /* 0x00 */ STRUCT_PADDING(1);
+    /* 0x04 */ STSO *pstsoNext;
+}; // 0x08 bytes.
 
 extern SW *g_psw;
 
@@ -167,7 +201,10 @@ void IncrementSwHandsOff(SW *psw);
 
 void DecrementSwHandsOff(SW *psw);
 
-int FUN_001dda80(SW *psw); // Unknown
+/**
+ * @note Not in the prototype, so name is unofficial.
+ */
+int IsSwHandsOff(SW *psw);
 
 void IsSwVagPlaying(SW *psw, int *pfPlaying);
 

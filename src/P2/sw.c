@@ -1,4 +1,18 @@
 #include <sw.h>
+#include <ui.h>
+#include <frm.h>
+#include <util.h>
+#include <sound.h>
+#include <dialog.h>
+#include <989snd.h>
+#include <sce/memset.h>
+
+extern SW *g_psw;
+extern byte *g_pbBulkData;
+extern int g_fLoadBulkData;
+extern int g_cbBulkData;
+extern int g_nBulkDataSig;
+extern int g_cbBulkDataReadAdjustment;
 
 void InitSwDlHash(SW *psw)
 {
@@ -17,7 +31,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", DeleteSw__FP2SW);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", SetupBulkDataFromBrx__FiP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", LoadBulkDataFromBrx__FP18CBinaryInputStream);
+void LoadBulkDataFromBrx(CBinaryInputStream *pbis)
+{
+    if (g_fLoadBulkData)
+    {
+        g_cbBulkDataReadAdjustment = pbis->m_cbRemaining;
+        pbis->Align(16);
+        pbis->Read(g_cbBulkData, g_pbBulkData);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", SetSwGravity__FP2SWf);
 
@@ -29,17 +51,77 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dbb00);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FOverflowSwLo__FP2SWP2LOi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", PxaAllocSw__FP2SW);
+XA *PxaAllocSw(SW *psw)
+{
+    XA *pxa = (XA *)PvAllocSlotheapImpl(&psw->slotheapXa);
+    memset(pxa, 0, sizeof(XA));
+    return pxa;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FreeSwXaList__FP2SWP2XA);
+void FreeSwXaList(SW *psw, XA *pxaFirst)
+{
+    while (pxaFirst)
+    {
+        XA *pxa = pxaFirst->pxaNextTarget;
+        FreeSlotheapPv(&psw->slotheapXa, pxaFirst);
+        pxaFirst = pxa;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", PmqAllocSw__FP2SW);
+MQ *PmqAllocSw(SW *psw)
+{
+    MQ *pmq = (MQ *)PvAllocSlotheapImpl(&psw->slotheapMq);
+    memset(pmq, 0, sizeof(MQ));
+    return pmq;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FreeSwMqList__FP2SWP2MQ);
+void FreeSwMqList(SW *psw, MQ *pmqFirst)
+{
+    while (pmqFirst)
+    {
+        MQ *pmq = pmqFirst->pmqNext;
+        FreeSlotheapPv(&psw->slotheapMq, pmqFirst);
+        pmqFirst = pmq;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", EnsureSwCallback__FP2SWPFPv5MSGIDPv_vPv5MSGIDT2);
+void EnsureSwCallback(SW *psw, PFNMQ pfnmq, void *pvContext, MSGID msgid, void *pvCallbackData)
+{
+    MQ *pmq = psw->pmqCallbackFirst;
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", PostSwCallback__FP2SWPFPv5MSGIDPv_vPv5MSGIDT2);
+    while (pmq)
+    {
+        if (pmq->pfnmq == pfnmq && pmq->pvContext == pvContext &&
+            pmq->msgid == msgid && pmq->pvCallbackData == pvCallbackData)
+        {
+            return;
+        }
+
+        pmq = pmq->pmqNext;
+    }
+
+    PostSwCallback(psw, pfnmq, pvContext, msgid, pvCallbackData);
+}
+
+void PostSwCallback(SW *psw, PFNMQ pfnmq, void *pvContext, MSGID msgid, void *pvCallbackData)
+{
+    MQ *pmq = PmqAllocSw(psw);
+    pmq->pfnmq = pfnmq;
+    pmq->pvContext = pvContext;
+    pmq->msgid = msgid;
+    pmq->pvCallbackData = pvCallbackData;
+
+    if (psw->pmqCallbackLast)
+    {
+        psw->pmqCallbackLast->pmqNext = pmq;
+    }
+    else
+    {
+        psw->pmqCallbackFirst = pmq;
+    }
+
+    psw->pmqCallbackLast = pmq;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", ClearSwCallbacks__FP2SWiPFPv5MSGIDPv_vPv5MSGIDT3);
 
@@ -47,9 +129,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", ProcessSwCallbacks__FP2SW);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", ProcessSwSpliceScheduledCallbacks__FP2SWf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", PstsoAllocSw__FP2SW);
+STSO *PstsoAllocSw(SW *psw)
+{
+    STSO *pstso = (STSO *)PvAllocSlotheapImpl(&psw->slotheapStso);
+    memset(pstso, 0, sizeof(STSO));
+    return pstso;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FreeSwStsoList__FP2SWP4STSO);
+void FreeSwStsoList(SW *psw, STSO *pstsoFirst)
+{
+    while (pstsoFirst)
+    {
+        STSO *pstso = pstsoFirst->pstsoNext;
+        FreeSlotheapPv(&psw->slotheapStso, pstsoFirst);
+        pstsoFirst = pstso;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", AddSwProxySource__FP2SWP2LOi);
 
@@ -83,11 +178,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", DrawLineWorld__FP6VECTORT0G4RGBAP2CMi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", DrawAxesWorld__FP6VECTORP7MATRIX3fP2CMi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", SetSwIllum__FP2SWf);
+void SetSwIllum(SW *psw, float uMidtone)
+{
+    psw->lsmDefault.uMidtone = uMidtone;
+    g_cframeStaticLightsInvalid = g_cframe;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", SetSwIllumShadow__FP2SWf);
+void SetSwIllumShadow(SW *psw, float uShadow)
+{
+    psw->lsmDefault.uShadow = uShadow;
+    g_cframeStaticLightsInvalid = g_cframe;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", SetSwExcitement__FP2SWf);
+void SetSwExcitement(SW *psw, float gexcMenu)
+{
+    psw->gexcMenu = gexcMenu;
+    g_iexcHyst = -100;
+    SetMvgkRvol(7, MVGK_Music, 1.0f);
+    snd_SetGlobalExcite((int)(psw->gexcMenu + 0.5f));
+}
 
 int FLevelSwVisited(SW *psw, WID wid)
 {
@@ -131,20 +240,59 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd9a0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd9c0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", SetSwPlayerSuck__FP2SWf);
+void SetSwPlayerSuck(SW *psw, float uSuck)
+{
+    g_plsCur->unk_suck_0x10 = GLimitLm(&g_lmZeroOne, uSuck);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", GetSwPlayerSuck__FP2SWPf);
+void GetSwPlayerSuck(SW *psw, float *puSuck)
+{
+    // TODO: This should be "uSuck"?
+    *puSuck = g_plsCur->unk_suck_0x10;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", IncrementSwHandsOff__FP2SW);
+void IncrementSwHandsOff(SW *psw)
+{
+    if (++psw->cHandsOff == 1)
+    {
+        AddGrfusr(2);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", DecrementSwHandsOff__FP2SW);
+void DecrementSwHandsOff(SW *psw)
+{
+    if (psw->cHandsOff-- == 1)
+    {
+        RemoveGrfusr(2);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dda80);
+int IsSwHandsOff(SW *psw)
+{
+    return psw->cHandsOff > 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", IsSwVagPlaying__FP2SWPi);
+void IsSwVagPlaying(SW *psw, int *pfPlaying)
+{
+    *pfPlaying = FVagPlaying();
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", SetSwDarken__FP2SWf);
+void SetSwDarken(SW *psw, float rDarken)
+{
+    psw->rDarkenSmooth = rDarken;
+    psw->rDarken = rDarken;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", SetSwDarkenSmooth__FP2SWf);
+void SetSwDarkenSmooth(SW *psw, float rDarkenSmooth)
+{
+    psw->rDarkenSmooth = rDarkenSmooth;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", CancelSwDialogPlaying__FP2SW);
+void CancelSwDialogPlaying(SW *psw)
+{
+    if (g_pdialogPlaying && STRUCT_OFFSET(g_pdialogPlaying, 0x2d4, DIALOGS) != 4 &&
+       (STRUCT_OFFSET(g_pdialogPlaying, 0x2d0, DIALOGK) - 1u) < 2)
+    {
+        PopUiActiveBlot(&g_ui);
+    }
+}

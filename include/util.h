@@ -11,10 +11,6 @@
 #include <mat.h>
 #include <sm.h>
 
-#ifdef SKIP_ASM
-extern LM g_lmZeroOne;
-#endif
-
 /**
  * @brief Unknown.
  *
@@ -32,6 +28,8 @@ struct LM
 {
 	float gMin, gMax;
 };
+
+extern LM g_lmZeroOne;
 
 /**
  * @brief Normalizes a float to the range [-PI, PI].

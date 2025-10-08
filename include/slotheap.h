@@ -14,7 +14,7 @@
 struct SLOT
 {
     /* 0x00 */ SLOT *pslotNext;
-};
+}; // 0x04 bytes.
 
 /**
  * @brief Slot heap.
@@ -24,7 +24,7 @@ struct SLOTHEAP
     /* 0x00 */ int cb;
     /* 0x04 */ byte *ab;
     /* 0x08 */ SLOT *pslotFree;
-};
+}; // 0x0c bytes.
 
 /**
  * @brief Initializes a slot heap with a linked list of free slots.
