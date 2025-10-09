@@ -158,12 +158,6 @@ void SetMvgkUvol(float uvol)
     snd_SetMasterVolume(8, (int)(uvol * 1024.0f));
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", MvgkUnknown1__F4MVGK);
-#ifdef SKIP_ASM
-/**
- * @todo 90.38% match.
- * https://decomp.me/scratch/p3Gcq
- */
 void MvgkUnknown1(MVGK mvgk)
 {
     float v = 1.0f;
@@ -172,17 +166,20 @@ void MvgkUnknown1(MVGK mvgk)
         v *= D_00274838[i][mvgk];
     }
 
-    // TODO: This is just plain wrong, but it produces the best match.
-    if (v < 1.0f) v = 0.0f;
-    if (v > 0.0f) v = 1.0f;
+    float one = 1.0f;
+    float zero = 0.0f;
+    if (v < zero)
+    {
+        v = zero;
+    }
+    else if (v > one)
+    {
+        v = one;
+    }
     
     snd_SetMasterVolume(mvgk, (int)(v * 1024.0f));
 }
-#endif
 
-/**
- * @todo 100% match, but types might be wrong?
- */
 void SetMvgkRvol(int channel, MVGK mvgk, float rvol)
 {
     D_00274838[channel][mvgk] = rvol;
