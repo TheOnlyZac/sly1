@@ -5016,27 +5016,27 @@ UpdateExit__FfP4EXIT = 0x1F4AE0; // type:func
 InitCamera__FP6CAMERA = 0x1F4E18; // type:func
 PostCameraLoad__FP6CAMERA = 0x1F4E48; // type:func
 EnableCamera__FP6CAMERA = 0x1F4ED0; // type:func
+DisableCamera__FP6CAMERA = 0x1F4F20; // type:func
 
 
 ////////////////////////////////////////////////////////////////
 // P2/zap.c
 ////////////////////////////////////////////////////////////////
-InitTzp__FP3TZP = 0x1F4F20; // type:func
-FUN_001f4f70 = 0x1F4F70; // type:func
+InitTzp__FP3TZP = 0x1F4F70; // type:func
 PostTzpLoad__FP3TZP = 0x1F4FD8; // type:func
-FUN_001f5008 = 0x1F5008; // type:func
-CloneTzp__FP3TZPT0eTzp = 0x1F51A0; // type:func
-FUN_001f51c8 = 0x1F51C8; // type:func
+UpdateTzp__FP3TZPf = 0x1F5008; // type:func
+CloneTzp__FP3TZPT0 = 0x1F51A0; // type:func
+RenderTzpAll__FP3TZPP2CMP2RO = 0x1F51C8; // type:func
 FInflictTzpZap__FP3TZPP2XPP3ZPR = 0x1F51E8; // type:func
-FUN_001F5208__FP3TZP = 0x1F5208; // type:func
-PzpdEnsureTzp__FP3TZP4ENSK = 0x1F5210; // type:func
+PzpdEnsureTzp__FP3TZP4ENSK = 0x1F5208; // type:func
+FUN_001F5210__FP3TZP = 0x1F5210; // type:func
 InitVolzp__FP5VOLZP = 0x1F5218; // type:func
 UpdateVolzp__FP5VOLZPf = 0x1F5268; // type:func
 InitZpd__FP3ZPDP2SO = 0x1F5590; // type:func
 PostZpdLoad__FP3ZPD = 0x1F55A8; // type:func
 ApplyZpdThrow__FP3ZPDP2PO = 0x1F56D8; // type:func
 InflictZpdZap__FP3ZPDP2XPP3ZPR = 0x1F57E0; // type:func
-FUN_001F5840 = 0x1F5840; // type:func
+AddZpdZapObject__FP3ZPD3OID = 0x1F5840; // type:func
 AddZpdZapLo__FP3ZPDP2LO = 0x1F5868; // type:func
 RemoveZpdZapLo__FP3ZPDP2LO = 0x1f5930; // type:func
 

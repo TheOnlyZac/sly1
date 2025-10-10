@@ -10,7 +10,7 @@ Installs the necessary dependencies using pip/apt and sets up the build environm
 
 ### setup_progd_linux.sh
 
-Installs the compiler needed to build the project on Linux. `quickstart.h` will run this script for you, so you don't need to run both.
+Installs the compiler needed to build the project on Linux. `quickstart.sh` will run this script for you, so you don't need to run both.
 
 There is an equivalent script for Windows, but the assembler does not work on Windows, so you can't build the project on Windows. You must use Linux or WSL.
 
