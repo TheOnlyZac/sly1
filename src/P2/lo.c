@@ -223,7 +223,7 @@ void SubscribeSwPpmqStruct(SW *psw, MQ **ppmqFirst, PFNMQ pfnmq, void *pvContext
     MQ *pmq = PmqAllocSw(psw);
     pmq->pfnmq = pfnmq;
     pmq->pvContext = pvContext;
-    pmq->pmqnext = *ppmqFirst;
+    pmq->pmqNext = *ppmqFirst;
     *ppmqFirst = pmq;
 }
 
@@ -238,8 +238,8 @@ void UnsubscribeSwPpmqStruct(SW *psw, MQ **ppmqFirst, PFNMQ pfnmq, void *pvConte
 
         if (pmq->pfnmq == pfnmq && pmq->pvContext == pvContext)
         {
-            *ppmqFirst = pmq->pmqnext;
-            pmq->pmqnext = (MQ*)nullptr;
+            *ppmqFirst = pmq->pmqNext;
+            pmq->pmqNext = (MQ*)nullptr;
             pmqTarget = pmq;
             FreeSwMqList(psw, pmqTarget);
             break;
@@ -247,7 +247,7 @@ void UnsubscribeSwPpmqStruct(SW *psw, MQ **ppmqFirst, PFNMQ pfnmq, void *pvConte
 
         pmqTarget = *ppmqList;
         pmq = pmqTarget;
-        ppmqFirst = &pmq->pmqnext;
+        ppmqFirst = &pmq->pmqNext;
     }
 }
 
@@ -285,7 +285,7 @@ void SendLoMessage(LO *plo, MSGID msgid, void *pv)
         PFNMQ pfnmq = pmq->pfnmq;
         void *pmqContext = pmq->pvContext;
 
-        pmq = pmq->pmqnext;
+        pmq = pmq->pmqNext;
 
         pfnmq(pmqContext, msgid, pv);
     }

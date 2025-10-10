@@ -60,8 +60,8 @@ struct BMP : public BMPF
 struct CLUTF
 {
     uint grfzon;
-    short crgba;
-    short cgsColors;
+    ushort crgba;
+    ushort cgsColors;
     RGBA *prgba;
 };
 

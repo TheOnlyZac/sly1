@@ -16,8 +16,8 @@ struct ALO;
  * @brief SFX ID.
  *
  * @todo Figure out what DAT_00262050 is as well as what value is being used in the following functions:
- *   FUN_00156288 (Gets sound 0, 16, 32, or 48 from DAT_00262050)
- *   FUN_001590a0 (Seems like an enemy or actor that moves and emits particles)
+ *   WakeSoWater (Gets sound 0, 16, 32, or 48 from DAT_00262050)
+ *   FireExplsExplso (Seems like an enemy or actor that moves and emits particles)
  *   StartSwIntermittentSounds()
  *   SetJtJtcs()
  *   FUN_001eb748
@@ -186,6 +186,30 @@ struct SFX
 };
 
 /**
+ * @brief Excitement.
+ * @todo Implement the struct.
+ */
+struct EXC
+{
+    int iexc;
+    DLE dle;
+};
+
+typedef int IEXC;
+
+extern IEXC g_iexcHyst;
+
+/**
+ * @brief Check if a VAG is playing.
+ */
+int FVagPlaying();
+
+/**
+ * @brief Unknown.
+ */
+void UnsetExcitement(EXC *pexc);
+
+/**
  * @brief Unknown.
  */
 void KillExcitement();
@@ -252,7 +276,7 @@ void MvgkUnknown1(MVGK mvgk);
 /**
  * @brief Sets the rvol of an mvgk.
  */
-void SetMvgkRvol(MVGK mvgk, float rvol);
+void SetMvgkRvol(int channel, MVGK mvgk, float rvol);
 
 /**
  * @brief Unknown.

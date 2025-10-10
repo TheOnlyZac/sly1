@@ -10,11 +10,19 @@
 
 class CRef;
 
-// todo Find where this struct should be implemented.
+/**
+ * @brief Unknown.
+ * @todo Find where this struct should be implemented.
+ */
 struct SBB
 {
+    int n;
+    // CRef ref;
 };
 
+/**
+ * @brief Sidebag.
+ */
 class CSidebag
 {
 private:
@@ -22,11 +30,13 @@ private:
     SBB m_asbb[16];
 
 public:
-    CSidebag& RefAddBinding(int, CRef*);
-    CSidebag& RefSetBinding(int, CRef*);
-    bool FFindBinding(int, CRef*);
-    void CloneTo(CSidebag*);
+    CSidebag& RefAddBinding(int n, CRef *pref);
 
+    CSidebag& RefSetBinding(int n, CRef *pref);
+
+    bool FFindBinding(int n, CRef *pref);
+
+    void CloneTo(CSidebag *psidebagClone);
 };
 
 /**
@@ -34,6 +44,6 @@ public:
  *
  * @return A pointer to the newly created sidebag.
  */
-CSidebag* PsidebagNew();
+CSidebag *PsidebagNew();
 
 #endif // SPLICE_SIDEBAG_H

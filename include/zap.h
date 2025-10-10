@@ -7,9 +7,16 @@
 #define ZAP_H
 
 #include "common.h"
+#include <ensure.h>
 #include <oid.h>
 #include <so.h>
-#include <ensure.h>
+
+// Forward.
+struct XP;
+struct PO;
+struct ZPD;
+
+typedef void (*PFNZAP)(ZPD *pzpd, PO *ppo);
 
 /**
  * @brief Zap kind.
@@ -47,14 +54,14 @@ enum ZOK
  */
 struct ZPD
 {
-    SO *pso;
-    ZPK zpk;
+    /* 0x00 */ SO *pso;
+    /* 0x04 */ ZPK zpk;
     float dzThrow;
     int fThrowCut;
     int coidThrow;
     OID aoidThrow[32];
-    int cploThrow;
-    LO *aploThrow[32];
+    /* 0x94 */ int cploThrow;
+    /* 0x98 */ LO *aploThrow[32];
 };
 
 /**
@@ -71,8 +78,10 @@ struct ZAP
  *
  * @todo Does it inherit from ZAP?
 */
-struct TZP
+struct TZP : public SO
 {
+    // ...
+    /* 0x550 */ ZPD zpd;
     // ...
 };
 
@@ -81,10 +90,56 @@ struct TZP
  */
 struct ZPR
 {
-    ZPK zpk;
+    /* 0x00 */ ZPK zpk;
     LO *ploSource;
-    void *pv;
-    void *pfnzap; // NOTE: This is a function pointer.
+    /* 0x08 */ void *pv;
+    /* 0x0c */ PFNZAP pfnzap;
 };
+
+/**
+ * @brief Zap volume?
+ * @todo Implement the struct.
+ */
+struct VOLZP : public TZP
+{
+    // ...
+};
+
+void InitTzp(TZP *ptzp);
+
+void PostTzpLoad(TZP *ptzp);
+
+void UpdateTzp(TZP *ptzp, float dt);
+
+void CloneTzp(TZP *ptzp, TZP *ptzpBase);
+
+void RenderTzpAll(TZP *ptzp, CM *pcm, RO *pro);
+
+int FInflictTzpZap(TZP *ptzp, XP *pxp, ZPR *pzpr);
+
+ZPD *PzpdEnsureTzp(TZP *ptzp, ENSK ensk);
+
+/**
+ * @todo Rename.
+ */
+void FUN_001F5210(TZP *ptzp);
+
+void InitVolzp(VOLZP *pvolzp);
+
+void UpdateVolzp(VOLZP *pvolzp, float dt);
+
+void InitZpd(ZPD *pzpd, SO *pso);
+
+void PostZpdLoad(ZPD *pzpd);
+
+void ApplyZpdThrow(ZPD *pzpd, PO *ppo);
+
+void InflictZpdZap(ZPD *pzpd, XP *pxp, ZPR *pzpr);
+
+void AddZpdZapObject(ZPD *pzpd, OID oid);
+
+void AddZpdZapLo(ZPD *pzpd, LO *plo);
+
+void RemoveZpdZapLo(ZPD *pzpd, LO *plo);
 
 #endif // ZAP_H

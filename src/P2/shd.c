@@ -1,14 +1,28 @@
 #include <shd.h>
+#include <gs.h>
+
+extern GRFZON g_grfzonShaders;
+extern byte *g_pbBulkData;
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", Tex0FromTexIframeCtk__FP3TEXi3CTK);
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", PackTexGifs__FP3TEXi3CTK4SHDKP4GIFS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/shd", LoadClutFromBrx__FP18CBinaryInputStreamP4CLUT);
+void LoadClutFromBrx(CBinaryInputStream *pbis, CLUT *pclut)
+{
+    pbis->Read(0xc, pclut);
+    pclut->prgba = (RGBA *)(g_pbBulkData + (uint)pclut->prgba);
+    pclut->cqwColors = (uint)pclut->crgba * 4 + 0xf >> 4;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", LoadColorTablesFromBrx__FP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/shd", LoadBmpFromBrx__FP18CBinaryInputStreamP3BMP);
+void LoadBmpFromBrx(CBinaryInputStream *pbis, BMP *pbmp)
+{
+    pbis->Read(0x14, pbmp);
+    pbmp->pbPixels = (byte *)(g_pbBulkData + (int)pbmp->pbPixels);
+    pbmp->cqwPixels = pbmp->cbPixels + 0xf >> 4;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", LoadBitmapsFromBrx__FP18CBinaryInputStream);
 
@@ -18,7 +32,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/shd", LoadTexFromBrx__FP18CBinaryInputStreamP3T
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", LoadShadersFromBrx__FP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/shd", UploadPermShaders__Fv);
+void UploadPermShaders()
+{
+    GSB gsbPerm;
+    InitGsb(&gsbPerm, 0x1e00, 0x4000);
+    UploadBitmaps(0x10000000, &gsbPerm);
+    g_grfzonShaders = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", PropagateShaders__Fi);
 

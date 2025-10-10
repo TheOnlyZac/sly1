@@ -39,12 +39,14 @@ extern "C"
         SCECdIllegalMedia
     };
 
-    int sceCdMmode(int mode);
-    int sceCdGetError(void);
-    int sceCdBreak(void);
     int sceCdSync(int mode);
+    int sceCdInit(int mode);
+    int sceCdDiskReady(int mode);
+    int sceCdMmode(int mode);
     int sceCdRead(u_int lbn, u_int sectors, void *buf, sceCdRMode *mode);
     int sceCdGetDiskType(void);
+    int sceCdGetError(void);
+    int sceCdBreak(void);
 };
 
 #endif // EEDVD_H

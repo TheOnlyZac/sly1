@@ -383,7 +383,39 @@ INCLUDE_ASM("asm/nonmatchings/P2/bis", ReadGeom__18CBinaryInputStreamP4GEOM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/bis", ReadBspc__18CBinaryInputStreamP4GEOMP4BSPC);
 
-INCLUDE_ASM("asm/nonmatchings/P2/bis", ReadVbsp__18CBinaryInputStreamPiPP4VBSP);
+void CBinaryInputStream::ReadVbsp(int *pcvbsp, VBSP **pavbsp)
+{
+    *pcvbsp = U16Read();
+    *pavbsp = (VBSP *)PvAllocSwClearImpl(*pcvbsp * sizeof(VBSP));
+
+    for (int i = 0; i < *pcvbsp; i++)
+    {
+        VBSP *pvbsp = *pavbsp + i;
+
+        ReadVector(&pvbsp->normal);
+        pvbsp->gDot = F32Read();
+
+        uint negIndex = U32Read();
+        if (negIndex & 0x80000000)
+        {
+            pvbsp->pvbspNeg = (VBSP *)negIndex;
+        }
+        else
+        {
+            pvbsp->pvbspNeg = *pavbsp + negIndex;
+        }
+
+        uint posIndex = U32Read();
+        if (posIndex & 0x80000000)
+        {
+            pvbsp->pvbspPos = (VBSP *)posIndex;
+        }
+        else
+        {
+            pvbsp->pvbspPos = *pavbsp + posIndex;
+        }
+    }
+}
 
 void CBinaryInputStream::ReadStringSw(char **pachz)
 {

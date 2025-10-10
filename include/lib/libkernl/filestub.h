@@ -7,6 +7,7 @@
 
 extern "C"
 {
+    int sceFsReset();
     int sceClose(int fd);
     int sceRead(int fd, void *pv, int cb);
     int sceIoctl(int, int, void *);

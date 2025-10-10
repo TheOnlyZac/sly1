@@ -45,9 +45,13 @@ enum LGNS
  * @brief Light gun weapon (maybe the one used by Carmelita).
  *
  * @note Inherits from PO in the prototype but not in retail.
+ * Judging on the function calls it might inherit from SUV?
  */
 struct LGN
 {
+    // ...
+    /* 0xbf0 */ int fFlash;
+    /* 0xbf4 */ float tFlash;
     // ...
 };
 

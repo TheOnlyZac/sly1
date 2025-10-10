@@ -42,7 +42,7 @@ public:
     /**
      * @brief Constructs a new CBinaryAsyncStream.
      *
-     * @param pvSpool Pointer to the spool
+     * @param pvSpool Pointer to the spool.
      */
     CBinaryAsyncStream(void *pvSpool);
 

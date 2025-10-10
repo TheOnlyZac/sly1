@@ -31,7 +31,7 @@ void CTransition::Set(char *pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS
 INCLUDE_ASM("asm/nonmatchings/P2/transition", Execute__11CTransition);
 #ifdef SKIP_ASM
 /**
- * @todo 15.19% matched.
+ * @todo 15.60% matched.
  *
  * Some functions called in this function are not implemented yet.
  */
@@ -64,7 +64,7 @@ void CTransition::Execute()
         if (cb == 0)
         {
             MvgkUnknown1(MVGK_Music);
-            SetMvgkRvol(MVGK_Music, 1.0f);
+            SetMvgkRvol(0, MVGK_Music, 1.0f);
             ClearPhase(PHASE_None);
             levelInfo.fileLocation.m_fcl.isector = 0;
             return;

@@ -14,12 +14,13 @@
  */
 struct LANDING : public SHAPE
 {
-    undefined1 unknown[0x04];
-    DLE dleLanding;
+    /* 0x38 */ DLE dleLanding;
 };
 
 void OnLandingAdd(LANDING *planding);
+
 void OnLandingRemove(LANDING *planding);
+
 void CloneLanding(LANDING *planding, LANDING *plandingBase);
 
 #endif // LANDING_H

@@ -46,6 +46,6 @@ public:
     void Collect();
 };
 
-// static CGc g_gc;
+extern CGc g_gc;
 
 #endif // SPLICE_GC_H

@@ -4,11 +4,7 @@
 
 void CProc::CloneTo(CProc *pprocClone, CFrame *pframeClone)
 {
-    if (pframeClone == nullptr)
-    {
-        pframeClone = m_pframe;
-    }
-    pprocClone->m_pframe = pframeClone;
+    pprocClone->m_pframe = pframeClone ? pframeClone : m_pframe;
     pprocClone->m_ppair = m_ppair;
     pprocClone->m_crefReq = m_crefReq;
     pprocClone->m_fVarArg = m_fVarArg;

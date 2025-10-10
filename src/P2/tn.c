@@ -1,4 +1,6 @@
 #include <tn.h>
+#include <sw.h>
+#include <freeze.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/tn", PtnfnFromTn__FP2TN);
 
@@ -6,23 +8,61 @@ INCLUDE_ASM("asm/nonmatchings/P2/tn", GetTnfnNose__FP4TNFNP6CPDEFIP6VECTORP2TN);
 
 INCLUDE_ASM("asm/nonmatchings/P2/tn", InitTn__FP2TN);
 
-INCLUDE_ASM("asm/nonmatchings/P2/tn", OnTnRemove__FP2TN);
+void OnTnRemove(TN *ptn)
+{
+    OnAloRemove(ptn);
+    SetTnTns(ptn, TNS_Out);
+    ClearSwCallbacks(ptn->psw, 2, (PFNMQ)nullptr, ptn, MSGID_Nil, nullptr);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/tn", LoadTnFromBrx__FP2TNP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/tn", PostTnLoad__FP2TN);
+void PostTnLoad(TN *ptn)
+{
+    PostAloLoad(ptn);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/tn", SetTnTns__FP2TN3TNS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/tn", FUN_001e2840);
+/**
+ * @todo Rename.
+ */
+void FUN_001e2840(TN *ptn, TNS tns)
+{
+    // NOTE: Doesn't match if this is the other way around.
+    if (tns == STRUCT_OFFSET(ptn, 0x398, TNS))
+    {
+        return;
+    }
+
+    STRUCT_OFFSET(ptn, 0x398, TNS) = tns;
+    UpdateTnCallback(ptn, MSGID_callback, nullptr);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/tn", UpdateTnCallback__FP2TN5MSGIDPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/tn", UpdateTn__FP2TNf);
+void UpdateTn(TN *ptn, float dt)
+{
+    UpdateAlo(ptn, dt);
+    if (STRUCT_OFFSET(ptn, 0x398, TNS) != TNS_Out) // ptn->tns
+    {
+        PostSwCallback(ptn->psw, UpdateTnCallback, ptn, MSGID_callback, nullptr);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/tn", RenderTnSelf__FP2TNP2CMP2RO);
+void RenderTnSelf(TN *ptn, CM *pcm, RO *pro)
+{
+    RenderAloSelf(ptn, pcm, pro);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/tn", FreezeTn__FP2TNi);
+void FreezeTn(TN *ptn, int fFreeze)
+{
+    FreezeAlo(ptn, fFreeze);
+    if (fFreeze)
+    {
+        SetTnTns(ptn, TNS_Out);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/tn", FUN_001e29e8);
 

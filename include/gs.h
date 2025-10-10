@@ -14,9 +14,9 @@
 
 struct GSB
 {
-   int igsMin;
-   int igsMac;
-   int igsMax;
+    int igsMin;
+    int igsMac;
+    int igsMax;
 };
 
 /**
@@ -47,8 +47,10 @@ int IgsAllocGsb(GSB *pgsb, int iCount);
 
 void BlastAqwGifsBothFrames(QW *);
 
+void SendDmaSyncGsFinish(sceDmaChan *pdc, QW *pqw);
+
 void ClearFrameBuffers();
 
-void SendDmaSyncGsFinish(sceDmaChan *pdc,QW *pqw);
+void UploadBitmaps(GRFZON grfzon, GSB *pgsb);
 
 #endif // GS_H

@@ -98,17 +98,17 @@ JUNK_ADDIU(10);
 
 void SetPoPlayable(PO *ppo, int fPlayable)
 {
-    if (STRUCT_OFFSET(ppo, 0x550, int) != fPlayable)
+    if (STRUCT_OFFSET(ppo, 0x550, int) == fPlayable)
+        return;
+
+    STRUCT_OFFSET(ppo, 0x550, int) = fPlayable;
+    if (fPlayable)
     {
-        STRUCT_OFFSET(ppo, 0x550, int) = fPlayable;
-        if (fPlayable != 0)
-        {
-            AddPoToList(ppo);
-        }
-        else
-        {
-            RemovePoFromList(ppo);
-        }
+        AddPoToList(ppo);
+    }
+    else
+    {
+        RemovePoFromList(ppo);
     }
 }
 

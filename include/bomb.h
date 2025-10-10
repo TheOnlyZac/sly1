@@ -22,6 +22,10 @@ struct WKR;
 struct BOMB : public SO
 {
     // ...
+    /* 0x554 */ float tDetonate;
+    // ...
+    /* 0x680 */ SFX *psfxDet;
+    // ...
 };
 
 void InitBomb(BOMB *pbomb);

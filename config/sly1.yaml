@@ -188,7 +188,7 @@ segments:
     - [0xa4ae0, c, P2/rog]
     - [0xa8b20, c, P2/rumble]
     - [0xa8fe8, c, P2/rwm]
-    - [0xaa8f8, asm, P2/sb]
+    - [0xaa8f8, c, P2/sb]
     - [0xaac68, c, P2/screen]
     - [0xafcb0, c, P2/sensor]
     - [0xb2ac8, c, P2/shadow]
@@ -250,7 +250,7 @@ segments:
     - [0xf1468, c, P2/wm]
     - [0xf3758, c, P2/wr]
     - [0xf49f8, c, P2/xform]
-    - [0xf5f20, c, P2/zap]
+    - [0xf5f70, c, P2/zap]
 
     ## Segments in prototype confirmed not present in release:
     # P2/cycle.c - some kind of wheeled vehicle
@@ -290,6 +290,7 @@ segments:
     - [0x14A3A0, .rodata, P2/splice/serialize]
     - [0x14A428, rodata] #, P2/989snd]
     - [0x14A870, rodata]
+    #- [0x14AE20, .rodata, P2/cd]
     - [0x14B0E0, .rodata, P2/dmas]
     - [0x14B0F8, rodata]
 
@@ -350,7 +351,7 @@ segments:
     - [0x162f80, data, P2/emitter]
     #- [0x, data, P2/eyes]
     #- [0x, data, P2/fader]
-    #- [0x, data, P2/filestub]
+    #- [0x, data, P2/UNKNOWN1]
     #- [0x, data, P2/find]
     #- [0x, data, P2/flash]
     - [0x163180, data, P2/fly]
@@ -479,7 +480,7 @@ segments:
     #- [0x, data, P2/ui]
     #- [0x, data, P2/update]
     #- [0x, data, P2/util]
-    #- [0x, data, P2/var]
+    #- [0x, data, P2/vb]
     #- [0x, data, P2/vec]
     #- [0x, data, P2/vifs]
     #- [0x, data, P2/vis]

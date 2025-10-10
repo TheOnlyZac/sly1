@@ -92,3 +92,5 @@ INCLUDE_ASM("asm/nonmatchings/P2/xform", InitCamera__FP6CAMERA);
 INCLUDE_ASM("asm/nonmatchings/P2/xform", PostCameraLoad__FP6CAMERA);
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", EnableCamera__FP6CAMERA);
+
+INCLUDE_ASM("asm/nonmatchings/P2/xform", DisableCamera__FP6CAMERA);
