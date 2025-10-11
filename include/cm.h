@@ -17,6 +17,8 @@
 struct CM; // Forward declaration
 struct TN;
 
+typedef int GRFRCP;
+
 /**
  * @brief Camera (?) kind?
  */
@@ -431,6 +433,10 @@ void DrawCm(CM *pcm);
 void SetCmPosMat(CM *pcm, VECTOR *ppos, MATRIX3 *pmat);
 
 void AdjustCmJoy(CM *pcm, JOY *pjoy, JOYID joyid, float *prad);
+
+void SetCmPolicy(CM *pcm, CPP cpp, CPLCY *pcplcy, SO *psoFocus, void *pv);
+
+void RevokeCmPolicy(CM *pcm, GRFRCP grfrcp, CPP cpp, CPLCY *pcplcy, SO *psoFocus, void *pv);
 
 /**
  * @brief Sets Cut on the given camera.

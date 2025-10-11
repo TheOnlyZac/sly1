@@ -1397,8 +1397,8 @@ ResetCmLookAtSmooth = 0x144B70; // type:func
 SetCmLookAtSmooth = 0x144BE8; // type:func
 AdjustCmJoy__FP2CMP3JOY5JOYIDPf = 0x144FF8; // type:func
 junk_00145080 = 0x145080; // type:func
-SetCmPolicy = 0x145088; // type:func
-RevokeCmPolicy = 0x1451F0; // type:func
+SetCmPolicy__FP2CM3CPPP5CPLCYP2SOPv = 0x145088; // type:func
+RevokeCmPolicy__FP2CMi3CPPP5CPLCYP2SOPv = 0x1451F0; // type:func
 FInsideCmMrd = 0x1453B0; // type:func
 DecomposeCylind = 0x145438; // type:func
 DecomposeSphere = 0x1454E0; // type:func
@@ -4990,55 +4990,55 @@ AddWrSwivelNoise__FP2WRffff                    = 0x1F3990; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/xform.c
 ////////////////////////////////////////////////////////////////
-InitXfm__FP3XFM = 0x1F39F8; // type:func
-LoadXfmFromBrx__FP3XFMP18CBinaryInputStream = 0x1F3A40; // type:func
-SetXfmParent__FP3XFMP3ALO = 0x1F3A90; // type:func
-ApplyXfmProxy__FP3XFMP5PROXY = 0x1F3AF0; // type:func
-ConvertXfmLocalToWorld__FP3XFMP6VECTORT1 = 0x1F3B48; // type:func
-GetXfmPos__FP3XFMP6VECTOR = 0x1F3BD8; // type:func
-GetXfmMat__FP3XFMP7MATRIX3 = 0x1F3C08; // type:func
-PwarpFromOid__F3OIDT0 = 0x1F3C38; // type:func
+InitXfm__FP3XFM                               = 0x1F39F8; // type:func
+LoadXfmFromBrx__FP3XFMP18CBinaryInputStream   = 0x1F3A40; // type:func
+SetXfmParent__FP3XFMP3ALO                     = 0x1F3A90; // type:func
+ApplyXfmProxy__FP3XFMP5PROXY                  = 0x1F3AF0; // type:func
+ConvertXfmLocalToWorld__FP3XFMP6VECTORT1      = 0x1F3B48; // type:func
+GetXfmPos__FP3XFMP6VECTOR                     = 0x1F3BD8; // type:func
+GetXfmMat__FP3XFMP7MATRIX3                    = 0x1F3C08; // type:func
+PwarpFromOid__F3OIDT0                         = 0x1F3C38; // type:func
 LoadWarpFromBrx__FP4WARPP18CBinaryInputStream = 0x1F3D80; // type:func
-CloneWarp__FP4WARPT0 = 0x1F3EE0; // type:func
-PostWarpLoad__FP4WARP = 0x1F3F80; // type:func
-TriggerWarp__FP4WARP = 0x1F4008; // type:func
-SetWarpRsmg__FP4WARPi3OIDN22 = 0x1F42D0; // type:func
-FUN_001F4308 = 0x1F4308; // type:func
-TeleportSwPlayer__FP2SW3OIDT1 = 0x1F4318; // type:func
-PexitDefault__Fv = 0x1F4378; // type:func
-TriggerDefaultExit__Fi5WIPEK = 0x1F4408; // type:func
+CloneWarp__FP4WARPT0                          = 0x1F3EE0; // type:func
+PostWarpLoad__FP4WARP                         = 0x1F3F80; // type:func
+TriggerWarp__FP4WARP                          = 0x1F4008; // type:func
+SetWarpRsmg__FP4WARPi3OIDN22                  = 0x1F42D0; // type:func
+FUN_001F4308                                  = 0x1F4308; // type:func
+TeleportSwPlayer__FP2SW3OIDT1                 = 0x1F4318; // type:func
+PexitDefault__Fv                              = 0x1F4378; // type:func
+TriggerDefaultExit__Fi5WIPEK                  = 0x1F4408; // type:func
 LoadExitFromBrx__FP4EXITP18CBinaryInputStream = 0x1F4500; // type:func
-PostExitLoad__FP4EXIT = 0x1F4660; // type:func
-SetExitExits__FP4EXIT5EXITS = 0x1F4760; // type:func
-TriggerExit__FP4EXIT = 0x1F4808; // type:func
-WipeExit__FP4EXIT = 0x1F4A30; // type:func
-UpdateExit__FfP4EXIT = 0x1F4AE0; // type:func
-InitCamera__FP6CAMERA = 0x1F4E18; // type:func
-PostCameraLoad__FP6CAMERA = 0x1F4E48; // type:func
-EnableCamera__FP6CAMERA = 0x1F4ED0; // type:func
-DisableCamera__FP6CAMERA = 0x1F4F20; // type:func
+PostExitLoad__FP4EXIT                         = 0x1F4660; // type:func
+SetExitExits__FP4EXIT5EXITS                   = 0x1F4760; // type:func
+TriggerExit__FP4EXIT                          = 0x1F4808; // type:func
+WipeExit__FP4EXIT                             = 0x1F4A30; // type:func
+UpdateExit__FfP4EXIT                          = 0x1F4AE0; // type:func
+InitCamera__FP6CAMERA                         = 0x1F4E18; // type:func
+PostCameraLoad__FP6CAMERA                     = 0x1F4E48; // type:func
+EnableCamera__FP6CAMERA                       = 0x1F4ED0; // type:func
+DisableCamera__FP6CAMERA                      = 0x1F4F20; // type:func
 
 
 ////////////////////////////////////////////////////////////////
 // P2/zap.c
 ////////////////////////////////////////////////////////////////
-InitTzp__FP3TZP = 0x1F4F70; // type:func
-PostTzpLoad__FP3TZP = 0x1F4FD8; // type:func
-UpdateTzp__FP3TZPf = 0x1F5008; // type:func
-CloneTzp__FP3TZPT0 = 0x1F51A0; // type:func
-RenderTzpAll__FP3TZPP2CMP2RO = 0x1F51C8; // type:func
+InitTzp__FP3TZP                 = 0x1F4F70; // type:func
+PostTzpLoad__FP3TZP             = 0x1F4FD8; // type:func
+UpdateTzp__FP3TZPf              = 0x1F5008; // type:func
+CloneTzp__FP3TZPT0              = 0x1F51A0; // type:func
+RenderTzpAll__FP3TZPP2CMP2RO    = 0x1F51C8; // type:func
 FInflictTzpZap__FP3TZPP2XPP3ZPR = 0x1F51E8; // type:func
-PzpdEnsureTzp__FP3TZP4ENSK = 0x1F5208; // type:func
-FUN_001F5210__FP3TZP = 0x1F5210; // type:func
-InitVolzp__FP5VOLZP = 0x1F5218; // type:func
-UpdateVolzp__FP5VOLZPf = 0x1F5268; // type:func
-InitZpd__FP3ZPDP2SO = 0x1F5590; // type:func
-PostZpdLoad__FP3ZPD = 0x1F55A8; // type:func
-ApplyZpdThrow__FP3ZPDP2PO = 0x1F56D8; // type:func
-InflictZpdZap__FP3ZPDP2XPP3ZPR = 0x1F57E0; // type:func
-AddZpdZapObject__FP3ZPD3OID = 0x1F5840; // type:func
-AddZpdZapLo__FP3ZPDP2LO = 0x1F5868; // type:func
-RemoveZpdZapLo__FP3ZPDP2LO = 0x1f5930; // type:func
+PzpdEnsureTzp__FP3TZP4ENSK      = 0x1F5208; // type:func
+FUN_001F5210__FP3TZP            = 0x1F5210; // type:func
+InitVolzp__FP5VOLZP             = 0x1F5218; // type:func
+UpdateVolzp__FP5VOLZPf          = 0x1F5268; // type:func
+InitZpd__FP3ZPDP2SO             = 0x1F5590; // type:func
+PostZpdLoad__FP3ZPD             = 0x1F55A8; // type:func
+ApplyZpdThrow__FP3ZPDP2PO       = 0x1F56D8; // type:func
+InflictZpdZap__FP3ZPDP2XPP3ZPR  = 0x1F57E0; // type:func
+AddZpdZapObject__FP3ZPD3OID     = 0x1F5840; // type:func
+AddZpdZapLo__FP3ZPDP2LO         = 0x1F5868; // type:func
+RemoveZpdZapLo__FP3ZPDP2LO      = 0x1f5930; // type:func
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -8,7 +8,7 @@ This directory contains the following scripts used to setup and build the projec
 
 Installs the necessary dependencies using pip/apt and sets up the build environment. This will run all the other setup scripts for you. You only need to run this script once.
 
-### setup_progd_linux.sh
+### setup_prodg_linux.sh
 
 Installs the compiler needed to build the project on Linux. `quickstart.sh` will run this script for you, so you don't need to run both.
 
