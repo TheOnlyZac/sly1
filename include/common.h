@@ -74,5 +74,4 @@ struct RGBA
     }
 };
 
-
 #endif // COMMON_H

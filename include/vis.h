@@ -20,10 +20,10 @@ typedef int GRFZON;
  */
 struct VISMAP : public LO
 {
-    int cvbsp;
-    VBSP *avbsp;
-    int cgrfzon;
-    GRFZON *agrfzonOneHop;
+    /* 0x30 */ int cvbsp;
+    /* 0x34 */ VBSP *avbsp;
+    /* 0x3c */ int cgrfzon;
+    /* 0x40 */ GRFZON *agrfzonOneHop;
 };
 
 void InitVismap(VISMAP *pvismap);

@@ -1,12 +1,18 @@
 #include <mb.h>
 
+extern SNIP s_asnipLoadMbg[2];
+
 void InitMbg(MBG *pmbg)
 {
     InitStepguard(pmbg);
     STRUCT_OFFSET(pmbg, 0xe3c, int) = -1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/mb", LoadMbgFromBrx__FP3MBGP18CBinaryInputStream);
+void LoadMbgFromBrx(MBG *pmbg, CBinaryInputStream *pbis)
+{
+    LoadStepguardFromBrx(pmbg, pbis);
+    SnipAloObjects(pmbg, 2, s_asnipLoadMbg);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mb", PostMbgLoad__FP3MBG);
 
@@ -30,7 +36,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/mb", FUN_0018abf0__Fi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mb", FUN_0018ac58__Fi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mb", FUN_0018acd0__Fv);
+void UpdateMbg(MBG *pmbg, float dt)
+{
+    UpdateStepguard(pmbg, dt);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mb", FUN_0018acf0);
 

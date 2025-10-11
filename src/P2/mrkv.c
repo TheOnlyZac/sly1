@@ -1,3 +1,8 @@
 #include <mrkv.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/mrkv", InitMrkv__FP4MRKV);
+void InitMrkv(MRKV *pmrkv)
+{
+    InitSo(pmrkv);
+    STRUCT_OFFSET(pmrkv, 0x538, ulong) = STRUCT_OFFSET(pmrkv, 0x538, ulong) | 0x80000000000;
+    SetSoConstraints(pmrkv, CT_Locked, (VECTOR *)nullptr, CT_Locked, (VECTOR *)nullptr);
+}

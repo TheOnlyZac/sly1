@@ -17,4 +17,20 @@ struct SBG : public STEPGUARD
     // ...
 };
 
+void PostSbgLoad(SBG *psbg);
+
+undefined4 FUN_001a9928(SBG *psbg);
+
+void UpdateSbgGoal(SBG *psbg, int fEnter);
+
+void UpdateSbgSgs(SBG *psbg, SGS sgsPrev, ASEG *pasegTargetOverride);
+
+void UpdateSbg(SBG *psbg, float dt);
+
+// ...
+
+int FAbsorbSbgWkr(SBG *psbg, WKR *pwkr);
+
+// ...
+
 #endif // SB_H

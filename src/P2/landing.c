@@ -1,7 +1,21 @@
 #include <landing.h>
+#include <sw.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/landing", OnLandingAdd__FP7LANDING);
+void OnLandingAdd(LANDING *planding)
+{
+    OnLoAdd(planding);
+    AppendDlEntry(&planding->psw->dlLanding, planding);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/landing", OnLandingRemove__FP7LANDING);
+void OnLandingRemove(LANDING *planding)
+{
+    OnLoRemove(planding);
+    RemoveDlEntry(&planding->psw->dlLanding, planding);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/landing", CloneLanding__FP7LANDINGT0);
+void CloneLanding(LANDING *planding, LANDING *plandingBase)
+{
+    DLE dleLanding = planding->dleLanding;
+    CloneLo(planding, plandingBase);
+    planding->dleLanding = dleLanding;
+}

@@ -253,7 +253,7 @@ public:
     /**
      * @brief Reads the given number of VBSPs from the stream.
      *
-     * @param pcvbsp Pointer to the number of VBSP data structures to read.
+     * @param pcvbsp Pointer to an integer that will store the number of VBSP entries read.
      * @param apvbsp Pointer to the array of VBSP data structures to store the data.
      */
     void ReadVbsp(int *pcvbsp, VBSP **apvbsp);

@@ -14,7 +14,11 @@
  */
 struct PIPE : public LO
 {
-    // ...
+    /* 0x34 */ undefined4 unk;
+    /* 0x38 */ DLE dlePipe;
+    /* 0x40 */ STRUCT_PADDING(9);
+    /* 0x64 */ OID oid; // TODO: Verify name.
+    /* 0x68 */ LO *plo; // TODO: Verify type and name.
 };
 
 void StartupPipe();
@@ -27,7 +31,7 @@ void OnPipeAdd(PIPE *ppipe);
 
 void OnPipeRemove(PIPE *ppipe);
 
-// void PostPipeLoad(); // TODO
+void PostPipeLoad(PIPE *ppipe);
 
 void ClonePipe(PIPE *ppipe, PIPE *ppipeBase);
 

@@ -75,7 +75,10 @@ void PostGomerLoad(GOMER *pgomer)
     FreeStackImpl();
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/gomer", FUN_00167ef0);
+void RenderGomerSelf(GOMER *pgomer, CM *pcm, RO *pro)
+{
+    RenderStepguardSelf(pgomer, pcm, pro);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/gomer", FDetectGomer__FP5GOMER);
 #ifdef SKIP_ASM

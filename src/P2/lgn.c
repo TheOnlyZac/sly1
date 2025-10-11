@@ -1,6 +1,11 @@
 #include <lgn.h>
+#include <suv.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/lgn", InitLgn__FP3LGN);
+void InitLgn(LGN *plgn)
+{
+    InitSuv((SUV *)plgn);
+    STRUCT_OFFSET(plgn, 0xbf4, float) = -10.0f; // plgn->tFlash
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/lgn", PostLgnLoad__FP3LGN);
 
@@ -18,9 +23,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/lgn", GetLgnCpdefi__FP3LGNfP6CPDEFI);
 
 INCLUDE_ASM("asm/nonmatchings/P2/lgn", FInvulnerableLgn__FP3LGN3ZPK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/lgn", JthsCurrentLgn__FP3LGN);
+JTHS JthsCurrentLgn(LGN *plgn)
+{
+    return (JTHS)(STRUCT_OFFSET(plgn, 0xbf0, int) != 0); // plgn->fFlash
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/lgn", UseLgnCharm__FP3LGN);
+void UseLgnCharm(LGN *plgn)
+{
+    UsePoCharm((PO *)plgn);
+    SetLgnLgns(plgn, LGNS_Active);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/lgn", ApplyLgnThrow__FP3LGNP2PO);
 

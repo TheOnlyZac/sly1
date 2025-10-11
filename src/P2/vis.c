@@ -1,8 +1,29 @@
 #include <vis.h>
+#include <sw.h>
+#include <brx.h>
+#include <memory.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/vis", InitVismap__FP6VISMAP);
+void InitVismap(VISMAP *pvismap)
+{
+    InitLo(pvismap);
+    pvismap->psw->pvismap = pvismap;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/vis", LoadVismapFromBrx__FP6VISMAPP18CBinaryInputStream);
+void LoadVismapFromBrx(VISMAP *pvismap, CBinaryInputStream *pbis)
+{
+    pbis->ReadVbsp(&pvismap->cvbsp, &pvismap->avbsp);
+
+    pvismap->cgrfzon = pbis->U16Read();
+    pvismap->agrfzonOneHop = (GRFZON *)PvAllocSwImpl(pvismap->cgrfzon * sizeof(GRFZON));
+
+    int grfzon = 0;
+    while (pvismap->cgrfzon > grfzon)
+    {
+        pvismap->agrfzonOneHop[grfzon++] = pbis->U32Read();
+    }
+
+    LoadOptionsFromBrx(pvismap, pbis);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/vis", GrfzonOneHop__FP6VISMAPP4VBSP);
 

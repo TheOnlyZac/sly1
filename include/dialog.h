@@ -156,4 +156,6 @@ void UntriggerDialog(DIALOG *pdialog);
 
 extern DIALOG *g_pdialogCalling; // Dialog currently being called
 
+extern DIALOG *g_pdialogPlaying;
+
 #endif // DIALOG_H

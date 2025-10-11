@@ -42,7 +42,7 @@ enum LIGHTK
 struct LSM
 {
     float uShadow;
-    float uMidtone;
+    /* 0x04 */ float uMidtone;
 };
 
 /**
@@ -64,6 +64,8 @@ struct LIGHT : public ALO
     /* 0x33c */ float degHotSpot;
     // ...
 };
+
+extern int g_cframeStaticLightsInvalid;
 
 /**
  * @brief Initializes a light.
@@ -167,6 +169,6 @@ int NCmpFindLight(LIGHT **pplight1, LIGHT **pplight2);
 
 void PrepareSwLightsForDraw(SW *psw);
 
-TWPS TwpsFindSwLights(SW *psw, VECTOR *ppos, float sRadius, int grffindlight, int cplightMax, int *pcplightStatic, int *pcplightAll, LIGHT **aplight, char *pchzTarget);
+TWPS TwpsFindSwLights(SW *psw, VECTOR *ppos, float sRadius, int grffindlight, int cplightMax, int *pcplightStatic, int *pcplightAll, LIGHT **aplight);
 
 #endif // LIGHT_H
