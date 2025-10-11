@@ -39,13 +39,12 @@ union QW
 class DMAS
 {
 public:
-    uchar* m_pbMax;
-    uchar* m_ab;
-    QW* m_pqwCnt;
-    uchar* m_pb;
-    int m_fPad;
-    int m_fEndPrim;
-    //STRUCT_PADDING(276);
+    /* 0x00 */ uchar* m_pbMax;
+    /* 0x04 */ uchar* m_ab;
+    /* 0x08 */ QW* m_pqwCnt;
+    /* 0x0c */ uchar* m_pb;
+    /* 0x10 */ int m_fPad;
+    /* 0x14 */ int m_fEndPrim;
 
     DMAS();
 
@@ -70,5 +69,12 @@ public:
 };
 
 void StartupDma();
+
+inline void AddDmaInt(DMAS *pdmas, int val)
+{
+    uchar *p = pdmas->m_pb;
+    pdmas->m_pb = p + 4;
+    *(int *)p = val;
+}
 
 #endif // DMAS_H

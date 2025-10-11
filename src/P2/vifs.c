@@ -1,24 +1,64 @@
 #include <vifs.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/vifs", __4VIFS);
+VIFS::VIFS()
+{
+    m_fPad = 1;
+    m_unMask = 0;
+    m_fCheckCnt = 0;
+}
 
+JUNK_NOP();
 JUNK_ADDIU(10);
 
 INCLUDE_ASM("asm/nonmatchings/P2/vifs", Align__4VIFSi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifBaseOffset__4VIFSii);
+void VIFS::AddVifBaseOffset(int iqwBase, int diqwOffset)
+{
+    AddDmaInt(this, iqwBase | 0x03000000);
+    AddDmaInt(this, diqwOffset | 0x02000000);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifMscal__4VIFSPv);
+/**
+ * @todo Figure out why using the inlined function doesn't work here.
+ */
+void VIFS::AddVifMscal(void *pv)
+{
+    int i = (int)pv < 0 ? (int)pv + 7 : (int)pv;
+    uchar *p = m_pb;
+    m_pb = p + 4;
+    *(int *)p = (i >> 3) | 0x14000000;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifMscalf__4VIFSPv);
+/**
+ * @todo Figure out why using the inlined function doesn't work here.
+ */
+void VIFS::AddVifMscalf(void *pv)
+{
+    int i = (int)pv < 0 ? (int)pv + 7 : (int)pv;
+    uchar *p = m_pb;
+    m_pb = p + 4;
+    *(int *)p = (i >> 3) | 0x15000000;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifFlush__4VIFS);
+void VIFS::AddVifFlush()
+{
+    AddDmaInt(this, 0x11000000);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifFlusha__4VIFS);
+void VIFS::AddVifFlusha()
+{
+    AddDmaInt(this, 0x13000000);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifFlushe__4VIFS);
+void VIFS::AddVifFlushe()
+{
+    AddDmaInt(this, 0x10000000);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifStcycl__4VIFSii);
+void VIFS::AddVifStcycl(int wl, int cl)
+{
+    AddDmaInt(this, cl | (wl << 8) | 0x1000000);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifStrow__4VIFSP2QW);
 
@@ -36,4 +76,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifDirect__4VIFSiP2QWi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifDirectRefs__4VIFSiP2QWi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifGifs__4VIFSP4GIFS);
+void VIFS::AddVifGifs(GIFS *pgifs)
+{
+    AddVifDirect((uint)(pgifs->m_pb - pgifs->m_ab) >> 4, (QW *)pgifs->m_ab, 0);
+}

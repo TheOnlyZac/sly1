@@ -112,19 +112,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/xform", PostCameraLoad__FP6CAMERA);
 void EnableCamera(CAMERA *pcamera)
 {
     if (STRUCT_OFFSET(pcamera, 0x310, int) == 0) // pcamera->fSetCplcy
-	{
+    {
         // g_pcm->cpaseg
-		SetCmPolicy(g_pcm, CPP_Animated, &STRUCT_OFFSET(g_pcm, 0x510, CPLCY), (SO *)nullptr, pcamera);
+        SetCmPolicy(g_pcm, CPP_Animated, &STRUCT_OFFSET(g_pcm, 0x510, CPLCY), (SO *)nullptr, pcamera);
         STRUCT_OFFSET(pcamera, 0x310, int) = 1; // pcamera->fSetCplcy
-	}
+    }
 }
 
 void DisableCamera(CAMERA *pcamera)
 {
     if (STRUCT_OFFSET(pcamera, 0x310, int) != 0) // pcamera->fSetCplcy
-	{
+    {
         // g_pcm->cpaseg
-		RevokeCmPolicy(g_pcm, 0x0b, CPP_Animated, &STRUCT_OFFSET(g_pcm, 0x510, CPLCY), (SO *)nullptr, pcamera);
+        RevokeCmPolicy(g_pcm, 0x0b, CPP_Animated, &STRUCT_OFFSET(g_pcm, 0x510, CPLCY), (SO *)nullptr, pcamera);
         STRUCT_OFFSET(pcamera, 0x310, int) = 0; // pcamera->fSetCplcy
-	}
+    }
 }
