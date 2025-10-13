@@ -122,7 +122,7 @@ enum SFXID
 
 enum MVGK
 {
-    // MVGK_Effects = 0x0,
+    MVGK_Effects = 0x0,
     MVGK_Music = 0x1,
     // MVGK_Dialog = 0x2,
     // MVGK_User1 = 0x3,

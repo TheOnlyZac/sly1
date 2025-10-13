@@ -49,7 +49,32 @@ void FitLinearFunction(float x0, float y0, float x1, float y1, float *pdu, float
     *pdu = y0 - a * x0;
 }
 
+/**
+ * @todo 88.80% match. The code is possibly in the wrong order.
+ * https://decomp.me/scratch/c1tUS
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/light", FitRecipFunction__FffffPfT4);
+#ifdef SKIP_ASM
+void FitRecipFunction(float x0, float y0, float x1, float y1, float *pdu, float *pru)
+{
+    float gEpsilon = 0.0001f;
+    if (!FFloatsNear(x0, x1, gEpsilon) && __builtin_fabsf(x0) < gEpsilon && __builtin_fabsf(x1) < gEpsilon)
+    {
+        *pru = 0.0f;
+        *pdu = y0;
+        return;
+    }
+
+    float deltaX = x0 - x1;
+    float deltaY = y1 - y0;
+
+    float r = ((x0 * x1) * deltaY) / deltaX;
+    float d = y0 - (r / x0);
+
+    *pru = r;
+    *pdu = d;
+}
+#endif // SKIP_ASM
 
 void ConvertFallOff(LM *plm, float *pdu, float *pru)
 {

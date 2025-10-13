@@ -88,6 +88,7 @@ struct WRE
 {
     WREK wrek;
     int imat;
+    STRUCT_PADDING(50);
 };
 
 /**
@@ -114,17 +115,18 @@ struct WRBG
  */
 struct WR : public LO
 {
-    float tLastUpdate;
-    int cwre;
+    /* 0x34  */ float tLastUpdate;
+    /* 0x38  */ int cwre;
     int cmat;
-    int imatHalf;
-    WRE awre[8];
-    int iwreCur;
-    undefined1 unknown[12];
-	MATRIX4 amatDpos[4];
+    /* 0x40  */ int imatHalf;
+    /* 0x44  */ STRUCT_PADDING(3);
+    /* 0x50  */ WRE awre[8];
+    /* 0x6d0 */ int iwreCur;
+    /* 0x6d4 */ STRUCT_PADDING(3);
+    MATRIX4 amatDpos[4];
     MATRIX4 amotDuv[4];
-    WRBG *pwrbgFirst;
-    int fValuesChanged;
+    void *pwrbgFirst;
+    /* 0x8e4 */ int fValuesChanged;
 };
 
 void InitWr(WR *pwr);

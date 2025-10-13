@@ -1,4 +1,6 @@
 #include <ui.h>
+#include <clock.h>
+#include <sound.h>
 #include <screen.h>
 
 void StartupUi()
@@ -53,7 +55,17 @@ void ResetUi(UI *pui)
 
 INCLUDE_ASM("asm/nonmatchings/P2/ui", SetUiUis__FP2UI3UIS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/ui", SetUiUPause__FP2UIf);
+void SetUiUPause(UI *pui, float uPause)
+{
+    if (g_clock.t > 0.0f)
+    {
+        float vol = (1.0f - uPause) * 0.6f + uPause;
+        SetMvgkRvol(4, MVGK_Music, vol);
+        SetMvgkRvol(4, MVGK_Effects, vol);
+    }
+
+    SetClockRate(uPause);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/ui", FUN_001e9970__Fv);
 
