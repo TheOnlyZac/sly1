@@ -195,7 +195,6 @@ void RetractJsg(JSG *pjsg);
 /**
  * @brief Allocate and initialize a new script element (JSGE).
  *
- *
  * @param pjsg Script instance.
  * @param jsgek Type of script element to allocate.
  * @param oid Object id associated with the element.

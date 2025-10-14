@@ -43,6 +43,14 @@ enum ACGK
 /**
  * @brief Unknown.
  */
+struct KVB
+{
+    // ...
+};
+
+/**
+ * @brief Unknown.
+ */
 struct ACP
 {
     // ...
@@ -75,7 +83,7 @@ struct ACG
 /**
  * @brief Unknown.
  */
-struct ACGB
+struct ACPBL : public ACP
 {
     // ...
 };
@@ -83,7 +91,7 @@ struct ACGB
 /**
  * @brief Unknown.
  */
-struct ACGBW
+struct ACPC : public ACP
 {
     // ...
 };
@@ -91,7 +99,7 @@ struct ACGBW
 /**
  * @brief Unknown.
  */
-struct ACGL
+struct ACPB : public ACP
 {
     // ...
 };
@@ -99,7 +107,7 @@ struct ACGL
 /**
  * @brief Unknown.
  */
-struct KVB
+struct ACRC : public ACR
 {
     // ...
 };
@@ -107,7 +115,7 @@ struct KVB
 /**
  * @brief Unknown.
  */
-struct ACPC
+struct ACRB : public ACR
 {
     // ...
 };
@@ -115,7 +123,7 @@ struct ACPC
 /**
  * @brief Unknown.
  */
-struct ACPB
+struct ACRBL : public ACR
 {
     // ...
 };
@@ -123,7 +131,7 @@ struct ACPB
 /**
  * @brief Unknown.
  */
-struct ACRC
+struct ACSC : public ACS
 {
     // ...
 };
@@ -131,7 +139,7 @@ struct ACRC
 /**
  * @brief Unknown.
  */
-struct ACRB
+struct ACSB : public ACS
 {
     // ...
 };
@@ -139,7 +147,7 @@ struct ACRB
 /**
  * @brief Unknown.
  */
-struct ACSC
+struct ACGB : public ACG
 {
     // ...
 };
@@ -147,7 +155,7 @@ struct ACSC
 /**
  * @brief Unknown.
  */
-struct ACSB
+struct ACGBW : public ACG
 {
     // ...
 };
@@ -155,7 +163,7 @@ struct ACSB
 /**
  * @brief Unknown.
  */
-struct ACPBL
+struct ACGL : public ACG
 {
     // ...
 };
@@ -163,7 +171,7 @@ struct ACPBL
 /**
  * @brief Unknown.
  */
-struct ACRBL
+struct ACGBLT : public ACG
 {
     // ...
 };
@@ -171,15 +179,7 @@ struct ACRBL
 /**
  * @brief Unknown.
  */
-struct ACGBLT
-{
-    // ...
-};
-
-/**
- * @brief Unknown.
- */
-struct ACGBLP
+struct ACGBLP : public ACG
 {
     // ...
 };

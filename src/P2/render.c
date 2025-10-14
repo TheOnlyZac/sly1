@@ -10,7 +10,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/render", SubmitRpl__FP3RPL);
 INCLUDE_ASM("asm/nonmatchings/P2/render", NCmpPrplReverseZ__FPP3RPLT0);
 #ifdef SKIP_ASM
 /**
- * @todo 100% match on decomp.me, but the compiler is adding extra instructions here.
+ * @todo 100% match, if the struct is exactly 8 bytes long.
+ * Once the struct is fully implemented this code needs to be changed to account for that.
  * https://decomp.me/scratch/4xKRS
  */
 int NCmpPrplReverseZ(RPL **pprpl1, RPL **pprpl2)
@@ -18,14 +19,11 @@ int NCmpPrplReverseZ(RPL **pprpl1, RPL **pprpl2)
     RPL *plhs = *pprpl1;
     RPL *prhs = *pprpl2;
 
-    float z1 = plhs->z;
-    float z2 = prhs->z;
-
-    if (z2 < z1)
+    if (prhs->z < plhs->z)
     {
         return -1;
     }
-    if (z1 < z2)
+    if (plhs->z < prhs->z)
     {
         return 1;
     }
