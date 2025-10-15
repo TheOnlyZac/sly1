@@ -26,4 +26,8 @@ Runs the project in an emulator. Before using, you must edit the script to point
 
 ### checks.sh
 
-Runs the same build commands that GitHub actions uses to verify that the project builds successfully. This must pass before a pull request will be merged.
+Runs the same build commands that GitHub actions uses to verify that the project builds successfully. This must pass before a pull request will be merged. If the argument `--report` is passed it outputs the current project progress to `report.json`.
+
+### check_progress.py
+
+Prints the current project progress based on the data in `report.json`.
