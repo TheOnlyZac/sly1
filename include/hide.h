@@ -8,4 +8,6 @@
 
 // ...
 
+void StartupHide();
+
 #endif // HIDE_H

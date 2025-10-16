@@ -78,8 +78,6 @@ struct SO : public ALO
  * @brief Initialize the given SO.
  *
  * @param pso Pointer to the SO.
- *
- * @todo Verify this is actually that function.
  */
 void InitSo(SO *pso);
 

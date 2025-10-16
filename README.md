@@ -257,7 +257,7 @@ Splice is the game's scripting engine; it handles things like scripted events, a
 
 ### How can I help?
 
-If you want to contribute, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our discord server](https://discord.gg/gh5xwfj)!
+If you want to contribute, check out [CONTRIBUTING.md](/docs/CONTRIBUTING.md) and feel free to [join our discord server](https://discord.gg/2GSXcEzPJA)!
 
 ## 🩵 Contributors
 

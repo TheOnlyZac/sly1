@@ -72,9 +72,33 @@ INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifUnpack__4VIFS3UPKiPvi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifUnpackRefs__4VIFS3UPKiPviPPPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifDirect__4VIFSiP2QWi);
+/**
+ * @todo Figure out why using the inlined function doesn't work here.
+ */
+void VIFS::AddVifDirect(int cqw, QW *aqw, int fInt)
+{
+    Align(3);
+    
+    uchar *p = m_pb;
+    m_pb = p + 4;
+    *(int *)p = cqw | 0x50000000 | (fInt << 31);
+    
+    AddDmaBulk(cqw, aqw);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifDirectRefs__4VIFSiP2QWi);
+/**
+ * @todo Figure out why using the inlined function doesn't work here.
+ */
+void VIFS::AddVifDirectRefs(int cqw, QW *aqw, int fInt)
+{
+    Align(3);
+    
+    uchar *p = m_pb;
+    m_pb = p + 4;
+    *(int *)p = cqw | 0x50000000 | (fInt << 31);
+    
+    AddDmaRefs(cqw, aqw);
+}
 
 void VIFS::AddVifGifs(GIFS *pgifs)
 {

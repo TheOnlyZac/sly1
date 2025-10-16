@@ -31,7 +31,7 @@ GRFZON GrfzonOneHop(VISMAP *pvismap, VBSP *pvbsp)
         return 0;
 
     int acc = -1;
-    for(int i = 0; i < pvismap->cgrfzon; i++)
+    for (int i = 0; i < pvismap->cgrfzon; i++)
     {
         int shifted = bits >> i;
         if ((shifted & 1) != 0)

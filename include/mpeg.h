@@ -24,6 +24,8 @@ public:
     void Finish();
 };
 
+void StartupMpeg();
+
 extern CMpeg g_mpeg;
 
 #endif // MPEG_H

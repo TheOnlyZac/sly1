@@ -33,4 +33,8 @@ struct SAVE
  */
 void StartupMemcard();
 
+void UpdateSave(SAVE *psave);
+
+extern SAVE g_save;
+
 #endif // MEMCARD_H

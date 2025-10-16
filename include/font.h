@@ -33,4 +33,6 @@ class CFont
 
 extern CFont *g_pfont;
 
+void StartupFont();
+
 #endif // FONT_H

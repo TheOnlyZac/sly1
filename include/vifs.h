@@ -9,7 +9,7 @@
 #include <gifs.h>
 
 /**
- * @brief (?) kind.
+ * @brief Unpack kind?
  */
 enum UPK
 {
@@ -31,8 +31,7 @@ enum UPK
 };
 
 /**
- * @brief Unknown.
- * @todo Implement the class.
+ * @brief Vector Interface System?
  */
 class VIFS : public DMAS
 {

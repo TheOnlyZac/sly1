@@ -2659,16 +2659,15 @@ GetActlaRotationGoal__FP5ACTLAfP7MATRIX3P6VECTOR = 0x185538; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/main.c
 ////////////////////////////////////////////////////////////////
-main = 0x185758; // type:func
+main           = 0x185758; // type:func
 StartupSif__Fv = 0x1858f8; // type:func
 StartupVU0__Fv = 0x185A58; // type:func
 StartupVU1__Fv = 0x185AC8; // type:func
-Startup__Fv = 0x185B38; // type:func
+Startup__Fv    = 0x185B38; // type:func
 
-D_0024B248        = 0x24B248;
-s_apchzSifModules = 0x2647A8;
+s_apchzSifModules = 0x2647A8; // size:0x18
 s_asfn            = 0x2647C0; // size:0x74
-g_chpzArgs        = 0x264834; // size:0x4
+g_cpchzArgs       = 0x264834; // size:0x4
 g_apchzArgs       = 0x264838; // size:0x4
 
 
@@ -2828,7 +2827,7 @@ Clear__13CFileLocation               = 0x18D410; // type:func
 
 s_savePath = 0x24b3b0;
 
-g_memcard = 0x269990;
+g_memcard = 0x269990; // size:0x14
 g_save = 0x264A40;
 
 
@@ -4511,7 +4510,7 @@ AddOxa__FP3OXAPP3OXA                                              = 0x1DC7B0; //
 PoxaAllocSw__FP2SWP2SO                                            = 0x1DC7D0; // type:func
 FreeSwPoxa__FP2SWP3OXA                                            = 0x1DC828; // type:func
 CreateSwDefaultLights__FP2SW                                      = 0x1DC9A0; // type:func
-FUN_001dccc0                                                      = 0x1DCCC0; // type:func
+FUN_001dccc0__FP18CBinaryInputStream                              = 0x1DCCC0; // type:func
 CreateSwPrizes__FP2SW                                             = 0x1DCD28; // type:func
 LoadSwFromBrx__FP2SWP18CBinaryInputStream                         = 0x1DCEA0; // type:func
 FClipLineHomogeneous__FP7VECTOR4                                  = 0x1DD218; // type:func
@@ -4546,6 +4545,7 @@ SetSwDarkenSmooth__FP2SWf                                         = 0x1DDAC8; //
 CancelSwDialogPlaying__FP2SW                                      = 0x1DDAD0; // type:func
 
 g_psw                      = 0x275710; // size:0x4
+g_fLoadDebugInfo           = 0x275714; // size:0x4
 g_pbBulkData               = 0x275718; // size:0x4
 g_fLoadBulkData            = 0x27571C; // size:0x4
 g_cbBulkData               = 0x275720; // size:0x4
