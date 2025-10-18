@@ -64,7 +64,7 @@ segments:
     #--------------------------------------------------------
     - [0x13698, cpp, P2/splice/bif] #MARK: P2/splice
     - [0x19d48, cpp, P2/splice/eval]
-    - [0x1b328, asm, P2/splice/frame]
+    - [0x1b328, cpp, P2/splice/frame]
     - [0x1b678, cpp, P2/splice/gc]
     - [0x1be78, cpp, P2/splice/method]
     - [0x1beb8, cpp, P2/splice/pair]
@@ -301,19 +301,21 @@ segments:
     # Data (variable data)
     #--------------------------------------------------------
     - [0x151580, data] #MARK: data
+    #- [0x, data, P2/splice/bif]
+    #- [0x, data, P2/splice/eval]
+    #- [0x, data, P2/splice/frame]
+    - [0x15af38, data, P2/splice/gc]
+    #- [0x, data, P2/splice/pair]
+    #- [0x, data, P2/splice/serialize]
+    #- [0x, data, P2/splice/sidebag]
+    #- [0x, data, P2/splice/spliceutils]
+    - [0x15d250, data, P2/splice/splotheap]
+    - [0x15d2f0, data, P2/splice/vecmat]
     - [0x15d340, .data, P2/989snd]
     - [0x161e60, data, P2/act]
     - [0x161e70, data, P2/alo]
-    #- [0x, data, P2/aseg]
-    #- [0x, data, P2/asega]
-    #- [0x, data, P2/barrier]
-    #- [0x, data, P2/basic]
-    #- [0x, data, P2/bez]
-    #- [0x, data, P2/binoc]
-    #- [0x, data, P2/bis]
-    #- [0x, data, P2/bbmark]
-    #- [0x, data, P2/blend]
-    #- [0x, data, P2/blip]
+    - [0x162090, data, P2/binoc]
+    #- [0x162314, data, P2/blip] # TODO: Alignment issue.
     - [0x162320, data, P2/bomb]
     - [0x162390, data, P2/bsp]
     #- [0x1623ec, data, P2/cd] # TODO: Alignment issue.
@@ -375,9 +377,7 @@ segments:
     #- [0x16aba4, data, P2/phasemem] # TODO: Alignment issue.
     - [0x16aba8, data, P2/pipe]
     - [0x16abc0, data, P2/po]
-    #- [0x, data, P2/prog]
-    #- [0x, data, P2/prompt]
-    #- [0x, data, P2/proxy]
+    - [0x16acd8, data, P2/prompt]
     - [0x16b710, data, P2/puffer]
     - [0x16b910, data, P2/pzo]
     - [0x16bb90, data, P2/rat]
@@ -393,7 +393,6 @@ segments:
     - [0x1754f8, data, P2/shd]
     #- [0x, data, P2/shdanim]
     #- [0x, data, P2/sky]
-    #- [0x, data, P2/slotheap]
     #- [0x, data, P2/sm]
     #- [0x, data, P2/smartguard]
     #- [0x, data, P2/so]
@@ -442,7 +441,15 @@ segments:
     # - P2/ac
     # - P2/actseg
     # - P2/alarm
+    # - P2/aseg
+    # - P2/asega
+    # - P2/barrier
     # - P2/bas
+    # - P2/basic
+    # - P2/bbmark
+    # - P2/bez
+    # - P2/bis
+    # - P2/blend
     # - P2/bq
     # - P2/break
     # - P2/button
@@ -462,8 +469,11 @@ segments:
     # - P2/mat
     # - P2/mrkv
     # - P2/pnt
+    # - P2/prog
+    # - P2/proxy
     # - P2/rail
     # - P2/shape
+    # - P2/slotheap
     # - P2/speaker
     # - P2/splicemap
     # - P2/spliceobj
