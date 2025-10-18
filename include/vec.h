@@ -24,6 +24,9 @@ struct VECTOR4
     float x, y, z, w;
 };
 
+/**
+ * @todo Should be 16-byte aligned.
+ */
 struct VU_VECTOR
 {
     ushort data;

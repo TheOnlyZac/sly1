@@ -8,6 +8,7 @@
 #include <sce/memset.h>
 
 extern SW *g_psw;
+extern int g_fLoadDebugInfo;
 extern byte *g_pbBulkData;
 extern int g_fLoadBulkData;
 extern int g_cbBulkData;
@@ -166,7 +167,21 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", FreeSwPoxa__FP2SWP3OXA);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", CreateSwDefaultLights__FP2SW);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dccc0);
+/**
+ * @todo Rename.
+ */
+void FUN_001dccc0(CBinaryInputStream *pbis)
+{
+    int count = pbis->U32Read();
+    
+    if (g_fLoadDebugInfo == 0)
+        return;
+
+    for (int i = 1; i < count; i++)
+    {
+        pbis->Unknown1();
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", CreateSwPrizes__FP2SW);
 

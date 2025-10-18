@@ -202,9 +202,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", AdjustCmJoy__FP2CMP3JOY5JOYIDPf);
 
 JUNK_WORD(0x0000102D);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmPolicy);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmPolicy__FP2CM3CPPP5CPLCYP2SOPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", RevokeCmPolicy);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", RevokeCmPolicy__FP2CMi3CPPP5CPLCYP2SOPv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FInsideCmMrd);
 

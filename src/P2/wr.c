@@ -3,9 +3,9 @@
 void InitWr(WR *pwr)
 {
     InitLo(pwr);
-    STRUCT_OFFSET(pwr, 0x34, float) = -1.0f; // pwr->tLastUpdate
-    STRUCT_OFFSET(pwr, 0x40, int) = -1; // pwr->imatHalf
-    STRUCT_OFFSET(pwr, 0x6d0, int) = -1; // pwr->iwreCur
+    pwr->tLastUpdate = -1.0f;
+    pwr->imatHalf = -1;
+    pwr->iwreCur = -1;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/wr", ApplyWrGlob__FP2WRP3ALOP4GLOB);
@@ -40,23 +40,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/wr", AddWrCircleWarp__FP2WR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/wr", AddWrBendWarp__FP2WR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/wr", PwreGetWrCur__FP2WR4ENSK4WREK);
-/*
 WRE *PwreGetWrCur(WR *pwr, ENSK ensk, WREK wrek)
 {
-    if (STRUCT_OFFSET(pwr, 0x38, int) == 0) // pwr->cwre
+    if (pwr->cwre == 0)
     {
         return (WRE *)0x00;
     }
     if (ensk == ENSK_Set)
     {
-        STRUCT_OFFSET(pwr, 0x8e4, int) = 1; // pwr->fValuesChanged
+        pwr->fValuesChanged = 1;
     }
-
-    // pwr->awre, pwr->iwreCur
-    return &STRUCT_OFFSET(pwr, 0x50, WRE) + STRUCT_OFFSET(pwr, 0x6d0, int) * 0xd0;
+    
+    return &pwr->awre[pwr->iwreCur];
 }
-*/
 
 WRE *PwreGetWrCircle(WR *pwr, ENSK ensk)
 {

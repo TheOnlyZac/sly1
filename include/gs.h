@@ -49,6 +49,8 @@ void BlastAqwGifsBothFrames(QW *);
 
 void SendDmaSyncGsFinish(sceDmaChan *pdc, QW *pqw);
 
+void StartupGs();
+
 void ClearFrameBuffers();
 
 void UploadBitmaps(GRFZON grfzon, GSB *pgsb);

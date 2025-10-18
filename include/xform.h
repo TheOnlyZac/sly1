@@ -39,8 +39,10 @@ struct ASEG;
  */
 struct XFM : public LO
 {
-    /* 0x34 */ VECTOR posLocal;
-    MATRIX3 matLocal;
+    /* 0x34 */ STRUCT_PADDING(3);
+    /* 0x40 */ VECTOR posLocal;
+    uint padding; // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x50 */ MATRIX3 matLocal;
 };
 
 /**
@@ -174,11 +176,11 @@ enum EDK
 struct EXIT : public ALO
 {
     int fDefault;
-    EXITS exits;
+    /* 0x2e4 */ EXITS exits;
     EXITS fKeyed;
     float fFollowDefault;
     int fTotals;
-    float tExits;
+    /* 0x2e8 */ float tExits;
     int ctsurf;
     TSURF *atsurf;
     int ctbsp;

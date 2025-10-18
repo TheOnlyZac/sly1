@@ -11,6 +11,11 @@ class CRef;
 
 class CFrame
 {
+private:
+    /* 0x00 */ int m_cpframeParent;
+    /* 0x04 */ CFrame *m_apframeParent[4];
+    // ...
+
 public:
     void SetSingleParent(CFrame *pframeParent);
     void AddParent(CFrame *pframeParent);
@@ -21,8 +26,9 @@ public:
     void CloneTo(CFrame *pframeClone);
 };
 
-// ...
-
+/**
+ * @brief Creates a new frame.
+ */
 CFrame *PframeNew();
 
 /**

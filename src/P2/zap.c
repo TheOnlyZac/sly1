@@ -101,30 +101,25 @@ void AddZpdZapLo(ZPD *pzpd, LO *plo)
 }
 
 /**
- * @brief 85.69% match.
- * https://decomp.me/scratch/oApAh
+ * @todo 100% match. NOP bytes get added after this function
+ * which makes the sce/libs TU not aligned properly.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/zap", RemoveZpdZapLo__FP3ZPDP2LO);
 #ifdef SKIP_ASM
 void RemoveZpdZapLo(ZPD *pzpd, LO *plo)
 {
-    int cploThrow = pzpd->cploThrow;
-    if (cploThrow <= 0)
-        return;
-    
-    int i = 0;
-    if (pzpd->aploThrow[i] != plo)
+    int i;
+    for (i = 0; i < pzpd->cploThrow; i++)
     {
-        while (i < cploThrow && pzpd->aploThrow[i] != plo)
+        if (pzpd->aploThrow[i] == plo)
         {
-            i++;
+            break;
         }
     }
 
-    if (i < cploThrow)
+    if (i < pzpd->cploThrow)
     {
-        // I think this should be copying from pzpd->aploThrow[i] to pzpd->aploThrow[i + 1]?
-        CopyAb(&pzpd->aploThrow[i], &pzpd->aploThrow[i], (cploThrow - i - 1) * sizeof(*pzpd->aploThrow));
+        CopyAb(&pzpd->aploThrow[i], &pzpd->aploThrow[i] + 1, (pzpd->cploThrow - i - 1) * sizeof(*pzpd->aploThrow));
         pzpd->cploThrow--;
     }
 }

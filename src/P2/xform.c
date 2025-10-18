@@ -1,19 +1,42 @@
 #include <xform.h>
+#include <button.h>
+#include <brx.h>
 #include <sw.h>
+#include <cm.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", InitXfm__FP3XFM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/xform", LoadXfmFromBrx__FP3XFMP18CBinaryInputStream);
+void LoadXfmFromBrx(XFM *pxfm, CBinaryInputStream *pbis)
+{
+    pbis->ReadMatrix(&pxfm->matLocal);
+    pbis->ReadVector(&pxfm->posLocal);
+    LoadOptionsFromBrx(pxfm, pbis);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/xform", SetXfmParent__FP3XFMP3ALO);
+void SetXfmParent(XFM *pxfm, ALO *paloParent)
+{
+    ConvertAloPos(pxfm->paloParent, paloParent, &pxfm->posLocal, &pxfm->posLocal);
+    ConvertAloMat(pxfm->paloParent, paloParent, &pxfm->matLocal, &pxfm->matLocal);
+    SetLoParent(pxfm, paloParent);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/xform", ApplyXfmProxy__FP3XFMP5PROXY);
+void ApplyXfmProxy(XFM *pxfm, PROXY *pproxyApply)
+{
+    ConvertAloPos(pproxyApply, (ALO *)nullptr, &pxfm->posLocal, &pxfm->posLocal);
+    ConvertAloMat(pproxyApply, (ALO *)nullptr, &pxfm->matLocal, &pxfm->matLocal);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", ConvertXfmLocalToWorld__FP3XFMP6VECTORT1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/xform", GetXfmPos__FP3XFMP6VECTOR);
+void GetXfmPos(XFM *pxfm, VECTOR *ppos)
+{
+    ConvertAloPos(pxfm->paloParent, (ALO *)nullptr, &pxfm->posLocal, ppos);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/xform", GetXfmMat__FP3XFMP7MATRIX3);
+void GetXfmMat(XFM *pxfm, MATRIX3 *pmat)
+{
+    ConvertAloMat(pxfm->paloParent, (ALO *)nullptr, &pxfm->matLocal, pmat);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", PwarpFromOid__F3OIDT0);
 
@@ -25,7 +48,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/xform", PostWarpLoad__FP4WARP);
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", TriggerWarp__FP4WARP);
 
-INCLUDE_ASM("asm/nonmatchings/P2/xform", SetWarpRsmg__FP4WARPi3OIDN22);
+void SetWarpRsmg(WARP *pwarp, int fOnTrigger, OID oidRoot, OID oidSM, OID oidGoal)
+{
+    // pwarp->arsmg & pwarp->crsmg
+    FAddRsmg(&STRUCT_OFFSET(pwarp, 0xb8, RSMG), 4, &STRUCT_OFFSET(pwarp, 0xb4, int), fOnTrigger, oidRoot, oidSM, oidGoal);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", FUN_001F4308);
 
@@ -39,47 +66,34 @@ INCLUDE_ASM("asm/nonmatchings/P2/xform", LoadExitFromBrx__FP4EXITP18CBinaryInput
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", PostExitLoad__FP4EXIT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/xform", SetExitExits__FP4EXIT5EXITS);
-#ifdef SKIP_ASM
-/**
- * @todo 97.74% matched.
- * https://decomp.me/scratch/t75bf
- */
 void SetExitExits(EXIT *pexit, EXITS exits)
 {
-    if (exits == pexit->exits)
+    if (exits == STRUCT_OFFSET(pexit, 0x2e4, EXITS)) // pexit->exits
     {
         return;
     }
 
-    if (pexit->exits == EXITS_Totals && exits != EXITS_Exiting)
+    // pexit->exits
+    if (STRUCT_OFFSET(pexit, 0x2e4, EXITS) == EXITS_Totals && exits != EXITS_Exiting)
     {
-        BLOT *totals = (BLOT *)&g_totals;
-        g_totals.pvttotals->pfnHideBlot(totals);
+        g_totals.pvttotals->pfnHideBlot(&g_totals);
     }
 
     if (exits != EXITS_Exiting)
     {
-        pexit->exits = exits;
-        pexit->tExits = g_clock.t;
+        STRUCT_OFFSET(pexit, 0x2e4, EXITS) = exits; // pexit->exits
+        STRUCT_OFFSET(pexit, 0x2e8, float) = g_clock.t; // pexit->tExits
         return;
     }
 
-    // Read the 64-bit value from offset 0x2c8
-    ulong uVar1 = STRUCT_OFFSET(pexit, 0x2c8, ulong);
-
-    // Apply bitwise mask and OR operation
-    uVar1 = (uVar1 & ~0x30100000000ULL) | (0x8000ULL << 0x19);
-
-    // Store back the modified value
-    STRUCT_OFFSET(pexit, 0x2c8, ulong) = uVar1;
+    uint64_t tmp = STRUCT_OFFSET(pexit, 0x2c8, uint64_t);
+    STRUCT_OFFSET(pexit, 0x2c8, uint64_t) = (tmp & ~0x30000000000ULL) | (0x8000ULL << 0x19);
 
     IncrementSwHandsOff(pexit->psw);
 
-    pexit->exits = exits;
-    pexit->tExits = g_clock.t;
+    STRUCT_OFFSET(pexit, 0x2e4, EXITS) = exits; // pexit->exits
+    STRUCT_OFFSET(pexit, 0x2e8, float) = g_clock.t; // pexit->tExits
 }
-#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", TriggerExit__FP4EXIT);
 
@@ -87,10 +101,30 @@ INCLUDE_ASM("asm/nonmatchings/P2/xform", WipeExit__FP4EXIT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", UpdateExit__FfP4EXIT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/xform", InitCamera__FP6CAMERA);
+void InitCamera(CAMERA *pcamera)
+{
+    InitAlo(pcamera);
+    STRUCT_OFFSET(pcamera, 0x2d0, OID) = OID_Nil; // pcamera->oidTarget
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", PostCameraLoad__FP6CAMERA);
 
-INCLUDE_ASM("asm/nonmatchings/P2/xform", EnableCamera__FP6CAMERA);
+void EnableCamera(CAMERA *pcamera)
+{
+    if (STRUCT_OFFSET(pcamera, 0x310, int) == 0) // pcamera->fSetCplcy
+    {
+        // g_pcm->cpaseg
+        SetCmPolicy(g_pcm, CPP_Animated, &STRUCT_OFFSET(g_pcm, 0x510, CPLCY), (SO *)nullptr, pcamera);
+        STRUCT_OFFSET(pcamera, 0x310, int) = 1; // pcamera->fSetCplcy
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/xform", DisableCamera__FP6CAMERA);
+void DisableCamera(CAMERA *pcamera)
+{
+    if (STRUCT_OFFSET(pcamera, 0x310, int) != 0) // pcamera->fSetCplcy
+    {
+        // g_pcm->cpaseg
+        RevokeCmPolicy(g_pcm, 0x0b, CPP_Animated, &STRUCT_OFFSET(g_pcm, 0x510, CPLCY), (SO *)nullptr, pcamera);
+        STRUCT_OFFSET(pcamera, 0x310, int) = 0; // pcamera->fSetCplcy
+    }
+}

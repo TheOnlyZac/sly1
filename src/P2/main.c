@@ -6,33 +6,77 @@
 #include <sdk/libcdvd.h>
 #include <sce/libdma.h>
 #include <phasemem.h>
+#include <memcard.h>
+#include <memory.h>
+#include <target.h>
+#include <thread.h>
 #include <render.h>
 #include <clock.h>
-#include <save.h>
+#include <blip.h>
+#include <aseg.h>
 #include <mpeg.h>
+#include <jump.h>
+#include <font.h>
+#include <hide.h>
+#include <pipe.h>
 #include <wipe.h>
 #include <prog.h>
 #include <dmas.h>
 #include <frm.h>
 #include <joy.h>
+#include <brx.h>
 #include <ui.h>
 #include <sw.h>
 #include <cm.h>
 #include <cd.h>
+#include <gs.h>
 
 extern void *D_00211E10;
 extern void *D_00212110;
 
+// Forward declarations.
+void Startup();
+void StartupSif();
+void StartupVU0();
+void StartupVU1();
+
+/**
+ * @brief List of IOP modules.
+ */
+static char *s_apchzSifModules[6] =
+{
+    "sio2man.irx", "padman.irx", "mcman.irx",
+    "mcserv.irx", "libsd.irx", "989snd.irx"
+};
+
+/**
+ * @brief Startup function pointer.
+ */
 typedef void (*SFN)(void);
-extern SFN s_asfn[29];
 
-extern int g_chpzArgs;
-extern char **g_apchzArgs;
+/**
+ * @brief Array of startup functions.
+ */
+static SFN s_asfn[29] =
+{
+    StartupAseg,   StartupMemMgr,  StartupDma,
+    StartupThread, StartupGs,      StartupSif,
+    StartupCd,     StartupCatalog, StartupJoy,
+    StartupCodes,  StartupFrame,   StartupFont,
+    StartupBrx,    StartupCm,      StartupSound,
+    StartupScreen, StartupUi,      StartupTarget,
+    StartupJmt,    StartupPipe,    StartupHide,
+    StartupVU0,    StartupVU1,     StartupBlips,
+    StartupRender, StartupClock,   StartupMemcard,
+    StartupGame,   StartupMpeg
+};
 
-extern char D_0024B248[]; // "ioprp243.img" TODO: Remove once data is migrated.
-extern char *s_apchzSifModules[];
-
-void Startup(); // Forward declaration
+/**
+ * @brief Global pointers to command-line arguments.
+ * @todo Are these the right way around?
+ */
+int g_cpchzArgs = 0;
+char **g_apchzArgs = (char **)nullptr;
 
 /**
  * @brief Main function.
@@ -46,7 +90,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/main", main);
 #ifdef SKIP_ASM
 int main(char **argv, int argc) {
     g_apchzArgs = argv;
-    g_chpzArgs = argc;
+    g_cpchzArgs = argc;
 
     // These appear to be loaded into registers in the target assembly
     Startup();
@@ -109,7 +153,7 @@ void StartupSif()
 {
     // Create a path to the "ioprp243.img" image.
     char achzPath[256];
-    CdPath(achzPath, D_0024B248, 1);
+    CdPath(achzPath, "ioprp243.img", 1);
     
     // Initialize SIF RPC system and CD/DVD subsystem.
     sceSifInitRpc(0);

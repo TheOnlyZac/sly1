@@ -375,22 +375,23 @@ OPCODE_PATTERN = re.compile(f"{COMMENT_PART}  {INSTRUCTION_PART}")
 
 PROBLEMATIC_FUNCS = set(
     [
-        "UpdateJtActive__FP2JTP3JOYf", # P2/jt
-        "AddMatrix4Matrix4__FP7MATRIX4N20", # P2/mat
-        "FInvertMatrix__FiPfT1", # P2/mat
-        "PwarpFromOid__F3OIDT0", # P2/xform
-        "RenderMsGlobset__FP2MSP2CMP2RO", # P2/ms
-        "ProjectBlipgTransform__FP5BLIPGfi", # P2/blip
-        "DrawTvBands__FP2TVR4GIFS", # P2/tv
-        "LoadShadersFromBrx__FP18CBinaryInputStream", # P2/shd
-        "FillShaders__Fi", # P2/shd
-        "FUN_001aea70", # P2/screen
-        "ApplyDzg__FP3DZGiPiPPP2SOff", # P2/dzg
-        "BounceRipgRips__FP4RIPG", # P2/rip
-        "UpdateStepPhys__FP4STEP", # P2/step
         "PredictAsegEffect__FP4ASEGffP3ALOT3iP6VECTORP7MATRIX3T6T6", # P2/aseg
-        "ExplodeExplsExplso__FP5EXPLSP6EXPLSO", # P2/emitter
-        "UpdateShadow__FP6SHADOWf" # P2/shadow
+        "ProjectBlipgTransform__FP5BLIPGfi",          # P2/blip
+        "ExplodeExplsExplso__FP5EXPLSP6EXPLSO",       # P2/emitter
+        "ApplyDzg__FP3DZGiPiPPP2SOff",                # P2/dzg
+        "UpdateJtActive__FP2JTP3JOYf",                # P2/jt
+        "AddMatrix4Matrix4__FP7MATRIX4N20",           # P2/mat
+        "FInvertMatrix__FiPfT1",                      # P2/mat
+        "RenderMsGlobset__FP2MSP2CMP2RO",             # P2/ms
+        "BounceRipgRips__FP4RIPG",                    # P2/rip
+        "FUN_001aea70",                               # P2/screen
+        "UpdateShadow__FP6SHADOWf",                   # P2/shadow
+        "LoadShadersFromBrx__FP18CBinaryInputStream", # P2/shd
+        "FillShaders__Fi",                            # P2/shd
+        "UpdateStepPhys__FP4STEP",                    # P2/step
+        "DrawTvBands__FP2TVR4GIFS",                   # P2/tv
+        "PwarpFromOid__F3OIDT0",                      # P2/xform
+        "TriggerWarp__FP4WARP"                        # P2/xform
     ]
 )
 

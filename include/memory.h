@@ -9,6 +9,11 @@
 typedef struct _reent;
 
 /**
+ * @brief Starts up the memory manager system.
+ */
+void StartupMemMgr();
+
+/**
  * @brief Allocates memory from the global heap.
  *
  * @param cb Size in bytes.

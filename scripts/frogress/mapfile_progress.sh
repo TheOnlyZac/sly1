@@ -3,7 +3,7 @@
 set -e
 
 script_dir=$(dirname $0)
-pushd $script_dir/.. > /dev/null
+pushd $script_dir/../.. > /dev/null
 
 if [[ "$1" == "--help" || "$1" == "-h" ]]; then
     echo "Usage: $0 [--skip-build]"
