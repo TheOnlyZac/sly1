@@ -13,7 +13,16 @@
  */
 struct SPIRE : public PNT
 {
-    DLE dleSpire;
+    /* 0x50 */ DLE dleSpire;
+    /* 0x58 */ float unk1; // TODO: Rename.
 };
+
+void InitSpire(SPIRE *pspire);
+
+void OnSpireAdd(SPIRE *pspire);
+
+void OnSpireRemove(SPIRE *pspire);
+
+void CloneSpire(SPIRE *pspire, SPIRE *pspireBase);
 
 #endif // SPIRE_H

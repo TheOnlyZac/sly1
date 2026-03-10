@@ -53,7 +53,12 @@ void OnJmtRemove(JMT *pjmt)
     RemoveDlEntry(&g_dlJmt, pjmt);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/jump", CloneJmt__FP3JMTT0);
+void CloneJmt(JMT *pjmt, JMT *pjmtBase)
+{
+    DLE dleJmt = pjmt->dleJmt;
+    CloneLo(pjmt, pjmtBase);
+    pjmt->dleJmt = dleJmt;
+}
 
 void PostJmtLoad(JMT *pjmt)
 {

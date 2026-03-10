@@ -19,8 +19,9 @@
  */
 struct PNT : public LO
 {
-    /* 0x34 */ STRUCT_PADDING(3); // This could be a vector, something like posGlobal?
+    /* 0x34 */ STRUCT_PADDING(3);
     /* 0x40 */ VECTOR posLocal;
+    /* 0x4c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long!
 };
 
 /**
