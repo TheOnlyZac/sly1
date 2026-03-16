@@ -354,12 +354,13 @@ INSTRUCTION_PART = r"(\b(bne|bnel|beq|beql|bnez|bnezl|beqzl|bgez|bgezl|bgtz|bgtz
 OPCODE_PATTERN = re.compile(f"{COMMENT_PART}  {INSTRUCTION_PART}")
 
 PROBLEMATIC_FUNCS = {
-    "RefOpForEach__FiP4CRefP6CFrame",             # P2/splice/bif
+    "RefOpForEach__FiP4CRefP6CFrame",                            # P2/splice/bif
     "PredictAsegEffect__FP4ASEGffP3ALOT3iP6VECTORP7MATRIX3T6T6", # P2/aseg
     "ProjectBlipgTransform__FP5BLIPGfi",                         # P2/blip
     "ExplodeExplsExplso__FP5EXPLSP6EXPLSO",                      # P2/emitter
     "ApplyDzg__FP3DZGiPiPPP2SOff",                               # P2/dzg
     "UpdateJtActive__FP2JTP3JOYf",                               # P2/jt
+    "RebuildLightVifs__FP5LIGHT",                                # P2/light
     "AddMatrix4Matrix4__FP7MATRIX4N20",                          # P2/mat
     "FInvertMatrix__FiPfT1",                                     # P2/mat
     "RenderMsGlobset__FP2MSP2CMP2RO",                            # P2/ms

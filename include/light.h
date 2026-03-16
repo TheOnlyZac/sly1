@@ -63,6 +63,8 @@ struct LIGHT : public ALO
     /* 0x338 */ float degCone;
     /* 0x33c */ float degHotSpot;
     // ...
+    /* 0x410 */ DLE dleLight;
+    // ...
 };
 
 extern int g_cframeStaticLightsInvalid;
