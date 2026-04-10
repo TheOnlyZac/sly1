@@ -39,6 +39,11 @@ First, find a function in the game that you want to match. There are a few ways 
 
 Once you have a function selected, you can start matching it using either **Objdiff** or **Decomp.me**. Both tools are used to match assembly code to C code, but they have different workflows.
 
+For a quick reference on MIPS/PS2 instructions, registers, 
+C++ name mangling and the P2 engine type glossary, see 
+
+[docs/mips_ps2_cheatsheet.pdf](docs/mips_ps2_cheatsheet.pdf).
+
 ### Objdiff
 
 [Objdiff](https://github.com/encounter/objdiff), is a tool for showing the diff between a symbol in two object files. It is faster and more convenient then Decomp.me since it is included in the project, and doesn't require uploading anything to a website.
