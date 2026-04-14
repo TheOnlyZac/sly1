@@ -43,12 +43,18 @@ struct UVQ
 
 
 /**
- * @brief Unknown.
- * @todo Implement the struct.
+ * @brief Loop shader animation.
  */
 struct LOOP : public SAA
 {
-    // ...
+    float dtLoopMin;         // 0x2C
+    float dtLoopMax;         // 0x30
+    float dtPauseMin;        // 0x34
+    float dtPauseMax;        // 0x38
+    float dframe;            // 0x3C
+    float iframe;            // 0x40
+    float dtPause;           // 0x44
+    float dtPauseRemaining;  // 0x48
 };
 
 /**

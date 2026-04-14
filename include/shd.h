@@ -124,12 +124,12 @@ struct SAIR
 
 struct SAI
 {
-    int grfsai; //
-    SHD *pshd;
-    int iframe;
-    TCX txt;
-    SAIR *psairFirst;
-    SAI *psaiNext;
+    int grfsai; // 0x10
+    SHD *pshd; // 0x14
+    int iframe; // 0x18
+    TCX txt; // 0x1c
+    SAIR *psairFirst; // 0x2c
+    SAI *psaiNext; // 0x30
 };
 
 
@@ -172,8 +172,13 @@ struct SAA
  */
 struct SAAF
 {
-    short oid;      // 0x00 
-    ushort grfsaaf; // 0x02  
+    short oid;          // 0x00
+    ushort grfsaaf;     // 0x02
+    float dtLoopMin;    // 0x04
+    float dtLoopMax;    // 0x08
+    float dtPauseMin;   // 0x0C
+    float dtPauseMax;   // 0x10
+    ushort dframe;      // 0x14  
 };
 
 /**
@@ -230,11 +235,11 @@ struct SHDF
 
 struct SHD : public SHDF
 {
-    TEX *atex; // 0x20
-    int cshdp; // 0x24
-    SHDP *ashdp; // 0x28
-    int cframe; // 0x2c
-    SAA *psaa; // 0x30
+    TEX *atex; 
+    int cshdp; 
+    SHDP *ashdp; 
+    int cframe; 
+    SAA *psaa; 
 };
 
 /**

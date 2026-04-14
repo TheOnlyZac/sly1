@@ -2,9 +2,18 @@
 #include <shd.h>
 #include <gs.h>
 #include <clock.h>
+#include <vtables.h>
 
 
 extern CLOCK g_clock;
+extern VTSAA D_0021E358; // Loop
+extern VTSAA D_0021E378; // PingPong
+extern VTSAA D_0021E398; // Shuffle
+extern VTSAA D_0021E3B8; // Hologram
+extern VTSAA D_0021E3D8; // Scroller
+extern VTSAA D_0021E3F8; // Circler
+extern VTSAA D_0021E418; // Looker
+extern VTSAA D_0021E438; // Eyes
 
 int CbFromSaak(SAAK saak)
 {
@@ -21,7 +30,21 @@ int CbFromSaak(SAAK saak)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", PvtsaaFromSaak__F4SAAK);
+VTSAA *PvtsaaFromSaak(SAAK saak)
+{
+    switch (saak) {
+        case SAAK_Loop:     return &D_0021E358;
+        case SAAK_PingPong: return &D_0021E378;
+        case SAAK_Shuffle:  return &D_0021E398;
+        case SAAK_Hologram: return &D_0021E3B8;
+        case SAAK_Eyes:     return &D_0021E438;
+        case SAAK_Scroller: return &D_0021E3D8;
+        case SAAK_Circler:  return &D_0021E3F8;
+        case SAAK_Looker:   return &D_0021E418;
+    }
+    
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shdanim", PsaaLoadFromBrx__FP18CBinaryInputStream);
 
@@ -62,11 +85,56 @@ SAI *PsaiFromSaaShd(SAA *psaa, SHD *pshd) {
     return (SAI *)NULL;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", InitLoop__FP4LOOPP4SAAF);
+void InitLoop(LOOP *ploop, SAAF *psaaf) {
+    InitSaa(ploop, psaaf);
+    ploop->dtLoopMin  = psaaf->dtLoopMin;
+    ploop->dtLoopMax  = psaaf->dtLoopMax;
+    ploop->dtPauseMin = psaaf->dtPauseMin;
+    ploop->dtPauseMax = psaaf->dtPauseMax;
+    ploop->iframe     = (float)psaaf->dframe;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", PostLoopLoad__FP4LOOP);
+void PostLoopLoad(LOOP *ploop) {
+    PostSaaLoad(ploop);
+    
+    if(ploop->sai.pshd == NULL)
+        return;
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", UpdateLoop__FP4LOOPf);
+    float rand1 = GRandInRange(ploop->dtLoopMin, ploop->dtLoopMax);
+    ploop->dframe = (float)ploop->sai.pshd->cframe / rand1;
+
+    float rand2 = GRandInRange(ploop->dtPauseMin, ploop->dtPauseMax);
+    ploop->dtPause = rand2;
+    ploop->dtPauseRemaining = rand2;
+}
+
+void UpdateLoop(LOOP *ploop, float dt) {
+    SHD *pshd = ploop->sai.pshd;
+    if (pshd == NULL)
+        return;
+
+    if (pshd->cframe < 2)
+        return;
+
+    if (ploop->dtPauseRemaining > 0.0f) {
+        ploop->dtPauseRemaining -= dt;
+        return;
+    }
+
+    ploop->iframe += ploop->dframe * dt;
+
+    if (ploop->iframe >= (float)ploop->sai.pshd->cframe) {
+        float rand1 = GRandInRange(ploop->dtLoopMin, ploop->dtLoopMax);
+        ploop->dframe = (float)ploop->sai.pshd->cframe / rand1;
+
+        float rand2 = GRandInRange(ploop->dtPauseMin, ploop->dtPauseMax);
+        ploop->dtPause = rand2;          
+        ploop->dtPauseRemaining = rand2;
+    }
+
+    ploop->iframe = GModPositive(ploop->iframe, (float)ploop->sai.pshd->cframe);
+    SetSaiIframe(&ploop->sai, (int)ploop->iframe);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shdanim", UCompleteLoop__FP4LOOP);
 
