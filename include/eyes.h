@@ -23,7 +23,7 @@ enum EYESS
 /**
  * @brief Eyes.
  */
-struct EYES : SAA
+struct EYES : public SAA
 {
     int unk[0x4];   
     OID oid;        // 0x3C
