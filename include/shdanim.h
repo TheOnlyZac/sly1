@@ -11,10 +11,36 @@
 #include <shd.h>
 
 // Forward.
-struct UV;
-struct UVQD;
-struct POSAD;
+
 struct RPL;
+
+/**
+ * @brief Position and orientation/direction ?
+ * @todo Implement the struct.
+ */
+
+struct POSAD
+{
+    float x, y, z; // position
+};
+
+/**
+ * @brief UV coordinates (Float).
+ */
+struct UVF
+{
+    float u, v;
+};
+
+
+/**
+ * @brief UV coordinates (Homogeneous/Q-depth).
+ */
+struct UVQ
+{
+    float u, v, q, d;
+};
+
 
 /**
  * @brief Unknown.
@@ -31,7 +57,8 @@ struct LOOP : public SAA
  */
 struct PINGPONG : public SAA
 {
-    // ...
+    float dtForward; //0x34
+    float dtBackward; //0x38
 };
 
 /**
@@ -112,7 +139,7 @@ float UCompleteCircler(CIRCLER *pcircler);
 void InitLooker(LOOKER *plooker, SAAF *psaaf);
 void SetLookerSgvr(LOOKER *plooker, SGVR *psgvr, GLOBSET *pglobset, GLOB *pglob, SUBGLOB *psubglob);
 void SetVecPosad(VECTOR *pvec, POSAD *pposad);
-void SetUvPuvqd(UV *puv, UVQD *puvqd);
+void SetUvPuvqd(UVF *puv, UVQ *puvqd);
 void NotifyLookerRender(LOOKER *plooker, ALO *palo, RPL *prpl);
 
 #endif // SHDANIM_H

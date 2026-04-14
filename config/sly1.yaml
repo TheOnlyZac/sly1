@@ -297,6 +297,8 @@ segments:
     - [0x14B0F8, rodata]
     - [0x14c1e8, .rodata, P2/main]
     - [0x14c258, rodata]
+    - [0x14E220, .rodata, P2/shdanim]
+    - [0x14E268, rodata]
     - [0x14f600, .rodata, P2/ub]
     - [0x14f670, .rodata, P2/ui]
     - [0x14f6d0, rodata]

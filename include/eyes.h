@@ -23,9 +23,16 @@ enum EYESS
 /**
  * @brief Eyes.
  */
-struct EYES : public SAA
+struct EYES : SAA
 {
-    // ...
+    int unk[0x4];   
+    OID oid;        // 0x3C
+    int unk2;       // 0x40
+    SHD *pshd;      // 0x44
+    int unk1[0x6];  // 0x48
+    EYESS eyess;    // 0x60
+    float iframe;   // 0x70
+    float uClosed;  // 0x74
 };
 
 void InitEyes(EYES *peyes, SAAF *psaaf);

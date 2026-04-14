@@ -51,8 +51,8 @@ struct BMPF
 
 struct BMP : public BMPF
 {
-    int cqwPixels;
-    sceGsTex0 tex0;
+    int cqwPixels; 
+    sceGsTex0 tex0; 
 };
 
 // MARK: CLUT
@@ -71,13 +71,19 @@ struct CLUT : public CLUTF
     sceGsTex2 tex2;
 };
 
-// MARK: Texture?
+/**
+ * @brief Texture Coordinates.
+ */
 
 struct TCX
 {
     float du;
     float dv;
 };
+
+/**
+ * @brief Texture File.
+ */
 
 struct TEXF
 {
@@ -86,6 +92,10 @@ struct TEXF
     uchar cibmp;
     uchar ciclut;
 };
+
+/**
+ * @brief Texture.
+ */
 
 struct TEX : public TEXF
 {
@@ -97,6 +107,10 @@ struct TEX : public TEXF
 
 // MARK: SAIR
 
+/**
+ * @brief Shader Animation Instance Register.
+ */
+
 struct SAIR
 {
     SHDP *pshdp;
@@ -104,11 +118,13 @@ struct SAIR
     SAIR *psairNext;
 };
 
-// MARK: SAI
+/**
+ * @brief Shader Animation Instance.
+ */
 
 struct SAI
 {
-    int grfsai;
+    int grfsai; //
     SHD *pshd;
     int iframe;
     TCX txt;
@@ -118,6 +134,10 @@ struct SAI
 
 
 // MARK: SAA
+
+/**
+ * @brief Shader Animation Animator Kind.
+ */
 
 enum SAAK
 {
@@ -134,24 +154,31 @@ enum SAAK
     SAAK_Max = 9
 };
 
+/**
+ * @brief Shader Animation Animator.
+ */
+
 struct SAA
 {
-    undefined4 unk_0;
-    float tUpdates;
-    SAAK saak;
-    OID oid;
-    SAI sai;
+    VTSAA* pvtsaa; //0x00
+    float tUpdates; //0x04
+    SAAK saak; //0x08
+    OID oid; //0x0c
+    SAI sai; //0x10
 };
 
 /**
- * @brief Unknown.
+ * @brief Shader Animation Animator File 
  */
 struct SAAF
 {
-    // ...
+    short oid;      // 0x00 
+    ushort grfsaaf; // 0x02  
 };
 
-// MARK: SHD
+/**
+ * @brief Shader kind.
+ */
 
 enum SHDK
 {
@@ -170,11 +197,19 @@ enum SHDK
     SHDK_Max = 11
 };
 
+/**
+ * @brief Shader Data Packet.
+ */
+
 struct SHDP
 {
     int cqwRegs;
     QW *aaqwRegs;
 };
+
+/**
+ * @brief Shader Data.
+ */
 
 struct SHDF
 {
@@ -189,13 +224,17 @@ struct SHDF
     uchar ctex;
 };
 
+/**
+ * @brief Shader.
+ */
+
 struct SHD : public SHDF
 {
-    TEX *atex;
-    int cshdp;
-    SHDP *ashdp;
-    int cframe;
-    SAA *psaa;
+    TEX *atex; // 0x20
+    int cshdp; // 0x24
+    SHDP *ashdp; // 0x28
+    int cframe; // 0x2c
+    SAA *psaa; // 0x30
 };
 
 /**

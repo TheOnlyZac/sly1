@@ -16,12 +16,12 @@ struct ALO;
 typedef int GRFRA;
 
 /**
- * @brief Unknown.
+ * @brief Action.
  * @todo Implement the struct.
  */
 struct ACT
 {
-    /* 0x00 */ STRUCT_PADDING(1); // TODO: Add vtables
+    /* 0x00 */ VTACT *pvtact;
     /* 0x04 */ ALO *palo;
     /* 0x08 */ DLE dleAlo;
     /* 0x10 */ STRUCT_PADDING(1);

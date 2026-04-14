@@ -1,20 +1,66 @@
 #include <shdanim.h>
+#include <shd.h>
+#include <gs.h>
+#include <clock.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", CbFromSaak__F4SAAK);
+
+extern CLOCK g_clock;
+
+int CbFromSaak(SAAK saak)
+{
+    switch (saak) {
+        case SAAK_Loop:
+        case SAAK_PingPong: return 0x4C;
+        case SAAK_Shuffle:
+        case SAAK_Hologram: return 0x38;
+        case SAAK_Eyes: return 0x78;
+        case SAAK_Scroller: return 0x44;
+        case SAAK_Circler: return 0x3C;
+        case SAAK_Looker: return 0x50;
+    }
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shdanim", PvtsaaFromSaak__F4SAAK);
 
 INCLUDE_ASM("asm/nonmatchings/P2/shdanim", PsaaLoadFromBrx__FP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", InitSaa__FP3SAAP4SAAF);
+void InitSaa(SAA *psaa, SAAF *psaaf) {
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", PostSaaLoad__FP3SAA);
+    int grfsai = psaa->sai.grfsai | 0x1;
+    psaa->oid = (OID)psaaf->oid;
+    psaa->sai.grfsai = grfsai;
+    
+    if(psaaf->grfsaaf != 0) {
+        psaa->sai.grfsai = psaa->sai.grfsai | 0x4;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", FUpdatableSaa__FP3SAA);
+void PostSaaLoad(SAA *psaa) {
+    if(psaa->sai.pshd == NULL) {
+        psaa->sai.pshd = PshdFindShader__F3OID(psaa->oid);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", UCompleteSaa__FP3SAA);
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", PsaiFromSaaShd__FP3SAAP3SHD);
+int FUpdatableSaa(SAA *psaa) {
+    if(psaa->tUpdates != g_clock.t) {
+        psaa->tUpdates = g_clock.t;
+        return 1;
+    }
+    return 0;
+}
+
+float UCompleteSaa(SAA *psaa) {
+    return 0.0f;
+}
+
+SAI *PsaiFromSaaShd(SAA *psaa, SHD *pshd) {
+    if(pshd->oid == psaa->oid) {
+        return &psaa->sai;
+    }
+    return (SAI *)NULL;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shdanim", InitLoop__FP4LOOPP4SAAF);
 
@@ -60,9 +106,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/shdanim", InitLooker__FP6LOOKERP4SAAF);
 
 INCLUDE_ASM("asm/nonmatchings/P2/shdanim", SetLookerSgvr__FP6LOOKERP4SGVRP7GLOBSETP4GLOBP7SUBGLOB);
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", SetVecPosad__FP6VECTORP5POSAD);
+void SetVecPosad(VECTOR *pvec, POSAD *pposad) {
+    pvec->x = pposad->x;
+    pvec->y = pposad->y;
+    pvec->z = pposad->z;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", SetUvPuvqd__FP3UVFP3UVQ);
+void SetUvPuvqd(UVF *puv, UVQ *puvqd) {
+    puv->u = puvqd->u;
+    puv->v = puvqd->v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shdanim", NotifyLookerRender__FP6LOOKERP3ALOP3RPL);
 
