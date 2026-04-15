@@ -3,6 +3,12 @@
 #include <gs.h>
 #include <clock.h>
 #include <vtables.h>
+#include <glob.h>
+#include <render.h>
+#include <math.h>
+
+#define TWO_PI 6.2831855f
+#define INV_TWO_PI 0.15915494f
 
 
 extern CLOCK g_clock;
@@ -136,39 +142,220 @@ void UpdateLoop(LOOP *ploop, float dt) {
     SetSaiIframe(&ploop->sai, (int)ploop->iframe);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", UCompleteLoop__FP4LOOP);
+float UCompleteLoop(LOOP *ploop) {
+    return (ploop->iframe / ploop->dframe) / 
+           (((float)ploop->sai.pshd->cframe / ploop->dframe) + ploop->dtPause);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", InitPingpong__FP8PINGPONGP4SAAF);
+void InitPingpong(PINGPONG *ppingpong, SAAF *psaaf) {
+    InitSaa(ppingpong, psaaf);
+    ppingpong->dtLoopMin = psaaf->dtLoopMin;
+    ppingpong->dtLoopMax = psaaf->dtLoopMax;
+    ppingpong->dtPauseMin = psaaf->dtPauseMin;
+    ppingpong->dtPauseMax = psaaf->dtPauseMax;
+    ppingpong->iframe = (float)psaaf->dframe;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", PostPingpongLoad__FP8PINGPONG);
+void PostPingpongLoad(PINGPONG *ppingpong) {
+    PostSaaLoad(ppingpong);
+    
+    if (ppingpong->sai.pshd == NULL)
+        return;
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", UpdatePingpong__FP8PINGPONGf);
+    float rand1 = GRandInRange(ppingpong->dtLoopMin, ppingpong->dtLoopMax);
+    ppingpong->dframe = (float)(ppingpong->sai.pshd->cframe * 2) / rand1;
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", UCompletePingpong__FP8PINGPONG);
+    float rand2 = GRandInRange(ppingpong->dtPauseMin, ppingpong->dtPauseMax);
+    ppingpong->dtPause = rand2;
+    ppingpong->dtPauseRemaining = rand2;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", InitShuffle__FP7SHUFFLEP4SAAF);
+void UpdatePingpong(PINGPONG *ppingpong, float dt) {
+    if (ppingpong->sai.pshd == NULL || ppingpong->sai.pshd->cframe < 2)
+        return;
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", UpdateShuffle__FP7SHUFFLEf);
+    if (ppingpong->dtPauseRemaining > 0.0f) {
+        ppingpong->dtPauseRemaining -= dt;
+        return;
+    }
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", InitHologram__FP8HOLOGRAMP4SAAF);
+    ppingpong->iframe += ppingpong->dframe * dt;
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", PostHologramLoad__FP8HOLOGRAM);
+    if (ppingpong->iframe >= (float)ppingpong->sai.pshd->cframe) {
+        ppingpong->iframe -= ppingpong->dframe * dt;
+        ppingpong->dframe = -ppingpong->dframe;
+    }
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", NotifyHologramRender__FP8HOLOGRAMP3ALOP3RPL);
+    if (ppingpong->iframe < 0.0f) {
+        ppingpong->iframe = 0.0f; 
+        float rand1 = GRandInRange(ppingpong->dtLoopMin, ppingpong->dtLoopMax);
+        ppingpong->dframe = (float)(ppingpong->sai.pshd->cframe * 2) / rand1;
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", InitScroller__FP8SCROLLERP4SAAF);
+        float rand2 = GRandInRange(ppingpong->dtPauseMin, ppingpong->dtPauseMax);
+        ppingpong->dtPause = rand2;         
+        ppingpong->dtPauseRemaining = rand2; 
+    }
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", UpdateScroller__FP8SCROLLERf);
+    SetSaiIframe(&ppingpong->sai, (int)ppingpong->iframe);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", UCompleteScroller__FP8SCROLLER);
+float UCompletePingpong(PINGPONG *ppingpong) {
+    float absDframe = ppingpong->dframe;
+    float progress;
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", SetScrollerMasterSpeeds__FP8SCROLLERff);
+    if (absDframe < 0.0f) {
+        absDframe = -absDframe;
+        progress = (float)(ppingpong->sai.pshd->cframe * 2) - ppingpong->iframe;
+    } else {
+        progress = ppingpong->iframe;
+    }
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", InitCircler__FP7CIRCLERP4SAAF);
+    return (progress / absDframe) / 
+           (((float)(ppingpong->sai.pshd->cframe * 2) / absDframe) + ppingpong->dtPause);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", UpdateCircler__FP7CIRCLERf);
+void InitShuffle(SHUFFLE *pshuffle, SAAF *psaaf) {
+    InitSaa(pshuffle, psaaf);
+    pshuffle->dtPauseMin = psaaf->dtLoopMin;
+    pshuffle->dtPauseMax = psaaf->dtLoopMax;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", UCompleteCircler__FP7CIRCLER);
+void UpdateShuffle(SHUFFLE *pshuffle, float dt){
+    if (pshuffle->sai.pshd == NULL || pshuffle->sai.pshd->cframe < 2)
+        return;
+
+    if (pshuffle->dtPause > 0.0f) {
+        pshuffle->dtPause -= dt;
+        return;
+    }
+
+    int randFrame = NRandInRange(1, pshuffle->sai.pshd->cframe - 1);
+    
+    int newIframe = (pshuffle->sai.iframe + randFrame) % pshuffle->sai.pshd->cframe;
+    
+    SetSaiIframe(&pshuffle->sai, newIframe);
+
+    pshuffle->dtPause = GRandInRange(pshuffle->dtPauseMin, pshuffle->dtPauseMax);
+}
+
+void InitHologram(HOLOGRAM *phologram, SAAF *psaaf) {
+    InitSaa(phologram, psaaf);
+
+    phologram->startAngle = psaaf->dtLoopMin;
+
+    unsigned int count = *(unsigned int*)&psaaf->dtLoopMax;
+    phologram->angleStep = TWO_PI / (float)count;
+
+    if (phologram->startAngle == 3.402823466e+38f) {
+        phologram->startAngle = GRandInRange(0.0f, phologram->angleStep);
+    }
+}
+
+void PostHologramLoad(HOLOGRAM *phologram) {
+    PostSaaLoad(phologram);
+
+    if (phologram->sai.pshd != NULL && phologram->sai.pshd->cframe >= 2) {
+        phologram->angleStepPerFrame = phologram->angleStep / (float)phologram->sai.pshd->cframe;
+    }
+}
+
+void NotifyHologramRender(HOLOGRAM *phologram, ALO *palo, RPL *prpl) {
+    if (phologram->sai.pshd == NULL || phologram->sai.pshd->cframe < 2)
+        return;
+
+    if (prpl->pfnDraw != DrawGlob)
+        return;
+
+    // Check our minimal 0x34 pointer directly!
+    VECTOR *pvec = prpl->palo->dlChild.head ? &prpl->pos : (VECTOR *)((char *)g_pcm + 0x80);
+
+    float angle = atan2f(pvec->y, pvec->x);
+    
+    int iframe = (int)(GModPositive(phologram->startAngle - angle, phologram->angleStep) / phologram->angleStepPerFrame);
+
+    SetSaiIframe(&phologram->sai, iframe);
+}
+
+void InitScroller(SCROLLER *pscroller, SAAF *psaaf) {
+    InitSaa(pscroller, psaaf);
+
+    pscroller->duSpeed = psaaf->dtLoopMin;
+    pscroller->dvSpeed = psaaf->dtLoopMax;
+    pscroller->du = psaaf->dtPauseMin;
+    pscroller->dv = psaaf->dtPauseMax;
+    
+    pscroller->sv = 1.0f;
+    pscroller->su = 1.0f;
+    
+    pscroller->sai.grfsai = (pscroller->sai.grfsai & ~1) | 2;
+}
+
+void UpdateScroller(SCROLLER *pscroller, float dt) {
+    if (pscroller->sai.pshd == NULL)
+        return;
+
+    float newDu = fmodf(pscroller->sai.txt.du + (pscroller->duSpeed * pscroller->su) * dt, pscroller->du);
+    float newDv = fmodf(pscroller->sai.txt.dv + (pscroller->dvSpeed * pscroller->sv) * dt, pscroller->dv);
+
+    SetSaiDuDv(&pscroller->sai, newDu, newDv);
+}
+
+float UCompleteScroller(SCROLLER *pscroller) {
+    float uComp = 0.0f;
+
+    if (pscroller->duSpeed != 0.0f) {
+        uComp = (pscroller->sai.txt.du / pscroller->du) * 0.5f;
+    } else {
+        uComp = 0.5f;
+    }
+
+    if (pscroller->dvSpeed != 0.0f) {
+        uComp += (pscroller->sai.txt.dv / pscroller->dv) * 0.5f;
+    } else {
+        uComp += 0.5f;
+    }
+
+    return uComp;
+}
+
+void SetScrollerMasterSpeeds(SCROLLER *pscroller, float su, float sv) { 
+    pscroller->su = su; 
+    pscroller->sv = sv; 
+}
+
+void InitCircler(CIRCLER *pcircler, SAAF *psaaf) {
+    InitSaa(pcircler, psaaf);
+    
+    pcircler->radsSpeed = psaaf->dtLoopMin;
+    pcircler->radius    = psaaf->dtLoopMax;
+    pcircler->duCenter  = psaaf->dtPauseMin;
+    pcircler->dvCenter  = psaaf->dtPauseMax;
+
+    pcircler->sai.grfsai = (pcircler->sai.grfsai & ~1) | 2;
+
+}
+
+void UpdateCircler(CIRCLER *pcircler, float dt) {
+    if (pcircler->sai.pshd == NULL)
+        return;
+
+    float angle = RadNormalize(g_clock.t * pcircler->radsSpeed);
+    
+    float sinOut;
+    float cosOut;
+    CalculateSinCos(angle, &sinOut, &cosOut);
+
+    sinOut = (sinOut * pcircler->radius) + pcircler->duCenter;
+    cosOut = (cosOut * pcircler->radius) + pcircler->dvCenter;
+
+    SetSaiDuDv(&pcircler->sai, sinOut, cosOut);
+}
+
+float UCompleteCircler(CIRCLER *pcircler) {
+    float angle = g_clock.t * pcircler->radsSpeed;
+    
+    return GModPositive(angle, TWO_PI) * INV_TWO_PI;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shdanim", InitLooker__FP6LOOKERP4SAAF);
 

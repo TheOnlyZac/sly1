@@ -45,10 +45,16 @@ enum RP
  */
 struct RPL
 {
-    undefined4 *pfndraw; // NOTE: This is a function pointer.
-    float z;
-    RP rp;
-    // ...
+    void (*pfnDraw)(struct RPL*); // 0x00
+    float z;                      // 0x04
+    RP rp;                        // 0x08
+    int unk0C;                    // 0x0C (Unknown 4 bytes to push pos to 0x10!)
+    
+    VECTOR pos;                   // 0x10 (Exactly 12 bytes: 0x10 to 0x1B)
+    
+    char pad1C[92];               // 0x1C (92 bytes of padding to push palo to 0x78)
+    
+    struct ALO *palo;             // 0x78
 };
 
 void SubmitRpl(RPL *prpl);

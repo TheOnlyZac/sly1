@@ -58,53 +58,63 @@ struct LOOP : public SAA
 };
 
 /**
- * @brief Unknown.
- * @todo Implement the struct.
+ * @brief Ping-pong shader animation.
  */
 struct PINGPONG : public SAA
 {
-    float dtForward; //0x34
-    float dtBackward; //0x38
+    float dtLoopMin;         // 0x2C
+    float dtLoopMax;         // 0x30
+    float dtPauseMin;        // 0x34
+    float dtPauseMax;        // 0x38
+    float dframe;            // 0x3C
+    float iframe;            // 0x40
+    float dtPause;           // 0x44
+    float dtPauseRemaining;  // 0x48
 };
 
 /**
- * @brief Unknown.
- * @todo Implement the struct.
+ * @brief Suffle shader animation.
  */
 struct SHUFFLE : public SAA
 {
-    float dtPauseMin;
-    float dtPauseMax;
-    float dtPause;
+    float dtPauseMin; // 0x2C
+    float dtPauseMax; // 0x30
+    float dtPause;   // 0x34
 };
 
 /**
- * @brief Level transition hologram?
- * @todo Implement the struct.
+ * @brief Hologram shader animation.
  */
 struct HOLOGRAM : public SAA
 {
-    // ...
+    float startAngle;        // 0x2C
+    float angleStep;         // 0x30
+    float angleStepPerFrame; // 0x34
 };
 
 /**
- * @brief Unknown.
- * @todo Implement the struct.
+ * @brief UV Scrolling shader animation.
  */
 struct SCROLLER : public SAA
 {
-    // ...
+    float duSpeed; // 0x2C
+    float dvSpeed; // 0x30
+    float du;      // 0x34
+    float dv;      // 0x38
+    float su;      // 0x3C (Scale U)
+    float sv;      // 0x40 (Scale V)
 };
 
 /**
- * @brief Unknown.
- * @todo Implement the struct.
+ * @brief Circular shader animation.
  */
 struct CIRCLER : public SAA
 {
-    // ...
+    float radsSpeed; // 0x2C
+    float radius;    // 0x30
+    float duCenter;  // 0x34
+    float dvCenter;  // 0x38
 };
-
 /**
  * @brief Unknown.
  * @todo Implement the struct.
