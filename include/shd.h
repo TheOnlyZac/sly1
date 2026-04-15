@@ -168,7 +168,7 @@ struct SAA
 };
 
 /**
- * @brief Shader Animation Animator File 
+ * @brief Shader Animation Animator File. 
  */
 struct SAAF
 {
@@ -178,7 +178,13 @@ struct SAAF
     float dtLoopMax;    // 0x08
     float dtPauseMin;   // 0x0C
     float dtPauseMax;   // 0x10
-    ushort dframe;      // 0x14  
+
+    union {
+        ushort dframe;   // 0x14 (Used by LOOP / PINGPONG)
+        float dtLookMin; // 0x14 (Used by LOOKER)
+    };
+    
+    float dtLookMax;     // 0x18 (Used by LOOKER)
 };
 
 /**

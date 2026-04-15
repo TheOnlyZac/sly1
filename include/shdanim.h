@@ -27,6 +27,7 @@ struct POSAD
 /**
  * @brief UV coordinates (Float).
  */
+
 struct UVF
 {
     float u, v;
@@ -36,6 +37,7 @@ struct UVF
 /**
  * @brief UV coordinates (Homogeneous/Q-depth).
  */
+
 struct UVQ
 {
     float u, v, q, d;
@@ -45,6 +47,7 @@ struct UVQ
 /**
  * @brief Loop shader animation.
  */
+
 struct LOOP : public SAA
 {
     float dtLoopMin;         // 0x2C
@@ -60,6 +63,7 @@ struct LOOP : public SAA
 /**
  * @brief Ping-pong shader animation.
  */
+
 struct PINGPONG : public SAA
 {
     float dtLoopMin;         // 0x2C
@@ -75,6 +79,7 @@ struct PINGPONG : public SAA
 /**
  * @brief Suffle shader animation.
  */
+
 struct SHUFFLE : public SAA
 {
     float dtPauseMin; // 0x2C
@@ -85,6 +90,7 @@ struct SHUFFLE : public SAA
 /**
  * @brief Hologram shader animation.
  */
+
 struct HOLOGRAM : public SAA
 {
     float startAngle;        // 0x2C
@@ -95,6 +101,7 @@ struct HOLOGRAM : public SAA
 /**
  * @brief UV Scrolling shader animation.
  */
+
 struct SCROLLER : public SAA
 {
     float duSpeed; // 0x2C
@@ -108,6 +115,7 @@ struct SCROLLER : public SAA
 /**
  * @brief Circular shader animation.
  */
+
 struct CIRCLER : public SAA
 {
     float radsSpeed; // 0x2C
@@ -115,13 +123,20 @@ struct CIRCLER : public SAA
     float duCenter;  // 0x34
     float dvCenter;  // 0x38
 };
+
 /**
- * @brief Unknown.
- * @todo Implement the struct.
+ * @brief Looker shader animation.
  */
+ 
 struct LOOKER : public SAA
 {
-    // ...
+    float uCenter;     // 0x2C (from psaaf->dtLoopMin)
+    float vCenter;     // 0x30 (from psaaf->dtLoopMax)
+    float duMin;       // 0x34 (dtPauseMin - dtLoopMin)
+    float duMax;       // 0x38 (dframe - dtLoopMin)
+    float dvMin;       // 0x3C (dtPauseMax - dtLoopMax)
+    float dvMax;       // 0x40 (dframe_0x18 - dtLoopMax)
+    // 0x44 - 0x4C (Likely runtime state like current look target)
 };
 
 int CbFromSaak(SAAK saak);

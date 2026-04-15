@@ -97,7 +97,7 @@ void InitLoop(LOOP *ploop, SAAF *psaaf) {
     ploop->dtLoopMax  = psaaf->dtLoopMax;
     ploop->dtPauseMin = psaaf->dtPauseMin;
     ploop->dtPauseMax = psaaf->dtPauseMax;
-    ploop->iframe     = (float)psaaf->dframe;
+    ploop->iframe = (float)psaaf->dframe;
 }
 
 void PostLoopLoad(LOOP *ploop) {
@@ -266,7 +266,6 @@ void NotifyHologramRender(HOLOGRAM *phologram, ALO *palo, RPL *prpl) {
     if (prpl->pfnDraw != DrawGlob)
         return;
 
-    // Check our minimal 0x34 pointer directly!
     VECTOR *pvec = prpl->palo->dlChild.head ? &prpl->pos : (VECTOR *)((char *)g_pcm + 0x80);
 
     float angle = atan2f(pvec->y, pvec->x);
@@ -327,7 +326,7 @@ void InitCircler(CIRCLER *pcircler, SAAF *psaaf) {
     InitSaa(pcircler, psaaf);
     
     pcircler->radsSpeed = psaaf->dtLoopMin;
-    pcircler->radius    = psaaf->dtLoopMax;
+    pcircler->radius = psaaf->dtLoopMax;
     pcircler->duCenter  = psaaf->dtPauseMin;
     pcircler->dvCenter  = psaaf->dtPauseMax;
 
@@ -357,7 +356,20 @@ float UCompleteCircler(CIRCLER *pcircler) {
     return GModPositive(angle, TWO_PI) * INV_TWO_PI;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", InitLooker__FP6LOOKERP4SAAF);
+void InitLooker(LOOKER *plooker, SAAF *psaaf) {
+    InitSaa(plooker, psaaf);
+
+    plooker->uCenter = psaaf->dtLoopMin;
+    plooker->vCenter = psaaf->dtLoopMax;
+
+    plooker->duMin = psaaf->dtPauseMin - psaaf->dtLoopMin;
+    plooker->duMax = psaaf->dtPauseMax - psaaf->dtLoopMin;
+    plooker->dvMin = psaaf->dtLookMin - psaaf->dtLoopMax;
+
+    plooker->dvMax = psaaf->dtLookMax - psaaf->dtLoopMax;
+
+    plooker->sai.grfsai = (plooker->sai.grfsai & ~1) | 2;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shdanim", SetLookerSgvr__FP6LOOKERP4SGVRP7GLOBSETP4GLOBP7SUBGLOB);
 
