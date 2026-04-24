@@ -7,6 +7,7 @@
 #define CM_H
 
 #include "common.h"
+#include "types.h"
 #include <lo.h>
 #include <util.h>
 #include <binoc.h> // only for RGBA
@@ -320,16 +321,13 @@ struct CM : public LO
     ALO *apaloFade[8];
     float tActivateCplcy;
     undefined4 field66_0x33c;
-    undefined4 field67_0x340;
+    /* 0x340 */int cfadeobjs;
+    /* 0x344 */OID aoidFadeobjs[8];
     MATRIX3 matRotateToCam;
     MATRIX3 matRotateTiltToCam;
     int ccpr;
     CPR acpr[8];
     CPMAN cpman;
-    undefined8 field73_0x428;
-    undefined8 field74_0x430;
-    undefined8 field75_0x438;
-    undefined8 field76_0x440;
     undefined8 field77_0x448;
     undefined8 field78_0x450;
     undefined8 field79_0x458;
@@ -353,14 +351,44 @@ void StartupCm();
 void RecalcCmFrustrum(CM *pcm);
 
 /**
+ * @brief Sets fov on the global camera.
+ */
+void SetSwCameraFov(float fov);
+
+/**
+ * @brief Sets near clip plane on the global camera.
+ */
+void SetSwCameraNearClip(float sNearClip);
+
+/**
  * @brief Sets far clip plane on the global camera.
  */
 void SetSwCameraFarClip(float sFarClip);
 
 /**
+ * @brief Sets SProgress on the global camera.
+ */
+void SetSwCameraSProgress(float uSProgress);
+
+/**
+ * @brief Sets field35_0x1fc on the global camera.
+ */
+void FUN_00143860(float param1);//TODO: Rename function
+
+/**
+ * @brief Sets field36_0x200 on the global camera.
+ */
+void FUN_00143888(float param1);//TODO: Rename function
+
+/**
  * @brief Sets Fog on the global camera.
  */
 void SetSwCameraRgbaFog(SW *psw, RGBA *prgbaFog);
+
+/**
+ * @brief Sets the minimum render distance ratio (?) on the global camera.
+ */
+void SetSwCameraMrdRatio(float ratio);
 
 /**
  * @brief Sets position on the given camera.
@@ -416,6 +444,11 @@ void SetCmMrdRatio(CM *pcm, float ratio);
  * @brief Clears fading objects from the given camera.
  */
 void ClearCmFadeObjects(CM *pcm);
+
+/**
+ * @brief Adds a fading objects to the list of the given camera.
+ */
+void AddCmFadeObject(CM *pcm, OID oid);
 
 /**
  * @brief Sets up the given camera.
@@ -481,7 +514,7 @@ void FUN_00146028(CM *pcm); //TODO: Rename function
 /**
  * @brief Initializes Camera.
  */
-void cm__static_initialization_and_destruction_0(int __initialize_p,int __priority);
+void cm__static_initialization_and_destruction_0(int __initialize_p, int __priority);
 
 /**
  * @brief Startsup Camera.
@@ -495,6 +528,7 @@ void _GLOBAL_$I$StartupCm();
 // extern float g_sFarFog;
 // extern float g_uFogMax;
 // extern RGBA g_rgbaFog;
+extern int g_rgbaFog; //Just to get the code matching -Kestin
 // extern VECTOR4 D_2618b8;
 // extern float DT_CmJoltMax;
 // extern float SW_CmJolt;
