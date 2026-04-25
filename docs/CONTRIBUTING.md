@@ -42,7 +42,7 @@ Once you have a function selected, you can start matching it using either **Objd
 For a quick reference on MIPS/PS2 instructions, registers, 
 C++ name mangling and the P2 engine type glossary, see 
 
-[docs/mips_ps2_cheatsheet.pdf](docs/mips_ps2_cheatsheet.pdf).
+[docs/mips_ps2_cheatsheet.pdf](/docs/mips_ps2_cheatsheet.md).
 
 ### Objdiff
 
