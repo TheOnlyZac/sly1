@@ -18,16 +18,14 @@ struct RPL;
  * @brief Position and orientation/direction ?
  * @todo Implement the struct.
  */
-
 struct POSAD
 {
-    float x, y, z; // position
+    float x, y, z; 
 };
 
 /**
  * @brief UV coordinates (Float).
  */
-
 struct UVF
 {
     float u, v;
@@ -37,7 +35,6 @@ struct UVF
 /**
  * @brief UV coordinates (Homogeneous/Q-depth).
  */
-
 struct UVQ
 {
     float u, v, q, d;
@@ -47,95 +44,88 @@ struct UVQ
 /**
  * @brief Loop shader animation.
  */
-
 struct LOOP : public SAA
 {
-    float dtLoopMin;         // 0x2C
-    float dtLoopMax;         // 0x30
-    float dtPauseMin;        // 0x34
-    float dtPauseMax;        // 0x38
-    float dframe;            // 0x3C
-    float iframe;            // 0x40
-    float dtPause;           // 0x44
-    float dtPauseRemaining;  // 0x48
+    /* 0x2C */ float dtLoopMin;         // 0x2C
+    /* 0x30 */ float dtLoopMax;         // 0x30
+    /* 0x34 */ float dtPauseMin;        // 0x34
+    /* 0x38 */ float dtPauseMax;        // 0x38
+    /* 0x3C */ float dframe;            // 0x3C
+    /* 0x40 */ float iframe;            // 0x40
+    /* 0x44 */ float dtPause;           // 0x44
+    /* 0x48 */ float dtPauseRemaining;  // 0x48
 };
 
 /**
  * @brief Ping-pong shader animation.
  */
-
 struct PINGPONG : public SAA
 {
-    float dtLoopMin;         // 0x2C
-    float dtLoopMax;         // 0x30
-    float dtPauseMin;        // 0x34
-    float dtPauseMax;        // 0x38
-    float dframe;            // 0x3C
-    float iframe;            // 0x40
-    float dtPause;           // 0x44
-    float dtPauseRemaining;  // 0x48
+    /* 0x2C */ float dtLoopMin;         
+    /* 0x30 */ float dtLoopMax;        
+    /* 0x34 */ float dtPauseMin;        
+    /* 0x38 */ float dtPauseMax;        
+    /* 0x3C */ float dframe;            
+    /* 0x40 */ float iframe;           
+    /* 0x44 */ float dtPause;          
+    /* 0x48 */ float dtPauseRemaining;  
 };
 
 /**
  * @brief Suffle shader animation.
  */
-
 struct SHUFFLE : public SAA
 {
-    float dtPauseMin; // 0x2C
-    float dtPauseMax; // 0x30
-    float dtPause;   // 0x34
+    /* 0x2C */ float dtPauseMin; 
+    /* 0x30 */ float dtPauseMax; 
+    /* 0x34 */ float dtPause;   
 };
 
 /**
  * @brief Hologram shader animation.
  */
-
 struct HOLOGRAM : public SAA
 {
-    float startAngle;        // 0x2C
-    float angleStep;         // 0x30
-    float angleStepPerFrame; // 0x34
+    /* 0x2C */ float startAngle;        
+    /* 0x30 */ float angleStep;         
+    /* 0x34 */ float angleStepPerFrame; 
 };
 
 /**
  * @brief UV Scrolling shader animation.
  */
-
 struct SCROLLER : public SAA
 {
-    float duSpeed; // 0x2C
-    float dvSpeed; // 0x30
-    float du;      // 0x34
-    float dv;      // 0x38
-    float su;      // 0x3C (Scale U)
-    float sv;      // 0x40 (Scale V)
+    /* 0x2C */ float duSpeed; 
+    /* 0x30 */ float dvSpeed; 
+    /* 0x34 */ float du;     
+    /* 0x38 */ float dv;      
+    /* 0x3C */ float su;      
+    /* 0x40 */ float sv;      
 };
 
 /**
  * @brief Circular shader animation.
  */
-
-struct CIRCLER : public SAA
+ struct CIRCLER : public SAA
 {
-    float radsSpeed; // 0x2C
-    float radius;    // 0x30
-    float duCenter;  // 0x34
-    float dvCenter;  // 0x38
+    /* 0x2C */ float radsSpeed; 
+    /* 0x30 */ float radius;    
+    /* 0x34 */ float duCenter;  
+    /* 0x38 */ float dvCenter; 
 };
 
 /**
  * @brief Looker shader animation.
  */
- 
-struct LOOKER : public SAA
+ struct LOOKER : public SAA
 {
-    float uCenter;     // 0x2C (from psaaf->dtLoopMin)
-    float vCenter;     // 0x30 (from psaaf->dtLoopMax)
-    float duMin;       // 0x34 (dtPauseMin - dtLoopMin)
-    float duMax;       // 0x38 (dframe - dtLoopMin)
-    float dvMin;       // 0x3C (dtPauseMax - dtLoopMax)
-    float dvMax;       // 0x40 (dframe_0x18 - dtLoopMax)
+    /* 0x2C */ float uCenter;     
+    /* 0x30 */ float vCenter;     
+    /* 0x34 */ float duMin;       
+    /* 0x38 */ float duMax;       
+    /* 0x3C */ float dvMin;       
+    /* 0x40 */ float dvMax;       
     // 0x44 - 0x4C (Likely runtime state like current look target)
 };
 
