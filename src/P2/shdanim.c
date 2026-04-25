@@ -54,7 +54,8 @@ VTSAA *PvtsaaFromSaak(SAAK saak)
 
 INCLUDE_ASM("asm/nonmatchings/P2/shdanim", PsaaLoadFromBrx__FP18CBinaryInputStream);
 
-void InitSaa(SAA *psaa, SAAF *psaaf) {
+void InitSaa(SAA *psaa, SAAF *psaaf) 
+{
 
     int grfsai = psaa->sai.grfsai | 0x1;
     psaa->oid = (OID)psaaf->oid;
@@ -65,14 +66,16 @@ void InitSaa(SAA *psaa, SAAF *psaaf) {
     }
 }
 
-void PostSaaLoad(SAA *psaa) {
+void PostSaaLoad(SAA *psaa) 
+{
     if(psaa->sai.pshd == NULL) {
         psaa->sai.pshd = PshdFindShader__F3OID(psaa->oid);
     }
 }
 
 
-int FUpdatableSaa(SAA *psaa) {
+int FUpdatableSaa(SAA *psaa) 
+{
     if(psaa->tUpdates != g_clock.t) {
         psaa->tUpdates = g_clock.t;
         return 1;
@@ -80,18 +83,21 @@ int FUpdatableSaa(SAA *psaa) {
     return 0;
 }
 
-float UCompleteSaa(SAA *psaa) {
+float UCompleteSaa(SAA *psaa) 
+{
     return 0.0f;
 }
 
-SAI *PsaiFromSaaShd(SAA *psaa, SHD *pshd) {
+SAI *PsaiFromSaaShd(SAA *psaa, SHD *pshd) 
+{
     if(pshd->oid == psaa->oid) {
         return &psaa->sai;
     }
     return (SAI *)NULL;
 }
 
-void InitLoop(LOOP *ploop, SAAF *psaaf) {
+void InitLoop(LOOP *ploop, SAAF *psaaf) 
+{
     InitSaa(ploop, psaaf);
     ploop->dtLoopMin  = psaaf->dtLoopMin;
     ploop->dtLoopMax  = psaaf->dtLoopMax;
@@ -100,7 +106,8 @@ void InitLoop(LOOP *ploop, SAAF *psaaf) {
     ploop->iframe = (float)psaaf->dframe;
 }
 
-void PostLoopLoad(LOOP *ploop) {
+void PostLoopLoad(LOOP *ploop) 
+{
     PostSaaLoad(ploop);
     
     if(ploop->sai.pshd == NULL)
@@ -114,7 +121,8 @@ void PostLoopLoad(LOOP *ploop) {
     ploop->dtPauseRemaining = rand2;
 }
 
-void UpdateLoop(LOOP *ploop, float dt) {
+void UpdateLoop(LOOP *ploop, float dt) 
+{
     SHD *pshd = ploop->sai.pshd;
     if (pshd == NULL)
         return;
@@ -142,12 +150,14 @@ void UpdateLoop(LOOP *ploop, float dt) {
     SetSaiIframe(&ploop->sai, (int)ploop->iframe);
 }
 
-float UCompleteLoop(LOOP *ploop) {
+float UCompleteLoop(LOOP *ploop) 
+{
     return (ploop->iframe / ploop->dframe) / 
            (((float)ploop->sai.pshd->cframe / ploop->dframe) + ploop->dtPause);
 }
 
-void InitPingpong(PINGPONG *ppingpong, SAAF *psaaf) {
+void InitPingpong(PINGPONG *ppingpong, SAAF *psaaf) 
+{
     InitSaa(ppingpong, psaaf);
     ppingpong->dtLoopMin = psaaf->dtLoopMin;
     ppingpong->dtLoopMax = psaaf->dtLoopMax;
@@ -156,7 +166,8 @@ void InitPingpong(PINGPONG *ppingpong, SAAF *psaaf) {
     ppingpong->iframe = (float)psaaf->dframe;
 }
 
-void PostPingpongLoad(PINGPONG *ppingpong) {
+void PostPingpongLoad(PINGPONG *ppingpong) 
+{
     PostSaaLoad(ppingpong);
     
     if (ppingpong->sai.pshd == NULL)
@@ -170,7 +181,8 @@ void PostPingpongLoad(PINGPONG *ppingpong) {
     ppingpong->dtPauseRemaining = rand2;
 }
 
-void UpdatePingpong(PINGPONG *ppingpong, float dt) {
+void UpdatePingpong(PINGPONG *ppingpong, float dt) 
+{
     if (ppingpong->sai.pshd == NULL || ppingpong->sai.pshd->cframe < 2)
         return;
 
@@ -199,7 +211,8 @@ void UpdatePingpong(PINGPONG *ppingpong, float dt) {
     SetSaiIframe(&ppingpong->sai, (int)ppingpong->iframe);
 }
 
-float UCompletePingpong(PINGPONG *ppingpong) {
+float UCompletePingpong(PINGPONG *ppingpong) 
+{
     float absDframe = ppingpong->dframe;
     float progress;
 
@@ -214,13 +227,15 @@ float UCompletePingpong(PINGPONG *ppingpong) {
            (((float)(ppingpong->sai.pshd->cframe * 2) / absDframe) + ppingpong->dtPause);
 }
 
-void InitShuffle(SHUFFLE *pshuffle, SAAF *psaaf) {
+void InitShuffle(SHUFFLE *pshuffle, SAAF *psaaf) 
+{
     InitSaa(pshuffle, psaaf);
     pshuffle->dtPauseMin = psaaf->dtLoopMin;
     pshuffle->dtPauseMax = psaaf->dtLoopMax;
 }
 
-void UpdateShuffle(SHUFFLE *pshuffle, float dt){
+void UpdateShuffle(SHUFFLE *pshuffle, float dt)
+{
     if (pshuffle->sai.pshd == NULL || pshuffle->sai.pshd->cframe < 2)
         return;
 
@@ -238,7 +253,8 @@ void UpdateShuffle(SHUFFLE *pshuffle, float dt){
     pshuffle->dtPause = GRandInRange(pshuffle->dtPauseMin, pshuffle->dtPauseMax);
 }
 
-void InitHologram(HOLOGRAM *phologram, SAAF *psaaf) {
+void InitHologram(HOLOGRAM *phologram, SAAF *psaaf) 
+{
     InitSaa(phologram, psaaf);
 
     phologram->startAngle = psaaf->dtLoopMin;
@@ -251,7 +267,8 @@ void InitHologram(HOLOGRAM *phologram, SAAF *psaaf) {
     }
 }
 
-void PostHologramLoad(HOLOGRAM *phologram) {
+void PostHologramLoad(HOLOGRAM *phologram) 
+{
     PostSaaLoad(phologram);
 
     if (phologram->sai.pshd != NULL && phologram->sai.pshd->cframe >= 2) {
@@ -259,7 +276,8 @@ void PostHologramLoad(HOLOGRAM *phologram) {
     }
 }
 
-void NotifyHologramRender(HOLOGRAM *phologram, ALO *palo, RPL *prpl) {
+void NotifyHologramRender(HOLOGRAM *phologram, ALO *palo, RPL *prpl) 
+{
     if (phologram->sai.pshd == NULL || phologram->sai.pshd->cframe < 2)
         return;
 
@@ -275,7 +293,8 @@ void NotifyHologramRender(HOLOGRAM *phologram, ALO *palo, RPL *prpl) {
     SetSaiIframe(&phologram->sai, iframe);
 }
 
-void InitScroller(SCROLLER *pscroller, SAAF *psaaf) {
+void InitScroller(SCROLLER *pscroller, SAAF *psaaf) 
+{
     InitSaa(pscroller, psaaf);
 
     pscroller->duSpeed = psaaf->dtLoopMin;
@@ -289,7 +308,8 @@ void InitScroller(SCROLLER *pscroller, SAAF *psaaf) {
     pscroller->sai.grfsai = (pscroller->sai.grfsai & ~1) | 2;
 }
 
-void UpdateScroller(SCROLLER *pscroller, float dt) {
+void UpdateScroller(SCROLLER *pscroller, float dt) 
+{
     if (pscroller->sai.pshd == NULL)
         return;
 
@@ -299,7 +319,8 @@ void UpdateScroller(SCROLLER *pscroller, float dt) {
     SetSaiDuDv(&pscroller->sai, newDu, newDv);
 }
 
-float UCompleteScroller(SCROLLER *pscroller) {
+float UCompleteScroller(SCROLLER *pscroller) 
+{
     float uComp = 0.0f;
 
     if (pscroller->duSpeed != 0.0f) {
@@ -317,12 +338,14 @@ float UCompleteScroller(SCROLLER *pscroller) {
     return uComp;
 }
 
-void SetScrollerMasterSpeeds(SCROLLER *pscroller, float su, float sv) { 
+void SetScrollerMasterSpeeds(SCROLLER *pscroller, float su, float sv) 
+{ 
     pscroller->su = su; 
     pscroller->sv = sv; 
 }
 
-void InitCircler(CIRCLER *pcircler, SAAF *psaaf) {
+void InitCircler(CIRCLER *pcircler, SAAF *psaaf) 
+{
     InitSaa(pcircler, psaaf);
     
     pcircler->radsSpeed = psaaf->dtLoopMin;
@@ -334,7 +357,8 @@ void InitCircler(CIRCLER *pcircler, SAAF *psaaf) {
 
 }
 
-void UpdateCircler(CIRCLER *pcircler, float dt) {
+void UpdateCircler(CIRCLER *pcircler, float dt) 
+{
     if (pcircler->sai.pshd == NULL)
         return;
 
@@ -350,13 +374,15 @@ void UpdateCircler(CIRCLER *pcircler, float dt) {
     SetSaiDuDv(&pcircler->sai, sinOut, cosOut);
 }
 
-float UCompleteCircler(CIRCLER *pcircler) {
+float UCompleteCircler(CIRCLER *pcircler) 
+{
     float angle = g_clock.t * pcircler->radsSpeed;
     
     return GModPositive(angle, TWO_PI) * INV_TWO_PI;
 }
 
-void InitLooker(LOOKER *plooker, SAAF *psaaf) {
+void InitLooker(LOOKER *plooker, SAAF *psaaf) 
+{
     InitSaa(plooker, psaaf);
 
     plooker->uCenter = psaaf->dtLoopMin;
@@ -373,13 +399,15 @@ void InitLooker(LOOKER *plooker, SAAF *psaaf) {
 
 INCLUDE_ASM("asm/nonmatchings/P2/shdanim", SetLookerSgvr__FP6LOOKERP4SGVRP7GLOBSETP4GLOBP7SUBGLOB);
 
-void SetVecPosad(VECTOR *pvec, POSAD *pposad) {
+void SetVecPosad(VECTOR *pvec, POSAD *pposad) 
+{
     pvec->x = pposad->x;
     pvec->y = pposad->y;
     pvec->z = pposad->z;
 }
 
-void SetUvPuvqd(UVF *puv, UVQ *puvqd) {
+void SetUvPuvqd(UVF *puv, UVQ *puvqd) 
+{
     puv->u = puvqd->u;
     puv->v = puvqd->v;
 }

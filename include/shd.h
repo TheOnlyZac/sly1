@@ -74,7 +74,6 @@ struct CLUT : public CLUTF
 /**
  * @brief Texture Coordinates.
  */
-
 struct TCX
 {
     float du;
@@ -84,7 +83,6 @@ struct TCX
 /**
  * @brief Texture File.
  */
-
 struct TEXF
 {
     ushort OID;
@@ -96,7 +94,6 @@ struct TEXF
 /**
  * @brief Texture.
  */
-
 struct TEX : public TEXF
 {
     ushort unk_0;
@@ -110,7 +107,6 @@ struct TEX : public TEXF
 /**
  * @brief Shader Animation Instance Register.
  */
-
 struct SAIR
 {
     SHDP *pshdp;
@@ -121,15 +117,14 @@ struct SAIR
 /**
  * @brief Shader Animation Instance.
  */
-
 struct SAI
 {
-    int grfsai; // 0x10
-    SHD *pshd; // 0x14
-    int iframe; // 0x18
-    TCX txt; // 0x1c
-    SAIR *psairFirst; // 0x2c
-    SAI *psaiNext; // 0x30
+    /* 0x10 */ int grfsai;
+    /* 0x14 */ SHD *pshd;
+    /* 0x18 */ int iframe;
+    /* 0x1c */ TCX txt;
+    /* 0x2c */ SAIR *psairFirst;
+    /* 0x30 */ SAI *psaiNext;
 };
 
 
@@ -138,7 +133,6 @@ struct SAI
 /**
  * @brief Shader Animation Animator Kind.
  */
-
 enum SAAK
 {
     SAAK_Nil = -1,
@@ -157,14 +151,13 @@ enum SAAK
 /**
  * @brief Shader Animation Animator.
  */
-
 struct SAA
 {
-    VTSAA* pvtsaa; //0x00
-    float tUpdates; //0x04
-    SAAK saak; //0x08
-    OID oid; //0x0c
-    SAI sai; //0x10
+    /* 0x00 */ VTSAA* pvtsaa;
+    /* 0x04 */ float tUpdates;
+    /* 0x08 */ SAAK saak;
+    /* 0x0c */ OID oid;
+    /* 0x10 */ SAI sai;
 };
 
 /**
@@ -172,25 +165,24 @@ struct SAA
  */
 struct SAAF
 {
-    short oid;          // 0x00
-    ushort grfsaaf;     // 0x02
-    float dtLoopMin;    // 0x04
-    float dtLoopMax;    // 0x08
-    float dtPauseMin;   // 0x0C
-    float dtPauseMax;   // 0x10
+    /* 0x00 */ short oid;
+    /* 0x02 */ ushort grfsaaf;
+    /* 0x04 */ float dtLoopMin;
+    /* 0x08 */ float dtLoopMax;
+    /* 0x0C */ float dtPauseMin;
+    /* 0x10 */ float dtPauseMax;
 
     union {
-        ushort dframe;   // 0x14 (Used by LOOP / PINGPONG)
-        float dtLookMin; // 0x14 (Used by LOOKER)
+        /* 0x14 */ ushort dframe;   
+        /* 0x14 */ float dtLookMin; 
     };
     
-    float dtLookMax;     // 0x18 (Used by LOOKER)
+    /* 0x18 */ float dtLookMax;     
 };
 
 /**
  * @brief Shader kind.
  */
-
 enum SHDK
 {
     SHDK_Nil = -1,
@@ -211,7 +203,6 @@ enum SHDK
 /**
  * @brief Shader Data Packet.
  */
-
 struct SHDP
 {
     int cqwRegs;
@@ -221,7 +212,6 @@ struct SHDP
 /**
  * @brief Shader Data.
  */
-
 struct SHDF
 {
     /* 0x00 */ uchar shdk;
@@ -238,7 +228,6 @@ struct SHDF
 /**
  * @brief Shader.
  */
-
 struct SHD : public SHDF
 {
     TEX *atex; 
