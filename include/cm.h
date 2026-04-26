@@ -8,6 +8,7 @@
 
 #include "common.h"
 #include "types.h"
+#include "vec.h"
 #include <lo.h>
 #include <util.h>
 #include <binoc.h> // only for RGBA
@@ -127,7 +128,8 @@ struct CPDEFI
     float radHome;
     float sAdjust;
     float tMoveLast;
-    CFK cfk;
+    float field10_0x34;
+    //CFK cfk;
     VECTOR posAdjust;
 };
 
@@ -344,6 +346,11 @@ extern CM *g_pcm; // Pointer to the main game camera.
  * @brief Starts up the camera system.
  */
 void StartupCm();
+
+/**
+ * @brief Calculates adjustments on the given camera.
+ */
+void CalcCmAdjust(CM *pcm, SO *psoFocus, CPDEFI *pcpdefi, VECTOR *pdpos); //TODO: actually find out what this does...
 
 /**
  * @brief Calls RecalcCmFrustrum on the given camera.

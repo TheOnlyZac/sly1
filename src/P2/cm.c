@@ -52,7 +52,10 @@ void StartupCm()
     return;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", CalcCmAdjust__FP2CMP2SOP6CPDEFIP6VECTOR);
+void CalcCmAdjust(CM *pcm, SO *psoFocus, CPDEFI *pcpdefi, VECTOR *pdpos)
+{
+    SetVectorCylind(pdpos, pcpdefi->tMoveLast + 3.14159265359f, pcpdefi->field10_0x34, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SpringCm__FfffP2CMP6VECTORP6VECTORP6VECTOR);
 
