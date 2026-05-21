@@ -14,7 +14,8 @@
 #include <sound.h>
 #include <clock.h>
 
-struct CM; // Forward declaration
+// Forward declarations.
+struct CM;
 struct TN;
 
 typedef int GRFRCP;
@@ -126,7 +127,8 @@ struct CPDEFI
     float radHome;
     float sAdjust;
     float tMoveLast;
-    CFK cfk;
+    float field10_0x34;
+    //CFK cfk;
     VECTOR posAdjust;
 };
 
@@ -320,16 +322,13 @@ struct CM : public LO
     ALO *apaloFade[8];
     float tActivateCplcy;
     undefined4 field66_0x33c;
-    undefined4 field67_0x340;
+    /* 0x340 */ int coidFade;
+    /* 0x344 */ OID aoidFade[8];
     MATRIX3 matRotateToCam;
     MATRIX3 matRotateTiltToCam;
     int ccpr;
     CPR acpr[8];
     CPMAN cpman;
-    undefined8 field73_0x428;
-    undefined8 field74_0x430;
-    undefined8 field75_0x438;
-    undefined8 field76_0x440;
     undefined8 field77_0x448;
     undefined8 field78_0x450;
     undefined8 field79_0x458;
@@ -348,9 +347,25 @@ extern CM *g_pcm; // Pointer to the main game camera.
 void StartupCm();
 
 /**
+ * @brief Calculates adjustments on the given camera.
+ * @todo Actually find out what this does.
+ */
+void CalcCmAdjust(CM *pcm, SO *psoFocus, CPDEFI *pcpdefi, VECTOR *pdpos);
+
+/**
  * @brief Calls RecalcCmFrustrum on the given camera.
  */
 void RecalcCmFrustrum(CM *pcm);
+
+/**
+ * @brief Sets fov on the global camera.
+ */
+void SetSwCameraFov(float fov);
+
+/**
+ * @brief Sets near clip plane on the global camera.
+ */
+void SetSwCameraNearClip(float sNearClip);
 
 /**
  * @brief Sets far clip plane on the global camera.
@@ -358,9 +373,31 @@ void RecalcCmFrustrum(CM *pcm);
 void SetSwCameraFarClip(float sFarClip);
 
 /**
+ * @brief Sets SProgress on the global camera.
+ */
+void SetSwCameraSProgress(float uSProgress);
+
+/**
+ * @brief Sets field35_0x1fc on the global camera.
+ * @todo Rename.
+ */
+void FUN_00143860(float param1);
+
+/**
+ * @brief Sets field36_0x200 on the global camera.
+ * @todo Rename.
+ */
+void FUN_00143888(float param1);
+
+/**
  * @brief Sets Fog on the global camera.
  */
 void SetSwCameraRgbaFog(SW *psw, RGBA *prgbaFog);
+
+/**
+ * @brief Sets the minimum render distance ratio (?) on the global camera.
+ */
+void SetSwCameraMrdRatio(float ratio);
 
 /**
  * @brief Sets position on the given camera.
@@ -416,6 +453,11 @@ void SetCmMrdRatio(CM *pcm, float ratio);
  * @brief Clears fading objects from the given camera.
  */
 void ClearCmFadeObjects(CM *pcm);
+
+/**
+ * @brief Adds a fading objects to the list of the given camera.
+ */
+void AddCmFadeObject(CM *pcm, OID oid);
 
 /**
  * @brief Sets up the given camera.
@@ -475,18 +517,9 @@ void SetCmSniperFocus(CM *pcm, PNT *ppntAnchor, float sRadiusSniper, float rScre
 
 /**
  * @brief Calls FUN_00146028 on the given camera.
+ * @todo Rename.
  */
-void FUN_00146028(CM *pcm); //TODO: Rename function
-
-/**
- * @brief Initializes Camera.
- */
-void cm__static_initialization_and_destruction_0(int __initialize_p,int __priority);
-
-/**
- * @brief Startsup Camera.
- */
-void _GLOBAL_$I$StartupCm();
+void FUN_00146028(CM *pcm);
 
 // todo fix undefined reference errors
 // extern VECTOR4 g_posEyeDefault;
@@ -495,6 +528,7 @@ void _GLOBAL_$I$StartupCm();
 // extern float g_sFarFog;
 // extern float g_uFogMax;
 // extern RGBA g_rgbaFog;
+extern int g_rgbaFog; //Just to get the code matching -Kestin
 // extern VECTOR4 D_2618b8;
 // extern float DT_CmJoltMax;
 // extern float SW_CmJolt;
