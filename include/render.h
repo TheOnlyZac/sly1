@@ -45,10 +45,13 @@ enum RP
  */
 struct RPL
 {
-    undefined4 *pfndraw; // NOTE: This is a function pointer.
-    float z;
-    RP rp;
-    // ...
+    /* 0x00 */ void (*pfnDraw)(RPL *);
+    /* 0x04 */ float z;
+    /* 0x08 */ RP rp;
+    /* 0x0C */ int unk0C;
+    /* 0x10 */ VECTOR pos;
+    /* 0x1C */ char pad1C[92];
+    /* 0x78 */ ALO *palo;
 };
 
 void SubmitRpl(RPL *prpl);
