@@ -31,7 +31,7 @@ enum OPTID
 
 /**
  * @class LO
- * @brief Unknown, maybe "level object".
+ * @brief Live Object, base class for all objects that exist in the world.
  *
  * @note The fields "pchzName" and "dtickPerf" present in the prototype are not in release.
  */

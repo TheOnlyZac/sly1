@@ -52,7 +52,10 @@ void StartupCm()
     return;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", CalcCmAdjust__FP2CMP2SOP6CPDEFIP6VECTOR);
+void CalcCmAdjust(CM *pcm, SO *psoFocus, CPDEFI *pcpdefi, VECTOR *pdpos)
+{
+    SetVectorCylind(pdpos, pcpdefi->tMoveLast + 3.14159265359f, pcpdefi->field10_0x34, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SpringCm__FfffP2CMP6VECTORP6VECTORP6VECTOR);
 
@@ -73,25 +76,40 @@ void SetSwCameraFov(float fov)
     SetCmFov(g_pcm, fov);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_001437e8);
+void SetSwCameraNearClip(float sNearClip)
+{
+    SetCmNearClip(g_pcm, sNearClip);
+}
 
 void SetSwCameraFarClip(float sFarClip)
 {
     SetCmFarClip(g_pcm, sFarClip);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00143838);
+void SetSwCameraSProgress(float uSProgress)
+{
+    SetCmSProgress(g_pcm, uSProgress);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00143860);
+void FUN_00143860(float param1)
+{
+    FUN_001439c8(g_pcm, param1);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00143888);
+void FUN_00143888(float param1)
+{
+    FUN_001439e8(g_pcm, param1);
+}
 
 void SetSwCameraRgbaFog(SW *psw, RGBA *prgbaFog)
 {
     SetCmRgbaFog(g_pcm, prgbaFog);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_001438d8);
+void SetSwCameraMrdRatio(float ratio)
+{
+    SetCmMrdRatio(g_pcm, ratio);
+}
 
 void SetCmPos(CM *pcm, VECTOR *ppos)
 {
@@ -157,10 +175,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", ResetCm);
 
 void ClearCmFadeObjects(CM *pcm)
 {
-    pcm->field67_0x340 = 0;
+    pcm->coidFade = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", AddCmFadeObject);
+void AddCmFadeObject(CM *pcm, OID oid)
+{
+    uint coidFade = STRUCT_OFFSET(pcm, 0x340, int); // palarm->coidFade
+
+    if (coidFade < 8)
+    {
+        STRUCT_OFFSET_INDEX(pcm, 0x344, OID, coidFade) = oid; // palarm->aoidFade[coidFade]
+        STRUCT_OFFSET(pcm, 0x340, int) = coidFade + 1;        // palarm->coidFade
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", RemoveCmFadeObject);
 
@@ -243,6 +270,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145950);
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145b68);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145DD8);
+#ifdef SKIP_ASM
+bool FUN_00145DD8(CM *pcm)
+{
+    return pcm->cptn.tMoveLast != 0; //If tMoveLast is a int/undefined4 it matches only it uses a0 instead of a1 :/
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145de8);
 
@@ -277,7 +310,13 @@ void FUN_00146028(CM *pcm)
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00146038);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", cm__static_initialization_and_destruction_0__Fii);
+void cm__static_initialization_and_destruction_0(int __initialize_p, int __priority)
+{
+    if ((__priority == 0xFFFF) && (__initialize_p != 0))
+    {
+        g_rgbaFog = 0x80303030;
+    }
+}
 
 void _GLOBAL_$I$StartupCm()
 {

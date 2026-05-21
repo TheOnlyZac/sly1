@@ -76,8 +76,8 @@ void UpdateAloInfluences(ALO *palo, RO *pro);
 void PredrawGlob(GLOBSET *pglobset, GLOB *pglob, GLOBI *pglobi, ALO *palo);
 
 void RotateVu1Buffer();
-
-void DrawGlob(RPL *prpl);
 */
+void DrawGlob(RPL *prpl);
+
 
 #endif // GLOB_H

@@ -18,6 +18,7 @@ typedef struct SHD; // Forward declaration
 typedef struct SHDP; // Forward declaration
 
 typedef int GRFZON;
+typedef int GRFSAI;
 
 /**
  * @brief (?) kind.
@@ -41,7 +42,7 @@ struct BMPF
 {
     short dx;
     short dy;
-    uint grfzon;
+    GRFZON grfzon;
     uchar psm;
     uchar cgsRow;
     short cgsPixels;
@@ -59,7 +60,7 @@ struct BMP : public BMPF
 
 struct CLUTF
 {
-    uint grfzon;
+    GRFZON grfzon;
     ushort crgba;
     ushort cgsColors;
     RGBA *prgba;
@@ -71,14 +72,18 @@ struct CLUT : public CLUTF
     sceGsTex2 tex2;
 };
 
-// MARK: Texture?
-
+/**
+ * @brief Texture Coordinates.
+ */
 struct TCX
 {
     float du;
     float dv;
 };
 
+/**
+ * @brief Texture File.
+ */
 struct TEXF
 {
     ushort OID;
@@ -87,6 +92,9 @@ struct TEXF
     uchar ciclut;
 };
 
+/**
+ * @brief Texture.
+ */
 struct TEX : public TEXF
 {
     ushort unk_0;
@@ -97,6 +105,9 @@ struct TEX : public TEXF
 
 // MARK: SAIR
 
+/**
+ * @brief Shader Animation Instance Register.
+ */
 struct SAIR
 {
     SHDP *pshdp;
@@ -104,21 +115,25 @@ struct SAIR
     SAIR *psairNext;
 };
 
-// MARK: SAI
-
+/**
+ * @brief Shader Animation Instance.
+ */
 struct SAI
 {
-    int grfsai;
-    SHD *pshd;
-    int iframe;
-    TCX txt;
-    SAIR *psairFirst;
-    SAI *psaiNext;
+    /* 0x10 */ GRFSAI grfsai;
+    /* 0x14 */ SHD *pshd;
+    /* 0x18 */ int iframe;
+    /* 0x1c */ TCX txt;
+    /* 0x2c */ SAIR *psairFirst;
+    /* 0x30 */ SAI *psaiNext;
 };
 
 
 // MARK: SAA
 
+/**
+ * @brief Shader Animation Animator Kind.
+ */
 enum SAAK
 {
     SAAK_Nil = -1,
@@ -134,25 +149,39 @@ enum SAAK
     SAAK_Max = 9
 };
 
+/**
+ * @brief Shader Animation Animator.
+ */
 struct SAA
 {
-    undefined4 unk_0;
-    float tUpdates;
-    SAAK saak;
-    OID oid;
-    SAI sai;
+    /* 0x00 */ VTSAA* pvtsaa;
+    /* 0x04 */ float tUpdates;
+    /* 0x08 */ SAAK saak;
+    /* 0x0c */ OID oid;
+    /* 0x10 */ SAI sai;
 };
 
 /**
- * @brief Unknown.
+ * @brief Shader Animation Animator File. 
  */
 struct SAAF
 {
-    // ...
+    /* 0x00 */ short oid;
+    /* 0x02 */ ushort grfsaaf;
+    /* 0x04 */ float dtLoopMin;
+    /* 0x08 */ float dtLoopMax;
+    /* 0x0c */ float dtPauseMin;
+    /* 0x10 */ float dtPauseMax;
+    union {
+        /* 0x14 */ ushort dframe;   
+        /* 0x14 */ float dtLookMin; 
+    };
+    /* 0x18 */ float dtLookMax;     
 };
 
-// MARK: SHD
-
+/**
+ * @brief Shader kind.
+ */
 enum SHDK
 {
     SHDK_Nil = -1,
@@ -170,12 +199,18 @@ enum SHDK
     SHDK_Max = 11
 };
 
+/**
+ * @brief Shader Data Packet.
+ */
 struct SHDP
 {
     int cqwRegs;
     QW *aaqwRegs;
 };
 
+/**
+ * @brief Shader Data.
+ */
 struct SHDF
 {
     /* 0x00 */ uchar shdk;
@@ -183,12 +218,15 @@ struct SHDF
     /* 0x02 */ short oid;
     RGBA rgba;
     RGBA rgbaVolume;
-    uint grfzon;
+    GRFZON grfzon;
     ushort OidAltSat;
     uchar rp;
     uchar ctex;
 };
 
+/**
+ * @brief Shader.
+ */
 struct SHD : public SHDF
 {
     TEX *atex;

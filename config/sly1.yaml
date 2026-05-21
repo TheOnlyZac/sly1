@@ -297,6 +297,8 @@ segments:
     - [0x14b0f8, rodata]
     - [0x14c1e8, .rodata, P2/main]
     - [0x14c258, rodata]
+    - [0x14E220, .rodata, P2/shdanim]
+    - [0x14E268, rodata]
     #- [0x14e3b0, .rodata, P2/spire]
     #- [0x14e3c0, .rodata, P2/spliceobj]
     #- [0x14e560, .rodata, P2/squish] # TODO: Might be something else.
