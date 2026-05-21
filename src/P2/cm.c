@@ -175,18 +175,17 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", ResetCm);
 
 void ClearCmFadeObjects(CM *pcm)
 {
-    pcm->cfadeobjs = 0;
+    pcm->coidFade = 0;
 }
 
-void AddCmFadeObject(CM *pcm, OID oid) //TODO: Refactor! I just stole AddAlarmAlbrk impl... XD
+void AddCmFadeObject(CM *pcm, OID oid)
 {
-    uint cfadeobjs = STRUCT_OFFSET(pcm, 0x340, int); // palarm->cfadeobjs
+    uint coidFade = STRUCT_OFFSET(pcm, 0x340, int); // palarm->coidFade
 
-    if (cfadeobjs < 8) // Max 8 fadeble objects
+    if (coidFade < 8)
     {
-        // Add new fadeble object ID to the list
-        STRUCT_OFFSET_INDEX(pcm, 0x344, OID, cfadeobjs) = oid; // palarm->aoidFadeobjs[cfadeobjs]
-        STRUCT_OFFSET(pcm, 0x340, int) = cfadeobjs + 1;        // palarm->cfadeobjs
+        STRUCT_OFFSET_INDEX(pcm, 0x344, OID, coidFade) = oid; // palarm->aoidFade[coidFade]
+        STRUCT_OFFSET(pcm, 0x340, int) = coidFade + 1;        // palarm->coidFade
     }
 }
 

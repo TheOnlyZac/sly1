@@ -7,8 +7,7 @@
 #define CM_H
 
 #include "common.h"
-#include "types.h"
-#include "vec.h"
+#include <vec.h>
 #include <lo.h>
 #include <util.h>
 #include <binoc.h> // only for RGBA
@@ -16,7 +15,8 @@
 #include <sound.h>
 #include <clock.h>
 
-struct CM; // Forward declaration
+// Forward declarations.
+struct CM;
 struct TN;
 
 typedef int GRFRCP;
@@ -323,8 +323,8 @@ struct CM : public LO
     ALO *apaloFade[8];
     float tActivateCplcy;
     undefined4 field66_0x33c;
-    /* 0x340 */int cfadeobjs;
-    /* 0x344 */OID aoidFadeobjs[8];
+    /* 0x340 */ int coidFade;
+    /* 0x344 */ OID aoidFade[8];
     MATRIX3 matRotateToCam;
     MATRIX3 matRotateTiltToCam;
     int ccpr;
@@ -349,8 +349,9 @@ void StartupCm();
 
 /**
  * @brief Calculates adjustments on the given camera.
+ * @todo Actually find out what this does.
  */
-void CalcCmAdjust(CM *pcm, SO *psoFocus, CPDEFI *pcpdefi, VECTOR *pdpos); //TODO: actually find out what this does...
+void CalcCmAdjust(CM *pcm, SO *psoFocus, CPDEFI *pcpdefi, VECTOR *pdpos);
 
 /**
  * @brief Calls RecalcCmFrustrum on the given camera.
@@ -379,13 +380,15 @@ void SetSwCameraSProgress(float uSProgress);
 
 /**
  * @brief Sets field35_0x1fc on the global camera.
+ * @todo Rename.
  */
-void FUN_00143860(float param1);//TODO: Rename function
+void FUN_00143860(float param1);
 
 /**
  * @brief Sets field36_0x200 on the global camera.
+ * @todo Rename.
  */
-void FUN_00143888(float param1);//TODO: Rename function
+void FUN_00143888(float param1);
 
 /**
  * @brief Sets Fog on the global camera.
@@ -515,18 +518,9 @@ void SetCmSniperFocus(CM *pcm, PNT *ppntAnchor, float sRadiusSniper, float rScre
 
 /**
  * @brief Calls FUN_00146028 on the given camera.
+ * @todo Rename.
  */
-void FUN_00146028(CM *pcm); //TODO: Rename function
-
-/**
- * @brief Initializes Camera.
- */
-void cm__static_initialization_and_destruction_0(int __initialize_p, int __priority);
-
-/**
- * @brief Startsup Camera.
- */
-void _GLOBAL_$I$StartupCm();
+void FUN_00146028(CM *pcm);
 
 // todo fix undefined reference errors
 // extern VECTOR4 g_posEyeDefault;
