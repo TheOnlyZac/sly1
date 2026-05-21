@@ -18,6 +18,7 @@ typedef struct SHD; // Forward declaration
 typedef struct SHDP; // Forward declaration
 
 typedef int GRFZON;
+typedef int GRFSAI;
 
 /**
  * @brief (?) kind.
@@ -41,7 +42,7 @@ struct BMPF
 {
     short dx;
     short dy;
-    uint grfzon;
+    GRFZON grfzon;
     uchar psm;
     uchar cgsRow;
     short cgsPixels;
@@ -51,15 +52,15 @@ struct BMPF
 
 struct BMP : public BMPF
 {
-    int cqwPixels; 
-    sceGsTex0 tex0; 
+    int cqwPixels;
+    sceGsTex0 tex0;
 };
 
 // MARK: CLUT
 
 struct CLUTF
 {
-    uint grfzon;
+    GRFZON grfzon;
     ushort crgba;
     ushort cgsColors;
     RGBA *prgba;
@@ -119,7 +120,7 @@ struct SAIR
  */
 struct SAI
 {
-    /* 0x10 */ int grfsai;
+    /* 0x10 */ GRFSAI grfsai;
     /* 0x14 */ SHD *pshd;
     /* 0x18 */ int iframe;
     /* 0x1c */ TCX txt;
@@ -169,14 +170,12 @@ struct SAAF
     /* 0x02 */ ushort grfsaaf;
     /* 0x04 */ float dtLoopMin;
     /* 0x08 */ float dtLoopMax;
-    /* 0x0C */ float dtPauseMin;
+    /* 0x0c */ float dtPauseMin;
     /* 0x10 */ float dtPauseMax;
-
     union {
         /* 0x14 */ ushort dframe;   
         /* 0x14 */ float dtLookMin; 
     };
-    
     /* 0x18 */ float dtLookMax;     
 };
 
@@ -219,7 +218,7 @@ struct SHDF
     /* 0x02 */ short oid;
     RGBA rgba;
     RGBA rgbaVolume;
-    uint grfzon;
+    GRFZON grfzon;
     ushort OidAltSat;
     uchar rp;
     uchar ctex;
@@ -230,11 +229,11 @@ struct SHDF
  */
 struct SHD : public SHDF
 {
-    TEX *atex; 
-    int cshdp; 
-    SHDP *ashdp; 
-    int cframe; 
-    SAA *psaa; 
+    TEX *atex;
+    int cshdp;
+    SHDP *ashdp;
+    int cframe;
+    SAA *psaa;
 };
 
 /**

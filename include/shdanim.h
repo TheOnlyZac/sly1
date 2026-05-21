@@ -10,8 +10,7 @@
 #include <glob.h>
 #include <shd.h>
 
-// Forward.
-
+// Forward declaration.
 struct RPL;
 
 /**
@@ -20,7 +19,7 @@ struct RPL;
  */
 struct POSAD
 {
-    float x, y, z; 
+    float x, y, z;
 };
 
 /**
@@ -31,7 +30,6 @@ struct UVF
     float u, v;
 };
 
-
 /**
  * @brief UV coordinates (Homogeneous/Q-depth).
  */
@@ -40,20 +38,19 @@ struct UVQ
     float u, v, q, d;
 };
 
-
 /**
  * @brief Loop shader animation.
  */
 struct LOOP : public SAA
 {
-    /* 0x2C */ float dtLoopMin;         // 0x2C
-    /* 0x30 */ float dtLoopMax;         // 0x30
-    /* 0x34 */ float dtPauseMin;        // 0x34
-    /* 0x38 */ float dtPauseMax;        // 0x38
-    /* 0x3C */ float dframe;            // 0x3C
-    /* 0x40 */ float iframe;            // 0x40
-    /* 0x44 */ float dtPause;           // 0x44
-    /* 0x48 */ float dtPauseRemaining;  // 0x48
+    /* 0x2c */ float dtLoopMin;
+    /* 0x30 */ float dtLoopMax;
+    /* 0x34 */ float dtPauseMin;
+    /* 0x38 */ float dtPauseMax;
+    /* 0x3c */ float dframe;
+    /* 0x40 */ float iframe;
+    /* 0x44 */ float dtPause;
+    /* 0x48 */ float dtPauseRemaining;
 };
 
 /**
@@ -61,14 +58,14 @@ struct LOOP : public SAA
  */
 struct PINGPONG : public SAA
 {
-    /* 0x2C */ float dtLoopMin;         
-    /* 0x30 */ float dtLoopMax;        
-    /* 0x34 */ float dtPauseMin;        
-    /* 0x38 */ float dtPauseMax;        
-    /* 0x3C */ float dframe;            
-    /* 0x40 */ float iframe;           
-    /* 0x44 */ float dtPause;          
-    /* 0x48 */ float dtPauseRemaining;  
+    /* 0x2c */ float dtLoopMin;
+    /* 0x30 */ float dtLoopMax;
+    /* 0x34 */ float dtPauseMin;
+    /* 0x38 */ float dtPauseMax;
+    /* 0x3c */ float dframe;
+    /* 0x40 */ float iframe;
+    /* 0x44 */ float dtPause;
+    /* 0x48 */ float dtPauseRemaining;
 };
 
 /**
@@ -76,9 +73,9 @@ struct PINGPONG : public SAA
  */
 struct SHUFFLE : public SAA
 {
-    /* 0x2C */ float dtPauseMin; 
-    /* 0x30 */ float dtPauseMax; 
-    /* 0x34 */ float dtPause;   
+    /* 0x2c */ float dtPauseMin;
+    /* 0x30 */ float dtPauseMax;
+    /* 0x34 */ float dtPause;
 };
 
 /**
@@ -86,9 +83,9 @@ struct SHUFFLE : public SAA
  */
 struct HOLOGRAM : public SAA
 {
-    /* 0x2C */ float startAngle;        
-    /* 0x30 */ float angleStep;         
-    /* 0x34 */ float angleStepPerFrame; 
+    /* 0x2c */ float startAngle;
+    /* 0x30 */ float angleStep;
+    /* 0x34 */ float angleStepPerFrame;
 };
 
 /**
@@ -96,37 +93,37 @@ struct HOLOGRAM : public SAA
  */
 struct SCROLLER : public SAA
 {
-    /* 0x2C */ float duSpeed; 
-    /* 0x30 */ float dvSpeed; 
-    /* 0x34 */ float du;     
-    /* 0x38 */ float dv;      
-    /* 0x3C */ float su;      
-    /* 0x40 */ float sv;      
+    /* 0x2c */ float duSpeed;
+    /* 0x30 */ float dvSpeed;
+    /* 0x34 */ float du;
+    /* 0x38 */ float dv;
+    /* 0x3c */ float su;
+    /* 0x40 */ float sv;
 };
 
 /**
  * @brief Circular shader animation.
  */
- struct CIRCLER : public SAA
+struct CIRCLER : public SAA
 {
-    /* 0x2C */ float radsSpeed; 
-    /* 0x30 */ float radius;    
-    /* 0x34 */ float duCenter;  
-    /* 0x38 */ float dvCenter; 
+    /* 0x2c */ float radsSpeed;
+    /* 0x30 */ float radius;
+    /* 0x34 */ float duCenter;
+    /* 0x38 */ float dvCenter;
 };
 
 /**
  * @brief Looker shader animation.
  */
- struct LOOKER : public SAA
+struct LOOKER : public SAA
 {
-    /* 0x2C */ float uCenter;     
-    /* 0x30 */ float vCenter;     
-    /* 0x34 */ float duMin;       
-    /* 0x38 */ float duMax;       
-    /* 0x3C */ float dvMin;       
-    /* 0x40 */ float dvMax;       
-    // 0x44 - 0x4C (Likely runtime state like current look target)
+    /* 0x2c */ float uCenter;
+    /* 0x30 */ float vCenter;
+    /* 0x34 */ float duMin;
+    /* 0x38 */ float duMax;
+    /* 0x3C */ float dvMin;
+    /* 0x40 */ float dvMax;
+    // 0x44 - 0x4c (Likely runtime state like current look target)
 };
 
 int CbFromSaak(SAAK saak);

@@ -259,14 +259,14 @@ struct SUBGLOB;
  */
 struct VTSAA
 {
-    void (*pfnInit)(SAA*, SAAF*);     
-    void (*pfnPostLoad)(SAA*);         
-    void (*pfnUpdate)(SAA*, float);   
-    float (*pfnUComplete)(SAA*);            
-    void (*pfnNotifyRender)(SAA*, ALO*, RPL*);                
-    SAI* (*pfnPsaiFromSaaShd)(SAA*, SHD*); 
-    void (*pfnSetSgvr)(SAA*, SGVR*, GLOBSET*, GLOB*, SUBGLOB*);              
-    void* pfnUnk1C;                                 
+    void (*pfnInit)(SAA*, SAAF*);
+    void (*pfnPostLoad)(SAA*);
+    void (*pfnUpdate)(SAA*, float);
+    float (*pfnUComplete)(SAA*);
+    void (*pfnNotifyRender)(SAA*, ALO*, RPL*);
+    SAI* (*pfnPsaiFromSaaShd)(SAA*, SHD*);
+    void (*pfnSetSgvr)(SAA*, SGVR*, GLOBSET*, GLOB*, SUBGLOB*);
+    void* pfnUnk1C;
 };
 
 /**
