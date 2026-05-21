@@ -7,7 +7,6 @@
 #define CM_H
 
 #include "common.h"
-#include <vec.h>
 #include <lo.h>
 #include <util.h>
 #include <binoc.h> // only for RGBA
