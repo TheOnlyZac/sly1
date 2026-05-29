@@ -55,7 +55,6 @@ struct BRP
  */
 struct BRK : public SO
 {
-    // ...
     /* 0x550 */ int cbrp;
     /* 0x554 */ BRP abrp[16];
     // ...
@@ -67,9 +66,14 @@ struct BRK : public SO
  * @brief BREAKABLE_PIECE
  * @brief Shards of breakables that appear when it's broken.
  */
-struct BRKP
+struct BRKP : public SO
 {
-    // ...
+    /* 0x550 */ BRKPS brkps;
+    /* 0x554 */ float tBrkps;
+    /* 0x558 */ float dtMaxLifetime;
+    /* 0x55c */ float dtFade;
+    /* 0x560 */ BRK *pbrk;
+    /* 0x564 */ int fIgnoreBrkp;
 };
 
 /**
@@ -78,6 +82,8 @@ struct BRKP
  */
 struct BREAK : BRK
 {
+    // ...
+    /* 0x698 */ int ccoin;
     // ...
 };
 
@@ -96,7 +102,7 @@ struct ZAPBREAK
  * @class FRAGILE.
  * @brief Unknown.
  */
-struct FRAGILE
+struct FRAGILE : public BRK
 {
     // ...
 };
@@ -106,8 +112,28 @@ struct FRAGILE
  *
  * @todo Should this be somewhere else?
  */
+struct XPD
+{
+    /* 0x00 */ SO *psoRoot;
+    /* 0x04 */ SO *psoLeaf;
+    /* 0x08 */ MTLK mtlk;
+    /* 0x0c */ STRUCT_PADDING(1);
+    /* 0x10 */ VECTOR pos;
+    /* 0x1c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x20 */ VECTOR posLeaf;
+    /* 0x2c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x30 */ VECTOR v;
+    /* 0x3c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+};
+
+/**
+ * @brief Unknown.
+ *
+ * @todo Should this be somewhere else?
+ */
 struct XP
 {
+    /* 0x00 */ XPD axpd[2];
     // ...
 };
 

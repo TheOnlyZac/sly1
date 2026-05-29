@@ -363,7 +363,7 @@ segments:
     - [0x162f70, data, P2/emitter]
     - [0x163180, data, P2/fly]
     - [0x163250, data, P2/font]
-    #- [0x, data, P2/frm]
+    - [0x163280, data, P2/frm]
     #- [0x, data, P2/freeze]
     #- [0x, data, P2/frzg]
     - [0x1633c0, data, P2/game]
@@ -417,25 +417,19 @@ segments:
     - [0x1754b8, data, P2/sensor]
     - [0x1754f0, data, P2/shadow]
     - [0x1754f8, data, P2/shd]
-    #- [0x, data, P2/shdanim]
-    #- [0x, data, P2/sky]
-    #- [0x, data, P2/sm]
-    #- [0x, data, P2/smartguard]
-    #- [0x, data, P2/so]
-    #- [0x, data, P2/solve]
-    #- [0x, data, P2/sort]
+    - [0x175568, data, P2/shdanim]
+    - [0x175620, data, P2/smartguard]
+    - [0x1756c0, data, P2/so]
     - [0x175720, data, P2/sound]
     - [0x1758f0, data, P2/sprbuf]
     - [0x175998, data, P2/sqtr]
-    #- [0x, data, P2/squish]
-    #- [0x, data, P2/step]
-    #- [0x, data, P2/stepact]
-    #- [0x, data, P2/stepcane]
-    #- [0x, data, P2/stepguard]
-    #- [0x, data, P2/stephang]
-    #- [0x, data, P2/stephide]
-    #- [0x, data, P2/steppipe]
-    #- [0x, data, P2/steppower]
+    - [0x1759b0, data, P2/squish]
+    - [0x175ad0, data, P2/step]
+    - [0x175b90, data, P2/stepcane]
+    - [0x175c20, data, P2/stepguard]
+    - [0x175d40, data, P2/stephang]
+    - [0x175e00, data, P2/stephide]
+    #- [0x175f34, data, P2/steppower] # TODO: Alignment issue.
     - [0x175f90, data, P2/steprail]
     - [0x175fa0, data, P2/steprun]
     - [0x175fc0, data, P2/stepzap]
@@ -499,11 +493,17 @@ segments:
     # - P2/proxy
     # - P2/rail
     # - P2/shape
+    # - P2/sky
     # - P2/slotheap
+    # - P2/sm
+    # - P2/solve
+    # - P2/sort
     # - P2/speaker
     # - P2/spire
     # - P2/splicemap
     # - P2/spliceobj
+    # - P2/stepact
+    # - P2/steppipe
     # - P2/stepside
     # - P2/stream
     # - P2/vec

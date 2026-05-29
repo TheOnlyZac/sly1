@@ -14,8 +14,16 @@ g_chzThePasswordIs = 0x24a848; // size:0x14
 //g_prng = 0x27696c; // size:0x4
 
 // start of .vutext section
-D_00211E10 = 0x211E10; // size:0x4
+D_00211E10     = 0x211E10; // size:0x4
+VU1_GlobMpg    = 0x212160; // size:0x3af0
+VU1_GlobMpgEnd = 0x215c50; // size:0x10
+VU1_BlipMpg    = 0x215c60; // size:0x16E8
+VU1_BlipMpgEnd = 0x217348; // size:0x17
 
+// TODO: Where do these belong?
+g_aqwGifsClearAll = 0x2bdc20; // size:0x2C0
+g_aqwGifsClearZB  = 0x2bdee0; // size:0x2C0
+g_phasemem = 0x5e4700; // size:0x344C00
 
 D_00270458 = 0x270458; // size:0x4
 SMP_00274f78 = 0x274f78; // size:0xC
@@ -2035,12 +2043,12 @@ ClearPendingFrame__FP3FRM = 0x15EFE8; // type:func
 FlushFrames__Fi = 0x15F210; // type:func
 BlendPrevFrame__Fv = 0x15F320; // type:func
 
+g_gifs      = 0x262280; // size:0x28
+g_vifs      = 0x2622a8; // size:0xc
 g_cframe    = 0x2622cc; // size:0x4
+g_psliCur   = 0x2622d4; // size:0x4
+g_pfrmOpen  = 0x2622d8; // size:0x4
 g_pvVu1Code = 0x26230c; // size:0x4
-
-// TODO: Should these be elsewhere?
-g_psliCur = 0x2622D4; // size:0x4
-g_aqwGifsBackgroundUpload = 0x274538; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
@@ -3249,6 +3257,15 @@ DrawSw__FP2SWP2CM                 = 0x19DC98; // type:func
 FillScreenRect__FiiiiffffP4GIFS   = 0x19DDA0; // type:func
 StartupRender__Fv                 = 0x19DF48; // type:func
 
+// TODO: Does this belong here?
+g_iqwBase = 0x262474; // size:0xc
+
+g_vecScreenMultiply = 0x26abf0; // size:0x10
+g_vecScreenAdd      = 0x26ac00; // size:0x10
+g_prplCur           = 0x26ac10; // size:0x10
+g_qwGifClipFan      = 0x26ac20; // size:0x10
+s_arplSetup         = 0x26ac30; // size:0x900
+
 s_fFBCleared     = 0x604780; // size:0x4
 s_fZBCleared     = 0x604784; // size:0x4
 s_fCameraGlobals = 0x604788; // size:0x4
@@ -3741,7 +3758,21 @@ SetSaiDuDv__FP3SAIff                           = 0x1B4750; // type:func
 PropagateSais__Fv                              = 0x1B47C0; // type:func
 UpdateShaders__Ff                              = 0x1B4878; // type:func
 
-g_grfzonShaders = 0x274518; // size:0x4
+g_cshd                    = 0x2744f8; // size:0x4
+g_ashd                    = 0x2744fc; // size:0x4
+g_cbmp                    = 0x274500; // size:0x4
+g_abmp                    = 0x274504; // size:0x4
+g_cclut                   = 0x274508; // size:0x4
+g_aclut                   = 0x27450c; // size:0x4
+g_cbmpUpload              = 0x274510; // size:0x4
+g_cclutUpload             = 0x274514; // size:0x4
+g_grfzonShaders           = 0x274518; // size:0x4
+g_psaiUpdate              = 0x27451c; // size:0x4
+g_aqwVifsWorldMapUpload   = 0x274520; // size:0x4
+g_aqwGifsBackgroundUpload = 0x274538; // size:0x4
+g_cpsaa                   = 0x27453c; // size:0x4
+g_apsaa                   = 0x274540; // size:0x4
+g_psaiUpdateTail          = 0x274544; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
