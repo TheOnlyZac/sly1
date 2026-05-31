@@ -669,7 +669,10 @@ void SetAloInteractBomb(ALO *palo, GRFIC grfic)
     *(uchar *)((char *)palo + 0x2B3) = grfic;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloInteractBomb__FP3ALOPi);
+void GetAloInteractBomb(ALO *palo, GRFIC *pgrfic)
+{
+    *pgrfic = *(uchar *)((char *)palo + 0x2B3);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloInteractShock__FP3ALOi);
 
