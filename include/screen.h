@@ -245,7 +245,7 @@ void SetBlotAchzDraw(BLOT *pblot, char *achzDraw);
 
 void FUN_001aa5a0(undefined1 *param_1);
 
-void SetBlotFontScale(float rFontScale, BLOT *pblot);
+void SetBlotFontScale(BLOT *pblot, float rFontScale);
 
 void DrawBlot(BLOT *pblot);
 

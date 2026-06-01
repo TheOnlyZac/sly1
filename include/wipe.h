@@ -18,6 +18,7 @@
  */
 enum WIPEK
 {
+    WIPEK_Nil = -1,
     WIPEK_Fade = 0,
     WIPEK_Keyhole = 1,
     WIPEK_WorldMap = 2,
@@ -43,7 +44,7 @@ enum WIPES
  */
 struct WIPE
 {
-    undefined4 unk_0x0;
+    undefined4 unk_0x0; // TODO: vtable
     WIPES wipes;
     float tWipes;
     float uBlack;

@@ -3088,6 +3088,36 @@ Draw__5CProg = 0x193318; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/prompt.c
+////////////////////////////////////////////////////////////////
+AchzFromRespk__F5RESPK                          = 0x193598; // type:func
+FUN_001935b0                                    = 0x1935b0; // type:func
+FUN_00193660__Fv                                = 0x193660; // type:func
+SetPromptPrk__FP6PROMPT3PRK                     = 0x1936a0; // type:func
+PostPromptLoad__FP6PROMPT                       = 0x193e58; // type:func
+FUN_00193ee8                                    = 0x193ee8; // type:func
+FUN_00193f88__Fv                                = 0x193f88; // type:func
+FUN_00193fb8                                    = 0x193fb8; // type:func
+OnPromptActive__FP6PROMPTi                      = 0x1940e8; // type:func
+FUN_00194278                                    = 0x194278; // type:func
+FUN_00194398__Fv                                = 0x194398; // type:func
+UpdatePromptActive__FP6PROMPTP3JOY              = 0x1943e8; // type:func
+SetPrompt__FP6PROMPT3PRP3PRK                    = 0x194d30; // type:func
+SetPromptBlots__FP6PROMPT5BLOTS                 = 0x194e60; // type:func
+FUN_00194f00                                    = 0x194f00; // type:func
+FUN_00194f38                                    = 0x194f38; // type:func
+DrawPrompt__FP6PROMPT                           = 0x194f80; // type:func
+FUN_00195928                                    = 0x195928; // type:func
+ExecutePrompt__FP6PROMPT                        = 0x195958; // type:func
+CancelPrompt__FP6PROMPT                         = 0x1961c0; // type:func
+prompt__static_initialization_and_destruction_0 = 0x196330; // type:func
+junk_001963A8                                   = 0x1963A8; // type:func
+_GLOBAL_$I$AchzFromRespk__F5RESPK               = 0x1963b8; // type:func
+
+s_mprespkachz = 0x26a068;
+
+
+////////////////////////////////////////////////////////////////
 // P2/proxy.c
 ////////////////////////////////////////////////////////////////
 InitProxy__FP5PROXY                             = 0x1963D8; // type:func
@@ -3536,7 +3566,7 @@ PostBlotLoad__FP4BLOT = 0x1AA268; // type:func
 UpdateBlot__FP4BLOT = 0x1AA298; // type:func
 SetBlotAchzDraw__FP4BLOTPc = 0x1AA4F0; // type:func
 SetBlotRgba__FP4BLOTUi = 0x1AA5A0; // type:func
-SetBlotFontScale__FfP4BLOT = 0x1AA788; // type:func
+SetBlotFontScale__FP4BLOTf = 0x1AA788; // type:func
 DrawBlot__FP4BLOT = 0x1AA790; // type:func
 junk_001AA890 = 0x1AA890; // type:func
 DtAppearBlot__FP4BLOT = 0x1AA898; // type:func
@@ -3636,6 +3666,7 @@ g_unkblot8 = 0x26e4e0; // size:0x280
 g_unkblot9 = 0x26e760; // size:0x280
 g_note = 0x26e9f8; // size:0x280
 g_unkblot11 = 0x26eed0; // size:0x268
+g_unkblot12 = 0x26ec70;
 g_totals = 0x26f138; // size:0x18
 
 // Maybe doesn't belong here?
