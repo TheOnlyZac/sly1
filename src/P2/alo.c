@@ -664,9 +664,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloInteractCaneSmash__FP3ALOi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloInteractCaneSmash__FP3ALOPi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloInteractBomb__FP3ALOi);
+void SetAloInteractBomb(ALO *palo, GRFIC grfic)
+{
+    STRUCT_OFFSET(palo, 0x2B3, uchar) = grfic;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloInteractBomb__FP3ALOPi);
+void GetAloInteractBomb(ALO *palo, GRFIC *pgrfic)
+{
+    *pgrfic = STRUCT_OFFSET(palo, 0x2B3, uchar);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloInteractShock__FP3ALOi);
 
