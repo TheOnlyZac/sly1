@@ -1,5 +1,6 @@
 #include <break.h>
 #include <chkpnt.h>
+#include <po.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", InitBrk__FP3BRK);
 
@@ -110,25 +111,85 @@ SFX *PsfxEnsureBrk(BRK *pbrk, ENSK ensk)
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", FCheckBrkTouchObject__FP3BRKP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", UpdateBrkp__FP4BRKPf);
+void UpdateBrkp(BRKP *pbrkp, float dt)
+{
+    UpdateSo(pbrkp, dt);
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", HandleBrkpMessage__FP4BRKP5MSGIDPv);
+    // TODO: Couldn't get the compiler to emit matching code without nesting the if's. Try to fix later?
+    BRKPS brkps = STRUCT_OFFSET(pbrkp, 0x550, BRKPS); // pbrkp->brkps
+    if (brkps != BRKPS_Idle)
+    {
+        if (brkps == BRKPS_Pending)
+        {
+            // pbrkp->cframeStatic, pbrkp->dtMaxLifetime, pbrkp->tBrkps
+            if(STRUCT_OFFSET(pbrkp, 0x228, int) > 1 || STRUCT_OFFSET(pbrkp, 0x558, float) < g_clock.t - STRUCT_OFFSET(pbrkp, 0x554, float))
+                brkps = BRKPS_Fading;
+        }
+    }
+
+    SetBrkpBrkps(pbrkp, brkps);
+}
+
+void HandleBrkpMessage(BRKP *pbrkp, MSGID msgid, void *pv)
+{
+    HandleAloMessage((ALO *)pbrkp, msgid, pv);
+
+    BRKP **apbrkp = (BRKP **)pv;
+    if (msgid == MSGID_break_piece && apbrkp[1] == pbrkp)
+    {
+        SetBrkpBrkps(pbrkp, BRKPS_Pending);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", FIgnoreBrkpIntersection__FP4BRKPP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", SetBrkpBrkps__FP4BRKP5BRKPS);
+void SetBrkpBrkps(BRKP *pbrkp, BRKPS brkps)
+{
+    if (brkps == STRUCT_OFFSET(pbrkp, 0x550, BRKPS)) // pbrkp->brkps
+    {
+        return;
+    }
+
+    STRUCT_OFFSET(pbrkp, 0x550, BRKPS) = brkps; // pbrkp->brkps
+    STRUCT_OFFSET(pbrkp, 0x554, float) = g_clock.t; // pbrkp->tBrkps
+
+    if (brkps == 2)
+    {
+        FadeAloOut((ALO *)pbrkp, STRUCT_OFFSET(pbrkp, 0x55c, float));
+    }
+}
 
 void InitBreak(BREAK *pbreak)
 {
     InitBrk(pbreak);
-    STRUCT_OFFSET(pbreak, 0x63c, int) = 5;
-    STRUCT_OFFSET(pbreak, 0x698, int) = -1;
+    STRUCT_OFFSET(pbreak, 0x63c, int) = 5; // pbreak->grfbrk
+    STRUCT_OFFSET(pbreak, 0x698, int) = -1; // pbreak->ccoin
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", InitFragile__FP7FRAGILE);
+void InitFragile(FRAGILE *pfragile)
+{
+    InitBrk(pfragile);
+    STRUCT_OFFSET(pfragile, 0x63c, int) = 1; // pfragile->grfbrk
+    STRUCT_OFFSET(pfragile, 0x6c0, float) = 1.0f;
+    STRUCT_OFFSET(pfragile, 0x6c4, int) = -1;
+    STRUCT_OFFSET(pfragile, 0x6c8, int) = -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", AdjustFragileNewXp__FP7FRAGILEP2XPi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", AdjustZapbreakNewXp__FP8ZAPBREAKP2XPi);
+void AdjustZapbreakNewXp(ZAPBREAK *pzapbreak, XP *pxp, int ixpd)
+{
+    AdjustFragileNewXp((FRAGILE *)pzapbreak, pxp, ixpd);
+    if (STRUCT_OFFSET(pzapbreak, 0x680, int))
+    {
+        return;
+    }
+
+    PO *ppoBase = (PO *)pxp->axpd[1 - ixpd].psoRoot;
+    if(FIsBasicDerivedFrom(ppoBase, CID_PO) && FCheckBrkTouchObject((BRK *)pzapbreak, ppoBase))
+    {
+        STRUCT_OFFSET(pzapbreak, 0x6d4, PO *) = ppoBase; // pzapbreak->ppoZap
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", UpdateZapbreak__FP8ZAPBREAKf);

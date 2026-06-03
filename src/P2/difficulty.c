@@ -65,7 +65,7 @@ void OnDifficultyWorldPostLoad(DIFFICULTY *pdifficulty)
 	int csuckCharms;
 
 	// Case: The transition is a quit-game reload
-	if ((g_transition.grftrans & 8) == 0)
+	if ((g_transition.m_grftrans & 8) == 0)
 	{
 		const float newSuck = GLimitLm((LM*)&pdifficulty->pDifficultyLevel->unk_lm_0x8, g_plsCur->uSuck);
 		ChangeSuck(newSuck, pdifficulty);

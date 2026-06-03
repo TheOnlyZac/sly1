@@ -23,9 +23,8 @@ struct XP;
  */
 struct JMT : public PNT
 {
-    undefined4 unk1;
-    DLE dleJmt;
-    float sRadius;
+    /* 0x50 */ DLE dleJmt;
+    /* 0x58 */ float sRadius;
     /* 0x5c */ OID oidSetIgnoreJt;
     /* 0x60 */ SO *psoSetIgnoreJt;
     // ...

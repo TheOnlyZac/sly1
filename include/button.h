@@ -13,6 +13,7 @@
 
 // Forward.
 struct ASEG;
+struct DIALOG;
 
 /**
  * @brief Unknown.
@@ -56,11 +57,11 @@ enum BUTTONS
  */
 struct BTN
 {
-    int unknown;
-    ALO *paloOwner;
-    ASH aash[2];
+    /* 0x00 */ int unknown; // TODO: VTBTN
+    /* 0x04 */ ALO *paloOwner;
+    /* 0x08 */ ASH aash[2];
     float svtAnimation;
-    /* 0x11C */ int fCheckpointed;
+    /* 0x11c */ int fCheckpointed;
     /* 0x120 */ int ichkPushed;
     float tButtons;
     float dtRepush;
@@ -70,7 +71,7 @@ struct BTN
     int fReapplyAseg;
     int fManualReset;
     /* 0x140 */ OID oidDialog;
-    // DIALOG *pdialog;
+    DIALOG *pdialog;
     int crsmg;
     RSMG arsmg[8];
 };
@@ -87,6 +88,8 @@ struct VOLBTN : public SO
     //...
     /* 0x5c0 */ BTN btn;
     // ...
+    /* 0x790 */ int fSendChangeEvents;
+    // ...
 };
 
 /**
@@ -95,8 +98,16 @@ struct VOLBTN : public SO
  */
 struct BUTTON : public SO
 {
-    // ...
+    /* 0x550 */ STRUCT_PADDING(1); // TODO: Probably BTNT.
     /* 0x554 */ BTN btn;
+    /* 0x720 */ int coidPush;
+    /* 0x724 */ OID aoidPush[8];
+    /* 0x744 */ int coidNoPush;
+    /* 0x748 */ OID aoidNoPush[8];
+    /* 0x768 */ int ccidPush;
+    /* 0x76c */ CID acidPush[8];
+    /* 0x78c */ int ccidNoPush;
+    /* 0x790 */ CID acidNoPush[8];
     // ...
 };
 

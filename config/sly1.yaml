@@ -176,7 +176,7 @@ segments:
     - [0x93068, c, P2/pnt]
     - [0x931a8, c, P2/po]
     - [0x94210, c, P2/prog]
-    - [0x94598, asm, P2/prompt]
+    - [0x94598, c, P2/prompt]
     - [0x973d8, c, P2/proxy]
     - [0x97938, c, P2/puffer]
     - [0x99980, c, P2/pzo]
@@ -283,25 +283,42 @@ segments:
     - [0x118380, rodata] #MARK: rodata
     # - [0x1225a0, .rodata, P2/cm] # todo causes errors
     - [0x141000, rodata] # todo
-    - [0x149FE0, .rodata, P2/splice/bif]
-    - [0x14A200, rodata] #todo: remove line and uncomment next for RefEvalAssert
-    # - [0x14A200, .rodata, P2/splice/eval]
-    - [0x14A2F0, .rodata, P2/splice/ref]
-    - [0x14A3A0, .rodata, P2/splice/serialize]
-    - [0x14A428, rodata] #, P2/989snd]
-    - [0x14A870, rodata]
-    #- [0x14AE20, .rodata, P2/cd]
+    - [0x149fe0, .rodata, P2/splice/bif]
+    - [0x14a200, rodata] #todo: remove line and uncomment next for RefEvalAssert
+    #- [0x14a200, .rodata, P2/splice/eval]
+    - [0x14a2f0, .rodata, P2/splice/ref]
+    - [0x14a3a0, .rodata, P2/splice/serialize]
+    - [0x14a428, rodata] #, P2/989snd]
+    - [0x14a870, rodata]
+    #- [0x14ae20, .rodata, P2/cd]
     - [0x14afe0, .rodata, P2/dart]
     - [0x14aff8, rodata] # P2/dartgun Alignment issue, this should be 0x14b000.
-    - [0x14B0E0, .rodata, P2/dmas]
-    - [0x14B0F8, rodata]
+    - [0x14b0e0, .rodata, P2/dmas]
+    - [0x14b0f8, rodata]
     - [0x14c1e8, .rodata, P2/main]
     - [0x14c258, rodata]
     - [0x14E220, .rodata, P2/shdanim]
     - [0x14E268, rodata]
+    #- [0x14e3b0, .rodata, P2/spire]
+    #- [0x14e3c0, .rodata, P2/spliceobj]
+    #- [0x14e560, .rodata, P2/squish] # TODO: Might be something else.
+    #- [0x14e588, .rodata, P2/step] # TODO: Verify.
+    #- [0x14e5a0, .rodata, P2/stepcane]
+    #- [0x14e650, .rodata, P2/stepguard]
+    #- [0x14eaa0, .rodata, P2/stephide]
+    #- [0x14eb20, .rodata, P2/steppower]
+    #- [0x14ebd0, .rodata, P2/stepside]
+    #- [0x14ebf0, .rodata, P2/stepzap]
+    #- [0x14ec90, .rodata, P2/stream]
+    #- [0x14ec94, .rodata, P2/suv]
+    #- [0x14ec98, .rodata, P2/sw]
+    #- [0x14eca8, .rodata, P2/tank] # Right after is a bunch of seemingly unused developer names?
+    #- [0x14f140, .rodata, P2/tatk]
+    #- [0x14f1c0, .rodata, P2/text]
+    #- [0x14f5f0, .rodata, P2/tn]
     - [0x14f600, .rodata, P2/ub]
     - [0x14f670, .rodata, P2/ui]
-    - [0x14f6d0, rodata]
+    - [0x14f6d0, rodata] #, P2/vb]
     #- [0x14f7d0, .rodata, P2/wm]
     #- [0x14f840, .rodata, P2/wr]
     #- [0x14f860, .rodata, P2/xform]
@@ -346,7 +363,7 @@ segments:
     - [0x162f70, data, P2/emitter]
     - [0x163180, data, P2/fly]
     - [0x163250, data, P2/font]
-    #- [0x, data, P2/frm]
+    - [0x163280, data, P2/frm]
     #- [0x, data, P2/freeze]
     #- [0x, data, P2/frzg]
     - [0x1633c0, data, P2/game]
@@ -400,25 +417,19 @@ segments:
     - [0x1754b8, data, P2/sensor]
     - [0x1754f0, data, P2/shadow]
     - [0x1754f8, data, P2/shd]
-    #- [0x, data, P2/shdanim]
-    #- [0x, data, P2/sky]
-    #- [0x, data, P2/sm]
-    #- [0x, data, P2/smartguard]
-    #- [0x, data, P2/so]
-    #- [0x, data, P2/solve]
-    #- [0x, data, P2/sort]
+    - [0x175568, data, P2/shdanim]
+    - [0x175620, data, P2/smartguard]
+    - [0x1756c0, data, P2/so]
     - [0x175720, data, P2/sound]
     - [0x1758f0, data, P2/sprbuf]
     - [0x175998, data, P2/sqtr]
-    #- [0x, data, P2/squish]
-    #- [0x, data, P2/step]
-    #- [0x, data, P2/stepact]
-    #- [0x, data, P2/stepcane]
-    #- [0x, data, P2/stepguard]
-    #- [0x, data, P2/stephang]
-    #- [0x, data, P2/stephide]
-    #- [0x, data, P2/steppipe]
-    #- [0x, data, P2/steppower]
+    - [0x1759b0, data, P2/squish]
+    - [0x175ad0, data, P2/step]
+    - [0x175b90, data, P2/stepcane]
+    - [0x175c20, data, P2/stepguard]
+    - [0x175d40, data, P2/stephang]
+    - [0x175e00, data, P2/stephide]
+    #- [0x175f34, data, P2/steppower] # TODO: Alignment issue.
     - [0x175f90, data, P2/steprail]
     - [0x175fa0, data, P2/steprun]
     - [0x175fc0, data, P2/stepzap]
@@ -482,10 +493,17 @@ segments:
     # - P2/proxy
     # - P2/rail
     # - P2/shape
+    # - P2/sky
     # - P2/slotheap
+    # - P2/sm
+    # - P2/solve
+    # - P2/sort
     # - P2/speaker
+    # - P2/spire
     # - P2/splicemap
     # - P2/spliceobj
+    # - P2/stepact
+    # - P2/steppipe
     # - P2/stepside
     # - P2/stream
     # - P2/vec

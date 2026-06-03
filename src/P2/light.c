@@ -19,7 +19,14 @@ void RemoveLightFromSw(LIGHT *plight)
     InvalidateLight(plight);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/light", AddLightToSw__FP5LIGHT);
+void AddLightToSw(LIGHT *plight)
+{
+    AppendDlEntry(&plight->psw->dlLight, plight);
+    if (plight->pvtlo->pfnUpdateLoXfWorld)
+    {
+        plight->pvtlo->pfnUpdateLoXfWorld(plight);
+    }
+}
 
 void OnLightAdd(LIGHT *plight)
 {
@@ -33,7 +40,29 @@ void OnLightRemove(LIGHT *plight)
     RemoveLightFromSw(plight);
 }
 
+/**
+ * @todo 98.75% match.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/light", CloneLight__FP5LIGHTT0);
+#ifdef SKIP_ASM
+void CloneLight(LIGHT *plight, LIGHT *plightBase)
+{
+    int fDynamic = FIsLoInWorld(plight) && (STRUCT_OFFSET(plight, 0x304, int) != STRUCT_OFFSET(plightBase, 0x304, int));
+    if (fDynamic)
+    {
+        RemoveLightFromSw(plight);
+    }
+
+    DLE dleLight = STRUCT_OFFSET(plightBase, 0x410, DLE);
+    CloneAlo(plight, plightBase);
+    STRUCT_OFFSET(plight, 0x410, DLE) = dleLight;
+
+    if (fDynamic)
+    {
+        AddLightToSw(plight);
+    }
+}
+#endif // SKIP_ASM
 
 void FitLinearFunction(float x0, float y0, float x1, float y1, float *pdu, float *pru)
 {
@@ -49,16 +78,10 @@ void FitLinearFunction(float x0, float y0, float x1, float y1, float *pdu, float
     *pdu = y0 - a * x0;
 }
 
-/**
- * @todo 88.80% match. The code is possibly in the wrong order.
- * https://decomp.me/scratch/c1tUS
- */
-INCLUDE_ASM("asm/nonmatchings/P2/light", FitRecipFunction__FffffPfT4);
-#ifdef SKIP_ASM
 void FitRecipFunction(float x0, float y0, float x1, float y1, float *pdu, float *pru)
 {
     float gEpsilon = 0.0001f;
-    if (!FFloatsNear(x0, x1, gEpsilon) && __builtin_fabsf(x0) < gEpsilon && __builtin_fabsf(x1) < gEpsilon)
+    if (FFloatsNear(x0, x1, gEpsilon) || __builtin_fabsf(x0) < gEpsilon || __builtin_fabsf(x1) < gEpsilon)
     {
         *pru = 0.0f;
         *pdu = y0;
@@ -74,7 +97,6 @@ void FitRecipFunction(float x0, float y0, float x1, float y1, float *pdu, float 
     *pru = r;
     *pdu = d;
 }
-#endif // SKIP_ASM
 
 void ConvertFallOff(LM *plm, float *pdu, float *pru)
 {

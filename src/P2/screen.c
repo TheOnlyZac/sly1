@@ -32,7 +32,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", SetBlotAchzDraw__FP4BLOTPc);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", SetBlotRgba__FP4BLOTUi);
 
-void SetBlotFontScale(float rFontScale, BLOT *pblot)
+void SetBlotFontScale(BLOT *pblot, float rFontScale)
 {
     pblot->rFontScale = rFontScale;
 }

@@ -76,7 +76,7 @@ public:
     OID m_oidWarp;     // Which checkpoint you spawn at when you start a level
     OID m_oidWarpContext;
 
-    GRFTRANS grftrans;       // Flags that affect level loading, one of them checks if you lost all lives when you die.
+    GRFTRANS m_grftrans;     // Flags that affect level loading, one of them checks if you lost all lives when you die.
     char m_achzWorldCur[64]; // File description contents.
 
     /**
@@ -90,7 +90,7 @@ public:
     void Set(char *pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS grftrans);
 
     /**
-     * @brief  Executes the conditions from CTransition::Set by setting some engine vaules to default and loading the level file.
+     * @brief Executes the conditions from CTransition::Set by setting some engine values to default and loading the level file.
      */
     void Execute();
 };

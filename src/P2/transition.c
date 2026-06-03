@@ -10,7 +10,7 @@
 CTransition::CTransition()
 {
     m_pchzWorld = NULL;
-    grftrans = FTRANS_None;
+    m_grftrans = FTRANS_None;
     m_oidWarp = OID_Nil;
     m_oidWarpContext = OID_Nil;
     memset(m_achzWorldCur, 0, 0x20);
@@ -24,7 +24,7 @@ void CTransition::Set(char *pchzWorld, OID oidWarp, OID oidWarpContext, GRFTRANS
         this->m_pchzWorld = pchzWorld;
         this->m_oidWarp = oidWarp;
         this->m_oidWarpContext = oidWarpContext;
-        this->grftrans = grftrans;
+        this->m_grftrans = grftrans;
     }
 }
 

@@ -25,6 +25,7 @@ void ApplyPntProxy(PNT *ppnt, PROXY *pproxyApply)
 
 /**
  * @todo Rename function and figure out what does it actually do.
+ * @todo PNT most likely isn't the correct type.
  */
 void FUN_00192150(PNT *ppnt, CBinaryInputStream *pbis)
 {
@@ -34,6 +35,7 @@ void FUN_00192150(PNT *ppnt, CBinaryInputStream *pbis)
 
 /**
  * @todo Rename function and figure out what does it actually do.
+ * @todo PNT most likely isn't the correct type.
  */
 void FUN_00192190(PNT *ppnt)
 {

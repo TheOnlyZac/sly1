@@ -4,12 +4,12 @@
 /**
  * @todo Rename.
  */
-extern float DAT_0024d3b4;
+extern float DAT_0024d3b4; // FLT_MAX (3.40282346638529E38)
 
 void InitSpire(SPIRE *pspire)
 {
     InitLo(pspire);
-    STRUCT_OFFSET(pspire, 0x58, float) = DAT_0024d3b4;
+    pspire->unk1 = DAT_0024d3b4;
 }
 
 void OnSpireAdd(SPIRE *pspire)
@@ -26,8 +26,7 @@ void OnSpireRemove(SPIRE *pspire)
 
 void CloneSpire(SPIRE *pspire, SPIRE *pspireBase)
 {
-    // pspire->dleSpire
-    DLE dleSpire = STRUCT_OFFSET(pspire, 0x50, DLE); 
+    DLE dleSpire = pspire->dleSpire;
     CloneLo(pspire, pspireBase);
-    STRUCT_OFFSET(pspire, 0x50, DLE) = dleSpire;
+    pspire->dleSpire = dleSpire;
 }

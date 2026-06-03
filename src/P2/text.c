@@ -1,6 +1,5 @@
 #include <text.h>
 #include <memory.h>
-#include <stdarg.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/text", CchParsePchzInt__FPcPi);
 
@@ -28,7 +27,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/text", WriteTft__FP3TFTP5OSTRMPPcPci);
 
 INCLUDE_ASM("asm/nonmatchings/P2/text", CchOstrmPrintf__FP5OSTRMPcT1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/text", vprintf);
+extern "C" int vprintf(char *pchzFormat, va_list val)
+{
+    OSTRM stream(-1);
+    return CchOstrmPrintf(&stream, pchzFormat, val);
+}
 
 extern "C" int printf(char *pchzFormat, ...)
 {
@@ -39,7 +42,13 @@ extern "C" int printf(char *pchzFormat, ...)
     return ret;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/text", vsprintf);
+extern "C" int vsprintf(char *pchzDest, char *pchzFormat, va_list val)
+{
+    OSTRM ostrm(pchzDest, 0);
+    int len = CchOstrmPrintf(&ostrm, pchzFormat, val);
+    pchzDest[len] = '\0';
+    return len;
+}
 
 extern "C" int sprintf(char *pchzDest, char *pchzFormat, ...)
 {
@@ -50,11 +59,27 @@ extern "C" int sprintf(char *pchzDest, char *pchzFormat, ...)
     return ret;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/text", _vsnprintf);
+extern "C" int _vsnprintf(char *pchzDest, int cchDest, char *pchzFormat, va_list val)
+{
+    OSTRM ostrm(pchzDest, cchDest);
+    int len = CchOstrmPrintf(&ostrm, pchzFormat, val);
+
+    if (len >= cchDest)
+    {
+        pchzDest[cchDest - 1] = '\0';
+        len = -1;
+    }
+    else
+    {
+        pchzDest[len] = '\0';
+    }
+
+    return len;
+}
 
 JUNK_ADDIU(10);
 
-int _snprintf(char *pchzDest, int cchDest, char *pchzFormat, ...)
+extern "C" int _snprintf(char *pchzDest, int cchDest, char *pchzFormat, ...)
 {
     va_list arg;
     va_start(arg, pchzFormat);

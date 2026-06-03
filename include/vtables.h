@@ -66,7 +66,7 @@ struct VTLO : VT
      * @todo From prototype, not confirmed if in release
      */
     void (*pfnUpdateLo)();
-    void (*pfnUpdateLoXfWorld)();
+    void (*pfnUpdateLoXfWorld)(LO *);
     void (*pfnUpdateLoXfWorldHierarchy)();
     void (*pfnFreezeLo)();
     void (*pfnSetLoParent)();

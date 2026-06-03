@@ -7,7 +7,8 @@
 #include <dmas.h>
 
 /**
- * @brief Unknown. Constructs primitives for rendering? 
+ * @brief Unknown. Constructs primitives for rendering?
+ * @note "unsigned long" isn't the same as "ulong".
  */
 struct GIFS : public DMAS
 {
@@ -20,7 +21,7 @@ struct GIFS : public DMAS
     void AddPrimEnd();
     void EndPrim(int fEOP);
     void CheckReg(int fExpectPack, int regExpect);
-    void AddPrimBulk(int prim, int c, int creg, ulong regs, QW **paqwBulk);
+    void AddPrimBulk(int prim, int c, int creg, unsigned long regs, QW **paqwBulk);
     void AddPrimPack(int prim, int creg, unsigned long regs);
     void PackRGBA(uint rgba);
     void PackUV(int u, int v);

@@ -62,7 +62,7 @@ void SetFsp(FSP fsp)
 
     // Show note.
     SetBlotDtVisible((NOTE *)&g_note.unk278, (g_pjt && g_pjt == PpoCur()) ? 3.0f : 8.0f);
-    SetBlotFontScale(0.6f, (NOTE *)&g_note.unk278);
+    SetBlotFontScale((NOTE *)&g_note.unk278, 0.6f);
     ((NOTE *)&g_note.unk278)->pvtnote->pfnSetNoteAchzDraw((NOTE *)&g_note.unk278, s_mpfspachz[fsp]);
     ((NOTE *)&g_note.unk278)->pvtnote->pfnShowBlot((NOTE *)&g_note.unk278);
 

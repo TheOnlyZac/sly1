@@ -7,6 +7,7 @@
 #define TEXT_H
 
 #include "common.h"
+#include <stdarg.h>
 #include <stream.h>
 
 /**
@@ -75,14 +76,14 @@ char ChDigitFromG(long g, int expFirst, int exp);
 int CchAchFromDouble(char *achDest, int cchDest, TFT *ptft, long g);
 void WriteTftDouble(TFT *ptft, OSTRM *postrm, long g);
 void WriteTft(TFT *ptft, OSTRM *postrm, char **pval, ulong param_4, ulong param_5, undefined8 param_6, double param_7);
-int CchOstrmPrintf(OSTRM *postrm, char *pchzFormat, char *val);
+int CchOstrmPrintf(OSTRM *postrm, char *pchzFormat, va_list val);
 
 extern "C"
 {
     /**
      * @todo Document this function.
      */
-    int vprintf(char *pchzFormat, char *val);
+    int vprintf(char *pchzFormat, va_list val);
 
     /**
      * @brief Print formatted output to stdout.
@@ -97,7 +98,7 @@ extern "C"
     /**
      * @todo Document this function.
      */
-    int vsprintf(char *pchzDest, char *pchzFormat, char *val);
+    int vsprintf(char *pchzDest, char *pchzFormat, va_list val);
 
     /**
      * @brief Write formatted output to a string.

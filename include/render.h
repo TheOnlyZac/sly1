@@ -41,17 +41,18 @@ enum RP
 
 /**
  * @brief Render Primitive List (?)
- * @todo Implement the struct.
  */
 struct RPL
 {
     /* 0x00 */ void (*pfnDraw)(RPL *);
     /* 0x04 */ float z;
     /* 0x08 */ RP rp;
-    /* 0x0C */ int unk0C;
+    /* 0x0c */ STRUCT_PADDING(1);
     /* 0x10 */ VECTOR pos;
-    /* 0x1C */ char pad1C[92];
+    /* 0x1c */ int posTemp; // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x20 */ STRUCT_PADDING(22);
     /* 0x78 */ ALO *palo;
+    /* 0x7c */ STRUCT_PADDING(1);
 };
 
 void SubmitRpl(RPL *prpl);

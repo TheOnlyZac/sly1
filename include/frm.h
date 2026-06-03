@@ -56,7 +56,11 @@ void FlushFrames(int fFreeze);
 
 void BlendPrevFrame();
 
-extern uchar g_abRenderLoopStack[0x20000];
+extern GIFS g_gifs;
+extern VIFS g_vifs;
 extern int g_cframe;
+extern FRM *g_pfrmOpen;
+
+extern uchar g_abRenderLoopStack[0x20000]; // TODO: Move elsewhere?
 
 #endif // FRM_H

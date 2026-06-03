@@ -14,8 +14,16 @@ g_chzThePasswordIs = 0x24a848; // size:0x14
 //g_prng = 0x27696c; // size:0x4
 
 // start of .vutext section
-D_00211E10 = 0x211E10; // size:0x4
+D_00211E10     = 0x211E10; // size:0x4
+VU1_GlobMpg    = 0x212160; // size:0x3af0
+VU1_GlobMpgEnd = 0x215c50; // size:0x10
+VU1_BlipMpg    = 0x215c60; // size:0x16E8
+VU1_BlipMpgEnd = 0x217348; // size:0x17
 
+// TODO: Where do these belong?
+g_aqwGifsClearAll = 0x2bdc20; // size:0x2C0
+g_aqwGifsClearZB  = 0x2bdee0; // size:0x2C0
+g_phasemem = 0x5e4700; // size:0x344C00
 
 D_00270458 = 0x270458; // size:0x4
 SMP_00274f78 = 0x274f78; // size:0xC
@@ -2035,12 +2043,12 @@ ClearPendingFrame__FP3FRM = 0x15EFE8; // type:func
 FlushFrames__Fi = 0x15F210; // type:func
 BlendPrevFrame__Fv = 0x15F320; // type:func
 
+g_gifs      = 0x262280; // size:0x28
+g_vifs      = 0x2622a8; // size:0xc
 g_cframe    = 0x2622cc; // size:0x4
+g_psliCur   = 0x2622d4; // size:0x4
+g_pfrmOpen  = 0x2622d8; // size:0x4
 g_pvVu1Code = 0x26230c; // size:0x4
-
-// TODO: Should these be elsewhere?
-g_psliCur = 0x2622D4; // size:0x4
-g_aqwGifsBackgroundUpload = 0x274538; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
@@ -3080,6 +3088,36 @@ Draw__5CProg = 0x193318; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// P2/prompt.c
+////////////////////////////////////////////////////////////////
+AchzFromRespk__F5RESPK                          = 0x193598; // type:func
+FUN_001935b0                                    = 0x1935b0; // type:func
+FUN_00193660__Fv                                = 0x193660; // type:func
+SetPromptPrk__FP6PROMPT3PRK                     = 0x1936a0; // type:func
+PostPromptLoad__FP6PROMPT                       = 0x193e58; // type:func
+FUN_00193ee8                                    = 0x193ee8; // type:func
+FUN_00193f88__Fv                                = 0x193f88; // type:func
+FUN_00193fb8                                    = 0x193fb8; // type:func
+OnPromptActive__FP6PROMPTi                      = 0x1940e8; // type:func
+FUN_00194278                                    = 0x194278; // type:func
+FUN_00194398__Fv                                = 0x194398; // type:func
+UpdatePromptActive__FP6PROMPTP3JOY              = 0x1943e8; // type:func
+SetPrompt__FP6PROMPT3PRP3PRK                    = 0x194d30; // type:func
+SetPromptBlots__FP6PROMPT5BLOTS                 = 0x194e60; // type:func
+FUN_00194f00                                    = 0x194f00; // type:func
+FUN_00194f38                                    = 0x194f38; // type:func
+DrawPrompt__FP6PROMPT                           = 0x194f80; // type:func
+FUN_00195928                                    = 0x195928; // type:func
+ExecutePrompt__FP6PROMPT                        = 0x195958; // type:func
+CancelPrompt__FP6PROMPT                         = 0x1961c0; // type:func
+prompt__static_initialization_and_destruction_0 = 0x196330; // type:func
+junk_001963A8                                   = 0x1963A8; // type:func
+_GLOBAL_$I$AchzFromRespk__F5RESPK               = 0x1963b8; // type:func
+
+s_mprespkachz = 0x26a068;
+
+
+////////////////////////////////////////////////////////////////
 // P2/proxy.c
 ////////////////////////////////////////////////////////////////
 InitProxy__FP5PROXY                             = 0x1963D8; // type:func
@@ -3248,6 +3286,15 @@ SetupRpWorldMap__FP3RPL           = 0x19DBB0; // type:func
 DrawSw__FP2SWP2CM                 = 0x19DC98; // type:func
 FillScreenRect__FiiiiffffP4GIFS   = 0x19DDA0; // type:func
 StartupRender__Fv                 = 0x19DF48; // type:func
+
+// TODO: Does this belong here?
+g_iqwBase = 0x262474; // size:0xc
+
+g_vecScreenMultiply = 0x26abf0; // size:0x10
+g_vecScreenAdd      = 0x26ac00; // size:0x10
+g_prplCur           = 0x26ac10; // size:0x10
+g_qwGifClipFan      = 0x26ac20; // size:0x10
+s_arplSetup         = 0x26ac30; // size:0x900
 
 s_fFBCleared     = 0x604780; // size:0x4
 s_fZBCleared     = 0x604784; // size:0x4
@@ -3519,7 +3566,7 @@ PostBlotLoad__FP4BLOT = 0x1AA268; // type:func
 UpdateBlot__FP4BLOT = 0x1AA298; // type:func
 SetBlotAchzDraw__FP4BLOTPc = 0x1AA4F0; // type:func
 SetBlotRgba__FP4BLOTUi = 0x1AA5A0; // type:func
-SetBlotFontScale__FfP4BLOT = 0x1AA788; // type:func
+SetBlotFontScale__FP4BLOTf = 0x1AA788; // type:func
 DrawBlot__FP4BLOT = 0x1AA790; // type:func
 junk_001AA890 = 0x1AA890; // type:func
 DtAppearBlot__FP4BLOT = 0x1AA898; // type:func
@@ -3619,6 +3666,7 @@ g_unkblot8 = 0x26e4e0; // size:0x280
 g_unkblot9 = 0x26e760; // size:0x280
 g_note = 0x26e9f8; // size:0x280
 g_unkblot11 = 0x26eed0; // size:0x268
+g_unkblot12 = 0x26ec70;
 g_totals = 0x26f138; // size:0x18
 
 // Maybe doesn't belong here?
@@ -3741,7 +3789,21 @@ SetSaiDuDv__FP3SAIff                           = 0x1B4750; // type:func
 PropagateSais__Fv                              = 0x1B47C0; // type:func
 UpdateShaders__Ff                              = 0x1B4878; // type:func
 
-g_grfzonShaders = 0x274518; // size:0x4
+g_cshd                    = 0x2744f8; // size:0x4
+g_ashd                    = 0x2744fc; // size:0x4
+g_cbmp                    = 0x274500; // size:0x4
+g_abmp                    = 0x274504; // size:0x4
+g_cclut                   = 0x274508; // size:0x4
+g_aclut                   = 0x27450c; // size:0x4
+g_cbmpUpload              = 0x274510; // size:0x4
+g_cclutUpload             = 0x274514; // size:0x4
+g_grfzonShaders           = 0x274518; // size:0x4
+g_psaiUpdate              = 0x27451c; // size:0x4
+g_aqwVifsWorldMapUpload   = 0x274520; // size:0x4
+g_aqwGifsBackgroundUpload = 0x274538; // size:0x4
+g_cpsaa                   = 0x27453c; // size:0x4
+g_apsaa                   = 0x274540; // size:0x4
+g_psaiUpdateTail          = 0x274544; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
