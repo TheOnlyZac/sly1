@@ -9,19 +9,19 @@
 
 | C Type | Alias | Size | Hex | Align | MIPS Load/Store | Range |
 |--------|-------|------|-----|-------|-----------------|-------|
-| `char` / `s8` | `int8_t` | 1 byte | `0x01` | 1 | `lb` / `sb` | −128 … 127 |
-| `uchar` / `u8` | `uint8_t` | 1 byte | `0x01` | 1 | `lbu` / `sb` | 0 … 255 |
-| `short` / `s16` | `int16_t` | 2 bytes | `0x02` | 2 | `lh` / `sh` | −32,768 … 32,767 |
-| `ushort` / `u16` | `uint16_t` | 2 bytes | `0x02` | 2 | `lhu` / `sh` | 0 … 65,535 |
-| `int` / `s32` | `int32_t` | 4 bytes | `0x04` | 4 | `lw` / `sw` | −2,147,483,648 … 2,147,483,647 |
-| `uint` / `u32` | `uint32_t` | 4 bytes | `0x04` | 4 | `lw` / `sw` | 0 … 4,294,967,295 |
+| `char` / `s8` | `int8_t` | 1 byte | `0x01` | 1 | `lb` / `sb` | [−128, 127] |
+| `uchar` / `u8` | `uint8_t` | 1 byte | `0x01` | 1 | `lbu` / `sb` | [0, 255] |
+| `short` / `s16` | `int16_t` | 2 bytes | `0x02` | 2 | `lh` / `sh` | [−32,768, 32,767] |
+| `ushort` / `u16` | `uint16_t` | 2 bytes | `0x02` | 2 | `lhu` / `sh` | [0, 65,535] |
+| `int` / `s32` | `int32_t` | 4 bytes | `0x04` | 4 | `lw` / `sw` | [−2,147,483,648, 2,147,483,647] |
+| `uint` / `u32` | `uint32_t` | 4 bytes | `0x04` | 4 | `lw` / `sw` | [0, 4,294,967,295] |
 | `float` | `f32` | 4 bytes | `0x04` | 4 | `lwc1` / `swc1` | ±3.4e38 (~7 decimals) |
-| `long` / `s64` | `int64_t` | 8 bytes | `0x08` | 8 | `ld` / `sd` | −9.2e18 … 9.2e18 |
+| `long` / `s64` | `int64_t` | 8 bytes | `0x08` | 8 | `ld` / `sd` | ±9.2e18 |
 | `double` | `f64` | 8 bytes | `0x08` | 8 | `ldc1` / `sdc1` | ±1.8e308 (~15 decimals) |
 | `ptr` (PS2) | `void*` | 4 bytes | `0x04` | 4 | `lw` / `sw` | 32-bit address — like int |
 | `VECTOR` | 4× float | 16 bytes | `0x10` | 16 | `lq` / `sq` | x, y, z, w |
-| `MATRIX3` | 9× float | 36 bytes | `0x24` | 4 | 9× `lwc1`/`swc1` | 3×3 rotation |
-| `MATRIX4` | 16× float | 64 bytes | `0x40` | 16 | 4× `lq`/`sq` | 4×4 transform |
+| `MATRIX3` | 9× float | 36 bytes | `0x24` | 4 | 9× `lwc1`/`swc1` | 3×3 matrix |
+| `MATRIX4` | 16× float | 64 bytes | `0x40` | 16 | 4× `lq`/`sq` | 4×4 matrix |
 
 ### B · Hex → Decimal — common offsets & sizes
 
@@ -51,12 +51,12 @@
 
 | Unit | Value | Note |
 |------|-------|------|
-| 1 nibble | 4 bits | = 1 hex digit (0–F) |
-| 1 byte | 8 bits | = 2 hex digits e.g. `0xFF` = 255 |
-| 1 short | 16 bits | = 2 bytes = 4 hex digits |
-| 1 int/ptr PS2 | 32 bits | = 4 bytes = 8 hex digits |
-| 1 VECTOR | 128 bits | = 16 bytes = `0x10` |
-| 1 MATRIX4 | 512 bits | = 64 bytes = `0x40` |
+| nibble | 4 bits | = 1 hex digit (0–F) |
+| byte | 8 bits | = 2 hex digits e.g. `0xFF` = 255 |
+| short | 16 bits | = 2 bytes = 4 hex digits |
+| int/ptr PS2 | 32 bits | = 4 bytes = 8 hex digits |
+| VECTOR | 128 bits | = 16 bytes = `0x10` |
+| MATRIX4 | 512 bits | = 64 bytes = `0x40` |
 | `0xFF` | 255 | max u8 |
 | `0xFFFF` | 65,535 | max u16 |
 | `0xFFFFFFFF` | 4,294,967,295 | max u32 / invalid ptr |
@@ -157,7 +157,7 @@
 | `slt $d,$a,$b` | `$d = ($a < $b) ? 1 : 0` — often followed by `bnez` for an `if` |
 | `mult`/`div $a,$b` | Result in `HI:LO`. Retrieve with `mfhi`/`mflo` |
 
-> **⚠ DELAY SLOT** — The instruction AFTER a jump (`jal`, `jr`, `beqz`…) **ALWAYS executes before the jump** — this is MIPS hardware. It is indented in the ASM. In C it is invisible. Read the indented instruction FIRST, then the jump.
+> **⚠ DELAY SLOT** — The instruction AFTER a jump (`jal`, `jr`, `beqz`…) **always executes BEFORE the jump**. When reading assembly, treat the single instruction immediately following a jump as if it were before the jump.
 
 ---
 
@@ -396,7 +396,7 @@ Overview of the PS2 engine architecture. Each `.c` file corresponds to a system.
 
 | Type | Source file | Role & key functions |
 |------|-------------|---------------------|
-| `VECTOR` | `vec.h` / `P2/vec.c` | 4 floats (x,y,z,w). 16 bytes. Position, direction, color. Passed by `VECTOR*`. `SetVectorCylind`, `SetVectorSphere`, `SProjectVector`, `GetNormalVector` |
+| `VECTOR` | `vec.h` / `P2/vec.c` | 4 floats (x,y,z,w). 16 bytes. Position and/or direction. `w` is often unused/ignored Passed by `VECTOR*`. `SetVectorCylind`, `SetVectorSphere`, `SProjectVector`, `GetNormalVector` |
 | `MATRIX3` | `mat.h` / `P2/mat.c` | 3×3 rotation matrix (9 floats, 36 bytes). Object orientation. `MatMulMatTransMat`, `LoadIdentityMatrix3` |
 | `MATRIX4` | `mat.h` / `P2/mat.c` | 4×4 full transform matrix (16 floats). Position + rotation. `LoadIdentityMatrix4`, `mul` operator |
 | `LSG` | `P2/clip.c` | Line Segment — segment between two points. Output of clipping functions. `ClsgClipEdgeToObject` |
@@ -462,10 +462,10 @@ Overview of the PS2 engine architecture. Each `.c` file corresponds to a system.
 |------|-------------|---------------------|
 | `BRX` | `P2/brx.c` | Binary Resource — game asset file format. `PloNew`, `LoadSwObjectsFromBrx`. Container for all assets. |
 | `CLOCK` | `P2/clock.c` | Engine clock. `SetClockRate`, `MarkClockTick`, `ResetClock`. Each system has its CLOCK for delta time. |
-| `ALARM` | `P2/alarm.c` | Time alarm. `InitAlarm`, `UpdateAlarm`, `CloneAlarm`. Fires callbacks after a delay. |
+| `ALARM` | `P2/alarm.c` | Security alarm. `InitAlarm`, `UpdateAlarm`, `CloneAlarm`. Manages associated `LASEN`s (laser sensors) and `CAMSEN`s (camera sensors). |
 | `DMAS` | `P2/dmas.c` | DMA Stream — PS2 DMA manager. `StartupDma`, `AllocGlobal`, `AllocSw`. Memory transfers without CPU. |
 | `SLOTHEAP` | `P2/slotheap.c` | Slot Heap allocator. `PvAllocSlotheapImpl`, `CreateSlotheapSw`. Memory pool for frequent allocations. |
-| `PHASE` | `P2/phasemem.c` | Game phase (global state). `SetPhase`, `ClearPhase`. Controls game phase (loading, gameplay, cutscene…) |
+| `PHASE` | `P2/phasemem.c` | Game phase (global state). `SetPhase`, `ClearPhase`. Affects the control flow of certain game systems (loading, gameplay, cutscene…). |
 
 ### Splice — Scheme-like Scripting Engine (P2/splice/)
 
@@ -482,10 +482,14 @@ Overview of the PS2 engine architecture. Each `.c` file corresponds to a system.
 
 | Type | Source file | Role & key functions |
 |------|-------------|---------------------|
-| `STEPGUARD` | `P2/stepguard.c` | Guard enemy. `InitStepguard`, `CloneStepguard`, `BindStepguard`. Locomotion, detection, patrol. |
-| `UBG` | `P2/ub.c` | Ubiquitous Guard — basic omnipresent guard. `InitUbg`, `FDetectUbg`. Simplified detection AI. |
-| `SBG` | `P2/sb.c` | Super Boss Guard — level boss. `UpdateSbgGoal`. AI with SGS (State Group System). |
-| `SGS` | `P2/sb.c` | State Group System — AI state machine. `OnSbgEnteringSgs`. Each SGS = one AI state (patrol, alert…). |
+| `STEPGUARD` | `P2/stepguard.c` | Basic enemy that can move. `InitStepguard`, `CloneStepguard`, `BindStepguard`. Locomotion, detection, patrol. |
+| `SMARTGUARD` | `P2/smartguard.c` | Stepguard variant with flashlight/search logic and smarter pursuit. `InitSmartguard`, `CloneSmartguard` |
+| `GOMER` | `P2/gomer.c` | Stepguard variant with special encounter/boss-style detection and engagement rules. `InitGomer`, `PostGomerLoad`, `FDetectGomer` |
+| `UBG` | `P2/ub.c` | UW_BOSS_GUARD — Underwater boss AKA Raleigh. `InitUbg`, `FDetectUbg`. |
+| `MBG` | `P2/mb.c` | MS_BOSS_GOMER  — Mesa boss AKA Muggshot. |
+| `VBG` | `P2/vb.c` | V_BOSS_GUARD — Voodoo boss AKA Mz. Ruby. |
+| `SBG` | `P2/sb.c` | S_BOSS_GUARD — Snow boss AKA Panda King. `UpdateSbgGoal`. |
+| `SGS` | `P2/sb.c` | State Group System — AI state machine. `OnSbgEnteringSgs`. Each SGS = one AI state (patrol, alert, etc.). |
 | `SENSOR` | `P2/sensor.c` | Detection zone. `InitSensor`, `FCheckSensorObject`. Triggers events on contact. |
 | `CHKPNT` | `P2/chkpnt.c` | Checkpoint — save point. `SaveChkmgrCheckpoint`, `ReturnChkmgrToCheckpoint`. Manages Sly respawns. |
 | `DPRIZE` | `P2/coin.c` | Drop Prize — collectible (coins, keys). `InitDprize`, `CollectSprize`. |
@@ -511,7 +515,7 @@ decomp.me is a collaborative decompilation web tool. m2c auto-decompiles the ASM
 | Context | Type definitions used | Paste needed structs and typedefs from the `.h` files. Without this m2c can't type variables. |
 | Context — what | Structs, enums, prototypes of called functions | e.g. for EvaluateAcpb: paste `struct KVB`, `struct ACP`, `struct ACPB`, `typedef GRFEVAL`, `EvaluateAkvb` prototype |
 | Options > Debug | `-g3` (Macro expansions) | Shows source line numbers in generated ASM — helps match ASM/C correspondence |
-| m2c output | Starting point, not the solution | m2c generates valid but ugly C (`TEMP_0`, `TEMP_1`…). Rename, type, restructure until 100%. |
+| m2c output | Starting point, not the solution | m2c generates valid but ugly C (e.g. `TEMP_0`, `TEMP_1`). Rename, type, restructure until 100%. |
 | Score | 100% Green everywhere in the diff | CURRENT and TARGET columns must be identical. One red line = not good. |
 | Fork | Fork button on an existing scratch | If someone started a fn on decomp.me, fork their scratch rather than starting from zero. |
 | Permanent URL | Share the scratch link | Each scratch has a fixed URL — share on Discord to ask for help on a specific fn. |
@@ -528,4 +532,4 @@ decomp.me is a collaborative decompilation web tool. m2c auto-decompiles the ASM
 
 ---
 
-*[github.com/TheOnlyZac/sly1](https://github.com/TheOnlyZac/sly1) · Generated with Claude · Sly Cooper and the Thievius Raccoonus — PS2 Matching Decompilation · v6-EN*
+*[github.com/TheOnlyZac/sly1](https://github.com/TheOnlyZac/sly1) · Generated with Claude · Human-reviewed and edited for accuracy · Sly Cooper and the Thievius Raccoonus — PS2 Matching Decompilation · v6-EN*
