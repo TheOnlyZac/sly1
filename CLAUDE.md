@@ -22,18 +22,38 @@ unknown, use a clear descriptive name (offset-suffixed placeholders like
   This (`sha1sum -c config/checksum.sha1`) is the ground-truth "did I break
   anything" check — run it after touching shared headers.
 - Per-function diff (interactive TUI): `./scripts/diff.sh <MangledName> [P2/unit]`.
-- The build defines `-DSKIP_ASM`, so the real ELF is built from C; `INCLUDE_ASM`
-  expands to nothing under `SKIP_ASM` and pulls in the `.s` otherwise. Objdiff
-  dual-builds `obj/target/*.o` (asm) vs `obj/current/*.o` (your C, `-DSKIP_ASM`)
-  via `python3 configure.py --objects && ninja`.
-- Headless one-shot verify (the TUI needs a tty): build the dual objects, then
-  `objdump -dr obj/{target,current}/<unit>.o`, slice out the symbol, strip the
-  leading address/opcode-byte columns, and diff. Equal instructions **and**
-  relocations = a match (objdump prints all unresolved calls as `jal 0 <First>`,
-  so always compare the `R_MIPS_26` reloc rows too).
-- To inspect a struct's real compiled layout, compile an address-of/`sizeof`
-  probe with the EE compiler and read the immediates:
-  `wine tools/cc/bin/ee-gcc.exe -c -Iinclude -isystem include/sdk/ee -isystem include/gcc -x c++ -B$PWD/tools/cc/lib/gcc-lib/ee/2.95.2/ -O2 -G0 -ffast-math probe.cpp`.
+- **Headless per-symbol match check** (the TUI needs a tty; use this for
+  automated/iterative work): `./scripts/match.sh <unit> <MangledSymbol>`, e.g.
+  `./scripts/match.sh P2/water InitWater__FP5WATER`. It dual-builds and diffs the
+  symbol's instructions **and** relocations, printing `MATCH` or the diff.
+- **Inspect a struct's real compiled layout**:
+  `./scripts/structoff.sh <header> 'EXPR' ['EXPR' ...]`, e.g.
+  `./scripts/structoff.sh water.h 'sizeof(WATER)' '(int)(long)&((WATER*)0)->grfso'`.
+  Always probe with the EE compiler — host gcc gives wrong offsets (different
+  EABI alignment), and the `/* 0xNN */` header comments are not the compiled
+  offsets.
+- Mechanics behind those scripts: the build defines `-DSKIP_ASM`, so the real
+  ELF is built from C; `INCLUDE_ASM` expands to nothing under `SKIP_ASM` and
+  pulls in the `.s` otherwise. Objdiff dual-builds `obj/target/*.o` (asm) vs
+  `obj/current/*.o` (your C) via `python3 configure.py --objects && ninja`.
+  objdump prints every unresolved call as `jal 0 <First>`, so a real check must
+  compare the `R_MIPS_26` reloc rows too (`match.sh` does).
+
+## Suggested matching workflow
+
+1. Read the target `.s` in `asm/nonmatchings/<unit>/<Symbol>.s` and the function
+   prototype in the header. Note every struct offset it touches.
+2. Lay out the struct: probe sizes/offsets with `scripts/structoff.sh`, then add
+   fields to the (sub)struct via `STRUCT_PADDING` to land at absolute offsets —
+   **never grow the base structs** (see below).
+3. Write the C under the `INCLUDE_ASM` line, wrapped in `#ifdef SKIP_ASM` /
+   `#endif`, so the asm is still available as the diff target.
+4. Loop: edit → `scripts/match.sh <unit> <Symbol>` → adjust for GCC 2.95 quirks
+   (see tips below) until it prints `MATCH`.
+5. When matched, delete the `INCLUDE_ASM` line and the `#ifdef SKIP_ASM`/`#endif`
+   wrapper, leaving plain C.
+6. After the file is done (or after any shared-header edit), run
+   `./scripts/build.sh` and confirm `out/SCUS_971.98: OK`.
 
 ## Critical: do NOT grow engine base struct sizes
 
