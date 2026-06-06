@@ -20,11 +20,13 @@ struct RPL;
 typedef int GRFZON;
 
 /**
+ * @brief 128-bit VU scalar (the value lives in the x lane), 16-byte aligned.
+ * Passed by value in a single 128-bit GP register and stored with sq.
  * @todo Move elsewhere?
  */
 struct VU_FLOAT
 {
-    uint16_t data;
+    qword data;
 };
 
 /**
