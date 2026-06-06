@@ -52,7 +52,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/puffer", HandlePuffcMessage__FP5PUFFC5MSGIDPv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", UpdatePuffc__FP5PUFFCf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/puffer", FCanPuffcAttack__FP5PUFFC);
+int FCanPuffcAttack(PUFFC *ppuffc)
+{
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_00198860);
 

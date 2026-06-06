@@ -6,7 +6,10 @@
 
 INCLUDE_ASM("asm/nonmatchings/P2/difficulty", PdifficultyEnsureSw);
 
-INCLUDE_ASM("asm/nonmatchings/P2/difficulty", FUN_00151A58);
+DIFFICULTY *FUN_00151A58()
+{
+    return &g_difficulty;
+}
 
 void OnDifficultyGameLoad(DIFFICULTY *pdifficulty)
 {

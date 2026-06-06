@@ -1309,7 +1309,7 @@ FUN_001417f0 = 0x1417F0; // type:func
 TriggerChkpnt__FP6CHKPNT = 0x141870; // type:func
 FUN_001419A0 = 0x1419A0; // type:func
 FUN_001419C0 = 0x1419C0; // type:func
-FUN_001419E0 = 0x1419E0; // type:func
+FUN_001419E0__FPii = 0x1419E0; // type:func
 
 g_chkmgr = 0x261420; // size:0x430
 
@@ -1531,7 +1531,7 @@ s_asnipDprize = 0x2619A0; // size:0x3c
 InitCplcy = 0x149398; // type:func
 FActiveCplcy = 0x1493A0; // type:func
 SetCpmanCpmt = 0x1493B8; // type:func
-FUN_001493c0 = 0x1493C0; // type:func
+FUN_001493c0__Fv = 0x1493C0; // type:func
 PosCplookAnchor = 0x1493C8; // type:func
 FUN_00149458 = 0x149458; // type:func
 plays_binoc_sfx = 0x149508; // type:func
@@ -1545,8 +1545,8 @@ FUN_0014a7b8 = 0x14A7B8; // type:func
 InitCpalign = 0x14A888; // type:func
 FUN_0014a8d0 = 0x14A8D0; // type:func
 UpdateCpalign = 0x14A8F8; // type:func
-FUN_0014aa90 = 0x14AA90; // type:func
-FUN_0014aa98 = 0x14AA98; // type:func
+FUN_0014aa90__FPii = 0x14AA90; // type:func
+FUN_0014aa98__FPv = 0x14AA98; // type:func
 UpdateCpaseg = 0x14AAA0; // type:func
 
 
@@ -1726,7 +1726,7 @@ g_pdialogPlaying = 0x27051C;
 // P2/difficulty.c
 ////////////////////////////////////////////////////////////////
 PdifficultyEnsureSw = 0x1519E0; // type:func
-FUN_00151A58 = 0x151A58; // type:func
+FUN_00151A58__Fv = 0x151A58; // type:func
 OnDifficultyGameLoad__FP10DIFFICULTY = 0x151A68; // type:func
 OnDifficultyWorldPreLoad = 0x151A88; // type:func
 OnDifficultyWorldPostLoad = 0x151D28; // type:func
@@ -3069,7 +3069,7 @@ FUN_00192a70 = 0x192A70; // type:func
 UpdatePo__FP2POf = 0x192B58; // type:func
 UsePoCharm__FP2PO = 0x192C58; // type:func
 FUN_00192dd0 = 0x192DD0; // type:func
-FUN_001930B0 = 0x1930B0; // type:func
+FUN_001930B0__FP2PO = 0x1930B0; // type:func
 po__static_initialization_and_destruction_04 = 0x1930B8; // type:func
 _GLOBAL_$I$InitPo__FP2PO = 0x1931F0; // type:func
 
@@ -3548,7 +3548,7 @@ OnSbgEnteringSgs__FP3SBG3SGSP4ASEG = 0x1A99F8; // type:func
 UpdateSbg__FP3SBGf                 = 0x1A9A40; // type:func
 FUN_001a9a98                       = 0x1A9A98; // type:func
 FAbsorbSbgWkr__FP3SBGP3WKR         = 0x1A9AE8; // type:func
-FUN_001a9c58                       = 0x1A9C58; // type:func
+FUN_001a9c58__FP3SBGiii                       = 0x1A9C58; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -5084,7 +5084,7 @@ CloneWarp__FP4WARPT0                          = 0x1F3EE0; // type:func
 PostWarpLoad__FP4WARP                         = 0x1F3F80; // type:func
 TriggerWarp__FP4WARP                          = 0x1F4008; // type:func
 SetWarpRsmg__FP4WARPi3OIDN22                  = 0x1F42D0; // type:func
-FUN_001F4308                                  = 0x1F4308; // type:func
+FUN_001F4308__FP4WARPf                                  = 0x1F4308; // type:func
 TeleportSwPlayer__FP2SW3OIDT1                 = 0x1F4318; // type:func
 PexitDefault__Fv                              = 0x1F4378; // type:func
 TriggerDefaultExit__Fi5WIPEK                  = 0x1F4408; // type:func

@@ -205,7 +205,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateCamsen__FP6CAMSENf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", RenderCamsenSelf__FP6CAMSENP2CMP2RO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", FIgnoreCamsenIntersection__FP6CAMSENP2SO);
+int FIgnoreCamsenIntersection(CAMSEN *pcamsen, SO *psoOther)
+{
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", FFilterCamsen__FPvP2SO);
 

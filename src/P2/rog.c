@@ -204,7 +204,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", PostRostLoad__FP4ROST);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRost__FP4ROSTf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", RostsNextRost__FP4ROST);
+ROSTS RostsNextRost(ROST *prost)
+{
+    return STRUCT_OFFSET(prost, 0x550, ROSTS);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", SetRostRosts__FP4ROST5ROSTS);
 
