@@ -25,11 +25,12 @@ struct VECTOR4
 };
 
 /**
- * @todo Should be 16-byte aligned.
+ * @brief 128-bit VU quadword vector (x, y, z, w), 16-byte aligned. Passed by
+ * value in a single 128-bit GP register and loaded/stored with lq/sq.
  */
 struct VU_VECTOR
 {
-    ushort data;
+    qword data;
 };
 
 /**
