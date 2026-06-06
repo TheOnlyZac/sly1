@@ -129,7 +129,12 @@ void AddSoExternalAccelerations(SO *pso, XA *pxa, float dt)
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", LoadSoFromBrx__FP2SOP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoSphere__FP2SOf);
+void SetSoSphere(SO *pso, float sRadius)
+{
+    uint64_t grfso = STRUCT_OFFSET(pso, 0x538, uint64_t);
+    STRUCT_OFFSET(pso, 0x3CC, float) = sRadius;
+    STRUCT_OFFSET(pso, 0x538, uint64_t) = grfso | 0x10000000000;
+}
 
 void SetSoNoInteract(SO *pso, int fNoInteract)
 {
@@ -148,7 +153,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoIgnoreLocked__FP2SOi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoIceable__FP2SOi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoMtlk__FP2SO4MTLK);
+void SetSoMtlk(SO *pso, MTLK mtlk)
+{
+    STRUCT_OFFSET(pso, 0x2c8, char) = mtlk;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoEdgeGrab__FP2SO3EGK);
 
@@ -178,7 +186,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", FSoInStsoList__FP4STSOP2SO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", GenerateSoSpliceTouchingEvents__FP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", FInflictSoZap__FP2SOP2XPP3ZPR);
+int FInflictSoZap(SO *pso, XP *pxp, ZPR *pzpr)
+{
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", EnsureSoLvo__FP2SO);
 

@@ -378,9 +378,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationSmoothMaxAccel__FP3ALOf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationSmoothDetail__FP3ALOP4SMPA);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloDefaultAckPos__FP3ALO3ACK);
+void SetAloDefaultAckPos(ALO *palo, ACK ack)
+{
+    STRUCT_OFFSET(palo, 0x2c9, char) = ack;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloDefaultAckRot__FP3ALO3ACK);
+void SetAloDefaultAckRot(ALO *palo, ACK ack)
+{
+    STRUCT_OFFSET(palo, 0x2ca, char) = ack;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRestorePosition__FP3ALOi);
 
@@ -402,7 +408,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAt__FP3ALO3ACK);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtIgnore__FP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloLookAtIgnore__FP3ALOPf);
+void GetAloLookAtIgnore(ALO *palo, float *psIgnore)
+{
+    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    float sIgnore = 0.0f;
+
+    if (pactla)
+        sIgnore = STRUCT_OFFSET(pactla, 0x40, float);
+
+    *psIgnore = sIgnore;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtPanFunction__FP3ALOP3CLQ);
 
@@ -422,11 +437,29 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloLookAtTiltLimits__FP3ALOP2LM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtEnabledPriority__FP3ALOi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloLookAtEnabledPriority__FP3ALOPi);
+void GetAloLookAtEnabledPriority(ALO *palo, int *pnPriority)
+{
+    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    int nPriority = 0;
+
+    if (pactla)
+        nPriority = STRUCT_OFFSET(pactla, 0x44, int);
+
+    *pnPriority = nPriority;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtDisabledPriority__FP3ALOi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloLookAtDisabledPriority__FP3ALOPi);
+void GetAloLookAtDisabledPriority(ALO *palo, int *pnPriority)
+{
+    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    int nPriority = 0;
+
+    if (pactla)
+        nPriority = STRUCT_OFFSET(pactla, 0x48, int);
+
+    *pnPriority = nPriority;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a810);
 
@@ -436,7 +469,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a860);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a888);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a8b8);
+void FUN_0012a8b8(ALO *palo)
+{
+    void *pactla = STRUCT_OFFSET(palo, 0x200, void*);
+    STRUCT_OFFSET(pactla, 0x4C, int) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a8c8);
 
@@ -650,19 +687,40 @@ void GetAloThrobDtInOut(ALO *palo, float *pdtInOut)
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloInteractCane__FP3ALOi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloInteractCane__FP3ALOPi);
+void GetAloInteractCane(ALO *palo, GRFIC *pgrfic)
+{
+    *pgrfic = STRUCT_OFFSET(palo, 0x2B0, uchar);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloInteractCaneSweep__FP3ALOi);
+void SetAloInteractCaneSweep(ALO *palo, GRFIC grfic)
+{
+    STRUCT_OFFSET(palo, 0x2b0, char) = grfic;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloInteractCaneSweep__FP3ALOPi);
+void GetAloInteractCaneSweep(ALO *palo, GRFIC *pgrfic)
+{
+    *pgrfic = STRUCT_OFFSET(palo, 0x2B0, uchar);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloInteractCaneRush__FP3ALOi);
+void SetAloInteractCaneRush(ALO *palo, GRFIC grfic)
+{
+    STRUCT_OFFSET(palo, 0x2b1, char) = grfic;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloInteractCaneRush__FP3ALOPi);
+void GetAloInteractCaneRush(ALO *palo, GRFIC *pgrfic)
+{
+    *pgrfic = STRUCT_OFFSET(palo, 0x2B1, uchar);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloInteractCaneSmash__FP3ALOi);
+void SetAloInteractCaneSmash(ALO *palo, GRFIC grfic)
+{
+    STRUCT_OFFSET(palo, 0x2b2, char) = grfic;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloInteractCaneSmash__FP3ALOPi);
+void GetAloInteractCaneSmash(ALO *palo, GRFIC *pgrfic)
+{
+    *pgrfic = STRUCT_OFFSET(palo, 0x2B2, uchar);
+}
 
 void SetAloInteractBomb(ALO *palo, GRFIC grfic)
 {
@@ -674,9 +732,15 @@ void GetAloInteractBomb(ALO *palo, GRFIC *pgrfic)
     *pgrfic = STRUCT_OFFSET(palo, 0x2B3, uchar);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloInteractShock__FP3ALOi);
+void SetAloInteractShock(ALO *palo, GRFIC grfic)
+{
+    STRUCT_OFFSET(palo, 0x2b4, char) = grfic;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloInteractShock__FP3ALOPi);
+void GetAloInteractShock(ALO *palo, GRFIC *pgrfic)
+{
+    *pgrfic = STRUCT_OFFSET(palo, 0x2B4, uchar);
+}
 
 int FAbsorbAloWkr(ALO *palo, WKR *pwkr)
 {
