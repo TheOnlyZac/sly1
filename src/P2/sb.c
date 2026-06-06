@@ -25,4 +25,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/sb", FUN_001a9a98);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sb", FAbsorbSbgWkr__FP3SBGP3WKR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sb", FUN_001a9c58);
+void FUN_001a9c58(SBG *psbg, int a, int b, int c)
+{
+    STRUCT_OFFSET(psbg, 0xC14, int) = a;
+    STRUCT_OFFSET(psbg, 0xC18, int) = b;
+    STRUCT_OFFSET(psbg, 0xC1C, int) = c;
+}

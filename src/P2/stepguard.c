@@ -173,9 +173,17 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepguard", PasegFindStepguard__FP9STEPGUARD3OI
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", LoadStepguardAnimations__FP9STEPGUARD);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", UseStepguardExpl__FP9STEPGUARD3OID);
+void UseStepguardExpl(STEPGUARD *pstepguard, OID oidExpl)
+{
+    STRUCT_OFFSET(pstepguard, 0xafc, OID) = oidExpl;
+    STRUCT_OFFSET(pstepguard, 0xaf8, int) = 1;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", UseStepguardRwm__FP9STEPGUARD3OID);
+void UseStepguardRwm(STEPGUARD *pstepguard, OID oidRwm)
+{
+    STRUCT_OFFSET(pstepguard, 0xb08, OID) = oidRwm;
+    STRUCT_OFFSET(pstepguard, 0xb04, int) = 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", UseStepguardPhys__FP9STEPGUARD3SGS3OID);
 
@@ -189,7 +197,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepguard", PsoEnemyStepguard__FP9STEPGUARD);
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FUN_001caad0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", SetStepguardEnemyObject__FP9STEPGUARDP2SO);
+void SetStepguardEnemyObject(STEPGUARD *pstepguard, SO *psoEnemy)
+{
+    STRUCT_OFFSET(pstepguard, 0xB48, SO *) = psoEnemy;
+    STRUCT_OFFSET(pstepguard, 0xB40, int) = 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", RebindStepguardEnemy__FP9STEPGUARD);
 
@@ -199,7 +211,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FUN_001cac30);
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", AdjustStepguardDz__FP9STEPGUARDiP2DZif);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", SetStepguardAttackAngleMax__FP9STEPGUARDf);
+void SetStepguardAttackAngleMax(STEPGUARD *pstepguard, float degAttackMax)
+{
+    STRUCT_OFFSET(pstepguard, 0x74c, float) = degAttackMax * 0.017453294f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", AddStepguardAlarm__FP9STEPGUARDP5ALARM);
 

@@ -14,11 +14,18 @@ INCLUDE_ASM("asm/nonmatchings/P2/act", GetActPositionGoal__FP3ACTfP6VECTORT2);
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", GetActRotationGoal__FP3ACTfP7MATRIX3P6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", GetActTwistGoal__FP3ACTPfT1);
+void GetActTwistGoal(ACT *pact, float *pradTwist, float *pdradTwist)
+{
+    *pradTwist = STRUCT_OFFSET(STRUCT_OFFSET(pact->palo, 0x224, uint8_t *), 0x8c, float);
+    *(int *)pdradTwist = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", GetActScale__FP3ACTP7MATRIX3);
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", GGetActPoseGoal__FP3ACTi);
+float GGetActPoseGoal(ACT *pact, int ipose)
+{
+    return STRUCT_OFFSET(pact->palo, 0x274, float*)[ipose];
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", CalculateActDefaultAck__FP3ACT);
 
@@ -73,7 +80,10 @@ void GetActrefTwistGoal(ACTREF *pactref, float *pradTwist, float *pdradTwist)
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", GetActrefScale__FP6ACTREFP7MATRIX3);
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", GGetActrefPoseGoal__FP6ACTREFi);
+float GGetActrefPoseGoal(ACTREF *pactref, int ipose)
+{
+    return STRUCT_OFFSET(pactref, 0x3c, float*)[ipose];
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", InitActadj__FP6ACTADJP3ALO);
 
