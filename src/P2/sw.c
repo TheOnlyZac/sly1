@@ -6,6 +6,8 @@
 #include <dialog.h>
 #include <989snd.h>
 #include <sce/memset.h>
+#include <game.h>
+#include <difficulty.h>
 
 extern SW *g_psw;
 extern int g_fLoadDebugInfo;
@@ -46,9 +48,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", SetSwGravity__FP2SWf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dbac0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dbae0);
+extern "C" int FUN_001c0c50(int reg);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dbb00);
+int FUN_001dbae0(SW *psw, int reg)
+{
+    return FUN_001c0c50(reg);
+}
+
+extern "C" void FUN_001c0c68(int reg, int value);
+
+void FUN_001dbb00(SW *psw, int reg, int value)
+{
+    FUN_001c0c68(reg, value);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FOverflowSwLo__FP2SWP2LOi);
 
@@ -243,17 +255,29 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd7e8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd888);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd8e8);
+int FUN_001dd8e8(SW *psw, GAMEWORLD gameworld)
+{
+    return g_pgsCur->aws[gameworld].fws & 0x1;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd908);
+int FUN_001dd908(SW *psw, GAMEWORLD gameworld)
+{
+    return g_pgsCur->aws[gameworld].fws & 0x20;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd928);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd950);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd9a0);
+void FUN_001dd9a0(float nParam)
+{
+    ChangeSuck(nParam, &g_difficulty);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd9c0);
+void FUN_001dd9c0(void *pv, float *pu)
+{
+    *pu = g_plsCur->uSuck;
+}
 
 void SetSwPlayerSuck(SW *psw, float uSuck)
 {
@@ -327,7 +351,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc38);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc40);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc78);
+void FUN_001ddc78(void *pv, int n)
+{
+    STRUCT_OFFSET(pv, 0x235C, int) |= (1 << n);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc90);
 
