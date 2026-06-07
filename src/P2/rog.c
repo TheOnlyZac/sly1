@@ -136,7 +136,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", GrabbedRobRoh__FP3ROBP3ROH);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", DroppedRobRoh__FP3ROBP3ROH);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", ReturnedRobRoh__FP3ROBP3ROH);
+void ReturnedRobRoh(ROB *prob, ROH *proh)
+{
+    SetRostRosts(STRUCT_OFFSET(proh, 0x560, ROST*), ROSTS_Open);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", ExitedRobRoh__FP3ROBP3ROH);
 
@@ -186,7 +189,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRoc__FP3ROCf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", PresetRocAccel__FP3ROCf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", AdjustRocNewXp__FP3ROCP2XPi);
+void AdjustRocNewXp(ROC *proc, XP *pxp, int ixpd)
+{
+    STRUCT_OFFSET(pxp, 0x98, float) *= 0.6f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", FAbsorbRocWkr__FP3ROCP3WKR);
 

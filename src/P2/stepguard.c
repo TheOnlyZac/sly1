@@ -1,5 +1,6 @@
 #include <stepguard.h>
 #include <asega.h>
+#include <so.h>
 
 extern SNIP s_asnipStepguardLoad;
 
@@ -25,7 +26,10 @@ void CloneStepguard(STEPGUARD *pstepguard, STEPGUARD *pstepguardBase)
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", BindStepguard__FP9STEPGUARD);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", PostStepguardLoadCallback__FP9STEPGUARD5MSGIDPv);
+void PostStepguardLoadCallback(STEPGUARD *pstepguard, MSGID msgid, void *pv)
+{
+    pstepguard->pvtlo->pfnRemoveLo(pstepguard);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", PostStepguardLoad__FP9STEPGUARD);
 
@@ -129,7 +133,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepguard", OnStepguardExitingSgs__FP9STEPGUARD
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", OnStepguardEnteringSgs__FP9STEPGUARD3SGSP4ASEG);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", SggsGetStepguard__FP9STEPGUARD);
+SGGS SggsGetStepguard(STEPGUARD *pstepguard)
+{
+    SGG *psgg = STRUCT_OFFSET(pstepguard, 0x720, SGG*);
+    if (psgg == NULL)
+        return SGGS_Dead;
+    return STRUCT_OFFSET(psgg, 0x50, SGGS);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FAbsorbStepguardWkr__FP9STEPGUARDP3WKR);
 
@@ -157,7 +167,10 @@ SGAS SgasGetStepguard(STEPGUARD *pstepguard)
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FCanStepguardAttack__FP9STEPGUARD);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", RenderStepguardSelf__FP9STEPGUARDP2CMP2RO);
+void RenderStepguardSelf(STEPGUARD *pstepguard, CM *pcm, RO *pro)
+{
+    RenderStepSelf(pstepguard, pcm, pro);
+}
 
 int FValidSgs(SGS sgs)
 {
@@ -219,7 +232,10 @@ void SetStepguardAttackAngleMax(STEPGUARD *pstepguard, float degAttackMax)
     STRUCT_OFFSET(pstepguard, 0x74c, float) = degAttackMax * 0.017453294f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", AddStepguardAlarm__FP9STEPGUARDP5ALARM);
+void AddStepguardAlarm(STEPGUARD *pstepguard, ALARM *palarm)
+{
+    EnsureSggAlarm(STRUCT_OFFSET(pstepguard, 0x720, SGG *), palarm);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", MatchStepguardAnimationPhase__FP9STEPGUARD3OIDN31);
 
@@ -267,7 +283,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepguard", PostSggLoadCallback__FP3SGG5MSGIDPv
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", EnsureSggCallback__FP3SGG);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", PsoEnemySgg__FP3SGG);
+SO *PsoEnemySgg(SGG *psgg)
+{
+    SO *pso = STRUCT_OFFSET(psgg, 0x5c, SO *);
+    void *pvt = STRUCT_OFFSET(pso, 0x0, void *);
+    SO *(*fn)(SO *) = (SO *(*)(SO *))STRUCT_OFFSET(pvt, 0x198, void *);
+    return fn(pso);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", UpdateSggCallback__FP3SGG5MSGIDPv);
 

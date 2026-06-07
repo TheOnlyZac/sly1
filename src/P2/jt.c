@@ -50,7 +50,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtTool__FP2JT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00172898);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtPosWorldPrev__FP2JT);
+void UpdateJtPosWorldPrev(JT *pjt)
+{
+    UpdateSoPosWorldPrev(pjt);
+    STRUCT_OFFSET(pjt, 0x21CC, int) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00172b08);
 
@@ -60,7 +64,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/jt", PsoGetJtEffect__FP2JTPi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", AddJtCustomXps__FP2JTP2SOiP3BSPT3PP2XP);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", CtTorqueJt__FP2JT);
+int CtTorqueJt(JT *pjt)
+{
+    if (pjt->jts == 3 || pjt->jts == 0xD)
+        return 0;
+    return 3;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00172ee0);
 
@@ -89,7 +98,11 @@ void ProfileJt(JT *pjt, int fProfile)
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", SetJtPuppet__FP2JTP5ASEGA);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00177828);
+void FUN_00177828(JT *pjt, int n)
+{
+    STRUCT_OFFSET(pjt, 0x2bd8, int) = n;
+    STRUCT_OFFSET(pjt, 0x4b8, int) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", PaloAbsorbWkr__FP3WKRiPP3ALO);
 

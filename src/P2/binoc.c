@@ -2,6 +2,8 @@
 #include <alo.h>
 #include <clock.h>
 #include <font.h>
+#include <rip.h>
+#include <vec.h>
 
 void InitBei(BEI *pbei, CLQ *pclq, float duWidth, float dgHeight, int cseg)
 {
@@ -114,11 +116,23 @@ INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_001358d0);
 JUNK_ADDIU(30);
 JUNK_WORD(0xE4C00000);
 
-INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00135E30);
+extern "C" {
+void FUN_00135E30(void *a0, void *a1, void *a2)
+{
+    STRUCT_OFFSET(a1, 0x0, qword) = STRUCT_OFFSET(a0, 0x140, qword);
+    STRUCT_OFFSET(a2, 0x0, int) = 0;
+}
+}
 
 JUNK_ADDIU(A0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00135E48);
+extern "C" {
+int FUN_00135E48(void *param_1, int param_2, VECTOR *param_3)
+{
+    *(qword *)param_3 = *(qword *)((uint8_t *)param_1 + 0x140);
+    return ChpBuildConvexHullScreen(param_3, 1, (HP *)param_3);
+}
+}
 
 JUNK_ADDIU(10);
 

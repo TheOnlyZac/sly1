@@ -31,4 +31,10 @@ void GetTurretDiapi(TURRET *pturret, DIALOG *pdialog, DIAPI *pdiapi)
     pdiapi->fPlayable = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/turret", FUN_001e5e60);
+int FUN_001e5e60(int n)
+{
+    int v;
+
+    v = STRUCT_OFFSET(n, 0x620, int);
+    return v != 0 ? v : n;
+}
