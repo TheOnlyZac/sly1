@@ -2,6 +2,7 @@
 #include <rip.h>
 #include <blip.h>
 #include <util.h>
+#include <memory.h>
 
 extern float DAT_0024a124;
 
@@ -44,7 +45,31 @@ void HandleEmitterMessage(EMITTER *pemitter, MSGID msgid, void *pv)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", PemitbCopyOnWrite__FP5EMITB);
+EMITB *PemitbCopyOnWrite(EMITB *pemitb)
+{
+    EMITB *pemitbNew;
+
+    if (pemitb->cref < 2)
+    {
+        return pemitb;
+    }
+
+    pemitbNew = (EMITB *)PvAllocSwCopyImpl(0x200, pemitb);
+
+    if (STRUCT_OFFSET(pemitb, 0x10, int) == 3)
+    {
+        if (STRUCT_OFFSET(pemitb, 0x24, void *) != 0)
+        {
+            STRUCT_OFFSET(pemitbNew, 0x24, void *) =
+                PvAllocSwCopyImpl(0x28 * STRUCT_OFFSET(pemitb, 0x20, int), STRUCT_OFFSET(pemitb, 0x24, void *));
+        }
+    }
+
+    pemitbNew->cref = 1;
+    pemitb->cref--;
+
+    return pemitbNew;
+}
 
 EMITB *PemitbEnsureEmitter(EMITTER *pemitter, ENSK ensk)
 {
@@ -220,7 +245,21 @@ JUNK_WORD(0x27bd0290); // junk_00157FF0
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", StockSplashBig__FP6VECTORfP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", StockSplashSmall__FP6VECTORfP2SO);
+void StockSplashSmall(VECTOR *ppos, float gScale, SO *psoTouch)
+{
+    RIP *prip = PripNewRipg(RIPT_Ripple, 0);
+
+    if (prip)
+    {
+        (*(void (**)(RIP *, VECTOR *, float, SO *))(*(void **)prip))(prip, ppos, gScale, 0);
+        STRUCT_OFFSET(prip, 0x1c, float) = 0.75f;
+
+        if (STRUCT_OFFSET(psoTouch, 0x278, SO *) != 0)
+        {
+            STRUCT_OFFSET(prip, 0x114, int) = STRUCT_OFFSET(STRUCT_OFFSET(psoTouch, 0x278, SO *), 0xc, int);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", AddEmitoSkeleton__FP5EMITO3OIDT1ffffP2LO);
 

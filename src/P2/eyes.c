@@ -1,5 +1,6 @@
 #include <eyes.h>
 #include <shdanim.h>
+#include <shd.h>
 
 void InitEyes(EYES *peyes, SAAF *psaaf)
 {
@@ -12,7 +13,42 @@ void InitEyes(EYES *peyes, SAAF *psaaf)
     *(float *)&peyes->unk[3] = psaaf->dtPauseMax;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/eyes", PostEyesLoad__FP4EYES);
+void PostEyesLoad(EYES *peyes)
+{
+    SHD *pshd;
+    int sCur;
+    int sShd;
+
+    PostSaaLoad((SAA *)peyes);
+
+    pshd = PshdFindShader(peyes->oid);
+    peyes->pshd = pshd;
+    if (pshd != NULL)
+    {
+        if (STRUCT_OFFSET(pshd, 0x24, SAA *) == NULL)
+        {
+            if (STRUCT_OFFSET(peyes->sai.pshd, 0x24, SAA *) == (SAA *)peyes)
+            {
+                STRUCT_OFFSET(pshd, 0x24, SAA *) = (SAA *)peyes;
+            }
+        }
+    }
+
+    sCur = 0;
+    if (peyes->sai.pshd != NULL)
+    {
+        sCur = STRUCT_OFFSET(peyes->sai.pshd, 0x20, int);
+    }
+    sShd = 0;
+    if (peyes->pshd != NULL)
+    {
+        sShd = STRUCT_OFFSET(peyes->pshd, 0x20, int);
+    }
+
+    peyes->eyess = EYESS_Nil;
+    STRUCT_OFFSET(peyes, 0x5C, int) = (sShd < sCur) ? sCur : sShd;
+    SetEyesEyess(peyes, EYESS_Open);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/eyes", SetEyesEyess__FP4EYES5EYESS);
 

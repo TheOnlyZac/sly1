@@ -77,7 +77,22 @@ void FUN_00147ed0(DPRIZE *pdprize)
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00147ef8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", UpdateCoin__FP4COINf);
+extern int D_00270458;
+
+void UpdateDprize(DPRIZE *pdprize, float dt);
+
+void UpdateCoin(COIN *pcoin, float dt)
+{
+    UpdateDprize(pcoin, dt);
+    if (pcoin->oidInitialState != OID_Unknown)
+        return;
+    if (pcoin->fNeverReuse == 0)
+        return;
+    if (D_00270458 != 2)
+        pcoin->tLose -= g_clock.dt;
+    if (pcoin->tLose <= 0.0f)
+        (*(void (**)(COIN *, DPRIZES))((char *)pcoin->pvtlo + 0xCC))(pcoin, DPRIZES_Lose);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", CreateSwCharm__FP2SW);
 

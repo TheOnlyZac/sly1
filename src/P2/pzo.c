@@ -221,7 +221,20 @@ void ImpactClue(CLUE *pclue, int fParentDirty)
     ImpactSo(pclue, fParentDirty);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", FAbsorbClueWkr__FP4CLUEP3WKR);
+int FAbsorbClueWkr(CLUE *pclue, WKR *pwkr)
+{
+    if (pwkr->grfic & 0x8)
+    {
+        ((void (*)(CLUE *, int))STRUCT_OFFSET(pclue->pvtlo, 0x64, void *))(pclue, 0);
+        SetSoConstraints(pclue, CT_Free, 0, CT_Locked, 0);
+    }
+    FAbsorbSoWkr(pclue, pwkr);
+    if (pwkr->grfic & 0x10)
+    {
+        ((void (*)(CLUE *))STRUCT_OFFSET(pclue->pvtlo, 0x134, void *))(pclue);
+    }
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", RenderClueAll__FP4CLUEP2CMP2RO);
 

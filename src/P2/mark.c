@@ -1,6 +1,24 @@
 #include <mark.h>
+#include <joy.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/mark", MuFromAmtlk__FP4MTLK);
+extern float D_00264840[][2];
+
+float MuFromAmtlk(MTLK *amtlk)
+{
+    float mu;
+
+    mu = (D_00264840[amtlk[0]][1] + D_00264840[amtlk[1]][1]) /
+         (D_00264840[amtlk[0]][0] + D_00264840[amtlk[1]][0]);
+    if (mu < 0.0f)
+    {
+        mu = 0.0f;
+    }
+    if (g_grfcht & FCHT_LowFriction)
+    {
+        mu *= 0.2f;
+    }
+    return mu;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mark", ElasFromAmtlk__FP4MTLK);
 

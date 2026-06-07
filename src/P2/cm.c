@@ -7,6 +7,7 @@
 #include <cplcy.h>
 #include <frm.h>
 #include <vifs.h>
+#include <math.h>
 
 // todo fix data and rodata
 // VECTOR4 g_posEyeDefault = { 0.0f, -2000.0f, 500.0f, 0.0f };
@@ -239,7 +240,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", ResetCmLookAtSmooth);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmLookAtSmooth);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", AdjustCmJoy__FP2CMP3JOY5JOYIDPf);
+void AdjustCmJoy(CM *pcm, JOY *pjoy, JOYID joyid, float *prad)
+{
+    float rad;
+
+    switch (joyid)
+    {
+    case JOYID_Left:
+        rad = atan2f(-pjoy->x, pjoy->y);
+        break;
+    case JOYID_Right:
+        rad = atan2f(-pjoy->x2, pjoy->y2);
+        break;
+    default:
+        rad = 0.0f;
+        break;
+    }
+
+    *prad = RadNormalize(rad + atan2f(STRUCT_OFFSET(pcm, 0x84, float), STRUCT_OFFSET(pcm, 0x80, float)));
+}
 
 JUNK_WORD(0x0000102D);
 

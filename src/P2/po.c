@@ -29,7 +29,27 @@ INCLUDE_ASM("asm/nonmatchings/P2/po", HandlePoMessage__FP2PO5MSGIDPv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", OnPoActive__FP2POiT0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/po", GetPoCpdefi__FP2POfP6CPDEFI);
+extern SMP D_00269BC0;
+
+void GetPoCpdefi(PO *ppo, float dt, CPDEFI *pcpdefi)
+{
+    GetSoCpdefi((SO *)ppo, dt, pcpdefi);
+
+    if (STRUCT_OFFSET(ppo, 0x554, int) != 0)
+    {
+        STRUCT_OFFSET(pcpdefi, 0x10, VU_VECTOR) = STRUCT_OFFSET(ppo, 0x560, VU_VECTOR);
+    }
+    else
+    {
+        if (g_pcm->field41_0x224 == 0)
+        {
+            pcpdefi->posBase.z = GSmooth(STRUCT_OFFSET(ppo, 0x568, float),
+                                         STRUCT_OFFSET(ppo, 0x148, float),
+                                         dt, &D_00269BC0, NULL);
+        }
+        STRUCT_OFFSET(ppo, 0x560, VU_VECTOR) = STRUCT_OFFSET(pcpdefi, 0x10, VU_VECTOR);
+    }
+}
 
 int FIsPoSoundBase(PO *ppo)
 {

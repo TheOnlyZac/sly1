@@ -2,6 +2,7 @@
 #include <clock.h>
 #include <alo.h>
 #include <cid.h>
+#include <wr.h>
 
 RIPG *PripgNew(SW *psw, RIPGT ripgt)
 {
@@ -89,7 +90,35 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", UpdateRip__FP3RIPf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", FRenderRipPosMat__FP3RIPP2CMP6VECTORP7MATRIX3);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderRip__FP3RIPP2CM);
+void RenderRip(RIP *prip, CM *pcm)
+{
+    VECTOR pos;
+    MATRIX3 mat;
+    VECTOR *ppos;
+    MATRIX3 *pmat;
+    WR *pwr;
+
+    pwr = STRUCT_OFFSET(prip, 0x114, WR *);
+    if (pwr != NULL)
+    {
+        WarpWrTransform(pwr, 50.0f,
+            &STRUCT_OFFSET(prip, 0x80, VECTOR),
+            &STRUCT_OFFSET(prip, 0x50, MATRIX3),
+            &pos, &mat, NULL);
+        ppos = &pos;
+        pmat = &mat;
+    }
+    else
+    {
+        ppos = &STRUCT_OFFSET(prip, 0x80, VECTOR);
+        pmat = &STRUCT_OFFSET(prip, 0x50, MATRIX3);
+    }
+
+    if (!FRenderRipPosMat(prip, pcm, ppos, pmat))
+    {
+        RemoveRip(prip);
+    }
+}
 
 void SubscribeRipObject(RIP *prip, LO *ploTarget)
 {

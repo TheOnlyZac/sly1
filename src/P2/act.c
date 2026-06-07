@@ -115,7 +115,27 @@ float GGetActvalPoseGoal(ACTVAL *pactval, int ipose)
     return pactval->agPoses[ipose];
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", InitActref__FP6ACTREFP3ALO);
+extern VECTOR D_00248D30;
+
+void InitActref(ACTREF *pactref, ALO *palo)
+{
+    uint8_t *psen;
+
+    InitAct(pactref, palo);
+    STRUCT_OFFSET(pactref, 0x1c, uint8_t *) = (uint8_t *)palo + 0x190;
+    STRUCT_OFFSET(pactref, 0x24, uint8_t *) = (uint8_t *)palo + 0x1a0;
+    STRUCT_OFFSET(pactref, 0x38, uint8_t *) = (uint8_t *)palo + 0x26c;
+    STRUCT_OFFSET(pactref, 0x20, VECTOR *) = &D_00248D30;
+    STRUCT_OFFSET(pactref, 0x28, VECTOR *) = &D_00248D30;
+    STRUCT_OFFSET(pactref, 0x3c, float *) = STRUCT_OFFSET(palo, 0x274, float *);
+    psen = STRUCT_OFFSET(palo, 0x224, uint8_t *);
+    if (psen != 0 && (STRUCT_OFFSET(psen, 0xb0, int) & 0x20))
+    {
+        STRUCT_OFFSET(pactref, 0x30, VECTOR *) = &D_00248D30;
+        STRUCT_OFFSET(pactref, 0x2c, uint8_t *) = psen + 0x8c;
+    }
+    STRUCT_OFFSET(pactref, 0x34, char *) = D_002483D0;
+}
 
 void GetActrefPositionGoal(ACTREF *pactref, float dtOffset, VECTOR *ppos, VECTOR *pv)
 {
