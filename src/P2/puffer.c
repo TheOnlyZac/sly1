@@ -32,7 +32,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_00197848);
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_00197a08);
 
-INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_00197a68);
+extern float D_0026A83C;
+extern float D_0026A840;
+
+extern "C" void FUN_00197a68(void *pv, void *p)
+{
+    float dx = D_0026A83C;
+    float dy = D_0026A840;
+    STRUCT_OFFSET(p, 0x98, float) = dx;
+    STRUCT_OFFSET(p, 0x94, float) = dy;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", AddPufferWaterAcceleration__FP6PUFFERP5WATERf);
 

@@ -20,7 +20,14 @@ void GetActTwistGoal(ACT *pact, float *pradTwist, float *pdradTwist)
     *(int *)pdradTwist = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", GetActScale__FP3ACTP7MATRIX3);
+extern char D_002483D0[];
+
+void GetActScale(ACT *pact, MATRIX3 *pmat)
+{
+    *(qword *)((char *)pmat + 0x0) = *(qword *)(D_002483D0 + 0x0);
+    *(qword *)((char *)pmat + 0x10) = *(qword *)(D_002483D0 + 0x10);
+    *(qword *)((char *)pmat + 0x20) = *(qword *)(D_002483D0 + 0x20);
+}
 
 float GGetActPoseGoal(ACT *pact, int ipose)
 {
