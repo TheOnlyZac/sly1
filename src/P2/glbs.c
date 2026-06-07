@@ -55,7 +55,11 @@ void GLBS::SetNormal(VECTOR *ppos)
 JUNK_NOP();
 JUNK_WORD(0xE4800110);
 
-INCLUDE_ASM("asm/nonmatchings/P2/glbs", SetRgba__4GLBSG4RGBA);
+extern "C" void SetRgba__4GLBSG4RGBA(GLBS *pglbs, RGBA *prgba)
+{
+    struct PACK { int v; } __attribute__((packed));
+    *(PACK *)((char *)pglbs + 0x114) = *(PACK *)prgba;
+}
 
 void GLBS::SetUv(UVF *puv)
 {
