@@ -49,7 +49,15 @@ LOOKK LookkPopCplook(CPLOOK *pcplook)
     return a[n];
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", LookkCurCplook__FP6CPLOOK);
+LOOKK LookkCurCplook(CPLOOK *pcplook)
+{
+    int n = STRUCT_OFFSET(pcplook, 0x40, int);
+    if (n <= 0)
+        return (LOOKK)-1;
+    int i = n - 1;
+    LOOKK *a = &STRUCT_OFFSET(pcplook, 0x30, LOOKK);
+    return a[i];
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", InitCplook);
 
