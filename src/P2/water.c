@@ -141,8 +141,50 @@ void UpdateWaterMergeGroup(WATER *pwater)
 // TODO: blocked on VU0 SIMD (lqc2/qmtc2/vmulax/vmaddx) — no VU0 infra yet.
 INCLUDE_ASM("asm/nonmatchings/P2/water", UGetWaterSubmerged__FP5WATERP2SOP6VECTORT2);
 
-// TODO: blocked on VU0 SIMD (vmul/vsqrt/lqc2/sqc2 bounds math) — no VU0 infra yet.
-INCLUDE_ASM("asm/nonmatchings/P2/water", UpdateWaterBounds__FP5WATER);
+void UpdateWaterBounds(WATER *pwater)
+{
+    UpdateSoBounds(pwater);
+
+    void *p278 = STRUCT_OFFSET(pwater, 0x278, void *);
+    if (p278 == NULL)
+        return;
+
+    WR *pwr = STRUCT_OFFSET(p278, 0xC, WR *);
+    if (pwr == NULL)
+        return;
+
+    VU_VECTOR dpos;
+    GetWrBounds(pwr, (VECTOR *)&dpos);
+
+    // %0=vecBoundsMin %1=vecBoundsMax %2=sRadiusBounds %3=unk_0x3d4 %4=dpos
+    asm volatile(
+        "lqc2 $vf3, %4\n\t"
+        "vmul.xyz $vf1, $vf3, $vf3\n\t"
+        "vaddw.x $vf2, $vf0, $vf0w\n\t"
+        "vadday.x ACC, $vf1, $vf1y\n\t"
+        "vmaddz.x $vf1, $vf2, $vf1z\n\t"
+        "lwc1 $f2, %2\n\t"
+        ".word 0x4A0103BD\n\t" // vsqrt Q, $vf1x
+        "vwaitq\n\t"
+        "vaddq.x $vf1, $vf0, Q\n\t"
+        "lwc1 $f0, %3\n\t"
+        "qmfc2.ni $2, $vf1\n\t"
+        "mtc1 $2, $f1\n\t"
+        "lqc2 $vf2, %0\n\t"
+        "lqc2 $vf1, %1\n\t"
+        "add.s $f0, $f0, $f1\n\t"
+        "add.s $f2, $f2, $f1\n\t"
+        "vsub.xyzw $vf2, $vf2, $vf3\n\t"
+        "vadd.xyzw $vf1, $vf1, $vf3\n\t"
+        "sqc2 $vf2, %0\n\t"
+        "sqc2 $vf1, %1\n\t"
+        "swc1 $f0, %3\n\t"
+        "swc1 $f2, %2"
+        : "=m"(pwater->vecBoundsMin), "=m"(pwater->vecBoundsMax),
+          "=m"(pwater->sRadiusBounds), "=m"(pwater->unk_0x3d4)
+        : "m"(dpos)
+        : "$f0", "$f1", "$f2", "$2");
+}
 
 int FInflictWaterZap(WATER *pwater, XP *pxp, ZPR *pzpr)
 {
