@@ -2,6 +2,7 @@
 
 struct CBSP;
 struct CGT;
+struct LSG;
 
 CBSP* PcbspExtract(CBSP* pcbsp)
 {
@@ -54,9 +55,19 @@ int CposFindPathzonePath(PATHZONE *ppathzone, VECTOR *pvec0, VECTOR *pvec1, int 
     return CposFindPath((CG *)((char *)ppathzone + 0x34), pvec0, pvec1, n, pvec2);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/path", FindPathzoneClosestPoint__FP8PATHZONEP6VECTORT1);
+void FindClosestPointInCg(CG *pcg, VECTOR *pvec0, VECTOR *pvec1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/path", FUN_00191aa8);
+void FindPathzoneClosestPoint(PATHZONE *ppathzone, VECTOR *pvec0, VECTOR *pvec1)
+{
+    FindClosestPointInCg((CG *)((char *)ppathzone + 0x34), pvec0, pvec1);
+}
+
+int ClsgClipEdgeToCbsp(CBSP *pcbsp, VECTOR *pvec0, VECTOR *pvec1, int i, LSG *plsg);
+
+extern "C" int FUN_00191aa8(void *p, VECTOR *pvec0, VECTOR *pvec1, int i, LSG *plsg)
+{
+    return ClsgClipEdgeToCbsp(STRUCT_OFFSET(p, 0x54, CBSP *), pvec0, pvec1, i, plsg);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/path", FUN_00191ac8);
 
