@@ -67,7 +67,12 @@ void InitCoin(COIN *pcoin)
     pcoin->lmDtMaxLifetime.gMax = 10.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00147ed0);
+extern "C" {
+void FUN_00147ed0(DPRIZE *pdprize)
+{
+    (*(void (**)(DPRIZE *, DPRIZES))((char *)pdprize->pvtlo + 0xCC))(pdprize, DPRIZES_Removed);
+}
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00147ef8);
 
@@ -180,7 +185,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148698);
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148718);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148748);
+extern "C" {
+void FUN_00148748(void *param_1)
+{
+    (*(void (**)(void *, int))(*(int *)param_1 + 0xCC))(param_1, 2);
+}
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148770);
 
@@ -201,7 +211,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", RemoveSwExtraneousCharms__FP2SW);
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148d90);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148e18);
+extern "C" {
+void FUN_00148e18(void *param_1)
+{
+    (*(void (**)(void *, int))(*(int *)param_1 + 0xCC))(param_1, 2);
+}
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148e40);
 
@@ -211,6 +226,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", increment_and_show_life_count);
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", CollectLifetkn__FP7LIFETKN);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00149168);
+void FUN_00149168(DPRIZE *param_1)
+{
+    InitDprize(param_1);
+    *(int *)((uint8_t *)param_1 + 0x340) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", break_bottle);

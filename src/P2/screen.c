@@ -71,7 +71,10 @@ void SetBlotDtDisappear(BLOT *pblot, float dtDisappear)
     pblot->dtDisappear = dtDisappear;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", OnBlotReset__FP4BLOT);
+void OnBlotReset(BLOT *pblot)
+{
+    ((void (*)(BLOT *, BLOTS))pblot->pvtblot->pfnSetBlotBlots)(pblot, BLOTS_Hidden);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", ShowBlot__FP4BLOT);
 
@@ -258,7 +261,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae5e0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae758);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae7f8);
+void FUN_001ae7f8(CTR *pctr, BLOTS blots)
+{
+    if (blots == BLOTS_Hidden)
+        pctr->nDisplay = 0;
+
+    SetBlotBlots(pctr, blots);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae820);
 

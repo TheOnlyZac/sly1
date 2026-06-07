@@ -1,4 +1,5 @@
 #include <puffer.h>
+#include <po.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", InitPuffer__FP6PUFFER);
 
@@ -18,7 +19,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_001973d8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_00197458);
 
-INCLUDE_ASM("asm/nonmatchings/P2/puffer", OnPufferActive__FP6PUFFERiP2PO);
+void OnPufferActive(PUFFER *ppuffer, int fActive, PO *ppoOther)
+{
+    OnPoActive(ppuffer, fActive, ppoOther);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", UpdatePufferActive__FP6PUFFERP3JOYf);
 
@@ -34,7 +38,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/puffer", AddPufferWaterAcceleration__FP6PUFFERP
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", HandlePufferMessage__FP6PUFFER5MSGIDPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/puffer", PostPuffcLoad__FP5PUFFC);
+void PostPuffcLoad(PUFFC *ppuffc)
+{
+    PostStepguardLoad((STEPGUARD *)ppuffc);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", PresetPuffcAccel__FP5PUFFCf);
 

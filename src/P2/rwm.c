@@ -1,4 +1,5 @@
 #include <rwm.h>
+#include <sce/memset.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", InitRwm__FP3RWM);
 
@@ -57,7 +58,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/rwm", ClearRwmFireInfo__FP3RWM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", ClearRwmTargetInfo__FP3RWM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rwm", ClearRwmAimConstraints__FP3RWM);
+void ClearRwmAimConstraints(RWM *prwm)
+{
+    memset((uint8_t *)prwm + 0x150, 0, 0x18);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", GetRwfiPosMat__FP4RWFIP6VECTORP7MATRIX3);
 

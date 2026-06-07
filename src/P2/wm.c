@@ -1,4 +1,5 @@
 #include <wm.h>
+#include <game.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/wm", FUN_001f0468);
 
@@ -12,7 +13,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/wm", BindWm__FP2WM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/wm", RefreshWmMoveStats__FP2WM10WORLDLEVEL);
 
-INCLUDE_ASM("asm/nonmatchings/P2/wm", ThrowWmDisplayState__FP2WM10WORLDLEVELi);
+extern WORLDLEVEL D_00276250;
+extern int D_00276654;
+
+void ThrowWmDisplayState(WM *pwm, WORLDLEVEL worldlevel, int fReverse)
+{
+    D_00276250 = worldlevel;
+    D_00276654 = fReverse;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/wm", CatchWmDisplayState__FP2WM);
 
