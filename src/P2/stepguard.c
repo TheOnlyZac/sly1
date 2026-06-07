@@ -2,6 +2,7 @@
 #include <asega.h>
 #include <so.h>
 #include <aseg.h>
+#include <jt.h>
 
 extern SNIP s_asnipStepguardLoad;
 
@@ -280,7 +281,17 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepguard", MatchStepguardAnimationPhase__FP9ST
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", AddStepguardCustomXps__FP9STEPGUARDP2SOiP3BSPT3PP2XP);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FUN_001caee0);
+extern "C" {
+void FUN_001caee0(STEPGUARD *pstepguard, SO *pso)
+{
+    (*(void (**)(SO *, void *))((char *)pso->pvtlo + 0x90))(pso, (char *)pstepguard + 0xAB0);
+
+    if (FIsBasicDerivedFrom(pso, CID_JT))
+    {
+        SetJtJts((JT *)pso, JTS_Sidestep, (JTBS)0x2b);
+    }
+}
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", UpdateStepguardEffect__FP9STEPGUARD);
 

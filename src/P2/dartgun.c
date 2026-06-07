@@ -25,7 +25,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/dartgun", PostDartgunLoad__FP7DARTGUN);
 
 INCLUDE_ASM("asm/nonmatchings/P2/dartgun", UpdateDartgun__FP7DARTGUNf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/dartgun", FIgnoreDartgunIntersection__FP7DARTGUNP2SO);
+int FIgnoreDartgunIntersection(DARTGUN *pdartgun, SO *psoOther)
+{
+    if (FIsBasicDerivedFrom(psoOther, CID_RAT))
+    {
+        if (STRUCT_OFFSET(psoOther, 0x588, SO *) == (SO *)pdartgun)
+            return 1;
+    }
+
+    return FIgnoreSoIntersection((SO *)pdartgun, psoOther);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/dartgun", BreakDartgun__FP7DARTGUN);
 

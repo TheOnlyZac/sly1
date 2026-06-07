@@ -1,4 +1,5 @@
 #include <crv.h>
+#include <mark.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", SMeasureApos__FiP6VECTORPf);
 
@@ -70,7 +71,25 @@ float SMaxCrv(CRV *pcrv)
 
 JUNK_ADDIU(A0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", SMeasureCrvSegmentU__FP5CRVMSf);
+float SMeasureCrvSegmentU(CRVMS *pcrvms, float u)
+{
+    VECTOR pos;
+    float du, ps;
+    void *pcrv;
+    void **pvtbl;
+    void (*pfn)(void *, VECTOR *, int);
+
+    pcrv = STRUCT_OFFSET(pcrvms, 0x0, void *);
+    pvtbl = STRUCT_OFFSET(pcrv, 0x0, void **);
+    pfn = (void (*)(void *, VECTOR *, int))pvtbl[1];
+    if (pfn != NULL)
+    {
+        pfn(pcrv, &pos, 0);
+    }
+
+    FindClosestPointOnLineSegment(&pos, STRUCT_OFFSET(pcrvms, 0x4, VECTOR *), STRUCT_OFFSET(pcrvms, 0x8, VECTOR *), &du, &ps);
+    return ps;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", FindCrvClosestPointOnLineSegmentFromU__FP3CRVP6VECTORT1fT1T1PfT6);
 

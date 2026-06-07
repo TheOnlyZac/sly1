@@ -1,5 +1,6 @@
 #include <step.h>
 #include <mat.h>
+#include <math.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", InitStep__FP4STEP);
 
@@ -91,7 +92,17 @@ void AddStepCustomXps(STEP *pstep, SO *psoOther, int cbspPruned, BSP *abspPruned
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", AddStepCustomXpsBase__FP4STEPP2SOP3BSPPP2XP);
 
-INCLUDE_ASM("asm/nonmatchings/P2/step", FixStepAngularVelocity__FP4STEP);
+void FixStepAngularVelocity(STEP *pstep)
+{
+    qword local;
+    float radTarget;
+
+    local = STRUCT_OFFSET(pstep, 0x160, qword);
+    radTarget = atan2f(STRUCT_OFFSET(pstep, 0xd4, float), STRUCT_OFFSET(pstep, 0xd0, float));
+    RadSmooth(radTarget, STRUCT_OFFSET(pstep, 0x638, float), 0.0f,
+              (SMP *)((uint8_t *)pstep + 0x6e0), (float *)((uint8_t *)&local + 8));
+    (*(void (**)(STEP *, qword *))((uint8_t *)pstep->pvtlo + 0x94))(pstep, &local);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", PredictStepRotation__FP4STEPfP7MATRIX3P6VECTOR);
 

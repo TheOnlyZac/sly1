@@ -207,7 +207,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", SetRohRohs__FP3ROH4ROHS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", FAbsorbRohWkr__FP3ROHP3WKR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", ProcContactRoh__FP3ROH);
+ROC *ProcContactRoh(ROH *proh)
+{
+    void *pv = STRUCT_OFFSET(STRUCT_OFFSET(proh, 0x480, DL *), 0x0, void *);
+
+    while (pv != NULL)
+    {
+        if (STRUCT_OFFSET(pv, 0x0, int) != 0)
+        {
+            if (FIsBasicDerivedFrom(STRUCT_OFFSET(pv, 0xc, BASIC *), (CID)0x43))
+                return STRUCT_OFFSET(pv, 0xc, ROC *);
+        }
+        pv = STRUCT_OFFSET(pv, 0x4, void *);
+    }
+
+    return NULL;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", InitRoc__FP3ROC);
 
@@ -226,7 +241,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", PostRocLoad__FP3ROC);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRoc__FP3ROCf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", PresetRocAccel__FP3ROCf);
+void PresetRocAccel(ROC *proc, float dt)
+{
+    MATRIX3 mat;
+    extern SMP D_0026B850;
+
+    PresetSoAccel(proc, dt);
+
+    if (STRUCT_OFFSET(proc, 0x18, int) == 0)
+    {
+        TiltMatUpright((MATRIX3 *)((uint8_t *)proc + 0x110), NULL, &mat);
+        AccelSoTowardMatSmooth(proc, g_clock.dt, &mat, &D_0026B850);
+    }
+}
 
 void AdjustRocNewXp(ROC *proc, XP *pxp, int ixpd)
 {

@@ -18,7 +18,16 @@ void PostBlotsLoad()
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateBlots__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", ForceHideBlots__Fv);
+void ForceHideBlots()
+{
+    extern BLOT *D_002486B0[];
+
+    for (int i = 0x24; i >= 0; i--)
+    {
+        BLOT *pblot = D_002486B0[i];
+        ((void (*)(BLOT *, BLOTS))pblot->pvtblot->pfnSetBlotBlots)(pblot, BLOTS_Hidden);
+    }
+}
 
 void ResetBlots(void)
 {

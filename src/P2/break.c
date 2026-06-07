@@ -1,12 +1,23 @@
 #include <break.h>
 #include <chkpnt.h>
 #include <po.h>
+#include <memory.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", InitBrk__FP3BRK);
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", LoadBrkFromBrx__FP3BRKP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", CloneBrk__FP3BRKT0);
+void CloneBrk(BRK *pbrk, BRK *pbrkBase)
+{
+    int ichkBroken = STRUCT_OFFSET(pbrk, 0x688, int);
+    CloneSo(pbrk, pbrkBase);
+    STRUCT_OFFSET(pbrk, 0x688, int) = ichkBroken;
+
+    if (STRUCT_OFFSET(pbrkBase, 0x6b4, SFX *) != NULL)
+    {
+        STRUCT_OFFSET(pbrk, 0x6b4, SFX *) = (SFX *)PvAllocSwCopyImpl(0x24, STRUCT_OFFSET(pbrkBase, 0x6b4, SFX *));
+    }
+}
 
 void PostBrkLoad(BRK *pbrk)
 {

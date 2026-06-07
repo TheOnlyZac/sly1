@@ -20,7 +20,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/clip", ClsgClipEdgeToCylinder__FP6VECTORT0fT0T0
 
 JUNK_WORD(0x27BD01C0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/clip", SgnCompareMaa__FP3MAAT0);
+int SgnCompareMaa(MAA *pmaa1, MAA *pmaa2)
+{
+    float d = pmaa1->u - pmaa2->u;
+    if (d < -1e-4f)
+        return -1;
+    if (1e-4f < d)
+        return 1;
+    return pmaa1->iu - pmaa2->iu;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/clip", ClsgMergeAlsg__FiP3LSG);
 

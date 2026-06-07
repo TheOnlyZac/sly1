@@ -59,7 +59,16 @@ LOOKK LookkCurCplook(CPLOOK *pcplook)
     return a[i];
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", InitCplook);
+extern "C" void InitCplook(CPLOOK *pcplook, CM *pcm)
+{
+    InitCplcy(pcplook, pcm);
+    pcplook->fSoundPaused = 0;
+    pcplook->rZoomMax = 10.0f;
+    PushCplookLookk(pcplook, LOOKK_User);
+    pcplook->sRadiusSniper = 0.5f;
+    pcplook->rScreenSniper = -1.0f;
+    pcplook->ppntAnchor = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FUN_001496c0);
 

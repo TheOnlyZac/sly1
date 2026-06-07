@@ -1,4 +1,5 @@
 #include <rip.h>
+#include <clock.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", PripgNew__FP2SW5RIPGT);
 
@@ -151,7 +152,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", ProjectSmackTransform__FP5SMACKf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderSmack__FP5SMACKP2CM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", UpdateSmack__FP5SMACKf);
+void UpdateSmack(SMACK *psmack, float dt)
+{
+    if (STRUCT_OFFSET(psmack, 0x1c, float) < g_clock.t - STRUCT_OFFSET(psmack, 0x18, float))
+    {
+        RemoveRip(psmack);
+        (*(void (**)(int))((uint8_t *)STRUCT_OFFSET(psmack, 0x130, void *) + 0x60))(STRUCT_OFFSET(psmack, 0x134, int));
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitOrbit__FP5ORBITP6VECTORfP2SO);
 

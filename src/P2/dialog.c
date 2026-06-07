@@ -24,7 +24,23 @@ void LoadDialogFromBrx(DIALOG *pdialog, CBinaryInputStream *pbis)
 
 INCLUDE_ASM("asm/nonmatchings/P2/dialog", LoadDialogEventsFromBrx__FP6DIALOGP18CBinaryInputStreamPiPP2DE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/dialog", PostDialogLoad__FP6DIALOG);
+void PostDialogLoad(DIALOG *pdialog)
+{
+    extern int *PfLookupDialog(LS *pls, OID oid);
+
+    PostAloLoad(pdialog);
+
+    if (STRUCT_OFFSET(pdialog, 0x30c, OID) == OID_Nil)
+    {
+        STRUCT_OFFSET(pdialog, 0x30c, OID) = STRUCT_OFFSET(pdialog, 0x8, OID);
+    }
+
+    STRUCT_OFFSET(pdialog, 0x304, int *) = PfLookupDialog(g_plsCur, STRUCT_OFFSET(pdialog, 0x30c, OID));
+    if (STRUCT_OFFSET(pdialog, 0x304, int *) == NULL)
+    {
+        STRUCT_OFFSET(pdialog, 0x304, int *) = &STRUCT_OFFSET(pdialog, 0x308, int);
+    }
+}
 
 void SetDialogInstruct(DIALOG *pdialog)
 {
