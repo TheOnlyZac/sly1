@@ -57,7 +57,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", PresetRovAccel__FP3ROVf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", AdjustRovXpVelocity__FP3ROVP2XPi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", AdjustRovNewXp__FP3ROVP2XPi);
+void AdjustRovNewXp(ROV *prov, XP *pxp, int ixpd)
+{
+    if (FDrivenAlo(prov))
+        return;
+
+    if (0.7f < STRUCT_OFFSET(pxp, 0x88, float))
+        STRUCT_OFFSET(pxp, 0x94, float) = 20.0f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", PropagateRovForce__FP3ROViP2XPiP2DZP2FX);
 

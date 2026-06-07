@@ -72,7 +72,11 @@ void UpdateStepMatTarget(STEP *pstep)
     LoadRotateMatrixRad(*(float *)((uint8_t *)(pstep) + 0x638), &g_normalZ, (MATRIX3 *)((uint8_t *)(pstep) + 0x660));
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/step", AdjustStepXpVelocity__FP4STEPP2XPi);
+void AdjustStepXpVelocity(STEP *pstep, XP *pxp, int ixpd)
+{
+    if ((*(int (**)(STEP *))((char *)pstep->pvtlo + 0x168))(pstep))
+        AdjustStepXpVelocityBase(pstep, pxp, ixpd);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", UpdateStepXfWorld__FP4STEP);
 

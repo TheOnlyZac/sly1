@@ -1,5 +1,6 @@
 #include <sb.h>
 #include <sw.h>
+#include <asega.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/sb", PostSbgLoad__FP3SBG);
 
@@ -10,7 +11,21 @@ undefined4 FUN_001a9928(SBG *psbg)
     return STRUCT_OFFSET(psbg, 0xc24, int);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sb", UpdateSbgGoal__FP3SBGi);
+void UpdateSbgGoal(SBG *psbg, int fEnter)
+{
+    UpdateStepguardGoal(psbg, fEnter);
+
+    if (STRUCT_OFFSET(psbg, 0x724, int) == 0x10)
+    {
+        void *pvt = STRUCT_OFFSET(psbg, 0x0, void *);
+        SO *(*fn)(SO *) = (SO *(*)(SO *))STRUCT_OFFSET(pvt, 0x198, void *);
+        SO *pso = fn((SO *)psbg);
+        if (pso != NULL)
+        {
+            SetStepguardGoal(psbg, (VECTOR *)((char *)pso + 0x140));
+        }
+    }
+}
 
 void UpdateSbgSgs(SBG *psbg)
 {
@@ -25,7 +40,22 @@ void UpdateSbgSgs(SBG *psbg)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sb", OnSbgEnteringSgs__FP3SBG3SGSP4ASEG);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sb", UpdateSbg__FP3SBGf);
+void UpdateSbg(SBG *psbg, float dt)
+{
+    ASEGA *pasega;
+
+    UpdateStepguard(psbg, dt);
+
+    pasega = STRUCT_OFFSET(psbg, 0xC20, ASEGA *);
+    if (pasega != NULL)
+    {
+        if (STRUCT_OFFSET(pasega, 0x18, float) == 0.0f)
+        {
+            RetractAsega(pasega);
+            STRUCT_OFFSET(psbg, 0xC20, ASEGA *) = NULL;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sb", FUN_001a9a98);
 

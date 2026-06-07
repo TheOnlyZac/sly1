@@ -1,8 +1,23 @@
 #include <act.h>
+#include <slotheap.h>
+#include <sw.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", PactNew__FP2SWP3ALOP5VTACT);
+ACT *PactNew(SW *psw, ALO *palo, VTACT *pvtact)
+{
+    ACT *pact = (ACT *)PvAllocSlotheapClearImpl((SLOTHEAP *)((uint8_t *)psw + 0x1B20));
+    pact->pvtact = pvtact;
+    (*(void (**)(ACT *, ALO *))pvtact)(pact, palo);
+    return pact;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", PactNewClone__FP3ACTP2SWP3ALO);
+extern VTACT D_00219560;
+
+ACT *PactNewClone(ACT *pactBase, SW *psw, ALO *palo)
+{
+    ACT *pact = PactNew(psw, palo, &D_00219560);
+    (*(void (**)(ACT *, ACT *))((uint8_t *)pact->pvtact + 4))(pact, pactBase);
+    return pact;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", CloneAct__FP3ACTT0);
 

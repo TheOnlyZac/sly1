@@ -222,7 +222,14 @@ int FFilterFlameObjects(void *pv, SO *pso)
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", PostFlameEmit__FP5FLAMEP5EMITB);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", PostBulletEmit__FP6BULLETP5EMITB);
+void PostBulletEmit(BULLET *pbullet, EMITB *pemitb)
+{
+    ConvertAloPos(STRUCT_OFFSET(pemitb, 0x7c, ALO *), NULL, &STRUCT_OFFSET(pemitb, 0x20, VECTOR), &STRUCT_OFFSET(pbullet, 0x80, VECTOR));
+    STRUCT_OFFSET(pbullet, 0xb0, int) = 0;
+    STRUCT_OFFSET(pbullet, 0x110, int) = 0;
+    STRUCT_OFFSET(pbullet, 0x120, int) = STRUCT_OFFSET(pemitb, 0x1f4, int);
+    STRUCT_OFFSET(pbullet, 0x124, int) = STRUCT_OFFSET(pemitb, 0x1f0, int);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderBullet__FP6BULLETP2CM);
 

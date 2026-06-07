@@ -90,7 +90,21 @@ INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c858);
 
 INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014cba8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014cd70);
+extern "C" {
+void FUN_0014cd70(void *p)
+{
+    int n;
+
+    if (STRUCT_OFFSET(p, 0x458, int) == STRUCT_OFFSET(p, 0x450, int))
+    {
+        float g = GRandInRange(STRUCT_OFFSET(p, 0x43c, float), STRUCT_OFFSET(p, 0x440, float));
+        STRUCT_OFFSET(p, 0x45c, float) = g_clock.t + g;
+    }
+
+    n = STRUCT_OFFSET(p, 0x458, int);
+    STRUCT_OFFSET(p, 0x458, int) = n - 1;
+}
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014cdc8);
 

@@ -1,6 +1,7 @@
 #include <stepguard.h>
 #include <asega.h>
 #include <so.h>
+#include <aseg.h>
 
 extern SNIP s_asnipStepguardLoad;
 
@@ -160,7 +161,17 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepguard", HandleStepguardGrfsgsc__FP9STEPGUAR
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", DoStepguardFreefallJump__FP9STEPGUARD);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", DoStepguardFreefallLanding__FP9STEPGUARD);
+void SeekAsega(ASEGA *pasega, SEEK seek, float t, float svt);
+
+void DoStepguardFreefallLanding(STEPGUARD *pstepguard)
+{
+    ASEGA *pasegaSgs = STRUCT_OFFSET(pstepguard, 0x7e0, ASEGA *);
+    STRUCT_OFFSET(pstepguard, 0xb8c, int) = 0;
+    STRUCT_OFFSET(pstepguard, 0xa60, int) = 0;
+    float t = TFindAsegLabel(STRUCT_OFFSET(pasegaSgs, 0x8, ASEG *), (OID)0x1B1);
+    SeekAsega(STRUCT_OFFSET(pstepguard, 0x7e0, ASEGA *), SEEK_Start, t, 1.0f);
+    STRUCT_OFFSET(pstepguard, 0xba4, int) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FUN_001c9d50);
 

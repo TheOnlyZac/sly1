@@ -13,7 +13,16 @@ void InitRat(RAT *prat)
 
 INCLUDE_ASM("asm/nonmatchings/P2/rat", LoadRatFromBrx__FP3RATP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rat", PostRatLoad__FP3RAT);
+extern SNIP D_0026ABA0;
+
+void PostRatLoad(RAT *prat)
+{
+    SnipAloObjects(prat, 1, &D_0026ABA0);
+    PostAloLoad(prat);
+    STRUCT_OFFSET(prat, 0x550, int) = -1;
+    SetRatRats(prat, RATS_Scurry);
+    STRUCT_OFFSET(prat, 0x650, qword) = STRUCT_OFFSET(prat, 0x140, qword);
+}
 
 void OnRatAdd(RAT *prat)
 {

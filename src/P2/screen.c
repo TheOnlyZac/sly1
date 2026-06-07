@@ -1,10 +1,20 @@
 #include <screen.h>
 #include <clock.h>
 #include <font.h>
+#include <vtables.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", StartupScreen__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", PostBlotsLoad__Fv);
+void PostBlotsLoad()
+{
+    extern BLOT *D_002486B0[];
+
+    for (int i = 0x24; i >= 0; i--)
+    {
+        BLOT *pblot = D_002486B0[i];
+        ((VTBLOT *)pblot->pvtblot)->pfnPostBlotLoad(pblot);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateBlots__Fv);
 
@@ -251,7 +261,23 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", render_level_info);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", render_hideout_world_info);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", SetTotalsBlots__FP6TOTALS5BLOTS);
+void SetTotalsBlots(TOTALS *ptotals, BLOTS blots)
+{
+    if (ptotals->fReshow)
+    {
+        if (blots == BLOTS_Hidden)
+        {
+            ptotals->fReshow = 0;
+            SetBlotAchzDraw(ptotals, (char *)&ptotals->grflsReshow);
+            blots = BLOTS_Appearing;
+        }
+    }
+
+    if (blots == BLOTS_Hidden)
+        STRUCT_OFFSET(ptotals, 0x464, int) = 0;
+
+    SetBlotBlots(ptotals, blots);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", ShowTotalsQMARK);
 

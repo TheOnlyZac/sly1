@@ -1,5 +1,6 @@
 #include <jlo.h>
 #include <mat.h>
+#include <find.h>
 
 extern JLO *g_pjloCur;
 extern VECTOR g_normalZ; // TODO: This should be elsewhere.
@@ -71,7 +72,15 @@ void DeactivateJlo(JLO *pjlo)
 
 INCLUDE_ASM("asm/nonmatchings/P2/jlo", InitJloc__FP4JLOC);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jlo", LoadJlocFromBrx__FP4JLOCP18CBinaryInputStream);
+void LoadJlocFromBrx(JLOC *pjloc, CBinaryInputStream *pbis)
+{
+    LoadAloFromBrx(pjloc, pbis);
+
+    uint cplo = CploFindSwObjectsByClass(pjloc->psw, FSO_FindChild | FSO_ReturnActualCount, (CID)0x73, pjloc, 0x10, &STRUCT_OFFSET(pjloc, 0x2D0, LO *));
+    STRUCT_OFFSET(pjloc, 0x310, uint) = cplo;
+    if (cplo > 0x10)
+        STRUCT_OFFSET(pjloc, 0x310, uint) = 0x10;
+}
 
 void PostJlocLoad(JLOC *pjloc)
 {
