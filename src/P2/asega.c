@@ -56,7 +56,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/asega", AdaptAsega__FP5ASEGA);
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", FindChnClosestPointLocal__FP3CHNP3ALOP6VECTORfffPfT2T2);
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", SetAsegaSpeed__FP5ASEGAf);
+void SetAsegaSpeed(ASEGA *pasega, float speed)
+{
+    STRUCT_OFFSET(pasega, 0x18, float) =
+        speed * STRUCT_OFFSET(pasega, 0x1C, float) *
+        STRUCT_OFFSET(STRUCT_OFFSET(pasega, 0x8, void *), 0x98, float);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", SetAsegaMasterSpeed__FP5ASEGAf);
 

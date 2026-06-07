@@ -1,4 +1,5 @@
 #include <suv.h>
+#include <so.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", InitSuv__FP3SUV);
 
@@ -56,7 +57,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvShapes__FP3SUV);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvXfWorld__FP3SUV);
 
-INCLUDE_ASM("asm/nonmatchings/P2/suv", GetSuvCpdefi__FP3SUVfP6CPDEFI);
+void GetSuvCpdefi(SUV *psuv, float dt, CPDEFI *pcpdefi)
+{
+    GetSoCpdefi((SO *)psuv, dt, pcpdefi);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", OnSuvActive__FP3SUViP2PO);
 
