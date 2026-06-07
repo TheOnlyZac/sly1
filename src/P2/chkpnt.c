@@ -1,6 +1,7 @@
 #include <chkpnt.h>
 #include <sce/memset.h>
 #include <tn.h>
+#include <brx.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", ResetChkmgrCheckpoints__FP6CHKMGR);
 #ifdef SKIP_ASM
@@ -50,7 +51,17 @@ INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", SetChkmgrIchk__FP6CHKMGRi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", ClearChkmgrIchk__FP6CHKMGRi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", LoadVolFromBrx__FP3VOLP18CBinaryInputStream);
+void LoadVolFromBrx(VOL *pvol, CBinaryInputStream *pbis)
+{
+    pbis->ReadMatrix((MATRIX3 *)((uint8_t *)pvol + 0x50));
+    pbis->ReadVector((VECTOR *)((uint8_t *)pvol + 0x40));
+    LoadTbspFromBrx(pbis,
+                    &STRUCT_OFFSET(pvol, 0x80, int),
+                    &STRUCT_OFFSET(pvol, 0x84, TSURF *),
+                    &STRUCT_OFFSET(pvol, 0x88, int),
+                    &STRUCT_OFFSET(pvol, 0x8c, TBSP *));
+    LoadOptionsFromBrx(pvol, pbis);
+}
 
 extern int ConvertXfmLocalToWorld(XFM *pxfm, VECTOR *pposWorld, VECTOR *pposLocal);
 

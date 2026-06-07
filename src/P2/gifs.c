@@ -45,7 +45,14 @@ void GIFS::PackUV(int u, int v)
     pqw->an[1] = v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/gifs", PackSTQ__4GIFSfff);
+void GIFS::PackSTQ(float s, float t, float q)
+{
+    CheckReg(1, 2);
+    QW *pqw = ((QW *)m_pb)++;
+    pqw->ag[0] = s;
+    pqw->ag[1] = t;
+    pqw->ag[2] = q;
+}
 
 void GIFS::PackXYZ(int x, int y, int z)
 {
@@ -84,7 +91,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/gifs", ListRGBAQ__4GIFSUif);
 
 JUNK_ADDIU(30);
 
-INCLUDE_ASM("asm/nonmatchings/P2/gifs", ListUV__4GIFSii);
+void GIFS::ListUV(int u, int v)
+{
+    CheckReg(0, 3);
+    *((long *)m_pb)++ = u | (v << 16);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/gifs", ListXYZF__4GIFSiiii);
 

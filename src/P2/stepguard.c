@@ -319,7 +319,18 @@ void InitSgg(SGG *psgg)
     STRUCT_OFFSET(psgg, 0x180, OID) = OID_Nil; // psgg->oidSync
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", AddSggGuard__FP3SGGP9STEPGUARD);
+void AddSggGuard(SGG *psgg, STEPGUARD *pstepguard)
+{
+    if (STRUCT_OFFSET(psgg, 0x58, int) == 0)
+        SetSggSggs(psgg, (SGGS)0);
+
+    int c = STRUCT_OFFSET(psgg, 0x58, int);
+    if ((unsigned int)c < 0x10)
+    {
+        STRUCT_OFFSET_INDEX(psgg, 0x5c, STEPGUARD *, c) = pstepguard;
+        STRUCT_OFFSET(psgg, 0x58, int) = c + 1;
+    }
+}
 
 void AddSggGuardName(SGG * p, OID oid)
 {

@@ -40,7 +40,24 @@ void ResetBlots(void)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", RenderBlots__Fv);
+void RenderBlots()
+{
+    extern BLOT *D_002486B0[];
+
+    BLOT **ppblot = D_002486B0;
+
+    for (int i = 0x24; i >= 0; i--)
+    {
+        BLOT *pblot = *ppblot;
+        ppblot++;
+
+        if (pblot->blots != BLOTS_Hidden)
+        {
+            if (((VTBLOT *)pblot->pvtblot)->pfnRenderBlot != NULL)
+                ((VTBLOT *)pblot->pvtblot)->pfnRenderBlot(pblot);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawBlots__Fv);
 
@@ -104,7 +121,19 @@ void OnBlotReset(BLOT *pblot)
     ((void (*)(BLOT *, BLOTS))pblot->pvtblot->pfnSetBlotBlots)(pblot, BLOTS_Hidden);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", ShowBlot__FP4BLOT);
+void ShowBlot(BLOT *pblot)
+{
+    switch (pblot->blots)
+    {
+    case BLOTS_Hidden:
+    case BLOTS_Disappearing:
+        ((void (*)(BLOT *, BLOTS))pblot->pvtblot->pfnSetBlotBlots)(pblot, BLOTS_Appearing);
+        break;
+    case BLOTS_Visible:
+        pblot->tBlots = *pblot->ptNow;
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", HideBlot__FP4BLOT);
 

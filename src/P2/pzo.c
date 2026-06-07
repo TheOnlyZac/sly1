@@ -240,7 +240,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/pzo", FUN_0019a0f0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", InitVault__FP5VAULT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", PostTmblLoad__FP4TMBL3OID);
+void PostTmblLoad(TMBL *ptmbl, OID oidInitialState)
+{
+    LO *plo = PloFindSwObject(g_psw, 0x101, (OID)0x37A, ptmbl->palo);
+    ptmbl->psmDial = (SM *)plo;
+    SnipLo(plo);
+
+    ptmbl->psmaDial = PsmaApplySm((SM *)ptmbl->psmDial, ptmbl->palo, oidInitialState, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", PostVaultLoad__FP5VAULT);
 

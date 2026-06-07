@@ -1,6 +1,7 @@
 #include <smartguard.h>
 #include <freeze.h>
 #include <sound.h>
+#include <clock.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/smartguard", InitSmartguard__FP10SMARTGUARD);
 
@@ -52,7 +53,29 @@ int FCanSmartguardAttack(SMARTGUARD *psmartguard)
     return fn(psmartguard);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/smartguard", SgasGetSmartguard__FP10SMARTGUARD);
+SGAS SgasGetSmartguard(SMARTGUARD *psmartguard)
+{
+    SGS sgs = STRUCT_OFFSET(psmartguard, 0x724, SGS);
+
+    if (sgs == SGS_Dying)
+    {
+        return SGAS_Yes;
+    }
+
+    if (sgs == SGS_SearchIdle)
+    {
+        if (STRUCT_OFFSET(psmartguard, 0xCC4, int) > 0)
+        {
+            if (5.0f < g_clock.t - STRUCT_OFFSET(psmartguard, 0x728, float))
+            {
+                return SGAS_Force;
+            }
+            return SGAS_Yes;
+        }
+    }
+
+    return SGAS_No;
+}
 
 void HandleSmartguardMessage(SMARTGUARD *psmartguard, MSGID msgid, void *pv)
 {

@@ -3,6 +3,7 @@
 #include <game.h>
 #include <emitter.h>
 #include <dl.h>
+#include <find.h>
 
 extern SNIP s_asnipLoadRov[2];
 
@@ -318,7 +319,21 @@ void LoadRopFromBrx(ROP *prop, CBinaryInputStream *pbis)
     InferExpl(&STRUCT_OFFSET(prop, 0x568, EXPL *), prop);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", PostRopLoad__FP3ROP);
+void PostRopLoad(ROP *prop)
+{
+    PostAloLoad(prop);
+
+    if (STRUCT_OFFSET(prop, 0x558, int) == 0)
+    {
+        prop->pvtlo->pfnRemoveLo(prop);
+    }
+    else
+    {
+        STRUCT_OFFSET(prop, 0x55C, LO *) =
+            PloFindSwObjectByClass(prop->psw, 0x101, (CID)0x59, STRUCT_OFFSET(prop, 0x34, LO *));
+        SetRopRops(prop, ROPS_StayPut);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRop__FP3ROPf);
 

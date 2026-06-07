@@ -102,7 +102,21 @@ void GetAcpcTimes(ACPC *pacpc, int *pct, float **pat)
     GetApacgTimes(&STRUCT_OFFSET(pacpc, 0x20, ACG *), pct, pat); // pacpc->apacg
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/ac", EvaluateAcpb__FP4ACPBP3ALOffiP6VECTORT5);
+void EvaluateAcpb(ACPB *pacpb, ALO *palo, float t, float svt, GRFEVAL grfeval, VECTOR *ppos, VECTOR *pv)
+{
+    // pacpb->ckvb, pacpb->akvb
+    EvaluateAkvb(STRUCT_OFFSET(pacpb, 0xc, int), STRUCT_OFFSET(pacpb, 0x10, KVB *), t, svt, grfeval, ppos, pv);
+
+    if (palo)
+    {
+        void (*pfn)(ALO *, VECTOR *, VECTOR *) =
+            *(void (**)(ALO *, VECTOR *, VECTOR *))((char *)palo->pvtlo + 0xB0);
+        if (pfn)
+        {
+            pfn(palo, ppos, pv);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/ac", LoadAcpbFromBrx__FP4ACPBP18CBinaryInputStream);
 

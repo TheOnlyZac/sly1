@@ -1,5 +1,7 @@
 #include <puffer.h>
 #include <po.h>
+#include <rog.h>
+#include <find.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", InitPuffer__FP6PUFFER);
 
@@ -36,7 +38,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_00197788);
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_00197848);
 
-INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_00197a08);
+extern "C" void FUN_00197a08(void *pv1, void *pv2)
+{
+    ROST *prost = STRUCT_OFFSET(pv2, 0xC14, ROST *);
+    SetRostRosts(prost, ROSTS_Close);
+    RemoveDlEntry((DL *)((char *)pv1 + 0x6A8), prost);
+    AppendDlEntry((DL *)((char *)pv1 + 0x69C), prost);
+    STRUCT_OFFSET(pv2, 0xC14, ROST *) = 0;
+}
 
 extern float D_0026A83C;
 extern float D_0026A840;
@@ -90,4 +99,17 @@ int FCanPuffcAttack(PUFFC *ppuffc)
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_00198860);
 
-INCLUDE_ASM("asm/nonmatchings/P2/puffer", PostPuffbLoad__FP5PUFFB);
+extern SNIP D_0026A8E0;
+
+void PostPuffbLoad(PUFFB *ppuffb)
+{
+    LO *plo;
+
+    SnipAloObjects(ppuffb, 3, &D_0026A8E0);
+    PostAloLoad(ppuffb);
+    plo = PloFindSwObjectByClass(ppuffb->psw, FSO_FindAll, CID_TURRET, NULL);
+    if (plo != NULL)
+    {
+        STRUCT_OFFSET(plo, 0x684, int)++;
+    }
+}
