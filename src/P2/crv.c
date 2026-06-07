@@ -16,9 +16,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", ConvertApos__FiP6VECTORP7MATRIX4T2);
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", PcrvNew__F4CRVK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", SFromCrvU__FP3CRVf);
+float SFromCrvU(CRV *pcrv, float u)
+{
+    return 0.0f;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", UFromCrvS__FP3CRVf);
+float UFromCrvS(CRV *pcrv, float s)
+{
+    return 0.0f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", IcvFindCrvU__FP3CRVfPfT2);
 
@@ -44,7 +50,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", FindCrvClosestPointOnLineSegmentFromU__FP
 
 JUNK_ADDIU(A0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", DuGetCrvSearchIncrement__FP3CRV);
+float DuGetCrvSearchIncrement(CRV *pcrv)
+{
+    return (pcrv->mpicvu[1] - pcrv->mpicvu[0]) * 0.1f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", LoadCrvlFromBrx__FP4CRVLP18CBinaryInputStream);
 
@@ -60,7 +69,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", SFromCrvlU__FP4CRVLf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", UFromCrvlS__FP4CRVLf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", MeasureCrvl__FP4CRVL);
+void MeasureCrvl(CRVL *pcrvl)
+{
+    SMeasureApos(STRUCT_OFFSET(pcrvl, 0xC, int), STRUCT_OFFSET(pcrvl, 0x18, VECTOR *), STRUCT_OFFSET(pcrvl, 0x14, float *));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", FindCrvlClosestPointAll__FP4CRVLP6VECTORP6CONSTRT1T1PfT5);
 
@@ -70,7 +82,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", FindCrvlClosestPointFromS__FP4CRVLP6VECTO
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", LoadCrvcFromBrx__FP4CRVCP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", InvalidateCrvcCache__FP4CRVC);
+void InvalidateCrvcCache(CRVC *pcrvc)
+{
+    STRUCT_OFFSET(pcrvc, 0x1c0, int) = -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", FillCrvcCache__FP4CRVCi);
 
