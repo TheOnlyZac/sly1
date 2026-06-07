@@ -42,7 +42,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/game", PchzFriendlyFromWid);
 
 JUNK_WORD(0x24420010);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", call_search_level_by_id);
+extern "C" LevelLoadData *search_level_by_id(int search_id);
+
+extern "C" LevelLoadData *call_search_level_by_id(int level_id)
+{
+    return search_level_by_id(level_id);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", FFindLevel);
 
