@@ -1,6 +1,10 @@
 #include <dysh.h>
+#include <alo.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/dysh", InitDysh__FP4DYSH);
+void InitDysh(DYSH* pdysh)
+{
+    InitAlo((ALO*)pdysh);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/dysh", SetDyshShadow__FP4DYSHP6SHADOW);
 

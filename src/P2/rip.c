@@ -169,13 +169,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderRose__FP4ROSEP2CM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", SetRoseRoses__FP4ROSE5ROSES);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", SgnCmpHp__FPCvT0);
+int SgnCmpHp(const void *pv0, const void *pv1)
+{
+    if (STRUCT_OFFSET(pv0, 0x20, float) < STRUCT_OFFSET(pv1, 0x20, float))
+        return -1;
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", ChpBuildConvexHullScreen__FP6VECTORiP2HP);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", ChpBuildConvexHullXY__FP7MATRIX4iP2HP);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", PostFlyingEmit__FP6FLYINGP5EMITB);
+void PostFlyingEmit(FLYING *pflying, EMITB *pemitb)
+{
+    STRUCT_OFFSET(pflying, 0x120, int) = STRUCT_OFFSET(pemitb, 0x1DC, int);
+    STRUCT_OFFSET(pflying, 0x124, int) = STRUCT_OFFSET(pemitb, 0x1F0, int);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderFlying__FP6FLYINGP2CM);
 

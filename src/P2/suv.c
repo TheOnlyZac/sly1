@@ -39,7 +39,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvActive__FP3SUVP3JOYf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", FUN_001da170);
 
-INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvInternalXps__FP3SUV);
+void UpdateSuvInternalXps(SUV *psuv)
+{
+    STRUCT_OFFSET(psuv, 0x6A0, int) += 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", AddSuvCustomXps__FP3SUVP2SOiP3BSPT3PP2XP);
 

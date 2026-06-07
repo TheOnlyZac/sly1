@@ -1,4 +1,5 @@
 #include <dartgun.h>
+#include <jt.h>
 
 void InitDartgun(DARTGUN *pdartgun)
 {
@@ -10,7 +11,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/dartgun", HandleDartgunMessage__FP7DARTGUN5MSGI
 
 INCLUDE_ASM("asm/nonmatchings/P2/dartgun", BindDartgun__FP7DARTGUN);
 
-INCLUDE_ASM("asm/nonmatchings/P2/dartgun", FUN_0014f900);
+extern "C" {
+void FUN_0014f900(DARTGUN* pdartgun)
+{
+    if (g_pjt != NULL)
+    {
+        STRUCT_OFFSET(pdartgun, 0x6dc, int) = STRUCT_OFFSET(g_pjt, 0x24f8, int);
+    }
+}
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/dartgun", PostDartgunLoad__FP7DARTGUN);
 

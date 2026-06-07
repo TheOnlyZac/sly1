@@ -20,9 +20,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/sm", PsmaFindSm__FP2SMP3ALO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", IsmsFindSmOptional__FP2SM3OID);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", IsmsFindSmRequired__FP2SM3OID);
+int IsmsFindSmRequired(SM *psm, OID oid)
+{
+    int isms = IsmsFindSmOptional(psm, oid);
+    return isms >= 0 ? isms : 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", OidFromSmIsms__FP2SMi);
+OID OidFromSmIsms(SM *psm, int isms)
+{
+    return psm->asms[isms].oid;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", RetractSma__FP3SMA);
 
