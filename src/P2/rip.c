@@ -1,7 +1,33 @@
 #include <rip.h>
 #include <clock.h>
+#include <alo.h>
+#include <cid.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", PripgNew__FP2SW5RIPGT);
+RIPG *PripgNew(SW *psw, RIPGT ripgt)
+{
+    RIPG *pripg;
+
+    if (ripgt == RIPGT_Default)
+    {
+        if (STRUCT_OFFSET(psw, 0x1B3C, RIPG *) != NULL)
+        {
+            return STRUCT_OFFSET(psw, 0x1B3C, RIPG *);
+        }
+    }
+
+    pripg = STRUCT_OFFSET(psw, 0x1B38, RIPG *);
+    if (pripg != NULL)
+    {
+        STRUCT_OFFSET(psw, 0x1B38, RIPG *) = STRUCT_OFFSET(pripg, 0x564, RIPG *);
+        STRUCT_OFFSET(pripg, 0x550, RIPGT) = ripgt;
+        (*(void (**)(RIPG *))((uint8_t *)STRUCT_OFFSET(pripg, 0x0, void *) + 0x18))(pripg);
+        if (ripgt == RIPGT_Default)
+        {
+            STRUCT_OFFSET(psw, 0x1B3C, RIPG *) = pripg;
+        }
+    }
+    return pripg;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitRipg__FP4RIPG);
 
@@ -211,7 +237,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", FBounceFlying__FP6FLYINGP2SOP6VECTORT2);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", UpdateStuck__FP5STUCKf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderStuck__FP5STUCKP2CM);
+void RenderStuck(STUCK *pstuck, CM *pcm)
+{
+    VECTOR pos;
+    MATRIX3 mat;
+
+    ConvertAloPos(STRUCT_OFFSET(pstuck, 0x120, ALO *), NULL, &STRUCT_OFFSET(pstuck, 0x80, VECTOR), &pos);
+    ConvertAloMat(STRUCT_OFFSET(pstuck, 0x120, ALO *), NULL, &STRUCT_OFFSET(pstuck, 0x50, MATRIX3), &mat);
+    FRenderRipPosMat((RIP *)pstuck, pcm, &pos, &mat);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", PostLeafEmit__FP4LEAFP5EMITB);
 
@@ -245,7 +279,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", FBounceBullet__FP6BULLETP2SOP6VECTORT2);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", PostShrapnelEmit__FP8SHRAPNELP5EMITB);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", FBounceShrapnel__FP8SHRAPNELP2SOP6VECTORT2);
+int FBounceShrapnel(SHRAPNEL *pshrapnel, SO *psoOther, VECTOR *ppos, VECTOR *pnormal)
+{
+    if (FIsBasicDerivedFrom(STRUCT_OFFSET(psoOther, 0x50, BASIC *), CID_STEP))
+        return 0;
+    return FBounceRip((RIP *)pshrapnel, psoOther, ppos, pnormal);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderShrapnel__FP8SHRAPNELP2CM);
 

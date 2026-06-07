@@ -56,7 +56,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/hide", GetHpntClosestHidePos__FP4HPNTP6VECTORPf
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", FUN_0016a320);
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", InitHbsk__FP4HBSK);
+void InitHbsk(HBSK *phbsk)
+{
+    InitSo((SO *)phbsk);
+    SetAloRotationSpring((ALO *)phbsk, 3.0f);
+    SetAloRotationDamping((ALO *)phbsk, 3.0f);
+    SetAloPositionSmooth((ALO *)phbsk, 3.0f);
+    SetAloRotationSmooth((ALO *)phbsk, 2.0f);
+    STRUCT_OFFSET(phbsk, 0x568, float) = 300.0f;
+}
 
 extern qword D_002483D0[3];
 

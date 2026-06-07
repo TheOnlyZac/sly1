@@ -18,6 +18,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/eyes", SetEyesEyess__FP4EYES5EYESS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/eyes", UpdateEyes__FP4EYESf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/eyes", SetEyesClosed__FP4EYESf);
+void SetEyesClosed(EYES *peyes, float uClosed)
+{
+    STRUCT_OFFSET(peyes, 0x74, float) = uClosed;
+
+    if (1.0f <= uClosed)
+    {
+        SetEyesEyess(peyes, EYESS_Closed);
+    }
+    else
+    {
+        peyes->eyess = EYESS_Nil;
+        SetEyesEyess(peyes, EYESS_Open);
+    }
+
+    SetSaiIframe((SAI *)((uint8_t *)peyes + 0x10), (int)STRUCT_OFFSET(peyes, 0x70, float));
+    SetSaiIframe((SAI *)((uint8_t *)peyes + 0x40), (int)STRUCT_OFFSET(peyes, 0x70, float));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/eyes", PsaiFromEyesShd__FP4EYESP3SHD);
