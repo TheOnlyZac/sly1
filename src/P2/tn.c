@@ -71,7 +71,12 @@ void FreezeTn(TN *ptn, int fFreeze)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/tn", FUN_001e29e8);
+extern "C" void FUN_001e29e8(TN *ptn, float g)
+{
+    STRUCT_OFFSET(ptn, 0x364, float) = g;
+    STRUCT_OFFSET(ptn, 0x368, float) = 1.0f;
+    STRUCT_OFFSET(ptn, 0x360, float) = g;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/tn", CalculateTnCrv__FP2TNP6VECTORN21);
 
