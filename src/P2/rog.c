@@ -161,7 +161,16 @@ RODD *ProddCurRob(ROB *prob, ENSK ensk)
     return (RODD *)((uint8_t *)prob + (irodd * 0xC0 + 0x3E0));
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", InitRoh__FP3ROH);
+extern VECTOR g_normalZ;
+
+void InitRoh(ROH *proh)
+{
+    InitSo(proh);
+    STRUCT_OFFSET(proh, 0x550, int) = -1;
+    STRUCT_OFFSET(proh, 0x584, float) = 1.0f;
+    STRUCT_OFFSET(proh, 0x588, float) = 2.5f;
+    SetSoConstraints(proh, CT_Tangent, &g_normalZ, CT_Project, &g_normalZ);
+}
 
 extern SNIP D_0026B7E8;
 
