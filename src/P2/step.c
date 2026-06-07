@@ -1,4 +1,5 @@
 #include <step.h>
+#include <mat.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", InitStep__FP4STEP);
 
@@ -65,7 +66,11 @@ void AdjustStepDzBase(STEP *pstep, GRFADJ grfadj, DZ *pdz, int ixpd)
     return;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/step", UpdateStepMatTarget__FP4STEP);
+void UpdateStepMatTarget(STEP *pstep)
+{
+    extern VECTOR g_normalZ;
+    LoadRotateMatrixRad(*(float *)((uint8_t *)(pstep) + 0x638), &g_normalZ, (MATRIX3 *)((uint8_t *)(pstep) + 0x660));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", AdjustStepXpVelocity__FP4STEPP2XPi);
 

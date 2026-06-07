@@ -11,7 +11,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", GExcludeAlm__FiP2LMf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvBalance__FP3SUV);
 
-INCLUDE_ASM("asm/nonmatchings/P2/suv", DsGetTrackRelative__Ffff);
+float DsGetTrackRelative(float track, float relative, float range)
+{
+    relative -= range;
+    if (track * 0.5f < relative) {
+        relative -= track;
+    } else if (relative < track * (-0.5f)) {
+        relative += track;
+    }
+    return relative;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", FIsSuvAheadOf__FP3SUVT0);
 

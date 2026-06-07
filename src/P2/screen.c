@@ -10,7 +10,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateBlots__Fv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", ForceHideBlots__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", ResetBlots__Fv);
+void ResetBlots(void)
+{
+    extern BLOT *D_002486B0[];
+    
+    for (int i = 0; i < 0x25; i++)
+    {
+        BLOT *pblot = D_002486B0[i];
+        ((VTBLOT *)pblot->pvtblot)->pfnOnBlotReset(pblot);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", RenderBlots__Fv);
 
@@ -84,7 +93,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", SetBlotBlots__FP4BLOT5BLOTS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FIncludeBlotForPeg__FP4BLOTT0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", ResizeBlot__FP4BLOTff);
+void ResizeBlot(BLOT *pblot, float dx, float dy)
+{
+    if (dx >= 0.0f)
+        pblot->width = dx;
+    if (dy >= 0.0f)
+        pblot->height = dy;
+    RepositionBlot(pblot);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", RepositionBlot__FP4BLOT);
 

@@ -47,9 +47,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/sm", SeekSma__FP3SMA3OID);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", ChooseSmaTransition__FP3SMA);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", EndSmaTransition__FP3SMA);
+void EndSmaTransition(SMA *psma)
+{
+    int cur = STRUCT_OFFSET(psma, 0x28, int);
+    int next = STRUCT_OFFSET(psma, 0x2C, int);
+    NotifySmaSpliceOnEnterState(psma, cur, next);
+    int nextCopy = STRUCT_OFFSET(psma, 0x2C, int);
+    STRUCT_OFFSET(psma, 0x2C, int) = -1;
+    STRUCT_OFFSET(psma, 0x28, int) = nextCopy;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", HandleSmaMessage__FP3SMA5MSGIDPv);
+void HandleSmaMessage(SMA *psma, MSGID msgid, void *pv)
+{
+    if (msgid == MSGID_asega_limit) {
+        if ((ASEGA*)pv == psma->pasegaCur) {
+            EndSmaTransition(psma);
+            ChooseSmaTransition(psma);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", SkipSma__FP3SMAf);
 

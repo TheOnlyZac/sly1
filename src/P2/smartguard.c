@@ -40,7 +40,17 @@ INCLUDE_ASM("asm/nonmatchings/P2/smartguard", UpdateSmartguardFlashlight__FP10SM
 
 INCLUDE_ASM("asm/nonmatchings/P2/smartguard", OnSmartguardEnteringSgs__FP10SMARTGUARD3SGSP4ASEG);
 
-INCLUDE_ASM("asm/nonmatchings/P2/smartguard", FCanSmartguardAttack__FP10SMARTGUARD);
+int FCanSmartguardAttack(SMARTGUARD *psmartguard)
+{
+    if (!FCanStepguardAttack((STEPGUARD *)psmartguard))
+    {
+        return 0;
+    }
+    
+    void *pvt = STRUCT_OFFSET(psmartguard, 0x0, void *);
+    int (*fn)(SMARTGUARD *) = (int (*)(SMARTGUARD *))STRUCT_OFFSET(pvt, 0x16C, void *);
+    return fn(psmartguard);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/smartguard", SgasGetSmartguard__FP10SMARTGUARD);
 
