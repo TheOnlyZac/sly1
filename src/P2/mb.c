@@ -33,7 +33,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/mb", FDetectMbg__FP3MBG);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mb", FUN_0018ab88__Fi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mb", FUN_0018abf0__Fi);
+SGS FUN_0018abf0(int param)
+{
+    STEPGUARD *pstepguard = (STEPGUARD *)param;
+    OID oid;
+
+    if (STRUCT_OFFSET(pstepguard, 0x724, int) == 4)
+    {
+        GetSmaCur((SMA *)STRUCT_OFFSET(pstepguard, 0xE10, int), &oid);
+        if (oid == (OID)0x438)
+        {
+            if (SggsGetStepguard(pstepguard) == 0)
+            {
+                return (SGS)2;
+            }
+        }
+    }
+
+    return SgsNextStepguardAI(pstepguard);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mb", FUN_0018ac58__Fi);
 

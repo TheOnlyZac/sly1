@@ -17,7 +17,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/puffer", PostPufferLoad__FP6PUFFER);
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", PresetPufferAccel__FP6PUFFERf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/puffer", FFilterPuffer__FP6PUFFERP2SO);
+int FFilterPuffer(PUFFER *ppuffer, SO *pso)
+{
+    if ((STRUCT_OFFSET(pso, 0x538, unsigned long long) & ((unsigned long long)0x8000 << 28)) != 0)
+    {
+        if (!FIsBasicDerivedFrom(pso, (CID)0x1F))
+            return 0;
+    }
+
+    return STRUCT_OFFSET(pso, 0x50, SO *) != ppuffer;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", UpdatePuffer__FP6PUFFERf);
 

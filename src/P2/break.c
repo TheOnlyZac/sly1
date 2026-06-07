@@ -2,10 +2,30 @@
 #include <chkpnt.h>
 #include <po.h>
 #include <memory.h>
+#include <find.h>
+#include <emitter.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", InitBrk__FP3BRK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", LoadBrkFromBrx__FP3BRKP18CBinaryInputStream);
+void LoadBrkFromBrx(BRK *pbrk, CBinaryInputStream *pbis)
+{
+    LoadSoFromBrx(pbrk, pbis);
+
+    if (STRUCT_OFFSET(pbrk, 0x614, OID) == (OID)-1)
+    {
+        InferExpl((EXPL **)((uint8_t *)pbrk + 0x618), (ALO *)pbrk);
+    }
+    else
+    {
+        LO *plo = PloFindSwObject(pbrk->psw, 0x101, STRUCT_OFFSET(pbrk, 0x614, OID), (LO *)pbrk);
+        STRUCT_OFFSET(pbrk, 0x618, LO *) = plo;
+
+        if (plo != NULL)
+        {
+            SnipLo(plo);
+        }
+    }
+}
 
 void CloneBrk(BRK *pbrk, BRK *pbrkBase)
 {

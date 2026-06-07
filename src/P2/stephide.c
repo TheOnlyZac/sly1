@@ -6,7 +6,23 @@ INCLUDE_ASM("asm/nonmatchings/P2/stephide", MeasureJtJumpToTarget__FP2JTP6VECTOR
 
 INCLUDE_ASM("asm/nonmatchings/P2/stephide", GetJtRailLanding__FP2JTP4RAILfP6VECTORT3);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stephide", GMeasureJumpRail__FP3MJRf);
+float GMeasureJumpRail(MJR *pmjr, float u)
+{
+    VECTOR posLanding;
+    VECTOR vLanding;
+    float gInteg;
+
+    GetJtRailLanding(STRUCT_OFFSET(pmjr, 0x0, JT *),
+                     STRUCT_OFFSET(pmjr, 0x4, RAIL *),
+                     u, &posLanding, &vLanding);
+
+    MeasureJtJumpToTarget(STRUCT_OFFSET(pmjr, 0x0, JT *),
+                          (VECTOR *)((uint8_t *)pmjr + 0x10),
+                          STRUCT_OFFSET(STRUCT_OFFSET(pmjr, 0x4, RAIL *), 0x18, ALO *),
+                          &posLanding, &vLanding, 0, &gInteg, 0, 0);
+
+    return gInteg;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stephide", FUN_001cea58);
 

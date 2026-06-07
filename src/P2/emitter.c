@@ -24,7 +24,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindEmitter__FP7EMITTER);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", PostEmitterLoad__FP7EMITTER);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", HandleEmitterMessage__FP7EMITTER5MSGIDPv);
+void HandleEmitterMessage(EMITTER *pemitter, MSGID msgid, void *pv)
+{
+    if (msgid == MSGID_removed)
+    {
+        if (pv == STRUCT_OFFSET(pemitter, 0x344, void *))
+        {
+            (*(void (**)(void *, EMITTER *))((char *)*(void **)pv + 0x70))(pv, pemitter);
+            STRUCT_OFFSET(pemitter, 0x344, void *) = 0;
+        }
+        else if (pv == STRUCT_OFFSET(pemitter, 0x348, void *))
+        {
+            (*(void (**)(void *, EMITTER *))((char *)*(void **)pv + 0x70))(pv, pemitter);
+            STRUCT_OFFSET(pemitter, 0x348, void *) = 0;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", PemitbCopyOnWrite__FP5EMITB);
 
@@ -248,7 +263,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", InitExpls__FP5EXPLS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindExpls__FP5EXPLS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", HandleExplsMessage__FP5EXPLS5MSGIDPv);
+void HandleExplsMessage(EXPLS *pexpls, MSGID msgid, void *pv)
+{
+    if (msgid == MSGID_removed)
+    {
+        if (pv == STRUCT_OFFSET(pexpls, 0xc0, void *))
+        {
+            (*(void (**)(void *, EXPLS *))((char *)*(void **)pv + 0x70))(pv, pexpls);
+            STRUCT_OFFSET(pexpls, 0xc0, void *) = 0;
+        }
+        else if (pv == STRUCT_OFFSET(pexpls, 0xc4, void *))
+        {
+            (*(void (**)(void *, EXPLS *))((char *)*(void **)pv + 0x70))(pv, pexpls);
+            STRUCT_OFFSET(pexpls, 0xc4, void *) = 0;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", ExplodeExplsExplso__FP5EXPLSP6EXPLSO);
 

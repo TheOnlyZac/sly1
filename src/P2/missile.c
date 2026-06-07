@@ -7,7 +7,17 @@ void InitMissile(MISSILE *pmissile)
     STRUCT_OFFSET(pmissile, 0x6b8, int) = 1; // pmissile->fFollowTrajectory
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/missile", LoadMissileFromBrx__FP7MISSILEP18CBinaryInputStream);
+extern SNIP s_asnipMissile;
+
+void LoadMissileFromBrx(MISSILE *pmissile, CBinaryInputStream *pbis)
+{
+    uint64_t grfalo;
+
+    LoadBombFromBrx(pmissile, pbis);
+    SnipAloObjects(pmissile, 1, &s_asnipMissile);
+    grfalo = STRUCT_OFFSET(pmissile, 0x2c8, uint64_t);
+    STRUCT_OFFSET(pmissile, 0x2c8, uint64_t) = (grfalo & ~0x30000000000ULL) | (0x8000ULL << 0x19);
+}
 
 void OnMissileRemove(MISSILE *pmissile)
 {

@@ -108,7 +108,21 @@ INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00135550);
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", open_close_binoc);
 
-INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_001357f0);
+extern "C" {
+int FUN_001357f0(void *a, void *b)
+{
+    if (!FIsLoInWorld(STRUCT_OFFSET(a, 0x0, LO *)))
+        return 1;
+
+    if (!FIsLoInWorld(STRUCT_OFFSET(b, 0x0, LO *)))
+        return -1;
+
+    if (STRUCT_OFFSET(a, 0x4, float) < STRUCT_OFFSET(b, 0x4, float))
+        return -1;
+
+    return 1;
+}
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00135858);
 

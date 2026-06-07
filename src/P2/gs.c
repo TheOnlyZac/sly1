@@ -118,7 +118,17 @@ INCLUDE_ASM("asm/nonmatchings/P2/gs", ReferenceUVAnimation__FP2QWiP3SAI);
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", RebaseSurs__FiiPvT2);
 
-INCLUDE_ASM("asm/nonmatchings/P2/gs", PropagateSurs__Fv);
+extern SUR D_0027DC20[];
+
+void PropagateSurs()
+{
+    int isur;
+
+    for (isur = 0; isur < D_002626D0; isur++)
+    {
+        PropagateSur(&D_0027DC20[isur]);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", PqwVifsBitmapUpload__Fi);
 

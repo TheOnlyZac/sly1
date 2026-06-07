@@ -68,9 +68,35 @@ void DisableAlarmAlbrk(ALARM *palarm)
 
 INCLUDE_ASM("asm/nonmatchings/P2/alarm", EnableAlarmSensors__FP5ALARM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alarm", DisableAlarmSensors__FP5ALARM);
+void DisableAlarmSensors(ALARM *palarm)
+{
+    int ipsensor;
 
-INCLUDE_ASM("asm/nonmatchings/P2/alarm", NotifyAlarmSensorsOnTrigger__FP5ALARM);
+    for (ipsensor = 0; ipsensor < STRUCT_OFFSET(palarm, 0x5bc, int); ipsensor++) // palarm->cpsensors
+    {
+        SENSOR *psensor = STRUCT_OFFSET_INDEX(palarm, 0x5c0, SENSOR *, ipsensor); // palarm->apsensors[ipsensor]
+        void **ppvtable = (void **)STRUCT_OFFSET(psensor, 0x0, void *);
+        void (*pfn)(SENSOR *) = (void (*)(SENSOR *))STRUCT_OFFSET(ppvtable, 0x138, void *);
+
+        if (pfn != NULL)
+            pfn(psensor);
+    }
+}
+
+void NotifyAlarmSensorsOnTrigger(ALARM *palarm)
+{
+    int ipsensor;
+
+    for (ipsensor = 0; ipsensor < STRUCT_OFFSET(palarm, 0x5bc, int); ipsensor++) // palarm->cpsensors
+    {
+        SENSOR *psensor = STRUCT_OFFSET_INDEX(palarm, 0x5c0, SENSOR *, ipsensor); // palarm->apsensors[ipsensor]
+        void **ppvtable = (void **)STRUCT_OFFSET(psensor, 0x0, void *);
+        void (*pfn)(SENSOR *) = (void (*)(SENSOR *))STRUCT_OFFSET(ppvtable, 0x13c, void *);
+
+        if (pfn != NULL)
+            pfn(psensor);
+    }
+}
 
 void AddAlarmAlbrk(ALARM *palarm, OID oid)
 {

@@ -1,6 +1,7 @@
 #include <hide.h>
 #include <dl.h>
 #include <dart.h>
+#include <memory.h>
 
 extern DL g_dlHshape;
 extern DL g_dlHpnt;
@@ -57,7 +58,21 @@ INCLUDE_ASM("asm/nonmatchings/P2/hide", FUN_0016a320);
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", InitHbsk__FP4HBSK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", LoadHbskFromBrx__FP4HBSKP18CBinaryInputStream);
+extern qword D_002483D0[3];
+
+void LoadHbskFromBrx(HBSK *phbsk, CBinaryInputStream *pbis)
+{
+    LoadSoFromBrx((SO *)phbsk, pbis);
+    if (STRUCT_OFFSET(phbsk, 0x224, void *) == 0)
+        STRUCT_OFFSET(phbsk, 0x224, void *) = PvAllocSwClearImpl(0xC0);
+    STRUCT_OFFSET(STRUCT_OFFSET(phbsk, 0x224, void *), 0xB0, int) |= 1;
+    {
+        void *pv = STRUCT_OFFSET(phbsk, 0x224, void *);
+        STRUCT_OFFSET(pv, 0x0, qword) = D_002483D0[0];
+        STRUCT_OFFSET(pv, 0x10, qword) = D_002483D0[1];
+        STRUCT_OFFSET(pv, 0x20, qword) = D_002483D0[2];
+    }
+}
 
 void OnHbskAdd(HBSK *phbsk)
 {
@@ -75,7 +90,21 @@ INCLUDE_ASM("asm/nonmatchings/P2/hide", CloneHbsk__FP4HBSKT0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", FIgnoreHbskIntersection__FP4HBSKP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", PresetHbskAccel__FP4HBSKf);
+extern VECTOR D_00248D30;
+
+void PresetHbskAccel(HBSK *phbsk, float dt)
+{
+    MATRIX3 matUpright;
+
+    PresetSoAccel((SO *)phbsk, dt);
+    if (STRUCT_OFFSET(phbsk, 0x550, int) == 0)
+    {
+        TiltMatUpright((MATRIX3 *)((uint8_t *)phbsk + 0xD0), 0, &matUpright);
+        AccelSoTowardMatSpring((SO *)phbsk, &matUpright,
+                               STRUCT_OFFSET(phbsk, 0x214, CLQ *), &D_00248D30,
+                               STRUCT_OFFSET(phbsk, 0x218, CLQ *), dt);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", SetHbskHbsks__FP4HBSK5HBSKS);
 

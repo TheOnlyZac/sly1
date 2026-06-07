@@ -19,7 +19,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/steprail", func_001D32D8__FiP2JTl);
 
 INCLUDE_ASM("asm/nonmatchings/P2/steprail", update_steprail);
 
-INCLUDE_ASM("asm/nonmatchings/P2/steprail", preset_steprail_accel);
+extern "C" void preset_steprail_accel(SO *pso, float dt)
+{
+    MATRIX3 mat;
+    extern VECTOR D_00248D30;
+
+    PresetSoAccel(pso, dt);
+
+    if (STRUCT_OFFSET(pso, 0x18, int) == 0) // pso->paloParent
+    {
+        TiltMatUpright((MATRIX3 *)((uint8_t *)pso + 0xD0), NULL, &mat);
+        AccelSoTowardMatSpring(
+            pso,
+            &mat,
+            STRUCT_OFFSET(pso, 0x214, CLQ *),
+            &D_00248D30,
+            STRUCT_OFFSET(pso, 0x218, CLQ *),
+            dt);
+    }
+}
 
 void FUN_001d34e0(uint8_t *param_1)
 {

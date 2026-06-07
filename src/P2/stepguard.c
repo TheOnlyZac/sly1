@@ -3,6 +3,7 @@
 #include <so.h>
 #include <aseg.h>
 #include <jt.h>
+#include <find.h>
 
 extern SNIP s_asnipStepguardLoad;
 
@@ -210,7 +211,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FUN_001ca6d0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", UseStepguardDeathAnimation__FP9STEPGUARDi3OID);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", PasegFindStepguard__FP9STEPGUARD3OID);
+ASEG *PasegFindStepguard(STEPGUARD *pstepguard, OID oidAseg)
+{
+    ASEG *paseg = (ASEG *)PloFindSwObject(pstepguard->psw, 0x101, oidAseg, STRUCT_OFFSET(pstepguard, 0xb74, LO *));
+
+    if (paseg != NULL)
+    {
+        STRUCT_OFFSET(paseg, 0x48, int) = 0;
+        StripAsegAlo(paseg, (ALO *)pstepguard);
+        SnipLo(paseg);
+    }
+
+    return paseg;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", LoadStepguardAnimations__FP9STEPGUARD);
 
@@ -370,7 +383,22 @@ SO *PsoEnemySgg(SGG *psgg)
     return fn(pso);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", UpdateSggCallback__FP3SGG5MSGIDPv);
+void UpdateSggCallback(SGG *psgg, MSGID msgid, void *pv)
+{
+    SGGS sggs;
+
+    STRUCT_OFFSET(psgg, 0x17c, int) = 0;
+
+    if (STRUCT_OFFSET(psgg, 0x50, SGGS) != SGGS_Dead)
+    {
+        STRUCT_OFFSET(psgg, 0x188, int) = FDetectSgg(psgg);
+
+        while ((sggs = SggsNextSgg(psgg)) != STRUCT_OFFSET(psgg, 0x50, SGGS))
+        {
+            SetSggSggs(psgg, sggs);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", SggsNextSgg__FP3SGG);
 

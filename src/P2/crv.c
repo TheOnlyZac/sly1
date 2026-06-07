@@ -133,7 +133,19 @@ void ConvertCrvl(CRVL *pcrvl, MATRIX4 *pmatSrc, MATRIX4 *pmatDst)
     ConvertApos(STRUCT_OFFSET(pcrvl, 0xC, int), STRUCT_OFFSET(pcrvl, 0x18, VECTOR *), pmatSrc, pmatDst);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", SFromCrvlU__FP4CRVLf);
+float SFromCrvlU(CRVL *pcrvl, float u)
+{
+    float du;
+    float duSeg;
+    int icv;
+    float frac;
+    float *mpicvs;
+
+    icv = IcvFindCrvU((CRV *)pcrvl, u, &du, &duSeg);
+    frac = du / duSeg;
+    mpicvs = ((CRV *)pcrvl)->mpicvs;
+    return (1.0f - frac) * mpicvs[icv] + frac * mpicvs[icv + 1];
+}
 
 float UFromCrvlS(CRVL *pcrvl, float s)
 {
@@ -173,7 +185,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", FillCrvcCache__FP4CRVCi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", EvaluateCrvcFromU__FP4CRVCfP6VECTORT2);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", EvaluateCrvcFromS__FP4CRVCfP6VECTORT2);
+void EvaluateCrvcFromS(CRVC *pcrvc, float s, VECTOR *ppos, VECTOR *pnormTangent)
+{
+    float u;
+
+    u = ((float (*)(CRVC *, float))STRUCT_OFFSET(*(void **)pcrvc, 0x18, void *))(pcrvc, s);
+    if (STRUCT_OFFSET(*(void **)pcrvc, 0x4, void *))
+    {
+        ((void (*)(CRVC *, float, VECTOR *, VECTOR *))STRUCT_OFFSET(*(void **)pcrvc, 0x4, void *))(pcrvc, u, ppos, pnormTangent);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", RenderCrvcSegment__FP4CRVCiP7MATRIX4P2CMG4RGBAi);
 

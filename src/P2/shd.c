@@ -65,7 +65,36 @@ INCLUDE_ASM("asm/nonmatchings/P2/shd", PshdFindShader__F3OID);
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", SetSaiIframe__FP3SAIi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/shd", SetSaiDuDv__FP3SAIff);
+extern SAI *g_psaiUpdate;
+extern SAI *g_psaiUpdateTail;
+
+void SetSaiDuDv(SAI *psai, float du, float dv)
+{
+    SAI *psaiNext;
+
+    if (!STRUCT_OFFSET(psai, 0x4, int))
+        return;
+
+    if (STRUCT_OFFSET(psai, 0xc, float) == du &&
+        STRUCT_OFFSET(psai, 0x10, float) == dv)
+        return;
+
+    psaiNext = STRUCT_OFFSET(psai, 0x18, SAI *);
+    STRUCT_OFFSET(psai, 0xc, float) = du;
+    STRUCT_OFFSET(psai, 0x10, float) = dv;
+
+    if (psaiNext != 0)
+        return;
+
+    if (psai == g_psaiUpdateTail)
+        return;
+
+    if (g_psaiUpdateTail == 0)
+        g_psaiUpdateTail = psai;
+
+    STRUCT_OFFSET(psai, 0x18, SAI *) = g_psaiUpdate;
+    g_psaiUpdate = psai;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", PropagateSais__Fv);
 
