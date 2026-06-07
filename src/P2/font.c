@@ -48,7 +48,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/font", PfontClone__8CFontBrxff);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", CopyTo__8CFontBrxP8CFontBrx);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", FValid__8CFontBrxc);
+bool CFontBrx::FValid(char ch)
+{
+    return PglyffFromCh(ch) != 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", DxFromCh__8CFontBrxc);
 

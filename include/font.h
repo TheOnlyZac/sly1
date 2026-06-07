@@ -37,6 +37,10 @@ class CFont
 
 class CFontBrx : public CFont
 {
+  public:
+    void *PglyffFromCh(char ch);
+    bool FValid(char ch);
+
   private:
     undefined1 m_padding[0x33];
 };
