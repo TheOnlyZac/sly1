@@ -250,7 +250,34 @@ float FUN_001ABE60()
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001abe70);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac060);
+extern "C" {
+void FUN_001ac060(TIMER *ptimer)
+{
+    int n = STRUCT_OFFSET(ptimer, 0x270, int) - 1;
+    STRUCT_OFFSET(ptimer, 0x270, int) = n;
+    if (n <= 0)
+    {
+        int s = STRUCT_OFFSET(ptimer, 0x26c, int) - 1;
+        STRUCT_OFFSET(ptimer, 0x26c, int) = s;
+        if (s <= 0)
+        {
+            STRUCT_OFFSET(ptimer, 0x270, int) = 0;
+            STRUCT_OFFSET(ptimer, 0x26c, int) = 0;
+        }
+        else
+        {
+            STRUCT_OFFSET(ptimer, 0x270, int) = STRUCT_OFFSET(ptimer, 0x264, int);
+        }
+    }
+
+    {
+        int tmp = STRUCT_OFFSET(ptimer, 0x26c, int) - 1;
+        int num = (tmp > -1 ? tmp : 0) * STRUCT_OFFSET(ptimer, 0x264, int) + STRUCT_OFFSET(ptimer, 0x270, int);
+        STRUCT_OFFSET(ptimer, 0x278, float) = (float)num / (float)STRUCT_OFFSET(ptimer, 0x268, int);
+        STRUCT_OFFSET(ptimer, 0x27c, float) = g_clock.t;
+    }
+}
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac0e8);
 

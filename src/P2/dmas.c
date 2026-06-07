@@ -93,7 +93,30 @@ void DMAS::AddDmaCnt()
 
 INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaRefs__4DMASiP2QW);
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaCall__4DMASP2QW);
+void DMAS::AddDmaCall(QW *pqw)
+{
+    int fCnt = 0;
+
+    if (m_pqwCnt)
+    {
+        EndDmaCnt();
+        fCnt = 1;
+    }
+
+    uchar *pb = m_pb;
+    m_pb = pb + 0x10;
+    *(ulong *)pb = ((ulong)(uint)pqw << 32) | 0x50000000;
+    *(ulong *)(pb + 8) = 0;
+
+    if (fCnt)
+    {
+        QW *pqwCnt = (QW *)m_pb;
+        m_pqwCnt = pqwCnt;
+        m_pb += sizeof(QW);
+        pqwCnt->aul[0] = 0x10000000;
+        m_pqwCnt->aul[1] = 0;
+    }
+}
 
 void DMAS::AddDmaRet()
 {

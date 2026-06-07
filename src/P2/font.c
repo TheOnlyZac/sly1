@@ -1,5 +1,6 @@
 #include <font.h>
 #include <memory.h>
+#include <gs.h>
 
 void StartupFont()
 {
@@ -126,11 +127,39 @@ INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015e1b0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", DxMaxLine__9CRichText);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", GetExtents__9CRichTextPfT1f);
+extern "C" int ClineWrap__9CRichTextf(CRichText *self, float dyMax);
+extern "C" float DxMaxLine__9CRichText(CRichText *self);
+
+extern "C" void GetExtents__9CRichTextPfT1f(CRichText *self, float *pdx, float *pdy, float dyMax)
+{
+    int cline = ClineWrap__9CRichTextf(self, dyMax);
+    float dxMax = DxMaxLine__9CRichText(self);
+    CFont *pfont = STRUCT_OFFSET(self, 0xC, CFont *);
+    float dyLine = (float)STRUCT_OFFSET(pfont, 0x8, int) * STRUCT_OFFSET(pfont, 0x48, float);
+    float dyTotal = (float)cline * dyLine;
+    if (pdx)
+        *pdx = dxMax;
+    if (pdy)
+        *pdy = dyTotal;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", Draw__9CRichTextP8CTextBoxT1P4GIFS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", PostFontsLoad__Fv);
+extern int D_00262260;
+extern CFontBrx *D_00262264;
+extern "C" void PostLoad__8CFontBrxP3GSB(CFontBrx *self, GSB *pgsb);
+
+void PostFontsLoad()
+{
+    GSB gsb;
+    int i;
+
+    InitGsb(&gsb, 0x1400, 0x1E00);
+    for (i = 0; i < D_00262260; i++)
+    {
+        PostLoad__8CFontBrxP3GSB(D_00262264 + i, &gsb);
+    }
+}
 
 JUNK_WORD(0x46000802);
 JUNK_WORD(0x46000802);

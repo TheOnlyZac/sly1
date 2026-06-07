@@ -1,5 +1,6 @@
 #include <sm.h>
 #include <sw.h>
+#include <aseg.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", LoadSmFromBrx__FP2SMP18CBinaryInputStream);
 
@@ -67,7 +68,25 @@ void HandleSmaMessage(SMA *psma, MSGID msgid, void *pv)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", SkipSma__FP3SMAf);
+void SkipSma(SMA *psma, float dtSkip)
+{
+    ASEGA *pasega;
+
+    extern void SeekAsega(ASEGA *pasega, SEEK seek, float t, float svt);
+
+    while ((pasega = psma->pasegaCur) != NULL)
+    {
+        float diff = STRUCT_OFFSET(STRUCT_OFFSET(pasega, 0x8, uint8_t *), 0x34, float) - STRUCT_OFFSET(pasega, 0x14, float);
+        if (dtSkip < diff)
+        {
+            SeekAsega(pasega, SEEK_Current, dtSkip, 1.0f);
+            break;
+        }
+        dtSkip -= diff;
+        EndSmaTransition(psma);
+        ChooseSmaTransition(psma);
+    }
+}
 
 void SendSmaMessage(SMA *psma, MSGID msgid, void *pv)
 {

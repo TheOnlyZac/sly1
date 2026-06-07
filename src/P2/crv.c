@@ -1,5 +1,6 @@
 #include <crv.h>
 #include <mark.h>
+#include <bez.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", SMeasureApos__FiP6VECTORPf);
 
@@ -200,7 +201,23 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", RenderCrvcSegment__FP4CRVCiP7MATRIX4P2CMG
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", ConvertCrvc__FP4CRVCP7MATRIX4T1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", SFromCrvcU__FP4CRVCf);
+float SFromCrvcU(CRVC *pcrvc, float u)
+{
+    float du;
+    float duSeg;
+    int icv;
+
+    icv = IcvFindCrvU((CRV *)pcrvc, u, &du, &duSeg);
+
+    return SBezierPosLength(
+               duSeg,
+               du,
+               (VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x18, void *) + icv * 16),
+               (VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x20, void *) + icv * 16),
+               (VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x18, void *) + (icv * 16 + 16)),
+               (VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x1C, void *) + (icv * 16 + 16))) +
+           STRUCT_OFFSET(pcrvc, 0x14, float *)[icv];
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", UFromCrvcS__FP4CRVCf);
 

@@ -7,7 +7,18 @@ void InitMurray(MURRAY *pmurray)
     STRUCT_OFFSET(pmurray, 0xbd0, float) = 0.0f; // pmurray->uFling
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/murray", PostMurrayLoad__FP6MURRAY);
+extern SNIP D_00269B60[2];
+
+void PostMurrayLoad(MURRAY *pmurray)
+{
+    PostStepguardLoad(pmurray);
+    SnipAloObjects(pmurray, 2, D_00269B60);
+    STRUCT_OFFSET(pmurray, 0x5f0, ASEG *) = PasegFindStepguard(pmurray, (OID)0xEF);
+    STRUCT_OFFSET(pmurray, 0xc38, ASEG *) = PasegFindStepguard(pmurray, (OID)0x16C);
+    STRUCT_OFFSET(pmurray, 0xc3c, ASEG *) = PasegFindStepguard(pmurray, (OID)0x16D);
+    STRUCT_OFFSET(pmurray, 0xc40, ASEG *) = PasegFindStepguard(pmurray, (OID)0x16A);
+    STRUCT_OFFSET(pmurray, 0xc44, ASEG *) = PasegFindStepguard(pmurray, (OID)0x16B);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/murray", FUN_0018ffb0);
 

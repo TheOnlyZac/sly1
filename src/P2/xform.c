@@ -3,6 +3,7 @@
 #include <brx.h>
 #include <sw.h>
 #include <cm.h>
+#include <find.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", InitXfm__FP3XFM);
 
@@ -44,7 +45,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/xform", LoadWarpFromBrx__FP4WARPP18CBinaryInput
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", CloneWarp__FP4WARPT0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/xform", PostWarpLoad__FP4WARP);
+void PostWarpLoad(WARP *pwarp)
+{
+    int i;
+
+    PostLoLoad(pwarp);
+
+    for (i = 0; i < STRUCT_OFFSET(pwarp, 0xa0, int); i++)
+    {
+        LO *plo = STRUCT_OFFSET(pwarp, 0xa4, LO **)[i];
+        (*(void (**)(LO *, ALO *))((char *)plo->pvtlo + 0x64))(plo, pwarp->paloParent);
+        SnipLo(plo);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", TriggerWarp__FP4WARP);
 
@@ -112,7 +125,26 @@ void InitCamera(CAMERA *pcamera)
     STRUCT_OFFSET(pcamera, 0x2d0, OID) = OID_Nil; // pcamera->oidTarget
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/xform", PostCameraLoad__FP6CAMERA);
+void PostCameraLoad(CAMERA *pcamera)
+{
+    PostAloLoad(pcamera);
+
+    if (pcamera->oidTarget != OID_Nil)
+    {
+        LO *plo = PloFindSwObject(pcamera->psw, 0x104, pcamera->oidTarget, pcamera);
+        if (plo)
+        {
+            if (plo->pvtlo->grfcid & 1)
+            {
+                pcamera->paloTarget = (ALO *)plo;
+            }
+            else if (FIsBasicDerivedFrom(plo, (CID)0x7e))
+            {
+                pcamera->ppntTarget = (PNT *)plo;
+            }
+        }
+    }
+}
 
 void EnableCamera(CAMERA *pcamera)
 {

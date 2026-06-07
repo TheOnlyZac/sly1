@@ -138,7 +138,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/button", UpdateButtonInternalXps__FP6BUTTON);
 
 INCLUDE_ASM("asm/nonmatchings/P2/button", UpdateButton__FP6BUTTONf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/button", FAbsorbButtonWkr__FP6BUTTONP3WKR);
+int FAbsorbButtonWkr(BUTTON* pbutton, WKR* pwkr)
+{
+    int fAbsorbed = FAbsorbSoWkr(pbutton, pwkr);
+
+    if (fAbsorbed &&
+        !(pwkr->grfic & 0x4) &&
+        STRUCT_OFFSET(pbutton, 0x550, int) == BUTTONS_Disabled &&
+        !STRUCT_OFFSET(pbutton, 0x680, int))
+    {
+        SetButtonButtons(pbutton, BUTTONS_Contact);
+    }
+
+    return fAbsorbed;
+}
 
 void InitVolbtn(VOLBTN *pvolbtn)
 {

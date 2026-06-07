@@ -1,7 +1,21 @@
 #include <stephang.h>
 #include <math.h>
+#include <blend.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/stephang", PostJtLoadSwing__FP2JTP2BLPP6ASEGBL);
+void PostJtLoadSwing(JT *pjt, BL *ablSwing, ASEGBL **ppasegbl)
+{
+    ASEGBL *pasegbl;
+
+    STRUCT_OFFSET(ablSwing, 0x0, int) = 0;
+    STRUCT_OFFSET(ablSwing, 0xC, int) = 0;
+    STRUCT_OFFSET(ablSwing, 0x18, float) = 1.0f;
+
+    EnsureAsegBlendDynamic((ALO *)pjt, 0xC, 3, ablSwing, 0, NULL, NULL, &pasegbl);
+    ReblendAsegbl(pasegbl, 0xC, 3, ablSwing);
+
+    if (ppasegbl != NULL)
+        *ppasegbl = pasegbl;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stephang", AnticipateJtForce__FP2JTP2SOP6VECTORT2P2FX);
 

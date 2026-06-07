@@ -2,6 +2,7 @@
 #include <po.h>
 #include <rog.h>
 #include <find.h>
+#include <sm.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", InitPuffer__FP6PUFFER);
 
@@ -34,7 +35,29 @@ INCLUDE_ASM("asm/nonmatchings/P2/puffer", PpufftChoosePuffer__FP6PUFFER);
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_001973d8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_00197458);
+extern "C" void FUN_001973d8(void *p);
+extern void *D_0026A904;
+
+extern "C" void FUN_00197458(void *p, int n)
+{
+    OID oidGoal;
+    OID oidCur;
+
+    if (n == 1)
+    {
+        if (STRUCT_OFFSET(D_0026A904, 0x6B8, SMA *) != NULL)
+        {
+            GetSmaGoal(STRUCT_OFFSET(D_0026A904, 0x6B8, SMA *), &oidGoal);
+            GetSmaCur(STRUCT_OFFSET(D_0026A904, 0x6B8, SMA *), &oidCur);
+
+            if (oidGoal != (OID)0x3F4 && oidCur != (OID)0x3F4)
+            {
+                SetSmaGoal(STRUCT_OFFSET(D_0026A904, 0x6B8, SMA *), (OID)0x3F5);
+                FUN_001973d8(D_0026A904);
+            }
+        }
+    }
+}
 
 void OnPufferActive(PUFFER *ppuffer, int fActive, PO *ppoOther)
 {

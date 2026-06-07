@@ -4,6 +4,8 @@
 #include <emitter.h>
 #include <dl.h>
 #include <find.h>
+#include <util.h>
+#include <vec.h>
 
 extern SNIP s_asnipLoadRov[2];
 
@@ -167,7 +169,18 @@ void SpawnedRobRoh(ROB *prob, ROH *proh)
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", GrabbedRobRoh__FP3ROBP3ROH);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", DroppedRobRoh__FP3ROBP3ROH);
+void DroppedRobRoh(ROB *prob, ROH *proh)
+{
+    extern VECTOR D_00248D30;
+    extern VECTOR g_normalZ;
+
+    SO *pso = STRUCT_OFFSET(proh, 0x55c, SO *);
+
+    (*(void (**)(SO *, int))(*(uint8_t **)pso + 0x64))(pso, 0);
+    (*(void (**)(SO *, VECTOR *))(*(uint8_t **)pso + 0x90))(pso, &D_00248D30);
+    (*(void (**)(SO *, VECTOR *))(*(uint8_t **)pso + 0x94))(pso, &D_00248D30);
+    SetSoConstraints(pso, CT_Project, &g_normalZ, CT_Locked, NULL);
+}
 
 void ReturnedRobRoh(ROB *prob, ROH *proh)
 {
@@ -186,7 +199,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", FChooseRobRoh__FP3ROBP3ROC);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", FChooseRobReturnPoint__FP3ROBP3ROH);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", ChooseRobWanderLocation__FP3ROBP3ROH);
+void ChooseRobWanderLocation(ROB *prob, ROH *proh)
+{
+    float rad = GRandInRange(0.0f, 6.2831855f);
+    float sXY = GRandInRange(0.0f, STRUCT_OFFSET(prob, 0x348, float));
+    SetVectorCylind((VECTOR *)((uint8_t *)proh + 0x570), rad, sXY, 0.0f);
+    STRUCT_OFFSET(proh, 0x574, float) = STRUCT_OFFSET(proh, 0x574, float) * STRUCT_OFFSET(prob, 0x34c, float);
+}
 
 RODD *ProddCurRob(ROB *prob, ENSK ensk)
 {
