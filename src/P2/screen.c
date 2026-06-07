@@ -220,9 +220,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac990);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac9e0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001aca30);
+void FUN_001aca30(BLOT *pblot)
+{
+    if (STRUCT_OFFSET(pblot, 0x250, int) == 3 && STRUCT_OFFSET(pblot, 0x260, int) != 0)
+        return;
+    ShowBlot(pblot);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001aca68);
+void FUN_001aca68(BLOT *pblot)
+{
+    if (STRUCT_OFFSET(pblot, 0x250, int) == 3 && STRUCT_OFFSET(pblot, 0x260, int) != 0)
+    {
+        STRUCT_OFFSET(pblot, 0x260, int) = 0;
+        return;
+    }
+    HideBlot(pblot);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawTitle__FP5TITLE);
 
