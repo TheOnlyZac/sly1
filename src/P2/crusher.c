@@ -79,7 +79,12 @@ void *FUN_0014c820(void *p)
     return (uint8_t *)p + (idx * 0xB0 + 0x480);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c838);
+void FUN_0014c838(void *p, int value)
+{
+    int n = STRUCT_OFFSET(p, 0x2dc, int);
+    STRUCT_OFFSET(p, 0x2dc, int) = n + 1;
+    STRUCT_OFFSET((uint8_t *)p + n * 0x14, 0x2e0, int) = value;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c858);
 

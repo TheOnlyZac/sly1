@@ -35,7 +35,14 @@ void InvalidateSwAaox(SW *psw)
 
 INCLUDE_ASM("asm/nonmatchings/P2/bbmark", UpdateSwAaox__FP2SW);
 
-INCLUDE_ASM("asm/nonmatchings/P2/bbmark", InvalidateSwXpForObject__FP2SWP2SOi);
+void InvalidateSwXpForObject(SW *psw, SO *pso, GRFPVA grfpvaInvalid)
+{
+    SW *pswObject = STRUCT_OFFSET(pso, 0x50, SW *);
+    if (pswObject)
+    {
+        STRUCT_OFFSET(pswObject, 0x4B8, int) &= ~grfpvaInvalid;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/bbmark", RecalcSwXpAll__FP2SWi);
 

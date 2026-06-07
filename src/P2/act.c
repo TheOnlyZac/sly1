@@ -59,7 +59,12 @@ void GetActvalTwistGoal(ACTVAL *pactval, float *pradTwist, float *pdradTwist)
     *pdradTwist = pactval->dradTwistGoal;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", GetActvalScale__FP6ACTVALP7MATRIX3);
+void GetActvalScale(ACTVAL *pactval, MATRIX3 *pmat)
+{
+    *(qword *)((uint8_t *)pmat + 0x0) = *(qword *)((uint8_t *)pactval + 0x90);
+    *(qword *)((uint8_t *)pmat + 0x10) = *(qword *)((uint8_t *)pactval + 0xA0);
+    *(qword *)((uint8_t *)pmat + 0x20) = *(qword *)((uint8_t *)pactval + 0xB0);
+}
 
 float GGetActvalPoseGoal(ACTVAL *pactval, int ipose)
 {

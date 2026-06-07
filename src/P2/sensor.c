@@ -193,9 +193,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/sensor", SetLasenSensors__FP5LASEN7SENSORS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", SCalcLasenShapeExtent__FP5LASENP5LBEAM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", RetractLasen__FP5LASENf);
+void RetractLasen(LASEN *plasen, float dtRetract)
+{
+    STRUCT_OFFSET(plasen, 0xB08, float) = -1.0f / dtRetract;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", ExtendLasen__FP5LASENf);
+void ExtendLasen(LASEN *plasen, float dtExpand)
+{
+    STRUCT_OFFSET(plasen, 0xB08, float) = 1.0f / dtExpand;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", InitCamsen__FP6CAMSEN);
 

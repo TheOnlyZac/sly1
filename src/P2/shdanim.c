@@ -420,7 +420,12 @@ void InitLooker(LOOKER *plooker, SAAF *psaaf)
     plooker->sai.grfsai = (plooker->sai.grfsai & ~1) | 2;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/shdanim", SetLookerSgvr__FP6LOOKERP4SGVRP7GLOBSETP4GLOBP7SUBGLOB);
+void SetLookerSgvr(LOOKER *plooker, SGVR *psgvr, GLOBSET *pglobset, GLOB *pglob, SUBGLOB *psubglob)
+{
+    STRUCT_OFFSET(psgvr, 0x0, float *) = &STRUCT_OFFSET(plooker, 0x44, float);
+    STRUCT_OFFSET(psgvr, 0x4, float *) = &STRUCT_OFFSET(plooker, 0x4C, float);
+    STRUCT_OFFSET(psgvr, 0x8, float *) = &STRUCT_OFFSET(plooker, 0x48, float);
+}
 
 void SetVecPosad(VECTOR *pvec, POSAD *pposad) 
 {
