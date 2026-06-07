@@ -60,7 +60,13 @@ void CollectScprize(SCPRIZE *pscprize)
     CollectSprize(pscprize);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", LoadLockFromBrx__FP4LOCKP18CBinaryInputStream);
+extern SNIP D_0026A918;
+
+void LoadLockFromBrx(LOCK *plock, CBinaryInputStream *pbis)
+{
+    LoadAloFromBrx(plock, pbis);
+    SnipAloObjects(plock, 1, &D_0026A918);
+}
 #ifdef SKIP_ASM
 /**
  * @todo 95.80% matched. s_asnip may not be defined correctly.
@@ -73,7 +79,13 @@ void LoadLockFromBrx(LOCK *plock, CBinaryInputStream *pbis)
 }
 #endif
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", PostLockLoad__FP4LOCK);
+extern SNIP D_0026A928;
+
+void PostLockLoad(LOCK *plock)
+{
+    PostAloLoad(plock);
+    SnipAloObjects(plock, 1, &D_0026A928);
+}
 #ifdef SKIP_ASM
 /**
  * @todo 95.00% matched. s_asnip may not be defined correctly.
@@ -86,7 +98,13 @@ void PostLockLoad(LOCK *plock)
 }
 #endif
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", LoadLockgFromBrx__FP5LOCKGP18CBinaryInputStream);
+extern SNIP D_0026A938;
+
+void LoadLockgFromBrx(LOCKG *plockg, CBinaryInputStream *pbis)
+{
+    LoadAloFromBrx(plockg, pbis);
+    SnipAloObjects(plockg, 1, &D_0026A938);
+}
 #ifdef SKIP_ASM
 /**
  * @todo 95.00% matched. s_asnip may not be defined correctly.

@@ -3,7 +3,13 @@
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", InitPuffer__FP6PUFFER);
 
-INCLUDE_ASM("asm/nonmatchings/P2/puffer", LoadPufferFromBrx__FP6PUFFERP18CBinaryInputStream);
+extern SNIP D_0026A728;
+
+void LoadPufferFromBrx(PUFFER *ppuffer, CBinaryInputStream *pbis)
+{
+    LoadSoFromBrx(ppuffer, pbis);
+    SnipAloObjects(ppuffer, 1, &D_0026A728);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", PostPufferLoad__FP6PUFFER);
 
