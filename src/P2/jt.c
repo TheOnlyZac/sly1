@@ -96,7 +96,10 @@ void ProfileJt(JT *pjt, int fProfile)
     return;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", SetJtPuppet__FP2JTP5ASEGA);
+void SetJtPuppet(JT *pjt, ASEGA *paseg)
+{
+    SetJtJts(pjt, paseg ? JTS_Peek : JTS_Stand, JTBS_Nil);
+}
 
 void FUN_00177828(JT *pjt, int n)
 {
