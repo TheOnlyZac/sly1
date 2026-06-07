@@ -8,7 +8,27 @@ void StartupFont()
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c188);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c1c0);
+extern "C" {
+extern CFont *D_00262268[5];
+
+CFont *FUN_0015c1c0(int i)
+{
+    CFont *pfont;
+
+    if (i == -1)
+    {
+        return NULL;
+    }
+
+    pfont = D_00262268[i];
+    if (pfont != NULL)
+    {
+        return pfont;
+    }
+
+    return g_pfont;
+}
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c200);
 

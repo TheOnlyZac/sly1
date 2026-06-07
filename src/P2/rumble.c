@@ -24,7 +24,14 @@ void InitRumble(RUMBLE *prumble, int nPort, int nSlot)
 
 INCLUDE_ASM("asm/nonmatchings/P2/rumble", UpdateRumble__FP6RUMBLE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rumble", TriggerRumbleRumk__FP6RUMBLE4RUMKf);
+extern RUMPAT D_0026B8B0[];
+
+void TriggerRumbleRumpat(RUMBLE *prumble, RUMPAT *prumpat, float dt);
+
+void TriggerRumbleRumk(RUMBLE *prumble, RUMK rumk, float dt)
+{
+    TriggerRumbleRumpat(prumble, &D_0026B8B0[rumk], dt);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rumble", TriggerRumbleRumpat__FP6RUMBLEP6RUMPATf);
 

@@ -1,8 +1,14 @@
 #include <sb.h>
+#include <sw.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/sb", PostSbgLoad__FP3SBG);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sb", FUN_001a9928__FP3SBG);
+undefined4 FUN_001a9928(SBG *psbg)
+{
+    if (IsSwHandsOff(STRUCT_OFFSET(psbg, 0x14, SW *)))
+        return 0;
+    return STRUCT_OFFSET(psbg, 0xc24, int);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sb", UpdateSbgGoal__FP3SBGi);
 
