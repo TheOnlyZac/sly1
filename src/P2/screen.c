@@ -278,4 +278,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001aea70);
 JUNK_WORD(0xE48C0000);
 JUNK_WORD(0xE48C0008);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001aec90);
+extern "C" void FUN_001aea70(int, int);
+
+void FUN_001aec90(void)
+{
+    FUN_001aea70(1, 0xFFFF);
+}
