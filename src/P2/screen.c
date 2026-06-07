@@ -314,7 +314,29 @@ void FUN_001aca68(BLOT *pblot)
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawTitle__FP5TITLE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", PostTotalsLoad__FP6TOTALS);
+extern "C" CFont *FUN_0015c1c0(int i);
+extern "C" int FUN_0015c188(int i);
+extern CFont *D_00274410;
+
+void PostTotalsLoad(TOTALS *ptotals)
+{
+    CFont *pfont;
+    void *pv;
+
+    PostBlotLoad((BLOT *)ptotals);
+    pfont = FUN_0015c1c0(0);
+    pv = STRUCT_OFFSET(pfont, 0x4c, void *);
+    STRUCT_OFFSET(ptotals, 0x4, int) =
+        (*(int (**)(void *, float, float))((uint8_t *)pv + 0xc))(
+            (uint8_t *)pfont + STRUCT_OFFSET(pv, 0x8, short), 1.0f, 1.0f);
+    STRUCT_OFFSET(ptotals, 0x20c, float) = 0.8f;
+    STRUCT_OFFSET(ptotals, 0x248, float) = 0.5f;
+    if (FUN_0015c188(2))
+    {
+        STRUCT_OFFSET(ptotals, 0x210, CFont **) = &D_00274410;
+        *STRUCT_OFFSET(ptotals, 0x210, CFont **) = FUN_0015c1c0(2);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ace38);
 

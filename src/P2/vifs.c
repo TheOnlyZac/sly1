@@ -66,7 +66,24 @@ INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifStmask__4VIFSUi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/vifs", CbUnpackSetup__4VIFS3UPKii);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vifs", UnpackHelper__4VIFS3UPKiiPiPPUi);
+void VIFS::UnpackHelper(UPK upk, int c, int iqw, int *pcb, uint **ppun)
+{
+    if (c == 0)
+    {
+        if (ppun != NULL)
+            *ppun = 0;
+        if (pcb != NULL)
+            *pcb = 0;
+        return;
+    }
+
+    int cb = CbUnpackSetup(upk, c, iqw);
+    if (ppun != NULL)
+        *ppun = (uint *)m_pb;
+    m_pb = m_pb + ((cb + 3) / 4) * 4;
+    if (pcb != NULL)
+        *pcb = cb;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifUnpack__4VIFS3UPKiPvi);
 
