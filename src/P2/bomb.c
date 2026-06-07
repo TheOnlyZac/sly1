@@ -25,7 +25,18 @@ void CloneBomb(BOMB *pbomb, BOMB *pbombBase)
 
 INCLUDE_ASM("asm/nonmatchings/P2/bomb", PostBombLoad__FP4BOMB);
 
-INCLUDE_ASM("asm/nonmatchings/P2/bomb", HandleBombMessage__FP4BOMB5MSGIDPv);
+void HandleBombMessage(BOMB *pbomb, MSGID msgid, void *pv)
+{
+    HandleAloMessage((ALO *)pbomb, msgid, pv);
+    
+    if (msgid == 0xA) {
+        if (*(int *)((uint8_t *)pv + 0x4) == (int)pbomb) {
+            if (!STRUCT_OFFSET(pbomb, 0x550, int)) {
+                PrimeBomb(pbomb, 0.0f);
+            }
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/bomb", UpdateBomb__FP4BOMBf);
 

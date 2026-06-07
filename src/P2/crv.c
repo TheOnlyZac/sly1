@@ -2,7 +2,27 @@
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", SMeasureApos__FiP6VECTORPf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", GWrapApos__FfiPfi);
+float GWrapApos(float g, int cpos, float *mpiposg, int fClosed)
+{
+    float f0 = g;
+    if (fClosed == 0) {
+        return f0;
+    }
+    
+    float f1 = mpiposg[0];
+    float f3 = mpiposg[cpos - 1];
+    float f2 = f3 - f1;
+    
+    while (f0 < f1) {
+        f0 = f0 + f2;
+    }
+    
+    while (f3 < f0) {
+        f0 = f0 - f2;
+    }
+    
+    return f0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", IposFindAposG__FfiPfiT2T2);
 
@@ -96,7 +116,21 @@ void ConvertCrvl(CRVL *pcrvl, MATRIX4 *pmatSrc, MATRIX4 *pmatDst)
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", SFromCrvlU__FP4CRVLf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", UFromCrvlS__FP4CRVLf);
+float UFromCrvlS(CRVL *pcrvl, float s)
+{
+    float ds, dsSeg;
+    int icv;
+    float *mpicvu;
+    float u0, u1;
+    float result;
+
+    icv = IcvFindCrvS((CRV *)pcrvl, s, &ds, &dsSeg);
+    mpicvu = STRUCT_OFFSET(pcrvl, 0x10, float *);
+    u0 = mpicvu[icv];
+    u1 = mpicvu[icv + 1];
+    result = (1.0f - (ds / dsSeg)) * u0 + (ds / dsSeg) * u1;
+    return result;
+}
 
 void MeasureCrvl(CRVL *pcrvl)
 {
