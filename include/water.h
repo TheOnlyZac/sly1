@@ -41,7 +41,9 @@ struct WATER : public SO
     STRUCT_PADDING(4); // 0x540 .. 0x550
     /* 0x550 */ XA *pxaFirst;
     /* 0x554 */ MRG mrg;
-    STRUCT_PADDING(8); // 0x564 .. 0x584
+    STRUCT_PADDING(3); // 0x564 .. 0x570
+    /* 0x570 */ VU_VECTOR vecCurrent;
+    STRUCT_PADDING(1); // 0x580 .. 0x584
     /* 0x584 */ int unk_0x584;
     /* 0x588 */ int unk_0x588;
     STRUCT_PADDING(1); // 0x58c .. 0x590

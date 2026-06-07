@@ -1,6 +1,9 @@
 #include <water.h>
 #include <ensure.h>
 #include <vtables.h>
+#include <wr.h>
+
+extern VU_VECTOR D_00248D30;
 
 void InitWater(WATER *pwater)
 {
@@ -22,8 +25,38 @@ void InitWater(WATER *pwater)
 // scheduling; needs decomp-permuter to settle the instruction order.
 INCLUDE_ASM("asm/nonmatchings/P2/water", PostWaterLoad__FP5WATER);
 
-// TODO: blocked on VU0 SIMD (lqc2/sqc2/vadd) — no VU0 intrinsic infra yet.
-INCLUDE_ASM("asm/nonmatchings/P2/water", CalculateWaterCurrent__FP5WATERP6VECTORN21);
+void CalculateWaterCurrent(WATER *pwater, VECTOR *ppos, VECTOR *pv, VECTOR *pw)
+{
+    VU_VECTOR vec0;
+    VU_VECTOR vecPos;
+    VU_VECTOR vecCur;
+    VU_VECTOR vecWarp;
+
+    ConvertAloVec(NULL, pwater, ppos, (VECTOR *)&vec0);
+    *(int *)((char *)&vec0 + 8) = 0;
+    vecPos = pwater->vecCurrent;
+    vecCur = D_00248D30;
+    CalculateAloTransformAdjust(pwater, NULL, (VECTOR *)&vec0, NULL, (VECTOR *)&vecPos, (VECTOR *)&vecCur);
+
+    void *p278 = STRUCT_OFFSET(pwater, 0x278, void *);
+    if (p278 != NULL)
+    {
+        WR *pwr = STRUCT_OFFSET(p278, 0xC, WR *);
+        WarpWrTransform(pwr, 50.0f, ppos, NULL, NULL, NULL, (VECTOR *)&vecWarp);
+        asm volatile(
+            "lqc2 $vf1, %1\n\t"
+            "lqc2 $vf2, %2\n\t"
+            "vadd.xyzw $vf1, $vf1, $vf2\n\t"
+            "sqc2 $vf1, %0"
+            : "=m"(vecPos)
+            : "m"(vecPos), "m"(vecWarp));
+    }
+
+    if (pv != NULL)
+        *(VU_VECTOR *)pv = vecPos;
+    if (pw != NULL)
+        *(VU_VECTOR *)pw = vecCur;
+}
 
 void UpdateSwXaList(SW *psw, XA **ppxa)
 {
