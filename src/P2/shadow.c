@@ -84,7 +84,13 @@ void SetShadowFrustrumUp(SHADOW *pshadow, VECTOR *pvecUp)
 
 INCLUDE_ASM("asm/nonmatchings/P2/shadow", FShadowValid__FP6SHADOWi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/shadow", FFilterFastShadows__FPvP2SO);
+int FFilterFastShadows(void *pv, SO *pso)
+{
+    int fFast = 0;
+    if (!(STRUCT_OFFSET(pso, 0x538, unsigned long long) & ((unsigned long long)0x8000 << 28)))
+        fFast = STRUCT_OFFSET(pso, 0x410, int) != 0;
+    return fFast;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shadow", UpdateShadow__FP6SHADOWf);
 

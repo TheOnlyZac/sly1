@@ -107,7 +107,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepguard", SgsNextStepguardAI__FP9STEPGUARD);
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", SetStepguardGoal__FP9STEPGUARDP6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FReachedStepguardGoal__FP9STEPGUARD);
+int FReachedStepguardGoal(STEPGUARD *pstepguard)
+{
+    int fReached = 0;
+    if (STRUCT_OFFSET(pstepguard, 0xa60, int))
+        fReached = STRUCT_OFFSET(pstepguard, 0x930, int) == STRUCT_OFFSET(pstepguard, 0x92c, int);
+    return fReached;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FFilterStepguardJump__FP9STEPGUARDP2SO);
 
