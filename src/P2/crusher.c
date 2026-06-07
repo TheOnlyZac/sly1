@@ -73,7 +73,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/crusher", update_crbrain);
 
 INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c788);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c820);
+void *FUN_0014c820(void *p)
+{
+    int idx = STRUCT_OFFSET(p, 0x690, int);
+    return (uint8_t *)p + (idx * 0xB0 + 0x480);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c838);
 

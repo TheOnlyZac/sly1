@@ -2,7 +2,14 @@
 #include <sw.h>
 #include <freeze.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/tn", PtnfnFromTn__FP2TN);
+extern TNFN D_00275980;
+
+TNFN *PtnfnFromTn(TN *ptn)
+{
+    if (ptn == NULL)
+        return &D_00275980;
+    return (TNFN *)((uint8_t *)ptn + 0x2F0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/tn", GetTnfnNose__FP4TNFNP6CPDEFIP6VECTORP2TN);
 
@@ -90,7 +97,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/tn", UpdateCptn__FP4CPTNP6CPDEFIP3JOYf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/tn", FUN_001e4578);
 
-INCLUDE_ASM("asm/nonmatchings/P2/tn", FUN_001e4880);
+extern "C" float FUN_001e4880(int a, int b, int c, void *p)
+{
+    return STRUCT_OFFSET(p, 0x20, float);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/tn", FUN_001e4888);
 
