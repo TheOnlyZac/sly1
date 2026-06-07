@@ -83,7 +83,13 @@ void GetActrefTwistGoal(ACTREF *pactref, float *pradTwist, float *pdradTwist)
     *pdradTwist = *pactref->pdradTwistGoal;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", GetActrefScale__FP6ACTREFP7MATRIX3);
+void GetActrefScale(ACTREF *pactref, MATRIX3 *pmat)
+{
+    uint8_t *psrc = STRUCT_OFFSET(pactref, 0x34, uint8_t *);
+    *(qword *)((uint8_t *)pmat + 0x0) = *(qword *)(psrc + 0x0);
+    *(qword *)((uint8_t *)pmat + 0x10) = *(qword *)(psrc + 0x10);
+    *(qword *)((uint8_t *)pmat + 0x20) = *(qword *)(psrc + 0x20);
+}
 
 float GGetActrefPoseGoal(ACTREF *pactref, int ipose)
 {

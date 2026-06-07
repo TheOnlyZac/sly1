@@ -14,7 +14,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/rwm", FUN_001a84c8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", PostRwmLoad__FP3RWM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rwm", FUN_001a86f8);
+extern "C" void FUN_001a93c8(RWM *prwm);
+
+void FUN_001a86f8(RWM *prwm, int f)
+{
+    if (f != 0)
+        FUN_001a93c8(prwm);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", PrwcFindRwm__FP3RWM3OID);
 
@@ -36,7 +42,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/rwm", FEnsureRwmLoaded__FP3RWM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", FFireRwm__FP3RWMi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rwm", FUN_001a93c8);
+extern "C" void FUN_001a93c8(RWM *prwm)
+{
+    int *p = STRUCT_OFFSET(prwm, 0x3c, int *);
+    STRUCT_OFFSET(prwm, 0x48, int) = 0;
+    if (p != 0)
+    {
+        if (p[1] != 0)
+            p[4] = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", ClearRwmFireInfo__FP3RWM);
 

@@ -20,7 +20,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/stephide", FUN_001cee30);
 
 INCLUDE_ASM("asm/nonmatchings/P2/stephide", FUN_001ceec8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stephide", FUN_001cf138);
+extern float D_00274E3C;
+
+extern "C" float FUN_001cf138(JT *pjt, int n, float a, float b)
+{
+    a = a + b;
+    if (n == STRUCT_OFFSET(pjt, 0x2bdc, int))
+        a = a + D_00274E3C;
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stephide", FUN_001cf158);
 
