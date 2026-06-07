@@ -2,6 +2,7 @@
 #include <splice/ref.h>
 #include <splice/frame.h>
 #include <po.h>
+#include <blip.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpAdd__FiP4CRefP6CFrame);
 
@@ -443,8 +444,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpPredictAnimationEffect__FiP4C
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", __8VU_FLOATf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", __9VU_VECTORRC6VECTOR);
+VU_VECTOR::VU_VECTOR(const VECTOR &vec)
+{
+    data = *(qword *)&vec;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", __as__6VECTORG9VU_VECTOR);
+VECTOR &VECTOR::operator=(VU_VECTOR vuvec)
+{
+    *(qword *)this = vuvec.data;
+    return *this;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", __ml__FG8VU_FLOATG9VU_VECTOR);
+VU_VECTOR operator*(VU_FLOAT f, VU_VECTOR v)
+{
+    VU_VECTOR r;
+    asm("qmtc2.ni %1, $vf1\n\t"
+        "qmtc2.ni %2, $vf2\n\t"
+        "vmulx.xyzw $vf1, $vf2, $vf1\n\t"
+        "qmfc2.ni %0, $vf1"
+        : "=r"(r.data)
+        : "r"(f.data), "r"(v.data));
+    return r;
+}

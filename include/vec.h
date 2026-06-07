@@ -9,6 +9,7 @@
 #include "common.h"
 
 struct SO;
+struct VU_VECTOR;
 
 /**
  * @brief Vector3 with X, Y, and Z
@@ -17,6 +18,8 @@ struct SO;
 struct VECTOR
 {
     float x, y, z;
+
+    VECTOR &operator=(VU_VECTOR vuvec);
 };
 
 struct VECTOR4
@@ -31,6 +34,9 @@ struct VECTOR4
 struct VU_VECTOR
 {
     qword data;
+
+    VU_VECTOR() {}
+    VU_VECTOR(const VECTOR &vec);
 };
 
 /**
