@@ -38,7 +38,16 @@ void PushCplookLookk(CPLOOK *pcplook, LOOKK lookk)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", LookkPopCplook__FP6CPLOOK);
+LOOKK LookkPopCplook(CPLOOK *pcplook)
+{
+    int n = STRUCT_OFFSET(pcplook, 0x40, int);
+    if (n <= 0)
+        return (LOOKK)-1;
+    n = n - 1;
+    STRUCT_OFFSET(pcplook, 0x40, int) = n;
+    LOOKK *a = &STRUCT_OFFSET(pcplook, 0x30, LOOKK);
+    return a[n];
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", LookkCurCplook__FP6CPLOOK);
 
