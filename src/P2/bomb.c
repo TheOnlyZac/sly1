@@ -49,4 +49,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/bomb", ApplyBombThrow__FP4BOMBP2PO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/bomb", DetonateBomb__FP4BOMB);
 
-INCLUDE_ASM("asm/nonmatchings/P2/bomb", PsfxEnsureBomb__FP4BOMB4ENSK);
+SFX *PsfxEnsureBomb(BOMB *pbomb, ENSK ensk)
+{
+    // pbomb->psfxDet
+    if (!STRUCT_OFFSET(pbomb, 0x680, SFX *))
+    {
+        NewSfx(&STRUCT_OFFSET(pbomb, 0x680, SFX *));
+    }
+
+    return STRUCT_OFFSET(pbomb, 0x680, SFX *);
+}

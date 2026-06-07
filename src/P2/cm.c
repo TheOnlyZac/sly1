@@ -215,7 +215,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", DrawCm__FP2CM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmPosMat__FP2CMP6VECTORP7MATRIX3);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmLookAt);
+extern "C" void SetCmLookAtSmooth(CM *pcm, int a1, VECTOR *pposEye, VECTOR *pposCenter, int a4, float u0, float u1, float u2, float u3, float u4, float u5);
+
+extern "C" void SetCmLookAt(CM *pcm, VECTOR *pposEye, VECTOR *pposCenter)
+{
+    SetCmLookAtSmooth(pcm, 0, pposEye, pposCenter, 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertWorldToCylindVelocity);
 

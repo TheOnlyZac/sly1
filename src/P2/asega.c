@@ -1,7 +1,16 @@
 #include <asega.h>
 #include <sw.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", PasegaNew__FP2SW);
+extern char D_002197B8[];
+
+ASEGA *PasegaNew(SW *psw)
+{
+    ASEGA *pasega = (ASEGA *)PvAllocSlotheapClearImpl(&psw->slotheapAsega);
+    STRUCT_OFFSET(pasega, 0x0, void *) = D_002197B8;
+    InitDl(&pasega->dlActseg, 0x20);
+    STRUCT_OFFSET(pasega, 0x60, void *) = (char *)pasega + 0x64;
+    return pasega;
+}
 
 void SetAsegaHandsOff(ASEGA *pasega, int fHandsOff)
 {
@@ -63,12 +72,32 @@ void SetAsegaSpeed(ASEGA *pasega, float speed)
         STRUCT_OFFSET(STRUCT_OFFSET(pasega, 0x8, void *), 0x98, float);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", SetAsegaMasterSpeed__FP5ASEGAf);
+void SetAsegaMasterSpeed(ASEGA *pasega, float gSpeed)
+{
+    float denom = STRUCT_OFFSET(pasega, 0x1C, float) *
+                  STRUCT_OFFSET(STRUCT_OFFSET(pasega, 0x8, void *), 0x98, float);
+    float speed = STRUCT_OFFSET(pasega, 0x18, float);
+    if (denom != 0.0f)
+        speed = speed / denom;
+    STRUCT_OFFSET(pasega, 0x1C, float) = gSpeed;
+    SetAsegaSpeed(pasega, speed);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", SetAsegaPriority__FP5ASEGAi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", SendAsegaMessage__FP5ASEGA5MSGIDPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", SubscribeAsegaStruct__FP5ASEGAPFPv5MSGIDPv_vPv);
+void SubscribeAsegaStruct(ASEGA *pasega, PFNMQ pfnmq, void *pvContext)
+{
+    SubscribeSwPpmqStruct(STRUCT_OFFSET(STRUCT_OFFSET(pasega, 0x8, void *), 0x14, SW *),
+                          &STRUCT_OFFSET(pasega, 0xE4, MQ *),
+                          pfnmq, pvContext);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", SubscribeAsegaObject__FP5ASEGAP2LO);
+void SubscribeAsegaObject(ASEGA *pasega, LO *plo)
+{
+    SubscribeSwPpmqStruct(STRUCT_OFFSET(STRUCT_OFFSET(pasega, 0x8, void *), 0x14, SW *),
+                          &STRUCT_OFFSET(pasega, 0xE4, MQ *),
+                          STRUCT_OFFSET(plo->pvtlo, 0x44, PFNMQ),
+                          plo);
+}

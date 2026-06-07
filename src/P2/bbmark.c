@@ -14,9 +14,38 @@ OX *PoxAddSw(SW *psw, OXA *poxa, OXA *poxaOther)
     return pox;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/bbmark", PoxRemoveSw__FP2SWP3OXAT1);
+OX *PoxRemoveSw(SW *psw, OXA *poxa, OXA *poxaOther)
+{
+    OX **ppox = &poxa->pox;
+    OX *pox = poxa->pox;
+    SO *psoOther = poxaOther->pso;
 
-INCLUDE_ASM("asm/nonmatchings/P2/bbmark", PoxFromSoSo__FP2SOT0);
+    while (pox)
+    {
+        if (pox->psoOther == psoOther)
+        {
+            *ppox = pox->poxNext;
+            break;
+        }
+        ppox = &pox->poxNext;
+        pox = pox->poxNext;
+    }
+
+    return pox;
+}
+
+OX *PoxFromSoSo(SO *pso, SO *psoOther)
+{
+    OX *pox = STRUCT_OFFSET(STRUCT_OFFSET(pso, 0x50, SW *), 0x480, OXA *)->pox;
+    SO *psoKey = STRUCT_OFFSET(psoOther, 0x50, SO *);
+    while (pox != NULL)
+    {
+        if (pox->psoOther == psoKey)
+            return pox;
+        pox = pox->poxNext;
+    }
+    return NULL;
+}
 
 XP *PxpFirstFromSoSo(SO *pso, SO *psoOther)
 {

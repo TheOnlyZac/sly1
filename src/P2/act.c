@@ -60,7 +60,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/act", PredictAloPosition__FP3ALOfP6VECTORT2);
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", PredictAloRotation__FP3ALOfP7MATRIX3P6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", AdaptAct__FP3ACT);
+void AdaptAct(ACT *pact)
+{
+    if (STRUCT_OFFSET(pact, 0x10, char) == 7)
+        STRUCT_OFFSET(pact, 0x10, char) = 3;
+    if (STRUCT_OFFSET(pact, 0x11, char) == 7)
+        STRUCT_OFFSET(pact, 0x11, char) = 3;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", InitActval__FP6ACTVALP3ALO);
 
@@ -88,7 +94,15 @@ float GGetActvalPoseGoal(ACTVAL *pactval, int ipose)
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", InitActref__FP6ACTREFP3ALO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", GetActrefPositionGoal__FP6ACTREFfP6VECTORT2);
+void GetActrefPositionGoal(ACTREF *pactref, float dtOffset, VECTOR *ppos, VECTOR *pv)
+{
+    *(qword *)ppos = *(qword *)STRUCT_OFFSET(pactref, 0x1c, uint8_t *);
+    *(qword *)pv = *(qword *)STRUCT_OFFSET(pactref, 0x20, uint8_t *);
+    ALO *palo = pactref->palo;
+    void (*pfn)(ALO *) = (void (*)(ALO *))STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x0, void *), 0xB0, void *);
+    if (pfn)
+        pfn(palo);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", GetActrefRotationGoal__FP6ACTREFfP7MATRIX3P6VECTOR);
 

@@ -16,7 +16,16 @@ void PostBrkLoad(BRK *pbrk)
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", PostBrkLoadCallbackHookup__FP3BRK5MSGIDPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", UpdateBrk__FP3BRKf);
+void UpdateBrk(BRK *pbrk, float dt)
+{
+    UpdateSo(pbrk, dt);
+
+    if (STRUCT_OFFSET(pbrk, 0x678, int))
+    {
+        STRUCT_OFFSET(pbrk, 0x678, int) = 0;
+        (*(void (**)(BRK *))((char *)pbrk->pvtlo + 0x130))(pbrk);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", FAbsorbBrkWkr__FP3BRKP3WKR);
 

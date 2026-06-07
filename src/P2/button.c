@@ -35,9 +35,23 @@ INCLUDE_ASM("asm/nonmatchings/P2/button", LoadBtn__FP3BTNP3ALO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/button", PostBtnLoad__FP3BTN);
 
-INCLUDE_ASM("asm/nonmatchings/P2/button", RestoreBtnFromCheckpointCallback__FP3BTN5MSGIDPv);
+void RestoreBtnFromCheckpointCallback(BTN *pbtn, MSGID msgid, void *pv)
+{
+    if (msgid == MSGID_callback)
+    {
+        PostSwCallback(pbtn->paloOwner->psw, (PFNMQ)RestoreBtnFromCheckpointCallback, pbtn,
+                       MSGID_button_trigger, NULL);
+    }
+    else
+    {
+        TriggerBtn(pbtn, 1, 1);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/button", SetBtnRsmg__FP3BTNi3OIDN22);
+void SetBtnRsmg(BTN *pbtn, int fOnTrigger, OID oidRoot, OID oidSM, OID oidGoal)
+{
+    FAddRsmg(pbtn->arsmg, 8, &pbtn->crsmg, fOnTrigger, oidRoot, oidSM, oidGoal);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/button", SetBtnButtons__FP3BTN7BUTTONS);
 

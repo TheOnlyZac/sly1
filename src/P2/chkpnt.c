@@ -1,5 +1,6 @@
 #include <chkpnt.h>
 #include <sce/memset.h>
+#include <tn.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", ResetChkmgrCheckpoints__FP6CHKMGR);
 #ifdef SKIP_ASM
@@ -51,7 +52,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", ClearChkmgrIchk__FP6CHKMGRi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", LoadVolFromBrx__FP3VOLP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", FCheckVolPoint__FP3VOLP6VECTOR);
+extern int ConvertXfmLocalToWorld(XFM *pxfm, VECTOR *pposWorld, VECTOR *pposLocal);
+
+int FCheckVolPoint(VOL *pvol, VECTOR *ppos)
+{
+    VECTOR posLocal;
+
+    ConvertXfmLocalToWorld(pvol, ppos, &posLocal);
+    return FCheckTbspPoint(STRUCT_OFFSET(pvol, 0x8c, TBSP *), &posLocal);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", InitChkpnt__FP6CHKPNT);
 

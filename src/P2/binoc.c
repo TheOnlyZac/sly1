@@ -4,6 +4,7 @@
 #include <font.h>
 #include <rip.h>
 #include <vec.h>
+#include <dialog.h>
 
 void InitBei(BEI *pbei, CLQ *pclq, float duWidth, float dgHeight, int cseg)
 {
@@ -144,7 +145,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00136040);
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00136238);
 
-INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_001363d0);
+extern "C" {
+void FUN_001363d0(BINOC *pbinoc)
+{
+    OnBlotReset(pbinoc);
+    DIALOG *pdialog = STRUCT_OFFSET(pbinoc, 0x324, DIALOG *);
+    if (pdialog)
+        SetDialogDialogs(pdialog, DIALOGS_Disabled);
+}
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", SetBinocAchzDraw);
 
@@ -199,7 +208,18 @@ void GetBinocReticleFocus(BINOC *binoc, float *dxReticle, float *dyReticle)
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00136ef8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00136fa8);
+extern "C" {
+void open_close_binoc(BINOC *pbinoc, int state);
+
+void FUN_00136fa8(BINOC *pbinoc)
+{
+    DIALOG *pdialog = STRUCT_OFFSET(pbinoc, 0x324, DIALOG *);
+    if (pdialog)
+        SetDialogDialogs(pdialog, DIALOGS_Calling);
+    else
+        open_close_binoc(pbinoc, 0);
+}
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", binoc__static_initialization_and_destruction_0);
 

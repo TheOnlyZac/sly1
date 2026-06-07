@@ -28,7 +28,10 @@ float UFromCrvS(CRV *pcrv, float s)
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", IcvFindCrvU__FP3CRVfPfT2);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", IcvFindCrvS__FP3CRVfPfT2);
+int IcvFindCrvS(CRV *pcrv, float s, float *ds, float *dsSeg)
+{
+    return IposFindAposG(s, pcrv->ccv, pcrv->mpicvs, pcrv->fClosed, ds, dsSeg);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", GMeasureCrvU__FP5CRVMCf);
 
@@ -83,7 +86,10 @@ void EvaluateCrvlFromS(CRVL *pcrvl, float s, VECTOR *ppos, VECTOR *pnormTangent)
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", RenderCrvlSegment__FP4CRVLiP7MATRIX4P2CMG4RGBAi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", ConvertCrvl__FP4CRVLP7MATRIX4T1);
+void ConvertCrvl(CRVL *pcrvl, MATRIX4 *pmatSrc, MATRIX4 *pmatDst)
+{
+    ConvertApos(STRUCT_OFFSET(pcrvl, 0xC, int), STRUCT_OFFSET(pcrvl, 0x18, VECTOR *), pmatSrc, pmatDst);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", SFromCrvlU__FP4CRVLf);
 
