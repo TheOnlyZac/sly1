@@ -26,9 +26,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", IcvFindCrvS__FP3CRVfPfT2);
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", GMeasureCrvU__FP5CRVMCf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", UMaxCrv__FP3CRV);
+float UMaxCrv(CRV *pcrv)
+{
+    return pcrv->mpicvu[pcrv->ccv - 1];
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", SMaxCrv__FP3CRV);
+float SMaxCrv(CRV *pcrv)
+{
+    return pcrv->mpicvs[pcrv->ccv - 1];
+}
 
 JUNK_ADDIU(A0);
 

@@ -78,7 +78,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", InitBublet__FP6BUBLETP6VECTORfP2SO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", ProjectBubletTransform__FP6BUBLETf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", TouchBublet__FP6BUBLETi);
+void TouchBublet(BUBLET *pbublet, int fTouching)
+{
+    TouchDroplet((DROPLET *)pbublet, fTouching == 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitRipple__FP6RIPPLEP6VECTORfP2SO);
 
@@ -92,7 +95,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", UpdateFlake__FP5FLAKEf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderFlake__FP5FLAKEP2CM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", TouchFlake__FP5FLAKEi);
+void TouchFlake(FLAKE *pflake, int fTouching)
+{
+    if (fTouching)
+    {
+        RemoveRip(pflake);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitSpark__FP5SPARKP6VECTORfP2SO);
 
@@ -102,7 +111,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", InitBurst__FP5BURSTP6VECTORfP2SO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitTrail__FP5TRAILP6VECTORfP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", OnTrailRemove__FP5TRAIL);
+void OnTrailRemove(TRAIL *ptrail)
+{
+    SetTrailTrls(ptrail, (TRLS)0, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", SetTrailTrls__FP5TRAIL4TRLSPv);
 
