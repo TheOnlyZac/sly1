@@ -69,9 +69,21 @@ INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", FUN_001417f0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", TriggerChkpnt__FP6CHKPNT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", FUN_001419A0);
+extern "C" void FUN_001419A0(CHKPNT *pchkpnt, int n)
+{
+    int c = STRUCT_OFFSET(pchkpnt, 0x578, int);
+    int *a = &STRUCT_OFFSET(pchkpnt, 0x57c, int);
+    a[c] = n;
+    STRUCT_OFFSET(pchkpnt, 0x578, int) = c + 1;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", FUN_001419C0);
+extern "C" void FUN_001419C0(CHKPNT *pchkpnt, int n)
+{
+    int c = STRUCT_OFFSET(pchkpnt, 0x550, int);
+    int *a = &STRUCT_OFFSET(pchkpnt, 0x554, int);
+    a[c] = n;
+    STRUCT_OFFSET(pchkpnt, 0x550, int) = c + 1;
+}
 
 void FUN_001419E0(int *param_1, int param_2)
 {
