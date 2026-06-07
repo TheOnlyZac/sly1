@@ -101,7 +101,8 @@ void UpdateSwXaList(SW *psw, XA **ppxa)
     FreeSwXaList(psw, pxaFree);
 }
 
-// TODO: blocked on VU0 SIMD (lqc2/sqc2/vsub/vadd) + ~16KB — no VU0 infra yet.
+// TODO: ~16KB — VU0 idiom now available (see CalculateWaterCurrent/Bounds), but
+// large: per-frame update with XA/merge loops, a virtual call, and VU0 math.
 INCLUDE_ASM("asm/nonmatchings/P2/water", UpdateWater__FP5WATERf);
 
 void AddWaterExternalAccelerations(WATER *pwater, XA *pxa, float dt)
@@ -138,7 +139,8 @@ void UpdateWaterMergeGroup(WATER *pwater)
     AddSwMergeGroup(pwater->psw, pmrg);
 }
 
-// TODO: blocked on VU0 SIMD (lqc2/qmtc2/vmulax/vmaddx) — no VU0 infra yet.
+// TODO: VU0 idiom available; large — vmulax/vmaddx transform + g_pjt height
+// branches + ClsgClipEdgeToBsp into LSG alsg[16] (0x580 frame) + float return.
 INCLUDE_ASM("asm/nonmatchings/P2/water", UGetWaterSubmerged__FP5WATERP2SOP6VECTORT2);
 
 void UpdateWaterBounds(WATER *pwater)
