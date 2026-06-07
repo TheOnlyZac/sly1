@@ -64,11 +64,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", FRenderRipPosMat__FP3RIPP2CMP6VECTORP7MAT
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderRip__FP3RIPP2CM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", SubscribeRipObject__FP3RIPP2LO);
+void SubscribeRipObject(RIP *prip, LO *ploTarget)
+{
+    SubscribeSwPpmqStruct(g_psw, &STRUCT_OFFSET(prip, 0x118, MQ *), ploTarget->pvtlo->pfnHandleLoMessage, ploTarget);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", SubscribeRipStruct__FP3RIPPFPv5MSGIDPv_vPv);
+void SubscribeRipStruct(RIP *prip, PFNMQ pfnmq, void *pvContext)
+{
+    SubscribeSwPpmqStruct(g_psw, &STRUCT_OFFSET(prip, 0x118, MQ *), pfnmq, pvContext);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", UnsubscribeRipStruct__FP3RIPPFPv5MSGIDPv_vPv);
+void UnsubscribeRipStruct(RIP *prip, PFNMQ pfnmq, void *pvContext)
+{
+    UnsubscribeSwPpmqStruct(g_psw, &STRUCT_OFFSET(prip, 0x118, MQ *), pfnmq, pvContext);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitDroplet__FP7DROPLETP6VECTORfP2SO);
 
@@ -202,7 +211,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", ProjectLeafTransform__FP4LEAFf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", FBounceLeaf__FP4LEAFP2SOP6VECTORT2);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", FFilterFlameObjects__FPvP2SO);
+int FFilterFlameObjects(void *pv, SO *pso)
+{
+    if (STRUCT_OFFSET(pso, 0x538, unsigned long long) & ((unsigned long long)0x8000 << 28))
+    {
+        return 0;
+    }
+    return pso != STRUCT_OFFSET(pv, 0x7C, SO *);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", PostFlameEmit__FP5FLAMEP5EMITB);
 

@@ -59,7 +59,34 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", ModifyEmitterParticles__FP7EMITTER);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", UpdateEmitter__FP7EMITTERf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", FUN_00155f28);
+extern "C" {
+void FUN_00155f28(SO *pso)
+{
+    SO *psoParent;
+
+    if ((STRUCT_OFFSET(pso, 0x2c8, unsigned long long) & 0xC000000) == 0x8000000)
+    {
+        return;
+    }
+
+    psoParent = STRUCT_OFFSET(pso, 0x18, SO *);
+    while (psoParent != 0)
+    {
+        if ((STRUCT_OFFSET(psoParent, 0x2c8, unsigned long long) & 0xC000000) == 0x8000000)
+        {
+            break;
+        }
+        psoParent = STRUCT_OFFSET(psoParent, 0x18, SO *);
+    }
+
+    if (psoParent == 0)
+    {
+        return;
+    }
+
+    STRUCT_OFFSET(pso, 0x88, int) = STRUCT_OFFSET(psoParent, 0x88, int);
+}
+}
 
 void PauseEmitter(EMITTER *pemitter, float dtPause)
 {
@@ -163,7 +190,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", SetEmitdvEmitb__FP6EMITDVP5EMITB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", CalculateEmitdvMatrix__FP6EMITDVfP7MATRIX4);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", PostExplLoad__FP4EXPL);
+void PostExplLoad(EXPL *pexpl)
+{
+    PostLoLoad(pexpl);
+    pexpl->pvtlo->pfnRemoveLo(pexpl);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", CalculateExplTransform__FP4EXPLP6VECTORP7MATRIX3);
 

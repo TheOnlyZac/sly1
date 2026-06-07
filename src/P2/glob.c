@@ -1,4 +1,5 @@
 #include <glob.h>
+#include <ik.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/glob", BuildGlobsetSaaArray__FP7GLOBSET);
 
@@ -26,7 +27,21 @@ INCLUDE_ASM("asm/nonmatchings/P2/glob", CloneGlob__FP7GLOBSETP4GLOBP5GLOBI);
 
 INCLUDE_ASM("asm/nonmatchings/P2/glob", UpdateGlobset__FP7GLOBSETP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/glob", UpdateAloConstraints__FP3ALO);
+void UpdateAloConstraints(ALO *palo)
+{
+    void *p = STRUCT_OFFSET(palo, 0x224, void *);
+
+    if (p != NULL)
+    {
+        if (STRUCT_OFFSET(p, 0xb0, int) & 0x10)
+        {
+            if (STRUCT_OFFSET(p, 0x64, int) != 0)
+            {
+                SolveAloIK(STRUCT_OFFSET(p, 0x60, ALO *));
+            }
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/glob", UpdateAloInfluences__FP3ALOP2RO);
 

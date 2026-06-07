@@ -1,6 +1,7 @@
 #include <dmas.h>
 #include <sce/libdma.h>
 #include <sdk/ee/eestruct.h>
+#include <memory.h>
 
 extern sceDmaChan *g_pdcVif0;
 extern sceDmaChan *g_pdcVif1;
@@ -80,17 +81,43 @@ void DMAS::Send(sceDmaChan *chan)
 JUNK_NOP();
 JUNK_ADDIU(10);
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaCnt__4DMAS);
+void DMAS::AddDmaCnt()
+{
+    EndDmaCnt();
+    QW *pqw = (QW *)m_pb;
+    m_pqwCnt = pqw;
+    m_pb += sizeof(QW);
+    pqw->aul[0] = 0x10000000;
+    m_pqwCnt->aul[1] = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaRefs__4DMASiP2QW);
 
 INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaCall__4DMASP2QW);
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaRet__4DMAS);
+void DMAS::AddDmaRet()
+{
+    EndDmaCnt();
+    uchar *pb = m_pb;
+    m_pb = pb + 0x10;
+    *(ulong *)pb = 0x60000000;
+    *(ulong *)(pb + 8) = 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaBulk__4DMASiP2QW);
+void DMAS::AddDmaBulk(int c, QW *aqw)
+{
+    CopyAqw(m_pb, aqw, c);
+    m_pb += c * sizeof(QW);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaEnd__4DMAS);
+void DMAS::AddDmaEnd()
+{
+    EndDmaCnt();
+    QW *pqw = (QW *)m_pb;
+    m_pb += sizeof(QW);
+    pqw->aul[0] = 0x70000000;
+    pqw->aul[1] = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/dmas", EndDmaCnt__4DMAS);
 

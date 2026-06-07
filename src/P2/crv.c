@@ -26,7 +26,10 @@ float UFromCrvS(CRV *pcrv, float s)
     return 0.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", IcvFindCrvU__FP3CRVfPfT2);
+int IcvFindCrvU(CRV *pcrv, float u, float *du, float *duSeg)
+{
+    return IposFindAposG(u, pcrv->ccv, pcrv->mpicvu, pcrv->fClosed, du, duSeg);
+}
 
 int IcvFindCrvS(CRV *pcrv, float s, float *ds, float *dsSeg)
 {

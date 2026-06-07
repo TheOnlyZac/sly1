@@ -1,5 +1,6 @@
 #include <mat.h>
 #include <sce/memset.h>
+#include <util.h>
 
 extern VECTOR g_normalZ;
 
@@ -59,7 +60,16 @@ JUNK_NOP();
 JUNK_NOP();
 JUNK_ADDIU(60);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mat", CosRotateMatrixMagnitude__FP7MATRIX3);
+float CosRotateMatrixMagnitude(MATRIX3 *pmat)
+{
+    float gTrace;
+
+    gTrace = STRUCT_OFFSET(pmat, 0x0, float) + STRUCT_OFFSET(pmat, 0x14, float);
+    gTrace = gTrace + STRUCT_OFFSET(pmat, 0x28, float);
+    gTrace = gTrace - 1.0f;
+
+    return GLimitAbs(gTrace * 0.5f, 1.0f);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", DecomposeRotateMatrixRad__FP7MATRIX3PfP6VECTOR);
 

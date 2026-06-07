@@ -60,7 +60,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/puffer", UpdatePuffcGoal__FP5PUFFCi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", OnPuffcExitingSgs__FP5PUFFC3SGS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/puffer", OnPuffcEnteringSgs__FP5PUFFC3SGSP4ASEG);
+extern "C" void FUN_001c8920(PUFFC *ppuffc);
+
+void OnPuffcEnteringSgs(PUFFC *ppuffc, SGS sgsPrev, ASEG *pasegOverride)
+{
+    OnStepguardEnteringSgs((STEPGUARD *)ppuffc, sgsPrev, pasegOverride);
+    if (STRUCT_OFFSET(ppuffc, 0x724, int) == SGS_Stun)
+    {
+        FUN_001c8920(ppuffc);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", UpdatePuffcSgs__FP5PUFFC);
 

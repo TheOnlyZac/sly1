@@ -195,7 +195,12 @@ void SetLightHotSpotAngle(LIGHT *plight, float degHotSpot)
     RebuildLightVifs(plight);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/light", SetLightFrustrumUp__FP5LIGHTP6VECTOR);
+void SetLightFrustrumUp(LIGHT *plight, VECTOR *pvecUpLocal)
+{
+    STRUCT_OFFSET(plight, 0x340, VU_VECTOR) = *(VU_VECTOR *)pvecUpLocal;
+    RebuildLightVifs(plight);
+    UpdateLightBeamGrfzon(plight);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/light", RebuildLightFrustrum__FP5LIGHT);
 

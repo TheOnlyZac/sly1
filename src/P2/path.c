@@ -20,7 +20,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/path", PcgtPointInCbspQuick__FP4CBSPP6VECTOR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/path", PcgtPointInCbspSafe__FP4CBSPP6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/path", CbskFromG__Ff);
+int CbskFromG(float g)
+{
+    if (g > 1.0f)
+        return 0;
+    if (g < -1.0f)
+        return 1;
+    return 2;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/path", ClsgClipEdgeToCbsp__FP4CBSPP6VECTORT1iP3LSG);
 

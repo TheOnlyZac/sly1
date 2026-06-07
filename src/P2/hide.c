@@ -28,7 +28,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/hide", OnHshapeRemove__FP6HSHAPE);
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", BindHshape__FP6HSHAPE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", CloneHshape__FP6HSHAPET0);
+struct HSHAPE;
+
+void CloneHshape(HSHAPE *phshape, HSHAPE *phshapeBase)
+{
+    DLE dle = STRUCT_OFFSET(phshape, 0x38, DLE);
+    CloneLo((LO *)phshape, (LO *)phshapeBase);
+    STRUCT_OFFSET(phshape, 0x38, DLE) = dle;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", GetHshapeHidePos__FP6HSHAPEfP6VECTORPf);
 

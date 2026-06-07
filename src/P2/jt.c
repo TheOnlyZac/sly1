@@ -1,4 +1,5 @@
 #include <jt.h>
+#include <game.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", InitJt__FP2JT);
 
@@ -116,7 +117,15 @@ int NCmpWkr(WKR *pwkr1, WKR *pwkr2)
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtEffect__FP2JT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", FIsJtSoundBase__FP2JT);
+extern "C" int FActiveCplcy(CPLCY *pcplcy);
+
+int FIsJtSoundBase(JT *pjt)
+{
+    if (pjt->jts == JTS_Ball && pjt->jtbs == JTBS_Zap_Electric)
+        return 0;
+
+    return !FActiveCplcy(&STRUCT_OFFSET(g_pcm, 0x454, CPLCY));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", CollectJtPrize__FP2JT3PCKP3ALO);
 

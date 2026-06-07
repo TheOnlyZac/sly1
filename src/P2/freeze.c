@@ -1,6 +1,18 @@
 #include <freeze.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/freeze", RemergeSwObject__FP2SWP3ALO);
+void RemergeSwObject(SW *psw, ALO *palo)
+{
+    unsigned long long grfalo = STRUCT_OFFSET(palo, 0x2c8, unsigned long long);
+
+    if ((grfalo & (0x8000ULL << 24)) == 0)
+    {
+        STRUCT_OFFSET(palo, 0x2c8, unsigned long long) = grfalo | (0x8000ULL << 24);
+        int cpalo = STRUCT_OFFSET(psw, 0x1ed0, int);
+        ALO **apalo = STRUCT_OFFSET(psw, 0x1ed4, ALO **);
+        apalo[cpalo] = palo;
+        STRUCT_OFFSET(psw, 0x1ed0, int) = cpalo + 1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/freeze", MergeSwFreezeGroups__FP2SWP3ALOT1);
 

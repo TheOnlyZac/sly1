@@ -1,10 +1,18 @@
 #include <gs.h>
+#include <sdk/ee/eekernel.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", BlendDisplayOnBufferMismatch__Fv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", VBlankS_Interrupt__Fi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/gs", SyncVBlank__Fv);
+extern int D_002BE460;
+extern int D_002BE46C;
+
+void SyncVBlank()
+{
+    D_002BE46C = 1;
+    WaitSema(D_002BE460);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", SwapGsBuffers__Fv);
 
@@ -26,7 +34,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/gs", ClearFrameBuffers__Fv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", FadeFramesToBlack__Ff);
 
-INCLUDE_ASM("asm/nonmatchings/P2/gs", ResetGsMemory__Fv);
+extern GSB D_002626D8;
+extern int D_002626D0;
+
+void ResetGsMemory()
+{
+    InitGsb(&D_002626D8, 0x1E00, 0x4000);
+    D_002626D0 = 0;
+}
 
 uint NLog2(uint value)
 {

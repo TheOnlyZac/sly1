@@ -73,7 +73,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/jlo", InitJloc__FP4JLOC);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jlo", LoadJlocFromBrx__FP4JLOCP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jlo", PostJlocLoad__FP4JLOC);
+void PostJlocLoad(JLOC *pjloc)
+{
+    PostAloLoad(pjloc);
+    pjloc->pvtlo->pfnRemoveLo(pjloc);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jlo", PxfmChooseJloc__FP4JLOC);
 

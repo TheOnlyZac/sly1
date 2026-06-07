@@ -49,7 +49,13 @@ extern "C" void FUN_0018dd78(void * p, int val)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/missile", InitAccmiss__FP7ACCMISS);
+extern qword D_00248D30;
+
+void InitAccmiss(ACCMISS *paccmiss)
+{
+    InitMissile(paccmiss);
+    *(qword *)((char *)paccmiss + 0x350) = D_00248D30;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/missile", FireAccmiss__FP7ACCMISSP3ALOP6VECTOR);
 
