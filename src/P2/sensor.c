@@ -63,7 +63,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/sensor", PauseSensor__FP6SENSOR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateSensor__FP6SENSORf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorTriggerObject__FP6SENSOR3OID);
+void AddSensorTriggerObject(SENSOR * p, OID oid)
+{
+    int c = STRUCT_OFFSET(p, 0x564, int);
+    if ((unsigned int)c < 4)
+    {
+        OID *a = &STRUCT_OFFSET(p, 0x568, OID);
+        a[c] = oid;
+        STRUCT_OFFSET(p, 0x564, int) = c + 1;
+    }
+}
  #ifdef SKIP_ASM
 /**
  * @todo 100% matched but sensor struct offsets are wrong.
@@ -79,7 +88,16 @@ void AddSensorTriggerObject(SENSOR *psensor, OID oid)
 }
 #endif
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorNoTriggerObject__FP6SENSOR3OID);
+void AddSensorNoTriggerObject(SENSOR * p, OID oid)
+{
+    int c = STRUCT_OFFSET(p, 0x578, int);
+    if ((unsigned int)c < 4)
+    {
+        OID *a = &STRUCT_OFFSET(p, 0x57c, OID);
+        a[c] = oid;
+        STRUCT_OFFSET(p, 0x578, int) = c + 1;
+    }
+}
  #ifdef SKIP_ASM
 /**
  * @todo 100% matched but sensor struct offsets are wrong.
@@ -95,7 +113,16 @@ void AddSensorNoTriggerObject(SENSOR *psensor, OID oid)
 }
 #endif
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorTriggerClass__FP6SENSOR3CID);
+void AddSensorTriggerClass(SENSOR * p, CID cid)
+{
+    int c = STRUCT_OFFSET(p, 0x58c, int);
+    if ((unsigned int)c < 4)
+    {
+        CID *a = &STRUCT_OFFSET(p, 0x590, CID);
+        a[c] = cid;
+        STRUCT_OFFSET(p, 0x58c, int) = c + 1;
+    }
+}
  #ifdef SKIP_ASM
 /**
  * @todo 100% matched but sensor struct offsets are wrong.
@@ -111,7 +138,16 @@ void AddSensorTriggerClass(SENSOR *psensor, CID cid)
 }
 #endif
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorNoTriggerClass__FP6SENSOR3CID);
+void AddSensorNoTriggerClass(SENSOR * p, CID cid)
+{
+    int c = STRUCT_OFFSET(p, 0x5a0, int);
+    if ((unsigned int)c < 4)
+    {
+        CID *a = &STRUCT_OFFSET(p, 0x5a4, CID);
+        a[c] = cid;
+        STRUCT_OFFSET(p, 0x5a0, int) = c + 1;
+    }
+}
  #ifdef SKIP_ASM
 /**
  * @todo 100% matched but sensor struct offsets are wrong.

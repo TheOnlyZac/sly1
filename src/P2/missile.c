@@ -27,9 +27,27 @@ INCLUDE_ASM("asm/nonmatchings/P2/missile", RenderMissileAll__FP7MISSILEP2CMP2RO)
 
 INCLUDE_ASM("asm/nonmatchings/P2/missile", FUN_0018dc88);
 
-INCLUDE_ASM("asm/nonmatchings/P2/missile", FUN_0018dd50);
+extern "C" void FUN_0018dd50(void * p, int val)
+{
+    int c = STRUCT_OFFSET(p, 0x6bc, int);
+    if ((unsigned int)c < 4)
+    {
+        int *a = &STRUCT_OFFSET(p, 0x6c0, int);
+        a[c] = val;
+        STRUCT_OFFSET(p, 0x6bc, int) = c + 1;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/missile", FUN_0018dd78);
+extern "C" void FUN_0018dd78(void * p, int val)
+{
+    int c = STRUCT_OFFSET(p, 0x6d0, int);
+    if ((unsigned int)c < 4)
+    {
+        int *a = &STRUCT_OFFSET(p, 0x6d4, int);
+        a[c] = val;
+        STRUCT_OFFSET(p, 0x6d0, int) = c + 1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/missile", InitAccmiss__FP7ACCMISS);
 

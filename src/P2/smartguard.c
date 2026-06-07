@@ -13,7 +13,16 @@ void UseSmartguardFlashlightTarget(SMARTGUARD *psmartguard, SGS sgs, OID oidTarg
     mpsgssgft[sgs].oidTarget = oidTarget;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/smartguard", FUN_001B7100__FP10SMARTGUARDi);
+void FUN_001B7100(SMARTGUARD *p, int val)
+{
+    int c = STRUCT_OFFSET(p, 0xcd4, int);
+    if ((unsigned int)c < 4)
+    {
+        long long *a = &STRUCT_OFFSET(p, 0xcd8, long long);
+        *(int *)&a[c] = val;
+        STRUCT_OFFSET(p, 0xcd4, int) = c + 1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/smartguard", PostSmartguardLoad__FP10SMARTGUARD);
 

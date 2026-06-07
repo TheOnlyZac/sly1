@@ -5,9 +5,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/button", PostAshLoad__FP2SWP3ASHP3ALO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/button", FFoundAshAseg__FP3ASHP4ASEG);
 
-INCLUDE_ASM("asm/nonmatchings/P2/button", FAddAshAseg__FP3ASHP4ASEG);
+int FAddAshAseg(ASH *pash, ASEG * paseg)
+{
+    int c = STRUCT_OFFSET(pash, 0x44, int);
+    ASEG * *a = &STRUCT_OFFSET(pash, 0x48, ASEG *);
+    a[c] = paseg;
+    c = c + 1;
+    STRUCT_OFFSET(pash, 0x44, int) = c;
+    return c < 16;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/button", FAddAshOid__FP3ASH3OID);
+int FAddAshOid(ASH *pash, OID oid)
+{
+    int c = STRUCT_OFFSET(pash, 0x0, int);
+    OID *a = &STRUCT_OFFSET(pash, 0x4, OID);
+    a[c] = oid;
+    c = c + 1;
+    STRUCT_OFFSET(pash, 0x0, int) = c;
+    return c < 16;
+}
 
 void InitBtn(BTN *pbtn)
 {

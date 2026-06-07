@@ -19,7 +19,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/pzo", EmitSprizeExplosion__FP6SPRIZE);
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", PcsFromSprize__FP6SPRIZE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", AddSprizeAseg__FP6SPRIZE3OID);
+void AddSprizeAseg(SPRIZE * p, OID oidAseg)
+{
+    int c = STRUCT_OFFSET(p, 0x55c, int);
+    OID *a = &STRUCT_OFFSET(p, 0x560, OID);
+    a[c] = oidAseg;
+    STRUCT_OFFSET(p, 0x55c, int) = c + 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", HandleSprizeMessage__FP6SPRIZE5MSGIDPv);
 

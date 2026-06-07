@@ -271,9 +271,27 @@ void InitSgg(SGG *psgg)
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", AddSggGuard__FP3SGGP9STEPGUARD);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", AddSggGuardName__FP3SGG3OID);
+void AddSggGuardName(SGG * p, OID oid)
+{
+    int c = STRUCT_OFFSET(p, 0x9c, int);
+    if ((unsigned int)c < 16)
+    {
+        OID *a = &STRUCT_OFFSET(p, 0xa0, OID);
+        a[c] = oid;
+        STRUCT_OFFSET(p, 0x9c, int) = c + 1;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", AddSggSearchXfmName__FP3SGG3OID);
+void AddSggSearchXfmName(SGG * p, OID oid)
+{
+    int c = STRUCT_OFFSET(p, 0x124, int);
+    if ((unsigned int)c < 16)
+    {
+        OID *a = &STRUCT_OFFSET(p, 0x128, OID);
+        a[c] = oid;
+        STRUCT_OFFSET(p, 0x124, int) = c + 1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", RemoveSggGuard__FP3SGGP9STEPGUARD);
 
