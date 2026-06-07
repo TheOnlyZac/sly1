@@ -1,5 +1,6 @@
 #include <rog.h>
 #include <cm.h>
+#include <game.h>
 
 extern SNIP s_asnipLoadRov[2];
 
@@ -93,22 +94,13 @@ void AddRobSpawnTunnel(ROB *prob, OID oidSpawnTunnel)
     STRUCT_OFFSET(prob, 0x2e0, int) = coidRost + 1; // prob->coidRost
 }
 
-/**
- * @brief 80% match.
- * https://decomp.me/scratch/s3oRy
- */
-INCLUDE_ASM("asm/nonmatchings/P2/rog", RobkCur__Fv);
-#ifdef SKIP_ASM
 ROBK RobkCur()
 {
-    if ((uint)g_plsCur->fls & FLS_Secondary)
-    {
-        return ROBK_Tertiary;
-    }
-
-    return (ROBK)((uint)g_plsCur->fls & FLS_KeyCollected);
+    int grfrob = *(int *)g_plsCur;
+    if ((grfrob & 0x4) == 0)
+        return (ROBK)((grfrob & 0x2) > 0);
+    return ROBK_Tertiary;
 }
-#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", BindRob__FP3ROB);
 
