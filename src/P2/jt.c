@@ -106,7 +106,10 @@ void FUN_00177828(JT *pjt, int n)
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", PaloAbsorbWkr__FP3WKRiPP3ALO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", NCmpWkr__FP3WKRT0);
+int NCmpWkr(WKR *pwkr1, WKR *pwkr2)
+{
+    return STRUCT_OFFSET(pwkr1, 0x14, float) > STRUCT_OFFSET(pwkr2, 0x14, float) ? 1 : -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtEffect__FP2JT);
 
