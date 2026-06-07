@@ -1,6 +1,7 @@
 #include <act.h>
 #include <slotheap.h>
 #include <sw.h>
+#include <memory.h>
 
 ACT *PactNew(SW *psw, ALO *palo, VTACT *pvtact)
 {
@@ -19,7 +20,14 @@ ACT *PactNewClone(ACT *pactBase, SW *psw, ALO *palo)
     return pact;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", CloneAct__FP3ACTT0);
+void CloneAct(ACT *pact, ACT *pactBase)
+{
+    DLE dleSav = pact->dleAlo;
+    ALO *paloSav = pact->palo;
+    CopyAb(pact, pactBase, STRUCT_OFFSET(g_psw, 0x1B20, int));
+    pact->dleAlo = dleSav;
+    pact->palo = paloSav;
+}
 
 void InitAct(ACT *pact, ALO *palo)
 {

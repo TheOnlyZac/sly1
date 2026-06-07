@@ -26,7 +26,23 @@ float GMeasureJumpRail(MJR *pmjr, float u)
 
 INCLUDE_ASM("asm/nonmatchings/P2/stephide", FUN_001cea58);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stephide", GMeasureJumpHshape__FP3MJHf);
+struct HSHAPE;
+extern void GetHshapeHidePos(HSHAPE *phshape, float s, VECTOR *ppos, float *pf);
+
+float GMeasureJumpHshape(MJH *pmjh, float s)
+{
+    VECTOR posTarget;
+    float gInteg;
+
+    GetHshapeHidePos(STRUCT_OFFSET(pmjh, 0x4, HSHAPE *), s, &posTarget, 0);
+
+    MeasureJtJumpToTarget(STRUCT_OFFSET(pmjh, 0x0, JT *),
+                          (VECTOR *)((uint8_t *)pmjh + 0x10),
+                          STRUCT_OFFSET(STRUCT_OFFSET(pmjh, 0x4, HSHAPE *), 0x18, ALO *),
+                          &posTarget, 0, 0, &gInteg, 0, 0);
+
+    return gInteg;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stephide", FUN_001ceb18);
 

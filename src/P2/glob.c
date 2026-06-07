@@ -1,11 +1,26 @@
 #include <glob.h>
 #include <ik.h>
+#include <vifs.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/glob", BuildGlobsetSaaArray__FP7GLOBSET);
 
 INCLUDE_ASM("asm/nonmatchings/P2/glob", LoadGlobsetFromBrx__FP7GLOBSETP18CBinaryInputStreamP3ALO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/glob", EnsureBuffer__FiP4VIFS);
+extern char D_18C0;
+extern char D_18F8;
+
+void EnsureBuffer(int iBuffer, VIFS *pvifs)
+{
+    switch (iBuffer)
+    {
+    case 0:
+        pvifs->AddVifMscal(&D_18C0);
+        break;
+    case 1:
+        pvifs->AddVifMscal(&D_18F8);
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/glob", EnsureBufferCel__FiP4VIFS);
 
