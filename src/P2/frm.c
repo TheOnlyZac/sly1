@@ -100,4 +100,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/frm", BlendPrevFrame__Fv);
  * Once the appropriate functions are matched these can be removed.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/frm", func_0015F618);
-INCLUDE_ASM("asm/nonmatchings/P2/frm", func_0015F658);
+extern "C" void func_0015F618(int, int);
+
+extern "C" void func_0015F658(void)
+{
+    func_0015F618(1, 0xFFFF);
+}

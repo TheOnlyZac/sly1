@@ -75,7 +75,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/step", AdjustStepXpVelocityBase__FP4STEPP2XPi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", AdjustStepXps__FP4STEP);
 
-INCLUDE_ASM("asm/nonmatchings/P2/step", AddStepCustomXps__FP4STEPP2SOiP3BSPT3PP2XP);
+void AddStepCustomXps(STEP *pstep, SO *psoOther, int cbspPruned, BSP *abspPruned, BSP *pbspPruned, XP **ppxpFirst)
+{
+    AddStepCustomXpsBase(pstep, psoOther, pbspPruned, ppxpFirst);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", AddStepCustomXpsBase__FP4STEPP2SOP3BSPPP2XP);
 

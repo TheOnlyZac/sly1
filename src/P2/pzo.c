@@ -1,6 +1,7 @@
 #include <pzo.h>
 #include <find.h>
 #include <game.h>
+#include <so.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", InitSprize__FP6SPRIZE);
 
@@ -168,7 +169,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/pzo", CollectClueSilent__FP4CLUE);
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", FUN_00199c10);
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", ImpactClue__FP4CLUEi);
+void ImpactClue(CLUE *pclue, int fParentDirty)
+{
+    ImpactSo(pclue, fParentDirty);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", FAbsorbClueWkr__FP4CLUEP3WKR);
 
