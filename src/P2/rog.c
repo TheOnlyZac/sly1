@@ -1,6 +1,7 @@
 #include <rog.h>
 #include <cm.h>
 #include <game.h>
+#include <emitter.h>
 
 extern SNIP s_asnipLoadRov[2];
 
@@ -155,7 +156,14 @@ RODD *ProddCurRob(ROB *prob, ENSK ensk)
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", InitRoh__FP3ROH);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", LoadRohFromBrx__FP3ROHP18CBinaryInputStream);
+extern SNIP D_0026B7E8;
+
+void LoadRohFromBrx(ROH *proh, CBinaryInputStream *pbis)
+{
+    LoadSoFromBrx(proh, pbis);
+    SnipAloObjects(proh, 6, &D_0026B7E8);
+    InferExpl(&STRUCT_OFFSET(proh, 0x5ac, EXPL *), proh);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", CloneRoh__FP3ROHT0);
 
@@ -180,7 +188,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", ProcContactRoh__FP3ROH);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", InitRoc__FP3ROC);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", LoadRocFromBrx__FP3ROCP18CBinaryInputStream);
+extern SNIP D_0026B830;
+
+void LoadRocFromBrx(ROC *proc, CBinaryInputStream *pbis)
+{
+    LoadSoFromBrx(proc, pbis);
+    SnipAloObjects(proc, 1, &D_0026B830);
+    InferExpl(&STRUCT_OFFSET(proc, 0x574, EXPL *), proc);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", CloneRoc__FP3ROCT0);
 
@@ -207,7 +222,13 @@ void InitRost(ROST *prost)
     STRUCT_OFFSET(prost, 0x550, ROSTS) = ROSTS_Nil; // prost->rosts
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", LoadRostFromBrx__FP4ROSTP18CBinaryInputStream);
+extern SNIP D_0026B888;
+
+void LoadRostFromBrx(ROST *prost, CBinaryInputStream *pbis)
+{
+    LoadSoFromBrx(prost, pbis);
+    SnipAloObjects(prost, 1, &D_0026B888);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", CloneRost__FP4ROSTT0);
 
@@ -238,7 +259,14 @@ void InitRop(ROP *prop)
     SetSoConstraints(prop, CT_Locked, NULL, CT_Locked, NULL);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", LoadRopFromBrx__FP3ROPP18CBinaryInputStream);
+extern SNIP D_0026B8A0;
+
+void LoadRopFromBrx(ROP *prop, CBinaryInputStream *pbis)
+{
+    LoadSoFromBrx(prop, pbis);
+    SnipAloObjects(prop, 1, &D_0026B8A0);
+    InferExpl(&STRUCT_OFFSET(prop, 0x568, EXPL *), prop);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", PostRopLoad__FP3ROP);
 
