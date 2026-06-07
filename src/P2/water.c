@@ -2,8 +2,12 @@
 #include <ensure.h>
 #include <vtables.h>
 #include <wr.h>
+#include <bsp.h>
 
+struct JT;
+extern JT *g_pjt;
 extern VU_VECTOR D_00248D30;
+extern VU_VECTOR g_normalZ;
 
 void InitWater(WATER *pwater)
 {
@@ -132,7 +136,97 @@ void UpdateWaterMergeGroup(WATER *pwater)
     AddSwMergeGroup(pwater->psw, pmrg);
 }
 
+/**
+ * @brief ~95% match. The VU0 transform, the LSG[16] clip workspace, the frame
+ * layout (fixed via LSG now being 16-byte-vector / 0x70) and the structure all
+ * match; only a few instructions in the g_pjt height branch differ (gcc
+ * schedules the g_pjt load into a delay slot, and the max.s/add.s operand order
+ * canonicalizes differently). Needs the permuter to settle. Kept under SKIP_ASM
+ * so the real build uses the asm and the checksum stays green.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/water", UGetWaterSubmerged__FP5WATERP2SOP6VECTORT2);
+#ifdef SKIP_ASM
+float UGetWaterSubmerged(WATER *pwater, SO *pso, VECTOR *pposSurface, VECTOR *pnormalSurface)
+{
+    VECTOR4 aedge[2];
+    LSG alsg[16];
+    VECTOR4 scratch;
+
+    void *p278 = STRUCT_OFFSET(pwater, 0x278, void *);
+    if (p278 != NULL)
+    {
+        WR *pwr = STRUCT_OFFSET(p278, 0xC, WR *);
+        WarpWrTransform(pwr, 50.0f, (VECTOR *)((char *)pso + 0x140), NULL, (VECTOR *)&aedge[0], NULL, NULL);
+        // %0=aedge[0] %1=aedge[1] %2=scratch %3=pso->pos %4=aedge[0](warp)
+        asm volatile(
+            ".set noat\n\t"
+            "lui $1, 0x4000\n\t"
+            "mtc1 $1, $f0\n\t"
+            "lui $1, 0xbf80\n\t"
+            "mtc1 $1, $f1\n\t"
+            ".set at\n\t"
+            "mfc1 $2, $f0\n\t"
+            "qmtc2.ni $2, $vf3\n\t"
+            "lqc2 $vf1, %3\n\t"
+            "mfc1 $2, $f1\n\t"
+            "qmtc2.ni $2, $vf4\n\t"
+            "lqc2 $vf2, %4\n\t"
+            "vmulax.xyzw ACC, $vf1, $vf3x\n\t"
+            "vmaddx.xyzw $vf1, $vf2, $vf4x\n\t"
+            "sqc2 $vf3, %2\n\t"
+            "sqc2 $vf1, %0\n\t"
+            "sqc2 $vf4, %2\n\t"
+            "sqc2 $vf1, %1"
+            : "=m"(aedge[0]), "=m"(aedge[1]), "=m"(scratch)
+            : "m"(STRUCT_OFFSET(pso, 0x140, VU_VECTOR)), "m"(aedge[0])
+            : "$1", "$2", "$f0", "$f1");
+    }
+    else
+    {
+        *(VU_VECTOR *)&aedge[0] = STRUCT_OFFSET(pso, 0x140, VU_VECTOR);
+        *(VU_VECTOR *)&aedge[1] = *(VU_VECTOR *)&aedge[0];
+    }
+
+    if ((void *)pso == (void *)g_pjt)
+    {
+        float z = aedge[0].z + -75.0f;
+        if (STRUCT_OFFSET(pso, 0x690, int) == 0)
+            aedge[0].z = z;
+        else
+        {
+            float m = STRUCT_OFFSET(pso, 0x6A8, float);
+            aedge[0].z = m > z ? m : z;
+        }
+    }
+    else
+    {
+        aedge[0].z += STRUCT_OFFSET(pso, 0x428, float) - STRUCT_OFFSET(pso, 0x148, float);
+    }
+
+    aedge[1].z += STRUCT_OFFSET(pso, 0x438, float) - STRUCT_OFFSET(pso, 0x148, float);
+
+    if (ClsgClipEdgeToBsp(STRUCT_OFFSET(pwater, 0x3F8, BSP *), (VECTOR *)&aedge[0], (VECTOR *)&aedge[1], NULL, 0x10, alsg) == 0)
+    {
+        if (pnormalSurface != NULL)
+            *(VU_VECTOR *)pnormalSurface = g_normalZ;
+        return 0.0f;
+    }
+
+    if (pposSurface != NULL)
+        *(VU_VECTOR *)pposSurface = *(VU_VECTOR *)&alsg[0].apos[1];
+
+    if (pnormalSurface != NULL)
+    {
+        void *pn = STRUCT_OFFSET(&alsg[0], 0x54, void *);
+        if (pn != NULL)
+            *(VU_VECTOR *)pnormalSurface = *(VU_VECTOR *)pn;
+        else
+            *(VU_VECTOR *)pnormalSurface = g_normalZ;
+    }
+
+    return alsg[0].au[1] - alsg[0].au[0];
+}
+#endif
 
 void UpdateWaterBounds(WATER *pwater)
 {
