@@ -3,7 +3,15 @@
 
 extern VECTOR g_normalZ;
 
-INCLUDE_ASM("asm/nonmatchings/P2/mat", PostCopyMatrix3__7MATRIX4);
+extern qword D_0024B260;
+
+void MATRIX4::PostCopyMatrix3()
+{
+    STRUCT_OFFSET(this, 0xc, int) = 0;
+    STRUCT_OFFSET(this, 0x1c, int) = 0;
+    STRUCT_OFFSET(this, 0x2c, int) = 0;
+    *(qword *)((char *)this + 0x30) = D_0024B260;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", __as__7MATRIX4RC7MATRIX3);
 
