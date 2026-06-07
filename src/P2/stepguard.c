@@ -183,7 +183,14 @@ int FValidSgs(SGS sgs)
     return ((uint)sgs < 0x11);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", UseStepguardAnimation__FP9STEPGUARD3SGS3OID);
+void UseStepguardAnimation(STEPGUARD *pstepguard, SGS sgs, OID oidAnim)
+{
+    if (FValidSgs(sgs))
+    {
+        long long *a = &STRUCT_OFFSET(pstepguard, 0x758, long long);
+        *(OID *)&a[sgs] = oidAnim;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", UseStepguardAnimationImmediate__FP9STEPGUARD3SGS3OID);
 
@@ -207,7 +214,14 @@ void UseStepguardRwm(STEPGUARD *pstepguard, OID oidRwm)
     STRUCT_OFFSET(pstepguard, 0xb04, int) = 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", UseStepguardPhys__FP9STEPGUARD3SGS3OID);
+void UseStepguardPhys(STEPGUARD *pstepguard, SGS sgs, OID oidPhys)
+{
+    if (FValidSgs(sgs))
+    {
+        long long *a = &STRUCT_OFFSET(pstepguard, 0x870, long long);
+        *(OID *)&a[sgs] = oidPhys;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", LoadStepguardPhys__FP9STEPGUARD);
 
