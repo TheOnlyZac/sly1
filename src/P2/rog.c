@@ -2,6 +2,7 @@
 #include <cm.h>
 #include <game.h>
 #include <emitter.h>
+#include <dl.h>
 
 extern SNIP s_asnipLoadRov[2];
 
@@ -123,7 +124,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", AdjustRobDifficulty__FP3ROBf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", DestroyedRobRoc__FP3ROBP3ROC);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", SpawnedRobRoh__FP3ROBP3ROH);
+void SpawnedRobRoh(ROB *prob, ROH *proh)
+{
+    RemoveDlEntry((DL *)&STRUCT_OFFSET(prob, 0x3AC, int), STRUCT_OFFSET(proh, 0x560, ROST *));
+    AppendDlEntry((DL *)&STRUCT_OFFSET(prob, 0x3A0, int), STRUCT_OFFSET(proh, 0x560, ROST *));
+    SetRostRosts(STRUCT_OFFSET(proh, 0x560, ROST *), ROSTS_Close);
+    STRUCT_OFFSET(proh, 0x560, ROST *) = NULL;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", GrabbedRobRoh__FP3ROBP3ROH);
 

@@ -1,5 +1,6 @@
 #include <gs.h>
 #include <sdk/ee/eekernel.h>
+#include <memory.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", BlendDisplayOnBufferMismatch__Fv);
 
@@ -92,7 +93,24 @@ INCLUDE_ASM("asm/nonmatchings/P2/gs", UploadBitmaps__FiP3GSB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", PqwGifsBitmapUpload__Fi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/gs", PropagateSur__FP3SUR);
+void PropagateSur(SUR *psur)
+{
+    CopyAb(psur->pvDst, psur->pvSrc, psur->cb);
+    
+    if (psur->cvtx)
+    {
+        int *p = (int *)psur->pvDst;
+        int v0 = p[0];
+        int v1 = p[0x10 / 4];
+        
+        v0 |= 0x8000;
+        v0 |= (int)psur->cvtx;
+        v1 |= 0x8000;
+        
+        p[0] = v0;
+        p[0x10 / 4] = v1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", ReferenceShaderAqwRegs__FP3SHDP4SHDPP2QWiiP3SAI);
 

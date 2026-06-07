@@ -1,4 +1,5 @@
 #include <mb.h>
+#include <stepguard.h>
 
 extern SNIP s_asnipLoadMbg[2];
 
@@ -47,7 +48,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/mb", UpdateMbgGoal__FP3MBGi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mb", UpdateMbgSgs__FP3MBG);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mb", OnMgExitingSgs__FP3MBG3SGS);
+void OnMgExitingSgs(MBG *pmbg, SGS sgs)
+{
+    OnStepguardExitingSgs(pmbg, sgs);
+    
+    int field_0x724 = STRUCT_OFFSET(pmbg, 0x724, int);
+    if (field_0x724 == 0x10)
+    {
+        int field_0xE3C = STRUCT_OFFSET(pmbg, 0xE3C, int);
+        if (field_0xE3C != -1)
+        {
+            int field_0xE10 = STRUCT_OFFSET(pmbg, 0xE10, int);
+            SetSmaGoal((SMA *)field_0xE10, (OID)field_0xE3C);
+            STRUCT_OFFSET(pmbg, 0xE3C, int) = -1;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mb", HandleMbgMessage__FP3MBG5MSGIDPv);
 

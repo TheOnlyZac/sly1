@@ -52,7 +52,22 @@ void CloneScprize(SCPRIZE *pscprize, SCPRIZE *pscprizeBase)
     STRUCT_OFFSET(pscprize, 0x5a0, int) = ichk;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", PcsFromScprize__FP7SCPRIZE);
+PCS PcsFromScprize(SCPRIZE *pscprize)
+{
+    extern int FGetChkmgrIchk(CHKMGR *pchkmgr, int ichk);
+    extern CHKMGR g_chkmgr;
+    
+    PCS pcs = PcsFromSprize((SPRIZE *)pscprize);
+    
+    if (pcs == PCS_Collectible) {
+        int ichk = STRUCT_OFFSET(pscprize, 0x5a0, int);
+        if (FGetChkmgrIchk(&g_chkmgr, ichk) != 0) {
+            pcs = PCS_Collected;
+        }
+    }
+    
+    return pcs;
+}
 
 void CollectScprize(SCPRIZE *pscprize)
 {
