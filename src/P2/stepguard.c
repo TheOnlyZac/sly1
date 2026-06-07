@@ -217,7 +217,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepguard", SetStepguardPathzone__FP9STEPGUARD3
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", PsoEnemyStepguard__FP9STEPGUARD);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FUN_001caad0);
+extern "C" void FUN_001caad0(SO *pso, SO **ppso)
+{
+    void *pvt = STRUCT_OFFSET(pso, 0x0, void *);
+    SO *(*fn)(SO *) = (SO *(*)(SO *))STRUCT_OFFSET(pvt, 0x198, void *);
+    *ppso = fn(pso);
+}
 
 void SetStepguardEnemyObject(STEPGUARD *pstepguard, SO *psoEnemy)
 {

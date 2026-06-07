@@ -2,6 +2,7 @@
 #include <chkpnt.h>
 #include <bis.h>
 #include <sw.h>
+#include <screen.h>
 
 void InitDprize(DPRIZE *pdprize)
 {
@@ -183,7 +184,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", SetKeyDprizes__FP3KEY7DPRIZES);
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148698);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148718);
+void PostDprizeLoad(DPRIZE *pdprize);
+
+extern "C" void FUN_00148718(DPRIZE *pdprize)
+{
+    PostDprizeLoad(pdprize);
+    STRUCT_OFFSET(&g_note, 0x270, DPRIZE *) = pdprize;
+}
 
 extern "C" {
 void FUN_00148748(void *param_1)

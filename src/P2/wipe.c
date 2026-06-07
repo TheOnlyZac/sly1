@@ -47,7 +47,11 @@ void DrawWipe(WIPE *pwipe)
 
 INCLUDE_ASM("asm/nonmatchings/P2/wipe", ActivateWipe__FP4WIPEP5TRANS5WIPEK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/wipe", SetWipeButtonTrans__FP4WIPEP5TRANS5WIPEK);
+void SetWipeButtonTrans(WIPE *pwipe, TRANS *ptrans, WIPEK wipek)
+{
+    STRUCT_OFFSET(pwipe, 0x28, TRANS) = *ptrans;
+    STRUCT_OFFSET(pwipe, 0x3c, WIPEK) = wipek;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/wipe", FCatchWipeButtonTrans__FP4WIPEP3JOY5WIPES);
 

@@ -19,7 +19,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/blip", PblipgNew__FP2SW);
 
 INCLUDE_ASM("asm/nonmatchings/P2/blip", InitBlipg__FP5BLIPG);
 
-INCLUDE_ASM("asm/nonmatchings/P2/blip", OnBlipgAdd__FP5BLIPG);
+void OnBlipgAdd(BLIPG *pblipg)
+{
+    RemoveDlEntry((DL *)((uint8_t *)STRUCT_OFFSET(pblipg, 0x14, void *) + 0x1CC0), pblipg);
+    AppendDlEntry((DL *)((uint8_t *)STRUCT_OFFSET(pblipg, 0x14, void *) + 0x1CB4), pblipg);
+    OnAloAdd((ALO *)pblipg);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/blip", OnBlipgRemove__FP5BLIPG);
 

@@ -56,7 +56,12 @@ JTHS JthsCurrentPo(PO *ppo)
     return JTHS_Normal;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/po", FUN_00192498);
+void FUN_00192498(PO *ppo, int *pi)
+{
+    void *pvt = STRUCT_OFFSET(ppo, 0x0, void *);
+    int (*pfn)(PO *) = (int (*)(PO *))STRUCT_OFFSET(pvt, 0x144, void *);
+    *pi = pfn(ppo);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", CollectPoPrize__FP2PO3PCKP3ALO);
 

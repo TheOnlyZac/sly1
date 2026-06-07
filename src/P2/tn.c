@@ -84,7 +84,18 @@ INCLUDE_ASM("asm/nonmatchings/P2/tn", CalculateTnPos__FP2TNP6VECTORffP3CLQP2LM4F
 
 INCLUDE_ASM("asm/nonmatchings/P2/tn", ActivateCptn__FP4CPTNPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/tn", DeactivateCptn__FP4CPTNPv);
+void DeactivateCptn(CPTN *pcptn, void *pv)
+{
+    TN *ptn = pcptn->ptn;
+    if (ptn != NULL)
+    {
+        if (STRUCT_OFFSET(ptn, 0x438, float) != 0.0f)
+        {
+            STRUCT_OFFSET(g_pcm, 0x1c8, float) = STRUCT_OFFSET(ptn, 0x43c, float);
+        }
+    }
+    pcptn->ptn = NULL;
+}
 
 void SetCptn(CPTN *pcptn, void *pv)
 {

@@ -59,7 +59,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/sensor", FIgnoreSensorObject__FP6SENSORP2SO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", FOnlySensorTriggerObject__FP6SENSORP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", PauseSensor__FP6SENSOR);
+void PauseSensor(SENSOR *psensor)
+{
+	ASEGA *pasega = PasegaFindAloNearest((ALO *)psensor);
+	if (pasega)
+	{
+		STRUCT_OFFSET(psensor, 0x5CC, float) = STRUCT_OFFSET(pasega, 0x18, float);
+		STRUCT_OFFSET(pasega, 0x18, int) = 0;
+		STRUCT_OFFSET(psensor, 0x5C8, ASEGA *) = pasega;
+	}
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateSensor__FP6SENSORf);
 
@@ -103,9 +112,19 @@ void AddSensorNoTriggerClass(SENSOR * p, CID cid)
         STRUCT_OFFSET(p, 0x5a0, int) = c + 1;
     }
 }
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", InitLasen__FP5LASEN);
+void InitLasen(LASEN *plasen)
+{
+    InitSensor(plasen);
+    STRUCT_OFFSET(plasen, 0xB04, float) = 1.0f;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", LoadLasenFromBrx__FP5LASENP18CBinaryInputStream);
+void LoadLasenFromBrx(LASEN *plasen, CBinaryInputStream *pbis)
+{
+	extern SNIP D_002744B8[2];
+
+	LoadSoFromBrx(plasen, pbis);
+	SnipAloObjects(plasen, 2, D_002744B8);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", BindLasen__FP5LASEN);
 
@@ -179,7 +198,11 @@ void ExtendLasen(LASEN *plasen, float dtExpand)
     STRUCT_OFFSET(plasen, 0xB08, float) = 1.0f / dtExpand;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", InitCamsen__FP6CAMSEN);
+void InitCamsen(CAMSEN *pcamsen)
+{
+    InitSensor(pcamsen);
+    STRUCT_OFFSET(pcamsen, 0x5D8, int) = -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", PostCamsenLoad__FP6CAMSEN);
 

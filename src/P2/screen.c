@@ -236,7 +236,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad718);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad7b0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad940);
+void FUN_001ad940(BLOT *pblot)
+{
+    PostBlotLoad(pblot);
+    pblot->dtDisappear = 0.5f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad970);
 

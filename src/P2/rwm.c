@@ -3,7 +3,13 @@
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", InitRwm__FP3RWM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rwm", OnRwmRemove);
+extern "C" void FUN_001a93c8(RWM *prwm);
+
+extern "C" void OnRwmRemove(RWM *prwm)
+{
+    OnLoRemove(prwm);
+    FUN_001a93c8(prwm);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", FUN_001a8110);
 
@@ -25,7 +31,12 @@ void FUN_001a86f8(RWM *prwm, int f)
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", PrwcFindRwm__FP3RWM3OID);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rwm", EnableRwmRwc__FP3RWM3OID);
+void EnableRwmRwc(RWM *prwm, OID oidCache)
+{
+    RWC *prwc = PrwcFindRwm(prwm, oidCache);
+    if (prwc != NULL)
+        STRUCT_OFFSET(prwc, 0x10, int) |= 0x2;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", DisableRwmRwc__FP3RWM3OID);
 

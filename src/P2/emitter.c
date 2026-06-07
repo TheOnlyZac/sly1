@@ -188,7 +188,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", InitExplo__FP5EXPLO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadExploFromBrx__FP5EXPLOP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", CloneExplo__FP5EXPLOT0);
+void CloneExplo(EXPLO *pexplo, EXPLO *pexploBase)
+{
+    CloneLo(pexplo, pexploBase);
+    STRUCT_OFFSET(pexplo, 0x90, EMITB *)->cref++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindExplo__FP5EXPLO);
 
@@ -199,7 +203,15 @@ void ExplodeExploExplso(EXPLO *pexplo, EXPLSO *pexplso)
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", AddExploSkeleton__FP5EXPLO3OIDT1ffff);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", PemitbEnsureExplo__FP5EXPLO4ENSK);
+EMITB *PemitbEnsureExplo(EXPLO *pexplo, ENSK ensk)
+{
+    if (ensk == ENSK_Set)
+    {
+        STRUCT_OFFSET(pexplo, 0x90, EMITB *) = PemitbCopyOnWrite(STRUCT_OFFSET(pexplo, 0x90, EMITB *));
+    }
+
+    return STRUCT_OFFSET(pexplo, 0x90, EMITB *);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", InitExpls__FP5EXPLS);
 
@@ -209,7 +221,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", HandleExplsMessage__FP5EXPLS5MSGIDPv)
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", ExplodeExplsExplso__FP5EXPLSP6EXPLSO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", PsfxEnsureExpls__FP5EXPLS4ENSK);
+SFX *PsfxEnsureExpls(EXPLS *pexpls, ENSK ensk)
+{
+    if (STRUCT_OFFSET(pexpls, 0xa0, SFX *) == 0)
+    {
+        NewSfx(&STRUCT_OFFSET(pexpls, 0xa0, SFX *));
+    }
+
+    return STRUCT_OFFSET(pexpls, 0xa0, SFX *);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", FireExplsExplso__FP5EXPLSP6EXPLSO);
 

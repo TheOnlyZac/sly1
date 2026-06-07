@@ -57,9 +57,29 @@ float DuGetCrvSearchIncrement(CRV *pcrv)
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", LoadCrvlFromBrx__FP4CRVLP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", EvaluateCrvlFromU__FP4CRVLfP6VECTORT2);
+void EvaluateCrvlFromU(CRVL *pcrvl, float u, VECTOR *ppos, VECTOR *pnormTangent)
+{
+    EvaluateAposG(
+        u,
+        STRUCT_OFFSET(pcrvl, 0xC, int),
+        STRUCT_OFFSET(pcrvl, 0x18, VECTOR *),
+        STRUCT_OFFSET(pcrvl, 0x10, float *),
+        STRUCT_OFFSET(pcrvl, 0x8, int),
+        ppos,
+        pnormTangent);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", EvaluateCrvlFromS__FP4CRVLfP6VECTORT2);
+void EvaluateCrvlFromS(CRVL *pcrvl, float s, VECTOR *ppos, VECTOR *pnormTangent)
+{
+    EvaluateAposG(
+        s,
+        STRUCT_OFFSET(pcrvl, 0xC, int),
+        STRUCT_OFFSET(pcrvl, 0x18, VECTOR *),
+        STRUCT_OFFSET(pcrvl, 0x14, float *),
+        STRUCT_OFFSET(pcrvl, 0x8, int),
+        ppos,
+        pnormTangent);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", RenderCrvlSegment__FP4CRVLiP7MATRIX4P2CMG4RGBAi);
 

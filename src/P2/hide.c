@@ -1,5 +1,6 @@
 #include <hide.h>
 #include <dl.h>
+#include <dart.h>
 
 extern DL g_dlHshape;
 extern DL g_dlHpnt;
@@ -12,7 +13,12 @@ void StartupHide()
     InitDl(&g_dlHbsk, 0x558);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", ResetHideList__Fv);
+void ResetHideList()
+{
+    ClearDl(&g_dlHshape);
+    ClearDl(&g_dlHpnt);
+    ClearDl(&g_dlHbsk);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", InitHshape__FP6HSHAPE);
 
@@ -46,9 +52,17 @@ INCLUDE_ASM("asm/nonmatchings/P2/hide", InitHbsk__FP4HBSK);
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", LoadHbskFromBrx__FP4HBSKP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", OnHbskAdd__FP4HBSK);
+void OnHbskAdd(HBSK *phbsk)
+{
+    OnSoAdd((SO *)phbsk);
+    AppendDlEntry(&g_dlHbsk, phbsk);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", OnHbskRemove__FP4HBSK);
+void OnHbskRemove(HBSK *phbsk)
+{
+    OnSoRemove((SO *)phbsk);
+    RemoveDlEntry(&g_dlHbsk, phbsk);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", CloneHbsk__FP4HBSKT0);
 

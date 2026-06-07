@@ -2,8 +2,14 @@
 #include <find.h>
 #include <game.h>
 #include <so.h>
+#include <jt.h>
+#include <chkpnt.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", InitSprize__FP6SPRIZE);
+void InitSprize(SPRIZE *psprize)
+{
+    InitSo(psprize);
+    STRUCT_OFFSET(psprize, 0x554, int) = 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", LoadSprizeFromBrx__FP6SPRIZEP18CBinaryInputStream);
 
@@ -33,13 +39,26 @@ INCLUDE_ASM("asm/nonmatchings/P2/pzo", FIgnoreSprizeIntersection__FP6SPRIZEP2SO)
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", FUN_00199000);
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", InitScprize__FP7SCPRIZE);
+void InitScprize(SCPRIZE *pscprize)
+{
+    InitSprize(pscprize);
+    STRUCT_OFFSET(pscprize, 0x5a0, int) = IchkAllocChkmgr(&g_chkmgr);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", CloneScprize__FP7SCPRIZET0);
+void CloneScprize(SCPRIZE *pscprize, SCPRIZE *pscprizeBase)
+{
+    int ichk = STRUCT_OFFSET(pscprize, 0x5a0, int);
+    CloneSo(pscprize, pscprizeBase);
+    STRUCT_OFFSET(pscprize, 0x5a0, int) = ichk;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", PcsFromScprize__FP7SCPRIZE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", CollectScprize__FP7SCPRIZE);
+void CollectScprize(SCPRIZE *pscprize)
+{
+    SetChkmgrIchk(&g_chkmgr, STRUCT_OFFSET(pscprize, 0x5a0, int));
+    CollectSprize(pscprize);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", LoadLockFromBrx__FP4LOCKP18CBinaryInputStream);
 #ifdef SKIP_ASM
@@ -153,13 +172,34 @@ void AddLockgLock(LOCKG *plockg, OID oidLock)
     plockg->coidLock = ++ccur;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", TriggerLockg__FP5LOCKG);
+extern "C" void func_001781E0(JT *pjt, LOCKG *plockg);
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", InitClue__FP4CLUE);
+void TriggerLockg(LOCKG *plockg)
+{
+    if (g_pjt)
+        func_001781E0(g_pjt, plockg);
+}
+
+void InitClue(CLUE *pclue)
+{
+    SW *psw;
+    int n;
+
+    InitSprize(pclue);
+    psw = pclue->psw;
+    n = STRUCT_OFFSET(psw, 0x2300, int);
+    STRUCT_OFFSET(pclue, 0x5a0, int) = n;
+    STRUCT_OFFSET(psw, 0x2300, int) = n + 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", LoadClueFromBrx__FP4CLUEP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", CloneClue__FP4CLUET0);
+void CloneClue(CLUE *pclue, CLUE *pclueBase)
+{
+    int n = STRUCT_OFFSET(pclue, 0x5a0, int);
+    CloneSo(pclue, pclueBase);
+    STRUCT_OFFSET(pclue, 0x5a0, int) = n;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", PostClueLoad__FP4CLUE);
 
