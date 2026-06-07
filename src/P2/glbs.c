@@ -57,6 +57,10 @@ JUNK_WORD(0xE4800110);
 
 INCLUDE_ASM("asm/nonmatchings/P2/glbs", SetRgba__4GLBSG4RGBA);
 
-INCLUDE_ASM("asm/nonmatchings/P2/glbs", SetUv__4GLBSP3UVF);
+void GLBS::SetUv(UVF *puv)
+{
+    struct PACK { long long v; } __attribute__((packed));
+    *(PACK *)((char *)this + 0x118) = *(PACK *)puv;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/glbs", AddVtx__4GLBSi);

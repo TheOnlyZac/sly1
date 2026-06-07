@@ -13,6 +13,7 @@
 
 // Forward.
 struct UV;
+struct UVF;
 
 /**
  * @brief (?) kind.
@@ -94,7 +95,7 @@ struct GLBS
 
     void SetRgba(RGBA &rgba); // Might not be correct.
 
-    void SetUv(UV *puv);
+    void SetUv(UVF *puv);
 
     void SetVtx(int fAdc);
 };
