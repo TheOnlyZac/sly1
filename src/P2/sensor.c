@@ -73,21 +73,6 @@ void AddSensorTriggerObject(SENSOR * p, OID oid)
         STRUCT_OFFSET(p, 0x564, int) = c + 1;
     }
 }
- #ifdef SKIP_ASM
-/**
- * @todo 100% matched but sensor struct offsets are wrong.
- */
-void AddSensorTriggerObject(SENSOR *psensor, OID oid)
-{
-	uint ccur = psensor->ctriggerObjects;
-	if (ccur >= 4)
-		return;
-
-	psensor->atriggerObjects[ccur] = oid;
-	psensor->ctriggerObjects = ccur + 1;
-}
-#endif
-
 void AddSensorNoTriggerObject(SENSOR * p, OID oid)
 {
     int c = STRUCT_OFFSET(p, 0x578, int);
@@ -98,21 +83,6 @@ void AddSensorNoTriggerObject(SENSOR * p, OID oid)
         STRUCT_OFFSET(p, 0x578, int) = c + 1;
     }
 }
- #ifdef SKIP_ASM
-/**
- * @todo 100% matched but sensor struct offsets are wrong.
- */
-void AddSensorNoTriggerObject(SENSOR *psensor, OID oid)
-{
-	uint ccur = psensor->cnoTriggerObjects;
-	if (ccur >= 4)
-		return;
-
-	psensor->anoTriggerObjects[ccur] = oid;
-	psensor->cnoTriggerObjects = ccur + 1;
-}
-#endif
-
 void AddSensorTriggerClass(SENSOR * p, CID cid)
 {
     int c = STRUCT_OFFSET(p, 0x58c, int);
@@ -123,21 +93,6 @@ void AddSensorTriggerClass(SENSOR * p, CID cid)
         STRUCT_OFFSET(p, 0x58c, int) = c + 1;
     }
 }
- #ifdef SKIP_ASM
-/**
- * @todo 100% matched but sensor struct offsets are wrong.
- */
-void AddSensorTriggerClass(SENSOR *psensor, CID cid)
-{
-	uint ccur = psensor->ctriggerClasses;
-	if (ccur >= 4)
-		return;
-
-	psensor->atriggerClasses[ccur] = cid;
-	psensor->ctriggerClasses = ccur + 1;
-}
-#endif
-
 void AddSensorNoTriggerClass(SENSOR * p, CID cid)
 {
     int c = STRUCT_OFFSET(p, 0x5a0, int);
@@ -148,21 +103,6 @@ void AddSensorNoTriggerClass(SENSOR * p, CID cid)
         STRUCT_OFFSET(p, 0x5a0, int) = c + 1;
     }
 }
- #ifdef SKIP_ASM
-/**
- * @todo 100% matched but sensor struct offsets are wrong.
- */
-void AddSensorNoTriggerClass(SENSOR *psensor, CID cid)
-{
-	uint ccur = psensor->cnoTriggerClasses;
-	if (ccur >= 4)
-		return;
-
-	psensor->anoTriggerClasses[ccur] = cid;
-	psensor->cnoTriggerClasses = ccur + 1;
-}
-#endif
-
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", InitLasen__FP5LASEN);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", LoadLasenFromBrx__FP5LASENP18CBinaryInputStream);

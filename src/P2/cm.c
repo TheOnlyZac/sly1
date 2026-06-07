@@ -273,13 +273,6 @@ extern "C" bool FUN_00145DD8(undefined4 unused, CM *pcm)
 {
     return STRUCT_OFFSET(pcm, 0x538, int) != 0;
 }
-#ifdef SKIP_ASM
-bool FUN_00145DD8(CM *pcm)
-{
-    return pcm->cptn.tMoveLast != 0; //If tMoveLast is a int/undefined4 it matches only it uses a0 instead of a1 :/
-}
-#endif
-
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145de8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145e68);
