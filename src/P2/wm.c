@@ -1,7 +1,14 @@
 #include <wm.h>
 #include <game.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/wm", FUN_001f0468);
+extern int D_00275BF0;
+
+extern "C" int FUN_001f0468(void)
+{
+    if (D_00275BF0 != 2)
+        return STRUCT_OFFSET(g_pgsCur, 0x19DC, int);
+    return 10;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/wm", FUN_001f0490);
 
