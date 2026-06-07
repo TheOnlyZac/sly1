@@ -67,18 +67,6 @@ void LoadLockFromBrx(LOCK *plock, CBinaryInputStream *pbis)
     LoadAloFromBrx(plock, pbis);
     SnipAloObjects(plock, 1, &D_0026A918);
 }
-#ifdef SKIP_ASM
-/**
- * @todo 95.80% matched. s_asnip may not be defined correctly.
- */
-void LoadLockFromBrx(LOCK *plock, CBinaryInputStream *pbis)
-{
-    static SNIP *s_asnip;
-    LoadAloFromBrx(plock, pbis);
-    SnipAloObjects(plock, 1, s_asnip);
-}
-#endif
-
 extern SNIP D_0026A928;
 
 void PostLockLoad(LOCK *plock)
@@ -86,18 +74,6 @@ void PostLockLoad(LOCK *plock)
     PostAloLoad(plock);
     SnipAloObjects(plock, 1, &D_0026A928);
 }
-#ifdef SKIP_ASM
-/**
- * @todo 95.00% matched. s_asnip may not be defined correctly.
- */
-void PostLockLoad(LOCK *plock)
-{
-    static SNIP *s_asnip;
-    PostAloLoad(plock);
-    SnipAloObjects(plock, 1, s_asnip);
-}
-#endif
-
 extern SNIP D_0026A938;
 
 void LoadLockgFromBrx(LOCKG *plockg, CBinaryInputStream *pbis)
@@ -105,17 +81,6 @@ void LoadLockgFromBrx(LOCKG *plockg, CBinaryInputStream *pbis)
     LoadAloFromBrx(plockg, pbis);
     SnipAloObjects(plockg, 1, &D_0026A938);
 }
-#ifdef SKIP_ASM
-/**
- * @todo 95.00% matched. s_asnip may not be defined correctly.
- */
-void LoadLockgFromBrx(LOCKG *plockg, CBinaryInputStream *pbis)
-{
-    LoadAloFromBrx(plockg, pbis);
-    // SnipAloObjects(plockg, 1, PostLockgLoad);
-}
-#endif
-
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", PostLockgLoad__FP5LOCKG);
 #ifdef SKIP_ASM
 /**
