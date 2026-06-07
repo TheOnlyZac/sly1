@@ -6,7 +6,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/act", PactNewClone__FP3ACTP2SWP3ALO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", CloneAct__FP3ACTT0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", InitAct__FP3ACTP3ALO);
+void InitAct(ACT *pact, ALO *palo)
+{
+    int du = -1;
+    STRUCT_OFFSET(pact, 0x12, char) = du;
+    pact->palo = palo;
+    STRUCT_OFFSET(pact, 0x13, char) = -1;
+    STRUCT_OFFSET(pact, 0x11, char) = du;
+    STRUCT_OFFSET(pact, 0x10, char) = du;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", RetractAct__FP3ACTi);
 
