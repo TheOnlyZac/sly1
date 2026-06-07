@@ -18,7 +18,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/freeze", RemergeSwObjects__FP2SW);
 
 INCLUDE_ASM("asm/nonmatchings/P2/freeze", FreezeAloHierarchy__FP3ALOi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/freeze", GetAloFrozen__FP3ALOPi);
+void GetAloFrozen(ALO *palo, int *pf)
+{
+    *pf = (int)(STRUCT_OFFSET(palo, 0x2c8, unsigned long long) >> 38) & 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/freeze", FreezeAlo__FP3ALOi);
 

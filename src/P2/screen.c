@@ -100,7 +100,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawCtr__FP3CTR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", RebuildCtrAchzDraw__FP3CTR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", DtVisibleCtr__FP3CTR);
+float DtVisibleCtr(CTR *pctr)
+{
+    return g_clock.fEnabled ? 2.5f : 0.0f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ab600);
 
