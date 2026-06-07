@@ -1,5 +1,6 @@
 #include <jt.h>
 #include <game.h>
+#include <step.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", InitJt__FP2JT);
 
@@ -19,7 +20,29 @@ INCLUDE_ASM("asm/nonmatchings/P2/jt", HandleJtGrfjtsc);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtInternalXps__FP2JT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", FCheckJtXpBase__FP2JTP2XPi);
+int FCheckJtXpBase(JT *pjt, XP *pxp, int ixpd)
+{
+	extern float D_00274AD0[];
+
+	if (pjt->jts != JTS_Max)
+	{
+		return FCheckStepXpBase(pjt, pxp, ixpd);
+	}
+
+	if (STRUCT_OFFSET(pxp, 0x88, float) * D_00274AD0[ixpd] < 0.7f)
+	{
+		return 0;
+	}
+
+	{
+		int n = STRUCT_OFFSET(pxp, 0x9C, int);
+		if (n >= 7)
+			return 0;
+		if (n < 4)
+			return 0;
+		return ixpd == 0;
+	}
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", AdjustJtXpVelocity__FP2JTP2XPi);
 

@@ -10,7 +10,24 @@ void InitDart(DART *pdart)
     SetDartDarts(pdart, DARTS_Nil);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/dart", OnDartAdd__FP4DART);
+void OnDartAdd(DART *pdart)
+{
+	OnSoAdd(pdart);
+
+	if (FFindDlEntry(&pdart->psw->dlDartFree, pdart))
+	{
+		RemoveDlEntry(&pdart->psw->dlDartFree, pdart);
+	}
+
+	if (STRUCT_OFFSET(pdart, 0x18, ALO *) && FIsBasicDerivedFrom((BASIC *)STRUCT_OFFSET(pdart, 0x18, ALO *), CID_IKH))
+	{
+		STRUCT_OFFSET(pdart, 0x538, unsigned long long) |= ((unsigned long long)0x8000 << 28);
+	}
+	else
+	{
+		STRUCT_OFFSET(pdart, 0x538, unsigned long long) &= ~((unsigned long long)0x8000 << 28);
+	}
+}
 
 void RemoveDart(DART *pdart)
 {

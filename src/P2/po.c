@@ -1,6 +1,7 @@
 #include <po.h>
 #include <jt.h>
 #include <zap.h>
+#include <cm.h>
 
 extern int g_ippoCur;
 extern PO *g_appo[];
@@ -27,7 +28,23 @@ void ClonePo(PO *ppo, PO *ppoBase)
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", HandlePoMessage__FP2PO5MSGIDPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/po", OnPoActive__FP2POiT0);
+void OnPoActive(PO *ppo, int fActive, PO *ppoOther)
+{
+    if (fActive)
+    {
+        STRUCT_OFFSET(ppo, 0x560, VU_VECTOR) = STRUCT_OFFSET(ppo, 0x140, VU_VECTOR);
+        SetCmPolicy(g_pcm, CPP_Default, &STRUCT_OFFSET(g_pcm, 0x520, CPLCY), (SO *)ppo, 0);
+    }
+    else
+    {
+        int i;
+
+        for (i = 1; i < 7; i++)
+        {
+            RevokeCmPolicy(g_pcm, 5, (CPP)i, 0, (SO *)ppo, 0);
+        }
+    }
+}
 
 extern SMP D_00269BC0;
 

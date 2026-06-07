@@ -1,4 +1,5 @@
 #include <rchm.h>
+#include <clock.h>
 
 void InitRchm(RCHM *prchm)
 {
@@ -40,6 +41,24 @@ INCLUDE_ASM("asm/nonmatchings/P2/rchm", PtwrMapRchmSafe__FP4RCHMP3BSPP6VECTOR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rchm", FindRchmClosestPoint__FP4RCHMP6VECTORT1PP3TWRPf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rchm", TrackJtTarget__FP2JTP4RCHMP6TARGET);
+void TrackJtTarget(JT *pjt, RCHM *prchm, TARGET *ptarget)
+{
+    VECTOR posLocal;
+    VECTOR posClosest;
+    TWR *ptwr;
+    float s;
+    float dt;
+
+    if (ptarget == NULL)
+        return;
+
+    dt = STRUCT_OFFSET(pjt, 0x2424, float) - g_clock.t;
+    if (dt < g_clock.dt)
+        dt = g_clock.dt;
+
+    PredictRchmTargetLocalPos(prchm, ptarget, dt, &posLocal);
+    FindRchmClosestPoint(prchm, &posLocal, &posClosest, &ptwr, &s);
+    ReblendRchm(prchm, ptwr, &posClosest);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rchm", TrackJtPipe__FP2JTP4RCHMP4PIPEPf);

@@ -1,5 +1,6 @@
 #include <ac.h>
 #include <memory.h>
+#include <bez.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/ac", FindKey__FfiiiPcPfT5PPv);
 
@@ -68,19 +69,58 @@ INCLUDE_ASM("asm/nonmatchings/P2/ac", LoadAcgbFromBrx__FP4ACGBP18CBinaryInputStr
 
 INCLUDE_ASM("asm/nonmatchings/P2/ac", EvaluateAcgb__FP4ACGBP3ALOffiPfT5);
 
-INCLUDE_ASM("asm/nonmatchings/P2/ac", GetAcgbTimes__FP4ACGBPiPPf);
+void GetAcgbTimes(ACGB *pacgb, int *pct, float **pat)
+{
+    int cct = STRUCT_OFFSET(pacgb, 0x8, int);
+    *pct = cct;
+    if (pat)
+    {
+        int i;
+        *pat = (float *)PvAllocStackImpl(cct << 2);
+        for (i = 0; i < *pct; i++)
+        {
+            (*pat)[i] = *(float *)((char *)STRUCT_OFFSET(pacgb, 0xC, void *) + i * 0x18);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/ac", LoadAcgbwFromBrx__FP5ACGBWP18CBinaryInputStream);
 
 INCLUDE_ASM("asm/nonmatchings/P2/ac", EvaluateAcgbw__FP5ACGBWP3ALOffiPfT5);
 
-INCLUDE_ASM("asm/nonmatchings/P2/ac", GetAcgbwTimes__FP5ACGBWPiPPf);
+void GetAcgbwTimes(ACGBW *pacgbw, int *pct, float **pat)
+{
+    int cct = STRUCT_OFFSET(pacgbw, 0x8, int);
+    *pct = cct;
+    if (pat)
+    {
+        int i;
+        *pat = (float *)PvAllocStackImpl(cct << 2);
+        for (i = 0; i < *pct; i++)
+        {
+            (*pat)[i] = *(float *)((char *)STRUCT_OFFSET(pacgbw, 0xC, void *) + i * 0x20);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/ac", EvaluateAcgl__FP4ACGLP3ALOffiPfT5);
 
 INCLUDE_ASM("asm/nonmatchings/P2/ac", LoadAcglFromBrx__FP4ACGLP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/ac", GetAcglTimes__FP4ACGLPiPPf);
+void GetAcglTimes(ACGL *pacgl, int *pct, float **pat)
+{
+    int i;
+
+    *pct = STRUCT_OFFSET(pacgl, 0x8, int);
+    if (pat)
+    {
+        *pat = (float *)PvAllocStackImpl(*pct * 4);
+        for (i = 0; i < *pct; i++)
+        {
+            (*pat)[i] = *(float *)((char *)STRUCT_OFFSET(pacgl, 0xc, char *) + i * 8);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/ac", EvaluateApacg__FPP3ACGP3ALOffiP6VECTORN25);
 
@@ -88,7 +128,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/ac", LoadApacgFromBrx__FPP3ACGP6VECTORP18CBinar
 
 INCLUDE_ASM("asm/nonmatchings/P2/ac", GetApacgTimes__FPP3ACGPiPPf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/ac", EvaluateAkvb__FiP3KVBffiP6VECTORT5);
+void EvaluateAkvb(int ckvb, KVB *akvb, float t, float svt, GRFEVAL grfeval, VECTOR *pvec, VECTOR *pdvec)
+{
+    float dt;
+    float dtSeg;
+    void *pkey;
+
+    FindKey(t, grfeval, 0x40, ckvb, (char *)akvb, &dt, &dtSeg, &pkey);
+    EvaluateBezierPos(dtSeg, dt, svt,
+                      (VECTOR *)((char *)pkey + 0x10),
+                      (VECTOR *)((char *)pkey + 0x30),
+                      (VECTOR *)((char *)pkey + 0x50),
+                      (VECTOR *)((char *)pkey + 0x60),
+                      pvec, pdvec, NULL);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/ac", LoadAkvbFromBrx__FPiPP3KVBP18CBinaryInputStream);
 

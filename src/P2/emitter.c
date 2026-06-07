@@ -311,7 +311,11 @@ void ExplodeExploExplso(EXPLO *pexplo, EXPLSO *pexplso)
     return;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", AddExploSkeleton__FP5EXPLO3OIDT1ffff);
+void AddExploSkeleton(EXPLO *pexplo, OID oid, OID oidOther, float sRadius, float gDensity, float sRadiusOther, float gDensityOther)
+{
+	EMITB *pemitb = PemitbEnsureExplo(pexplo, ENSK_Set);
+	AddEmitoSkeleton(&pemitb->emito, oid, oidOther, sRadius, gDensity, sRadiusOther, gDensityOther, pexplo);
+}
 
 EMITB *PemitbEnsureExplo(EXPLO *pexplo, ENSK ensk)
 {

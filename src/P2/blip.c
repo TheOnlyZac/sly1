@@ -17,7 +17,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/blip", RemoveBlip__FP4BLIP);
 
 INCLUDE_ASM("asm/nonmatchings/P2/blip", PblipgNew__FP2SW);
 
-INCLUDE_ASM("asm/nonmatchings/P2/blip", InitBlipg__FP5BLIPG);
+void InitBlipg(BLIPG *pblipg)
+{
+    uint64_t flags;
+
+    AppendDlEntry((DL *)((uint8_t *)STRUCT_OFFSET(pblipg, 0x14, void *) + 0x1CC0), pblipg);
+    InitAlo((ALO *)pblipg);
+    InitDl((DL *)((uint8_t *)pblipg + 0x624), 0x1090);
+
+    flags = STRUCT_OFFSET(pblipg, 0x2C8, uint64_t);
+    flags &= 0xFFFFFFFFCFFFFFFFULL;
+    flags |= 0x20000000;
+    STRUCT_OFFSET(pblipg, 0x80, float) = 10000000000.0f;
+    flags &= 0xFFFFFCFFFFFFFFFFULL;
+    flags |= 0x10000000000ULL;
+    STRUCT_OFFSET(pblipg, 0x2C8, uint64_t) = flags;
+}
 
 void OnBlipgAdd(BLIPG *pblipg)
 {
