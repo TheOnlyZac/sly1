@@ -39,7 +39,24 @@ INCLUDE_ASM("asm/nonmatchings/P2/wm", HandleWmMessage__FP2WM5MSGIDPv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/wm", SetWmWms__FP2WM3WMS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/wm", ShowWm__FP2WM10WORLDLEVEL3WMS);
+void ShowWm(WM *pwm, WORLDLEVEL worldlevel, WMS wmsActive)
+{
+    switch (STRUCT_OFFSET(pwm, 0x2D0, WMS))
+    {
+    case WMS_Hidden:
+    case WMS_Disappearing:
+        STRUCT_OFFSET(pwm, 0x2DC, WORLDLEVEL) = worldlevel;
+        STRUCT_OFFSET(pwm, 0x2E0, WMS) = wmsActive;
+        SetWmWms(pwm, WMS_Appearing);
+        break;
+
+    case WMS_Manual:
+        STRUCT_OFFSET(pwm, 0x2DC, WORLDLEVEL) = worldlevel;
+        if (wmsActive == WMS_Warping)
+            SetWmWms(pwm, WMS_Warping);
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/wm", HideWm__FP2WM);
 

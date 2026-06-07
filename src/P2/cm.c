@@ -5,6 +5,8 @@
 #include <util.h>
 #include <binoc.h>
 #include <cplcy.h>
+#include <frm.h>
+#include <vifs.h>
 
 // todo fix data and rodata
 // VECTOR4 g_posEyeDefault = { 0.0f, -2000.0f, 500.0f, 0.0f };
@@ -211,7 +213,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", BuildFrustrum);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", UpdateCmMat4);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", DrawCm__FP2CM);
+void DrawCm(CM *pcm)
+{
+    g_vifs.AddDmaCnt();
+    g_vifs.AddVifBaseOffset(0, 0);
+    g_vifs.AddVifUnpack(UPK_V4_32, 4, (uint8_t *)pcm + 0x100, 4);
+    g_vifs.AddVifUnpack(UPK_V4_32, 4, (uint8_t *)pcm + 0x140, 8);
+    g_vifs.EndDmaCnt();
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmPosMat__FP2CMP6VECTORP7MATRIX3);
 

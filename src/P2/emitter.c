@@ -1,4 +1,7 @@
 #include <emitter.h>
+#include <rip.h>
+#include <blip.h>
+#include <util.h>
 
 extern float DAT_0024a124;
 
@@ -141,7 +144,29 @@ void GetEmitterPaused(EMITTER *pemitter, int *pfPaused)
     *pfPaused = FPausedEmitter(pemitter);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", OnEmitterValuesChanged__FP7EMITTER);
+void OnEmitterValuesChanged(EMITTER *pemitter)
+{
+    STRUCT_OFFSET(pemitter, 0x34c, int) = 0; // pemitter->fValuesChanged
+
+    if (STRUCT_OFFSET(pemitter, 0x348, BLIPG *) != 0)
+    {
+        SetBlipgEmitb(STRUCT_OFFSET(pemitter, 0x348, BLIPG *), STRUCT_OFFSET(pemitter, 0x2d0, EMITB *));
+    }
+
+    if (STRUCT_OFFSET(pemitter, 0x344, RIPG *) != 0)
+    {
+        SetRipgEmitb(STRUCT_OFFSET(pemitter, 0x344, RIPG *), STRUCT_OFFSET(pemitter, 0x2d0, EMITB *));
+    }
+
+    if (STRUCT_OFFSET(pemitter, 0x2d4, int) == 3)
+    {
+        STRUCT_OFFSET(pemitter, 0x328, float) = GRandInRange(STRUCT_OFFSET(pemitter, 0x2dc, float), STRUCT_OFFSET(pemitter, 0x2e0, float)) * 60.0f;
+    }
+    else
+    {
+        STRUCT_OFFSET(pemitter, 0x328, float) = GRandInRange(STRUCT_OFFSET(pemitter, 0x2dc, float), STRUCT_OFFSET(pemitter, 0x2e0, float));
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", SetEmitterParticleCount__FP7EMITTERi);
 

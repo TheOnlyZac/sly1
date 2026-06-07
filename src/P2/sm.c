@@ -69,7 +69,26 @@ void HandleSmaMessage(SMA *psma, MSGID msgid, void *pv)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", SkipSma__FP3SMAf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", SendSmaMessage__FP3SMA5MSGIDPv);
+void SendSmaMessage(SMA *psma, MSGID msgid, void *pv)
+{
+    ALO *paloRoot = psma->paloRoot;
+    if (paloRoot)
+    {
+        paloRoot->pvtlo->pfnSendLoMessage(paloRoot, msgid, pv);
+    }
+
+    MQ *pmq = psma->pmqFirst;
+
+    while (pmq)
+    {
+        PFNMQ pfnmq = pmq->pfnmq;
+        void *pmqContext = pmq->pvContext;
+
+        pmq = pmq->pmqNext;
+
+        pfnmq(pmqContext, msgid, pv);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", FUN_001b6df8);
 

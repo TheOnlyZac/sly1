@@ -27,7 +27,24 @@ INCLUDE_ASM("asm/nonmatchings/P2/jlo", LoadJloFromBrx__FP3JLOP18CBinaryInputStre
 
 INCLUDE_ASM("asm/nonmatchings/P2/jlo", PostJloLoad__FP3JLO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jlo", FUN_0016d040);
+extern "C" {
+void FUN_0016d040(JLO *pjlo, OID oid)
+{
+    JLOVOL *pjlovol;
+
+    STRUCT_OFFSET(pjlo, 0x578, OID) = oid;
+    pjlovol = (JLOVOL *)PloFindSwNearest(pjlo->psw, oid, pjlo);
+    if (pjlovol != NULL)
+    {
+        SetJloJlovol(pjlo, pjlovol);
+        LandJlo(pjlo);
+        if (STRUCT_OFFSET(pjlovol, 0x7AC, int) != 0)
+            SetJloJlos(pjlo, JLOS_Idle);
+        else
+            SetJloJlos(pjlo, JLOS_Taunt);
+    }
+}
+}
 
 void PresetJloAccel(JLO *pjlo, float dt)
 {
@@ -70,7 +87,17 @@ void DeactivateJlo(JLO *pjlo)
     g_pjloCur = NULL;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/jlo", InitJloc__FP4JLOC);
+void InitJloc(JLOC *pjloc)
+{
+    InitAlo(pjloc);
+    STRUCT_OFFSET(pjloc, 0x31C, float) = 2.25f;
+    STRUCT_OFFSET(pjloc, 0x320, float) = 2.0f;
+    STRUCT_OFFSET(pjloc, 0x324, float) = 0.8f;
+    STRUCT_OFFSET(pjloc, 0x328, float) = 4.0f;
+    STRUCT_OFFSET(pjloc, 0x32C, float) = 0.5f;
+    STRUCT_OFFSET(pjloc, 0x330, float) = 1000.0f;
+    STRUCT_OFFSET(pjloc, 0x334, float) = 2000.0f;
+}
 
 void LoadJlocFromBrx(JLOC *pjloc, CBinaryInputStream *pbis)
 {

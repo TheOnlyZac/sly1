@@ -85,7 +85,26 @@ void SetAsegaMasterSpeed(ASEGA *pasega, float gSpeed)
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", SetAsegaPriority__FP5ASEGAi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", SendAsegaMessage__FP5ASEGA5MSGIDPv);
+void SendAsegaMessage(ASEGA *pasega, MSGID msgid, void *pv)
+{
+    LO *plo = STRUCT_OFFSET(pasega, 0xC, LO *);
+    if (plo)
+    {
+        plo->pvtlo->pfnSendLoMessage(plo, msgid, pv);
+    }
+
+    MQ *pmq = STRUCT_OFFSET(pasega, 0xE4, MQ *);
+
+    while (pmq)
+    {
+        PFNMQ pfnmq = pmq->pfnmq;
+        void *pmqContext = pmq->pvContext;
+
+        pmq = pmq->pmqNext;
+
+        pfnmq(pmqContext, msgid, pv);
+    }
+}
 
 void SubscribeAsegaStruct(ASEGA *pasega, PFNMQ pfnmq, void *pvContext)
 {
