@@ -1,13 +1,19 @@
 #include <path.h>
 
 struct CBSP;
+struct CGT;
 
 CBSP* PcbspExtract(CBSP* pcbsp)
 {
     return ((int)pcbsp & 1) ? (CBSP*)0 : pcbsp;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/path", PcgtExtract__FP3CGT);
+CGT* PcgtExtract(CGT* pcgt)
+{
+    if ((int)pcgt & 1)
+        return (CGT*)((int)pcgt & ~1);
+    return (CGT*)0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/path", PcgtPointInCbspQuick__FP4CBSPP6VECTOR);
 

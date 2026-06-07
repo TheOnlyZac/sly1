@@ -147,7 +147,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", FChooseRobReturnPoint__FP3ROBP3ROH);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", ChooseRobWanderLocation__FP3ROBP3ROH);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", ProddCurRob__FP3ROB4ENSK);
+RODD *ProddCurRob(ROB *prob, ENSK ensk)
+{
+    int irodd = STRUCT_OFFSET(prob, 0x620, int);
+    return (RODD *)((uint8_t *)prob + (irodd * 0xC0 + 0x3E0));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", InitRoh__FP3ROH);
 
