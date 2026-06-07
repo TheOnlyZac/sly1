@@ -1,5 +1,8 @@
 #include <turret.h>
 #include <dialog.h>
+#include <sm.h>
+#include <rwm.h>
+#include <oid.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/turret", InitTurret__FP6TURRET);
 
@@ -17,7 +20,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/turret", FFilterTurret__FP6TURRETP2SO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/turret", UpdateTurretAim__FP6TURRET);
 
-INCLUDE_ASM("asm/nonmatchings/P2/turret", FireTurret__FP6TURRET);
+void FireTurret(TURRET *pturret)
+{
+    OID oidCur;
+    OID oidGoal;
+
+    GetSmaCur(STRUCT_OFFSET(pturret, 0x614, SMA *), &oidCur);
+    GetSmaGoal(STRUCT_OFFSET(pturret, 0x614, SMA *), &oidGoal);
+
+    if (oidCur == (OID)0x359 && oidGoal == oidCur)
+    {
+        if (FEnsureRwmLoaded(STRUCT_OFFSET(pturret, 0x618, RWM *)))
+        {
+            SetSmaGoal(STRUCT_OFFSET(pturret, 0x614, SMA *), (OID)0x35A);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/turret", HandleTurretMessage__FP6TURRET5MSGIDPv);
 

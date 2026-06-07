@@ -1,5 +1,7 @@
 #include <suv.h>
 #include <so.h>
+#include <po.h>
+#include <stepguard.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", InitSuv__FP3SUV);
 
@@ -63,7 +65,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", RenderSuvSelf__FP3SUVP2CMP2RO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvBounds__FP3SUV);
 
-INCLUDE_ASM("asm/nonmatchings/P2/suv", CollectSuvPrize__FP3SUV3PCKP3ALO);
+void CollectSuvPrize(SUV *psuv, PCK pck, ALO *paloOther)
+{
+    STEPGUARD *pstepguard;
+
+    pstepguard = STRUCT_OFFSET(psuv, 0xb78, STEPGUARD *);
+    if (pstepguard != NULL)
+    {
+        SetStepguardPatrolAnimation(pstepguard, NULL);
+        pstepguard = STRUCT_OFFSET(psuv, 0xb78, STEPGUARD *);
+        (*(void (**)(STEPGUARD *, PCK, ALO *))((char *)pstepguard->pvtlo + 0x148))(pstepguard, pck, paloOther);
+    }
+    else
+    {
+        CollectPoPrize((PO *)psuv, pck, paloOther);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvShapes__FP3SUV);
 

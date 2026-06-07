@@ -127,7 +127,21 @@ int FIsJtSoundBase(JT *pjt)
     return !FActiveCplcy(&STRUCT_OFFSET(g_pcm, 0x454, CPLCY));
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", CollectJtPrize__FP2JT3PCKP3ALO);
+void CollectJtPrize(JT *pjt, PCK pck, ALO *paloOther)
+{
+    CollectPoPrize(pjt, pck, paloOther);
+
+    switch (pck)
+    {
+    case PCK_Key:
+        SetJtJts(pjt, JTS_Rush, JTBS_Rush_Attack);
+        break;
+
+    case PCK_Gold:
+        SetJtJts(pjt, JTS_Rush, JTBS_Rush_Bounce);
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", GetJtDiapi__FP2JTP6DIALOGP5DIAPI);
 

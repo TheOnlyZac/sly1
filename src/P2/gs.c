@@ -31,7 +31,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/gs", StartupGs__Fv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", BlastAqwGifsBothFrames__FP2QW);
 
-INCLUDE_ASM("asm/nonmatchings/P2/gs", ClearFrameBuffers__Fv);
+extern QW D_002BE1A0[];
+
+void ClearFrameBuffers()
+{
+    DMAS dmas;
+    QW aqw[2];
+
+    dmas.AllocStatic(2, aqw);
+    dmas.AddDmaRefs(0x2C, D_002BE1A0);
+    dmas.AddDmaEnd();
+    dmas.Detach(NULL, NULL);
+    BlastAqwGifsBothFrames(aqw);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", FadeFramesToBlack__Ff);
 

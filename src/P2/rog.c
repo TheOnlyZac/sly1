@@ -48,7 +48,32 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", RovsNextRov__FP3ROV);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", SetRovRovs__FP3ROV4ROVS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", RovtsNextRov__FP3ROV);
+ROVTS RovtsNextRov(ROV *prov)
+{
+    ROVTS rovts;
+
+    rovts = STRUCT_OFFSET(prov, 0x614, ROVTS);
+
+    switch (rovts)
+    {
+    case ROVTS_Calm:
+        if (STRUCT_OFFSET(prov, 0x624, float) >= 0.8f)
+        {
+            rovts = ROVTS_Firing;
+        }
+        break;
+    case ROVTS_Firing:
+        if (STRUCT_OFFSET(prov, 0x624, float) < 0.8f)
+        {
+            rovts = ROVTS_Calm;
+        }
+        break;
+    default:
+        break;
+    }
+
+    return rovts;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", SetRovRovts__FP3ROV5ROVTS);
 

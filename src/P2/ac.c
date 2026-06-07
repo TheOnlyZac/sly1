@@ -1,4 +1,5 @@
 #include <ac.h>
+#include <memory.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/ac", FindKey__FfiiiPcPfT5PPv);
 
@@ -93,7 +94,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/ac", LoadAkvbFromBrx__FPiPP3KVBP18CBinaryInputS
 
 INCLUDE_ASM("asm/nonmatchings/P2/ac", GetAkvbTimes__FiP3KVBPiPPf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/ac", EvaluateAcpc__FP4ACPCP3ALOffiP6VECTORT5);
+void EvaluateAcpc(ACPC *pacpc, ALO *palo, float t, float svt, GRFEVAL grfeval, VECTOR *ppos, VECTOR *pv)
+{
+    EvaluateApacg(&STRUCT_OFFSET(pacpc, 0x20, ACG *), palo, t, svt, grfeval, &STRUCT_OFFSET(pacpc, 0x10, VECTOR), ppos, pv);
+
+    if (palo)
+    {
+        void (*pfn)(ALO *, VECTOR *, VECTOR *) =
+            *(void (**)(ALO *, VECTOR *, VECTOR *))((char *)palo->pvtlo + 0xB0);
+        if (pfn)
+        {
+            pfn(palo, ppos, pv);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/ac", LoadAcpcFromBrx__FP4ACPCP18CBinaryInputStream);
 
@@ -198,6 +212,34 @@ INCLUDE_ASM("asm/nonmatchings/P2/ac", PacpNew__F4ACVK);
 
 INCLUDE_ASM("asm/nonmatchings/P2/ac", PacrNew__F4ACVK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/ac", PacsNew__F4ACVK);
+extern void *D_00219718;
+extern void *D_00219728;
+
+ACS *PacsNew(ACVK acvk)
+{
+    void *pacs;
+
+    switch (acvk)
+    {
+    case ACVK_Component:
+        pacs = PvAllocSwClearImpl(0x30);
+        STRUCT_OFFSET(pacs, 0x0, void *) = &D_00219718;
+        break;
+    case ACVK_Bezier:
+        pacs = PvAllocSwClearImpl(0x10);
+        STRUCT_OFFSET(pacs, 0x0, void *) = &D_00219728;
+        break;
+    default:
+        pacs = NULL;
+        break;
+    }
+
+    if (pacs)
+    {
+        STRUCT_OFFSET(pacs, 0x4, ACVK) = acvk;
+    }
+
+    return (ACS *)pacs;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/ac", PacgNew__F4ACGK);

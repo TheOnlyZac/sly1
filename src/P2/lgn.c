@@ -1,5 +1,7 @@
 #include <lgn.h>
 #include <suv.h>
+#include <ac.h>
+#include <memory.h>
 
 void InitLgn(LGN *plgn)
 {
@@ -55,7 +57,21 @@ INCLUDE_ASM("asm/nonmatchings/P2/lgn", DrawLgnr__FP4LGNR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/lgn", InitSwp__FP3SWP);
 
-INCLUDE_ASM("asm/nonmatchings/P2/lgn", PostSwpLoad__FP3SWP);
+extern SNIP D_00264230;
+
+void PostSwpLoad(SWP *pswp)
+{
+    ACG *pacg;
+
+    PostBrkLoad((BRK *)pswp);
+    SnipAloObjects((ALO *)pswp, 2, &D_00264230);
+    STRUCT_OFFSET(pswp, 0x6c8, SMA *) =
+        PsmaApplySm(STRUCT_OFFSET(pswp, 0x6c4, SM *), (ALO *)pswp, (OID)0x36e, 0);
+    pacg = PacgNew((ACGK)0);
+    STRUCT_OFFSET(pswp, 0x6e8, ACG *) = pacg;
+    STRUCT_OFFSET(pacg, 0x8, int) = 0;
+    STRUCT_OFFSET(STRUCT_OFFSET(pswp, 0x6e8, ACG *), 0xc, void *) = PvAllocSwImpl(0xc00);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/lgn", UpdateSwp__FP3SWPf);
 

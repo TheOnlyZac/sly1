@@ -1,6 +1,8 @@
 #include <mat.h>
 #include <sce/memset.h>
 #include <util.h>
+#include <math.h>
+#include <intrinsics.h>
 
 extern VECTOR g_normalZ;
 
@@ -83,7 +85,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/mat", CalculateDmat__FP7MATRIX3N20);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", CalculateDmat4__FP7MATRIX4N20);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mat", DecomposeRotateMatrixPanTilt__FP7MATRIX3PfT1);
+void DecomposeRotateMatrixPanTilt(MATRIX3 *pmat, float *pradPan, float *pradTilt)
+{
+    *pradPan = atan2f(pmat->mat[0][1], pmat->mat[0][0]);
+    *pradTilt = atan2f(pmat->mat[0][2],
+                       SQRTF(pmat->mat[0][0] * pmat->mat[0][0] + pmat->mat[0][1] * pmat->mat[0][1]));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", LoadRotateMatrixPanTilt__FffP7MATRIX3);
 

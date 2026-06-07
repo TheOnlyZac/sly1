@@ -1,7 +1,24 @@
 #include <tank.h>
 #include <po.h>
+#include <mat.h>
+#include <math.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/tank", InitTank__FP4TANK);
+void InitTank(TANK *ptank)
+{
+    extern VECTOR g_normalZ;
+    extern qword D_00275740;
+    float rad;
+
+    InitStep((STEP *)ptank);
+
+    rad = atan2f(STRUCT_OFFSET(ptank, 0xD4, float), STRUCT_OFFSET(ptank, 0xD0, float));
+    STRUCT_OFFSET(ptank, 0x638, float) = rad;
+    LoadRotateMatrixRad(rad, &g_normalZ, (MATRIX3 *)((uint8_t *)ptank + 0x660));
+
+    STRUCT_OFFSET(ptank, 0x720, int) = -1;
+    STRUCT_OFFSET(ptank, 0x72C, float) = -10.0f;
+    STRUCT_OFFSET(ptank, 0x6F0, qword) = D_00275740;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/tank", PostTankLoad__FP4TANK);
 
