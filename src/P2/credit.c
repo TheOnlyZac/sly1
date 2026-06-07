@@ -12,6 +12,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/credit", DrawCredit__FP6CREDIT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/credit", PlaceCredit__FP6CREDITffi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/credit", VacateCredit__FP6CREDIT);
+struct CREDIT;
+
+void VacateCredit(CREDIT *pcredit)
+{
+    (*(void (**)(CREDIT *, int))((char *)*(void **)pcredit + 0x40))(pcredit, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/credit", SetCreditLine__FP6CREDITiPcf);

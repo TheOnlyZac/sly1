@@ -163,7 +163,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/pzo", OnClueSmack__FP4CLUE);
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", CollectClue__FP4CLUE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", BreakClue__FP4CLUE);
+void BreakClue(CLUE *pclue)
+{
+    ((void (*)(CLUE *))STRUCT_OFFSET(pclue->pvtlo, 0x134, void *))(pclue);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", CollectClueSilent__FP4CLUE);
 

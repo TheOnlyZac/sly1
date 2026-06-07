@@ -28,7 +28,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FUN_00149458);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", plays_binoc_sfx);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", PushCplookLookk__FP6CPLOOK5LOOKK);
+void PushCplookLookk(CPLOOK *pcplook, LOOKK lookk)
+{
+    int clookk = STRUCT_OFFSET(pcplook, 0x40, int);
+    if ((unsigned int)clookk < 4)
+    {
+        STRUCT_OFFSET_INDEX(pcplook, 0x30, LOOKK, clookk) = lookk;
+        STRUCT_OFFSET(pcplook, 0x40, int) = clookk + 1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", LookkPopCplook__FP6CPLOOK);
 
@@ -44,7 +52,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FUN_0014a7b8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", InitCpalign);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FUN_0014a8d0);
+extern "C" void ResetCmLookAtSmooth(CM *pcm, void *pv);
+
+void FUN_0014a8d0(CPALIGN *pcpalign)
+{
+    CM *pcm = pcpalign->pcm;
+    ResetCmLookAtSmooth(pcm, (void *)((uint8_t *)STRUCT_OFFSET(pcm, 0x3DC, void *) + 0x370));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", UpdateCpalign);
 

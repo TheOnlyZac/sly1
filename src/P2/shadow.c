@@ -76,7 +76,11 @@ void SetShadowConeAngle(SHADOW *pshadow, float degConeAngle)
     InvalidateShadowVifs(pshadow);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/shadow", SetShadowFrustrumUp__FP6SHADOWP6VECTOR);
+void SetShadowFrustrumUp(SHADOW *pshadow, VECTOR *pvecUp)
+{
+    STRUCT_OFFSET(pshadow, 0x30, VU_VECTOR) = *(VU_VECTOR *)pvecUp;
+    InvalidateShadowVifs(pshadow);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shadow", FShadowValid__FP6SHADOWi);
 

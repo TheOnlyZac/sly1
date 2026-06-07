@@ -131,7 +131,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/light", RebuildLightVifs__FP5LIGHT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/light", SetLightKind__FP5LIGHT6LIGHTK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/light", SetLightHighlightColor__FP5LIGHTP6VECTOR);
+void SetLightHighlightColor(LIGHT *plight, VECTOR *pvecHighlight)
+{
+    STRUCT_OFFSET(plight, 0x2E0, VU_VECTOR) = *(VU_VECTOR *)pvecHighlight;
+    RebuildLightVifs(plight);
+}
 
 void SetLightMidtoneStrength(LIGHT *plight, float gMidtone)
 {
