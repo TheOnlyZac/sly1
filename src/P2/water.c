@@ -269,8 +269,10 @@ void UpdateWaterBounds(WATER *pwater)
         "sqc2 $vf1, %1\n\t"
         "swc1 $f0, %3\n\t"
         "swc1 $f2, %2"
-        : "=m"(pwater->vecBoundsMin), "=m"(pwater->vecBoundsMax),
-          "=m"(pwater->sRadiusBounds), "=m"(pwater->unk_0x3d4)
+        : "=m"(STRUCT_OFFSET(pwater, 0x420, VECTOR4)),
+          "=m"(STRUCT_OFFSET(pwater, 0x430, VECTOR4)),
+          "=m"(STRUCT_OFFSET(pwater, 0x3d0, float)),
+          "=m"(STRUCT_OFFSET(pwater, 0x3d4, float))
         : "m"(dpos)
         : "$f0", "$f1", "$f2", "$2");
 }
