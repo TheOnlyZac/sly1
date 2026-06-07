@@ -13,16 +13,11 @@ void InitHnd(HND *phnd)
     STRUCT_OFFSET(phnd, 0xb4, float) = val;
 }
 
-/**
- * @todo Objdiff reports a 100% match, but checksum check still fails.
- */
-INCLUDE_ASM("asm/nonmatchings/P2/hnd", LoadHndFromBrx__FP3HNDP18CBinaryInputStream);
-#ifdef SKIP_ASM
 void LoadHndFromBrx(HND *phnd, CBinaryInputStream *pbis)
 {
     LoadXfmFromBrx(phnd, pbis);
 }
-#endif // SKIP_ASM
 
+JUNK_NOP();
 JUNK_ADDIU(A0);
 JUNK_ADDIU(E0);
