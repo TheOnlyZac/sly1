@@ -33,7 +33,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/wm", CatchWmDisplayState__FP2WM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/wm", UpdateWm__FP2WMf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/wm", RenderWmAll__FP2WMP2CMP2RO);
+void RenderWmAll(WM *pwm, CM *pcm, RO *pro)
+{
+    RO ro;
+    float sNearFog = g_pcm->fgfn.sNearFog;
+    float duFogPlusClipBias = g_pcm->fgfn.duFogPlusClipBias;
+
+    SetCmFov(g_pcm, 1.0f);
+    DupAloRo((ALO *)pwm, pro, &ro);
+    LoadMatrixFromPosRot((VECTOR *)((char *)pcm + 0x40), (MATRIX3 *)((char *)pcm + 0x80), &ro.mat);
+    RenderAloAll((ALO *)pwm, pcm, &ro);
+    SetCmFov(g_pcm, sNearFog);
+    g_pcm->fgfn.duFogPlusClipBias = duFogPlusClipBias;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/wm", HandleWmMessage__FP2WM5MSGIDPv);
 

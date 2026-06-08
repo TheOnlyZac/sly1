@@ -219,7 +219,23 @@ float SFromCrvcU(CRVC *pcrvc, float u)
            STRUCT_OFFSET(pcrvc, 0x14, float *)[icv];
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", UFromCrvcS__FP4CRVCf);
+float UFromCrvcS(CRVC *pcrvc, float s)
+{
+    int icv;
+    int ipos;
+    float g;
+    float dg;
+    float dgSeg;
+    float u;
+    float *pmp;
+
+    icv = IcvFindCrvS((CRV *)pcrvc, s, &g, NULL);
+    FillCrvcCache(pcrvc, icv);
+    ipos = IposFindAposG(g, 0x14, &STRUCT_OFFSET(pcrvc, 0x170, float), 0, &dg, &dgSeg);
+    pmp = STRUCT_OFFSET(pcrvc, 0x10, float *);
+    u = ((float)ipos + dg / dgSeg) * (1.0f / 19.0f);
+    return (1.0f - u) * pmp[icv] + u * pmp[icv + 1];
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", MeasureCrvc__FP4CRVC);
 

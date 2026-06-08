@@ -1,6 +1,7 @@
 #include <step.h>
 #include <mat.h>
 #include <math.h>
+#include <clip.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", InitStep__FP4STEP);
 
@@ -11,7 +12,35 @@ INCLUDE_ASM("asm/nonmatchings/P2/step", LimitStepHands__FP4STEPi);
 // TODO: This might be "RetractStepExtremity". Further research needed.
 INCLUDE_ASM("asm/nonmatchings/P2/step", FUN_001c4618);
 
-INCLUDE_ASM("asm/nonmatchings/P2/step", FUN_001c4790);
+extern "C" {
+void FUN_001c4790(void *p1, SO *pso, BSP *pbsp, void *p4)
+{
+    LSG alsg[2];
+    int clsg;
+    int i;
+
+    if (STRUCT_OFFSET(p4, 0x50, int) == 0)
+        return;
+
+    clsg = ClsgClipEdgeToObjectPruned(pso, pbsp, (VECTOR *)((uint8_t *)p4 + 0x70),
+                                      (VECTOR *)((uint8_t *)p4 + 0x60), 2, alsg);
+
+    i = 0;
+    if (clsg > 0)
+    {
+        if (alsg[0].au[0] == 0.0f)
+            i = 1;
+    }
+
+    if (i < clsg)
+    {
+        if (alsg[i].au[0] < STRUCT_OFFSET(p4, 0xD0, float))
+        {
+            *(LSG *)((uint8_t *)p4 + 0x90) = alsg[i];
+        }
+    }
+}
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", FUN_001c4848);
 

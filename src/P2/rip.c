@@ -3,6 +3,7 @@
 #include <alo.h>
 #include <cid.h>
 #include <wr.h>
+#include <bsp.h>
 
 RIPG *PripgNew(SW *psw, RIPGT ripgt)
 {
@@ -86,7 +87,35 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", FBounceRip__FP3RIPP2SOP6VECTORT2);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", ProjectRipTransform__FP3RIPf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", UpdateRip__FP3RIPf);
+void UpdateRip(RIP *prip, float dt)
+{
+    int fInBsp;
+    RIPG *pripg;
+
+    if (STRUCT_OFFSET(prip, 0x1c, float) < g_clock.t - STRUCT_OFFSET(prip, 0x18, float))
+    {
+        RemoveRip(prip);
+        return;
+    }
+
+    pripg = prip->pripg;
+    if (STRUCT_OFFSET(pripg, 0x550, int) == 1)
+        return;
+
+    if (STRUCT_OFFSET(prip, 0x24, ALO *) == NULL)
+        return;
+    if (STRUCT_OFFSET(STRUCT_OFFSET(prip, 0x24, ALO *), 0x3f8, BSP *) == NULL)
+        return;
+
+    fInBsp = 0;
+    if (FIsLoInWorld((LO *)STRUCT_OFFSET(prip, 0x24, ALO *)))
+    {
+        if (PbspPointInBspQuick(&STRUCT_OFFSET(prip, 0x80, VECTOR), STRUCT_OFFSET(STRUCT_OFFSET(prip, 0x24, ALO *), 0x3f8, BSP *)))
+            fInBsp = 1;
+    }
+
+    (*(void (**)(RIP *, int))((uint8_t *)STRUCT_OFFSET(prip, 0x0, void *) + 0x18))(prip, fInBsp);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", FRenderRipPosMat__FP3RIPP2CMP6VECTORP7MATRIX3);
 

@@ -1,4 +1,5 @@
 #include <blip.h>
+#include <sce/memset.h>
 
 extern QW *g_aqwBlipeGifsNormal;
 extern QW *g_aqwBlipeGifsClampedAdd;
@@ -11,7 +12,41 @@ void StartupBlips()
     BuildBlipAqwGifs(2, &g_aqwBlipeGifsClampedAdd);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/blip", PblipNew__FP5BLIPG);
+BLIP *PblipNew(BLIPG *pblipg)
+{
+    BLIP *pblip;
+    void *pv;
+
+    pblip = (BLIP *)PvAllocSlotheapUnsafe(
+        (SLOTHEAP *)((uint8_t *)STRUCT_OFFSET(pblipg, 0x14, void *) + 0x1B40));
+    if (pblip == NULL)
+        return NULL;
+
+    memset(pblip, 0, 0x10C0);
+
+    if (STRUCT_OFFSET(pblipg, 0x320, int) == 2)
+    {
+        pv = PvAllocSlotheapUnsafe(
+            (SLOTHEAP *)((uint8_t *)STRUCT_OFFSET(pblipg, 0x14, void *) + 0x1B4C));
+        STRUCT_OFFSET(pblip, 0x1088, void *) = pv;
+        if (pv == NULL)
+        {
+            FreeSlotheapPv(
+                (SLOTHEAP *)((uint8_t *)STRUCT_OFFSET(pblipg, 0x14, void *) + 0x1B40),
+                pblip);
+            return NULL;
+        }
+        memset(pv, 0, 0x580);
+        STRUCT_OFFSET(pblip, 0x108C, BLIPG *) = pblipg;
+    }
+    else
+    {
+        STRUCT_OFFSET(pblip, 0x108C, BLIPG *) = pblipg;
+    }
+
+    AppendDlEntry((DL *)((uint8_t *)pblipg + 0x624), pblip);
+    return pblip;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/blip", RemoveBlip__FP4BLIP);
 

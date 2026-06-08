@@ -27,7 +27,42 @@ void FUN_001B7100(SMARTGUARD *p, int val)
 
 INCLUDE_ASM("asm/nonmatchings/P2/smartguard", PostSmartguardLoad__FP10SMARTGUARD);
 
-INCLUDE_ASM("asm/nonmatchings/P2/smartguard", FFilterSmartguardDetect__FP10SMARTGUARDP2SO);
+int FFilterSmartguardDetect(SMARTGUARD *psmartguard, SO *pso)
+{
+    int i;
+    int c;
+
+    if (STRUCT_OFFSET(pso, 0x538, long long) & 0x80000000000LL)
+    {
+        return 0;
+    }
+
+    if (FIsBasicDerivedFrom(pso->paloRoot, CID_PO))
+    {
+        return 0;
+    }
+
+    if (FIsBasicDerivedFrom(pso->paloRoot, CID_UBV))
+    {
+        return 0;
+    }
+
+    c = STRUCT_OFFSET(psmartguard, 0xcd4, int);
+    if (c > 0)
+    {
+        i = 0;
+        do
+        {
+            if (FFindLoParent(pso, STRUCT_OFFSET(psmartguard, 0xcdc + i * 8, ALO *)))
+            {
+                return 0;
+            }
+            i++;
+        } while (i < STRUCT_OFFSET(psmartguard, 0xcd4, int));
+    }
+
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/smartguard", FDetectSmartguard__FP10SMARTGUARD);
 
