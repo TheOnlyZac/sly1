@@ -2,6 +2,8 @@
 #include <jt.h>
 #include <zap.h>
 #include <cm.h>
+#include <rip.h>
+#include <aseg.h>
 
 extern int g_ippoCur;
 extern PO *g_appo[];
@@ -100,7 +102,43 @@ void FUN_00192498(PO *ppo, int *pi)
     *pi = pfn(ppo);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/po", CollectPoPrize__FP2PO3PCKP3ALO);
+void CollectPoPrize(PO *ppo, PCK pck, ALO *palo)
+{
+    switch (pck)
+    {
+    case PCK_Key:
+        if (STRUCT_OFFSET(ppo, 0x5F0, ASEG *) != 0)
+        {
+            RIP *prip = PripNewRipg(RIPT_Match, NULL);
+            STRUCT_OFFSET(ppo, 0x5AC, RIP *) = prip;
+            STRUCT_OFFSET(ppo, 0x5D0, int) = 1;
+            if (prip != NULL)
+            {
+                void (*pfnInit)(RIP *, float, VECTOR *, int) =
+                    (void (*)(RIP *, float, VECTOR *, int))STRUCT_OFFSET(STRUCT_OFFSET(prip, 0x0, void *), 0x0, void *);
+                pfnInit(prip, 1.0f, (VECTOR *)((uint8_t *)palo + 0x140), 0);
+                SubscribeRipObject(prip, (LO *)ppo);
+                STRUCT_OFFSET(prip, 0x1C, float) = TFindAsegLabel(STRUCT_OFFSET(ppo, 0x5F0, ASEG *), (OID)0x13F);
+                STRUCT_OFFSET(prip, 0x20, int) = STRUCT_OFFSET(ppo, 0x59C, int);
+                STRUCT_OFFSET(prip, 0xC0, qword) = STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x14, uint8_t *), 0x1EE0, qword);
+                STRUCT_OFFSET(prip, 0x134, ALO *) = palo;
+            }
+            {
+                void (*pfnPrize)(PO *, int) =
+                    (void (*)(PO *, int))STRUCT_OFFSET(STRUCT_OFFSET(ppo, 0x0, void *), 0x14C, void *);
+                pfnPrize(ppo, 1);
+            }
+        }
+        break;
+    case PCK_Gold:
+        {
+            void (*pfnPrize)(PO *, int) =
+                (void (*)(PO *, int))STRUCT_OFFSET(STRUCT_OFFSET(ppo, 0x0, void *), 0x14C, void *);
+            pfnPrize(ppo, 2);
+        }
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", FUN_001925C0);
 

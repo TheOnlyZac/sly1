@@ -1,6 +1,7 @@
 #include <gs.h>
 #include <sdk/ee/eekernel.h>
 #include <memory.h>
+#include <gifs.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", BlendDisplayOnBufferMismatch__Fv);
 
@@ -109,7 +110,35 @@ INCLUDE_ASM("asm/nonmatchings/P2/gs", BuildBmpGifs__FP3BMPiP4GIFS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", FBuildUploadBitmapGifs__FiP3GSBP4GIFS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/gs", UploadBitmaps__FiP3GSB);
+extern int g_cclutUpload;
+extern int g_cbmpUpload;
+int FBuildUploadBitmapGifs(int grfzon, GSB *pgsb, GIFS *pgifs);
+
+void UploadBitmaps(GRFZON grfzon, GSB *pgsb)
+{
+    if (grfzon == 0)
+        return;
+
+    {
+        GIFS gifs;
+        QW *pqw;
+
+        InitStackImpl();
+        gifs.AllocStack(((g_cclutUpload * 3 + g_cbmpUpload) << 3) | 4);
+        gifs.AddDmaCnt();
+        if (FBuildUploadBitmapGifs(grfzon, pgsb, &gifs))
+        {
+            gifs.AddPrimPack(0, 1, 0xE);
+            gifs.PackAD(0x3F, 0);
+            gifs.PackAD(0x61, 0);
+            gifs.AddPrimEnd();
+            gifs.AddDmaEnd();
+            gifs.Detach(NULL, &pqw);
+            SendDmaSyncGsFinish(g_pdcGif, pqw);
+        }
+        FreeStackImpl();
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", PqwGifsBitmapUpload__Fi);
 
