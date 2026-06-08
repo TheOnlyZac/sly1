@@ -89,7 +89,15 @@ int IgsAllocGsb(GSB *pgsb, int iCount)
     return igsOld;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/gs", BuildImageGifs__FiiiiiiP4GIFS);
+void BuildImageGifs(int dbp, int dbw, int psm, int dsax, int dsay, int cqw, GIFS *pgifs)
+{
+    pgifs->AddPrimPack(0, 1, 0xE);
+    pgifs->PackAD(0x50, ((long)dbp << 32) | ((long)dbw << 48) | ((long)psm << 56));
+    pgifs->PackAD(0x51, 0);
+    pgifs->PackAD(0x52, (long)dsax | ((long)dsay << 32));
+    pgifs->PackAD(0x53, 0);
+    pgifs->AddImage(cqw);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", BuildClutTex2__FP4CLUTi);
 

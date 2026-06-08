@@ -6,6 +6,7 @@
 #include <phasemem.h>
 #include <sce/libdma.h>
 #include <sdk/ee/eekernel.h>
+#include <dl.h>
 
 extern void *g_pvVu1Code;
 
@@ -60,7 +61,32 @@ void FinalizeFrameGifs(GIFS *pgifs, int *pcqwGifs, QW **ppqwGifs)
     pgifs->Detach(pcqwGifs, ppqwGifs);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/frm", CloseFrame__Fv);
+extern "C" int SignalSema(int sid);
+
+extern DL D_002622E0;
+extern DL D_002622F0;
+extern DL D_00262300;
+extern int D_002622D0;
+extern int D_002623B0;
+
+void CloseFrame()
+{
+    FinalizeFrameVifs(&g_vifs, &g_pfrmOpen->cqwVifs, 0);
+    FinalizeFrameGifs(&g_gifs, &g_pfrmOpen->cqwGifs, 0);
+
+    STRUCT_OFFSET(g_pfrmOpen, 0x20, DL) = D_002622E0;
+    ClearDl(&D_002622E0);
+
+    STRUCT_OFFSET(g_pfrmOpen, 0x2C, DL) = D_002622F0;
+    ClearDl(&D_002622F0);
+
+    STRUCT_OFFSET(g_pfrmOpen, 0x38, DL) = D_00262300;
+    ClearDl(&D_00262300);
+
+    D_002622D0 = 0;
+    g_pfrmOpen = 0;
+    SignalSema(D_002623B0);
+}
 
 void PrepareGsForFrameRender(FRM *pfrm)
 {

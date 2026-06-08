@@ -5,6 +5,9 @@
 #include <memory.h>
 #include <find.h>
 #include <basic.h>
+#include <dl.h>
+#include <clock.h>
+#include <slotheap.h>
 
 extern float DAT_0024a124;
 
@@ -418,7 +421,34 @@ void HandleExplsMessage(EXPLS *pexpls, MSGID msgid, void *pv)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", ExplodeExplsExplso__FP5EXPLSP6EXPLSO);
+struct EXPLSOBLOB
+{
+    qword aqw[5];
+};
+
+void ExplodeExplsExplso(EXPLS *pexpls, EXPLSO *pexplso)
+{
+    int fFired = 0;
+
+    if (0.0f < STRUCT_OFFSET(pexpls, 0xB8, float))
+    {
+        void *pv = PvAllocSlotheapUnsafe(
+            (SLOTHEAP *)((char *)STRUCT_OFFSET(pexpls, 0x14, SW *) + 0x1BD0));
+
+        if (pv != 0)
+        {
+            STRUCT_OFFSET(pv, 0x0, EXPLS *) = pexpls;
+            *(EXPLSOBLOB *)((char *)pv + 0x10) = *(EXPLSOBLOB *)pexplso;
+            fFired = 1;
+            STRUCT_OFFSET(pv, 0x60, float) = g_clock.t + STRUCT_OFFSET(pexpls, 0xB8, float);
+            ClearDle((DLE *)((char *)pv + 0x64));
+            AppendDlEntry((DL *)((char *)STRUCT_OFFSET(pexpls, 0x14, SW *) + 0x1BDC), pv);
+        }
+    }
+
+    if (!fFired)
+        FireExplsExplso(pexpls, pexplso);
+}
 
 SFX *PsfxEnsureExpls(EXPLS *pexpls, ENSK ensk)
 {
