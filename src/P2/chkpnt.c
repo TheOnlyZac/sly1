@@ -38,7 +38,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", SaveChkmgrCheckpoint__FP6CHKMGR3OIDT1)
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", ReturnChkmgrToCheckpoint__FP6CHKMGR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", RestoreChkmgrFromCheckpoint__FP6CHKMGR);
+void RestoreChkmgrFromCheckpoint(CHKMGR *pchkmgr)
+{
+    pchkmgr->cbitChk = 0;
+    memcpy(&pchkmgr->abitChk, (char *)pchkmgr + 0x220, 0x204);
+    pchkmgr->fChkDirty = 0;
+}
 
 int IchkAllocChkmgr(CHKMGR *pchkmgr)
 {

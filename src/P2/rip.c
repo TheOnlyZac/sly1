@@ -280,7 +280,23 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", PostLeafEmit__FP4LEAFP5EMITB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", ProjectLeafTransform__FP4LEAFf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", FBounceLeaf__FP4LEAFP2SOP6VECTORT2);
+int FBounceLeaf(LEAF *pleaf, SO *psoOther, VECTOR *ppos, VECTOR *pnormal)
+{
+    STUCK *pstuck;
+
+    if (FIsBasicDerivedFrom(STRUCT_OFFSET(psoOther, 0x50, BASIC *), CID_MISSILE))
+        return 0;
+    if (FIsBasicDerivedFrom(STRUCT_OFFSET(psoOther, 0x50, BASIC *), CID_STEP))
+        return 0;
+
+    CreateStuck((RIP *)pleaf, STRUCT_OFFSET(pleaf, 0x20, ALO *), psoOther, ppos, pnormal, &pstuck);
+    if (pstuck != NULL)
+    {
+        ConvertAloMat(NULL, psoOther, &STRUCT_OFFSET(pstuck, 0x50, MATRIX3), &STRUCT_OFFSET(pstuck, 0x50, MATRIX3));
+    }
+    RemoveRip((RIP *)pleaf);
+    return 1;
+}
 
 int FFilterFlameObjects(void *pv, SO *pso)
 {

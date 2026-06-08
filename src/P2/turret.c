@@ -3,6 +3,8 @@
 #include <sm.h>
 #include <rwm.h>
 #include <oid.h>
+#include <jt.h>
+#include <sce/memset.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/turret", InitTurret__FP6TURRET);
 
@@ -12,7 +14,31 @@ INCLUDE_ASM("asm/nonmatchings/P2/turret", PostTurretLoad__FP6TURRET);
 
 INCLUDE_ASM("asm/nonmatchings/P2/turret", UpdateTurret__FP6TURRETf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/turret", UpdateTurretActive__FP6TURRETP3JOYf);
+void UpdateTurretActive(TURRET *pturret, JOY *pjoy, float dt)
+{
+    char b[0xC4];
+
+    UpdateTurretAim(pturret);
+
+    if ((pjoy->grfbtnPressed & 0xC0) != 0)
+    {
+        SetJoyBtnHandled(pjoy, 0xC0);
+        FireTurret(pturret);
+    }
+
+    if (g_pjt != NULL && STRUCT_OFFSET(g_pjt, 0x2740, int) != 0)
+    {
+        if (FIsLoInWorld(g_pjt))
+        {
+            void (*pfn)(JT *, void *, float);
+
+            memset(b, 0, 0xC4);
+            pfn = (void (*)(JT *, void *, float))STRUCT_OFFSET(g_pjt->pvtlo, 0x134, void *);
+            if (pfn != 0)
+                pfn(g_pjt, b, dt);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/turret", OnTurretActive__FP6TURRETiP2PO);
 

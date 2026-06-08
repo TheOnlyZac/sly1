@@ -17,7 +17,33 @@ INCLUDE_ASM("asm/nonmatchings/P2/jsg", GetJsgLocation__FP3JSGP2LOP6VECTORPf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jsg", SetJsgFocus__FP3JSGP2LO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jsg", SetJsgTn__FP3JSGP2TN);
+extern void FUN_001e2840(TN *ptn, TNS tns);
+
+void SetJsgTn(JSG *pjsg, TN *ptn)
+{
+    if (pjsg->ptnCur != NULL)
+    {
+        FUN_001e2840(pjsg->ptnCur, TNS_Nil);
+        STRUCT_OFFSET(pjsg->ptnCur, 0x2d0, int) = 0;
+        if (pjsg->fHideTn != 0)
+        {
+            (*(void (**)(LO *))((char *)pjsg->ptnCur->pvtlo + 0x1c))((LO *)pjsg->ptnCur);
+        }
+        pjsg->ptnCur = NULL;
+    }
+
+    if (ptn != NULL)
+    {
+        pjsg->ptnCur = ptn;
+        pjsg->fHideTn = (FIsLoInWorld(ptn) == 0);
+        if (pjsg->fHideTn != 0)
+        {
+            (*(void (**)(LO *))((char *)ptn->pvtlo + 0x18))((LO *)ptn);
+        }
+        STRUCT_OFFSET(ptn, 0x2d0, JT *) = pjsg->pjt;
+        FUN_001e2840(ptn, TNS_In);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jsg", NextJsgJsge__FP3JSG);
 
