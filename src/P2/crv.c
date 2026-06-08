@@ -1,6 +1,7 @@
 #include <crv.h>
 #include <mark.h>
 #include <bez.h>
+#include <memory.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", SMeasureApos__FiP6VECTORPf);
 
@@ -175,7 +176,35 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", FindCrvlClosestPointFromU__FP4CRVLP6VECTO
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", FindCrvlClosestPointFromS__FP4CRVLP6VECTORfP6CONSTRT1T1PfT6);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", LoadCrvcFromBrx__FP4CRVCP18CBinaryInputStream);
+void LoadCrvcFromBrx(CRVC *pcrvc, CBinaryInputStream *pbis)
+{
+    int icv;
+    int ccv;
+
+    STRUCT_OFFSET(pcrvc, 0x8, int) = pbis->U8Read();
+    ccv = pbis->U8Read();
+    STRUCT_OFFSET(pcrvc, 0xC, int) = ccv;
+    STRUCT_OFFSET(pcrvc, 0x10, void *) = PvAllocSwImpl(ccv * 4);
+    STRUCT_OFFSET(pcrvc, 0x14, void *) = PvAllocSwImpl(STRUCT_OFFSET(pcrvc, 0xC, int) * 4);
+    STRUCT_OFFSET(pcrvc, 0x18, void *) = PvAllocSwImpl(STRUCT_OFFSET(pcrvc, 0xC, int) * 16);
+    STRUCT_OFFSET(pcrvc, 0x1C, void *) = PvAllocSwImpl(STRUCT_OFFSET(pcrvc, 0xC, int) * 16);
+    STRUCT_OFFSET(pcrvc, 0x20, void *) = PvAllocSwImpl(STRUCT_OFFSET(pcrvc, 0xC, int) * 16);
+
+    for (icv = 0; icv < STRUCT_OFFSET(pcrvc, 0xC, int); icv++)
+    {
+        STRUCT_OFFSET(pcrvc, 0x10, float *)[icv] = pbis->F32Read();
+        pbis->ReadVector((VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x18, void *) + icv * 16));
+        pbis->ReadVector((VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x1C, void *) + icv * 16));
+        pbis->ReadVector((VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x20, void *) + icv * 16));
+    }
+
+    if (STRUCT_OFFSET(*(void **)pcrvc, 0x24, void *) != NULL)
+    {
+        ((void (*)(CRVC *))STRUCT_OFFSET(*(void **)pcrvc, 0x24, void *))(pcrvc);
+    }
+
+    InvalidateCrvcCache(pcrvc);
+}
 
 void InvalidateCrvcCache(CRVC *pcrvc)
 {
