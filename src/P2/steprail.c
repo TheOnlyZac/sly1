@@ -44,7 +44,27 @@ void FUN_001d34e0(uint8_t *param_1)
     FUN_001bc4d8(param_1, param_1 + 0x554);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/steprail", FUN_001d3500);
+extern "C" int FUN_001d3500(SO *pso, WKR *pwkr)
+{
+    int fAbsorbed = FAbsorbSoWkr(pso, pwkr);
+    if (fAbsorbed != 0 && (pwkr->grfic & 0x20))
+    {
+        LO *plo = pwkr->ploSource;
+        int g;
+        if (STRUCT_OFFSET(STRUCT_OFFSET(plo, 0x0, uint8_t *), 0x8, int) & 1)
+        {
+            g = STRUCT_OFFSET(plo, 0x50, int);
+        }
+        else
+        {
+            g = STRUCT_OFFSET(STRUCT_OFFSET(plo, 0x18, uint8_t *), 0x50, int);
+        }
+        func_001D32D8((int)pso, (JT *)pwkr->ploSource, g == (int)(long)g_pjt);
+        FreeSwXpList(STRUCT_OFFSET(pso, 0x14, SW *), STRUCT_OFFSET(pso, 0x554, XP *));
+        STRUCT_OFFSET(pso, 0x554, XP *) = 0;
+    }
+    return fAbsorbed;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/steprail", FUN_001d35a8);
 

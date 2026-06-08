@@ -204,7 +204,32 @@ void InitCamsen(CAMSEN *pcamsen)
     STRUCT_OFFSET(pcamsen, 0x5D8, int) = -1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", PostCamsenLoad__FP6CAMSEN);
+void PostCamsenLoad(CAMSEN *pcamsen)
+{
+    void *pvt;
+    void (*pfn)(CAMSEN *, int);
+    extern SNIP D_002744D8[2];
+
+    PostAloLoad(pcamsen);
+    SnipAloObjects(pcamsen, 2, D_002744D8);
+
+    if (STRUCT_OFFSET(pcamsen, 0x5d0, int) == 0)
+        STRUCT_OFFSET(pcamsen, 0x5d0, int) = (int)pcamsen;
+
+    if (STRUCT_OFFSET(pcamsen, 0x5d4, int) == 0)
+        STRUCT_OFFSET(pcamsen, 0x5d4, int) = STRUCT_OFFSET(pcamsen->psw, 0x1d14, int);
+
+    if (STRUCT_OFFSET(pcamsen, 0x200, void *) != NULL)
+        STRUCT_OFFSET(STRUCT_OFFSET(pcamsen, 0x200, void *), 0x44, int) = 0;
+
+    STRUCT_OFFSET(pcamsen, 0x538, ulong) |= ((ulong)0x8000) << 28;
+
+    SetSoConstraints(pcamsen, CT_Locked, NULL, CT_Locked, NULL);
+
+    pvt = STRUCT_OFFSET(pcamsen, 0x0, void *);
+    pfn = (void (*)(CAMSEN *, int))STRUCT_OFFSET(pvt, 0x144, void *);
+    pfn(pcamsen, STRUCT_OFFSET(pcamsen, 0x560, int));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateCamsen__FP6CAMSENf);
 

@@ -32,7 +32,29 @@ float UBias(float u, float v)
     return u / ((1.0f / v - 2.0f) * (1.0f - u) + 1.0f);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/wr", GFromOnz__FP3ONZ);
+float GFromOnz(ONZ *ponz)
+{
+    float g = 0.0f;
+    float uAmplSum = 0.0f;
+    int i = 0;
+
+    if (ponz->conze > 0)
+    {
+        ONZE *ponze = ponz->aonze;
+        do
+        {
+            float n = UNoise(ponze->gFreq, ponze->gPhase, ponze->uRandom);
+            float uAmpl = ponze->uAmpl;
+            ponze++;
+            i++;
+            g += uAmpl * n;
+            uAmplSum += uAmpl;
+        } while (i < ponz->conze);
+    }
+
+    return ponz->lm.gMin +
+        UBias(g / uAmplSum, ponz->uBias) * (ponz->lm.gMax - ponz->lm.gMin);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/wr", UpdateWrMatrixes__FP2WR);
 

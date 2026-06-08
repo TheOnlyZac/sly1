@@ -91,7 +91,26 @@ void AdaptAct(ACT *pact)
         STRUCT_OFFSET(pact, 0x11, char) = 3;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", InitActval__FP6ACTVALP3ALO);
+void InitActval(ACTVAL *pactval, ALO *palo)
+{
+    uint8_t *psen;
+
+    InitAct(pactval, palo);
+    *(qword *)((uint8_t *)pactval + 0x20) = *(qword *)((uint8_t *)palo + 0x190);
+    *(qword *)((uint8_t *)pactval + 0x40) = *(qword *)((uint8_t *)palo + 0x1a0);
+    *(qword *)((uint8_t *)pactval + 0x50) = *(qword *)((uint8_t *)palo + 0x1b0);
+    *(qword *)((uint8_t *)pactval + 0x60) = *(qword *)((uint8_t *)palo + 0x1c0);
+    psen = STRUCT_OFFSET(palo, 0x224, uint8_t *);
+    if (psen != 0 && (STRUCT_OFFSET(psen, 0xb0, int) & 0x20))
+    {
+        pactval->radTwistGoal = STRUCT_OFFSET(psen, 0x8c, float);
+    }
+    *(qword *)((uint8_t *)pactval + 0x90) = *(qword *)(D_002483D0 + 0x0);
+    *(qword *)((uint8_t *)pactval + 0xa0) = *(qword *)(D_002483D0 + 0x10);
+    *(qword *)((uint8_t *)pactval + 0xb0) = *(qword *)(D_002483D0 + 0x20);
+    STRUCT_OFFSET(pactval, 0xc0, int) = STRUCT_OFFSET(palo, 0x26c, int);
+    STRUCT_OFFSET(pactval, 0xc4, int) = STRUCT_OFFSET(palo, 0x274, int);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", GetActvalPositionGoal__FP6ACTVALfP6VECTORT2);
 

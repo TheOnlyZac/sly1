@@ -33,7 +33,24 @@ void InitBtn(BTN *pbtn)
 
 INCLUDE_ASM("asm/nonmatchings/P2/button", LoadBtn__FP3BTNP3ALO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/button", PostBtnLoad__FP3BTN);
+void PostBtnLoad(BTN *pbtn)
+{
+    int iash;
+    SW *psw;
+
+    pbtn->buttons = (BUTTONS)-1;
+    psw = pbtn->paloOwner->psw;
+
+    for (iash = 0; iash < IASH_Max; iash++)
+    {
+        PostAshLoad(psw, &pbtn->aash[iash], pbtn->paloOwner);
+    }
+
+    if (pbtn->fCheckpointed && FGetChkmgrIchk(&g_chkmgr, pbtn->ichkPushed))
+    {
+        PostSwCallback(psw, (PFNMQ)RestoreBtnFromCheckpointCallback, pbtn, MSGID_callback, NULL);
+    }
+}
 
 void RestoreBtnFromCheckpointCallback(BTN *pbtn, MSGID msgid, void *pv)
 {

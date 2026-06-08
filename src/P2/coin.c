@@ -3,6 +3,8 @@
 #include <bis.h>
 #include <sw.h>
 #include <screen.h>
+#include <find.h>
+#include <game.h>
 
 void InitDprize(DPRIZE *pdprize)
 {
@@ -36,7 +38,24 @@ void CloneDprize(DPRIZE *pdprize, DPRIZE *pdprizeBase)
     pdprize->ichkCollected = ichkCollected;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", PostDprizeLoad__FP6DPRIZE);
+void PostDprizeLoad(DPRIZE *pdprize)
+{
+    LO *plo;
+
+    PostAloLoad(pdprize);
+    plo = PloFindSwObjectByClass(pdprize->psw, 1, (CID)0x75, (LO *)pdprize);
+    pdprize->ptarget = (TARGET *)plo;
+    if (plo != NULL)
+    {
+        (*(void (**)(LO *))((char *)plo->pvtlo + 0x1C))(plo);
+    }
+    if (((STRUCT_OFFSET(g_pgsCur, 0x19D8, int) << 8) | STRUCT_OFFSET(g_pgsCur, 0x19DC, int)) != 0x308)
+    {
+        if (FGetChkmgrIchk(&g_chkmgr, pdprize->ichkCollected))
+            pdprize->dprizesInit = DPRIZES_Removed;
+    }
+    (*(void (**)(DPRIZE *, DPRIZES))((char *)pdprize->pvtlo + 0xCC))(pdprize, pdprize->dprizesInit);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", ProjectDprizeTransform__FP6DPRIZEfi);
 
