@@ -166,7 +166,42 @@ void UnsubscribeRipStruct(RIP *prip, PFNMQ pfnmq, void *pvContext)
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitDroplet__FP7DROPLETP6VECTORfP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", TouchDroplet__FP7DROPLETi);
+void TouchDroplet(DROPLET *pdroplet, int fTouching)
+{
+    LSG alsg[16];
+
+    if (fTouching)
+    {
+        *(VU_VECTOR *)alsg = STRUCT_OFFSET(pdroplet, 0x80, VU_VECTOR);
+
+        BSP *pbsp = STRUCT_OFFSET(STRUCT_OFFSET(pdroplet, 0x24, ALO *), 0x3f8, BSP *);
+        if (pbsp)
+        {
+            ClsgClipEdgeToBsp(
+                pbsp,
+                (VECTOR *)((uint8_t *)pdroplet + 0x90),
+                (VECTOR *)((uint8_t *)pdroplet + 0x80),
+                NULL, 0x10, alsg);
+        }
+
+        RIP *prip = PripNewRipg(RIPT_Ripple, NULL);
+        if (prip != NULL)
+        {
+            (*(void (**)(RIP *, VECTOR *, float, SO *))(STRUCT_OFFSET(prip, 0x0, void *)))(
+                prip, (VECTOR *)alsg, 40.0f, NULL);
+            STRUCT_OFFSET(prip, 0x1c, float) = 0.75f;
+            STRUCT_OFFSET(prip, 0x34, float) = 30.0f;
+
+            void *p278 = STRUCT_OFFSET(STRUCT_OFFSET(pdroplet, 0x24, ALO *), 0x278, void *);
+            if (p278 != NULL)
+            {
+                STRUCT_OFFSET(prip, 0x114, int) = STRUCT_OFFSET(p278, 0xc, int);
+            }
+        }
+
+        RemoveRip((RIP *)pdroplet);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitBublet__FP6BUBLETP6VECTORfP2SO);
 

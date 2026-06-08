@@ -29,7 +29,32 @@ INCLUDE_ASM("asm/nonmatchings/P2/rwm", FUN_001a8150);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", InitRwmCallback__FP3RWM5MSGIDPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rwm", FUN_001a84c8);
+extern "C" void FUN_001a84c8(RWM *prwmDst, RWM *prwmSrc)
+{
+    CloneLo((LO *)prwmDst, (LO *)prwmSrc);
+    if (STRUCT_OFFSET(prwmDst, 0x3c, void *) != 0 &&
+        STRUCT_OFFSET(STRUCT_OFFSET(prwmDst, 0x3c, void *), 0x4, int) != 0)
+    {
+        if (STRUCT_OFFSET(STRUCT_OFFSET(prwmSrc, 0x3c, void *), 0x8, int) == 0)
+        {
+            STRUCT_OFFSET(STRUCT_OFFSET(prwmSrc, 0x3c, void *), 0x8, int) = 1;
+            InitDl((DL *)((uint8_t *)STRUCT_OFFSET(prwmSrc, 0x3c, void *) + 0x14), 0x18);
+        }
+        STRUCT_OFFSET(prwmDst, 0x3c, void *) = 0;
+        FUN_001a8110(prwmDst);
+        STRUCT_OFFSET(STRUCT_OFFSET(prwmDst, 0x3c, void *), 0x4, int) = 1;
+        STRUCT_OFFSET(STRUCT_OFFSET(prwmDst, 0x3c, void *), 0x8, int) = 2;
+        STRUCT_OFFSET(STRUCT_OFFSET(prwmDst, 0x3c, void *), 0x14, RWM *) = prwmSrc;
+        AppendDlEntry((DL *)((uint8_t *)STRUCT_OFFSET(prwmSrc, 0x3c, void *) + 0x14),
+                      STRUCT_OFFSET(prwmDst, 0x3c, void *));
+    }
+    else
+    {
+        STRUCT_OFFSET(prwmDst, 0x38, void *) =
+            PvAllocSwCopyImpl(STRUCT_OFFSET(prwmSrc, 0x34, int) * 0x14,
+                              STRUCT_OFFSET(prwmSrc, 0x38, void *));
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", PostRwmLoad__FP3RWM);
 

@@ -38,7 +38,34 @@ int FIgnoreDartgunIntersection(DARTGUN *pdartgun, SO *psoOther)
 
 INCLUDE_ASM("asm/nonmatchings/P2/dartgun", BreakDartgun__FP7DARTGUN);
 
-INCLUDE_ASM("asm/nonmatchings/P2/dartgun", SetDartgunGoalState__FP7DARTGUN3OID);
+void SetDartgunGoalState(DARTGUN *pdartgun, OID oidStateGoal)
+{
+    OID oidCur;
+
+    GetSmaGoal(STRUCT_OFFSET(pdartgun, 0x740, SMA *), &oidCur);
+    if (oidCur == OID_Nil)
+        GetSmaCur(STRUCT_OFFSET(pdartgun, 0x740, SMA *), &oidCur);
+
+    if (oidStateGoal == oidCur)
+        return;
+
+    if (oidCur == (OID)0x2B7)
+    {
+        STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x4C, int) = 0;
+    }
+
+    if (oidStateGoal < (OID)0x2BA)
+    {
+        if (oidStateGoal >= (OID)0x2B8)
+        {
+            STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x1C, int) = (oidStateGoal == (OID)0x2B9);
+            if ((unsigned int)(oidCur - 0x2BA) >= 2)
+                STRUCT_OFFSET(pdartgun, 0x6D8, int) = 0;
+        }
+    }
+
+    SetSmaGoal(STRUCT_OFFSET(pdartgun, 0x740, SMA *), oidStateGoal);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/dartgun", TrackDartgun__FP7DARTGUNP3OID);
 

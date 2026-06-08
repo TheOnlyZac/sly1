@@ -167,7 +167,16 @@ void SpawnedRobRoh(ROB *prob, ROH *proh)
     STRUCT_OFFSET(proh, 0x560, ROST *) = NULL;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", GrabbedRobRoh__FP3ROBP3ROH);
+void GrabbedRobRoh(ROB *prob, ROH *proh)
+{
+    extern VECTOR D_00248D30;
+
+    (*(void (**)(SO *))(*(uint8_t **)STRUCT_OFFSET(proh, 0x55c, SO *) + 0x64))(STRUCT_OFFSET(proh, 0x55c, SO *));
+    (*(void (**)(SO *, VECTOR *))(*(uint8_t **)STRUCT_OFFSET(proh, 0x55c, SO *) + 0x90))(STRUCT_OFFSET(proh, 0x55c, SO *), &D_00248D30);
+    (*(void (**)(SO *, VECTOR *))(*(uint8_t **)STRUCT_OFFSET(proh, 0x55c, SO *) + 0x94))(STRUCT_OFFSET(proh, 0x55c, SO *), &D_00248D30);
+    SetSoConstraints(STRUCT_OFFSET(proh, 0x55c, SO *), CT_Locked, NULL, CT_Locked, NULL);
+    StartSound((SFXID)0x151, NULL, NULL, NULL, 3000.0f, 300.0f, 1.0f, 0.0f, 0.0f, NULL, NULL);
+}
 
 void DroppedRobRoh(ROB *prob, ROH *proh)
 {

@@ -3,6 +3,8 @@
 #include <blip.h>
 #include <util.h>
 #include <memory.h>
+#include <find.h>
+#include <basic.h>
 
 extern float DAT_0024a124;
 
@@ -329,7 +331,37 @@ EMITB *PemitbEnsureExplo(EXPLO *pexplo, ENSK ensk)
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", InitExpls__FP5EXPLS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindExpls__FP5EXPLS);
+void BindExpls(EXPLS *pexpls)
+{
+    EMITB *pemitb;
+    LO *plo;
+
+    BindExplo(pexpls);
+
+    if (STRUCT_OFFSET(pexpls, 0xAC, int) == -1 &&
+        STRUCT_OFFSET(pexpls, 0xB0, long long) == -1)
+        return;
+
+    pemitb = PemitbEnsureExplo(pexpls, ENSK_Set);
+
+    if (STRUCT_OFFSET(pexpls, 0xAC, int) != -1)
+        STRUCT_OFFSET(pemitb, 0x1D8, LO *) =
+            PloFindSwObject(STRUCT_OFFSET(pexpls, 0x14, SW *), 0x104,
+                            STRUCT_OFFSET(pexpls, 0xAC, OID), (LO *)pexpls);
+
+    if (STRUCT_OFFSET(pexpls, 0xB0, int) != -1)
+        STRUCT_OFFSET(pemitb, 0x1DC, LO *) =
+            PloFindSwObject(STRUCT_OFFSET(pexpls, 0x14, SW *), 0x104,
+                            STRUCT_OFFSET(pexpls, 0xB0, OID), (LO *)pexpls);
+
+    if (STRUCT_OFFSET(pexpls, 0xB4, int) != -1)
+    {
+        plo = PloFindSwObject(STRUCT_OFFSET(pexpls, 0x14, SW *), 0x104,
+                              STRUCT_OFFSET(pexpls, 0xB4, OID), (LO *)pexpls);
+        if (FIsBasicDerivedFrom((BASIC *)plo, CID_SO))
+            STRUCT_OFFSET(pemitb, 0x1E0, LO *) = plo;
+    }
+}
 
 void HandleExplsMessage(EXPLS *pexpls, MSGID msgid, void *pv)
 {
