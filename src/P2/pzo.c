@@ -4,6 +4,8 @@
 #include <so.h>
 #include <jt.h>
 #include <chkpnt.h>
+#include <screen.h>
+#include <rip.h>
 
 void InitSprize(SPRIZE *psprize)
 {
@@ -205,7 +207,32 @@ INCLUDE_ASM("asm/nonmatchings/P2/pzo", UpdateClue);
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", OnClueSmack__FP4CLUE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", CollectClue__FP4CLUE);
+void CollectClue(CLUE *pclue)
+{
+    extern char D_0026A970;
+    RIP *pripg;
+    VECTOR vec;
+
+    (*(void (**)(CLUECTR *))(*(int *)&g_cluectr + 0x38))(&g_cluectr);
+    pripg = PripNewRipg(RIPT_Smack, NULL);
+    if (pripg)
+    {
+        if (STRUCT_OFFSET(g_plsCur, 0x64, int) + 1 >= STRUCT_OFFSET(g_psw, 0x2300, int))
+        {
+            StartSound((SFXID)0x21, NULL, NULL, NULL, 3000.0f, 300.0f, 1.0f, 0.0f, 0.0f, NULL, NULL);
+        }
+        STRUCT_OFFSET(pripg, 0x134, CLUE *) = pclue;
+        STRUCT_OFFSET(pripg, 0x130, void *) = &D_0026A970;
+        ConvertAloPos(pclue, NULL, (VECTOR *)(STRUCT_OFFSET(pclue, 0x5bc, uint8_t *) + 0x100), &vec);
+        ((void (*)(RIP *, float, VECTOR *, int))STRUCT_OFFSET(STRUCT_OFFSET(pripg, 0x0, void *), 0x0, void *))(pripg, 1.0f, &vec, 0);
+        STRUCT_OFFSET(pripg, 0x20, int) = STRUCT_OFFSET(pclue, 0x5bc, int);
+    }
+    else
+    {
+        OnClueSmack(pclue);
+    }
+    CollectSprize(pclue);
+}
 
 void BreakClue(CLUE *pclue)
 {

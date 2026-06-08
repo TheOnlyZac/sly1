@@ -2,6 +2,8 @@
 #include <find.h>
 #include <wipe.h>
 #include <sw.h>
+#include <rog.h>
+#include <xform.h>
 
 // TODO: Change to static when possible.
 extern char *s_mprespkachz[13];
@@ -49,7 +51,52 @@ INCLUDE_ASM("asm/nonmatchings/P2/prompt", FUN_00193fb8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/prompt", OnPromptActive__FP6PROMPTi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/prompt", FUN_00194278);
+extern "C" {
+void FUN_00194278(PROMPT *pprompt, int fButton, WIPEK wipek)
+{
+    int idLevel;
+
+    SetPrompt(pprompt, (PRP)0, (PRK)-1);
+
+    idLevel = (STRUCT_OFFSET(g_pgsCur, 0x19d8, int) << 8) | STRUCT_OFFSET(g_pgsCur, 0x19dc, int);
+
+    if (idLevel == 0x106)
+    {
+        if (fButton)
+        {
+            TRANS trans;
+            trans.fSet = 1;
+            trans.pchzWorld = (LevelTableStruct *)((char *)&g_transition + 0x14);
+            trans.oidWarp = (OID)-1;
+            trans.oidWarpContet = (OID)-1;
+            trans.grftrans = 0;
+            ActivateWipe(&g_wipe, &trans, wipek);
+        }
+        else
+        {
+            LO *plo = PloFindSwObjectByClass(g_psw, 5, (CID)0x5F, NULL);
+            SetRobRobs((ROB *)plo, (ROBS)6);
+        }
+    }
+    else
+    {
+        if (fButton)
+        {
+            TRANS trans;
+            trans.fSet = 1;
+            trans.pchzWorld = (LevelTableStruct *)((char *)&g_transition + 0x14);
+            trans.oidWarp = (OID)-1;
+            trans.oidWarpContet = (OID)-1;
+            trans.grftrans = 0x10;
+            ActivateWipe(&g_wipe, &trans, wipek);
+        }
+        else
+        {
+            TriggerDefaultExit(0, wipek);
+        }
+    }
+}
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/prompt", FUN_00194398__Fv);
 

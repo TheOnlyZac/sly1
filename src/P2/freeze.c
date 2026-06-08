@@ -55,7 +55,36 @@ void GetAloFrozen(ALO *palo, int *pf)
     *pf = (int)(STRUCT_OFFSET(palo, 0x2c8, unsigned long long) >> 38) & 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/freeze", FreezeAlo__FP3ALOi);
+void FreezeAlo(ALO *palo, int fFreeze)
+{
+    extern VECTOR D_00248D30;
+
+    if (fFreeze)
+    {
+        SFX *psfx;
+
+        STRUCT_OFFSET(palo, 0xa0, VU_VECTOR) = STRUCT_OFFSET(palo, 0x150, VU_VECTOR);
+        STRUCT_OFFSET(palo, 0xb0, VU_VECTOR) = STRUCT_OFFSET(palo, 0x160, VU_VECTOR);
+        psfx = STRUCT_OFFSET(palo, 0x2ac, SFX *);
+        STRUCT_OFFSET(palo, 0x29c, int) = 0;
+        if (psfx)
+            StopSound(psfx->pamb, 0);
+        (*(void (**)(ALO *, VECTOR *))(*(uint8_t **)palo + 0x90))(palo, &D_00248D30);
+        (*(void (**)(ALO *, VECTOR *))(*(uint8_t **)palo + 0x94))(palo, &D_00248D30);
+        STRUCT_OFFSET(palo, 0x2c8, unsigned long long) |= (0x8000ULL << 23);
+    }
+    else
+    {
+        SFX *psfx;
+
+        STRUCT_OFFSET(palo, 0x2c8, unsigned long long) &= ~(0x8000ULL << 23);
+        (*(void (**)(ALO *, VECTOR *))(*(uint8_t **)palo + 0x90))(palo, (VECTOR *)((uint8_t *)palo + 0xa0));
+        (*(void (**)(ALO *, VECTOR *))(*(uint8_t **)palo + 0x94))(palo, (VECTOR *)((uint8_t *)palo + 0xb0));
+        psfx = STRUCT_OFFSET(palo, 0x2ac, SFX *);
+        if (psfx)
+            StartSound(psfx->sfxid, &psfx->pamb, palo, NULL, psfx->sStart, psfx->sFull, psfx->uVol, psfx->uPitch, psfx->uDoppler, &psfx->lmRepeat, NULL);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/freeze", FreezeSo__FP2SOi);
 
