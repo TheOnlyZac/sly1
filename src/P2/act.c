@@ -2,6 +2,7 @@
 #include <slotheap.h>
 #include <sw.h>
 #include <memory.h>
+#include <alo.h>
 
 ACT *PactNew(SW *psw, ALO *palo, VTACT *pvtact)
 {
@@ -67,7 +68,28 @@ float GGetActPoseGoal(ACT *pact, int ipose)
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", CalculateActDefaultAck__FP3ACT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", SnapAct__FP3ACTi);
+void SnapAct(ACT *pact, int fForce)
+{
+    VECTOR pos;
+    VECTOR v;
+    MATRIX3 mat;
+    ALO *palo = pact->palo;
+
+    if (pact == STRUCT_OFFSET(palo, 0x1ec, ACT *) &&
+        (fForce != 0 || STRUCT_OFFSET(pact, 0x10, char) == 2))
+    {
+        (*(void (**)(ACT *, float, VECTOR *, VECTOR *))((char *)pact->pvtact + 0x10))(pact, 0.0f, &pos, &v);
+        (*(void (**)(ALO *, VECTOR *))((char *)palo->pvtlo + 0x84))(palo, &pos);
+        (*(void (**)(ALO *, VECTOR *))((char *)palo->pvtlo + 0x90))(palo, &v);
+    }
+    if (pact == STRUCT_OFFSET(palo, 0x1f0, ACT *) &&
+        (fForce != 0 || STRUCT_OFFSET(pact, 0x11, char) == 2))
+    {
+        (*(void (**)(ACT *, float, MATRIX3 *, VECTOR *))((char *)pact->pvtact + 0x14))(pact, 0.0f, &mat, &pos);
+        (*(void (**)(ALO *, MATRIX3 *))((char *)palo->pvtlo + 0x88))(palo, &mat);
+        (*(void (**)(ALO *, VECTOR *))((char *)palo->pvtlo + 0x94))(palo, &pos);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", CalculateAloPositionSpring__FP3ALOfP6VECTORN22);
 

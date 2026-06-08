@@ -157,7 +157,44 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", AddRobRoh__FP3ROB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", AdjustRobDifficulty__FP3ROBf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", DestroyedRobRoc__FP3ROBP3ROC);
+void DestroyedRobRoc(ROB *prob, ROC *proc)
+{
+    int cRoc;
+
+    cRoc = STRUCT_OFFSET(prob, 0x3c4, int) + 1;
+    STRUCT_OFFSET(prob, 0x3c4, int) = cRoc;
+    AdjustRobDifficulty(prob, (float)cRoc / (float)STRUCT_OFFSET(prob, 0x3b8, int));
+
+    if (STRUCT_OFFSET(proc, 0x55c, ROH *) != NULL)
+        RemoveDlEntry(&STRUCT_OFFSET(prob, 0x35c, DL), proc);
+    else
+        RemoveDlEntry(&STRUCT_OFFSET(prob, 0x368, DL), proc);
+
+    AppendDlEntry(&STRUCT_OFFSET(prob, 0x374, DL), proc);
+
+    if (STRUCT_OFFSET(proc, 0x55c, ROH *) != NULL)
+    {
+        if (FChooseRobRoc(prob, STRUCT_OFFSET(proc, 0x55c, ROH *)))
+        {
+            SetRohRohs(STRUCT_OFFSET(proc, 0x55c, ROH *), ROHS_Collect);
+        }
+        else
+        {
+            STRUCT_OFFSET(STRUCT_OFFSET(proc, 0x55c, ROH *), 0x55c, ROC *) = NULL;
+            SetRohRohs(STRUCT_OFFSET(proc, 0x55c, ROH *), ROHS_Wander);
+        }
+    }
+
+    STRUCT_OFFSET(proc, 0x55c, ROH *) = NULL;
+    (*(void (**)(ROC *))((char *)((LO *)proc)->pvtlo + 0x1c))(proc);
+
+    if (STRUCT_OFFSET(prob, 0x380, int) == STRUCT_OFFSET(prob, 0x624, int))
+    {
+        STRUCT_OFFSET(prob, 0x634, float) =
+            g_clock.t + GRandInRange(STRUCT_OFFSET(prob, 0x62c, float), STRUCT_OFFSET(prob, 0x630, float));
+    }
+    STRUCT_OFFSET(prob, 0x380, int) -= 1;
+}
 
 void SpawnedRobRoh(ROB *prob, ROH *proh)
 {

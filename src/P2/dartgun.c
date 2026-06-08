@@ -1,5 +1,7 @@
 #include <dartgun.h>
 #include <jt.h>
+#include <clock.h>
+#include <lookat.h>
 
 void InitDartgun(DARTGUN *pdartgun)
 {
@@ -67,7 +69,41 @@ void SetDartgunGoalState(DARTGUN *pdartgun, OID oidStateGoal)
     SetSmaGoal(STRUCT_OFFSET(pdartgun, 0x740, SMA *), oidStateGoal);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/dartgun", TrackDartgun__FP7DARTGUNP3OID);
+void TrackDartgun(DARTGUN *pdartgun, OID *poidStateGoal)
+{
+    extern VECTOR D_00248D30;
+
+    if (*poidStateGoal == (OID)0x2B8)
+    {
+        STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x1C, int) = 0;
+        if (STRUCT_OFFSET(pdartgun, 0x6D0, float) < g_clock.t - STRUCT_OFFSET(pdartgun, 0x6D8, float))
+        {
+            if (FPrepareDartgunToFire(pdartgun))
+                *poidStateGoal = (OID)0x2BA;
+        }
+    }
+    else
+    {
+        LO *plo = STRUCT_OFFSET(pdartgun, 0x6E0, LO *);
+        if (plo == NULL || FIsLoInWorld(plo) == 0 ||
+            STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x6E0, SO *), 0x550, int) == 3 ||
+            STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x6E0, SO *), 0x550, int) == 4)
+        {
+            STRUCT_OFFSET(pdartgun, 0x6E0, RAT *) = PratGetDartgunRatTarget(pdartgun);
+        }
+
+        if (STRUCT_OFFSET(pdartgun, 0x6E0, RAT *) != NULL)
+        {
+            SetActlaTarget((ACTLA *)STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *),
+                           (ALO *)STRUCT_OFFSET(pdartgun, 0x6E0, ALO *), &D_00248D30);
+            if (STRUCT_OFFSET(pdartgun, 0x6D0, float) < g_clock.t - STRUCT_OFFSET(pdartgun, 0x6D8, float))
+            {
+                if (FPrepareDartgunToFire(pdartgun))
+                    *poidStateGoal = (OID)0x2BB;
+            }
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/dartgun", FPrepareDartgunToFire__FP7DARTGUN);
 
