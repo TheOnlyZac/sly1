@@ -3,6 +3,7 @@
 #include <ac.h>
 #include <memory.h>
 #include <math.h>
+#include <so.h>
 
 void InitLgn(LGN *plgn)
 {
@@ -56,8 +57,6 @@ void ApplyLgnThrow(LGN *plgn, PO *ppo)
 INCLUDE_ASM("asm/nonmatchings/P2/lgn", FTakeLgnDamage__FP3LGNP3ZPR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/lgn", HandleLgnMessage__FP3LGN5MSGIDPv);
-
-extern "C" void FUN_001bc4d8(uint8_t *param_1, uint8_t *param_2);
 
 extern "C" void FUN_00181d88(uint8_t *param_1)
 {

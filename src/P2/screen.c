@@ -316,8 +316,6 @@ void FUN_001aca68(BLOT *pblot)
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawTitle__FP5TITLE);
 
-extern "C" CFont *FUN_0015c1c0(int i);
-extern "C" int FUN_0015c188(int i);
 extern CFont *D_00274410;
 
 void PostTotalsLoad(TOTALS *ptotals)

@@ -260,4 +260,7 @@ void SetSggSggs(SGG *psgg, SGGS sggs);
 
 void AssignSggSearchPoints(SGG *psgg);
 
+struct PUFFC;
+extern "C" void FUN_001c8920(PUFFC *ppuffc);
+
 #endif // STEPGUARD_H

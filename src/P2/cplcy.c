@@ -78,8 +78,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FUN_0014a7b8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", InitCpalign);
 
-extern "C" void ResetCmLookAtSmooth(CM *pcm, void *pv);
-
 void FUN_0014a8d0(CPALIGN *pcpalign)
 {
     CM *pcm = pcpalign->pcm;

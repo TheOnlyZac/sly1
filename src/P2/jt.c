@@ -2,6 +2,7 @@
 #include <game.h>
 #include <step.h>
 #include <lo.h>
+#include <cplcy.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", InitJt__FP2JT);
 
@@ -216,8 +217,6 @@ int NCmpWkr(WKR *pwkr1, WKR *pwkr2)
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtEffect__FP2JT);
-
-extern "C" int FActiveCplcy(CPLCY *pcplcy);
 
 int FIsJtSoundBase(JT *pjt)
 {

@@ -1,7 +1,6 @@
 #include <steprail.h>
 #include <alo.h>
-
-extern "C" void FUN_001bc4d8(uint8_t *param_1, uint8_t *param_2);
+#include <so.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/steprail", func_001D31D0__FP2LOi);
 

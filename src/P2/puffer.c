@@ -107,8 +107,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/puffer", UpdatePuffcGoal__FP5PUFFCi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", OnPuffcExitingSgs__FP5PUFFC3SGS);
 
-extern "C" void FUN_001c8920(PUFFC *ppuffc);
-
 void OnPuffcEnteringSgs(PUFFC *ppuffc, SGS sgsPrev, ASEG *pasegOverride)
 {
     OnStepguardEnteringSgs((STEPGUARD *)ppuffc, sgsPrev, pasegOverride);
