@@ -1,6 +1,7 @@
 #include <rwm.h>
 #include <sce/memset.h>
 #include <memory.h>
+#include <find.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", InitRwm__FP3RWM);
 
@@ -56,7 +57,64 @@ extern "C" void FUN_001a84c8(RWM *prwmDst, RWM *prwmSrc)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rwm", PostRwmLoad__FP3RWM);
+void PostRwmLoad(RWM *prwm)
+{
+    LO *plo;
+    OID oid;
+
+    PostLoLoad((LO *)prwm);
+    if (STRUCT_OFFSET(prwm, 0x168, int) != 0)
+        return;
+    STRUCT_OFFSET(prwm, 0x168, int) = 1;
+
+    oid = STRUCT_OFFSET(prwm, 0x4c, OID);
+    if (oid != OID_Nil)
+    {
+        plo = PloFindSwNearest(STRUCT_OFFSET(prwm, 0x14, SW *), oid, (LO *)prwm);
+        if (plo != 0)
+        {
+            if (FIsBasicDerivedFrom((BASIC *)plo, CID_WARP))
+                STRUCT_OFFSET(prwm, 0x60, LO *) = plo;
+            else if (FIsBasicDerivedFrom((BASIC *)plo, (CID)0x73))
+                STRUCT_OFFSET(prwm, 0x64, LO *) = plo;
+            else if (FIsBasicDerivedFrom((BASIC *)plo, CID_ALO))
+                STRUCT_OFFSET(prwm, 0x68, LO *) = plo;
+        }
+    }
+
+    oid = STRUCT_OFFSET(prwm, 0x50, OID);
+    if (oid != OID_Nil)
+    {
+        plo = PloFindSwNearest(STRUCT_OFFSET(prwm, 0x14, SW *), oid, (LO *)prwm);
+        if (plo != 0)
+        {
+            if (FIsBasicDerivedFrom((BASIC *)plo, CID_ALO))
+                STRUCT_OFFSET(prwm, 0xe0, LO *) = plo;
+            else if (FIsBasicDerivedFrom((BASIC *)plo, (CID)0x75))
+                STRUCT_OFFSET(prwm, 0xe4, LO *) = plo;
+        }
+    }
+
+    oid = STRUCT_OFFSET(prwm, 0x54, OID);
+    if (oid != OID_Nil)
+    {
+        plo = PloFindSwNearest(STRUCT_OFFSET(prwm, 0x14, SW *), oid, (LO *)prwm);
+        if (plo != 0)
+        {
+            if (FIsBasicDerivedFrom((BASIC *)plo, (CID)0x73))
+                STRUCT_OFFSET(prwm, 0x160, LO *) = plo;
+            else if (FIsBasicDerivedFrom((BASIC *)plo, CID_ALO))
+                STRUCT_OFFSET(prwm, 0x164, LO *) = plo;
+        }
+    }
+
+    oid = STRUCT_OFFSET(prwm, 0x58, OID);
+    if (oid != OID_Nil)
+    {
+        STRUCT_OFFSET(prwm, 0x5c, LO *) =
+            PloFindSwNearest(STRUCT_OFFSET(prwm, 0x14, SW *), oid, (LO *)prwm);
+    }
+}
 
 extern "C" void FUN_001a93c8(RWM *prwm);
 

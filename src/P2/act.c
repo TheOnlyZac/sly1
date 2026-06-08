@@ -3,6 +3,7 @@
 #include <sw.h>
 #include <memory.h>
 #include <alo.h>
+#include <so.h>
 
 ACT *PactNew(SW *psw, ALO *palo, VTACT *pvtact)
 {
@@ -40,7 +41,50 @@ void InitAct(ACT *pact, ALO *palo)
     STRUCT_OFFSET(pact, 0x10, char) = du;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", RetractAct__FP3ACTi);
+void RetractAct(ACT *pact, GRFRA grfra)
+{
+    VECTOR v;
+    ALO *palo = pact->palo;
+    ACT *pactPos;
+    ACT *pactRot;
+    extern VECTOR D_00248D30;
+
+    RemoveDlEntry((DL *)((uint8_t *)palo + 0x1E0), pact);
+
+    pactPos = STRUCT_OFFSET(palo, 0x1EC, ACT *);
+    pactRot = STRUCT_OFFSET(palo, 0x1F0, ACT *);
+    (*(void (**)(ALO *))((char *)palo->pvtlo + 0xBC))(palo);
+
+    if (pact == pactPos && STRUCT_OFFSET(palo, 0x1EC, int) == 0 && (grfra & 1))
+    {
+        if (palo->pvtlo->grfcid & 2)
+        {
+            ApplySoConstraintLocal((SO *)palo, (CONSTR *)((uint8_t *)palo + 0x440),
+                                   (VECTOR *)((uint8_t *)palo + 0x150), &v, NULL);
+            (*(void (**)(ALO *, VECTOR *))((char *)palo->pvtlo + 0x90))(palo, &v);
+        }
+        else
+        {
+            SetAloVelocityVec(palo, &D_00248D30);
+        }
+    }
+
+    if (pact == pactRot && STRUCT_OFFSET(palo, 0x1F0, int) == 0 && (grfra & 2))
+    {
+        if (palo->pvtlo->grfcid & 2)
+        {
+            ApplySoConstraintLocal((SO *)palo, (CONSTR *)((uint8_t *)palo + 0x460),
+                                   (VECTOR *)((uint8_t *)palo + 0x160), &v, NULL);
+            (*(void (**)(ALO *, VECTOR *))((char *)palo->pvtlo + 0x94))(palo, &v);
+        }
+        else
+        {
+            SetAloAngularVelocityVec(palo, &D_00248D30);
+        }
+    }
+
+    FreeSlotheapPv((SLOTHEAP *)((uint8_t *)palo->psw + 0x1B20), pact);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", GetActPositionGoal__FP3ACTfP6VECTORT2);
 

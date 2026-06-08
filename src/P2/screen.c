@@ -2,6 +2,8 @@
 #include <clock.h>
 #include <font.h>
 #include <vtables.h>
+#include <frm.h>
+#include <gifs.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", StartupScreen__Fv);
 
@@ -386,7 +388,20 @@ void FUN_001ad940(BLOT *pblot)
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad970);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawLetterbox__FP9LETTERBOX);
+void DrawLetterbox(LETTERBOX *pletterbox)
+{
+    float u = pletterbox->uOn * 66.400009f;
+    float v = 492.80002f - u;
+
+    g_gifs.AddPrimPack(6, 7, 0x44441EE);
+    g_gifs.PackAD(0x47, 0x30000);
+    g_gifs.PackAD(0x42, 0x44);
+    g_gifs.PackRGBA(0x80000000);
+    g_gifs.PackXYZF(0x6C00, 0x7900, 0xFFFFFF0, 0);
+    g_gifs.PackXYZF(0x9400, (int)((u * 0.45454547f + 1936.0f) * 16.0f), 0xFFFFFF0, 0);
+    g_gifs.PackXYZF(0x6C00, (int)((v * 0.45454547f + 1936.0f) * 16.0f), 0xFFFFFF0, 0);
+    g_gifs.PackXYZF(0x9400, 0x8700, 0xFFFFFF0, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001adc60);
 
