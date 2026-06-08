@@ -303,4 +303,18 @@ void KillSounds(int param_1);
  */
 void FUN_001c0cb0();
 
+// Unmangled asm symbols (see INCLUDE_ASM in sound.c); require C linkage.
+extern "C"
+{
+    /**
+     * @brief Unknown.
+     */
+    int FUN_001c0c50(int reg);
+
+    /**
+     * @brief Unknown.
+     */
+    void FUN_001c0c68(int reg, int value);
+}
+
 #endif // SOUND_H

@@ -48,14 +48,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", SetSwGravity__FP2SWf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dbac0);
 
-extern "C" int FUN_001c0c50(int reg);
-
 int FUN_001dbae0(SW *psw, int reg)
 {
     return FUN_001c0c50(reg);
 }
-
-extern "C" void FUN_001c0c68(int reg, int value);
 
 void FUN_001dbb00(SW *psw, int reg, int value)
 {
