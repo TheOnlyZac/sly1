@@ -306,7 +306,45 @@ void CloneExplo(EXPLO *pexplo, EXPLO *pexploBase)
     STRUCT_OFFSET(pexplo, 0x90, EMITB *)->cref++;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindExplo__FP5EXPLO);
+void BindExplo(EXPLO *pexplo)
+{
+    EMITB *pemitb;
+    EMITB *pemitbNew;
+
+    if (STRUCT_OFFSET(pexplo, 0x94, int) == -1 &&
+        STRUCT_OFFSET(pexplo, 0x98, int) == -1 &&
+        STRUCT_OFFSET(STRUCT_OFFSET(pexplo, 0x90, EMITB *), 0x10, int) != 3)
+    {
+        EMITB *pemitbCur = STRUCT_OFFSET(pexplo, 0x90, EMITB *);
+
+        if (STRUCT_OFFSET(pemitbCur, 0x120, int) != 0)
+            goto bind;
+
+        if (STRUCT_OFFSET(pemitbCur, 0x188, int) == -1)
+            goto done;
+    }
+
+    pemitbNew = PemitbEnsureExplo(pexplo, ENSK_Set);
+
+    if (STRUCT_OFFSET(pexplo, 0x94, int) != -1)
+    {
+        STRUCT_OFFSET(pemitbNew, 0x7C, void *) =
+            PloFindSwObject(STRUCT_OFFSET(pexplo, 0x14, SW *), 0x104,
+                            (OID)STRUCT_OFFSET(pexplo, 0x94, int), (LO *)pexplo);
+    }
+
+    if (STRUCT_OFFSET(pexplo, 0x98, int) != -1)
+    {
+        LO *plo = PloFindSwObject(STRUCT_OFFSET(pexplo, 0x14, SW *), 0x104,
+                                  (OID)STRUCT_OFFSET(pexplo, 0x98, int), (LO *)pexplo);
+        STRUCT_OFFSET(pemitbNew, 0x20, int) = STRUCT_OFFSET(plo, 0x34, int);
+        STRUCT_OFFSET(pemitbNew, 0x7C, int) = STRUCT_OFFSET(plo, 0x18, int);
+    }
+
+done:
+bind:
+    BindEmitb(STRUCT_OFFSET(pexplo, 0x90, EMITB *), (LO *)pexplo);
+}
 
 void ExplodeExploExplso(EXPLO *pexplo, EXPLSO *pexplso)
 {

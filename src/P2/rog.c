@@ -202,7 +202,41 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", KilledRobRoh__FP3ROBP3ROH);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", FChooseRobRoc__FP3ROBP3ROH);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", TakeRobRoc__FP3ROBP3ROHP3ROC);
+void TakeRobRoc(ROB *prob, ROH *proh, ROC *proc)
+{
+    ROC *procPrev = STRUCT_OFFSET(proh, 0x55c, ROC *);
+    if (procPrev != NULL)
+    {
+        if (procPrev == proc)
+            return;
+    }
+
+    ROH *prohPrev = STRUCT_OFFSET(proc, 0x55c, ROH *);
+    STRUCT_OFFSET(proh, 0x55c, ROC *) = proc;
+    STRUCT_OFFSET(proc, 0x55c, ROH *) = proh;
+
+    if (prohPrev == NULL)
+    {
+        RemoveDlEntry(&STRUCT_OFFSET(prob, 0x368, DL), proc);
+        AppendDlEntry(&STRUCT_OFFSET(prob, 0x35c, DL), proc);
+    }
+
+    if (procPrev != NULL)
+    {
+        RemoveDlEntry(&STRUCT_OFFSET(prob, 0x35c, DL), procPrev);
+        AppendDlEntry(&STRUCT_OFFSET(prob, 0x368, DL), procPrev);
+        STRUCT_OFFSET(procPrev, 0x55c, ROH *) = NULL;
+        FChooseRobRoh(prob, procPrev);
+    }
+
+    if (prohPrev != NULL)
+    {
+        STRUCT_OFFSET(prohPrev, 0x55c, ROC *) = NULL;
+        SetRohRohs(prohPrev, ROHS_Wander);
+        if (FChooseRobRoc(prob, prohPrev))
+            SetRohRohs(prohPrev, ROHS_Collect);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", FChooseRobRoh__FP3ROBP3ROC);
 

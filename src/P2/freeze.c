@@ -18,7 +18,27 @@ INCLUDE_ASM("asm/nonmatchings/P2/freeze", MergeSwFreezeGroups__FP2SWP3ALOT1);
 
 INCLUDE_ASM("asm/nonmatchings/P2/freeze", SplinterSwFreezeGroup__FP2SWP3ALO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/freeze", MergeSwGroup__FP2SWP3MRG);
+void MergeSwGroup(SW *psw, MRG *pmrg)
+{
+    int i = 0;
+    int iFirst;
+
+    while (i < pmrg->cpalo)
+    {
+        if (FIsLoInWorld((LO *)pmrg->apalo[i]))
+            break;
+        i++;
+    }
+
+    iFirst = i;
+    for (; i < pmrg->cpalo; i++)
+    {
+        if (FIsLoInWorld((LO *)pmrg->apalo[i]))
+        {
+            MergeSwFreezeGroups(psw, pmrg->apalo[iFirst]->paloFreezeRoot, pmrg->apalo[i]->paloFreezeRoot);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/freeze", AddSwMergeGroup__FP2SWP3MRG);
 

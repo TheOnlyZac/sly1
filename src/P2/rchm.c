@@ -61,4 +61,25 @@ void TrackJtTarget(JT *pjt, RCHM *prchm, TARGET *ptarget)
     ReblendRchm(prchm, ptwr, &posClosest);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rchm", TrackJtPipe__FP2JTP4RCHMP4PIPEPf);
+void TrackJtPipe(JT *pjt, RCHM *prchm, PIPE *ppipe, float *psPipe)
+{
+    VECTOR posPipeLocal;
+    VECTOR posOnPipe;
+    VECTOR posWorld;
+    VECTOR posLocal;
+    TWR *ptwr;
+    float s;
+
+    ConvertAloPos(NULL, ppipe->paloParent, (VECTOR *)((uint8_t *)pjt + 0x140), &posPipeLocal);
+
+    if (STRUCT_OFFSET(STRUCT_OFFSET(ppipe, 0x34, void *), 0x0, void **)[0xc] != NULL)
+    {
+        (*(void (**)(void *, float, VECTOR *, int, VECTOR *, int, int, float *))
+            (STRUCT_OFFSET(STRUCT_OFFSET(ppipe, 0x34, void **), 0x0, void **) + 0xc))(
+            STRUCT_OFFSET(ppipe, 0x34, void *), *psPipe, &posPipeLocal, 0, &posOnPipe, 0, 0, psPipe);
+    }
+
+    ConvertAloPos(ppipe->paloParent, (ALO *)pjt, &posOnPipe, &posWorld);
+    FindRchmClosestPoint(prchm, &posWorld, &posLocal, &ptwr, &s);
+    ReblendRchm(prchm, ptwr, &posLocal);
+}
