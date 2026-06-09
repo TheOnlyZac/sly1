@@ -72,12 +72,27 @@ Growing `SO`/`ALO`/`LO` to their "true" size shifts every subclass's fields and
 subclasses (e.g. `SetFsp` reading `JT`), not in your file. So when reversing a
 new subclass:
 
-- Keep the base structs as-is. Lay out the whole object inside the subclass via
-  leading `STRUCT_PADDING` from `sizeof(base)` — including fields that
-  semantically belong to the SO base but live past `0x2d0`.
+- Keep the base structs as-is. Lay out only the subclass's **own** fields inside
+  the subclass via leading `STRUCT_PADDING` from `sizeof(base)`.
+- Do **not** redeclare base fields that live past the base's truncated end
+  (e.g. SO fields between `0x2d0` and a subclass's first own field) as members of
+  the subclass. Doing so pins the subclass layout to the *current* `sizeof(base)`
+  in two places, so when the base is later grown to its true size the redeclared
+  fields collide/shift and fail the checksum — and it misrepresents whose fields
+  they are. Reach such base fields via `STRUCT_OFFSET` instead, and delete the
+  redeclaration once it has no compiled users.
 - For a base field accessed through a generic `SO*` (e.g. the `grfso` flag word
-  at `0x538`), cast to the subclass type to reach the offset; note it in a
+  at `0x538`), reach it with `STRUCT_OFFSET(pSo, 0x538, int)` (defined in
+  `include/common.h`) — `STRUCT_OFFSET(ptr, off, type)` dereferences a typed
+  field at a raw byte offset, and `STRUCT_OFFSET_INDEX(ptr, off, type, i)` does
+  the same for an array element (it bakes in the `(i << 2) + off` ordering that
+  matches GCC's codegen). Prefer these over an ad-hoc cast or a redeclared
+  member so the offset access is self-documenting; note the field's meaning in a
   comment.
+- The subclass's leading `STRUCT_PADDING` is itself still calibrated to the
+  current `sizeof(base)` — that dependency is inherent to absolute-offset layout
+  and unavoidable; `STRUCT_OFFSET` only removes the *extra* coupling from
+  redeclaring base fields.
 
 ## GCC 2.95 matching tips
 
