@@ -6,11 +6,13 @@ void InitWater(WATER *pwater)
 {
     InitSo(pwater);
 
-    pwater->grfso |= 0x80000000000;
+    // grfso (0x538), unk_0x360 and unk_0x364 are SO base fields living past the
+    // truncated SO size; reach them via STRUCT_OFFSET (see WATER definition).
+    STRUCT_OFFSET(pwater, 0x538, uint64_t) |= 0x80000000000;
     pwater->unk_0x584 = 1;
-    pwater->unk_0x364 = 1.0f;
+    STRUCT_OFFSET(pwater, 0x364, float) = 1.0f;
     pwater->unk_0x588 = 1;
-    pwater->unk_0x360 = 1.0f;
+    STRUCT_OFFSET(pwater, 0x360, float) = 1.0f;
 
     SetSoConstraints(pwater, CT_Locked, NULL, CT_Locked, NULL);
 
@@ -33,9 +35,9 @@ void UpdateSwXaList(SW *psw, XA **ppxa)
     while (pxa != NULL)
     {
         SO *pso = pxa->pso;
-        // grfso is an SO flag word at 0x538; accessed through WATER until the
-        // base structs are fully reversed (see WATER definition).
-        uint64_t grfso = ((WATER *)pso)->grfso;
+        // grfso is an SO flag word at 0x538, reached via STRUCT_OFFSET until
+        // the base structs are fully reversed (see WATER definition).
+        uint64_t grfso = STRUCT_OFFSET(pso, 0x538, uint64_t);
         XA *pxaNext = pxa->pxaNextTarget;
 
         if (((grfso >> 59) & 1) != ((grfso >> 60) & 1))
@@ -46,7 +48,7 @@ void UpdateSwXaList(SW *psw, XA **ppxa)
                 AddSoXa(pso, pxa);
         }
 
-        if (((WATER *)pxa->pso)->grfso & (1ULL << 60))
+        if (STRUCT_OFFSET(pxa->pso, 0x538, uint64_t) & (1ULL << 60))
         {
             ppxa = &pxa->pxaNextTarget;
         }
@@ -57,10 +59,10 @@ void UpdateSwXaList(SW *psw, XA **ppxa)
             pxaFree = pxa;
         }
 
-        uint64_t grfsoClear = ((WATER *)pxa->pso)->grfso;
+        uint64_t grfsoClear = STRUCT_OFFSET(pxa->pso, 0x538, uint64_t);
         grfsoClear &= ~(1ULL << 60);
         grfsoClear &= ~(1ULL << 59);
-        ((WATER *)pxa->pso)->grfso = grfsoClear;
+        STRUCT_OFFSET(pxa->pso, 0x538, uint64_t) = grfsoClear;
 
         pxa = pxaNext;
     }
