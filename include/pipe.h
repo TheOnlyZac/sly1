@@ -6,6 +6,7 @@
 
 #include "common.h"
 #include <lo.h>
+#include <vec.h>
 
 /**
  * @class PIPE
@@ -16,7 +17,12 @@ struct PIPE : public LO
 {
     /* 0x34 */ undefined4 unk;
     /* 0x38 */ DLE dlePipe;
-    /* 0x40 */ STRUCT_PADDING(9);
+    /* 0x40 */ VU_VECTOR normal; // TODO: Verify name.
+    /* 0x50 */ int unk_0x50;
+    /* 0x54 */ int unk_0x54;
+    /* 0x58 */ int unk_0x58;
+    /* 0x5C */ float unk_0x5c;
+    /* 0x60 */ STRUCT_PADDING(1);
     /* 0x64 */ OID oid; // TODO: Verify name.
     /* 0x68 */ LO *plo; // TODO: Verify type and name.
 };
