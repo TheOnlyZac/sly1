@@ -1,4 +1,5 @@
 #include <splice/frame.h>
+#include <splice/ref.h>
 #include <splice/splotheap.h>
 #include <sce/memset.h>
 
@@ -17,7 +18,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/frame", RefAddBinding__6CFrameUiP4CRef);
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/frame", RefSetBinding__6CFrameUiP4CRef);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/frame", FFindBinding__6CFrameUiiP4CRef);
+int CFrame::FFindBinding(uint symid, int fRecursive, CRef *pref)
+{
+    CRef *prefFound = PrefFindBinding(symid, fRecursive);
+    if (prefFound != NULL)
+    {
+        if (pref != NULL)
+        {
+            *pref = *prefFound;
+        }
+        return 1;
+    }
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/frame", PrefFindBinding__6CFrameUii);
 

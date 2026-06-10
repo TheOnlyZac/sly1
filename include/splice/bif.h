@@ -18,6 +18,9 @@ class CFrame;
 enum BIFK
 {
     // ...
+    BIFK_SetCar = 35,
+    BIFK_SetCdr = 36,
+    // ...
     BIFK_AddO = 99,
     BIFK_EnsureO = 100,
     BIFK_SetO = 101,

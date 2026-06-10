@@ -200,9 +200,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpCdr__FiP4CRefP6CFrame);
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpSetCadr__FiP4CRefP6CFrame4BIFK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpSetCar__FiP4CRefP6CFrame);
+CRef RefOpSetCar(int carg, CRef *aref, CFrame *pframe)
+{
+    return RefOpSetCadr(carg, aref, pframe, BIFK_SetCar);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpSetCdr__FiP4CRefP6CFrame);
+CRef RefOpSetCdr(int carg, CRef *aref, CFrame *pframe)
+{
+    return RefOpSetCadr(carg, aref, pframe, BIFK_SetCdr);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpLength__FiP4CRefP6CFrame);
 

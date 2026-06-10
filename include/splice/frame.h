@@ -21,8 +21,8 @@ public:
     void AddParent(CFrame *pframeParent);
     CFrame *RefAddBinding(int symid, CRef * pref);
     CFrame *RefSetBinding(int symid, CRef *pref);
-    int FFindBinding(int symid, int fRecursive, CRef *pref);
-    CRef *PrefFindBinding(int symid, int fRecursive);
+    int FFindBinding(uint symid, int fRecursive, CRef *pref);
+    CRef *PrefFindBinding(uint symid, int fRecursive);
     void CloneTo(CFrame *pframeClone);
 };
 
