@@ -235,7 +235,25 @@ CRef RefOpSetCdr(int carg, CRef *aref, CFrame *pframe)
     return RefOpSetCadr(carg, aref, pframe, BIFK_SetCdr);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpLength__FiP4CRefP6CFrame);
+CRef RefOpLength(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    int c = 0;
+    if (aref->m_tagk == TAGK_Pair)
+    {
+        CPair *ppair = aref->m_tag.m_ppair;
+        if (ppair != NULL)
+        {
+            do
+            {
+                ppair = STRUCT_OFFSET(ppair, 0x8, CPair *); // m_ppairNext
+                c = c + 1;
+            } while (ppair != NULL);
+        }
+    }
+    ref.SetS32(c);
+    return ref;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpNth__FiP4CRefP6CFrame);
 
@@ -510,7 +528,18 @@ CRef RefOpCurrentTime(int carg, CRef *aref, CFrame *pframe)
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpScheduleCallback__FiP4CRefP6CFrame);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpDeferObjectUpdate__FiP4CRefP6CFrame);
+CRef RefOpDeferObjectUpdate(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    BASIC *pbasic = aref->m_tag.m_pbasic;
+    float g;
+    {
+        CRef refCoerced = aref[1].RefCoerceF32();
+        g = refCoerced.m_tag.m_g;
+    }
+    STRUCT_OFFSET(pbasic, 0x29C, float) = g;
+    return ref;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpObjectOption__FiP4CRefP6CFrame4BIFK);
 
@@ -584,9 +613,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpFindObjectsInBoundingSphere__
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpHitTestObjectsImpl__F4BIFKiP4CRefP6CFrame);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpHitTestObjects__FiP4CRefP6CFrame);
+CRef RefOpHitTestObjects(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    ref = RefOpHitTestObjectsImpl(BIFK_HitTestObjects, carg, aref, pframe);
+    return ref;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpHitTestObjectsFirst__FiP4CRefP6CFrame);
+CRef RefOpHitTestObjectsFirst(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    ref = RefOpHitTestObjectsImpl(BIFK_HitTestObjectsFirst, carg, aref, pframe);
+    return ref;
+}
 
 CRef RefOpConvertObjectPosition(int carg, CRef *aref, CFrame *pframe)
 {

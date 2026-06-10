@@ -21,6 +21,9 @@ enum BIFK
     BIFK_SetCar = 35,
     BIFK_SetCdr = 36,
     // ...
+    BIFK_HitTestObjects = 113,
+    BIFK_HitTestObjectsFirst = 114,
+    // ...
     BIFK_AddO = 99,
     BIFK_EnsureO = 100,
     BIFK_SetO = 101,
