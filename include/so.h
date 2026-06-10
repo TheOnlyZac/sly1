@@ -25,7 +25,14 @@ struct RO;
 struct WKR;
 struct ZPR;
 struct WATER;
-struct CNSTR;
+/**
+ * @brief Constraint kind, an index into the s_acnstre table (see
+ * ConstrFromCnstr); each entry resolves to a CT and a normal vector.
+ */
+enum CNSTR
+{
+    // ...
+};
 struct CONSTR;
 
 typedef int GRFFSO;

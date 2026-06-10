@@ -1,12 +1,99 @@
 #include <so.h>
+#include <bbmark.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", InitSo__FP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", OnSoAdd__FP2SO);
+void OnSoAdd(SO *pso)
+{
+    SW *psw = pso->psw;
+    void (*pfn)(SO *);
 
+    psw->cpsoAll = psw->cpsoAll + 1;
+    if (pso->paloParent == NULL)
+    {
+        AddSwAaobrObject(psw, pso);
+        STRUCT_OFFSET(pso, 0x480, OXA *) = PoxaAllocSw(psw, pso);
+        RecalcSwOxfFilterForObject(psw, pso);
+        psw->cpsoRoot = psw->cpsoRoot + 1;
+        AppendDlEntry(&psw->dlRoot, pso);
+    }
+    OnAloAdd(pso);
+    EnableSoPhys(pso, 1);
+    pfn = (void (*)(SO *))STRUCT_OFFSET(STRUCT_OFFSET(pso, 0x0, void *), 0x120, void *);
+    pfn(pso);
+    if ((STRUCT_OFFSET(pso, 0x538, uint64_t) & ((uint64_t)0x8000 << 39)) == 0) // locked, bit 54
+    {
+        RecalcSoLocked(STRUCT_OFFSET(pso, 0x50, SO *));
+    }
+    else
+    {
+        RecalcSoLocked(pso);
+    }
+    RebuildSoPhysHook(pso);
+}
+
+// NOTE: This body per-symbol matches (match.sh), but enabling it trips an
+// asm-emission bug in the build: the still-INCLUDE_ASM TranslateSoToPosSafe
+// gets emitted 0x14 bytes too large (zero-filled words after its vadd.xyzw),
+// shifting the unit and failing the checksum. Keep it wrapped until the
+// surrounding functions are decompiled or the tooling quirk is fixed.
 INCLUDE_ASM("asm/nonmatchings/P2/so", OnSoRemove__FP2SO);
+#ifdef SKIP_ASM
+void OnSoRemove(SO *pso)
+{
+    SW *psw = pso->psw;
+    SO *psoRoot = STRUCT_OFFSET(pso, 0x50, SO *);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", EnableSoPhys__FP2SOi);
+    EnableSoPhys(pso, 0);
+    OnAloRemove(pso);
+    psw->cpsoAll = psw->cpsoAll - 1;
+    if (pso->paloParent == NULL)
+    {
+        RemoveSwAaobrObject(psw, pso);
+        FreeSwPoxa(psw, STRUCT_OFFSET(pso, 0x480, OXA *));
+        psw->cpsoRoot = psw->cpsoRoot - 1;
+        RemoveDlEntry(&psw->dlRoot, pso);
+    }
+    FreeSwStsoList(psw, STRUCT_OFFSET(pso, 0x540, STSO *));
+    STRUCT_OFFSET(pso, 0x540, STSO *) = NULL; // pstsoFirst
+    if ((STRUCT_OFFSET(pso, 0x538, uint64_t) & ((uint64_t)0x8000 << 39)) == 0) // locked, bit 54
+    {
+        if (psoRoot != pso)
+        {
+            RecalcSoLocked(psoRoot);
+        }
+    }
+}
+#endif
+
+void EnableSoPhys(SO *pso, int fPhys)
+{
+    uint64_t grfso;
+    SO *psoRoot;
+    void (*pfn)(SO *);
+
+    if (fPhys == ((STRUCT_OFFSET(pso, 0x538, uint64_t) >> 50) & 1))
+    {
+        return;
+    }
+    if (fPhys)
+    {
+        // append to the hierarchy root's dlPhys (root SO* at 0x50, DL at 0x2D8)
+        AppendDlEntry(&STRUCT_OFFSET(STRUCT_OFFSET(pso, 0x50, SO *), 0x2D8, DL), pso);
+    }
+    else
+    {
+        RemoveDlEntry(&STRUCT_OFFSET(STRUCT_OFFSET(pso, 0x50, SO *), 0x2D8, DL), pso);
+    }
+    grfso = STRUCT_OFFSET(pso, 0x538, uint64_t);
+    grfso &= ~((uint64_t)1 << 50); // fPhys, grfso bit 50
+    grfso |= (uint64_t)(fPhys & 1) << 50;
+    STRUCT_OFFSET(pso, 0x538, uint64_t) = grfso;
+    InvalidateSwXpForObject(pso->psw, pso, 7);
+    psoRoot = STRUCT_OFFSET(pso, 0x50, SO *);
+    pfn = (void (*)(SO *))STRUCT_OFFSET(STRUCT_OFFSET(psoRoot, 0x0, void *), 0xD8, void *);
+    pfn(psoRoot);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", DisplaceSo__FP2SOi);
 
@@ -122,7 +209,45 @@ void SetSoConstraints(SO *pso, CT ctForce, VECTOR *pnormalForce, CT ctTorque, VE
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoParent__FP2SOP3ALO);
+void SetSoParent(SO *pso, ALO *paloParent)
+{
+    VECTOR vecForce;
+    VECTOR vecTorque;
+    SO *psoRootOld;
+    SO *psoRoot;
+
+    if (pso->paloParent == paloParent)
+    {
+        return;
+    }
+    psoRootOld = STRUCT_OFFSET(pso, 0x50, SO *);
+    // carry the constraint normals (world space) across the reparent
+    ConvertAloVec(pso->paloParent, NULL, (VECTOR *)&STRUCT_OFFSET(pso, 0x440, VU_VECTOR), &vecForce);
+    ConvertAloVec(pso->paloParent, NULL, (VECTOR *)&STRUCT_OFFSET(pso, 0x460, VU_VECTOR), &vecTorque);
+    SetAloParent(pso, paloParent);
+    ConvertAloVec(NULL, paloParent, &vecForce, (VECTOR *)&STRUCT_OFFSET(pso, 0x440, VU_VECTOR));
+    ConvertAloVec(NULL, paloParent, &vecTorque, (VECTOR *)&STRUCT_OFFSET(pso, 0x460, VU_VECTOR));
+    if (STRUCT_OFFSET(pso, 0x50, SO *) != NULL)
+    {
+        if (STRUCT_OFFSET(pso, 0x538, uint64_t) & ((uint64_t)0x8000 << 39)) // locked, bit 54
+        {
+            if (psoRootOld != NULL)
+            {
+                RecalcSoLocked(psoRootOld);
+            }
+        }
+        psoRoot = STRUCT_OFFSET(pso, 0x50, SO *);
+        if (STRUCT_OFFSET(psoRoot, 0x538, uint64_t) & ((uint64_t)0x8000 << 40)) // hierarchy locked, bit 55
+        {
+            RecalcSoLocked(psoRoot);
+        }
+        else
+        {
+            RecalcSoLocked(pso);
+        }
+    }
+    RebuildSoPhysHook(pso);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", ApplySoProxy__FP2SOP5PROXY);
 
@@ -211,7 +336,18 @@ void SetSoNoInteract(SO *pso, int fNoInteract)
     SetSoConstraints(pso, CT_Locked, NULL, CT_Locked, NULL);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", ConstrFromCnstr__F5CNSTRP2CTP6VECTOR);
+struct CNSTRE
+{
+    VECTOR *pnormal;
+    CT ct;
+};
+extern CNSTRE D_002746E0[]; // s_acnstre: CNSTR -> (ct, normal) table
+
+void ConstrFromCnstr(CNSTR cnstr, CT *pct, VECTOR *pnormal)
+{
+    *pct = D_002746E0[cnstr].ct;
+    *(qword *)pnormal = *(qword *)D_002746E0[cnstr].pnormal;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoCnstrForce__FP2SO5CNSTR);
 
@@ -319,7 +455,41 @@ void SetSoNoXpsCenter(SO *pso, int fNoXps)
     DiscardSoXps__FP2SO(pso, fNoXps ? 3 : 0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", RebuildSoPhysHook__FP2SO);
+void RebuildSoPhysHook(SO *pso)
+{
+    SO *psoChild;
+    VECTOR vecUnused; // dead local; needed for the original's 0x30 frame
+    void *pvt = STRUCT_OFFSET(pso, 0x0, void *);
+
+    // The object is its own phys hook if it overrides any of the phys
+    // handler virtuals (vtable slots 0x114 / 0x100 / 0x104 / 0x108).
+    if (STRUCT_OFFSET(pvt, 0x114, void *) != NULL || STRUCT_OFFSET(pvt, 0x100, void *) != NULL ||
+        STRUCT_OFFSET(pvt, 0x104, void *) != NULL || STRUCT_OFFSET(pvt, 0x108, void *) != NULL)
+    {
+        STRUCT_OFFSET(pso, 0x4E4, SO *) = pso; // psoPhysHook
+    }
+    else
+    {
+        ALO *paloParent = STRUCT_OFFSET(pso, 0x18, ALO *);
+        if (paloParent != NULL)
+        {
+            STRUCT_OFFSET(pso, 0x4E4, SO *) = STRUCT_OFFSET(paloParent, 0x4E4, SO *);
+        }
+        else
+        {
+            STRUCT_OFFSET(pso, 0x4E4, SO *) = NULL;
+        }
+    }
+    for (psoChild = STRUCT_OFFSET(pso, 0x34, SO *); psoChild != NULL;
+         psoChild = STRUCT_OFFSET(psoChild, 0x1C, SO *))
+    {
+        // class-flags word at vtable +0x8, bit 1 = derives from SO
+        if (STRUCT_OFFSET(STRUCT_OFFSET(psoChild, 0x0, void *), 0x8, int) & 2)
+        {
+            RebuildSoPhysHook(psoChild);
+        }
+    }
+}
 
 SO *PsoFindSoPhysHook(SO *psoLeaf, int ib)
 {
