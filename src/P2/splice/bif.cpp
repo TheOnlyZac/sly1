@@ -1,4 +1,6 @@
 #include <splice/bif.h>
+#include <splice/pair.h>
+#include <clock.h>
 #include <splice/ref.h>
 #include <splice/frame.h>
 #include <po.h>
@@ -194,9 +196,27 @@ CRef RefOpNot(int carg, CRef *aref, CFrame *pframe)
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpCons__FiP4CRefP6CFrame);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpCar__FiP4CRefP6CFrame);
+CRef RefOpCar(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    ref = aref->m_tag.m_ppair->m_ref;
+    return ref;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpCdr__FiP4CRefP6CFrame);
+CRef RefOpCdr(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    CPair *ppairNext = STRUCT_OFFSET(aref->m_tag.m_ppair, 0x8, CPair *); // m_ppairNext (private)
+    if (ppairNext != NULL)
+    {
+        ref.SetPair(ppairNext);
+    }
+    else
+    {
+        ref.SetTag(TAGK_None);
+    }
+    return ref;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpSetCadr__FiP4CRefP6CFrame4BIFK);
 
@@ -359,7 +379,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpMinimum__FiP4CRefP6CFrame);
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpModulo__FiP4CRefP6CFrame);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpCurrentTime__FiP4CRefP6CFrame);
+CRef RefOpCurrentTime(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    ref.SetF32(g_clock.t);
+    return ref;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpScheduleCallback__FiP4CRefP6CFrame);
 
