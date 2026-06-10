@@ -1,6 +1,7 @@
 #include <splice/bif.h>
 #include <splice/pair.h>
 #include <clock.h>
+#include <sound.h>
 #include <splice/ref.h>
 #include <splice/frame.h>
 #include <po.h>
@@ -255,7 +256,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpVector__FiP4CRefP6CFrame);
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpMatrix__FiP4CRefP6CFrame);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpSetMusicRegister__FiP4CRefP6CFrame);
+CRef RefOpSetMusicRegister(int carg, CRef *aref, CFrame *pframe)
+{
+    SetAMRegister__FiUc(aref[0].m_tag.m_n, aref[1].m_tag.m_n);
+    CRef ref;
+    ref.SetTag(TAGK_Void);
+    return ref;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpClq__FiP4CRefP6CFrame);
 
@@ -363,13 +370,33 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpLmLimit__FiP4CRefP6CFrame);
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpLmCheck__FiP4CRefP6CFrame);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpFloor__FiP4CRefP6CFrame);
+CRef RefOpFloor(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    ref.SetS32((int)aref->m_tag.m_g);
+    return ref;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpCeiling__FiP4CRefP6CFrame);
+CRef RefOpCeiling(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    ref.SetS32((int)(aref->m_tag.m_g + 1.0f));
+    return ref;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpRound__FiP4CRefP6CFrame);
+CRef RefOpRound(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    ref.SetS32((int)(aref->m_tag.m_g + 0.5f));
+    return ref;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpTruncate__FiP4CRefP6CFrame);
+CRef RefOpTruncate(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    ref.SetS32((int)aref->m_tag.m_g);
+    return ref;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpAbs__FiP4CRefP6CFrame);
 
@@ -377,7 +404,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpMaximum__FiP4CRefP6CFrame);
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpMinimum__FiP4CRefP6CFrame);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpModulo__FiP4CRefP6CFrame);
+CRef RefOpModulo(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    ref.SetS32(aref[0].m_tag.m_n % aref[1].m_tag.m_n);
+    return ref;
+}
 
 CRef RefOpCurrentTime(int carg, CRef *aref, CFrame *pframe)
 {
@@ -465,7 +497,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpNearClipCenter__FiP4CRefP6CFr
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpStartSound__FiP4CRefP6CFrame);
 
+// NOTE: matches per-symbol, but unwrapping it trips the asm-emission bug on
+// the still-asm RefOpPredictAnimationEffect that follows (+0x14 of phantom
+// bytes -> checksum fail), same as so.c OnSoRemove. Keep wrapped until the
+// neighbor is decompiled.
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpStopSound__FiP4CRefP6CFrame);
+#ifdef SKIP_ASM
+CRef RefOpStopSound(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    StopSound((AMB *)aref->m_tag.m_pbasic, 0);
+    ref.m_tagk = TAGK_Void;
+    return ref;
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpStartRumble__FiP4CRefP6CFrame);
 

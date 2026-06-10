@@ -253,6 +253,26 @@ void CRef::SetMethod(CMethod *pmethod)
     m_tagk = TAGK_Method;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/ref", RefCoerceS32__4CRef);
+CRef CRef::RefCoerceS32()
+{
+    if (m_tagk == TAGK_S32)
+    {
+        return *this;
+    }
+    CRef ref;
+    ref.SetS32((int)m_tag.m_g);
+    return ref;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/ref", RefCoerceF32__4CRef);
+CRef CRef::RefCoerceF32()
+{
+    if (m_tagk == TAGK_F32)
+    {
+        return *this;
+    }
+    CRef ref;
+    ref.SetF32((float)m_tag.m_n);
+    return ref;
+}
+
+JUNK_NOP();

@@ -256,6 +256,11 @@ void StartSound(SFXID sfxid, AMB **ppamb, ALO *palo, VECTOR *ppos, float sStart,
  */
 void StopSound(AMB *pamb, int msRampdown);
 
+// The symbol's GCC2 mangling says (int, unsigned char), but the ROM call
+// sites pass the second argument as a plain word with no narrowing, so the
+// in-game declaration must have taken ints; bind by literal symbol name.
+extern "C" void SetAMRegister__FiUc(int n, int bReg);
+
 /**
  * @brief TODO
  */
