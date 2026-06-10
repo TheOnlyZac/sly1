@@ -149,7 +149,10 @@ void SetSoMass(SO *pso, float m);
 
 void AdjustSoMomint(SO *pso, float r);
 
-void DiscardSoXps(SO *pso);
+// The asm symbol has truncated GCC2 mangling (one declared param) but the
+// function takes a discard mode in $a1 (0 = clear cache only, 1 = if-child,
+// 2 = if-self, 3 = if-self strict); declare with the literal mangled name.
+extern "C" void DiscardSoXps__FP2SO(SO *pso, int mode);
 
 void UpdateSoPosWorldPrev(SO *pso);
 
