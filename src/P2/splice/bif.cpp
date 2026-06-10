@@ -2,6 +2,8 @@
 #include <splice/pair.h>
 #include <clock.h>
 #include <sound.h>
+#include <splice/vecmat.h>
+#include <find.h>
 #include <splice/ref.h>
 #include <splice/frame.h>
 #include <po.h>
@@ -340,15 +342,43 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpVectorBallisticVelocity__FiP4
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpVectorRadianNormal__FiP4CRefP6CFrame);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpMatrixTranspose__FiP4CRefP6CFrame);
+CRef RefOpMatrixTranspose(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    MATRIX4 *pmatrix = PmatrixNew();
+    TransposeMatrix4(aref->m_tag.m_pmatrix, pmatrix);
+    ref.SetMatrix(pmatrix);
+    return ref;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpMatrixInvert__FiP4CRefP6CFrame);
+CRef RefOpMatrixInvert(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    MATRIX4 *pmatrix = PmatrixNew();
+    FInvertMatrix4(aref->m_tag.m_pmatrix, pmatrix);
+    ref.SetMatrix(pmatrix);
+    return ref;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpMatrixCalculateDmat__FiP4CRefP6CFrame);
+CRef RefOpMatrixCalculateDmat(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    MATRIX4 *pmatrix = PmatrixNew();
+    CalculateDmat4(aref[0].m_tag.m_pmatrix, aref[1].m_tag.m_pmatrix, pmatrix);
+    ref.SetMatrix(pmatrix);
+    return ref;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpMatrixInterpolateRotate__FiP4CRefP6CFrame);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpMatrixDecomposeToTranslate__FiP4CRefP6CFrame);
+CRef RefOpMatrixDecomposeToTranslate(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    VECTOR *pvector = PvectorNew();
+    *(qword *)pvector = STRUCT_OFFSET(aref->m_tag.m_pmatrix, 0x30, qword); // matrix.pos row
+    ref.SetVector(pvector);
+    return ref;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpMatrixDecomposeToRotate__FiP4CRefP6CFrame);
 
@@ -446,11 +476,22 @@ CRef RefOpGetO(int carg, CRef *aref, CFrame *pframe)
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefPairFromAplo__FiPP2LO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpFindObject__FiP4CRefP6CFrame);
+CRef RefOpFindObject(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    LO *plo = (LO *)aref[1].m_tag.m_pbasic;
+    ref.SetBasic((BASIC *)PloFindSwObject(g_psw, plo ? 0x101 : 0x105, (OID)aref[0].m_tag.m_n, plo));
+    return ref;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpFindObjects__FiP4CRefP6CFrame);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpFindNearestObject__FiP4CRefP6CFrame);
+CRef RefOpFindNearestObject(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    ref.SetBasic((BASIC *)PloFindSwObject(g_psw, 0x104, (OID)aref[0].m_tag.m_n, (LO *)aref[1].m_tag.m_pbasic));
+    return ref;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpFindNearestObjects__FiP4CRefP6CFrame);
 

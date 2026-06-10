@@ -1,6 +1,14 @@
 #include <splice/eval.h>
+#include <splice/ref.h>
+#include <splice/pair.h>
+#include <splice/frame.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/eval", RefEvalSymbol__FP5CPairP6CFrame);
+CRef RefEvalSymbol(CPair *ppair, CFrame *pframe)
+{
+    CRef ref;
+    pframe->FFindBinding(ppair->m_ref.m_tag.m_symid, 1, &ref);
+    return ref;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/eval", RefEvalSet__FP5CPairP6CFrame);
 

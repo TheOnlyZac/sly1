@@ -2,6 +2,7 @@
 #include <splice/ref.h>
 #include <splice/splotheap.h>
 #include <sce/memset.h>
+#include <memory.h>
 
 void CFrame::SetSingleParent(CFrame *pframeParent)
 {
@@ -34,7 +35,18 @@ int CFrame::FFindBinding(uint symid, int fRecursive, CRef *pref)
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/frame", PrefFindBinding__6CFrameUii);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/frame", CloneTo__6CFrameP6CFrame);
+void CFrame::CloneTo(CFrame *pframeClone)
+{
+    pframeClone->m_cpframeParent = m_cpframeParent;
+    CopyAb(pframeClone->m_apframeParent, m_apframeParent, m_cpframeParent * 4);
+    // binding-node list head at +0x14 (same node type as CSidebag)
+    if (STRUCT_OFFSET(this, 0x14, void *) != NULL)
+    {
+        void *psbb = FUN_0011C498();
+        FUN_0011C418(STRUCT_OFFSET(this, 0x14, void *), psbb, pframeClone);
+        STRUCT_OFFSET(pframeClone, 0x14, void *) = psbb;
+    }
+}
 
 CFrame *PframeNew()
 {

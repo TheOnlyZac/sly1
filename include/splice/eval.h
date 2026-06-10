@@ -6,6 +6,13 @@
 
 #include "common.h"
 
+// Forward.
+class CRef;
+class CPair;
+class CFrame;
+
+CRef RefEvalSymbol(CPair *ppair, CFrame *pframe);
+
 // ...
 
 #endif // SPLICE_EVAL_H
