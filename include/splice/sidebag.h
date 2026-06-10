@@ -30,9 +30,9 @@ private:
     SBB m_asbb[16];
 
 public:
-    CSidebag& RefAddBinding(int n, CRef *pref);
+    CRef RefAddBinding(int n, CRef *pref);
 
-    CSidebag& RefSetBinding(int n, CRef *pref);
+    CRef RefSetBinding(int n, CRef *pref);
 
     bool FFindBinding(int n, CRef *pref);
 

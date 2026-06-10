@@ -15,9 +15,29 @@ void CFrame::AddParent(CFrame *pframeParent)
     m_apframeParent[m_cpframeParent++] = pframeParent;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/frame", RefAddBinding__6CFrameUiP4CRef);
+CRef CFrame::RefAddBinding(uint symid, CRef *pref)
+{
+    CRef ref;
+    void *psbb = FUN_0011C498();
+    STRUCT_OFFSET(psbb, 0x0, uint) = symid;
+    STRUCT_OFFSET(psbb, 0x4, CRef) = *pref;
+    STRUCT_OFFSET(psbb, 0xC, void *) = STRUCT_OFFSET(this, 0x14, void *);
+    STRUCT_OFFSET(this, 0x14, void *) = psbb;
+    ref.SetTag(TAGK_Void);
+    return ref;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/frame", RefSetBinding__6CFrameUiP4CRef);
+CRef CFrame::RefSetBinding(uint symid, CRef *pref)
+{
+    CRef ref;
+    CRef *prefFound = PrefFindBinding(symid, 1);
+    if (prefFound != NULL)
+    {
+        *prefFound = *pref;
+    }
+    ref.SetTag(TAGK_Void);
+    return ref;
+}
 
 int CFrame::FFindBinding(uint symid, int fRecursive, CRef *pref)
 {

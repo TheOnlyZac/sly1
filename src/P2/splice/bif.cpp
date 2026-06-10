@@ -4,6 +4,8 @@
 #include <sound.h>
 #include <splice/vecmat.h>
 #include <find.h>
+#include <sce/rand.h>
+#include <alo.h>
 #include <splice/ref.h>
 #include <splice/frame.h>
 #include <po.h>
@@ -274,9 +276,44 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpSmp__FiP4CRefP6CFrame);
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpGetElement__FiP4CRefP6CFrame);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpRandomSeed__FiP4CRefP6CFrame);
+CRef RefOpRandomSeed(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    if (aref->m_tagk == TAGK_S32)
+    {
+        srand(aref->m_tag.m_n);
+    }
+    else
+    {
+        srand((int)aref->m_tag.m_g);
+    }
+    ref.m_tagk = TAGK_Void;
+    return ref;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpRandom__FiP4CRefP6CFrame);
+CRef RefOpRandom(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    float g0, g1;
+    if (aref[0].m_tagk == TAGK_S32)
+    {
+        g0 = (float)aref[0].m_tag.m_n;
+    }
+    else
+    {
+        g0 = aref[0].m_tag.m_g;
+    }
+    if (aref[1].m_tagk == TAGK_S32)
+    {
+        g1 = (float)aref[1].m_tag.m_n;
+    }
+    else
+    {
+        g1 = aref[1].m_tag.m_g;
+    }
+    ref.SetF32(GRandInRange(g0, g1));
+    return ref;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefUfo__FP4CRef4UFOK);
 
@@ -428,7 +465,30 @@ CRef RefOpTruncate(int carg, CRef *aref, CFrame *pframe)
     return ref;
 }
 
+// NOTE: matches per-symbol, but unwrapping it inflates the still-asm
+// RefOpPredictAnimationEffect emission (same tooling bug as RefOpStopSound)
+// and fails the checksum. Keep wrapped for now.
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpAbs__FiP4CRefP6CFrame);
+#ifdef SKIP_ASM
+CRef RefOpAbs(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    if (aref->m_tagk == TAGK_S32)
+    {
+        ref.SetS32(__builtin_abs(aref->m_tag.m_n));
+    }
+    else
+    {
+        float g = aref->m_tag.m_g;
+        if (g < 0.0f)
+        {
+            g = -g;
+        }
+        ref.SetF32(g);
+    }
+    return ref;
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpMaximum__FiP4CRefP6CFrame);
 
@@ -528,9 +588,23 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpHitTestObjects__FiP4CRefP6CFr
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpHitTestObjectsFirst__FiP4CRefP6CFrame);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpConvertObjectPosition__FiP4CRefP6CFrame);
+CRef RefOpConvertObjectPosition(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    VECTOR *pvector = PvectorNew();
+    ConvertAloPos((ALO *)aref[0].m_tag.m_pbasic, (ALO *)aref[1].m_tag.m_pbasic, aref[2].m_tag.m_pvector, pvector);
+    ref.SetVector(pvector);
+    return ref;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpConvertObjectVector__FiP4CRefP6CFrame);
+CRef RefOpConvertObjectVector(int carg, CRef *aref, CFrame *pframe)
+{
+    CRef ref;
+    VECTOR *pvector = PvectorNew();
+    ConvertAloVec((ALO *)aref[0].m_tag.m_pbasic, (ALO *)aref[1].m_tag.m_pbasic, aref[2].m_tag.m_pvector, pvector);
+    ref.SetVector(pvector);
+    return ref;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpConvertObjectMatrix__FiP4CRefP6CFrame);
 
