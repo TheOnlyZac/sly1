@@ -546,4 +546,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", FUN_001bc670);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", FUN_001bc710);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", FUN_001bc748);
+extern "C" void FUN_001bc748(SO *pso, int *pn)
+{
+    *pn = (int)(STRUCT_OFFSET(pso, 0x538, uint64_t) >> 52) & 1; // grfso bit 52 (qword view)
+}

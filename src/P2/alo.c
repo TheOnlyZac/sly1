@@ -6,6 +6,7 @@
 #include <shadow.h>
 #include <shd.h>
 #include <target.h>
+#include <lookat.h>
 
 extern VTACT g_vtactseg;
 extern SHADOW s_shadow;
@@ -388,9 +389,17 @@ void SetAloDefaultAckRot(ALO *palo, ACK ack)
     STRUCT_OFFSET(palo, 0x2ca, char) = ack;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRestorePosition__FP3ALOi);
+void SetAloRestorePosition(ALO *palo, int fRestore)
+{
+    SetAloRestorePositionAck(palo, fRestore ? ACK_Spring : ACK_Nil);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a3c8);
+extern "C" void FUN_0012a3e8(ALO *palo, int unk);
+
+extern "C" void FUN_0012a3c8(ALO *palo, int unk)
+{
+    FUN_0012a3e8(palo, unk != 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a3e8);
 
@@ -401,7 +410,10 @@ extern "C" void FUN_0012a418(ALO *palo, int *pn)
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRestorePositionAck__FP3ALO3ACK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRestoreRotation__FP3ALOi);
+void SetAloRestoreRotation(ALO *palo, int fRestore)
+{
+    SetAloRestoreRotationAck(palo, fRestore ? ACK_Spring : ACK_Nil);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRestoreRotationAck__FP3ALO3ACK);
 
@@ -512,9 +524,22 @@ void GetAloLookAtDisabledPriority(ALO *palo, int *pnPriority)
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a810);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a848);
+void FUN_0012a848(ALO *palo, int *pn)
+{
+    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    int n = -1;
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a860);
+    if (pactla)
+        n = STRUCT_OFFSET(pactla, 0x20, int);
+
+    *pn = n;
+}
+
+extern "C" void FUN_0012a860(ALO *palo, ALO *paloTarget)
+{
+    extern VECTOR D_00248D30;
+    SetActlaTarget(STRUCT_OFFSET(palo, 0x200, ACTLA *), paloTarget, &D_00248D30);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a888);
 

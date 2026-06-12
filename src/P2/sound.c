@@ -28,13 +28,27 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", NewSfx__FPP3SFX);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FContinuousSound__F5SFXID);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BE5D8);
+extern int D_00274730;
+extern "C" void FUN_001BE5D8(void)
+{
+    D_00274730 = 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SetVagUnpaused__Fv);
+extern u_int D_00274744;
+int SetVagUnpaused()
+{
+    return D_00274744;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadVag__FPc2FK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001be708);
+extern u_int D_00274744;
+void StopVag();
+extern "C" void FUN_001be708(void)
+{
+    D_00274744 = 0;
+    StopVag();
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadVag1);
 
@@ -54,9 +68,25 @@ JUNK_WORD(0x0080102D);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StopVag__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PauseVag__Fv);
+extern u_int D_0027472C;
+void PauseVag()
+{
+    u_int handle = D_0027472C;
+    if (handle != 0)
+    {
+        snd_PauseSound(handle);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", ContinueVag__Fv);
+extern u_int D_0027472C;
+void ContinueVag()
+{
+    u_int handle = D_0027472C;
+    if (handle != 0)
+    {
+        snd_ContinueSound(handle);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", KillMusic__Fv);
 
@@ -76,9 +106,17 @@ void ContinueMusic()
     SetMvgkRvol(2, MVGK_Music, 1.0f);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SfxhMusicUnknown1);
+extern u_int D_00274728;
+extern "C" void SfxhMusicUnknown1()
+{
+    snd_PauseSound(D_00274728);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SfxhMusicUnknown2);
+extern u_int D_00274728;
+extern "C" void SfxhMusicUnknown2()
+{
+    snd_ContinueSound(D_00274728);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PexcAlloc__Fv);
 
@@ -202,7 +240,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", MvgkUnknown2__Fv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", MvgkUnknown3);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", MvgkUnknown4);
+extern "C" void MvgkUnknown4(int mode)
+{
+    snd_SetPlaybackMode(mode != 0);
+}
 
 /**
  * @todo Figure out func_001c0cb0, and use enum values for params where applicable.

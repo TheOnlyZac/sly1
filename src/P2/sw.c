@@ -369,7 +369,10 @@ void FUN_001ddc18(SW *psw, EXC *pexc)
     UnsetExcitementHyst(pexc);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc38);
+void FUN_001ddc38(void *pv, void *pvBlot)
+{
+    STRUCT_OFFSET(pv, 0x2324, void *) = pvBlot;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc40);
 
@@ -378,8 +381,17 @@ void FUN_001ddc78(void *pv, int n)
     STRUCT_OFFSET(pv, 0x235C, int) |= (1 << n);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc90);
+void FUN_001ddc90(void *pv, int n)
+{
+    STRUCT_OFFSET(pv, 0x235C, int) &= ~(1 << n);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddcb0);
+void FUN_001ddcb0(void *pv, int *pccharm)
+{
+    *pccharm = g_pgsCur->ccharm;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddcc8);
+void FUN_001ddcc8(void *pv, int *pclife)
+{
+    *pclife = g_pgsCur->clife;
+}
