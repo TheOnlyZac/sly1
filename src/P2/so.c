@@ -109,7 +109,23 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", UpdateGeomWorld__FP4GEOMT0G9VU_VECTORP7MAT
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", UpdateSoXfWorldHierarchy__FP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", UpdateSoXfWorld__FP2SO);
+// alo.h declares the literal identifier `UpdateAloXfWorld__FP3ALO`, which both
+// double-mangles if called and poisons the plain name `UpdateAloXfWorld` for
+// GCC 2.95; bind a local alias to the real mangled symbol instead.
+extern void _UpdateAloXfWorld(ALO *palo) __asm__("UpdateAloXfWorld__FP3ALO");
+
+void UpdateSoXfWorld(SO *pso)
+{
+    SO *psoRoot;
+    void (*pfn)(SO *);
+
+    _UpdateAloXfWorld(pso);
+    psoRoot = STRUCT_OFFSET(pso, 0x50, SO *); // paloRoot
+    pfn = (void (*)(SO *))STRUCT_OFFSET(STRUCT_OFFSET(psoRoot, 0x0, void *), 0xD8, void *);
+    pfn(psoRoot);
+    InvalidateSwXpForObject(pso->psw, pso, 7);
+    InvalidateSwAaox(pso->psw);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", FIgnoreSoIntersection__FP2SOT0);
 
@@ -547,7 +563,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", ApplySoImpulse__FP2SOP6VECTORT1f);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", CalculateSoTrajectoryApex__FP2SOP6VECTORfT1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", FAbsorbSoWkr__FP2SOP3WKR);
+int FAbsorbSoWkr(SO *pso, WKR *pwkr)
+{
+    if (pwkr->grfic & 0x8)
+    {
+        ApplySoImpulse(pso, &STRUCT_OFFSET(pwkr, 0x20, VECTOR), &STRUCT_OFFSET(pwkr, 0x30, VECTOR), pwkr->sftMax);
+    }
+    return pwkr->grfic != 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", CloneSoPhys__FP2SOT0i);
 

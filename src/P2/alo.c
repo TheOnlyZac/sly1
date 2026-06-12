@@ -388,9 +388,29 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloEuler__FP3ALOP6VECTOR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloEuler__FP3ALOP6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", EnsureAloActRestore__FP3ALO);
+extern VTACT D_00219560;
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", EnsureAloActla__FP3ALO);
+void EnsureAloActRestore(ALO *palo)
+{
+    if (STRUCT_OFFSET(palo, 0x1fc, ACT *) == NULL) // palo->pactRestore
+    {
+        ACT *pact = PactNew(palo->psw, palo, &D_00219560);
+        STRUCT_OFFSET(palo, 0x1fc, ACT *) = pact;
+        InsertAloAct(palo, pact);
+    }
+}
+
+extern VTACT D_0021A790;
+
+void EnsureAloActla(ALO *palo)
+{
+    if (STRUCT_OFFSET(palo, 0x200, ACT *) == NULL) // palo->pactla
+    {
+        ACT *pact = PactNew(palo->psw, palo, &D_0021A790);
+        STRUCT_OFFSET(palo, 0x200, ACT *) = pact;
+        InsertAloAct(palo, pact);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", RecacheAloActList__FP3ALO);
 
@@ -477,20 +497,44 @@ extern "C" void FUN_0012a418(ALO *palo, int *pn)
     *pn = (int)(STRUCT_OFFSET(palo, 0x2c8, uint64_t) >> 40) & 3;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRestorePositionAck__FP3ALO3ACK);
+void SetAloRestorePositionAck(ALO *palo, ACK ack)
+{
+    EnsureAloActRestore(palo);
+    // palo->pactRestore (ACT at 0x1FC), ackPos byte at +0x10
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x1fc, ACT *), 0x10, char) = ack;
+    (*(void (**)(ALO *))((char *)palo->pvtlo + 0xBC))(palo);
+}
 
 void SetAloRestoreRotation(ALO *palo, int fRestore)
 {
     SetAloRestoreRotationAck(palo, fRestore ? ACK_Spring : ACK_Nil);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRestoreRotationAck__FP3ALO3ACK);
+void SetAloRestoreRotationAck(ALO *palo, ACK ack)
+{
+    EnsureAloActRestore(palo);
+    // palo->pactRestore (ACT at 0x1FC), ackRot byte at +0x11
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x1fc, ACT *), 0x11, char) = ack;
+    (*(void (**)(ALO *))((char *)palo->pvtlo + 0xBC))(palo);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a4e8);
+extern "C" void FUN_0012a4e8(ALO *palo, int n)
+{
+    void *pactrest;
+
+    EnsureAloActRestore(palo);
+    pactrest = STRUCT_OFFSET(palo, 0x1fc, void *);
+    STRUCT_OFFSET(pactrest, 0x14, int) = n;
+    ResortAloActList(palo);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAt__FP3ALO3ACK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtIgnore__FP3ALOf);
+void SetAloLookAtIgnore(ALO *palo, float sIgnore)
+{
+    EnsureAloActla(palo);
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x200, void *), 0x40, float) = sIgnore;
+}
 
 void GetAloLookAtIgnore(ALO *palo, float *psIgnore)
 {
@@ -503,7 +547,11 @@ void GetAloLookAtIgnore(ALO *palo, float *psIgnore)
     *psIgnore = sIgnore;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtPanFunction__FP3ALOP3CLQ);
+void SetAloLookAtPanFunction(ALO *palo, CLQ *pclq)
+{
+    EnsureAloActla(palo);
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x200, void *), 0x50, qword) = STRUCT_OFFSET(pclq, 0x0, qword);
+}
 
 void GetAloLookAtPanFunction(ALO *palo, CLQ *pclq)
 {
@@ -519,7 +567,11 @@ void GetAloLookAtPanFunction(ALO *palo, CLQ *pclq)
     *(VU_VECTOR *)pclq = *(VU_VECTOR *)pclqSrc;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtPanLimits__FP3ALOP2LM);
+void SetAloLookAtPanLimits(ALO *palo, LM *plm)
+{
+    EnsureAloActla(palo);
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x200, void *), 0x60, LM) = *plm;
+}
 
 void GetAloLookAtPanLimits(ALO *palo, LM *plm)
 {
@@ -534,7 +586,11 @@ void GetAloLookAtPanLimits(ALO *palo, LM *plm)
     *plm = *plmSrc;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtTiltFunction__FP3ALOP3CLQ);
+void SetAloLookAtTiltFunction(ALO *palo, CLQ *pclq)
+{
+    EnsureAloActla(palo);
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x200, void *), 0x70, qword) = STRUCT_OFFSET(pclq, 0x0, qword);
+}
 
 extern qword D_00275C40;
 void GetAloLookAtTiltFunction(ALO *palo, CLQ *pclq)
@@ -550,7 +606,11 @@ void GetAloLookAtTiltFunction(ALO *palo, CLQ *pclq)
     *(qword *)pclq = *pqSrc;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtTiltLimits__FP3ALOP2LM);
+void SetAloLookAtTiltLimits(ALO *palo, LM *plm)
+{
+    EnsureAloActla(palo);
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x200, void *), 0x80, LM) = *plm;
+}
 
 void GetAloLookAtTiltLimits(ALO *palo, LM *plm)
 {
@@ -565,7 +625,11 @@ void GetAloLookAtTiltLimits(ALO *palo, LM *plm)
     *plm = *plmSrc;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtEnabledPriority__FP3ALOi);
+void SetAloLookAtEnabledPriority(ALO *palo, int nPriority)
+{
+    EnsureAloActla(palo);
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x200, void *), 0x44, int) = nPriority;
+}
 
 void GetAloLookAtEnabledPriority(ALO *palo, int *pnPriority)
 {
@@ -578,7 +642,11 @@ void GetAloLookAtEnabledPriority(ALO *palo, int *pnPriority)
     *pnPriority = nPriority;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtDisabledPriority__FP3ALOi);
+void SetAloLookAtDisabledPriority(ALO *palo, int nPriority)
+{
+    EnsureAloActla(palo);
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x200, void *), 0x48, int) = nPriority;
+}
 
 void GetAloLookAtDisabledPriority(ALO *palo, int *pnPriority)
 {
@@ -591,7 +659,14 @@ void GetAloLookAtDisabledPriority(ALO *palo, int *pnPriority)
     *pnPriority = nPriority;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a810);
+extern "C" void FUN_0012a810(ALO *palo, int n)
+{
+    void *pactla;
+
+    EnsureAloActla(palo);
+    pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    STRUCT_OFFSET(pactla, 0x20, int) = n;
+}
 
 void FUN_0012a848(ALO *palo, int *pn)
 {
@@ -610,7 +685,10 @@ extern "C" void FUN_0012a860(ALO *palo, ALO *paloTarget)
     SetActlaTarget(STRUCT_OFFSET(palo, 0x200, ACTLA *), paloTarget, &D_00248D30);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a888);
+extern "C" void FUN_0012a888(ALO *palo, ALO **ppaloTarget)
+{
+    *ppaloTarget = PaloGetActlaTarget(STRUCT_OFFSET(palo, 0x200, ACTLA *));
+}
 
 void FUN_0012a8b8(ALO *palo)
 {
@@ -628,7 +706,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationMatchesVelocity__FP3ALOff3A
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", PtargetEnsureAlo__FP3ALO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloTargetAttacks__FP3ALOi);
+void SetAloTargetAttacks(ALO *palo, GRFTAK grftak)
+{
+    TARGET *ptarget = PtargetEnsureAlo(palo);
+    if (grftak != -1)
+    {
+        STRUCT_OFFSET(ptarget, 0x88, GRFTAK) = grftak; // ptarget->grftak
+    }
+}
 
 void SetAloTargetRadius(ALO *palo, float sRadiusTarget)
 {
@@ -823,7 +908,12 @@ void GetAloThrobKind(ALO *palo, THROBK *pthrobk)
     *pthrobk = throbk;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloThrobInColor__FP3ALOP6VECTOR);
+void SetAloThrobInColor(ALO *palo, VECTOR *phsvInColor)
+{
+    EnsureAloThrob(palo);
+    // palo->pthrob->hsvInColor
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x288, THROB *), 0x10, VU_VECTOR) = *(VU_VECTOR *)phsvInColor;
+}
 
 extern VU_VECTOR D_00248D30;
 void GetAloThrobInColor(ALO *palo, VECTOR *phsvInColor)
@@ -839,7 +929,12 @@ void GetAloThrobInColor(ALO *palo, VECTOR *phsvInColor)
     *(VU_VECTOR *)phsvInColor = *pqSrc;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloThrobOutColor__FP3ALOP6VECTOR);
+void SetAloThrobOutColor(ALO *palo, VECTOR *phsvOutColor)
+{
+    EnsureAloThrob(palo);
+    // palo->pthrob->hsvOutColor
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x288, THROB *), 0x20, VU_VECTOR) = *(VU_VECTOR *)phsvOutColor;
+}
 
 void GetAloThrobOutColor(ALO *palo, VECTOR *phsvOutColor)
 {

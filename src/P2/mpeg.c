@@ -1,4 +1,5 @@
 #include <mpeg.h>
+#include <bq.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FUN_0018e410);
 
@@ -17,7 +18,13 @@ extern "C" char *FUN_0018e480(int x)
     return D_0024B588;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FUN_0018e4c0);
+extern "C" void FUN_0018f0e8(CMpeg *pmpeg, void *pv);
+extern uchar D_002484B0[16][32];
+
+extern "C" void FUN_0018e4c0(int i)
+{
+    FUN_0018f0e8(&g_mpeg, D_002484B0[i]);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FUN_0018e4f0);
 
@@ -107,7 +114,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FAccept__10CMpegAudioiPUc);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", Update__10CMpegAudio);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FMpegAcceptVideo__FP7sceMpegP16sceMpegCbDataStrP5CMpeg);
+struct sceMpeg;
+struct sceMpegCbDataStr;
+
+int FMpegAcceptVideo(sceMpeg *pmp, sceMpegCbDataStr *pcbdata, CMpeg *pmpeg)
+{
+    int cb = STRUCT_OFFSET(pcbdata, 0xC, int); // pcbdata->len
+
+    // pmpeg+0x60 is the video CByteQueue; +0x70 is its m_cbFree
+    if ((uint)STRUCT_OFFSET(pmpeg, 0x70, int) < (uint)cb)
+    {
+        return 0;
+    }
+
+    STRUCT_OFFSET(pmpeg, 0x60, CByteQueue).CbFill(cb, STRUCT_OFFSET(pcbdata, 0x8, byte *)); // pcbdata->data
+    return 1;
+}
 
 struct sceMpeg;
 struct sceMpegCbDataStr;
@@ -144,7 +166,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FUN_0018ef78);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FUN_0018f0e8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mpeg", ExecuteOids__5CMpeg);
+// Execute__5CMpeg's asm label mangles as a no-argument member (CMpeg::Execute()), but the
+// function actually takes an OID* in $a1, so it must be called through an extern "C"
+// declaration of the literal symbol until it is decompiled with a corrected signature.
+extern "C" void Execute__5CMpeg(CMpeg *pmpeg, OID *poid);
+
+void CMpeg::ExecuteOids()
+{
+    OID *poidNext = STRUCT_OFFSET(this, 0x8, OID *); // queued second mpeg oid ptr
+    OID *poid = STRUCT_OFFSET(this, 0x4, OID *);     // queued first mpeg oid ptr
+
+    STRUCT_OFFSET(this, 0x4, OID *) = 0;
+    STRUCT_OFFSET(this, 0x8, OID *) = 0;
+    Execute__5CMpeg(this, poid);
+
+    if (poidNext != 0)
+    {
+        Execute__5CMpeg(this, poidNext);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", Execute__5CMpeg);
 

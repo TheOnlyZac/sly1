@@ -11,6 +11,7 @@
 #include <bbmark.h>
 #include <coin.h>
 #include <screen.h>
+#include <prompt.h>
 
 extern SW *g_psw;
 extern int g_fLoadDebugInfo;
@@ -446,7 +447,20 @@ void CancelSwDialogPlaying(SW *psw)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddb20);
+typedef struct
+{
+    int n;
+} __attribute__((packed)) UNALIGNED_INT;
+
+extern PROMPT D_0026FF68;
+
+extern "C" void FUN_001ddb20(SW *psw, PRK prk, int oid)
+{
+    PROMPT *pprompt = &D_0026FF68;
+
+    STRUCT_OFFSET(pprompt, 0x280, UNALIGNED_INT).n = oid;
+    SetPrompt(pprompt, PRP_Basic, prk);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddb58);
 
