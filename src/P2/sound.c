@@ -44,7 +44,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", RefreshPambVolPan__FP3AMB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001be8f8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FVagPlaying__Fv);
+extern u_int D_0027472C;
+int FVagPlaying()
+{
+    return D_0027472C != 0;
+}
 
 JUNK_WORD(0x0080102D);
 
@@ -109,7 +113,11 @@ void StartupSound()
 JUNK_NOP();
 JUNK_ADDIU(10);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FAmbientsPaused__Fv);
+extern int D_00274748;
+int FAmbientsPaused()
+{
+    return D_00274748;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", CalculateVolPan__FfP6VECTORPfT2fff);
 
@@ -129,7 +137,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", CalculateDistVolPan__FP6VECTORPfT1fff);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PambAlloc__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", DropPamb__FPP3AMB);
+void DropPamb(AMB **ppamb)
+{
+    (*ppamb)->ppamb = NULL;
+    *ppamb = NULL;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", RemoveAmb__FP3AMB);
 
@@ -225,7 +237,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSwIntermittentSounds__FP2SW);
 // TODO: Verify signature.
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SetAMRegister__FiUc);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001c0c50);
+extern int D_006053E0[];
+extern "C" int FUN_001c0c50(int reg)
+{
+    return D_006053E0[reg];
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001c0c68);
 

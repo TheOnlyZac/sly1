@@ -8,6 +8,7 @@
 #include <sce/memset.h>
 #include <game.h>
 #include <difficulty.h>
+#include <bbmark.h>
 
 extern SW *g_psw;
 extern int g_fLoadDebugInfo;
@@ -46,7 +47,10 @@ void LoadBulkDataFromBrx(CBinaryInputStream *pbis)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", SetSwGravity__FP2SWf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dbac0);
+extern "C" void FUN_001dbac0(SW *psw, int reg, int value)
+{
+    SetAMRegister__FiUc(reg, value);
+}
 
 int FUN_001dbae0(SW *psw, int reg)
 {
@@ -167,7 +171,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", RemoveOxa__FP3OXAPP3OXA);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", InitSwAoxa__FP2SW);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", AddOxa__FP3OXAPP3OXA);
+void AddOxa(OXA *poxa, OXA **ppoxaFirst)
+{
+    poxa->poxaNext = *ppoxaFirst;
+    poxa->poxaPrev = NULL;
+    if (*ppoxaFirst != NULL)
+    {
+        (*ppoxaFirst)->poxaPrev = poxa;
+    }
+    *ppoxaFirst = poxa;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", PoxaAllocSw__FP2SWP2SO);
 
@@ -261,7 +274,10 @@ int FUN_001dd908(SW *psw, GAMEWORLD gameworld)
     return g_pgsCur->aws[gameworld].fws & 0x20;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd928);
+int FUN_001dd928(SW *psw)
+{
+    return CalculatePercentCompletion(g_pgsCur);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd950);
 
@@ -339,9 +355,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddb58);
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddbb8);
 JUNK_WORD(0x0002102a);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddbf8);
+EXC *PexcSetExcitement(int gexc);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc18);
+EXC *FUN_001ddbf8(SW *psw, int gexc)
+{
+    return PexcSetExcitement(gexc);
+}
+
+void UnsetExcitementHyst(EXC *pexc);
+
+void FUN_001ddc18(SW *psw, EXC *pexc)
+{
+    UnsetExcitementHyst(pexc);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc38);
 

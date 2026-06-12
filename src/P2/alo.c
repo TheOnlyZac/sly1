@@ -394,7 +394,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a3c8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a3e8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a418);
+extern "C" void FUN_0012a418(ALO *palo, int *pn)
+{
+    *pn = (int)(STRUCT_OFFSET(palo, 0x2c8, uint64_t) >> 40) & 3;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRestorePositionAck__FP3ALO3ACK);
 
@@ -421,19 +424,65 @@ void GetAloLookAtIgnore(ALO *palo, float *psIgnore)
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtPanFunction__FP3ALOP3CLQ);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloLookAtPanFunction__FP3ALOP3CLQ);
+void GetAloLookAtPanFunction(ALO *palo, CLQ *pclq)
+{
+    extern CLQ D_00275C40;
+    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    CLQ *pclqSrc;
+
+    if (pactla)
+        pclqSrc = &STRUCT_OFFSET(pactla, 0x50, CLQ);
+    else
+        pclqSrc = &D_00275C40;
+
+    *(VU_VECTOR *)pclq = *(VU_VECTOR *)pclqSrc;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtPanLimits__FP3ALOP2LM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloLookAtPanLimits__FP3ALOP2LM);
+void GetAloLookAtPanLimits(ALO *palo, LM *plm)
+{
+    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    LM *plmSrc;
+
+    if (pactla)
+        plmSrc = &STRUCT_OFFSET(pactla, 0x60, LM);
+    else
+        plmSrc = &g_lmZeroOne;
+
+    *plm = *plmSrc;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtTiltFunction__FP3ALOP3CLQ);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloLookAtTiltFunction__FP3ALOP3CLQ);
+extern qword D_00275C40;
+void GetAloLookAtTiltFunction(ALO *palo, CLQ *pclq)
+{
+    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    qword *pqSrc;
+
+    if (pactla)
+        pqSrc = &STRUCT_OFFSET(pactla, 0x70, qword);
+    else
+        pqSrc = &D_00275C40;
+
+    *(qword *)pclq = *pqSrc;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtTiltLimits__FP3ALOP2LM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloLookAtTiltLimits__FP3ALOP2LM);
+void GetAloLookAtTiltLimits(ALO *palo, LM *plm)
+{
+    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    LM *plmSrc;
+
+    if (pactla)
+        plmSrc = &STRUCT_OFFSET(pactla, 0x80, LM);
+    else
+        plmSrc = &g_lmZeroOne;
+
+    *plm = *plmSrc;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtEnabledPriority__FP3ALOi);
 
@@ -475,7 +524,11 @@ void FUN_0012a8b8(ALO *palo)
     STRUCT_OFFSET(pactla, 0x4C, int) = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a8c8);
+extern "C" void FUN_0012a8c8(ALO *palo)
+{
+    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    STRUCT_OFFSET(pactla, 0x4C, int) = 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationMatchesVelocity__FP3ALOff3ACK);
 
@@ -662,11 +715,38 @@ void GetAloThrobKind(ALO *palo, THROBK *pthrobk)
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloThrobInColor__FP3ALOP6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloThrobInColor__FP3ALOP6VECTOR);
+extern VU_VECTOR D_00248D30;
+void GetAloThrobInColor(ALO *palo, VECTOR *phsvInColor)
+{
+    THROB *pthrob = STRUCT_OFFSET(palo, 0x288, THROB *); // palo->pthrob
+    VU_VECTOR *pqSrc;
+
+    if (pthrob)
+        pqSrc = &STRUCT_OFFSET(pthrob, 0x10, VU_VECTOR); // pthrob->hsvInColor
+    else
+        pqSrc = &D_00248D30;
+
+    *(VU_VECTOR *)phsvInColor = *pqSrc;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloThrobOutColor__FP3ALOP6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloThrobOutColor__FP3ALOP6VECTOR);
+void GetAloThrobOutColor(ALO *palo, VECTOR *phsvOutColor)
+{
+    THROB *pthrob = STRUCT_OFFSET(palo, 0x288, THROB *); // palo->throb
+    VU_VECTOR *pvuvec;
+
+    if (pthrob != 0)
+    {
+        pvuvec = &STRUCT_OFFSET(pthrob, 0x20, VU_VECTOR);
+    }
+    else
+    {
+        pvuvec = &D_00248D30;
+    }
+
+    *(VU_VECTOR *)phsvOutColor = *pvuvec;
+}
 
 void SetAloThrobDtInOut(ALO *palo, float dtInOut)
 {
@@ -685,7 +765,12 @@ void GetAloThrobDtInOut(ALO *palo, float *pdtInOut)
     *pdtInOut = dtInOut;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloInteractCane__FP3ALOi);
+void SetAloInteractCane(ALO *palo, GRFIC grfic)
+{
+    STRUCT_OFFSET(palo, 0x2b2, char) = grfic;
+    STRUCT_OFFSET(palo, 0x2b1, char) = grfic;
+    STRUCT_OFFSET(palo, 0x2b0, char) = grfic;
+}
 
 void GetAloInteractCane(ALO *palo, GRFIC *pgrfic)
 {

@@ -88,3 +88,10 @@ __pycache__/
 temp/
 *.diff
 *.AppImage
+
+# Local Claude/agent tooling — keep out of git
+CLAUDE.md
+.claude/
+docs/DECOMP_PROMPT.md
+report_old.json
+report_premedium.json
