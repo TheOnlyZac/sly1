@@ -2,7 +2,20 @@
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FUN_0018e410);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FUN_0018e480);
+extern "C" {
+extern char *D_002699C0[16];
+extern char D_0024B580[];
+extern char D_0024B588[];
+}
+
+extern "C" char *FUN_0018e480(int x)
+{
+    if ((uint)x < 16)
+        return D_002699C0[x];
+    if (x == -1)
+        return D_0024B580;
+    return D_0024B588;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FUN_0018e4c0);
 

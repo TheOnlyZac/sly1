@@ -9,6 +9,8 @@
 #include <game.h>
 #include <difficulty.h>
 #include <bbmark.h>
+#include <coin.h>
+#include <screen.h>
 
 extern SW *g_psw;
 extern int g_fLoadDebugInfo;
@@ -45,7 +47,27 @@ void LoadBulkDataFromBrx(CBinaryInputStream *pbis)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", SetSwGravity__FP2SWf);
+static inline VU_VECTOR VuVectorXyz(float x, float y, float z)
+{
+    VU_VECTOR v;
+    qword tmp;
+    asm("mfc1 %0, %2\n\tmfc1 %1, %3\n\tpextlw %0, %1, %0\n\tmfc1 %1, %4\n\tpcpyld %0, %1, %0"
+        : "=r"(v.data), "=r"(tmp)
+        : "f"(x), "f"(y), "f"(z));
+    return v;
+}
+
+void SetSwGravity(SW *psw, float z)
+{
+    union
+    {
+        qword q;
+        float af[4];
+    } u;
+
+    u.q = VuVectorXyz(0.0f, 0.0f, z).data;
+    STRUCT_OFFSET(psw, 0x1EE0, qword) = u.q; // vecGravity = (0, 0, z, junk)
+}
 
 extern "C" void FUN_001dbac0(SW *psw, int reg, int value)
 {
@@ -62,7 +84,18 @@ void FUN_001dbb00(SW *psw, int reg, int value)
     FUN_001c0c68(reg, value);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FOverflowSwLo__FP2SWP2LOi);
+int FOverflowSwLo(SW *psw, LO *plo, int fHiPri)
+{
+    int fOverflow = 0;
+
+    if ((plo->pvtlo->grfcid & 2) && psw->cpsoRoot >= 247)
+    {
+        int fLow = (fHiPri == 0);
+        fOverflow = fLow;
+    }
+
+    return fOverflow;
+}
 
 XA *PxaAllocSw(SW *psw)
 {
@@ -161,13 +194,39 @@ void FreeSwStsoList(SW *psw, STSO *pstsoFirst)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", AddSwProxySource__FP2SWP2LOi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", PloGetSwProxySource__FP2SWi);
+LO *PloGetSwProxySource(SW *psw, int ipsl)
+{
+    // Proxy-source list at SW+0x1F00: array of 8-byte {int cplo; LO **aplo} pairs
+    // (count cpsl lives at 0x1EFC; see AddSwProxySource).
+    int *p = &STRUCT_OFFSET(psw, ipsl * 8 + 0x1F00, int);
+    int c = p[0] - 1;
+    LO **aplo = (LO **)p[1];
+    int i = c * 4;
+    asm volatile(""); // zero-byte scheduling barrier: keeps the count store between the sll and addu, as in the original
+    p[0] = c;
+    return *(LO **)(i + (int)aplo);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", IntersectSwBoundingBox__FP2SWP2SOP6VECTORT2PFPvP2SO_iPvPiPPP2SO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", IntersectSwBoundingSphere__FP2SWP2SOP6VECTORfPFPvP2SO_iPvPiPPP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", RemoveOxa__FP3OXAPP3OXA);
+void RemoveOxa(OXA *poxa, OXA **ppoxaFirst)
+{
+    if (poxa->poxaNext != NULL)
+    {
+        poxa->poxaNext->poxaPrev = poxa->poxaPrev;
+    }
+
+    if (poxa->poxaPrev != NULL)
+    {
+        poxa->poxaPrev->poxaNext = poxa->poxaNext;
+    }
+    else
+    {
+        *ppoxaFirst = poxa->poxaNext;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", InitSwAoxa__FP2SW);
 
@@ -256,9 +315,40 @@ int FLevelSwTertiary(SW *psw, WID wid)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd710);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd758);
+extern "C" uint GrflsLevelCompletionFromWid(int wid) __asm__("get_level_completion_by_id");
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd7a0);
+extern "C" int FUN_001dd758(SW *psw, int wid)
+{
+    uint grfls = GrflsLevelCompletionFromWid(wid);
+    uint f = 0;
+    uint mask = grfls & 3;
+
+    if (grfls & 4)
+    {
+        LS *pls = g_plsCur;
+        f = (mask & pls->fls) ^ mask;
+        f = f < 1;
+    }
+
+    return f;
+}
+
+extern "C" uint GrflsLevelCompletionFromWid(int wid) __asm__("get_level_completion_by_id");
+
+extern "C" int FUN_001dd7a0(SW *psw, int wid)
+{
+    uint grfls = GrflsLevelCompletionFromWid(wid);
+    int f = 0;
+    uint mask = grfls & 7;
+
+    if (grfls & 8)
+    {
+        uint t = mask & g_plsCur->fls;
+        f = (t ^ mask) < 1;
+    }
+
+    return f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd7e8);
 
@@ -279,7 +369,15 @@ int FUN_001dd928(SW *psw)
     return CalculatePercentCompletion(g_pgsCur);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd950);
+extern "C" void FUN_001dd950(SW *psw, int nLow, int nHigh, VECTOR *pposCenter)
+{
+    int cpdprize = NRandInRange(nLow, nHigh);
+
+    if (cpdprize != 0)
+    {
+        CpdprizeAttractSwDprizes(g_psw, (CID)0x58, pposCenter, cpdprize, NULL);
+    }
+}
 
 void FUN_001dd9a0(float nParam)
 {
@@ -352,7 +450,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddb20);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddb58);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddbb8);
+extern BLOT D_002721D0;
+
+extern "C" void FUN_001ddbb8(SW *psw)
+{
+    if (--STRUCT_OFFSET(psw, 0x2320, int) == 0)
+    {
+        D_002721D0.pvtblot->pfnHideBlot(&D_002721D0);
+    }
+}
 JUNK_WORD(0x0002102a);
 
 EXC *PexcSetExcitement(int gexc);
@@ -374,7 +480,20 @@ void FUN_001ddc38(void *pv, void *pvBlot)
     STRUCT_OFFSET(pv, 0x2324, void *) = pvBlot;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc40);
+extern "C" void FUN_001ddc40(void *pv)
+{
+    typedef void (*PFNBLOT)(void *);
+
+    void *pvBlot = STRUCT_OFFSET(pv, 0x2324, void *); // blot/vtable'd object set by FUN_001ddc38
+    if (pvBlot != NULL)
+    {
+        PFNBLOT pfn = STRUCT_OFFSET(STRUCT_OFFSET(pvBlot, 0x0, void *), 0xC8, PFNBLOT);
+        if (pfn != NULL)
+        {
+            pfn(pvBlot);
+        }
+    }
+}
 
 void FUN_001ddc78(void *pv, int n)
 {

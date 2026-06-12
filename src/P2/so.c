@@ -517,7 +517,18 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", FGetSoContactList__FP2SOPv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", GetSoContacts__FP2SOPiPPP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", FSoInStsoList__FP4STSOP2SO);
+int FSoInStsoList(STSO *pstsoFirst, SO *pso)
+{
+    while (pstsoFirst != NULL)
+    {
+        if (STRUCT_OFFSET(pstsoFirst, 0x0, SO *) == pso) // pso held by this STSO
+        {
+            return 1;
+        }
+        pstsoFirst = pstsoFirst->pstsoNext;
+    }
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", GenerateSoSpliceTouchingEvents__FP2SO);
 
@@ -544,7 +555,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", FUN_001bc4d8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", FUN_001bc670);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", FUN_001bc710);
+extern "C" void FUN_001bc710(SO *pso, int f)
+{
+    uint64_t grfso = STRUCT_OFFSET(pso, 0x538, uint64_t);
+    grfso &= ~((uint64_t)1 << 52);
+    grfso |= (uint64_t)(f & 1) << 52;
+    STRUCT_OFFSET(pso, 0x538, uint64_t) = grfso;
+}
 
 extern "C" void FUN_001bc748(SO *pso, int *pn)
 {

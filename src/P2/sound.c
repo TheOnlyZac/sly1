@@ -197,7 +197,18 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", ScheduleNextIntermittentSound__FP3AMB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSound__F5SFXIDPP3AMBP3ALOP6VECTORfffffP2LMT9);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BFFC8);
+extern "C" void FUN_001BFFC8(int err, u_long user_data)
+{
+    if (err == 0)
+    {
+        int iSerial = (int)(user_data >> 32);
+        AMB *pamb = (AMB *)(user_data & 0xFFFFFFFF);
+        if (pamb->iSerial == iSerial)
+        {
+            STRUCT_OFFSET(pamb, 0x48, int) = 1; // fStopped (real offset; compiled AMB::fStopped lands at 0x44)
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", HandleWipeHandleWipeVolumes__FifVolumes);
 
@@ -238,7 +249,15 @@ void SetMvgkRvol(int channel, MVGK mvgk, float rvol)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", MvgkUnknown2__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", MvgkUnknown3);
+extern "C" void MvgkUnknown3(int fMute)
+{
+    float rvol = 1.0f;
+    if (fMute != 0)
+    {
+        rvol = 0.0f;
+    }
+    SetMvgkRvol(3, MVGK_Music, rvol);
+}
 
 extern "C" void MvgkUnknown4(int mode)
 {
@@ -269,9 +288,30 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", SetSwDefaultReverb__FP2SW7REVERBKi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0A50);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0AB8);
+struct SW;
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0B08);
+extern "C" void FUN_001C0AB8(SW *psw, float *pg)
+{
+    int c = STRUCT_OFFSET(psw, 0x1D80, int); // count of intermittent-sound entries (array of 0x14-byte entries at 0x1D84)
+    if (c != 0)
+    {
+        char *pisnd = (char *)psw + (c * 0x14 + 0x1D70); // last entry: 0x1D84 + (c-1)*0x14
+        STRUCT_OFFSET(pisnd, 0xC, float) = 8000.0f - pg[1] * 50.0f;  // lmRepDist.gMin
+        STRUCT_OFFSET(pisnd, 0x10, float) = 8000.0f - pg[0] * 50.0f; // lmRepDist.gMax
+    }
+}
+
+struct SW;
+
+extern "C" void FUN_001C0B08(SW *psw, LM *plm)
+{
+    int c = STRUCT_OFFSET(psw, 0x1D80, int); // count of intermittent-sound entries (array of 0x14-byte entries at 0x1D84)
+    if (c != 0)
+    {
+        char *pisnd = (char *)psw + (c * 0x14 + 0x1D70); // last entry: 0x1D84 + (c-1)*0x14
+        STRUCT_OFFSET(pisnd, 0x4, LM) = *plm; // lmRepeat (unaligned 8-byte struct copy: ldl/ldr + sdl/sdr)
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSwIntermittentSounds__FP2SW);
 

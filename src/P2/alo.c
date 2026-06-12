@@ -47,9 +47,37 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", UpdateAloHierarchy__FP3ALOf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", UpdateAlo__FP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", InvalidateAloLighting__FP3ALO);
+void InvalidateAloLighting(ALO *palo)
+{
+    int iglobi;
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", UpdateAloXfWorld__FP3ALO);
+    // palo->globset: count at +0xc, GLOBI array (stride 0x28) at +0x14; invalidate lighting frame at +0x8
+    for (iglobi = 0; iglobi < STRUCT_OFFSET(palo, 0x238, int); iglobi++)
+    {
+        char *pb = STRUCT_OFFSET(palo, 0x240, char *) + iglobi * 0x28;
+        *(int *)(pb + 8) = -1;
+    }
+}
+
+// alo.h declares `void UpdateAloXfWorld__FP3ALO(ALO *palo);` as a C++ function; with that
+// declaration in scope, GCC 2.95 mangles a plain `void UpdateAloXfWorld(ALO *)` definition
+// to UpdateAloXfWorld__FP3ALO__FP3ALO. Defining the literal symbol with C linkage (void*
+// parameter so it does not conflict with the C++ declaration) emits the exact target symbol.
+// If alo.h:279 is ever fixed to `void UpdateAloXfWorld(ALO *palo);`, this can become a plain
+// C++ `void UpdateAloXfWorld(ALO *palo)` definition (verified to also match).
+extern "C" void UpdateAloXfWorld__FP3ALO(void *pvalo)
+{
+    ALO *palo = (ALO *)pvalo;
+    // vtable slot at 0x5c: compiled offset of pfnUpdateLoXfWorldHierarchy in VTLO
+    // (the real game slot is probably "update xf world"; the header's VTLO has an extra
+    // pfnUpdateLo entry shifting the names, but the compiled offset is what matters).
+    void (*pfn)(ALO *) = (void (*)(ALO *))palo->pvtlo->pfnUpdateLoXfWorldHierarchy;
+
+    if (pfn != 0)
+    {
+        pfn(palo);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", UpdateAloXfWorldHierarchy__FP3ALO);
 
@@ -107,11 +135,27 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", RotateAloToMat__FP3ALOP7MATRIX3);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloVelocityVec__FP3ALOP6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloVelocityXYZ__FP3ALOfff);
+void SetAloVelocityXYZ(ALO *palo, float x, float y, float z)
+{
+    VECTOR vec;
+
+    vec.x = x;
+    vec.y = y;
+    vec.z = z;
+    ((void (*)(ALO *, VECTOR *))STRUCT_OFFSET(palo->pvtlo, 0x90, void *))(palo, &vec);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloAngularVelocityVec__FP3ALOP6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloAngularVelocityXYZ__FP3ALOfff);
+void SetAloAngularVelocityXYZ(ALO *palo, float x, float y, float z)
+{
+    VECTOR w;
+
+    w.x = x;
+    w.y = y;
+    w.z = z;
+    (*(void (**)(ALO *, VECTOR *))((char *)palo->pvtlo + 0x94))(palo, &w);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloVelocityLocal__FP3ALOP6VECTOR);
 
@@ -131,7 +175,24 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", ConvertAloVec__FP3ALOT0P6VECTORT2);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", ConvertAloMat__FP3ALOT0P7MATRIX3T2);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FDrivenAlo__FP3ALO);
+int FDrivenAlo(ALO *palo)
+{
+    ACT *pact;
+
+    pact = STRUCT_OFFSET(palo, 0x1ec, ACT *); // palo->pactPos
+    if (pact != NULL && STRUCT_OFFSET(pact, 0x10, char) == ACK_Drive)
+    {
+        return 1;
+    }
+
+    pact = STRUCT_OFFSET(palo, 0x1f0, ACT *); // palo->pactRot
+    if (pact != NULL && STRUCT_OFFSET(pact, 0x11, char) == ACK_Drive)
+    {
+        return 1;
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", RetractAloDrive__FP3ALO);
 
@@ -317,7 +378,11 @@ void GetAloShadowConeAngle(ALO *palo, float *pdegConeAngle)
     *pdegConeAngle = atan2f(pshadow->sNearRadius / pshadow->sNearCast, 1.0f) * RAD_TO_DEG * 2.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloShadowFrustrumUp__FP3ALOP6VECTOR);
+void GetAloShadowFrustrumUp(ALO *palo, VECTOR *pvecUp)
+{
+    SHADOW *pshadow = PshadowInferAlo(palo);
+    *(VU_VECTOR *)pvecUp = STRUCT_OFFSET(pshadow, 0x30, VU_VECTOR); // pshadow->vecFrustrumUp
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloEuler__FP3ALOP6VECTOR);
 
@@ -401,7 +466,11 @@ extern "C" void FUN_0012a3c8(ALO *palo, int unk)
     FUN_0012a3e8(palo, unk != 0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a3e8);
+extern "C" void FUN_0012a3e8(ALO *palo, int n)
+{
+    STRUCT_OFFSET(palo, 0x2c8, uint64_t) =
+        (STRUCT_OFFSET(palo, 0x2c8, uint64_t) & ~((uint64_t)3 << 40)) | ((uint64_t)(n & 3) << 40);
+}
 
 extern "C" void FUN_0012a418(ALO *palo, int *pn)
 {
@@ -628,7 +697,11 @@ void SetAloSFull(ALO *palo, float sFull)
     STRUCT_OFFSET(palo, 0x2ac, SFX *)->sFull = sFull; // palo->psfx
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloSndRepeat__FP3ALOP2LM);
+void SetAloSndRepeat(ALO *palo, LM *plm)
+{
+    EnsureAloSfx(palo);
+    STRUCT_OFFSET(palo, 0x2ac, SFX *)->lmRepeat = *plm; // palo->psfx
+}
 
 void GetAloSFull(ALO *palo, float *psFull)
 {
@@ -710,7 +783,19 @@ void GetAloUPitch(ALO *palo, float *puPitch)
     *puPitch = uPitch;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloSndRepeat__FP3ALOP2LM);
+void GetAloSndRepeat(ALO *palo, LM *plmRepeat)
+{
+    // palo->psfx
+    if (STRUCT_OFFSET(palo, 0x2ac, SFX *))
+    {
+        *plmRepeat = STRUCT_OFFSET(palo, 0x2ac, SFX *)->lmRepeat;
+    }
+    else
+    {
+        plmRepeat->gMin = -1.0f;
+        plmRepeat->gMax = -1.0f;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", StartAloSound__FP3ALO5SFXIDfffP2LM);
 
