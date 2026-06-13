@@ -2,6 +2,7 @@
 #include <jt.h>
 #include <clock.h>
 #include <lookat.h>
+#include <dart.h>
 
 void InitDartgun(DARTGUN *pdartgun)
 {
@@ -9,7 +10,41 @@ void InitDartgun(DARTGUN *pdartgun)
     STRUCT_OFFSET(pdartgun, 0x6c0, OID) = OID_Nil; // pdartgun->oidDart
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/dartgun", HandleDartgunMessage__FP7DARTGUN5MSGIDPv);
+void HandleDartgunMessage(DARTGUN *pdartgun, MSGID msgid, void *pv)
+{
+    OID oid;
+    ALO *palo;
+
+    HandleAloMessage((ALO *)pdartgun, msgid, pv);
+
+    if (msgid != (MSGID)0x14)
+        return;
+
+    if (pv != STRUCT_OFFSET(pdartgun, 0x740, void *))
+        return;
+
+    GetSmaGoal((SMA *)pv, &oid);
+    if (oid != (OID)0x2B7)
+        return;
+
+    if (STRUCT_OFFSET(pdartgun, 0x680, int) != 0)
+    {
+        RetractSma(STRUCT_OFFSET(pdartgun, 0x740, SMA *));
+        STRUCT_OFFSET(pdartgun, 0x740, int) = 0;
+    }
+    else
+    {
+        STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x4C, int) = 1;
+        STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x1C, int) = 0;
+
+        palo = STRUCT_OFFSET(pdartgun, 0x734, ALO *);
+        (*(void (**)(ALO *, void *))((char *)palo->pvtlo + 0x84))(palo, (char *)palo + 0x190);
+        palo = STRUCT_OFFSET(pdartgun, 0x734, ALO *);
+        (*(void (**)(ALO *, void *))((char *)palo->pvtlo + 0x88))(palo, (char *)palo + 0x1A0);
+        palo = STRUCT_OFFSET(pdartgun, 0x738, ALO *);
+        (*(void (**)(ALO *, void *))((char *)palo->pvtlo + 0x88))(palo, (char *)palo + 0x1A0);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/dartgun", BindDartgun__FP7DARTGUN);
 

@@ -1,5 +1,6 @@
 #include <wm.h>
 #include <game.h>
+#include <wipe.h>
 
 extern int D_00275BF0;
 

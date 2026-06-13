@@ -4,6 +4,7 @@
 #include <vtables.h>
 #include <frm.h>
 #include <gifs.h>
+#include <shd.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", StartupScreen__Fv);
 
@@ -420,7 +421,39 @@ void DrawLetterbox(LETTERBOX *pletterbox)
     g_gifs.PackXYZF(0x9400, 0x8700, 0xFFFFFF0, 0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001adc60);
+extern float D_00274448;
+extern float D_0027444C;
+extern CFont *D_00274450;
+extern char D_0024CEF0[];
+
+void FUN_001adc60(BLOT *pblot)
+{
+    CFont *pfont;
+    void *pv;
+
+    PostBlotLoad(pblot);
+    pfont = STRUCT_OFFSET(pblot, 0x4, CFont *);
+    pv = STRUCT_OFFSET(pfont, 0x4c, void *);
+    STRUCT_OFFSET(pblot, 0x4, int) =
+        (*(int (**)(void *, float, float))((uint8_t *)pv + 0xc))(
+            (uint8_t *)pfont + STRUCT_OFFSET(pv, 0x8, short), D_00274448, D_0027444C);
+    if (FUN_0015c1c0(2))
+    {
+        STRUCT_OFFSET(pblot, 0x210, CFont **) = &D_00274450;
+        *STRUCT_OFFSET(pblot, 0x210, CFont **) = FUN_0015c1c0(2);
+    }
+
+    SHD *pshd = PshdFindShader((OID)0x493);
+    STRUCT_OFFSET(pblot, 0x260, SHD *) = pshd;
+    if (pshd != NULL)
+    {
+        ResizeBlot(pblot, 366.75f, 165.75f);
+    }
+    else
+    {
+        ((void (*)(BLOT *, char *))((VTBLOT *)pblot->pvtblot)->pfnSetBlotAchzDraw)(pblot, D_0024CEF0);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawLogo__FP4LOGO);
 

@@ -58,7 +58,53 @@ INCLUDE_ASM("asm/nonmatchings/P2/jt", RebuildJtXmg__FP2JTP3ALOfT1P6ACTADJP3XMG);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FMatchJtXmg__FP2JTP3XMGP6ACTADJ);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtStand__FP2JT);
+struct XMG;
+
+int FTurnJtToTarget(JT *pjt);
+void RebuildJtXmg(JT *pjt, ALO *palo, float s, ALO *palo2, ACTADJ *pactadj, XMG *pxmg);
+int FMatchJtXmg(JT *pjt, XMG *pxmg, ACTADJ *pactadj);
+
+void UpdateJtStand(JT *pjt)
+{
+    if (FTurnJtToTarget(pjt) == 0)
+    {
+        if (STRUCT_OFFSET(pjt, 0x690, int) != 0)
+        {
+            VECTOR w;
+            float g;
+
+            CalculateAloMovement(STRUCT_OFFSET(pjt, 0x6C0, ALO *), NULL,
+                                 (VECTOR *)((char *)pjt + 0x6A0), NULL, &w, NULL, NULL);
+            g = GLimitAbs(w.z, 10.0f);
+            w.z = g;
+            STRUCT_OFFSET(pjt, 0x638, float) += g * g_clock.dt;
+        }
+    }
+
+    if (STRUCT_OFFSET(pjt, 0x250C, ACTADJ *) != NULL)
+    {
+        RebuildJtXmg(pjt, STRUCT_OFFSET(pjt, 0x628, ALO *), 5.0f, STRUCT_OFFSET(pjt, 0x620, ALO *),
+                     STRUCT_OFFSET(pjt, 0x250C, ACTADJ *), (XMG *)((char *)pjt + 0x1190));
+        RebuildJtXmg(pjt, STRUCT_OFFSET(pjt, 0x62C, ALO *), 5.0f, STRUCT_OFFSET(pjt, 0x624, ALO *),
+                     STRUCT_OFFSET(pjt, 0x2510, ACTADJ *), (XMG *)((char *)pjt + 0x1290));
+
+        if (FMatchJtXmg(pjt, (XMG *)((char *)pjt + 0x1190), STRUCT_OFFSET(pjt, 0x250C, ACTADJ *)))
+        {
+            if (FMatchJtXmg(pjt, (XMG *)((char *)pjt + 0x1290), STRUCT_OFFSET(pjt, 0x2510, ACTADJ *)))
+                return;
+        }
+
+        if (STRUCT_OFFSET(pjt, 0x118C, int) != 0)
+            return;
+
+        if (STRUCT_OFFSET(pjt, 0x1188, SM *) != NULL)
+        {
+            if (IsmsFindSmOptional(STRUCT_OFFSET(pjt, 0x1188, SM *), (OID)0x148) >= 0)
+                SeekSma(STRUCT_OFFSET(pjt, 0x2234, SMA *), (OID)0x148);
+            STRUCT_OFFSET(pjt, 0x118C, int) = 1;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", ThrowJt__FP2JTP6VECTORff);
 

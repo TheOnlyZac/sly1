@@ -266,7 +266,36 @@ void StockSplashSmall(VECTOR *ppos, float gScale, SO *psoTouch)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", AddEmitoSkeleton__FP5EMITO3OIDT1ffffP2LO);
+void AddEmitoSkeleton(EMITO *pemito, OID oid, OID oidOther, float sRadius, float gDensity, float sRadiusOther, float gDensityOther, LO *ploContext)
+{
+    STRUCT_OFFSET(pemito, 0x0, int) = 3;
+
+    if (STRUCT_OFFSET(pemito, 0x14, void *) == 0)
+        STRUCT_OFFSET(pemito, 0x14, void *) = PvAllocSwClearImpl(0x500);
+
+    if (STRUCT_OFFSET(pemito, 0x10, int) < 0x20)
+    {
+        int c = STRUCT_OFFSET(pemito, 0x10, int);
+        char *pentry = (char *)STRUCT_OFFSET(pemito, 0x14, void *) + c * 0x28;
+
+        STRUCT_OFFSET(pemito, 0x10, int) = c + 1;
+
+        STRUCT_OFFSET(pentry, 0x0, int) = oid;
+        STRUCT_OFFSET(pentry, 0x4, int) = oidOther;
+
+        STRUCT_OFFSET(pentry, 0x8, float) = gDensity;
+        if (0.0f <= gDensityOther)
+            STRUCT_OFFSET(pentry, 0xc, float) = gDensityOther;
+        else
+            STRUCT_OFFSET(pentry, 0xc, float) = gDensity;
+
+        STRUCT_OFFSET(pentry, 0x10, float) = sRadius;
+        if (0.0f <= sRadiusOther)
+            STRUCT_OFFSET(pentry, 0x14, float) = sRadiusOther;
+        else
+            STRUCT_OFFSET(pentry, 0x14, float) = sRadius;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindEmitb__FP5EMITBP2LO);
 

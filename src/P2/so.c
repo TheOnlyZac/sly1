@@ -1,5 +1,7 @@
 #include <so.h>
 #include <bbmark.h>
+#include <splice/frame.h>
+#include <splice/ref.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", InitSo__FP2SO);
 
@@ -38,33 +40,6 @@ void OnSoAdd(SO *pso)
 // shifting the unit and failing the checksum. Keep it wrapped until the
 // surrounding functions are decompiled or the tooling quirk is fixed.
 INCLUDE_ASM("asm/nonmatchings/P2/so", OnSoRemove__FP2SO);
-#ifdef SKIP_ASM
-void OnSoRemove(SO *pso)
-{
-    SW *psw = pso->psw;
-    SO *psoRoot = STRUCT_OFFSET(pso, 0x50, SO *);
-
-    EnableSoPhys(pso, 0);
-    OnAloRemove(pso);
-    psw->cpsoAll = psw->cpsoAll - 1;
-    if (pso->paloParent == NULL)
-    {
-        RemoveSwAaobrObject(psw, pso);
-        FreeSwPoxa(psw, STRUCT_OFFSET(pso, 0x480, OXA *));
-        psw->cpsoRoot = psw->cpsoRoot - 1;
-        RemoveDlEntry(&psw->dlRoot, pso);
-    }
-    FreeSwStsoList(psw, STRUCT_OFFSET(pso, 0x540, STSO *));
-    STRUCT_OFFSET(pso, 0x540, STSO *) = NULL; // pstsoFirst
-    if ((STRUCT_OFFSET(pso, 0x538, uint64_t) & ((uint64_t)0x8000 << 39)) == 0) // locked, bit 54
-    {
-        if (psoRoot != pso)
-        {
-            RecalcSoLocked(psoRoot);
-        }
-    }
-}
-#endif
 
 void EnableSoPhys(SO *pso, int fPhys)
 {

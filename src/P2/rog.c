@@ -235,7 +235,43 @@ void ReturnedRobRoh(ROB *prob, ROH *proh)
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", ExitedRobRoh__FP3ROBP3ROH);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", KilledRobRoh__FP3ROBP3ROH);
+void KilledRobRoh(ROB *prob, ROH *proh)
+{
+    RemoveDlEntry(&STRUCT_OFFSET(prob, 0x384, DL), proh);
+    AppendDlEntry(&STRUCT_OFFSET(prob, 0x390, DL), proh);
+
+    ROC *proc;
+    if (STRUCT_OFFSET(proh, 0x560, ROST *) != NULL)
+    {
+        RemoveDlEntry(&STRUCT_OFFSET(prob, 0x3ac, DL), STRUCT_OFFSET(proh, 0x560, void *));
+        AppendDlEntry(&STRUCT_OFFSET(prob, 0x3a0, DL), STRUCT_OFFSET(proh, 0x560, void *));
+        SetRostRosts(STRUCT_OFFSET(proh, 0x560, ROST *), ROSTS_Close);
+    }
+
+    proc = STRUCT_OFFSET(proh, 0x55c, ROC *);
+    if (proc != NULL)
+    {
+        if (STRUCT_OFFSET(proc, 0x18, ROH *) == proh)
+        {
+            DroppedRobRoh(prob, proh);
+        }
+        RemoveDlEntry(&STRUCT_OFFSET(prob, 0x35c, DL), proc);
+        AppendDlEntry(&STRUCT_OFFSET(prob, 0x368, DL), proc);
+        if (!FChooseRobRoh(prob, proc))
+            STRUCT_OFFSET(proc, 0x55c, ROH *) = NULL;
+    }
+
+    STRUCT_OFFSET(proh, 0x560, ROST *) = NULL;
+    STRUCT_OFFSET(proh, 0x55c, ROC *) = NULL;
+    (*(void (**)(ROH *))(STRUCT_OFFSET(proh, 0x0, uint8_t *) + 0x1c))(proh);
+
+    if (STRUCT_OFFSET(prob, 0x39c, int) == STRUCT_OFFSET(prob, 0x628, int))
+    {
+        STRUCT_OFFSET(prob, 0x640, float) =
+            g_clock.t + GRandInRange(STRUCT_OFFSET(prob, 0x638, float), STRUCT_OFFSET(prob, 0x63c, float));
+    }
+    STRUCT_OFFSET(prob, 0x39c, int) -= 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", FChooseRobRoc__FP3ROBP3ROH);
 
