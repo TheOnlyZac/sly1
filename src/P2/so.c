@@ -107,7 +107,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", UpdateSoBounds__FP2SO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", UpdateGeomWorld__FP4GEOMT0G9VU_VECTORP7MATRIX3);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", UpdateSoXfWorldHierarchy__FP2SO);
+void UpdateSoXfWorldHierarchy(SO *pso)
+{
+    UpdateAloXfWorldHierarchy(pso);
+    UpdateGeomWorld(
+        &STRUCT_OFFSET(pso, 0x380, GEOM),
+        &STRUCT_OFFSET(pso, 0x3A4, GEOM),
+        STRUCT_OFFSET(pso, 0x140, VU_VECTOR),
+        &STRUCT_OFFSET(pso, 0x110, MATRIX3));
+    UpdateGeomWorld(
+        &STRUCT_OFFSET(pso, 0x4E8, GEOM),
+        &STRUCT_OFFSET(pso, 0x50C, GEOM),
+        STRUCT_OFFSET(pso, 0x140, VU_VECTOR),
+        &STRUCT_OFFSET(pso, 0x110, MATRIX3));
+}
 
 // alo.h declares the literal identifier `UpdateAloXfWorld__FP3ALO`, which both
 // double-mangles if called and poisons the plain name `UpdateAloXfWorld` for
@@ -557,7 +570,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", EnsureSoLvo__FP2SO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", ProjectSoLvo__FP2SOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", ProjectSoTransform__FP2SOfi);
+void ProjectSoTransform(SO *pso, float dt, int fForce)
+{
+    if (STRUCT_OFFSET(pso, 0x3C8, void *) != NULL)
+    {
+        ProjectSoLvo(pso, dt);
+    }
+    ProjectAloTransform(pso, dt, fForce);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", ApplySoImpulse__FP2SOP6VECTORT1f);
 

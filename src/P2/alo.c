@@ -7,6 +7,8 @@
 #include <shd.h>
 #include <target.h>
 #include <lookat.h>
+#include <find.h>
+#include <brx.h>
 
 extern VTACT g_vtactseg;
 extern SHADOW s_shadow;
@@ -145,7 +147,22 @@ void SetAloVelocityXYZ(ALO *palo, float x, float y, float z)
     ((void (*)(ALO *, VECTOR *))STRUCT_OFFSET(palo->pvtlo, 0x90, void *))(palo, &vec);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloAngularVelocityVec__FP3ALOP6VECTOR);
+void SetAloAngularVelocityVec(ALO *palo, VECTOR *pw)
+{
+    ACT *pactRot;
+
+    STRUCT_OFFSET(palo, 0x160, VU_VECTOR) = *(VU_VECTOR *)pw; // palo->wWorld (angular velocity)
+    pactRot = STRUCT_OFFSET(palo, 0x1f0, ACT *); // palo->pactRot
+    if (pactRot != NULL)
+    {
+        AdaptAct(pactRot);
+    }
+
+    if (!FIsZeroW(pw))
+    {
+        ResolveAlo(palo);
+    }
+}
 
 void SetAloAngularVelocityXYZ(ALO *palo, float x, float y, float z)
 {
@@ -262,9 +279,38 @@ void GetAloFastShadowDepth(ALO *palo, float *psDepth)
     *psDepth = STRUCT_OFFSET(palo, 0x290, float) * 100.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", PshadowAloEnsure__FP3ALO);
+SHADOW *PshadowAloEnsure(ALO *palo)
+{
+    if (!STRUCT_OFFSET(palo, 0x284, SHADOW *))
+    {
+        SHADOW *pshadow = (SHADOW *)PvAllocSlotheapClearImpl(&STRUCT_OFFSET(palo->psw, 0x1bf4, SLOTHEAP));
+        STRUCT_OFFSET(palo, 0x284, SHADOW *) = pshadow;
+        InitShadow(pshadow);
+        AppendDlEntry(&STRUCT_OFFSET(palo->psw, 0x1c00, DL), STRUCT_OFFSET(palo, 0x284, SHADOW *));
+    }
+    return STRUCT_OFFSET(palo, 0x284, SHADOW *);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloCastShadow__FP3ALOi);
+extern DL D_00262300;
+
+void SetAloCastShadow(ALO *palo, int fCastShadow)
+{
+    SHADOW *pshadow;
+
+    if (fCastShadow)
+    {
+        PshadowAloEnsure(palo);
+        return;
+    }
+
+    pshadow = STRUCT_OFFSET(palo, 0x284, SHADOW *); // palo->pshadow
+    if (pshadow != NULL)
+    {
+        RemoveDlEntry(&STRUCT_OFFSET(palo->psw, 0x1c00, DL), pshadow);
+        AppendDlEntry(&D_00262300, STRUCT_OFFSET(palo, 0x284, SHADOW *));
+        STRUCT_OFFSET(palo, 0x284, SHADOW *) = NULL;
+    }
+}
 
 void SetAloShadowShader(ALO *palo, OID oidShdShadow)
 {
@@ -422,9 +468,35 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", PasegaFindAlo__FP3ALO3OID);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", PsmaFindAlo__FP3ALO3OID);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", PasegaFindAloNearest__FP3ALO);
+ASEGA *PasegaFindAloNearest(ALO *paloLeaf)
+{
+    while (paloLeaf != NULL)
+    {
+        ACT *pact = STRUCT_OFFSET(paloLeaf, 0x1ec, ACT *);
+        if (pact != NULL && pact->pvtact == &g_vtactseg)
+            return STRUCT_OFFSET(pact, 0x1c, ASEGA *);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", CreateAloActadj__FP3ALOiPP6ACTADJ);
+        pact = STRUCT_OFFSET(paloLeaf, 0x1f0, ACT *);
+        if (pact != NULL && pact->pvtact == &g_vtactseg)
+            return STRUCT_OFFSET(pact, 0x1c, ASEGA *);
+
+        paloLeaf = paloLeaf->paloParent;
+    }
+    return NULL;
+}
+
+extern VTACT D_002195D8;
+
+void CreateAloActadj(ALO *palo, int nPriority, ACTADJ **ppactadj)
+{
+    if (palo)
+    {
+        ACT *pact = PactNew(palo->psw, palo, &D_002195D8);
+        pact->nPriority = nPriority;
+        InsertAloAct(palo, pact);
+        *ppactadj = (ACTADJ *)pact;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FIsAloStatic__FP3ALO);
 
@@ -438,11 +510,33 @@ void ResolveAlo(ALO *palo)
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloPositionSpring__FP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloPositionSpringDetail__FP3ALOP3CLQ);
+extern CLQ D_00260E70;
+void SetAloPositionSpringDetail(ALO *palo, CLQ *pclq)
+{
+    CLQ *&pclqDst = STRUCT_OFFSET(palo, 0x20c, CLQ *); // palo->pclqPositionSpring (default &D_00260E70)
+
+    if (pclqDst == &D_00260E70)
+    {
+        pclqDst = (CLQ *)PvAllocSwImpl(0x10);
+    }
+
+    *(VU_VECTOR *)pclqDst = *(VU_VECTOR *)pclq;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloPositionDamping__FP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloPositionDampingDetail__FP3ALOP3CLQ);
+extern CLQ D_00260E80;
+void SetAloPositionDampingDetail(ALO *palo, CLQ *pclq)
+{
+    CLQ *&pclqDst = STRUCT_OFFSET(palo, 0x210, CLQ *); // palo->pclwPosDamping (real offset 0x210)
+
+    if (pclqDst == &D_00260E80)
+    {
+        pclqDst = (CLQ *)PvAllocSwImpl(0x10);
+    }
+
+    *(VU_VECTOR *)pclqDst = *(VU_VECTOR *)pclq;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationSpring__FP3ALOf);
 
@@ -450,11 +544,28 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationSpringDetail__FP3ALOP3CLQ);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationDamping__FP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationDampingDetail__FP3ALOP3CLQ);
+extern CLQ D_00260EA0;
+void SetAloRotationDampingDetail(ALO *palo, CLQ *pclq)
+{
+    CLQ *&pclqDst = STRUCT_OFFSET(palo, 0x218, CLQ *); // palo->pclqRotationDamping (default &D_00260EA0)
+
+    if (pclqDst == &D_00260EA0)
+    {
+        pclqDst = (CLQ *)PvAllocSwImpl(0x10);
+    }
+
+    *(VU_VECTOR *)pclqDst = *(VU_VECTOR *)pclq;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloPositionSmooth__FP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloPositionSmoothMaxAccel__FP3ALOf);
+struct SMPA { float ag[4]; };
+void SetAloPositionSmoothMaxAccel(ALO *palo, float r)
+{
+    SMPA smpa = *STRUCT_OFFSET(palo, 0x21c, SMPA *); // copy palo->psmpaPos
+    smpa.ag[3] = r * (smpa.ag[0] - smpa.ag[1]) / smpa.ag[2];
+    SetAloPositionSmoothDetail(palo, &smpa);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloPositionSmoothDetail__FP3ALOP4SMPA);
 
@@ -704,7 +815,17 @@ extern "C" void FUN_0012a8c8(ALO *palo)
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationMatchesVelocity__FP3ALOff3ACK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", PtargetEnsureAlo__FP3ALO);
+TARGET *PtargetEnsureAlo(ALO *palo)
+{
+    TARGET *ptarget = (TARGET *)PloFindSwObject(palo->psw, 0x102, (OID)0x22a, palo);
+
+    if (ptarget == NULL)
+    {
+        ptarget = (TARGET *)PloNew((CID)0x75, palo->psw, palo, (OID)0x22a, -1);
+    }
+
+    return ptarget;
+}
 
 void SetAloTargetAttacks(ALO *palo, GRFTAK grftak)
 {
@@ -893,7 +1014,23 @@ void StopAloSound(ALO *palo)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", EnsureAloThrob__FP3ALO);
+extern qword D_00261000[4];
+
+void EnsureAloThrob(ALO *palo)
+{
+    THROB *&pthrob = STRUCT_OFFSET(palo, 0x288, THROB *);
+
+    if (!pthrob)
+    {
+        qword *pdst = (qword *)PvAllocSwImpl(0x40);
+        pthrob = (THROB *)pdst;
+        pdst[0] = D_00261000[0];
+        pdst[1] = D_00261000[1];
+        pdst[2] = D_00261000[2];
+        pdst[3] = D_00261000[3];
+        pthrob->throbk = (THROBK)-1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloThrobKind__FP3ALO6THROBK);
 

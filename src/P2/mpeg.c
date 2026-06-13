@@ -1,7 +1,40 @@
 #include <mpeg.h>
 #include <bq.h>
+#include <989snd.h>
+#include <game.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FUN_0018e410);
+extern "C" uchar D_002484B0[16][32];
+
+extern "C" int FUN_0018e410(void *pv)
+{
+    uchar (*pb)[32] = D_002484B0;
+    int i = 0;
+loop:
+    {
+        int match;
+        if (pb == (uchar (*)[32])pv)
+            match = 1;
+        else if (pb == 0)
+            match = 0;
+        else if (pv == 0)
+            match = 0;
+        else
+        {
+            int *e = (int *)pb;
+            int *a = (int *)pv;
+            match = ((e[2] ^ e[6]) ^ (a[2] ^ a[6])) == 0;
+        }
+        if (match != 0)
+            return i;
+    }
+    i++;
+    if (i < 16)
+    {
+        pb++;
+        goto loop;
+    }
+    return -1;
+}
 
 extern "C" {
 extern char *D_002699C0[16];
@@ -26,7 +59,19 @@ extern "C" void FUN_0018e4c0(int i)
     FUN_0018f0e8(&g_mpeg, D_002484B0[i]);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FUN_0018e4f0);
+extern "C" uchar *D_00269A08;
+
+extern "C" void FUN_0018e4f0(int param1, int i)
+{
+    FUN_0018e4c0(param1);
+    D_00269A08 = D_002484B0[i];
+    int bits;
+    if ((uint)i >= 16)
+        bits = 0;
+    else
+        bits = 1 << i;
+    STRUCT_OFFSET(g_pgsCur, 0x19F4, int) |= bits;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FUN_0018e558);
 
@@ -106,9 +151,48 @@ extern "C" int FAsyncDrain__15CQueueOutputIpu()
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", Init__10CMpegAudio);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mpeg", Reset__10CMpegAudio);
+#ifndef CMPEGAUDIO_DEFINED
+#define CMPEGAUDIO_DEFINED
+class CMpegAudio
+{
+public:
+    int unk_0x0;
+    char pad_0x4[0x2C - 0x4];
+    CByteQueue bqDemux;
+    char pad_0x40[0x4C - 0x2C - (int)sizeof(CByteQueue)];
+    CByteQueue bqOut;
+    char pad_0x60[0x6C - 0x4C - (int)sizeof(CByteQueue)];
+    CQueueOutputIop qoi;
 
-INCLUDE_ASM("asm/nonmatchings/P2/mpeg", Close__10CMpegAudio);
+    void Reset();
+};
+#endif // CMPEGAUDIO_DEFINED
+
+void CMpegAudio::Reset()
+{
+    if (unk_0x0 != 0)
+    {
+        snd_ResetMovieSound();
+        unk_0x0 = 1;
+        bqDemux.Reset();
+        bqOut.Reset();
+        qoi.Reset();
+    }
+}
+
+struct SW;
+extern "C" SW *g_psw;
+void PopSwReverb(SW *psw);
+
+extern "C" void Close__10CMpegAudio(void *pthis)
+{
+    STRUCT_OFFSET(pthis, 0x0, int) = 0;
+    snd_CloseMovieSound();
+    snd_SetMasterVolume(2, STRUCT_OFFSET(pthis, 0x8C, int));
+    snd_SetMasterVolume(8, STRUCT_OFFSET(pthis, 0x90, int));
+    PopSwReverb(g_psw);
+    snd_ContinueAllSoundsInGroup(0xFFFFFFFF);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FAccept__10CMpegAudioiPUc);
 

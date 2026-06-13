@@ -242,7 +242,14 @@ void AddOxa(OXA *poxa, OXA **ppoxaFirst)
     *ppoxaFirst = poxa;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", PoxaAllocSw__FP2SWP2SO);
+OXA *PoxaAllocSw(SW *psw, SO *pso)
+{
+    OXA *poxa = STRUCT_OFFSET(psw, 0x1AE4, OXA *);
+    RemoveOxa(poxa, &STRUCT_OFFSET(psw, 0x1AE4, OXA *));
+    AddOxa(poxa, &STRUCT_OFFSET(psw, 0x1AE8, OXA *));
+    poxa->pso = pso;
+    return poxa;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FreeSwPoxa__FP2SWP3OXA);
 
@@ -353,7 +360,25 @@ extern "C" int FUN_001dd7a0(SW *psw, int wid)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd7e8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd888);
+extern int *PlsFromWid(WID wid) __asm__("LsFromWid");
+
+extern "C" int FUN_001dd888(SW *psw, WID wid, int nKey)
+{
+    int *pls = PlsFromWid(wid);
+    if (pls != NULL)
+    {
+        int *p = pls + 0x11;
+        int i = 0;
+        do
+        {
+            if (p[0] == nKey)
+                return p[1];
+            i++;
+            p += 2;
+        } while ((unsigned)i < 4);
+    }
+    return 0;
+}
 
 int FUN_001dd8e8(SW *psw, GAMEWORLD gameworld)
 {
@@ -462,7 +487,16 @@ extern "C" void FUN_001ddb20(SW *psw, PRK prk, int oid)
     SetPrompt(pprompt, PRP_Basic, prk);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddb58);
+extern BLOT D_002721D0;
+
+extern "C" void FUN_001ddb58(SW *psw)
+{
+    if (++STRUCT_OFFSET(psw, 0x2320, int) == 1)
+    {
+        SetBlotDtVisible(&D_002721D0, 0.0f);
+        D_002721D0.pvtblot->pfnShowBlot(&D_002721D0);
+    }
+}
 
 extern BLOT D_002721D0;
 
