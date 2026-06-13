@@ -1,4 +1,6 @@
 #include <crusher.h>
+#include <sm.h>
+#include <oid.h>
 
 /**
  * @todo Rename.
@@ -67,7 +69,29 @@ INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c2f0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c5e8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c668);
+// Shared: extern void *D_0027C00C; and a fwd decl of FUN_0014c5e8.
+// Needs <sm.h> (GetSmaGoal/GetSmaCur/SetSmaGoal, SMA) and <oid.h> (OID) which are
+// NOT transitively included by crusher.c yet.
+extern void *D_0027C00C;
+extern "C" void FUN_0014c5e8(void *p);
+
+extern "C" void FUN_0014c668(void *pv, int tnt)
+{
+    if (tnt == 1)
+    {
+        OID oidGoal;
+        OID oidCur;
+
+        GetSmaGoal(STRUCT_OFFSET(D_0027C00C, 0x42c, SMA *), &oidGoal);
+        GetSmaCur(STRUCT_OFFSET(D_0027C00C, 0x42c, SMA *), &oidCur);
+
+        if (oidGoal != (OID)0x3fe && oidCur != (OID)0x3fe)
+        {
+            SetSmaGoal(STRUCT_OFFSET(D_0027C00C, 0x42c, SMA *), (OID)0x3ff);
+            FUN_0014c5e8(D_0027C00C);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crusher", update_crbrain);
 

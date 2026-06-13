@@ -1,4 +1,7 @@
 #include <murray.h>
+#include <joy.h>
+#include <rwm.h>
+#include <vtables.h>
 
 void InitMurray(MURRAY *pmurray)
 {
@@ -28,9 +31,41 @@ INCLUDE_ASM("asm/nonmatchings/P2/murray", UpdateMurrayGoal__FP6MURRAYi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/murray", UpdateMurraySgs__FP6MURRAY);
 
-INCLUDE_ASM("asm/nonmatchings/P2/murray", FUN_001903f0);
+extern "C" int FUN_001c9a48(STEPGUARD *pstepguard, void *pv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/murray", FUN_00190450);
+extern "C" int FUN_001903f0(MURRAY *pmurray, void *pv)
+{
+    if ((g_grfcht & FCHT_Invulnerability) || IsSwHandsOff(STRUCT_OFFSET(pmurray, 0x14, SW *)))
+    {
+        return 1;
+    }
+    return FUN_001c9a48(pmurray, pv);
+}
+
+extern "C" int FUN_00190450(MURRAY *pmurray, WKR *pwkr)
+{
+    LO **ppvtable = (LO **)STRUCT_OFFSET(pmurray, 0x0, void *);
+    int (*pfn)(MURRAY *, LO *) = (int (*)(MURRAY *, LO *))STRUCT_OFFSET(ppvtable, 0x13c, void *);
+
+    if (pfn(pmurray, pwkr->ploSource))
+    {
+        return 0;
+    }
+
+    STRUCT_OFFSET(pmurray, 0xc34, int) = 0;
+    STRUCT_OFFSET(pmurray, 0xc30, LO *) = pwkr->ploSource;
+
+    if (pwkr->ploSource == NULL && pwkr->ploTarget != NULL)
+    {
+        RWM *prwm = STRUCT_OFFSET(STRUCT_OFFSET(pmurray, 0xc2c, SO *), 0x618, RWM *);
+        if (FIsRwmAmmo(prwm, (SO *)pwkr->ploTarget))
+        {
+            STRUCT_OFFSET(pmurray, 0xc34, int) = 1;
+        }
+    }
+
+    return FTakeStepguardDamage(pmurray, (ZPR *)pwkr);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/murray", FAbsorbMurrayWkr__FP6MURRAYP3WKR);
 

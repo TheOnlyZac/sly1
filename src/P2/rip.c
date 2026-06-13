@@ -4,6 +4,7 @@
 #include <cid.h>
 #include <wr.h>
 #include <bsp.h>
+#include <bez.h>
 
 RIPG *PripgNew(SW *psw, RIPGT ripgt)
 {

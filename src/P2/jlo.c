@@ -1,6 +1,8 @@
 #include <jlo.h>
 #include <mat.h>
 #include <find.h>
+#include <pnt.h>
+#include <rwm.h>
 
 extern JLO *g_pjloCur;
 extern VECTOR g_normalZ; // TODO: This should be elsewhere.
@@ -61,11 +63,58 @@ INCLUDE_ASM("asm/nonmatchings/P2/jlo", UpdateJlo__FP3JLOf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jlo", JlosNextJlo__FP3JLO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jlo", SetJloJlovol__FP3JLOP6JLOVOL);
+EXC *PexcSetExcitement(int gexc);
+void UnsetExcitementHyst(EXC *pexc);
+
+void SetJloJlovol(JLO *pjlo, JLOVOL *pjlovol)
+{
+    if (pjlovol == STRUCT_OFFSET(pjlo, 0x558, JLOVOL *))
+        return;
+
+    void *p3 = NULL;
+    if (pjlovol != NULL)
+        p3 = STRUCT_OFFSET(pjlovol, 0x7AC, void *);
+
+    if (p3 != STRUCT_OFFSET(pjlo, 0x5D0, void *))
+    {
+        STRUCT_OFFSET(pjlo, 0x5D0, void *) = p3;
+        STRUCT_OFFSET(pjlo, 0x5D4, int) = 3;
+    }
+
+    STRUCT_OFFSET(pjlo, 0x558, JLOVOL *) = pjlovol;
+
+    if (p3 != NULL)
+    {
+        RWM *prwm = STRUCT_OFFSET(pjlo, 0x570, RWM *);
+        STRUCT_OFFSET(prwm, 0x44, int) = STRUCT_OFFSET(STRUCT_OFFSET(pjlovol, 0x7AC, void *), 0x318, int);
+        ReloadRwm(STRUCT_OFFSET(pjlo, 0x570, RWM *));
+        if (STRUCT_OFFSET(pjlo, 0x5BC, EXC *) == NULL)
+            STRUCT_OFFSET(pjlo, 0x5BC, EXC *) = PexcSetExcitement(0x6B);
+    }
+    else
+    {
+        if (STRUCT_OFFSET(pjlo, 0x5BC, EXC *) != NULL)
+        {
+            UnsetExcitementHyst(STRUCT_OFFSET(pjlo, 0x5BC, EXC *));
+            STRUCT_OFFSET(pjlo, 0x5BC, EXC *) = NULL;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jlo", FireJlo__FP3JLO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jlo", LandJlo__FP3JLO);
+void LandJlo(JLO *pjlo)
+{
+    extern VECTOR D_00248D30;
+    VECTOR pos;
+
+    SetSoConstraints(pjlo, CT_Locked, NULL, CT_Locked, NULL);
+    (*(void (**)(ALO *, VECTOR *))(*(uint8_t **)pjlo + 0x90))(pjlo, &D_00248D30);
+    (*(void (**)(ALO *, VECTOR *))(*(uint8_t **)pjlo + 0x94))(pjlo, &D_00248D30);
+    GetPntPos(STRUCT_OFFSET(STRUCT_OFFSET(pjlo, 0x558, void *), 0x7A4, PNT *), &pos);
+    pos.z += STRUCT_OFFSET(pjlo, 0x56C, float);
+    (*(void (**)(ALO *, VECTOR *))(*(uint8_t **)pjlo + 0x84))(pjlo, &pos);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jlo", JumpJlo__FP3JLO);
 

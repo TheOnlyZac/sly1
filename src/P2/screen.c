@@ -285,7 +285,25 @@ void FUN_001ac060(TIMER *ptimer)
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac0e8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", PostNoteLoad__FP4NOTE);
+extern CFont *D_002743D0;
+
+void PostNoteLoad(NOTE *pnote)
+{
+    CFont *pfont;
+    void *pv;
+
+    PostBlotLoad(pnote);
+    pfont = STRUCT_OFFSET(pnote, 0x4, CFont *);
+    pv = STRUCT_OFFSET(pfont, 0x4c, void *);
+    STRUCT_OFFSET(pnote, 0x4, int) =
+        (*(int (**)(void *, float, float))((uint8_t *)pv + 0xc))(
+            (uint8_t *)pfont + STRUCT_OFFSET(pv, 0x8, short), 1.25f, 1.25f);
+    if (FUN_0015c188(2))
+    {
+        STRUCT_OFFSET(pnote, 0x210, CFont **) = &D_002743D0;
+        *STRUCT_OFFSET(pnote, 0x210, CFont **) = FUN_0015c1c0(2);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", SetNoteAchzDraw__FP4NOTEPc);
 
@@ -489,7 +507,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae510);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae5e0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae758);
+extern "C" char FUN_001aea08(void);
+extern float D_002744AC;
+
+extern "C" void FUN_001ae758(BLOT *pblot)
+{
+    char achz[2];
+
+    PostBlotLoad(pblot);
+    SetBlotDtAppear(pblot, 0.25f);
+    SetBlotDtDisappear(pblot, 0.25f);
+    SetBlotDtVisible(pblot, 0.0f);
+    pblot->pfont = FUN_0015c1c0(1);
+    SetBlotFontScale(pblot, D_002744AC);
+
+    achz[0] = FUN_001aea08();
+    achz[1] = 0;
+    ((void (*)(BLOT *, char *))((VTBLOT *)pblot->pvtblot)->pfnSetBlotAchzDraw)(pblot, achz);
+    pblot->achzDraw[0] = 0;
+}
 
 void FUN_001ae7f8(CTR *pctr, BLOTS blots)
 {

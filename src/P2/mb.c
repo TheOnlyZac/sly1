@@ -1,5 +1,6 @@
 #include <mb.h>
 #include <stepguard.h>
+#include <memory.h>
 
 extern SNIP s_asnipLoadMbg[2];
 

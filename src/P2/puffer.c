@@ -106,7 +106,23 @@ INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_001982a0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", UpdatePuffcGoal__FP5PUFFCi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/puffer", OnPuffcExitingSgs__FP5PUFFC3SGS);
+extern "C" void FUN_00197a08(void *pv1, void *pv2);
+
+void OnPuffcExitingSgs(PUFFC *ppuffc, SGS sgsNext)
+{
+    if (STRUCT_OFFSET(ppuffc, 0x724, int) == SGS_Stun)
+    {
+        VU_VECTOR vec;
+
+        FUN_00197a08(PpoCur(), ppuffc);
+
+        vec = STRUCT_OFFSET(ppuffc, 0x150, VU_VECTOR);
+        STRUCT_OFFSET((&vec), 0x8, int) = 0;
+        (*(void (**)(PUFFC *, VU_VECTOR *))((uint8_t *)STRUCT_OFFSET(ppuffc, 0x0, void *) + 0x90))(ppuffc, &vec);
+    }
+
+    OnStepguardExitingSgs((STEPGUARD *)ppuffc, sgsNext);
+}
 
 void OnPuffcEnteringSgs(PUFFC *ppuffc, SGS sgsPrev, ASEG *pasegOverride)
 {

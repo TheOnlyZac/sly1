@@ -2,6 +2,7 @@
 #include <so.h>
 #include <po.h>
 #include <stepguard.h>
+#include <memory.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", InitSuv__FP3SUV);
 

@@ -236,7 +236,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertWorldToCylindVelocity);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCylindToWorldVelocity);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", ResetCmLookAtSmooth);
+extern "C" void ConvertCylindToWorldVelocity(void *a, void *b, void *c, float f0, float f1, float f2);
+extern "C" void ConvertWorldToCylindVelocity(void *a, void *b, void *c, void *d, void *e, void *f);
+
+extern "C" void ResetCmLookAtSmooth(CM *pcm, void *pv)
+{
+    VECTOR4 vTmp;
+
+    ConvertCylindToWorldVelocity(&STRUCT_OFFSET(pcm, 0x2d0, int), &STRUCT_OFFSET(pcm, 0x40, int), &vTmp,
+        STRUCT_OFFSET(pcm, 0x2b0, float), STRUCT_OFFSET(pcm, 0x2b4, float), STRUCT_OFFSET(pcm, 0x2b8, float));
+    ConvertWorldToCylindVelocity(pv, &STRUCT_OFFSET(pcm, 0x40, int), &vTmp,
+        &STRUCT_OFFSET(pcm, 0x2b0, int), &STRUCT_OFFSET(pcm, 0x2b4, int), &STRUCT_OFFSET(pcm, 0x2b8, int));
+    STRUCT_OFFSET(pcm, 0x2d0, qword) = *(qword *)pv;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmLookAtSmooth);
 

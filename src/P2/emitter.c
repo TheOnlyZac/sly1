@@ -8,6 +8,7 @@
 #include <dl.h>
 #include <clock.h>
 #include <slotheap.h>
+#include <sce/memset.h>
 
 extern float DAT_0024a124;
 

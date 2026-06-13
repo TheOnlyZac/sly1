@@ -460,7 +460,7 @@ int CcharmMost();
 /**
  * @brief Reloads the game state after the player dies.
  */
-void reload_post_death();
+extern "C" void reload_post_death();
 
 // todo these should be somewhere else?
 extern GS g_gsCur;

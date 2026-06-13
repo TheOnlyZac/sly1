@@ -1,4 +1,5 @@
 #include <stephide.h>
+#include <clock.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/stephide", JtbsChooseJtHide__FP2JTP2LOP4JTHK);
 
@@ -24,7 +25,23 @@ float GMeasureJumpRail(MJR *pmjr, float u)
     return gInteg;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/stephide", FUN_001cea58);
+struct HPNT;
+extern void GetHpntClosestHidePos(HPNT *phpnt, VECTOR *ppos, float *pf);
+
+extern "C" float FUN_001cea58(MJH *pmjh)
+{
+    VECTOR posTarget;
+    float gInteg;
+
+    GetHpntClosestHidePos(STRUCT_OFFSET(pmjh, 0x4, HPNT *), &posTarget, 0);
+
+    MeasureJtJumpToTarget(STRUCT_OFFSET(pmjh, 0x0, JT *),
+                          (VECTOR *)((uint8_t *)pmjh + 0x10),
+                          STRUCT_OFFSET(STRUCT_OFFSET(pmjh, 0x4, HPNT *), 0x18, ALO *),
+                          &posTarget, 0, 0, &gInteg, 0, 0);
+
+    return gInteg;
+}
 
 struct HSHAPE;
 extern void GetHshapeHidePos(HSHAPE *phshape, float s, VECTOR *ppos, float *pf);

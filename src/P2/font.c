@@ -1,6 +1,7 @@
 #include <font.h>
 #include <memory.h>
 #include <gs.h>
+#include <gifs.h>
 
 void StartupFont()
 {
@@ -65,7 +66,21 @@ INCLUDE_ASM("asm/nonmatchings/P2/font", PushScaling__5CFontff);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", PopScaling__5CFont);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", PfontClone__8CFontBrxff);
+extern void *D_0024A220;
+extern void *__builtin_new(unsigned int cb);
+
+void CopyTo_CFontBrx(CFontBrx *self, CFontBrx *pfontDest) __asm__("CopyTo__8CFontBrxP8CFontBrx");
+
+CFontBrx *PfontClone_CFontBrx(CFontBrx *self, float rxScale, float ryScale) __asm__("PfontClone__8CFontBrxff");
+CFontBrx *PfontClone_CFontBrx(CFontBrx *self, float rxScale, float ryScale)
+{
+    CFontBrx *pfontNew = (CFontBrx *)__builtin_new(0x88);
+    STRUCT_OFFSET(pfontNew, 0x4c, void *) = &D_0024A220;
+    CopyTo_CFontBrx(self, pfontNew);
+    STRUCT_OFFSET(pfontNew, 0x44, float) = STRUCT_OFFSET(pfontNew, 0x44, float) * rxScale;
+    STRUCT_OFFSET(pfontNew, 0x48, float) = STRUCT_OFFSET(pfontNew, 0x48, float) * ryScale;
+    return pfontNew;
+}
 
 void CopyTo_CFontBrx(CFontBrx *self, CFontBrx *pfontDest) __asm__("CopyTo__8CFontBrxP8CFontBrx");
 void CopyTo_CFontBrx(CFontBrx *self, CFontBrx *pfontDest)

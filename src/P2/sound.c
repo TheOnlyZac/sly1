@@ -5,6 +5,7 @@
 #include <po.h>
 #include <game.h>
 #include <memory.h>
+#include <cplcy.h>
 
 extern uchar D_00604790[]; // temp
 
@@ -102,7 +103,17 @@ int FPauseForVag()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", RefreshPambVolPan__FP3AMB);
+void RefreshPambVolPan(AMB *pamb)
+{
+    int vol = (int)(STRUCT_OFFSET(pamb, 0x50, float) * 1024.0f);
+    float pan = STRUCT_OFFSET(pamb, 0x54, float);
+    int panOut;
+    if (0.0f < pan)
+        panOut = (int)((pan + 2.0f) * 179.5f) - 359;
+    else
+        panOut = (int)((pan + 2.0f) * 179.5f);
+    snd_SetSoundVolPan(pamb->sfxh, vol, panOut);
+}
 
 void RefreshPambVolPan(AMB *pamb);
 void DropPamb(AMB **ppamb);
@@ -480,7 +491,20 @@ void KillSoundSystem()
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", KillSounds__Fi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PushSwReverb__FP2SW7REVERBKi);
+enum REVERBK {};
+extern int D_00274808[];
+
+void PushSwReverb(SW *psw, REVERBK reverb, int depth)
+{
+    if ((unsigned)STRUCT_OFFSET(psw, 0x2348, int) < 4)
+    {
+        snd_SetReverbType(2, D_00274808[reverb]);
+        snd_SetReverbDepth(2, depth, depth);
+        STRUCT_OFFSET((char *)psw + (STRUCT_OFFSET(psw, 0x2348, int) << 3), 0x2328, int) = reverb;
+        STRUCT_OFFSET((char *)psw + (STRUCT_OFFSET(psw, 0x2348, int) << 3), 0x232c, int) = depth;
+        STRUCT_OFFSET(psw, 0x2348, int) = STRUCT_OFFSET(psw, 0x2348, int) + 1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PopSwReverb__FP2SW);
 
