@@ -95,7 +95,34 @@ extern "C" void FUN_0014c668(void *pv, int tnt)
 
 INCLUDE_ASM("asm/nonmatchings/P2/crusher", update_crbrain);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c788);
+extern int FUN_001e9970();
+extern BLOT g_unkblot1;
+extern BLOT g_unkblot9;
+
+extern "C" void FUN_0014c788(void *pv)
+{
+    OID oid;
+    int fShow;
+
+    GetSmaCur(STRUCT_OFFSET(pv, 0x42c, SMA *), &oid);
+
+    fShow = 0;
+    if (oid == (OID)0x3fd)
+    {
+        fShow = FUN_001e9970();
+    }
+
+    if (fShow)
+    {
+        g_unkblot1.pvtblot->pfnShowBlot(&g_unkblot1);
+        g_unkblot9.pvtblot->pfnShowBlot(&g_unkblot9);
+    }
+    else
+    {
+        g_unkblot1.pvtblot->pfnHideBlot(&g_unkblot1);
+        g_unkblot9.pvtblot->pfnHideBlot(&g_unkblot9);
+    }
+}
 
 void *FUN_0014c820(void *p)
 {

@@ -6,6 +6,8 @@
 #include <chkpnt.h>
 #include <screen.h>
 #include <rip.h>
+#include <memory.h>
+#include <aseg.h>
 
 void InitSprize(SPRIZE *psprize)
 {
@@ -192,7 +194,29 @@ void InitClue(CLUE *pclue)
     STRUCT_OFFSET(psw, 0x2300, int) = n + 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", LoadClueFromBrx__FP4CLUEP18CBinaryInputStream);
+extern SNIP D_0026A948;
+
+void LoadClueFromBrx(CLUE *pclue, CBinaryInputStream *pbis)
+{
+    LoadSprizeFromBrx(pclue, pbis);
+    SnipAloObjects(pclue, 1, &D_0026A948);
+    STRUCT_OFFSET(pclue, 0x5b0, void *) = PvAllocSwImpl(0x80);
+
+    int oid = 0x318;
+    while (oid < 0x338)
+    {
+        LO *plo = PloFindSwObject(STRUCT_OFFSET(pclue, 0x14, SW *), 1, (OID)oid, (LO *)pclue);
+        if (plo == NULL)
+            break;
+
+        int c = STRUCT_OFFSET(pclue, 0x5ac, int);
+        LO **aplo = STRUCT_OFFSET(pclue, 0x5b0, LO **);
+        oid++;
+        aplo[c] = plo;
+        STRUCT_OFFSET(pclue, 0x5ac, int) = c + 1;
+        SnipLo(plo);
+    }
+}
 
 void CloneClue(CLUE *pclue, CLUE *pclueBase)
 {

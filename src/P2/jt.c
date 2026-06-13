@@ -154,7 +154,22 @@ void UpdateJtPosWorldPrev(JT *pjt)
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00172b08);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtBounds__FP2JT);
+void UpdateJtBounds(JT *pjt)
+{
+    UpdateSoBounds(pjt);
+
+    int i = 0;
+    if (STRUCT_OFFSET(pjt, 0x21CC, int) > 0)
+    {
+        VECTOR *ppos = (VECTOR *)((char *)pjt + 0x21D0);
+        do
+        {
+            ExtendSoBounds(pjt, ppos, STRUCT_OFFSET(pjt, 0x2420, float));
+            i++;
+            ppos = (VECTOR *)((char *)ppos + 0x10);
+        } while (i < STRUCT_OFFSET(pjt, 0x21CC, int));
+    }
+}
 
 SO *PsoGetJtEffect(JT *pjt, int *pn)
 {

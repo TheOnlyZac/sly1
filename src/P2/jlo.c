@@ -3,6 +3,7 @@
 #include <find.h>
 #include <pnt.h>
 #include <rwm.h>
+#include <brx.h>
 
 extern JLO *g_pjloCur;
 extern VECTOR g_normalZ; // TODO: This should be elsewhere.

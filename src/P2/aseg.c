@@ -57,7 +57,25 @@ ASEGA *PasegaApplyAseg(ASEG *paseg, ALO *paloAsegRoot, float tLocal, float svtLo
 
 INCLUDE_ASM("asm/nonmatchings/P2/aseg", PasegaFindAseg__FP4ASEGP3ALO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/aseg", EnsureAseg__FP4ASEGP3ALO4SEEKffiPP5ASEGA);
+void SeekAsega(ASEGA *pasega, SEEK seek, float t, float svt);
+
+void EnsureAseg(ASEG *paseg, ALO *paloRoot, SEEK seek, float t, float svt, GRFAPL grfapl, ASEGA **ppasega)
+{
+    ASEGA *pasega;
+    ASEGA **pp = ppasega ? ppasega : &pasega;
+
+    pasega = PasegaFindAseg(paseg, paloRoot);
+    if (pasega != NULL)
+    {
+        *pp = pasega;
+    }
+    else
+    {
+        ApplyAseg(paseg, paloRoot, 0.0f, 1.0f, grfapl, pp);
+    }
+
+    SeekAsega(*pp, seek, t, svt);
+}
 
 ASEGA *PasegaEnsureAseg(ASEG *paseg, ALO *paloRoot, SEEK seek, float t, float svt, GRFAPL grfapl)
 {

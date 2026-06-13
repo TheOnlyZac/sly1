@@ -5,6 +5,7 @@
 #include <cm.h>
 #include <find.h>
 #include <memory.h>
+#include <po.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", InitXfm__FP3XFM);
 
@@ -88,7 +89,22 @@ int FUN_001F4308(WARP *pwarp, float g)
     return 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/xform", TeleportSwPlayer__FP2SW3OIDT1);
+void TeleportSwPlayer(SW *psw, OID oidWarp, OID oidWarpContext)
+{
+    WARP *pwarp = PwarpFromOid(oidWarp, oidWarpContext);
+    if (pwarp != NULL)
+    {
+        TriggerWarp(pwarp);
+        return;
+    }
+
+    if (PpoCur() != NULL)
+        return;
+
+    PO *ppo = PpoStart();
+    if (ppo != NULL)
+        SwitchToPo(ppo);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", PexitDefault__Fv);
 

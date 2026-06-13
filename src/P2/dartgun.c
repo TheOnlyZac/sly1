@@ -3,6 +3,8 @@
 #include <clock.h>
 #include <lookat.h>
 #include <dart.h>
+#include <dl.h>
+#include <find.h>
 
 void InitDartgun(DARTGUN *pdartgun)
 {
@@ -73,7 +75,37 @@ int FIgnoreDartgunIntersection(DARTGUN *pdartgun, SO *psoOther)
     return FIgnoreSoIntersection((SO *)pdartgun, psoOther);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/dartgun", BreakDartgun__FP7DARTGUN);
+void BreakDartgun(DARTGUN *pdartgun)
+{
+    OID oidCur;
+    ALO *palo;
+    SMA *psma;
+
+    palo = STRUCT_OFFSET(pdartgun, 0x6c8, ALO *);
+    if (palo != NULL)
+    {
+        (*(void (**)(ALO *, int))((char *)palo->pvtlo + 0x64))(palo, 0);
+        palo = STRUCT_OFFSET(pdartgun, 0x6c8, ALO *);
+        (*(void (**)(ALO *))((char *)palo->pvtlo + 0x1c))(palo);
+    }
+
+    psma = STRUCT_OFFSET(pdartgun, 0x740, SMA *);
+    if (psma != NULL)
+    {
+        SeekSma(psma, (OID)0x2B7);
+        GetSmaCur(STRUCT_OFFSET(pdartgun, 0x740, SMA *), &oidCur);
+        if (oidCur == (OID)0x2B7)
+        {
+            RetractSma(STRUCT_OFFSET(pdartgun, 0x740, SMA *));
+            STRUCT_OFFSET(pdartgun, 0x740, int) = 0;
+        }
+    }
+
+    palo = STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, ALO *);
+    (*(void (**)(ALO *, int))((char *)palo->pvtlo + 0x8))(palo, 7);
+
+    BreakBrk((BRK *)pdartgun);
+}
 
 void SetDartgunGoalState(DARTGUN *pdartgun, OID oidStateGoal)
 {

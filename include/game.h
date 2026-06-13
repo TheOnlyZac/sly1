@@ -274,7 +274,7 @@ uint get_level_completion_by_id(int level_id);
  * @param cvault Result of the tally of vaults.
  * @param cmts Result of the tally of Master Thief Sprints
  */
-void tally_world_completion(int wid, int *ckey, int *cvault, int *cmts);
+extern "C" void tally_world_completion(int wid, int *ckey, int *cvault, int *cmts);
 
 /**
  * @brief Get the game completion flags based on the current game state.

@@ -8,6 +8,8 @@
 #include <frm.h>
 #include <vifs.h>
 #include <math.h>
+#include <sw.h>
+#include <vis.h>
 
 // todo fix data and rodata
 // VECTOR4 g_posEyeDefault = { 0.0f, -2000.0f, 500.0f, 0.0f };
@@ -206,7 +208,23 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCmScreenToWorld);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCmWorldToScreen);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", SetupCm__FP2CM);
+extern "C" void SetupCmRotateToCam(CM *pcm);
+
+void SetupCm(CM *pcm)
+{
+    VECTOR4 vTmp;
+    GRFZON grfzon;
+
+    SetupCmRotateToCam(pcm);
+
+    if (g_psw != NULL)
+    {
+        STRUCT_OFFSET(&vTmp, 0, qword) = STRUCT_OFFSET(pcm, 0x40, qword);
+        ClipVismapPointNoHop(g_psw->pvismap, (VECTOR *)&vTmp, &grfzon);
+        if (grfzon != 0)
+            pcm->field39_0x21c = grfzon;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", CombineEyeLookAtProj);
 

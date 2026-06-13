@@ -11,6 +11,7 @@
 #include <brx.h>
 #include <fader.h>
 #include <glob.h>
+#include <shdanim.h>
 
 extern VTACT g_vtactseg;
 extern SHADOW s_shadow;
@@ -570,7 +571,18 @@ void SetAloPositionDampingDetail(ALO *palo, CLQ *pclq)
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationSpring__FP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationSpringDetail__FP3ALOP3CLQ);
+extern CLQ D_00260E90;
+void SetAloRotationSpringDetail(ALO *palo, CLQ *pclq)
+{
+    CLQ *&pclqDst = STRUCT_OFFSET(palo, 0x214, CLQ *); // palo->pclqRotationSpring (default &D_00260E90)
+
+    if (pclqDst == &D_00260E90)
+    {
+        pclqDst = (CLQ *)PvAllocSwImpl(0x10);
+    }
+
+    *(VU_VECTOR *)pclqDst = *(VU_VECTOR *)pclq;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationDamping__FP3ALOf);
 
@@ -612,9 +624,25 @@ void SetAloPositionSmoothDetail(ALO *palo, SMPA *psmpa)
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationSmooth__FP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationSmoothMaxAccel__FP3ALOf);
+void SetAloRotationSmoothMaxAccel(ALO *palo, float r)
+{
+    SMPA smpa = *STRUCT_OFFSET(palo, 0x220, SMPA *); // copy palo->psmapaRot
+    smpa.ag[3] = r * (smpa.ag[0] - smpa.ag[1]) / smpa.ag[2];
+    SetAloRotationSmoothDetail(palo, &smpa);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationSmoothDetail__FP3ALOP4SMPA);
+extern SMPA D_00260EC0;
+void SetAloRotationSmoothDetail(ALO *palo, SMPA *psmpa)
+{
+    SMPA *&psmpaDst = STRUCT_OFFSET(palo, 0x220, SMPA *); // palo->psmapaRot (default &D_00260EC0)
+
+    if (psmpaDst == &D_00260EC0)
+    {
+        psmpaDst = (SMPA *)PvAllocSwImpl(0x10);
+    }
+
+    *psmpaDst = *psmpa;
+}
 
 void SetAloDefaultAckPos(ALO *palo, ACK ack)
 {
@@ -864,7 +892,21 @@ extern "C" void FUN_0012a8c8(ALO *palo)
     STRUCT_OFFSET(pactla, 0x4C, int) = 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationMatchesVelocity__FP3ALOff3ACK);
+extern VTACT D_00219600;
+void SetAloRotationMatchesVelocity(ALO *palo, float uBank, float dtPredict, ACK ackRot)
+{
+    if (STRUCT_OFFSET(palo, 0x204, ACT *) == 0)
+    {
+        ACT *pact = PactNew(palo->psw, palo, &D_00219600);
+        STRUCT_OFFSET(palo, 0x204, ACT *) = pact;
+        InsertAloAct(palo, pact);
+    }
+
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x204, ACT *), 0x11, char) = ackRot;
+    ((ACTBANK *)STRUCT_OFFSET(palo, 0x204, ACT *))->uBank = uBank;
+    ((ACTBANK *)STRUCT_OFFSET(palo, 0x204, ACT *))->dtPredict = dtPredict;
+    (*(void (**)(ALO *))((char *)palo->pvtlo + 0xBC))(palo);
+}
 
 TARGET *PtargetEnsureAlo(ALO *palo)
 {

@@ -491,6 +491,12 @@ void FUN_001adc60(BLOT *pblot)
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawLogo__FP4LOGO);
 
+extern float D_0027446C;
+extern float D_00274470;
+extern CFont *D_00274488;
+extern void *D_00269988;
+
+
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001adf28);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001adff0);

@@ -126,42 +126,6 @@ void FreezeLasen(LASEN *plasen, int fFreeze)
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", RenderLasenSelf__FP5LASENP2CMP2RO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", FUN_001afaf8__FP6SENSORP2SO);
-#ifdef SKIP_ASM
-/**
- * @todo 73.57% matched.
- */
-int FUN_001afaf8(SENSOR *psensor, SO *pso)
-{
-	extern void *g_pjt;
-	unsigned long long mask;
-	uint tmp2cc;
-
-	/* Mask: (0x8000 << 28) in 64-bits */
-	mask = ((ulong)0x8000) << 28;
-	if (STRUCT_OFFSET(pso, 0x538, ulong) & mask)
-		return 0;
-
-	if (STRUCT_OFFSET(pso, 0x50, uint) == STRUCT_OFFSET(psensor, 0x50, uint))
-		return 0;
-
-	if (FIgnoreSensorObject(psensor, pso))
-		return 0;
-
-	if (pso == g_pjt)
-	{
-		if (STRUCT_OFFSET(pso, 0x2220, uint) != 6)
-			return 0;
-		if (STRUCT_OFFSET(pso, 0x239C, uint) != 3)
-			return 0;
-		if (GetGrfvault_unknown() & 0x12000)
-			return 0;
-	}
-
-	tmp2cc = STRUCT_OFFSET(pso, 0x2CC, uint);
-	/* Invert lowest bit and mask to 1 */
-	return (int)(((tmp2cc ^ 1u) & 1u));
-}
-#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", SenseLasen__FP5LASENP7SENSORS);
 
