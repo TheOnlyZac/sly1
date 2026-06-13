@@ -5,6 +5,7 @@
 #include <frm.h>
 #include <gifs.h>
 #include <shd.h>
+#include <wipe.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", StartupScreen__Fv);
 
@@ -392,7 +393,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", HideTotalsQMARK);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawTotals__FP6TOTALS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad6a8);
+extern char D_0024CEE0[];
+
+void FUN_001ad6a8(BLOT *pblot)
+{
+    CFont *pfont;
+    void *pv;
+
+    PostBlotLoad(pblot);
+    pfont = FUN_0015c1c0(2);
+    pv = STRUCT_OFFSET(pfont, 0x4c, void *);
+    STRUCT_OFFSET(pblot, 0x4, int) =
+        (*(int (**)(void *, float, float))((uint8_t *)pv + 0xc))(
+            (uint8_t *)pfont + STRUCT_OFFSET(pv, 0x8, short), 1.0f, 1.0f);
+    ((VTBLOT *)pblot->pvtblot)->pfnSetBlotAchzDraw(pblot, D_0024CEE0);
+    STRUCT_OFFSET(pblot, 0x260, int) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad718);
 

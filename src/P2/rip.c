@@ -81,7 +81,17 @@ void TouchRip(RIP *prip, int fTouching)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", ForceRipFade__FP3RIPf);
+void ForceRipFade(RIP *prip, float dtFade)
+{
+    float dtRemain = STRUCT_OFFSET(prip, 0x1c, float) - (g_clock.t - STRUCT_OFFSET(prip, 0x18, float));
+    if (dtFade < dtRemain)
+    {
+        float ratio = dtRemain / STRUCT_OFFSET(prip, 0x1c, float);
+        float v = dtFade / ratio;
+        STRUCT_OFFSET(prip, 0x1c, float) = v;
+        STRUCT_OFFSET(prip, 0x18, float) = g_clock.t - (1.0f - ratio) * v;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", FBounceRip__FP3RIPP2SOP6VECTORT2);
 

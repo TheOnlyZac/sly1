@@ -154,22 +154,21 @@ INCLUDE_ASM("asm/nonmatchings/P2/game", LsFromWid);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", GrflsFromWid__F3WID);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", UnloadGame__Fv);
-#ifdef SKIP_ASM
-/**
- * @todo 60.42% matched.
- */
+extern "C" char D_00269984;
+extern "C" char D_002623D8;
+
 void UnloadGame()
 {
+    struct PACK { int v; } __attribute__((packed));
+
     InitGameState(g_pgsCur);
-    // unk_gs? = NULL;
-    // clr_8_bytes_1(&DAT_002623d8);
+    ((PACK *)&D_00269984)->v = 0;
+    clr_8_bytes_1(&D_002623D8);
     OnDifficultyGameLoad(&g_difficulty);
     g_grfcht = (GRFCHT)FCHT_None;
     g_worldlevelPrev = WORLDLEVEL_Nil;
     RetryGame();
-}
-#endif // SKIP_ASM
+} // SKIP_ASM
 
 void RetryGame()
 {

@@ -68,7 +68,18 @@ CT CtTorqueStep(STEP *pstep)
     return CT_Locked;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/step", PropagateStepForce__FP4STEPiP2XPiP2DZP2FX);
+void PropagateSoForce(SO *psoRoot, GRFSG grfsg, XP *pxp, int ixpd, DZ *pdz, FX *afx);
+
+void PropagateStepForce(STEP *pstep, GRFSG grfsg, XP *pxp, int ixpd, DZ *pdz, FX *afx)
+{
+    CT ctSav;
+
+    ctSav = STRUCT_OFFSET(pstep, 0x470, CT);
+    STRUCT_OFFSET(pstep, 0x470, CT) =
+        (*(CT (**)(STEP *))((uint8_t *)pstep->pvtlo + 0x164))(pstep);
+    PropagateSoForce(pstep, grfsg, pxp, ixpd, pdz, afx);
+    STRUCT_OFFSET(pstep, 0x470, CT) = ctSav;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", RotateStepToMat__FP4STEPP7MATRIX3);
 

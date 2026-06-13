@@ -235,7 +235,14 @@ void FUN_00148748(void *param_1)
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148770);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148828);
+extern "C" void FUN_00148828(DPRIZE *pdprize, float dt)
+{
+    UpdateDprize(pdprize, dt);
+    if (pdprize->oidInitialState != OID_Unknown)
+        return;
+    if (STRUCT_OFFSET(pdprize->psw, 0x2308, float) <= g_clock.t)
+        (*(void (**)(DPRIZE *, DPRIZES))((char *)pdprize->pvtlo + 0xCC))(pdprize, DPRIZES_Lose);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148888);
 
@@ -261,7 +268,18 @@ void FUN_00148e18(void *param_1)
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148e40);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148ef8);
+extern "C" void FUN_00148ef8(COIN *pcoin, float dt)
+{
+    UpdateDprize(pcoin, dt);
+    if (pcoin->oidInitialState != OID_Unknown)
+        return;
+    if (pcoin->fNeverReuse == 0)
+        return;
+    if (D_00270458 != 2)
+        pcoin->tLose -= g_clock.dt;
+    if (pcoin->tLose <= 0.0f)
+        (*(void (**)(COIN *, DPRIZES))((char *)pcoin->pvtlo + 0xCC))(pcoin, DPRIZES_Lose);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", increment_and_show_life_count);
 

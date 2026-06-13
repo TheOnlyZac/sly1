@@ -3,6 +3,7 @@
 #include <lo.h>
 #include <alarm.h>
 #include <game.h>
+#include <freeze.h>
 
 void InitSensor(SENSOR *psensor)
 {
@@ -134,7 +135,28 @@ INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateBusyLasenSenseTimes__Fv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateLasen__FP5LASENf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", FreezeLasen__FP5LASENi);
+extern "C" int D_002744D0;
+
+void FreezeLasen(LASEN *plasen, int fFreeze)
+{
+    FreezeSo(plasen, fFreeze);
+
+    if (fFreeze)
+    {
+        if (STRUCT_OFFSET(plasen, 0xAF8, int))
+        {
+            RemoveDlEntry((DL *)((char *)plasen->psw + 0x1ca8), plasen);
+            STRUCT_OFFSET(plasen, 0xAF8, int) = 0;
+        }
+    }
+    else
+    {
+        AppendDlEntry((DL *)((char *)plasen->psw + 0x1ca8), plasen);
+        STRUCT_OFFSET(plasen, 0xAF8, int) = 1;
+    }
+
+    D_002744D0 = 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", RenderLasenSelf__FP5LASENP2CMP2RO);
 

@@ -6,6 +6,7 @@
 #include <find.h>
 #include <util.h>
 #include <vec.h>
+#include <screen.h>
 
 extern SNIP s_asnipLoadRov[2];
 
@@ -145,7 +146,28 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", PostRobLoad__FP3ROB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRob__FP3ROBf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", FUN_001a4d60);
+extern int FUN_001e9970();
+extern BLOT g_unkblot0;
+
+extern "C" void FUN_001a4d60(ROB *prob)
+{
+    int fShow;
+
+    fShow = 0;
+    if (STRUCT_OFFSET(prob, 0x650, int) == 2)
+    {
+        fShow = FUN_001e9970();
+    }
+
+    if (fShow)
+    {
+        g_unkblot0.pvtblot->pfnShowBlot(&g_unkblot0);
+    }
+    else
+    {
+        g_unkblot0.pvtblot->pfnHideBlot(&g_unkblot0);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", RobsNextRob__FP3ROB);
 

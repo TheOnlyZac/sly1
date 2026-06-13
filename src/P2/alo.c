@@ -9,6 +9,8 @@
 #include <lookat.h>
 #include <find.h>
 #include <brx.h>
+#include <fader.h>
+#include <glob.h>
 
 extern VTACT g_vtactseg;
 extern SHADOW s_shadow;
@@ -498,7 +500,35 @@ void CreateAloActadj(ALO *palo, int nPriority, ACTADJ **ppactadj)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FIsAloStatic__FP3ALO);
+int FIsAloStatic(ALO *palo)
+{
+    ALO *paloChild;
+
+    if (!FIsZeroV(&STRUCT_OFFSET(palo, 0x150, VECTOR)))
+    {
+        return 0;
+    }
+
+    if (!FIsZeroW(&STRUCT_OFFSET(palo, 0x160, VECTOR)))
+    {
+        return 0;
+    }
+
+    paloChild = (ALO *)palo->dlChild.head;
+    while (paloChild != NULL)
+    {
+        if (paloChild->pvtlo->grfcid & 1)
+        {
+            if (!FIsAloStatic(paloChild))
+            {
+                return 0;
+            }
+        }
+        paloChild = (ALO *)paloChild->dleChild.next;
+    }
+
+    return 1;
+}
 
 void ResolveAlo(ALO *palo)
 {

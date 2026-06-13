@@ -3,6 +3,8 @@
 #include <step.h>
 #include <lo.h>
 #include <cplcy.h>
+#include <stepcane.h>
+#include <emitter.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", InitJt__FP2JT);
 
@@ -18,7 +20,29 @@ INCLUDE_ASM("asm/nonmatchings/P2/jt", AdjustJtNewXp__FP2JTP2XPi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", AdjustJtDz__FP2JTiP2DZif);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", HandleJtGrfjtsc);
+extern "C" void FUN_001d4c98(JT *pjt);
+
+extern "C" void HandleJtGrfjtsc(JT *pjt)
+{
+    int grfjtsc = STRUCT_OFFSET(pjt, 0x2254, int);
+    if (grfjtsc == 0)
+        return;
+
+    if (grfjtsc & 0x8)
+    {
+        STRUCT_OFFSET(pjt, 0x2254, int) = grfjtsc & ~0x8;
+        STRUCT_OFFSET(pjt, 0x224C, int) = STRUCT_OFFSET(pjt, 0x2264, int);
+    }
+
+    if (STRUCT_OFFSET(pjt, 0x2254, int) & 0x1)
+        SetJtJts(pjt, STRUCT_OFFSET(pjt, 0x2258, JTS), STRUCT_OFFSET(pjt, 0x225C, JTBS));
+
+    if (STRUCT_OFFSET(pjt, 0x2254, int) & 0x2)
+        SetJtJtcs(pjt, STRUCT_OFFSET(pjt, 0x2260, JTCS));
+
+    if (STRUCT_OFFSET(pjt, 0x2254, int) & 0x10)
+        FUN_001d4c98(pjt);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtInternalXps__FP2JT);
 

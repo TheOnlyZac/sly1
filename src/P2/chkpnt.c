@@ -3,6 +3,9 @@
 #include <tn.h>
 #include <brx.h>
 #include <so.h>
+#include <joy.h>
+#include <rumble.h>
+#include <po.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", ResetChkmgrCheckpoints__FP6CHKMGR);
 #ifdef SKIP_ASM
@@ -91,7 +94,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", CloneChkpnt__FP6CHKPNTT0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", UpdateChkpnt__FP6CHKPNTf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", FUN_001417f0);
+extern void TriggerJoyRumbleRumk(JOY *pjoy, RUMK rumk, float dt);
+
+extern "C" int FUN_001417f0(CHKPNT *pchkpnt, WKR *pwkr)
+{
+    if ((PO *)pwkr->ploSource == PpoCur())
+    {
+        if (!(pwkr->grftak & 0x10))
+            TriggerJoyRumbleRumk(&g_joy, RUMK_MediumThrob, 0.2f);
+        TriggerChkpnt(pchkpnt);
+        return 1;
+    }
+
+    return FAbsorbSoWkr((SO *)pchkpnt, pwkr);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", TriggerChkpnt__FP6CHKPNT);
 

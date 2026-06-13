@@ -3,6 +3,8 @@
 #include <sce/memset.h>
 #include <sw.h>
 #include <po.h>
+#include <game.h>
+#include <memory.h>
 
 extern uchar D_00604790[]; // temp
 
@@ -30,7 +32,18 @@ void SbpEnsureBank(SFXID sfxid)
     SbpEnsureBank(D_00245020[sfxid][0]);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", NewSfx__FPP3SFX);
+void NewSfx(SFX **ppsfx)
+{
+    *ppsfx = (SFX *)PvAllocSwClearImpl(sizeof(SFX));
+    (*ppsfx)->sfxid = (SFXID)-1;
+    (*ppsfx)->sStart = 3000.0f;
+    (*ppsfx)->sFull = 300.0f;
+    (*ppsfx)->uVol = 1.0f;
+    (*ppsfx)->uPitch = 0.0f;
+    (*ppsfx)->pamb = NULL;
+    (*ppsfx)->lmRepeat.gMin = -1.0f;
+    (*ppsfx)->uDoppler = 0.0f;
+}
 
 extern int D_006047B0[];
 extern int D_006047D0[];
@@ -91,7 +104,31 @@ int FPauseForVag()
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", RefreshPambVolPan__FP3AMB);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001be8f8);
+void RefreshPambVolPan(AMB *pamb);
+void DropPamb(AMB **ppamb);
+
+extern "C" void FUN_001be8f8(ALO *palo, AMB **ppamb, float sStart, float sFull)
+{
+    AMB *pambLocal;
+    int fLocal = 0;
+
+    if (ppamb == NULL)
+    {
+        fLocal = 1;
+        ppamb = &pambLocal;
+    }
+
+    StartSound((SFXID)-2, ppamb, palo, NULL, sStart, sFull, 1.0f, 0.0f, 0.0f, NULL, NULL);
+
+    if (*ppamb != NULL)
+    {
+        RefreshPambVolPan(*ppamb);
+        if (fLocal)
+        {
+            DropPamb(ppamb);
+        }
+    }
+}
 
 extern u_int D_0027472C;
 int FVagPlaying()
@@ -397,7 +434,20 @@ void SetMvgkRvol(int channel, MVGK mvgk, float rvol)
     MvgkUnknown1(mvgk);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", MvgkUnknown2__Fv);
+extern float D_00274758[10][4];
+extern "C" void MvgkUnknown3(int fMute);
+extern "C" void MvgkUnknown4(int mode);
+void MvgkUnknown2()
+{
+    CopyAb(D_00274838, D_00274758, 0xB0);
+    SetMvgkUvol(1.0f);
+    for (int i = 0; i < 4; ++i)
+    {
+        MvgkUnknown1((MVGK)i);
+    }
+    MvgkUnknown3(STRUCT_OFFSET(g_pgsCur, 0x19EC, int) & 0x80);
+    MvgkUnknown4(STRUCT_OFFSET(g_pgsCur, 0x19EC, int) & 0x40);
+}
 
 extern "C" void MvgkUnknown3(int fMute)
 {

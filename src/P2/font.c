@@ -67,14 +67,40 @@ INCLUDE_ASM("asm/nonmatchings/P2/font", PopScaling__5CFont);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", PfontClone__8CFontBrxff);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", CopyTo__8CFontBrxP8CFontBrx);
+void CopyTo_CFontBrx(CFontBrx *self, CFontBrx *pfontDest) __asm__("CopyTo__8CFontBrxP8CFontBrx");
+void CopyTo_CFontBrx(CFontBrx *self, CFontBrx *pfontDest)
+{
+    self->CopyTo(pfontDest);
+    STRUCT_OFFSET(pfontDest, 0x50, int) = STRUCT_OFFSET(self, 0x50, int);
+    STRUCT_OFFSET(pfontDest, 0x54, int) = STRUCT_OFFSET(self, 0x54, int);
+    STRUCT_OFFSET(pfontDest, 0x58, int) = STRUCT_OFFSET(self, 0x58, int);
+    STRUCT_OFFSET(pfontDest, 0x60, uint64_t) = STRUCT_OFFSET(self, 0x60, uint64_t);
+    STRUCT_OFFSET(pfontDest, 0x68, int) = STRUCT_OFFSET(self, 0x68, int);
+    STRUCT_OFFSET(pfontDest, 0x6C, int) = STRUCT_OFFSET(self, 0x6C, int);
+    STRUCT_OFFSET(pfontDest, 0x70, int) = STRUCT_OFFSET(self, 0x70, int);
+    STRUCT_OFFSET(pfontDest, 0x74, int) = STRUCT_OFFSET(self, 0x74, int);
+    STRUCT_OFFSET(pfontDest, 0x78, int) = STRUCT_OFFSET(self, 0x78, int);
+    STRUCT_OFFSET(pfontDest, 0x7C, int) = STRUCT_OFFSET(self, 0x7C, int);
+    STRUCT_OFFSET(pfontDest, 0x80, int) = STRUCT_OFFSET(self, 0x80, int);
+}
 
 bool CFontBrx::FValid(char ch)
 {
     return PglyffFromCh(ch) != 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", DxFromCh__8CFontBrxc);
+float DxFromCh_CFontBrx(CFontBrx *self, char ch) __asm__("DxFromCh__8CFontBrxc");
+float DxFromCh_CFontBrx(CFontBrx *self, char ch)
+{
+    unsigned short *pglyff = (unsigned short *)self->PglyffFromCh(ch);
+
+    if (pglyff != 0)
+    {
+        return (float)(int)(pglyff[3] + 1) * STRUCT_OFFSET(self, 0x44, float);
+    }
+
+    return (float)STRUCT_OFFSET(self, 0x4, int) * STRUCT_OFFSET(self, 0x44, float);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", FEnsureLoaded__8CFontBrxP4GIFS);
 
@@ -119,7 +145,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/font", Cch__9CRichText);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", Trim__9CRichTexti);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", Dx__9CRichText);
+extern "C" void Reset__9CRichText(CRichText *self);
+extern "C" int ChNext__9CRichText(CRichText *self);
+
+extern "C" float Dx__9CRichText(CRichText *self)
+{
+    Reset__9CRichText(self);
+
+    float dx = 0.0f;
+    int ch;
+    while ((ch = ChNext__9CRichText(self)) != 0)
+    {
+        CFont *pfont = STRUCT_OFFSET(self, 0x8, CFont *);
+        void *pv = STRUCT_OFFSET(pfont, 0x4c, void *);
+        dx += (*(float (**)(void *, int))((char *)pv + 0x1c))(
+            (char *)pfont + STRUCT_OFFSET(pv, 0x18, short), ch);
+    }
+
+    return dx;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", ClineWrap__9CRichTextf);
 
