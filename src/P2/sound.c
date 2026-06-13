@@ -6,6 +6,7 @@
 #include <game.h>
 #include <memory.h>
 #include <cplcy.h>
+#include <sdk/ee/eekernel.h>
 
 extern uchar D_00604790[]; // temp
 
@@ -23,7 +24,23 @@ struct MVG
 
 extern float D_00274838[10][4]; // temp
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", UnloadMusic__Fv);
+void UnloadMusic()
+{
+    extern u_int D_0027473C;
+    extern u_int D_00274728;
+    extern int D_00274720;
+
+    if (D_0027473C != 0)
+    {
+        if (D_00274728 != 0)
+            snd_StopSound(D_00274728);
+        snd_UnloadBank((SoundBankPtr)D_0027473C);
+        while (snd_FlushSoundCommands()) {}
+        D_0027473C = 0;
+    }
+    D_00274720 = 0;
+    D_00274728 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SbpEnsureBank__Fi);
 
@@ -149,7 +166,26 @@ int FVagPlaying()
 
 JUNK_WORD(0x0080102D);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", StopVag__Fv);
+void StopVag()
+{
+    if (D_00274744 == 0)
+    {
+        if (D_0027472C != 0)
+        {
+            snd_StopSound(D_0027472C);
+            while (snd_SoundIsStillPlaying(D_0027472C))
+            {
+                int i = 0x4E1F;
+                do
+                {
+                    i--;
+                } while (i >= 0);
+            }
+            D_0027472C = 0;
+            D_00274730 = 0;
+        }
+    }
+}
 
 extern u_int D_0027472C;
 void PauseVag()
@@ -203,7 +239,33 @@ void PreloadMusidSongComplete(u_int handle, u_long unused)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadMusidSong__F5MUSID);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", StartMusidSong__F5MUSID);
+enum MUSID {};
+void PreloadMusidSong(MUSID musid);
+
+void StartMusidSong(MUSID musid)
+{
+    extern int D_00274720;
+    extern u_int D_00274728;
+    extern u_int D_0027473C;
+
+    PreloadMusidSong(musid);
+    if (musid != 0)
+    {
+        while (snd_FlushSoundCommands() != 0)
+        {
+            if (D_00274720 != 1)
+                break;
+            FlushCache(0);
+        }
+        if (D_00274720 == 2)
+        {
+            u_int handle = snd_PlaySoundVolPanPMPB((SoundBankPtr)D_0027473C, 0, 0x400, -1, 0, 0);
+            D_00274728 = handle;
+            if (handle != 0)
+                D_00274720 = 3;
+        }
+    }
+}
 
 void PauseMusic()
 {
@@ -250,7 +312,29 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", PexcSetExcitement__Fi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SetIexcCurHigh__FP3EXC);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", UnsetExcitement__FP3EXC);
+extern int D_00274734;
+extern int D_002748EC;
+void SetIexcCurHigh(EXC *pexc);
+
+void UnsetExcitement(EXC *pexc)
+{
+    if (pexc != 0)
+    {
+        int iexc = pexc->iexc;
+        RemoveExc(pexc);
+        if (iexc == D_00274734)
+        {
+            SetIexcCurHigh(pexc);
+            int iexcCur = D_00274734;
+            if (iexcCur >= 0)
+                D_002748EC = 0;
+            g_iexcHyst = iexcCur;
+            snd_SetGlobalExcite(iexcCur + 0x14);
+            SetMvgkRvol(7, MVGK_Music, 1.0f);
+            g_iexcHyst = -0x64;
+        }
+    }
+}
 
 extern int D_00274734;
 void SetIexcCurHigh(EXC *pexc);
@@ -508,7 +592,14 @@ void PushSwReverb(SW *psw, REVERBK reverb, int depth)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PopSwReverb__FP2SW);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SetSwDefaultReverb__FP2SW7REVERBKi);
+void SetSwDefaultReverb(SW *psw, REVERBK reverb, const int depth)
+{
+    snd_SetReverbType(2, D_00274808[reverb]);
+    snd_SetReverbDepth(2, depth, depth);
+    STRUCT_OFFSET(psw, 0x2328, int) = reverb;
+    STRUCT_OFFSET(psw, 0x232c, int) = depth;
+    STRUCT_OFFSET(psw, 0x2348, int) = 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0A50);
 

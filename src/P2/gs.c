@@ -24,7 +24,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/gs", GS_Interrupt__Fi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", ResetGs__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/gs", SendDmaSyncGsFinish__FP10sceDmaChanP2QW);
+extern "C" int func_00202120();
+extern "C" void func_00202058(int);
+extern int D_002BE464;
+extern int D_002BE468;
+
+void SendDmaSyncGsFinish(sceDmaChan *pdc, QW *pqw)
+{
+    D_002BE468 = 1;
+    *(volatile uint64_t *)0x12001000 |= 2;
+    func_00202058(func_00202120() & ~0x200);
+    FlushCache(0);
+    sceDmaSend(pdc, pqw);
+    WaitSema(D_002BE464);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", BuildClearGifs__FP2QWG4RGBAi);
 

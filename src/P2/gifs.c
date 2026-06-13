@@ -73,7 +73,15 @@ void GIFS::PackXYZF(int x, int y, int z, int fog)
     pqw->an[3] = (fog & 0xff) << 4;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/gifs", PackXYZFNoKick__4GIFSiiii);
+void GIFS::PackXYZFNoKick(int x, int y, int z, int fog)
+{
+    CheckReg(1, 4);
+    QW *pqw = ((QW *)m_pb)++;
+    pqw->an[0] = x;
+    pqw->an[1] = y;
+    pqw->an[2] = (z & 0xffffff) << 4;
+    pqw->an[3] = ((fog & 0xff) << 4) | 0x8000;
+}
 
 void GIFS::PackAD(long int a, long int d)
 {
@@ -97,7 +105,11 @@ void GIFS::ListUV(int u, int v)
     *((long *)m_pb)++ = u | (v << 16);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/gifs", ListXYZF__4GIFSiiii);
+void GIFS::ListXYZF(int x, int y, int z, int fog)
+{
+    CheckReg(0, 4);
+    *((long *)m_pb)++ = x | (y << 16) | ((long)(z & 0xffffff) << 32) | ((long)fog << 56);
+}
 
 JUNK_ADDIU(80);
 

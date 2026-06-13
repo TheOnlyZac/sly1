@@ -2,6 +2,8 @@
 #include <clock.h>
 #include <sound.h>
 #include <screen.h>
+#include <wipe.h>
+#include <prompt.h>
 
 void StartupUi()
 {

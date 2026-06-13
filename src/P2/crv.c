@@ -37,7 +37,33 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", FindAposClosestPointSegment__FP6VECTORP6C
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", ConvertApos__FiP6VECTORP7MATRIX4T2);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", PcrvNew__F4CRVK);
+extern "C" char D_002176D0[];
+extern "C" char D_00217708[];
+
+CRV *PcrvNew(CRVK crvk)
+{
+    CRV *pcrv;
+
+    switch (crvk)
+    {
+    case CRVK_Linear:
+        pcrv = (CRV *)PvAllocSwClearImpl(0x1C);
+        pcrv->unknown = (undefined4)&D_002176D0;
+        break;
+    case CRVK_Cubic:
+        pcrv = (CRV *)PvAllocSwClearImpl(0x1D0);
+        pcrv->unknown = (undefined4)&D_00217708;
+        break;
+    default:
+        pcrv = NULL;
+        break;
+    }
+
+    if (pcrv != NULL)
+        pcrv->crvk = crvk;
+
+    return pcrv;
+}
 
 float SFromCrvU(CRV *pcrv, float u)
 {

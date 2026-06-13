@@ -1,6 +1,7 @@
 #include <sm.h>
 #include <sw.h>
 #include <aseg.h>
+#include <asega.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", LoadSmFromBrx__FP2SMP18CBinaryInputStream);
 
@@ -32,7 +33,21 @@ OID OidFromSmIsms(SM *psm, int isms)
     return psm->asms[isms].oid;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", RetractSma__FP3SMA);
+void RetractSma(SMA *psma)
+{
+    SM *psm = psma->psm;
+    if (psma->pasegaCur)
+    {
+        RetractAsega(psma->pasegaCur);
+        psma->pasegaCur = 0;
+    }
+    FreeSwMqList(psma->psm->psw, psma->pmqFirst);
+    psma->pmqFirst = 0;
+    RemoveDlEntry(&psma->psm->dlSma, psma);
+    RemoveDlEntry(&STRUCT_OFFSET(psma->psm->psw, 0x1B94, DL), psma);
+    FreeSlotheapPv(&STRUCT_OFFSET(psma->psm->psw, 0x1B88, SLOTHEAP), psma);
+    HandleLoSpliceEvent(psm, 0x12, 0, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", SetSmaGoal__FP3SMA3OID);
 

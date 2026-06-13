@@ -18,41 +18,6 @@ void SetSensorAlarm(SENSOR *psensor, ALARM *palarm)
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", SetSensorSensors__FP6SENSOR7SENSORS);
-#ifdef SKIP_ASM
-/**
- * @todo 82.08% matched.
- */
-void SetSensorSensors(SENSOR *psensor, SENSORS sensors)
-{
-	SENSORS sensorsCur = STRUCT_OFFSET(psensor, 0x558, SENSORS); // sensorsCur = psensor->sensors;
-
-	if (sensorsCur == sensors)
-	{
-		return;
-	}
-
-	if (sensorsCur == SENSORS_SenseEnabled && sensors == SENSORS_SenseTriggered)
-	{
-		ALARM *palarm = STRUCT_OFFSET(psensor, 0x550, ALARM *);
-		if (palarm)
-		{
-			TriggerAlarm(palarm, ALTK_Trigger);
-		}
-
-		// Recheck current sensor state: if it's not SENSORS_SenseEnabled,
-		// override the current sensors with the new one.
-		sensorsCur = STRUCT_OFFSET(psensor, 0x558, SENSORS);
-		if (sensorsCur != SENSORS_SenseEnabled)
-		{
-			sensors = sensorsCur;
-		}
-	}
-
-	HandleLoSpliceEvent(psensor, 2, 0, NULL);
-	STRUCT_OFFSET(psensor, 0x558, SENSORS) = sensors; // psensor->sensors = sensors;
-	STRUCT_OFFSET(psensor, 0x55C, float) = g_clock.t;
-}
-#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", FCheckSensorObject__FP6SENSORP2SO);
 

@@ -6,6 +6,7 @@
 #include <glob.h>
 #include <render.h>
 #include <math.h>
+#include <memory.h>
 
 #define TWO_PI 6.2831855f
 #define INV_TWO_PI 0.15915494f

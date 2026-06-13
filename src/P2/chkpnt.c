@@ -6,6 +6,7 @@
 #include <joy.h>
 #include <rumble.h>
 #include <po.h>
+#include <wipe.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", ResetChkmgrCheckpoints__FP6CHKMGR);
 #ifdef SKIP_ASM
@@ -40,7 +41,25 @@ void ResetChkmgrCheckpoints(CHKMGR *pchkmgr)
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", SaveChkmgrCheckpoint__FP6CHKMGR3OIDT1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", ReturnChkmgrToCheckpoint__FP6CHKMGR);
+void ReturnChkmgrToCheckpoint(CHKMGR *pchkmgr)
+{
+    TRANS trans;
+    trans.fSet = 1;
+    trans.pchzWorld = (LevelTableStruct *)g_transition.m_achzWorldCur;
+    if (STRUCT_OFFSET(pchkmgr, 0x42c, int))
+    {
+        trans.oidWarp = (OID)STRUCT_OFFSET(pchkmgr, 0x424, int);
+        trans.oidWarpContet = (OID)STRUCT_OFFSET(pchkmgr, 0x428, int);
+        trans.grftrans = 0x11;
+    }
+    else
+    {
+        trans.oidWarp = (OID)-1;
+        trans.oidWarpContet = (OID)-1;
+        trans.grftrans = 0x10;
+    }
+    ActivateWipe(&g_wipe, &trans, (WIPEK)1);
+}
 
 void RestoreChkmgrFromCheckpoint(CHKMGR *pchkmgr)
 {

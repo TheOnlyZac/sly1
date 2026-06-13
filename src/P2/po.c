@@ -152,7 +152,23 @@ PO *PpoCur()
 	return g_appo[g_ippoCur];
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/po", PpoStart__Fv);
+extern int D_00269C90;
+
+PO *PpoStart(void)
+{
+    PO *ppo = PpoCur();
+
+    if (ppo == NULL)
+    {
+        if (g_pjt != NULL && STRUCT_OFFSET(g_pjt, 0x550, int) != 0)
+            ppo = (PO *)g_pjt;
+
+        if (ppo == NULL && D_00269C90 != 0)
+            ppo = g_appo[0];
+    }
+
+    return ppo;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", _IppoFindPo__FP2PO);
 
@@ -187,7 +203,25 @@ void AddPoToList(PO *ppo)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/po", RemovePoFromList__FP2PO);
+extern "C" void *memmove(void *dst, const void *src, int cb);
+
+void RemovePoFromList(PO *ppo)
+{
+    int i = _IppoFindPo(ppo);
+
+    if (i < 0)
+        return;
+
+    if (i == g_ippoCur)
+        SwitchToIppo(-1);
+
+    memmove(&g_appo[i], &g_appo[i + 1], (D_00269C90 - i) * sizeof(PO *) - sizeof(PO *));
+
+    if (i < g_ippoCur)
+        g_ippoCur = g_ippoCur - 1;
+
+    D_00269C90 = D_00269C90 - 1;
+}
 
 void OnPoAdd(PO *ppo)
 {

@@ -2,6 +2,7 @@
 #include <freeze.h>
 #include <sound.h>
 #include <clock.h>
+#include <find.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/smartguard", InitSmartguard__FP10SMARTGUARD);
 
@@ -25,7 +26,36 @@ void FUN_001B7100(SMARTGUARD *p, int val)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/smartguard", PostSmartguardLoad__FP10SMARTGUARD);
+void PostSmartguardLoad(SMARTGUARD *psmartguard)
+{
+    int i;
+    int *poid;
+    int oidNearest;
+    int coid;
+
+    PostStepguardLoad(psmartguard);
+    PostSmartguardLoadFlashlight(psmartguard);
+
+    oidNearest = STRUCT_OFFSET(psmartguard, 0xc28, int);
+    if (oidNearest != -1)
+    {
+        STRUCT_OFFSET(psmartguard, 0xc2c, LO *) =
+            PloFindSwNearest(psmartguard->psw, (OID)oidNearest, (LO *)psmartguard);
+    }
+
+    coid = STRUCT_OFFSET(psmartguard, 0xcd4, int);
+    if (coid > 0)
+    {
+        i = 0;
+        poid = &STRUCT_OFFSET(psmartguard, 0xcd8, int);
+        do
+        {
+            poid[1] = (int)PloFindSwObject(psmartguard->psw, 0x104, (OID)*poid, (LO *)psmartguard);
+            i++;
+            poid += 2;
+        } while (i < STRUCT_OFFSET(psmartguard, 0xcd4, int));
+    }
+}
 
 int FFilterSmartguardDetect(SMARTGUARD *psmartguard, SO *pso)
 {

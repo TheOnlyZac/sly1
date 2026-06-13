@@ -597,7 +597,18 @@ void SetAloPositionSmoothMaxAccel(ALO *palo, float r)
     SetAloPositionSmoothDetail(palo, &smpa);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloPositionSmoothDetail__FP3ALOP4SMPA);
+extern SMPA D_00260EB0;
+void SetAloPositionSmoothDetail(ALO *palo, SMPA *psmpa)
+{
+    SMPA *&psmpaDst = STRUCT_OFFSET(palo, 0x21c, SMPA *); // palo->psmpaPos (default &D_00260EB0)
+
+    if (psmpaDst == &D_00260EB0)
+    {
+        psmpaDst = (SMPA *)PvAllocSwImpl(0x10);
+    }
+
+    *psmpaDst = *psmpa;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationSmooth__FP3ALOf);
 
@@ -669,7 +680,17 @@ extern "C" void FUN_0012a4e8(ALO *palo, int n)
     ResortAloActList(palo);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAt__FP3ALO3ACK);
+void SetAloLookAt(ALO *palo, ACK ack)
+{
+    EnsureAloActla(palo);
+
+    if (ack == ACK_Smooth)
+    {
+        ack = ACK_SmoothNoLock;
+    }
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x200, void *), 0x11, char) = ack;
+    ((void (*)(ALO *))STRUCT_OFFSET(palo->pvtlo, 0xbc, void *))(palo);
+}
 
 void SetAloLookAtIgnore(ALO *palo, float sIgnore)
 {

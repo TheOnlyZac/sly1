@@ -5,6 +5,7 @@
 #include <oid.h>
 #include <jt.h>
 #include <sce/memset.h>
+#include <memory.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/turret", InitTurret__FP6TURRET);
 

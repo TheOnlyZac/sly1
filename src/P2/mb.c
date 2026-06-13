@@ -1,6 +1,9 @@
 #include <mb.h>
 #include <stepguard.h>
 #include <memory.h>
+#include <memcard.h>
+#include <game.h>
+#include <screen.h>
 
 extern SNIP s_asnipLoadMbg[2];
 

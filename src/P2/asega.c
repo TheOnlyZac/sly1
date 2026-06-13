@@ -1,5 +1,6 @@
 #include <asega.h>
 #include <sw.h>
+#include <aseg.h>
 
 extern char D_002197B8[];
 

@@ -2,6 +2,7 @@
 #include <bbmark.h>
 #include <splice/frame.h>
 #include <splice/ref.h>
+#include <math.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", InitSo__FP2SO);
 
@@ -131,7 +132,30 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", AccelSoTowardPosSpring__FP2SOP6VECTORP3CLQ
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", AccelSoTowardMatSpring__FP2SOP7MATRIX3P3CLQP6VECTORT2f);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", PresetSoAccel__FP2SOf);
+void PresetSoAccel(SO *pso, float dt)
+{
+    VECTOR v;
+    XA *pxa;
+
+    if (pso->paloParent == NULL)
+    {
+        if ((STRUCT_OFFSET(pso, 0x538, uint64_t) & ((uint64_t)0x8000 << 36)) == 0) // fNoGravity, grfso bit 51
+        {
+            ApplySoConstraintLocal(pso, (CONSTR *)((uint8_t *)pso + 0x440),
+                                   (VECTOR *)((uint8_t *)pso + 0x350), &v, NULL);
+            AddSoAcceleration(pso, &v);
+        }
+    }
+    pxa = STRUCT_OFFSET(pso, 0x4B0, XA *); // pxaFirst
+    while (pxa != NULL)
+    {
+        SO *psoXa = STRUCT_OFFSET(pxa, 0x0, SO *);
+        void (*pfn)(SO *, XA *, float) =
+            (void (*)(SO *, XA *, float))STRUCT_OFFSET(psoXa->pvtlo, 0xDC, void *);
+        pfn(psoXa, pxa, dt);
+        pxa = STRUCT_OFFSET(pxa, 0x8, XA *);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", RenderSoSelf__FP2SOP2CMP2RO);
 

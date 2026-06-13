@@ -2,6 +2,10 @@
 #include <sce/memset.h>
 #include <memory.h>
 #include <find.h>
+#include <alo.h>
+#include <xform.h>
+#include <mat.h>
+#include <gcc/math.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", InitRwm__FP3RWM);
 
@@ -195,6 +199,32 @@ INCLUDE_ASM("asm/nonmatchings/P2/rwm", GetRwfiPosMat__FP4RWFIP6VECTORP7MATRIX3);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", GetRwtiPos__FP4RWTIP6VECTORT1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rwm", GetRwacPan__FP4RWACPf);
+void GetRwacPanImpl(RWAC *prwac, float *pradPan, ALO *palo) asm("GetRwacPan__FP4RWACPf");
+
+void GetRwacPanImpl(RWAC *prwac, float *pradPan, ALO *palo)
+{
+    MATRIX3 mat;
+
+    XFM *pxfm = STRUCT_OFFSET(prwac, 0x10, XFM *);
+    if (pxfm != 0)
+    {
+        GetXfmMat(pxfm, &mat);
+        ConvertAloMat(0, palo, &mat, &mat);
+        *pradPan = atan2f(mat.mat[0][1], mat.mat[0][0]);
+    }
+    else
+    {
+        MATRIX3 *pmat = STRUCT_OFFSET(prwac, 0x14, MATRIX3 *);
+        if (pmat != 0)
+        {
+            ConvertAloMat(0, palo, (MATRIX3 *)((uint8_t *)pmat + 0x110), &mat);
+            *pradPan = atan2f(mat.mat[0][1], mat.mat[0][0]);
+        }
+        else
+        {
+            *pradPan = STRUCT_OFFSET(prwac, 0x8, float);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", GetRwacTilt__FP4RWACPf);

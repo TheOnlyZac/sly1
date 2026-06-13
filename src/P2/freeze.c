@@ -40,7 +40,28 @@ void MergeSwGroup(SW *psw, MRG *pmrg)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/freeze", AddSwMergeGroup__FP2SWP3MRG);
+void AddSwMergeGroup(SW *psw, MRG *pmrg)
+{
+    int i;
+
+    if (pmrg->cpalo < 2)
+        return;
+
+    for (i = 0; i < pmrg->cpalo; i++)
+    {
+        ALO *palo = pmrg->apalo[i];
+        int cpmrg = STRUCT_OFFSET(palo, 0x6c, int);
+
+        if ((unsigned int)cpmrg < 4)
+        {
+            MRG **apmrg = &STRUCT_OFFSET(palo, 0x70, MRG *);
+            apmrg[cpmrg] = pmrg;
+            STRUCT_OFFSET(palo, 0x6c, int) = cpmrg + 1;
+        }
+    }
+
+    MergeSwGroup(psw, pmrg);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/freeze", RemoveFromArray__FPiPPvPv);
 

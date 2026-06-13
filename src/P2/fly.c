@@ -8,7 +8,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/fly", CloneFly__FP3FLYT0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/fly", FreezeFly__FP3FLYi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/fly", PostFlyLoad__FP3FLY);
+void PostFlyLoad(FLY *pfly)
+{
+    extern SNIP D_002621E0;
+
+    SnipAloObjects((ALO *)pfly, 2, &D_002621E0);
+
+    if (STRUCT_OFFSET(pfly, 0x550, int) == 1)
+    {
+        STRUCT_OFFSET(pfly, 0x688, float) = g_clock.t +
+            GRandInRange(STRUCT_OFFSET(pfly, 0x63c, float), STRUCT_OFFSET(pfly, 0x640, float));
+        STRUCT_OFFSET(pfly, 0x680, float) = g_clock.t +
+            GRandInRange(STRUCT_OFFSET(pfly, 0x670, float), STRUCT_OFFSET(pfly, 0x674, float));
+    }
+
+    SetFlyFlys(pfly, (FLYS)STRUCT_OFFSET(pfly, 0x560, int));
+    PostAloLoad((ALO *)pfly);
+    STRUCT_OFFSET(pfly, 0x64c, float) =
+        STRUCT_OFFSET(pfly, 0x3cc, float) + STRUCT_OFFSET(pfly, 0x3cc, float);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/fly", PresetFlyAccel__FP3FLYf);
 
