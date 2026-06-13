@@ -111,4 +111,25 @@ void SendSmaMessage(SMA *psma, MSGID msgid, void *pv)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", FUN_001b6df8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", NotifySmaSpliceOnEnterState__FP3SMAii);
+void NotifySmaSpliceOnEnterState(SMA *psma, int ismsFrom, int ismsTo)
+{
+    int oidFrom;
+    int oidTo;
+    void *apv[3];
+
+    if (ismsFrom >= 0)
+        oidFrom = psma->psm->asms[ismsFrom].oid;
+    else
+        oidFrom = -1;
+
+    if (ismsTo >= 0)
+        oidTo = psma->psm->asms[ismsTo].oid;
+    else
+        oidTo = -1;
+
+    apv[0] = &psma;
+    apv[1] = &oidFrom;
+    apv[2] = &oidTo;
+
+    HandleLoSpliceEvent(psma->psm, 0xE, 3, apv);
+}

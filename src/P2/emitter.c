@@ -293,7 +293,26 @@ void ExplodeExplExplso(EXPL *pexpl, EXPLSO *pexplso)
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadExplgFromBrx__FP5EXPLGP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", CloneExplg__FP5EXPLGT0);
+void CloneExplg(EXPLG *pexplg, EXPLG *pexplgBase)
+{
+    int i = 0;
+
+    CloneLo((LO *)pexplg, (LO *)pexplgBase);
+
+    if (STRUCT_OFFSET(pexplg, 0x90, int) > 0)
+    {
+        LO **p = &STRUCT_OFFSET(pexplg, 0x94, LO *);
+        do
+        {
+            LO *plo = PloCloneLo(*p, STRUCT_OFFSET(pexplg, 0x14, SW *), STRUCT_OFFSET(pexplg, 0x18, ALO *));
+            i++;
+            plo->pvtlo->pfnRemoveLo(plo);
+            *p = plo;
+            STRUCT_OFFSET(plo, 0x80, EXPLG *) = pexplg;
+            p++;
+        } while (i < STRUCT_OFFSET(pexplg, 0x90, int));
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindExplg__FP5EXPLG);
 

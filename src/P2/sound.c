@@ -267,7 +267,20 @@ float SDistEar(VECTOR *pvec)
     return PfneardistGet()(pposEar, pvec);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", CalculateDistVolPan__FP6VECTORPfT1fff);
+void CalculateVolPan(float dist, VECTOR *pvec, float *pa, float *pb, float a, float b, float c);
+
+void CalculateDistVolPan(VECTOR *pvec, float *pa, float *pb, float a, float b, float c)
+{
+    if (pvec)
+    {
+        CalculateVolPan(SDistEar(pvec), pvec, pa, pb, a, b, c);
+    }
+    else
+    {
+        *pa = a;
+        *pb = 0;
+    }
+}
 
 AMB *PambAlloc()
 {

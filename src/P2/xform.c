@@ -4,6 +4,7 @@
 #include <sw.h>
 #include <cm.h>
 #include <find.h>
+#include <memory.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", InitXfm__FP3XFM);
 
@@ -43,7 +44,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/xform", PwarpFromOid__F3OIDT0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", LoadWarpFromBrx__FP4WARPP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/xform", CloneWarp__FP4WARPT0);
+void CloneWarp(WARP *pwarp, WARP *pwarpBase)
+{
+    int i;
+
+    CloneLo(pwarp, pwarpBase);
+
+    STRUCT_OFFSET(pwarp, 0xa4, LO **) = (LO **)PvAllocSwImpl(STRUCT_OFFSET(pwarp, 0xa0, int) * 4);
+
+    for (i = 0; i < STRUCT_OFFSET(pwarp, 0xa0, int); i++)
+    {
+        LO *ploClone = PloCloneLo(STRUCT_OFFSET(pwarpBase, 0xa4, LO **)[i], pwarp->psw, NULL);
+        STRUCT_OFFSET(pwarp, 0xa4, LO **)[i] = ploClone;
+    }
+}
 
 void PostWarpLoad(WARP *pwarp)
 {

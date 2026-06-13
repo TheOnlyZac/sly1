@@ -2,6 +2,7 @@
 #include <sce/memset.h>
 #include <tn.h>
 #include <brx.h>
+#include <so.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", ResetChkmgrCheckpoints__FP6CHKMGR);
 #ifdef SKIP_ASM

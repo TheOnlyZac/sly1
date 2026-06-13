@@ -1,4 +1,6 @@
 #include <spliceobj.h>
+#include <splice/pair.h>
+#include <sce/memset.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/spliceobj", PeopidFind__FP5BASICi);
 

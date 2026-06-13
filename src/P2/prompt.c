@@ -4,6 +4,7 @@
 #include <sw.h>
 #include <rog.h>
 #include <xform.h>
+#include <text.h>
 
 // TODO: Change to static when possible.
 extern char *s_mprespkachz[13];

@@ -215,7 +215,33 @@ void InitFragile(FRAGILE *pfragile)
     STRUCT_OFFSET(pfragile, 0x6c8, int) = -1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", AdjustFragileNewXp__FP7FRAGILEP2XPi);
+void AdjustFragileNewXp(FRAGILE *pfragile, XP *pxp, int ixpd)
+{
+    if (STRUCT_OFFSET(pfragile, 0x680, int))
+        return;
+
+    SO *psoRoot = pxp->axpd[1 - ixpd].psoRoot;
+
+    if (STRUCT_OFFSET(pfragile, 0x678, int))
+        return;
+
+    if (!FCheckBrkTouchObject((BRK *)pfragile, psoRoot))
+        return;
+
+    CNSTR cnstrForce = STRUCT_OFFSET(pfragile, 0x6c4, CNSTR);
+    if (cnstrForce != (CNSTR)-1)
+        SetSoCnstrForce((SO *)pfragile, cnstrForce);
+
+    CNSTR cnstrTorque = STRUCT_OFFSET(pfragile, 0x6c8, CNSTR);
+    if (cnstrTorque != (CNSTR)-1)
+        SetSoCnstrTorque((SO *)pfragile, cnstrTorque);
+
+    float t = STRUCT_OFFSET(pfragile, 0x368, float);
+    float scale = STRUCT_OFFSET(pfragile, 0x6c0, float);
+    STRUCT_OFFSET(pfragile, 0x678, int) = 1;
+    STRUCT_OFFSET(pfragile, 0x6cc, SO *) = psoRoot;
+    STRUCT_OFFSET(pfragile, 0x368, float) = t * scale;
+}
 
 void AdjustZapbreakNewXp(ZAPBREAK *pzapbreak, XP *pxp, int ixpd)
 {

@@ -156,7 +156,36 @@ INCLUDE_ASM("asm/nonmatchings/P2/po", PpoStart__Fv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", _IppoFindPo__FP2PO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/po", AddPoToList__FP2PO);
+extern int D_00269C90;
+
+void AddPoToList(PO *ppo)
+{
+    if (STRUCT_OFFSET(ppo, 0x550, int) == 0)
+        return;
+
+    if (STRUCT_OFFSET(ppo, 0x18, ALO *) != 0)
+        return;
+
+    if (!FIsLoInWorld(ppo))
+        return;
+
+    if (_IppoFindPo(ppo) >= 0)
+        return;
+
+    if ((unsigned)D_00269C90 < 0x10)
+    {
+        int c = D_00269C90;
+        D_00269C90 = c + 1;
+        g_appo[c] = ppo;
+    }
+    else if (STRUCT_OFFSET(ppo, 0x8, int) == 5)
+    {
+        if (g_pjt == 0)
+        {
+            g_appo[0] = ppo;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", RemovePoFromList__FP2PO);
 

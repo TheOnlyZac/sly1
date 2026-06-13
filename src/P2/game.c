@@ -95,7 +95,27 @@ void UnlockIntroCutsceneFromWid(int wid)
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", DefeatBossFromWid);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", UnlockEndgameCutscenesFromFgs);
+extern "C" void UnlockEndgameCutscenesFromFgs(FGS fgs)
+{
+    switch (fgs)
+    {
+    case FGS_HalfClues:
+        g_pgsCur->unlocked_cutscenes |= 0xA002;
+        g_pgsCur->fgs |= 0x2;
+        break;
+    case FGS_AllClues:
+        if (get_game_completion() & FGS_AllClues)
+            g_pgsCur->unlocked_cutscenes |= 0xC000;
+        break;
+    case FGS_FirstVault:
+        if (get_game_completion() & FGS_FirstVault)
+        {
+            g_pgsCur->unlocked_cutscenes |= 0xC;
+            g_pgsCur->fgs |= 0xC;
+        }
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", PlayEndingFromCompletionFlags);
 

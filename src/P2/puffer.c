@@ -3,6 +3,7 @@
 #include <rog.h>
 #include <find.h>
 #include <sm.h>
+#include <difficulty.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", InitPuffer__FP6PUFFER);
 

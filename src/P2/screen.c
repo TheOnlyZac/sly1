@@ -289,7 +289,26 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", SetNoteAchzDraw__FP4NOTEPc);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawNote__FP4NOTE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac888);
+extern CFont *D_002743F0;
+
+void FUN_001ac888(BLOT *pblot)
+{
+    CFont *pfont;
+    void *pv;
+
+    PostBlotLoad(pblot);
+    pfont = STRUCT_OFFSET(pblot, 0x4, CFont *);
+    pv = STRUCT_OFFSET(pfont, 0x4c, void *);
+    STRUCT_OFFSET(pblot, 0x4, int) =
+        (*(int (**)(void *, float, float))((uint8_t *)pv + 0xc))(
+            (uint8_t *)pfont + STRUCT_OFFSET(pv, 0x8, short), 0.9f, 0.9f);
+    STRUCT_OFFSET(pblot, 0x208, unsigned int) = 0xDF7F7F7F;
+    if (FUN_0015c188(2))
+    {
+        STRUCT_OFFSET(pblot, 0x210, CFont **) = &D_002743F0;
+        *STRUCT_OFFSET(pblot, 0x210, CFont **) = FUN_0015c1c0(2);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac910);
 

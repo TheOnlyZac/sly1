@@ -12,6 +12,7 @@
 #include <coin.h>
 #include <screen.h>
 #include <prompt.h>
+#include <memory.h>
 
 extern SW *g_psw;
 extern int g_fLoadDebugInfo;

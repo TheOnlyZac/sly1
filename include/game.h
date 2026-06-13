@@ -258,7 +258,7 @@ void StartupGame();
  *
  * @param wid World ID.
  */
-char *PchzFriendlyFromWid(int wid);
+extern "C" char *PchzFriendlyFromWid(int wid);
 
 // LevelLoadData *call_search_level_by_id(int level_id);
 
@@ -304,7 +304,7 @@ void DefeatBossFromWid(int wid);
  *
  * @param fgs Completion flags.
  */
-void UnlockEndgameCutscenesFromFgs(FGS fgs);
+extern "C" void UnlockEndgameCutscenesFromFgs(FGS fgs);
 
 /**
  * @brief Plays the ending cutscene based on the completion flags.
