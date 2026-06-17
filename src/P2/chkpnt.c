@@ -39,6 +39,8 @@ void ResetChkmgrCheckpoints(CHKMGR *pchkmgr)
 }
 #endif
 
+INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", SaveChkmgrCheckpoint__FP6CHKMGR3OIDT1);
+#ifdef SKIP_ASM
 void SaveChkmgrCheckpoint(CHKMGR *pchkmgr, OID oidWarp, OID oidWarpContext)
 {
     STRUCT_OFFSET(pchkmgr, 0x20C, int) = 0;
@@ -47,6 +49,7 @@ void SaveChkmgrCheckpoint(CHKMGR *pchkmgr, OID oidWarp, OID oidWarpContext)
     STRUCT_OFFSET(pchkmgr, 0x424, int) = oidWarp;
     STRUCT_OFFSET(pchkmgr, 0x428, int) = oidWarpContext;
 }
+#endif // SKIP_ASM
 
 void ReturnChkmgrToCheckpoint(CHKMGR *pchkmgr)
 {
@@ -116,6 +119,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", BindChkpnt__FP6CHKPNT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", PostChkpntLoad__FP6CHKPNT);
 
+INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", CloneChkpnt__FP6CHKPNTT0);
+#ifdef SKIP_ASM
 void CloneChkpnt(CHKPNT *pchkpnt, CHKPNT *pchkpntBase)
 {
     int i = 0;
@@ -150,6 +155,7 @@ void CloneChkpnt(CHKPNT *pchkpnt, CHKPNT *pchkpntBase)
         } while (j < STRUCT_OFFSET(pchkpnt, 0x58C, int));
     }
 }
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", UpdateChkpnt__FP6CHKPNTf);
 

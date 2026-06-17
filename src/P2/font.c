@@ -51,6 +51,8 @@ void CFont::CopyTo(CFont *pfontDest)
 
 class CTextBox;
 
+INCLUDE_ASM("asm/nonmatchings/P2/font", SetupDraw__5CFontP8CTextBoxP4GIFS);
+#ifdef SKIP_ASM
 void SetupDraw_CFont(CFont *self, CTextBox *ptb, GIFS *pgifs) __asm__("SetupDraw__5CFontP8CTextBoxP4GIFS");
 void SetupDraw_CFont(CFont *self, CTextBox *ptb, GIFS *pgifs)
 {
@@ -72,6 +74,7 @@ void SetupDraw_CFont(CFont *self, CTextBox *ptb, GIFS *pgifs)
             ((ulong)scayTop << 32) | ((ulong)scayBottom << 48));
     }
 }
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", CleanupDraw__5CFontP8CTextBoxP4GIFS);
 

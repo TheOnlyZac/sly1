@@ -97,7 +97,9 @@ extern "C" void FUN_0014c668(void *pv, int tnt)
 extern "C" void FUN_0014c858(void *p);
 extern "C" void FUN_0014cba8(void *p);
 
-void update_crbrain(CRBRAIN *p, float dt)
+INCLUDE_ASM("asm/nonmatchings/P2/crusher", update_crbrain);
+#ifdef SKIP_ASM
+extern "C" void update_crbrain(CRBRAIN *p, float dt)
 {
     OID oid;
 
@@ -120,6 +122,7 @@ void update_crbrain(CRBRAIN *p, float dt)
         pfn(ppo);
     }
 }
+#endif // SKIP_ASM
 
 extern int FUN_001e9970();
 extern BLOT g_unkblot1;

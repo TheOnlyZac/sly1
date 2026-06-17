@@ -21,6 +21,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/barrier", PostBarrierLoad__FP7BARRIER);
 
 extern VECTOR D_00248D30;
 
+INCLUDE_ASM("asm/nonmatchings/P2/barrier", UpdateBarrier__FP7BARRIERf);
+#ifdef SKIP_ASM
 void UpdateBarrier(BARRIER *pbarrier, float dt)
 {
     UpdateSo(pbarrier, dt);
@@ -63,6 +65,7 @@ void UpdateBarrier(BARRIER *pbarrier, float dt)
         STRUCT_OFFSET(pbarrier, 0x5A4, void *) = pvResult;
     }
 }
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/barrier", FIgnoreBarrierIntersection__FP7BARRIERP2SO);
 

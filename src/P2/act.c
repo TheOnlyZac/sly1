@@ -1,5 +1,4 @@
 #include <act.h>
-#include <clock.h>
 #include <slotheap.h>
 #include <sw.h>
 #include <memory.h>
@@ -146,6 +145,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/act", ProjectActRotation__FP3ACT);
 
 extern SMP D_00260E60;
 
+INCLUDE_ASM("asm/nonmatchings/P2/act", ProjectActPose__FP3ACTi);
+#ifdef SKIP_ASM
 void ProjectActPose(ACT *pact, int ipose)
 {
     float g = (*(float (**)(ACT *))((char *)pact->pvtact + 0x20))(pact);
@@ -170,6 +171,7 @@ void ProjectActPose(ACT *pact, int ipose)
             GSmooth(*(float *)((char *)ag + off), g, dt, &D_00260E60, NULL);
     }
 }
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", PredictAloPosition__FP3ALOfP6VECTORT2);
 

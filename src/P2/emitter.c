@@ -18,6 +18,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", InitEmitter__FP7EMITTER);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadEmitmeshFromBrx__FP8EMITMESHP18CBinaryInputStream);
 
+INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadEmitblipColorsFromBrx__FP8EMITBLIPiP2LOP18CBinaryInputStream);
+#ifdef SKIP_ASM
 void LoadEmitblipColorsFromBrx(EMITBLIP *pemitblip, int crgba, LO *ploEmit, CBinaryInputStream *pbis)
 {
     int i;
@@ -34,6 +36,7 @@ void LoadEmitblipColorsFromBrx(EMITBLIP *pemitblip, int crgba, LO *ploEmit, CBin
             STRUCT_OFFSET(pemitblip, 0x50, RGBA *)[i] = (RGBA &)rgba;
     }
 }
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadEmitterFromBrx__FP7EMITTERP18CBinaryInputStream);
 
@@ -244,6 +247,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", ChooseEmitoPos__FP5EMITOiiP6VECTORT3)
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", ConvertEmitoPosVec__FP5EMITOP6VECTORT1);
 
+INCLUDE_ASM("asm/nonmatchings/P2/emitter", CalculateEmitvx__FiP2LMiP6EMITVX);
+#ifdef SKIP_ASM
 void CalculateEmitvx(int cParticlePerRing, LM *plmTilt, int cParticle, EMITVX *pemitvx)
 {
     int cBatch;
@@ -271,6 +276,7 @@ void CalculateEmitvx(int cParticlePerRing, LM *plmTilt, int cParticle, EMITVX *p
         plmTilt->gMin + STRUCT_OFFSET(pemitvx, 0x4, float) * 0.5f;
     STRUCT_OFFSET(pemitvx, 0x10, float) = GRandInRange(0.0f, 6.2831855f);
 }
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", ChooseEmitVelocity__FP6EMITVXffP2LMP6VECTORiT4);
 

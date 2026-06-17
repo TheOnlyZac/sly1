@@ -75,6 +75,8 @@ void EnsureCameraGlobals()
 /**
  * @todo 95.71% match. Missing two instructions.
  */
+INCLUDE_ASM("asm/nonmatchings/P2/render", EnsureScreenCleared__Fv);
+#ifdef SKIP_ASM
 void EnsureScreenCleared()
 {
     if (!s_fFBCleared)
@@ -94,6 +96,7 @@ void EnsureScreenCleared()
         s_fZBCleared = 1;
     }
 }
+#endif // SKIP_ASM
 
 void SetupRpDynamicTexture(RPL *prpl)
 {

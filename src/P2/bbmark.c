@@ -77,6 +77,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/bbmark", RecalcSwXpAll__FP2SWi);
 
 extern void UpdateSwPox(SW *, OXA *, OXA *, unsigned char, unsigned char);
 
+INCLUDE_ASM("asm/nonmatchings/P2/bbmark", RecalcSwOxfFilterForObject__FP2SWP2SO);
+#ifdef SKIP_ASM
 void RecalcSwOxfFilterForObject(SW *psw, SO *pso)
 {
     OXA *poxa;
@@ -107,3 +109,4 @@ void RecalcSwOxfFilterForObject(SW *psw, SO *pso)
         poxa = poxa->poxaNext;
     }
 }
+#endif // SKIP_ASM

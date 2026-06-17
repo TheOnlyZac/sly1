@@ -18,6 +18,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/wipe", UpdateWipe__FP4WIPEP3JOY);
 /**
  * @todo 94.58% match. The order of the checks might be wrong.
  */
+INCLUDE_ASM("asm/nonmatchings/P2/wipe", DrawWipe__FP4WIPE);
+#ifdef SKIP_ASM
 void DrawWipe(WIPE *pwipe)
 {
     if (g_psw == NULL || g_pwipe == NULL)
@@ -41,6 +43,7 @@ void DrawWipe(WIPE *pwipe)
 
     FillScreenRect(0, 0, 0, (int)(pwipe->uBlack * 255.0f), 0.0f, 0.0f, 640.0f, 492.80002f, &g_gifs);
 }
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/wipe", ActivateWipe__FP4WIPEP5TRANS5WIPEK);
 

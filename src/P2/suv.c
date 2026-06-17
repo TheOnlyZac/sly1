@@ -34,6 +34,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvLine__FP3SUVPi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvHeading__FP3SUV);
 
+INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvWheels__FP3SUV);
+#ifdef SKIP_ASM
 void UpdateSuvWheels(SUV *psuv)
 {
     extern float D_002754F8;
@@ -60,6 +62,7 @@ void UpdateSuvWheels(SUV *psuv)
         p += 0x60;
     }
 }
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvExpls__FP3SUV);
 

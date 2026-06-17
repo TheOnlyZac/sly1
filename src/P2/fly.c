@@ -6,6 +6,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/fly", InitFly__FP3FLY);
 
 INCLUDE_ASM("asm/nonmatchings/P2/fly", LoadFlyFromBrx__FP3FLYP18CBinaryInputStream);
 
+INCLUDE_ASM("asm/nonmatchings/P2/fly", CloneFly__FP3FLYT0);
+#ifdef SKIP_ASM
 void CloneFly(FLY *pfly, FLY *pflyBase)
 {
     uint64_t tmp = STRUCT_OFFSET(pfly, 0x5dc, uint64_t);
@@ -23,6 +25,7 @@ void CloneFly(FLY *pfly, FLY *pflyBase)
             RemoveDlEntry((DL *)((char *)pfly->psw + 0x1c48), pfly);
     }
 }
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/fly", FreezeFly__FP3FLYi);
 
@@ -66,6 +69,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/fly", FShouldFlyFlee__FP3FLY);
 
 INCLUDE_ASM("asm/nonmatchings/P2/fly", FFilterFly__FPvP2SO);
 
+INCLUDE_ASM("asm/nonmatchings/P2/fly", FCheckFlyOpenSpaceBelow__FP3FLY);
+#ifdef SKIP_ASM
 int FCheckFlyOpenSpaceBelow(FLY *pfly)
 {
     if (g_clock.t - STRUCT_OFFSET(pfly, 0x66c, float) < 0.05f)
@@ -89,3 +94,4 @@ int FCheckFlyOpenSpaceBelow(FLY *pfly)
     STRUCT_OFFSET(pfly, 0x66c, float) = g_clock.t;
     return pso == NULL;
 }
+#endif // SKIP_ASM

@@ -67,6 +67,8 @@ struct LODEFTAB
 
 extern "C" LODEFTAB D_00244950[];
 
+INCLUDE_ASM("asm/nonmatchings/P2/brx", SetLoDefaults__FP2LO);
+#ifdef SKIP_ASM
 void SetLoDefaults(LO *plo)
 {
     CID cid = plo->pvtlo->cid;
@@ -88,3 +90,4 @@ void SetLoDefaults(LO *plo)
         } while (ceopid != 0);
     }
 }
+#endif // SKIP_ASM

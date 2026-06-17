@@ -7,6 +7,8 @@
 extern VU_VECTOR g_normalZ;
 extern VU_VECTOR g_normalY;
 
+INCLUDE_ASM("asm/nonmatchings/P2/light", InitLight__FP5LIGHT);
+#ifdef SKIP_ASM
 void InitLight(LIGHT *plight)
 {
     uint64_t grfalo = STRUCT_OFFSET(plight, 0x2c8, uint64_t);
@@ -26,6 +28,7 @@ void InitLight(LIGHT *plight)
     RebuildLightFrustrum(plight);
     InitAlo(plight);
 }
+#endif // SKIP_ASM
 
 void UpdateLightXfWorldHierarchy(LIGHT *plight)
 {

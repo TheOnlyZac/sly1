@@ -110,7 +110,9 @@ void OnDifficultyInitialTeleport(DIFFICULTY *pdifficulty)
     return;
 }
 
-void OnDifficultyPlayerDeath(float scalar, DIFFICULTY *pdifficulty)
+INCLUDE_ASM("asm/nonmatchings/P2/difficulty", OnDifficultyPlayerDeath);
+#ifdef SKIP_ASM
+extern "C" void OnDifficultyPlayerDeath(float scalar, DIFFICULTY *pdifficulty)
 {
 	DIFFICULTYLEVEL *pdifflevel = pdifficulty->pDifficultyLevel;
 
@@ -131,6 +133,7 @@ void OnDifficultyPlayerDeath(float scalar, DIFFICULTY *pdifficulty)
 
 	g_plsCur->unk_suck_0x10 = GLimitLm(&g_lmZeroOne, g_plsCur->unk_suck_0x10 + scalar * result);
 }
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/difficulty", OnDifficultyTriggerCheckpoint__FP10DIFFICULTYP6CHKPNT);
 #ifdef SKIP_ASM

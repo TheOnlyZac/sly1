@@ -48,6 +48,8 @@ extern char D_00249E28[];
 extern char D_00249E30[];
 extern char D_00249E38[];
 
+INCLUDE_ASM("asm/nonmatchings/P2/cd", CdPath__FPcT0i);
+#ifdef SKIP_ASM
 void CdPath(char *pchzDest, char *pchzPath, int fIncludeDevice)
 {
     char achz[0x100];
@@ -76,6 +78,7 @@ void CdPath(char *pchzDest, char *pchzPath, int fIncludeDevice)
     }
     sprintf(pchzDest, D_00249E28, pchzDevice, achz);
 }
+#endif // SKIP_ASM
 
 void ReadCd(uint isector, uint csector, void *pv)
 {

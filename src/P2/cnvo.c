@@ -33,6 +33,8 @@ void SetCnvoBeltSpeed(CNVO *pcnvo, float svBelt)
     ResolveAlo(pcnvo);
 }
 
+INCLUDE_ASM("asm/nonmatchings/P2/cnvo", MatchCnvoScrollerToBeltSpeed__FP4CNVO);
+#ifdef SKIP_ASM
 void MatchCnvoScrollerToBeltSpeed(CNVO *pcnvo)
 {
     int c = STRUCT_OFFSET(pcnvo, 0x27c, int);
@@ -55,3 +57,4 @@ void MatchCnvoScrollerToBeltSpeed(CNVO *pcnvo)
         i = i + 1;
     } while (i < STRUCT_OFFSET(pcnvo, 0x27c, int));
 }
+#endif // SKIP_ASM

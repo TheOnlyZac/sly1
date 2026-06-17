@@ -1,5 +1,6 @@
 #include <shadow.h>
 #include <shd.h>
+#include <sce/memset.h>
 #include <gcc/math.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/shadow", InitShadow__FP6SHADOW);
@@ -7,6 +8,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/shadow", InitShadow__FP6SHADOW);
 extern "C" int D_002626D0;
 extern "C" SUR D_0027DC20[];
 
+INCLUDE_ASM("asm/nonmatchings/P2/shadow", PostShadowLoad__FP6SHADOW);
+#ifdef SKIP_ASM
 void PostShadowLoad(SHADOW *pshadow)
 {
     if (pshadow->pshd == NULL)
@@ -31,6 +34,7 @@ void PostShadowLoad(SHADOW *pshadow)
         }
     }
 }
+#endif // SKIP_ASM
 
 void InvalidateShadowVifs(SHADOW *pshadow)
 {

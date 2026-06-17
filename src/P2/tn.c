@@ -17,6 +17,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/tn", GetTnfnNose__FP4TNFNP6CPDEFIP6VECTORP2TN);
 
 struct TNFN_DATA { char rgb[0x90]; };
 
+INCLUDE_ASM("asm/nonmatchings/P2/tn", InitTn__FP2TN);
+#ifdef SKIP_ASM
 void InitTn(TN *ptn)
 {
     extern VECTOR D_00275A10;
@@ -42,6 +44,7 @@ void InitTn(TN *ptn)
     *(uint64_t *)((char *)ptn + 0x460) = *(uint64_t *)D_00275A20;
     STRUCT_OFFSET(ptn, 0x398, int) = -1;
 }
+#endif // SKIP_ASM
 
 void OnTnRemove(TN *ptn)
 {
@@ -57,6 +60,8 @@ void PostTnLoad(TN *ptn)
     PostAloLoad(ptn);
 }
 
+INCLUDE_ASM("asm/nonmatchings/P2/tn", SetTnTns__FP2TN3TNS);
+#ifdef SKIP_ASM
 void SetTnTns(TN *ptn, TNS tns)
 {
     if (STRUCT_OFFSET(ptn, 0x394, TNS) == tns)
@@ -83,6 +88,7 @@ void SetTnTns(TN *ptn, TNS tns)
 
     STRUCT_OFFSET(ptn, 0x39C, float) = g_clock.t;
 }
+#endif // SKIP_ASM
 
 /**
  * @todo Rename.
@@ -99,6 +105,8 @@ void FUN_001e2840(TN *ptn, TNS tns)
     UpdateTnCallback(ptn, MSGID_callback, NULL);
 }
 
+INCLUDE_ASM("asm/nonmatchings/P2/tn", UpdateTnCallback__FP2TN5MSGIDPv);
+#ifdef SKIP_ASM
 void UpdateTnCallback(TN *ptn, MSGID msgid, void *pv)
 {
     VECTOR posLocal;
@@ -131,6 +139,7 @@ void UpdateTnCallback(TN *ptn, MSGID msgid, void *pv)
 
     SetTnTns(ptn, tns);
 }
+#endif // SKIP_ASM
 
 void UpdateTn(TN *ptn, float dt)
 {

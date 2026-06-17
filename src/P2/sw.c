@@ -201,6 +201,8 @@ struct PSL
     LO **aplo;
 } __attribute__((packed));
 
+INCLUDE_ASM("asm/nonmatchings/P2/sw", AddSwProxySource__FP2SWP2LOi);
+#ifdef SKIP_ASM
 void AddSwProxySource(SW *psw, LO *ploProxySource, int cploClone)
 {
     PSL psl;
@@ -228,6 +230,7 @@ void AddSwProxySource(SW *psw, LO *ploProxySource, int cploClone)
     STRUCT_OFFSET(psw, cpsl * 8 + 0x1F00, PSL) = psl;
     STRUCT_OFFSET(psw, 0x1EFC, int) = cpsl + 1;
 }
+#endif // SKIP_ASM
 
 LO *PloGetSwProxySource(SW *psw, int ipsl)
 {
@@ -315,6 +318,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", DrawLineWorld__FP6VECTORT0G4RGBAP2CMi);
 
 void DrawLineWorld(VECTOR *ppos1, VECTOR *ppos2, RGBA rgba, CM *pcm, int fDepthTest);
 
+INCLUDE_ASM("asm/nonmatchings/P2/sw", DrawAxesWorld__FP6VECTORP7MATRIX3fP2CMi);
+#ifdef SKIP_ASM
 void DrawAxesWorld(VECTOR *ppos, MATRIX3 *pmat, float sScale, CM *pcm, int fDepthTest)
 {
     VECTOR4 apos[10];
@@ -331,6 +336,7 @@ void DrawAxesWorld(VECTOR *ppos, MATRIX3 *pmat, float sScale, CM *pcm, int fDept
                       (CM *)(long)fDepthTest, 1);
     }
 }
+#endif // SKIP_ASM
 
 void SetSwIllum(SW *psw, float uMidtone)
 {

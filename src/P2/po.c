@@ -28,6 +28,8 @@ void ClonePo(PO *ppo, PO *ppoBase)
     }
 }
 
+INCLUDE_ASM("asm/nonmatchings/P2/po", HandlePoMessage__FP2PO5MSGIDPv);
+#ifdef SKIP_ASM
 void HandlePoMessage(PO *ppo, MSGID msgid, void *pv)
 {
     HandleAloMessage((ALO *)ppo, msgid, pv);
@@ -58,6 +60,7 @@ void HandlePoMessage(PO *ppo, MSGID msgid, void *pv)
         break;
     }
 }
+#endif // SKIP_ASM
 
 void OnPoActive(PO *ppo, int fActive, PO *ppoOther)
 {

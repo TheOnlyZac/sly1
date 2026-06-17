@@ -166,6 +166,7 @@ public:
     CQueueOutputIop qoi;
 
     void Reset();
+    void Update();
 };
 #endif // CMPEGAUDIO_DEFINED
 
@@ -197,6 +198,8 @@ extern "C" void Close__10CMpegAudio(void *pthis)
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FAccept__10CMpegAudioiPUc);
 
+INCLUDE_ASM("asm/nonmatchings/P2/mpeg", Update__10CMpegAudio);
+#ifdef SKIP_ASM
 void CMpegAudio::Update()
 {
     if (unk_0x0 == 2)
@@ -214,6 +217,7 @@ void CMpegAudio::Update()
         bqOut.CbDrain(qoi.unk_0x14, (CQueueOutput *)&qoi);
     }
 }
+#endif // SKIP_ASM
 
 struct sceMpeg;
 struct sceMpegCbDataStr;

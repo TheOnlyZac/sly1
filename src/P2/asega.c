@@ -30,6 +30,8 @@ void SetAsegaHandsOff(ASEGA *pasega, int fHandsOff)
     pasega->fHandsOff = fHandsOff;
 }
 
+INCLUDE_ASM("asm/nonmatchings/P2/asega", UpdateAsegaIeaCur__FP5ASEGA);
+#ifdef SKIP_ASM
 void UpdateAsegaIeaCur(ASEGA *pasega)
 {
     void *paseg = STRUCT_OFFSET(pasega, 0x8, void *);
@@ -80,6 +82,7 @@ void UpdateAsegaIeaCur(ASEGA *pasega)
         STRUCT_OFFSET(pasega, 0x20, int) = i + 1;
     }
 }
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", PactsegFindAsega__FP5ASEGA3OID);
 

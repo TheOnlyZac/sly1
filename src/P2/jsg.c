@@ -49,6 +49,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/jsg", NextJsgJsge__FP3JSG);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jsg", FIsJsgJsgeComplete__FP3JSGP4JSGE);
 
+INCLUDE_ASM("asm/nonmatchings/P2/jsg", UpdateJsgJsge__FP3JSG);
+#ifdef SKIP_ASM
 void UpdateJsgJsge(JSG *pjsg)
 {
     JSGE *pjsgeJoy;
@@ -75,6 +77,7 @@ void UpdateJsgJsge(JSG *pjsg)
             pjsg->pjsgeJoy = NULL;
     }
 }
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/jsg", ReadJsgJoystick__FP3JSGP3JOY);
 

@@ -36,6 +36,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/missile", FireMissile__FP7MISSILEP3ALOP6VECTOR)
 
 INCLUDE_ASM("asm/nonmatchings/P2/missile", RenderMissileAll__FP7MISSILEP2CMP2RO);
 
+INCLUDE_ASM("asm/nonmatchings/P2/missile", FUN_0018dc88);
+#ifdef SKIP_ASM
 extern "C" int FUN_0018dc88(SO *pso, SO *psoOther)
 {
     int i;
@@ -69,6 +71,7 @@ extern "C" int FUN_0018dc88(SO *pso, SO *psoOther)
 
     return FIgnoreSoIntersection(pso, psoOther);
 }
+#endif // SKIP_ASM
 
 extern "C" void FUN_0018dd50(void * p, int val)
 {

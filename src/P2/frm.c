@@ -53,6 +53,8 @@ void EnsureVu1Code(VIFS *pvifs, void *pvStart, void *pvEnd)
 extern void *VU1_GlobMpg;
 extern void *VU1_GlobMpgEnd;
 
+INCLUDE_ASM("asm/nonmatchings/P2/frm", FinalizeFrameVifs__FP4VIFSPiPP2QW);
+#ifdef SKIP_ASM
 void FinalizeFrameVifs(VIFS *pvifs, int *pcqwVifs, QW **ppqwVifs)
 {
     QW aqw[8];
@@ -68,6 +70,7 @@ void FinalizeFrameVifs(VIFS *pvifs, int *pcqwVifs, QW **ppqwVifs)
     pvifs->AddDmaEnd();
     pvifs->Detach(pcqwVifs, ppqwVifs);
 }
+#endif // SKIP_ASM
 
 void FinalizeFrameGifs(GIFS *pgifs, int *pcqwGifs, QW **ppqwGifs)
 {
@@ -122,6 +125,8 @@ extern "C" unsigned int func_00100000[];
 extern "C" char D_00148D74[];
 extern "C" int D_00262310;
 
+INCLUDE_ASM("asm/nonmatchings/P2/frm", check_anticrack_antigrab__Fv);
+#ifdef SKIP_ASM
 void check_anticrack_antigrab()
 {
     unsigned int *pwTable = D_002C3B00;
@@ -143,6 +148,7 @@ void check_anticrack_antigrab()
     if (crc != 0)
         D_00262310 = 1;
 }
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/frm", FrameRenderLoop__FPv);
 

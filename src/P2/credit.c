@@ -6,6 +6,8 @@ struct CREDIT;
 
 INCLUDE_ASM("asm/nonmatchings/P2/credit", InitCredit__FP6CREDIT5BLOTK);
 
+INCLUDE_ASM("asm/nonmatchings/P2/credit", PostCreditLoad__FP6CREDIT);
+#ifdef SKIP_ASM
 void PostCreditLoad(CREDIT *pcredit)
 {
     int i;
@@ -26,11 +28,14 @@ void PostCreditLoad(CREDIT *pcredit)
         pblot = (BLOT *)((char *)pblot + 0x260);
     }
 }
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/credit", SetCreditClock__FP6CREDITPf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/credit", UpdateCredit__FP6CREDIT);
 
+INCLUDE_ASM("asm/nonmatchings/P2/credit", DrawCredit__FP6CREDIT);
+#ifdef SKIP_ASM
 void DrawCredit(CREDIT *pcredit)
 {
     extern int D_00275BEC;
@@ -61,6 +66,7 @@ void DrawCredit(CREDIT *pcredit)
         }
     }
 }
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/credit", PlaceCredit__FP6CREDITffi);
 

@@ -59,58 +59,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/game", tally_world_completion);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", get_game_completion__Fv);
 
-void UnlockIntroCutsceneFromWid(int wid)
-{
-    /* Check the unlocked cutscene by setting the corresponding
-       flag on the unlocked_cutscenes in the game state */
-    switch (wid)
-    {
-    case 1:
-        /* Unlock cutscene "Tide of Terror" */
-        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x10;
-        return;
-    case 2:
-        /* Unlock cutscene "Sunset Snake Eyes" */
-        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x40;
-        return;
-    case 3:
-        /* Unlock cutscene "Vicious Voodoo" */
-        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x100;
-        return;
-    case 4:
-        /* Unlock cutscene "Fire in the Sky" */
-        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x400;
-        return;
-    case 5:
-        /* Unlock cutscene "The Cold Heart of Hate" */
-        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x1000;
-    }
-}
+// TODO: switch matches but its rodata jump table dangles when built from C
+// (the asm jtbl in 14B0F8.rodata.s references the function-local .L labels).
+INCLUDE_ASM("asm/nonmatchings/P2/game", UnlockIntroCutsceneFromWid__Fi);
 
-void DefeatBossFromWid(int wid)
-{
-    g_pgsCur->aws[wid].fws = (FWS)(g_pgsCur->aws[wid].fws | 0x20);
-
-    switch (wid)
-    {
-    case 1:
-        g_pgsCur->unlocked_cutscenes |= 0x20;
-        break;
-    case 2:
-        g_pgsCur->unlocked_cutscenes |= 0x80;
-        break;
-    case 3:
-        g_pgsCur->unlocked_cutscenes |= 0x200;
-        g_pgsCur->grfvault |= 0x10000;
-        break;
-    case 4:
-        g_pgsCur->unlocked_cutscenes |= 0x800;
-        break;
-    case 5:
-        UnlockEndgameCutscenesFromFgs((FGS)0x2);
-        break;
-    }
-}
+// TODO: same rodata jump-table blocker as UnlockIntroCutsceneFromWid.
+INCLUDE_ASM("asm/nonmatchings/P2/game", DefeatBossFromWid);
 
 extern "C" void UnlockEndgameCutscenesFromFgs(FGS fgs)
 {
