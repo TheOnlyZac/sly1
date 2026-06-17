@@ -23,12 +23,6 @@ struct XP;
  */
 struct WATER : public SO
 {
-    // The span 0x2d0..0x550 holds SO base fields that live past the currently
-    // truncated SO size. Rather than redeclare them here (which would pin this
-    // struct to the present sizeof(SO) and break the checksum if SO grows),
-    // they are reached via STRUCT_OFFSET from water.c until the base structs
-    // are fully reversed. WATER's own fields begin at 0x550.
-    STRUCT_PADDING(160); // 0x2d0 .. 0x550
     /* 0x550 */ XA *pxaFirst;
     /* 0x554 */ MRG mrg;
     STRUCT_PADDING(3); // 0x564 .. 0x570

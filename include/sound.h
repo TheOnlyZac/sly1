@@ -308,18 +308,15 @@ void KillSounds(int param_1);
  */
 void FUN_001c0cb0();
 
-// Unmangled asm symbols (see INCLUDE_ASM in sound.c); require C linkage.
-extern "C"
-{
-    /**
-     * @brief Unknown.
-     */
-    int FUN_001c0c50(int reg);
+/**
+ * @brief Returns the cached value of AM register `reg`.
+ */
+int GetAMRegister(int reg);
 
-    /**
-     * @brief Unknown.
-     */
-    void FUN_001c0c68(int reg, int value);
-}
+/**
+ * @brief Refreshes the cached AM register `reg` from the live sequencer value.
+ * (`value` is unused by the body but kept for the caller's ABI.)
+ */
+void UpdateAMRegister(int reg, int value);
 
 #endif // SOUND_H

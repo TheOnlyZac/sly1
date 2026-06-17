@@ -643,14 +643,14 @@ extern "C" void SetAMRegister__FiUc(int n, int bReg)
 }
 
 extern int D_006053E0[];
-extern "C" int FUN_001c0c50(int reg)
+int GetAMRegister(int reg)
 {
     return D_006053E0[reg];
 }
 
 extern int D_006053E0[];
 extern u_int D_00274728;
-extern "C" void FUN_001c0c68(int reg, int value)
+void UpdateAMRegister(int reg, int value)
 {
     D_006053E0[reg] = snd_GetMIDIRegister(D_00274728, reg);
 }
