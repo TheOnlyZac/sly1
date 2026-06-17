@@ -50,12 +50,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dbac0);
 
 int FUN_001dbae0(SW *psw, int reg)
 {
-    return FUN_001c0c50(reg);
+    return GetAMRegister(reg);
 }
 
 void FUN_001dbb00(SW *psw, int reg, int value)
 {
-    FUN_001c0c68(reg, value);
+    UpdateAMRegister(reg, value);
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FOverflowSwLo__FP2SWP2LOi);
