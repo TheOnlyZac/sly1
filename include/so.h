@@ -71,7 +71,9 @@ enum FSO
  */
 struct SO : public ALO
 {
-    // ...
+    // SO's own fields (0x2d0..0x550) are not yet reversed; pad SO to its real
+    // size so subclasses inherit correct absolute offsets.
+    STRUCT_PADDING(160); // 0x2d0 .. 0x550
     //* 0x368 */ float mass;
 };
 

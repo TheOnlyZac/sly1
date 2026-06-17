@@ -6,8 +6,6 @@ void InitWater(WATER *pwater)
 {
     InitSo(pwater);
 
-    // grfso (0x538), unk_0x360 and unk_0x364 are SO base fields living past the
-    // truncated SO size; reach them via STRUCT_OFFSET (see WATER definition).
     STRUCT_OFFSET(pwater, 0x538, uint64_t) |= 0x80000000000;
     pwater->unk_0x584 = 1;
     STRUCT_OFFSET(pwater, 0x364, float) = 1.0f;
@@ -35,8 +33,6 @@ void UpdateSwXaList(SW *psw, XA **ppxa)
     while (pxa != NULL)
     {
         SO *pso = pxa->pso;
-        // grfso is an SO flag word at 0x538, reached via STRUCT_OFFSET until
-        // the base structs are fully reversed (see WATER definition).
         uint64_t grfso = STRUCT_OFFSET(pso, 0x538, uint64_t);
         XA *pxaNext = pxa->pxaNextTarget;
 
