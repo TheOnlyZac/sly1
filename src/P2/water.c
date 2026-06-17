@@ -18,11 +18,8 @@ void InitWater(WATER *pwater)
     pwater->zpd.zpk = ZPK_Water;
 }
 
-// TODO: logic matches except the DLI-prologue (s_pdliFirst push) store/load
-// scheduling; needs decomp-permuter to settle the instruction order.
 INCLUDE_ASM("asm/nonmatchings/P2/water", PostWaterLoad__FP5WATER);
 
-// TODO: blocked on VU0 SIMD (lqc2/sqc2/vadd) — no VU0 intrinsic infra yet.
 INCLUDE_ASM("asm/nonmatchings/P2/water", CalculateWaterCurrent__FP5WATERP6VECTORN21);
 
 void UpdateSwXaList(SW *psw, XA **ppxa)
@@ -66,7 +63,6 @@ void UpdateSwXaList(SW *psw, XA **ppxa)
     FreeSwXaList(psw, pxaFree);
 }
 
-// TODO: blocked on VU0 SIMD (lqc2/sqc2/vsub/vadd) + ~16KB — no VU0 infra yet.
 INCLUDE_ASM("asm/nonmatchings/P2/water", UpdateWater__FP5WATERf);
 
 void AddWaterExternalAccelerations(WATER *pwater, XA *pxa, float dt)
@@ -75,9 +71,6 @@ void AddWaterExternalAccelerations(WATER *pwater, XA *pxa, float dt)
     ((void (*)(SO *, WATER *))STRUCT_OFFSET(pso->pvtlo, 0x128, void *))(pso, pwater);
 }
 
-// TODO: logic matches except the find-one XA loop's gcc form (peeling +
-// *ppxa reload); needs decomp-permuter. Handler: MSGID_removed drops the
-// object(s) from the XA list and sends MSGID_water_left via pfnSendLoMessage.
 INCLUDE_ASM("asm/nonmatchings/P2/water", HandleWaterMessage__FP5WATER5MSGIDPv);
 
 void UpdateWaterMergeGroup(WATER *pwater)
@@ -103,10 +96,8 @@ void UpdateWaterMergeGroup(WATER *pwater)
     AddSwMergeGroup(pwater->psw, pmrg);
 }
 
-// TODO: blocked on VU0 SIMD (lqc2/qmtc2/vmulax/vmaddx) — no VU0 infra yet.
 INCLUDE_ASM("asm/nonmatchings/P2/water", UGetWaterSubmerged__FP5WATERP2SOP6VECTORT2);
 
-// TODO: blocked on VU0 SIMD (vmul/vsqrt/lqc2/sqc2 bounds math) — no VU0 infra yet.
 INCLUDE_ASM("asm/nonmatchings/P2/water", UpdateWaterBounds__FP5WATER);
 
 int FInflictWaterZap(WATER *pwater, XP *pxp, ZPR *pzpr)
