@@ -3,6 +3,9 @@
 #include <po.h>
 #include <stepguard.h>
 #include <memory.h>
+#include <util.h>
+#include <clock.h>
+#include <gcc/math.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", InitSuv__FP3SUV);
 
@@ -31,7 +34,32 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvLine__FP3SUVPi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvHeading__FP3SUV);
 
-INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvWheels__FP3SUV);
+void UpdateSuvWheels(SUV *psuv)
+{
+    extern float D_002754F8;
+    extern float D_002754F4;
+    extern SMP D_002754E8;
+    float rad;
+    char *p;
+    int i;
+
+    rad = atan2f(STRUCT_OFFSET(psuv, 0xD4, float), STRUCT_OFFSET(psuv, 0xD0, float));
+    rad = RadNormalize(STRUCT_OFFSET(psuv, 0x694, float) - rad);
+    rad = GLimitAbs(D_002754F8 * rad, D_002754F4);
+    STRUCT_OFFSET(psuv, 0x69C, float) = RadSmooth(STRUCT_OFFSET(psuv, 0x69C, float), rad, g_clock.dt, &D_002754E8, NULL);
+
+    p = (char *)psuv + 0x6B0;
+    for (i = 0; i < 4; i++)
+    {
+        float gDiv;
+        if (i < 2)
+            gDiv = STRUCT_OFFSET(psuv, 0x610, float);
+        else
+            gDiv = STRUCT_OFFSET(psuv, 0x614, float);
+        *(float *)(p + 0x50) = STRUCT_OFFSET(psuv, 0x698, float) / gDiv;
+        p += 0x60;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvExpls__FP3SUV);
 

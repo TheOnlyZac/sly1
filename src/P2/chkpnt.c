@@ -39,7 +39,14 @@ void ResetChkmgrCheckpoints(CHKMGR *pchkmgr)
 }
 #endif
 
-INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", SaveChkmgrCheckpoint__FP6CHKMGR3OIDT1);
+void SaveChkmgrCheckpoint(CHKMGR *pchkmgr, OID oidWarp, OID oidWarpContext)
+{
+    STRUCT_OFFSET(pchkmgr, 0x20C, int) = 0;
+    memcpy((char *)pchkmgr + 0x220, &pchkmgr->abitChk, 0x204);
+    STRUCT_OFFSET(pchkmgr, 0x42c, int) = 1;
+    STRUCT_OFFSET(pchkmgr, 0x424, int) = oidWarp;
+    STRUCT_OFFSET(pchkmgr, 0x428, int) = oidWarpContext;
+}
 
 void ReturnChkmgrToCheckpoint(CHKMGR *pchkmgr)
 {
@@ -109,7 +116,40 @@ INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", BindChkpnt__FP6CHKPNT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", PostChkpntLoad__FP6CHKPNT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", CloneChkpnt__FP6CHKPNTT0);
+void CloneChkpnt(CHKPNT *pchkpnt, CHKPNT *pchkpntBase)
+{
+    int i = 0;
+    LO *plo0 = STRUCT_OFFSET(pchkpnt, 0x5B4, LO *);
+    LO *plo1 = STRUCT_OFFSET(pchkpnt, 0x5B0, LO *);
+
+    CloneSo((SO *)pchkpnt, (SO *)pchkpntBase);
+
+    STRUCT_OFFSET(pchkpnt, 0x5B0, LO *) = plo1;
+    STRUCT_OFFSET(pchkpnt, 0x5B4, LO *) = plo0;
+
+    if (STRUCT_OFFSET(pchkpnt, 0x564, int) > 0)
+    {
+        LO **a = &STRUCT_OFFSET(pchkpnt, 0x568, LO *);
+        do
+        {
+            *a = PloCloneLo(*a, STRUCT_OFFSET(pchkpnt, 0x14, SW *), (ALO *)pchkpnt);
+            i++;
+            a++;
+        } while (i < STRUCT_OFFSET(pchkpnt, 0x564, int));
+    }
+
+    if (STRUCT_OFFSET(pchkpnt, 0x58C, int) > 0)
+    {
+        int j = 0;
+        LO **a = &STRUCT_OFFSET(pchkpnt, 0x590, LO *);
+        do
+        {
+            *a = PloCloneLo(*a, STRUCT_OFFSET(pchkpnt, 0x14, SW *), (ALO *)pchkpnt);
+            j++;
+            a++;
+        } while (j < STRUCT_OFFSET(pchkpnt, 0x58C, int));
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", UpdateChkpnt__FP6CHKPNTf);
 

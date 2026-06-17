@@ -75,8 +75,6 @@ void EnsureCameraGlobals()
 /**
  * @todo 95.71% match. Missing two instructions.
  */
-INCLUDE_ASM("asm/nonmatchings/P2/render", EnsureScreenCleared__Fv);
-#ifdef SKIP_ASM
 void EnsureScreenCleared()
 {
     if (!s_fFBCleared)
@@ -84,6 +82,7 @@ void EnsureScreenCleared()
         g_vifs.AddDmaCnt();
         g_vifs.AddVifDirect(0x2c, g_aqwGifsClearAll, 0);
         g_vifs.EndDmaCnt();
+        s_fZBCleared = 1;
         s_fFBCleared = 1;
     }
     else if (!s_fZBCleared)
@@ -95,7 +94,6 @@ void EnsureScreenCleared()
         s_fZBCleared = 1;
     }
 }
-#endif // SKIP_ASM
 
 void SetupRpDynamicTexture(RPL *prpl)
 {

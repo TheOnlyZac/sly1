@@ -1,10 +1,28 @@
 #include <fly.h>
+#include <memory.h>
+#include <clip.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/fly", InitFly__FP3FLY);
 
 INCLUDE_ASM("asm/nonmatchings/P2/fly", LoadFlyFromBrx__FP3FLYP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/fly", CloneFly__FP3FLYT0);
+void CloneFly(FLY *pfly, FLY *pflyBase)
+{
+    uint64_t tmp = STRUCT_OFFSET(pfly, 0x5dc, uint64_t);
+    CloneSo((SO *)pfly, (SO *)pflyBase);
+    STRUCT_OFFSET(pfly, 0x5dc, uint64_t) = tmp;
+
+    if (STRUCT_OFFSET(pfly, 0x550, int) == 0)
+    {
+        StartSound((SFXID)0x41, (AMB **)((char *)pfly + 0x5e4), (ALO *)pfly, 0,
+                   700.0f, 10.0f, 1.0f, 0.0f, 0.0f, 0, 0);
+    }
+    else
+    {
+        if (FFindDlEntry((DL *)((char *)pfly->psw + 0x1c48), pfly))
+            RemoveDlEntry((DL *)((char *)pfly->psw + 0x1c48), pfly);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/fly", FreezeFly__FP3FLYi);
 
@@ -48,4 +66,26 @@ INCLUDE_ASM("asm/nonmatchings/P2/fly", FShouldFlyFlee__FP3FLY);
 
 INCLUDE_ASM("asm/nonmatchings/P2/fly", FFilterFly__FPvP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/fly", FCheckFlyOpenSpaceBelow__FP3FLY);
+int FCheckFlyOpenSpaceBelow(FLY *pfly)
+{
+    if (g_clock.t - STRUCT_OFFSET(pfly, 0x66c, float) < 0.05f)
+        return 0;
+
+    int cpso;
+    SO **apso;
+    VECTOR *ppos = &STRUCT_OFFSET(pfly, 0x140, VECTOR);
+
+    InitStackImpl();
+    IntersectSwBoundingSphere(STRUCT_OFFSET(pfly, 0x14, SW *), NULL, ppos,
+        STRUCT_OFFSET(pfly, 0x64c, float), (PFNFILTER)FFilterFly, pfly, &cpso, &apso);
+
+    qword qwBelow = STRUCT_OFFSET(pfly, 0x140, qword);
+    VECTOR *pposBelow = (VECTOR *)&qwBelow;
+    float zBelow = pposBelow->z - STRUCT_OFFSET(pfly, 0x64c, float);
+    pposBelow->z = zBelow;
+    SO *pso = PsoHitTestLineObjects(0, ppos, pposBelow, cpso, apso, NULL);
+    FreeStackImpl();
+
+    STRUCT_OFFSET(pfly, 0x66c, float) = g_clock.t;
+    return pso == NULL;
+}

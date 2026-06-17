@@ -28,7 +28,36 @@ void ClonePo(PO *ppo, PO *ppoBase)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/po", HandlePoMessage__FP2PO5MSGIDPv);
+void HandlePoMessage(PO *ppo, MSGID msgid, void *pv)
+{
+    HandleAloMessage((ALO *)ppo, msgid, pv);
+
+    switch (msgid)
+    {
+    case MSGID_water_left:
+        StopSound(STRUCT_OFFSET(ppo, 0x574, AMB *), 0);
+        break;
+    case MSGID_rip_removed:
+        {
+            int i;
+            int c = STRUCT_OFFSET(ppo, 0x5D0, int);
+            void **a = &STRUCT_OFFSET(ppo, 0x5AC, void *);
+
+            if (c > 0)
+            {
+                for (i = 0; i < c; i++)
+                {
+                    if (a[i] == pv)
+                    {
+                        a[i] = 0;
+                        break;
+                    }
+                }
+            }
+        }
+        break;
+    }
+}
 
 void OnPoActive(PO *ppo, int fActive, PO *ppoOther)
 {

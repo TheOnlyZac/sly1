@@ -88,7 +88,53 @@ INCLUDE_ASM("asm/nonmatchings/P2/tank", FUN_001dfa10);
 
 INCLUDE_ASM("asm/nonmatchings/P2/tank", AdjustTankNewXp__FP4TANKP2XPi);
 
+#ifndef SKIP_ASM
 INCLUDE_ASM("asm/nonmatchings/P2/tank", HandleTankMessage__FP4TANK5MSGIDPv);
+#else
+void HandleTankMessage(TANK *ptank, MSGID msgid, void *pv)
+{
+    OID oidCur;
+    OID oidGoal;
+
+    switch (msgid)
+    {
+    case (MSGID)0x14:
+        if (pv == STRUCT_OFFSET(ptank, 0x75C, void *))
+        {
+            GetSmaCur((SMA *)pv, &oidCur);
+            GetSmaGoal(STRUCT_OFFSET(ptank, 0x75C, SMA *), &oidGoal);
+        }
+        break;
+
+    case (MSGID)0x13:
+    {
+        SMA *psma = STRUCT_OFFSET(ptank, 0x75C, SMA *);
+        if (psma != NULL)
+        {
+            if (STRUCT_OFFSET(pv, 0x0, ASEGA *) == psma->pasegaCur)
+            {
+                int label = STRUCT_OFFSET(pv, 0x8, int);
+                if (label != 0x15E)
+                {
+                    if (label == 0x15F)
+                    {
+                        STRUCT_OFFSET(ptank, 0x738, int) = 0;
+                    }
+                }
+                else
+                {
+                    STRUCT_OFFSET(ptank, 0x738, int) = 1;
+                }
+            }
+        }
+        break;
+    }
+    }
+
+
+    HandlePoMessage(ptank, msgid, pv);
+}
+#endif
 
 JTHS JthsCurrentTank(TANK *ptank)
 {

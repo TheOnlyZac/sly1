@@ -49,7 +49,32 @@ INCLUDE_ASM("asm/nonmatchings/P2/jsg", NextJsgJsge__FP3JSG);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jsg", FIsJsgJsgeComplete__FP3JSGP4JSGE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jsg", UpdateJsgJsge__FP3JSG);
+void UpdateJsgJsge(JSG *pjsg)
+{
+    JSGE *pjsgeJoy;
+
+    if (pjsg->ijsgeCur < 0)
+    {
+        if (pjsg->cjsge > 0)
+            NextJsgJsge(pjsg);
+    }
+
+    while (pjsg->ijsgeCur < pjsg->cjsge)
+    {
+        JSGE *pjsge = &pjsg->ajsge[pjsg->ijsgeCur];
+        if (pjsge->fAsync || FIsJsgJsgeComplete(pjsg, pjsge))
+            NextJsgJsge(pjsg);
+        else
+            break;
+    }
+
+    pjsgeJoy = pjsg->pjsgeJoy;
+    if (pjsgeJoy != NULL)
+    {
+        if (!FIsJsgJsgeComplete(pjsg, pjsgeJoy))
+            pjsg->pjsgeJoy = NULL;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jsg", ReadJsgJoystick__FP3JSGP3JOY);
 

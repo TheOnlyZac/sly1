@@ -2,6 +2,7 @@
 #include <memory.h>
 #include <gs.h>
 #include <gifs.h>
+#include <frm.h>
 
 void StartupFont()
 {
@@ -48,7 +49,29 @@ void CFont::CopyTo(CFont *pfontDest)
     pfontDest->m_z = this->m_z;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", SetupDraw__5CFontP8CTextBoxP4GIFS);
+class CTextBox;
+
+void SetupDraw_CFont(CFont *self, CTextBox *ptb, GIFS *pgifs) __asm__("SetupDraw__5CFontP8CTextBoxP4GIFS");
+void SetupDraw_CFont(CFont *self, CTextBox *ptb, GIFS *pgifs)
+{
+    if (ptb)
+    {
+        float xLeft = STRUCT_OFFSET(ptb, 0x0, float);
+        float yTop = STRUCT_OFFSET(ptb, 0x4, float);
+        float xRight = xLeft + STRUCT_OFFSET(ptb, 0x8, float);
+        float yBottom = yTop + STRUCT_OFFSET(ptb, 0xc, float);
+
+        int scaxRight = (int)xRight - 1;
+        int scayBottom = (int)(yBottom * 0.45454547f) - 1;
+        int scayTop = (int)(yTop * 0.45454547f);
+        int scaxLeft = (int)xLeft;
+
+        pgifs->AddPrimPack(0, 1, 0xe);
+        pgifs->PackAD(0x40,
+            (ulong)scaxLeft | ((ulong)scaxRight << 16) |
+            ((ulong)scayTop << 32) | ((ulong)scayBottom << 48));
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", CleanupDraw__5CFontP8CTextBoxP4GIFS);
 
@@ -117,7 +140,32 @@ float DxFromCh_CFontBrx(CFontBrx *self, char ch)
     return (float)STRUCT_OFFSET(self, 0x4, int) * STRUCT_OFFSET(self, 0x44, float);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", FEnsureLoaded__8CFontBrxP4GIFS);
+int FEnsureLoaded_CFontBrx(CFontBrx *self, GIFS *pgifs) __asm__("FEnsureLoaded__8CFontBrxP4GIFS");
+int FEnsureLoaded_CFontBrx(CFontBrx *self, GIFS *pgifs)
+{
+    int fLoad = ((g_pfrmOpen->grffont & STRUCT_OFFSET(self, 0x80, int)) == 0);
+
+    if (fLoad)
+    {
+        pgifs->EndDmaCnt();
+        pgifs->AddDmaRefs(STRUCT_OFFSET(self, 0x68, int), STRUCT_OFFSET(self, 0x6c, QW *));
+
+        void *p54 = STRUCT_OFFSET(self, 0x54, void *);
+        pgifs->AddDmaRefs(STRUCT_OFFSET(p54, 0x14, int), STRUCT_OFFSET(p54, 0x10, QW *));
+
+        if (STRUCT_OFFSET(self, 0x58, void *) != 0)
+        {
+            pgifs->AddDmaRefs(STRUCT_OFFSET(self, 0x70, int), STRUCT_OFFSET(self, 0x74, QW *));
+            void *p58 = STRUCT_OFFSET(self, 0x58, void *);
+            pgifs->AddDmaRefs(STRUCT_OFFSET(p58, 0xc, int), STRUCT_OFFSET(p58, 0x8, QW *));
+        }
+
+        pgifs->AddDmaCnt();
+        g_pfrmOpen->grffont |= STRUCT_OFFSET(self, 0x80, int);
+    }
+
+    return fLoad;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", SetupDraw__8CFontBrxP8CTextBoxP4GIFS);
 

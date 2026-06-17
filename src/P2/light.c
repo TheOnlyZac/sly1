@@ -4,7 +4,28 @@
 #include <frm.h>
 #include <sw.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/light", InitLight__FP5LIGHT);
+extern VU_VECTOR g_normalZ;
+extern VU_VECTOR g_normalY;
+
+void InitLight(LIGHT *plight)
+{
+    uint64_t grfalo = STRUCT_OFFSET(plight, 0x2c8, uint64_t);
+    STRUCT_OFFSET(plight, 0x2d0, int) = 0;
+    STRUCT_OFFSET(plight, 0x2c8, uint64_t) = (grfalo & ~0x30000000000ULL) | (0x8000ULL << 0x19);
+
+    STRUCT_OFFSET(plight, 0x320, VU_VECTOR) = g_normalZ;
+    STRUCT_OFFSET(plight, 0x340, VU_VECTOR) = g_normalY;
+
+    STRUCT_OFFSET(plight, 0x330, float) = 200.0f;
+    STRUCT_OFFSET(plight, 0x334, float) = 2000.0f;
+    STRUCT_OFFSET(plight, 0x2fc, float) = 240.0f;
+    STRUCT_OFFSET(plight, 0x300, float) = 180.0f;
+    STRUCT_OFFSET(plight, 0x338, float) = 60.0f;
+    STRUCT_OFFSET(plight, 0x2f8, float) = 180.0f;
+
+    RebuildLightFrustrum(plight);
+    InitAlo(plight);
+}
 
 void UpdateLightXfWorldHierarchy(LIGHT *plight)
 {

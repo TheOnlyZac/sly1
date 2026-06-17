@@ -18,32 +18,29 @@ INCLUDE_ASM("asm/nonmatchings/P2/wipe", UpdateWipe__FP4WIPEP3JOY);
 /**
  * @todo 94.58% match. The order of the checks might be wrong.
  */
-INCLUDE_ASM("asm/nonmatchings/P2/wipe", DrawWipe__FP4WIPE);
-#ifdef SKIP_ASM
 void DrawWipe(WIPE *pwipe)
 {
-    if (!g_psw || !g_pwipe)
+    if (g_psw == NULL || g_pwipe == NULL)
     {
         return;
     }
 
     WIPEK wipek = pwipe->wipek;
-    if (wipek != WIPEK_Keyhole)
+    if (wipek == WIPEK_Keyhole)
     {
-        if (wipek > WIPEK_Keyhole || wipek == WIPEK_Fade)
+        if (g_pkeyhole != NULL)
         {
+            DrawKeyhole(g_pkeyhole, pwipe->uBlack);
             return;
         }
     }
-    if (g_pkeyhole)
+    else if (wipek >= WIPEK_WorldMap || wipek != WIPEK_Fade)
     {
-        DrawKeyhole(g_pkeyhole, pwipe->uBlack);
         return;
     }
 
     FillScreenRect(0, 0, 0, (int)(pwipe->uBlack * 255.0f), 0.0f, 0.0f, 640.0f, 492.80002f, &g_gifs);
 }
-#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/wipe", ActivateWipe__FP4WIPEP5TRANS5WIPEK);
 

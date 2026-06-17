@@ -1,4 +1,5 @@
 #include <cd.h>
+#include <text.h>
 #include <989snd.h>
 #include <sdk/libcdvd.h>
 
@@ -41,7 +42,40 @@ void StartupCd()
 
 INCLUDE_ASM("asm/nonmatchings/P2/cd", UpdateCd__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cd", CdPath__FPcT0i);
+extern "C" char *strcpy1(char *pchzDst, char *pchzSrc);
+extern short D_00249E20;
+extern char D_00249E28[];
+extern char D_00249E30[];
+extern char D_00249E38[];
+
+void CdPath(char *pchzDest, char *pchzPath, int fIncludeDevice)
+{
+    char achz[0x100];
+
+    *(short *)achz = D_00249E20;
+    strcpy1(achz, pchzPath);
+    int ctoken = ((int (*)(char *))CpchzTokenizePath)(achz);
+    if (1 < ctoken)
+    {
+        int itoken = ctoken - 1;
+        do
+        {
+            achz[strlen(achz)] = '\\';
+            itoken--;
+        } while (itoken != 0);
+    }
+
+    char *pchzDevice;
+    if (fIncludeDevice)
+    {
+        pchzDevice = D_00249E30;
+    }
+    else
+    {
+        pchzDevice = D_00249E38;
+    }
+    sprintf(pchzDest, D_00249E28, pchzDevice, achz);
+}
 
 void ReadCd(uint isector, uint csector, void *pv)
 {

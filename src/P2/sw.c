@@ -13,6 +13,7 @@
 #include <screen.h>
 #include <prompt.h>
 #include <memory.h>
+#include <bez.h>
 
 extern SW *g_psw;
 extern int g_fLoadDebugInfo;
@@ -194,7 +195,39 @@ void FreeSwStsoList(SW *psw, STSO *pstsoFirst)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", AddSwProxySource__FP2SWP2LOi);
+struct PSL
+{
+    int cplo;
+    LO **aplo;
+} __attribute__((packed));
+
+void AddSwProxySource(SW *psw, LO *ploProxySource, int cploClone)
+{
+    PSL psl;
+
+    cploClone -= 1;
+    psl.cplo = cploClone;
+
+    if (cploClone > 0)
+    {
+        LO **aplo = (LO **)PvAllocSwImpl(cploClone << 2);
+        psl.aplo = aplo;
+
+        if (cploClone > 0)
+        {
+            int i = 0;
+            do
+            {
+                aplo[i] = PloCloneLo(ploProxySource, psw, NULL);
+                i++;
+            } while (i < cploClone);
+        }
+    }
+
+    int cpsl = STRUCT_OFFSET(psw, 0x1EFC, int);
+    STRUCT_OFFSET(psw, cpsl * 8 + 0x1F00, PSL) = psl;
+    STRUCT_OFFSET(psw, 0x1EFC, int) = cpsl + 1;
+}
 
 LO *PloGetSwProxySource(SW *psw, int ipsl)
 {
@@ -280,7 +313,24 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", FClipLineHomogeneous__FP7VECTOR4);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", DrawLineWorld__FP6VECTORT0G4RGBAP2CMi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", DrawAxesWorld__FP6VECTORP7MATRIX3fP2CMi);
+void DrawLineWorld(VECTOR *ppos1, VECTOR *ppos2, RGBA rgba, CM *pcm, int fDepthTest);
+
+void DrawAxesWorld(VECTOR *ppos, MATRIX3 *pmat, float sScale, CM *pcm, int fDepthTest)
+{
+    VECTOR4 apos[10];
+    RGBA rgba;
+
+    TesselateBezier(sScale, 0.0f, sScale, ppos, (VECTOR *)pmat,
+                    (VECTOR *)((char *)0), (VECTOR *)((char *)0), 10, (VECTOR *)apos);
+
+    rgba = *(RGBA *)pcm;
+
+    for (int i = 1; i < 10; i++)
+    {
+        DrawLineWorld((VECTOR *)&apos[i - 1], (VECTOR *)&apos[i], rgba,
+                      (CM *)(long)fDepthTest, 1);
+    }
+}
 
 void SetSwIllum(SW *psw, float uMidtone)
 {

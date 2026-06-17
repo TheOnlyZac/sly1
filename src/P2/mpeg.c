@@ -93,6 +93,7 @@ public:
 
     void Init(int nParam1, int nParam2);
     void Reset();
+    void Update();
 };
 #endif // CQUEUEOUTPUTIOP_DEFINED
 
@@ -196,7 +197,23 @@ extern "C" void Close__10CMpegAudio(void *pthis)
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FAccept__10CMpegAudioiPUc);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mpeg", Update__10CMpegAudio);
+void CMpegAudio::Update()
+{
+    if (unk_0x0 == 2)
+    {
+        bqOut.CbDrain(qoi.unk_0x14, (CQueueOutput *)&qoi);
+        if (qoi.unk_0x14 == 0)
+        {
+            snd_StartMovieSound(qoi.unk_0x4, qoi.unk_0x8, qoi.unk_0x4, 0, 0);
+            unk_0x0 = 3;
+        }
+    }
+    else if (unk_0x0 == 3)
+    {
+        qoi.Update();
+        bqOut.CbDrain(qoi.unk_0x14, (CQueueOutput *)&qoi);
+    }
+}
 
 struct sceMpeg;
 struct sceMpegCbDataStr;

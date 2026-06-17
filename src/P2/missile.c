@@ -1,5 +1,6 @@
 #include <missile.h>
 #include <asega.h>
+#include <basic.h>
 
 void InitMissile(MISSILE *pmissile)
 {
@@ -35,7 +36,39 @@ INCLUDE_ASM("asm/nonmatchings/P2/missile", FireMissile__FP7MISSILEP3ALOP6VECTOR)
 
 INCLUDE_ASM("asm/nonmatchings/P2/missile", RenderMissileAll__FP7MISSILEP2CMP2RO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/missile", FUN_0018dc88);
+extern "C" int FUN_0018dc88(SO *pso, SO *psoOther)
+{
+    int i;
+
+    if (psoOther == STRUCT_OFFSET(pso, 0x6e4, SO *))
+        return 1;
+
+    if (STRUCT_OFFSET(pso, 0x6bc, int) > 0)
+    {
+        OID *aoid = &STRUCT_OFFSET(pso, 0x6c0, OID);
+        i = 0;
+        do
+        {
+            if (FMatchesLoName((LO *)psoOther, aoid[i]))
+                return 1;
+            i++;
+        } while (i < STRUCT_OFFSET(pso, 0x6bc, int));
+    }
+
+    if (STRUCT_OFFSET(pso, 0x6d0, int) > 0)
+    {
+        CID *acid = &STRUCT_OFFSET(pso, 0x6d4, CID);
+        i = 0;
+        do
+        {
+            if (FIsBasicDerivedFrom((BASIC *)psoOther, acid[i]))
+                return 1;
+            i++;
+        } while (i < STRUCT_OFFSET(pso, 0x6d0, int));
+    }
+
+    return FIgnoreSoIntersection(pso, psoOther);
+}
 
 extern "C" void FUN_0018dd50(void * p, int val)
 {

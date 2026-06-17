@@ -75,4 +75,35 @@ void InvalidateSwXpForObject(SW *psw, SO *pso, GRFPVA grfpvaInvalid)
 
 INCLUDE_ASM("asm/nonmatchings/P2/bbmark", RecalcSwXpAll__FP2SWi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/bbmark", RecalcSwOxfFilterForObject__FP2SWP2SO);
+extern void UpdateSwPox(SW *, OXA *, OXA *, unsigned char, unsigned char);
+
+void RecalcSwOxfFilterForObject(SW *psw, SO *pso)
+{
+    OXA *poxa;
+
+    STRUCT_OFFSET(pso, 0x4B8, int) = 0;
+    poxa = STRUCT_OFFSET(psw, 0x1AE8, OXA *);
+    while (poxa != NULL)
+    {
+        if (poxa->pso != pso)
+        {
+            int fHit = 0;
+            void **pvtbl = STRUCT_OFFSET(pso, 0x0, void **);
+            if (((int (*)(SO *))pvtbl[0xF0 / 4])(pso) != 0)
+            {
+                fHit = 1;
+            }
+            else
+            {
+                void **pvtblOther = STRUCT_OFFSET(poxa->pso, 0x0, void **);
+                if (((int (*)(SO *, SO *))pvtblOther[0xF0 / 4])(poxa->pso, pso) != 0)
+                {
+                    fHit = 1;
+                }
+            }
+            UpdateSwPox(psw, STRUCT_OFFSET(pso, 0x480, OXA *), poxa,
+                        fHit ? 0 : 8, fHit ? 8 : 0);
+        }
+        poxa = poxa->poxaNext;
+    }
+}

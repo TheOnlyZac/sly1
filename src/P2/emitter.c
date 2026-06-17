@@ -18,7 +18,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", InitEmitter__FP7EMITTER);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadEmitmeshFromBrx__FP8EMITMESHP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadEmitblipColorsFromBrx__FP8EMITBLIPiP2LOP18CBinaryInputStream);
+void LoadEmitblipColorsFromBrx(EMITBLIP *pemitblip, int crgba, LO *ploEmit, CBinaryInputStream *pbis)
+{
+    int i;
+    int cColor = (crgba > 0x1f) ? 0x20 : crgba;
+
+    STRUCT_OFFSET(pemitblip, 0x4c, int) = cColor;
+    STRUCT_OFFSET(pemitblip, 0x50, RGBA *) = (RGBA *)PvAllocSwImpl(cColor * 4);
+    STRUCT_OFFSET(pemitblip, 0x54, int) = pbis->U8Read();
+
+    for (i = 0; i < crgba; i++)
+    {
+        uint rgba = pbis->U32Read();
+        if (i < STRUCT_OFFSET(pemitblip, 0x4c, int))
+            STRUCT_OFFSET(pemitblip, 0x50, RGBA *)[i] = (RGBA &)rgba;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadEmitterFromBrx__FP7EMITTERP18CBinaryInputStream);
 
@@ -229,7 +244,33 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", ChooseEmitoPos__FP5EMITOiiP6VECTORT3)
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", ConvertEmitoPosVec__FP5EMITOP6VECTORT1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", CalculateEmitvx__FiP2LMiP6EMITVX);
+void CalculateEmitvx(int cParticlePerRing, LM *plmTilt, int cParticle, EMITVX *pemitvx)
+{
+    int cBatch;
+    int count;
+    float gNorm;
+
+    if (cParticlePerRing > 0)
+    {
+        STRUCT_OFFSET(pemitvx, 0x0, int) =
+            (cParticlePerRing < cParticle) ? cParticlePerRing : cParticle;
+    }
+    else
+    {
+        STRUCT_OFFSET(pemitvx, 0x0, int) = cParticle;
+    }
+
+    count = STRUCT_OFFSET(pemitvx, 0x0, int);
+    cBatch = (cParticle - 1 + count) / count;
+
+    gNorm = RadNormalize(plmTilt->gMax - plmTilt->gMin);
+
+    STRUCT_OFFSET(pemitvx, 0x8, float) = 6.2831855f / (float)STRUCT_OFFSET(pemitvx, 0x0, int);
+    STRUCT_OFFSET(pemitvx, 0x4, float) = gNorm / (float)cBatch;
+    STRUCT_OFFSET(pemitvx, 0xc, float) =
+        plmTilt->gMin + STRUCT_OFFSET(pemitvx, 0x4, float) * 0.5f;
+    STRUCT_OFFSET(pemitvx, 0x10, float) = GRandInRange(0.0f, 6.2831855f);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", ChooseEmitVelocity__FP6EMITVXffP2LMP6VECTORiT4);
 

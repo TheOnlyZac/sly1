@@ -2,7 +2,39 @@
 
 INCLUDE_ASM("asm/nonmatchings/P2/ub", InitUbg__FP3UBG);
 
+#ifndef SKIP_ASM
 INCLUDE_ASM("asm/nonmatchings/P2/ub", PostUbgLoad__FP3UBG);
+#else
+extern SNIP D_00275B60;
+void FUN_001ddc38(void *pv, void *pvBlot);
+
+void PostUbgLoad(UBG *pubg)
+{
+    SnipAloObjects((ALO *)pubg, 8, &D_00275B60);
+    FUN_001ddc38(STRUCT_OFFSET(pubg, 0x14, void *), pubg);
+
+    if (STRUCT_OFFSET(pubg, 0xC50, void *) != NULL)
+    {
+        STRUCT_OFFSET(pubg, 0xC54, SMA *) =
+            PsmaApplySm(STRUCT_OFFSET(pubg, 0xC50, SM *), NULL, (OID)0x2D7, 0);
+    }
+
+    STRUCT_OFFSET(pubg, 0xC90, int) = 4;
+
+    {
+        int *pichk = &STRUCT_OFFSET(pubg, 0xC80, int);
+        int i = 0;
+        do
+        {
+            *pichk = IchkAllocChkmgr(&g_chkmgr);
+            i++;
+            pichk++;
+        } while ((uint)i < 4);
+    }
+
+    PostGomerLoad(pubg);
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/ub", PsoPadUbgClosest__FP3UBGP6VECTOR);
 

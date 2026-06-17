@@ -1,6 +1,7 @@
 #include <crusher.h>
 #include <sm.h>
 #include <oid.h>
+#include <po.h>
 
 /**
  * @todo Rename.
@@ -93,7 +94,32 @@ extern "C" void FUN_0014c668(void *pv, int tnt)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/crusher", update_crbrain);
+extern "C" void FUN_0014c858(void *p);
+extern "C" void FUN_0014cba8(void *p);
+
+void update_crbrain(CRBRAIN *p, float dt)
+{
+    OID oid;
+
+    UpdateAlo(p, dt);
+    GetSmaCur(STRUCT_OFFSET(p, 0x42c, SMA *), &oid);
+
+    if (oid == (OID)0x3fd)
+    {
+        CLOCK *pclock = &g_clock;
+
+        if (STRUCT_OFFSET(p, 0x45c, float) < pclock->t)
+            FUN_0014c858(p);
+
+        if (STRUCT_OFFSET(p, 0x460, float) < pclock->t)
+            FUN_0014cba8(p);
+
+        PO *ppo = PpoCur();
+        void *pvt = STRUCT_OFFSET(ppo, 0x0, void *);
+        void (*pfn)(PO *) = (void (*)(PO *))STRUCT_OFFSET(pvt, 0x144, void *);
+        pfn(ppo);
+    }
+}
 
 extern int FUN_001e9970();
 extern BLOT g_unkblot1;

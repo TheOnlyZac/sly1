@@ -30,7 +30,56 @@ void SetAsegaHandsOff(ASEGA *pasega, int fHandsOff)
     pasega->fHandsOff = fHandsOff;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", UpdateAsegaIeaCur__FP5ASEGA);
+void UpdateAsegaIeaCur(ASEGA *pasega)
+{
+    void *paseg = STRUCT_OFFSET(pasega, 0x8, void *);
+    int c = STRUCT_OFFSET(paseg, 0x5C, int);
+    if (c == 0)
+        return;
+
+    if (0.0f <= STRUCT_OFFSET(pasega, 0x18, float))
+    {
+        int i = c - 1;
+        i = 0;
+        if (c > 0)
+        {
+            char *p = STRUCT_OFFSET(paseg, 0x60, char *);
+            float t = STRUCT_OFFSET(pasega, 0x14, float);
+            if (!(t <= *(float *)p))
+            {
+                int cmax = c;
+                i = i + 1;
+                while (i < cmax)
+                {
+                    p += 0x10;
+                    if (t <= *(float *)p)
+                        break;
+                    i = i + 1;
+                }
+            }
+        }
+        STRUCT_OFFSET(pasega, 0x20, int) = i;
+    }
+    else
+    {
+        int i = c - 1;
+        if (i >= 0)
+        {
+            char *p = STRUCT_OFFSET(paseg, 0x60, char *) + (i << 4);
+            float t = STRUCT_OFFSET(pasega, 0x14, float);
+            while (1)
+            {
+                if (*(float *)p <= t)
+                    break;
+                i = i - 1;
+                if (i < 0)
+                    break;
+                p -= 0x10;
+            }
+        }
+        STRUCT_OFFSET(pasega, 0x20, int) = i + 1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", PactsegFindAsega__FP5ASEGA3OID);
 

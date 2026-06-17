@@ -50,7 +50,24 @@ void EnsureVu1Code(VIFS *pvifs, void *pvStart, void *pvEnd)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/frm", FinalizeFrameVifs__FP4VIFSPiPP2QW);
+extern void *VU1_GlobMpg;
+extern void *VU1_GlobMpgEnd;
+
+void FinalizeFrameVifs(VIFS *pvifs, int *pcqwVifs, QW **ppqwVifs)
+{
+    QW aqw[8];
+    GIFS gifs = GIFS();
+
+    gifs.AllocStatic(8, aqw);
+    gifs.AddPrimPack(0, 1, 0x0e);
+    gifs.PackAD(0x61, 0);
+    gifs.AddPrimEnd();
+    pvifs->AddVifFlush();
+    pvifs->AddVifGifs(&gifs);
+    EnsureVu1Code(pvifs, &VU1_GlobMpg, &VU1_GlobMpgEnd);
+    pvifs->AddDmaEnd();
+    pvifs->Detach(pcqwVifs, ppqwVifs);
+}
 
 void FinalizeFrameGifs(GIFS *pgifs, int *pcqwGifs, QW **ppqwGifs)
 {
@@ -100,7 +117,32 @@ void PrepareGsForFrameRender(FRM *pfrm)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/frm", check_anticrack_antigrab__Fv);
+extern "C" unsigned int D_002C3B00[];
+extern "C" unsigned int func_00100000[];
+extern "C" char D_00148D74[];
+extern "C" int D_00262310;
+
+void check_anticrack_antigrab()
+{
+    unsigned int *pwTable = D_002C3B00;
+    int cb = (int)D_00148D74;
+    unsigned int crc = 0xFFFFFFFF;
+    unsigned int *pw = func_00100000;
+
+    while (cb > 0)
+    {
+        unsigned int w = *pw;
+        cb -= 4;
+        pw += 1;
+        crc = pwTable[(crc ^ w) & 0xFF] ^ (crc >> 8);
+        crc = pwTable[(crc ^ (w >> 8)) & 0xFF] ^ (crc >> 8);
+        crc = pwTable[(crc ^ (w >> 16)) & 0xFF] ^ (crc >> 8);
+        crc = pwTable[(crc ^ (w >> 24)) & 0xFF] ^ (crc >> 8);
+    }
+
+    if (crc != 0)
+        D_00262310 = 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/frm", FrameRenderLoop__FPv);
 
