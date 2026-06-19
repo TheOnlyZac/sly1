@@ -142,7 +142,6 @@ enum JTPDK
  */
 struct JT : public STEP
 {
-    // 930 = 1090 - 160; SO now carries the 160-word (0x2d0..0x550) base gap.
     STRUCT_PADDING(930);
     undefined2 padding0_extra;
 
