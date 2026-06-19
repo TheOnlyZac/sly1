@@ -17,6 +17,9 @@ jobs:
         run: |
           scripts/quickstart.sh
           curl -o disc/SCUS_971.98 "${{ secrets.FILE_URL }}"
+          
+      - name: Activate venv
+        run: echo "${{ github.workspace }}/env/bin" >> $GITHUB_PATH
 
       - name: Run build script
         run: scripts/build.sh
