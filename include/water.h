@@ -11,6 +11,7 @@
 #include <vec.h>
 #include <so.h>
 #include <mq.h>
+#include <freeze.h>
 
 // Forward.
 struct XA;
@@ -22,7 +23,13 @@ struct XP;
  */
 struct WATER : public SO
 {
-    // ...
+    /* 0x550 */ XA *pxaFirst;
+    /* 0x554 */ MRG mrg;
+    STRUCT_PADDING(8); // 0x564 .. 0x584
+    /* 0x584 */ int unk_0x584;
+    /* 0x588 */ int unk_0x588;
+    STRUCT_PADDING(1); // 0x58c .. 0x590
+    /* 0x590 */ ZPD zpd;
 };
 
 void InitWater(WATER *pwater);

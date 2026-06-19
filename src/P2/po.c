@@ -135,7 +135,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/po", UsePoCharm__FP2PO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", FUN_00192dd0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/po", FUN_001930B0);
+PO *FUN_001930B0(PO *ppo)
+{
+    return ppo;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/po", po__static_initialization_and_destruction_04);
 

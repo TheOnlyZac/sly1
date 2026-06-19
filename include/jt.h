@@ -142,7 +142,7 @@ enum JTPDK
  */
 struct JT : public STEP
 {
-    STRUCT_PADDING(1090);
+    STRUCT_PADDING(930);
     undefined2 padding0_extra;
 
     ALO *paloMine_0x1518;   // 0x1518

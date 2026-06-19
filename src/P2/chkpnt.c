@@ -73,4 +73,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", FUN_001419A0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", FUN_001419C0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", FUN_001419E0);
+void FUN_001419E0(int *param_1, int param_2)
+{
+    param_1[0x168] = param_2;
+}

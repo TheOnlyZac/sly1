@@ -46,7 +46,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/dmas", AllocSw__4DMASii);
 
 INCLUDE_ASM("asm/nonmatchings/P2/dmas", AllocStack__4DMASi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AllocStatic__4DMASiP2QW);
+void DMAS::AllocStatic(int c, QW *aqw)
+{
+    m_ab = (uchar *)aqw;
+    m_pb = (uchar *)aqw;
+    m_pbMax = (uchar *)(aqw + c);
+}
 
 void DMAS::Detach(int *pcqw, QW **paqw)
 {

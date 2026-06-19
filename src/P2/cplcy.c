@@ -9,7 +9,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FActiveCplcy);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", SetCpmanCpmt);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FUN_001493c0);
+void FUN_001493c0(void)
+{
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", PosCplookAnchor);
 
@@ -37,8 +39,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FUN_0014a8d0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", UpdateCpalign);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FUN_0014aa90);
+void FUN_0014aa90(int *param_1, int param_2)
+{
+    param_1[2] = param_2;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FUN_0014aa98);
+void FUN_0014aa98(void *p)
+{
+    STRUCT_OFFSET(p, 0x8, int) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", UpdateCpaseg);

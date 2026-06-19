@@ -1,5 +1,6 @@
 #include <pzo.h>
 #include <find.h>
+#include <game.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", InitSprize__FP6SPRIZE);
 
@@ -175,7 +176,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/pzo", RenderClueAll__FP4CLUEP2CMP2RO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", CollectAllClues__Fi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", SetGrfvault__Fi);
+void SetGrfvault(int grfvault)
+{
+    g_pgsCur->grfvault = grfvault;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", FUN_0019a000);
 

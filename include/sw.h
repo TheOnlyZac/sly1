@@ -91,7 +91,9 @@ struct SW : public LO
  */
 struct XA
 {
-    /* 0x00 */ STRUCT_PADDING(3);
+    /* 0x00 */ STRUCT_PADDING(1);
+    /* 0x04 */ SO *pso;
+    /* 0x08 */ STRUCT_PADDING(1);
     /* 0x0c */ XA *pxaNextTarget;
 }; // 0x10 bytes.
 

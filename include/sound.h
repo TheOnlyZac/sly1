@@ -303,4 +303,15 @@ void KillSounds(int param_1);
  */
 void FUN_001c0cb0();
 
+/**
+ * @brief Returns the cached value of AM register `reg`.
+ */
+int GetAMRegister(int reg);
+
+/**
+ * @brief Refreshes the cached AM register `reg` from the live sequencer value.
+ * (`value` is unused by the body but kept for the caller's ABI.)
+ */
+void UpdateAMRegister(int reg, int value);
+
 #endif // SOUND_H

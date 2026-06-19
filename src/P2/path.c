@@ -1,6 +1,11 @@
 #include <path.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/path", PcbspExtract__FP4CBSP);
+struct CBSP;
+
+CBSP* PcbspExtract(CBSP* pcbsp)
+{
+    return ((int)pcbsp & 1) ? (CBSP*)0 : pcbsp;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/path", PcgtExtract__FP3CGT);
 
@@ -14,7 +19,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/path", ClsgClipEdgeToCbsp__FP4CBSPP6VECTORT1iP3
 
 INCLUDE_ASM("asm/nonmatchings/P2/path", FClipEdgeToCbsp__FP4CBSPP6VECTORT1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/path", IcgvFromPcgv__FP2CGP3CGV);
+struct CG;
+struct CGV;
+
+int IcgvFromPcgv(CG* pcg, CGV* pcgv)
+{
+    return ((int)pcgv - STRUCT_OFFSET(pcg, 0x4, int)) >> 5;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/path", FindPathAStar__FP2CGP3CGVT1iPiPP3CGV);
 

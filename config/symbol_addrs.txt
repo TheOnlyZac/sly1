@@ -804,7 +804,7 @@ FUN_0012a810                                               = 0x12A810; // type:f
 FUN_0012a848                                               = 0x12A848; // type:func
 FUN_0012a860                                               = 0x12A860; // type:func
 FUN_0012a888                                               = 0x12A888; // type:func
-FUN_0012a8b8                                               = 0x12A8B8; // type:func
+FUN_0012a8b8__FP3ALO                                       = 0x12A8B8; // type:func
 FUN_0012a8c8                                               = 0x12A8C8; // type:func
 SetAloRotationMatchesVelocity__FP3ALOff3ACK                = 0x12A8D8; // type:func
 PtargetEnsureAlo__FP3ALO                                   = 0x12A970; // type:func
@@ -1309,7 +1309,7 @@ FUN_001417f0 = 0x1417F0; // type:func
 TriggerChkpnt__FP6CHKPNT = 0x141870; // type:func
 FUN_001419A0 = 0x1419A0; // type:func
 FUN_001419C0 = 0x1419C0; // type:func
-FUN_001419E0 = 0x1419E0; // type:func
+FUN_001419E0__FPii = 0x1419E0; // type:func
 
 g_chkmgr = 0x261420; // size:0x430
 
@@ -1531,7 +1531,7 @@ s_asnipDprize = 0x2619A0; // size:0x3c
 InitCplcy = 0x149398; // type:func
 FActiveCplcy = 0x1493A0; // type:func
 SetCpmanCpmt = 0x1493B8; // type:func
-FUN_001493c0 = 0x1493C0; // type:func
+FUN_001493c0__Fv = 0x1493C0; // type:func
 PosCplookAnchor = 0x1493C8; // type:func
 FUN_00149458 = 0x149458; // type:func
 plays_binoc_sfx = 0x149508; // type:func
@@ -1545,8 +1545,8 @@ FUN_0014a7b8 = 0x14A7B8; // type:func
 InitCpalign = 0x14A888; // type:func
 FUN_0014a8d0 = 0x14A8D0; // type:func
 UpdateCpalign = 0x14A8F8; // type:func
-FUN_0014aa90 = 0x14AA90; // type:func
-FUN_0014aa98 = 0x14AA98; // type:func
+FUN_0014aa90__FPii = 0x14AA90; // type:func
+FUN_0014aa98__FPv = 0x14AA98; // type:func
 UpdateCpaseg = 0x14AAA0; // type:func
 
 
@@ -1726,7 +1726,7 @@ g_pdialogPlaying = 0x27051C;
 // P2/difficulty.c
 ////////////////////////////////////////////////////////////////
 PdifficultyEnsureSw = 0x1519E0; // type:func
-FUN_00151A58 = 0x151A58; // type:func
+FUN_00151A58__Fv = 0x151A58; // type:func
 OnDifficultyGameLoad__FP10DIFFICULTY = 0x151A68; // type:func
 OnDifficultyWorldPreLoad = 0x151A88; // type:func
 OnDifficultyWorldPostLoad = 0x151D28; // type:func
@@ -3069,7 +3069,7 @@ FUN_00192a70 = 0x192A70; // type:func
 UpdatePo__FP2POf = 0x192B58; // type:func
 UsePoCharm__FP2PO = 0x192C58; // type:func
 FUN_00192dd0 = 0x192DD0; // type:func
-FUN_001930B0 = 0x1930B0; // type:func
+FUN_001930B0__FP2PO = 0x1930B0; // type:func
 po__static_initialization_and_destruction_04 = 0x1930B8; // type:func
 _GLOBAL_$I$InitPo__FP2PO = 0x1931F0; // type:func
 
@@ -3548,7 +3548,7 @@ OnSbgEnteringSgs__FP3SBG3SGSP4ASEG = 0x1A99F8; // type:func
 UpdateSbg__FP3SBGf                 = 0x1A9A40; // type:func
 FUN_001a9a98                       = 0x1A9A98; // type:func
 FAbsorbSbgWkr__FP3SBGP3WKR         = 0x1A9AE8; // type:func
-FUN_001a9c58                       = 0x1A9C58; // type:func
+FUN_001a9c58__FP3SBGiii            = 0x1A9C58; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -4113,8 +4113,8 @@ FUN_001C0AB8 = 0x1C0AB8; // type:func
 FUN_001C0B08 = 0x1C0B08; // type:func
 StartSwIntermittentSounds__FP2SW = 0x1C0B38; // type:func
 SetAMRegister__FiUc = 0x1C0C08; // type:func
-FUN_001c0c50 = 0x1C0C50; // type:func
-FUN_001c0c68 = 0x1C0C68; // type:func
+GetAMRegister__Fi = 0x1C0C50; // type:func
+UpdateAMRegister__Fii = 0x1C0C68; // type:func
 FUN_001c0cb0__Fv = 0x1C0CB0; // type:func
 HsNextFootFall__Fv = 0x1C0CF0; // type:func
 NextSneakyFootstep__Fv = 0x1C0EC0; // type:func
@@ -4548,8 +4548,8 @@ SetupBulkDataFromBrx__FiP18CBinaryInputStream                     = 0x1DB928; //
 LoadBulkDataFromBrx__FP18CBinaryInputStream                       = 0x1DBA38; // type:func
 SetSwGravity__FP2SWf                                              = 0x1DBA90; // type:func
 FUN_001dbac0                                                      = 0x1DBAC0; // type:func
-FUN_001dbae0                                                      = 0x1DBAE0; // type:func
-FUN_001dbb00                                                      = 0x1DBB00; // type:func
+FUN_001dbae0__FP2SWi                                              = 0x1DBAE0; // type:func
+FUN_001dbb00__FP2SWii                                             = 0x1DBB00; // type:func
 FOverflowSwLo__FP2SWP2LOi                                         = 0x1DBB20; // type:func
 PxaAllocSw__FP2SW                                                 = 0x1DBB50; // type:func
 FreeSwXaList__FP2SWP2XA                                           = 0x1DBB90; // type:func
@@ -4590,12 +4590,12 @@ FUN_001dd758                                                      = 0x1DD758; //
 FUN_001dd7a0                                                      = 0x1DD7A0; // type:func
 FUN_001dd7e8                                                      = 0x1DD7E8; // type:func
 FUN_001dd888                                                      = 0x1DD888; // type:func
-FUN_001dd8e8                                                      = 0x1DD8E8; // type:func
-FUN_001dd908                                                      = 0x1DD908; // type:func
+FUN_001dd8e8__FP2SW9GAMEWORLD                                     = 0x1DD8E8; // type:func
+FUN_001dd908__FP2SW9GAMEWORLD                                     = 0x1DD908; // type:func
 FUN_001dd928                                                      = 0x1DD928; // type:func
 FUN_001dd950                                                      = 0x1DD950; // type:func
-FUN_001dd9a0                                                      = 0x1DD9A0; // type:func
-FUN_001dd9c0                                                      = 0x1DD9C0; // type:func
+FUN_001dd9a0__Ff                                                  = 0x1DD9A0; // type:func
+FUN_001dd9c0__FPvPf                                               = 0x1DD9C0; // type:func
 SetSwPlayerSuck__FP2SWf                                           = 0x1DD9D8; // type:func
 GetSwPlayerSuck__FP2SWPf                                          = 0x1DDA08; // type:func
 IncrementSwHandsOff__FP2SW                                        = 0x1DDA20; // type:func
@@ -4612,7 +4612,7 @@ FUN_001ddbf8                                                      = 0x1DDBF8; //
 FUN_001ddc18                                                      = 0x1DDC18; // type:func
 FUN_001ddc38                                                      = 0x1DDC38; // type:func
 FUN_001ddc40                                                      = 0x1DDC40; // type:func
-FUN_001ddc78                                                      = 0x1DDC78; // type:func
+FUN_001ddc78__FPvi                                                = 0x1DDC78; // type:func
 FUN_001ddc90                                                      = 0x1DDC90; // type:func
 FUN_001ddcb0                                                      = 0x1DDCB0; // type:func
 FUN_001ddcc8                                                      = 0x1DDCC8; // type:func
@@ -4971,7 +4971,7 @@ UGetWaterSubmerged__FP5WATERP2SOP6VECTORT2   = 0x1EF5B8; // type:func
 UpdateWaterBounds__FP5WATER                  = 0x1EF768; // type:func
 FInflictWaterZap__FP5WATERP2XPP3ZPR          = 0x1EF808; // type:func
 PzpdEnsureWater__FP5WATER4ENSK               = 0x1EF828; // type:func
-FUN_001ef830                                 = 0x1EF830; // type:func
+FUN_001ef830__FP5WATER                       = 0x1EF830; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -5084,7 +5084,7 @@ CloneWarp__FP4WARPT0                          = 0x1F3EE0; // type:func
 PostWarpLoad__FP4WARP                         = 0x1F3F80; // type:func
 TriggerWarp__FP4WARP                          = 0x1F4008; // type:func
 SetWarpRsmg__FP4WARPi3OIDN22                  = 0x1F42D0; // type:func
-FUN_001F4308                                  = 0x1F4308; // type:func
+FUN_001F4308__FP4WARPf                        = 0x1F4308; // type:func
 TeleportSwPlayer__FP2SW3OIDT1                 = 0x1F4318; // type:func
 PexitDefault__Fv                              = 0x1F4378; // type:func
 TriggerDefaultExit__Fi5WIPEK                  = 0x1F4408; // type:func

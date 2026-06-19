@@ -54,7 +54,12 @@ void SetWarpRsmg(WARP *pwarp, int fOnTrigger, OID oidRoot, OID oidSM, OID oidGoa
     FAddRsmg(&STRUCT_OFFSET(pwarp, 0xb8, RSMG), 4, &STRUCT_OFFSET(pwarp, 0xb4, int), fOnTrigger, oidRoot, oidSM, oidGoal);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/xform", FUN_001F4308);
+int FUN_001F4308(WARP *pwarp, float g)
+{
+    STRUCT_OFFSET(pwarp, 0x9c, float) = g;
+    STRUCT_OFFSET(pwarp, 0x98, int) = 1;
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/xform", TeleportSwPlayer__FP2SW3OIDT1);
 

@@ -71,7 +71,7 @@ enum FSO
  */
 struct SO : public ALO
 {
-    // ...
+    STRUCT_PADDING(160); // 0x2d0 .. 0x550
     //* 0x368 */ float mass;
 };
 

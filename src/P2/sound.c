@@ -225,9 +225,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSwIntermittentSounds__FP2SW);
 // TODO: Verify signature.
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SetAMRegister__FiUc);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001c0c50);
+INCLUDE_ASM("asm/nonmatchings/P2/sound", GetAMRegister__Fi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001c0c68);
+INCLUDE_ASM("asm/nonmatchings/P2/sound", UpdateAMRegister__Fii);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001c0cb0__Fv);
 
