@@ -685,7 +685,13 @@ void GetAloThrobDtInOut(ALO *palo, float *pdtInOut)
     *pdtInOut = dtInOut;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloInteractCane__FP3ALOi);
+void SetAloInteractCane(ALO *palo, GRFIC grfic) 
+{
+    STRUCT_OFFSET(palo, 0x2B2, uchar) = grfic;
+    STRUCT_OFFSET(palo, 0x2B1, uchar) = grfic;
+    STRUCT_OFFSET(palo, 0x2B0, uchar) = grfic;
+}
+
 
 void GetAloInteractCane(ALO *palo, GRFIC *pgrfic)
 {
