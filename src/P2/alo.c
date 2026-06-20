@@ -388,7 +388,10 @@ void SetAloDefaultAckRot(ALO *palo, ACK ack)
     STRUCT_OFFSET(palo, 0x2ca, char) = ack;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRestorePosition__FP3ALOi);
+void SetAloRestorePosition(ALO *palo, int fRestore) 
+{ 
+    SetAloRestorePositionAck(palo, (ACK)(fRestore ? 1 : -1));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a3c8);
 
