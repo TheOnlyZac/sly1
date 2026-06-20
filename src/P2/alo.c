@@ -9,6 +9,7 @@
 
 extern VTACT g_vtactseg;
 extern SHADOW s_shadow;
+extern CLQ D_00275C40;
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FIsZeroV__FP6VECTOR);
 
@@ -424,7 +425,18 @@ void GetAloLookAtIgnore(ALO *palo, float *psIgnore)
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtPanFunction__FP3ALOP3CLQ);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloLookAtPanFunction__FP3ALOP3CLQ);
+void GetAloLookAtPanFunction(ALO *palo, CLQ *pclq)
+{
+    void *temp = STRUCT_OFFSET(palo, 0x200, void *);
+
+    if (temp != NULL) {
+        temp = (char *)temp + 0x50;
+    } else {
+        temp = &D_00275C40;
+    }
+
+    *(qword *)pclq = *(qword *)temp;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtPanLimits__FP3ALOP2LM);
 
