@@ -9,11 +9,12 @@
 #include <vec.h>
 #include <mat.h>
 #include <alo.h>
+#include <act.h>
 
 /**
  * @brief Actor Look At (?)
  */
-struct ACTLA
+struct ACTLA : public ACT
 {
     int fUseTarget;
     ALO *paloTarget;

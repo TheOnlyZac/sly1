@@ -11,11 +11,15 @@
 /**
  * @class HANDLE
  * @brief Unknown.
- * @todo Implement the struct.
  */
 struct HND : public TARGET
 {
-    // ...
+    /* 0xa0 */ uint hndk;
+    /* 0xa4 */ float svzJumpBoost;
+    /* 0xa8 */ SFXID sfxidRelease;
+    /* 0xac */ SFXID sfxidGrab;
+    /* 0xb0 */ STRUCT_PADDING(1);
+    /* 0xb4 */ float unk1;
 };
 
 void InitHnd(HND *phnd);

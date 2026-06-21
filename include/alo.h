@@ -110,6 +110,11 @@ struct WKR
     /* 0x0c */ GRFIC grfic;
     GRFTAK grftak;
     float gSort;
+    STRUCT_PADDING(2);
+    /* 0x20 */ VECTOR pos;
+    /* 0x2c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x30 */ VECTOR v;
+    /* 0x3c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
 };
 
 /**

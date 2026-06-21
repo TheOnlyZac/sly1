@@ -1,4 +1,5 @@
 #include <dmas.h>
+#include <memory.h>
 #include <sce/libdma.h>
 #include <sdk/ee/eestruct.h>
 
@@ -40,17 +41,32 @@ void DMAS::Reset()
     m_pb = m_ab;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AllocGlobal__4DMASi);
+void DMAS::AllocGlobal(int cqw)
+{
+    m_ab = (uchar *)PvAllocGlobalImpl(cqw * sizeof(QW));
+    m_pb = m_ab;
+    m_pbMax = m_ab + (cqw * sizeof(QW));
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AllocSw__4DMASii);
+void DMAS::AllocSw(int cqw, int bk)
+{
+    m_ab = (uchar *)PvAllocSwImpl(cqw * sizeof(QW));
+    m_pb = m_ab;
+    m_pbMax = m_ab + (cqw * sizeof(QW));
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AllocStack__4DMASi);
+void DMAS::AllocStack(int cqw)
+{
+    m_ab = (uchar *)PvAllocStackImpl(cqw * sizeof(QW));
+    m_pb = m_ab;
+    m_pbMax = m_ab + (cqw * sizeof(QW));
+}
 
-void DMAS::AllocStatic(int c, QW *aqw)
+void DMAS::AllocStatic(int cqw, QW *aqw)
 {
     m_ab = (uchar *)aqw;
     m_pb = (uchar *)aqw;
-    m_pbMax = (uchar *)(aqw + c);
+    m_pbMax = (uchar *)(aqw + cqw);
 }
 
 void DMAS::Detach(int *pcqw, QW **paqw)
@@ -67,30 +83,123 @@ void DMAS::Detach(int *pcqw, QW **paqw)
     Clear();
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", DetachCopySw__4DMASPiPP2QWT2i);
+void DMAS::DetachCopySw(int *pcqw, QW **paqw, QW **paqwCopy, int bk)
+{
+    EndDmaCnt();
 
-void DMAS::Send(sceDmaChan *chan)
+    uint cqw = (uint)(m_pb - m_ab) >> 4;
+    if (pcqw)
+    {
+        *pcqw = cqw;
+    }
+    if (paqw)
+    {
+        *paqw = (QW *)m_ab;
+    }
+    if (paqwCopy)
+    {
+        *paqwCopy = (QW *)PvAllocSwCopyImpl(cqw << 4, m_ab);
+    }
+
+    Clear();
+}
+
+void DMAS::Send(sceDmaChan *pdc)
 {
     EndDmaCnt();
     FlushCache(WRITEBACK_DCACHE);
-    sceDmaSend(chan, m_ab);
+    sceDmaSend(pdc, m_ab);
     m_pb = m_ab;
 }
 
 JUNK_NOP();
 JUNK_ADDIU(10);
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaCnt__4DMAS);
+void DMAS::AddDmaCnt()
+{
+    EndDmaCnt();
+    QW *pqw = (QW *)m_pb;
+    m_pqwCnt = pqw;
+    m_pb = (uchar *)(pqw + 1);
+    m_pqwCnt->aul[0] = 0x10000000;
+    m_pqwCnt->aul[1] = 0;
+}
 
+/**
+ * @todo 86.42% match.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaRefs__4DMASiP2QW);
+#ifdef SKIP_ASM
+void DMAS::AddDmaRefs(int cqw, QW *aqw)
+{
+    if (m_pqwCnt)
+    {
+        EndDmaCnt();
+    }
 
+    QW *pqw = ((QW *)m_pb)++;
+    pqw->aul[0] = cqw | 0x40000000 | ((ulong)aqw << 0x20);
+    pqw->aul[1] = 0;
+
+    if (m_pqwCnt)
+    {
+        QW *pqw = (QW *)m_pb;
+        m_pqwCnt = pqw;
+        m_pb = (uchar *)(pqw + 1);
+        m_pqwCnt->aul[0] = 0x10000000;
+        m_pqwCnt->aul[1] = 0;
+    }
+}
+#endif // SKIP_ASM
+
+/**
+ * @todo 85.12% match.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaCall__4DMASP2QW);
+#ifdef SKIP_ASM
+void DMAS::AddDmaCall(QW *aqw)
+{
+    if (m_pqwCnt)
+    {
+        EndDmaCnt();
+    }
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaRet__4DMAS);
+    QW *pqw = ((QW *)m_pb)++;
+    pqw->aul[0] = ((ulong)aqw << 0x20) | 0x50000000;
+    pqw->aul[1] = 0;
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaBulk__4DMASiP2QW);
+    if (m_pqwCnt)
+    {
+        QW *pqw = (QW *)m_pb;
+        m_pqwCnt = pqw;
+        m_pb = (uchar *)(pqw + 1);
+        m_pqwCnt->aul[0] = 0x10000000;
+        m_pqwCnt->aul[1] = 0;
+    }
+}
+#endif // SKIP_ASM
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaEnd__4DMAS);
+void DMAS::AddDmaRet()
+{
+    EndDmaCnt();
+    QW *pqw = ((QW *)m_pb)++;
+    pqw->aul[0] = 0x60000000;
+    pqw->aul[1] = 0;
+}
+
+void DMAS::AddDmaBulk(int cqw, QW *aqw)
+{
+    CopyAqw(m_pb, aqw, cqw);
+    m_pb += (cqw * sizeof(QW));
+}
+
+void DMAS::AddDmaEnd()
+{
+    EndDmaCnt();
+    QW *pqw = ((QW *)m_pb)++;
+    pqw->aul[0] = 0x70000000;
+    pqw->aul[1] = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/dmas", EndDmaCnt__4DMAS);
 

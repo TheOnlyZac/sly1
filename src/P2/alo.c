@@ -6,8 +6,12 @@
 #include <shadow.h>
 #include <shd.h>
 #include <target.h>
+#include <lookat.h>
 
-extern VTACT g_vtactseg;
+extern VTACT g_vtact;
+extern VTACT g_vtactadj; // TODO: ACTADJ has it's own vtable.
+extern VTACT g_vtactseg; // TODO: ACTSEG has it's own vtable.
+extern VTACT g_vtactla;  // TODO: ACTLA has it's own vtable.
 extern SHADOW s_shadow;
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FIsZeroV__FP6VECTOR);
@@ -322,9 +326,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloEuler__FP3ALOP6VECTOR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloEuler__FP3ALOP6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", EnsureAloActRestore__FP3ALO);
+void EnsureAloActRestore(ALO *palo)
+{
+    if (!STRUCT_OFFSET(palo, 0x1fc, ACT *)) // palo->pactRestore
+    {
+        ACT *pact = PactNew(palo->psw, palo, &g_vtact);
+        STRUCT_OFFSET(palo, 0x1fc, ACT *) = pact; // palo->pactRestore
+        InsertAloAct(palo, pact);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", EnsureAloActla__FP3ALO);
+void EnsureAloActla(ALO *palo)
+{
+    if (!STRUCT_OFFSET(palo, 0x200, ACT *)) // palo->pactla
+    {
+        ACTLA *pactla = (ACTLA *)PactNew(palo->psw, palo, &g_vtactla);
+        STRUCT_OFFSET(palo, 0x200, ACT *) = pactla; // palo->pactla
+        InsertAloAct(palo, pactla);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", RecacheAloActList__FP3ALO);
 
@@ -338,7 +358,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", PsmaFindAlo__FP3ALO3OID);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", PasegaFindAloNearest__FP3ALO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", CreateAloActadj__FP3ALOiPP6ACTADJ);
+void CreateAloActadj(ALO *palo, int nPriority, ACTADJ **ppactadj)
+{
+    if (palo)
+    {
+        ACTADJ *pactadj = (ACTADJ *)PactNew(palo->psw, palo, &g_vtactadj);
+        pactadj->nPriority = nPriority;
+        InsertAloAct(palo, pactadj);
+        *ppactadj = pactadj;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FIsAloStatic__FP3ALO);
 

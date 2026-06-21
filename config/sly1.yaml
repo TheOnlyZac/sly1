@@ -437,7 +437,7 @@ segments:
     - [0x176630, data, P2/sw]
     - [0x176730, data, P2/tail]
     - [0x176740, data, P2/tank]
-    - [0x1768d0, data, P2/target]
+    - [0x1768d0, .data, P2/target]
     - [0x1768e0, data, P2/tatk]
     - [0x176940, data, P2/text]
     - [0x176958, data, P2/thread]

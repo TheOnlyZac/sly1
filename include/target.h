@@ -5,8 +5,8 @@
 #define TARGET_H
 
 #include "common.h"
-#include <dl.h>
 #include <xform.h>
+#include <dl.h>
 
 /**
  * @class TARGET
@@ -18,10 +18,10 @@ struct TARGET : public XFM
     /* 0x88 */ int grftak;
     /* 0x8c */ float sRadiusTarget;
     /* 0x90 */ int fHitTest;
-    undefined4 unk0;
-    undefined4 unk1;
-    undefined4 unk2;
+    /* 0x94 */ STRUCT_PADDING(3);
 };
+
+extern DL g_dlTarget;
 
 void StartupTarget();
 
