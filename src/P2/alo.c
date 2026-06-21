@@ -13,6 +13,7 @@ extern VTACT g_vtactadj; // TODO: ACTADJ has it's own vtable.
 extern VTACT g_vtactseg; // TODO: ACTSEG has it's own vtable.
 extern VTACT g_vtactla;  // TODO: ACTLA has it's own vtable.
 extern SHADOW s_shadow;
+extern CLQ D_00275C40;
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FIsZeroV__FP6VECTOR);
 
@@ -417,7 +418,10 @@ void SetAloDefaultAckRot(ALO *palo, ACK ack)
     STRUCT_OFFSET(palo, 0x2ca, char) = ack;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRestorePosition__FP3ALOi);
+void SetAloRestorePosition(ALO *palo, int fRestore) 
+{ 
+    SetAloRestorePositionAck(palo, (ACK)(fRestore ? 1 : -1));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a3c8);
 
@@ -450,7 +454,18 @@ void GetAloLookAtIgnore(ALO *palo, float *psIgnore)
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtPanFunction__FP3ALOP3CLQ);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloLookAtPanFunction__FP3ALOP3CLQ);
+void GetAloLookAtPanFunction(ALO *palo, CLQ *pclq)
+{
+    void *temp = STRUCT_OFFSET(palo, 0x200, void *);
+
+    if (temp != NULL) {
+        temp = (char *)temp + 0x50;
+    } else {
+        temp = &D_00275C40;
+    }
+
+    *(qword *)pclq = *(qword *)temp;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtPanLimits__FP3ALOP2LM);
 
@@ -714,7 +729,13 @@ void GetAloThrobDtInOut(ALO *palo, float *pdtInOut)
     *pdtInOut = dtInOut;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloInteractCane__FP3ALOi);
+void SetAloInteractCane(ALO *palo, GRFIC grfic) 
+{
+    STRUCT_OFFSET(palo, 0x2B2, uchar) = grfic;
+    STRUCT_OFFSET(palo, 0x2B1, uchar) = grfic;
+    STRUCT_OFFSET(palo, 0x2B0, uchar) = grfic;
+}
+
 
 void GetAloInteractCane(ALO *palo, GRFIC *pgrfic)
 {
