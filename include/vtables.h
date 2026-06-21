@@ -29,6 +29,8 @@ struct VT
 
 struct CBinaryInputStream;
 struct LO;
+struct ALO;
+struct SO;
 
 /**
  * @brief VT for basic objects.
@@ -75,8 +77,140 @@ struct VTLO : VT
     void (*pfnUnsubscribeLoObject)();
     void (*pfnSubscribeLoStruct)();
     void (*pfnUnsubscribeLoStruct)();
-    void (*pfnGetLoParams)();
+};
+
+/**
+ * @brief VT for ALO objects.
+ * @todo Verify the fields and add parameters.
+ */
+struct VTALO : VT
+{
+    void (*pfnInitAlo)(ALO *);
+    void (*pfnSetLoDefaults)(ALO *);
+    void (*pfnAddLo)(ALO *);
+    void (*pfnRemoveLo)(ALO *);
+    void (*pfnAddAloHierarchy)(ALO *);
+    void (*pfnRemoveAloHierarchy)(ALO *);
+    void (*pfnOnAloAdd)(ALO *);
+    void (*pfnOnAloRemove)(ALO *);
+    void (*pfnCloneAloHierarchy)(ALO *);
+    void (*pfnCloneAlo)(ALO *);
+    void (*pfnLoadAloFromBrx)(ALO *);
+    void (*pfnAddLoRecursive)(ALO *);
+    void (*pfnRemoveLoRecursive)(ALO *);
+    void (*pfnHandleAloMessage)(ALO *);
+    void (*pfnSendLoMessage)(ALO *);
+    void (*pfnBindAlo)(ALO *);
+    void (*pfnPostAloLoad)(ALO *);
+    void (*pfnUpdateAlo)(ALO *);
+    void (*pfnUpdateAloXfWorld)(ALO *);
+    void (*pfnUpdateAloXfWorldHierarchy)(ALO *);
+    void (*pfnFreezeAlo)(ALO *);
+    void (*pfnSetAloParent)(ALO *);
+    void (*pfnApplyAloProxy)(ALO *);
+    void (*pfnSubscribeLoObject)(ALO *);
+    void (*pfnUnsubscribeLoObject)(ALO *);
+    void (*pfnSubscribeLoStruct)(ALO *);
+    void (*pfnUnsubscribeLoStruct)(ALO *);
+    void (*pfnProjectAloTransform)(ALO *);
+    void (*pfnPresetAloAccel)(ALO *);
+    void (*pfnTranslateAloToPos)(ALO *);
+    void (*pfnRotateAloToMat)(ALO *);
+    void (*pfnMatchAloOtherObject)(ALO *);
+    void (*pfnSetAloVelocityVec)(ALO *);
+    void (*pfnSetAloAngularVelocityVec)(ALO *);
+    void (*pfnPredictAloPosition)(ALO *);
+    void (*pfnPredictAloRotation)(ALO *);
+    void (*pfnRenderAloAll)(ALO *);
+    void (*pfnRenderAloSelf)(ALO *);
+    void (*pfnRenderAloGlobset)(ALO *);
+    void (*pfnUpdateAloInfluences)(ALO *);
+    void (*pfnAdjustAloPosition)(ALO *);
+    void (*pfnAdjustAloRotation)(ALO *);
+    void (*pfnUnadjustAloRotation)(ALO *);
+    void (*pfnRecacheAloActList)(ALO *);
+    void (*pfnUpdateAloConstraints)(ALO *);
+    void (*pfnFAbsorbAloWkr)(ALO *);
+};
+
+/**
+ * @brief VT for SO objects.
+ * @todo Verify the fields and add parameters.
+ */
+struct VTSO : VT
+{
+    void (*pfnInitSo)(SO *);
+    void (*pfnSetLoDefaults)(LO *);
+    void (*pfnAddLo)(LO *);
+    void (*pfnRemoveLo)(LO *);
+    void (*pfnAddLoHierarchy)(LO *);
+    void (*pfnRemoveLoHierarchy)(LO *);
+    void (*pfnOnSoAdd)(SO *);
+    void (*pfnOnSoRemove)(SO *);
+    void (*pfnCloneAloHierarchy)(ALO *);
+    void (*pfnCloneSo)(SO *);
+    void (*pfnLoadSoFromBrx)(SO *, CBinaryInputStream *);
+    void (*pfnAddLoRecursive)();
+    void (*pfnRemoveLoRecursive)();
+    void (*pfnHandleAloMessage)();
+    void (*pfnSendSoMessage)();
+    void (*pfnBindAlo)();
+    void (*pfnPostAloLoad)();
+    void (*pfnUpdateSo)();
+    void (*pfnUpdateSoXfWorld)();
+    void (*pfnUpdateSoXfWorldHierarchy)();
+    void (*pfnFreezeSo)();
+    void (*pfnSetSoParent)();
+    void (*pfnApplySoProxy)();
+    void (*pfnSubscribeLoObject)();
+    void (*pfnUnsubscribeLoObject)();
+    void (*pfnSubscribeLoStruct)();
+    void (*pfnUnsubscribeLoStruct)();
     void (*pfnUpdateLoLiveEdit)();
+    void (*pfnProjectSoTransform)();
+    void (*pfnPresetSoAccel)();
+    void (*pfnTranslateSoToPos)();
+    void (*pfnRotateSoToMat)();
+    void (*pfnMatchAloOtherObject)();
+    void (*pfnSetSoVelocityVec)();
+    void (*pfnSetSoAngularVelocityVec)();
+    void (*pfnPredictAloPosition)();
+    void (*pfnPredictAloRotation)();
+    void (*pfnRenderAloAll)();
+    void (*pfnRenderSoSelf)();
+    void (*pfnRenderAloGlobset)();
+    void (*pfnUpdateAloInfluences)();
+    void (*pfnAdjustAloPosition)();
+    void (*pfnAdjustAloRotation)();
+    void (*pfnUnadjustAloRotation)();
+    void (*pfnRecacheAloActList)();
+    void (*pfnUpdateAloConstraints)();
+    void (*pfnFAbsorbSoWkr)();
+    void (*pfnDisplaceSo)();
+    void (*pfnImpactSo)();
+    void (*pfnPivotSo)();
+    void (*pfnUpdateSoBounds)(SO *);
+    void (*pfnAddSoExternalAccelerations)();
+    void (*pfnCloneSoPhys)();
+    void (*pfnRenumberSo)();
+    void (*pfnPropagateSoForce)();
+    void (*pfnDistributeSoEffects)();
+    void (*pfnFIgnoreSoIntersection)();
+    void (*pfnAddSoXps)();
+    void (*pfnAddSoCustomXps)();
+    void (*pfnAdjustSoXpLocal)();
+    void (*pfnAdjustSoNewXp)();
+    void (*pfnAdjustSoXpVelocity)();
+    void (*pfnAdjustSoDz)();
+    void (*pfnAdjustSoXps)();
+    void (*pfnUpdateSoInternalXps)();
+    void (*pfnNotifySoImpact)();
+    void (*pfnUpdateSoPivots)();
+    void (*pfnUpdateSoImpacts)();
+    void (*pfnUpdateSoPosWorldPrev)(SO *);
+    void (*pfnGetSoCpdefi)();
+    void (*pfnAddSoWaterAcceleration)();
+    void (*pfnFInflictSoZap)();
 };
 
 /*****************************************************************

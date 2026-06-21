@@ -103,7 +103,7 @@ struct XA
  */
 struct STSO
 {
-    /* 0x00 */ STRUCT_PADDING(1);
+    /* 0x00 */ SO *psoTouch;
     /* 0x04 */ STSO *pstsoNext;
 }; // 0x08 bytes.
 

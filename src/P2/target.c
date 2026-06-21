@@ -1,10 +1,11 @@
 #include <target.h>
 
-extern DL g_dlTarget;
+DL g_dlTarget = {0};
+int g_fShowTargets = 0; // NOTE: Seemingly only used in prototype but not in retail.
 
 void StartupTarget()
 {
-    InitDl(&g_dlTarget, 0x80);
+    InitDl(&g_dlTarget, offsetof(TARGET, dleTarget));
 }
 
 void ResetTargetList()
@@ -15,8 +16,8 @@ void ResetTargetList()
 void InitTarget(TARGET *ptarget)
 {
     InitXfm(ptarget);
-    STRUCT_OFFSET(ptarget, 0x88, int) = 0x1e; // ptarget->grftak
-    STRUCT_OFFSET(ptarget, 0x8c, float) = 25.0f; // ptarget->sRadiusTarget
+    ptarget->grftak = 0x1e;
+    ptarget->sRadiusTarget = 25.0f;
 }
 
 void OnTargetAdd(TARGET *ptarget)
@@ -33,7 +34,7 @@ void OnTargetRemove(TARGET *ptarget)
 
 void CloneTarget(TARGET *ptarget, TARGET *ptargetBase)
 {
-    DLE dleTarget = STRUCT_OFFSET(ptarget, 0x80, DLE); // ptarget->dleTarget
+    DLE dleTarget = ptarget->dleTarget;
     CloneLo(ptarget, ptargetBase);
-    STRUCT_OFFSET(ptarget, 0x80, DLE) = dleTarget; // ptarget->dleTarget
+    ptarget->dleTarget = dleTarget;
 }

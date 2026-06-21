@@ -866,8 +866,11 @@ FUN_0012b6b8                                               = 0x12B6B8; // type:f
 anticrack_itm_firewall                                     = 0x12B760; // type:func
 
 // TODO: Where do these belong to?
+g_vtact    = 0x219560;
+g_vtactadj = 0x2195d8;
 g_vtactseg = 0x2197c0;
-s_shadow = 0x27b520;
+g_vtactla  = 0x21a790;
+s_shadow   = 0x27b520;
 
 
 ////////////////////////////////////////////////////////////////
@@ -2022,7 +2025,9 @@ Draw__9CRichTextP8CTextBoxT1P4GIFS             = 0x15E318; // type:func
 PostFontsLoad__Fv                              = 0x15E5F0; // type:func
 junk_0015E678                                  = 0x15E678; // type:func
 
-g_pfont = 0x26227C; // size:0x4
+g_cfontBrx = 0x262260; // size:0x4
+g_afontBrx = 0x262264; // size:0x4
+g_pfont    = 0x26227C; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
@@ -4675,7 +4680,8 @@ OnTargetAdd__FP6TARGET    = 0x1DFDC8; // type:func
 OnTargetRemove__FP6TARGET = 0x1DFE00; // type:func
 CloneTarget__FP6TARGETT0  = 0x1DFE38; // type:func
 
-g_dlTarget = 0x2758D0; // size:0xc
+g_dlTarget     = 0x2758D0; // size:0xc
+g_fShowTargets = 0x2758DC; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////

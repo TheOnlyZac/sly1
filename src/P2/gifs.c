@@ -1,18 +1,18 @@
 #include <gifs.h>
 
 /**
- * @todo 100% match, but checksum check fails.
+ * @todo 100% match, but checksum check fails due to some issue with the vtable.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/gifs", __4GIFS);
-/*
+#ifdef SKIP_ASM
 GIFS::GIFS()
 {
     m_fEndPrim = 1;
-    m_pqwPrim = 0;
+    m_pqwPrim = NULL;
     m_creg = 0;
     m_cregAll = 0;
 }
-*/
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/gifs", AddPrimEnd__4GIFS);
 
@@ -45,7 +45,14 @@ void GIFS::PackUV(int u, int v)
     pqw->an[1] = v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/gifs", PackSTQ__4GIFSfff);
+void GIFS::PackSTQ(float s, float t, float q)
+{
+    CheckReg(1, 2);
+    QW *pqw = ((QW *)m_pb)++;
+    pqw->ag[0] = s;
+    pqw->ag[1] = t;
+    pqw->ag[2] = q;
+}
 
 void GIFS::PackXYZ(int x, int y, int z)
 {
@@ -66,7 +73,15 @@ void GIFS::PackXYZF(int x, int y, int z, int fog)
     pqw->an[3] = (fog & 0xff) << 4;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/gifs", PackXYZFNoKick__4GIFSiiii);
+void GIFS::PackXYZFNoKick(int x, int y, int z, int fog)
+{
+    CheckReg(1, 4);
+    QW *pqw = ((QW *)m_pb)++;
+    pqw->an[0] = x;
+    pqw->an[1] = y;
+    pqw->an[2] = (z & 0xffffff) << 4;
+    pqw->an[3] = ((fog & 0xff) << 4) | 0x8000;
+}
 
 void GIFS::PackAD(long int a, long int d)
 {
@@ -84,9 +99,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/gifs", ListRGBAQ__4GIFSUif);
 
 JUNK_ADDIU(30);
 
-INCLUDE_ASM("asm/nonmatchings/P2/gifs", ListUV__4GIFSii);
+void GIFS::ListUV(int u, int v)
+{
+    CheckReg(0, 3);
+    uint64_t *pui = ((uint64_t *)m_pb)++;
+    *pui = u | (v << 16);
+}
 
+/**
+ * @todo 83.83% match.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/gifs", ListXYZF__4GIFSiiii);
+#ifdef SKIP_ASM
+void GIFS::ListXYZF(int x, int y, int z, int fog)
+{
+    CheckReg(0, 4);
+    uint64_t *pqw = ((uint64_t *)m_pb)++;
+    *pqw = (uint16_t)x | ((uint16_t)y << 16) | (((uint64_t)z & 0xffffff) << 32) | ((uint64_t)fog << 56);
+}
+#endif // SKIP_ASM
 
 JUNK_ADDIU(80);
 

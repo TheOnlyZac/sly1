@@ -50,18 +50,18 @@ public:
 
     void Clear();
     void Reset();
-    void AllocGlobal(int);
-    void AllocSw(int, int);
-    void AllocStack(int);
-    void AllocStatic(int, QW *);
-    void Detach(int *, QW **);
-    void DetachCopySw(int *, QW **, QW *, int);
-    void Send(sceDmaChan *chan);
+    void AllocGlobal(int cqw);
+    void AllocSw(int cqw, int bk);
+    void AllocStack(int cqw);
+    void AllocStatic(int cqw, QW *aqw);
+    void Detach(int *pcqw, QW **paqw);
+    void DetachCopySw(int *pcqw, QW **paqw, QW **paqwCopy, int bk);
+    void Send(sceDmaChan *pdc);
     void AddDmaCnt();
     void AddDmaRefs(int cqw, QW *aqw);
-    void AddDmaCall(QW *);
+    void AddDmaCall(QW *aqw);
     void AddDmaRet();
-    void AddDmaBulk(int, QW *);
+    void AddDmaBulk(int cqw, QW *aqw);
     void AddDmaEnd();
     void EndDmaCnt();
 

@@ -27,6 +27,7 @@ struct ZPR;
 struct WATER;
 struct CNSTR;
 struct CONSTR;
+struct SURFX;
 
 typedef int GRFFSO;
 
@@ -64,6 +65,17 @@ enum FSO
 };
 
 /**
+ * @brief Unknown.
+ * @todo Verify the fields and figure out where this belongs.
+ */
+struct LVO
+{
+    VECTOR *mpiposvLocal;
+    VECTOR *mpiposdvLocal;
+    SURFX *mpisurfsurfx;
+};
+
+/**
  * @class OBJECT
  * @brief Unknown, related to level objects.
  *
@@ -73,6 +85,7 @@ struct SO : public ALO
 {
     STRUCT_PADDING(160); // 0x2d0 .. 0x550
     //* 0x368 */ float mass;
+    //* 0x3c8 */ LVO *plvo;
 };
 
 /**

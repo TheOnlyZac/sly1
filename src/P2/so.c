@@ -1,12 +1,93 @@
 #include <so.h>
+#include <bbmark.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", InitSo__FP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", OnSoAdd__FP2SO);
+void OnSoAdd(SO *pso)
+{
+    SW *psw = pso->psw;
+    psw->cpsoAll++;
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", OnSoRemove__FP2SO);
+    if (!pso->paloParent)
+    {
+        AddSwAaobrObject(psw, pso);
+        STRUCT_OFFSET(pso, 0x480, OXA *) = PoxaAllocSw(psw, pso); // pso->poxa
+        RecalcSwOxfFilterForObject(psw, pso);
+        psw->cpsoRoot++;
+        AppendDlEntry(&psw->dlRoot, pso);
+    }
 
+    OnAloAdd(pso);
+    EnableSoPhys(pso, 1);
+
+    pso->pvtso->pfnUpdateSoPosWorldPrev(pso);
+
+    // pso->bspcCamera.absp
+    if ((STRUCT_OFFSET(pso, 0x538, ulong) & 0x40000000000000) == 0)
+    {
+        RecalcSoLocked((SO *)pso->paloRoot);
+    }
+    else
+    {
+        RecalcSoLocked(pso);
+    }
+
+    RebuildSoPhysHook(pso);
+}
+
+void OnSoRemove(SO *pso)
+{
+    SW *psw = pso->psw;
+    ALO *paloRoot = pso->paloRoot;
+
+    EnableSoPhys(pso, 0);
+    OnAloRemove(pso);
+    psw->cpsoAll--;
+
+    if (!pso->paloParent)
+    {
+        RemoveSwAaobrObject(psw, pso);
+        FreeSwPoxa(psw, STRUCT_OFFSET(pso, 0x480, OXA *)); // pso->poxa
+        psw->cpsoRoot--;
+        RemoveDlEntry(&psw->dlRoot, pso);
+    }
+
+    STSO *pstso = STRUCT_OFFSET(pso, 0x540, STSO *); // pso->pstso
+    FreeSwStsoList(psw, pstso);
+    STRUCT_OFFSET(pso, 0x540, STSO *) = NULL; // pso->pstso
+
+    if ((STRUCT_OFFSET(pso, 0x538, ulong) & 0x40000000000000) == 0 && paloRoot != pso)
+    {
+        RecalcSoLocked((SO *)paloRoot);
+    }
+}
+
+/**
+ * @todo 92.19% match.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/so", EnableSoPhys__FP2SOi);
+#ifdef SKIP_ASM
+void EnableSoPhys(SO *pso, int fPhys)
+{
+    if (fPhys != ((STRUCT_OFFSET(pso, 0x538, ulong)) >> 0x32 & 0x01))
+    {
+        if (fPhys)
+        {
+            AppendDlEntry(STRUCT_OFFSET(&pso->paloRoot[1], 0x08, DL *), pso);
+        }
+        else
+        {
+            RemoveDlEntry(STRUCT_OFFSET(&pso->paloRoot[1], 0x08, DL *), pso);
+        }
+
+        ulong absp = STRUCT_OFFSET(pso, 0x538, ulong);
+        SW *psw = pso->psw;
+        STRUCT_OFFSET(pso, 0x538, ulong) = (absp & 0xfffbffffffffffff) | ((fPhys & 1) << 0x10);
+        InvalidateSwXpForObject(psw, pso, 7);
+        pso->pvtso->pfnUpdateSoBounds(pso);
+    }
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", DisplaceSo__FP2SOi);
 
@@ -116,7 +197,12 @@ void ApplySoConstraintLocal(SO *pso, CONSTR *pconstr, VECTOR *pvecLocal, VECTOR 
     ApplyConstr(pconstr, pvecLocal, pvecConstr, pvecRemain);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", AddSoXa__FP2SOP2XA);
+void AddSoXa(SO *pso, XA *pxaAdd)
+{
+    STRUCT_OFFSET(pxaAdd, 0x08, XA *) = STRUCT_OFFSET(pso, 0x4b0, XA *); // pxaAdd->pxaNextSource = pso->pxa;
+    STRUCT_OFFSET(pso, 0x4b0, XA *) = pxaAdd; // pso->pxa = pxaAdd;
+    ResolveAlo(pso);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", RemoveSoXa__FP2SOP2XA);
 
@@ -182,7 +268,32 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", FGetSoContactList__FP2SOPv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", GetSoContacts__FP2SOPiPPP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", FSoInStsoList__FP4STSOP2SO);
+int FSoInStsoList(STSO *pstsoFirst, SO *pso)
+{
+    // NOTE: Compiler doesn't seem to emit matching code if the check is inverted.
+    if (pstsoFirst)
+    {
+        SO *psoTouch = pstsoFirst->psoTouch;
+
+        while (true)
+        {
+            if (psoTouch == pso)
+            {
+                return 1;
+            }
+
+            pstsoFirst = pstsoFirst->pstsoNext;
+            if (!pstsoFirst)
+            {
+                break;
+            }
+
+            psoTouch = pstsoFirst->psoTouch;
+        }
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", GenerateSoSpliceTouchingEvents__FP2SO);
 
@@ -195,13 +306,29 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", EnsureSoLvo__FP2SO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", ProjectSoLvo__FP2SOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", ProjectSoTransform__FP2SOfi);
+void ProjectSoTransform(SO *pso, float dt, int fForce)
+{
+    if (STRUCT_OFFSET(pso, 0x3c8, LVO *)) // pso->plvo
+    {
+        ProjectSoLvo(pso, dt);
+    }
+
+    ProjectAloTransform(pso, dt, fForce);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", ApplySoImpulse__FP2SOP6VECTORT1f);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", CalculateSoTrajectoryApex__FP2SOP6VECTORfT1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", FAbsorbSoWkr__FP2SOP3WKR);
+int FAbsorbSoWkr(SO *pso, WKR *pwkr)
+{
+    if ((pwkr->grfic & 8) != 0)
+    {
+        ApplySoImpulse(pso, &pwkr->pos, &pwkr->v, pwkr->sftMax);
+    }
+
+    return (int)(pwkr->grfic != 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", CloneSoPhys__FP2SOT0i);
 

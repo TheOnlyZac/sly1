@@ -19,6 +19,7 @@ struct BASIC
     {
         /* 0x00 */ VTBASIC *pvtbasic;
         /* 0x00 */ VTLO *pvtlo;
+        /* 0x00 */ VTSO *pvtso;
     };
     /* 0x04 */ CSidebag *psidebag;
 };

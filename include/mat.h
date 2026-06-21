@@ -10,7 +10,7 @@
 
 /**
  * @brief 4x4 Matrix
-*/
+ */
 struct MATRIX4
 {
 	float mat[4][4];
@@ -18,7 +18,8 @@ struct MATRIX4
 
 /**
  * @brief 3x3 Matrix
-*/
+ * @todo This is supposed to be a 3x4 matrix and 48 bytes in size.
+ */
 struct MATRIX3
 {
 	float mat[3][3];

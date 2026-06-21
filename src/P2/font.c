@@ -1,5 +1,9 @@
 #include <font.h>
 #include <memory.h>
+#include <gs.h>
+
+extern int g_cfontBrx;
+extern CFontBrx *g_afontBrx;
 
 void StartupFont()
 {
@@ -44,11 +48,27 @@ INCLUDE_ASM("asm/nonmatchings/P2/font", PushScaling__5CFontff);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", PopScaling__5CFont);
 
+/**
+ * @todo 90.62% match. Issue with the vtable.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/font", PfontClone__8CFontBrxff);
+#ifdef SKIP_ASM
+CFont *CFontBrx::PfontClone(float rx, float ry)
+{
+    CFontBrx *pfontDest = new CFontBrx();
+    CopyTo(pfontDest);
+    pfontDest->m_rxScale = pfontDest->m_rxScale * rx;
+    pfontDest->m_ryScale = pfontDest->m_ryScale * ry;
+    return (CFont *)pfontDest;
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", CopyTo__8CFontBrxP8CFontBrx);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", FValid__8CFontBrxc);
+int CFontBrx::FValid(char ch)
+{
+    return PglyffFromCh(ch) != NULL;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", DxFromCh__8CFontBrxc);
 
@@ -107,7 +127,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/font", GetExtents__9CRichTextPfT1f);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", Draw__9CRichTextP8CTextBoxT1P4GIFS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", PostFontsLoad__Fv);
+void PostFontsLoad()
+{
+    GSB gsb;
+    InitGsb(&gsb, 0x1400, 0x1e00);
+
+    for (int i = 0; i < g_cfontBrx; i++)
+    {
+        g_afontBrx[i].PostLoad(&gsb);
+    }
+}
 
 JUNK_WORD(0x46000802);
 JUNK_WORD(0x46000802);
