@@ -278,13 +278,13 @@ void ContinueMusic()
 }
 
 extern u_int D_00274728;
-extern "C" void SfxhMusicUnknown1()
+void SfxhMusicUnknown1()
 {
     snd_PauseSound(D_00274728);
 }
 
 extern u_int D_00274728;
-extern "C" void SfxhMusicUnknown2()
+void SfxhMusicUnknown2()
 {
     snd_ContinueSound(D_00274728);
 }
@@ -530,8 +530,8 @@ void SetMvgkRvol(int channel, MVGK mvgk, float rvol)
 }
 
 extern float D_00274758[10][4];
-extern "C" void MvgkUnknown3(int fMute);
-extern "C" void MvgkUnknown4(int mode);
+void MvgkUnknown3(int fMute);
+void MvgkUnknown4(int mode);
 void MvgkUnknown2()
 {
     CopyAb(D_00274838, D_00274758, 0xB0);
@@ -544,7 +544,7 @@ void MvgkUnknown2()
     MvgkUnknown4(STRUCT_OFFSET(g_pgsCur, 0x19EC, int) & 0x40);
 }
 
-extern "C" void MvgkUnknown3(int fMute)
+void MvgkUnknown3(int fMute)
 {
     float rvol = 1.0f;
     if (fMute != 0)
@@ -554,7 +554,7 @@ extern "C" void MvgkUnknown3(int fMute)
     SetMvgkRvol(3, MVGK_Music, rvol);
 }
 
-extern "C" void MvgkUnknown4(int mode)
+void MvgkUnknown4(int mode)
 {
     snd_SetPlaybackMode(mode != 0);
 }

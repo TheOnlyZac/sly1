@@ -276,7 +276,7 @@ void UpdateAlo(ALO *palo, float dt);
 
 void InvalidateAloLighting(ALO *palo);
 
-void UpdateAloXfWorld__FP3ALO(ALO * palo);
+void UpdateAloXfWorld(ALO *palo);
 
 void UpdateAloXfWorldHierarchy(ALO *palo);
 

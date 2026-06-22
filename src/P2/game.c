@@ -59,14 +59,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/game", tally_world_completion);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", get_game_completion__Fv);
 
-// TODO: switch matches but its rodata jump table dangles when built from C
-// (the asm jtbl in 14B0F8.rodata.s references the function-local .L labels).
 INCLUDE_ASM("asm/nonmatchings/P2/game", UnlockIntroCutsceneFromWid__Fi);
 
-// TODO: same rodata jump-table blocker as UnlockIntroCutsceneFromWid.
 INCLUDE_ASM("asm/nonmatchings/P2/game", DefeatBossFromWid);
 
-extern "C" void UnlockEndgameCutscenesFromFgs(FGS fgs)
+void UnlockEndgameCutscenesFromFgs(FGS fgs)
 {
     switch (fgs)
     {
@@ -125,8 +122,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/game", LsFromWid);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", GrflsFromWid__F3WID);
 
-extern "C" char D_00269984;
-extern "C" char D_002623D8;
+extern char D_00269984;
+extern char D_002623D8;
 
 void UnloadGame()
 {

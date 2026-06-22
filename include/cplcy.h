@@ -17,6 +17,6 @@ LOOKK LookkPopCplook(CPLOOK *pcplook);
 
 LOOKK LookkCurCplook(CPLOOK *pcplook);
 
-extern "C" int FActiveCplcy(CPLCY *pcplcy);
+int FActiveCplcy(CPLCY *pcplcy);
 
 #endif // CPLCY_H

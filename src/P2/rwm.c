@@ -11,7 +11,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/rwm", InitRwm__FP3RWM);
 
 extern "C" void FUN_001a93c8(RWM *prwm);
 
-extern "C" void OnRwmRemove(RWM *prwm)
+void OnRwmRemove(RWM *prwm)
 {
     OnLoRemove(prwm);
     FUN_001a93c8(prwm);

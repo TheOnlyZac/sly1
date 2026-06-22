@@ -3,7 +3,7 @@
 #include <989snd.h>
 #include <game.h>
 
-extern "C" uchar D_002484B0[16][32];
+extern uchar D_002484B0[16][32];
 
 extern "C" int FUN_0018e410(void *pv)
 {
@@ -59,7 +59,7 @@ extern "C" void FUN_0018e4c0(int i)
     FUN_0018f0e8(&g_mpeg, D_002484B0[i]);
 }
 
-extern "C" uchar *D_00269A08;
+extern uchar *D_00269A08;
 
 extern "C" void FUN_0018e4f0(int param1, int i)
 {
@@ -183,7 +183,7 @@ void CMpegAudio::Reset()
 }
 
 struct SW;
-extern "C" SW *g_psw;
+extern SW *g_psw;
 void PopSwReverb(SW *psw);
 
 extern "C" void Close__10CMpegAudio(void *pthis)
@@ -271,9 +271,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FUN_0018ef78);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FUN_0018f0e8);
 
-// Execute__5CMpeg's asm label mangles as a no-argument member (CMpeg::Execute()), but the
-// function actually takes an OID* in $a1, so it must be called through an extern "C"
-// declaration of the literal symbol until it is decompiled with a corrected signature.
 extern "C" void Execute__5CMpeg(CMpeg *pmpeg, OID *poid);
 
 void CMpeg::ExecuteOids()

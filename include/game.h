@@ -304,7 +304,7 @@ void DefeatBossFromWid(int wid);
  *
  * @param fgs Completion flags.
  */
-extern "C" void UnlockEndgameCutscenesFromFgs(FGS fgs);
+void UnlockEndgameCutscenesFromFgs(FGS fgs);
 
 /**
  * @brief Plays the ending cutscene based on the completion flags.

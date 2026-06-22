@@ -120,10 +120,10 @@ void PrepareGsForFrameRender(FRM *pfrm)
     }
 }
 
-extern "C" unsigned int D_002C3B00[];
-extern "C" unsigned int func_00100000[];
-extern "C" char D_00148D74[];
-extern "C" int D_00262310;
+extern unsigned int D_002C3B00[];
+extern unsigned int func_00100000[];
+extern char D_00148D74[];
+extern int D_00262310;
 
 INCLUDE_ASM("asm/nonmatchings/P2/frm", check_anticrack_antigrab__Fv);
 #ifdef SKIP_ASM

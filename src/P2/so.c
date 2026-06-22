@@ -35,11 +35,7 @@ void OnSoAdd(SO *pso)
     RebuildSoPhysHook(pso);
 }
 
-// NOTE: This body per-symbol matches (match.sh), but enabling it trips an
-// asm-emission bug in the build: the still-INCLUDE_ASM TranslateSoToPosSafe
-// gets emitted 0x14 bytes too large (zero-filled words after its vadd.xyzw),
-// shifting the unit and failing the checksum. Keep it wrapped until the
-// surrounding functions are decompiled or the tooling quirk is fixed.
+// Kept wrapped: unwrapping mis-sizes the still-asm TranslateSoToPosSafe and fails the checksum.
 INCLUDE_ASM("asm/nonmatchings/P2/so", OnSoRemove__FP2SO);
 
 void EnableSoPhys(SO *pso, int fPhys)
@@ -98,17 +94,12 @@ void UpdateSoXfWorldHierarchy(SO *pso)
         &STRUCT_OFFSET(pso, 0x110, MATRIX3));
 }
 
-// alo.h declares the literal identifier `UpdateAloXfWorld__FP3ALO`, which both
-// double-mangles if called and poisons the plain name `UpdateAloXfWorld` for
-// GCC 2.95; bind a local alias to the real mangled symbol instead.
-extern void _UpdateAloXfWorld(ALO *palo) __asm__("UpdateAloXfWorld__FP3ALO");
-
 void UpdateSoXfWorld(SO *pso)
 {
     SO *psoRoot;
     void (*pfn)(SO *);
 
-    _UpdateAloXfWorld(pso);
+    UpdateAloXfWorld(pso);
     psoRoot = STRUCT_OFFSET(pso, 0x50, SO *); // paloRoot
     pfn = (void (*)(SO *))STRUCT_OFFSET(STRUCT_OFFSET(psoRoot, 0x0, void *), 0xD8, void *);
     pfn(psoRoot);

@@ -37,8 +37,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", FindAposClosestPointSegment__FP6VECTORP6C
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", ConvertApos__FiP6VECTORP7MATRIX4T2);
 
-extern "C" char D_002176D0[];
-extern "C" char D_00217708[];
+extern char D_002176D0[];
+extern char D_00217708[];
 
 CRV *PcrvNew(CRVK crvk)
 {

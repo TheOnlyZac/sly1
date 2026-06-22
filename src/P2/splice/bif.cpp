@@ -483,9 +483,7 @@ CRef RefOpTruncate(int carg, CRef *aref, CFrame *pframe)
     return ref;
 }
 
-// NOTE: matches per-symbol, but unwrapping it inflates the still-asm
-// RefOpPredictAnimationEffect emission (same tooling bug as RefOpStopSound)
-// and fails the checksum. Keep wrapped for now.
+// Kept wrapped: unwrapping inflates the still-asm RefOpPredictAnimationEffect and fails the checksum.
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpAbs__FiP4CRefP6CFrame);
 #ifdef SKIP_ASM
 CRef RefOpAbs(int carg, CRef *aref, CFrame *pframe)
@@ -651,10 +649,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpNearClipCenter__FiP4CRefP6CFr
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpStartSound__FiP4CRefP6CFrame);
 
-// NOTE: matches per-symbol, but unwrapping it trips the asm-emission bug on
-// the still-asm RefOpPredictAnimationEffect that follows (+0x14 of phantom
-// bytes -> checksum fail), same as so.c OnSoRemove. Keep wrapped until the
-// neighbor is decompiled.
+// Kept wrapped: unwrapping inflates the still-asm RefOpPredictAnimationEffect and fails the checksum.
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpStopSound__FiP4CRefP6CFrame);
 #ifdef SKIP_ASM
 CRef RefOpStopSound(int carg, CRef *aref, CFrame *pframe)

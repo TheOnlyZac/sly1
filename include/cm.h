@@ -553,6 +553,6 @@ extern int g_rgbaFog; //Just to get the code matching -Kestin
 // extern float D_0026198c;
 // extern CM* g_pcm;
 
-extern "C" void ResetCmLookAtSmooth(CM *pcm, void *pv);
+void ResetCmLookAtSmooth(CM *pcm, void *pv);
 
 #endif // CM_H

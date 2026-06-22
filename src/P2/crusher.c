@@ -70,9 +70,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c2f0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c5e8);
 
-// Shared: extern void *D_0027C00C; and a fwd decl of FUN_0014c5e8.
-// Needs <sm.h> (GetSmaGoal/GetSmaCur/SetSmaGoal, SMA) and <oid.h> (OID) which are
-// NOT transitively included by crusher.c yet.
 extern void *D_0027C00C;
 extern "C" void FUN_0014c5e8(void *p);
 

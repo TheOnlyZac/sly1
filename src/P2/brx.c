@@ -65,7 +65,7 @@ struct LODEFTAB
     EOPIDENTRY *prgeopidentry;
 };
 
-extern "C" LODEFTAB D_00244950[];
+extern LODEFTAB D_00244950[];
 
 INCLUDE_ASM("asm/nonmatchings/P2/brx", SetLoDefaults__FP2LO);
 #ifdef SKIP_ASM

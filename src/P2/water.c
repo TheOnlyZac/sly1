@@ -135,12 +135,7 @@ void UpdateWaterMergeGroup(WATER *pwater)
 }
 
 /**
- * @brief ~95% match. The VU0 transform, the LSG[16] clip workspace, the frame
- * layout (fixed via LSG now being 16-byte-vector / 0x70) and the structure all
- * match; only a few instructions in the g_pjt height branch differ (gcc
- * schedules the g_pjt load into a delay slot, and the max.s/add.s operand order
- * canonicalizes differently). Needs the permuter to settle. Kept under SKIP_ASM
- * so the real build uses the asm and the checksum stays green.
+ * @brief ~95% match; kept under SKIP_ASM until the permuter settles the g_pjt height branch.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/water", UGetWaterSubmerged__FP5WATERP2SOP6VECTORT2);
 #ifdef SKIP_ASM

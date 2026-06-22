@@ -64,18 +64,8 @@ void InvalidateAloLighting(ALO *palo)
     }
 }
 
-// alo.h declares `void UpdateAloXfWorld__FP3ALO(ALO *palo);` as a C++ function; with that
-// declaration in scope, GCC 2.95 mangles a plain `void UpdateAloXfWorld(ALO *)` definition
-// to UpdateAloXfWorld__FP3ALO__FP3ALO. Defining the literal symbol with C linkage (void*
-// parameter so it does not conflict with the C++ declaration) emits the exact target symbol.
-// If alo.h:279 is ever fixed to `void UpdateAloXfWorld(ALO *palo);`, this can become a plain
-// C++ `void UpdateAloXfWorld(ALO *palo)` definition (verified to also match).
-extern "C" void UpdateAloXfWorld__FP3ALO(void *pvalo)
+void UpdateAloXfWorld(ALO *palo)
 {
-    ALO *palo = (ALO *)pvalo;
-    // vtable slot at 0x5c: compiled offset of pfnUpdateLoXfWorldHierarchy in VTLO
-    // (the real game slot is probably "update xf world"; the header's VTLO has an extra
-    // pfnUpdateLo entry shifting the names, but the compiled offset is what matters).
     void (*pfn)(ALO *) = (void (*)(ALO *))palo->pvtlo->pfnUpdateLoXfWorldHierarchy;
 
     if (pfn != 0)

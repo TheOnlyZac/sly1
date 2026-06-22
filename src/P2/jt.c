@@ -22,7 +22,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/jt", AdjustJtDz__FP2JTiP2DZif);
 
 extern "C" void FUN_001d4c98(JT *pjt);
 
-extern "C" void HandleJtGrfjtsc(JT *pjt)
+void HandleJtGrfjtsc(JT *pjt)
 {
     int grfjtsc = STRUCT_OFFSET(pjt, 0x2254, int);
     if (grfjtsc == 0)

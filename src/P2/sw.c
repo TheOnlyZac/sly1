@@ -240,7 +240,7 @@ LO *PloGetSwProxySource(SW *psw, int ipsl)
     int c = p[0] - 1;
     LO **aplo = (LO **)p[1];
     int i = c * 4;
-    asm volatile(""); // zero-byte scheduling barrier: keeps the count store between the sll and addu, as in the original
+    asm volatile(""); // scheduling barrier: preserve the original count-store ordering
     p[0] = c;
     return *(LO **)(i + (int)aplo);
 }
@@ -380,7 +380,7 @@ int FLevelSwTertiary(SW *psw, WID wid)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd710);
 
-extern "C" uint GrflsLevelCompletionFromWid(int wid) __asm__("get_level_completion_by_id");
+uint GrflsLevelCompletionFromWid(int wid) __asm__("get_level_completion_by_id");
 
 extern "C" int FUN_001dd758(SW *psw, int wid)
 {
@@ -398,7 +398,7 @@ extern "C" int FUN_001dd758(SW *psw, int wid)
     return f;
 }
 
-extern "C" uint GrflsLevelCompletionFromWid(int wid) __asm__("get_level_completion_by_id");
+uint GrflsLevelCompletionFromWid(int wid) __asm__("get_level_completion_by_id");
 
 extern "C" int FUN_001dd7a0(SW *psw, int wid)
 {

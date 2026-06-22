@@ -5,8 +5,8 @@
 
 INCLUDE_ASM("asm/nonmatchings/P2/shadow", InitShadow__FP6SHADOW);
 
-extern "C" int D_002626D0;
-extern "C" SUR D_0027DC20[];
+extern int D_002626D0;
+extern SUR D_0027DC20[];
 
 INCLUDE_ASM("asm/nonmatchings/P2/shadow", PostShadowLoad__FP6SHADOW);
 #ifdef SKIP_ASM

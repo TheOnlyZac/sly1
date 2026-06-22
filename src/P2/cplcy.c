@@ -3,17 +3,17 @@
  */
 #include <cplcy.h>
 
-extern "C" void InitCplcy(CPLCY *pcplcy, CM *pcm)
+void InitCplcy(CPLCY *pcplcy, CM *pcm)
 {
     pcplcy->pcm = pcm;
 }
 
-extern "C" int FActiveCplcy(CPLCY *pcplcy)
+int FActiveCplcy(CPLCY *pcplcy)
 {
     return STRUCT_OFFSET(pcplcy->pcm, 0x3D8, CPLCY *) == pcplcy;
 }
 
-extern "C" void SetCpmanCpmt(CPMAN *pcpman, CPMT cpmt)
+void SetCpmanCpmt(CPMAN *pcpman, CPMT cpmt)
 {
     pcpman->cpmt = cpmt;
 }
@@ -59,7 +59,7 @@ LOOKK LookkCurCplook(CPLOOK *pcplook)
     return a[i];
 }
 
-extern "C" void InitCplook(CPLOOK *pcplook, CM *pcm)
+void InitCplook(CPLOOK *pcplook, CM *pcm)
 {
     InitCplcy(pcplook, pcm);
     pcplook->fSoundPaused = 0;

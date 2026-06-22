@@ -100,7 +100,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateBusyLasenSenseTimes__Fv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateLasen__FP5LASENf);
 
-extern "C" int D_002744D0;
+extern int D_002744D0;
 
 void FreezeLasen(LASEN *plasen, int fFreeze)
 {
