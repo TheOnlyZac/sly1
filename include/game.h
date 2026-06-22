@@ -258,7 +258,7 @@ void StartupGame();
  *
  * @param wid World ID.
  */
-extern "C" char *PchzFriendlyFromWid(int wid);
+char *PchzFriendlyFromWid(int wid);
 
 // LevelLoadData *call_search_level_by_id(int level_id);
 

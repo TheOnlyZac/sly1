@@ -38,7 +38,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_load_data);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_id);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", PchzFriendlyFromWid);
+INCLUDE_ASM("asm/nonmatchings/P2/game", PchzFriendlyFromWid__Fi);
 
 JUNK_WORD(0x24420010);
 
