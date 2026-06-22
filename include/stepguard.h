@@ -260,4 +260,13 @@ void SetSggSggs(SGG *psgg, SGGS sggs);
 
 void AssignSggSearchPoints(SGG *psgg);
 
+/**
+ * @brief Checks the struct has a 0 on an address, no idea what it means.
+ * @todo Figure out what this actually does and give it a better name.
+ * @param stepguard Pointer to the stepguard instance.
+ * @param i Unused parameter.
+ * @return Returns 1 if not equals 0, 0 otherwise.
+ */
+int FUN_001c9a48(STEPGUARD *stepguard, int i);
+
 #endif // STEPGUARD_H

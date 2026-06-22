@@ -29,7 +29,18 @@ enum OID
 
     // ...
 
+    OID_EF = 0xEF,
+
+    // ...
+
     OID_rat = 0x269,
+
+    // ...
+
+    OID_16A = 0x16A,
+    OID_16B = 0x16B,
+    OID_16C = 0x16C,
+    OID_16D = 0x16D,
 
     // ...
 

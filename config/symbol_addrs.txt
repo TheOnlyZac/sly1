@@ -2130,7 +2130,7 @@ GetGrfvault_unknown__Fv = 0x160D10; // type:func
 GetBlueprintInfo__FPiT0 = 0x160D30; // type:func
 CcharmMost__Fv = 0x160D98; // type:func
 
-reload_post_death = 0x160DA0; // type:func
+reload_post_death__Fv = 0x160DA0; // type:func
 
 // data
 D_00247AB0 = 0x247ab0; // size:0x2c
@@ -2958,23 +2958,25 @@ RenderMsGlobset__FP2MSP2CMP2RO = 0x18F9D8; // type:func
 ////////////////////////////////////////////////////////////////
 // P2/murray.c
 ////////////////////////////////////////////////////////////////
-InitMurray__FP6MURRAY                  = 0x18FEF8; // type:func
-PostMurrayLoad__FP6MURRAY              = 0x18FF28; // type:func
-FUN_0018ffb0                           = 0x18FFB0; // type:func
-OnMurrayExitingSgs__FP6MURRAY3SGS      = 0x1900A0; // type:func
-UpdateMurrayGoal__FP6MURRAYi           = 0x190128; // type:func
-UpdateMurraySgs__FP6MURRAY             = 0x190258; // type:func
-FUN_001903f0                           = 0x1903F0; // type:func
-FUN_00190450                           = 0x190450; // type:func
-FAbsorbMurrayWkr__FP6MURRAYP3WKR       = 0x1904E0; // type:func
-FDetectMurray__FP6MURRAY               = 0x190570; // type:func
-FCanMurrayAttack__FP6MURRAY            = 0x190658; // type:func
-FUN_00190660                           = 0x190660; // type:func
-SetMurrayPursueXfm__FP6MURRAYP3XFM     = 0x1906E8; // type:func
-SetMurrayPatrolXfm__FP6MURRAYP3XFM     = 0x1906F0; // type:func
-CollectMurrayPrize__FP6MURRAY3PCKP3ALO = 0x1906F8; // type:func
-FUN_00190740                           = 0x190740; // type:func
-HandleMurrayMessage                    = 0x190770; // type:func
+InitMurray__FP6MURRAY                       = 0x18FEF8; // type:func
+PostMurrayLoad__FP6MURRAY                   = 0x18FF28; // type:func
+OnMurrayEnteringSgs__FP6MURRAY3SGSP4ASEG    = 0x18FFB0; // type:func
+OnMurrayExitingSgs__FP6MURRAY3SGS           = 0x1900A0; // type:func
+UpdateMurrayGoal__FP6MURRAYi                = 0x190128; // type:func
+UpdateMurraySgs__FP6MURRAY                  = 0x190258; // type:func
+FUN_001903f0__FP6MURRAYi                    = 0x1903F0; // type:func
+FUN_00190450__FP6MURRAYP3ZPR                = 0x190450; // type:func
+FAbsorbMurrayWkr__FP6MURRAYP3WKR            = 0x1904E0; // type:func
+FDetectMurray__FP6MURRAY                    = 0x190570; // type:func
+FCanMurrayAttack__FP6MURRAY                 = 0x190658; // type:func
+AddMurrayEnemy__FP6MURRAYP3ALO              = 0x190660; // type:func
+SetMurrayPursueXfm__FP6MURRAYP3XFM          = 0x1906E8; // type:func
+SetMurrayPatrolXfm__FP6MURRAYP3XFM          = 0x1906F0; // type:func
+CollectMurrayPrize__FP6MURRAY3PCKP3ALO      = 0x1906F8; // type:func
+CheckMurrayStunOrDying__FP6MURRAY           = 0x190740; // type:func
+HandleMurrayMessage__FP6MURRAY5MSGIDPv      = 0x190770; // type:func
+
+D_00269B60 = 0x269B60;                              
 
 
 ////////////////////////////////////////////////////////////////
@@ -4281,7 +4283,7 @@ OnStepguardEnteringSgs__FP9STEPGUARD3SGSP4ASEG          = 0x1C91C8; // type:func
 SggsGetStepguard__FP9STEPGUARD                          = 0x1C96B8; // type:func
 FAbsorbStepguardWkr__FP9STEPGUARDP3WKR                  = 0x1C96D8; // type:func
 FTakeStepguardDamage__FP9STEPGUARDP3ZPR                 = 0x1C9990; // type:func
-FUN_001c9a48                                            = 0x1C9A48; // type:func
+FUN_001c9a48__FP9STEPGUARDi                             = 0x1C9A48; // type:func
 HandleStepguardGrfsgsc__FP9STEPGUARD                    = 0x1C9A58; // type:func
 DoStepguardFreefallJump__FP9STEPGUARD                   = 0x1C9AF8; // type:func
 DoStepguardFreefallLanding__FP9STEPGUARD                = 0x1C9CF8; // type:func
