@@ -17,7 +17,6 @@
 #include <sm.h>
 #include <cm.h>
 
-// Forward.
 class CBinaryInputStream;
 struct XA;
 struct XP;
@@ -31,7 +30,6 @@ struct WATER;
  */
 enum CNSTR
 {
-    // ...
 };
 struct CONSTR;
 
@@ -43,7 +41,6 @@ typedef int GRFFSO;
  */
 enum EGK
 {
-    // ...
 };
 
 /**
@@ -78,10 +75,7 @@ enum FSO
  */
 struct SO : public ALO
 {
-    // SO's own fields (0x2d0..0x550) are not yet reversed; pad SO to its real
-    // size so subclasses inherit correct absolute offsets.
-    STRUCT_PADDING(160); // 0x2d0 .. 0x550
-    //* 0x368 */ float mass;
+    STRUCT_PADDING(160);
 };
 
 /**
@@ -158,9 +152,6 @@ void SetSoMass(SO *pso, float m);
 
 void AdjustSoMomint(SO *pso, float r);
 
-// The asm symbol has truncated GCC2 mangling (one declared param) but the
-// function takes a discard mode in $a1 (0 = clear cache only, 1 = if-child,
-// 2 = if-self, 3 = if-self strict); declare with the literal mangled name.
 extern "C" void DiscardSoXps__FP2SO(SO *pso, int mode);
 
 void UpdateSoPosWorldPrev(SO *pso);

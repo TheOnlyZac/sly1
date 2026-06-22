@@ -40,9 +40,6 @@ CRef CSidebag::RefSetBinding(int n, CRef *pref)
 
 bool CSidebag::FFindBinding(int n, CRef *pref)
 {
-    // The sidebag is really a single pointer to a list of 0x10-byte nodes
-    // { int n; CRef ref; node *pNext } (see FUN_0011C498); reach the fields
-    // via STRUCT_OFFSET so the declared (placeholder) layout stays intact.
     void *psbb;
     for (psbb = STRUCT_OFFSET(this, 0x0, void *); psbb != NULL; psbb = STRUCT_OFFSET(psbb, 0xC, void *))
     {

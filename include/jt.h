@@ -78,7 +78,6 @@ enum JTBS
     JTBS_Zap_Electric = 34,
     JTBS_Zap_Fire = 35,
     JTBS_Zap_Water = 36,
-    // ...
     JTBS_Unk_54 = 54,
     JTBS_Unk_55 = 55
 
@@ -103,7 +102,6 @@ enum JTHS
  */
 enum JTCS
 {
-    // ...
 };
 
 /**
@@ -142,18 +140,17 @@ enum JTPDK
  */
 struct JT : public STEP
 {
-    // 930 = 1090 - 160; SO now carries the 160-word (0x2d0..0x550) base gap.
     STRUCT_PADDING(930);
     undefined2 padding0_extra;
 
-    ALO *paloMine_0x1518;   // 0x1518
+    ALO *paloMine_0x1518;
 
     STRUCT_PADDING(832);
     undefined2 padding1_extra;
 
-    JTS jts;                // 0x2220
+    JTS jts;
     int unk_0x2224;
-    JTBS jtbs;              // 0x2228
+    JTBS jtbs;
 
     STRUCT_PADDING(328);
     undefined1 padding2_extra;
