@@ -106,7 +106,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/murray", UpdateMurraySgs__FP6MURRAY);
 
 int FUN_001903f0(MURRAY *pmurray, int i) 
 {
-    if ((g_grfcht & 1) || (IsSwHandsOff__FP2SW(STRUCT_OFFSET(pmurray, 0x14, SW *)) != 0)) 
+    if ((g_grfcht & 1) || (IsSwHandsOff(STRUCT_OFFSET(pmurray, 0x14, SW *)) != 0)) 
     {
         return 1;
     }
@@ -154,7 +154,7 @@ int FAbsorbMurrayWkr(MURRAY *pmurray, WKR *pwkr)
         STRUCT_OFFSET(pmurray, 0xA68, int) = 0;
     }
 
-    int absorbed = FAbsorbStepguardWkr__FP9STEPGUARDP3WKR(pmurray, pwkr);
+    int absorbed = FAbsorbStepguardWkr(pmurray, pwkr);
     if (absorbed == 0) 
     {
         return 0;    
