@@ -371,4 +371,4 @@ int CcharmMost()
     return 2;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", reload_post_death);
+INCLUDE_ASM("asm/nonmatchings/P2/game", reload_post_death__Fv);
