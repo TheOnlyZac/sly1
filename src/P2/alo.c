@@ -427,25 +427,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloEuler__FP3ALOP6VECTOR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloEuler__FP3ALOP6VECTOR);
 
-extern VTACT D_00219560;
+extern VTACT g_vtact;
 
 void EnsureAloActRestore(ALO *palo)
 {
     if (STRUCT_OFFSET(palo, 0x1fc, ACT *) == NULL) // palo->pactRestore
     {
-        ACT *pact = PactNew(palo->psw, palo, &D_00219560);
+        ACT *pact = PactNew(palo->psw, palo, &g_vtact);
         STRUCT_OFFSET(palo, 0x1fc, ACT *) = pact;
         InsertAloAct(palo, pact);
     }
 }
 
-extern VTACT D_0021A790;
+extern VTACT g_vtactla;
 
 void EnsureAloActla(ALO *palo)
 {
     if (STRUCT_OFFSET(palo, 0x200, ACT *) == NULL) // palo->pactla
     {
-        ACT *pact = PactNew(palo->psw, palo, &D_0021A790);
+        ACT *pact = PactNew(palo->psw, palo, &g_vtactla);
         STRUCT_OFFSET(palo, 0x200, ACT *) = pact;
         InsertAloAct(palo, pact);
     }
@@ -478,13 +478,13 @@ ASEGA *PasegaFindAloNearest(ALO *paloLeaf)
     return NULL;
 }
 
-extern VTACT D_002195D8;
+extern VTACT g_vtactadj;
 
 void CreateAloActadj(ALO *palo, int nPriority, ACTADJ **ppactadj)
 {
     if (palo)
     {
-        ACT *pact = PactNew(palo->psw, palo, &D_002195D8);
+        ACT *pact = PactNew(palo->psw, palo, &g_vtactadj);
         pact->nPriority = nPriority;
         InsertAloAct(palo, pact);
         *ppactadj = (ACTADJ *)pact;

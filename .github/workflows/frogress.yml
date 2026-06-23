@@ -13,32 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.9.x"
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -U -r requirements.txt
-
-      - name: Setup wine
-        run: |
-          sudo dpkg --add-architecture i386
-          sudo apt-get update
-          sudo apt-get install wine32
-
       - name: Setup build environment
         run: |
-          sudo apt-get install binutils-mips-linux-gnu
-          scripts/setup_prodg_linux.sh
+          scripts/quickstart.sh
           curl -o disc/SCUS_971.98 "${{ secrets.FILE_URL }}"
+          
+      - name: Activate venv
+        run: echo "${{ github.workspace }}/env/bin" >> $GITHUB_PATH
 
       - name: Run build script
-        run: |
-          python configure.py
-          ninja
+        run: scripts/build.sh
 
       - name: Post to frogress endpoint
         run: |

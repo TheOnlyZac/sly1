@@ -13,11 +13,11 @@ ACT *PactNew(SW *psw, ALO *palo, VTACT *pvtact)
     return pact;
 }
 
-extern VTACT D_00219560;
+extern VTACT g_vtact;
 
 ACT *PactNewClone(ACT *pactBase, SW *psw, ALO *palo)
 {
-    ACT *pact = PactNew(psw, palo, &D_00219560);
+    ACT *pact = PactNew(psw, palo, &g_vtact);
     (*(void (**)(ACT *, ACT *))((uint8_t *)pact->pvtact + 4))(pact, pactBase);
     return pact;
 }

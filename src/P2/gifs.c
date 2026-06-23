@@ -1,18 +1,18 @@
 #include <gifs.h>
 
 /**
- * @todo 100% match, but checksum check fails.
+ * @todo 100% match, but checksum check fails due to some issue with the vtable.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/gifs", __4GIFS);
-/*
+#ifdef SKIP_ASM
 GIFS::GIFS()
 {
     m_fEndPrim = 1;
-    m_pqwPrim = 0;
+    m_pqwPrim = NULL;
     m_creg = 0;
     m_cregAll = 0;
 }
-*/
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/gifs", AddPrimEnd__4GIFS);
 

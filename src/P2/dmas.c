@@ -1,4 +1,5 @@
 #include <dmas.h>
+#include <memory.h>
 #include <sce/libdma.h>
 #include <sdk/ee/eestruct.h>
 #include <memory.h>
@@ -41,17 +42,32 @@ void DMAS::Reset()
     m_pb = m_ab;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AllocGlobal__4DMASi);
+void DMAS::AllocGlobal(int cqw)
+{
+    m_ab = (uchar *)PvAllocGlobalImpl(cqw * sizeof(QW));
+    m_pb = m_ab;
+    m_pbMax = m_ab + (cqw * sizeof(QW));
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AllocSw__4DMASii);
+void DMAS::AllocSw(int cqw, int bk)
+{
+    m_ab = (uchar *)PvAllocSwImpl(cqw * sizeof(QW));
+    m_pb = m_ab;
+    m_pbMax = m_ab + (cqw * sizeof(QW));
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AllocStack__4DMASi);
+void DMAS::AllocStack(int cqw)
+{
+    m_ab = (uchar *)PvAllocStackImpl(cqw * sizeof(QW));
+    m_pb = m_ab;
+    m_pbMax = m_ab + (cqw * sizeof(QW));
+}
 
-void DMAS::AllocStatic(int c, QW *aqw)
+void DMAS::AllocStatic(int cqw, QW *aqw)
 {
     m_ab = (uchar *)aqw;
     m_pb = (uchar *)aqw;
-    m_pbMax = (uchar *)(aqw + c);
+    m_pbMax = (uchar *)(aqw + cqw);
 }
 
 void DMAS::Detach(int *pcqw, QW **paqw)
@@ -68,13 +84,32 @@ void DMAS::Detach(int *pcqw, QW **paqw)
     Clear();
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", DetachCopySw__4DMASPiPP2QWT2i);
+void DMAS::DetachCopySw(int *pcqw, QW **paqw, QW **paqwCopy, int bk)
+{
+    EndDmaCnt();
 
-void DMAS::Send(sceDmaChan *chan)
+    uint cqw = (uint)(m_pb - m_ab) >> 4;
+    if (pcqw)
+    {
+        *pcqw = cqw;
+    }
+    if (paqw)
+    {
+        *paqw = (QW *)m_ab;
+    }
+    if (paqwCopy)
+    {
+        *paqwCopy = (QW *)PvAllocSwCopyImpl(cqw << 4, m_ab);
+    }
+
+    Clear();
+}
+
+void DMAS::Send(sceDmaChan *pdc)
 {
     EndDmaCnt();
     FlushCache(WRITEBACK_DCACHE);
-    sceDmaSend(chan, m_ab);
+    sceDmaSend(pdc, m_ab);
     m_pb = m_ab;
 }
 

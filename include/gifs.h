@@ -12,9 +12,9 @@
  */
 struct GIFS : public DMAS
 {
-    QW *m_pqwPrim;
-    uint m_creg;
-    uint m_cregAll;
+    /* 0x1c */ QW *m_pqwPrim;
+    /* 0x20 */ uint m_creg;
+    /* 0x24 */ uint m_cregAll;
 
     GIFS();
 

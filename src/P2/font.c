@@ -1,8 +1,9 @@
 #include <font.h>
 #include <memory.h>
 #include <gs.h>
-#include <gifs.h>
-#include <frm.h>
+
+extern int g_cfontBrx;
+extern CFontBrx *g_afontBrx;
 
 void StartupFont()
 {
@@ -11,25 +12,7 @@ void StartupFont()
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c188);
 
-extern CFont *D_00262268[5];
-
-CFont *FUN_0015c1c0(int i)
-{
-    CFont *pfont;
-
-    if (i == -1)
-    {
-        return NULL;
-    }
-
-    pfont = D_00262268[i];
-    if (pfont != NULL)
-    {
-        return pfont;
-    }
-
-    return g_pfont;
-}
+INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c1c0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c200);
 
@@ -47,32 +30,7 @@ void CFont::CopyTo(CFont *pfontDest)
     pfontDest->m_z = this->m_z;
 }
 
-class CTextBox;
-
 INCLUDE_ASM("asm/nonmatchings/P2/font", SetupDraw__5CFontP8CTextBoxP4GIFS);
-#ifdef SKIP_ASM
-void SetupDraw_CFont(CFont *self, CTextBox *ptb, GIFS *pgifs) __asm__("SetupDraw__5CFontP8CTextBoxP4GIFS");
-void SetupDraw_CFont(CFont *self, CTextBox *ptb, GIFS *pgifs)
-{
-    if (ptb)
-    {
-        float xLeft = STRUCT_OFFSET(ptb, 0x0, float);
-        float yTop = STRUCT_OFFSET(ptb, 0x4, float);
-        float xRight = xLeft + STRUCT_OFFSET(ptb, 0x8, float);
-        float yBottom = yTop + STRUCT_OFFSET(ptb, 0xc, float);
-
-        int scaxRight = (int)xRight - 1;
-        int scayBottom = (int)(yBottom * 0.45454547f) - 1;
-        int scayTop = (int)(yTop * 0.45454547f);
-        int scaxLeft = (int)xLeft;
-
-        pgifs->AddPrimPack(0, 1, 0xe);
-        pgifs->PackAD(0x40,
-            (ulong)scaxLeft | ((ulong)scaxRight << 16) |
-            ((ulong)scayTop << 32) | ((ulong)scayBottom << 48));
-    }
-}
-#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", CleanupDraw__5CFontP8CTextBoxP4GIFS);
 
@@ -90,83 +48,31 @@ INCLUDE_ASM("asm/nonmatchings/P2/font", PushScaling__5CFontff);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", PopScaling__5CFont);
 
-extern void *D_0024A220;
-extern void *__builtin_new(unsigned int cb);
-
-void CopyTo_CFontBrx(CFontBrx *self, CFontBrx *pfontDest) __asm__("CopyTo__8CFontBrxP8CFontBrx");
-
-CFontBrx *PfontClone_CFontBrx(CFontBrx *self, float rxScale, float ryScale) __asm__("PfontClone__8CFontBrxff");
-CFontBrx *PfontClone_CFontBrx(CFontBrx *self, float rxScale, float ryScale)
+/**
+ * @todo 90.62% match. Issue with the vtable.
+ */
+INCLUDE_ASM("asm/nonmatchings/P2/font", PfontClone__8CFontBrxff);
+#ifdef SKIP_ASM
+CFont *CFontBrx::PfontClone(float rx, float ry)
 {
-    CFontBrx *pfontNew = (CFontBrx *)__builtin_new(0x88);
-    STRUCT_OFFSET(pfontNew, 0x4c, void *) = &D_0024A220;
-    CopyTo_CFontBrx(self, pfontNew);
-    STRUCT_OFFSET(pfontNew, 0x44, float) = STRUCT_OFFSET(pfontNew, 0x44, float) * rxScale;
-    STRUCT_OFFSET(pfontNew, 0x48, float) = STRUCT_OFFSET(pfontNew, 0x48, float) * ryScale;
-    return pfontNew;
+    CFontBrx *pfontDest = new CFontBrx();
+    CopyTo(pfontDest);
+    pfontDest->m_rxScale = pfontDest->m_rxScale * rx;
+    pfontDest->m_ryScale = pfontDest->m_ryScale * ry;
+    return (CFont *)pfontDest;
+}
+#endif // SKIP_ASM
+
+INCLUDE_ASM("asm/nonmatchings/P2/font", CopyTo__8CFontBrxP8CFontBrx);
+
+int CFontBrx::FValid(char ch)
+{
+    return PglyffFromCh(ch) != NULL;
 }
 
-void CopyTo_CFontBrx(CFontBrx *self, CFontBrx *pfontDest) __asm__("CopyTo__8CFontBrxP8CFontBrx");
-void CopyTo_CFontBrx(CFontBrx *self, CFontBrx *pfontDest)
-{
-    self->CopyTo(pfontDest);
-    STRUCT_OFFSET(pfontDest, 0x50, int) = STRUCT_OFFSET(self, 0x50, int);
-    STRUCT_OFFSET(pfontDest, 0x54, int) = STRUCT_OFFSET(self, 0x54, int);
-    STRUCT_OFFSET(pfontDest, 0x58, int) = STRUCT_OFFSET(self, 0x58, int);
-    STRUCT_OFFSET(pfontDest, 0x60, uint64_t) = STRUCT_OFFSET(self, 0x60, uint64_t);
-    STRUCT_OFFSET(pfontDest, 0x68, int) = STRUCT_OFFSET(self, 0x68, int);
-    STRUCT_OFFSET(pfontDest, 0x6C, int) = STRUCT_OFFSET(self, 0x6C, int);
-    STRUCT_OFFSET(pfontDest, 0x70, int) = STRUCT_OFFSET(self, 0x70, int);
-    STRUCT_OFFSET(pfontDest, 0x74, int) = STRUCT_OFFSET(self, 0x74, int);
-    STRUCT_OFFSET(pfontDest, 0x78, int) = STRUCT_OFFSET(self, 0x78, int);
-    STRUCT_OFFSET(pfontDest, 0x7C, int) = STRUCT_OFFSET(self, 0x7C, int);
-    STRUCT_OFFSET(pfontDest, 0x80, int) = STRUCT_OFFSET(self, 0x80, int);
-}
+INCLUDE_ASM("asm/nonmatchings/P2/font", DxFromCh__8CFontBrxc);
 
-bool CFontBrx::FValid(char ch)
-{
-    return PglyffFromCh(ch) != 0;
-}
-
-float DxFromCh_CFontBrx(CFontBrx *self, char ch) __asm__("DxFromCh__8CFontBrxc");
-float DxFromCh_CFontBrx(CFontBrx *self, char ch)
-{
-    unsigned short *pglyff = (unsigned short *)self->PglyffFromCh(ch);
-
-    if (pglyff != 0)
-    {
-        return (float)(int)(pglyff[3] + 1) * STRUCT_OFFSET(self, 0x44, float);
-    }
-
-    return (float)STRUCT_OFFSET(self, 0x4, int) * STRUCT_OFFSET(self, 0x44, float);
-}
-
-int FEnsureLoaded_CFontBrx(CFontBrx *self, GIFS *pgifs) __asm__("FEnsureLoaded__8CFontBrxP4GIFS");
-int FEnsureLoaded_CFontBrx(CFontBrx *self, GIFS *pgifs)
-{
-    int fLoad = ((g_pfrmOpen->grffont & STRUCT_OFFSET(self, 0x80, int)) == 0);
-
-    if (fLoad)
-    {
-        pgifs->EndDmaCnt();
-        pgifs->AddDmaRefs(STRUCT_OFFSET(self, 0x68, int), STRUCT_OFFSET(self, 0x6c, QW *));
-
-        void *p54 = STRUCT_OFFSET(self, 0x54, void *);
-        pgifs->AddDmaRefs(STRUCT_OFFSET(p54, 0x14, int), STRUCT_OFFSET(p54, 0x10, QW *));
-
-        if (STRUCT_OFFSET(self, 0x58, void *) != 0)
-        {
-            pgifs->AddDmaRefs(STRUCT_OFFSET(self, 0x70, int), STRUCT_OFFSET(self, 0x74, QW *));
-            void *p58 = STRUCT_OFFSET(self, 0x58, void *);
-            pgifs->AddDmaRefs(STRUCT_OFFSET(p58, 0xc, int), STRUCT_OFFSET(p58, 0x8, QW *));
-        }
-
-        pgifs->AddDmaCnt();
-        g_pfrmOpen->grffont |= STRUCT_OFFSET(self, 0x80, int);
-    }
-
-    return fLoad;
-}
+INCLUDE_ASM("asm/nonmatchings/P2/font", FEnsureLoaded__8CFontBrxP4GIFS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", SetupDraw__8CFontBrxP8CTextBoxP4GIFS);
 
@@ -209,25 +115,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/font", Cch__9CRichText);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", Trim__9CRichTexti);
 
-extern "C" void Reset__9CRichText(CRichText *self);
-extern "C" int ChNext__9CRichText(CRichText *self);
-
-extern "C" float Dx__9CRichText(CRichText *self)
-{
-    Reset__9CRichText(self);
-
-    float dx = 0.0f;
-    int ch;
-    while ((ch = ChNext__9CRichText(self)) != 0)
-    {
-        CFont *pfont = STRUCT_OFFSET(self, 0x8, CFont *);
-        void *pv = STRUCT_OFFSET(pfont, 0x4c, void *);
-        dx += (*(float (**)(void *, int))((char *)pv + 0x1c))(
-            (char *)pfont + STRUCT_OFFSET(pv, 0x18, short), ch);
-    }
-
-    return dx;
-}
+INCLUDE_ASM("asm/nonmatchings/P2/font", Dx__9CRichText);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", ClineWrap__9CRichTextf);
 
@@ -235,37 +123,18 @@ INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015e1b0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", DxMaxLine__9CRichText);
 
-extern "C" int ClineWrap__9CRichTextf(CRichText *self, float dyMax);
-extern "C" float DxMaxLine__9CRichText(CRichText *self);
-
-extern "C" void GetExtents__9CRichTextPfT1f(CRichText *self, float *pdx, float *pdy, float dyMax)
-{
-    int cline = ClineWrap__9CRichTextf(self, dyMax);
-    float dxMax = DxMaxLine__9CRichText(self);
-    CFont *pfont = STRUCT_OFFSET(self, 0xC, CFont *);
-    float dyLine = (float)STRUCT_OFFSET(pfont, 0x8, int) * STRUCT_OFFSET(pfont, 0x48, float);
-    float dyTotal = (float)cline * dyLine;
-    if (pdx)
-        *pdx = dxMax;
-    if (pdy)
-        *pdy = dyTotal;
-}
+INCLUDE_ASM("asm/nonmatchings/P2/font", GetExtents__9CRichTextPfT1f);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", Draw__9CRichTextP8CTextBoxT1P4GIFS);
-
-extern int D_00262260;
-extern CFontBrx *D_00262264;
-extern "C" void PostLoad__8CFontBrxP3GSB(CFontBrx *self, GSB *pgsb);
 
 void PostFontsLoad()
 {
     GSB gsb;
-    int i;
+    InitGsb(&gsb, 0x1400, 0x1e00);
 
-    InitGsb(&gsb, 0x1400, 0x1E00);
-    for (i = 0; i < D_00262260; i++)
+    for (int i = 0; i < g_cfontBrx; i++)
     {
-        PostLoad__8CFontBrxP3GSB(D_00262264 + i, &gsb);
+        g_afontBrx[i].PostLoad(&gsb);
     }
 }
 
