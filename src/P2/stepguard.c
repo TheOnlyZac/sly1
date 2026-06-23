@@ -135,7 +135,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FAbsorbStepguardWkr__FP9STEPGUARDP3
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FTakeStepguardDamage__FP9STEPGUARDP3ZPR);
 
-int FUN_001c9a48(STEPGUARD *stepguard, int i) {
+int FUN_001c9a48(STEPGUARD *stepguard, int i) 
+{
     return STRUCT_OFFSET(stepguard, 0xBD8, int) != 0;
 }
 

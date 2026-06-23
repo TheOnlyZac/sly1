@@ -82,15 +82,15 @@ void OnMurrayExitingSgs(MURRAY *pmurray, SGS sgs)
     SGS murraySGS = STRUCT_OFFSET(pmurray, 0x724, SGS); // pmurray->sgs
     switch (murraySGS) 
     {                         
-        case 16:
+        case SGS_Stun:
             tempFunction = STRUCT_OFFSET(pmurray, 0xC2C, void **);
-            if (tempFunction != 0) 
+            if (tempFunction != NULL) 
             {
                 typedef void (*VFn)(void**);
                 STRUCT_OFFSET((*tempFunction), 0x150, VFn)(tempFunction);
             }
             break;
-        case 8:
+        case SGS_LostPlayer:
             if (STRUCT_OFFSET(pmurray, 0x600, int) == 1) 
             {
                 typedef void (*VFn2)(MURRAY*,int);
@@ -128,7 +128,8 @@ int FUN_00190450(MURRAY *pmurray, ZPR *pzpr)
     if (STRUCT_OFFSET(pzpr, 0x0, int) == 0) 
     {
         so = STRUCT_OFFSET(pzpr, 0x4, SO *);
-        if (so != 0) {
+        if (so != 0) 
+        {
             if (FIsRwmAmmo(STRUCT_OFFSET(STRUCT_OFFSET(pmurray, 0xC2C, MURRAY *), 0x618, RWM *), so) != 0) 
             {
                 STRUCT_OFFSET(pmurray,0xC34,int) = 1;
@@ -138,7 +139,7 @@ int FUN_00190450(MURRAY *pmurray, ZPR *pzpr)
     return FTakeStepguardDamage(pmurray, pzpr);
 }
 
-int FAbsorbMurrayWkr__FP6MURRAYP3WKR(MURRAY *pmurray, WKR *pwkr) 
+int FAbsorbMurrayWkr(MURRAY *pmurray, WKR *pwkr) 
 {
     if (FCharmAvailable__Fv() == 0) 
     {
@@ -179,7 +180,7 @@ int FAbsorbMurrayWkr__FP6MURRAYP3WKR(MURRAY *pmurray, WKR *pwkr)
  */
 INCLUDE_ASM("asm/nonmatchings/P2/murray", FDetectMurray__FP6MURRAY);
 #ifdef SKIP_ASM
-int FDetectMurray__FP6MURRAY(MURRAY *pmurray)
+int FDetectMurray(MURRAY *pmurray)
 {    
     if (STRUCT_OFFSET(pmurray, 0xC28, int) != 0)
     {
