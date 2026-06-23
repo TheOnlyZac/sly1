@@ -1,0 +1,30 @@
+name: Build with objdiff objects for pull requests
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build-objects:
+    if: github.repository_owner == 'theonlyzac'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Setup build environment
+        run: scripts/quickstart.sh
+
+      - name: Activate virtualenv
+        run: echo "${{ github.workspace }}/env/bin" >> $GITHUB_PATH
+
+      - name: Fetch game executable
+        run: curl -o disc/SCUS_971.98 "${{ secrets.FILE_URL }}"
+
+      - name: Configure and build
+        run: |
+          python configure.py --objects
+          ninja
