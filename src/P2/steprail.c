@@ -43,7 +43,7 @@ void FUN_001d34e0(uint8_t *param_1)
     FUN_001bc4d8(param_1, param_1 + 0x554);
 }
 
-extern "C" int FUN_001d3500(SO *pso, WKR *pwkr)
+int FUN_001d3500(SO *pso, WKR *pwkr)
 {
     int fAbsorbed = FAbsorbSoWkr(pso, pwkr);
     if (fAbsorbed != 0 && (pwkr->grfic & 0x20))

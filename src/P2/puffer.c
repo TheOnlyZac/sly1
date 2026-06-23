@@ -39,7 +39,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_001973d8);
 extern "C" void FUN_001973d8(void *p);
 extern void *D_0026A904;
 
-extern "C" void FUN_00197458(void *p, int n)
+void FUN_00197458(void *p, int n)
 {
     OID oidGoal;
     OID oidCur;
@@ -71,7 +71,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_00197788);
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_00197848);
 
-extern "C" void FUN_00197a08(void *pv1, void *pv2)
+void FUN_00197a08(void *pv1, void *pv2)
 {
     ROST *prost = STRUCT_OFFSET(pv2, 0xC14, ROST *);
     SetRostRosts(prost, ROSTS_Close);
@@ -83,7 +83,7 @@ extern "C" void FUN_00197a08(void *pv1, void *pv2)
 extern float D_0026A83C;
 extern float D_0026A840;
 
-extern "C" void FUN_00197a68(void *pv, void *p)
+void FUN_00197a68(void *pv, void *p)
 {
     float dx = D_0026A83C;
     float dy = D_0026A840;
@@ -106,7 +106,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_001982a0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", UpdatePuffcGoal__FP5PUFFCi);
 
-extern "C" void FUN_00197a08(void *pv1, void *pv2);
+void FUN_00197a08(void *pv1, void *pv2);
 
 void OnPuffcExitingSgs(PUFFC *ppuffc, SGS sgsNext)
 {

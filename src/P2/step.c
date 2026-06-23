@@ -12,7 +12,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/step", LimitStepHands__FP4STEPi);
 // TODO: This might be "RetractStepExtremity". Further research needed.
 INCLUDE_ASM("asm/nonmatchings/P2/step", FUN_001c4618);
 
-extern "C" {
 void FUN_001c4790(void *p1, SO *pso, BSP *pbsp, void *p4)
 {
     LSG alsg[2];
@@ -39,7 +38,6 @@ void FUN_001c4790(void *p1, SO *pso, BSP *pbsp, void *p4)
             *(LSG *)((uint8_t *)p4 + 0x90) = alsg[i];
         }
     }
-}
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", FUN_001c4848);

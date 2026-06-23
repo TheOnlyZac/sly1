@@ -254,7 +254,6 @@ float FUN_001ABE60()
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001abe70);
 
-extern "C" {
 void FUN_001ac060(TIMER *ptimer)
 {
     int n = STRUCT_OFFSET(ptimer, 0x270, int) - 1;
@@ -280,7 +279,6 @@ void FUN_001ac060(TIMER *ptimer)
         STRUCT_OFFSET(ptimer, 0x278, float) = (float)num / (float)STRUCT_OFFSET(ptimer, 0x268, int);
         STRUCT_OFFSET(ptimer, 0x27c, float) = g_clock.t;
     }
-}
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac0e8);
@@ -496,7 +494,6 @@ extern float D_00274470;
 extern CFont *D_00274488;
 extern void *D_00269988;
 
-
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001adf28);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001adff0);
@@ -516,7 +513,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae5e0);
 extern "C" char FUN_001aea08(void);
 extern float D_002744AC;
 
-extern "C" void FUN_001ae758(BLOT *pblot)
+void FUN_001ae758(BLOT *pblot)
 {
     char achz[2];
 

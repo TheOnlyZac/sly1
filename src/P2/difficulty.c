@@ -112,7 +112,7 @@ void OnDifficultyInitialTeleport(DIFFICULTY *pdifficulty)
 
 INCLUDE_ASM("asm/nonmatchings/P2/difficulty", OnDifficultyPlayerDeath);
 #ifdef SKIP_ASM
-extern "C" void OnDifficultyPlayerDeath(float scalar, DIFFICULTY *pdifficulty)
+void OnDifficultyPlayerDeath(float scalar, DIFFICULTY *pdifficulty)
 {
 	DIFFICULTYLEVEL *pdifflevel = pdifficulty->pDifficultyLevel;
 

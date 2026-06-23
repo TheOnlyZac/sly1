@@ -1,6 +1,6 @@
 #include <sqtr.h>
 
-extern "C" void FUN_001c29e8(SQTRM *psqtrm)
+void FUN_001c29e8(SQTRM *psqtrm)
 {
     STRUCT_OFFSET(psqtrm, 0xc, int) = 0;
     STRUCT_OFFSET(psqtrm, 0x8, int) = 0;

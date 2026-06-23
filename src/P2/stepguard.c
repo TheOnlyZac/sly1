@@ -256,7 +256,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepguard", SetStepguardPathzone__FP9STEPGUARD3
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", PsoEnemyStepguard__FP9STEPGUARD);
 
-extern "C" void FUN_001caad0(SO *pso, SO **ppso)
+void FUN_001caad0(SO *pso, SO **ppso)
 {
     void *pvt = STRUCT_OFFSET(pso, 0x0, void *);
     SO *(*fn)(SO *) = (SO *(*)(SO *))STRUCT_OFFSET(pvt, 0x198, void *);
@@ -294,7 +294,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepguard", MatchStepguardAnimationPhase__FP9ST
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", AddStepguardCustomXps__FP9STEPGUARDP2SOiP3BSPT3PP2XP);
 
-extern "C" {
 void FUN_001caee0(STEPGUARD *pstepguard, SO *pso)
 {
     (*(void (**)(SO *, void *))((char *)pso->pvtlo + 0x90))(pso, (char *)pstepguard + 0xAB0);
@@ -303,7 +302,6 @@ void FUN_001caee0(STEPGUARD *pstepguard, SO *pso)
     {
         SetJtJts((JT *)pso, JTS_Sidestep, (JTBS)0x2b);
     }
-}
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", UpdateStepguardEffect__FP9STEPGUARD);

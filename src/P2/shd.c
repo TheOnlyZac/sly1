@@ -41,10 +41,9 @@ void UploadPermShaders()
     g_grfzonShaders = 0;
 }
 
-extern "C" {
     extern GSB D_002626D8;
     extern int D_002626CC;
-}
+
 void PropagateSurs();
 
 void PropagateShaders(GRFZON grfzonCamera)

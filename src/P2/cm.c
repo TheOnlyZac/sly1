@@ -332,7 +332,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145950);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145b68);
 
-extern "C" bool FUN_00145DD8(undefined4 unused, CM *pcm)
+bool FUN_00145DD8(undefined4 unused, CM *pcm)
 {
     return STRUCT_OFFSET(pcm, 0x538, int) != 0;
 }

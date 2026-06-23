@@ -649,20 +649,20 @@ void SetAloRestorePosition(ALO *palo, int fRestore)
     SetAloRestorePositionAck(palo, fRestore ? ACK_Spring : ACK_Nil);
 }
 
-extern "C" void FUN_0012a3e8(ALO *palo, int unk);
+void FUN_0012a3e8(ALO *palo, int unk);
 
-extern "C" void FUN_0012a3c8(ALO *palo, int unk)
+void FUN_0012a3c8(ALO *palo, int unk)
 {
     FUN_0012a3e8(palo, unk != 0);
 }
 
-extern "C" void FUN_0012a3e8(ALO *palo, int n)
+void FUN_0012a3e8(ALO *palo, int n)
 {
     STRUCT_OFFSET(palo, 0x2c8, uint64_t) =
         (STRUCT_OFFSET(palo, 0x2c8, uint64_t) & ~((uint64_t)3 << 40)) | ((uint64_t)(n & 3) << 40);
 }
 
-extern "C" void FUN_0012a418(ALO *palo, int *pn)
+void FUN_0012a418(ALO *palo, int *pn)
 {
     *pn = (int)(STRUCT_OFFSET(palo, 0x2c8, uint64_t) >> 40) & 3;
 }
@@ -688,7 +688,7 @@ void SetAloRestoreRotationAck(ALO *palo, ACK ack)
     (*(void (**)(ALO *))((char *)palo->pvtlo + 0xBC))(palo);
 }
 
-extern "C" void FUN_0012a4e8(ALO *palo, int n)
+void FUN_0012a4e8(ALO *palo, int n)
 {
     void *pactrest;
 
@@ -839,7 +839,7 @@ void GetAloLookAtDisabledPriority(ALO *palo, int *pnPriority)
     *pnPriority = nPriority;
 }
 
-extern "C" void FUN_0012a810(ALO *palo, int n)
+void FUN_0012a810(ALO *palo, int n)
 {
     void *pactla;
 
@@ -859,13 +859,13 @@ void FUN_0012a848(ALO *palo, int *pn)
     *pn = n;
 }
 
-extern "C" void FUN_0012a860(ALO *palo, ALO *paloTarget)
+void FUN_0012a860(ALO *palo, ALO *paloTarget)
 {
     extern VECTOR D_00248D30;
     SetActlaTarget(STRUCT_OFFSET(palo, 0x200, ACTLA *), paloTarget, &D_00248D30);
 }
 
-extern "C" void FUN_0012a888(ALO *palo, ALO **ppaloTarget)
+void FUN_0012a888(ALO *palo, ALO **ppaloTarget)
 {
     *ppaloTarget = PaloGetActlaTarget(STRUCT_OFFSET(palo, 0x200, ACTLA *));
 }
@@ -876,7 +876,7 @@ void FUN_0012a8b8(ALO *palo)
     STRUCT_OFFSET(pactla, 0x4C, int) = 0;
 }
 
-extern "C" void FUN_0012a8c8(ALO *palo)
+void FUN_0012a8c8(ALO *palo)
 {
     void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
     STRUCT_OFFSET(pactla, 0x4C, int) = 1;

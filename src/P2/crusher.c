@@ -73,7 +73,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c5e8);
 extern void *D_0027C00C;
 extern "C" void FUN_0014c5e8(void *p);
 
-extern "C" void FUN_0014c668(void *pv, int tnt)
+void FUN_0014c668(void *pv, int tnt)
 {
     if (tnt == 1)
     {
@@ -125,7 +125,7 @@ extern int FUN_001e9970();
 extern BLOT g_unkblot1;
 extern BLOT g_unkblot9;
 
-extern "C" void FUN_0014c788(void *pv)
+void FUN_0014c788(void *pv)
 {
     OID oid;
     int fShow;
@@ -167,7 +167,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c858);
 
 INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014cba8);
 
-extern "C" {
 void FUN_0014cd70(void *p)
 {
     int n;
@@ -180,7 +179,6 @@ void FUN_0014cd70(void *p)
 
     n = STRUCT_OFFSET(p, 0x458, int);
     STRUCT_OFFSET(p, 0x458, int) = n - 1;
-}
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014cdc8);

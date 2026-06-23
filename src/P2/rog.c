@@ -149,7 +149,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRob__FP3ROBf);
 extern int FUN_001e9970();
 extern BLOT g_unkblot0;
 
-extern "C" void FUN_001a4d60(ROB *prob)
+void FUN_001a4d60(ROB *prob)
 {
     int fShow;
 

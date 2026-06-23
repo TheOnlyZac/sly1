@@ -11,7 +11,6 @@ void StartupFont()
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c188);
 
-extern "C" {
 extern CFont *D_00262268[5];
 
 CFont *FUN_0015c1c0(int i)
@@ -30,7 +29,6 @@ CFont *FUN_0015c1c0(int i)
     }
 
     return g_pfont;
-}
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c200);

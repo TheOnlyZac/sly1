@@ -34,7 +34,7 @@ static inline VU_VECTOR VuVectorXyz(float x, float y, float z)
     return v;
 }
 
-extern "C" void FUN_001deb30(TANK *ptank)
+void FUN_001deb30(TANK *ptank)
 {
     union
     {
@@ -130,7 +130,6 @@ void HandleTankMessage(TANK *ptank, MSGID msgid, void *pv)
         break;
     }
     }
-
 
     HandlePoMessage(ptank, msgid, pv);
 }

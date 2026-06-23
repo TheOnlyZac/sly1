@@ -72,7 +72,7 @@ void SetSwGravity(SW *psw, float z)
     STRUCT_OFFSET(psw, 0x1EE0, qword) = u.q; // vecGravity = (0, 0, z, junk)
 }
 
-extern "C" void FUN_001dbac0(SW *psw, int reg, int value)
+void FUN_001dbac0(SW *psw, int reg, int value)
 {
     SetAMRegister__FiUc(reg, value);
 }
@@ -382,7 +382,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd710);
 
 uint GrflsLevelCompletionFromWid(int wid) __asm__("get_level_completion_by_id");
 
-extern "C" int FUN_001dd758(SW *psw, int wid)
+int FUN_001dd758(SW *psw, int wid)
 {
     uint grfls = GrflsLevelCompletionFromWid(wid);
     uint f = 0;
@@ -400,7 +400,7 @@ extern "C" int FUN_001dd758(SW *psw, int wid)
 
 uint GrflsLevelCompletionFromWid(int wid) __asm__("get_level_completion_by_id");
 
-extern "C" int FUN_001dd7a0(SW *psw, int wid)
+int FUN_001dd7a0(SW *psw, int wid)
 {
     uint grfls = GrflsLevelCompletionFromWid(wid);
     int f = 0;
@@ -419,7 +419,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd7e8);
 
 extern int *PlsFromWid(WID wid) __asm__("LsFromWid");
 
-extern "C" int FUN_001dd888(SW *psw, WID wid, int nKey)
+int FUN_001dd888(SW *psw, WID wid, int nKey)
 {
     int *pls = PlsFromWid(wid);
     if (pls != NULL)
@@ -452,7 +452,7 @@ int FUN_001dd928(SW *psw)
     return CalculatePercentCompletion(g_pgsCur);
 }
 
-extern "C" void FUN_001dd950(SW *psw, int nLow, int nHigh, VECTOR *pposCenter)
+void FUN_001dd950(SW *psw, int nLow, int nHigh, VECTOR *pposCenter)
 {
     int cpdprize = NRandInRange(nLow, nHigh);
 
@@ -536,7 +536,7 @@ typedef struct
 
 extern PROMPT D_0026FF68;
 
-extern "C" void FUN_001ddb20(SW *psw, PRK prk, int oid)
+void FUN_001ddb20(SW *psw, PRK prk, int oid)
 {
     PROMPT *pprompt = &D_0026FF68;
 
@@ -546,7 +546,7 @@ extern "C" void FUN_001ddb20(SW *psw, PRK prk, int oid)
 
 extern BLOT D_002721D0;
 
-extern "C" void FUN_001ddb58(SW *psw)
+void FUN_001ddb58(SW *psw)
 {
     if (++STRUCT_OFFSET(psw, 0x2320, int) == 1)
     {
@@ -557,7 +557,7 @@ extern "C" void FUN_001ddb58(SW *psw)
 
 extern BLOT D_002721D0;
 
-extern "C" void FUN_001ddbb8(SW *psw)
+void FUN_001ddbb8(SW *psw)
 {
     if (--STRUCT_OFFSET(psw, 0x2320, int) == 0)
     {
@@ -585,7 +585,7 @@ void FUN_001ddc38(void *pv, void *pvBlot)
     STRUCT_OFFSET(pv, 0x2324, void *) = pvBlot;
 }
 
-extern "C" void FUN_001ddc40(void *pv)
+void FUN_001ddc40(void *pv)
 {
     typedef void (*PFNBLOT)(void *);
 

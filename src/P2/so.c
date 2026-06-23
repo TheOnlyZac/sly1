@@ -588,7 +588,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", FUN_001bc4d8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", FUN_001bc670);
 
-extern "C" void FUN_001bc710(SO *pso, int f)
+void FUN_001bc710(SO *pso, int f)
 {
     uint64_t grfso = STRUCT_OFFSET(pso, 0x538, uint64_t);
     grfso &= ~((uint64_t)1 << 52);
@@ -596,7 +596,7 @@ extern "C" void FUN_001bc710(SO *pso, int f)
     STRUCT_OFFSET(pso, 0x538, uint64_t) = grfso;
 }
 
-extern "C" void FUN_001bc748(SO *pso, int *pn)
+void FUN_001bc748(SO *pso, int *pn)
 {
     *pn = (int)(STRUCT_OFFSET(pso, 0x538, uint64_t) >> 52) & 1; // grfso bit 52 (qword view)
 }

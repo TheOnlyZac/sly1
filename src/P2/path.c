@@ -71,7 +71,7 @@ void FindPathzoneClosestPoint(PATHZONE *ppathzone, VECTOR *pvec0, VECTOR *pvec1)
 
 int ClsgClipEdgeToCbsp(CBSP *pcbsp, VECTOR *pvec0, VECTOR *pvec1, int i, LSG *plsg);
 
-extern "C" int FUN_00191aa8(void *p, VECTOR *pvec0, VECTOR *pvec1, int i, LSG *plsg)
+int FUN_00191aa8(void *p, VECTOR *pvec0, VECTOR *pvec1, int i, LSG *plsg)
 {
     return ClsgClipEdgeToCbsp(STRUCT_OFFSET(p, 0x54, CBSP *), pvec0, pvec1, i, plsg);
 }

@@ -99,7 +99,7 @@ void FUN_001A7E70()
 
 INCLUDE_ASM("asm/nonmatchings/P2/rumble", FUN_001A7E90);
 
-extern "C" int FUN_001A7EE8(GS *pgs)
+int FUN_001A7EE8(GS *pgs)
 {
     switch (DAT_0026c3dc)
     {

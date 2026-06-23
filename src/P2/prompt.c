@@ -52,7 +52,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/prompt", FUN_00193fb8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/prompt", OnPromptActive__FP6PROMPTi);
 
-extern "C" {
 void FUN_00194278(PROMPT *pprompt, int fButton, WIPEK wipek)
 {
     int idLevel;
@@ -96,7 +95,6 @@ void FUN_00194278(PROMPT *pprompt, int fButton, WIPEK wipek)
             TriggerDefaultExit(0, wipek);
         }
     }
-}
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/prompt", FUN_00194398__Fv);

@@ -161,7 +161,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", UpdateChkpnt__FP6CHKPNTf);
 
 extern void TriggerJoyRumbleRumk(JOY *pjoy, RUMK rumk, float dt);
 
-extern "C" int FUN_001417f0(CHKPNT *pchkpnt, WKR *pwkr)
+int FUN_001417f0(CHKPNT *pchkpnt, WKR *pwkr)
 {
     if ((PO *)pwkr->ploSource == PpoCur())
     {
@@ -176,7 +176,7 @@ extern "C" int FUN_001417f0(CHKPNT *pchkpnt, WKR *pwkr)
 
 INCLUDE_ASM("asm/nonmatchings/P2/chkpnt", TriggerChkpnt__FP6CHKPNT);
 
-extern "C" void FUN_001419A0(CHKPNT *pchkpnt, int n)
+void FUN_001419A0(CHKPNT *pchkpnt, int n)
 {
     int c = STRUCT_OFFSET(pchkpnt, 0x578, int);
     int *a = &STRUCT_OFFSET(pchkpnt, 0x57c, int);
@@ -184,7 +184,7 @@ extern "C" void FUN_001419A0(CHKPNT *pchkpnt, int n)
     STRUCT_OFFSET(pchkpnt, 0x578, int) = c + 1;
 }
 
-extern "C" void FUN_001419C0(CHKPNT *pchkpnt, int n)
+void FUN_001419C0(CHKPNT *pchkpnt, int n)
 {
     int c = STRUCT_OFFSET(pchkpnt, 0x550, int);
     int *a = &STRUCT_OFFSET(pchkpnt, 0x554, int);

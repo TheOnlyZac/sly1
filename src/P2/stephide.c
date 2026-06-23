@@ -28,7 +28,7 @@ float GMeasureJumpRail(MJR *pmjr, float u)
 struct HPNT;
 extern void GetHpntClosestHidePos(HPNT *phpnt, VECTOR *ppos, float *pf);
 
-extern "C" float FUN_001cea58(MJH *pmjh)
+float FUN_001cea58(MJH *pmjh)
 {
     VECTOR posTarget;
     float gInteg;
@@ -71,7 +71,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/stephide", FUN_001ceec8);
 
 extern float D_00274E3C;
 
-extern "C" float FUN_001cf138(JT *pjt, int n, float a, float b)
+float FUN_001cf138(JT *pjt, int n, float a, float b)
 {
     a = a + b;
     if (n == STRUCT_OFFSET(pjt, 0x2bdc, int))

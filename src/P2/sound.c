@@ -76,7 +76,7 @@ int FContinuousSound(SFXID sfxid)
 }
 
 extern int D_00274730;
-extern "C" void FUN_001BE5D8(void)
+void FUN_001BE5D8(void)
 {
     D_00274730 = 0;
 }
@@ -91,7 +91,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadVag__FPc2FK);
 
 extern u_int D_00274744;
 void StopVag();
-extern "C" void FUN_001be708(void)
+void FUN_001be708(void)
 {
     D_00274744 = 0;
     StopVag();
@@ -135,7 +135,7 @@ void RefreshPambVolPan(AMB *pamb)
 void RefreshPambVolPan(AMB *pamb);
 void DropPamb(AMB **ppamb);
 
-extern "C" void FUN_001be8f8(ALO *palo, AMB **ppamb, float sStart, float sFull)
+void FUN_001be8f8(ALO *palo, AMB **ppamb, float sStart, float sFull)
 {
     AMB *pambLocal;
     int fLocal = 0;
@@ -479,7 +479,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", ScheduleNextIntermittentSound__FP3AMB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSound__F5SFXIDPP3AMBP3ALOP6VECTORfffffP2LMT9);
 
-extern "C" void FUN_001BFFC8(int err, u_long user_data)
+void FUN_001BFFC8(int err, u_long user_data)
 {
     if (err == 0)
     {
@@ -605,7 +605,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0A50);
 
 struct SW;
 
-extern "C" void FUN_001C0AB8(SW *psw, float *pg)
+void FUN_001C0AB8(SW *psw, float *pg)
 {
     int c = STRUCT_OFFSET(psw, 0x1D80, int); // count of intermittent-sound entries (array of 0x14-byte entries at 0x1D84)
     if (c != 0)
@@ -618,7 +618,7 @@ extern "C" void FUN_001C0AB8(SW *psw, float *pg)
 
 struct SW;
 
-extern "C" void FUN_001C0B08(SW *psw, LM *plm)
+void FUN_001C0B08(SW *psw, LM *plm)
 {
     int c = STRUCT_OFFSET(psw, 0x1D80, int); // count of intermittent-sound entries (array of 0x14-byte entries at 0x1D84)
     if (c != 0)

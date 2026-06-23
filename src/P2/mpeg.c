@@ -5,7 +5,7 @@
 
 extern uchar D_002484B0[16][32];
 
-extern "C" int FUN_0018e410(void *pv)
+int FUN_0018e410(void *pv)
 {
     uchar (*pb)[32] = D_002484B0;
     int i = 0;
@@ -36,13 +36,11 @@ loop:
     return -1;
 }
 
-extern "C" {
 extern char *D_002699C0[16];
 extern char D_0024B580[];
 extern char D_0024B588[];
-}
 
-extern "C" char *FUN_0018e480(int x)
+char *FUN_0018e480(int x)
 {
     if ((uint)x < 16)
         return D_002699C0[x];
@@ -54,14 +52,14 @@ extern "C" char *FUN_0018e480(int x)
 extern "C" void FUN_0018f0e8(CMpeg *pmpeg, void *pv);
 extern uchar D_002484B0[16][32];
 
-extern "C" void FUN_0018e4c0(int i)
+void FUN_0018e4c0(int i)
 {
     FUN_0018f0e8(&g_mpeg, D_002484B0[i]);
 }
 
 extern uchar *D_00269A08;
 
-extern "C" void FUN_0018e4f0(int param1, int i)
+void FUN_0018e4f0(int param1, int i)
 {
     FUN_0018e4c0(param1);
     D_00269A08 = D_002484B0[i];

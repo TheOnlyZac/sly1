@@ -58,7 +58,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/lgn", FTakeLgnDamage__FP3LGNP3ZPR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/lgn", HandleLgnMessage__FP3LGN5MSGIDPv);
 
-extern "C" void FUN_00181d88(uint8_t *param_1)
+void FUN_00181d88(uint8_t *param_1)
 {
     FUN_001bc4d8(param_1, param_1 + 0xC04);
 }

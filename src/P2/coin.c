@@ -87,11 +87,9 @@ void InitCoin(COIN *pcoin)
     pcoin->lmDtMaxLifetime.gMax = 10.0f;
 }
 
-extern "C" {
 void FUN_00147ed0(DPRIZE *pdprize)
 {
     (*(void (**)(DPRIZE *, DPRIZES))((char *)pdprize->pvtlo + 0xCC))(pdprize, DPRIZES_Removed);
-}
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00147ef8);
@@ -220,22 +218,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148698);
 
 void PostDprizeLoad(DPRIZE *pdprize);
 
-extern "C" void FUN_00148718(DPRIZE *pdprize)
+void FUN_00148718(DPRIZE *pdprize)
 {
     PostDprizeLoad(pdprize);
     STRUCT_OFFSET(&g_note, 0x270, DPRIZE *) = pdprize;
 }
 
-extern "C" {
 void FUN_00148748(void *param_1)
 {
     (*(void (**)(void *, int))(*(int *)param_1 + 0xCC))(param_1, 2);
 }
-}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148770);
 
-extern "C" void FUN_00148828(DPRIZE *pdprize, float dt)
+void FUN_00148828(DPRIZE *pdprize, float dt)
 {
     UpdateDprize(pdprize, dt);
     if (pdprize->oidInitialState != OID_Unknown)
@@ -259,16 +255,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", RemoveSwExtraneousCharms__FP2SW);
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148d90);
 
-extern "C" {
 void FUN_00148e18(void *param_1)
 {
     (*(void (**)(void *, int))(*(int *)param_1 + 0xCC))(param_1, 2);
 }
-}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148e40);
 
-extern "C" void FUN_00148ef8(COIN *pcoin, float dt)
+void FUN_00148ef8(COIN *pcoin, float dt)
 {
     UpdateDprize(pcoin, dt);
     if (pcoin->oidInitialState != OID_Unknown)

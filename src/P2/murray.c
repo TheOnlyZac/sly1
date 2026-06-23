@@ -33,7 +33,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/murray", UpdateMurraySgs__FP6MURRAY);
 
 extern "C" int FUN_001c9a48(STEPGUARD *pstepguard, void *pv);
 
-extern "C" int FUN_001903f0(MURRAY *pmurray, void *pv)
+int FUN_001903f0(MURRAY *pmurray, void *pv)
 {
     if ((g_grfcht & FCHT_Invulnerability) || IsSwHandsOff(STRUCT_OFFSET(pmurray, 0x14, SW *)))
     {
@@ -42,7 +42,7 @@ extern "C" int FUN_001903f0(MURRAY *pmurray, void *pv)
     return FUN_001c9a48(pmurray, pv);
 }
 
-extern "C" int FUN_00190450(MURRAY *pmurray, WKR *pwkr)
+int FUN_00190450(MURRAY *pmurray, WKR *pwkr)
 {
     LO **ppvtable = (LO **)STRUCT_OFFSET(pmurray, 0x0, void *);
     int (*pfn)(MURRAY *, LO *) = (int (*)(MURRAY *, LO *))STRUCT_OFFSET(ppvtable, 0x13c, void *);

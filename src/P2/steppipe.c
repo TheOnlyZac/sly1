@@ -10,8 +10,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/steppipe", UpdateJtActivePipe__FP2JTP3JOY);
 
 INCLUDE_ASM("asm/nonmatchings/P2/steppipe", UpdateJtInternalXpsPipe__FP2JT);
 
-extern "C" void FUN_001ddb58(SW *psw);
-extern "C" void FUN_001ddbb8(SW *psw);
+void FUN_001ddb58(SW *psw);
+void FUN_001ddbb8(SW *psw);
 
 void SetJtJtpdk(JT *pjt, JTPDK jtpdk)
 {

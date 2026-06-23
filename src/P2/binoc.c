@@ -108,7 +108,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00135550);
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", open_close_binoc);
 
-extern "C" {
 int FUN_001357f0(void *a, void *b)
 {
     if (!FIsLoInWorld(STRUCT_OFFSET(a, 0x0, LO *)))
@@ -122,7 +121,6 @@ int FUN_001357f0(void *a, void *b)
 
     return 1;
 }
-}
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00135858);
 
@@ -131,22 +129,18 @@ INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_001358d0);
 JUNK_ADDIU(30);
 JUNK_WORD(0xE4C00000);
 
-extern "C" {
 void FUN_00135E30(void *a0, void *a1, void *a2)
 {
     STRUCT_OFFSET(a1, 0x0, qword) = STRUCT_OFFSET(a0, 0x140, qword);
     STRUCT_OFFSET(a2, 0x0, int) = 0;
 }
-}
 
 JUNK_ADDIU(A0);
 
-extern "C" {
 int FUN_00135E48(void *param_1, int param_2, VECTOR *param_3)
 {
     *(qword *)param_3 = *(qword *)((uint8_t *)param_1 + 0x140);
     return ChpBuildConvexHullScreen(param_3, 1, (HP *)param_3);
-}
 }
 
 JUNK_ADDIU(10);
@@ -159,14 +153,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00136040);
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00136238);
 
-extern "C" {
 void FUN_001363d0(BINOC *pbinoc)
 {
     OnBlotReset(pbinoc);
     DIALOG *pdialog = STRUCT_OFFSET(pbinoc, 0x324, DIALOG *);
     if (pdialog)
         SetDialogDialogs(pdialog, DIALOGS_Disabled);
-}
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", SetBinocAchzDraw);
@@ -222,8 +214,7 @@ void GetBinocReticleFocus(BINOC *binoc, float *dxReticle, float *dyReticle)
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00136ef8);
 
-extern "C" {
-void open_close_binoc(BINOC *pbinoc, int state);
+extern "C" void open_close_binoc(BINOC *pbinoc, int state);
 
 void FUN_00136fa8(BINOC *pbinoc)
 {
@@ -232,7 +223,6 @@ void FUN_00136fa8(BINOC *pbinoc)
         SetDialogDialogs(pdialog, DIALOGS_Calling);
     else
         open_close_binoc(pbinoc, 0);
-}
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", binoc__static_initialization_and_destruction_0);

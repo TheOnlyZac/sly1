@@ -73,7 +73,7 @@ extern "C" int FUN_0018dc88(SO *pso, SO *psoOther)
 }
 #endif // SKIP_ASM
 
-extern "C" void FUN_0018dd50(void * p, int val)
+void FUN_0018dd50(void * p, int val)
 {
     int c = STRUCT_OFFSET(p, 0x6bc, int);
     if ((unsigned int)c < 4)
@@ -84,7 +84,7 @@ extern "C" void FUN_0018dd50(void * p, int val)
     }
 }
 
-extern "C" void FUN_0018dd78(void * p, int val)
+void FUN_0018dd78(void * p, int val)
 {
     int c = STRUCT_OFFSET(p, 0x6d0, int);
     if ((unsigned int)c < 4)

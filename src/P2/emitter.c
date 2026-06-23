@@ -126,7 +126,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", ModifyEmitterParticles__FP7EMITTER);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", UpdateEmitter__FP7EMITTERf);
 
-extern "C" {
 void FUN_00155f28(SO *pso)
 {
     SO *psoParent;
@@ -152,7 +151,6 @@ void FUN_00155f28(SO *pso)
     }
 
     STRUCT_OFFSET(pso, 0x88, int) = STRUCT_OFFSET(psoParent, 0x88, int);
-}
 }
 
 void PauseEmitter(EMITTER *pemitter, float dtPause)

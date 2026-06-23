@@ -164,7 +164,7 @@ void FreezeTn(TN *ptn, int fFreeze)
     }
 }
 
-extern "C" void FUN_001e29e8(TN *ptn, float g)
+void FUN_001e29e8(TN *ptn, float g)
 {
     STRUCT_OFFSET(ptn, 0x364, float) = g;
     STRUCT_OFFSET(ptn, 0x368, float) = 1.0f;
@@ -206,7 +206,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/tn", UpdateCptn__FP4CPTNP6CPDEFIP3JOYf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/tn", FUN_001e4578);
 
-extern "C" float FUN_001e4880(int a, int b, int c, void *p)
+float FUN_001e4880(int a, int b, int c, void *p)
 {
     return STRUCT_OFFSET(p, 0x20, float);
 }

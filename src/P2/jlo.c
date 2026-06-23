@@ -30,7 +30,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/jlo", LoadJloFromBrx__FP3JLOP18CBinaryInputStre
 
 INCLUDE_ASM("asm/nonmatchings/P2/jlo", PostJloLoad__FP3JLO);
 
-extern "C" {
 void FUN_0016d040(JLO *pjlo, OID oid)
 {
     JLOVOL *pjlovol;
@@ -46,7 +45,6 @@ void FUN_0016d040(JLO *pjlo, OID oid)
         else
             SetJloJlos(pjlo, JLOS_Taunt);
     }
-}
 }
 
 void PresetJloAccel(JLO *pjlo, float dt)
@@ -122,7 +120,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/jlo", JumpJlo__FP3JLO);
 extern "C" void PreloadVag1(void *pv);
 extern char D_002482D8[];
 
-extern "C" void FUN_0016d928(JLO *pjlo)
+void FUN_0016d928(JLO *pjlo)
 {
     if (STRUCT_OFFSET(pjlo, 0x5c0, int) != 0)
     {
