@@ -1,4 +1,5 @@
 #include <pzo.h>
+#include <jp.h>
 #include <find.h>
 #include <game.h>
 #include <so.h>
@@ -173,8 +174,6 @@ void AddLockgLock(LOCKG *plockg, OID oidLock)
     plockg->aoidLock[ccur] = oidLock;
     plockg->coidLock = ++ccur;
 }
-
-extern "C" void func_001781E0(JT *pjt, LOCKG *plockg);
 
 void TriggerLockg(LOCKG *plockg)
 {

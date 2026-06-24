@@ -1,4 +1,5 @@
 #include <gs.h>
+#include <sce/libs.h>
 #include <sdk/ee/eekernel.h>
 #include <memory.h>
 #include <gifs.h>
@@ -24,8 +25,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/gs", GS_Interrupt__Fi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", ResetGs__Fv);
 
-extern "C" int func_00202120();
-extern "C" void func_00202058(int);
 extern int D_002BE464;
 extern int D_002BE468;
 

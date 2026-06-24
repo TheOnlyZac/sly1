@@ -28,4 +28,12 @@ void StartupMpeg();
 
 extern CMpeg g_mpeg;
 
+extern "C" void FUN_0018f0e8(CMpeg *pmpeg, void *pv);
+
+extern "C" int FAccept__10CMpegAudioiPUc(void *pmpega, int cb, uchar *pb);
+
+extern "C" void CbDemuxed__5CMpegi(CMpeg *pmpeg, int nParam);
+
+extern "C" void Execute__5CMpeg(CMpeg *pmpeg, OID *poid);
+
 #endif // MPEG_H

@@ -71,8 +71,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c2f0);
 INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c5e8);
 
 extern void *D_0027C00C;
-extern "C" void FUN_0014c5e8(void *p);
-
 void FUN_0014c668(void *pv, int tnt)
 {
     if (tnt == 1)
@@ -90,9 +88,6 @@ void FUN_0014c668(void *pv, int tnt)
         }
     }
 }
-
-extern "C" void FUN_0014c858(void *p);
-extern "C" void FUN_0014cba8(void *p);
 
 INCLUDE_ASM("asm/nonmatchings/P2/crusher", update_crbrain);
 #ifdef SKIP_ASM

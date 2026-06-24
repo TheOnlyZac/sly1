@@ -42,7 +42,6 @@ void StartupCd()
 
 INCLUDE_ASM("asm/nonmatchings/P2/cd", UpdateCd__Fv);
 
-extern "C" char *strcpy1(char *pchzDst, char *pchzSrc);
 extern short D_00249E20;
 extern char D_00249E28[];
 extern char D_00249E30[];

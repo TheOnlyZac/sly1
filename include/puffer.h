@@ -96,4 +96,6 @@ int FCanPuffcAttack(PUFFC *ppuffc);
 
 void PostPuffbLoad(PUFFB *ppuffb);
 
+extern "C" void FUN_001973d8(void *p);
+
 #endif // PUFFER_H

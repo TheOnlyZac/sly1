@@ -319,4 +319,6 @@ int GetAMRegister(int reg);
  */
 void UpdateAMRegister(int reg, int value);
 
+extern "C" void PreloadVag1(void *pv);
+
 #endif // SOUND_H

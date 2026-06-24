@@ -1,4 +1,5 @@
 #include <po.h>
+#include <sce/libs.h>
 #include <jt.h>
 #include <zap.h>
 #include <cm.h>
@@ -234,8 +235,6 @@ void AddPoToList(PO *ppo)
         }
     }
 }
-
-extern "C" void *memmove(void *dst, const void *src, int cb);
 
 void RemovePoFromList(PO *ppo)
 {

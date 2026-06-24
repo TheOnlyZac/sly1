@@ -1,4 +1,5 @@
 #include <jt.h>
+#include <stepzap.h>
 #include <game.h>
 #include <step.h>
 #include <lo.h>
@@ -19,8 +20,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/jt", PresetJtAccel__FP2JTf);
 INCLUDE_ASM("asm/nonmatchings/P2/jt", AdjustJtNewXp__FP2JTP2XPi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", AdjustJtDz__FP2JTiP2DZif);
-
-extern "C" void FUN_001d4c98(JT *pjt);
 
 void HandleJtGrfjtsc(JT *pjt)
 {

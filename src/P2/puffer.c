@@ -36,7 +36,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/puffer", PpufftChoosePuffer__FP6PUFFER);
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_001973d8);
 
-extern "C" void FUN_001973d8(void *p);
 extern void *D_0026A904;
 
 void FUN_00197458(void *p, int n)

@@ -81,8 +81,6 @@ void FinalizeFrameGifs(GIFS *pgifs, int *pcqwGifs, QW **ppqwGifs)
     pgifs->Detach(pcqwGifs, ppqwGifs);
 }
 
-extern "C" int SignalSema(int sid);
-
 extern DL D_002622E0;
 extern DL D_002622F0;
 extern DL D_00262300;
@@ -174,8 +172,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/frm", BlendPrevFrame__Fv);
  * Once the appropriate functions are matched these can be removed.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/frm", func_0015F618);
-extern "C" void func_0015F618(int, int);
-
 extern "C" void func_0015F658(void)
 {
     func_0015F618(1, 0xFFFF);

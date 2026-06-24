@@ -510,7 +510,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae510);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae5e0);
 
-extern "C" char FUN_001aea08(void);
 extern float D_002744AC;
 
 void FUN_001ae758(BLOT *pblot)
@@ -546,8 +545,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001aea70);
 
 JUNK_WORD(0xE48C0000);
 JUNK_WORD(0xE48C0008);
-
-extern "C" void FUN_001aea70(int, int);
 
 void FUN_001aec90(void)
 {

@@ -49,7 +49,6 @@ char *FUN_0018e480(int x)
     return D_0024B588;
 }
 
-extern "C" void FUN_0018f0e8(CMpeg *pmpeg, void *pv);
 extern uchar D_002484B0[16][32];
 
 void FUN_0018e4c0(int i)
@@ -236,8 +235,6 @@ int FMpegAcceptVideo(sceMpeg *pmp, sceMpegCbDataStr *pcbdata, CMpeg *pmpeg)
 
 struct sceMpeg;
 struct sceMpegCbDataStr;
-extern "C" int FAccept__10CMpegAudioiPUc(void *pmpega, int cb, uchar *pb);
-
 int FMpegAcceptAudio(sceMpeg *pmp, sceMpegCbDataStr *pcbdata, CMpeg *pmpeg)
 {
     return FAccept__10CMpegAudioiPUc((uint8_t *)pmpeg + 0x80, STRUCT_OFFSET(pcbdata, 0xC, int), STRUCT_OFFSET(pcbdata, 0x8, uchar *));
@@ -247,8 +244,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FMpegDecodeVideo__FP7sceMpegP13sceMpegCb
 
 struct sceMpeg;
 struct sceMpegCbData;
-extern "C" void CbDemuxed__5CMpegi(CMpeg *pmpeg, int nParam);
-
 int FMpegDecoderIdle(sceMpeg *pmp, sceMpegCbData *pcbdata, CMpeg *pmpeg)
 {
     CbDemuxed__5CMpegi(pmpeg, 0);
@@ -268,8 +263,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/mpeg", BuildMpegGifs__FP2QWP11sceIpuRGB32iiiii)
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FUN_0018ef78);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FUN_0018f0e8);
-
-extern "C" void Execute__5CMpeg(CMpeg *pmpeg, OID *poid);
 
 void CMpeg::ExecuteOids()
 {

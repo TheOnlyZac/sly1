@@ -214,8 +214,6 @@ void GetBinocReticleFocus(BINOC *binoc, float *dxReticle, float *dyReticle)
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00136ef8);
 
-extern "C" void open_close_binoc(BINOC *pbinoc, int state);
-
 void FUN_00136fa8(BINOC *pbinoc)
 {
     DIALOG *pdialog = STRUCT_OFFSET(pbinoc, 0x324, DIALOG *);

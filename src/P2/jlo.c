@@ -1,4 +1,5 @@
 #include <jlo.h>
+#include <sound.h>
 #include <mat.h>
 #include <find.h>
 #include <pnt.h>
@@ -117,7 +118,6 @@ void LandJlo(JLO *pjlo)
 
 INCLUDE_ASM("asm/nonmatchings/P2/jlo", JumpJlo__FP3JLO);
 
-extern "C" void PreloadVag1(void *pv);
 extern char D_002482D8[];
 
 void FUN_0016d928(JLO *pjlo)

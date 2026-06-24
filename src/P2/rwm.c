@@ -9,8 +9,6 @@
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", InitRwm__FP3RWM);
 
-extern "C" void FUN_001a93c8(RWM *prwm);
-
 void OnRwmRemove(RWM *prwm)
 {
     OnLoRemove(prwm);
@@ -119,8 +117,6 @@ void PostRwmLoad(RWM *prwm)
             PloFindSwNearest(STRUCT_OFFSET(prwm, 0x14, SW *), oid, (LO *)prwm);
     }
 }
-
-extern "C" void FUN_001a93c8(RWM *prwm);
 
 void FUN_001a86f8(RWM *prwm, int f)
 {
