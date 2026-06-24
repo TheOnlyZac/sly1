@@ -68,6 +68,25 @@ void OnLightRemove(LIGHT *plight)
  * @todo 98.75% match.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/light", CloneLight__FP5LIGHTT0); // SKIP_ASM
+#ifdef SKIP_ASM
+void CloneLight(LIGHT *plight, LIGHT *plightBase)
+{
+    int fDynamic = FIsLoInWorld(plight) && (STRUCT_OFFSET(plight, 0x304, int) != STRUCT_OFFSET(plightBase, 0x304, int));
+    if (fDynamic)
+    {
+        RemoveLightFromSw(plight);
+    }
+
+    DLE dleLight = STRUCT_OFFSET(plightBase, 0x410, DLE);
+    CloneAlo(plight, plightBase);
+    STRUCT_OFFSET(plight, 0x410, DLE) = dleLight;
+
+    if (fDynamic)
+    {
+        AddLightToSw(plight);
+    }
+}
+#endif // SKIP_ASM
 
 void FitLinearFunction(float x0, float y0, float x1, float y1, float *pdu, float *pru)
 {

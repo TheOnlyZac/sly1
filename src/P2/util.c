@@ -137,7 +137,43 @@ int FFloatsNear(float g1, float g2, float gEpsilon)
     return (g2 / x) < gEpsilon;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/util", CSolveQuadratic__FfffPf); // SKIP_ASM
+INCLUDE_ASM("asm/nonmatchings/P2/util", CSolveQuadratic__FfffPf);
+#ifdef SKIP_ASM
+/**
+ * @todo 95.96% matched.
+ *
+ * Compiler is using bc1f instead of bc1fl for (alpha < 0.0f) branch.
+ *
+ * https://decomp.me/scratch/A4VOu
+ */
+int CSolveQuadratic(float a, float b, float c, float *ax)
+{
+    float alpha;
+    float beta;
+
+    alpha = b * b - 4.f * a * c;
+    a = a * 2;
+
+    if (alpha < 0.0f)
+    {
+        return 0;
+    }
+    else
+    {
+        beta = b / a;
+        alpha = sqrtf(alpha) / a;
+        if (fabsf(alpha) < 0.0001f)
+        {
+            *ax = -beta;
+            return 1;
+        }
+
+        *ax = -beta + alpha;
+        ax[1] = -beta - alpha;
+        return 2;
+    }
+}
+#endif // SKIP_ASM
 
 void PrescaleClq(CLQ *pclqSrc, float ru, float du, CLQ *pclqDst)
 {

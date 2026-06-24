@@ -228,6 +228,30 @@ JUNK_ADDIU(10);
 JUNK_ADDIU(10);
 
 INCLUDE_ASM("asm/nonmatchings/P2/989snd", snd_GotReturns__Fv);
+#ifdef SKIP_ASM
+// Rodata
+int snd_GotReturns(void)
+{
+    FlushCache(0);
+    if (gCommBusy == NULL) {
+        return 1;
+    }
+
+    if (sceSifCheckStatRpc(&gSLClientData.rpcd)) {
+        return 0;
+    }
+
+    if (*gCommBusy == -1 && (gCommBusy[gAwaitingInts + 1] == -1)) {
+        gCommBusy = NULL;
+        return 1;
+    } else {
+        printf("989snd.c: Sif says RPC isn\'t busy, but we still don\'t have returns from the  IOP!\n");
+        return 0;
+    }
+
+    return 1;
+}
+#endif
 
 void snd_PrepareReturnBuffer(u_int* buffer, int num_ints)
 {
