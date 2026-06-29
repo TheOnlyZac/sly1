@@ -9,6 +9,9 @@ jobs:
   docs:
     if: github.repository_owner == 'theonlyzac'
     runs-on: ubuntu-latest
+    concurrency:
+      group: gh-pages-doxygen
+      cancel-in-progress: true
     permissions:
       contents: write
 
@@ -26,7 +29,9 @@ jobs:
           path: sly1
 
       - name: Install Doxygen and Graphviz
-        run: sudo apt-get install -y doxygen graphviz
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
 
       - name: Preprocess headers
         run: |
