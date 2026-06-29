@@ -1,6 +1,9 @@
 <map id="CHKPNT" name="CHKPNT">
-<area shape="rect" id="node1" title="Checkpoint." alt="" coords="5,229,81,256"/>
-<area shape="rect" id="node2" href="$structALO.html" title="&quot;Lightweight&quot;" alt="" coords="19,155,67,181"/>
-<area shape="rect" id="node3" href="$structLO.html" title="&quot;LO&quot;" alt="" coords="24,80,63,107"/>
-<area shape="rect" id="node4" href="$structBASIC.html" title="Basic object." alt="" coords="13,5,74,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,225,81,251"/>
+<area shape="rect" id="Node000002" href="$structALO.html" title=" " alt="" coords="19,152,67,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="46,191,46,225,41,225,41,191"/>
+<area shape="rect" id="Node000003" href="$structLO.html" title="Live Object, base class for all objects that exist in the world." alt="" coords="24,79,63,104"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="46,118,46,152,41,152,41,118"/>
+<area shape="rect" id="Node000004" href="$structBASIC.html" title="Base object for most other kinds of objects." alt="" coords="13,5,74,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="46,44,46,79,41,79,41,44"/>
 </map>

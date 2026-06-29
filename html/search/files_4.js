@@ -1,11 +1,20 @@
 var searchData=
 [
-  ['dart_2eh_2606',['dart.h',['../dart_8h.html',1,'']]],
-  ['difficulty_2ec_2607',['difficulty.c',['../difficulty_8c.html',1,'']]],
-  ['difficulty_2eh_2608',['difficulty.h',['../difficulty_8h.html',1,'']]],
-  ['dl_2ec_2609',['dl.c',['../dl_8c.html',1,'']]],
-  ['dl_2eh_2610',['dl.h',['../dl_8h.html',1,'']]],
-  ['dma_2eh_2611',['dma.h',['../dma_8h.html',1,'']]],
-  ['dmas_2ec_2612',['dmas.c',['../dmas_8c.html',1,'']]],
-  ['dmas_2eh_2613',['dmas.h',['../dmas_8h.html',1,'']]]
+  ['dart_2ec_0',['dart.c',['../dart_8c.html',1,'']]],
+  ['dart_2eh_1',['dart.h',['../dart_8h.html',1,'']]],
+  ['dartgun_2ec_2',['dartgun.c',['../dartgun_8c.html',1,'']]],
+  ['dartgun_2eh_3',['dartgun.h',['../dartgun_8h.html',1,'']]],
+  ['dialog_2ec_4',['dialog.c',['../dialog_8c.html',1,'']]],
+  ['dialog_2eh_5',['dialog.h',['../dialog_8h.html',1,'']]],
+  ['difficulty_2ec_6',['difficulty.c',['../difficulty_8c.html',1,'']]],
+  ['difficulty_2eh_7',['difficulty.h',['../difficulty_8h.html',1,'']]],
+  ['distrobox_2emd_8',['DISTROBOX.md',['../DISTROBOX_8md.html',1,'']]],
+  ['dl_2ec_9',['dl.c',['../dl_8c.html',1,'']]],
+  ['dl_2eh_10',['dl.h',['../dl_8h.html',1,'']]],
+  ['dmas_2ec_11',['dmas.c',['../dmas_8c.html',1,'']]],
+  ['dmas_2eh_12',['dmas.h',['../dmas_8h.html',1,'']]],
+  ['dysh_2ec_13',['dysh.c',['../dysh_8c.html',1,'']]],
+  ['dysh_2eh_14',['dysh.h',['../dysh_8h.html',1,'']]],
+  ['dzg_2ec_15',['dzg.c',['../dzg_8c.html',1,'']]],
+  ['dzg_2eh_16',['dzg.h',['../dzg_8h.html',1,'']]]
 ];

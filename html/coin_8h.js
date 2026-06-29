@@ -2,7 +2,7 @@ var coin_8h =
 [
     [ "DPRIZE", "structDPRIZE.html", "structDPRIZE" ],
     [ "COIN", "structCOIN.html", "structCOIN" ],
-    [ "KEY", "structKEY.html", null ],
+    [ "KEY", "structKEY.html", "structKEY" ],
     [ "CHARM", "structCHARM.html", null ],
     [ "DPRIZES", "coin_8h.html#a278f27aa0df68ffcb451a8de1766e0a5", [
       [ "DPRIZES_Nil", "coin_8h.html#a278f27aa0df68ffcb451a8de1766e0a5a733765c15807606660750a5abc64391c", null ],
@@ -17,10 +17,20 @@ var coin_8h =
       [ "DPRIZES_Max", "coin_8h.html#a278f27aa0df68ffcb451a8de1766e0a5a8b5ab54a601c0138f8c360a10cd7ca1f", null ]
     ] ],
     [ "AddLife", "coin_8h.html#a5d21c77e9e2528d06d0e5125c760c788", null ],
+    [ "CloneDprize", "coin_8h.html#a13e2e8df5086cd13dda046a5168b61b7", null ],
+    [ "CpdprizeAttractSwDprizes", "coin_8h.html#ae5f28ee428132d040a36d24cf188f443", null ],
+    [ "CreateSwCharm", "coin_8h.html#a32073dc95164761010ae2efe78f5db56", null ],
     [ "InitCharm", "coin_8h.html#a8011f0062f36f84e0f66a2633bce3a51", null ],
     [ "InitCoin", "coin_8h.html#a644b52f8e679770b2a1470aea098bd4b", null ],
     [ "InitDprize", "coin_8h.html#a861f067745a91a9656469e0ea5dd7608", null ],
     [ "InitKey", "coin_8h.html#aebf2a6c5c7ddbc715a2ebc5f00a404ff", null ],
     [ "LoadDprizeFromBrx", "coin_8h.html#acfc36dc9afc7d963cd4c085ed65b54f5", null ],
+    [ "OnCoinSmack", "coin_8h.html#a9cf5a7d9f5bc85d9301e20b298624967", null ],
+    [ "RemoveSwExtraneousCharms", "coin_8h.html#a30b06069c0aa6b46266cb5b2a24b2ebf", null ],
+    [ "SetCharmDprizes", "coin_8h.html#a59a51430618f26481227ade3c8a19e3b", null ],
+    [ "SetCoinDprizes", "coin_8h.html#a340c27f40409ed608fa2556851d65bf1", null ],
+    [ "SetDprizeDprizes", "coin_8h.html#a08b05c1afb8cfd41a1be78c40d7729e2", null ],
+    [ "SetKeyDprizes", "coin_8h.html#a9a05098369eebda4059bbdb11062411c", null ],
+    [ "UpdateCoin", "coin_8h.html#a65d752d917bd38c06392949ee2abbb62", null ],
     [ "s_asnipDprize", "coin_8h.html#acaf128e7da7de1fd1a19f6fc1afd6e5f", null ]
 ];

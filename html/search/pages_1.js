@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['contributing_20guide_4862',['Contributing Guide',['../md_docs_CONTRIBUTING.html',1,'']]]
+  ['beginner_20s_20guide_0',['Beginner&apos;s Guide',['../md_docs_2BEGINNERSGUIDE.html',1,'']]]
 ];

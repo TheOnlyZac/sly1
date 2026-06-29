@@ -29,11 +29,8 @@ var cid_8h =
       [ "CID_TURRET", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a60a75f3f1db62da66646c43b896523ac", null ],
       [ "CID_VAULT", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a6beff3ca6b7e49ebf164fa5dda250439", null ],
       [ "CID_PUFFER", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a272c288930972ea08cacaf305950227e", null ],
-      [ "CID_MGV", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a6f9b3478fafc8c7e73cd105fd3c005ef", null ],
       [ "CID_SUV", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4ae3427c98efb93cf79c2cd39394b7138f", null ],
-      [ "CID_CYCLE", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a29fe0e7c2ab0a1318871a00be7ea1d73", null ],
       [ "CID_LGN", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a741326db42c589e0435526558933dae9", null ],
-      [ "CID_JACK", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a6442291dad573e654c9c71cdd6715b46", null ],
       [ "CID_RIPG", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a61834086481538a8762d7974dc7c5238", null ],
       [ "CID_WATER", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4abcf323c3007829a86f9b3968061b804d", null ],
       [ "CID_BRK", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a84415de99924fdd3b9bb91c5b283f301", null ],
@@ -116,10 +113,6 @@ var cid_8h =
       [ "CID_WM", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a2cd341f804e25dd977f77018d9162e2a", null ],
       [ "CID_PUFFB", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a6784e8572875eadf7b35392a190ba766", null ],
       [ "CID_CRBRAIN", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a803ca4fbeee31b6b6019335f847356f0", null ],
-      [ "CID_MGC", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4acc151596bf6aecfa389fa1b2e239f47e", null ],
-      [ "CID_JACKB", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4af2bd2ba5d95904d78560a306c873429d", null ],
-      [ "CID_JACKN", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a1924173cc193bde36103b969e25ee7bf", null ],
-      [ "CID_JACKF", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a77851cca3aad71ec5a990cbdcc1a5950", null ],
       [ "CID_SW", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a5f0970bb7e42f86c3651d1f177ae604b", null ],
       [ "CID_CM", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a5e807a893e0d38a8638423f9b060fa72", null ],
       [ "CID_SHAPE", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4ae34ff835b0e48abe41cf457f5f4829c0", null ],
@@ -164,6 +157,8 @@ var cid_8h =
       [ "CID_ASEGA", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4adabdf645c1b17ea93f971c7e00f0069b", null ],
       [ "CID_SMA", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4ab46d7e6b5e9d2b2750a1b650ee1ab623", null ],
       [ "CID__FCST", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a3d3d95fd2d91fc591210b0d07079918a", null ],
+      [ "CID_SBG", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4ad63ab2026554fa8f580f5b1ff1f94bd1", null ],
+      [ "CID_VBG", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4a19d2a0a9b22c781104f23d644d5526ba", null ],
       [ "CID_Max", "cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4ab5695e70f987c94223fd560ba83d248b", null ]
     ] ]
 ];

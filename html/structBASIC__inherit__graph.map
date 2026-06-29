@@ -1,33 +1,99 @@
 <map id="BASIC" name="BASIC">
-<area shape="rect" id="node1" title="Basic object." alt="" coords="685,5,746,32"/>
-<area shape="rect" id="node2" href="$structASEGA.html" title="Animation segment something(?)." alt="" coords="605,80,671,107"/>
-<area shape="rect" id="node3" href="$structLO.html" title="&quot;LO&quot;" alt="" coords="696,80,735,107"/>
-<area shape="rect" id="node31" href="$structSMA.html" title="State machine action." alt="" coords="759,80,810,107"/>
-<area shape="rect" id="node4" href="$structALO.html" title="&quot;Lightweight&quot;" alt="" coords="346,155,394,181"/>
-<area shape="rect" id="node18" href="$structASEG.html" title="Animation segment." alt="" coords="577,155,635,181"/>
-<area shape="rect" id="node20" href="$structCM.html" title="Game camera." alt="" coords="659,155,702,181"/>
-<area shape="rect" id="node21" href="$structPNT.html" title="Point." alt="" coords="726,155,774,181"/>
-<area shape="rect" id="node22" href="$structSM.html" title="State machine." alt="" coords="798,155,841,181"/>
-<area shape="rect" id="node23" href="$structXFM.html" title="Transform." alt="" coords="865,155,915,181"/>
-<area shape="rect" id="node5" href="$structCAMERA.html" title="Camera." alt="" coords="5,229,84,256"/>
-<area shape="rect" id="node6" href="$structCHKPNT.html" title="Checkpoint." alt="" coords="108,229,184,256"/>
-<area shape="rect" id="node7" href="$structDPRIZE.html" title="DPRIZE." alt="" coords="208,229,279,256"/>
-<area shape="rect" id="node11" href="$structEXIT.html" title=" " alt="" coords="303,229,354,256"/>
-<area shape="rect" id="node12" href="$structFLASH.html" title="Flash." alt="" coords="379,229,444,256"/>
-<area shape="rect" id="node13" href="$structSO.html" title="Scene object." alt="" coords="469,229,509,256"/>
-<area shape="rect" id="node17" href="$structTN.html" title="Unknown." alt="" coords="533,229,573,256"/>
-<area shape="rect" id="node8" href="$structCHARM.html" title="Charm." alt="" coords="121,304,192,331"/>
-<area shape="rect" id="node9" href="$structCOIN.html" title="Coin." alt="" coords="216,304,271,331"/>
-<area shape="rect" id="node10" href="$structKEY.html" title="Treasure key." alt="" coords="295,304,341,331"/>
-<area shape="rect" id="node14" href="$structPO.html" title="Player object." alt="" coords="469,304,509,331"/>
-<area shape="rect" id="node15" href="$structSTEP.html" title="TBD." alt="" coords="461,379,516,405"/>
-<area shape="rect" id="node16" href="$structJT.html" title="Sly entity." alt="" coords="469,453,508,480"/>
-<area shape="rect" id="node19" href="$structASEGBL.html" title="Animation segment blend." alt="" coords="597,229,671,256"/>
-<area shape="rect" id="node24" href="$structEXPL.html" title=" " alt="" coords="748,229,803,256"/>
-<area shape="rect" id="node28" href="$structTARGET.html" title="Target." alt="" coords="827,229,900,256"/>
-<area shape="rect" id="node29" href="$structVOL.html" title=" " alt="" coords="925,229,973,256"/>
-<area shape="rect" id="node30" href="$structWARP.html" title="Warp." alt="" coords="997,229,1057,256"/>
-<area shape="rect" id="node25" href="$structEXPLG.html" title=" " alt="" coords="699,304,763,331"/>
-<area shape="rect" id="node26" href="$structEXPLO.html" title=" " alt="" coords="787,304,851,331"/>
-<area shape="rect" id="node27" href="$structEXPLS.html" title=" " alt="" coords="788,379,851,405"/>
+<area shape="rect" id="Node000001" title="Base object for most other kinds of objects." alt="" coords="5,1375,67,1400"/>
+<area shape="rect" id="Node000002" href="$structASEGA.html" title=" " alt="" coords="115,1325,181,1351"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,1367,117,1348,119,1353,79,1371"/>
+<area shape="rect" id="Node000003" href="$structLO.html" title="Live Object, base class for all objects that exist in the world." alt="" coords="129,1375,167,1400"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="81,1385,128,1385,128,1390,81,1390"/>
+<area shape="rect" id="Node000123" href="$structSMA.html" title=" " alt="" coords="123,1424,173,1449"/>
+<area shape="poly" id="edge48_Node000001_Node000123" title=" " alt="" coords="79,1403,123,1423,121,1428,77,1408"/>
+<area shape="rect" id="Node000004" href="$structALO.html" title=" " alt="" coords="247,548,295,573"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="175,1366,179,1361,188,1321,199,1238,226,992,266,574,271,574,232,993,205,1238,193,1322,184,1363,179,1369"/>
+<area shape="rect" id="Node000090" href="$structASEG.html" title=" " alt="" coords="242,1004,299,1029"/>
+<area shape="poly" id="edge26_Node000003_Node000090" title=" " alt="" coords="176,1366,179,1361,198,1316,205,1276,204,1237,200,1200,195,1162,195,1124,205,1083,227,1039,240,1027,244,1031,231,1042,210,1085,201,1124,201,1162,205,1199,210,1237,211,1276,203,1318,184,1363,180,1369"/>
+<area shape="rect" id="Node000092" href="$structCM.html" title=" " alt="" coords="249,1053,292,1079"/>
+<area shape="poly" id="edge28_Node000003_Node000092" title=" " alt="" coords="175,1366,179,1361,196,1323,203,1289,203,1256,200,1225,197,1193,199,1160,207,1125,227,1088,248,1072,251,1076,231,1092,212,1127,204,1161,203,1193,205,1224,208,1256,208,1290,201,1325,184,1363,180,1369"/>
+<area shape="rect" id="Node000093" href="$structFRZG.html" title=" " alt="" coords="241,1103,300,1128"/>
+<area shape="poly" id="edge29_Node000003_Node000093" title=" " alt="" coords="176,1365,179,1361,194,1330,200,1302,201,1249,200,1223,202,1196,210,1168,227,1138,239,1126,243,1130,231,1141,215,1170,207,1197,205,1223,206,1249,206,1303,199,1332,184,1363,180,1369"/>
+<area shape="rect" id="Node000094" href="$structJSG.html" title=" " alt="" coords="249,1152,293,1177"/>
+<area shape="poly" id="edge30_Node000003_Node000094" title=" " alt="" coords="175,1365,179,1361,192,1337,198,1315,201,1274,205,1233,213,1211,227,1187,247,1171,250,1175,231,1190,218,1213,210,1234,206,1274,203,1316,197,1339,184,1363,180,1369"/>
+<area shape="rect" id="Node000095" href="$structKEYHOLE.html" title="Spot where keys are inserted into locks?" alt="" coords="229,1201,312,1227"/>
+<area shape="poly" id="edge31_Node000003_Node000095" title=" " alt="" coords="176,1364,179,1361,196,1328,202,1299,208,1269,227,1236,241,1225,244,1229,231,1240,213,1271,207,1300,201,1330,184,1363,180,1368"/>
+<area shape="rect" id="Node000096" href="$structPIPE.html" title="Pipe that JT can climb on." alt="" coords="245,1251,296,1276"/>
+<area shape="poly" id="edge32_Node000003_Node000096" title=" " alt="" coords="176,1363,179,1360,194,1340,202,1323,211,1305,227,1285,244,1273,247,1278,231,1289,216,1308,207,1325,198,1343,183,1364,180,1367"/>
+<area shape="rect" id="Node000097" href="$structPNT.html" title=" " alt="" coords="247,1300,295,1325"/>
+<area shape="poly" id="edge33_Node000003_Node000097" title=" " alt="" coords="178,1366,228,1334,246,1323,249,1328,231,1339,181,1370"/>
+<area shape="rect" id="Node000103" href="$structRATHOLE.html" title="Hole where rats come from/go to." alt="" coords="229,1349,312,1375"/>
+<area shape="poly" id="edge38_Node000003_Node000103" title=" " alt="" coords="180,1378,228,1368,230,1373,181,1383"/>
+<area shape="rect" id="Node000104" href="$structRCHM.html" title=" " alt="" coords="239,1399,302,1424"/>
+<area shape="poly" id="edge39_Node000003_Node000104" title=" " alt="" coords="181,1391,240,1403,239,1408,180,1396"/>
+<area shape="rect" id="Node000105" href="$structRWM.html" title=" " alt="" coords="243,1448,299,1473"/>
+<area shape="poly" id="edge40_Node000003_Node000105" title=" " alt="" coords="181,1404,231,1434,249,1445,246,1450,228,1439,178,1408"/>
+<area shape="rect" id="Node000106" href="$structSGG.html" title="Stepguard (?)." alt="" coords="245,1497,296,1523"/>
+<area shape="poly" id="edge41_Node000003_Node000106" title=" " alt="" coords="180,1408,183,1411,198,1431,207,1449,216,1466,231,1484,247,1496,244,1500,227,1488,211,1469,202,1451,194,1434,179,1414,176,1411"/>
+<area shape="rect" id="Node000107" href="$structSHAPE.html" title="Unknown." alt="" coords="238,1547,303,1572"/>
+<area shape="poly" id="edge42_Node000003_Node000107" title=" " alt="" coords="180,1407,184,1411,201,1445,207,1474,213,1503,231,1534,244,1545,241,1549,227,1537,208,1505,202,1475,196,1446,179,1414,176,1410"/>
+<area shape="rect" id="Node000110" href="$structSM.html" title=" " alt="" coords="249,1596,292,1621"/>
+<area shape="poly" id="edge43_Node000003_Node000110" title=" " alt="" coords="180,1406,184,1411,197,1435,203,1458,206,1500,210,1540,218,1561,231,1583,251,1598,248,1603,227,1586,213,1563,205,1541,201,1500,198,1459,192,1437,179,1414,175,1409"/>
+<area shape="rect" id="Node000111" href="$structSW.html" title=" " alt="" coords="249,1645,292,1671"/>
+<area shape="poly" id="edge44_Node000003_Node000111" title=" " alt="" coords="180,1406,184,1411,199,1442,206,1471,206,1525,207,1577,215,1603,231,1632,251,1648,247,1652,227,1636,210,1606,202,1577,201,1525,200,1472,194,1444,179,1414,176,1409"/>
+<area shape="rect" id="Node000112" href="$structVISMAP.html" title="Visibility map." alt="" coords="235,1695,307,1720"/>
+<area shape="poly" id="edge45_Node000003_Node000112" title=" " alt="" coords="180,1406,184,1411,201,1449,208,1485,208,1518,205,1550,203,1581,204,1613,212,1646,231,1682,243,1693,239,1696,227,1685,207,1648,199,1614,198,1581,200,1549,203,1518,203,1485,196,1451,179,1414,175,1409"/>
+<area shape="rect" id="Node000113" href="$structWR.html" title=" " alt="" coords="249,1744,293,1769"/>
+<area shape="poly" id="edge46_Node000003_Node000113" title=" " alt="" coords="180,1406,184,1411,203,1456,211,1498,210,1537,205,1575,201,1612,201,1649,210,1689,231,1731,250,1746,247,1751,227,1734,205,1691,196,1650,195,1612,200,1574,204,1537,205,1499,198,1458,179,1414,176,1409"/>
+<area shape="rect" id="Node000114" href="$structXFM.html" title=" " alt="" coords="245,1793,296,1819"/>
+<area shape="poly" id="edge47_Node000003_Node000114" title=" " alt="" coords="180,1406,184,1411,206,1463,213,1512,211,1557,205,1600,198,1642,198,1686,207,1731,231,1780,247,1794,244,1798,227,1784,202,1733,192,1686,193,1642,199,1599,206,1556,208,1512,201,1465,179,1414,176,1409"/>
+<area shape="rect" id="Node000005" href="$structCAMERA.html" title="Game camera instance." alt="" coords="366,5,445,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="271,534,279,429,295,283,306,208,320,139,337,82,358,40,370,29,374,33,362,44,342,83,326,140,311,209,300,284,284,429,276,535"/>
+<area shape="rect" id="Node000006" href="$structCHKPNT.html" title=" " alt="" coords="367,55,443,80"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="271,534,280,437,297,306,323,178,339,126,358,90,370,78,374,82,362,93,344,128,328,179,303,307,286,438,277,534"/>
+<area shape="rect" id="Node000007" href="$structCRBRAIN.html" title="Unknown." alt="" coords="365,104,446,129"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="272,534,282,447,300,330,325,217,341,171,358,139,371,127,374,131,362,142,346,174,330,218,305,331,288,447,277,535"/>
+<area shape="rect" id="Node000008" href="$structDIALOG.html" title="Dialog line in a cutscene." alt="" coords="369,153,441,179"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="269,534,271,468,282,378,293,328,309,279,330,232,358,188,371,177,374,181,362,192,335,234,314,281,298,330,287,378,276,468,274,534"/>
+<area shape="rect" id="Node000009" href="$structDPRIZE.html" title=" " alt="" coords="370,203,441,228"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="270,534,274,475,288,398,299,356,314,314,333,274,358,238,371,226,374,230,362,241,338,277,319,316,304,357,293,399,280,476,275,534"/>
+<area shape="rect" id="Node000013" href="$structEMITTER.html" title="Particle emitter." alt="" coords="366,252,445,277"/>
+<area shape="poly" id="edge9_Node000004_Node000013" title=" " alt="" coords="271,534,279,484,293,419,319,350,337,317,358,287,372,275,375,279,362,290,341,320,324,352,299,420,284,485,277,535"/>
+<area shape="rect" id="Node000014" href="$structEXIT.html" title="Exit to another worldlevel." alt="" coords="380,301,431,327"/>
+<area shape="poly" id="edge10_Node000004_Node000014" title=" " alt="" coords="274,534,283,492,300,440,324,386,358,336,378,321,382,325,362,340,329,388,305,442,288,493,279,535"/>
+<area shape="rect" id="Node000015" href="$structFLASH.html" title=" " alt="" coords="373,351,438,376"/>
+<area shape="poly" id="edge11_Node000004_Node000015" title=" " alt="" coords="277,534,306,463,329,422,358,385,373,374,376,378,362,389,334,425,311,465,282,536"/>
+<area shape="rect" id="Node000016" href="$structJLOC.html" title=" " alt="" coords="379,400,431,425"/>
+<area shape="poly" id="edge12_Node000004_Node000016" title=" " alt="" coords="283,535,314,486,335,459,358,435,377,422,380,426,362,439,339,462,318,489,287,538"/>
+<area shape="rect" id="Node000017" href="$structLIGHT.html" title="Light." alt="" coords="375,449,436,475"/>
+<area shape="poly" id="edge13_Node000004_Node000017" title=" " alt="" coords="294,536,358,484,377,473,380,477,362,488,297,540"/>
+<area shape="rect" id="Node000018" href="$structLIKH.html" title=" " alt="" coords="379,499,431,524"/>
+<area shape="poly" id="edge14_Node000004_Node000018" title=" " alt="" coords="307,545,378,518,380,523,308,550"/>
+<area shape="rect" id="Node000019" href="$structLOCK.html" title="Treasure key lock." alt="" coords="377,548,434,573"/>
+<area shape="poly" id="edge15_Node000004_Node000019" title=" " alt="" coords="309,558,376,558,376,563,309,563"/>
+<area shape="rect" id="Node000020" href="$structLOCKG.html" title=" " alt="" coords="372,597,439,623"/>
+<area shape="poly" id="edge16_Node000004_Node000020" title=" " alt="" coords="309,572,373,595,371,600,307,577"/>
+<area shape="rect" id="Node000021" href="$structPROXY.html" title="Unknown." alt="" coords="372,647,439,672"/>
+<area shape="poly" id="edge17_Node000004_Node000021" title=" " alt="" coords="298,580,362,632,382,644,379,649,358,636,294,585"/>
+<area shape="rect" id="Node000022" href="$structPUFFB.html" title=" " alt="" coords="373,696,438,721"/>
+<area shape="poly" id="edge18_Node000004_Node000022" title=" " alt="" coords="288,584,319,632,362,681,379,694,376,698,358,685,314,635,283,587"/>
+<area shape="rect" id="Node000023" href="$structPUFFC.html" title=" " alt="" coords="373,745,438,771"/>
+<area shape="poly" id="edge19_Node000004_Node000023" title=" " alt="" coords="282,586,312,656,334,695,362,731,378,743,375,747,358,735,330,698,307,658,278,588"/>
+<area shape="rect" id="Node000024" href="$structROB.html" title="Unknown." alt="" coords="380,795,431,820"/>
+<area shape="poly" id="edge20_Node000004_Node000024" title=" " alt="" coords="279,586,289,627,305,678,329,732,362,780,382,795,378,799,358,784,324,734,300,680,284,629,274,588"/>
+<area shape="rect" id="Node000025" href="$structSO.html" title=" " alt="" coords="385,844,425,869"/>
+<area shape="poly" id="edge21_Node000004_Node000025" title=" " alt="" coords="277,586,284,636,299,700,324,768,341,800,362,830,373,840,386,847,384,852,370,844,358,833,337,803,319,770,294,701,279,637,272,587"/>
+<area shape="rect" id="Node000086" href="$structSPEAKER.html" title="Sound speaker." alt="" coords="365,893,446,919"/>
+<area shape="poly" id="edge22_Node000004_Node000086" title=" " alt="" coords="275,587,280,645,294,721,320,804,338,843,362,879,376,891,373,895,358,882,334,846,315,806,288,722,275,645,270,587"/>
+<area shape="rect" id="Node000087" href="$structTN.html" title=" " alt="" coords="385,943,425,968"/>
+<area shape="poly" id="edge23_Node000004_Node000087" title=" " alt="" coords="274,587,277,653,288,742,299,791,315,839,335,886,362,928,373,939,387,946,384,951,370,943,358,932,331,888,310,841,294,792,283,743,271,653,269,587"/>
+<area shape="rect" id="Node000088" href="$structWAYPOINT.html" title=" " alt="" coords="360,992,451,1017"/>
+<area shape="poly" id="edge24_Node000004_Node000088" title=" " alt="" coords="277,587,288,673,306,789,331,902,346,946,362,978,376,990,372,994,358,981,341,948,326,903,301,790,283,674,272,587"/>
+<area shape="rect" id="Node000089" href="$structWM.html" title=" " alt="" coords="382,1041,429,1067"/>
+<area shape="poly" id="edge25_Node000004_Node000089" title=" " alt="" coords="277,587,286,683,303,813,328,941,344,991,362,1027,384,1044,380,1048,358,1030,339,993,323,942,298,814,281,683,271,587"/>
+<area shape="rect" id="Node000091" href="$structASEGBL.html" title="Animation segment blend(?)." alt="" coords="369,1091,442,1116"/>
+<area shape="poly" id="edge27_Node000090_Node000091" title=" " alt="" coords="308,1034,314,1039,362,1076,382,1088,379,1093,358,1080,310,1043,305,1039"/>
+<area shape="rect" id="Node000098" href="$structJMT.html" title=" " alt="" coords="382,1227,429,1252"/>
+<area shape="poly" id="edge34_Node000097_Node000098" title=" " alt="" coords="305,1291,359,1261,380,1249,383,1254,361,1266,308,1296"/>
+<area shape="rect" id="Node000099" href="$structPNTS.html" title=" " alt="" coords="377,1276,433,1301"/>
+<area shape="poly" id="edge35_Node000097_Node000099" title=" " alt="" coords="308,1303,377,1291,378,1296,309,1309"/>
+<area shape="rect" id="Node000100" href="$structPNTSV.html" title=" " alt="" coords="373,1325,438,1351"/>
+<area shape="poly" id="edge36_Node000097_Node000100" title=" " alt="" coords="309,1317,373,1329,372,1335,308,1322"/>
+<area shape="rect" id="Node000101" href="$structPNTVEC.html" title=" " alt="" coords="368,1375,443,1400"/>
+<area shape="poly" id="edge37_Node000097_Node000101" title=" " alt="" coords="309,1330,383,1372,380,1377,306,1335"/>
 </map>

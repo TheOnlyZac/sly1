@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['·_20annotated_20example_20—_20evaluateacpb_20asm_20→_20full_20c_0',['9 · Annotated Example — EvaluateAcpb (ASM → full C)',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md56',1,'']]],
+  ['·_20bits_20→_20bytes_20→_20hex_20—_20quick_20reference_1',['D · Bits → bytes → hex — quick reference',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md38',1,'']]],
+  ['·_20c_20demangling_20—_20reading_20mangled_20names_2',['6 · C++ Demangling — Reading Mangled Names',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md50',1,'']]],
+  ['·_20common_20errors_20troubleshooting_3',['11 · Common Errors &amp; Troubleshooting',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md60',1,'']]],
+  ['·_20decomp_20me_20—_20tips_20for_20getting_20the_20most_20out_20of_20it_4',['17 · decomp.me — Tips for Getting the Most Out of It',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md80',1,'']]],
+  ['·_20engine_20lexicon_20—_20all_20modules_20types_20in_20sly_20cooper_5',['16 · Engine Lexicon — All Modules &amp; Types in Sly Cooper',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md70',1,'']]],
+  ['·_20float_20arithmetic_20instructions_20fpu_6',['3 · Float Arithmetic Instructions (FPU)',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md44',1,'']]],
+  ['·_20float_20registers_20_24f0_20–_20_24f31_20—_20coprocessor_201_20fpu_7',['2 · Float Registers ($f0 – $f31) — Coprocessor 1 (FPU)',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md42',1,'']]],
+  ['·_20full_20workflow_20—_20from_20zero_20to_20pr_8',['12 · Full Workflow — From Zero to PR',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md62',1,'']]],
+  ['·_20fundamental_20types_20—_20size_20alignment_20mips_20instruction_9',['A · Fundamental Types — size, alignment, MIPS instruction',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md35',1,'']]],
+  ['·_20ghidra_20—_20practical_20tips_20for_20sly_201_10',['10 · Ghidra — Practical Tips for Sly 1',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md58',1,'']]],
+  ['·_20hex_20→_20decimal_20—_20common_20offsets_20sizes_11',['B · Hex → Decimal — common offsets &amp; sizes',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md36',1,'']]],
+  ['·_20integer_20registers_20_240_20–_20_2431_12',['1 · Integer Registers ($0 – $31)',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md40',1,'']]],
+  ['·_20jumps_20branches_20integer_20arithmetic_13',['5 · Jumps, Branches &amp; Integer Arithmetic',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md48',1,'']]],
+  ['·_20memory_20instructions_20load_20store_14',['4 · Memory Instructions (load / store)',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md46',1,'']]],
+  ['·_20ps2_20ee_20calling_20convention_20—_20how_20args_20are_20passed_15',['13 · PS2 EE Calling Convention — How Args Are Passed',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md64',1,'']]],
+  ['·_20reading_20a_20struct_20from_20asm_20—_20finding_20offsets_16',['7 · Reading a Struct from ASM — Finding Offsets',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md52',1,'']]],
+  ['·_20recurring_20patterns_20in_20sly_201_17',['8 · Recurring Patterns in Sly 1',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md54',1,'']]],
+  ['·_20special_20registers_20hi_20lo_20—_20mult_20div_20accumulator_18',['14 · Special Registers HI / LO — mult, div &amp; accumulator',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md66',1,'']]],
+  ['·_20struct_20alignment_20rules_20padding_19',['C · Struct alignment rules &amp; padding',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md37',1,'']]],
+  ['·_20types_20sizes_20quick_20hex_20reference_20',['0 · Types, Sizes &amp; Quick Hex Reference',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md34',1,'']]],
+  ['·_20vu0_20vu1_20ps2_20simd_20instructions_20128_20bit_20vectors_21',['15 · VU0 / VU1 &amp; PS2 SIMD Instructions (128-bit vectors)',['../md_docs_2mips__ps2__cheatsheet.html#autotoc_md68',1,'']]]
+];

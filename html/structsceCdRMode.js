@@ -1,7 +1,7 @@
 var structsceCdRMode =
 [
-    [ "datapattern", "structsceCdRMode.html#a500e48b053fda5c869b7e293ade46b41", null ],
-    [ "pad", "structsceCdRMode.html#ab2d383f1f0280a7e649eaa0d5717e239", null ],
-    [ "spindlctrl", "structsceCdRMode.html#a4189197c67a5337ccd2f7068bdf73bd5", null ],
-    [ "trycount", "structsceCdRMode.html#aa0eb1fb7781abde90c240f497c858d2d", null ]
+    [ "datapattern", "structsceCdRMode.html#a23569ad288134be671a3146d0d859905", null ],
+    [ "pad", "structsceCdRMode.html#a2aa041848a7e7ca8fbc7c3942b483876", null ],
+    [ "spindlctrl", "structsceCdRMode.html#a391a3aa8596156f26d29fe0581f60a91", null ],
+    [ "trycount", "structsceCdRMode.html#ae8b7e6dbebd41d4ad4e8fb4f96dc062b", null ]
 ];

@@ -1,8 +1,7 @@
 var transition_8c =
 [
-    [ "INCLUDE_ASM", "transition_8c.html#a788982d95b6ccf21f889e19af8292c61", null ],
-    [ "INCLUDE_ASM", "transition_8c.html#a9c51863e662b195bdd50abd4fbeb116d", null ],
-    [ "INCLUDE_ASM", "transition_8c.html#a8efd3596b4b486d64678b6a9887a7bb0", null ],
-    [ "INCLUDE_ASM", "transition_8c.html#a70b4eae9eaa1c5976fb0f86621601a6e", null ],
-    [ "SetMvgkRvol", "transition_8c.html#a9179837b23ee475b8e522f20ff42e910", null ]
+    [ "INCLUDE_ASM", "transition_8c.html#a64e26bbe633b39cf7a91c0523d6806d3", null ],
+    [ "INCLUDE_ASM", "transition_8c.html#a23276ef5dae716953e87dd39295bfec5", null ],
+    [ "INCLUDE_ASM", "transition_8c.html#afc2cd521df629f724abc0789c1c00999", null ],
+    [ "ResetWorld", "transition_8c.html#a2a3f9e2ef7cb2ed95ef51ece88f6b6b7", null ]
 ];

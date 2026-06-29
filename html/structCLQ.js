@@ -1,7 +1,8 @@
 var structCLQ =
 [
-    [ "u", "structCLQ.html#aefb33dd65670bb4366c464947b6b1fa9", null ],
-    [ "v", "structCLQ.html#ab998b48863dd4eb6440bdc13e70369b6", null ],
-    [ "w", "structCLQ.html#a803fd52cfcd57c344235213fb5c01919", null ],
-    [ "x", "structCLQ.html#a3fca460b2fddb9dcd6886aaeeb1e58ae", null ]
+    [ "ag", "structCLQ.html#a1cf12ec2b8ee2a1628d4172c9469fe89", null ],
+    [ "g0", "structCLQ.html#a709ed580629bc13bdcdaa51521ed05a2", null ],
+    [ "g1", "structCLQ.html#a178513a9bc238ae91d64ad73e3e263ca", null ],
+    [ "g2", "structCLQ.html#a6e60aa7ff5e35455d6e41a3768f3c647", null ],
+    [ "gUnused", "structCLQ.html#a4a282a06894262755efedb6b04f059ba", null ]
 ];

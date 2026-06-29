@@ -1,9 +1,9 @@
 var classCSplotheap =
 [
     [ "FreeGarbage", "classCSplotheap.html#ac5fcabebc68aef79208b7c5a694a5db1", null ],
-    [ "PsplotLookup", "classCSplotheap.html#a4fd6768f206becf540a3998b3abd99c8", null ],
-    [ "PvAllocClear", "classCSplotheap.html#a74ca4330261b1b2111867fc5a57bd996", null ],
-    [ "PvAllocUnsafe", "classCSplotheap.html#a1b570905acf558aedc821aaa170824df", null ],
+    [ "PsplotLookup", "classCSplotheap.html#a79be185bfe09f71b2229dcf4aa46700f", null ],
+    [ "PvAllocClear", "classCSplotheap.html#a7d376d74c463740245db1adf6ab097e5", null ],
+    [ "PvAllocUnsafe", "classCSplotheap.html#ab311b4ccb3d0cdffea2ffbb5eadd238a", null ],
     [ "Shutdown", "classCSplotheap.html#a979fd05d030fc87b02e36aa777c70c27", null ],
     [ "Startup", "classCSplotheap.html#aa90dcc422031702fb0ae35e3d28cd29b", null ],
     [ "UnmarkAll", "classCSplotheap.html#a021c5f30593956d8e49a23b9c82ecc04", null ],

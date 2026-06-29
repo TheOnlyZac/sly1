@@ -1,6 +1,8 @@
 var mq_8h =
 [
     [ "MQ", "structMQ.html", "structMQ" ],
+    [ "GRFCMQ", "mq_8h.html#adb52db6ef1fe898b86065ab3c626fd3d", null ],
+    [ "PFNMQ", "mq_8h.html#afb2da8044a0d6595070abbf54edaf7f8", null ],
     [ "MSGID", "mq_8h.html#a7b3cf6396e3e361f51817756f0f372ce", [
       [ "MSGID_Nil", "mq_8h.html#a7b3cf6396e3e361f51817756f0f372cea53cf424ba4442eb683644132a53e0938", null ],
       [ "MSGID_callback", "mq_8h.html#a7b3cf6396e3e361f51817756f0f372ceae9872228099784d56193a08a4ebdd5cf", null ],

@@ -1,6 +1,6 @@
 # Beginner's Guide
 
-If you are new to using Git, follow these steps to get started. If you already familiar with Git, go ahead and read the [contributing guide](/docs/CONTRIBUTING.md) instead.
+If you are new to using Git, follow these steps to get started. If you're already familiar with Git, go ahead and read the [contributing guide](/docs/CONTRIBUTING.md) instead.
 
 **1. Fork the repository on GitHub**
 
@@ -51,9 +51,9 @@ git push origin branch-name
 
 **7. Create a pull request on GitHub**
 
-When you are have pushed all commits to your fork and are ready to submit your code, create a pull request on GitHub.
+When you have pushed all commits to your fork and are ready to submit your code, create a pull request on GitHub.
 1. Go to your forked repository on GitHub and click the "Pull requests" tab.
-2. Click the "New pull request" button.3
+2. Click the "New pull request" button.
 3. Select your branch from the "compare" dropdown menu.
 4. Click "Create pull request".
 6. Add a title and brief description stating what you did for the person reviewing it.
@@ -61,4 +61,4 @@ When you are have pushed all commits to your fork and are ready to submit your c
 
 **8. Wait for someone to review your code**
 
-A code reviewer will review your PR and either merge it into the main branch, or let you know if there are any issues that need be addressed. If you need to fix something, any commits you push to the same branch will be automatically added to the pull request until it is merged, at which point you will have to make another pull request if you continue working.
+A code reviewer will review your PR and either merge it into the main branch, or let you know if there are any issues that need to be addressed. If you need to fix something, any commits you push to the same branch will be automatically added to the pull request until it is merged, at which point you will have to make another pull request if you continue working.

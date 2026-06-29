@@ -17,5 +17,7 @@ var steppower_8h =
     [ "g_fsp", "steppower_8h.html#a6f2c6764e8b646998342bddd1f321833", null ],
     [ "RT_JtSlowDownClock", "steppower_8h.html#a2af7e8c2eeb9d7239a93c108f86899f4", null ],
     [ "RT_JtSpeedUpClock", "steppower_8h.html#a780aaa172fadb5652dad79e68e49ef6f", null ],
-    [ "s_mpfspachz", "steppower_8h.html#af227d63e95f11ce3fbc88bd131efb7f7", null ]
+    [ "s_mpfspachz", "steppower_8h.html#af227d63e95f11ce3fbc88bd131efb7f7", null ],
+    [ "s_mpfspgrfvault", "steppower_8h.html#ad17cb6868b47731398bd0da63be60b8b", null ],
+    [ "SMP_00274f78", "steppower_8h.html#a431b23816749051bff81ff7b7b5ba26f", null ]
 ];

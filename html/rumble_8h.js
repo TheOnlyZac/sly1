@@ -27,5 +27,7 @@ var rumble_8h =
       [ "RUMS_Max", "rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa72b058661e02b3c95ad855a51b55e604", null ]
     ] ],
     [ "InitRumble", "rumble_8h.html#a22a347bba35744030a7f57363defa7ab", null ],
+    [ "SetRumbleRums", "rumble_8h.html#a72b5390eb5413ab7c0238d8a7d03750d", null ],
+    [ "StopRumbleActuators", "rumble_8h.html#a12fc08862918688470f047b3480f1a09", null ],
     [ "TriggerRumbleRumk", "rumble_8h.html#ab353ad72a3fee627405e3cd498f84c2e", null ]
 ];

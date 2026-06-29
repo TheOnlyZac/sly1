@@ -1,13 +1,12 @@
 var clock_8c =
 [
-    [ "INCLUDE_ASM", "clock_8c.html#ac6949fb49627a7bdfeb7af852b5bb02e", null ],
-    [ "INCLUDE_ASM", "clock_8c.html#a6c750280b75f2a6d96f17f18b706157d", null ],
-    [ "INCLUDE_ASM", "clock_8c.html#a999b3d52f4502cfc72a699a68abbfdc2", null ],
     [ "MarkClockTick", "clock_8c.html#a6e4ed2930f61243e9c0fe9838f3fdbf5", null ],
     [ "MarkClockTickRealOnly", "clock_8c.html#a3bf9156b767e2e75d031c1d2324394f7", null ],
     [ "ResetClock", "clock_8c.html#a374128d3628fad7a947557821a975524", null ],
     [ "SetClockEnabled", "clock_8c.html#a6a8213cb50fbf233faa31a25a0226ab4", null ],
     [ "SetClockRate", "clock_8c.html#a6c90f64d8e1e3200b50a3f3286d935db", null ],
+    [ "StartupClock", "clock_8c.html#ad1c9500a546abe5c10e3802ed8585a41", null ],
+    [ "TickNow", "clock_8c.html#aa0c8288038b232c52ed312c3e4ed6e5b", null ],
     [ "CLOCK_EE_TICK_DURATION", "clock_8c.html#abbf196470be5c48f0dfea448beb8ab97", null ],
     [ "CLOCK_EE_TICK_RATE", "clock_8c.html#a4a6825d343c275a1ecf2c83cabb5e65d", null ],
     [ "CLOCK_FRAMERATE", "clock_8c.html#a1f367bd00c6c0d3d3914401ec1893d54", null ],

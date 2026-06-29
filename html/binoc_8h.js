@@ -1,5 +1,6 @@
 var binoc_8h =
 [
+    [ "BEI", "structBEI.html", "structBEI" ],
     [ "BINOC", "structBINOC.html", "structBINOC" ],
     [ "CTextBox", "classCTextBox.html", "classCTextBox" ],
     [ "JH", "binoc_8h.html#ae7dae4174f939ac6bae73185f5d9ef78", null ],
@@ -18,5 +19,8 @@ var binoc_8h =
       [ "JV_Bottom", "binoc_8h.html#a7d751d90987cd2c189fdcfc10946b078afe5d7e1cdb97d66f9eea46dafda5cbb0", null ],
       [ "JV_Max", "binoc_8h.html#a7d751d90987cd2c189fdcfc10946b078a38dafb7c42ac173c738ba3d3c0731012", null ]
     ] ],
+    [ "FDoneBinocAchz", "binoc_8h.html#a3d04ae328ebc783be497a0aec5e519c7", null ],
+    [ "GEvaluateBei", "binoc_8h.html#a14fd631bc194277116e3469f4cb6b1b5", null ],
+    [ "InitBei", "binoc_8h.html#a96626cda1c132b047bc5beda351f92de", null ],
     [ "SetBinocLookat", "binoc_8h.html#a56881cc4077adfaf059534f3b7353467", null ]
 ];

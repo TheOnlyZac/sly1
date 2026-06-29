@@ -8,6 +8,8 @@ var util_8h =
     [ "FFloatsNear", "util_8h.html#a1de2f7ffac278c48466cac3ca85d1f17", null ],
     [ "FitClq", "util_8h.html#a562f3b536c2b19ba4ce0667dc98dc6c3", null ],
     [ "Force", "util_8h.html#adeb1d60b29bba6f8c136087e04ee5994", null ],
+    [ "GEvaluateClq", "util_8h.html#a7bd4aed7e4395d22848c9bf99a528473", null ],
+    [ "GLerp", "util_8h.html#a36c67fdc59e419d731deecaef3d2d6d3", null ],
     [ "GLimitAbs", "util_8h.html#a81017b4e44a87233a7c5a211f1b0b0eb", null ],
     [ "GLimitLm", "util_8h.html#afb080e80f030ed3f08ff3d0da121ab9b", null ],
     [ "GModPositive", "util_8h.html#a7d8abfc06184da58f918104502a3e43c", null ],
@@ -23,5 +25,6 @@ var util_8h =
     [ "RadNormalize", "util_8h.html#a14639672f9ca35fa2c7e362348d26c5d", null ],
     [ "RadSmooth", "util_8h.html#a75f21c63972b878f298849b70ea42888", null ],
     [ "RadSmoothA", "util_8h.html#aa15aa728b5a15e07058059d409c68b98", null ],
-    [ "SmoothMatrix", "util_8h.html#a238a2da54adf735b0555f83890b3b834", null ]
+    [ "SmoothMatrix", "util_8h.html#a238a2da54adf735b0555f83890b3b834", null ],
+    [ "g_lmZeroOne", "util_8h.html#aeee4823b200985156b402f1c57becb78", null ]
 ];

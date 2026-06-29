@@ -1,6 +1,11 @@
 <map id="TARGET" name="TARGET">
-<area shape="rect" id="node1" title="Target." alt="" coords="5,229,79,256"/>
-<area shape="rect" id="node2" href="$structXFM.html" title="Transform." alt="" coords="17,155,67,181"/>
-<area shape="rect" id="node3" href="$structLO.html" title="&quot;LO&quot;" alt="" coords="23,80,61,107"/>
-<area shape="rect" id="node4" href="$structBASIC.html" title="Basic object." alt="" coords="11,5,73,32"/>
+<area shape="rect" id="Node000001" title="Target point defined by a transform, radius, and some other data." alt="" coords="5,225,79,251"/>
+<area shape="rect" id="Node000005" href="$structHND.html" title=" " alt="" coords="16,299,68,324"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="45,264,45,299,39,299,39,264"/>
+<area shape="rect" id="Node000002" href="$structXFM.html" title=" " alt="" coords="17,152,67,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="45,191,45,225,39,225,39,191"/>
+<area shape="rect" id="Node000003" href="$structLO.html" title="Live Object, base class for all objects that exist in the world." alt="" coords="23,79,61,104"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="45,118,45,152,39,152,39,118"/>
+<area shape="rect" id="Node000004" href="$structBASIC.html" title="Base object for most other kinds of objects." alt="" coords="11,5,73,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="45,44,45,79,39,79,39,44"/>
 </map>

@@ -1,5 +1,36 @@
 var po_8h =
 [
-    [ "PO", "structPO.html", null ],
-    [ "PpoCur", "po_8h.html#a2511c75cc221d3254d3fcb8244d01e4e", null ]
+    [ "PZI", "structPZI.html", "structPZI" ],
+    [ "PO", "structPO.html", "structPO" ],
+    [ "PCK", "po_8h.html#a9abacc433defe714d4f95acfe9418414", [
+      [ "PCK_Nil", "po_8h.html#a9abacc433defe714d4f95acfe9418414a4a8938c257e2a96300c72f5d59c3ced4", null ],
+      [ "PCK_Key", "po_8h.html#a9abacc433defe714d4f95acfe9418414a8d4e555c4191f44fe977b453751ac29d", null ],
+      [ "PCK_Gold", "po_8h.html#a9abacc433defe714d4f95acfe9418414a3da8d30a2026ea03257ed068a3dc0255", null ],
+      [ "PCK_Max", "po_8h.html#a9abacc433defe714d4f95acfe9418414a29759dee1eab723a1d1fdaa96b8b79d2", null ]
+    ] ],
+    [ "_IppoFindPo", "po_8h.html#a65af8bead98734e52355111e468d0154", null ],
+    [ "AddPoToList", "po_8h.html#a20b4f5607cd0846afcf497686cf2afc0", null ],
+    [ "ClonePo", "po_8h.html#ac5f6dde3bead492f558bffdfde30aa96", null ],
+    [ "CollectPoPrize", "po_8h.html#aa60128d340b676e2e222d07c15e39952", null ],
+    [ "FInvulnerablePo", "po_8h.html#aef190bce1c5ff0ec69d4c33eade7cb02", null ],
+    [ "FIsPoSoundBase", "po_8h.html#a42c287acc4eb1808dd96f588c3369645", null ],
+    [ "FTakePoDamage", "po_8h.html#a9047ff48334792bfb9fcf40c6357373e", null ],
+    [ "GetPoCpdefi", "po_8h.html#ad00df1f099815155717743213d177ade", null ],
+    [ "GetPoDiapi", "po_8h.html#a2c0968de990fe86a1705950c4a19fa20", null ],
+    [ "HandlePoMessage", "po_8h.html#a54b8683ca72d93abf51fdd3e4ef5f4ac", null ],
+    [ "InitPo", "po_8h.html#a32488f36de3b6279e03d5d21cc9cecef", null ],
+    [ "MakePoActive", "po_8h.html#a561c763043657a7027658dc01bfdc190", null ],
+    [ "OnPoActive", "po_8h.html#a90556c71960f981697c0c35e7f3114ce", null ],
+    [ "OnPoAdd", "po_8h.html#abbd43365a0eed38cef7f2e1e35dcc2ab", null ],
+    [ "OnPoRemove", "po_8h.html#adfe7f4b66b69130c799027312835de6e", null ],
+    [ "PlayPoDialog", "po_8h.html#aa7564c9d028fc4ac1f7a2bf19a435cf2", null ],
+    [ "PpoCur", "po_8h.html#a18b67b362426bd2d73c6f9a88de52f3b", null ],
+    [ "PpoStart", "po_8h.html#ae2722324fdb0deb6162a2bed9519a3f3", null ],
+    [ "PpziCur", "po_8h.html#a5f28a0ac6eb01b71a5cb297b9789f4d5", null ],
+    [ "RemovePoFromList", "po_8h.html#a8d6304a3b7e9b219bbff6b823835abc6", null ],
+    [ "SetPoPlayable", "po_8h.html#a9b8dd127528d00a463166de29d0deede", null ],
+    [ "SwitchToIppo", "po_8h.html#a6c85a1306d991c0d2fe962a0c01bfec3", null ],
+    [ "SwitchToPo", "po_8h.html#a0ef5f66d96742b2f981472afc16cbf6a", null ],
+    [ "UpdatePo", "po_8h.html#ae411e1cd014a9dfca93cf9c4580fe322", null ],
+    [ "UsePoCharm", "po_8h.html#a5419dbb292f306c6da8bea0492790eba", null ]
 ];

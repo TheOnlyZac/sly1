@@ -1,0 +1,56 @@
+var dialog_8h =
+[
+    [ "DP", "structDP.html", "structDP" ],
+    [ "DIALOG", "structDIALOG.html", "structDIALOG" ],
+    [ "DE", "structDE.html", "structDE" ],
+    [ "DIAPI", "structDIAPI.html", "structDIAPI" ],
+    [ "GRFDP", "dialog_8h.html#a9d5ff8ebe9e62b64e65d0613bd6ff5bd", null ],
+    [ "DEK", "dialog_8h.html#a8fa61b6d939bd0e3e7860a92b684f606", [
+      [ "DEK_Nil", "dialog_8h.html#a8fa61b6d939bd0e3e7860a92b684f606aef5dcdb653c10242bbd565ef37c043fa", null ],
+      [ "DEK_PreloadVag", "dialog_8h.html#a8fa61b6d939bd0e3e7860a92b684f606aa468eec00747f089ca44a07d84fd96a6", null ],
+      [ "DEK_SpeakerLeft", "dialog_8h.html#a8fa61b6d939bd0e3e7860a92b684f606a96026cd2b774ed4f12f8322075879254", null ],
+      [ "DEK_SpeakerRight", "dialog_8h.html#a8fa61b6d939bd0e3e7860a92b684f606a6de341a46487c49eae12059c847b0d23", null ],
+      [ "DEK_Talk", "dialog_8h.html#a8fa61b6d939bd0e3e7860a92b684f606af300ca46c98aa825f27c802c8f7e1d57", null ],
+      [ "DEK_CallSplice", "dialog_8h.html#a8fa61b6d939bd0e3e7860a92b684f606a97dc8215cdf5b6c73784e097d29f7b10", null ],
+      [ "DEK_ShowLetterbox", "dialog_8h.html#a8fa61b6d939bd0e3e7860a92b684f606ab0e8e2ed97aeda8a40d5eaaa7f2ab399", null ],
+      [ "DEK_HideLetterbox", "dialog_8h.html#a8fa61b6d939bd0e3e7860a92b684f606a40a7acad427676c19496b8fe2e3e86ab", null ],
+      [ "DEK_ShowMovie", "dialog_8h.html#a8fa61b6d939bd0e3e7860a92b684f606ab78ea4e745fd4fff1aac2796860469e8", null ],
+      [ "DEK_Max", "dialog_8h.html#a8fa61b6d939bd0e3e7860a92b684f606af3d286416faa2e986ea2bc5d07549117", null ]
+    ] ],
+    [ "DIALOGK", "dialog_8h.html#a21a039a96829c4fd8b3e13b45d699986", [
+      [ "DIALOGK_Nil", "dialog_8h.html#a21a039a96829c4fd8b3e13b45d699986a70667999a3962c2e81a22ee427535c73", null ],
+      [ "DIALOGK_Binoc", "dialog_8h.html#a21a039a96829c4fd8b3e13b45d699986ac636c7fd6979c08d23ed02827e5f35cb", null ],
+      [ "DIALOGK_Instruct", "dialog_8h.html#a21a039a96829c4fd8b3e13b45d699986aa323c2342b8e1693ca831184a5f9de47", null ],
+      [ "DIALOGK_Confront", "dialog_8h.html#a21a039a96829c4fd8b3e13b45d699986aa79246869cd61310437ee670c98d7750", null ],
+      [ "DIALOGK_Max", "dialog_8h.html#a21a039a96829c4fd8b3e13b45d699986a66367032e3302ad547db916cc8c9ec3a", null ]
+    ] ],
+    [ "DIALOGS", "dialog_8h.html#a27ad15fca3adcaf26b454a1fb47e59cd", [
+      [ "DIALOGS_Nil", "dialog_8h.html#a27ad15fca3adcaf26b454a1fb47e59cda749d82dadc22cce41e6db3f386656ef1", null ],
+      [ "DIALOGS_Enabled", "dialog_8h.html#a27ad15fca3adcaf26b454a1fb47e59cda2ba5d52cdbf4a3375595409accc2c5af", null ],
+      [ "DIALOGS_Triggered", "dialog_8h.html#a27ad15fca3adcaf26b454a1fb47e59cda9561d033c908adef95db8d75755fbc98", null ],
+      [ "DIALOGS_Disabled", "dialog_8h.html#a27ad15fca3adcaf26b454a1fb47e59cda2ffb9bcac3e45606a16f8d5fe4deb388", null ],
+      [ "DIALOGS_Playing", "dialog_8h.html#a27ad15fca3adcaf26b454a1fb47e59cda9a6be482c298dfe56a50918b58242679", null ],
+      [ "DIALOGS_Calling", "dialog_8h.html#a27ad15fca3adcaf26b454a1fb47e59cda4fcf463ae400cc0c6350a4e9b5776017", null ],
+      [ "DIALOGS_UnableToCall", "dialog_8h.html#a27ad15fca3adcaf26b454a1fb47e59cda6ac2ee3bd40df7b926a74097f86b4915", null ],
+      [ "DIALOGS_Max", "dialog_8h.html#a27ad15fca3adcaf26b454a1fb47e59cdafa0ce43e4918ad13fde890a36e7aac9b", null ]
+    ] ],
+    [ "DPK", "dialog_8h.html#a57adea9a383fd92233eac9fa02f8f517", null ],
+    [ "FPauseDialog", "dialog_8h.html#a378ba716449e30b395183c64d59acb89", null ],
+    [ "FUN_00151860", "dialog_8h.html#a30a34be5f9be7002803df6bbfe72ad60", null ],
+    [ "GetDialogPlayed", "dialog_8h.html#a8c7acd2c5c36b3172c66369e250f9168", null ],
+    [ "HandleDialogEvent", "dialog_8h.html#abcf6d9fd57871ddda19a27cd14c87095", null ],
+    [ "HandleDialogEvents", "dialog_8h.html#aad7b393138a2bbbbffff62e3fb573a3b", null ],
+    [ "HandleDialogMessage", "dialog_8h.html#a03d1db53218b4e4089bfe2a0418b48cb", null ],
+    [ "InitDialog", "dialog_8h.html#a57dd9891db3eef70e45ad5cf20bc07ff", null ],
+    [ "LoadDialogEventsFromBrx", "dialog_8h.html#aa2fa85e833e24c127696f69fcb268af3", null ],
+    [ "LoadDialogFromBrx", "dialog_8h.html#ae81156b98fdd634fbc67c936eee3acea", null ],
+    [ "SetDialogConfront", "dialog_8h.html#afb2fa3c564b236740d7633b73f2774f9", null ],
+    [ "SetDialogDialogs", "dialog_8h.html#a4eee51d20779541af7a55cf74570e12b", null ],
+    [ "SetDialogInstruct", "dialog_8h.html#a3c5badec30d16b91aec88504d0dcccf3", null ],
+    [ "SetDialogPlayed", "dialog_8h.html#a6363d3c3d817f1f0a13c6dad4d3b8bc9", null ],
+    [ "TriggerDialog", "dialog_8h.html#ac644f475584d5846b3d1b2f087fa7dc6", null ],
+    [ "UntriggerDialog", "dialog_8h.html#a697827a900dbcf52c008223476005ba4", null ],
+    [ "UpdateDialog", "dialog_8h.html#aa04e544a52bf7d183e5c18e137fb63dc", null ],
+    [ "g_pdialogCalling", "dialog_8h.html#a9e0e27a2fd62a376c684d255f521e108", null ],
+    [ "g_pdialogPlaying", "dialog_8h.html#a1bff378c122ddb0080d7dd7ea6bb93c3", null ]
+];

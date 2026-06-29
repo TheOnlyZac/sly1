@@ -2,6 +2,7 @@ var dir_182d366205e90fc527c8d2da2e035152 =
 [
     [ "bif.cpp", "bif_8cpp.html", "bif_8cpp" ],
     [ "eval.cpp", "eval_8cpp.html", "eval_8cpp" ],
+    [ "frame.cpp", "frame_8cpp.html", "frame_8cpp" ],
     [ "gc.cpp", "gc_8cpp.html", "gc_8cpp" ],
     [ "method.cpp", "method_8cpp.html", "method_8cpp" ],
     [ "pair.cpp", "pair_8cpp.html", "pair_8cpp" ],

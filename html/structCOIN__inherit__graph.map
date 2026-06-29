@@ -1,7 +1,11 @@
 <map id="COIN" name="COIN">
-<area shape="rect" id="node1" title="Coin." alt="" coords="13,304,68,331"/>
-<area shape="rect" id="node2" href="$structDPRIZE.html" title="DPRIZE." alt="" coords="5,229,76,256"/>
-<area shape="rect" id="node3" href="$structALO.html" title="&quot;Lightweight&quot;" alt="" coords="17,155,65,181"/>
-<area shape="rect" id="node4" href="$structLO.html" title="&quot;LO&quot;" alt="" coords="21,80,60,107"/>
-<area shape="rect" id="node5" href="$structBASIC.html" title="Basic object." alt="" coords="10,5,71,32"/>
+<area shape="rect" id="Node000001" title="Treasure coin." alt="" coords="13,299,68,324"/>
+<area shape="rect" id="Node000002" href="$structDPRIZE.html" title=" " alt="" coords="5,225,76,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="43,264,43,299,38,299,38,264"/>
+<area shape="rect" id="Node000003" href="$structALO.html" title=" " alt="" coords="17,152,65,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="43,191,43,225,38,225,38,191"/>
+<area shape="rect" id="Node000004" href="$structLO.html" title="Live Object, base class for all objects that exist in the world." alt="" coords="21,79,60,104"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="43,118,43,152,38,152,38,118"/>
+<area shape="rect" id="Node000005" href="$structBASIC.html" title="Base object for most other kinds of objects." alt="" coords="10,5,71,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="43,44,43,79,38,79,38,44"/>
 </map>

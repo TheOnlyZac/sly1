@@ -1,6 +1,6 @@
 var structBLOT =
 [
-    [ "achzDraw", "structBLOT.html#ac2b162bcdb97b52ede69361c2228d74f", null ],
+    [ "achzDraw", "structBLOT.html#a0d986b1a82cc287848dc109d7b26d75b", null ],
     [ "bloti", "structBLOT.html#a73ffe2407d72dec1fbb472f8a0512248", null ],
     [ "blotk", "structBLOT.html#a185d080ac7daa6991871186c66224728", null ],
     [ "blots", "structBLOT.html#a7957b7b4e66bbb5e3fc005c565582b52", null ],
@@ -19,6 +19,7 @@ var structBLOT =
     [ "pvtblot", "structBLOT.html#a3a2aa4fdf10603801ffe65c20f7ba519", null ],
     [ "pvtnote", "structBLOT.html#a631533622e1ce5c5b0aae4b7d3a88237", null ],
     [ "pvttimer", "structBLOT.html#a3ed3a1f2fd731eacaa9fdd95b8fcef82", null ],
+    [ "pvttotals", "structBLOT.html#aef80ae7a5d104a0e6117dae522a0b569", null ],
     [ "rFontScale", "structBLOT.html#af86b26894cb971db9282211cb54d970a", null ],
     [ "rgba", "structBLOT.html#a663d5de7eb62a2e2d7c81236530fb957", null ],
     [ "tBlots", "structBLOT.html#a5c25212adb50724ceabc8ade4c43f7ab", null ],

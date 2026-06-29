@@ -2,8 +2,8 @@ var structSHDF =
 [
     [ "ctex", "structSHDF.html#acb061bb9bf6b1b63feabee7d6e5fc80c", null ],
     [ "grfshd", "structSHDF.html#abbbe7429870c928198c774d1c46c4297", null ],
-    [ "grfzon", "structSHDF.html#acd9d4a1e626eb8f6ba92c5ab51dcfb52", null ],
-    [ "OID", "structSHDF.html#af3152392a0ab72e4c59459f36c3493bc", null ],
+    [ "grfzon", "structSHDF.html#ac2acbf137684fa78d94006a141db2f6d", null ],
+    [ "oid", "structSHDF.html#a467cdd0fc52ef694e8dcfe58b559e576", null ],
     [ "OidAltSat", "structSHDF.html#a008cfbe4f071cd5d668b0af3a044f90c", null ],
     [ "rgba", "structSHDF.html#a55a08e1ff67fd2a6286174727a9a18c7", null ],
     [ "rgbaVolume", "structSHDF.html#a5876fceda433f445d874c6133c65a448", null ],

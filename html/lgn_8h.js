@@ -1,0 +1,35 @@
+var lgn_8h =
+[
+    [ "SWP", "structSWP.html", null ],
+    [ "LGN", "structLGN.html", "structLGN" ],
+    [ "LGNR", "structLGNR.html", null ],
+    [ "LGNS", "lgn_8h.html#a75f2cb72bbc78e2132cd5b37a4eb249c", [
+      [ "LGNS_Nil", "lgn_8h.html#a75f2cb72bbc78e2132cd5b37a4eb249ca0aefa6d3a94f13370d6b9056744f88f1", null ],
+      [ "LGNS_Passive", "lgn_8h.html#a75f2cb72bbc78e2132cd5b37a4eb249ca17dcaf1936de9ebec413f100a6288def", null ],
+      [ "LGNS_Active", "lgn_8h.html#a75f2cb72bbc78e2132cd5b37a4eb249ca7cb17dde481fb1a90d02d6d866403221", null ],
+      [ "LGNS_Zap", "lgn_8h.html#a75f2cb72bbc78e2132cd5b37a4eb249ca0e868c56f39d77fda194922569b65bb2", null ],
+      [ "LGNS_Dead", "lgn_8h.html#a75f2cb72bbc78e2132cd5b37a4eb249ca50fdcef920c1931eb0d7ec8d353ed2ac", null ],
+      [ "LGNS_Max", "lgn_8h.html#a75f2cb72bbc78e2132cd5b37a4eb249ca2f6754a22630c6e623a30f31b0f0cd53", null ]
+    ] ],
+    [ "ApplyLgnThrow", "lgn_8h.html#aecd09eeb256c6f86b2c1f18337873c1d", null ],
+    [ "DrawLgnr", "lgn_8h.html#ada99cb2211c4d352d2833cc8c48ac03b", null ],
+    [ "FInvulnerableLgn", "lgn_8h.html#a0310415aac6d964025e2bad27510afa9", null ],
+    [ "FTakeLgnDamage", "lgn_8h.html#ad3496c53e3c4f6f487d293f180fe3d6e", null ],
+    [ "GetLgnCpdefi", "lgn_8h.html#aa58bdc726bcce07ef6c473fead226fa5", null ],
+    [ "HandleLgnMessage", "lgn_8h.html#a344d2d1222525316b57414832fc6e67c", null ],
+    [ "InitLgn", "lgn_8h.html#a5b27dec03b8c0825b001feb1150fa2c1", null ],
+    [ "InitSwp", "lgn_8h.html#a6bf4b2f86b2d8a409b05c0264ae25714", null ],
+    [ "JthsCurrentLgn", "lgn_8h.html#a2b706bab69cebf1953d944a55c984237", null ],
+    [ "OnLgnActive", "lgn_8h.html#ae21a366d8cfd87f85c65df14b221bda5", null ],
+    [ "PostLgnLoad", "lgn_8h.html#a9ce32e557250f6f3d94dc4239db54b73", null ],
+    [ "PostSwpLoad", "lgn_8h.html#a41c24a812cef7aaad2092605c5c94670", null ],
+    [ "ProjectSwpTransform", "lgn_8h.html#ab6baddba77d56680eb84d050de14214b", null ],
+    [ "RenderLgnAll", "lgn_8h.html#aa85d7104ac03ff4fecad74d2e01ffcce", null ],
+    [ "SetLgnLgns", "lgn_8h.html#ae2d7f234e9aee561f36c71ac2416facc", null ],
+    [ "SetSwpShape", "lgn_8h.html#a4935bf2e6a8847524f7138e4334e97ec", null ],
+    [ "UpdateLgn", "lgn_8h.html#aa5849d2ca5140ebb94ccd02917cf0d72", null ],
+    [ "UpdateLgnActive", "lgn_8h.html#acd3d0cdb9d459eac1298deb6cabb310e", null ],
+    [ "UpdateLgnrAim", "lgn_8h.html#a12eef802b49c40c6b44c93793c16d2f4", null ],
+    [ "UpdateSwp", "lgn_8h.html#af843d4c986dc2d00e86c7653d1482fe1", null ],
+    [ "UseLgnCharm", "lgn_8h.html#a770a724e3737d5be8c5a4289e216b22a", null ]
+];

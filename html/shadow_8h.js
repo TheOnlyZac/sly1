@@ -1,0 +1,25 @@
+var shadow_8h =
+[
+    [ "SHADOW", "structSHADOW.html", "structSHADOW" ],
+    [ "DrawShadow", "shadow_8h.html#a437bbf03debb1b1608d1b0c36819fd7f", null ],
+    [ "FFilterFastShadows", "shadow_8h.html#ac1a130d8a75b2b8eb4c62306aa0e2eea", null ],
+    [ "FindSwShadows", "shadow_8h.html#a2dc3bddf16d0637751ba3d48bc9bb797", null ],
+    [ "FShadowIntersectsSphere", "shadow_8h.html#a1878af711beb04dd7c130bcf87484842", null ],
+    [ "FShadowRadiusSet", "shadow_8h.html#a0b3a7fd2aa925c91b7de9698068ce4a2", null ],
+    [ "FShadowValid", "shadow_8h.html#a17423c7f56080b46a7e31111660a3e66", null ],
+    [ "InitShadow", "shadow_8h.html#accf5aee145af9f5f6a38b7307d97df23", null ],
+    [ "InvalidateShadowVifs", "shadow_8h.html#a5ea6309ff68ab3a834016da1df9575c5", null ],
+    [ "PostShadowLoad", "shadow_8h.html#af0f826f5ec9f35c85eecdf4d9a406e3f", null ],
+    [ "RebuildShadowRegion", "shadow_8h.html#aa95fc8648b8c982545486335327b727a", null ],
+    [ "RebuildShadowVifs", "shadow_8h.html#ab77247f6375948e31d1f93070f939d8e", null ],
+    [ "SetShadowCastNormal", "shadow_8h.html#a26fb4402ed95297be5720eff217279ca", null ],
+    [ "SetShadowCastPosition", "shadow_8h.html#afc8b95424343460e707499a9f8c61cda", null ],
+    [ "SetShadowConeAngle", "shadow_8h.html#af60a4898d08df134a2fb406a62189fd5", null ],
+    [ "SetShadowFarCast", "shadow_8h.html#ae1261662c96f60a2e3c649933b261bb0", null ],
+    [ "SetShadowFarRadius", "shadow_8h.html#a7bb252344b569a1d37b5c22dad5b1336", null ],
+    [ "SetShadowFrustrumUp", "shadow_8h.html#a3605f7d7f5129941036a22a0bf48cd10", null ],
+    [ "SetShadowNearCast", "shadow_8h.html#a663388b9e5a9ad7ba62b560fb69ae076", null ],
+    [ "SetShadowNearRadius", "shadow_8h.html#abe9ce06df045d6d7be996e7f9bf4a15e", null ],
+    [ "SetShadowShader", "shadow_8h.html#a0ae9f641ee042410976dc314a931f68a", null ],
+    [ "UpdateShadow", "shadow_8h.html#a4eff1c80fbb31fb9f5c5d03fb970bd32", null ]
+];

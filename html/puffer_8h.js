@@ -1,0 +1,28 @@
+var puffer_8h =
+[
+    [ "PUFFER", "structPUFFER.html", null ],
+    [ "PUFFC", "structPUFFC.html", null ],
+    [ "PUFFB", "structPUFFB.html", null ],
+    [ "PUFFT", "structPUFFT.html", null ],
+    [ "AddPufferWaterAcceleration", "puffer_8h.html#a3395b7426173d922d7431a30a9fc18b1", null ],
+    [ "FCanPuffcAttack", "puffer_8h.html#a25eeb128a790a5e6f9fd57a1393f75a9", null ],
+    [ "FFilterPuffer", "puffer_8h.html#a0386995ee3403819773257e3f72025a0", null ],
+    [ "HandlePuffcMessage", "puffer_8h.html#aab0c17c5d109da0c30b3d5fcea430ec2", null ],
+    [ "HandlePufferMessage", "puffer_8h.html#af0a8af4a0bc940b327f3e8894d1f1a93", null ],
+    [ "InitPuffer", "puffer_8h.html#a87f7dd334a7e1a246806b272fee21d64", null ],
+    [ "LoadPufferFromBrx", "puffer_8h.html#a893e53f1407586bbf8312000f7eec6a3", null ],
+    [ "OnPuffcEnteringSgs", "puffer_8h.html#ad4519db9162bacd376ccc30933342ede", null ],
+    [ "OnPuffcExitingSgs", "puffer_8h.html#a5b52278c77d0e26634f516937e8e7006", null ],
+    [ "OnPufferActive", "puffer_8h.html#a97a0adc6603c8ea1f29cd0f7fe21274b", null ],
+    [ "PostPuffbLoad", "puffer_8h.html#ad861f3a876315e685a6422780b07c79d", null ],
+    [ "PostPuffcLoad", "puffer_8h.html#ae4a848369cf8719742651a6247038de6", null ],
+    [ "PostPufferLoad", "puffer_8h.html#afec18263df4e429f004243cf455f0933", null ],
+    [ "PpufftChoosePuffer", "puffer_8h.html#a9fabdabf9c453e255635c0cdc9c6f68b", null ],
+    [ "PresetPuffcAccel", "puffer_8h.html#a5fec02a8cee8e590b2a09414f35fe520", null ],
+    [ "PresetPufferAccel", "puffer_8h.html#a8703da127644f5b4a9e1c219e7e25b6f", null ],
+    [ "UpdatePuffc", "puffer_8h.html#aec4a08e67e1faf017329ca47b004983e", null ],
+    [ "UpdatePuffcGoal", "puffer_8h.html#aad87bfed8c1aa142b7aea214099acbe4", null ],
+    [ "UpdatePuffcSgs", "puffer_8h.html#aff55b6042644107ffc6554902dd9ae3a", null ],
+    [ "UpdatePuffer", "puffer_8h.html#aa00a0c12a4d590d80e73b290cc5c0311", null ],
+    [ "UpdatePufferActive", "puffer_8h.html#a4bab473dc3fc7ea07305e7df2496e806", null ]
+];

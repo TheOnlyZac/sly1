@@ -14,7 +14,7 @@ var dl_8h =
     [ "InitDl", "dl_8h.html#a9a51742381a1ad6110e71ef01c3f43b4", null ],
     [ "InsertDlEntryBefore", "dl_8h.html#a4727586655bb8c6bc7b0836123da5621", null ],
     [ "MergeDl", "dl_8h.html#a792bf66930e6a2bbe3602692bcf71a57", null ],
-    [ "PdleFromDlEntry", "dl_8h.html#a71bbf848cd0a555d32a22ebe71ba56ff", null ],
+    [ "PdleFromDlEntry", "dl_8h.html#ade6a3363dfe5ce66f544930886a06327", null ],
     [ "PrependDlEntry", "dl_8h.html#aa6407e3f21645eaac7bb3de6367e08fc", null ],
     [ "RemoveDlEntry", "dl_8h.html#a6e6821044f09f72fa57ba1fe072cc1db", null ]
 ];

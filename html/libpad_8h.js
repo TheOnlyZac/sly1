@@ -10,5 +10,6 @@ var libpad_8h =
     [ "scePadInit", "libpad_8h.html#a721668c52174490f642880f382daa5db", null ],
     [ "scePadPortOpen", "libpad_8h.html#a679c0553ab5610cb5204c3ee3a3f9e6f", null ],
     [ "scePadSetActAlign", "libpad_8h.html#ad8377a0cec55ceda26b7c0cf3f8b8e7d", null ],
+    [ "scePadSetActDirect", "libpad_8h.html#a9b9973fd3a9a356c04852f1c8ff50882", null ],
     [ "scePadSetMainMode", "libpad_8h.html#af8680040b543569308ba1eb4f0932f92", null ]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['beginner_27s_20guide_4861',['Beginner&apos;s Guide',['../md_docs_BEGINNERSGUIDE.html',1,'']]]
+  ['and_20the_20thievius_20raccoonus_0',['🦝 Sly Cooper and the Thievius Raccoonus',['../index.html',1,'']]]
 ];

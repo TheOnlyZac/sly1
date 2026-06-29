@@ -1,5 +1,6 @@
 var structRUMBLE =
 [
+    [ "STRUCT_PADDING", "structRUMBLE.html#a5d32278fd14548c421889d9b021412b8", null ],
     [ "dtRumble", "structRUMBLE.html#ace555b0be6985d6bae1899bbf515dccc", null ],
     [ "dtRumins", "structRUMBLE.html#a9a6ccf500ce8461e3eb65a6a9e292077", null ],
     [ "irumins", "structRUMBLE.html#a5086aabc60d950c6e72773422c03fe41", null ],

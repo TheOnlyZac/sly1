@@ -39,13 +39,41 @@ var jt_8h =
       [ "JTBS_Zap_Blunt", "jt_8h.html#aeec8cd48f7842e2652f6eff1e3476315adde4c0c868ca87d35a67b9761257fc29", null ],
       [ "JTBS_Zap_Electric", "jt_8h.html#aeec8cd48f7842e2652f6eff1e3476315ae0db6b0e505fe26cb7cce230a9775bbe", null ],
       [ "JTBS_Zap_Fire", "jt_8h.html#aeec8cd48f7842e2652f6eff1e3476315a9909a47dec304495a1e6cbe8f66ba084", null ],
-      [ "JTBS_Zap_Water", "jt_8h.html#aeec8cd48f7842e2652f6eff1e3476315a55e344de869ad703f753566814e82682", null ]
+      [ "JTBS_Zap_Water", "jt_8h.html#aeec8cd48f7842e2652f6eff1e3476315a55e344de869ad703f753566814e82682", null ],
+      [ "JTBS_Unk_54", "jt_8h.html#aeec8cd48f7842e2652f6eff1e3476315af07656a7b326ab99e4d798cfb8443710", null ],
+      [ "JTBS_Unk_55", "jt_8h.html#aeec8cd48f7842e2652f6eff1e3476315ae4a51c22c8eaa54c3d871d0b3094adef", null ]
+    ] ],
+    [ "JTCS", "jt_8h.html#a70bb70478ddea29d37942e7173d5cf0c", null ],
+    [ "JTHK", "jt_8h.html#aad4a8c21641d593334560e8ffebdf939", [
+      [ "JTHK_Nil", "jt_8h.html#aad4a8c21641d593334560e8ffebdf939a43696b2b49dbce9f0a3738a43224077e", null ],
+      [ "JTHK_Flatten", "jt_8h.html#aad4a8c21641d593334560e8ffebdf939a1ca3d89f1dcba0f2b42163cfefdee7df", null ],
+      [ "JTHK_Duck", "jt_8h.html#aad4a8c21641d593334560e8ffebdf939a3d58e568fcbd91442e60c46fdaa61298", null ],
+      [ "JTHK_Basket", "jt_8h.html#aad4a8c21641d593334560e8ffebdf939ac7581b014a4e6f8c9b60d694fb9b0f24", null ],
+      [ "JTHK_Nonchalant", "jt_8h.html#aad4a8c21641d593334560e8ffebdf939a416548c4c6229d8dc92eb552d5a74933", null ],
+      [ "JTHK_Rail", "jt_8h.html#aad4a8c21641d593334560e8ffebdf939a4b359f3d7fae77bc4cea32c07f36fef9", null ],
+      [ "JTHK_Spire", "jt_8h.html#aad4a8c21641d593334560e8ffebdf939ab9e6666bff7403a121fddcc336c80725", null ],
+      [ "JTHK_Reach", "jt_8h.html#aad4a8c21641d593334560e8ffebdf939ad48d39b4955f4bfd2fa02f559f12da00", null ],
+      [ "JTHK_Vault", "jt_8h.html#aad4a8c21641d593334560e8ffebdf939a12fe5154a5a52ff95291c97c76c2a610", null ],
+      [ "JTHK_Max", "jt_8h.html#aad4a8c21641d593334560e8ffebdf939a391f2bd37e1821bd6836401a7fa75fb1", null ]
+    ] ],
+    [ "JTHS", "jt_8h.html#a07d9580a45c5d346095387c6df64be37", [
+      [ "JTHS_Nil", "jt_8h.html#a07d9580a45c5d346095387c6df64be37ae27ffbf2bc49827dab11c62aa5c4577d", null ],
+      [ "JTHS_Normal", "jt_8h.html#a07d9580a45c5d346095387c6df64be37a8f02e0de077dd4264cafdb66ed2cbc03", null ],
+      [ "JTHS_Damaged", "jt_8h.html#a07d9580a45c5d346095387c6df64be37a61721a46ae5314bfbb7752e4a74cddc9", null ],
+      [ "JTHS_Dead", "jt_8h.html#a07d9580a45c5d346095387c6df64be37a9f8e3afd219c042e5d9c287e2c8c14fb", null ],
+      [ "JTHS_Max", "jt_8h.html#a07d9580a45c5d346095387c6df64be37aa4d527a387615826dd2d72110c3e9259", null ]
+    ] ],
+    [ "JTPDK", "jt_8h.html#a2c73c908d332793e409cd3c520dd451d", [
+      [ "JTPDK_Nil", "jt_8h.html#a2c73c908d332793e409cd3c520dd451daeddfadd67398eacb288b3ad17a351038", null ],
+      [ "JTPDK_Up", "jt_8h.html#a2c73c908d332793e409cd3c520dd451da5bd4ac1ea65327b3dc35f5717245adb1", null ],
+      [ "JTPDK_Down", "jt_8h.html#a2c73c908d332793e409cd3c520dd451da08f62b3977103c51656ae06702c92572", null ],
+      [ "JTPDK_Max", "jt_8h.html#a2c73c908d332793e409cd3c520dd451dadb24dbb50f68fcfb25875344474862b2", null ]
     ] ],
     [ "JTS", "jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02e", [
+      [ "JTS_Nil", "jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02ea65ac430ca56b998857a07be5b60ccb2e", null ],
       [ "JTS_Stand", "jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02ea3874df9587a215f75fabc78214bb9bb1", null ],
       [ "JTS_Run", "jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02ea968021166bfd43017eef56b725235634", null ],
       [ "JTS_Jump", "jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02eabe441b4b7f80d9f966d919b3d69f7d68", null ],
-      [ "JTS_Hang", "jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02eaba79ead9d9e5e1d6a889cc119fdc990d", null ],
       [ "JTS_Zap", "jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02ea7a714e8999059479873b46414cb7a3c6", null ],
       [ "JTS_Sidestep", "jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02ead6f2696939b6dfb1ab2510d1aadd10db", null ],
       [ "JTS_Hide", "jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02ea2a4af8c46c15d3c4d333c0a2f30498c4", null ],
@@ -55,7 +83,6 @@ var jt_8h =
       [ "JTS_Rush", "jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02ea34159ba5d2f6bcf6874eee756f5c24d5", null ],
       [ "JTS_Puppet", "jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02ea094c137f740010c65c7e5de901a945b3", null ],
       [ "JTS_Peek", "jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02ea8988204155eebc03af8deb19129d2609", null ],
-      [ "JTS_Ski", "jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02ead1a3562923fd25ecf4a0502a297ee895", null ],
       [ "JTS_Ball", "jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02eae03722bb1a63eff16cfa82a6186d13cb", null ],
       [ "JTS_Max", "jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02eaa982bc5d644f5f7e3caeea309eb7b2db", null ]
     ] ],

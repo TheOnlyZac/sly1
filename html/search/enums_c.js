@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['saak_4233',['SAAK',['../shd_8h.html#a17156c86ed7fd6d9586270b8c90ea4e3',1,'shd.h']]],
-  ['sfxid_4234',['SFXID',['../sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dba',1,'sound.h']]],
-  ['shdk_4235',['SHDK',['../shd_8h.html#a5c2fb94224d75ab01fa69373d0dcb3ee',1,'shd.h']]]
+  ['oid_0',['OID',['../oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26',1,'oid.h']]],
+  ['optid_1',['OPTID',['../lo_8h.html#a361c6ec38c01ce893fa0e6a77c26daa3',1,'lo.h']]],
+  ['otyp_2',['OTYP',['../brx_8h.html#a47be069729bf11809624e6c1494a1be3',1,'brx.h']]]
 ];

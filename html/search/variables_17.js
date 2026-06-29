@@ -1,8 +1,20 @@
 var searchData=
 [
-  ['x_4131',['x',['../structJOY.html#ad8cb7cb5f1dae1d40acd92d6ec17ab91',1,'JOY::x()'],['../structBLOTI.html#a6ae21352c4b7b2575c55ac94d2dbb6d3',1,'BLOTI::x()'],['../structBLOT.html#ab157a079bb0e114cd9827dfe7febfdb9',1,'BLOT::x()'],['../structCLQ.html#a3fca460b2fddb9dcd6886aaeeb1e58ae',1,'CLQ::x()'],['../structVECTOR.html#a089769eb3e23fb95cda35b45b3434cd5',1,'VECTOR::x()'],['../structVECTOR4.html#ae1b2a9e4f7c5b97bb249dc3be2db47b5',1,'VECTOR4::x()']]],
-  ['x2_4132',['x2',['../structJOY.html#aa8f9867e439949cf9835d19ce608fe88',1,'JOY']]],
-  ['xon_4133',['xOn',['../structBLOT.html#add6d1a3abc3674bafb5d1804c315d299',1,'BLOT']]],
-  ['xscreenrange_4134',['xScreenRange',['../structCM.html#a57cb87bfde40752034d0d6cc7d324b05',1,'CM']]],
-  ['xymanual_4135',['xyManual',['../structCPTN.html#a7e7ce259fd563037ddad29cda632e07e',1,'CPTN']]]
+  ['w_0',['w',['../structVECTOR4.html#a9baf0e6a42e3fb90572a1fb238c28403',1,'VECTOR4::w'],['../structXF.html#a2d10348860a0cb90bea2b0b95e8b15d8',1,'XF::w']]],
+  ['waitid_1',['waitId',['../structThreadParam.html#a37ec95d86fe64f88a99c9c58602f571e',1,'ThreadParam']]],
+  ['waittype_2',['waitType',['../structThreadParam.html#a991e3b9c436330474dba7bbbd2b565b9',1,'ThreadParam']]],
+  ['wakeupcount_3',['wakeupCount',['../structThreadParam.html#a50b1233ff905db5c80ecfa0512a40ad4',1,'ThreadParam']]],
+  ['wch_4',['wch',['../structGLYFF.html#adced0b51f8d31ecf71208b2eafe44e09',1,'GLYFF']]],
+  ['wek_5',['wek',['../structWEKI.html#a08d502d799b1cff32eb944b1b433d6ca',1,'WEKI']]],
+  ['weki_6',['weki',['../structWRBG.html#a0ffec75bb50c2727abe42b4b27a9fadb',1,'WRBG']]],
+  ['widalt_7',['widAlt',['../structEXIT.html#acd6c61049ddb1e0cadc81831051da184',1,'EXIT']]],
+  ['widmenu_8',['widMenu',['../structWARP.html#a74ce62ad9ca5fc8704e307b9a0cfbb23',1,'WARP']]],
+  ['width_9',['width',['../structBLOT.html#af2a182b75b363c63e7ec7be9851c3cef',1,'BLOT']]],
+  ['widwarp_10',['widWarp',['../structEXIT.html#a5b63f2ecaf57cfb129a76a39106a4690',1,'EXIT']]],
+  ['wipek_11',['wipek',['../structWIPE.html#a633aa35ae3d316ecee39ccffcc207962',1,'WIPE::wipek'],['../structEXIT.html#ad4af24656eb280f6a9e738c90b1bf549',1,'EXIT::wipek']]],
+  ['wipekbutton_12',['wipekButton',['../structWIPE.html#a9a888e5178eda6f136da6b4e4797da96',1,'WIPE']]],
+  ['wipes_13',['wipes',['../structWIPE.html#a16030835cd3bc7392f4dc8adaf96ae56',1,'WIPE']]],
+  ['worldlevelcur_14',['worldlevelCur',['../structGS.html#ad32bb98affcc5cdc347e61c40fb58575',1,'GS']]],
+  ['wps_15',['wps',['../structWAYPOINT.html#a73d89eb4fc749cd35ad20a36d148e7e1',1,'WAYPOINT']]],
+  ['wrek_16',['wrek',['../structWRE.html#aff1d6907db03139c0d404ba5d6de357b',1,'WRE']]]
 ];

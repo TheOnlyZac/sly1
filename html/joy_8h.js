@@ -2,6 +2,7 @@ var joy_8h =
 [
     [ "JOY", "structJOY.html", "structJOY" ],
     [ "CODE", "structCODE.html", "structCODE" ],
+    [ "JOY_BUTTON_PRESSED", "joy_8h.html#a396d234ff4e4dd1d21caad0f8b915de7", null ],
     [ "GRFBTN", "joy_8h.html#a11b2d8de1bd111fd6b1ee53ca802adf1", null ],
     [ "GRFCHT", "joy_8h.html#a9cd8a293dec6dd6df079a47c6536cf75", null ],
     [ "GRFUSR", "joy_8h.html#a1e6097f2bf11df90c9609b278df69806", null ],
@@ -38,6 +39,12 @@ var joy_8h =
       [ "FUSR_Menu", "joy_8h.html#abb0778c4d7b835581afc243b3d66800bab0d8fff1622a0c2b3d7e136fd2e4c2c6", null ],
       [ "FUSR_HandsOff", "joy_8h.html#abb0778c4d7b835581afc243b3d66800ba478d13129747f0c2adde3b1b092c8dd4", null ],
       [ "FUSR_NoPause", "joy_8h.html#abb0778c4d7b835581afc243b3d66800ba4cba1ce300e6b21d326dc22769d81fbf", null ]
+    ] ],
+    [ "JOYID", "joy_8h.html#a33051dee30020ac9387000bf18768005", [
+      [ "JOYID_Nil", "joy_8h.html#a33051dee30020ac9387000bf18768005a7b29e00ebcdab724044e5a9aa0876e87", null ],
+      [ "JOYID_Left", "joy_8h.html#a33051dee30020ac9387000bf18768005a2ba775ca6b0ae166f6622306fbb45401", null ],
+      [ "JOYID_Right", "joy_8h.html#a33051dee30020ac9387000bf18768005a6da4601e49c10dc68f6a648418b13daa", null ],
+      [ "JOYID_Max", "joy_8h.html#a33051dee30020ac9387000bf18768005ad0c04774873a35866a7715c384184ddd", null ]
     ] ],
     [ "JOYK", "joy_8h.html#ad3186335c21a86b3a1c03262495b1775", [
       [ "JOYK_Unknown", "joy_8h.html#ad3186335c21a86b3a1c03262495b1775a91a92c157087c0b302638a4de6a9c1c2", null ],

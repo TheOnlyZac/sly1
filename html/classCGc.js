@@ -14,6 +14,7 @@ var classCGc =
     [ "PushProc", "classCGc.html#aa534eaea895c6d8f5eb7713b64f98448", null ],
     [ "Shutdown", "classCGc.html#af9e6d734e0f8e281fdc82fbe85615d36", null ],
     [ "Startup", "classCGc.html#af2d858d168dc926dc13ad82fdfb3766f", null ],
+    [ "STRUCT_PADDING", "classCGc.html#a6b4cbbaf570e3cefbf55cbf0e4eef11d", null ],
     [ "UpdateRecyclable", "classCGc.html#a775705dd0d9890a1554f83f6e73ac4fe", null ],
     [ "m_apframeRoot", "classCGc.html#ad379396590b41c69b9852a129f1def00", null ],
     [ "m_apframeStack", "classCGc.html#a92dfc3b9963055cba5d5184dcd476e3f", null ],
@@ -24,6 +25,5 @@ var classCGc =
     [ "m_cpframeStack", "classCGc.html#ad18a997d59045db0041d0bf3c1a5b718", null ],
     [ "m_cppairStack", "classCGc.html#a5149ab2409f822b3a274e3d393e43690", null ],
     [ "m_cpprocStack", "classCGc.html#ae8bd1e3e22c63227f10efaaf666a7d29", null ],
-    [ "m_cpsidebagRoot", "classCGc.html#ab164a1af38a3f55409258b13d88565b9", null ],
-    [ "unk_pad", "classCGc.html#a2fbc0850ddb2d5041800f8f5ced90432", null ]
+    [ "m_cpsidebagRoot", "classCGc.html#ab164a1af38a3f55409258b13d88565b9", null ]
 ];

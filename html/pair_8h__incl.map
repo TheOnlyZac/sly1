@@ -1,22 +1,38 @@
 <map id="include/splice/pair.h" name="include/splice/pair.h">
-<area shape="rect" id="node1" title=" " alt="" coords="255,5,406,32"/>
-<area shape="rect" id="node2" href="$ref_8h.html" title=" " alt="" coords="284,80,377,107"/>
-<area shape="rect" id="node3" href="$proc_8h.html" title=" " alt="" coords="5,155,109,181"/>
-<area shape="rect" id="node4" href="$method_8h.html" title=" " alt="" coords="134,155,261,181"/>
-<area shape="rect" id="node5" href="$bif_8h.html" title=" " alt="" coords="285,155,377,181"/>
-<area shape="rect" id="node6" href="$basic_8h.html" title="Basic object." alt="" coords="361,528,429,555"/>
-<area shape="rect" id="node8" href="$util_8h.html" title="Utility functions." alt="" coords="562,155,617,181"/>
-<area shape="rect" id="node7" href="$sidebag_8h.html" title="Sidebag for splice." alt="" coords="331,603,458,629"/>
-<area shape="rect" id="node9" href="$mat_8h.html" title="3x3 and 4x4 matrix types." alt="" coords="675,229,735,256"/>
-<area shape="rect" id="node10" href="$vec_8h.html" title="Vector math." alt="" coords="594,229,651,256"/>
-<area shape="rect" id="node19" href="$sm_8h.html" title="State machines." alt="" coords="529,304,583,331"/>
-<area shape="rect" id="node11" href="$so_8h.html" title="Scene objects." alt="" coords="637,304,686,331"/>
-<area shape="rect" id="node12" href="$alo_8h.html" title=" " alt="" coords="665,379,719,405"/>
-<area shape="rect" id="node13" href="$lo_8h.html" title="Level objects." alt="" coords="537,453,583,480"/>
-<area shape="rect" id="node15" href="$dl_8h.html" title="Doubly&#45;linked list." alt="" coords="797,528,843,555"/>
-<area shape="rect" id="node14" href="$oid_8h.html" title="Object IDs." alt="" coords="762,603,817,629"/>
-<area shape="rect" id="node16" href="$sw_8h.html" title="Scene world?" alt="" coords="532,528,583,555"/>
-<area shape="rect" id="node17" href="$frame_8h.html" title=" " alt="" coords="607,528,721,555"/>
-<area shape="rect" id="node18" href="$mq_8h.html" title="Message queue." alt="" coords="453,528,507,555"/>
-<area shape="rect" id="node20" href="$anim_8h.html" title="Animation." alt="" coords="523,379,589,405"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="255,5,406,31"/>
+<area shape="rect" id="Node000002" href="$ref_8h.html" title=" " alt="" coords="284,79,377,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="333,31,333,65,328,65,328,31"/>
+<area shape="rect" id="Node000003" href="$proc_8h.html" title=" " alt="" coords="5,152,109,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="287,107,115,151,114,146,286,101"/>
+<area shape="rect" id="Node000004" href="$method_8h.html" title=" " alt="" coords="134,152,261,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="310,106,232,148,230,143,308,102"/>
+<area shape="rect" id="Node000005" href="$bif_8h.html" title=" " alt="" coords="285,152,377,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="333,104,333,138,328,138,328,104"/>
+<area shape="rect" id="Node000006" href="$basic_8h.html" title="Basic object." alt="" coords="403,372,471,397"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="348,102,370,123,390,151,413,206,428,264,439,358,434,359,422,265,408,208,386,153,366,127,344,106"/>
+<area shape="rect" id="Node000008" href="$util_8h.html" title="Utility functions." alt="" coords="489,152,543,177"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="361,102,477,145,475,150,359,107"/>
+<area shape="rect" id="Node000007" href="$sidebag_8h.html" title="Sidebag for splice." alt="" coords="374,445,501,471"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="440,398,440,432,435,432,435,398"/>
+<area shape="rect" id="Node000009" href="$vec_8h.html" title="Vector math." alt="" coords="454,299,511,324"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="523,177,531,211,531,231,528,251,518,272,505,290,501,287,514,269,523,250,526,231,525,211,518,178"/>
+<area shape="rect" id="Node000010" href="$mat_8h.html" title="3x3 and 4x4 matrix types." alt="" coords="453,225,513,251"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="513,179,496,214,491,212,508,177"/>
+<area shape="rect" id="Node000011" href="$sm_8h.html" title="Probabilistic finite state machines." alt="" coords="589,225,643,251"/>
+<area shape="poly" id="edge11_Node000008_Node000011" title=" " alt="" coords="534,175,590,215,587,219,531,180"/>
+<area shape="poly" id="edge10_Node000010_Node000009" title=" " alt="" coords="485,251,485,285,480,285,480,251"/>
+<area shape="rect" id="Node000012" href="$dl_8h.html" title="Doubly&#45;linked list." alt="" coords="778,372,825,397"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="633,249,777,361,774,365,630,253"/>
+<area shape="rect" id="Node000014" href="$mq_8h.html" title="Message queue." alt="" coords="509,372,563,397"/>
+<area shape="poly" id="edge14_Node000011_Node000014" title=" " alt="" coords="611,252,582,300,550,361,545,358,578,297,606,250"/>
+<area shape="rect" id="Node000015" href="$lo_8h.html" title="Level objects." alt="" coords="591,299,638,324"/>
+<area shape="poly" id="edge15_Node000011_Node000015" title=" " alt="" coords="618,251,618,285,612,285,613,251"/>
+<area shape="rect" id="Node000013" href="$oid_8h.html" title="Object IDs." alt="" coords="674,445,729,471"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="787,400,730,439,727,435,784,395"/>
+<area shape="poly" id="edge19_Node000015_Node000006" title=" " alt="" coords="592,325,480,369,478,364,590,320"/>
+<area shape="poly" id="edge16_Node000015_Node000012" title=" " alt="" coords="639,319,766,367,764,372,637,324"/>
+<area shape="poly" id="edge18_Node000015_Node000013" title=" " alt="" coords="616,324,618,358,621,378,629,396,647,418,669,436,666,440,643,422,624,399,616,379,612,359,611,325"/>
+<area shape="poly" id="edge17_Node000015_Node000014" title=" " alt="" coords="604,326,561,365,557,361,600,322"/>
+<area shape="rect" id="Node000016" href="$frame_8h.html" title=" " alt="" coords="639,372,753,397"/>
+<area shape="poly" id="edge20_Node000015_Node000016" title=" " alt="" coords="629,322,674,361,671,365,626,326"/>
 </map>

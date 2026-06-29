@@ -16,7 +16,7 @@ Please try and follow these general rules when writing your code:
 * Put opening curly braces on a new line.
 * Don't leave trailing whitespace at the end of lines.
 * End every file with a single blank line.
-* Keep lines between 80-100 character long at most.
+* Keep lines between 80-100 characters long at most.
 
 ## Symbol Names
 
@@ -28,7 +28,7 @@ These prefixes denote the **type** of a symbol:
 
 | Prefix | Type                           | Examples                                                       |
 |--------|--------------------------------|----------------------------------------------------------------|
-| `p`    | Pointer                        | `CLOCK* pclock` - Pointer an instance of the CLOCK struct      |
+| `p`    | Pointer                        | `CLOCK* pclock` - Pointer to an instance of the CLOCK struct   |
 | `n`    | Integer/numeric value          | `int nScore` - Numeric score value                             |
 | `c`    | Integer/count or quantity      | `int ccoin`- A quantity of coins                               |
 | `f`    | Flag (boolean)                 | `int fSneakyFeet` - Footstep noises flag                       |
@@ -98,7 +98,7 @@ Put function comments before the declaration of each function in the header file
  *
  * @return What the function returns, if not void
  */
-int ExampleFunction(param1, param2 ...);
+int ExampleFunction(param1, param2, ...);
 ```
 
 Document all parameters and return values using `@param` and `@return`/`@retval`, even if they are obvious. You can omit them if the function has no parameters or returns void.
@@ -126,7 +126,7 @@ Use `@todo` to mark something that needs to be done in the future.
  */
 ```
 
-Use `@note` to add a note which will be differentiated form the rest of the comment.
+Use `@note` to add a note which will be differentiated from the rest of the comment.
 ```c
 /**
  * ...

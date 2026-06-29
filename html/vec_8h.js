@@ -12,7 +12,7 @@ var vec_8h =
     [ "GetNormalVector", "vec_8h.html#a6a04fe581ec80dc3a7112d5ba6d76abe", null ],
     [ "GetNormalVectors", "vec_8h.html#a10933f646fc8ac676532e45c8a896b88", null ],
     [ "LimitVectorLength", "vec_8h.html#a7ec5e80e2dcf5d922f1098ea2342333e", null ],
-    [ "RadBetweenVectors", "vec_8h.html#acc6b315da0113636116df3d5b53c8ce5", null ],
+    [ "RadBetweenVectors", "vec_8h.html#a1a6f963be44389a34e1d018a094b9e58", null ],
     [ "SetVectorCylind", "vec_8h.html#a162852370472ceb2729f094b7d989df8", null ],
     [ "SetVectorSphere", "vec_8h.html#a57366d43ede3d05db5ecd89d14eb9659", null ],
     [ "SProjectVector", "vec_8h.html#aa7d923d9cb0c0aece2adc669f4354425", null ]

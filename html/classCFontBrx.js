@@ -1,0 +1,27 @@
+var classCFontBrx =
+[
+    [ "CopyTo", "classCFontBrx.html#a9df3680fef781925197ae44548d1aa3c", null ],
+    [ "DrawPart", "classCFontBrx.html#a3af0cef1bf0f6471647313e177962434", null ],
+    [ "DxDrawCh", "classCFontBrx.html#af3f7067a2b12d4bfefa11451902cfa08", null ],
+    [ "DxFromCh", "classCFontBrx.html#aa4481e610f606227a08a2b03107c941b", null ],
+    [ "EdgeRect", "classCFontBrx.html#a366782906f35851c35727f8cb0d0f405", null ],
+    [ "FEnsureLoaded", "classCFontBrx.html#a4ee5f0194b47338cb364d8a59119933c", null ],
+    [ "FValid", "classCFontBrx.html#ad2568ee8272879a85e3937ef6af74a4b", null ],
+    [ "LoadFromBrx", "classCFontBrx.html#ab1b3c3d7cdfab2d3e5433f3cf609c960", null ],
+    [ "PfontClone", "classCFontBrx.html#a3b1d9b49ab5868eacd6b53b4de610252", null ],
+    [ "PglyffFromCh", "classCFontBrx.html#a84f6e7e8bce40a6d474df20a98201f4f", null ],
+    [ "PostLoad", "classCFontBrx.html#a4b53770023fabf09c3145b4db97b30d0", null ],
+    [ "SetupDraw", "classCFontBrx.html#a80d297268f3bbdbc20b03baf83dcf9cf", null ],
+    [ "STRUCT_PADDING", "classCFontBrx.html#a848f67c5bc3f528f24f8293490a10430", null ],
+    [ "SwitchTex0", "classCFontBrx.html#ab11346a997513bf83bd5af66aac93307", null ],
+    [ "m_aglyff", "classCFontBrx.html#a8a72d6fd23039ad1f4022ed0a8305b72", null ],
+    [ "m_aqwBmpGifs", "classCFontBrx.html#af1bfc2860a5af70b077ba4ca9b106d13", null ],
+    [ "m_aqwClutGifs", "classCFontBrx.html#ab4d7e5af068443ed489bbc805ff7ead5", null ],
+    [ "m_cglyff", "classCFontBrx.html#ab6167ceaeb011e966872ebd2faf59f94", null ],
+    [ "m_cqwBmpGifs", "classCFontBrx.html#a899c79b607cc73c00ce0a26f6a7edd75", null ],
+    [ "m_cqwClutGifs", "classCFontBrx.html#a6b9bb4ee5a9e8968b4ae7cfa14e57bfa", null ],
+    [ "m_grffont", "classCFontBrx.html#a4166d990196e812a929a3bd6246c0733", null ],
+    [ "m_pbmp", "classCFontBrx.html#ac0e92c2213e1eedf5cc28490c29b0695", null ],
+    [ "m_pclut", "classCFontBrx.html#a60dc13302058cb954517b32c26c095dc", null ],
+    [ "m_tex0", "classCFontBrx.html#a39739b72635ef6733902685cd2a719b0", null ]
+];
