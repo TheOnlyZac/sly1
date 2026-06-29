@@ -1,0 +1,52 @@
+name: Update Doxygen docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docs:
+    if: github.repository_owner == 'theonlyzac'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          submodules: recursive
+
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: sly1
+
+      - name: Install Doxygen and Graphviz
+        run: sudo apt-get install -y doxygen graphviz
+
+      - name: Preprocess headers
+        run: |
+          for file in $(find sly1/include/ -name "*.h"); do
+            sed -i '/#include "common.h"/d' "$file"
+          done
+
+      - name: Generate docs
+        run: |
+          cp Doxyfile sly1/
+          cd sly1
+          doxygen Doxyfile
+          cp -r docs html
+          mv html/ ..
+
+      - name: Commit and push to gh-pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add html/
+          git diff --cached --quiet && echo "No changes to commit" || \
+            git commit -m "docs: update doxygen docs from main @ ${{ github.sha }}"
+          git push origin gh-pages
