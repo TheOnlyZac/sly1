@@ -36,7 +36,9 @@ jobs:
 
       - name: Generate docs
         run: |
+          rm -rf html
           cp Doxyfile sly1/
+          cp sly1/docs/logo.png sly1/
           cd sly1
           doxygen Doxyfile
           cp -r docs html
