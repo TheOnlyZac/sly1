@@ -1,4 +1,7 @@
 #include <step.h>
+#include <mat.h>
+#include <math.h>
+#include <clip.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", InitStep__FP4STEP);
 
@@ -9,7 +12,31 @@ INCLUDE_ASM("asm/nonmatchings/P2/step", LimitStepHands__FP4STEPi);
 // TODO: This might be "RetractStepExtremity". Further research needed.
 INCLUDE_ASM("asm/nonmatchings/P2/step", FUN_001c4618);
 
-INCLUDE_ASM("asm/nonmatchings/P2/step", FUN_001c4790);
+void FUN_001c4790(void *p1, SO *pso, BSP *pbsp, void *p4)
+{
+
+    if (STRUCT_OFFSET(p4, 0x50, int) == 0)
+        return;
+
+    LSG alsg[2];
+    int clsg = ClsgClipEdgeToObjectPruned(pso, pbsp, (VECTOR *)((uint8_t *)p4 + 0x70),
+                                      (VECTOR *)((uint8_t *)p4 + 0x60), 2, alsg);
+
+    int i = 0;
+    if (clsg > 0)
+    {
+        if (alsg[0].au[0] == 0.0f)
+            i = 1;
+    }
+
+    if (i < clsg)
+    {
+        if (alsg[i].au[0] < STRUCT_OFFSET(p4, 0xD0, float))
+        {
+            *(LSG *)((uint8_t *)p4 + 0x90) = alsg[i];
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", FUN_001c4848);
 
@@ -37,7 +64,16 @@ CT CtTorqueStep(STEP *pstep)
     return CT_Locked;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/step", PropagateStepForce__FP4STEPiP2XPiP2DZP2FX);
+void PropagateSoForce(SO *psoRoot, GRFSG grfsg, XP *pxp, int ixpd, DZ *pdz, FX *afx);
+
+void PropagateStepForce(STEP *pstep, GRFSG grfsg, XP *pxp, int ixpd, DZ *pdz, FX *afx)
+{
+    CT ctSav = STRUCT_OFFSET(pstep, 0x470, CT);
+    STRUCT_OFFSET(pstep, 0x470, CT) =
+        (*(CT (**)(STEP *))((uint8_t *)pstep->pvtlo + 0x164))(pstep);
+    PropagateSoForce(pstep, grfsg, pxp, ixpd, pdz, afx);
+    STRUCT_OFFSET(pstep, 0x470, CT) = ctSav;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", RotateStepToMat__FP4STEPP7MATRIX3);
 
@@ -65,9 +101,16 @@ void AdjustStepDzBase(STEP *pstep, GRFADJ grfadj, DZ *pdz, int ixpd)
     return;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/step", UpdateStepMatTarget__FP4STEP);
+void UpdateStepMatTarget(STEP *pstep)
+{
+    LoadRotateMatrixRad(*(float *)((uint8_t *)(pstep) + 0x638), &g_normalZ, (MATRIX3 *)((uint8_t *)(pstep) + 0x660));
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/step", AdjustStepXpVelocity__FP4STEPP2XPi);
+void AdjustStepXpVelocity(STEP *pstep, XP *pxp, int ixpd)
+{
+    if ((*(int (**)(STEP *))((char *)pstep->pvtlo + 0x168))(pstep))
+        AdjustStepXpVelocityBase(pstep, pxp, ixpd);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", UpdateStepXfWorld__FP4STEP);
 
@@ -75,11 +118,21 @@ INCLUDE_ASM("asm/nonmatchings/P2/step", AdjustStepXpVelocityBase__FP4STEPP2XPi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", AdjustStepXps__FP4STEP);
 
-INCLUDE_ASM("asm/nonmatchings/P2/step", AddStepCustomXps__FP4STEPP2SOiP3BSPT3PP2XP);
+void AddStepCustomXps(STEP *pstep, SO *psoOther, int cbspPruned, BSP *abspPruned, BSP *pbspPruned, XP **ppxpFirst)
+{
+    AddStepCustomXpsBase(pstep, psoOther, pbspPruned, ppxpFirst);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", AddStepCustomXpsBase__FP4STEPP2SOP3BSPPP2XP);
 
-INCLUDE_ASM("asm/nonmatchings/P2/step", FixStepAngularVelocity__FP4STEP);
+void FixStepAngularVelocity(STEP *pstep)
+{
+    qword local = STRUCT_OFFSET(pstep, 0x160, qword);
+    float radTarget = atan2f(STRUCT_OFFSET(pstep, 0xd4, float), STRUCT_OFFSET(pstep, 0xd0, float));
+    RadSmooth(radTarget, STRUCT_OFFSET(pstep, 0x638, float), 0.0f,
+              (SMP *)((uint8_t *)pstep + 0x6e0), (float *)((uint8_t *)&local + 8));
+    (*(void (**)(STEP *, qword *))((uint8_t *)pstep->pvtlo + 0x94))(pstep, &local);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", PredictStepRotation__FP4STEPfP7MATRIX3P6VECTOR);
 

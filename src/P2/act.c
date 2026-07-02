@@ -1,14 +1,89 @@
 #include <act.h>
+#include <slotheap.h>
+#include <sw.h>
+#include <memory.h>
+#include <alo.h>
+#include <so.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", PactNew__FP2SWP3ALOP5VTACT);
+ACT *PactNew(SW *psw, ALO *palo, VTACT *pvtact)
+{
+    ACT *pact = (ACT *)PvAllocSlotheapClearImpl((SLOTHEAP *)((uint8_t *)psw + 0x1B20));
+    pact->pvtact = pvtact;
+    (*(void (**)(ACT *, ALO *))pvtact)(pact, palo);
+    return pact;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", PactNewClone__FP3ACTP2SWP3ALO);
+extern VTACT g_vtact;
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", CloneAct__FP3ACTT0);
+ACT *PactNewClone(ACT *pactBase, SW *psw, ALO *palo)
+{
+    ACT *pact = PactNew(psw, palo, &g_vtact);
+    (*(void (**)(ACT *, ACT *))((uint8_t *)pact->pvtact + 4))(pact, pactBase);
+    return pact;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", InitAct__FP3ACTP3ALO);
+void CloneAct(ACT *pact, ACT *pactBase)
+{
+    DLE dleSav = pact->dleAlo;
+    ALO *paloSav = pact->palo;
+    CopyAb(pact, pactBase, STRUCT_OFFSET(g_psw, 0x1B20, int));
+    pact->dleAlo = dleSav;
+    pact->palo = paloSav;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", RetractAct__FP3ACTi);
+void InitAct(ACT *pact, ALO *palo)
+{
+    int du = -1;
+    STRUCT_OFFSET(pact, 0x12, char) = du;
+    pact->palo = palo;
+    STRUCT_OFFSET(pact, 0x13, char) = -1;
+    STRUCT_OFFSET(pact, 0x11, char) = du;
+    STRUCT_OFFSET(pact, 0x10, char) = du;
+}
+
+void RetractAct(ACT *pact, GRFRA grfra)
+{
+    VECTOR v;
+    ALO *palo = pact->palo;
+    ACT *pactPos;
+    ACT *pactRot;
+
+    RemoveDlEntry((DL *)((uint8_t *)palo + 0x1E0), pact);
+
+    pactPos = STRUCT_OFFSET(palo, 0x1EC, ACT *);
+    pactRot = STRUCT_OFFSET(palo, 0x1F0, ACT *);
+    (*(void (**)(ALO *))((char *)palo->pvtlo + 0xBC))(palo);
+
+    if (pact == pactPos && STRUCT_OFFSET(palo, 0x1EC, int) == 0 && (grfra & 1))
+    {
+        if (palo->pvtlo->grfcid & 2)
+        {
+            ApplySoConstraintLocal((SO *)palo, (CONSTR *)((uint8_t *)palo + 0x440),
+                                   (VECTOR *)((uint8_t *)palo + 0x150), &v, NULL);
+            (*(void (**)(ALO *, VECTOR *))((char *)palo->pvtlo + 0x90))(palo, &v);
+        }
+        else
+        {
+            SetAloVelocityVec(palo, &D_00248D30);
+        }
+    }
+
+    if (pact == pactRot && STRUCT_OFFSET(palo, 0x1F0, int) == 0 && (grfra & 2))
+    {
+        if (palo->pvtlo->grfcid & 2)
+        {
+            ApplySoConstraintLocal((SO *)palo, (CONSTR *)((uint8_t *)palo + 0x460),
+                                   (VECTOR *)((uint8_t *)palo + 0x160), &v, NULL);
+            (*(void (**)(ALO *, VECTOR *))((char *)palo->pvtlo + 0x94))(palo, &v);
+        }
+        else
+        {
+            SetAloAngularVelocityVec(palo, &D_00248D30);
+        }
+    }
+
+    FreeSlotheapPv((SLOTHEAP *)((uint8_t *)palo->psw + 0x1B20), pact);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", GetActPositionGoal__FP3ACTfP6VECTORT2);
 
@@ -20,7 +95,14 @@ void GetActTwistGoal(ACT *pact, float *pradTwist, float *pdradTwist)
     *(int *)pdradTwist = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", GetActScale__FP3ACTP7MATRIX3);
+extern char D_002483D0[];
+
+void GetActScale(ACT *pact, MATRIX3 *pmat)
+{
+    *(qword *)((char *)pmat + 0x0) = *(qword *)(D_002483D0 + 0x0);
+    *(qword *)((char *)pmat + 0x10) = *(qword *)(D_002483D0 + 0x10);
+    *(qword *)((char *)pmat + 0x20) = *(qword *)(D_002483D0 + 0x20);
+}
 
 float GGetActPoseGoal(ACT *pact, int ipose)
 {
@@ -29,7 +111,28 @@ float GGetActPoseGoal(ACT *pact, int ipose)
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", CalculateActDefaultAck__FP3ACT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", SnapAct__FP3ACTi);
+void SnapAct(ACT *pact, int fForce)
+{
+    VECTOR pos;
+    VECTOR v;
+    MATRIX3 mat;
+    ALO *palo = pact->palo;
+
+    if (pact == STRUCT_OFFSET(palo, 0x1ec, ACT *) &&
+        (fForce != 0 || STRUCT_OFFSET(pact, 0x10, char) == 2))
+    {
+        (*(void (**)(ACT *, float, VECTOR *, VECTOR *))((char *)pact->pvtact + 0x10))(pact, 0.0f, &pos, &v);
+        (*(void (**)(ALO *, VECTOR *))((char *)palo->pvtlo + 0x84))(palo, &pos);
+        (*(void (**)(ALO *, VECTOR *))((char *)palo->pvtlo + 0x90))(palo, &v);
+    }
+    if (pact == STRUCT_OFFSET(palo, 0x1f0, ACT *) &&
+        (fForce != 0 || STRUCT_OFFSET(pact, 0x11, char) == 2))
+    {
+        (*(void (**)(ACT *, float, MATRIX3 *, VECTOR *))((char *)pact->pvtact + 0x14))(pact, 0.0f, &mat, &pos);
+        (*(void (**)(ALO *, MATRIX3 *))((char *)palo->pvtlo + 0x88))(palo, &mat);
+        (*(void (**)(ALO *, VECTOR *))((char *)palo->pvtlo + 0x94))(palo, &pos);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", CalculateAloPositionSpring__FP3ALOfP6VECTORN22);
 
@@ -39,15 +142,65 @@ INCLUDE_ASM("asm/nonmatchings/P2/act", CalculateAloRotationSpring__FP3ALOfP7MATR
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", ProjectActRotation__FP3ACT);
 
+extern SMP D_00260E60;
+
 INCLUDE_ASM("asm/nonmatchings/P2/act", ProjectActPose__FP3ACTi);
+#ifdef SKIP_ASM
+void ProjectActPose(ACT *pact, int ipose)
+{
+    float g = (*(float (**)(ACT *))((char *)pact->pvtact + 0x20))(pact);
+    signed char actk = STRUCT_OFFSET(pact, 0x13, signed char);
+
+    if (actk == 2)
+    {
+        float *ag = STRUCT_OFFSET(pact->palo, 0x270, float *);
+        ag[ipose] = g;
+    }
+    else if (actk == 3)
+    {
+        ALO *palo = pact->palo;
+        int off = ipose << 2;
+        float *ag = STRUCT_OFFSET(palo, 0x270, float *);
+        float dt;
+        dt = STRUCT_OFFSET(palo, 0x294, int) ? g_clock.dtReal : g_clock.dt;
+        *(float *)((char *)ag + off) =
+            GSmooth(*(float *)((char *)ag + off), g, dt, &D_00260E60, NULL);
+    }
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", PredictAloPosition__FP3ALOfP6VECTORT2);
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", PredictAloRotation__FP3ALOfP7MATRIX3P6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", AdaptAct__FP3ACT);
+void AdaptAct(ACT *pact)
+{
+    if (STRUCT_OFFSET(pact, 0x10, char) == 7)
+        STRUCT_OFFSET(pact, 0x10, char) = 3;
+    if (STRUCT_OFFSET(pact, 0x11, char) == 7)
+        STRUCT_OFFSET(pact, 0x11, char) = 3;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", InitActval__FP6ACTVALP3ALO);
+void InitActval(ACTVAL *pactval, ALO *palo)
+{
+    uint8_t *psen;
+
+    InitAct(pactval, palo);
+    *(qword *)((uint8_t *)pactval + 0x20) = *(qword *)((uint8_t *)palo + 0x190);
+    *(qword *)((uint8_t *)pactval + 0x40) = *(qword *)((uint8_t *)palo + 0x1a0);
+    *(qword *)((uint8_t *)pactval + 0x50) = *(qword *)((uint8_t *)palo + 0x1b0);
+    *(qword *)((uint8_t *)pactval + 0x60) = *(qword *)((uint8_t *)palo + 0x1c0);
+    psen = STRUCT_OFFSET(palo, 0x224, uint8_t *);
+    if (psen != 0 && (STRUCT_OFFSET(psen, 0xb0, int) & 0x20))
+    {
+        pactval->radTwistGoal = STRUCT_OFFSET(psen, 0x8c, float);
+    }
+    *(qword *)((uint8_t *)pactval + 0x90) = *(qword *)(D_002483D0 + 0x0);
+    *(qword *)((uint8_t *)pactval + 0xa0) = *(qword *)(D_002483D0 + 0x10);
+    *(qword *)((uint8_t *)pactval + 0xb0) = *(qword *)(D_002483D0 + 0x20);
+    STRUCT_OFFSET(pactval, 0xc0, int) = STRUCT_OFFSET(palo, 0x26c, int);
+    STRUCT_OFFSET(pactval, 0xc4, int) = STRUCT_OFFSET(palo, 0x274, int);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", GetActvalPositionGoal__FP6ACTVALfP6VECTORT2);
 
@@ -59,16 +212,45 @@ void GetActvalTwistGoal(ACTVAL *pactval, float *pradTwist, float *pdradTwist)
     *pdradTwist = pactval->dradTwistGoal;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", GetActvalScale__FP6ACTVALP7MATRIX3);
+void GetActvalScale(ACTVAL *pactval, MATRIX3 *pmat)
+{
+    *(qword *)((uint8_t *)pmat + 0x0) = *(qword *)((uint8_t *)pactval + 0x90);
+    *(qword *)((uint8_t *)pmat + 0x10) = *(qword *)((uint8_t *)pactval + 0xA0);
+    *(qword *)((uint8_t *)pmat + 0x20) = *(qword *)((uint8_t *)pactval + 0xB0);
+}
 
 float GGetActvalPoseGoal(ACTVAL *pactval, int ipose)
 {
     return pactval->agPoses[ipose];
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", InitActref__FP6ACTREFP3ALO);
+void InitActref(ACTREF *pactref, ALO *palo)
+{
+    InitAct(pactref, palo);
+    STRUCT_OFFSET(pactref, 0x1c, uint8_t *) = (uint8_t *)palo + 0x190;
+    STRUCT_OFFSET(pactref, 0x24, uint8_t *) = (uint8_t *)palo + 0x1a0;
+    STRUCT_OFFSET(pactref, 0x38, uint8_t *) = (uint8_t *)palo + 0x26c;
+    STRUCT_OFFSET(pactref, 0x20, VECTOR *) = &D_00248D30;
+    STRUCT_OFFSET(pactref, 0x28, VECTOR *) = &D_00248D30;
+    STRUCT_OFFSET(pactref, 0x3c, float *) = STRUCT_OFFSET(palo, 0x274, float *);
+    uint8_t *psen = STRUCT_OFFSET(palo, 0x224, uint8_t *);
+    if (psen != NULL && (STRUCT_OFFSET(psen, 0xb0, int) & 0x20))
+    {
+        STRUCT_OFFSET(pactref, 0x30, VECTOR *) = &D_00248D30;
+        STRUCT_OFFSET(pactref, 0x2c, uint8_t *) = psen + 0x8c;
+    }
+    STRUCT_OFFSET(pactref, 0x34, char *) = D_002483D0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", GetActrefPositionGoal__FP6ACTREFfP6VECTORT2);
+void GetActrefPositionGoal(ACTREF *pactref, float dtOffset, VECTOR *ppos, VECTOR *pv)
+{
+    *(qword *)ppos = *(qword *)STRUCT_OFFSET(pactref, 0x1c, uint8_t *);
+    *(qword *)pv = *(qword *)STRUCT_OFFSET(pactref, 0x20, uint8_t *);
+    ALO *palo = pactref->palo;
+    void (*pfn)(ALO *) = (void (*)(ALO *))STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x0, void *), 0xB0, void *);
+    if (pfn)
+        pfn(palo);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", GetActrefRotationGoal__FP6ACTREFfP7MATRIX3P6VECTOR);
 
@@ -78,7 +260,13 @@ void GetActrefTwistGoal(ACTREF *pactref, float *pradTwist, float *pdradTwist)
     *pdradTwist = *pactref->pdradTwistGoal;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", GetActrefScale__FP6ACTREFP7MATRIX3);
+void GetActrefScale(ACTREF *pactref, MATRIX3 *pmat)
+{
+    uint8_t *psrc = STRUCT_OFFSET(pactref, 0x34, uint8_t *);
+    *(qword *)((uint8_t *)pmat + 0x0) = *(qword *)(psrc + 0x0);
+    *(qword *)((uint8_t *)pmat + 0x10) = *(qword *)(psrc + 0x10);
+    *(qword *)((uint8_t *)pmat + 0x20) = *(qword *)(psrc + 0x20);
+}
 
 float GGetActrefPoseGoal(ACTREF *pactref, int ipose)
 {

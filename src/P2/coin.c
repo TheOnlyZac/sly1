@@ -2,6 +2,9 @@
 #include <chkpnt.h>
 #include <bis.h>
 #include <sw.h>
+#include <screen.h>
+#include <find.h>
+#include <game.h>
 
 void InitDprize(DPRIZE *pdprize)
 {
@@ -35,7 +38,21 @@ void CloneDprize(DPRIZE *pdprize, DPRIZE *pdprizeBase)
     pdprize->ichkCollected = ichkCollected;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", PostDprizeLoad__FP6DPRIZE);
+void PostDprizeLoad(DPRIZE *pdprize)
+{
+    PostAloLoad(pdprize);
+    LO *plo = PloFindSwObjectByClass(pdprize->psw, 1, (CID)0x75, (LO *)pdprize);
+    pdprize->ptarget = (TARGET *)plo;
+    if (plo != NULL)
+    {
+        (*(void (**)(LO *))((char *)plo->pvtlo + 0x1C))(plo);
+    }
+    if (((STRUCT_OFFSET(g_pgsCur, 0x19D8, int) << 8) | STRUCT_OFFSET(g_pgsCur, 0x19DC, int)) != 0x308 && FGetChkmgrIchk(&g_chkmgr, pdprize->ichkCollected))
+    {
+        pdprize->dprizesInit = DPRIZES_Removed;
+    }
+    (*(void (**)(DPRIZE *, DPRIZES))((char *)pdprize->pvtlo + 0xCC))(pdprize, pdprize->dprizesInit);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", ProjectDprizeTransform__FP6DPRIZEfi);
 
@@ -67,11 +84,30 @@ void InitCoin(COIN *pcoin)
     pcoin->lmDtMaxLifetime.gMax = 10.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00147ed0);
+void FUN_00147ed0(DPRIZE *pdprize)
+{
+    // @todo: fix this vtable call
+    (*(void (**)(DPRIZE *, DPRIZES))((char *)pdprize->pvtlo + 0xCC))(pdprize, DPRIZES_Removed);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00147ef8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", UpdateCoin__FP4COINf);
+extern int D_00270458;
+
+void UpdateDprize(DPRIZE *pdprize, float dt);
+
+void UpdateCoin(COIN *pcoin, float dt)
+{
+    UpdateDprize(pcoin, dt);
+    if (pcoin->oidInitialState != OID_Unknown)
+        return;
+    if (pcoin->fNeverReuse == 0)
+        return;
+    if (D_00270458 != 2)
+        pcoin->tLose -= g_clock.dt;
+    if (pcoin->tLose <= 0.0f)
+        (*(void (**)(COIN *, DPRIZES))((char *)pcoin->pvtlo + 0xCC))(pcoin, DPRIZES_Lose);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", CreateSwCharm__FP2SW);
 
@@ -178,13 +214,30 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", SetKeyDprizes__FP3KEY7DPRIZES);
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148698);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148718);
+void PostDprizeLoad(DPRIZE *pdprize);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148748);
+void FUN_00148718(DPRIZE *pdprize)
+{
+    PostDprizeLoad(pdprize);
+    STRUCT_OFFSET(&g_note, 0x270, DPRIZE *) = pdprize;
+}
+
+void FUN_00148748(void *param_1)
+{
+    (*(void (**)(void *, int))(*(int *)param_1 + 0xCC))(param_1, 2);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148770);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148828);
+void FUN_00148828(DPRIZE *pdprize, float dt)
+{
+    UpdateDprize(pdprize, dt);
+    if (pdprize->oidInitialState != OID_Unknown)
+        return;
+    // @todo clean up this vtable call
+    if (STRUCT_OFFSET(pdprize->psw, 0x2308, float) <= g_clock.t)
+        (*(void (**)(DPRIZE *, DPRIZES))((char *)pdprize->pvtlo + 0xCC))(pdprize, DPRIZES_Lose);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148888);
 
@@ -201,16 +254,35 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", RemoveSwExtraneousCharms__FP2SW);
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148d90);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148e18);
+void FUN_00148e18(void *param_1)
+{
+    // @todo clean up this vtable call
+    (*(void (**)(void *, int))(*(int *)param_1 + 0xCC))(param_1, 2);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148e40);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148ef8);
+void FUN_00148ef8(COIN *pcoin, float dt)
+{
+    UpdateDprize(pcoin, dt);
+    if (pcoin->oidInitialState != OID_Unknown)
+        return;
+    if (pcoin->fNeverReuse == 0)
+        return;
+    if (D_00270458 != 2)
+        pcoin->tLose -= g_clock.dt;
+    if (pcoin->tLose <= 0.0f) // @todo clean up this vtable call
+        (*(void (**)(COIN *, DPRIZES))((char *)pcoin->pvtlo + 0xCC))(pcoin, DPRIZES_Lose);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", increment_and_show_life_count);
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", CollectLifetkn__FP7LIFETKN);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00149168);
+void FUN_00149168(DPRIZE *param_1)
+{
+    InitDprize(param_1);
+    *(int *)((uint8_t *)param_1 + 0x340) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", break_bottle);

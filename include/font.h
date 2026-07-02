@@ -124,6 +124,10 @@ extern CFont *g_pfont;
 
 void StartupFont();
 
+CFont *FUN_0015c1c0(int i);
+
+int FUN_0015c188(int i);
+
 void PostFontsLoad();
 
 #endif // FONT_H

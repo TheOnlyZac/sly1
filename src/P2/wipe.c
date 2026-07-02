@@ -22,22 +22,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/wipe", DrawWipe__FP4WIPE);
 #ifdef SKIP_ASM
 void DrawWipe(WIPE *pwipe)
 {
-    if (!g_psw || !g_pwipe)
+    if (g_psw == NULL || g_pwipe == NULL)
     {
         return;
     }
 
     WIPEK wipek = pwipe->wipek;
-    if (wipek != WIPEK_Keyhole)
+    if (wipek == WIPEK_Keyhole)
     {
-        if (wipek > WIPEK_Keyhole || wipek == WIPEK_Fade)
+        if (g_pkeyhole != NULL)
         {
+            DrawKeyhole(g_pkeyhole, pwipe->uBlack);
             return;
         }
     }
-    if (g_pkeyhole)
+    else if (wipek >= WIPEK_WorldMap || wipek != WIPEK_Fade)
     {
-        DrawKeyhole(g_pkeyhole, pwipe->uBlack);
         return;
     }
 
@@ -47,7 +47,11 @@ void DrawWipe(WIPE *pwipe)
 
 INCLUDE_ASM("asm/nonmatchings/P2/wipe", ActivateWipe__FP4WIPEP5TRANS5WIPEK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/wipe", SetWipeButtonTrans__FP4WIPEP5TRANS5WIPEK);
+void SetWipeButtonTrans(WIPE *pwipe, TRANS *ptrans, WIPEK wipek)
+{
+    STRUCT_OFFSET(pwipe, 0x28, TRANS) = *ptrans;
+    STRUCT_OFFSET(pwipe, 0x3c, WIPEK) = wipek;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/wipe", FCatchWipeButtonTrans__FP4WIPEP3JOY5WIPES);
 

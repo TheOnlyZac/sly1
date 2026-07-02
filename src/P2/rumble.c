@@ -1,6 +1,7 @@
 #include <rumble.h>
 #include <clock.h>
 #include <sdk/ee/libpad.h>
+#include <game.h>
 
 /**
  * @brief Rename.
@@ -24,7 +25,12 @@ void InitRumble(RUMBLE *prumble, int nPort, int nSlot)
 
 INCLUDE_ASM("asm/nonmatchings/P2/rumble", UpdateRumble__FP6RUMBLE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rumble", TriggerRumbleRumk__FP6RUMBLE4RUMKf);
+extern RUMPAT D_0026B8B0[];
+
+void TriggerRumbleRumk(RUMBLE *prumble, RUMK rumk, float dt)
+{
+    TriggerRumbleRumpat(prumble, &D_0026B8B0[rumk], dt);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rumble", TriggerRumbleRumpat__FP6RUMBLEP6RUMPATf);
 
@@ -91,6 +97,22 @@ void FUN_001A7E70()
 
 INCLUDE_ASM("asm/nonmatchings/P2/rumble", FUN_001A7E90);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rumble", FUN_001A7EE8);
+int FUN_001A7EE8(GS *pgs)
+{
+    switch (DAT_0026c3dc)
+    {
+    case 1:
+        break;
+    case 2:
+        return 1;
+    case 3:
+        return 0;
+    case 0:
+        return 0;
+    default:
+        break;
+    }
+    return ((STRUCT_OFFSET(pgs, 0x19EC, int) >> 5) ^ 1) & 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rumble", FUN_001A7F50);

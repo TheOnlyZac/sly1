@@ -1,12 +1,43 @@
 #include <break.h>
 #include <chkpnt.h>
 #include <po.h>
+#include <memory.h>
+#include <find.h>
+#include <emitter.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", InitBrk__FP3BRK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", LoadBrkFromBrx__FP3BRKP18CBinaryInputStream);
+void LoadBrkFromBrx(BRK *pbrk, CBinaryInputStream *pbis)
+{
+    LoadSoFromBrx(pbrk, pbis);
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", CloneBrk__FP3BRKT0);
+    if (STRUCT_OFFSET(pbrk, 0x614, OID) == (OID)-1)
+    {
+        InferExpl((EXPL **)((uint8_t *)pbrk + 0x618), (ALO *)pbrk);
+    }
+    else
+    {
+        LO *plo = PloFindSwObject(pbrk->psw, 0x101, STRUCT_OFFSET(pbrk, 0x614, OID), (LO *)pbrk);
+        STRUCT_OFFSET(pbrk, 0x618, LO *) = plo;
+
+        if (plo != NULL)
+        {
+            SnipLo(plo);
+        }
+    }
+}
+
+void CloneBrk(BRK *pbrk, BRK *pbrkBase)
+{
+    int ichkBroken = STRUCT_OFFSET(pbrk, 0x688, int);
+    CloneSo(pbrk, pbrkBase);
+    STRUCT_OFFSET(pbrk, 0x688, int) = ichkBroken;
+
+    if (STRUCT_OFFSET(pbrkBase, 0x6b4, SFX *) != NULL)
+    {
+        STRUCT_OFFSET(pbrk, 0x6b4, SFX *) = (SFX *)PvAllocSwCopyImpl(0x24, STRUCT_OFFSET(pbrkBase, 0x6b4, SFX *));
+    }
+}
 
 void PostBrkLoad(BRK *pbrk)
 {
@@ -16,7 +47,16 @@ void PostBrkLoad(BRK *pbrk)
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", PostBrkLoadCallbackHookup__FP3BRK5MSGIDPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", UpdateBrk__FP3BRKf);
+void UpdateBrk(BRK *pbrk, float dt)
+{
+    UpdateSo(pbrk, dt);
+
+    if (STRUCT_OFFSET(pbrk, 0x678, int))
+    {
+        STRUCT_OFFSET(pbrk, 0x678, int) = 0;
+        (*(void (**)(BRK *))((char *)pbrk->pvtlo + 0x130))(pbrk);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/break", FAbsorbBrkWkr__FP3BRKP3WKR);
 
@@ -175,7 +215,33 @@ void InitFragile(FRAGILE *pfragile)
     STRUCT_OFFSET(pfragile, 0x6c8, int) = -1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/break", AdjustFragileNewXp__FP7FRAGILEP2XPi);
+void AdjustFragileNewXp(FRAGILE *pfragile, XP *pxp, int ixpd)
+{
+    if (STRUCT_OFFSET(pfragile, 0x680, int))
+        return;
+
+    SO *psoRoot = pxp->axpd[1 - ixpd].psoRoot;
+
+    if (STRUCT_OFFSET(pfragile, 0x678, int))
+        return;
+
+    if (!FCheckBrkTouchObject((BRK *)pfragile, psoRoot))
+        return;
+
+    CNSTR cnstrForce = STRUCT_OFFSET(pfragile, 0x6c4, CNSTR);
+    if (cnstrForce != (CNSTR)-1)
+        SetSoCnstrForce((SO *)pfragile, cnstrForce);
+
+    CNSTR cnstrTorque = STRUCT_OFFSET(pfragile, 0x6c8, CNSTR);
+    if (cnstrTorque != (CNSTR)-1)
+        SetSoCnstrTorque((SO *)pfragile, cnstrTorque);
+
+    float t = STRUCT_OFFSET(pfragile, 0x368, float);
+    float scale = STRUCT_OFFSET(pfragile, 0x6c0, float);
+    STRUCT_OFFSET(pfragile, 0x678, int) = 1;
+    STRUCT_OFFSET(pfragile, 0x6cc, SO *) = psoRoot;
+    STRUCT_OFFSET(pfragile, 0x368, float) = t * scale;
+}
 
 void AdjustZapbreakNewXp(ZAPBREAK *pzapbreak, XP *pxp, int ixpd)
 {

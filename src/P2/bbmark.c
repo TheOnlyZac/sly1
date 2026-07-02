@@ -14,9 +14,38 @@ OX *PoxAddSw(SW *psw, OXA *poxa, OXA *poxaOther)
     return pox;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/bbmark", PoxRemoveSw__FP2SWP3OXAT1);
+OX *PoxRemoveSw(SW *psw, OXA *poxa, OXA *poxaOther)
+{
+    OX **ppox = &poxa->pox;
+    OX *pox = poxa->pox;
+    SO *psoOther = poxaOther->pso;
 
-INCLUDE_ASM("asm/nonmatchings/P2/bbmark", PoxFromSoSo__FP2SOT0);
+    while (pox)
+    {
+        if (pox->psoOther == psoOther)
+        {
+            *ppox = pox->poxNext;
+            break;
+        }
+        ppox = &pox->poxNext;
+        pox = pox->poxNext;
+    }
+
+    return pox;
+}
+
+OX *PoxFromSoSo(SO *pso, SO *psoOther)
+{
+    OX *pox = STRUCT_OFFSET(STRUCT_OFFSET(pso, 0x50, SW *), 0x480, OXA *)->pox;
+    SO *psoKey = STRUCT_OFFSET(psoOther, 0x50, SO *);
+    while (pox != NULL)
+    {
+        if (pox->psoOther == psoKey)
+            return pox;
+        pox = pox->poxNext;
+    }
+    return NULL;
+}
 
 XP *PxpFirstFromSoSo(SO *pso, SO *psoOther)
 {
@@ -35,8 +64,49 @@ void InvalidateSwAaox(SW *psw)
 
 INCLUDE_ASM("asm/nonmatchings/P2/bbmark", UpdateSwAaox__FP2SW);
 
-INCLUDE_ASM("asm/nonmatchings/P2/bbmark", InvalidateSwXpForObject__FP2SWP2SOi);
+void InvalidateSwXpForObject(SW *psw, SO *pso, GRFPVA grfpvaInvalid)
+{
+    SW *pswObject = STRUCT_OFFSET(pso, 0x50, SW *);
+    if (pswObject)
+    {
+        STRUCT_OFFSET(pswObject, 0x4B8, int) &= ~grfpvaInvalid;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/bbmark", RecalcSwXpAll__FP2SWi);
 
+extern void UpdateSwPox(SW *, OXA *, OXA *, unsigned char, unsigned char);
+
 INCLUDE_ASM("asm/nonmatchings/P2/bbmark", RecalcSwOxfFilterForObject__FP2SWP2SO);
+#ifdef SKIP_ASM
+void RecalcSwOxfFilterForObject(SW *psw, SO *pso)
+{
+    OXA *poxa;
+
+    STRUCT_OFFSET(pso, 0x4B8, int) = 0;
+    poxa = STRUCT_OFFSET(psw, 0x1AE8, OXA *);
+    while (poxa != NULL)
+    {
+        if (poxa->pso != pso)
+        {
+            int fHit = 0;
+            void **pvtbl = STRUCT_OFFSET(pso, 0x0, void **);
+            if (((int (*)(SO *))pvtbl[0xF0 / 4])(pso) != 0)
+            {
+                fHit = 1;
+            }
+            else
+            {
+                void **pvtblOther = STRUCT_OFFSET(poxa->pso, 0x0, void **);
+                if (((int (*)(SO *, SO *))pvtblOther[0xF0 / 4])(poxa->pso, pso) != 0)
+                {
+                    fHit = 1;
+                }
+            }
+            UpdateSwPox(psw, STRUCT_OFFSET(pso, 0x480, OXA *), poxa,
+                        fHit ? 0 : 8, fHit ? 8 : 0);
+        }
+        poxa = poxa->poxaNext;
+    }
+}
+#endif // SKIP_ASM

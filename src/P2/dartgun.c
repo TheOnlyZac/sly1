@@ -1,4 +1,10 @@
 #include <dartgun.h>
+#include <jt.h>
+#include <clock.h>
+#include <lookat.h>
+#include <dart.h>
+#include <dl.h>
+#include <find.h>
 
 void InitDartgun(DARTGUN *pdartgun)
 {
@@ -6,23 +12,159 @@ void InitDartgun(DARTGUN *pdartgun)
     STRUCT_OFFSET(pdartgun, 0x6c0, OID) = OID_Nil; // pdartgun->oidDart
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/dartgun", HandleDartgunMessage__FP7DARTGUN5MSGIDPv);
+void HandleDartgunMessage(DARTGUN *pdartgun, MSGID msgid, void *pv)
+{
+    OID oid;
+    ALO *palo;
+
+    HandleAloMessage((ALO *)pdartgun, msgid, pv);
+
+    if (msgid != (MSGID)0x14)
+        return;
+
+    if (pv != STRUCT_OFFSET(pdartgun, 0x740, void *))
+        return;
+
+    GetSmaGoal((SMA *)pv, &oid);
+    if (oid != (OID)0x2B7)
+        return;
+
+    if (STRUCT_OFFSET(pdartgun, 0x680, int) != 0)
+    {
+        RetractSma(STRUCT_OFFSET(pdartgun, 0x740, SMA *));
+        STRUCT_OFFSET(pdartgun, 0x740, int) = 0;
+    }
+    else
+    {
+        STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x4C, int) = 1;
+        STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x1C, int) = 0;
+
+        // @todo check these vtable call
+        palo = STRUCT_OFFSET(pdartgun, 0x734, ALO *);
+        (*(void (**)(ALO *, void *))((char *)palo->pvtlo + 0x84))(palo, (char *)palo + 0x190);
+        palo = STRUCT_OFFSET(pdartgun, 0x734, ALO *);
+        (*(void (**)(ALO *, void *))((char *)palo->pvtlo + 0x88))(palo, (char *)palo + 0x1A0);
+        palo = STRUCT_OFFSET(pdartgun, 0x738, ALO *);
+        (*(void (**)(ALO *, void *))((char *)palo->pvtlo + 0x88))(palo, (char *)palo + 0x1A0);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/dartgun", BindDartgun__FP7DARTGUN);
 
-INCLUDE_ASM("asm/nonmatchings/P2/dartgun", FUN_0014f900);
+void FUN_0014f900(DARTGUN* pdartgun)
+{
+    if (g_pjt == NULL)
+        return;
+
+    STRUCT_OFFSET(pdartgun, 0x6dc, int) = STRUCT_OFFSET(g_pjt, 0x24f8, int);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/dartgun", PostDartgunLoad__FP7DARTGUN);
 
 INCLUDE_ASM("asm/nonmatchings/P2/dartgun", UpdateDartgun__FP7DARTGUNf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/dartgun", FIgnoreDartgunIntersection__FP7DARTGUNP2SO);
+int FIgnoreDartgunIntersection(DARTGUN *pdartgun, SO *psoOther)
+{
+    if (FIsBasicDerivedFrom(psoOther, CID_RAT))
+    {
+        if (STRUCT_OFFSET(psoOther, 0x588, SO *) == (SO *)pdartgun)
+            return 1;
+    }
 
-INCLUDE_ASM("asm/nonmatchings/P2/dartgun", BreakDartgun__FP7DARTGUN);
+    return FIgnoreSoIntersection((SO *)pdartgun, psoOther);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/dartgun", SetDartgunGoalState__FP7DARTGUN3OID);
+void BreakDartgun(DARTGUN *pdartgun)
+{
+    ALO *palo = STRUCT_OFFSET(pdartgun, 0x6c8, ALO *);
+    if (palo != NULL)
+    {
+        (*(void (**)(ALO *, int))((char *)palo->pvtlo + 0x64))(palo, 0);
+        palo = STRUCT_OFFSET(pdartgun, 0x6c8, ALO *);
+        (*(void (**)(ALO *))((char *)palo->pvtlo + 0x1c))(palo);
+    }
 
-INCLUDE_ASM("asm/nonmatchings/P2/dartgun", TrackDartgun__FP7DARTGUNP3OID);
+    SMA *psma = STRUCT_OFFSET(pdartgun, 0x740, SMA *);
+    OID oidCur;
+    if (psma != NULL)
+    {
+        SeekSma(psma, (OID)0x2B7);
+        GetSmaCur(STRUCT_OFFSET(pdartgun, 0x740, SMA *), &oidCur);
+        if (oidCur == (OID)0x2B7)
+        {
+            RetractSma(STRUCT_OFFSET(pdartgun, 0x740, SMA *));
+            STRUCT_OFFSET(pdartgun, 0x740, int) = 0;
+        }
+    }
+
+    palo = STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, ALO *);
+    // @todo clean up this vtable call
+    (*(void (**)(ALO *, int))((char *)palo->pvtlo + 0x8))(palo, 7);
+
+    BreakBrk((BRK *)pdartgun);
+}
+
+void SetDartgunGoalState(DARTGUN *pdartgun, OID oidStateGoal)
+{
+    OID oidCur;
+
+    GetSmaGoal(STRUCT_OFFSET(pdartgun, 0x740, SMA *), &oidCur);
+    if (oidCur == OID_Nil)
+        GetSmaCur(STRUCT_OFFSET(pdartgun, 0x740, SMA *), &oidCur);
+
+    if (oidStateGoal == oidCur)
+        return;
+
+    if (oidCur == (OID)0x2B7)
+    {
+        STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x4C, int) = 0;
+    }
+
+    if (oidStateGoal < (OID)0x2BA)
+    {
+        if (oidStateGoal >= (OID)0x2B8)
+        {
+            STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x1C, int) = (oidStateGoal == (OID)0x2B9);
+            if ((unsigned int)(oidCur - 0x2BA) >= 2)
+                STRUCT_OFFSET(pdartgun, 0x6D8, int) = 0;
+        }
+    }
+
+    SetSmaGoal(STRUCT_OFFSET(pdartgun, 0x740, SMA *), oidStateGoal);
+}
+
+void TrackDartgun(DARTGUN *pdartgun, OID *poidStateGoal)
+{
+    if (*poidStateGoal == (OID)0x2B8)
+    {
+        STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x1C, int) = 0;
+        if (STRUCT_OFFSET(pdartgun, 0x6D0, float) < g_clock.t - STRUCT_OFFSET(pdartgun, 0x6D8, float))
+        {
+            if (FPrepareDartgunToFire(pdartgun))
+                *poidStateGoal = (OID)0x2BA;
+        }
+    }
+    else
+    {
+        LO *plo = STRUCT_OFFSET(pdartgun, 0x6E0, LO *);
+        if (plo == NULL || !FIsLoInWorld(plo) ||
+            STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x6E0, SO *), 0x550, int) == 3 ||
+            STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x6E0, SO *), 0x550, int) == 4)
+        {
+            STRUCT_OFFSET(pdartgun, 0x6E0, RAT *) = PratGetDartgunRatTarget(pdartgun);
+        }
+
+        if (STRUCT_OFFSET(pdartgun, 0x6E0, RAT *) != NULL)
+        {
+            SetActlaTarget((ACTLA *)STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *),
+                           (ALO *)STRUCT_OFFSET(pdartgun, 0x6E0, ALO *), &D_00248D30);
+            if (STRUCT_OFFSET(pdartgun, 0x6D0, float) < g_clock.t - STRUCT_OFFSET(pdartgun, 0x6D8, float) && FPrepareDartgunToFire(pdartgun))
+            {
+                *poidStateGoal = (OID)0x2BB;
+            }
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/dartgun", FPrepareDartgunToFire__FP7DARTGUN);
 

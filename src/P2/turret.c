@@ -1,5 +1,11 @@
 #include <turret.h>
 #include <dialog.h>
+#include <sm.h>
+#include <rwm.h>
+#include <oid.h>
+#include <jt.h>
+#include <sce/memset.h>
+#include <memory.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/turret", InitTurret__FP6TURRET);
 
@@ -9,7 +15,31 @@ INCLUDE_ASM("asm/nonmatchings/P2/turret", PostTurretLoad__FP6TURRET);
 
 INCLUDE_ASM("asm/nonmatchings/P2/turret", UpdateTurret__FP6TURRETf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/turret", UpdateTurretActive__FP6TURRETP3JOYf);
+void UpdateTurretActive(TURRET *pturret, JOY *pjoy, float dt)
+{
+    char b[0xC4];
+
+    UpdateTurretAim(pturret);
+
+    if ((pjoy->grfbtnPressed & 0xC0) != 0)
+    {
+        SetJoyBtnHandled(pjoy, 0xC0);
+        FireTurret(pturret);
+    }
+
+    if (g_pjt != NULL && STRUCT_OFFSET(g_pjt, 0x2740, int) != 0)
+    {
+        if (FIsLoInWorld(g_pjt))
+        {
+            void (*pfn)(JT *, void *, float);
+
+            memset(b, 0, 0xC4);
+            pfn = (void (*)(JT *, void *, float))STRUCT_OFFSET(g_pjt->pvtlo, 0x134, void *);
+            if (pfn != 0)
+                pfn(g_pjt, b, dt);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/turret", OnTurretActive__FP6TURRETiP2PO);
 
@@ -17,7 +47,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/turret", FFilterTurret__FP6TURRETP2SO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/turret", UpdateTurretAim__FP6TURRET);
 
-INCLUDE_ASM("asm/nonmatchings/P2/turret", FireTurret__FP6TURRET);
+void FireTurret(TURRET *pturret)
+{
+    OID oidCur;
+    OID oidGoal;
+
+    GetSmaCur(STRUCT_OFFSET(pturret, 0x614, SMA *), &oidCur);
+    GetSmaGoal(STRUCT_OFFSET(pturret, 0x614, SMA *), &oidGoal);
+
+    if (oidCur == (OID)0x359 && oidGoal == oidCur)
+    {
+        if (FEnsureRwmLoaded(STRUCT_OFFSET(pturret, 0x618, RWM *)))
+        {
+            SetSmaGoal(STRUCT_OFFSET(pturret, 0x614, SMA *), (OID)0x35A);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/turret", HandleTurretMessage__FP6TURRET5MSGIDPv);
 
@@ -31,4 +76,8 @@ void GetTurretDiapi(TURRET *pturret, DIALOG *pdialog, DIAPI *pdiapi)
     pdiapi->fPlayable = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/turret", FUN_001e5e60);
+int FUN_001e5e60(int n)
+{
+    int v = STRUCT_OFFSET(n, 0x620, int);
+    return v != 0 ? v : n;
+}

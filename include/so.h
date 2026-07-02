@@ -17,7 +17,6 @@
 #include <sm.h>
 #include <cm.h>
 
-// Forward.
 class CBinaryInputStream;
 struct XA;
 struct XP;
@@ -25,7 +24,13 @@ struct RO;
 struct WKR;
 struct ZPR;
 struct WATER;
-struct CNSTR;
+/**
+ * @brief Constraint kind, an index into the s_acnstre table (see
+ * ConstrFromCnstr); each entry resolves to a CT and a normal vector.
+ */
+enum CNSTR
+{
+};
 struct CONSTR;
 struct SURFX;
 
@@ -37,7 +42,6 @@ typedef int GRFFSO;
  */
 enum EGK
 {
-    // ...
 };
 
 /**
@@ -162,7 +166,7 @@ void SetSoMass(SO *pso, float m);
 
 void AdjustSoMomint(SO *pso, float r);
 
-void DiscardSoXps(SO *pso);
+void DiscardSoXps(SO *pso, int mode);
 
 void UpdateSoPosWorldPrev(SO *pso);
 
@@ -285,5 +289,7 @@ void CalculateSoTrajectoryApex(SO *pso, VECTOR *pposTarget, float dzMax, VECTOR 
 int FAbsorbSoWkr(SO *pso, WKR *pwkr);
 
 void CloneSoPhys(SO *pso, SO *psoPhys, int cposExtra);
+
+void FUN_001bc4d8(uint8_t *param_1, uint8_t *param_2);
 
 #endif // SO_H

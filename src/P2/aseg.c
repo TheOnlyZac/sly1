@@ -1,5 +1,6 @@
 #include <aseg.h>
 #include <asega.h>
+#include <find.h>
 
 void StartupAseg()
 {
@@ -19,7 +20,26 @@ void CloneAseg(ASEG *paseg, LO *ploBase)
 
 INCLUDE_ASM("asm/nonmatchings/P2/aseg", PostAsegLoad__FP4ASEG);
 
-INCLUDE_ASM("asm/nonmatchings/P2/aseg", PostAsegLoadCallback__FP4ASEG5MSGIDPv);
+void PostAsegLoadCallback(ASEG *paseg, MSGID msgid, void *pvData)
+{
+    ASEGA *pasega;
+    LO *plo;
+
+    if (STRUCT_OFFSET(paseg, 0x40, OID) != OID_Nil)
+    {
+        plo = PloFindSwObject(paseg->psw, 4, STRUCT_OFFSET(paseg, 0x40, OID), paseg);
+        if (!plo)
+        {
+            plo = PloFindSwObject(paseg->psw, 0x104, STRUCT_OFFSET(paseg, 0x40, OID), paseg);
+        }
+    }
+    else
+    {
+        plo = NULL;
+    }
+
+    ApplyAseg(paseg, (ALO *)plo, 0.0f, 1.0f, 0, &pasega);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/aseg", ApplyAsegOvr__FP4ASEGP3ALOiP3OVRffiPP5ASEGA);
 
@@ -37,7 +57,25 @@ ASEGA *PasegaApplyAseg(ASEG *paseg, ALO *paloAsegRoot, float tLocal, float svtLo
 
 INCLUDE_ASM("asm/nonmatchings/P2/aseg", PasegaFindAseg__FP4ASEGP3ALO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/aseg", EnsureAseg__FP4ASEGP3ALO4SEEKffiPP5ASEGA);
+void SeekAsega(ASEGA *pasega, SEEK seek, float t, float svt);
+
+void EnsureAseg(ASEG *paseg, ALO *paloRoot, SEEK seek, float t, float svt, GRFAPL grfapl, ASEGA **ppasega)
+{
+    ASEGA *pasega;
+    ASEGA **pp = ppasega ? ppasega : &pasega;
+
+    pasega = PasegaFindAseg(paseg, paloRoot);
+    if (pasega != NULL)
+    {
+        *pp = pasega;
+    }
+    else
+    {
+        ApplyAseg(paseg, paloRoot, 0.0f, 1.0f, grfapl, pp);
+    }
+
+    SeekAsega(*pp, seek, t, svt);
+}
 
 ASEGA *PasegaEnsureAseg(ASEG *paseg, ALO *paloRoot, SEEK seek, float t, float svt, GRFAPL grfapl)
 {

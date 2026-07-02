@@ -1,8 +1,31 @@
 #include <crv.h>
+#include <mark.h>
+#include <bez.h>
+#include <memory.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", SMeasureApos__FiP6VECTORPf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", GWrapApos__FfiPfi);
+float GWrapApos(float g, int cpos, float *mpiposg, int fClosed)
+{
+    float f0 = g;
+    if (!fClosed) {
+        return f0;
+    }
+    
+    float f1 = mpiposg[0];
+    float f3 = mpiposg[cpos - 1];
+    float f2 = f3 - f1;
+    
+    while (f0 < f1) {
+        f0 = f0 + f2;
+    }
+    
+    while (f3 < f0) {
+        f0 = f0 - f2;
+    }
+    
+    return f0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", IposFindAposG__FfiPfiT2T2);
 
@@ -14,47 +37,153 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", FindAposClosestPointSegment__FP6VECTORP6C
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", ConvertApos__FiP6VECTORP7MATRIX4T2);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", PcrvNew__F4CRVK);
+extern char D_002176D0[];
+extern char D_00217708[];
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", SFromCrvU__FP3CRVf);
+CRV *PcrvNew(CRVK crvk)
+{
+    CRV *pcrv;
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", UFromCrvS__FP3CRVf);
+    switch (crvk)
+    {
+    case CRVK_Linear:
+        pcrv = (CRV *)PvAllocSwClearImpl(0x1C);
+        pcrv->unknown = (undefined4)&D_002176D0;
+        break;
+    case CRVK_Cubic:
+        pcrv = (CRV *)PvAllocSwClearImpl(0x1D0);
+        pcrv->unknown = (undefined4)&D_00217708;
+        break;
+    default:
+        pcrv = NULL;
+        break;
+    }
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", IcvFindCrvU__FP3CRVfPfT2);
+    if (pcrv != NULL)
+        pcrv->crvk = crvk;
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", IcvFindCrvS__FP3CRVfPfT2);
+    return pcrv;
+}
+
+float SFromCrvU(CRV *pcrv, float u)
+{
+    return 0.0f;
+}
+
+float UFromCrvS(CRV *pcrv, float s)
+{
+    return 0.0f;
+}
+
+int IcvFindCrvU(CRV *pcrv, float u, float *du, float *duSeg)
+{
+    return IposFindAposG(u, pcrv->ccv, pcrv->mpicvu, pcrv->fClosed, du, duSeg);
+}
+
+int IcvFindCrvS(CRV *pcrv, float s, float *ds, float *dsSeg)
+{
+    return IposFindAposG(s, pcrv->ccv, pcrv->mpicvs, pcrv->fClosed, ds, dsSeg);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", GMeasureCrvU__FP5CRVMCf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", UMaxCrv__FP3CRV);
+float UMaxCrv(CRV *pcrv)
+{
+    return pcrv->mpicvu[pcrv->ccv - 1];
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", SMaxCrv__FP3CRV);
+float SMaxCrv(CRV *pcrv)
+{
+    return pcrv->mpicvs[pcrv->ccv - 1];
+}
 
 JUNK_ADDIU(A0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", SMeasureCrvSegmentU__FP5CRVMSf);
+float SMeasureCrvSegmentU(CRVMS *pcrvms, float u)
+{
+
+    void *pcrv = STRUCT_OFFSET(pcrvms, 0x0, void *);
+    void **pvtbl = STRUCT_OFFSET(pcrv, 0x0, void **);
+    void (*pfn)(void *, VECTOR *, int) = (void (*)(void *, VECTOR *, int))pvtbl[1];
+    VECTOR pos;
+    if (pfn != NULL)
+    {
+        pfn(pcrv, &pos, 0);
+    }
+
+    float du, ps;
+    FindClosestPointOnLineSegment(&pos, STRUCT_OFFSET(pcrvms, 0x4, VECTOR *), STRUCT_OFFSET(pcrvms, 0x8, VECTOR *), &du, &ps);
+    return ps;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", FindCrvClosestPointOnLineSegmentFromU__FP3CRVP6VECTORT1fT1T1PfT6);
 
 JUNK_ADDIU(A0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", DuGetCrvSearchIncrement__FP3CRV);
+float DuGetCrvSearchIncrement(CRV *pcrv)
+{
+    return (pcrv->mpicvu[1] - pcrv->mpicvu[0]) * 0.1f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", LoadCrvlFromBrx__FP4CRVLP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", EvaluateCrvlFromU__FP4CRVLfP6VECTORT2);
+void EvaluateCrvlFromU(CRVL *pcrvl, float u, VECTOR *ppos, VECTOR *pnormTangent)
+{
+    EvaluateAposG(
+        u,
+        STRUCT_OFFSET(pcrvl, 0xC, int),
+        STRUCT_OFFSET(pcrvl, 0x18, VECTOR *),
+        STRUCT_OFFSET(pcrvl, 0x10, float *),
+        STRUCT_OFFSET(pcrvl, 0x8, int),
+        ppos,
+        pnormTangent);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", EvaluateCrvlFromS__FP4CRVLfP6VECTORT2);
+void EvaluateCrvlFromS(CRVL *pcrvl, float s, VECTOR *ppos, VECTOR *pnormTangent)
+{
+    EvaluateAposG(
+        s,
+        STRUCT_OFFSET(pcrvl, 0xC, int),
+        STRUCT_OFFSET(pcrvl, 0x18, VECTOR *),
+        STRUCT_OFFSET(pcrvl, 0x14, float *),
+        STRUCT_OFFSET(pcrvl, 0x8, int),
+        ppos,
+        pnormTangent);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", RenderCrvlSegment__FP4CRVLiP7MATRIX4P2CMG4RGBAi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", ConvertCrvl__FP4CRVLP7MATRIX4T1);
+void ConvertCrvl(CRVL *pcrvl, MATRIX4 *pmatSrc, MATRIX4 *pmatDst)
+{
+    ConvertApos(STRUCT_OFFSET(pcrvl, 0xC, int), STRUCT_OFFSET(pcrvl, 0x18, VECTOR *), pmatSrc, pmatDst);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", SFromCrvlU__FP4CRVLf);
+float SFromCrvlU(CRVL *pcrvl, float u)
+{
+    float du;
+    float duSeg;
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", UFromCrvlS__FP4CRVLf);
+    int icv = IcvFindCrvU((CRV *)pcrvl, u, &du, &duSeg);
+    float frac = du / duSeg;
+    float *mpicvs = ((CRV *)pcrvl)->mpicvs;
+    return (1.0f - frac) * mpicvs[icv] + frac * mpicvs[icv + 1];
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", MeasureCrvl__FP4CRVL);
+float UFromCrvlS(CRVL *pcrvl, float s)
+{
+    float ds, dsSeg;
+    int icv = IcvFindCrvS((CRV *)pcrvl, s, &ds, &dsSeg);
+    float *mpicvu = STRUCT_OFFSET(pcrvl, 0x10, float *);
+    float u0 = mpicvu[icv];
+    float u1 = mpicvu[icv + 1];
+    float result = (1.0f - (ds / dsSeg)) * u0 + (ds / dsSeg) * u1;
+    return result;
+}
+
+void MeasureCrvl(CRVL *pcrvl)
+{
+    SMeasureApos(STRUCT_OFFSET(pcrvl, 0xC, int), STRUCT_OFFSET(pcrvl, 0x18, VECTOR *), STRUCT_OFFSET(pcrvl, 0x14, float *));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", FindCrvlClosestPointAll__FP4CRVLP6VECTORP6CONSTRT1T1PfT5);
 
@@ -62,23 +191,83 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", FindCrvlClosestPointFromU__FP4CRVLP6VECTO
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", FindCrvlClosestPointFromS__FP4CRVLP6VECTORfP6CONSTRT1T1PfT6);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", LoadCrvcFromBrx__FP4CRVCP18CBinaryInputStream);
+void LoadCrvcFromBrx(CRVC *pcrvc, CBinaryInputStream *pbis)
+{
+    STRUCT_OFFSET(pcrvc, 0x8, int) = pbis->U8Read();
+    int ccv = pbis->U8Read();
+    STRUCT_OFFSET(pcrvc, 0xC, int) = ccv;
+    STRUCT_OFFSET(pcrvc, 0x10, void *) = PvAllocSwImpl(ccv * 4);
+    STRUCT_OFFSET(pcrvc, 0x14, void *) = PvAllocSwImpl(STRUCT_OFFSET(pcrvc, 0xC, int) * 4);
+    STRUCT_OFFSET(pcrvc, 0x18, void *) = PvAllocSwImpl(STRUCT_OFFSET(pcrvc, 0xC, int) * 16);
+    STRUCT_OFFSET(pcrvc, 0x1C, void *) = PvAllocSwImpl(STRUCT_OFFSET(pcrvc, 0xC, int) * 16);
+    STRUCT_OFFSET(pcrvc, 0x20, void *) = PvAllocSwImpl(STRUCT_OFFSET(pcrvc, 0xC, int) * 16);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", InvalidateCrvcCache__FP4CRVC);
+    for (int icv = 0; icv < STRUCT_OFFSET(pcrvc, 0xC, int); icv++)
+    {
+        STRUCT_OFFSET(pcrvc, 0x10, float *)[icv] = pbis->F32Read();
+        pbis->ReadVector((VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x18, void *) + icv * 16));
+        pbis->ReadVector((VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x1C, void *) + icv * 16));
+        pbis->ReadVector((VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x20, void *) + icv * 16));
+    }
+
+    if (STRUCT_OFFSET(*(void **)pcrvc, 0x24, void *) != NULL)
+    {
+        ((void (*)(CRVC *))STRUCT_OFFSET(*(void **)pcrvc, 0x24, void *))(pcrvc);
+    }
+
+    InvalidateCrvcCache(pcrvc);
+}
+
+void InvalidateCrvcCache(CRVC *pcrvc)
+{
+    STRUCT_OFFSET(pcrvc, 0x1c0, int) = -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", FillCrvcCache__FP4CRVCi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", EvaluateCrvcFromU__FP4CRVCfP6VECTORT2);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", EvaluateCrvcFromS__FP4CRVCfP6VECTORT2);
+void EvaluateCrvcFromS(CRVC *pcrvc, float s, VECTOR *ppos, VECTOR *pnormTangent)
+{
+    float u = ((float (*)(CRVC *, float))STRUCT_OFFSET(*(void **)pcrvc, 0x18, void *))(pcrvc, s);
+    if (STRUCT_OFFSET(*(void **)pcrvc, 0x4, void *))
+    {
+        ((void (*)(CRVC *, float, VECTOR *, VECTOR *))STRUCT_OFFSET(*(void **)pcrvc, 0x4, void *))(pcrvc, u, ppos, pnormTangent);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", RenderCrvcSegment__FP4CRVCiP7MATRIX4P2CMG4RGBAi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", ConvertCrvc__FP4CRVCP7MATRIX4T1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", SFromCrvcU__FP4CRVCf);
+float SFromCrvcU(CRVC *pcrvc, float u)
+{
+    float du;
+    float duSeg;
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", UFromCrvcS__FP4CRVCf);
+    int icv = IcvFindCrvU((CRV *)pcrvc, u, &du, &duSeg);
+
+    return SBezierPosLength(
+               duSeg,
+               du,
+               (VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x18, void *) + icv * 16),
+               (VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x20, void *) + icv * 16),
+               (VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x18, void *) + (icv * 16 + 16)),
+               (VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x1C, void *) + (icv * 16 + 16))) +
+           STRUCT_OFFSET(pcrvc, 0x14, float *)[icv];
+}
+
+float UFromCrvcS(CRVC *pcrvc, float s)
+{
+    float g, dg, dgSeg;
+
+    int icv = IcvFindCrvS((CRV *)pcrvc, s, &g, NULL);
+    FillCrvcCache(pcrvc, icv);
+    int ipos = IposFindAposG(g, 0x14, &STRUCT_OFFSET(pcrvc, 0x170, float), 0, &dg, &dgSeg);
+    float *pmp = STRUCT_OFFSET(pcrvc, 0x10, float *);
+    float u = ((float)ipos + dg / dgSeg) * (1.0f / 19.0f);
+    return (1.0f - u) * pmp[icv] + u * pmp[icv + 1];
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", MeasureCrvc__FP4CRVC);
 

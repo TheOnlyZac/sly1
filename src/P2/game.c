@@ -38,11 +38,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_load_data);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_id);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", PchzFriendlyFromWid);
+INCLUDE_ASM("asm/nonmatchings/P2/game", PchzFriendlyFromWid__Fi);
 
 JUNK_WORD(0x24420010);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", call_search_level_by_id);
+LevelLoadData *call_search_level_by_id(int level_id)
+{
+    return search_level_by_id(level_id);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", FFindLevel);
 
@@ -90,7 +93,27 @@ void UnlockIntroCutsceneFromWid(int wid)
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", DefeatBossFromWid);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", UnlockEndgameCutscenesFromFgs);
+void UnlockEndgameCutscenesFromFgs(FGS fgs)
+{
+    switch (fgs)
+    {
+    case FGS_HalfClues:
+        g_pgsCur->unlocked_cutscenes |= 0xA002;
+        g_pgsCur->fgs |= 0x2;
+        break;
+    case FGS_AllClues:
+        if (get_game_completion() & FGS_AllClues)
+            g_pgsCur->unlocked_cutscenes |= 0xC000;
+        break;
+    case FGS_FirstVault:
+        if (get_game_completion() & FGS_FirstVault)
+        {
+            g_pgsCur->unlocked_cutscenes |= 0xC;
+            g_pgsCur->fgs |= 0xC;
+        }
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", PlayEndingFromCompletionFlags);
 
@@ -125,26 +148,25 @@ void UpdateGameState(float dt)
     g_plsCur->dt += dt;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", LsFromWid);
+INCLUDE_ASM("asm/nonmatchings/P2/game", LsFromWid__F3WID);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", GrflsFromWid__F3WID);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", UnloadGame__Fv);
-#ifdef SKIP_ASM
-/**
- * @todo 60.42% matched.
- */
+extern char D_00269984;
+extern char D_002623D8;
+
 void UnloadGame()
 {
+    struct PACK { int v; } __attribute__((packed));
+
     InitGameState(g_pgsCur);
-    // unk_gs? = NULL;
-    // clr_8_bytes_1(&DAT_002623d8);
+    ((PACK *)&D_00269984)->v = 0;
+    clr_8_bytes_1(&D_002623D8);
     OnDifficultyGameLoad(&g_difficulty);
     g_grfcht = (GRFCHT)FCHT_None;
     g_worldlevelPrev = WORLDLEVEL_Nil;
     RetryGame();
-}
-#endif // SKIP_ASM
+} // SKIP_ASM
 
 void RetryGame()
 {
@@ -289,14 +311,14 @@ bool FCharmAvailable()
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", FUN_00160C90);
 
-int PfLookupDialog(LS *pls, OID oidDialog)
+int *PfLookupDialog(LS *pls, OID oidDialog)
 {
     // todo figure out what these magic numbers represent
     if (oidDialog - 0x33bU >= 0xc)
     {
-        return 0;
+        return NULL;
     }
-    return -0xcd8 + (int)pls + (oidDialog * 4);
+    return (int *)(-0xcd8 + (int)pls + (oidDialog * 4));
 }
 
 // TODO: Come up with a name and mangle it.

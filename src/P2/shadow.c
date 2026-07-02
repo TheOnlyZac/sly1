@@ -1,10 +1,40 @@
 #include <shadow.h>
 #include <shd.h>
+#include <sce/memset.h>
 #include <gcc/math.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/shadow", InitShadow__FP6SHADOW);
 
+extern int D_002626D0;
+extern SUR D_0027DC20[];
+
 INCLUDE_ASM("asm/nonmatchings/P2/shadow", PostShadowLoad__FP6SHADOW);
+#ifdef SKIP_ASM
+void PostShadowLoad(SHADOW *pshadow)
+{
+    if (pshadow->pshd == NULL)
+    {
+        SetShadowShader(pshadow, OID_shd_stock_shadow);
+    }
+
+    if (!FShadowRadiusSet(pshadow))
+    {
+        SetShadowNearRadius(pshadow, 100.0f);
+        SetShadowFarRadius(pshadow, 400.0f);
+    }
+
+    if (!(pshadow->pshd->grfzon & 0x10000000))
+    {
+        if (D_002626D0 < 0x4000)
+        {
+            SUR *psur = &D_0027DC20[D_002626D0];
+            D_002626D0 += 1;
+            STRUCT_OFFSET(pshadow, 0x2D0, SUR *) = psur;
+            memset(psur, 0, sizeof(SUR));
+        }
+    }
+}
+#endif // SKIP_ASM
 
 void InvalidateShadowVifs(SHADOW *pshadow)
 {
@@ -76,11 +106,21 @@ void SetShadowConeAngle(SHADOW *pshadow, float degConeAngle)
     InvalidateShadowVifs(pshadow);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/shadow", SetShadowFrustrumUp__FP6SHADOWP6VECTOR);
+void SetShadowFrustrumUp(SHADOW *pshadow, VECTOR *pvecUp)
+{
+    STRUCT_OFFSET(pshadow, 0x30, VU_VECTOR) = *(VU_VECTOR *)pvecUp;
+    InvalidateShadowVifs(pshadow);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shadow", FShadowValid__FP6SHADOWi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/shadow", FFilterFastShadows__FPvP2SO);
+int FFilterFastShadows(void *pv, SO *pso)
+{
+    int fFast = 0;
+    if (!(STRUCT_OFFSET(pso, 0x538, unsigned long long) & ((unsigned long long)0x8000 << 28)))
+        fFast = STRUCT_OFFSET(pso, 0x410, int) != 0;
+    return fFast;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shadow", UpdateShadow__FP6SHADOWf);
 

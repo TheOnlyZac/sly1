@@ -1,8 +1,20 @@
 #include <pzo.h>
+#include <jp.h>
 #include <find.h>
 #include <game.h>
+#include <so.h>
+#include <jt.h>
+#include <chkpnt.h>
+#include <screen.h>
+#include <rip.h>
+#include <memory.h>
+#include <aseg.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", InitSprize__FP6SPRIZE);
+void InitSprize(SPRIZE *psprize)
+{
+    InitSo(psprize);
+    STRUCT_OFFSET(psprize, 0x554, int) = 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", LoadSprizeFromBrx__FP6SPRIZEP18CBinaryInputStream);
 
@@ -18,7 +30,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/pzo", EmitSprizeExplosion__FP6SPRIZE);
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", PcsFromSprize__FP6SPRIZE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", AddSprizeAseg__FP6SPRIZE3OID);
+void AddSprizeAseg(SPRIZE * p, OID oidAseg)
+{
+    int c = STRUCT_OFFSET(p, 0x55c, int);
+    OID *a = &STRUCT_OFFSET(p, 0x560, OID);
+    a[c] = oidAseg;
+    STRUCT_OFFSET(p, 0x55c, int) = c + 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", HandleSprizeMessage__FP6SPRIZE5MSGIDPv);
 
@@ -26,52 +44,60 @@ INCLUDE_ASM("asm/nonmatchings/P2/pzo", FIgnoreSprizeIntersection__FP6SPRIZEP2SO)
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", FUN_00199000);
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", InitScprize__FP7SCPRIZE);
+void InitScprize(SCPRIZE *pscprize)
+{
+    InitSprize(pscprize);
+    STRUCT_OFFSET(pscprize, 0x5a0, int) = IchkAllocChkmgr(&g_chkmgr);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", CloneScprize__FP7SCPRIZET0);
+void CloneScprize(SCPRIZE *pscprize, SCPRIZE *pscprizeBase)
+{
+    int ichk = STRUCT_OFFSET(pscprize, 0x5a0, int);
+    CloneSo(pscprize, pscprizeBase);
+    STRUCT_OFFSET(pscprize, 0x5a0, int) = ichk;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", PcsFromScprize__FP7SCPRIZE);
+PCS PcsFromScprize(SCPRIZE *pscprize)
+{
+    PCS pcs = PcsFromSprize((SPRIZE *)pscprize);
+    
+    if (pcs == PCS_Collectible) {
+        int ichk = STRUCT_OFFSET(pscprize, 0x5a0, int);
+        if (FGetChkmgrIchk(&g_chkmgr, ichk) != 0) {
+            pcs = PCS_Collected;
+        }
+    }
+    
+    return pcs;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", CollectScprize__FP7SCPRIZE);
+void CollectScprize(SCPRIZE *pscprize)
+{
+    SetChkmgrIchk(&g_chkmgr, STRUCT_OFFSET(pscprize, 0x5a0, int));
+    CollectSprize(pscprize);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", LoadLockFromBrx__FP4LOCKP18CBinaryInputStream);
-#ifdef SKIP_ASM
-/**
- * @todo 95.80% matched. s_asnip may not be defined correctly.
- */
+extern SNIP s_asnip;
+
 void LoadLockFromBrx(LOCK *plock, CBinaryInputStream *pbis)
 {
-    static SNIP *s_asnip;
     LoadAloFromBrx(plock, pbis);
-    SnipAloObjects(plock, 1, s_asnip);
+    SnipAloObjects(plock, 1, &s_asnip);
 }
-#endif
+extern SNIP D_0026A928;
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", PostLockLoad__FP4LOCK);
-#ifdef SKIP_ASM
-/**
- * @todo 95.00% matched. s_asnip may not be defined correctly.
- */
 void PostLockLoad(LOCK *plock)
 {
-    static SNIP *s_asnip;
     PostAloLoad(plock);
-    SnipAloObjects(plock, 1, s_asnip);
+    SnipAloObjects(plock, 1, &D_0026A928);
 }
-#endif
+extern SNIP D_0026A938;
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", LoadLockgFromBrx__FP5LOCKGP18CBinaryInputStream);
-#ifdef SKIP_ASM
-/**
- * @todo 95.00% matched. s_asnip may not be defined correctly.
- */
 void LoadLockgFromBrx(LOCKG *plockg, CBinaryInputStream *pbis)
 {
     LoadAloFromBrx(plockg, pbis);
-    // SnipAloObjects(plockg, 1, PostLockgLoad);
+    SnipAloObjects(plockg, 1, &D_0026A938);
 }
-#endif
-
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", PostLockgLoad__FP5LOCKG);
 #ifdef SKIP_ASM
 /**
@@ -146,13 +172,51 @@ void AddLockgLock(LOCKG *plockg, OID oidLock)
     plockg->coidLock = ++ccur;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", TriggerLockg__FP5LOCKG);
+void TriggerLockg(LOCKG *plockg)
+{
+    if (g_pjt)
+        func_001781E0(g_pjt, plockg);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", InitClue__FP4CLUE);
+void InitClue(CLUE *pclue)
+{
+    InitSprize(pclue);
+    SW *psw = pclue->psw;
+    int n = STRUCT_OFFSET(psw, 0x2300, int);
+    STRUCT_OFFSET(pclue, 0x5a0, int) = n;
+    STRUCT_OFFSET(psw, 0x2300, int) = n + 1;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", LoadClueFromBrx__FP4CLUEP18CBinaryInputStream);
+extern SNIP D_0026A948;
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", CloneClue__FP4CLUET0);
+void LoadClueFromBrx(CLUE *pclue, CBinaryInputStream *pbis)
+{
+    LoadSprizeFromBrx(pclue, pbis);
+    SnipAloObjects(pclue, 1, &D_0026A948);
+    STRUCT_OFFSET(pclue, 0x5b0, void *) = PvAllocSwImpl(0x80);
+
+    int oid = 0x318;
+    while (oid < 0x338)
+    {
+        LO *plo = PloFindSwObject(STRUCT_OFFSET(pclue, 0x14, SW *), 1, (OID)oid, (LO *)pclue);
+        if (plo == NULL)
+            break;
+
+        int c = STRUCT_OFFSET(pclue, 0x5ac, int);
+        LO **aplo = STRUCT_OFFSET(pclue, 0x5b0, LO **);
+        oid++;
+        aplo[c] = plo;
+        STRUCT_OFFSET(pclue, 0x5ac, int) = c + 1;
+        SnipLo(plo);
+    }
+}
+
+void CloneClue(CLUE *pclue, CLUE *pclueBase)
+{
+    int n = STRUCT_OFFSET(pclue, 0x5a0, int);
+    CloneSo(pclue, pclueBase);
+    STRUCT_OFFSET(pclue, 0x5a0, int) = n;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", PostClueLoad__FP4CLUE);
 
@@ -160,17 +224,64 @@ INCLUDE_ASM("asm/nonmatchings/P2/pzo", UpdateClue);
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", OnClueSmack__FP4CLUE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", CollectClue__FP4CLUE);
+extern char D_0026A970;
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", BreakClue__FP4CLUE);
+void CollectClue(CLUE *pclue)
+{
+    RIP *pripg;
+    VECTOR vec;
+
+    (*(void (**)(CLUECTR *))(*(int *)&g_cluectr + 0x38))(&g_cluectr);
+    pripg = PripNewRipg(RIPT_Smack, NULL);
+    if (pripg)
+    {
+        if (STRUCT_OFFSET(g_plsCur, 0x64, int) + 1 >= STRUCT_OFFSET(g_psw, 0x2300, int))
+        {
+            StartSound((SFXID)0x21, NULL, NULL, NULL, 3000.0f, 300.0f, 1.0f, 0.0f, 0.0f, NULL, NULL);
+        }
+        STRUCT_OFFSET(pripg, 0x134, CLUE *) = pclue;
+        STRUCT_OFFSET(pripg, 0x130, void *) = &D_0026A970;
+        ConvertAloPos(pclue, NULL, (VECTOR *)(STRUCT_OFFSET(pclue, 0x5bc, uint8_t *) + 0x100), &vec);
+        ((void (*)(RIP *, float, VECTOR *, int))STRUCT_OFFSET(STRUCT_OFFSET(pripg, 0x0, void *), 0x0, void *))(pripg, 1.0f, &vec, 0);
+        STRUCT_OFFSET(pripg, 0x20, int) = STRUCT_OFFSET(pclue, 0x5bc, int);
+    }
+    else
+    {
+        OnClueSmack(pclue);
+    }
+    CollectSprize(pclue);
+}
+
+void BreakClue(CLUE *pclue)
+{
+    // @todo clean up this vtable call
+    ((void (*)(CLUE *))STRUCT_OFFSET(pclue->pvtlo, 0x134, void *))(pclue);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", CollectClueSilent__FP4CLUE);
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", FUN_00199c10);
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", ImpactClue__FP4CLUEi);
+void ImpactClue(CLUE *pclue, int fParentDirty)
+{
+    ImpactSo(pclue, fParentDirty);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", FAbsorbClueWkr__FP4CLUEP3WKR);
+int FAbsorbClueWkr(CLUE *pclue, WKR *pwkr)
+{
+    // @todo clean up these vtable calls
+    if (pwkr->grfic & 0x8)
+    {
+        ((void (*)(CLUE *, int))STRUCT_OFFSET(pclue->pvtlo, 0x64, void *))(pclue, 0);
+        SetSoConstraints(pclue, CT_Free, 0, CT_Locked, 0);
+    }
+    FAbsorbSoWkr(pclue, pwkr);
+    if (pwkr->grfic & 0x10)
+    {
+        ((void (*)(CLUE *))STRUCT_OFFSET(pclue->pvtlo, 0x134, void *))(pclue);
+    }
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", RenderClueAll__FP4CLUEP2CMP2RO);
 
@@ -189,7 +300,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/pzo", FUN_0019a0f0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", InitVault__FP5VAULT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/pzo", PostTmblLoad__FP4TMBL3OID);
+void PostTmblLoad(TMBL *ptmbl, OID oidInitialState)
+{
+    LO *plo = PloFindSwObject(g_psw, 0x101, (OID)0x37A, ptmbl->palo);
+    ptmbl->psmDial = (SM *)plo;
+    SnipLo(plo);
+
+    ptmbl->psmaDial = PsmaApplySm((SM *)ptmbl->psmDial, ptmbl->palo, oidInitialState, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", PostVaultLoad__FP5VAULT);
 

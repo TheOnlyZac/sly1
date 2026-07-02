@@ -53,4 +53,41 @@ uint IploFromStockOid(int oid)
 
 INCLUDE_ASM("asm/nonmatchings/P2/brx", LoadSwObjectsFromBrx__FP2SWP3ALOP18CBinaryInputStream);
 
+struct EOPIDENTRY
+{
+    void *unk;
+    EOPID *peopid;
+};
+
+struct LODEFTAB
+{
+    int ceopid;
+    EOPIDENTRY *prgeopidentry;
+};
+
+extern LODEFTAB D_00244950[];
+
 INCLUDE_ASM("asm/nonmatchings/P2/brx", SetLoDefaults__FP2LO);
+#ifdef SKIP_ASM
+void SetLoDefaults(LO *plo)
+{
+    CID cid = plo->pvtlo->cid;
+    int ceopid = D_00244950[cid].ceopid;
+    if (ceopid > 0)
+    {
+        EOPIDENTRY *peopidentry = D_00244950[cid].prgeopidentry;
+        do
+        {
+            EOPID *peopid = peopidentry->peopid;
+            if (peopid->grfeopid & 0x800)
+            {
+                CBinaryInputStream bis(NULL, 0, 0);
+                bis.OpenMemory(4, &peopid->optdat);
+                LoadOptionFromBrx(plo, peopid, &bis);
+            }
+            ceopid--;
+            peopidentry++;
+        } while (ceopid != 0);
+    }
+}
+#endif // SKIP_ASM

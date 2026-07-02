@@ -66,11 +66,40 @@ INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifStmask__4VIFSUi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/vifs", CbUnpackSetup__4VIFS3UPKii);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vifs", UnpackHelper__4VIFS3UPKiiPiPPUi);
+void VIFS::UnpackHelper(UPK upk, int c, int iqw, int *pcb, uint **ppun)
+{
+    if (c == 0)
+    {
+        if (ppun != NULL)
+            *ppun = 0;
+        if (pcb != NULL)
+            *pcb = 0;
+        return;
+    }
+
+    int cb = CbUnpackSetup(upk, c, iqw);
+    if (ppun != NULL)
+        *ppun = (uint *)m_pb;
+    m_pb = m_pb + ((cb + 3) / 4) * 4;
+    if (pcb != NULL)
+        *pcb = cb;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifUnpack__4VIFS3UPKiPvi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vifs", AddVifUnpackRefs__4VIFS3UPKiPviPPPv);
+void VIFS::AddVifUnpackRefs(UPK upk, int c, void *pvSrc, int iqw, void ***pppv)
+{
+    if (c == 0)
+        return;
+
+    Align(3);
+
+    int cb = CbUnpackSetup(upk, c, iqw);
+    AddDmaRefs((cb + 15) / 16, (QW *)pvSrc);
+
+    if (pppv != NULL)
+        *pppv = (void **)((char *)m_pqwCnt - 0xC);
+}
 
 /**
  * @todo Figure out why using the inlined function doesn't work here.

@@ -75,8 +75,8 @@ struct VBSP
  */
 struct LSG
 {
-    VECTOR apos[2];
-    VECTOR anormal[2];
+    VECTOR4 apos[2];
+    VECTOR4 anormal[2];
     float au[2];
     LSGK lsgk;
     undefined4 unk1;
@@ -84,7 +84,7 @@ struct LSG
     EDGE *pedge;
     int iiposSwap;
     LSG *plsgNext;
-};
+} __attribute__((aligned(16)));
 
 /**
  * @brief Unknown.

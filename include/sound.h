@@ -210,9 +210,24 @@ int FVagPlaying();
 int SetVagUnpaused();
 
 /**
+ * @brief Stop the currently playing VAG.
+ */
+void StopVag();
+
+/**
  * @brief Unknown.
  */
 void UnsetExcitement(EXC *pexc);
+
+/**
+ * @brief Unknown.
+ */
+void UnsetExcitementHyst(EXC *pexc);
+
+/**
+ * @brief Unknown.
+ */
+EXC *PexcSetExcitement(int gexc);
 
 /**
  * @brief Unknown.
@@ -255,6 +270,11 @@ void StartSound(SFXID sfxid, AMB **ppamb, ALO *palo, VECTOR *ppos, float sStart,
  * @brief TODO
  */
 void StopSound(AMB *pamb, int msRampdown);
+
+// The symbol's GCC2 mangling says (int, unsigned char), but the ROM call
+// sites pass the second argument as a plain word with no narrowing, so the
+// in-game declaration must have taken ints; bind by literal symbol name.
+void SetAMRegister(int n, int bReg);
 
 /**
  * @brief TODO
@@ -313,5 +333,7 @@ int GetAMRegister(int reg);
  * (`value` is unused by the body but kept for the caller's ABI.)
  */
 void UpdateAMRegister(int reg, int value);
+
+extern "C" void PreloadVag1(void *pv);
 
 #endif // SOUND_H

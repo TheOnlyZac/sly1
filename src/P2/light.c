@@ -4,7 +4,30 @@
 #include <frm.h>
 #include <sw.h>
 
+extern VU_VECTOR g_normalY;
+
 INCLUDE_ASM("asm/nonmatchings/P2/light", InitLight__FP5LIGHT);
+#ifdef SKIP_ASM
+void InitLight(LIGHT *plight)
+{
+    uint64_t grfalo = STRUCT_OFFSET(plight, 0x2c8, uint64_t);
+    STRUCT_OFFSET(plight, 0x2d0, int) = 0;
+    STRUCT_OFFSET(plight, 0x2c8, uint64_t) = (grfalo & ~0x30000000000ULL) | (0x8000ULL << 0x19);
+
+    STRUCT_OFFSET(plight, 0x320, VU_VECTOR) = *(VU_VECTOR *)&g_normalZ;
+    STRUCT_OFFSET(plight, 0x340, VU_VECTOR) = g_normalY;
+
+    STRUCT_OFFSET(plight, 0x330, float) = 200.0f;
+    STRUCT_OFFSET(plight, 0x334, float) = 2000.0f;
+    STRUCT_OFFSET(plight, 0x2fc, float) = 240.0f;
+    STRUCT_OFFSET(plight, 0x300, float) = 180.0f;
+    STRUCT_OFFSET(plight, 0x338, float) = 60.0f;
+    STRUCT_OFFSET(plight, 0x2f8, float) = 180.0f;
+
+    RebuildLightFrustrum(plight);
+    InitAlo(plight);
+}
+#endif // SKIP_ASM
 
 void UpdateLightXfWorldHierarchy(LIGHT *plight)
 {
@@ -43,7 +66,7 @@ void OnLightRemove(LIGHT *plight)
 /**
  * @todo 98.75% match.
  */
-INCLUDE_ASM("asm/nonmatchings/P2/light", CloneLight__FP5LIGHTT0);
+INCLUDE_ASM("asm/nonmatchings/P2/light", CloneLight__FP5LIGHTT0); // SKIP_ASM
 #ifdef SKIP_ASM
 void CloneLight(LIGHT *plight, LIGHT *plightBase)
 {
@@ -131,7 +154,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/light", RebuildLightVifs__FP5LIGHT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/light", SetLightKind__FP5LIGHT6LIGHTK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/light", SetLightHighlightColor__FP5LIGHTP6VECTOR);
+void SetLightHighlightColor(LIGHT *plight, VECTOR *pvecHighlight)
+{
+    STRUCT_OFFSET(plight, 0x2E0, VU_VECTOR) = *(VU_VECTOR *)pvecHighlight;
+    RebuildLightVifs(plight);
+}
 
 void SetLightMidtoneStrength(LIGHT *plight, float gMidtone)
 {
@@ -191,7 +218,12 @@ void SetLightHotSpotAngle(LIGHT *plight, float degHotSpot)
     RebuildLightVifs(plight);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/light", SetLightFrustrumUp__FP5LIGHTP6VECTOR);
+void SetLightFrustrumUp(LIGHT *plight, VECTOR *pvecUpLocal)
+{
+    STRUCT_OFFSET(plight, 0x340, VU_VECTOR) = *(VU_VECTOR *)pvecUpLocal;
+    RebuildLightVifs(plight);
+    UpdateLightBeamGrfzon(plight);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/light", RebuildLightFrustrum__FP5LIGHT);
 

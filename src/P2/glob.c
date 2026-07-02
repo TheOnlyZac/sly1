@@ -1,10 +1,40 @@
 #include <glob.h>
+#include <ik.h>
+#include <vifs.h>
+#include <memory.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/glob", BuildGlobsetSaaArray__FP7GLOBSET);
+void BuildGlobsetSaaArray(GLOBSET *pglobset)
+{
+
+    void **psaa = (void **)PvAllocSwImpl(STRUCT_OFFSET(pglobset, 0x50, int) * 4);
+    STRUCT_OFFSET(pglobset, 0x54, void **) = psaa;
+
+    int iDst = 0;
+    for (int i = 0; i < STRUCT_OFFSET(pglobset, 0xc, int); i++)
+    {
+        void *p = STRUCT_OFFSET((uint8_t *)STRUCT_OFFSET(pglobset, 0x10, uint8_t *) + i * 0x70, 0x38, void *);
+        if (p != 0)
+            STRUCT_OFFSET(pglobset, 0x54, void **)[iDst++] = p;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/glob", LoadGlobsetFromBrx__FP7GLOBSETP18CBinaryInputStreamP3ALO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/glob", EnsureBuffer__FiP4VIFS);
+extern char D_18C0;
+extern char D_18F8;
+
+void EnsureBuffer(int iBuffer, VIFS *pvifs)
+{
+    switch (iBuffer)
+    {
+    case 0:
+        pvifs->AddVifMscal(&D_18C0);
+        break;
+    case 1:
+        pvifs->AddVifMscal(&D_18F8);
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/glob", EnsureBufferCel__FiP4VIFS);
 
@@ -26,7 +56,21 @@ INCLUDE_ASM("asm/nonmatchings/P2/glob", CloneGlob__FP7GLOBSETP4GLOBP5GLOBI);
 
 INCLUDE_ASM("asm/nonmatchings/P2/glob", UpdateGlobset__FP7GLOBSETP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/glob", UpdateAloConstraints__FP3ALO);
+void UpdateAloConstraints(ALO *palo)
+{
+    void *p = STRUCT_OFFSET(palo, 0x224, void *);
+
+    if (p != NULL)
+    {
+        if (STRUCT_OFFSET(p, 0xb0, int) & 0x10)
+        {
+            if (STRUCT_OFFSET(p, 0x64, int) != 0)
+            {
+                SolveAloIK(STRUCT_OFFSET(p, 0x60, ALO *));
+            }
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/glob", UpdateAloInfluences__FP3ALOP2RO);
 

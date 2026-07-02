@@ -1,4 +1,6 @@
 #include <spliceobj.h>
+#include <splice/pair.h>
+#include <sce/memset.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/spliceobj", PeopidFind__FP5BASICi);
 
@@ -16,12 +18,32 @@ INCLUDE_ASM("asm/nonmatchings/P2/spliceobj", RefSetArgListFromPvs__FiP4OTYPPPv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/spliceobj", RefSetPeopid__FP5BASICP5EOPIDP4CRef);
 
-INCLUDE_ASM("asm/nonmatchings/P2/spliceobj", RefGetOption__FP5BASICi);
+CRef RefGetOption(BASIC *pbasic, int optid)
+{
+    if (optid < 0x495)
+    {
+        EOPID *peopid = PeopidFind(pbasic, optid);
+        return RefGetPeopid(pbasic, peopid);
+    }
+    else
+    {
+        CRef ref;
+        pbasic->psidebag->FFindBinding(optid, &ref);
+        return ref;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/spliceobj", RefSetOption__FP5BASICiP4CRef);
 
 INCLUDE_ASM("asm/nonmatchings/P2/spliceobj", RefAddOption__FP5BASICiP4CRef);
 
-INCLUDE_ASM("asm/nonmatchings/P2/spliceobj", RefEnsureOption__FP5BASICiP4CRef);
+CRef RefEnsureOption(BASIC *pbasic, int optid, CRef *prefValue)
+{
+    EnsureBasicSidebag(pbasic);
+    if (pbasic->psidebag->FFindBinding(optid, NULL))
+        return pbasic->psidebag->RefSetBinding(optid, prefValue);
+    else
+        return pbasic->psidebag->RefAddBinding(optid, prefValue);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/spliceobj", RefSetArgsFromSplice__FiP4CRefP4OTYPe);

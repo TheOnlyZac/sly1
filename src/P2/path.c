@@ -1,19 +1,33 @@
 #include <path.h>
 
 struct CBSP;
+struct CGT;
+struct LSG;
 
 CBSP* PcbspExtract(CBSP* pcbsp)
 {
     return ((int)pcbsp & 1) ? (CBSP*)0 : pcbsp;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/path", PcgtExtract__FP3CGT);
+CGT* PcgtExtract(CGT* pcgt)
+{
+    if ((int)pcgt & 1)
+        return (CGT*)((int)pcgt & ~1);
+    return (CGT*)0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/path", PcgtPointInCbspQuick__FP4CBSPP6VECTOR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/path", PcgtPointInCbspSafe__FP4CBSPP6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/path", CbskFromG__Ff);
+int CbskFromG(float g)
+{
+    if (g > 1.0f)
+        return 0;
+    if (g < -1.0f)
+        return 1;
+    return 2;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/path", ClsgClipEdgeToCbsp__FP4CBSPP6VECTORT1iP3LSG);
 
@@ -39,11 +53,26 @@ INCLUDE_ASM("asm/nonmatchings/P2/path", LoadPathzoneFromBrx__FP8PATHZONEP18CBina
 
 INCLUDE_ASM("asm/nonmatchings/P2/path", HookupCg__FP2CG);
 
-INCLUDE_ASM("asm/nonmatchings/P2/path", CposFindPathzonePath__FP8PATHZONEP6VECTORT1iT1);
+struct PATHZONE;
+struct VECTOR;
 
-INCLUDE_ASM("asm/nonmatchings/P2/path", FindPathzoneClosestPoint__FP8PATHZONEP6VECTORT1);
+int CposFindPathzonePath(PATHZONE *ppathzone, VECTOR *pvec0, VECTOR *pvec1, int n, VECTOR *pvec2)
+{
+    return CposFindPath((CG *)((char *)ppathzone + 0x34), pvec0, pvec1, n, pvec2);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/path", FUN_00191aa8);
+
+void FindPathzoneClosestPoint(PATHZONE *ppathzone, VECTOR *pvec0, VECTOR *pvec1)
+{
+    FindClosestPointInCg((CG *)((char *)ppathzone + 0x34), pvec0, pvec1);
+}
+
+int ClsgClipEdgeToCbsp(CBSP *pcbsp, VECTOR *pvec0, VECTOR *pvec1, int i, LSG *plsg);
+
+int FUN_00191aa8(void *p, VECTOR *pvec0, VECTOR *pvec1, int i, LSG *plsg)
+{
+    return ClsgClipEdgeToCbsp(STRUCT_OFFSET(p, 0x54, CBSP *), pvec0, pvec1, i, plsg);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/path", FUN_00191ac8);
 

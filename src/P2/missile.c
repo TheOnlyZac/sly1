@@ -1,5 +1,6 @@
 #include <missile.h>
 #include <asega.h>
+#include <basic.h>
 
 void InitMissile(MISSILE *pmissile)
 {
@@ -7,7 +8,15 @@ void InitMissile(MISSILE *pmissile)
     STRUCT_OFFSET(pmissile, 0x6b8, int) = 1; // pmissile->fFollowTrajectory
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/missile", LoadMissileFromBrx__FP7MISSILEP18CBinaryInputStream);
+extern SNIP s_asnipMissile;
+
+void LoadMissileFromBrx(MISSILE *pmissile, CBinaryInputStream *pbis)
+{
+    LoadBombFromBrx(pmissile, pbis);
+    SnipAloObjects(pmissile, 1, &s_asnipMissile);
+    uint64_t grfalo = STRUCT_OFFSET(pmissile, 0x2c8, uint64_t);
+    STRUCT_OFFSET(pmissile, 0x2c8, uint64_t) = (grfalo & ~0x30000000000ULL) | (0x8000ULL << 0x19);
+}
 
 void OnMissileRemove(MISSILE *pmissile)
 {
@@ -26,12 +35,69 @@ INCLUDE_ASM("asm/nonmatchings/P2/missile", FireMissile__FP7MISSILEP3ALOP6VECTOR)
 INCLUDE_ASM("asm/nonmatchings/P2/missile", RenderMissileAll__FP7MISSILEP2CMP2RO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/missile", FUN_0018dc88);
+#ifdef SKIP_ASM
+int FUN_0018dc88(SO *pso, SO *psoOther)
+{
+    int i;
 
-INCLUDE_ASM("asm/nonmatchings/P2/missile", FUN_0018dd50);
+    if (psoOther == STRUCT_OFFSET(pso, 0x6e4, SO *))
+        return 1;
 
-INCLUDE_ASM("asm/nonmatchings/P2/missile", FUN_0018dd78);
+    if (STRUCT_OFFSET(pso, 0x6bc, int) > 0)
+    {
+        OID *aoid = &STRUCT_OFFSET(pso, 0x6c0, OID);
+        i = 0;
+        do
+        {
+            if (FMatchesLoName((LO *)psoOther, aoid[i]))
+                return 1;
+            i++;
+        } while (i < STRUCT_OFFSET(pso, 0x6bc, int));
+    }
 
-INCLUDE_ASM("asm/nonmatchings/P2/missile", InitAccmiss__FP7ACCMISS);
+    if (STRUCT_OFFSET(pso, 0x6d0, int) > 0)
+    {
+        CID *acid = &STRUCT_OFFSET(pso, 0x6d4, CID);
+        i = 0;
+        do
+        {
+            if (FIsBasicDerivedFrom((BASIC *)psoOther, acid[i]))
+                return 1;
+            i++;
+        } while (i < STRUCT_OFFSET(pso, 0x6d0, int));
+    }
+
+    return FIgnoreSoIntersection(pso, psoOther);
+}
+#endif // SKIP_ASM
+
+void FUN_0018dd50(void * p, int val)
+{
+    int c = STRUCT_OFFSET(p, 0x6bc, int);
+    if ((unsigned int)c < 4)
+    {
+        int *a = &STRUCT_OFFSET(p, 0x6c0, int);
+        a[c] = val;
+        STRUCT_OFFSET(p, 0x6bc, int) = c + 1;
+    }
+}
+
+void FUN_0018dd78(void * p, int val)
+{
+    int c = STRUCT_OFFSET(p, 0x6d0, int);
+    if ((unsigned int)c < 4)
+    {
+        int *a = &STRUCT_OFFSET(p, 0x6d4, int);
+        a[c] = val;
+        STRUCT_OFFSET(p, 0x6d0, int) = c + 1;
+    }
+}
+
+void InitAccmiss(ACCMISS *paccmiss)
+{
+    InitMissile(paccmiss);
+    *(qword *)((char *)paccmiss + 0x350) = *(qword *)&D_00248D30;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/missile", FireAccmiss__FP7ACCMISSP3ALOP6VECTOR);
 

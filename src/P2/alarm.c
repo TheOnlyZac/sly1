@@ -1,6 +1,7 @@
 #include <alarm.h>
 #include <chkpnt.h>
 #include <button.h>
+#include <sensor.h>
 
 void BreakAlbrk(ALBRK *palbrk)
 {
@@ -66,11 +67,53 @@ void DisableAlarmAlbrk(ALARM *palarm)
     STRUCT_OFFSET(palarm, 0x61c, int)++; // palarm->calbrksDisabled
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alarm", EnableAlarmSensors__FP5ALARM);
+void EnableAlarmSensors(ALARM *palarm)
+{
+    int i;
 
-INCLUDE_ASM("asm/nonmatchings/P2/alarm", DisableAlarmSensors__FP5ALARM);
+    for (i = 0; i < STRUCT_OFFSET(palarm, 0x5bc, int); i++)
+    {
+        SENSOR *psensor = ((SENSOR **)((uint8_t *)palarm + 0x5c0))[i];
+        if (STRUCT_OFFSET(psensor, 0x560, int) == -1)
+        {
+            void (*pfn)(SENSOR *, int) = (void (*)(SENSOR *, int))STRUCT_OFFSET(psensor->pvtlo, 0x134, void *);
+            if (pfn != 0)
+            {
+                pfn(psensor, 0);
+            }
+        }
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alarm", NotifyAlarmSensorsOnTrigger__FP5ALARM);
+void DisableAlarmSensors(ALARM *palarm)
+{
+    int ipsensor;
+
+    for (ipsensor = 0; ipsensor < STRUCT_OFFSET(palarm, 0x5bc, int); ipsensor++) // palarm->cpsensors
+    {
+        SENSOR *psensor = STRUCT_OFFSET_INDEX(palarm, 0x5c0, SENSOR *, ipsensor); // palarm->apsensors[ipsensor]
+        void **ppvtable = (void **)STRUCT_OFFSET(psensor, 0x0, void *);
+        void (*pfn)(SENSOR *) = (void (*)(SENSOR *))STRUCT_OFFSET(ppvtable, 0x138, void *);
+
+        if (pfn != NULL)
+            pfn(psensor);
+    }
+}
+
+void NotifyAlarmSensorsOnTrigger(ALARM *palarm)
+{
+    int ipsensor;
+
+    for (ipsensor = 0; ipsensor < STRUCT_OFFSET(palarm, 0x5bc, int); ipsensor++) // palarm->cpsensors
+    {
+        SENSOR *psensor = STRUCT_OFFSET_INDEX(palarm, 0x5c0, SENSOR *, ipsensor); // palarm->apsensors[ipsensor]
+        void **ppvtable = (void **)STRUCT_OFFSET(psensor, 0x0, void *);
+        void (*pfn)(SENSOR *) = (void (*)(SENSOR *))STRUCT_OFFSET(ppvtable, 0x13c, void *);
+
+        if (pfn != NULL)
+            pfn(psensor);
+    }
+}
 
 void AddAlarmAlbrk(ALARM *palarm, OID oid)
 {

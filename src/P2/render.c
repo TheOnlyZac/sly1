@@ -84,6 +84,7 @@ void EnsureScreenCleared()
         g_vifs.AddDmaCnt();
         g_vifs.AddVifDirect(0x2c, g_aqwGifsClearAll, 0);
         g_vifs.EndDmaCnt();
+        s_fZBCleared = 1;
         s_fFBCleared = 1;
     }
     else if (!s_fZBCleared)

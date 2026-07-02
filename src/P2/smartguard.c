@@ -1,6 +1,8 @@
 #include <smartguard.h>
 #include <freeze.h>
 #include <sound.h>
+#include <clock.h>
+#include <find.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/smartguard", InitSmartguard__FP10SMARTGUARD);
 
@@ -13,11 +15,83 @@ void UseSmartguardFlashlightTarget(SMARTGUARD *psmartguard, SGS sgs, OID oidTarg
     mpsgssgft[sgs].oidTarget = oidTarget;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/smartguard", FUN_001B7100__FP10SMARTGUARDi);
+void FUN_001B7100(SMARTGUARD *p, int val)
+{
+    int c = STRUCT_OFFSET(p, 0xcd4, int);
+    if ((unsigned int)c < 4)
+    {
+        long long *a = &STRUCT_OFFSET(p, 0xcd8, long long);
+        *(int *)&a[c] = val;
+        STRUCT_OFFSET(p, 0xcd4, int) = c + 1;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/smartguard", PostSmartguardLoad__FP10SMARTGUARD);
+void PostSmartguardLoad(SMARTGUARD *psmartguard)
+{
+    int i;
+    int *poid;
+    int oidNearest;
+    int coid;
 
-INCLUDE_ASM("asm/nonmatchings/P2/smartguard", FFilterSmartguardDetect__FP10SMARTGUARDP2SO);
+    PostStepguardLoad(psmartguard);
+    PostSmartguardLoadFlashlight(psmartguard);
+
+    oidNearest = STRUCT_OFFSET(psmartguard, 0xc28, int);
+    if (oidNearest != -1)
+    {
+        STRUCT_OFFSET(psmartguard, 0xc2c, LO *) =
+            PloFindSwNearest(psmartguard->psw, (OID)oidNearest, (LO *)psmartguard);
+    }
+
+    coid = STRUCT_OFFSET(psmartguard, 0xcd4, int);
+    if (coid > 0)
+    {
+        i = 0;
+        poid = &STRUCT_OFFSET(psmartguard, 0xcd8, int);
+        do
+        {
+            poid[1] = (int)PloFindSwObject(psmartguard->psw, 0x104, (OID)*poid, (LO *)psmartguard);
+            i++;
+            poid += 2;
+        } while (i < STRUCT_OFFSET(psmartguard, 0xcd4, int));
+    }
+}
+
+int FFilterSmartguardDetect(SMARTGUARD *psmartguard, SO *pso)
+{
+    int i, c;
+
+    if (STRUCT_OFFSET(pso, 0x538, long long) & 0x80000000000LL)
+    {
+        return 0;
+    }
+
+    if (FIsBasicDerivedFrom(pso->paloRoot, CID_PO))
+    {
+        return 0;
+    }
+
+    if (FIsBasicDerivedFrom(pso->paloRoot, CID_UBV))
+    {
+        return 0;
+    }
+
+    c = STRUCT_OFFSET(psmartguard, 0xcd4, int);
+    if (c > 0)
+    {
+        i = 0;
+        do
+        {
+            if (FFindLoParent(pso, STRUCT_OFFSET(psmartguard, 0xcdc + i * 8, ALO *)))
+            {
+                return 0;
+            }
+            i++;
+        } while (i < STRUCT_OFFSET(psmartguard, 0xcd4, int));
+    }
+
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/smartguard", FDetectSmartguard__FP10SMARTGUARD);
 
@@ -31,9 +105,41 @@ INCLUDE_ASM("asm/nonmatchings/P2/smartguard", UpdateSmartguardFlashlight__FP10SM
 
 INCLUDE_ASM("asm/nonmatchings/P2/smartguard", OnSmartguardEnteringSgs__FP10SMARTGUARD3SGSP4ASEG);
 
-INCLUDE_ASM("asm/nonmatchings/P2/smartguard", FCanSmartguardAttack__FP10SMARTGUARD);
+int FCanSmartguardAttack(SMARTGUARD *psmartguard)
+{
+    if (!FCanStepguardAttack((STEPGUARD *)psmartguard))
+    {
+        return 0;
+    }
+    
+    void *pvt = STRUCT_OFFSET(psmartguard, 0x0, void *);
+    int (*fn)(SMARTGUARD *) = (int (*)(SMARTGUARD *))STRUCT_OFFSET(pvt, 0x16C, void *);
+    return fn(psmartguard);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/smartguard", SgasGetSmartguard__FP10SMARTGUARD);
+SGAS SgasGetSmartguard(SMARTGUARD *psmartguard)
+{
+    SGS sgs = STRUCT_OFFSET(psmartguard, 0x724, SGS);
+
+    if (sgs == SGS_Dying)
+    {
+        return SGAS_Yes;
+    }
+
+    if (sgs == SGS_SearchIdle)
+    {
+        if (STRUCT_OFFSET(psmartguard, 0xCC4, int) > 0)
+        {
+            if (5.0f < g_clock.t - STRUCT_OFFSET(psmartguard, 0x728, float))
+            {
+                return SGAS_Force;
+            }
+            return SGAS_Yes;
+        }
+    }
+
+    return SGAS_No;
+}
 
 void HandleSmartguardMessage(SMARTGUARD *psmartguard, MSGID msgid, void *pv)
 {

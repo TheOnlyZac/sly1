@@ -3,11 +3,20 @@
  */
 #include <cplcy.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", InitCplcy);
+void InitCplcy(CPLCY *pcplcy, CM *pcm)
+{
+    pcplcy->pcm = pcm;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FActiveCplcy);
+int FActiveCplcy(CPLCY *pcplcy)
+{
+    return STRUCT_OFFSET(pcplcy->pcm, 0x3D8, CPLCY *) == pcplcy;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", SetCpmanCpmt);
+void SetCpmanCpmt(CPMAN *pcpman, CPMT cpmt)
+{
+    pcpman->cpmt = cpmt;
+}
 
 void FUN_001493c0(void)
 {
@@ -19,13 +28,47 @@ INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FUN_00149458);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", plays_binoc_sfx);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", PushCplookLookk__FP6CPLOOK5LOOKK);
+void PushCplookLookk(CPLOOK *pcplook, LOOKK lookk)
+{
+    int clookk = STRUCT_OFFSET(pcplook, 0x40, int);
+    if ((unsigned int)clookk < 4)
+    {
+        STRUCT_OFFSET_INDEX(pcplook, 0x30, LOOKK, clookk) = lookk;
+        STRUCT_OFFSET(pcplook, 0x40, int) = clookk + 1;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", LookkPopCplook__FP6CPLOOK);
+LOOKK LookkPopCplook(CPLOOK *pcplook)
+{
+    int n = STRUCT_OFFSET(pcplook, 0x40, int);
+    if (n <= 0)
+        return (LOOKK)-1;
+    n = n - 1;
+    STRUCT_OFFSET(pcplook, 0x40, int) = n;
+    LOOKK *a = &STRUCT_OFFSET(pcplook, 0x30, LOOKK);
+    return a[n];
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", LookkCurCplook__FP6CPLOOK);
+LOOKK LookkCurCplook(CPLOOK *pcplook)
+{
+    int n = STRUCT_OFFSET(pcplook, 0x40, int);
+    if (n <= 0)
+        return (LOOKK)-1;
+    int i = n - 1;
+    LOOKK *a = &STRUCT_OFFSET(pcplook, 0x30, LOOKK);
+    return a[i];
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", InitCplook);
+void InitCplook(CPLOOK *pcplook, CM *pcm)
+{
+    InitCplcy(pcplook, pcm);
+    pcplook->fSoundPaused = 0;
+    pcplook->rZoomMax = 10.0f;
+    PushCplookLookk(pcplook, LOOKK_User);
+    pcplook->sRadiusSniper = 0.5f;
+    pcplook->rScreenSniper = -1.0f;
+    pcplook->ppntAnchor = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FUN_001496c0);
 
@@ -35,7 +78,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FUN_0014a7b8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", InitCpalign);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FUN_0014a8d0);
+void FUN_0014a8d0(CPALIGN *pcpalign)
+{
+    CM *pcm = pcpalign->pcm;
+    ResetCmLookAtSmooth(pcm, (void *)((uint8_t *)STRUCT_OFFSET(pcm, 0x3DC, void *) + 0x370));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", UpdateCpalign);
 

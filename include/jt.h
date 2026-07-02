@@ -78,7 +78,6 @@ enum JTBS
     JTBS_Zap_Electric = 34,
     JTBS_Zap_Fire = 35,
     JTBS_Zap_Water = 36,
-    // ...
     JTBS_Unk_54 = 54,
     JTBS_Unk_55 = 55
 
@@ -103,7 +102,6 @@ enum JTHS
  */
 enum JTCS
 {
-    // ...
 };
 
 /**
@@ -145,14 +143,14 @@ struct JT : public STEP
     STRUCT_PADDING(930);
     undefined2 padding0_extra;
 
-    ALO *paloMine_0x1518;   // 0x1518
+    ALO *paloMine_0x1518;
 
     STRUCT_PADDING(832);
     undefined2 padding1_extra;
 
-    JTS jts;                // 0x2220
+    JTS jts;
     int unk_0x2224;
-    JTBS jtbs;              // 0x2228
+    JTBS jtbs;
 
     STRUCT_PADDING(328);
     undefined1 padding2_extra;
@@ -178,6 +176,11 @@ void SetJtJts(JT *pjt, JTS jts, JTBS jtbs);
  * @deprecated
  */
 void ProfileJt(JT *pjt, int fProfile);
+
+struct XMG;
+struct ACTADJ;
+
+int FMatchJtXmg(JT *pjt, XMG *pxmg, ACTADJ *pactadj);
 
 extern JT *g_pjt;
 

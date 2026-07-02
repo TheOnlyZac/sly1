@@ -439,21 +439,25 @@ void Chetkido()
     ((NOTE *)&g_note.unk278)->pvtnote->pfnShowBlot((NOTE *)&g_note.unk278);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", StartupCodes__Fv);
-#ifdef SKIP_ASM
-/**
- * @todo 4.38% matched.
- */
+extern CODE D_00262A80;
+extern CODE D_00262AB8;
+extern CODE D_00262AF0;
+extern CODE D_00262B28;
+extern CODE D_00262B60;
+extern CODE D_00262B98;
+extern CODE D_00262BD0;
+extern CODE D_00262C08;
+extern CODE D_00262C48;
+
 void StartupCodes()
 {
-    ////AddCode(&cheat_reload_level.pCodeSeq);
-    ////AddCode(&cheat_reload_no_cheats.pCodeSeq);
-    ////AddCode(&cheat_reload_slippery_movement.pCodeSeq);
-    ////AddCode(&cheat_slippery_objects.pCodeSeq);
-    ////AddCode(&cheat_infinite_charms.pCodeSeq);
-    ////AddCode(&cheat_collect_bottles.pCodeSeq);
-    ////AddCode(&cheat_unlock_pages.pCodeSeq);
-    ////AddCode(&cheat_unlock_all_worlds.pCodeSeq);
-    ////AddCode(&cheat_chetkido_password.pCodeSeq);
-}
-#endif // SKIP_ASM
+    AddCode(&D_00262A80);
+    AddCode(&D_00262AB8);
+    AddCode(&D_00262AF0);
+    AddCode(&D_00262B28);
+    AddCode(&D_00262B60);
+    AddCode(&D_00262B98);
+    AddCode(&D_00262BD0);
+    AddCode(&D_00262C08);
+    AddCode(&D_00262C48);
+} // SKIP_ASM

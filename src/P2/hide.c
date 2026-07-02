@@ -1,5 +1,7 @@
 #include <hide.h>
 #include <dl.h>
+#include <dart.h>
+#include <memory.h>
 
 extern DL g_dlHshape;
 extern DL g_dlHpnt;
@@ -12,7 +14,12 @@ void StartupHide()
     InitDl(&g_dlHbsk, 0x558);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", ResetHideList__Fv);
+void ResetHideList()
+{
+    ClearDl(&g_dlHshape);
+    ClearDl(&g_dlHpnt);
+    ClearDl(&g_dlHbsk);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", InitHshape__FP6HSHAPE);
 
@@ -22,7 +29,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/hide", OnHshapeRemove__FP6HSHAPE);
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", BindHshape__FP6HSHAPE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", CloneHshape__FP6HSHAPET0);
+struct HSHAPE;
+
+void CloneHshape(HSHAPE *phshape, HSHAPE *phshapeBase)
+{
+    DLE dle = STRUCT_OFFSET(phshape, 0x38, DLE);
+    CloneLo((LO *)phshape, (LO *)phshapeBase);
+    STRUCT_OFFSET(phshape, 0x38, DLE) = dle;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", GetHshapeHidePos__FP6HSHAPEfP6VECTORPf);
 
@@ -42,19 +56,62 @@ INCLUDE_ASM("asm/nonmatchings/P2/hide", GetHpntClosestHidePos__FP4HPNTP6VECTORPf
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", FUN_0016a320);
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", InitHbsk__FP4HBSK);
+void InitHbsk(HBSK *phbsk)
+{
+    InitSo((SO *)phbsk);
+    SetAloRotationSpring((ALO *)phbsk, 3.0f);
+    SetAloRotationDamping((ALO *)phbsk, 3.0f);
+    SetAloPositionSmooth((ALO *)phbsk, 3.0f);
+    SetAloRotationSmooth((ALO *)phbsk, 2.0f);
+    STRUCT_OFFSET(phbsk, 0x568, float) = 300.0f;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", LoadHbskFromBrx__FP4HBSKP18CBinaryInputStream);
+extern qword D_002483D0[3];
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", OnHbskAdd__FP4HBSK);
+void LoadHbskFromBrx(HBSK *phbsk, CBinaryInputStream *pbis)
+{
+    LoadSoFromBrx((SO *)phbsk, pbis);
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", OnHbskRemove__FP4HBSK);
+    if (STRUCT_OFFSET(phbsk, 0x224, void *) == 0)
+        STRUCT_OFFSET(phbsk, 0x224, void *) = PvAllocSwClearImpl(0xC0);
+
+    STRUCT_OFFSET(STRUCT_OFFSET(phbsk, 0x224, void *), 0xB0, int) |= 1;
+
+    void *pv = STRUCT_OFFSET(phbsk, 0x224, void *);
+    STRUCT_OFFSET(pv, 0x0, qword) = D_002483D0[0];
+    STRUCT_OFFSET(pv, 0x10, qword) = D_002483D0[1];
+    STRUCT_OFFSET(pv, 0x20, qword) = D_002483D0[2];
+}
+
+void OnHbskAdd(HBSK *phbsk)
+{
+    OnSoAdd((SO *)phbsk);
+    AppendDlEntry(&g_dlHbsk, phbsk);
+}
+
+void OnHbskRemove(HBSK *phbsk)
+{
+    OnSoRemove((SO *)phbsk);
+    RemoveDlEntry(&g_dlHbsk, phbsk);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", CloneHbsk__FP4HBSKT0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", FIgnoreHbskIntersection__FP4HBSKP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", PresetHbskAccel__FP4HBSKf);
+void PresetHbskAccel(HBSK *phbsk, float dt)
+{
+    MATRIX3 matUpright;
+
+    PresetSoAccel((SO *)phbsk, dt);
+    if (STRUCT_OFFSET(phbsk, 0x550, int) == 0)
+    {
+        TiltMatUpright((MATRIX3 *)((uint8_t *)phbsk + 0xD0), 0, &matUpright);
+        AccelSoTowardMatSpring((SO *)phbsk, &matUpright,
+                               STRUCT_OFFSET(phbsk, 0x214, CLQ *), &D_00248D30,
+                               STRUCT_OFFSET(phbsk, 0x218, CLQ *), dt);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", SetHbskHbsks__FP4HBSK5HBSKS);
 

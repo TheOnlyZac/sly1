@@ -1,4 +1,14 @@
 #include <emitter.h>
+#include <rip.h>
+#include <blip.h>
+#include <util.h>
+#include <memory.h>
+#include <find.h>
+#include <basic.h>
+#include <dl.h>
+#include <clock.h>
+#include <slotheap.h>
+#include <sce/memset.h>
 
 extern float DAT_0024a124;
 
@@ -9,6 +19,24 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", InitEmitter__FP7EMITTER);
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadEmitmeshFromBrx__FP8EMITMESHP18CBinaryInputStream);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadEmitblipColorsFromBrx__FP8EMITBLIPiP2LOP18CBinaryInputStream);
+#ifdef SKIP_ASM
+void LoadEmitblipColorsFromBrx(EMITBLIP *pemitblip, int crgba, LO *ploEmit, CBinaryInputStream *pbis)
+{
+    int i;
+    int cColor = (crgba > 0x1f) ? 0x20 : crgba;
+
+    STRUCT_OFFSET(pemitblip, 0x4c, int) = cColor;
+    STRUCT_OFFSET(pemitblip, 0x50, RGBA *) = (RGBA *)PvAllocSwImpl(cColor * 4);
+    STRUCT_OFFSET(pemitblip, 0x54, int) = pbis->U8Read();
+
+    for (i = 0; i < crgba; i++)
+    {
+        uint rgba = pbis->U32Read();
+        if (i < STRUCT_OFFSET(pemitblip, 0x4c, int))
+            STRUCT_OFFSET(pemitblip, 0x50, RGBA *)[i] = (RGBA &)rgba;
+    }
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadEmitterFromBrx__FP7EMITTERP18CBinaryInputStream);
 
@@ -24,9 +52,48 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindEmitter__FP7EMITTER);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", PostEmitterLoad__FP7EMITTER);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", HandleEmitterMessage__FP7EMITTER5MSGIDPv);
+void HandleEmitterMessage(EMITTER *pemitter, MSGID msgid, void *pv)
+{
+    if (msgid == MSGID_removed)
+    {
+        if (pv == STRUCT_OFFSET(pemitter, 0x344, void *))
+        {
+            (*(void (**)(void *, EMITTER *))((char *)*(void **)pv + 0x70))(pv, pemitter);
+            STRUCT_OFFSET(pemitter, 0x344, void *) = 0;
+        }
+        else if (pv == STRUCT_OFFSET(pemitter, 0x348, void *))
+        {
+            (*(void (**)(void *, EMITTER *))((char *)*(void **)pv + 0x70))(pv, pemitter);
+            STRUCT_OFFSET(pemitter, 0x348, void *) = 0;
+        }
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", PemitbCopyOnWrite__FP5EMITB);
+EMITB *PemitbCopyOnWrite(EMITB *pemitb)
+{
+    EMITB *pemitbNew;
+
+    if (pemitb->cref < 2)
+    {
+        return pemitb;
+    }
+
+    pemitbNew = (EMITB *)PvAllocSwCopyImpl(0x200, pemitb);
+
+    if (STRUCT_OFFSET(pemitb, 0x10, int) == 3)
+    {
+        if (STRUCT_OFFSET(pemitb, 0x24, void *) != 0)
+        {
+            STRUCT_OFFSET(pemitbNew, 0x24, void *) =
+                PvAllocSwCopyImpl(0x28 * STRUCT_OFFSET(pemitb, 0x20, int), STRUCT_OFFSET(pemitb, 0x24, void *));
+        }
+    }
+
+    pemitbNew->cref = 1;
+    pemitb->cref--;
+
+    return pemitbNew;
+}
 
 EMITB *PemitbEnsureEmitter(EMITTER *pemitter, ENSK ensk)
 {
@@ -59,7 +126,32 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", ModifyEmitterParticles__FP7EMITTER);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", UpdateEmitter__FP7EMITTERf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", FUN_00155f28);
+void FUN_00155f28(SO *pso)
+{
+    SO *psoParent;
+
+    if ((STRUCT_OFFSET(pso, 0x2c8, unsigned long long) & 0xC000000) == 0x8000000)
+    {
+        return;
+    }
+
+    psoParent = STRUCT_OFFSET(pso, 0x18, SO *);
+    while (psoParent != 0)
+    {
+        if ((STRUCT_OFFSET(psoParent, 0x2c8, unsigned long long) & 0xC000000) == 0x8000000)
+        {
+            break;
+        }
+        psoParent = STRUCT_OFFSET(psoParent, 0x18, SO *);
+    }
+
+    if (psoParent == 0)
+    {
+        return;
+    }
+
+    STRUCT_OFFSET(pso, 0x88, int) = STRUCT_OFFSET(psoParent, 0x88, int);
+}
 
 void PauseEmitter(EMITTER *pemitter, float dtPause)
 {
@@ -99,7 +191,29 @@ void GetEmitterPaused(EMITTER *pemitter, int *pfPaused)
     *pfPaused = FPausedEmitter(pemitter);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", OnEmitterValuesChanged__FP7EMITTER);
+void OnEmitterValuesChanged(EMITTER *pemitter)
+{
+    STRUCT_OFFSET(pemitter, 0x34c, int) = 0; // pemitter->fValuesChanged
+
+    if (STRUCT_OFFSET(pemitter, 0x348, BLIPG *) != 0)
+    {
+        SetBlipgEmitb(STRUCT_OFFSET(pemitter, 0x348, BLIPG *), STRUCT_OFFSET(pemitter, 0x2d0, EMITB *));
+    }
+
+    if (STRUCT_OFFSET(pemitter, 0x344, RIPG *) != 0)
+    {
+        SetRipgEmitb(STRUCT_OFFSET(pemitter, 0x344, RIPG *), STRUCT_OFFSET(pemitter, 0x2d0, EMITB *));
+    }
+
+    if (STRUCT_OFFSET(pemitter, 0x2d4, int) == 3)
+    {
+        STRUCT_OFFSET(pemitter, 0x328, float) = GRandInRange(STRUCT_OFFSET(pemitter, 0x2dc, float), STRUCT_OFFSET(pemitter, 0x2e0, float)) * 60.0f;
+    }
+    else
+    {
+        STRUCT_OFFSET(pemitter, 0x328, float) = GRandInRange(STRUCT_OFFSET(pemitter, 0x2dc, float), STRUCT_OFFSET(pemitter, 0x2e0, float));
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", SetEmitterParticleCount__FP7EMITTERi);
 
@@ -132,6 +246,35 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", ChooseEmitoPos__FP5EMITOiiP6VECTORT3)
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", ConvertEmitoPosVec__FP5EMITOP6VECTORT1);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", CalculateEmitvx__FiP2LMiP6EMITVX);
+#ifdef SKIP_ASM
+void CalculateEmitvx(int cParticlePerRing, LM *plmTilt, int cParticle, EMITVX *pemitvx)
+{
+    int cBatch;
+    int count;
+    float gNorm;
+
+    if (cParticlePerRing > 0)
+    {
+        STRUCT_OFFSET(pemitvx, 0x0, int) =
+            (cParticlePerRing < cParticle) ? cParticlePerRing : cParticle;
+    }
+    else
+    {
+        STRUCT_OFFSET(pemitvx, 0x0, int) = cParticle;
+    }
+
+    count = STRUCT_OFFSET(pemitvx, 0x0, int);
+    cBatch = (cParticle - 1 + count) / count;
+
+    gNorm = RadNormalize(plmTilt->gMax - plmTilt->gMin);
+
+    STRUCT_OFFSET(pemitvx, 0x8, float) = 6.2831855f / (float)STRUCT_OFFSET(pemitvx, 0x0, int);
+    STRUCT_OFFSET(pemitvx, 0x4, float) = gNorm / (float)cBatch;
+    STRUCT_OFFSET(pemitvx, 0xc, float) =
+        plmTilt->gMin + STRUCT_OFFSET(pemitvx, 0x4, float) * 0.5f;
+    STRUCT_OFFSET(pemitvx, 0x10, float) = GRandInRange(0.0f, 6.2831855f);
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", ChooseEmitVelocity__FP6EMITVXffP2LMP6VECTORiT4);
 
@@ -153,9 +296,52 @@ JUNK_WORD(0x27bd0290); // junk_00157FF0
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", StockSplashBig__FP6VECTORfP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", StockSplashSmall__FP6VECTORfP2SO);
+void StockSplashSmall(VECTOR *ppos, float gScale, SO *psoTouch)
+{
+    RIP *prip = PripNewRipg(RIPT_Ripple, 0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", AddEmitoSkeleton__FP5EMITO3OIDT1ffffP2LO);
+    if (prip)
+    {
+        (*(void (**)(RIP *, VECTOR *, float, SO *))(*(void **)prip))(prip, ppos, gScale, 0);
+        STRUCT_OFFSET(prip, 0x1c, float) = 0.75f;
+
+        if (STRUCT_OFFSET(psoTouch, 0x278, SO *) != 0)
+        {
+            STRUCT_OFFSET(prip, 0x114, int) = STRUCT_OFFSET(STRUCT_OFFSET(psoTouch, 0x278, SO *), 0xc, int);
+        }
+    }
+}
+
+void AddEmitoSkeleton(EMITO *pemito, OID oid, OID oidOther, float sRadius, float gDensity, float sRadiusOther, float gDensityOther, LO *ploContext)
+{
+    STRUCT_OFFSET(pemito, 0x0, int) = 3;
+
+    if (STRUCT_OFFSET(pemito, 0x14, void *) == 0)
+        STRUCT_OFFSET(pemito, 0x14, void *) = PvAllocSwClearImpl(0x500);
+
+    if (STRUCT_OFFSET(pemito, 0x10, int) < 0x20)
+    {
+        int c = STRUCT_OFFSET(pemito, 0x10, int);
+        char *pentry = (char *)STRUCT_OFFSET(pemito, 0x14, void *) + c * 0x28;
+
+        STRUCT_OFFSET(pemito, 0x10, int) = c + 1;
+
+        STRUCT_OFFSET(pentry, 0x0, int) = oid;
+        STRUCT_OFFSET(pentry, 0x4, int) = oidOther;
+
+        STRUCT_OFFSET(pentry, 0x8, float) = gDensity;
+        if (0.0f <= gDensityOther)
+            STRUCT_OFFSET(pentry, 0xc, float) = gDensityOther;
+        else
+            STRUCT_OFFSET(pentry, 0xc, float) = gDensity;
+
+        STRUCT_OFFSET(pentry, 0x10, float) = sRadius;
+        if (0.0f <= sRadiusOther)
+            STRUCT_OFFSET(pentry, 0x14, float) = sRadiusOther;
+        else
+            STRUCT_OFFSET(pentry, 0x14, float) = sRadius;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindEmitb__FP5EMITBP2LO);
 
@@ -163,7 +349,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", SetEmitdvEmitb__FP6EMITDVP5EMITB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", CalculateEmitdvMatrix__FP6EMITDVfP7MATRIX4);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", PostExplLoad__FP4EXPL);
+void PostExplLoad(EXPL *pexpl)
+{
+    PostLoLoad(pexpl);
+    pexpl->pvtlo->pfnRemoveLo(pexpl);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", CalculateExplTransform__FP4EXPLP6VECTORP7MATRIX3);
 
@@ -178,7 +368,26 @@ void ExplodeExplExplso(EXPL *pexpl, EXPLSO *pexplso)
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadExplgFromBrx__FP5EXPLGP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", CloneExplg__FP5EXPLGT0);
+void CloneExplg(EXPLG *pexplg, EXPLG *pexplgBase)
+{
+    int i = 0;
+
+    CloneLo((LO *)pexplg, (LO *)pexplgBase);
+
+    if (STRUCT_OFFSET(pexplg, 0x90, int) > 0)
+    {
+        LO **p = &STRUCT_OFFSET(pexplg, 0x94, LO *);
+        do
+        {
+            LO *plo = PloCloneLo(*p, STRUCT_OFFSET(pexplg, 0x14, SW *), STRUCT_OFFSET(pexplg, 0x18, ALO *));
+            i++;
+            plo->pvtlo->pfnRemoveLo(plo);
+            *p = plo;
+            STRUCT_OFFSET(plo, 0x80, EXPLG *) = pexplg;
+            p++;
+        } while (i < STRUCT_OFFSET(pexplg, 0x90, int));
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindExplg__FP5EXPLG);
 
@@ -188,28 +397,161 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", InitExplo__FP5EXPLO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadExploFromBrx__FP5EXPLOP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", CloneExplo__FP5EXPLOT0);
+void CloneExplo(EXPLO *pexplo, EXPLO *pexploBase)
+{
+    CloneLo(pexplo, pexploBase);
+    STRUCT_OFFSET(pexplo, 0x90, EMITB *)->cref++;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindExplo__FP5EXPLO);
+void BindExplo(EXPLO *pexplo)
+{
+    EMITB *pemitb;
+    EMITB *pemitbNew;
+
+    if (STRUCT_OFFSET(pexplo, 0x94, int) == -1 &&
+        STRUCT_OFFSET(pexplo, 0x98, int) == -1 &&
+        STRUCT_OFFSET(STRUCT_OFFSET(pexplo, 0x90, EMITB *), 0x10, int) != 3)
+    {
+        EMITB *pemitbCur = STRUCT_OFFSET(pexplo, 0x90, EMITB *);
+
+        if (STRUCT_OFFSET(pemitbCur, 0x120, int) != 0)
+            goto done;
+
+        if (STRUCT_OFFSET(pemitbCur, 0x188, int) == -1)
+            goto done;
+    }
+
+    pemitbNew = PemitbEnsureExplo(pexplo, ENSK_Set);
+
+    if (STRUCT_OFFSET(pexplo, 0x94, int) != -1)
+    {
+        STRUCT_OFFSET(pemitbNew, 0x7C, void *) =
+            PloFindSwObject(STRUCT_OFFSET(pexplo, 0x14, SW *), 0x104,
+                            (OID)STRUCT_OFFSET(pexplo, 0x94, int), (LO *)pexplo);
+    }
+
+    if (STRUCT_OFFSET(pexplo, 0x98, int) != -1)
+    {
+        LO *plo = PloFindSwObject(STRUCT_OFFSET(pexplo, 0x14, SW *), 0x104,
+                                  (OID)STRUCT_OFFSET(pexplo, 0x98, int), (LO *)pexplo);
+        STRUCT_OFFSET(pemitbNew, 0x20, int) = STRUCT_OFFSET(plo, 0x34, int);
+        STRUCT_OFFSET(pemitbNew, 0x7C, int) = STRUCT_OFFSET(plo, 0x18, int);
+    }
+    // @todo try to do this without goto
+done:
+    BindEmitb(STRUCT_OFFSET(pexplo, 0x90, EMITB *), (LO *)pexplo);
+}
 
 void ExplodeExploExplso(EXPLO *pexplo, EXPLSO *pexplso)
 {
     return;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", AddExploSkeleton__FP5EXPLO3OIDT1ffff);
+void AddExploSkeleton(EXPLO *pexplo, OID oid, OID oidOther, float sRadius, float gDensity, float sRadiusOther, float gDensityOther)
+{
+	EMITB *pemitb = PemitbEnsureExplo(pexplo, ENSK_Set);
+	AddEmitoSkeleton(&pemitb->emito, oid, oidOther, sRadius, gDensity, sRadiusOther, gDensityOther, pexplo);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", PemitbEnsureExplo__FP5EXPLO4ENSK);
+EMITB *PemitbEnsureExplo(EXPLO *pexplo, ENSK ensk)
+{
+    if (ensk == ENSK_Set)
+    {
+        STRUCT_OFFSET(pexplo, 0x90, EMITB *) = PemitbCopyOnWrite(STRUCT_OFFSET(pexplo, 0x90, EMITB *));
+    }
+
+    return STRUCT_OFFSET(pexplo, 0x90, EMITB *);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", InitExpls__FP5EXPLS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindExpls__FP5EXPLS);
+void BindExpls(EXPLS *pexpls)
+{
+    EMITB *pemitb;
+    LO *plo;
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", HandleExplsMessage__FP5EXPLS5MSGIDPv);
+    BindExplo(pexpls);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", ExplodeExplsExplso__FP5EXPLSP6EXPLSO);
+    if (STRUCT_OFFSET(pexpls, 0xAC, int) == -1 &&
+        STRUCT_OFFSET(pexpls, 0xB0, long long) == -1)
+        return;
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", PsfxEnsureExpls__FP5EXPLS4ENSK);
+    pemitb = PemitbEnsureExplo(pexpls, ENSK_Set);
+
+    if (STRUCT_OFFSET(pexpls, 0xAC, int) != -1)
+        STRUCT_OFFSET(pemitb, 0x1D8, LO *) =
+            PloFindSwObject(STRUCT_OFFSET(pexpls, 0x14, SW *), 0x104,
+                            STRUCT_OFFSET(pexpls, 0xAC, OID), (LO *)pexpls);
+
+    if (STRUCT_OFFSET(pexpls, 0xB0, int) != -1)
+        STRUCT_OFFSET(pemitb, 0x1DC, LO *) =
+            PloFindSwObject(STRUCT_OFFSET(pexpls, 0x14, SW *), 0x104,
+                            STRUCT_OFFSET(pexpls, 0xB0, OID), (LO *)pexpls);
+
+    if (STRUCT_OFFSET(pexpls, 0xB4, int) != -1)
+    {
+        plo = PloFindSwObject(STRUCT_OFFSET(pexpls, 0x14, SW *), 0x104,
+                              STRUCT_OFFSET(pexpls, 0xB4, OID), (LO *)pexpls);
+        if (FIsBasicDerivedFrom((BASIC *)plo, CID_SO))
+            STRUCT_OFFSET(pemitb, 0x1E0, LO *) = plo;
+    }
+}
+
+void HandleExplsMessage(EXPLS *pexpls, MSGID msgid, void *pv)
+{
+    if (msgid == MSGID_removed)
+    {
+        if (pv == STRUCT_OFFSET(pexpls, 0xc0, void *))
+        {
+            (*(void (**)(void *, EXPLS *))((char *)*(void **)pv + 0x70))(pv, pexpls);
+            STRUCT_OFFSET(pexpls, 0xc0, void *) = 0;
+        }
+        else if (pv == STRUCT_OFFSET(pexpls, 0xc4, void *))
+        {
+            (*(void (**)(void *, EXPLS *))((char *)*(void **)pv + 0x70))(pv, pexpls);
+            STRUCT_OFFSET(pexpls, 0xc4, void *) = 0;
+        }
+    }
+}
+
+struct EXPLSOBLOB
+{
+    qword aqw[5];
+};
+
+void ExplodeExplsExplso(EXPLS *pexpls, EXPLSO *pexplso)
+{
+    int fFired = 0;
+
+    if (0.0f < STRUCT_OFFSET(pexpls, 0xB8, float))
+    {
+        void *pv = PvAllocSlotheapUnsafe(
+            (SLOTHEAP *)((char *)STRUCT_OFFSET(pexpls, 0x14, SW *) + 0x1BD0));
+
+        if (pv != 0)
+        {
+            STRUCT_OFFSET(pv, 0x0, EXPLS *) = pexpls;
+            *(EXPLSOBLOB *)((char *)pv + 0x10) = *(EXPLSOBLOB *)pexplso;
+            fFired = 1;
+            STRUCT_OFFSET(pv, 0x60, float) = g_clock.t + STRUCT_OFFSET(pexpls, 0xB8, float);
+            ClearDle((DLE *)((char *)pv + 0x64));
+            AppendDlEntry((DL *)((char *)STRUCT_OFFSET(pexpls, 0x14, SW *) + 0x1BDC), pv);
+        }
+    }
+
+    if (!fFired)
+        FireExplsExplso(pexpls, pexplso);
+}
+
+SFX *PsfxEnsureExpls(EXPLS *pexpls, ENSK ensk)
+{
+    if (STRUCT_OFFSET(pexpls, 0xa0, SFX *) == 0)
+    {
+        NewSfx(&STRUCT_OFFSET(pexpls, 0xa0, SFX *));
+    }
+
+    return STRUCT_OFFSET(pexpls, 0xa0, SFX *);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", FireExplsExplso__FP5EXPLSP6EXPLSO);
 

@@ -1,4 +1,11 @@
 #include <suv.h>
+#include <so.h>
+#include <po.h>
+#include <stepguard.h>
+#include <memory.h>
+#include <util.h>
+#include <clock.h>
+#include <gcc/math.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", InitSuv__FP3SUV);
 
@@ -10,7 +17,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", GExcludeAlm__FiP2LMf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvBalance__FP3SUV);
 
-INCLUDE_ASM("asm/nonmatchings/P2/suv", DsGetTrackRelative__Ffff);
+float DsGetTrackRelative(float track, float relative, float range)
+{
+    relative -= range;
+    if (track * 0.5f < relative) {
+        relative -= track;
+    } else if (relative < track * (-0.5f)) {
+        relative += track;
+    }
+    return relative;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", FIsSuvAheadOf__FP3SUVT0);
 
@@ -19,6 +35,30 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvLine__FP3SUVPi);
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvHeading__FP3SUV);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvWheels__FP3SUV);
+#ifdef SKIP_ASM
+void UpdateSuvWheels(SUV *psuv)
+{
+    extern float D_002754F8;
+    extern float D_002754F4;
+    extern SMP D_002754E8;
+    float rad = atan2f(STRUCT_OFFSET(psuv, 0xD4, float), STRUCT_OFFSET(psuv, 0xD0, float));
+    rad = RadNormalize(STRUCT_OFFSET(psuv, 0x694, float) - rad);
+    rad = GLimitAbs(D_002754F8 * rad, D_002754F4);
+    STRUCT_OFFSET(psuv, 0x69C, float) = RadSmooth(STRUCT_OFFSET(psuv, 0x69C, float), rad, g_clock.dt, &D_002754E8, NULL);
+
+    char *p = (char *)psuv + 0x6B0;
+    for (int i = 0; i < 4; i++)
+    {
+        float gDiv;
+        if (i < 2)
+            gDiv = STRUCT_OFFSET(psuv, 0x610, float);
+        else
+            gDiv = STRUCT_OFFSET(psuv, 0x614, float);
+        *(float *)(p + 0x50) = STRUCT_OFFSET(psuv, 0x698, float) / gDiv;
+        p += 0x60;
+    }
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvExpls__FP3SUV);
 
@@ -38,7 +78,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvActive__FP3SUVP3JOYf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", FUN_001da170);
 
-INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvInternalXps__FP3SUV);
+void UpdateSuvInternalXps(SUV *psuv)
+{
+    STRUCT_OFFSET(psuv, 0x6A0, int) += 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", AddSuvCustomXps__FP3SUVP2SOiP3BSPT3PP2XP);
 
@@ -50,13 +93,29 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", RenderSuvSelf__FP3SUVP2CMP2RO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvBounds__FP3SUV);
 
-INCLUDE_ASM("asm/nonmatchings/P2/suv", CollectSuvPrize__FP3SUV3PCKP3ALO);
+void CollectSuvPrize(SUV *psuv, PCK pck, ALO *paloOther)
+{
+    STEPGUARD *pstepguard = STRUCT_OFFSET(psuv, 0xb78, STEPGUARD *);
+    if (pstepguard != NULL)
+    {
+        SetStepguardPatrolAnimation(pstepguard, NULL);
+        pstepguard = STRUCT_OFFSET(psuv, 0xb78, STEPGUARD *);
+        (*(void (**)(STEPGUARD *, PCK, ALO *))((char *)pstepguard->pvtlo + 0x148))(pstepguard, pck, paloOther);
+    }
+    else
+    {
+        CollectPoPrize((PO *)psuv, pck, paloOther);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvShapes__FP3SUV);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvXfWorld__FP3SUV);
 
-INCLUDE_ASM("asm/nonmatchings/P2/suv", GetSuvCpdefi__FP3SUVfP6CPDEFI);
+void GetSuvCpdefi(SUV *psuv, float dt, CPDEFI *pcpdefi)
+{
+    GetSoCpdefi((SO *)psuv, dt, pcpdefi);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", OnSuvActive__FP3SUViP2PO);
 

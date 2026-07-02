@@ -251,7 +251,7 @@ void StartupGame();
 
 // LevelLoadData * search_level_by_load_data(LevelLoadData *search_level);
 
-// LevelLoadData * search_level_by_id(int search_id);
+extern "C" LevelLoadData *search_level_by_id(int search_id);
 
 /**
  * @brief Gets the friendly name of a level from its world ID.
@@ -401,7 +401,7 @@ bool FCharmAvailable();
  * @param pls Pointer to level state.
  * @param param_2 OID of the dialog.
  */
-//int PfLookupDialog(LS *pls, OID oidDialog);
+int *PfLookupDialog(LS *pls, OID oidDialog);
 
 /**
  * @brief Clears 8 bytes of memory.

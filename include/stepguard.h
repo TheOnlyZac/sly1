@@ -260,6 +260,8 @@ void SetSggSggs(SGG *psgg, SGGS sggs);
 
 void AssignSggSearchPoints(SGG *psgg);
 
+struct PUFFC;
+extern "C" void FUN_001c8920(PUFFC *ppuffc);
 /**
  * @brief Checks the struct has a 0 on an address, no idea what it means.
  * @todo Figure out what this actually does and give it a better name.

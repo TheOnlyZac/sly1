@@ -1,5 +1,7 @@
 #include <sm.h>
 #include <sw.h>
+#include <aseg.h>
+#include <asega.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", LoadSmFromBrx__FP2SMP18CBinaryInputStream);
 
@@ -20,11 +22,32 @@ INCLUDE_ASM("asm/nonmatchings/P2/sm", PsmaFindSm__FP2SMP3ALO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", IsmsFindSmOptional__FP2SM3OID);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", IsmsFindSmRequired__FP2SM3OID);
+int IsmsFindSmRequired(SM *psm, OID oid)
+{
+    int isms = IsmsFindSmOptional(psm, oid);
+    return isms >= 0 ? isms : 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", OidFromSmIsms__FP2SMi);
+OID OidFromSmIsms(SM *psm, int isms)
+{
+    return psm->asms[isms].oid;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", RetractSma__FP3SMA);
+void RetractSma(SMA *psma)
+{
+    SM *psm = psma->psm;
+    if (psma->pasegaCur)
+    {
+        RetractAsega(psma->pasegaCur);
+        psma->pasegaCur = 0;
+    }
+    FreeSwMqList(psma->psm->psw, psma->pmqFirst);
+    psma->pmqFirst = 0;
+    RemoveDlEntry(&psma->psm->dlSma, psma);
+    RemoveDlEntry(&STRUCT_OFFSET(psma->psm->psw, 0x1B94, DL), psma);
+    FreeSlotheapPv(&STRUCT_OFFSET(psma->psm->psw, 0x1B88, SLOTHEAP), psma);
+    HandleLoSpliceEvent(psm, 0x12, 0, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", SetSmaGoal__FP3SMA3OID);
 
@@ -40,14 +63,85 @@ INCLUDE_ASM("asm/nonmatchings/P2/sm", SeekSma__FP3SMA3OID);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", ChooseSmaTransition__FP3SMA);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", EndSmaTransition__FP3SMA);
+void EndSmaTransition(SMA *psma)
+{
+    int cur = STRUCT_OFFSET(psma, 0x28, int);
+    int next = STRUCT_OFFSET(psma, 0x2C, int);
+    NotifySmaSpliceOnEnterState(psma, cur, next);
+    int nextCopy = STRUCT_OFFSET(psma, 0x2C, int);
+    STRUCT_OFFSET(psma, 0x2C, int) = -1;
+    STRUCT_OFFSET(psma, 0x28, int) = nextCopy;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", HandleSmaMessage__FP3SMA5MSGIDPv);
+void HandleSmaMessage(SMA *psma, MSGID msgid, void *pv)
+{
+    if (msgid == MSGID_asega_limit && (ASEGA*)pv == psma->pasegaCur) {
+        EndSmaTransition(psma);
+        ChooseSmaTransition(psma);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", SkipSma__FP3SMAf);
+void SkipSma(SMA *psma, float dtSkip)
+{
+    ASEGA *pasega;
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", SendSmaMessage__FP3SMA5MSGIDPv);
+    extern void SeekAsega(ASEGA *pasega, SEEK seek, float t, float svt);
+
+    while ((pasega = psma->pasegaCur) != NULL)
+    {
+        float diff = STRUCT_OFFSET(STRUCT_OFFSET(pasega, 0x8, uint8_t *), 0x34, float) - STRUCT_OFFSET(pasega, 0x14, float);
+        if (dtSkip < diff)
+        {
+            SeekAsega(pasega, SEEK_Current, dtSkip, 1.0f);
+            break;
+        }
+        dtSkip -= diff;
+        EndSmaTransition(psma);
+        ChooseSmaTransition(psma);
+    }
+}
+
+void SendSmaMessage(SMA *psma, MSGID msgid, void *pv)
+{
+    ALO *paloRoot = psma->paloRoot;
+    if (paloRoot)
+    {
+        paloRoot->pvtlo->pfnSendLoMessage(paloRoot, msgid, pv);
+    }
+
+    MQ *pmq = psma->pmqFirst;
+    while (pmq)
+    {
+        PFNMQ pfnmq = pmq->pfnmq;
+        void *pmqContext = pmq->pvContext;
+
+        pmq = pmq->pmqNext;
+
+        pfnmq(pmqContext, msgid, pv);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sm", FUN_001b6df8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sm", NotifySmaSpliceOnEnterState__FP3SMAii);
+void NotifySmaSpliceOnEnterState(SMA *psma, int ismsFrom, int ismsTo)
+{
+    int oidFrom;
+    int oidTo;
+    void *apv[3];
+
+    if (ismsFrom >= 0)
+        oidFrom = psma->psm->asms[ismsFrom].oid;
+    else
+        oidFrom = -1;
+
+    if (ismsTo >= 0)
+        oidTo = psma->psm->asms[ismsTo].oid;
+    else
+        oidTo = -1;
+
+    apv[0] = &psma;
+    apv[1] = &oidFrom;
+    apv[2] = &oidTo;
+
+    HandleLoSpliceEvent(psma->psm, 0xE, 3, apv);
+}

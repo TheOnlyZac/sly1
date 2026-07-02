@@ -7,13 +7,14 @@
 #include <shd.h>
 #include <target.h>
 #include <lookat.h>
+#include <find.h>
+#include <brx.h>
+#include <fader.h>
+#include <glob.h>
+#include <shdanim.h>
 
-extern VTACT g_vtact;
-extern VTACT g_vtactadj; // TODO: ACTADJ has it's own vtable.
-extern VTACT g_vtactseg; // TODO: ACTSEG has it's own vtable.
-extern VTACT g_vtactla;  // TODO: ACTLA has it's own vtable.
+extern VTACT g_vtactseg;
 extern SHADOW s_shadow;
-extern CLQ D_00275C40;
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FIsZeroV__FP6VECTOR);
 
@@ -51,9 +52,27 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", UpdateAloHierarchy__FP3ALOf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", UpdateAlo__FP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", InvalidateAloLighting__FP3ALO);
+void InvalidateAloLighting(ALO *palo)
+{
+    int iglobi;
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", UpdateAloXfWorld__FP3ALO);
+    // palo->globset: count at +0xc, GLOBI array (stride 0x28) at +0x14; invalidate lighting frame at +0x8
+    for (iglobi = 0; iglobi < STRUCT_OFFSET(palo, 0x238, int); iglobi++)
+    {
+        char *pb = STRUCT_OFFSET(palo, 0x240, char *) + iglobi * 0x28;
+        *(int *)(pb + 8) = -1;
+    }
+}
+
+void UpdateAloXfWorld(ALO *palo)
+{
+    void (*pfn)(ALO *) = (void (*)(ALO *))palo->pvtlo->pfnUpdateLoXfWorldHierarchy;
+
+    if (pfn != NULL)
+    {
+        pfn(palo);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", UpdateAloXfWorldHierarchy__FP3ALO);
 
@@ -111,11 +130,42 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", RotateAloToMat__FP3ALOP7MATRIX3);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloVelocityVec__FP3ALOP6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloVelocityXYZ__FP3ALOfff);
+void SetAloVelocityXYZ(ALO *palo, float x, float y, float z)
+{
+    VECTOR vec;
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloAngularVelocityVec__FP3ALOP6VECTOR);
+    vec.x = x;
+    vec.y = y;
+    vec.z = z;
+    ((void (*)(ALO *, VECTOR *))STRUCT_OFFSET(palo->pvtlo, 0x90, void *))(palo, &vec);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloAngularVelocityXYZ__FP3ALOfff);
+void SetAloAngularVelocityVec(ALO *palo, VECTOR *pw)
+{
+    ACT *pactRot;
+
+    STRUCT_OFFSET(palo, 0x160, VU_VECTOR) = *(VU_VECTOR *)pw; // palo->wWorld (angular velocity)
+    pactRot = STRUCT_OFFSET(palo, 0x1f0, ACT *); // palo->pactRot
+    if (pactRot != NULL)
+    {
+        AdaptAct(pactRot);
+    }
+
+    if (!FIsZeroW(pw))
+    {
+        ResolveAlo(palo);
+    }
+}
+
+void SetAloAngularVelocityXYZ(ALO *palo, float x, float y, float z)
+{
+    VECTOR w;
+
+    w.x = x;
+    w.y = y;
+    w.z = z;
+    (*(void (**)(ALO *, VECTOR *))((char *)palo->pvtlo + 0x94))(palo, &w);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloVelocityLocal__FP3ALOP6VECTOR);
 
@@ -135,7 +185,24 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", ConvertAloVec__FP3ALOT0P6VECTORT2);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", ConvertAloMat__FP3ALOT0P7MATRIX3T2);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FDrivenAlo__FP3ALO);
+int FDrivenAlo(ALO *palo)
+{
+    ACT *pact;
+
+    pact = STRUCT_OFFSET(palo, 0x1ec, ACT *); // palo->pactPos
+    if (pact != NULL && STRUCT_OFFSET(pact, 0x10, char) == ACK_Drive)
+    {
+        return 1;
+    }
+
+    pact = STRUCT_OFFSET(palo, 0x1f0, ACT *); // palo->pactRot
+    if (pact != NULL && STRUCT_OFFSET(pact, 0x11, char) == ACK_Drive)
+    {
+        return 1;
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", RetractAloDrive__FP3ALO);
 
@@ -205,9 +272,38 @@ void GetAloFastShadowDepth(ALO *palo, float *psDepth)
     *psDepth = STRUCT_OFFSET(palo, 0x290, float) * 100.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", PshadowAloEnsure__FP3ALO);
+SHADOW *PshadowAloEnsure(ALO *palo)
+{
+    if (!STRUCT_OFFSET(palo, 0x284, SHADOW *))
+    {
+        SHADOW *pshadow = (SHADOW *)PvAllocSlotheapClearImpl(&STRUCT_OFFSET(palo->psw, 0x1bf4, SLOTHEAP));
+        STRUCT_OFFSET(palo, 0x284, SHADOW *) = pshadow;
+        InitShadow(pshadow);
+        AppendDlEntry(&STRUCT_OFFSET(palo->psw, 0x1c00, DL), STRUCT_OFFSET(palo, 0x284, SHADOW *));
+    }
+    return STRUCT_OFFSET(palo, 0x284, SHADOW *);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloCastShadow__FP3ALOi);
+extern DL D_00262300;
+
+void SetAloCastShadow(ALO *palo, int fCastShadow)
+{
+    SHADOW *pshadow;
+
+    if (fCastShadow)
+    {
+        PshadowAloEnsure(palo);
+        return;
+    }
+
+    pshadow = STRUCT_OFFSET(palo, 0x284, SHADOW *); // palo->pshadow
+    if (pshadow != NULL)
+    {
+        RemoveDlEntry(&STRUCT_OFFSET(palo->psw, 0x1c00, DL), pshadow);
+        AppendDlEntry(&D_00262300, STRUCT_OFFSET(palo, 0x284, SHADOW *));
+        STRUCT_OFFSET(palo, 0x284, SHADOW *) = NULL;
+    }
+}
 
 void SetAloShadowShader(ALO *palo, OID oidShdShadow)
 {
@@ -321,29 +417,37 @@ void GetAloShadowConeAngle(ALO *palo, float *pdegConeAngle)
     *pdegConeAngle = atan2f(pshadow->sNearRadius / pshadow->sNearCast, 1.0f) * RAD_TO_DEG * 2.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloShadowFrustrumUp__FP3ALOP6VECTOR);
+void GetAloShadowFrustrumUp(ALO *palo, VECTOR *pvecUp)
+{
+    SHADOW *pshadow = PshadowInferAlo(palo);
+    *(VU_VECTOR *)pvecUp = STRUCT_OFFSET(pshadow, 0x30, VU_VECTOR); // pshadow->vecFrustrumUp
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloEuler__FP3ALOP6VECTOR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloEuler__FP3ALOP6VECTOR);
 
+extern VTACT g_vtact;
+
 void EnsureAloActRestore(ALO *palo)
 {
-    if (!STRUCT_OFFSET(palo, 0x1fc, ACT *)) // palo->pactRestore
+    if (STRUCT_OFFSET(palo, 0x1fc, ACT *) == NULL) // palo->pactRestore
     {
         ACT *pact = PactNew(palo->psw, palo, &g_vtact);
-        STRUCT_OFFSET(palo, 0x1fc, ACT *) = pact; // palo->pactRestore
+        STRUCT_OFFSET(palo, 0x1fc, ACT *) = pact;
         InsertAloAct(palo, pact);
     }
 }
 
+extern VTACT g_vtactla;
+
 void EnsureAloActla(ALO *palo)
 {
-    if (!STRUCT_OFFSET(palo, 0x200, ACT *)) // palo->pactla
+    if (STRUCT_OFFSET(palo, 0x200, ACT *) == NULL) // palo->pactla
     {
-        ACTLA *pactla = (ACTLA *)PactNew(palo->psw, palo, &g_vtactla);
-        STRUCT_OFFSET(palo, 0x200, ACT *) = pactla; // palo->pactla
-        InsertAloAct(palo, pactla);
+        ACT *pact = PactNew(palo->psw, palo, &g_vtactla);
+        STRUCT_OFFSET(palo, 0x200, ACT *) = pact;
+        InsertAloAct(palo, pact);
     }
 }
 
@@ -357,20 +461,62 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", PasegaFindAlo__FP3ALO3OID);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", PsmaFindAlo__FP3ALO3OID);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", PasegaFindAloNearest__FP3ALO);
+ASEGA *PasegaFindAloNearest(ALO *paloLeaf)
+{
+    while (paloLeaf != NULL)
+    {
+        ACT *pact = STRUCT_OFFSET(paloLeaf, 0x1ec, ACT *);
+        if (pact != NULL && pact->pvtact == &g_vtactseg)
+            return STRUCT_OFFSET(pact, 0x1c, ASEGA *);
+
+        pact = STRUCT_OFFSET(paloLeaf, 0x1f0, ACT *);
+        if (pact != NULL && pact->pvtact == &g_vtactseg)
+            return STRUCT_OFFSET(pact, 0x1c, ASEGA *);
+
+        paloLeaf = paloLeaf->paloParent;
+    }
+    return NULL;
+}
+
+extern VTACT g_vtactadj;
 
 void CreateAloActadj(ALO *palo, int nPriority, ACTADJ **ppactadj)
 {
     if (palo)
     {
-        ACTADJ *pactadj = (ACTADJ *)PactNew(palo->psw, palo, &g_vtactadj);
-        pactadj->nPriority = nPriority;
-        InsertAloAct(palo, pactadj);
-        *ppactadj = pactadj;
+        ACT *pact = PactNew(palo->psw, palo, &g_vtactadj);
+        pact->nPriority = nPriority;
+        InsertAloAct(palo, pact);
+        *ppactadj = (ACTADJ *)pact;
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FIsAloStatic__FP3ALO);
+int FIsAloStatic(ALO *palo)
+{
+    ALO *paloChild;
+
+    if (!FIsZeroV(&STRUCT_OFFSET(palo, 0x150, VECTOR)))
+    {
+        return 0;
+    }
+
+    if (!FIsZeroW(&STRUCT_OFFSET(palo, 0x160, VECTOR)))
+    {
+        return 0;
+    }
+
+    paloChild = (ALO *)palo->dlChild.head;
+    while (paloChild != NULL)
+    {
+        if (paloChild->pvtlo->grfcid & 1 && !FIsAloStatic(paloChild))
+        {
+            return 0;
+        }
+        paloChild = (ALO *)paloChild->dleChild.next;
+    }
+
+    return 1;
+}
 
 void ResolveAlo(ALO *palo)
 {
@@ -382,31 +528,108 @@ void ResolveAlo(ALO *palo)
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloPositionSpring__FP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloPositionSpringDetail__FP3ALOP3CLQ);
+extern CLQ D_00260E70;
+void SetAloPositionSpringDetail(ALO *palo, CLQ *pclq)
+{
+    CLQ *&pclqDst = STRUCT_OFFSET(palo, 0x20c, CLQ *); // palo->pclqPositionSpring (default &D_00260E70)
+
+    if (pclqDst == &D_00260E70)
+    {
+        pclqDst = (CLQ *)PvAllocSwImpl(0x10);
+    }
+
+    *(VU_VECTOR *)pclqDst = *(VU_VECTOR *)pclq;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloPositionDamping__FP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloPositionDampingDetail__FP3ALOP3CLQ);
+extern CLQ D_00260E80;
+void SetAloPositionDampingDetail(ALO *palo, CLQ *pclq)
+{
+    CLQ *&pclqDst = STRUCT_OFFSET(palo, 0x210, CLQ *); // palo->pclwPosDamping (real offset 0x210)
+
+    if (pclqDst == &D_00260E80)
+    {
+        pclqDst = (CLQ *)PvAllocSwImpl(0x10);
+    }
+
+    *(VU_VECTOR *)pclqDst = *(VU_VECTOR *)pclq;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationSpring__FP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationSpringDetail__FP3ALOP3CLQ);
+extern CLQ D_00260E90;
+void SetAloRotationSpringDetail(ALO *palo, CLQ *pclq)
+{
+    CLQ *&pclqDst = STRUCT_OFFSET(palo, 0x214, CLQ *); // palo->pclqRotationSpring (default &D_00260E90)
+
+    if (pclqDst == &D_00260E90)
+    {
+        pclqDst = (CLQ *)PvAllocSwImpl(0x10);
+    }
+
+    *(VU_VECTOR *)pclqDst = *(VU_VECTOR *)pclq;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationDamping__FP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationDampingDetail__FP3ALOP3CLQ);
+extern CLQ D_00260EA0;
+void SetAloRotationDampingDetail(ALO *palo, CLQ *pclq)
+{
+    CLQ *&pclqDst = STRUCT_OFFSET(palo, 0x218, CLQ *); // palo->pclqRotationDamping (default &D_00260EA0)
+
+    if (pclqDst == &D_00260EA0)
+    {
+        pclqDst = (CLQ *)PvAllocSwImpl(0x10);
+    }
+
+    *(VU_VECTOR *)pclqDst = *(VU_VECTOR *)pclq;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloPositionSmooth__FP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloPositionSmoothMaxAccel__FP3ALOf);
+struct SMPA { float ag[4]; };
+void SetAloPositionSmoothMaxAccel(ALO *palo, float r)
+{
+    SMPA smpa = *STRUCT_OFFSET(palo, 0x21c, SMPA *); // copy palo->psmpaPos
+    smpa.ag[3] = r * (smpa.ag[0] - smpa.ag[1]) / smpa.ag[2];
+    SetAloPositionSmoothDetail(palo, &smpa);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloPositionSmoothDetail__FP3ALOP4SMPA);
+extern SMPA D_00260EB0;
+void SetAloPositionSmoothDetail(ALO *palo, SMPA *psmpa)
+{
+    SMPA *&psmpaDst = STRUCT_OFFSET(palo, 0x21c, SMPA *); // palo->psmpaPos (default &D_00260EB0)
+
+    if (psmpaDst == &D_00260EB0)
+    {
+        psmpaDst = (SMPA *)PvAllocSwImpl(0x10);
+    }
+
+    *psmpaDst = *psmpa;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationSmooth__FP3ALOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationSmoothMaxAccel__FP3ALOf);
+void SetAloRotationSmoothMaxAccel(ALO *palo, float r)
+{
+    SMPA smpa = *STRUCT_OFFSET(palo, 0x220, SMPA *); // copy palo->psmapaRot
+    smpa.ag[3] = r * (smpa.ag[0] - smpa.ag[1]) / smpa.ag[2];
+    SetAloRotationSmoothDetail(palo, &smpa);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationSmoothDetail__FP3ALOP4SMPA);
+extern SMPA D_00260EC0;
+void SetAloRotationSmoothDetail(ALO *palo, SMPA *psmpa)
+{
+    SMPA *&psmpaDst = STRUCT_OFFSET(palo, 0x220, SMPA *); // palo->psmapaRot (default &D_00260EC0)
+
+    if (psmpaDst == &D_00260EC0)
+    {
+        psmpaDst = (SMPA *)PvAllocSwImpl(0x10);
+    }
+
+    *psmpaDst = *psmpa;
+}
 
 void SetAloDefaultAckPos(ALO *palo, ACK ack)
 {
@@ -418,28 +641,77 @@ void SetAloDefaultAckRot(ALO *palo, ACK ack)
     STRUCT_OFFSET(palo, 0x2ca, char) = ack;
 }
 
-void SetAloRestorePosition(ALO *palo, int fRestore) 
-{ 
-    SetAloRestorePositionAck(palo, (ACK)(fRestore ? 1 : -1));
+void SetAloRestorePosition(ALO *palo, int fRestore)
+{
+    SetAloRestorePositionAck(palo, fRestore ? ACK_Spring : ACK_Nil);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a3c8);
+void FUN_0012a3e8(ALO *palo, int unk);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a3e8);
+void FUN_0012a3c8(ALO *palo, int unk)
+{
+    FUN_0012a3e8(palo, unk != 0);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a418);
+void FUN_0012a3e8(ALO *palo, int n)
+{
+    STRUCT_OFFSET(palo, 0x2c8, uint64_t) =
+        (STRUCT_OFFSET(palo, 0x2c8, uint64_t) & ~((uint64_t)3 << 40)) | ((uint64_t)(n & 3) << 40);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRestorePositionAck__FP3ALO3ACK);
+void FUN_0012a418(ALO *palo, int *pn)
+{
+    *pn = (int)(STRUCT_OFFSET(palo, 0x2c8, uint64_t) >> 40) & 3;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRestoreRotation__FP3ALOi);
+void SetAloRestorePositionAck(ALO *palo, ACK ack)
+{
+    EnsureAloActRestore(palo);
+    // palo->pactRestore (ACT at 0x1FC), ackPos byte at +0x10
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x1fc, ACT *), 0x10, char) = ack;
+    (*(void (**)(ALO *))((char *)palo->pvtlo + 0xBC))(palo);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRestoreRotationAck__FP3ALO3ACK);
+void SetAloRestoreRotation(ALO *palo, int fRestore)
+{
+    SetAloRestoreRotationAck(palo, fRestore ? ACK_Spring : ACK_Nil);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a4e8);
+void SetAloRestoreRotationAck(ALO *palo, ACK ack)
+{
+    EnsureAloActRestore(palo);
+    // palo->pactRestore (ACT at 0x1FC), ackRot byte at +0x11
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x1fc, ACT *), 0x11, char) = ack;
+    (*(void (**)(ALO *))((char *)palo->pvtlo + 0xBC))(palo);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAt__FP3ALO3ACK);
+void FUN_0012a4e8(ALO *palo, int n)
+{
+    void *pactrest;
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtIgnore__FP3ALOf);
+    EnsureAloActRestore(palo);
+    pactrest = STRUCT_OFFSET(palo, 0x1fc, void *);
+    STRUCT_OFFSET(pactrest, 0x14, int) = n;
+    ResortAloActList(palo);
+}
+
+void SetAloLookAt(ALO *palo, ACK ack)
+{
+    EnsureAloActla(palo);
+
+    if (ack == ACK_Smooth)
+    {
+        ack = ACK_SmoothNoLock;
+    }
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x200, void *), 0x11, char) = ack;
+    ((void (*)(ALO *))STRUCT_OFFSET(palo->pvtlo, 0xbc, void *))(palo);
+}
+
+void SetAloLookAtIgnore(ALO *palo, float sIgnore)
+{
+    EnsureAloActla(palo);
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x200, void *), 0x40, float) = sIgnore;
+}
 
 void GetAloLookAtIgnore(ALO *palo, float *psIgnore)
 {
@@ -452,34 +724,84 @@ void GetAloLookAtIgnore(ALO *palo, float *psIgnore)
     *psIgnore = sIgnore;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtPanFunction__FP3ALOP3CLQ);
+void SetAloLookAtPanFunction(ALO *palo, CLQ *pclq)
+{
+    EnsureAloActla(palo);
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x200, void *), 0x50, qword) = STRUCT_OFFSET(pclq, 0x0, qword);
+}
 
 void GetAloLookAtPanFunction(ALO *palo, CLQ *pclq)
 {
-    void *temp = STRUCT_OFFSET(palo, 0x200, void *);
+    extern CLQ D_00275C40;
+    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    CLQ *pclqSrc;
 
-    if (temp != NULL) {
-        temp = (char *)temp + 0x50;
-    } else {
-        temp = &D_00275C40;
-    }
+    if (pactla)
+        pclqSrc = &STRUCT_OFFSET(pactla, 0x50, CLQ);
+    else
+        pclqSrc = &D_00275C40;
 
-    *(qword *)pclq = *(qword *)temp;
+    *(VU_VECTOR *)pclq = *(VU_VECTOR *)pclqSrc;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtPanLimits__FP3ALOP2LM);
+void SetAloLookAtPanLimits(ALO *palo, LM *plm)
+{
+    EnsureAloActla(palo);
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x200, void *), 0x60, LM) = *plm;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloLookAtPanLimits__FP3ALOP2LM);
+void GetAloLookAtPanLimits(ALO *palo, LM *plm)
+{
+    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    LM *plmSrc;
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtTiltFunction__FP3ALOP3CLQ);
+    if (pactla)
+        plmSrc = &STRUCT_OFFSET(pactla, 0x60, LM);
+    else
+        plmSrc = &g_lmZeroOne;
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloLookAtTiltFunction__FP3ALOP3CLQ);
+    *plm = *plmSrc;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtTiltLimits__FP3ALOP2LM);
+void SetAloLookAtTiltFunction(ALO *palo, CLQ *pclq)
+{
+    EnsureAloActla(palo);
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x200, void *), 0x70, qword) = STRUCT_OFFSET(pclq, 0x0, qword);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloLookAtTiltLimits__FP3ALOP2LM);
+extern qword D_00275C40;
+void GetAloLookAtTiltFunction(ALO *palo, CLQ *pclq)
+{
+    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    qword *pqSrc;
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtEnabledPriority__FP3ALOi);
+    if (pactla)
+        pqSrc = &STRUCT_OFFSET(pactla, 0x70, qword);
+    else
+        pqSrc = &D_00275C40;
+
+    *(qword *)pclq = *pqSrc;
+}
+
+void SetAloLookAtTiltLimits(ALO *palo, LM *plm)
+{
+    EnsureAloActla(palo);
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x200, void *), 0x80, LM) = *plm;
+}
+
+void GetAloLookAtTiltLimits(ALO *palo, LM *plm)
+{
+    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    LM *plmSrc = pactla ? &STRUCT_OFFSET(pactla, 0x80, LM) : &g_lmZeroOne;
+
+    *plm = *plmSrc;
+}
+
+void SetAloLookAtEnabledPriority(ALO *palo, int nPriority)
+{
+    EnsureAloActla(palo);
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x200, void *), 0x44, int) = nPriority;
+}
 
 void GetAloLookAtEnabledPriority(ALO *palo, int *pnPriority)
 {
@@ -492,7 +814,11 @@ void GetAloLookAtEnabledPriority(ALO *palo, int *pnPriority)
     *pnPriority = nPriority;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtDisabledPriority__FP3ALOi);
+void SetAloLookAtDisabledPriority(ALO *palo, int nPriority)
+{
+    EnsureAloActla(palo);
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x200, void *), 0x48, int) = nPriority;
+}
 
 void GetAloLookAtDisabledPriority(ALO *palo, int *pnPriority)
 {
@@ -505,13 +831,35 @@ void GetAloLookAtDisabledPriority(ALO *palo, int *pnPriority)
     *pnPriority = nPriority;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a810);
+void FUN_0012a810(ALO *palo, int n)
+{
+    void *pactla;
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a848);
+    EnsureAloActla(palo);
+    pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    STRUCT_OFFSET(pactla, 0x20, int) = n;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a860);
+void FUN_0012a848(ALO *palo, int *pn)
+{
+    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    int n = -1;
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a888);
+    if (pactla)
+        n = STRUCT_OFFSET(pactla, 0x20, int);
+
+    *pn = n;
+}
+
+void FUN_0012a860(ALO *palo, ALO *paloTarget)
+{
+    SetActlaTarget(STRUCT_OFFSET(palo, 0x200, ACTLA *), paloTarget, &D_00248D30);
+}
+
+void FUN_0012a888(ALO *palo, ALO **ppaloTarget)
+{
+    *ppaloTarget = PaloGetActlaTarget(STRUCT_OFFSET(palo, 0x200, ACTLA *));
+}
 
 void FUN_0012a8b8(ALO *palo)
 {
@@ -519,13 +867,48 @@ void FUN_0012a8b8(ALO *palo)
     STRUCT_OFFSET(pactla, 0x4C, int) = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a8c8);
+void FUN_0012a8c8(ALO *palo)
+{
+    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
+    STRUCT_OFFSET(pactla, 0x4C, int) = 1;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloRotationMatchesVelocity__FP3ALOff3ACK);
+extern VTACT D_00219600;
+void SetAloRotationMatchesVelocity(ALO *palo, float uBank, float dtPredict, ACK ackRot)
+{
+    if (STRUCT_OFFSET(palo, 0x204, ACT *) == 0)
+    {
+        ACT *pact = PactNew(palo->psw, palo, &D_00219600);
+        STRUCT_OFFSET(palo, 0x204, ACT *) = pact;
+        InsertAloAct(palo, pact);
+    }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", PtargetEnsureAlo__FP3ALO);
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x204, ACT *), 0x11, char) = ackRot;
+    ((ACTBANK *)STRUCT_OFFSET(palo, 0x204, ACT *))->uBank = uBank;
+    ((ACTBANK *)STRUCT_OFFSET(palo, 0x204, ACT *))->dtPredict = dtPredict;
+    (*(void (**)(ALO *))((char *)palo->pvtlo + 0xBC))(palo);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloTargetAttacks__FP3ALOi);
+TARGET *PtargetEnsureAlo(ALO *palo)
+{
+    TARGET *ptarget = (TARGET *)PloFindSwObject(palo->psw, 0x102, (OID)0x22a, palo);
+
+    if (ptarget == NULL)
+    {
+        ptarget = (TARGET *)PloNew((CID)0x75, palo->psw, palo, (OID)0x22a, -1);
+    }
+
+    return ptarget;
+}
+
+void SetAloTargetAttacks(ALO *palo, GRFTAK grftak)
+{
+    TARGET *ptarget = PtargetEnsureAlo(palo);
+    if (grftak != -1)
+    {
+        STRUCT_OFFSET(ptarget, 0x88, GRFTAK) = grftak; // ptarget->grftak
+    }
+}
 
 void SetAloTargetRadius(ALO *palo, float sRadiusTarget)
 {
@@ -594,7 +977,11 @@ void SetAloSFull(ALO *palo, float sFull)
     STRUCT_OFFSET(palo, 0x2ac, SFX *)->sFull = sFull; // palo->psfx
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloSndRepeat__FP3ALOP2LM);
+void SetAloSndRepeat(ALO *palo, LM *plm)
+{
+    EnsureAloSfx(palo);
+    STRUCT_OFFSET(palo, 0x2ac, SFX *)->lmRepeat = *plm; // palo->psfx
+}
 
 void GetAloSFull(ALO *palo, float *psFull)
 {
@@ -676,7 +1063,19 @@ void GetAloUPitch(ALO *palo, float *puPitch)
     *puPitch = uPitch;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloSndRepeat__FP3ALOP2LM);
+void GetAloSndRepeat(ALO *palo, LM *plmRepeat)
+{
+    // palo->psfx
+    if (STRUCT_OFFSET(palo, 0x2ac, SFX *))
+    {
+        *plmRepeat = STRUCT_OFFSET(palo, 0x2ac, SFX *)->lmRepeat;
+    }
+    else
+    {
+        plmRepeat->gMin = -1.0f;
+        plmRepeat->gMax = -1.0f;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", StartAloSound__FP3ALO5SFXIDfffP2LM);
 
@@ -689,7 +1088,23 @@ void StopAloSound(ALO *palo)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", EnsureAloThrob__FP3ALO);
+extern qword D_00261000[4];
+
+void EnsureAloThrob(ALO *palo)
+{
+    THROB *&pthrob = STRUCT_OFFSET(palo, 0x288, THROB *);
+
+    if (!pthrob)
+    {
+        qword *pdst = (qword *)PvAllocSwImpl(0x40);
+        pthrob = (THROB *)pdst;
+        pdst[0] = D_00261000[0];
+        pdst[1] = D_00261000[1];
+        pdst[2] = D_00261000[2];
+        pdst[3] = D_00261000[3];
+        pthrob->throbk = (THROBK)-1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloThrobKind__FP3ALO6THROBK);
 
@@ -704,13 +1119,36 @@ void GetAloThrobKind(ALO *palo, THROBK *pthrobk)
     *pthrobk = throbk;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloThrobInColor__FP3ALOP6VECTOR);
+void SetAloThrobInColor(ALO *palo, VECTOR *phsvInColor)
+{
+    EnsureAloThrob(palo);
+    // palo->pthrob->hsvInColor
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x288, THROB *), 0x10, VU_VECTOR) = *(VU_VECTOR *)phsvInColor;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloThrobInColor__FP3ALOP6VECTOR);
+void GetAloThrobInColor(ALO *palo, VECTOR *phsvInColor)
+{
+    THROB *pthrob = STRUCT_OFFSET(palo, 0x288, THROB *); // palo->pthrob
+    VU_VECTOR *pqSrc = pthrob
+        ? &STRUCT_OFFSET(pthrob, 0x10, VU_VECTOR) // pthrob->hsvInColor
+        : (VU_VECTOR *)&D_00248D30;
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloThrobOutColor__FP3ALOP6VECTOR);
+    *(VU_VECTOR *)phsvInColor = *pqSrc;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloThrobOutColor__FP3ALOP6VECTOR);
+void SetAloThrobOutColor(ALO *palo, VECTOR *phsvOutColor)
+{
+    EnsureAloThrob(palo);
+    // palo->pthrob->hsvOutColor
+    STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x288, THROB *), 0x20, VU_VECTOR) = *(VU_VECTOR *)phsvOutColor;
+}
+
+void GetAloThrobOutColor(ALO *palo, VECTOR *phsvOutColor)
+{
+    THROB *pthrob = STRUCT_OFFSET(palo, 0x288, THROB *); // palo->throb
+    VU_VECTOR *pvuvec = pthrob ? &STRUCT_OFFSET(pthrob, 0x20, VU_VECTOR) : (VU_VECTOR *)&D_00248D30;
+    *(VU_VECTOR *)phsvOutColor = *pvuvec;
+}
 
 void SetAloThrobDtInOut(ALO *palo, float dtInOut)
 {
@@ -729,13 +1167,12 @@ void GetAloThrobDtInOut(ALO *palo, float *pdtInOut)
     *pdtInOut = dtInOut;
 }
 
-void SetAloInteractCane(ALO *palo, GRFIC grfic) 
+void SetAloInteractCane(ALO *palo, GRFIC grfic)
 {
-    STRUCT_OFFSET(palo, 0x2B2, uchar) = grfic;
-    STRUCT_OFFSET(palo, 0x2B1, uchar) = grfic;
-    STRUCT_OFFSET(palo, 0x2B0, uchar) = grfic;
+    STRUCT_OFFSET(palo, 0x2b2, char) = grfic;
+    STRUCT_OFFSET(palo, 0x2b1, char) = grfic;
+    STRUCT_OFFSET(palo, 0x2b0, char) = grfic;
 }
-
 
 void GetAloInteractCane(ALO *palo, GRFIC *pgrfic)
 {

@@ -1,8 +1,11 @@
 #include <shd.h>
 #include <gs.h>
+#include <blip.h>
 
 extern GRFZON g_grfzonShaders;
 extern byte *g_pbBulkData;
+extern GSB D_002626D8;
+extern int D_002626CC;
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", Tex0FromTexIframeCtk__FP3TEXi3CTK);
 
@@ -40,7 +43,20 @@ void UploadPermShaders()
     g_grfzonShaders = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/shd", PropagateShaders__Fi);
+void PropagateShaders(GRFZON grfzonCamera)
+{
+    PropagateSais();
+    if (grfzonCamera == g_grfzonShaders)
+        return;
+
+    ResetGsb(&D_002626D8);
+    UploadBitmaps(grfzonCamera, &D_002626D8);
+    FillShaders(grfzonCamera);
+    PropagateSurs();
+    PropagateBlipgShaders(grfzonCamera);
+    D_002626CC = 2;
+    g_grfzonShaders = grfzonCamera;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", FillShaders__Fi);
 
@@ -65,7 +81,34 @@ INCLUDE_ASM("asm/nonmatchings/P2/shd", PshdFindShader__F3OID);
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", SetSaiIframe__FP3SAIi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/shd", SetSaiDuDv__FP3SAIff);
+extern SAI *g_psaiUpdate;
+extern SAI *g_psaiUpdateTail;
+
+void SetSaiDuDv(SAI *psai, float du, float dv)
+{
+    if (!STRUCT_OFFSET(psai, 0x4, int))
+        return;
+
+    if (STRUCT_OFFSET(psai, 0xc, float) == du &&
+        STRUCT_OFFSET(psai, 0x10, float) == dv)
+        return;
+
+    SAI *psaiNext = STRUCT_OFFSET(psai, 0x18, SAI *);
+    STRUCT_OFFSET(psai, 0xc, float) = du;
+    STRUCT_OFFSET(psai, 0x10, float) = dv;
+
+    if (psaiNext != 0)
+        return;
+
+    if (psai == g_psaiUpdateTail)
+        return;
+
+    if (g_psaiUpdateTail == 0)
+        g_psaiUpdateTail = psai;
+
+    STRUCT_OFFSET(psai, 0x18, SAI *) = g_psaiUpdate;
+    g_psaiUpdate = psai;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", PropagateSais__Fv);
 
