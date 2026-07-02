@@ -2,6 +2,7 @@ var sound_8c =
 [
     [ "MVG", "structMVG.html", "structMVG" ],
     [ "ContinueMusic", "sound_8c.html#a9868f4a6eeb7c655145d494abbfc40ec", null ],
+    [ "GetAMRegister", "sound_8c.html#a8da6a61a70981b6498bfeb2ff60229b9", null ],
     [ "INCLUDE_ASM", "sound_8c.html#a0dae31725b53e7751abe5a8a89831d78", null ],
     [ "INCLUDE_ASM", "sound_8c.html#a7fc3677ef6a422ee543d4df727bb6f3b", null ],
     [ "INCLUDE_ASM", "sound_8c.html#a97136b9123b352b71a8382aa16ada6dd", null ],
@@ -22,7 +23,6 @@ var sound_8c =
     [ "INCLUDE_ASM", "sound_8c.html#a9fa8c28a46e9f289915207b8b359ee27", null ],
     [ "INCLUDE_ASM", "sound_8c.html#a722c2b2d433c19537bef3cc8146bd51c", null ],
     [ "INCLUDE_ASM", "sound_8c.html#a4134401d9931873849fe181952894f93", null ],
-    [ "INCLUDE_ASM", "sound_8c.html#af708d275f17dd2f239450427cc7b6c0d", null ],
     [ "INCLUDE_ASM", "sound_8c.html#ab9d334c006f9a529f065bb93972cd3cb", null ],
     [ "INCLUDE_ASM", "sound_8c.html#a56de2634ab2152034fdc4b8767761181", null ],
     [ "INCLUDE_ASM", "sound_8c.html#aff530ea090ea88815dd3bc9685dc58c3", null ],
@@ -81,5 +81,6 @@ var sound_8c =
     [ "SetMvgkUvol", "sound_8c.html#a9249ca420174871455e9acd082546bb8", null ],
     [ "StartupSound", "sound_8c.html#a1c3d9b344f3e0eb28bbbc65627d19edf", null ],
     [ "D_00274838", "sound_8c.html#ae259941893c8090fac8e5ef1a955775f", null ],
-    [ "D_00604790", "sound_8c.html#ae32edee30b3ea3a9eebe95d198d600e6", null ]
+    [ "D_00604790", "sound_8c.html#ae32edee30b3ea3a9eebe95d198d600e6", null ],
+    [ "D_006053E0", "sound_8c.html#a216671635f762c1c0aca567fbb32a13d", null ]
 ];

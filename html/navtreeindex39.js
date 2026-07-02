@@ -1,5 +1,6 @@
 var NAVTREEINDEX39 =
 {
+"structLETTERBOX.html":[9,0,253],
 "structLGN.html":[9,0,256],
 "structLGN.html#ad34e2c4ecb585cde64e085bf306db83f":[9,0,256,0],
 "structLGN.html#ae1a0db5b890726346c8cbd8b44d88f1d":[9,0,256,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX39 =
 "structPXR.html#a755afca9237e3f6d02e098c987ecd244":[9,0,330,0],
 "structPXR.html#ab1fa45372862c14361f1f9c46ca8bf81":[9,0,330,1],
 "structPXR.html#afc16b8e426f97ee36f963777763916da":[9,0,330,2],
-"structPZI.html":[9,0,331],
-"structPZI.html#a1213bdde49aa2a64895fd25d5152cdf1":[9,0,331,3]
+"structPZI.html":[9,0,331]
 };

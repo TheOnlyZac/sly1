@@ -1,5 +1,6 @@
 var NAVTREEINDEX32 =
 {
+"sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaaf81623f876580a2b1408332f3add67bc":[10,0,1,132,5,51],
 "sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaaf8e5dbfab1be6f5a7bdabb1c9c6c2597":[10,0,1,132,5,92],
 "sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaafc0d03f60920847301fa295013846d9d":[10,0,1,132,5,77],
 "sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaafc3a09ef5579b7fc9241e3969c313707":[10,0,1,132,5,16],
@@ -248,6 +249,5 @@ var NAVTREEINDEX32 =
 "stepguard_8c.html#a0c47c6f30929f29fae52a45c35ffb7c4":[10,0,2,0,128,84],
 "stepguard_8c.html#a0e292edf5d6264e69e68ae3e6def1f76":[10,0,2,0,128,17],
 "stepguard_8c.html#a134a0a1e82c28223dfe438de0ade4b7d":[10,0,2,0,128,14],
-"stepguard_8c.html#a159a4e874773d76c6a3297c4c78044be":[10,0,2,0,128,16],
-"stepguard_8c.html#a18bdc29e63344c930a719ee99352e145":[10,0,2,0,128,22]
+"stepguard_8c.html#a159a4e874773d76c6a3297c4c78044be":[10,0,2,0,128,16]
 };
