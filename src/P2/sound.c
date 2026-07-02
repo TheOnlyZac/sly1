@@ -3,6 +3,7 @@
 #include <sce/memset.h>
 
 extern uchar D_00604790[]; // temp
+extern int D_006053E0[];
 
 /**
  * @brief Media volume float.
@@ -225,7 +226,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSwIntermittentSounds__FP2SW);
 // TODO: Verify signature.
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SetAMRegister__FiUc);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", GetAMRegister__Fi);
+int GetAMRegister(int reg) 
+{
+    return D_006053E0[reg];
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", UpdateAMRegister__Fii);
 
