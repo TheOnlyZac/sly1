@@ -73,7 +73,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/freeze", FreezeAloHierarchy__FP3ALOi);
 
 void GetAloFrozen(ALO *palo, int *pf)
 {
-    *pf = (int)(STRUCT_OFFSET(palo, 0x2c8, unsigned long long) >> 38) & 1;
+    *pf = (int)(STRUCT_OFFSET(palo, 0x2c8, unsigned long long) >> 0x26) & 1;
 }
 
 void FreezeAlo(ALO *palo, int fFreeze)

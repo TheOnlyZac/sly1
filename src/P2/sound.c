@@ -9,6 +9,7 @@
 #include <sdk/ee/eekernel.h>
 
 extern uchar D_00604790[]; // temp
+extern int D_006053E0[];
 
 /**
  * @brief Media volume float.
@@ -631,7 +632,6 @@ void FUN_001C0B08(SW *psw, LM *plm)
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSwIntermittentSounds__FP2SW);
 
 // TODO: Verify signature.
-extern int D_006053E0[];
 extern u_int D_00274728;
 extern "C" void SetAMRegister__FiUc(int n, int bReg)
 {
@@ -642,13 +642,11 @@ extern "C" void SetAMRegister__FiUc(int n, int bReg)
     }
 }
 
-extern int D_006053E0[];
 int GetAMRegister(int reg)
 {
     return D_006053E0[reg];
 }
 
-extern int D_006053E0[];
 extern u_int D_00274728;
 void UpdateAMRegister(int reg, int value)
 {
