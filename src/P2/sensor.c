@@ -73,42 +73,41 @@ void PauseSensor(SENSOR *psensor)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateSensor__FP6SENSORf);
 
-void AddSensorTriggerObject(SENSOR * p, OID oid)
+void AddSensorTriggerObject(SENSOR *psensor, OID oid)
 {
-	uint ccur = psensor->ctriggerObjects;
-	if (ccur >= 4)
-		return;
+    uint ccur = psensor->ctriggerObjects;
+    if (ccur >= 4)
+        return;
 
-	psensor->atriggerObjects[ccur] = oid;
-	psensor->ctriggerObjects = ccur + 1;
+    psensor->atriggerObjects[ccur] = oid;
+    psensor->ctriggerObjects = ccur + 1;
 }
-void AddSensorNoTriggerObject(SENSOR * p, OID oid)
+void AddSensorNoTriggerObject(SENSOR *psensor, OID oid)
 {
-	uint ccur = psensor->cnoTriggerObjects;
-	if (ccur >= 4)
-		return;
+    uint ccur = psensor->cnoTriggerObjects;
+    if (ccur >= 4)
+        return;
 
-	psensor->anoTriggerObjects[ccur] = oid;
-	psensor->cnoTriggerObjects = ccur + 1;
+    psensor->anoTriggerObjects[ccur] = oid;
+    psensor->cnoTriggerObjects = ccur + 1;
 }
-void AddSensorTriggerClass(SENSOR * p, CID cid)
+void AddSensorTriggerClass(SENSOR *psensor, CID cid)
 {
-	uint ccur = psensor->ctriggerClasses;
-	if (ccur >= 4)
-		return;
+    uint ccur = psensor->ctriggerClasses;
+    if (ccur >= 4)
+        return;
 
-	psensor->atriggerClasses[ccur] = cid;
-	psensor->ctriggerClasses = ccur + 1;
+    psensor->atriggerClasses[ccur] = cid;
+    psensor->ctriggerClasses = ccur + 1;
 }
-void AddSensorNoTriggerClass(SENSOR * p, CID cid)
+void AddSensorNoTriggerClass(SENSOR *psensor, CID cid)
 {
-    int c = STRUCT_OFFSET(p, 0x5a0, int);
-    if ((unsigned int)c < 4)
-    {
-        CID *a = &STRUCT_OFFSET(p, 0x5a4, CID);
-        a[c] = cid;
-        STRUCT_OFFSET(p, 0x5a0, int) = c + 1;
-    }
+    uint ccur = psensor->cnoTriggerClasses;
+    if (ccur >= 4)
+        return;
+
+    psensor->anoTriggerClasses[ccur] = cid;
+    psensor->cnoTriggerClasses = ccur + 1;
 }
 void InitLasen(LASEN *plasen)
 {
@@ -222,6 +221,8 @@ void InitCamsen(CAMSEN *pcamsen)
     InitSensor(pcamsen);
     STRUCT_OFFSET(pcamsen, 0x5D8, int) = -1;
 }
+
+extern SNIP D_002744D8[2];
 
 void PostCamsenLoad(CAMSEN *pcamsen)
 {

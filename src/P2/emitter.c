@@ -370,13 +370,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadExplgFromBrx__FP5EXPLGP18CBinaryI
 
 void CloneExplg(EXPLG *pexplg, EXPLG *pexplgBase)
 {
+    int i = 0;
 
     CloneLo((LO *)pexplg, (LO *)pexplgBase);
 
     if (STRUCT_OFFSET(pexplg, 0x90, int) > 0)
     {
         LO **p = &STRUCT_OFFSET(pexplg, 0x94, LO *);
-        int i = 0;
         do
         {
             LO *plo = PloCloneLo(*p, STRUCT_OFFSET(pexplg, 0x14, SW *), STRUCT_OFFSET(pexplg, 0x18, ALO *));

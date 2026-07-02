@@ -40,6 +40,16 @@ struct VU_VECTOR
 };
 
 /**
+ * @brief Unit Z-axis normal (0, 0, 1).
+ */
+extern VECTOR g_normalZ;
+
+/**
+ * @brief Zero vector constant (16 zero bytes; also read as a VU_VECTOR qword).
+ */
+extern VECTOR D_00248D30;
+
+/**
  * @brief Sets the coordinates of a vector using cylindrical coordinates.
  *
  * @param pvec Pointer to the vector

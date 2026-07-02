@@ -68,7 +68,7 @@ void UpdateAloXfWorld(ALO *palo)
 {
     void (*pfn)(ALO *) = (void (*)(ALO *))palo->pvtlo->pfnUpdateLoXfWorldHierarchy;
 
-    if (pfn != nullptr)
+    if (pfn != NULL)
     {
         pfn(palo);
     }
@@ -853,7 +853,6 @@ void FUN_0012a848(ALO *palo, int *pn)
 
 void FUN_0012a860(ALO *palo, ALO *paloTarget)
 {
-    VECTOR D_00248D30;
     SetActlaTarget(STRUCT_OFFSET(palo, 0x200, ACTLA *), paloTarget, &D_00248D30);
 }
 
@@ -1127,13 +1126,12 @@ void SetAloThrobInColor(ALO *palo, VECTOR *phsvInColor)
     STRUCT_OFFSET(STRUCT_OFFSET(palo, 0x288, THROB *), 0x10, VU_VECTOR) = *(VU_VECTOR *)phsvInColor;
 }
 
-extern VU_VECTOR D_00248D30;
 void GetAloThrobInColor(ALO *palo, VECTOR *phsvInColor)
 {
     THROB *pthrob = STRUCT_OFFSET(palo, 0x288, THROB *); // palo->pthrob
     VU_VECTOR *pqSrc = pthrob
         ? &STRUCT_OFFSET(pthrob, 0x10, VU_VECTOR) // pthrob->hsvInColor
-        : &D_00248D30;
+        : (VU_VECTOR *)&D_00248D30;
 
     *(VU_VECTOR *)phsvInColor = *pqSrc;
 }
@@ -1148,7 +1146,7 @@ void SetAloThrobOutColor(ALO *palo, VECTOR *phsvOutColor)
 void GetAloThrobOutColor(ALO *palo, VECTOR *phsvOutColor)
 {
     THROB *pthrob = STRUCT_OFFSET(palo, 0x288, THROB *); // palo->throb
-    VU_VECTOR *pvuvec = pthrob ? &STRUCT_OFFSET(pthrob, 0x20, VU_VECTOR) : &D_00248D30;
+    VU_VECTOR *pvuvec = pthrob ? &STRUCT_OFFSET(pthrob, 0x20, VU_VECTOR) : (VU_VECTOR *)&D_00248D30;
     *(VU_VECTOR *)phsvOutColor = *pvuvec;
 }
 

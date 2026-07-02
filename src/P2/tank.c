@@ -3,9 +3,10 @@
 #include <mat.h>
 #include <math.h>
 
+extern qword D_00275740;
+
 void InitTank(TANK *ptank)
 {
-
     InitStep((STEP *)ptank);
 
     float rad = atan2f(STRUCT_OFFSET(ptank, 0xD4, float), STRUCT_OFFSET(ptank, 0xD0, float));

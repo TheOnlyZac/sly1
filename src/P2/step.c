@@ -103,7 +103,6 @@ void AdjustStepDzBase(STEP *pstep, GRFADJ grfadj, DZ *pdz, int ixpd)
 
 void UpdateStepMatTarget(STEP *pstep)
 {
-    VECTOR g_normalZ;
     LoadRotateMatrixRad(*(float *)((uint8_t *)(pstep) + 0x638), &g_normalZ, (MATRIX3 *)((uint8_t *)(pstep) + 0x660));
 }
 

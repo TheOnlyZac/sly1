@@ -177,6 +177,11 @@ void SetJtJts(JT *pjt, JTS jts, JTBS jtbs);
  */
 void ProfileJt(JT *pjt, int fProfile);
 
+struct XMG;
+struct ACTADJ;
+
+int FMatchJtXmg(JT *pjt, XMG *pxmg, ACTADJ *pactadj);
+
 extern JT *g_pjt;
 
 #endif // JT_H

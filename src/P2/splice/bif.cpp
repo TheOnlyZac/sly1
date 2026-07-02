@@ -280,7 +280,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpMatrix__FiP4CRefP6CFrame);
 
 CRef RefOpSetMusicRegister(int carg, CRef *aref, CFrame *pframe)
 {
-    SetAMRegister__FiUc(aref[0].m_tag.m_n, aref[1].m_tag.m_n);
+    SetAMRegister(aref[0].m_tag.m_n, aref[1].m_tag.m_n);
     CRef ref;
     ref.SetTag(TAGK_Void);
     return ref;

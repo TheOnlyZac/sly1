@@ -46,8 +46,8 @@ extern CSplotheap g_splotheapMethod;
 // Sidebag binding-node helpers: allocate a node {int n; CRef ref; pNext}
 // from g_splotheapUnk1, and recursively clone a node list.
 class CFrame;
-extern "C" void *FUN_0011C498();
-extern "C" void FUN_0011C418(void *psbbFrom, void *psbbTo, CFrame *pframe);
+void *FUN_0011C498();
+void FUN_0011C418(void *psbbFrom, void *psbbTo, CFrame *pframe);
 
 static void *PvFromPsplot(SPLOT *psplot);
 static SPLOT *PsplotFromPv(void *pv);

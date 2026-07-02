@@ -64,8 +64,8 @@ void ReturnChkmgrToCheckpoint(CHKMGR *pchkmgr)
     }
     else
     {
-        trans.oidWarp = OID_NIL;
-        trans.oidWarpContet = OID_NIL;
+        trans.oidWarp = OID_Nil;
+        trans.oidWarpContet = OID_Nil;
         trans.grftrans = 0x10;
     }
     ActivateWipe(&g_wipe, &trans, (WIPEK)1);

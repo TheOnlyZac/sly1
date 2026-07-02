@@ -7,7 +7,6 @@
 #include <brx.h>
 
 extern JLO *g_pjloCur;
-extern VECTOR g_normalZ; // TODO: This should be elsewhere.
 
 void InitJlo(JLO *pjlo)
 {
@@ -99,7 +98,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/jlo", FireJlo__FP3JLO);
 
 void LandJlo(JLO *pjlo)
 {
-    extern VECTOR D_00248D30;
     VECTOR pos;
 
     SetSoConstraints(pjlo, CT_Locked, NULL, CT_Locked, NULL);

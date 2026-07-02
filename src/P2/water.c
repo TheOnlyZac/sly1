@@ -6,8 +6,6 @@
 
 struct JT;
 extern JT *g_pjt;
-extern VU_VECTOR D_00248D30;
-extern VU_VECTOR g_normalZ;
 
 void InitWater(WATER *pwater)
 {
@@ -37,7 +35,7 @@ void CalculateWaterCurrent(WATER *pwater, VECTOR *ppos, VECTOR *pv, VECTOR *pw)
     ConvertAloVec(NULL, pwater, ppos, (VECTOR *)&vec0);
     *(int *)((char *)&vec0 + 8) = 0;
     vecPos = pwater->vecCurrent;
-    vecCur = D_00248D30;
+    vecCur = *(VU_VECTOR *)&D_00248D30;
     CalculateAloTransformAdjust(pwater, NULL, (VECTOR *)&vec0, NULL, (VECTOR *)&vecPos, (VECTOR *)&vecCur);
 
     void *p278 = STRUCT_OFFSET(pwater, 0x278, void *);
@@ -201,7 +199,7 @@ float UGetWaterSubmerged(WATER *pwater, SO *pso, VECTOR *pposSurface, VECTOR *pn
     if (ClsgClipEdgeToBsp(STRUCT_OFFSET(pwater, 0x3F8, BSP *), (VECTOR *)&aedge[0], (VECTOR *)&aedge[1], NULL, 0x10, alsg) == 0)
     {
         if (pnormalSurface != NULL)
-            *(VU_VECTOR *)pnormalSurface = g_normalZ;
+            *(VU_VECTOR *)pnormalSurface = *(VU_VECTOR *)&g_normalZ;
         return 0.0f;
     }
 
@@ -214,7 +212,7 @@ float UGetWaterSubmerged(WATER *pwater, SO *pso, VECTOR *pposSurface, VECTOR *pn
         if (pn != NULL)
             *(VU_VECTOR *)pnormalSurface = *(VU_VECTOR *)pn;
         else
-            *(VU_VECTOR *)pnormalSurface = g_normalZ;
+            *(VU_VECTOR *)pnormalSurface = *(VU_VECTOR *)&g_normalZ;
     }
 
     return alsg[0].au[1] - alsg[0].au[0];

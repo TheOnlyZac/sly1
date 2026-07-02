@@ -92,6 +92,7 @@ public:
     void Init(int nParam1, int nParam2);
     void Reset();
     void Update();
+    int FAsyncDrain();
 };
 #endif // CQUEUEOUTPUTIOP_DEFINED
 
@@ -101,25 +102,6 @@ void CQueueOutputIop::Init(int nParam1, int nParam2)
     unk_0x8 = nParam1;
     Reset();
 }
-
-#ifndef CQUEUEOUTPUTIOP_DEFINED
-#define CQUEUEOUTPUTIOP_DEFINED
-class CQueueOutputIop
-{
-public:
-    int unk_0x0;
-    int unk_0x4;
-    int unk_0x8;
-    int unk_0xc;
-    int unk_0x10;
-    int unk_0x14;
-    int unk_0x18;
-    int unk_0x1c;
-
-    void Init(int nParam1, int nParam2);
-    void Reset();
-};
-#endif // CQUEUEOUTPUTIOP_DEFINED
 
 void CQueueOutputIop::Reset()
 {
@@ -136,14 +118,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/mpeg", CbSend__15CQueueOutputIopiPv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", Update__15CQueueOutputIop);
 
-int FAsyncDrain__15CQueueOutputIop()
+int CQueueOutputIop::FAsyncDrain()
 {
     return 0;
 }
 
+class CQueueOutputIpu
+{
+public:
+    int FAsyncDrain();
+};
+
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", CbWrite__15CQueueOutputIpuiPv);
 
-int FAsyncDrain__15CQueueOutputIpu()
+int CQueueOutputIpu::FAsyncDrain()
 {
     return 1;
 }
@@ -165,6 +153,7 @@ public:
 
     void Reset();
     void Update();
+    void Close();
 };
 #endif // CMPEGAUDIO_DEFINED
 
@@ -184,12 +173,12 @@ struct SW;
 extern SW *g_psw;
 void PopSwReverb(SW *psw);
 
-extern "C" void Close__10CMpegAudio(void *pthis)
+void CMpegAudio::Close()
 {
-    STRUCT_OFFSET(pthis, 0x0, int) = 0;
+    unk_0x0 = 0;
     snd_CloseMovieSound();
-    snd_SetMasterVolume(2, STRUCT_OFFSET(pthis, 0x8C, int));
-    snd_SetMasterVolume(8, STRUCT_OFFSET(pthis, 0x90, int));
+    snd_SetMasterVolume(2, STRUCT_OFFSET(this, 0x8C, int));
+    snd_SetMasterVolume(8, STRUCT_OFFSET(this, 0x90, int));
     PopSwReverb(g_psw);
     snd_ContinueAllSoundsInGroup(0xFFFFFFFF);
 }

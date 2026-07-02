@@ -130,7 +130,8 @@ void RenderRip(RIP *prip, CM *pcm)
     MATRIX3 *pmat;
     WR *pwr;
 
-    if (STRUCT_OFFSET(prip, 0x114, WR *) != NULL)
+    pwr = STRUCT_OFFSET(prip, 0x114, WR *);
+    if (pwr != NULL)
     {
         WarpWrTransform(pwr, 50.0f,
             &STRUCT_OFFSET(prip, 0x80, VECTOR),
@@ -307,8 +308,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderRose__FP4ROSEP2CM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", SetRoseRoses__FP4ROSE5ROSES);
 
-int SgnCmpHp(const void *pv0, const void *pv1) {
-    return STRUCT_OFFSET(pv0, 0x20, float) < STRUCT_OFFSET(pv1, 0x20, float) ? -1 : 1;
+int SgnCmpHp(const void *pv0, const void *pv1)
+{
+    if (STRUCT_OFFSET(pv0, 0x20, float) < STRUCT_OFFSET(pv1, 0x20, float))
+        return -1;
+    return 1;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", ChpBuildConvexHullScreen__FP6VECTORiP2HP);

@@ -105,8 +105,8 @@ void MarkPvAlive(void *pv)
     psplot->fAlive = 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", FUN_0011C418);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", FUN_0011C418__FPvT0P6CFrame);
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", FUN_0011C498);
+INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", FUN_0011C498__Fv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", FUN_0011C4E8);

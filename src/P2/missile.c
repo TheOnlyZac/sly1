@@ -93,12 +93,10 @@ void FUN_0018dd78(void * p, int val)
     }
 }
 
-extern qword D_00248D30;
-
 void InitAccmiss(ACCMISS *paccmiss)
 {
     InitMissile(paccmiss);
-    *(qword *)((char *)paccmiss + 0x350) = D_00248D30;
+    *(qword *)((char *)paccmiss + 0x350) = *(qword *)&D_00248D30;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/missile", FireAccmiss__FP7ACCMISSP3ALOP6VECTOR);

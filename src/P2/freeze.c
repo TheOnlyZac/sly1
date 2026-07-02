@@ -73,8 +73,6 @@ void GetAloFrozen(ALO *palo, int *pf)
 
 void FreezeAlo(ALO *palo, int fFreeze)
 {
-    VECTOR D_00248D30;
-
     if (fFreeze)
     {
         SFX *psfx;

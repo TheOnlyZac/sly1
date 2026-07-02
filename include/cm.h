@@ -555,9 +555,9 @@ extern int g_rgbaFog; //Just to get the code matching -Kestin
 
 void ResetCmLookAtSmooth(CM *pcm, void *pv);
 
-extern "C" void SetupCmRotateToCam(CM *pcm);
-extern "C" void SetCmLookAtSmooth(CM *pcm, int a1, VECTOR *pposEye, VECTOR *pposCenter, int a4, float u0, float u1, float u2, float u3, float u4, float u5);
-extern "C" void ConvertCylindToWorldVelocity(void *a, void *b, void *c, float f0, float f1, float f2);
-extern "C" void ConvertWorldToCylindVelocity(void *a, void *b, void *c, void *d, void *e, void *f);
+void SetupCmRotateToCam(CM *pcm);
+void SetCmLookAtSmooth(CM *pcm, int a1, VECTOR *pposEye, VECTOR *pposCenter, int a4, float u0, float u1, float u2, float u3, float u4, float u5);
+void ConvertCylindToWorldVelocity(void *a, void *b, void *c, float f0, float f1, float f2);
+void ConvertWorldToCylindVelocity(void *a, void *b, void *c, void *d, void *e, void *f);
 
 #endif // CM_H

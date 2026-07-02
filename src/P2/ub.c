@@ -1,16 +1,15 @@
 #include <ub.h>
 
+extern SNIP s_asnipLoadUbg[8]; // @todo migrate from asm/data/P2/ub.data.s and make static
+
 INCLUDE_ASM("asm/nonmatchings/P2/ub", InitUbg__FP3UBG);
 
 #ifndef SKIP_ASM
 INCLUDE_ASM("asm/nonmatchings/P2/ub", PostUbgLoad__FP3UBG);
 #else
-extern SNIP D_00275B60;
-void FUN_001ddc38(void *pv, void *pvBlot);
-
 void PostUbgLoad(UBG *pubg)
 {
-    SnipAloObjects((ALO *)pubg, 8, &D_00275B60);
+    SnipAloObjects((ALO *)pubg, 8, s_asnipLoadUbg);
     FUN_001ddc38(STRUCT_OFFSET(pubg, 0x14, void *), pubg);
 
     if (STRUCT_OFFSET(pubg, 0xC50, void *) != NULL)

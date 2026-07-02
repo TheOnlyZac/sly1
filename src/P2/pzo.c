@@ -59,9 +59,6 @@ void CloneScprize(SCPRIZE *pscprize, SCPRIZE *pscprizeBase)
 
 PCS PcsFromScprize(SCPRIZE *pscprize)
 {
-    int FGetChkmgrIchk(CHKMGR *pchkmgr, int ichk);
-    CHKMGR g_chkmgr;
-    
     PCS pcs = PcsFromSprize((SPRIZE *)pscprize);
     
     if (pcs == PCS_Collectible) {
@@ -227,9 +224,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/pzo", UpdateClue);
 
 INCLUDE_ASM("asm/nonmatchings/P2/pzo", OnClueSmack__FP4CLUE);
 
+extern char D_0026A970;
+
 void CollectClue(CLUE *pclue)
 {
-    char D_0026A970;
     RIP *pripg;
     VECTOR vec;
 

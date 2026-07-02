@@ -88,6 +88,8 @@ void TriggerRumbleRumk(RUMBLE *prumble, RUMK rumk, float dt);
 
 void SetRumbleRums(RUMBLE *prumble, RUMS rums);
 
+void TriggerRumbleRumpat(RUMBLE *prumble, RUMPAT *prumpat, float dt);
+
 void StopRumbleActuators(RUMBLE *prumble);
 
 #endif // RUMBLE_H

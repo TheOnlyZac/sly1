@@ -7,12 +7,12 @@
 #include <shd.h>
 #include <wipe.h>
 
+extern BLOT *D_002486B0[];
+
 INCLUDE_ASM("asm/nonmatchings/P2/screen", StartupScreen__Fv);
 
 void PostBlotsLoad()
 {
-    extern BLOT *D_002486B0[];
-
     for (int i = 0x24; i >= 0; i--)
     {
         BLOT *pblot = D_002486B0[i];
@@ -24,8 +24,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateBlots__Fv);
 
 void ForceHideBlots()
 {
-    extern BLOT *D_002486B0[];
-
     for (int i = 0x24; i >= 0; i--)
     {
         BLOT *pblot = D_002486B0[i];
@@ -35,8 +33,6 @@ void ForceHideBlots()
 
 void ResetBlots(void)
 {
-    extern BLOT *D_002486B0[];
-    
     for (int i = 0; i < 0x25; i++)
     {
         BLOT *pblot = D_002486B0[i];
@@ -46,8 +42,6 @@ void ResetBlots(void)
 
 void RenderBlots()
 {
-    extern BLOT *D_002486B0[];
-
     BLOT **ppblot = D_002486B0;
 
     for (int i = 0x24; i >= 0; i--)

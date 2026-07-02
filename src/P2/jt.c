@@ -45,10 +45,10 @@ void HandleJtGrfjtsc(JT *pjt)
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtInternalXps__FP2JT);
 
+extern float D_00274AD0[];
+
 int FCheckJtXpBase(JT *pjt, XP *pxp, int ixpd)
 {
-	float D_00274AD0[];
-
 	if (pjt->jts != JTS_Max)
 	{
 		return FCheckStepXpBase(pjt, pxp, ixpd);
@@ -213,8 +213,11 @@ SO *PsoGetJtEffect(JT *pjt, int *pn)
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", AddJtCustomXps__FP2JTP2SOiP3BSPT3PP2XP);
 
-int CtTorqueJt(JT *pjt) {
-    return pjt->jts == JTS_Zap || pjt->jts == JTS_Max ? 0 : 3;
+int CtTorqueJt(JT *pjt)
+{
+    if (pjt->jts == JTS_Zap || pjt->jts == JTS_Max)
+        return 0;
+    return 3;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00172ee0);

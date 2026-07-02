@@ -4,7 +4,6 @@
 #include <frm.h>
 #include <sw.h>
 
-extern VU_VECTOR g_normalZ;
 extern VU_VECTOR g_normalY;
 
 INCLUDE_ASM("asm/nonmatchings/P2/light", InitLight__FP5LIGHT);
@@ -15,7 +14,7 @@ void InitLight(LIGHT *plight)
     STRUCT_OFFSET(plight, 0x2d0, int) = 0;
     STRUCT_OFFSET(plight, 0x2c8, uint64_t) = (grfalo & ~0x30000000000ULL) | (0x8000ULL << 0x19);
 
-    STRUCT_OFFSET(plight, 0x320, VU_VECTOR) = g_normalZ;
+    STRUCT_OFFSET(plight, 0x320, VU_VECTOR) = *(VU_VECTOR *)&g_normalZ;
     STRUCT_OFFSET(plight, 0x340, VU_VECTOR) = g_normalY;
 
     STRUCT_OFFSET(plight, 0x330, float) = 200.0f;

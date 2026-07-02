@@ -24,6 +24,7 @@ struct MVG
 };
 
 extern float D_00274838[10][4]; // temp
+extern int D_00274720;
 
 void UnloadMusic()
 {
@@ -628,7 +629,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSwIntermittentSounds__FP2SW);
 
 // TODO: Verify signature.
 extern u_int D_00274728;
-extern "C" void SetAMRegister__FiUc(int n, int bReg)
+void SetAMRegister(int n, int bReg)
 {
     if (bReg != D_006053E0[n])
     {
@@ -652,7 +653,7 @@ void FUN_001c0cb0()
 {
     for (int i = 0; i < 8; i++)
     {
-        SetAMRegister__FiUc(i, 0);
+        SetAMRegister(i, 0);
     }
 }
 

@@ -93,7 +93,7 @@ struct GLBS
 
     void SetNormal(VECTOR *ppos); // Might be SetPos?
 
-    void SetRgba(RGBA &rgba); // Might not be correct.
+    void SetRgba(RGBA *prgba);
 
     void SetUv(UVF *puv);
 

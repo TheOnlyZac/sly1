@@ -105,8 +105,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_001982a0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", UpdatePuffcGoal__FP5PUFFCi);
 
-void FUN_00197a08(void *pv1, void *pv2);
-
 void OnPuffcExitingSgs(PUFFC *ppuffc, SGS sgsNext)
 {
     if (STRUCT_OFFSET(ppuffc, 0x724, int) == SGS_Stun)

@@ -124,11 +124,9 @@ extern CFont *g_pfont;
 
 void StartupFont();
 
-extern "C"
-{
-    CFont *FUN_0015c1c0(int i);
-    int FUN_0015c188(int i);
-}
+CFont *FUN_0015c1c0(int i);
+
+int FUN_0015c188(int i);
 
 void PostFontsLoad();
 

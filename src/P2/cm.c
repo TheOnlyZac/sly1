@@ -202,7 +202,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", UpdateCmFade);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", UpdateCmLast);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", SetupCmRotateToCam);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", SetupCmRotateToCam__FP2CM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCmScreenToWorld);
 
@@ -246,9 +246,9 @@ void SetCmLookAt(CM *pcm, VECTOR *pposEye, VECTOR *pposCenter)
     SetCmLookAtSmooth(pcm, 0, pposEye, pposCenter, 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertWorldToCylindVelocity);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertWorldToCylindVelocity__FPvN50);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCylindToWorldVelocity);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCylindToWorldVelocity__FPvN20fff);
 
 void ResetCmLookAtSmooth(CM *pcm, void *pv)
 {
@@ -261,7 +261,7 @@ void ResetCmLookAtSmooth(CM *pcm, void *pv)
     STRUCT_OFFSET(pcm, 0x2d0, qword) = *(qword *)pv;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmLookAtSmooth);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmLookAtSmooth__FP2CMiP6VECTORT2iffffff);
 
 void AdjustCmJoy(CM *pcm, JOY *pjoy, JOYID joyid, float *prad)
 {

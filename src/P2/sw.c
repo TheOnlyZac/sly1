@@ -74,7 +74,7 @@ void SetSwGravity(SW *psw, float z)
 
 void FUN_001dbac0(SW *psw, int reg, int value)
 {
-    SetAMRegister__FiUc(reg, value);
+    SetAMRegister(reg, value);
 }
 
 int FUN_001dbae0(SW *psw, int reg)
@@ -420,7 +420,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd7e8);
 
 int FUN_001dd888(SW *psw, WID wid, int nKey)
 {
-    int *pls = PlsFromWid(wid);
+    int *pls = LsFromWid(wid);
     if (pls != NULL)
     {
         int *p = pls + 0x11;
@@ -527,6 +527,11 @@ void CancelSwDialogPlaying(SW *psw)
         PopUiActiveBlot(&g_ui);
     }
 }
+
+typedef struct
+{
+    int n;
+} __attribute__((packed)) UNALIGNED_INT;
 
 extern PROMPT D_0026FF68;
 

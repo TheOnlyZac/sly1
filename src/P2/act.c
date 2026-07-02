@@ -47,7 +47,6 @@ void RetractAct(ACT *pact, GRFRA grfra)
     ALO *palo = pact->palo;
     ACT *pactPos;
     ACT *pactRot;
-    extern VECTOR D_00248D30;
 
     RemoveDlEntry((DL *)((uint8_t *)palo + 0x1E0), pact);
 
@@ -225,8 +224,6 @@ float GGetActvalPoseGoal(ACTVAL *pactval, int ipose)
     return pactval->agPoses[ipose];
 }
 
-extern VECTOR D_00248D30;
-
 void InitActref(ACTREF *pactref, ALO *palo)
 {
     InitAct(pactref, palo);
@@ -237,7 +234,7 @@ void InitActref(ACTREF *pactref, ALO *palo)
     STRUCT_OFFSET(pactref, 0x28, VECTOR *) = &D_00248D30;
     STRUCT_OFFSET(pactref, 0x3c, float *) = STRUCT_OFFSET(palo, 0x274, float *);
     uint8_t *psen = STRUCT_OFFSET(palo, 0x224, uint8_t *);
-    if (psen != nullptr && (STRUCT_OFFSET(psen, 0xb0, int) & 0x20))
+    if (psen != NULL && (STRUCT_OFFSET(psen, 0xb0, int) & 0x20))
     {
         STRUCT_OFFSET(pactref, 0x30, VECTOR *) = &D_00248D30;
         STRUCT_OFFSET(pactref, 0x2c, uint8_t *) = psen + 0x8c;

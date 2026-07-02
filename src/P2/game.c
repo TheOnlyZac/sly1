@@ -148,7 +148,7 @@ void UpdateGameState(float dt)
     g_plsCur->dt += dt;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", LsFromWid);
+INCLUDE_ASM("asm/nonmatchings/P2/game", LsFromWid__F3WID);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", GrflsFromWid__F3WID);
 
@@ -311,14 +311,14 @@ bool FCharmAvailable()
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", FUN_00160C90);
 
-int PfLookupDialog(LS *pls, OID oidDialog)
+int *PfLookupDialog(LS *pls, OID oidDialog)
 {
     // todo figure out what these magic numbers represent
     if (oidDialog - 0x33bU >= 0xc)
     {
-        return 0;
+        return NULL;
     }
-    return -0xcd8 + (int)pls + (oidDialog * 4);
+    return (int *)(-0xcd8 + (int)pls + (oidDialog * 4));
 }
 
 // TODO: Come up with a name and mangle it.

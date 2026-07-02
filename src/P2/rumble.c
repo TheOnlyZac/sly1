@@ -27,8 +27,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/rumble", UpdateRumble__FP6RUMBLE);
 
 extern RUMPAT D_0026B8B0[];
 
-void TriggerRumbleRumpat(RUMBLE *prumble, RUMPAT *prumpat, float dt);
-
 void TriggerRumbleRumk(RUMBLE *prumble, RUMK rumk, float dt)
 {
     TriggerRumbleRumpat(prumble, &D_0026B8B0[rumk], dt);

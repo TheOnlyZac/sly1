@@ -341,8 +341,6 @@ RODD *ProddCurRob(ROB *prob, ENSK ensk)
     return (RODD *)((uint8_t *)prob + (irodd * 0xC0 + 0x3E0));
 }
 
-extern VECTOR g_normalZ;
-
 void InitRoh(ROH *proh)
 {
     InitSo(proh);

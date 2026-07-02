@@ -5,6 +5,8 @@
 #include <jt.h>
 
 extern TNFN D_00275980;
+extern VECTOR D_00275A10;
+extern char D_00275A20[8];
 
 TNFN *PtnfnFromTn(TN *ptn)
 {
@@ -19,8 +21,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/tn", InitTn__FP2TN);
 #ifdef SKIP_ASM
 void InitTn(TN *ptn)
 {
-    VECTOR D_00275A10;
-    char D_00275A20[8];
     uint64_t flags;
 
     InitAlo(ptn);

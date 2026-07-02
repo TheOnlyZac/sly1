@@ -67,7 +67,8 @@ int FIgnoreDartgunIntersection(DARTGUN *pdartgun, SO *psoOther)
 {
     if (FIsBasicDerivedFrom(psoOther, CID_RAT))
     {
-        return 1;
+        if (STRUCT_OFFSET(psoOther, 0x588, SO *) == (SO *)pdartgun)
+            return 1;
     }
 
     return FIgnoreSoIntersection((SO *)pdartgun, psoOther);
@@ -119,11 +120,14 @@ void SetDartgunGoalState(DARTGUN *pdartgun, OID oidStateGoal)
         STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x4C, int) = 0;
     }
 
-    if (oidStateGoal < (OID)0x2BA && oidStateGoal >= (OID)0x2B8)
+    if (oidStateGoal < (OID)0x2BA)
     {
-        STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x1C, int) = (oidStateGoal == (OID)0x2B9);
-        if ((unsigned int)(oidCur - 0x2BA) >= 2)
-            STRUCT_OFFSET(pdartgun, 0x6D8, int) = 0;
+        if (oidStateGoal >= (OID)0x2B8)
+        {
+            STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x1C, int) = (oidStateGoal == (OID)0x2B9);
+            if ((unsigned int)(oidCur - 0x2BA) >= 2)
+                STRUCT_OFFSET(pdartgun, 0x6D8, int) = 0;
+        }
     }
 
     SetSmaGoal(STRUCT_OFFSET(pdartgun, 0x740, SMA *), oidStateGoal);
@@ -131,8 +135,6 @@ void SetDartgunGoalState(DARTGUN *pdartgun, OID oidStateGoal)
 
 void TrackDartgun(DARTGUN *pdartgun, OID *poidStateGoal)
 {
-    VECTOR D_00248D30;
-
     if (*poidStateGoal == (OID)0x2B8)
     {
         STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x1C, int) = 0;

@@ -4,6 +4,8 @@
 
 extern GRFZON g_grfzonShaders;
 extern byte *g_pbBulkData;
+extern GSB D_002626D8;
+extern int D_002626CC;
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", Tex0FromTexIframeCtk__FP3TEXi3CTK);
 
@@ -40,11 +42,6 @@ void UploadPermShaders()
     UploadBitmaps(0x10000000, &gsbPerm);
     g_grfzonShaders = 0;
 }
-
-    extern GSB D_002626D8;
-    extern int D_002626CC;
-
-void PropagateSurs();
 
 void PropagateShaders(GRFZON grfzonCamera)
 {

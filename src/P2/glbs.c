@@ -55,10 +55,10 @@ void GLBS::SetNormal(VECTOR *ppos)
 JUNK_NOP();
 JUNK_WORD(0xE4800110);
 
-extern "C" void SetRgba__4GLBSG4RGBA(GLBS *pglbs, RGBA *prgba)
+void GLBS::SetRgba(RGBA *prgba)
 {
     struct PACK { int v; } __attribute__((packed));
-    *(PACK *)((char *)pglbs + 0x114) = *(PACK *)prgba;
+    *(PACK *)((char *)this + 0x114) = *(PACK *)prgba;
 }
 
 void GLBS::SetUv(UVF *puv)

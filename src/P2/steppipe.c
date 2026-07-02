@@ -10,9 +10,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/steppipe", UpdateJtActivePipe__FP2JTP3JOY);
 
 INCLUDE_ASM("asm/nonmatchings/P2/steppipe", UpdateJtInternalXpsPipe__FP2JT);
 
-void FUN_001ddb58(SW *psw);
-void FUN_001ddbb8(SW *psw);
-
 void SetJtJtpdk(JT *pjt, JTPDK jtpdk)
 {
     JTPDK jtpdkCur = STRUCT_OFFSET(pjt, 0x2718, JTPDK);

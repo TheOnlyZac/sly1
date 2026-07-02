@@ -99,8 +99,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/hide", CloneHbsk__FP4HBSKT0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", FIgnoreHbskIntersection__FP4HBSKP2SO);
 
-extern VECTOR D_00248D30;
-
 void PresetHbskAccel(HBSK *phbsk, float dt)
 {
     MATRIX3 matUpright;

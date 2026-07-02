@@ -111,6 +111,12 @@ extern SW *g_psw;
 
 void InitSwDlHash(SW *psw);
 
+void FUN_001ddb58(SW *psw);
+
+void FUN_001ddbb8(SW *psw);
+
+void FUN_001ddc38(void *pv, void *pvBlot);
+
 void InitSw(SW *psw);
 
 void DeleteSw(SW *psw);

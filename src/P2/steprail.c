@@ -4,6 +4,8 @@
 
 INCLUDE_ASM("asm/nonmatchings/P2/steprail", func_001D31D0__FP2LOi);
 
+extern SNIP D_00274F90;
+
 void post_load_steprail(ALO *palo)
 {
     PostAloLoad(palo);
@@ -20,7 +22,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/steprail", update_steprail);
 void preset_steprail_accel(SO *pso, float dt)
 {
     MATRIX3 mat;
-    extern VECTOR D_00248D30;
 
     PresetSoAccel(pso, dt);
 

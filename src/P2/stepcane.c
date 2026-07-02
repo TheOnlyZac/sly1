@@ -12,9 +12,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepcane", ChooseJtAttackTarget__FP2JTiP6VECTOR
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepcane", ChooseJtSweepTarget__FP2JTP2BLP6ASEGBL);
 
+extern VECTOR D_00274BF0;
+extern VECTOR D_00274C00;
+
 void ChooseJtRushTarget(JT *pjt)
 {
-    VECTOR D_00274BF0;
     VECTOR dposProj;
     TARGET *ptarget;
 

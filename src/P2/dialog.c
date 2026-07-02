@@ -26,8 +26,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/dialog", LoadDialogEventsFromBrx__FP6DIALOGP18C
 
 void PostDialogLoad(DIALOG *pdialog)
 {
-    extern int *PfLookupDialog(LS *pls, OID oid);
-
     PostAloLoad(pdialog);
 
     if (STRUCT_OFFSET(pdialog, 0x30c, OID) == OID_Nil)

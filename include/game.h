@@ -401,7 +401,7 @@ bool FCharmAvailable();
  * @param pls Pointer to level state.
  * @param param_2 OID of the dialog.
  */
-//int PfLookupDialog(LS *pls, OID oidDialog);
+int *PfLookupDialog(LS *pls, OID oidDialog);
 
 /**
  * @brief Clears 8 bytes of memory.

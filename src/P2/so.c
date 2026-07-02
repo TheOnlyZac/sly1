@@ -171,7 +171,7 @@ void SetSoMass(SO *pso, float mass)
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", AdjustSoMomint__FP2SOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", DiscardSoXps__FP2SO);
+INCLUDE_ASM("asm/nonmatchings/P2/so", DiscardSoXps__FP2SOi);
 
 void UpdateSoPosWorldPrev(SO *pso)
 {
@@ -451,7 +451,7 @@ void SetSoNoXpsAll(SO *pso, int fNoXps)
     grfso &= mask;
     grfso |= bit;
     STRUCT_OFFSET(pso, 0x538, uint64_t) = grfso;
-    DiscardSoXps__FP2SO(pso, fNoXps != 0);
+    DiscardSoXps(pso, fNoXps != 0);
 }
 
 void SetSoNoXpsSelf(SO *pso, int fNoXps)
@@ -461,7 +461,7 @@ void SetSoNoXpsSelf(SO *pso, int fNoXps)
     grfso &= ~((uint64_t)1 << 43);
     grfso |= bit;
     STRUCT_OFFSET(pso, 0x538, uint64_t) = grfso;
-    DiscardSoXps__FP2SO(pso, fNoXps ? 2 : 0);
+    DiscardSoXps(pso, fNoXps ? 2 : 0);
 }
 
 void SetSoNoXpsCenter(SO *pso, int fNoXps)
@@ -471,7 +471,7 @@ void SetSoNoXpsCenter(SO *pso, int fNoXps)
     grfso &= ~((uint64_t)1 << 44);
     grfso |= bit;
     STRUCT_OFFSET(pso, 0x538, uint64_t) = grfso;
-    DiscardSoXps__FP2SO(pso, fNoXps ? 3 : 0);
+    DiscardSoXps(pso, fNoXps ? 3 : 0);
 }
 
 void RebuildSoPhysHook(SO *pso)
@@ -584,7 +584,7 @@ int FAbsorbSoWkr(SO *pso, WKR *pwkr)
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", CloneSoPhys__FP2SOT0i);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", FUN_001bc4d8);
+INCLUDE_ASM("asm/nonmatchings/P2/so", FUN_001bc4d8__FPUcT0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", FUN_001bc670);
 

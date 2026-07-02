@@ -166,7 +166,7 @@ void SetSoMass(SO *pso, float m);
 
 void AdjustSoMomint(SO *pso, float r);
 
-extern "C" void DiscardSoXps__FP2SO(SO *pso, int mode);
+void DiscardSoXps(SO *pso, int mode);
 
 void UpdateSoPosWorldPrev(SO *pso);
 
@@ -290,6 +290,6 @@ int FAbsorbSoWkr(SO *pso, WKR *pwkr);
 
 void CloneSoPhys(SO *pso, SO *psoPhys, int cposExtra);
 
-extern "C" void FUN_001bc4d8(uint8_t *param_1, uint8_t *param_2);
+void FUN_001bc4d8(uint8_t *param_1, uint8_t *param_2);
 
 #endif // SO_H
