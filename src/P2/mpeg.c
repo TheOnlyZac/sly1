@@ -33,6 +33,7 @@ loop:
         pb++;
         goto loop;
     }
+    // @todo try to do this without goto
     return -1;
 }
 
@@ -135,14 +136,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/mpeg", CbSend__15CQueueOutputIopiPv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", Update__15CQueueOutputIop);
 
-extern "C" int FAsyncDrain__15CQueueOutputIop()
+int FAsyncDrain__15CQueueOutputIop()
 {
     return 0;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", CbWrite__15CQueueOutputIpuiPv);
 
-extern "C" int FAsyncDrain__15CQueueOutputIpu()
+int FAsyncDrain__15CQueueOutputIpu()
 {
     return 1;
 }
@@ -233,8 +234,6 @@ int FMpegAcceptVideo(sceMpeg *pmp, sceMpegCbDataStr *pcbdata, CMpeg *pmpeg)
     return 1;
 }
 
-struct sceMpeg;
-struct sceMpegCbDataStr;
 int FMpegAcceptAudio(sceMpeg *pmp, sceMpegCbDataStr *pcbdata, CMpeg *pmpeg)
 {
     return FAccept__10CMpegAudioiPUc((uint8_t *)pmpeg + 0x80, STRUCT_OFFSET(pcbdata, 0xC, int), STRUCT_OFFSET(pcbdata, 0x8, uchar *));
@@ -242,7 +241,6 @@ int FMpegAcceptAudio(sceMpeg *pmp, sceMpegCbDataStr *pcbdata, CMpeg *pmpeg)
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FMpegDecodeVideo__FP7sceMpegP13sceMpegCbDataP5CMpeg);
 
-struct sceMpeg;
 struct sceMpegCbData;
 int FMpegDecoderIdle(sceMpeg *pmp, sceMpegCbData *pcbdata, CMpeg *pmpeg)
 {
@@ -250,8 +248,6 @@ int FMpegDecoderIdle(sceMpeg *pmp, sceMpegCbData *pcbdata, CMpeg *pmpeg)
     return 1;
 }
 
-struct sceMpeg;
-struct sceMpegCbData;
 
 int FMpegDecoderError(sceMpeg *pmp, sceMpegCbData *pcbdata, CMpeg *pmpeg)
 {

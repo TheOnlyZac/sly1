@@ -39,6 +39,7 @@ void HandleDartgunMessage(DARTGUN *pdartgun, MSGID msgid, void *pv)
         STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x4C, int) = 1;
         STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x1C, int) = 0;
 
+        // @todo check these vtable call
         palo = STRUCT_OFFSET(pdartgun, 0x734, ALO *);
         (*(void (**)(ALO *, void *))((char *)palo->pvtlo + 0x84))(palo, (char *)palo + 0x190);
         palo = STRUCT_OFFSET(pdartgun, 0x734, ALO *);
@@ -52,10 +53,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/dartgun", BindDartgun__FP7DARTGUN);
 
 void FUN_0014f900(DARTGUN* pdartgun)
 {
-    if (g_pjt != NULL)
-    {
-        STRUCT_OFFSET(pdartgun, 0x6dc, int) = STRUCT_OFFSET(g_pjt, 0x24f8, int);
-    }
+    if (g_pjt == NULL)
+        return;
+
+    STRUCT_OFFSET(pdartgun, 0x6dc, int) = STRUCT_OFFSET(g_pjt, 0x24f8, int);
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/dartgun", PostDartgunLoad__FP7DARTGUN);
@@ -66,8 +67,7 @@ int FIgnoreDartgunIntersection(DARTGUN *pdartgun, SO *psoOther)
 {
     if (FIsBasicDerivedFrom(psoOther, CID_RAT))
     {
-        if (STRUCT_OFFSET(psoOther, 0x588, SO *) == (SO *)pdartgun)
-            return 1;
+        return 1;
     }
 
     return FIgnoreSoIntersection((SO *)pdartgun, psoOther);
@@ -75,11 +75,7 @@ int FIgnoreDartgunIntersection(DARTGUN *pdartgun, SO *psoOther)
 
 void BreakDartgun(DARTGUN *pdartgun)
 {
-    OID oidCur;
-    ALO *palo;
-    SMA *psma;
-
-    palo = STRUCT_OFFSET(pdartgun, 0x6c8, ALO *);
+    ALO *palo = STRUCT_OFFSET(pdartgun, 0x6c8, ALO *);
     if (palo != NULL)
     {
         (*(void (**)(ALO *, int))((char *)palo->pvtlo + 0x64))(palo, 0);
@@ -87,7 +83,8 @@ void BreakDartgun(DARTGUN *pdartgun)
         (*(void (**)(ALO *))((char *)palo->pvtlo + 0x1c))(palo);
     }
 
-    psma = STRUCT_OFFSET(pdartgun, 0x740, SMA *);
+    SMA *psma = STRUCT_OFFSET(pdartgun, 0x740, SMA *);
+    OID oidCur;
     if (psma != NULL)
     {
         SeekSma(psma, (OID)0x2B7);
@@ -100,6 +97,7 @@ void BreakDartgun(DARTGUN *pdartgun)
     }
 
     palo = STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, ALO *);
+    // @todo clean up this vtable call
     (*(void (**)(ALO *, int))((char *)palo->pvtlo + 0x8))(palo, 7);
 
     BreakBrk((BRK *)pdartgun);
@@ -121,14 +119,11 @@ void SetDartgunGoalState(DARTGUN *pdartgun, OID oidStateGoal)
         STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x4C, int) = 0;
     }
 
-    if (oidStateGoal < (OID)0x2BA)
+    if (oidStateGoal < (OID)0x2BA && oidStateGoal >= (OID)0x2B8)
     {
-        if (oidStateGoal >= (OID)0x2B8)
-        {
-            STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x1C, int) = (oidStateGoal == (OID)0x2B9);
-            if ((unsigned int)(oidCur - 0x2BA) >= 2)
-                STRUCT_OFFSET(pdartgun, 0x6D8, int) = 0;
-        }
+        STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *), 0x1C, int) = (oidStateGoal == (OID)0x2B9);
+        if ((unsigned int)(oidCur - 0x2BA) >= 2)
+            STRUCT_OFFSET(pdartgun, 0x6D8, int) = 0;
     }
 
     SetSmaGoal(STRUCT_OFFSET(pdartgun, 0x740, SMA *), oidStateGoal);
@@ -136,7 +131,7 @@ void SetDartgunGoalState(DARTGUN *pdartgun, OID oidStateGoal)
 
 void TrackDartgun(DARTGUN *pdartgun, OID *poidStateGoal)
 {
-    extern VECTOR D_00248D30;
+    VECTOR D_00248D30;
 
     if (*poidStateGoal == (OID)0x2B8)
     {
@@ -150,7 +145,7 @@ void TrackDartgun(DARTGUN *pdartgun, OID *poidStateGoal)
     else
     {
         LO *plo = STRUCT_OFFSET(pdartgun, 0x6E0, LO *);
-        if (plo == NULL || FIsLoInWorld(plo) == 0 ||
+        if (plo == NULL || !FIsLoInWorld(plo) ||
             STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x6E0, SO *), 0x550, int) == 3 ||
             STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x6E0, SO *), 0x550, int) == 4)
         {
@@ -161,10 +156,9 @@ void TrackDartgun(DARTGUN *pdartgun, OID *poidStateGoal)
         {
             SetActlaTarget((ACTLA *)STRUCT_OFFSET(STRUCT_OFFSET(pdartgun, 0x734, char *), 0x200, char *),
                            (ALO *)STRUCT_OFFSET(pdartgun, 0x6E0, ALO *), &D_00248D30);
-            if (STRUCT_OFFSET(pdartgun, 0x6D0, float) < g_clock.t - STRUCT_OFFSET(pdartgun, 0x6D8, float))
+            if (STRUCT_OFFSET(pdartgun, 0x6D0, float) < g_clock.t - STRUCT_OFFSET(pdartgun, 0x6D8, float) && FPrepareDartgunToFire(pdartgun))
             {
-                if (FPrepareDartgunToFire(pdartgun))
-                    *poidStateGoal = (OID)0x2BB;
+                *poidStateGoal = (OID)0x2BB;
             }
         }
     }

@@ -8,17 +8,12 @@
 
 RIPG *PripgNew(SW *psw, RIPGT ripgt)
 {
-    RIPG *pripg;
-
-    if (ripgt == RIPGT_Default)
+    if (ripgt == RIPGT_Default && STRUCT_OFFSET(psw, 0x1B3C, RIPG *) != NULL)
     {
-        if (STRUCT_OFFSET(psw, 0x1B3C, RIPG *) != NULL)
-        {
-            return STRUCT_OFFSET(psw, 0x1B3C, RIPG *);
-        }
+        return STRUCT_OFFSET(psw, 0x1B3C, RIPG *);
     }
 
-    pripg = STRUCT_OFFSET(psw, 0x1B38, RIPG *);
+    RIPG *pripg = STRUCT_OFFSET(psw, 0x1B38, RIPG *);
     if (pripg != NULL)
     {
         STRUCT_OFFSET(psw, 0x1B38, RIPG *) = STRUCT_OFFSET(pripg, 0x564, RIPG *);
@@ -100,16 +95,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", ProjectRipTransform__FP3RIPf);
 
 void UpdateRip(RIP *prip, float dt)
 {
-    int fInBsp;
-    RIPG *pripg;
-
     if (STRUCT_OFFSET(prip, 0x1c, float) < g_clock.t - STRUCT_OFFSET(prip, 0x18, float))
     {
         RemoveRip(prip);
         return;
     }
 
-    pripg = prip->pripg;
+    RIPG *pripg = prip->pripg;
     if (STRUCT_OFFSET(pripg, 0x550, int) == 1)
         return;
 
@@ -118,7 +110,7 @@ void UpdateRip(RIP *prip, float dt)
     if (STRUCT_OFFSET(STRUCT_OFFSET(prip, 0x24, ALO *), 0x3f8, BSP *) == NULL)
         return;
 
-    fInBsp = 0;
+    int fInBsp = 0;
     if (FIsLoInWorld((LO *)STRUCT_OFFSET(prip, 0x24, ALO *)))
     {
         if (PbspPointInBspQuick(&STRUCT_OFFSET(prip, 0x80, VECTOR), STRUCT_OFFSET(STRUCT_OFFSET(prip, 0x24, ALO *), 0x3f8, BSP *)))
@@ -138,8 +130,7 @@ void RenderRip(RIP *prip, CM *pcm)
     MATRIX3 *pmat;
     WR *pwr;
 
-    pwr = STRUCT_OFFSET(prip, 0x114, WR *);
-    if (pwr != NULL)
+    if (STRUCT_OFFSET(prip, 0x114, WR *) != NULL)
     {
         WarpWrTransform(pwr, 50.0f,
             &STRUCT_OFFSET(prip, 0x80, VECTOR),
@@ -316,11 +307,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderRose__FP4ROSEP2CM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", SetRoseRoses__FP4ROSE5ROSES);
 
-int SgnCmpHp(const void *pv0, const void *pv1)
-{
-    if (STRUCT_OFFSET(pv0, 0x20, float) < STRUCT_OFFSET(pv1, 0x20, float))
-        return -1;
-    return 1;
+int SgnCmpHp(const void *pv0, const void *pv1) {
+    return STRUCT_OFFSET(pv0, 0x20, float) < STRUCT_OFFSET(pv1, 0x20, float) ? -1 : 1;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", ChpBuildConvexHullScreen__FP6VECTORiP2HP);
@@ -357,13 +345,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", ProjectLeafTransform__FP4LEAFf);
 
 int FBounceLeaf(LEAF *pleaf, SO *psoOther, VECTOR *ppos, VECTOR *pnormal)
 {
-    STUCK *pstuck;
 
     if (FIsBasicDerivedFrom(STRUCT_OFFSET(psoOther, 0x50, BASIC *), CID_MISSILE))
         return 0;
     if (FIsBasicDerivedFrom(STRUCT_OFFSET(psoOther, 0x50, BASIC *), CID_STEP))
         return 0;
 
+    STUCK *pstuck;
     CreateStuck((RIP *)pleaf, STRUCT_OFFSET(pleaf, 0x20, ALO *), psoOther, ppos, pnormal, &pstuck);
     if (pstuck != NULL)
     {

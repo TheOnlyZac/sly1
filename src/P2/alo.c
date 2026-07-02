@@ -68,7 +68,7 @@ void UpdateAloXfWorld(ALO *palo)
 {
     void (*pfn)(ALO *) = (void (*)(ALO *))palo->pvtlo->pfnUpdateLoXfWorldHierarchy;
 
-    if (pfn != 0)
+    if (pfn != nullptr)
     {
         pfn(palo);
     }
@@ -508,12 +508,9 @@ int FIsAloStatic(ALO *palo)
     paloChild = (ALO *)palo->dlChild.head;
     while (paloChild != NULL)
     {
-        if (paloChild->pvtlo->grfcid & 1)
+        if (paloChild->pvtlo->grfcid & 1 && !FIsAloStatic(paloChild))
         {
-            if (!FIsAloStatic(paloChild))
-            {
-                return 0;
-            }
+            return 0;
         }
         paloChild = (ALO *)paloChild->dleChild.next;
     }
@@ -795,12 +792,7 @@ void SetAloLookAtTiltLimits(ALO *palo, LM *plm)
 void GetAloLookAtTiltLimits(ALO *palo, LM *plm)
 {
     void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
-    LM *plmSrc;
-
-    if (pactla)
-        plmSrc = &STRUCT_OFFSET(pactla, 0x80, LM);
-    else
-        plmSrc = &g_lmZeroOne;
+    LM *plmSrc = pactla ? &STRUCT_OFFSET(pactla, 0x80, LM) : &g_lmZeroOne;
 
     *plm = *plmSrc;
 }
@@ -861,7 +853,7 @@ void FUN_0012a848(ALO *palo, int *pn)
 
 void FUN_0012a860(ALO *palo, ALO *paloTarget)
 {
-    extern VECTOR D_00248D30;
+    VECTOR D_00248D30;
     SetActlaTarget(STRUCT_OFFSET(palo, 0x200, ACTLA *), paloTarget, &D_00248D30);
 }
 
@@ -1139,12 +1131,9 @@ extern VU_VECTOR D_00248D30;
 void GetAloThrobInColor(ALO *palo, VECTOR *phsvInColor)
 {
     THROB *pthrob = STRUCT_OFFSET(palo, 0x288, THROB *); // palo->pthrob
-    VU_VECTOR *pqSrc;
-
-    if (pthrob)
-        pqSrc = &STRUCT_OFFSET(pthrob, 0x10, VU_VECTOR); // pthrob->hsvInColor
-    else
-        pqSrc = &D_00248D30;
+    VU_VECTOR *pqSrc = pthrob
+        ? &STRUCT_OFFSET(pthrob, 0x10, VU_VECTOR) // pthrob->hsvInColor
+        : &D_00248D30;
 
     *(VU_VECTOR *)phsvInColor = *pqSrc;
 }
@@ -1159,17 +1148,7 @@ void SetAloThrobOutColor(ALO *palo, VECTOR *phsvOutColor)
 void GetAloThrobOutColor(ALO *palo, VECTOR *phsvOutColor)
 {
     THROB *pthrob = STRUCT_OFFSET(palo, 0x288, THROB *); // palo->throb
-    VU_VECTOR *pvuvec;
-
-    if (pthrob != 0)
-    {
-        pvuvec = &STRUCT_OFFSET(pthrob, 0x20, VU_VECTOR);
-    }
-    else
-    {
-        pvuvec = &D_00248D30;
-    }
-
+    VU_VECTOR *pvuvec = pthrob ? &STRUCT_OFFSET(pthrob, 0x20, VU_VECTOR) : &D_00248D30;
     *(VU_VECTOR *)phsvOutColor = *pvuvec;
 }
 

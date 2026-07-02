@@ -59,8 +59,8 @@ void CloneScprize(SCPRIZE *pscprize, SCPRIZE *pscprizeBase)
 
 PCS PcsFromScprize(SCPRIZE *pscprize)
 {
-    extern int FGetChkmgrIchk(CHKMGR *pchkmgr, int ichk);
-    extern CHKMGR g_chkmgr;
+    int FGetChkmgrIchk(CHKMGR *pchkmgr, int ichk);
+    CHKMGR g_chkmgr;
     
     PCS pcs = PcsFromSprize((SPRIZE *)pscprize);
     
@@ -80,12 +80,12 @@ void CollectScprize(SCPRIZE *pscprize)
     CollectSprize(pscprize);
 }
 
-extern SNIP D_0026A918;
+extern SNIP s_asnip;
 
 void LoadLockFromBrx(LOCK *plock, CBinaryInputStream *pbis)
 {
     LoadAloFromBrx(plock, pbis);
-    SnipAloObjects(plock, 1, &D_0026A918);
+    SnipAloObjects(plock, 1, &s_asnip);
 }
 extern SNIP D_0026A928;
 
@@ -183,12 +183,9 @@ void TriggerLockg(LOCKG *plockg)
 
 void InitClue(CLUE *pclue)
 {
-    SW *psw;
-    int n;
-
     InitSprize(pclue);
-    psw = pclue->psw;
-    n = STRUCT_OFFSET(psw, 0x2300, int);
+    SW *psw = pclue->psw;
+    int n = STRUCT_OFFSET(psw, 0x2300, int);
     STRUCT_OFFSET(pclue, 0x5a0, int) = n;
     STRUCT_OFFSET(psw, 0x2300, int) = n + 1;
 }
@@ -232,7 +229,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/pzo", OnClueSmack__FP4CLUE);
 
 void CollectClue(CLUE *pclue)
 {
-    extern char D_0026A970;
+    char D_0026A970;
     RIP *pripg;
     VECTOR vec;
 
@@ -259,6 +256,7 @@ void CollectClue(CLUE *pclue)
 
 void BreakClue(CLUE *pclue)
 {
+    // @todo clean up this vtable call
     ((void (*)(CLUE *))STRUCT_OFFSET(pclue->pvtlo, 0x134, void *))(pclue);
 }
 
@@ -273,6 +271,7 @@ void ImpactClue(CLUE *pclue, int fParentDirty)
 
 int FAbsorbClueWkr(CLUE *pclue, WKR *pwkr)
 {
+    // @todo clean up these vtable calls
     if (pwkr->grfic & 0x8)
     {
         ((void (*)(CLUE *, int))STRUCT_OFFSET(pclue->pvtlo, 0x64, void *))(pclue, 0);

@@ -41,17 +41,13 @@ void UpdateSuvWheels(SUV *psuv)
     extern float D_002754F8;
     extern float D_002754F4;
     extern SMP D_002754E8;
-    float rad;
-    char *p;
-    int i;
-
-    rad = atan2f(STRUCT_OFFSET(psuv, 0xD4, float), STRUCT_OFFSET(psuv, 0xD0, float));
+    float rad = atan2f(STRUCT_OFFSET(psuv, 0xD4, float), STRUCT_OFFSET(psuv, 0xD0, float));
     rad = RadNormalize(STRUCT_OFFSET(psuv, 0x694, float) - rad);
     rad = GLimitAbs(D_002754F8 * rad, D_002754F4);
     STRUCT_OFFSET(psuv, 0x69C, float) = RadSmooth(STRUCT_OFFSET(psuv, 0x69C, float), rad, g_clock.dt, &D_002754E8, NULL);
 
-    p = (char *)psuv + 0x6B0;
-    for (i = 0; i < 4; i++)
+    char *p = (char *)psuv + 0x6B0;
+    for (int i = 0; i < 4; i++)
     {
         float gDiv;
         if (i < 2)
@@ -99,9 +95,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvBounds__FP3SUV);
 
 void CollectSuvPrize(SUV *psuv, PCK pck, ALO *paloOther)
 {
-    STEPGUARD *pstepguard;
-
-    pstepguard = STRUCT_OFFSET(psuv, 0xb78, STEPGUARD *);
+    STEPGUARD *pstepguard = STRUCT_OFFSET(psuv, 0xb78, STEPGUARD *);
     if (pstepguard != NULL)
     {
         SetStepguardPatrolAnimation(pstepguard, NULL);

@@ -370,13 +370,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadExplgFromBrx__FP5EXPLGP18CBinaryI
 
 void CloneExplg(EXPLG *pexplg, EXPLG *pexplgBase)
 {
-    int i = 0;
 
     CloneLo((LO *)pexplg, (LO *)pexplgBase);
 
     if (STRUCT_OFFSET(pexplg, 0x90, int) > 0)
     {
         LO **p = &STRUCT_OFFSET(pexplg, 0x94, LO *);
+        int i = 0;
         do
         {
             LO *plo = PloCloneLo(*p, STRUCT_OFFSET(pexplg, 0x14, SW *), STRUCT_OFFSET(pexplg, 0x18, ALO *));
@@ -415,7 +415,7 @@ void BindExplo(EXPLO *pexplo)
         EMITB *pemitbCur = STRUCT_OFFSET(pexplo, 0x90, EMITB *);
 
         if (STRUCT_OFFSET(pemitbCur, 0x120, int) != 0)
-            goto bind;
+            goto done;
 
         if (STRUCT_OFFSET(pemitbCur, 0x188, int) == -1)
             goto done;
@@ -437,9 +437,8 @@ void BindExplo(EXPLO *pexplo)
         STRUCT_OFFSET(pemitbNew, 0x20, int) = STRUCT_OFFSET(plo, 0x34, int);
         STRUCT_OFFSET(pemitbNew, 0x7C, int) = STRUCT_OFFSET(plo, 0x18, int);
     }
-
+    // @todo try to do this without goto
 done:
-bind:
     BindEmitb(STRUCT_OFFSET(pexplo, 0x90, EMITB *), (LO *)pexplo);
 }
 

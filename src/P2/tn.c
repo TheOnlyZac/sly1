@@ -8,9 +8,7 @@ extern TNFN D_00275980;
 
 TNFN *PtnfnFromTn(TN *ptn)
 {
-    if (ptn == NULL)
-        return &D_00275980;
-    return (TNFN *)((uint8_t *)ptn + 0x2F0);
+    return ptn == NULL ? &D_00275980 : (TNFN *)((uint8_t *)ptn + 0x2F0);
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/tn", GetTnfnNose__FP4TNFNP6CPDEFIP6VECTORP2TN);
@@ -21,8 +19,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/tn", InitTn__FP2TN);
 #ifdef SKIP_ASM
 void InitTn(TN *ptn)
 {
-    extern VECTOR D_00275A10;
-    extern char D_00275A20[8];
+    VECTOR D_00275A10;
+    char D_00275A20[8];
     uint64_t flags;
 
     InitAlo(ptn);
@@ -109,11 +107,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/tn", UpdateTnCallback__FP2TN5MSGIDPv);
 #ifdef SKIP_ASM
 void UpdateTnCallback(TN *ptn, MSGID msgid, void *pv)
 {
-    VECTOR posLocal;
-    TNS tns;
-    PO *ppo;
-
-    ppo = PpoCur();
+    PO *ppo = PpoCur();
     if (ppo == NULL)
         return;
 
@@ -123,7 +117,8 @@ void UpdateTnCallback(TN *ptn, MSGID msgid, void *pv)
         STRUCT_OFFSET(ptn, 0x2D0, PO *) = ppo;
     }
 
-    tns = STRUCT_OFFSET(ptn, 0x398, TNS);
+    VECTOR posLocal;
+    TNS tns = STRUCT_OFFSET(ptn, 0x398, TNS);
     if (tns == TNS_Nil)
     {
         ConvertAloPos(NULL, ptn, (VECTOR *)((char *)ppo + 0x140), &posLocal);

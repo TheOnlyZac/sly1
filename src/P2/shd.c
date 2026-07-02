@@ -49,16 +49,16 @@ void PropagateSurs();
 void PropagateShaders(GRFZON grfzonCamera)
 {
     PropagateSais();
-    if (grfzonCamera != g_grfzonShaders)
-    {
-        ResetGsb(&D_002626D8);
-        UploadBitmaps(grfzonCamera, &D_002626D8);
-        FillShaders(grfzonCamera);
-        PropagateSurs();
-        PropagateBlipgShaders(grfzonCamera);
-        D_002626CC = 2;
-        g_grfzonShaders = grfzonCamera;
-    }
+    if (grfzonCamera == g_grfzonShaders)
+        return;
+
+    ResetGsb(&D_002626D8);
+    UploadBitmaps(grfzonCamera, &D_002626D8);
+    FillShaders(grfzonCamera);
+    PropagateSurs();
+    PropagateBlipgShaders(grfzonCamera);
+    D_002626CC = 2;
+    g_grfzonShaders = grfzonCamera;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/shd", FillShaders__Fi);
@@ -89,8 +89,6 @@ extern SAI *g_psaiUpdateTail;
 
 void SetSaiDuDv(SAI *psai, float du, float dv)
 {
-    SAI *psaiNext;
-
     if (!STRUCT_OFFSET(psai, 0x4, int))
         return;
 
@@ -98,7 +96,7 @@ void SetSaiDuDv(SAI *psai, float du, float dv)
         STRUCT_OFFSET(psai, 0x10, float) == dv)
         return;
 
-    psaiNext = STRUCT_OFFSET(psai, 0x18, SAI *);
+    SAI *psaiNext = STRUCT_OFFSET(psai, 0x18, SAI *);
     STRUCT_OFFSET(psai, 0xc, float) = du;
     STRUCT_OFFSET(psai, 0x10, float) = dv;
 

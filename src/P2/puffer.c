@@ -111,11 +111,10 @@ void OnPuffcExitingSgs(PUFFC *ppuffc, SGS sgsNext)
 {
     if (STRUCT_OFFSET(ppuffc, 0x724, int) == SGS_Stun)
     {
-        VU_VECTOR vec;
 
         FUN_00197a08(PpoCur(), ppuffc);
 
-        vec = STRUCT_OFFSET(ppuffc, 0x150, VU_VECTOR);
+        VU_VECTOR vec = STRUCT_OFFSET(ppuffc, 0x150, VU_VECTOR);
         STRUCT_OFFSET((&vec), 0x8, int) = 0;
         (*(void (**)(PUFFC *, VU_VECTOR *))((uint8_t *)STRUCT_OFFSET(ppuffc, 0x0, void *) + 0x90))(ppuffc, &vec);
     }
@@ -149,11 +148,9 @@ extern SNIP D_0026A8E0;
 
 void PostPuffbLoad(PUFFB *ppuffb)
 {
-    LO *plo;
-
     SnipAloObjects(ppuffb, 3, &D_0026A8E0);
     PostAloLoad(ppuffb);
-    plo = PloFindSwObjectByClass(ppuffb->psw, FSO_FindAll, CID_TURRET, NULL);
+    LO *plo = PloFindSwObjectByClass(ppuffb->psw, FSO_FindAll, CID_TURRET, NULL);
     if (plo != NULL)
     {
         STRUCT_OFFSET(plo, 0x684, int)++;

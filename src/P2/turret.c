@@ -78,8 +78,6 @@ void GetTurretDiapi(TURRET *pturret, DIALOG *pdialog, DIAPI *pdiapi)
 
 int FUN_001e5e60(int n)
 {
-    int v;
-
-    v = STRUCT_OFFSET(n, 0x620, int);
+    int v = STRUCT_OFFSET(n, 0x620, int);
     return v != 0 ? v : n;
 }

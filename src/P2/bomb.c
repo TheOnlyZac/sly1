@@ -28,8 +28,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/bomb", PostBombLoad__FP4BOMB);
 void HandleBombMessage(BOMB *pbomb, MSGID msgid, void *pv)
 {
     HandleAloMessage((ALO *)pbomb, msgid, pv);
-    
-    if (msgid == 0xA) {
+    if (msgid == MSGID_water_entered) {
         if (*(int *)((uint8_t *)pv + 0x4) == (int)pbomb) {
             if (!STRUCT_OFFSET(pbomb, 0x550, int)) {
                 PrimeBomb(pbomb, 0.0f);

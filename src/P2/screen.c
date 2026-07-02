@@ -357,12 +357,9 @@ extern CFont *D_00274410;
 
 void PostTotalsLoad(TOTALS *ptotals)
 {
-    CFont *pfont;
-    void *pv;
-
     PostBlotLoad((BLOT *)ptotals);
-    pfont = FUN_0015c1c0(0);
-    pv = STRUCT_OFFSET(pfont, 0x4c, void *);
+    CFont *pfont = FUN_0015c1c0(0);
+    void *pv = STRUCT_OFFSET(pfont, 0x4c, void *);
     STRUCT_OFFSET(ptotals, 0x4, int) =
         (*(int (**)(void *, float, float))((uint8_t *)pv + 0xc))(
             (uint8_t *)pfont + STRUCT_OFFSET(pv, 0x8, short), 1.0f, 1.0f);
@@ -387,14 +384,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", render_hideout_world_info);
 
 void SetTotalsBlots(TOTALS *ptotals, BLOTS blots)
 {
-    if (ptotals->fReshow)
+    if (ptotals->fReshow && blots == BLOTS_Hidden)
     {
-        if (blots == BLOTS_Hidden)
-        {
-            ptotals->fReshow = 0;
-            SetBlotAchzDraw(ptotals, (char *)&ptotals->grflsReshow);
-            blots = BLOTS_Appearing;
-        }
+        ptotals->fReshow = 0;
+        SetBlotAchzDraw(ptotals, (char *)&ptotals->grflsReshow);
+        blots = BLOTS_Appearing;
     }
 
     if (blots == BLOTS_Hidden)
@@ -413,12 +407,9 @@ extern char D_0024CEE0[];
 
 void FUN_001ad6a8(BLOT *pblot)
 {
-    CFont *pfont;
-    void *pv;
-
     PostBlotLoad(pblot);
-    pfont = FUN_0015c1c0(2);
-    pv = STRUCT_OFFSET(pfont, 0x4c, void *);
+    CFont *pfont = FUN_0015c1c0(2);
+    void *pv = STRUCT_OFFSET(pfont, 0x4c, void *);
     STRUCT_OFFSET(pblot, 0x4, int) =
         (*(int (**)(void *, float, float))((uint8_t *)pv + 0xc))(
             (uint8_t *)pfont + STRUCT_OFFSET(pv, 0x8, short), 1.0f, 1.0f);
@@ -460,12 +451,9 @@ extern char D_0024CEF0[];
 
 void FUN_001adc60(BLOT *pblot)
 {
-    CFont *pfont;
-    void *pv;
-
     PostBlotLoad(pblot);
-    pfont = STRUCT_OFFSET(pblot, 0x4, CFont *);
-    pv = STRUCT_OFFSET(pfont, 0x4c, void *);
+    CFont *pfont = STRUCT_OFFSET(pblot, 0x4, CFont *);
+    void *pv = STRUCT_OFFSET(pfont, 0x4c, void *);
     STRUCT_OFFSET(pblot, 0x4, int) =
         (*(int (**)(void *, float, float))((uint8_t *)pv + 0xc))(
             (uint8_t *)pfont + STRUCT_OFFSET(pv, 0x8, short), D_00274448, D_0027444C);

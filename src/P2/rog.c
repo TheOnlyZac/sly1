@@ -53,9 +53,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", SetRovRovs__FP3ROV4ROVS);
 
 ROVTS RovtsNextRov(ROV *prov)
 {
-    ROVTS rovts;
-
-    rovts = STRUCT_OFFSET(prov, 0x614, ROVTS);
+    ROVTS rovts = STRUCT_OFFSET(prov, 0x614, ROVTS);
 
     switch (rovts)
     {
@@ -151,9 +149,7 @@ extern BLOT g_unkblot0;
 
 void FUN_001a4d60(ROB *prob)
 {
-    int fShow;
-
-    fShow = 0;
+    int fShow = 0;
     if (STRUCT_OFFSET(prob, 0x650, int) == 2)
     {
         fShow = FUN_001e9970();
@@ -181,9 +177,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", AdjustRobDifficulty__FP3ROBf);
 
 void DestroyedRobRoc(ROB *prob, ROC *proc)
 {
-    int cRoc;
-
-    cRoc = STRUCT_OFFSET(prob, 0x3c4, int) + 1;
+    int cRoc = STRUCT_OFFSET(prob, 0x3c4, int) + 1;
     STRUCT_OFFSET(prob, 0x3c4, int) = cRoc;
     AdjustRobDifficulty(prob, (float)cRoc / (float)STRUCT_OFFSET(prob, 0x3b8, int));
 
@@ -208,6 +202,7 @@ void DestroyedRobRoc(ROB *prob, ROC *proc)
     }
 
     STRUCT_OFFSET(proc, 0x55c, ROH *) = NULL;
+    // @todo clean up this vtable call
     (*(void (**)(ROC *))((char *)((LO *)proc)->pvtlo + 0x1c))(proc);
 
     if (STRUCT_OFFSET(prob, 0x380, int) == STRUCT_OFFSET(prob, 0x624, int))
@@ -228,8 +223,6 @@ void SpawnedRobRoh(ROB *prob, ROH *proh)
 
 void GrabbedRobRoh(ROB *prob, ROH *proh)
 {
-    extern VECTOR D_00248D30;
-
     (*(void (**)(SO *))(*(uint8_t **)STRUCT_OFFSET(proh, 0x55c, SO *) + 0x64))(STRUCT_OFFSET(proh, 0x55c, SO *));
     (*(void (**)(SO *, VECTOR *))(*(uint8_t **)STRUCT_OFFSET(proh, 0x55c, SO *) + 0x90))(STRUCT_OFFSET(proh, 0x55c, SO *), &D_00248D30);
     (*(void (**)(SO *, VECTOR *))(*(uint8_t **)STRUCT_OFFSET(proh, 0x55c, SO *) + 0x94))(STRUCT_OFFSET(proh, 0x55c, SO *), &D_00248D30);
@@ -239,8 +232,6 @@ void GrabbedRobRoh(ROB *prob, ROH *proh)
 
 void DroppedRobRoh(ROB *prob, ROH *proh)
 {
-    extern VECTOR D_00248D30;
-    extern VECTOR g_normalZ;
 
     SO *pso = STRUCT_OFFSET(proh, 0x55c, SO *);
 
@@ -262,7 +253,6 @@ void KilledRobRoh(ROB *prob, ROH *proh)
     RemoveDlEntry(&STRUCT_OFFSET(prob, 0x384, DL), proh);
     AppendDlEntry(&STRUCT_OFFSET(prob, 0x390, DL), proh);
 
-    ROC *proc;
     if (STRUCT_OFFSET(proh, 0x560, ROST *) != NULL)
     {
         RemoveDlEntry(&STRUCT_OFFSET(prob, 0x3ac, DL), STRUCT_OFFSET(proh, 0x560, void *));
@@ -270,7 +260,7 @@ void KilledRobRoh(ROB *prob, ROH *proh)
         SetRostRosts(STRUCT_OFFSET(proh, 0x560, ROST *), ROSTS_Close);
     }
 
-    proc = STRUCT_OFFSET(proh, 0x55c, ROC *);
+    ROC *proc = STRUCT_OFFSET(proh, 0x55c, ROC *);
     if (proc != NULL)
     {
         if (STRUCT_OFFSET(proc, 0x18, ROH *) == proh)

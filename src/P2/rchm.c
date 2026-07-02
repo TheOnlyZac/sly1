@@ -47,12 +47,11 @@ void TrackJtTarget(JT *pjt, RCHM *prchm, TARGET *ptarget)
     VECTOR posClosest;
     TWR *ptwr;
     float s;
-    float dt;
 
     if (ptarget == NULL)
         return;
 
-    dt = STRUCT_OFFSET(pjt, 0x2424, float) - g_clock.t;
+    float dt = STRUCT_OFFSET(pjt, 0x2424, float) - g_clock.t;
     if (dt < g_clock.dt)
         dt = g_clock.dt;
 

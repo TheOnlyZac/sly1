@@ -33,10 +33,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/jlo", PostJloLoad__FP3JLO);
 
 void FUN_0016d040(JLO *pjlo, OID oid)
 {
-    JLOVOL *pjlovol;
-
     STRUCT_OFFSET(pjlo, 0x578, OID) = oid;
-    pjlovol = (JLOVOL *)PloFindSwNearest(pjlo->psw, oid, pjlo);
+    JLOVOL *pjlovol = (JLOVOL *)PloFindSwNearest(pjlo->psw, oid, pjlo);
     if (pjlovol != NULL)
     {
         SetJloJlovol(pjlo, pjlovol);
@@ -64,7 +62,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/jlo", UpdateJlo__FP3JLOf);
 INCLUDE_ASM("asm/nonmatchings/P2/jlo", JlosNextJlo__FP3JLO);
 
 EXC *PexcSetExcitement(int gexc);
-void UnsetExcitementHyst(EXC *pexc);
 
 void SetJloJlovol(JLO *pjlo, JLOVOL *pjlovol)
 {
@@ -91,13 +88,10 @@ void SetJloJlovol(JLO *pjlo, JLOVOL *pjlovol)
         if (STRUCT_OFFSET(pjlo, 0x5BC, EXC *) == NULL)
             STRUCT_OFFSET(pjlo, 0x5BC, EXC *) = PexcSetExcitement(0x6B);
     }
-    else
+    else if (STRUCT_OFFSET(pjlo, 0x5BC, EXC *) != NULL)
     {
-        if (STRUCT_OFFSET(pjlo, 0x5BC, EXC *) != NULL)
-        {
-            UnsetExcitementHyst(STRUCT_OFFSET(pjlo, 0x5BC, EXC *));
-            STRUCT_OFFSET(pjlo, 0x5BC, EXC *) = NULL;
-        }
+        UnsetExcitementHyst(STRUCT_OFFSET(pjlo, 0x5BC, EXC *));
+        STRUCT_OFFSET(pjlo, 0x5BC, EXC *) = NULL;
     }
 }
 

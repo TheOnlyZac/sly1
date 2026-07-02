@@ -8,7 +8,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", SMeasureApos__FiP6VECTORPf);
 float GWrapApos(float g, int cpos, float *mpiposg, int fClosed)
 {
     float f0 = g;
-    if (fClosed == 0) {
+    if (!fClosed) {
         return f0;
     }
     
@@ -101,20 +101,17 @@ JUNK_ADDIU(A0);
 
 float SMeasureCrvSegmentU(CRVMS *pcrvms, float u)
 {
-    VECTOR pos;
-    float du, ps;
-    void *pcrv;
-    void **pvtbl;
-    void (*pfn)(void *, VECTOR *, int);
 
-    pcrv = STRUCT_OFFSET(pcrvms, 0x0, void *);
-    pvtbl = STRUCT_OFFSET(pcrv, 0x0, void **);
-    pfn = (void (*)(void *, VECTOR *, int))pvtbl[1];
+    void *pcrv = STRUCT_OFFSET(pcrvms, 0x0, void *);
+    void **pvtbl = STRUCT_OFFSET(pcrv, 0x0, void **);
+    void (*pfn)(void *, VECTOR *, int) = (void (*)(void *, VECTOR *, int))pvtbl[1];
+    VECTOR pos;
     if (pfn != NULL)
     {
         pfn(pcrv, &pos, 0);
     }
 
+    float du, ps;
     FindClosestPointOnLineSegment(&pos, STRUCT_OFFSET(pcrvms, 0x4, VECTOR *), STRUCT_OFFSET(pcrvms, 0x8, VECTOR *), &du, &ps);
     return ps;
 }
@@ -165,29 +162,21 @@ float SFromCrvlU(CRVL *pcrvl, float u)
 {
     float du;
     float duSeg;
-    int icv;
-    float frac;
-    float *mpicvs;
 
-    icv = IcvFindCrvU((CRV *)pcrvl, u, &du, &duSeg);
-    frac = du / duSeg;
-    mpicvs = ((CRV *)pcrvl)->mpicvs;
+    int icv = IcvFindCrvU((CRV *)pcrvl, u, &du, &duSeg);
+    float frac = du / duSeg;
+    float *mpicvs = ((CRV *)pcrvl)->mpicvs;
     return (1.0f - frac) * mpicvs[icv] + frac * mpicvs[icv + 1];
 }
 
 float UFromCrvlS(CRVL *pcrvl, float s)
 {
     float ds, dsSeg;
-    int icv;
-    float *mpicvu;
-    float u0, u1;
-    float result;
-
-    icv = IcvFindCrvS((CRV *)pcrvl, s, &ds, &dsSeg);
-    mpicvu = STRUCT_OFFSET(pcrvl, 0x10, float *);
-    u0 = mpicvu[icv];
-    u1 = mpicvu[icv + 1];
-    result = (1.0f - (ds / dsSeg)) * u0 + (ds / dsSeg) * u1;
+    int icv = IcvFindCrvS((CRV *)pcrvl, s, &ds, &dsSeg);
+    float *mpicvu = STRUCT_OFFSET(pcrvl, 0x10, float *);
+    float u0 = mpicvu[icv];
+    float u1 = mpicvu[icv + 1];
+    float result = (1.0f - (ds / dsSeg)) * u0 + (ds / dsSeg) * u1;
     return result;
 }
 
@@ -204,11 +193,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", FindCrvlClosestPointFromS__FP4CRVLP6VECTO
 
 void LoadCrvcFromBrx(CRVC *pcrvc, CBinaryInputStream *pbis)
 {
-    int icv;
-    int ccv;
-
     STRUCT_OFFSET(pcrvc, 0x8, int) = pbis->U8Read();
-    ccv = pbis->U8Read();
+    int ccv = pbis->U8Read();
     STRUCT_OFFSET(pcrvc, 0xC, int) = ccv;
     STRUCT_OFFSET(pcrvc, 0x10, void *) = PvAllocSwImpl(ccv * 4);
     STRUCT_OFFSET(pcrvc, 0x14, void *) = PvAllocSwImpl(STRUCT_OFFSET(pcrvc, 0xC, int) * 4);
@@ -216,7 +202,7 @@ void LoadCrvcFromBrx(CRVC *pcrvc, CBinaryInputStream *pbis)
     STRUCT_OFFSET(pcrvc, 0x1C, void *) = PvAllocSwImpl(STRUCT_OFFSET(pcrvc, 0xC, int) * 16);
     STRUCT_OFFSET(pcrvc, 0x20, void *) = PvAllocSwImpl(STRUCT_OFFSET(pcrvc, 0xC, int) * 16);
 
-    for (icv = 0; icv < STRUCT_OFFSET(pcrvc, 0xC, int); icv++)
+    for (int icv = 0; icv < STRUCT_OFFSET(pcrvc, 0xC, int); icv++)
     {
         STRUCT_OFFSET(pcrvc, 0x10, float *)[icv] = pbis->F32Read();
         pbis->ReadVector((VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x18, void *) + icv * 16));
@@ -243,9 +229,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", EvaluateCrvcFromU__FP4CRVCfP6VECTORT2);
 
 void EvaluateCrvcFromS(CRVC *pcrvc, float s, VECTOR *ppos, VECTOR *pnormTangent)
 {
-    float u;
-
-    u = ((float (*)(CRVC *, float))STRUCT_OFFSET(*(void **)pcrvc, 0x18, void *))(pcrvc, s);
+    float u = ((float (*)(CRVC *, float))STRUCT_OFFSET(*(void **)pcrvc, 0x18, void *))(pcrvc, s);
     if (STRUCT_OFFSET(*(void **)pcrvc, 0x4, void *))
     {
         ((void (*)(CRVC *, float, VECTOR *, VECTOR *))STRUCT_OFFSET(*(void **)pcrvc, 0x4, void *))(pcrvc, u, ppos, pnormTangent);
@@ -260,9 +244,8 @@ float SFromCrvcU(CRVC *pcrvc, float u)
 {
     float du;
     float duSeg;
-    int icv;
 
-    icv = IcvFindCrvU((CRV *)pcrvc, u, &du, &duSeg);
+    int icv = IcvFindCrvU((CRV *)pcrvc, u, &du, &duSeg);
 
     return SBezierPosLength(
                duSeg,
@@ -276,19 +259,13 @@ float SFromCrvcU(CRVC *pcrvc, float u)
 
 float UFromCrvcS(CRVC *pcrvc, float s)
 {
-    int icv;
-    int ipos;
-    float g;
-    float dg;
-    float dgSeg;
-    float u;
-    float *pmp;
+    float g, dg, dgSeg;
 
-    icv = IcvFindCrvS((CRV *)pcrvc, s, &g, NULL);
+    int icv = IcvFindCrvS((CRV *)pcrvc, s, &g, NULL);
     FillCrvcCache(pcrvc, icv);
-    ipos = IposFindAposG(g, 0x14, &STRUCT_OFFSET(pcrvc, 0x170, float), 0, &dg, &dgSeg);
-    pmp = STRUCT_OFFSET(pcrvc, 0x10, float *);
-    u = ((float)ipos + dg / dgSeg) * (1.0f / 19.0f);
+    int ipos = IposFindAposG(g, 0x14, &STRUCT_OFFSET(pcrvc, 0x170, float), 0, &dg, &dgSeg);
+    float *pmp = STRUCT_OFFSET(pcrvc, 0x10, float *);
+    float u = ((float)ipos + dg / dgSeg) * (1.0f / 19.0f);
     return (1.0f - u) * pmp[icv] + u * pmp[icv + 1];
 }
 

@@ -51,9 +51,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/cd", CdPath__FPcT0i);
 #ifdef SKIP_ASM
 void CdPath(char *pchzDest, char *pchzPath, int fIncludeDevice)
 {
-    char achz[0x100];
-
-    *(short *)achz = D_00249E20;
+    char achz[0x100] = D_00249E20;
     strcpy1(achz, pchzPath);
     int ctoken = ((int (*)(char *))CpchzTokenizePath)(achz);
     if (1 < ctoken)
@@ -66,15 +64,7 @@ void CdPath(char *pchzDest, char *pchzPath, int fIncludeDevice)
         } while (itoken != 0);
     }
 
-    char *pchzDevice;
-    if (fIncludeDevice)
-    {
-        pchzDevice = D_00249E30;
-    }
-    else
-    {
-        pchzDevice = D_00249E38;
-    }
+    char *pchzDevice = fIncludeDevice ? D_00249E30 : D_00249E38;
     sprintf(pchzDest, D_00249E28, pchzDevice, achz);
 }
 #endif // SKIP_ASM

@@ -40,19 +40,16 @@ void CloneDprize(DPRIZE *pdprize, DPRIZE *pdprizeBase)
 
 void PostDprizeLoad(DPRIZE *pdprize)
 {
-    LO *plo;
-
     PostAloLoad(pdprize);
-    plo = PloFindSwObjectByClass(pdprize->psw, 1, (CID)0x75, (LO *)pdprize);
+    LO *plo = PloFindSwObjectByClass(pdprize->psw, 1, (CID)0x75, (LO *)pdprize);
     pdprize->ptarget = (TARGET *)plo;
     if (plo != NULL)
     {
         (*(void (**)(LO *))((char *)plo->pvtlo + 0x1C))(plo);
     }
-    if (((STRUCT_OFFSET(g_pgsCur, 0x19D8, int) << 8) | STRUCT_OFFSET(g_pgsCur, 0x19DC, int)) != 0x308)
+    if (((STRUCT_OFFSET(g_pgsCur, 0x19D8, int) << 8) | STRUCT_OFFSET(g_pgsCur, 0x19DC, int)) != 0x308 && FGetChkmgrIchk(&g_chkmgr, pdprize->ichkCollected))
     {
-        if (FGetChkmgrIchk(&g_chkmgr, pdprize->ichkCollected))
-            pdprize->dprizesInit = DPRIZES_Removed;
+        pdprize->dprizesInit = DPRIZES_Removed;
     }
     (*(void (**)(DPRIZE *, DPRIZES))((char *)pdprize->pvtlo + 0xCC))(pdprize, pdprize->dprizesInit);
 }
@@ -89,6 +86,7 @@ void InitCoin(COIN *pcoin)
 
 void FUN_00147ed0(DPRIZE *pdprize)
 {
+    // @todo: fix this vtable call
     (*(void (**)(DPRIZE *, DPRIZES))((char *)pdprize->pvtlo + 0xCC))(pdprize, DPRIZES_Removed);
 }
 
@@ -236,6 +234,7 @@ void FUN_00148828(DPRIZE *pdprize, float dt)
     UpdateDprize(pdprize, dt);
     if (pdprize->oidInitialState != OID_Unknown)
         return;
+    // @todo clean up this vtable call
     if (STRUCT_OFFSET(pdprize->psw, 0x2308, float) <= g_clock.t)
         (*(void (**)(DPRIZE *, DPRIZES))((char *)pdprize->pvtlo + 0xCC))(pdprize, DPRIZES_Lose);
 }
@@ -257,6 +256,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148d90);
 
 void FUN_00148e18(void *param_1)
 {
+    // @todo clean up this vtable call
     (*(void (**)(void *, int))(*(int *)param_1 + 0xCC))(param_1, 2);
 }
 
@@ -271,7 +271,7 @@ void FUN_00148ef8(COIN *pcoin, float dt)
         return;
     if (D_00270458 != 2)
         pcoin->tLose -= g_clock.dt;
-    if (pcoin->tLose <= 0.0f)
+    if (pcoin->tLose <= 0.0f) // @todo clean up this vtable call
         (*(void (**)(COIN *, DPRIZES))((char *)pcoin->pvtlo + 0xCC))(pcoin, DPRIZES_Lose);
 }
 

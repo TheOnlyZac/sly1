@@ -75,33 +75,30 @@ INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateSensor__FP6SENSORf);
 
 void AddSensorTriggerObject(SENSOR * p, OID oid)
 {
-    int c = STRUCT_OFFSET(p, 0x564, int);
-    if ((unsigned int)c < 4)
-    {
-        OID *a = &STRUCT_OFFSET(p, 0x568, OID);
-        a[c] = oid;
-        STRUCT_OFFSET(p, 0x564, int) = c + 1;
-    }
+	uint ccur = psensor->ctriggerObjects;
+	if (ccur >= 4)
+		return;
+
+	psensor->atriggerObjects[ccur] = oid;
+	psensor->ctriggerObjects = ccur + 1;
 }
 void AddSensorNoTriggerObject(SENSOR * p, OID oid)
 {
-    int c = STRUCT_OFFSET(p, 0x578, int);
-    if ((unsigned int)c < 4)
-    {
-        OID *a = &STRUCT_OFFSET(p, 0x57c, OID);
-        a[c] = oid;
-        STRUCT_OFFSET(p, 0x578, int) = c + 1;
-    }
+	uint ccur = psensor->cnoTriggerObjects;
+	if (ccur >= 4)
+		return;
+
+	psensor->anoTriggerObjects[ccur] = oid;
+	psensor->cnoTriggerObjects = ccur + 1;
 }
 void AddSensorTriggerClass(SENSOR * p, CID cid)
 {
-    int c = STRUCT_OFFSET(p, 0x58c, int);
-    if ((unsigned int)c < 4)
-    {
-        CID *a = &STRUCT_OFFSET(p, 0x590, CID);
-        a[c] = cid;
-        STRUCT_OFFSET(p, 0x58c, int) = c + 1;
-    }
+	uint ccur = psensor->ctriggerClasses;
+	if (ccur >= 4)
+		return;
+
+	psensor->atriggerClasses[ccur] = cid;
+	psensor->ctriggerClasses = ccur + 1;
 }
 void AddSensorNoTriggerClass(SENSOR * p, CID cid)
 {
@@ -230,7 +227,6 @@ void PostCamsenLoad(CAMSEN *pcamsen)
 {
     void *pvt;
     void (*pfn)(CAMSEN *, int);
-    extern SNIP D_002744D8[2];
 
     PostAloLoad(pcamsen);
     SnipAloObjects(pcamsen, 2, D_002744D8);

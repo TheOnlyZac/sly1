@@ -21,16 +21,14 @@ void PostUbgLoad(UBG *pubg)
 
     STRUCT_OFFSET(pubg, 0xC90, int) = 4;
 
+    int *pichk = &STRUCT_OFFSET(pubg, 0xC80, int);
+    int i = 0;
+    do
     {
-        int *pichk = &STRUCT_OFFSET(pubg, 0xC80, int);
-        int i = 0;
-        do
-        {
-            *pichk = IchkAllocChkmgr(&g_chkmgr);
-            i++;
-            pichk++;
-        } while ((uint)i < 4);
-    }
+        *pichk = IchkAllocChkmgr(&g_chkmgr);
+        i++;
+        pichk++;
+    } while ((uint)i < 4);
 
     PostGomerLoad(pubg);
 }

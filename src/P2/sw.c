@@ -417,7 +417,6 @@ int FUN_001dd7a0(SW *psw, int wid)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd7e8);
 
-extern int *PlsFromWid(WID wid) __asm__("LsFromWid");
 
 int FUN_001dd888(SW *psw, WID wid, int nKey)
 {
@@ -529,11 +528,6 @@ void CancelSwDialogPlaying(SW *psw)
     }
 }
 
-typedef struct
-{
-    int n;
-} __attribute__((packed)) UNALIGNED_INT;
-
 extern PROMPT D_0026FF68;
 
 void FUN_001ddb20(SW *psw, PRK prk, int oid)
@@ -566,14 +560,10 @@ void FUN_001ddbb8(SW *psw)
 }
 JUNK_WORD(0x0002102a);
 
-EXC *PexcSetExcitement(int gexc);
-
 EXC *FUN_001ddbf8(SW *psw, int gexc)
 {
     return PexcSetExcitement(gexc);
 }
-
-void UnsetExcitementHyst(EXC *pexc);
 
 void FUN_001ddc18(SW *psw, EXC *pexc)
 {

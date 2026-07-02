@@ -15,7 +15,6 @@ void OnRwmRemove(RWM *prwm)
     FUN_001a93c8(prwm);
 }
 
-extern "C" {
 void *FUN_001a8110(RWM *prwm)
 {
     if (STRUCT_OFFSET(prwm, 0x3c, void *) == 0)
@@ -26,13 +25,12 @@ void *FUN_001a8110(RWM *prwm)
     }
     return STRUCT_OFFSET(prwm, 0x3c, void *);
 }
-}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", FUN_001a8150);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", InitRwmCallback__FP3RWM5MSGIDPv);
 
-extern "C" void FUN_001a84c8(RWM *prwmDst, RWM *prwmSrc)
+void FUN_001a84c8(RWM *prwmDst, RWM *prwmSrc)
 {
     CloneLo((LO *)prwmDst, (LO *)prwmSrc);
     if (STRUCT_OFFSET(prwmDst, 0x3c, void *) != 0 &&
@@ -162,7 +160,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/rwm", FEnsureRwmLoaded__FP3RWM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", FFireRwm__FP3RWMi);
 
-extern "C" void FUN_001a93c8(RWM *prwm)
+void FUN_001a93c8(RWM *prwm)
 {
     int *p = STRUCT_OFFSET(prwm, 0x3c, int *);
     STRUCT_OFFSET(prwm, 0x48, int) = 0;

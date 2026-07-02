@@ -14,17 +14,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/step", FUN_001c4618);
 
 void FUN_001c4790(void *p1, SO *pso, BSP *pbsp, void *p4)
 {
-    LSG alsg[2];
-    int clsg;
-    int i;
 
     if (STRUCT_OFFSET(p4, 0x50, int) == 0)
         return;
 
-    clsg = ClsgClipEdgeToObjectPruned(pso, pbsp, (VECTOR *)((uint8_t *)p4 + 0x70),
+    LSG alsg[2];
+    int clsg = ClsgClipEdgeToObjectPruned(pso, pbsp, (VECTOR *)((uint8_t *)p4 + 0x70),
                                       (VECTOR *)((uint8_t *)p4 + 0x60), 2, alsg);
 
-    i = 0;
+    int i = 0;
     if (clsg > 0)
     {
         if (alsg[0].au[0] == 0.0f)
@@ -70,9 +68,7 @@ void PropagateSoForce(SO *psoRoot, GRFSG grfsg, XP *pxp, int ixpd, DZ *pdz, FX *
 
 void PropagateStepForce(STEP *pstep, GRFSG grfsg, XP *pxp, int ixpd, DZ *pdz, FX *afx)
 {
-    CT ctSav;
-
-    ctSav = STRUCT_OFFSET(pstep, 0x470, CT);
+    CT ctSav = STRUCT_OFFSET(pstep, 0x470, CT);
     STRUCT_OFFSET(pstep, 0x470, CT) =
         (*(CT (**)(STEP *))((uint8_t *)pstep->pvtlo + 0x164))(pstep);
     PropagateSoForce(pstep, grfsg, pxp, ixpd, pdz, afx);
@@ -107,7 +103,7 @@ void AdjustStepDzBase(STEP *pstep, GRFADJ grfadj, DZ *pdz, int ixpd)
 
 void UpdateStepMatTarget(STEP *pstep)
 {
-    extern VECTOR g_normalZ;
+    VECTOR g_normalZ;
     LoadRotateMatrixRad(*(float *)((uint8_t *)(pstep) + 0x638), &g_normalZ, (MATRIX3 *)((uint8_t *)(pstep) + 0x660));
 }
 
@@ -132,11 +128,8 @@ INCLUDE_ASM("asm/nonmatchings/P2/step", AddStepCustomXpsBase__FP4STEPP2SOP3BSPPP
 
 void FixStepAngularVelocity(STEP *pstep)
 {
-    qword local;
-    float radTarget;
-
-    local = STRUCT_OFFSET(pstep, 0x160, qword);
-    radTarget = atan2f(STRUCT_OFFSET(pstep, 0xd4, float), STRUCT_OFFSET(pstep, 0xd0, float));
+    qword local = STRUCT_OFFSET(pstep, 0x160, qword);
+    float radTarget = atan2f(STRUCT_OFFSET(pstep, 0xd4, float), STRUCT_OFFSET(pstep, 0xd0, float));
     RadSmooth(radTarget, STRUCT_OFFSET(pstep, 0x638, float), 0.0f,
               (SMP *)((uint8_t *)pstep + 0x6e0), (float *)((uint8_t *)&local + 8));
     (*(void (**)(STEP *, qword *))((uint8_t *)pstep->pvtlo + 0x94))(pstep, &local);

@@ -91,7 +91,7 @@ void FUN_0014c668(void *pv, int tnt)
 
 INCLUDE_ASM("asm/nonmatchings/P2/crusher", update_crbrain);
 #ifdef SKIP_ASM
-extern "C" void update_crbrain(CRBRAIN *p, float dt)
+void update_crbrain(CRBRAIN *p, float dt)
 {
     OID oid;
 
@@ -123,11 +123,10 @@ extern BLOT g_unkblot9;
 void FUN_0014c788(void *pv)
 {
     OID oid;
-    int fShow;
 
     GetSmaCur(STRUCT_OFFSET(pv, 0x42c, SMA *), &oid);
 
-    fShow = 0;
+    int fShow = 0;
     if (oid == (OID)0x3fd)
     {
         fShow = FUN_001e9970();

@@ -124,32 +124,29 @@ INCLUDE_ASM("asm/nonmatchings/P2/gs", FBuildUploadBitmapGifs__FiP3GSBP4GIFS);
 
 extern int g_cclutUpload;
 extern int g_cbmpUpload;
-int FBuildUploadBitmapGifs(int grfzon, GSB *pgsb, GIFS *pgifs);
 
 void UploadBitmaps(GRFZON grfzon, GSB *pgsb)
 {
     if (grfzon == 0)
         return;
 
-    {
-        GIFS gifs;
-        QW *pqw;
+    GIFS gifs;
+    QW *pqw;
 
-        InitStackImpl();
-        gifs.AllocStack(((g_cclutUpload * 3 + g_cbmpUpload) << 3) | 4);
-        gifs.AddDmaCnt();
-        if (FBuildUploadBitmapGifs(grfzon, pgsb, &gifs))
-        {
-            gifs.AddPrimPack(0, 1, 0xE);
-            gifs.PackAD(0x3F, 0);
-            gifs.PackAD(0x61, 0);
-            gifs.AddPrimEnd();
-            gifs.AddDmaEnd();
-            gifs.Detach(NULL, &pqw);
-            SendDmaSyncGsFinish(g_pdcGif, pqw);
-        }
-        FreeStackImpl();
+    InitStackImpl();
+    gifs.AllocStack(((g_cclutUpload * 3 + g_cbmpUpload) << 3) | 4);
+    gifs.AddDmaCnt();
+    if (FBuildUploadBitmapGifs(grfzon, pgsb, &gifs))
+    {
+        gifs.AddPrimPack(0, 1, 0xE);
+        gifs.PackAD(0x3F, 0);
+        gifs.PackAD(0x61, 0);
+        gifs.AddPrimEnd();
+        gifs.AddDmaEnd();
+        gifs.Detach(NULL, &pqw);
+        SendDmaSyncGsFinish(g_pdcGif, pqw);
     }
+    FreeStackImpl();
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/gs", PqwGifsBitmapUpload__Fi);
@@ -183,9 +180,7 @@ extern SUR D_0027DC20[];
 
 void PropagateSurs()
 {
-    int isur;
-
-    for (isur = 0; isur < D_002626D0; isur++)
+    for (int isur = 0; isur < D_002626D0; isur++)
     {
         PropagateSur(&D_0027DC20[isur]);
     }

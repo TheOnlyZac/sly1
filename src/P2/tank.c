@@ -5,13 +5,10 @@
 
 void InitTank(TANK *ptank)
 {
-    extern VECTOR g_normalZ;
-    extern qword D_00275740;
-    float rad;
 
     InitStep((STEP *)ptank);
 
-    rad = atan2f(STRUCT_OFFSET(ptank, 0xD4, float), STRUCT_OFFSET(ptank, 0xD0, float));
+    float rad = atan2f(STRUCT_OFFSET(ptank, 0xD4, float), STRUCT_OFFSET(ptank, 0xD0, float));
     STRUCT_OFFSET(ptank, 0x638, float) = rad;
     LoadRotateMatrixRad(rad, &g_normalZ, (MATRIX3 *)((uint8_t *)ptank + 0x660));
 

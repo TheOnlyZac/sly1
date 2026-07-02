@@ -54,11 +54,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/prompt", OnPromptActive__FP6PROMPTi);
 
 void FUN_00194278(PROMPT *pprompt, int fButton, WIPEK wipek)
 {
-    int idLevel;
-
     SetPrompt(pprompt, (PRP)0, (PRK)-1);
 
-    idLevel = (STRUCT_OFFSET(g_pgsCur, 0x19d8, int) << 8) | STRUCT_OFFSET(g_pgsCur, 0x19dc, int);
+    int idLevel = (STRUCT_OFFSET(g_pgsCur, 0x19d8, int) << 8) | STRUCT_OFFSET(g_pgsCur, 0x19dc, int);
 
     if (idLevel == 0x106)
     {

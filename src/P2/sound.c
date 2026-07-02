@@ -29,7 +29,6 @@ void UnloadMusic()
 {
     extern u_int D_0027473C;
     extern u_int D_00274728;
-    extern int D_00274720;
 
     if (D_0027473C != 0)
     {
@@ -91,7 +90,6 @@ int SetVagUnpaused()
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadVag__FPc2FK);
 
 extern u_int D_00274744;
-void StopVag();
 void FUN_001be708(void)
 {
     D_00274744 = 0;
@@ -169,22 +167,19 @@ JUNK_WORD(0x0080102D);
 
 void StopVag()
 {
-    if (D_00274744 == 0)
+    if (D_00274744 == 0 && D_0027472C != 0)
     {
-        if (D_0027472C != 0)
+        snd_StopSound(D_0027472C);
+        while (snd_SoundIsStillPlaying(D_0027472C))
         {
-            snd_StopSound(D_0027472C);
-            while (snd_SoundIsStillPlaying(D_0027472C))
+            int i = 0x4E1F;
+            do
             {
-                int i = 0x4E1F;
-                do
-                {
-                    i--;
-                } while (i >= 0);
-            }
-            D_0027472C = 0;
-            D_00274730 = 0;
+                i--;
+            } while (i >= 0);
         }
+        D_0027472C = 0;
+        D_00274730 = 0;
     }
 }
 

@@ -75,11 +75,9 @@ void EndSmaTransition(SMA *psma)
 
 void HandleSmaMessage(SMA *psma, MSGID msgid, void *pv)
 {
-    if (msgid == MSGID_asega_limit) {
-        if ((ASEGA*)pv == psma->pasegaCur) {
-            EndSmaTransition(psma);
-            ChooseSmaTransition(psma);
-        }
+    if (msgid == MSGID_asega_limit && (ASEGA*)pv == psma->pasegaCur) {
+        EndSmaTransition(psma);
+        ChooseSmaTransition(psma);
     }
 }
 
@@ -112,7 +110,6 @@ void SendSmaMessage(SMA *psma, MSGID msgid, void *pv)
     }
 
     MQ *pmq = psma->pmqFirst;
-
     while (pmq)
     {
         PFNMQ pfnmq = pmq->pfnmq;

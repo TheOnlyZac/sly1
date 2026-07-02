@@ -14,7 +14,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepcane", ChooseJtSweepTarget__FP2JTP2BLP6ASEG
 
 void ChooseJtRushTarget(JT *pjt)
 {
-    extern VECTOR D_00274BF0;
+    VECTOR D_00274BF0;
     VECTOR dposProj;
     TARGET *ptarget;
 
@@ -31,7 +31,6 @@ void ChooseJtRushTarget(JT *pjt)
 
 void ChooseJtSmashTarget(JT *pjt)
 {
-    extern VECTOR D_00274C00;
     VECTOR dposProj;
     TARGET *ptarget;
 

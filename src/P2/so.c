@@ -26,7 +26,7 @@ void OnSoAdd(SO *pso)
     pfn(pso);
     if ((STRUCT_OFFSET(pso, 0x538, uint64_t) & ((uint64_t)0x8000 << 39)) == 0) // locked, bit 54
     {
-        RecalcSoLocked(STRUCT_OFFSET(pso, 0x50, SO *));
+        RecalcSoLocked(STRUCT_OFFSET(pso, 0x50, SO *)); // pso->paloRoot
     }
     else
     {

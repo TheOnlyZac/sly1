@@ -75,13 +75,11 @@ extern SNIP D_00264230;
 
 void PostSwpLoad(SWP *pswp)
 {
-    ACG *pacg;
-
     PostBrkLoad((BRK *)pswp);
     SnipAloObjects((ALO *)pswp, 2, &D_00264230);
     STRUCT_OFFSET(pswp, 0x6c8, SMA *) =
         PsmaApplySm(STRUCT_OFFSET(pswp, 0x6c4, SM *), (ALO *)pswp, (OID)0x36e, 0);
-    pacg = PacgNew((ACGK)0);
+    ACG *pacg = PacgNew((ACGK) 0);
     STRUCT_OFFSET(pswp, 0x6e8, ACG *) = pacg;
     STRUCT_OFFSET(pacg, 0x8, int) = 0;
     STRUCT_OFFSET(STRUCT_OFFSET(pswp, 0x6e8, ACG *), 0xc, void *) = PvAllocSwImpl(0xc00);

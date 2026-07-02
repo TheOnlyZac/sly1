@@ -45,12 +45,9 @@ SGS FUN_0018abf0(int param)
     if (STRUCT_OFFSET(pstepguard, 0x724, int) == 4)
     {
         GetSmaCur((SMA *)STRUCT_OFFSET(pstepguard, 0xE10, int), &oid);
-        if (oid == (OID)0x438)
+        if (oid == (OID)0x438 && SggsGetStepguard(pstepguard) == 0)
         {
-            if (SggsGetStepguard(pstepguard) == 0)
-            {
-                return (SGS)2;
-            }
+            return (SGS)2;
         }
     }
 

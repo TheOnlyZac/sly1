@@ -71,15 +71,16 @@ extern qword D_002483D0[3];
 void LoadHbskFromBrx(HBSK *phbsk, CBinaryInputStream *pbis)
 {
     LoadSoFromBrx((SO *)phbsk, pbis);
+
     if (STRUCT_OFFSET(phbsk, 0x224, void *) == 0)
         STRUCT_OFFSET(phbsk, 0x224, void *) = PvAllocSwClearImpl(0xC0);
+
     STRUCT_OFFSET(STRUCT_OFFSET(phbsk, 0x224, void *), 0xB0, int) |= 1;
-    {
-        void *pv = STRUCT_OFFSET(phbsk, 0x224, void *);
-        STRUCT_OFFSET(pv, 0x0, qword) = D_002483D0[0];
-        STRUCT_OFFSET(pv, 0x10, qword) = D_002483D0[1];
-        STRUCT_OFFSET(pv, 0x20, qword) = D_002483D0[2];
-    }
+
+    void *pv = STRUCT_OFFSET(phbsk, 0x224, void *);
+    STRUCT_OFFSET(pv, 0x0, qword) = D_002483D0[0];
+    STRUCT_OFFSET(pv, 0x10, qword) = D_002483D0[1];
+    STRUCT_OFFSET(pv, 0x20, qword) = D_002483D0[2];
 }
 
 void OnHbskAdd(HBSK *phbsk)

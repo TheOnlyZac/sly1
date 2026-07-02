@@ -163,10 +163,7 @@ void ProjectActPose(ACT *pact, int ipose)
         int off = ipose << 2;
         float *ag = STRUCT_OFFSET(palo, 0x270, float *);
         float dt;
-        if (STRUCT_OFFSET(palo, 0x294, int))
-            dt = g_clock.dtReal;
-        else
-            dt = g_clock.dt;
+        dt = STRUCT_OFFSET(palo, 0x294, int) ? g_clock.dtReal : g_clock.dt;
         *(float *)((char *)ag + off) =
             GSmooth(*(float *)((char *)ag + off), g, dt, &D_00260E60, NULL);
     }
@@ -232,8 +229,6 @@ extern VECTOR D_00248D30;
 
 void InitActref(ACTREF *pactref, ALO *palo)
 {
-    uint8_t *psen;
-
     InitAct(pactref, palo);
     STRUCT_OFFSET(pactref, 0x1c, uint8_t *) = (uint8_t *)palo + 0x190;
     STRUCT_OFFSET(pactref, 0x24, uint8_t *) = (uint8_t *)palo + 0x1a0;
@@ -241,8 +236,8 @@ void InitActref(ACTREF *pactref, ALO *palo)
     STRUCT_OFFSET(pactref, 0x20, VECTOR *) = &D_00248D30;
     STRUCT_OFFSET(pactref, 0x28, VECTOR *) = &D_00248D30;
     STRUCT_OFFSET(pactref, 0x3c, float *) = STRUCT_OFFSET(palo, 0x274, float *);
-    psen = STRUCT_OFFSET(palo, 0x224, uint8_t *);
-    if (psen != 0 && (STRUCT_OFFSET(psen, 0xb0, int) & 0x20))
+    uint8_t *psen = STRUCT_OFFSET(palo, 0x224, uint8_t *);
+    if (psen != nullptr && (STRUCT_OFFSET(psen, 0xb0, int) & 0x20))
     {
         STRUCT_OFFSET(pactref, 0x30, VECTOR *) = &D_00248D30;
         STRUCT_OFFSET(pactref, 0x2c, uint8_t *) = psen + 0x8c;

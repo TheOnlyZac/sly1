@@ -47,7 +47,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtInternalXps__FP2JT);
 
 int FCheckJtXpBase(JT *pjt, XP *pxp, int ixpd)
 {
-	extern float D_00274AD0[];
+	float D_00274AD0[];
 
 	if (pjt->jts != JTS_Max)
 	{
@@ -85,7 +85,6 @@ struct XMG;
 
 int FTurnJtToTarget(JT *pjt);
 void RebuildJtXmg(JT *pjt, ALO *palo, float s, ALO *palo2, ACTADJ *pactadj, XMG *pxmg);
-int FMatchJtXmg(JT *pjt, XMG *pxmg, ACTADJ *pactadj);
 
 void UpdateJtStand(JT *pjt)
 {
@@ -175,53 +174,38 @@ SO *PsoGetJtEffect(JT *pjt, int *pn)
     SO *pso;
 
     pso = STRUCT_OFFSET(pjt, 0x25D8, SO *);
-    if (pso != NULL)
+    if (pso != NULL && FIsLoInWorld(pso))
     {
-        if (FIsLoInWorld(pso))
-        {
-            *pn = 0;
-            return STRUCT_OFFSET(pjt, 0x25D8, SO *);
-        }
+        *pn = 0;
+        return STRUCT_OFFSET(pjt, 0x25D8, SO *);
     }
 
     pso = STRUCT_OFFSET(pjt, 0x25E0, SO *);
-    if (pso != NULL)
+    if (pso != NULL && FIsLoInWorld(pso))
     {
-        if (FIsLoInWorld(pso))
-        {
-            *pn = 1;
-            return STRUCT_OFFSET(pjt, 0x25E0, SO *);
-        }
+        *pn = 1;
+        return STRUCT_OFFSET(pjt, 0x25E0, SO *);
     }
 
     pso = STRUCT_OFFSET(pjt, 0x25DC, SO *);
-    if (pso != NULL)
+    if (pso != NULL && FIsLoInWorld(pso))
     {
-        if (FIsLoInWorld(pso))
-        {
-            *pn = 2;
-            return STRUCT_OFFSET(pjt, 0x25DC, SO *);
-        }
+        *pn = 2;
+        return STRUCT_OFFSET(pjt, 0x25DC, SO *);
     }
 
     pso = STRUCT_OFFSET(pjt, 0x25E4, SO *);
-    if (pso != NULL)
+    if (pso != NULL && FIsLoInWorld(pso))
     {
-        if (FIsLoInWorld(pso))
-        {
-            *pn = 2;
-            return STRUCT_OFFSET(pjt, 0x25E4, SO *);
-        }
+        *pn = 2;
+        return STRUCT_OFFSET(pjt, 0x25E4, SO *);
     }
 
     pso = STRUCT_OFFSET(pjt, 0x25E8, SO *);
-    if (pso != NULL)
+    if (pso != NULL && FIsLoInWorld(pso))
     {
-        if (FIsLoInWorld(pso))
-        {
-            *pn = 1;
-            return STRUCT_OFFSET(pjt, 0x25E8, SO *);
-        }
+        *pn = 1;
+        return STRUCT_OFFSET(pjt, 0x25E8, SO *);
     }
 
     return NULL;
@@ -229,11 +213,8 @@ SO *PsoGetJtEffect(JT *pjt, int *pn)
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", AddJtCustomXps__FP2JTP2SOiP3BSPT3PP2XP);
 
-int CtTorqueJt(JT *pjt)
-{
-    if (pjt->jts == 3 || pjt->jts == 0xD)
-        return 0;
-    return 3;
+int CtTorqueJt(JT *pjt) {
+    return pjt->jts == JTS_Zap || pjt->jts == JTS_Max ? 0 : 3;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00172ee0);
@@ -254,25 +235,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/jt", ChooseJtPhys__FP2JT);
 
 void EnableJtActadj(JT *pjt, int grf)
 {
-    int a0;
-    int a2;
+    if (STRUCT_OFFSET(pjt, 0x2500, void *) == NULL)
+        return;
 
-    if (STRUCT_OFFSET(pjt, 0x2500, void *) != NULL)
-    {
-        a0 = grf & 0x1;
-        STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0x2500, char *), 0x10, char) = a0 ? 9 : -1;
-        STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0x2504, char *), 0x10, char) = a0 ? 9 : -1;
-        STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0x2508, char *), 0x10, char) = a0 ? 9 : -1;
-        a2 = grf & 0x2;
-        STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0x250C, char *), 0x10, char) = a2 ? 9 : -1;
-        STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0x2510, char *), 0x10, char) = a2 ? 9 : -1;
+    int a0 = grf & 0x1;
+    STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0x2500, char *), 0x10, char) = a0 ? 9 : -1;
+    STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0x2504, char *), 0x10, char) = a0 ? 9 : -1;
+    STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0x2508, char *), 0x10, char) = a0 ? 9 : -1;
+    int a2 = grf & 0x2;
+    STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0x250C, char *), 0x10, char) = a2 ? 9 : -1;
+    STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0x2510, char *), 0x10, char) = a2 ? 9 : -1;
 
-        (*(*(void (***)(void *))STRUCT_OFFSET(pjt, 0x24F8, void *))[0x2F])(STRUCT_OFFSET(pjt, 0x24F8, void *));
-        (*(*(void (***)(void *))STRUCT_OFFSET(pjt, 0x618, void *))[0x2F])(STRUCT_OFFSET(pjt, 0x618, void *));
-        (*(*(void (***)(void *))STRUCT_OFFSET(pjt, 0x61C, void *))[0x2F])(STRUCT_OFFSET(pjt, 0x61C, void *));
-        (*(*(void (***)(void *))STRUCT_OFFSET(pjt, 0x610, void *))[0x2F])(STRUCT_OFFSET(pjt, 0x610, void *));
-        (*(*(void (***)(void *))STRUCT_OFFSET(pjt, 0x614, void *))[0x2F])(STRUCT_OFFSET(pjt, 0x614, void *));
-    }
+    (*(*(void (***)(void *))STRUCT_OFFSET(pjt, 0x24F8, void *))[0x2F])(STRUCT_OFFSET(pjt, 0x24F8, void *));
+    (*(*(void (***)(void *))STRUCT_OFFSET(pjt, 0x618, void *))[0x2F])(STRUCT_OFFSET(pjt, 0x618, void *));
+    (*(*(void (***)(void *))STRUCT_OFFSET(pjt, 0x61C, void *))[0x2F])(STRUCT_OFFSET(pjt, 0x61C, void *));
+    (*(*(void (***)(void *))STRUCT_OFFSET(pjt, 0x610, void *))[0x2F])(STRUCT_OFFSET(pjt, 0x610, void *));
+    (*(*(void (***)(void *))STRUCT_OFFSET(pjt, 0x614, void *))[0x2F])(STRUCT_OFFSET(pjt, 0x614, void *));
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", SetJtJts__FP2JT3JTS4JTBS);

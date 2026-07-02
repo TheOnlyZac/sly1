@@ -42,11 +42,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/sb", OnSbgEnteringSgs__FP3SBG3SGSP4ASEG);
 
 void UpdateSbg(SBG *psbg, float dt)
 {
-    ASEGA *pasega;
-
     UpdateStepguard(psbg, dt);
 
-    pasega = STRUCT_OFFSET(psbg, 0xC20, ASEGA *);
+    ASEGA *pasega = STRUCT_OFFSET(psbg, 0xC20, ASEGA *);
     if (pasega != NULL)
     {
         if (STRUCT_OFFSET(pasega, 0x18, float) == 0.0f)

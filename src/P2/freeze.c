@@ -21,8 +21,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/freeze", SplinterSwFreezeGroup__FP2SWP3ALO);
 void MergeSwGroup(SW *psw, MRG *pmrg)
 {
     int i = 0;
-    int iFirst;
-
     while (i < pmrg->cpalo)
     {
         if (FIsLoInWorld((LO *)pmrg->apalo[i]))
@@ -30,8 +28,7 @@ void MergeSwGroup(SW *psw, MRG *pmrg)
         i++;
     }
 
-    iFirst = i;
-    for (; i < pmrg->cpalo; i++)
+    for (int iFirst = i; i < pmrg->cpalo; i++)
     {
         if (FIsLoInWorld((LO *)pmrg->apalo[i]))
         {
@@ -42,12 +39,10 @@ void MergeSwGroup(SW *psw, MRG *pmrg)
 
 void AddSwMergeGroup(SW *psw, MRG *pmrg)
 {
-    int i;
-
     if (pmrg->cpalo < 2)
         return;
 
-    for (i = 0; i < pmrg->cpalo; i++)
+    for (int i = 0; i < pmrg->cpalo; i++)
     {
         ALO *palo = pmrg->apalo[i];
         int cpmrg = STRUCT_OFFSET(palo, 0x6c, int);
@@ -78,7 +73,7 @@ void GetAloFrozen(ALO *palo, int *pf)
 
 void FreezeAlo(ALO *palo, int fFreeze)
 {
-    extern VECTOR D_00248D30;
+    VECTOR D_00248D30;
 
     if (fFreeze)
     {

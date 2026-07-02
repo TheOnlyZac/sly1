@@ -41,8 +41,7 @@ void UpdateAsegaIeaCur(ASEGA *pasega)
 
     if (0.0f <= STRUCT_OFFSET(pasega, 0x18, float))
     {
-        int i = c - 1;
-        i = 0;
+        int i = 0;
         if (c > 0)
         {
             char *p = STRUCT_OFFSET(paseg, 0x60, char *);

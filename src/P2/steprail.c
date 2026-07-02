@@ -4,9 +4,8 @@
 
 INCLUDE_ASM("asm/nonmatchings/P2/steprail", func_001D31D0__FP2LOi);
 
-extern "C" void post_load_steprail(ALO *palo)
+void post_load_steprail(ALO *palo)
 {
-    extern SNIP D_00274F90;
     PostAloLoad(palo);
     SnipAloObjects(palo, 1, &D_00274F90);
     void **ppvtable = (void **)STRUCT_OFFSET(palo, 0x0, void*);
@@ -18,7 +17,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/steprail", func_001D32D8__FiP2JTl);
 
 INCLUDE_ASM("asm/nonmatchings/P2/steprail", update_steprail);
 
-extern "C" void preset_steprail_accel(SO *pso, float dt)
+void preset_steprail_accel(SO *pso, float dt)
 {
     MATRIX3 mat;
     extern VECTOR D_00248D30;

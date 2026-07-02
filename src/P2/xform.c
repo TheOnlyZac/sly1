@@ -69,6 +69,7 @@ void PostWarpLoad(WARP *pwarp)
     for (i = 0; i < STRUCT_OFFSET(pwarp, 0xa0, int); i++)
     {
         LO *plo = STRUCT_OFFSET(pwarp, 0xa4, LO **)[i];
+        // @todo clean up this vtable call
         (*(void (**)(LO *, ALO *))((char *)plo->pvtlo + 0x64))(plo, pwarp->paloParent);
         SnipLo(plo);
     }
