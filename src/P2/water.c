@@ -1,6 +1,11 @@
 #include <water.h>
 #include <ensure.h>
 #include <vtables.h>
+#include <wr.h>
+#include <bsp.h>
+
+struct JT;
+extern JT *g_pjt;
 
 void InitWater(WATER *pwater)
 {
@@ -20,7 +25,38 @@ void InitWater(WATER *pwater)
 
 INCLUDE_ASM("asm/nonmatchings/P2/water", PostWaterLoad__FP5WATER);
 
-INCLUDE_ASM("asm/nonmatchings/P2/water", CalculateWaterCurrent__FP5WATERP6VECTORN21);
+void CalculateWaterCurrent(WATER *pwater, VECTOR *ppos, VECTOR *pv, VECTOR *pw)
+{
+    VU_VECTOR vec0;
+    VU_VECTOR vecPos;
+    VU_VECTOR vecCur;
+    VU_VECTOR vecWarp;
+
+    ConvertAloVec(NULL, pwater, ppos, (VECTOR *)&vec0);
+    *(int *)((char *)&vec0 + 8) = 0;
+    vecPos = pwater->vecCurrent;
+    vecCur = *(VU_VECTOR *)&D_00248D30;
+    CalculateAloTransformAdjust(pwater, NULL, (VECTOR *)&vec0, NULL, (VECTOR *)&vecPos, (VECTOR *)&vecCur);
+
+    void *p278 = STRUCT_OFFSET(pwater, 0x278, void *);
+    if (p278 != NULL)
+    {
+        WR *pwr = STRUCT_OFFSET(p278, 0xC, WR *);
+        WarpWrTransform(pwr, 50.0f, ppos, NULL, NULL, NULL, (VECTOR *)&vecWarp);
+        asm volatile(
+            "lqc2 $vf1, %1\n\t"
+            "lqc2 $vf2, %2\n\t"
+            "vadd.xyzw $vf1, $vf1, $vf2\n\t"
+            "sqc2 $vf1, %0"
+            : "=m"(vecPos)
+            : "m"(vecPos), "m"(vecWarp));
+    }
+
+    if (pv != NULL)
+        *(VU_VECTOR *)pv = vecPos;
+    if (pw != NULL)
+        *(VU_VECTOR *)pw = vecCur;
+}
 
 void UpdateSwXaList(SW *psw, XA **ppxa)
 {
@@ -96,9 +132,139 @@ void UpdateWaterMergeGroup(WATER *pwater)
     AddSwMergeGroup(pwater->psw, pmrg);
 }
 
+/**
+ * @brief ~95% match; kept under SKIP_ASM until the permuter settles the g_pjt height branch.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/water", UGetWaterSubmerged__FP5WATERP2SOP6VECTORT2);
+#ifdef SKIP_ASM
+float UGetWaterSubmerged(WATER *pwater, SO *pso, VECTOR *pposSurface, VECTOR *pnormalSurface)
+{
+    VECTOR4 aedge[2];
+    LSG alsg[16];
+    VECTOR4 scratch;
 
-INCLUDE_ASM("asm/nonmatchings/P2/water", UpdateWaterBounds__FP5WATER);
+    void *p278 = STRUCT_OFFSET(pwater, 0x278, void *);
+    if (p278 != NULL)
+    {
+        WR *pwr = STRUCT_OFFSET(p278, 0xC, WR *);
+        WarpWrTransform(pwr, 50.0f, (VECTOR *)((char *)pso + 0x140), NULL, (VECTOR *)&aedge[0], NULL, NULL);
+        // %0=aedge[0] %1=aedge[1] %2=scratch %3=pso->pos %4=aedge[0](warp)
+        asm volatile(
+            ".set noat\n\t"
+            "lui $1, 0x4000\n\t"
+            "mtc1 $1, $f0\n\t"
+            "lui $1, 0xbf80\n\t"
+            "mtc1 $1, $f1\n\t"
+            ".set at\n\t"
+            "mfc1 $2, $f0\n\t"
+            "qmtc2.ni $2, $vf3\n\t"
+            "lqc2 $vf1, %3\n\t"
+            "mfc1 $2, $f1\n\t"
+            "qmtc2.ni $2, $vf4\n\t"
+            "lqc2 $vf2, %4\n\t"
+            "vmulax.xyzw ACC, $vf1, $vf3x\n\t"
+            "vmaddx.xyzw $vf1, $vf2, $vf4x\n\t"
+            "sqc2 $vf3, %2\n\t"
+            "sqc2 $vf1, %0\n\t"
+            "sqc2 $vf4, %2\n\t"
+            "sqc2 $vf1, %1"
+            : "=m"(aedge[0]), "=m"(aedge[1]), "=m"(scratch)
+            : "m"(STRUCT_OFFSET(pso, 0x140, VU_VECTOR)), "m"(aedge[0])
+            : "$1", "$2", "$f0", "$f1");
+    }
+    else
+    {
+        *(VU_VECTOR *)&aedge[0] = STRUCT_OFFSET(pso, 0x140, VU_VECTOR);
+        *(VU_VECTOR *)&aedge[1] = *(VU_VECTOR *)&aedge[0];
+    }
+
+    if ((void *)pso == (void *)g_pjt)
+    {
+        float z = aedge[0].z + -75.0f;
+        if (STRUCT_OFFSET(pso, 0x690, int) == 0)
+            aedge[0].z = z;
+        else
+        {
+            float m = STRUCT_OFFSET(pso, 0x6A8, float);
+            aedge[0].z = m > z ? m : z;
+        }
+    }
+    else
+    {
+        aedge[0].z += STRUCT_OFFSET(pso, 0x428, float) - STRUCT_OFFSET(pso, 0x148, float);
+    }
+
+    aedge[1].z += STRUCT_OFFSET(pso, 0x438, float) - STRUCT_OFFSET(pso, 0x148, float);
+
+    if (ClsgClipEdgeToBsp(STRUCT_OFFSET(pwater, 0x3F8, BSP *), (VECTOR *)&aedge[0], (VECTOR *)&aedge[1], NULL, 0x10, alsg) == 0)
+    {
+        if (pnormalSurface != NULL)
+            *(VU_VECTOR *)pnormalSurface = *(VU_VECTOR *)&g_normalZ;
+        return 0.0f;
+    }
+
+    if (pposSurface != NULL)
+        *(VU_VECTOR *)pposSurface = *(VU_VECTOR *)&alsg[0].apos[1];
+
+    if (pnormalSurface != NULL)
+    {
+        void *pn = STRUCT_OFFSET(&alsg[0], 0x54, void *);
+        if (pn != NULL)
+            *(VU_VECTOR *)pnormalSurface = *(VU_VECTOR *)pn;
+        else
+            *(VU_VECTOR *)pnormalSurface = *(VU_VECTOR *)&g_normalZ;
+    }
+
+    return alsg[0].au[1] - alsg[0].au[0];
+}
+#endif
+
+void UpdateWaterBounds(WATER *pwater)
+{
+    UpdateSoBounds(pwater);
+
+    void *p278 = STRUCT_OFFSET(pwater, 0x278, void *);
+    if (p278 == NULL)
+        return;
+
+    WR *pwr = STRUCT_OFFSET(p278, 0xC, WR *);
+    if (pwr == NULL)
+        return;
+
+    VU_VECTOR dpos;
+    GetWrBounds(pwr, (VECTOR *)&dpos);
+
+    // %0=vecBoundsMin %1=vecBoundsMax %2=sRadiusBounds %3=unk_0x3d4 %4=dpos
+    asm volatile(
+        "lqc2 $vf3, %4\n\t"
+        "vmul.xyz $vf1, $vf3, $vf3\n\t"
+        "vaddw.x $vf2, $vf0, $vf0w\n\t"
+        "vadday.x ACC, $vf1, $vf1y\n\t"
+        "vmaddz.x $vf1, $vf2, $vf1z\n\t"
+        "lwc1 $f2, %2\n\t"
+        ".word 0x4A0103BD\n\t" // vsqrt Q, $vf1x
+        "vwaitq\n\t"
+        "vaddq.x $vf1, $vf0, Q\n\t"
+        "lwc1 $f0, %3\n\t"
+        "qmfc2.ni $2, $vf1\n\t"
+        "mtc1 $2, $f1\n\t"
+        "lqc2 $vf2, %0\n\t"
+        "lqc2 $vf1, %1\n\t"
+        "add.s $f0, $f0, $f1\n\t"
+        "add.s $f2, $f2, $f1\n\t"
+        "vsub.xyzw $vf2, $vf2, $vf3\n\t"
+        "vadd.xyzw $vf1, $vf1, $vf3\n\t"
+        "sqc2 $vf2, %0\n\t"
+        "sqc2 $vf1, %1\n\t"
+        "swc1 $f0, %3\n\t"
+        "swc1 $f2, %2"
+        : "=m"(STRUCT_OFFSET(pwater, 0x420, VECTOR4)),
+          "=m"(STRUCT_OFFSET(pwater, 0x430, VECTOR4)),
+          "=m"(STRUCT_OFFSET(pwater, 0x3d0, float)),
+          "=m"(STRUCT_OFFSET(pwater, 0x3d4, float))
+        : "m"(dpos)
+        : "$f0", "$f1", "$f2", "$2");
+}
 
 int FInflictWaterZap(WATER *pwater, XP *pxp, ZPR *pzpr)
 {

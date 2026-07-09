@@ -156,4 +156,6 @@ extern "C"
 
 void UpperizePchz(char *pchz);
 
+extern "C" char *strcpy1(char *pchzDst, char *pchzSrc);
+
 #endif // TEXT_H

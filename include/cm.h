@@ -553,4 +553,11 @@ extern int g_rgbaFog; //Just to get the code matching -Kestin
 // extern float D_0026198c;
 // extern CM* g_pcm;
 
+void ResetCmLookAtSmooth(CM *pcm, void *pv);
+
+void SetupCmRotateToCam(CM *pcm);
+void SetCmLookAtSmooth(CM *pcm, int a1, VECTOR *pposEye, VECTOR *pposCenter, int a4, float u0, float u1, float u2, float u3, float u4, float u5);
+void ConvertCylindToWorldVelocity(void *a, void *b, void *c, float f0, float f1, float f2);
+void ConvertWorldToCylindVelocity(void *a, void *b, void *c, void *d, void *e, void *f);
+
 #endif // CM_H

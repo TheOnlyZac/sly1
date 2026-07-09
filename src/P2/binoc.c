@@ -2,6 +2,9 @@
 #include <alo.h>
 #include <clock.h>
 #include <font.h>
+#include <rip.h>
+#include <vec.h>
+#include <dialog.h>
 
 void InitBei(BEI *pbei, CLQ *pclq, float duWidth, float dgHeight, int cseg)
 {
@@ -105,7 +108,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00135550);
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", open_close_binoc);
 
-INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_001357f0);
+int FUN_001357f0(void *a, void *b)
+{
+    if (!FIsLoInWorld(STRUCT_OFFSET(a, 0x0, LO *)))
+        return 1;
+
+    if (!FIsLoInWorld(STRUCT_OFFSET(b, 0x0, LO *)))
+        return -1;
+
+    if (STRUCT_OFFSET(a, 0x4, float) < STRUCT_OFFSET(b, 0x4, float))
+        return -1;
+
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00135858);
 
@@ -114,11 +129,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_001358d0);
 JUNK_ADDIU(30);
 JUNK_WORD(0xE4C00000);
 
-INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00135E30);
+void FUN_00135E30(void *a0, void *a1, void *a2)
+{
+    STRUCT_OFFSET(a1, 0x0, qword) = STRUCT_OFFSET(a0, 0x140, qword);
+    STRUCT_OFFSET(a2, 0x0, int) = 0;
+}
 
 JUNK_ADDIU(A0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00135E48);
+int FUN_00135E48(void *param_1, int param_2, VECTOR *param_3)
+{
+    *(qword *)param_3 = *(qword *)((uint8_t *)param_1 + 0x140);
+    return ChpBuildConvexHullScreen(param_3, 1, (HP *)param_3);
+}
 
 JUNK_ADDIU(10);
 
@@ -130,7 +153,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00136040);
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00136238);
 
-INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_001363d0);
+void FUN_001363d0(BINOC *pbinoc)
+{
+    OnBlotReset(pbinoc);
+    DIALOG *pdialog = STRUCT_OFFSET(pbinoc, 0x324, DIALOG *);
+    if (pdialog)
+        SetDialogDialogs(pdialog, DIALOGS_Disabled);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", SetBinocAchzDraw);
 
@@ -185,7 +214,14 @@ void GetBinocReticleFocus(BINOC *binoc, float *dxReticle, float *dyReticle)
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00136ef8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00136fa8);
+void FUN_00136fa8(BINOC *pbinoc)
+{
+    DIALOG *pdialog = STRUCT_OFFSET(pbinoc, 0x324, DIALOG *);
+    if (pdialog)
+        SetDialogDialogs(pdialog, DIALOGS_Calling);
+    else
+        open_close_binoc(pbinoc, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", binoc__static_initialization_and_destruction_0);
 

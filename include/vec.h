@@ -9,6 +9,7 @@
 #include "common.h"
 
 struct SO;
+struct VU_VECTOR;
 
 /**
  * @brief Vector3 with X, Y, and Z
@@ -17,6 +18,8 @@ struct SO;
 struct VECTOR
 {
     float x, y, z;
+
+    VECTOR &operator=(VU_VECTOR vuvec);
 };
 
 struct VECTOR4
@@ -25,12 +28,26 @@ struct VECTOR4
 };
 
 /**
- * @todo Should be 16-byte aligned.
+ * @brief 128-bit VU quadword vector (x, y, z, w), 16-byte aligned. Passed by
+ * value in a single 128-bit GP register and loaded/stored with lq/sq.
  */
 struct VU_VECTOR
 {
-    ushort data;
+    qword data;
+
+    VU_VECTOR() {}
+    VU_VECTOR(const VECTOR &vec);
 };
+
+/**
+ * @brief Unit Z-axis normal (0, 0, 1).
+ */
+extern VECTOR g_normalZ;
+
+/**
+ * @brief Zero vector constant (16 zero bytes; also read as a VU_VECTOR qword).
+ */
+extern VECTOR D_00248D30;
 
 /**
  * @brief Sets the coordinates of a vector using cylindrical coordinates.

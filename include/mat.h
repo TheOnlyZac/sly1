@@ -14,6 +14,8 @@
 struct MATRIX4
 {
 	float mat[4][4];
+
+	void PostCopyMatrix3();
 };
 
 /**
@@ -25,7 +27,6 @@ struct MATRIX3
 	float mat[3][3];
 };
 
-void PostCopyMatrix3(MATRIX4 *pmat);
 
 MATRIX3 *MatMulMatTransMat(MATRIX3 *matLeft, MATRIX3 *matRight);
 

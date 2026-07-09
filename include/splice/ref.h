@@ -102,8 +102,8 @@ public:
     void SetSmp(SMP *psmp);
     void SetBasic(BASIC *pbasic);
     void SetMethod(CMethod *pmethod);
-    int RefCoerceS32() const;
-    float RefCoerceF32() const;
+    CRef RefCoerceS32();
+    CRef RefCoerceF32();
 };
 
 #endif // SPLICE_REF_H

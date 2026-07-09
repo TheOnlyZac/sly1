@@ -1,9 +1,20 @@
 #include <mat.h>
 #include <sce/memset.h>
+#include <util.h>
+#include <math.h>
+#include <intrinsics.h>
 
 extern VECTOR g_normalZ;
 
-INCLUDE_ASM("asm/nonmatchings/P2/mat", PostCopyMatrix3__7MATRIX4);
+extern qword D_0024B260;
+
+void MATRIX4::PostCopyMatrix3()
+{
+    STRUCT_OFFSET(this, 0xc, int) = 0;
+    STRUCT_OFFSET(this, 0x1c, int) = 0;
+    STRUCT_OFFSET(this, 0x2c, int) = 0;
+    *(qword *)((char *)this + 0x30) = D_0024B260;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", __as__7MATRIX4RC7MATRIX3);
 
@@ -51,7 +62,16 @@ JUNK_NOP();
 JUNK_NOP();
 JUNK_ADDIU(60);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mat", CosRotateMatrixMagnitude__FP7MATRIX3);
+float CosRotateMatrixMagnitude(MATRIX3 *pmat)
+{
+    float gTrace;
+
+    gTrace = STRUCT_OFFSET(pmat, 0x0, float) + STRUCT_OFFSET(pmat, 0x14, float);
+    gTrace = gTrace + STRUCT_OFFSET(pmat, 0x28, float);
+    gTrace = gTrace - 1.0f;
+
+    return GLimitAbs(gTrace * 0.5f, 1.0f);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", DecomposeRotateMatrixRad__FP7MATRIX3PfP6VECTOR);
 
@@ -65,7 +85,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/mat", CalculateDmat__FP7MATRIX3N20);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", CalculateDmat4__FP7MATRIX4N20);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mat", DecomposeRotateMatrixPanTilt__FP7MATRIX3PfT1);
+void DecomposeRotateMatrixPanTilt(MATRIX3 *pmat, float *pradPan, float *pradTilt)
+{
+    *pradPan = atan2f(pmat->mat[0][1], pmat->mat[0][0]);
+    *pradTilt = atan2f(pmat->mat[0][2],
+                       SQRTF(pmat->mat[0][0] * pmat->mat[0][0] + pmat->mat[0][1] * pmat->mat[0][1]));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", LoadRotateMatrixPanTilt__FffP7MATRIX3);
 

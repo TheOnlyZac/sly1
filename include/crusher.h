@@ -73,4 +73,10 @@ void InitCrbrain(CRBRAIN *pcrbrain);
 
 // TODO: Add unknown functions here.
 
+extern "C" void FUN_0014c5e8(void *p);
+
+extern "C" void FUN_0014c858(void *p);
+
+extern "C" void FUN_0014cba8(void *p);
+
 #endif // CRUSHER_H

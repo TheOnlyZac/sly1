@@ -10,9 +10,9 @@ void StartupFont()
     g_pfont = NULL;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c188);
+INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c188__Fi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c1c0);
+INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c1c0__Fi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c200);
 

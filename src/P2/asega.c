@@ -1,7 +1,17 @@
 #include <asega.h>
 #include <sw.h>
+#include <aseg.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", PasegaNew__FP2SW);
+extern char D_002197B8[];
+
+ASEGA *PasegaNew(SW *psw)
+{
+    ASEGA *pasega = (ASEGA *)PvAllocSlotheapClearImpl(&psw->slotheapAsega);
+    STRUCT_OFFSET(pasega, 0x0, void *) = D_002197B8;
+    InitDl(&pasega->dlActseg, 0x20);
+    STRUCT_OFFSET(pasega, 0x60, void *) = (char *)pasega + 0x64;
+    return pasega;
+}
 
 void SetAsegaHandsOff(ASEGA *pasega, int fHandsOff)
 {
@@ -21,6 +31,57 @@ void SetAsegaHandsOff(ASEGA *pasega, int fHandsOff)
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", UpdateAsegaIeaCur__FP5ASEGA);
+#ifdef SKIP_ASM
+void UpdateAsegaIeaCur(ASEGA *pasega)
+{
+    void *paseg = STRUCT_OFFSET(pasega, 0x8, void *);
+    int c = STRUCT_OFFSET(paseg, 0x5C, int);
+    if (c == 0)
+        return;
+
+    if (0.0f <= STRUCT_OFFSET(pasega, 0x18, float))
+    {
+        int i = 0;
+        if (c > 0)
+        {
+            char *p = STRUCT_OFFSET(paseg, 0x60, char *);
+            float t = STRUCT_OFFSET(pasega, 0x14, float);
+            if (!(t <= *(float *)p))
+            {
+                int cmax = c;
+                i = i + 1;
+                while (i < cmax)
+                {
+                    p += 0x10;
+                    if (t <= *(float *)p)
+                        break;
+                    i = i + 1;
+                }
+            }
+        }
+        STRUCT_OFFSET(pasega, 0x20, int) = i;
+    }
+    else
+    {
+        int i = c - 1;
+        if (i >= 0)
+        {
+            char *p = STRUCT_OFFSET(paseg, 0x60, char *) + (i << 4);
+            float t = STRUCT_OFFSET(pasega, 0x14, float);
+            while (1)
+            {
+                if (*(float *)p <= t)
+                    break;
+                i = i - 1;
+                if (i < 0)
+                    break;
+                p -= 0x10;
+            }
+        }
+        STRUCT_OFFSET(pasega, 0x20, int) = i + 1;
+    }
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", PactsegFindAsega__FP5ASEGA3OID);
 
@@ -56,14 +117,58 @@ INCLUDE_ASM("asm/nonmatchings/P2/asega", AdaptAsega__FP5ASEGA);
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", FindChnClosestPointLocal__FP3CHNP3ALOP6VECTORfffPfT2T2);
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", SetAsegaSpeed__FP5ASEGAf);
+void SetAsegaSpeed(ASEGA *pasega, float speed)
+{
+    STRUCT_OFFSET(pasega, 0x18, float) =
+        speed * STRUCT_OFFSET(pasega, 0x1C, float) *
+        STRUCT_OFFSET(STRUCT_OFFSET(pasega, 0x8, void *), 0x98, float);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", SetAsegaMasterSpeed__FP5ASEGAf);
+void SetAsegaMasterSpeed(ASEGA *pasega, float gSpeed)
+{
+    float denom = STRUCT_OFFSET(pasega, 0x1C, float) *
+                  STRUCT_OFFSET(STRUCT_OFFSET(pasega, 0x8, void *), 0x98, float);
+    float speed = STRUCT_OFFSET(pasega, 0x18, float);
+    if (denom != 0.0f)
+        speed = speed / denom;
+    STRUCT_OFFSET(pasega, 0x1C, float) = gSpeed;
+    SetAsegaSpeed(pasega, speed);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", SetAsegaPriority__FP5ASEGAi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", SendAsegaMessage__FP5ASEGA5MSGIDPv);
+void SendAsegaMessage(ASEGA *pasega, MSGID msgid, void *pv)
+{
+    LO *plo = STRUCT_OFFSET(pasega, 0xC, LO *);
+    if (plo)
+    {
+        plo->pvtlo->pfnSendLoMessage(plo, msgid, pv);
+    }
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", SubscribeAsegaStruct__FP5ASEGAPFPv5MSGIDPv_vPv);
+    MQ *pmq = STRUCT_OFFSET(pasega, 0xE4, MQ *);
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", SubscribeAsegaObject__FP5ASEGAP2LO);
+    while (pmq)
+    {
+        PFNMQ pfnmq = pmq->pfnmq;
+        void *pmqContext = pmq->pvContext;
+
+        pmq = pmq->pmqNext;
+
+        pfnmq(pmqContext, msgid, pv);
+    }
+}
+
+void SubscribeAsegaStruct(ASEGA *pasega, PFNMQ pfnmq, void *pvContext)
+{
+    SubscribeSwPpmqStruct(STRUCT_OFFSET(STRUCT_OFFSET(pasega, 0x8, void *), 0x14, SW *),
+                          &STRUCT_OFFSET(pasega, 0xE4, MQ *),
+                          pfnmq, pvContext);
+}
+
+void SubscribeAsegaObject(ASEGA *pasega, LO *plo)
+{
+    SubscribeSwPpmqStruct(STRUCT_OFFSET(STRUCT_OFFSET(pasega, 0x8, void *), 0x14, SW *),
+                          &STRUCT_OFFSET(pasega, 0xE4, MQ *),
+                          STRUCT_OFFSET(plo->pvtlo, 0x44, PFNMQ),
+                          plo);
+}

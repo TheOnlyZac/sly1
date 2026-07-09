@@ -11,6 +11,8 @@
 
 VECTOR *PvectorNew();
 
+MATRIX4 *PmatrixNew();
+
 void IncrefVector(VECTOR *pvector);
 
 void DecrefVector(VECTOR *pvector);

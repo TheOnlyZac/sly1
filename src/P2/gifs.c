@@ -102,22 +102,14 @@ JUNK_ADDIU(30);
 void GIFS::ListUV(int u, int v)
 {
     CheckReg(0, 3);
-    uint64_t *pui = ((uint64_t *)m_pb)++;
-    *pui = u | (v << 16);
+    *((long *)m_pb)++ = u | (v << 16);
 }
 
-/**
- * @todo 83.83% match.
- */
-INCLUDE_ASM("asm/nonmatchings/P2/gifs", ListXYZF__4GIFSiiii);
-#ifdef SKIP_ASM
 void GIFS::ListXYZF(int x, int y, int z, int fog)
 {
     CheckReg(0, 4);
-    uint64_t *pqw = ((uint64_t *)m_pb)++;
-    *pqw = (uint16_t)x | ((uint16_t)y << 16) | (((uint64_t)z & 0xffffff) << 32) | ((uint64_t)fog << 56);
+    *((long *)m_pb)++ = x | (y << 16) | ((long)(z & 0xffffff) << 32) | ((long)fog << 56);
 }
-#endif // SKIP_ASM
 
 JUNK_ADDIU(80);
 

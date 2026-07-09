@@ -13,6 +13,7 @@
 
 // Forward.
 struct UV;
+struct UVF;
 
 /**
  * @brief (?) kind.
@@ -92,9 +93,9 @@ struct GLBS
 
     void SetNormal(VECTOR *ppos); // Might be SetPos?
 
-    void SetRgba(RGBA &rgba); // Might not be correct.
+    void SetRgba(RGBA *prgba);
 
-    void SetUv(UV *puv);
+    void SetUv(UVF *puv);
 
     void SetVtx(int fAdc);
 };

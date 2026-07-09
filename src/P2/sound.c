@@ -1,6 +1,12 @@
 #include <sound.h>
 #include <989snd.h>
 #include <sce/memset.h>
+#include <sw.h>
+#include <po.h>
+#include <game.h>
+#include <memory.h>
+#include <cplcy.h>
+#include <sdk/ee/eekernel.h>
 
 extern uchar D_00604790[]; // temp
 extern int D_006053E0[];
@@ -18,50 +24,245 @@ struct MVG
 };
 
 extern float D_00274838[10][4]; // temp
+extern int D_00274720;
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", UnloadMusic__Fv);
+void UnloadMusic()
+{
+    extern u_int D_0027473C;
+    extern u_int D_00274728;
+
+    if (D_0027473C != 0)
+    {
+        if (D_00274728 != 0)
+            snd_StopSound(D_00274728);
+        snd_UnloadBank((SoundBankPtr)D_0027473C);
+        while (snd_FlushSoundCommands()) {}
+        D_0027473C = 0;
+    }
+    D_00274720 = 0;
+    D_00274728 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SbpEnsureBank__Fi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SbpEnsureBank__F5SFXID);
+extern int D_00245020[][2];
+void SbpEnsureBank(SFXID sfxid)
+{
+    SbpEnsureBank(D_00245020[sfxid][0]);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", NewSfx__FPP3SFX);
+void NewSfx(SFX **ppsfx)
+{
+    *ppsfx = (SFX *)PvAllocSwClearImpl(sizeof(SFX));
+    (*ppsfx)->sfxid = (SFXID)-1;
+    (*ppsfx)->sStart = 3000.0f;
+    (*ppsfx)->sFull = 300.0f;
+    (*ppsfx)->uVol = 1.0f;
+    (*ppsfx)->uPitch = 0.0f;
+    (*ppsfx)->pamb = NULL;
+    (*ppsfx)->lmRepeat.gMin = -1.0f;
+    (*ppsfx)->uDoppler = 0.0f;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FContinuousSound__F5SFXID);
+extern int D_006047B0[];
+extern int D_006047D0[];
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BE5D8);
+int FContinuousSound(SFXID sfxid)
+{
+    if (D_006047B0[D_00245020[sfxid][0]] == 0)
+    {
+        SbpEnsureBank(sfxid);
+    }
+    return D_006047D0[sfxid];
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SetVagUnpaused__Fv);
+extern int D_00274730;
+void FUN_001BE5D8(void)
+{
+    D_00274730 = 0;
+}
+
+extern u_int D_00274744;
+int SetVagUnpaused()
+{
+    return D_00274744;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadVag__FPc2FK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001be708);
+extern u_int D_00274744;
+void FUN_001be708(void)
+{
+    D_00274744 = 0;
+    StopVag();
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadVag1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FPauseForVag__Fv);
+extern u_int D_00274744;
+extern u_int D_0027472C;
+extern int D_00274730;
+int FPauseForVag()
+{
+    if (D_00274744 != 0)
+    {
+        return 0;
+    }
+    u_int handle = D_0027472C;
+    if (handle != 0)
+    {
+        if (D_00274730 != 0)
+        {
+            return 1;
+        }
+        snd_ContinueVAGStream(handle);
+    }
+    return 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", RefreshPambVolPan__FP3AMB);
+void RefreshPambVolPan(AMB *pamb)
+{
+    int vol = (int)(STRUCT_OFFSET(pamb, 0x50, float) * 1024.0f);
+    float pan = STRUCT_OFFSET(pamb, 0x54, float);
+    int panOut;
+    if (0.0f < pan)
+        panOut = (int)((pan + 2.0f) * 179.5f) - 359;
+    else
+        panOut = (int)((pan + 2.0f) * 179.5f);
+    snd_SetSoundVolPan(pamb->sfxh, vol, panOut);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001be8f8);
+void RefreshPambVolPan(AMB *pamb);
+void DropPamb(AMB **ppamb);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FVagPlaying__Fv);
+void FUN_001be8f8(ALO *palo, AMB **ppamb, float sStart, float sFull)
+{
+    AMB *pambLocal;
+    int fLocal = 0;
+
+    if (ppamb == NULL)
+    {
+        fLocal = 1;
+        ppamb = &pambLocal;
+    }
+
+    StartSound((SFXID)-2, ppamb, palo, NULL, sStart, sFull, 1.0f, 0.0f, 0.0f, NULL, NULL);
+
+    if (*ppamb != NULL)
+    {
+        RefreshPambVolPan(*ppamb);
+        if (fLocal)
+        {
+            DropPamb(ppamb);
+        }
+    }
+}
+
+extern u_int D_0027472C;
+int FVagPlaying()
+{
+    return D_0027472C != 0;
+}
 
 JUNK_WORD(0x0080102D);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", StopVag__Fv);
+void StopVag()
+{
+    if (D_00274744 == 0 && D_0027472C != 0)
+    {
+        snd_StopSound(D_0027472C);
+        while (snd_SoundIsStillPlaying(D_0027472C))
+        {
+            int i = 0x4E1F;
+            do
+            {
+                i--;
+            } while (i >= 0);
+        }
+        D_0027472C = 0;
+        D_00274730 = 0;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PauseVag__Fv);
+extern u_int D_0027472C;
+void PauseVag()
+{
+    u_int handle = D_0027472C;
+    if (handle != 0)
+    {
+        snd_PauseSound(handle);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", ContinueVag__Fv);
+extern u_int D_0027472C;
+void ContinueVag()
+{
+    u_int handle = D_0027472C;
+    if (handle != 0)
+    {
+        snd_ContinueSound(handle);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", KillMusic__Fv);
+extern int D_00274720;
+extern u_int D_00274728;
+void KillMusic()
+{
+    if (D_00274720 == 3)
+    {
+        snd_StopSound(D_00274728);
+        D_00274728 = 0;
+        D_00274720 = 2;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadMusidSongComplete__FUiUl);
+extern int D_00274720;
+extern int D_00274724;
+extern u_int D_0027473C;
+void PreloadMusidSongComplete(u_int handle, u_long unused)
+{
+    D_0027473C = handle;
+    if (handle != 0)
+    {
+        snd_ResolveBankXREFS();
+        D_00274720 = 2;
+    }
+    else
+    {
+        D_00274724 = 0;
+        D_00274720 = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadMusidSong__F5MUSID);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", StartMusidSong__F5MUSID);
+enum MUSID {};
+void PreloadMusidSong(MUSID musid);
+
+void StartMusidSong(MUSID musid)
+{
+    extern int D_00274720;
+    extern u_int D_00274728;
+    extern u_int D_0027473C;
+
+    PreloadMusidSong(musid);
+    if (musid != 0)
+    {
+        while (snd_FlushSoundCommands() != 0)
+        {
+            if (D_00274720 != 1)
+                break;
+            FlushCache(0);
+        }
+        if (D_00274720 == 2)
+        {
+            u_int handle = snd_PlaySoundVolPanPMPB((SoundBankPtr)D_0027473C, 0, 0x400, -1, 0, 0);
+            D_00274728 = handle;
+            if (handle != 0)
+                D_00274720 = 3;
+        }
+    }
+}
 
 void PauseMusic()
 {
@@ -73,13 +274,34 @@ void ContinueMusic()
     SetMvgkRvol(2, MVGK_Music, 1.0f);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SfxhMusicUnknown1);
+extern u_int D_00274728;
+void SfxhMusicUnknown1()
+{
+    snd_PauseSound(D_00274728);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SfxhMusicUnknown2);
+extern u_int D_00274728;
+void SfxhMusicUnknown2()
+{
+    snd_ContinueSound(D_00274728);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PexcAlloc__Fv);
+EXC *PexcAlloc()
+{
+    EXC *pexc = (EXC *)PvAllocSlotheapUnsafe(&STRUCT_OFFSET(g_psw, 0x1bb8, SLOTHEAP));
+    if (pexc != 0)
+    {
+        memset(pexc, 0, sizeof(EXC));
+        AppendDlEntry(&STRUCT_OFFSET(g_psw, 0x1bc4, DL), pexc);
+    }
+    return pexc;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", RemoveExc__FP3EXC);
+void RemoveExc(EXC *pexc)
+{
+    RemoveDlEntry(&STRUCT_OFFSET(g_psw, 0x1bc4, DL), pexc);
+    FreeSlotheapPv(&STRUCT_OFFSET(g_psw, 0x1bb8, SLOTHEAP), pexc);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", KillExcitement__Fv);
 
@@ -87,9 +309,46 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", PexcSetExcitement__Fi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SetIexcCurHigh__FP3EXC);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", UnsetExcitement__FP3EXC);
+extern int D_00274734;
+extern int D_002748EC;
+void SetIexcCurHigh(EXC *pexc);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", UnsetExcitementHyst__FP3EXC);
+void UnsetExcitement(EXC *pexc)
+{
+    if (pexc != 0)
+    {
+        int iexc = pexc->iexc;
+        RemoveExc(pexc);
+        if (iexc == D_00274734)
+        {
+            SetIexcCurHigh(pexc);
+            int iexcCur = D_00274734;
+            if (iexcCur >= 0)
+                D_002748EC = 0;
+            g_iexcHyst = iexcCur;
+            snd_SetGlobalExcite(iexcCur + 0x14);
+            SetMvgkRvol(7, MVGK_Music, 1.0f);
+            g_iexcHyst = -0x64;
+        }
+    }
+}
+
+extern int D_00274734;
+void SetIexcCurHigh(EXC *pexc);
+
+void UnsetExcitementHyst(EXC *pexc)
+{
+    if (pexc != 0)
+    {
+        int iexc = pexc->iexc;
+        RemoveExc(pexc);
+        if (iexc == D_00274734)
+        {
+            g_iexcHyst = iexc;
+            SetIexcCurHigh(pexc);
+        }
+    }
+}
 
 void StartupSound()
 {
@@ -110,7 +369,11 @@ void StartupSound()
 JUNK_NOP();
 JUNK_ADDIU(10);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FAmbientsPaused__Fv);
+extern int D_00274748;
+int FAmbientsPaused()
+{
+    return D_00274748;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", CalculateVolPan__FfP6VECTORPfT2fff);
 
@@ -124,21 +387,86 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", SetDoppler__FP3AMB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PfneardistGet__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SDistEar__FP6VECTOR);
+VECTOR *PposEar();
+typedef float (*PFNSDIST)(VECTOR *, VECTOR *);
+PFNSDIST PfneardistGet();
+float SDistEar(VECTOR *pvec)
+{
+    VECTOR *pposEar = PposEar();
+    return PfneardistGet()(pposEar, pvec);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", CalculateDistVolPan__FP6VECTORPfT1fff);
+void CalculateVolPan(float dist, VECTOR *pvec, float *pa, float *pb, float a, float b, float c);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PambAlloc__Fv);
+void CalculateDistVolPan(VECTOR *pvec, float *pa, float *pb, float a, float b, float c)
+{
+    if (pvec)
+    {
+        CalculateVolPan(SDistEar(pvec), pvec, pa, pb, a, b, c);
+    }
+    else
+    {
+        *pa = a;
+        *pb = 0;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", DropPamb__FPP3AMB);
+AMB *PambAlloc()
+{
+    AMB *pamb = (AMB *)PvAllocSlotheapUnsafe(&STRUCT_OFFSET(g_psw, 0x1ba0, SLOTHEAP));
+    if (pamb != 0)
+    {
+        memset(pamb, 0, 0x90);
+        AppendDlEntry(&STRUCT_OFFSET(g_psw, 0x1bac, DL), pamb);
+    }
+    return pamb;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", RemoveAmb__FP3AMB);
+void DropPamb(AMB **ppamb)
+{
+    (*ppamb)->ppamb = NULL;
+    *ppamb = NULL;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", StopSound__FP3AMBi);
+void RemoveAmb(AMB *pamb)
+{
+    if (pamb->ppamb != NULL)
+    {
+        *pamb->ppamb = NULL;
+    }
+    pamb->iSerial = -1;
+    RemoveDlEntry(&STRUCT_OFFSET(g_psw, 0x1bac, DL), pamb);
+    FreeSlotheapPv(&STRUCT_OFFSET(g_psw, 0x1ba0, SLOTHEAP), pamb);
+}
+
+void RemoveAmb(AMB *pamb);
+
+void StopSound(AMB *pamb, int msRampdown)
+{
+    if (pamb != 0)
+    {
+        if (msRampdown == 0)
+            snd_StopSound(pamb->sfxh);
+        else
+            snd_AutoVol(pamb->sfxh, -4, (int)((float)msRampdown * 0.24000001f), 2);
+        RemoveAmb(pamb);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SetPambFrq__FP3AMBf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SetPambVol__FP3AMBf);
+void RefreshPambVolPan(AMB *pamb);
+
+void SetPambVol(AMB *pamb, float uVolAtSource)
+{
+    if (pamb != 0)
+    {
+        float ratio = uVolAtSource / pamb->uVolAtSource;
+        pamb->uVolAtSource = uVolAtSource;
+        STRUCT_OFFSET(pamb, 0x50, float) *= ratio; // real volAttenuated (compiled AMB layout is shifted -8 here; named field at 0x50 is frq)
+        RefreshPambVolPan(pamb);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FillPamb__FP3AMBPP3AMBiP3ALOP6VECTORfffffP2LMT10_);
 
@@ -148,7 +476,18 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", ScheduleNextIntermittentSound__FP3AMB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSound__F5SFXIDPP3AMBP3ALOP6VECTORfffffP2LMT9);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BFFC8);
+void FUN_001BFFC8(int err, u_long user_data)
+{
+    if (err == 0)
+    {
+        int iSerial = (int)(user_data >> 32);
+        AMB *pamb = (AMB *)(user_data & 0xFFFFFFFF);
+        if (pamb->iSerial == iSerial)
+        {
+            STRUCT_OFFSET(pamb, 0x48, int) = 1; // fStopped (real offset; compiled AMB::fStopped lands at 0x44)
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", HandleWipeHandleWipeVolumes__FifVolumes);
 
@@ -187,11 +526,35 @@ void SetMvgkRvol(int channel, MVGK mvgk, float rvol)
     MvgkUnknown1(mvgk);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", MvgkUnknown2__Fv);
+extern float D_00274758[10][4];
+void MvgkUnknown3(int fMute);
+void MvgkUnknown4(int mode);
+void MvgkUnknown2()
+{
+    CopyAb(D_00274838, D_00274758, 0xB0);
+    SetMvgkUvol(1.0f);
+    for (int i = 0; i < 4; ++i)
+    {
+        MvgkUnknown1((MVGK)i);
+    }
+    MvgkUnknown3(STRUCT_OFFSET(g_pgsCur, 0x19EC, int) & 0x80);
+    MvgkUnknown4(STRUCT_OFFSET(g_pgsCur, 0x19EC, int) & 0x40);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", MvgkUnknown3);
+void MvgkUnknown3(int fMute)
+{
+    float rvol = 1.0f;
+    if (fMute != 0)
+    {
+        rvol = 0.0f;
+    }
+    SetMvgkRvol(3, MVGK_Music, rvol);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", MvgkUnknown4);
+void MvgkUnknown4(int mode)
+{
+    snd_SetPlaybackMode(mode != 0);
+}
 
 /**
  * @todo Figure out func_001c0cb0, and use enum values for params where applicable.
@@ -209,32 +572,101 @@ void KillSoundSystem()
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", KillSounds__Fi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PushSwReverb__FP2SW7REVERBKi);
+enum REVERBK {};
+extern int D_00274808[];
+
+void PushSwReverb(SW *psw, REVERBK reverb, int depth)
+{
+    if ((unsigned)STRUCT_OFFSET(psw, 0x2348, int) < 4)
+    {
+        snd_SetReverbType(2, D_00274808[reverb]);
+        snd_SetReverbDepth(2, depth, depth);
+        STRUCT_OFFSET((char *)psw + (STRUCT_OFFSET(psw, 0x2348, int) << 3), 0x2328, int) = reverb;
+        STRUCT_OFFSET((char *)psw + (STRUCT_OFFSET(psw, 0x2348, int) << 3), 0x232c, int) = depth;
+        STRUCT_OFFSET(psw, 0x2348, int) = STRUCT_OFFSET(psw, 0x2348, int) + 1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PopSwReverb__FP2SW);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SetSwDefaultReverb__FP2SW7REVERBKi);
+void SetSwDefaultReverb(SW *psw, REVERBK reverb, const int depth)
+{
+    snd_SetReverbType(2, D_00274808[reverb]);
+    snd_SetReverbDepth(2, depth, depth);
+    STRUCT_OFFSET(psw, 0x2328, int) = reverb;
+    STRUCT_OFFSET(psw, 0x232c, int) = depth;
+    STRUCT_OFFSET(psw, 0x2348, int) = 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0A50);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0AB8);
+struct SW;
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0B08);
+void FUN_001C0AB8(SW *psw, float *pg)
+{
+    int c = STRUCT_OFFSET(psw, 0x1D80, int); // count of intermittent-sound entries (array of 0x14-byte entries at 0x1D84)
+    if (c != 0)
+    {
+        char *pisnd = (char *)psw + (c * 0x14 + 0x1D70); // last entry: 0x1D84 + (c-1)*0x14
+        STRUCT_OFFSET(pisnd, 0xC, float) = 8000.0f - pg[1] * 50.0f;  // lmRepDist.gMin
+        STRUCT_OFFSET(pisnd, 0x10, float) = 8000.0f - pg[0] * 50.0f; // lmRepDist.gMax
+    }
+}
+
+struct SW;
+
+void FUN_001C0B08(SW *psw, LM *plm)
+{
+    int c = STRUCT_OFFSET(psw, 0x1D80, int); // count of intermittent-sound entries (array of 0x14-byte entries at 0x1D84)
+    if (c != 0)
+    {
+        char *pisnd = (char *)psw + (c * 0x14 + 0x1D70); // last entry: 0x1D84 + (c-1)*0x14
+        STRUCT_OFFSET(pisnd, 0x4, LM) = *plm; // lmRepeat (unaligned 8-byte struct copy: ldl/ldr + sdl/sdr)
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSwIntermittentSounds__FP2SW);
 
 // TODO: Verify signature.
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SetAMRegister__FiUc);
+extern u_int D_00274728;
+void SetAMRegister(int n, int bReg)
+{
+    if (bReg != D_006053E0[n])
+    {
+        D_006053E0[n] = bReg;
+        snd_SetMIDIRegister(D_00274728, n, bReg);
+    }
+}
 
-int GetAMRegister(int reg) 
+int GetAMRegister(int reg)
 {
     return D_006053E0[reg];
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", UpdateAMRegister__Fii);
+extern u_int D_00274728;
+void UpdateAMRegister(int reg, int value)
+{
+    D_006053E0[reg] = snd_GetMIDIRegister(D_00274728, reg);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001c0cb0__Fv);
+void FUN_001c0cb0()
+{
+    for (int i = 0; i < 8; i++)
+    {
+        SetAMRegister(i, 0);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", HsNextFootFall__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", NextSneakyFootstep__Fv);
+extern int D_002748EC;
+int HsNextFootFall();
+
+void NextSneakyFootstep()
+{
+    if (D_002748EC != 0)
+    {
+        int hs = HsNextFootFall();
+        StartSound((SFXID)0x77, NULL, NULL, NULL, 0.0f, 0.0f, 0.5f, hs * 0.083333336f, 0.0f, NULL, NULL);
+    }
+}

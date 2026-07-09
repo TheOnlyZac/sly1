@@ -1,4 +1,9 @@
 #include <mb.h>
+#include <stepguard.h>
+#include <memory.h>
+#include <memcard.h>
+#include <game.h>
+#include <screen.h>
 
 extern SNIP s_asnipLoadMbg[2];
 
@@ -32,7 +37,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/mb", FDetectMbg__FP3MBG);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mb", FUN_0018ab88__Fi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mb", FUN_0018abf0__Fi);
+SGS FUN_0018abf0(int param)
+{
+    STEPGUARD *pstepguard = (STEPGUARD *)param;
+    OID oid;
+
+    if (STRUCT_OFFSET(pstepguard, 0x724, int) == 4)
+    {
+        GetSmaCur((SMA *)STRUCT_OFFSET(pstepguard, 0xE10, int), &oid);
+        if (oid == (OID)0x438 && SggsGetStepguard(pstepguard) == 0)
+        {
+            return (SGS)2;
+        }
+    }
+
+    return SgsNextStepguardAI(pstepguard);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mb", FUN_0018ac58__Fi);
 
@@ -47,7 +67,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/mb", UpdateMbgGoal__FP3MBGi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mb", UpdateMbgSgs__FP3MBG);
 
-INCLUDE_ASM("asm/nonmatchings/P2/mb", OnMgExitingSgs__FP3MBG3SGS);
+void OnMgExitingSgs(MBG *pmbg, SGS sgs)
+{
+    OnStepguardExitingSgs(pmbg, sgs);
+    
+    int field_0x724 = STRUCT_OFFSET(pmbg, 0x724, int);
+    if (field_0x724 == 0x10)
+    {
+        int field_0xE3C = STRUCT_OFFSET(pmbg, 0xE3C, int);
+        if (field_0xE3C != -1)
+        {
+            int field_0xE10 = STRUCT_OFFSET(pmbg, 0xE10, int);
+            SetSmaGoal((SMA *)field_0xE10, (OID)field_0xE3C);
+            STRUCT_OFFSET(pmbg, 0xE3C, int) = -1;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/mb", HandleMbgMessage__FP3MBG5MSGIDPv);
 

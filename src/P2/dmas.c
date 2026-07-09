@@ -2,6 +2,7 @@
 #include <memory.h>
 #include <sce/libdma.h>
 #include <sdk/ee/eestruct.h>
+#include <memory.h>
 
 extern sceDmaChan *g_pdcVif0;
 extern sceDmaChan *g_pdcVif1;
@@ -120,83 +121,81 @@ void DMAS::AddDmaCnt()
     EndDmaCnt();
     QW *pqw = (QW *)m_pb;
     m_pqwCnt = pqw;
-    m_pb = (uchar *)(pqw + 1);
-    m_pqwCnt->aul[0] = 0x10000000;
+    m_pb += sizeof(QW);
+    pqw->aul[0] = 0x10000000;
     m_pqwCnt->aul[1] = 0;
 }
 
-/**
- * @todo 86.42% match.
- */
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaRefs__4DMASiP2QW);
-#ifdef SKIP_ASM
 void DMAS::AddDmaRefs(int cqw, QW *aqw)
 {
+    int fCnt = 0;
+
     if (m_pqwCnt)
     {
         EndDmaCnt();
+        fCnt = 1;
     }
 
-    QW *pqw = ((QW *)m_pb)++;
-    pqw->aul[0] = cqw | 0x40000000 | ((ulong)aqw << 0x20);
-    pqw->aul[1] = 0;
+    uchar *pb = m_pb;
+    m_pb = pb + 0x10;
+    *(ulong *)pb = (cqw | 0x40000000) | ((ulong)(uint)aqw << 32);
+    *(ulong *)(pb + 8) = 0;
 
-    if (m_pqwCnt)
+    if (fCnt)
     {
-        QW *pqw = (QW *)m_pb;
-        m_pqwCnt = pqw;
-        m_pb = (uchar *)(pqw + 1);
-        m_pqwCnt->aul[0] = 0x10000000;
+        QW *pqwCnt = (QW *)m_pb;
+        m_pqwCnt = pqwCnt;
+        m_pb += sizeof(QW);
+        pqwCnt->aul[0] = 0x10000000;
         m_pqwCnt->aul[1] = 0;
     }
 }
-#endif // SKIP_ASM
 
-/**
- * @todo 85.12% match.
- */
-INCLUDE_ASM("asm/nonmatchings/P2/dmas", AddDmaCall__4DMASP2QW);
-#ifdef SKIP_ASM
-void DMAS::AddDmaCall(QW *aqw)
+void DMAS::AddDmaCall(QW *pqw)
 {
+    int fCnt = 0;
+
     if (m_pqwCnt)
     {
         EndDmaCnt();
+        fCnt = 1;
     }
 
-    QW *pqw = ((QW *)m_pb)++;
-    pqw->aul[0] = ((ulong)aqw << 0x20) | 0x50000000;
-    pqw->aul[1] = 0;
+    uchar *pb = m_pb;
+    m_pb = pb + 0x10;
+    *(ulong *)pb = ((ulong)(uint)pqw << 32) | 0x50000000;
+    *(ulong *)(pb + 8) = 0;
 
-    if (m_pqwCnt)
+    if (fCnt)
     {
-        QW *pqw = (QW *)m_pb;
-        m_pqwCnt = pqw;
-        m_pb = (uchar *)(pqw + 1);
-        m_pqwCnt->aul[0] = 0x10000000;
+        QW *pqwCnt = (QW *)m_pb;
+        m_pqwCnt = pqwCnt;
+        m_pb += sizeof(QW);
+        pqwCnt->aul[0] = 0x10000000;
         m_pqwCnt->aul[1] = 0;
     }
 }
-#endif // SKIP_ASM
 
 void DMAS::AddDmaRet()
 {
     EndDmaCnt();
-    QW *pqw = ((QW *)m_pb)++;
-    pqw->aul[0] = 0x60000000;
-    pqw->aul[1] = 0;
+    uchar *pb = m_pb;
+    m_pb = pb + 0x10;
+    *(ulong *)pb = 0x60000000;
+    *(ulong *)(pb + 8) = 0;
 }
 
-void DMAS::AddDmaBulk(int cqw, QW *aqw)
+void DMAS::AddDmaBulk(int c, QW *aqw)
 {
-    CopyAqw(m_pb, aqw, cqw);
-    m_pb += (cqw * sizeof(QW));
+    CopyAqw(m_pb, aqw, c);
+    m_pb += c * sizeof(QW);
 }
 
 void DMAS::AddDmaEnd()
 {
     EndDmaCnt();
-    QW *pqw = ((QW *)m_pb)++;
+    QW *pqw = (QW *)m_pb;
+    m_pb += sizeof(QW);
     pqw->aul[0] = 0x70000000;
     pqw->aul[1] = 0;
 }

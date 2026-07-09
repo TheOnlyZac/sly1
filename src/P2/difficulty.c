@@ -112,40 +112,28 @@ void OnDifficultyInitialTeleport(DIFFICULTY *pdifficulty)
 
 INCLUDE_ASM("asm/nonmatchings/P2/difficulty", OnDifficultyPlayerDeath);
 #ifdef SKIP_ASM
-/**
- * @todo 88.43% matched.
- */
-void OnDifficultyPlayerDeath(float scalar, DIFFICULTY* pdifficulty)
+void OnDifficultyPlayerDeath(float scalar, DIFFICULTY *pdifficulty)
 {
-	DIFFICULTYLEVEL* pdifflevel = pdifficulty->pDifficultyLevel;
+	DIFFICULTYLEVEL *pdifflevel = pdifficulty->pDifficultyLevel;
 
-	// Get suck values for current level
-	float uSuckCur = g_plsCur->uSuck;
-	float duSuckDeath = pdifflevel->duSuckDeath;
+	ChangeSuck(g_plsCur->uSuck + scalar * STRUCT_OFFSET(pdifflevel, 0x10, float), pdifficulty);
 
-	// Increase suck value
-	ChangeSuck(uSuckCur + scalar * duSuckDeath, pdifficulty);
-
-	// Update suckunknown_0x10
+	int clife = g_pgsCur->clife;
 	float result;
-	if (g_pgsCur->clife < 0)
+	if (clife < 0)
 	{
-		// itgame over
-		result = pdifficulty->pDifficultyLevel->field18_0x40;
+		result = STRUCT_OFFSET(pdifficulty->pDifficultyLevel, 0x40, float);
 	}
 	else
 	{
-		// not game over
-		result = pdifflevel->field17_0x3c;
-		if (g_pgsCur->clife <= pdifflevel->field21_0x4c)
-		{
-			result = result + pdifflevel->field22_0x50;
-		}
+		result = STRUCT_OFFSET(pdifflevel, 0x3c, float);
+		if (clife <= STRUCT_OFFSET(pdifflevel, 0x4c, int))
+			result = result + STRUCT_OFFSET(pdifflevel, 0x50, float);
 	}
-	result = GLimitLm(&g_lmZeroOne, g_plsCur->unk_suck_0x10 + scalar * result);
-	g_plsCur->unk_suck_0x10 = result;
+
+	g_plsCur->unk_suck_0x10 = GLimitLm(&g_lmZeroOne, g_plsCur->unk_suck_0x10 + scalar * result);
 }
-#endif
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/difficulty", OnDifficultyTriggerCheckpoint__FP10DIFFICULTYP6CHKPNT);
 #ifdef SKIP_ASM

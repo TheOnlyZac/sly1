@@ -14,7 +14,19 @@ void ResetPipeList()
     ClearDl(&g_dlPipe);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/pipe", InitPipe__FP4PIPE);
+extern VU_VECTOR g_normalX;
+extern float D_0024B650; // FLT_MAX
+
+void InitPipe(PIPE *ppipe)
+{
+    InitLo(ppipe);
+    ppipe->normal = g_normalX;
+    ppipe->unk_0x58 = -1;
+    ppipe->unk_0x54 = 9;
+    ppipe->unk_0x50 = 8;
+    ppipe->unk_0x5c = D_0024B650;
+    ppipe->oid = OID_Nil;
+}
 
 void OnPipeAdd(PIPE *ppipe)
 {

@@ -19,10 +19,10 @@ private:
 public:
     void SetSingleParent(CFrame *pframeParent);
     void AddParent(CFrame *pframeParent);
-    CFrame *RefAddBinding(int symid, CRef * pref);
-    CFrame *RefSetBinding(int symid, CRef *pref);
-    int FFindBinding(int symid, int fRecursive, CRef *pref);
-    CRef *PrefFindBinding(int symid, int fRecursive);
+    CRef RefAddBinding(uint symid, CRef *pref);
+    CRef RefSetBinding(uint symid, CRef *pref);
+    int FFindBinding(uint symid, int fRecursive, CRef *pref);
+    CRef *PrefFindBinding(uint symid, int fRecursive);
     void CloneTo(CFrame *pframeClone);
 };
 

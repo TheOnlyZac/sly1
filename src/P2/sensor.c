@@ -3,6 +3,7 @@
 #include <lo.h>
 #include <alarm.h>
 #include <game.h>
+#include <freeze.h>
 
 void InitSensor(SENSOR *psensor)
 {
@@ -59,77 +60,68 @@ INCLUDE_ASM("asm/nonmatchings/P2/sensor", FIgnoreSensorObject__FP6SENSORP2SO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", FOnlySensorTriggerObject__FP6SENSORP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", PauseSensor__FP6SENSOR);
+void PauseSensor(SENSOR *psensor)
+{
+	ASEGA *pasega = PasegaFindAloNearest((ALO *)psensor);
+	if (pasega)
+	{
+		STRUCT_OFFSET(psensor, 0x5CC, float) = STRUCT_OFFSET(pasega, 0x18, float);
+		STRUCT_OFFSET(pasega, 0x18, int) = 0;
+		STRUCT_OFFSET(psensor, 0x5C8, ASEGA *) = pasega;
+	}
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateSensor__FP6SENSORf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorTriggerObject__FP6SENSOR3OID);
- #ifdef SKIP_ASM
-/**
- * @todo 100% matched but sensor struct offsets are wrong.
- */
 void AddSensorTriggerObject(SENSOR *psensor, OID oid)
 {
-	uint ccur = psensor->ctriggerObjects;
-	if (ccur >= 4)
-		return;
+    uint ccur = psensor->ctriggerObjects;
+    if (ccur >= 4)
+        return;
 
-	psensor->atriggerObjects[ccur] = oid;
-	psensor->ctriggerObjects = ccur + 1;
+    psensor->atriggerObjects[ccur] = oid;
+    psensor->ctriggerObjects = ccur + 1;
 }
-#endif
-
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorNoTriggerObject__FP6SENSOR3OID);
- #ifdef SKIP_ASM
-/**
- * @todo 100% matched but sensor struct offsets are wrong.
- */
 void AddSensorNoTriggerObject(SENSOR *psensor, OID oid)
 {
-	uint ccur = psensor->cnoTriggerObjects;
-	if (ccur >= 4)
-		return;
+    uint ccur = psensor->cnoTriggerObjects;
+    if (ccur >= 4)
+        return;
 
-	psensor->anoTriggerObjects[ccur] = oid;
-	psensor->cnoTriggerObjects = ccur + 1;
+    psensor->anoTriggerObjects[ccur] = oid;
+    psensor->cnoTriggerObjects = ccur + 1;
 }
-#endif
-
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorTriggerClass__FP6SENSOR3CID);
- #ifdef SKIP_ASM
-/**
- * @todo 100% matched but sensor struct offsets are wrong.
- */
 void AddSensorTriggerClass(SENSOR *psensor, CID cid)
 {
-	uint ccur = psensor->ctriggerClasses;
-	if (ccur >= 4)
-		return;
+    uint ccur = psensor->ctriggerClasses;
+    if (ccur >= 4)
+        return;
 
-	psensor->atriggerClasses[ccur] = cid;
-	psensor->ctriggerClasses = ccur + 1;
+    psensor->atriggerClasses[ccur] = cid;
+    psensor->ctriggerClasses = ccur + 1;
 }
-#endif
-
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", AddSensorNoTriggerClass__FP6SENSOR3CID);
- #ifdef SKIP_ASM
-/**
- * @todo 100% matched but sensor struct offsets are wrong.
- */
 void AddSensorNoTriggerClass(SENSOR *psensor, CID cid)
 {
-	uint ccur = psensor->cnoTriggerClasses;
-	if (ccur >= 4)
-		return;
+    uint ccur = psensor->cnoTriggerClasses;
+    if (ccur >= 4)
+        return;
 
-	psensor->anoTriggerClasses[ccur] = cid;
-	psensor->cnoTriggerClasses = ccur + 1;
+    psensor->anoTriggerClasses[ccur] = cid;
+    psensor->cnoTriggerClasses = ccur + 1;
 }
-#endif
+void InitLasen(LASEN *plasen)
+{
+    InitSensor(plasen);
+    STRUCT_OFFSET(plasen, 0xB04, float) = 1.0f;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", InitLasen__FP5LASEN);
+void LoadLasenFromBrx(LASEN *plasen, CBinaryInputStream *pbis)
+{
+	extern SNIP D_002744B8[2];
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", LoadLasenFromBrx__FP5LASENP18CBinaryInputStream);
+	LoadSoFromBrx(plasen, pbis);
+	SnipAloObjects(plasen, 2, D_002744B8);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", BindLasen__FP5LASEN);
 
@@ -139,7 +131,28 @@ INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateBusyLasenSenseTimes__Fv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateLasen__FP5LASENf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", FreezeLasen__FP5LASENi);
+extern int D_002744D0;
+
+void FreezeLasen(LASEN *plasen, int fFreeze)
+{
+    FreezeSo(plasen, fFreeze);
+
+    if (fFreeze)
+    {
+        if (STRUCT_OFFSET(plasen, 0xAF8, int))
+        {
+            RemoveDlEntry((DL *)((char *)plasen->psw + 0x1ca8), plasen);
+            STRUCT_OFFSET(plasen, 0xAF8, int) = 0;
+        }
+    }
+    else
+    {
+        AppendDlEntry((DL *)((char *)plasen->psw + 0x1ca8), plasen);
+        STRUCT_OFFSET(plasen, 0xAF8, int) = 1;
+    }
+
+    D_002744D0 = 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", RenderLasenSelf__FP5LASENP2CMP2RO);
 
@@ -193,13 +206,49 @@ INCLUDE_ASM("asm/nonmatchings/P2/sensor", SetLasenSensors__FP5LASEN7SENSORS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", SCalcLasenShapeExtent__FP5LASENP5LBEAM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", RetractLasen__FP5LASENf);
+void RetractLasen(LASEN *plasen, float dtRetract)
+{
+    STRUCT_OFFSET(plasen, 0xB08, float) = -1.0f / dtRetract;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", ExtendLasen__FP5LASENf);
+void ExtendLasen(LASEN *plasen, float dtExpand)
+{
+    STRUCT_OFFSET(plasen, 0xB08, float) = 1.0f / dtExpand;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", InitCamsen__FP6CAMSEN);
+void InitCamsen(CAMSEN *pcamsen)
+{
+    InitSensor(pcamsen);
+    STRUCT_OFFSET(pcamsen, 0x5D8, int) = -1;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sensor", PostCamsenLoad__FP6CAMSEN);
+extern SNIP D_002744D8[2];
+
+void PostCamsenLoad(CAMSEN *pcamsen)
+{
+    void *pvt;
+    void (*pfn)(CAMSEN *, int);
+
+    PostAloLoad(pcamsen);
+    SnipAloObjects(pcamsen, 2, D_002744D8);
+
+    if (STRUCT_OFFSET(pcamsen, 0x5d0, int) == 0)
+        STRUCT_OFFSET(pcamsen, 0x5d0, int) = (int)pcamsen;
+
+    if (STRUCT_OFFSET(pcamsen, 0x5d4, int) == 0)
+        STRUCT_OFFSET(pcamsen, 0x5d4, int) = STRUCT_OFFSET(pcamsen->psw, 0x1d14, int);
+
+    if (STRUCT_OFFSET(pcamsen, 0x200, void *) != NULL)
+        STRUCT_OFFSET(STRUCT_OFFSET(pcamsen, 0x200, void *), 0x44, int) = 0;
+
+    STRUCT_OFFSET(pcamsen, 0x538, ulong) |= ((ulong)0x8000) << 28;
+
+    SetSoConstraints(pcamsen, CT_Locked, NULL, CT_Locked, NULL);
+
+    pvt = STRUCT_OFFSET(pcamsen, 0x0, void *);
+    pfn = (void (*)(CAMSEN *, int))STRUCT_OFFSET(pvt, 0x144, void *);
+    pfn(pcamsen, STRUCT_OFFSET(pcamsen, 0x560, int));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sensor", UpdateCamsen__FP6CAMSENf);
 

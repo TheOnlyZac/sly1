@@ -29,4 +29,6 @@ struct GOMER : public STEPGUARD
     /* 0xc40 */ int fAbandonExternal;
 };
 
+void PostGomerLoad(GOMER *pgomer);
+
 #endif // GOMER_H

@@ -45,12 +45,6 @@ GRFZON GrfzonOneHop(VISMAP *pvismap, VBSP *pvbsp)
 
 INCLUDE_ASM("asm/nonmatchings/P2/vis", ClipVbspSphereOneHop__FP6VISMAPP4VBSPG9VU_VECTORfPi);
 
-/**
- * @brief 89.47% match. Single load instruction mismatch. VU_VECTOR implemented wrong?
- * https://decomp.me/scratch/5lzfX
- */
-INCLUDE_ASM("asm/nonmatchings/P2/vis", ClipVismapSphereOneHop__FP6VISMAPP6VECTORfPi);
-#ifdef SKIP_ASM
 void ClipVismapSphereOneHop(VISMAP *pvismap, VECTOR *ppos, float sRadius, GRFZON *pgrfzon)
 {
     if (pvismap && pvismap->avbsp)
@@ -63,6 +57,5 @@ void ClipVismapSphereOneHop(VISMAP *pvismap, VECTOR *ppos, float sRadius, GRFZON
 
     *pgrfzon = 0xfffffff;
 }
-#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/vis", ClipVismapPointNoHop__FP6VISMAPP6VECTORPi);

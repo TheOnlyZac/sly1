@@ -94,4 +94,6 @@ void GetRwacPan(RWAC *prwac, float *pradPan);
 
 void GetRwacTilt(RWAC *prwac, float *pradTilt);
 
+extern "C" void FUN_001a93c8(RWM *prwm);
+
 #endif // RWM_H

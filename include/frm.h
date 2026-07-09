@@ -63,4 +63,6 @@ extern FRM *g_pfrmOpen;
 
 extern uchar g_abRenderLoopStack[0x20000]; // TODO: Move elsewhere?
 
+extern "C" void func_0015F618(int, int);
+
 #endif // FRM_H

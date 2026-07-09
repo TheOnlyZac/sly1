@@ -55,4 +55,10 @@ void ClearFrameBuffers();
 
 void UploadBitmaps(GRFZON grfzon, GSB *pgsb);
 
+struct GIFS;
+
+int FBuildUploadBitmapGifs(GRFZON grfzon, GSB *pgsb, GIFS *pgifs);
+
+void PropagateSurs();
+
 #endif // GS_H
