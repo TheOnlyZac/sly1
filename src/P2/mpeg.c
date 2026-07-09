@@ -206,6 +206,7 @@ void CMpegAudio::Update()
 }
 #endif // SKIP_ASM
 
+// @todo Move these to a header
 struct sceMpeg;
 struct sceMpegCbDataStr;
 
@@ -233,7 +234,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/mpeg", FMpegDecodeVideo__FP7sceMpegP13sceMpegCb
 struct sceMpegCbData;
 int FMpegDecoderIdle(sceMpeg *pmp, sceMpegCbData *pcbdata, CMpeg *pmpeg)
 {
-    CbDemuxed__5CMpegi(pmpeg, 0);
+    pmpeg->CbDemuxed((OID)0);
     return 1;
 }
 
@@ -256,15 +257,15 @@ void CMpeg::ExecuteOids()
 
     STRUCT_OFFSET(this, 0x4, OID *) = 0;
     STRUCT_OFFSET(this, 0x8, OID *) = 0;
-    Execute__5CMpeg(this, poid);
+    Execute(poid);
 
     if (poidNext != 0)
     {
-        Execute__5CMpeg(this, poidNext);
+        Execute(poidNext);
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/mpeg", Execute__5CMpeg);
+INCLUDE_ASM("asm/nonmatchings/P2/mpeg", Execute__5CMpegP3OID);
 
 INCLUDE_ASM("asm/nonmatchings/P2/mpeg", Start__5CMpegP18CBinaryAsyncStream);
 

@@ -8,22 +8,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", SMeasureApos__FiP6VECTORPf);
 float GWrapApos(float g, int cpos, float *mpiposg, int fClosed)
 {
     float f0 = g;
-    if (!fClosed) {
+    if (!fClosed)
+    {
         return f0;
     }
-    
+
     float f1 = mpiposg[0];
     float f3 = mpiposg[cpos - 1];
     float f2 = f3 - f1;
-    
-    while (f0 < f1) {
+
+    while (f0 < f1)
+    {
         f0 = f0 + f2;
     }
-    
-    while (f3 < f0) {
+
+    while (f3 < f0)
+    {
         f0 = f0 - f2;
     }
-    
+
     return f0;
 }
 
@@ -101,11 +104,11 @@ JUNK_ADDIU(A0);
 
 float SMeasureCrvSegmentU(CRVMS *pcrvms, float u)
 {
-
     void *pcrv = STRUCT_OFFSET(pcrvms, 0x0, void *);
     void **pvtbl = STRUCT_OFFSET(pcrv, 0x0, void **);
     void (*pfn)(void *, VECTOR *, int) = (void (*)(void *, VECTOR *, int))pvtbl[1];
     VECTOR pos;
+
     if (pfn != NULL)
     {
         pfn(pcrv, &pos, 0);
@@ -204,7 +207,8 @@ void LoadCrvcFromBrx(CRVC *pcrvc, CBinaryInputStream *pbis)
 
     for (int icv = 0; icv < STRUCT_OFFSET(pcrvc, 0xC, int); icv++)
     {
-        STRUCT_OFFSET(pcrvc, 0x10, float *)[icv] = pbis->F32Read();
+        STRUCT_OFFSET(pcrvc, 0x10, float *)
+        [icv] = pbis->F32Read();
         pbis->ReadVector((VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x18, void *) + icv * 16));
         pbis->ReadVector((VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x1C, void *) + icv * 16));
         pbis->ReadVector((VECTOR *)((char *)STRUCT_OFFSET(pcrvc, 0x20, void *) + icv * 16));

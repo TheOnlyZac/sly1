@@ -279,10 +279,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", increment_and_show_life_count);
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", CollectLifetkn__FP7LIFETKN);
 
-void FUN_00149168(DPRIZE *param_1)
+void FUN_00149168(DPRIZE *pdprize)
 {
-    InitDprize(param_1);
-    *(int *)((uint8_t *)param_1 + 0x340) = 0;
+    InitDprize(pdprize);
+    STRUCT_OFFSET(pdprize, 0x340, int) = 0;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", break_bottle);

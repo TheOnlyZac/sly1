@@ -22,6 +22,7 @@ public:
     void Start(CBinaryAsyncStream *pbas);
     void Update();
     void Finish();
+    void CbDemuxed(int nParam);
 };
 
 void StartupMpeg();
@@ -32,8 +33,5 @@ extern "C" void FUN_0018f0e8(CMpeg *pmpeg, void *pv);
 
 extern "C" int FAccept__10CMpegAudioiPUc(void *pmpega, int cb, uchar *pb);
 
-extern "C" void CbDemuxed__5CMpegi(CMpeg *pmpeg, int nParam);
-
-extern "C" void Execute__5CMpeg(CMpeg *pmpeg, OID *poid);
 
 #endif // MPEG_H

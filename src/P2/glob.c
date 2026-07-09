@@ -59,17 +59,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/glob", UpdateGlobset__FP7GLOBSETP3ALOf);
 void UpdateAloConstraints(ALO *palo)
 {
     void *p = STRUCT_OFFSET(palo, 0x224, void *);
+    if (p == NULL || !(STRUCT_OFFSET(p, 0xb0, int) & 0x10) || STRUCT_OFFSET(p, 0x64, int) == 0)
+        return;
 
-    if (p != NULL)
-    {
-        if (STRUCT_OFFSET(p, 0xb0, int) & 0x10)
-        {
-            if (STRUCT_OFFSET(p, 0x64, int) != 0)
-            {
-                SolveAloIK(STRUCT_OFFSET(p, 0x60, ALO *));
-            }
-        }
-    }
+    SolveAloIK(STRUCT_OFFSET(p, 0x60, ALO *));
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/glob", UpdateAloInfluences__FP3ALOP2RO);

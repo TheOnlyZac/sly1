@@ -54,10 +54,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", UpdateAlo__FP3ALOf);
 
 void InvalidateAloLighting(ALO *palo)
 {
-    int iglobi;
-
-    // palo->globset: count at +0xc, GLOBI array (stride 0x28) at +0x14; invalidate lighting frame at +0x8
-    for (iglobi = 0; iglobi < STRUCT_OFFSET(palo, 0x238, int); iglobi++)
+    for (int iglobi = 0; iglobi < STRUCT_OFFSET(palo, 0x238, int); iglobi++)
     {
         char *pb = STRUCT_OFFSET(palo, 0x240, char *) + iglobi * 0x28;
         *(int *)(pb + 8) = -1;
@@ -142,10 +139,8 @@ void SetAloVelocityXYZ(ALO *palo, float x, float y, float z)
 
 void SetAloAngularVelocityVec(ALO *palo, VECTOR *pw)
 {
-    ACT *pactRot;
-
     STRUCT_OFFSET(palo, 0x160, VU_VECTOR) = *(VU_VECTOR *)pw; // palo->wWorld (angular velocity)
-    pactRot = STRUCT_OFFSET(palo, 0x1f0, ACT *); // palo->pactRot
+    ACT *pactRot = STRUCT_OFFSET(palo, 0x1f0, ACT *); // palo->pactRot
     if (pactRot != NULL)
     {
         AdaptAct(pactRot);
@@ -187,9 +182,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", ConvertAloMat__FP3ALOT0P7MATRIX3T2);
 
 int FDrivenAlo(ALO *palo)
 {
-    ACT *pact;
-
-    pact = STRUCT_OFFSET(palo, 0x1ec, ACT *); // palo->pactPos
+    ACT *pact = STRUCT_OFFSET(palo, 0x1ec, ACT *); // palo->pactPos
     if (pact != NULL && STRUCT_OFFSET(pact, 0x10, char) == ACK_Drive)
     {
         return 1;
@@ -288,15 +281,13 @@ extern DL D_00262300;
 
 void SetAloCastShadow(ALO *palo, int fCastShadow)
 {
-    SHADOW *pshadow;
-
     if (fCastShadow)
     {
         PshadowAloEnsure(palo);
         return;
     }
 
-    pshadow = STRUCT_OFFSET(palo, 0x284, SHADOW *); // palo->pshadow
+    SHADOW *pshadow = STRUCT_OFFSET(palo, 0x284, SHADOW *); // palo->pshadow
     if (pshadow != NULL)
     {
         RemoveDlEntry(&STRUCT_OFFSET(palo->psw, 0x1c00, DL), pshadow);
@@ -493,8 +484,6 @@ void CreateAloActadj(ALO *palo, int nPriority, ACTADJ **ppactadj)
 
 int FIsAloStatic(ALO *palo)
 {
-    ALO *paloChild;
-
     if (!FIsZeroV(&STRUCT_OFFSET(palo, 0x150, VECTOR)))
     {
         return 0;
@@ -505,7 +494,7 @@ int FIsAloStatic(ALO *palo)
         return 0;
     }
 
-    paloChild = (ALO *)palo->dlChild.head;
+    ALO *paloChild = (ALO *)palo->dlChild.head;
     while (paloChild != NULL)
     {
         if (paloChild->pvtlo->grfcid & 1 && !FIsAloStatic(paloChild))

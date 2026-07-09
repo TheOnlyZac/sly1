@@ -65,10 +65,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/dartgun", UpdateDartgun__FP7DARTGUNf);
 
 int FIgnoreDartgunIntersection(DARTGUN *pdartgun, SO *psoOther)
 {
-    if (FIsBasicDerivedFrom(psoOther, CID_RAT))
+    if (FIsBasicDerivedFrom(psoOther, CID_RAT)
+        && STRUCT_OFFSET(psoOther, 0x588, SO *) == (SO *)pdartgun)
     {
-        if (STRUCT_OFFSET(psoOther, 0x588, SO *) == (SO *)pdartgun)
-            return 1;
+        return 1;
     }
 
     return FIgnoreSoIntersection((SO *)pdartgun, psoOther);

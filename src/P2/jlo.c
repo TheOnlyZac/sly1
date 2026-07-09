@@ -114,18 +114,12 @@ extern char D_002482D8[];
 
 void FUN_0016d928(JLO *pjlo)
 {
-    if (STRUCT_OFFSET(pjlo, 0x5c0, int) != 0)
-    {
-        if (!FVagPlaying())
-        {
-            if (NRandInRange(0, 100) < 20)
-            {
-                int n = NRandInRange(0, 6);
-                PreloadVag1(&D_002482D8[n << 5]);
-                STRUCT_OFFSET(pjlo, 0x5cc, int) = 1;
-            }
-        }
-    }
+    if (STRUCT_OFFSET(pjlo, 0x5c0, int) == 0 || FVagPlaying() || NRandInRange(0, 100) >= 20)
+        return;
+
+    int n = NRandInRange(0, 6);
+    PreloadVag1(&D_002482D8[n << 5]);
+    STRUCT_OFFSET(pjlo, 0x5cc, int) = 1;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/jlo", FUN_0016d9a8);

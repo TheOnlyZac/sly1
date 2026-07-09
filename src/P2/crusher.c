@@ -73,19 +73,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014c5e8);
 extern void *D_0027C00C;
 void FUN_0014c668(void *pv, int tnt)
 {
-    if (tnt == 1)
+    if (tnt != 1)
+        return;
+
+    OID oidGoal;
+    OID oidCur;
+
+    GetSmaGoal(STRUCT_OFFSET(D_0027C00C, 0x42c, SMA *), &oidGoal);
+    GetSmaCur(STRUCT_OFFSET(D_0027C00C, 0x42c, SMA *), &oidCur);
+
+    if (oidGoal != (OID)0x3fe && oidCur != (OID)0x3fe)
     {
-        OID oidGoal;
-        OID oidCur;
-
-        GetSmaGoal(STRUCT_OFFSET(D_0027C00C, 0x42c, SMA *), &oidGoal);
-        GetSmaCur(STRUCT_OFFSET(D_0027C00C, 0x42c, SMA *), &oidCur);
-
-        if (oidGoal != (OID)0x3fe && oidCur != (OID)0x3fe)
-        {
-            SetSmaGoal(STRUCT_OFFSET(D_0027C00C, 0x42c, SMA *), (OID)0x3ff);
-            FUN_0014c5e8(D_0027C00C);
-        }
+        SetSmaGoal(STRUCT_OFFSET(D_0027C00C, 0x42c, SMA *), (OID)0x3ff);
+        FUN_0014c5e8(D_0027C00C);
     }
 }
 
@@ -163,15 +163,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/crusher", FUN_0014cba8);
 
 void FUN_0014cd70(void *p)
 {
-    int n;
-
     if (STRUCT_OFFSET(p, 0x458, int) == STRUCT_OFFSET(p, 0x450, int))
     {
         float g = GRandInRange(STRUCT_OFFSET(p, 0x43c, float), STRUCT_OFFSET(p, 0x440, float));
         STRUCT_OFFSET(p, 0x45c, float) = g_clock.t + g;
     }
 
-    n = STRUCT_OFFSET(p, 0x458, int);
+    int n = STRUCT_OFFSET(p, 0x458, int);
     STRUCT_OFFSET(p, 0x458, int) = n - 1;
 }
 

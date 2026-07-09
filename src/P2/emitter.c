@@ -22,14 +22,13 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadEmitblipColorsFromBrx__FP8EMITBLI
 #ifdef SKIP_ASM
 void LoadEmitblipColorsFromBrx(EMITBLIP *pemitblip, int crgba, LO *ploEmit, CBinaryInputStream *pbis)
 {
-    int i;
     int cColor = (crgba > 0x1f) ? 0x20 : crgba;
 
     STRUCT_OFFSET(pemitblip, 0x4c, int) = cColor;
     STRUCT_OFFSET(pemitblip, 0x50, RGBA *) = (RGBA *)PvAllocSwImpl(cColor * 4);
     STRUCT_OFFSET(pemitblip, 0x54, int) = pbis->U8Read();
 
-    for (i = 0; i < crgba; i++)
+    for (int i = 0; i < crgba; i++)
     {
         uint rgba = pbis->U32Read();
         if (i < STRUCT_OFFSET(pemitblip, 0x4c, int))
@@ -249,10 +248,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", CalculateEmitvx__FiP2LMiP6EMITVX);
 #ifdef SKIP_ASM
 void CalculateEmitvx(int cParticlePerRing, LM *plmTilt, int cParticle, EMITVX *pemitvx)
 {
-    int cBatch;
-    int count;
-    float gNorm;
-
     if (cParticlePerRing > 0)
     {
         STRUCT_OFFSET(pemitvx, 0x0, int) =
@@ -263,10 +258,9 @@ void CalculateEmitvx(int cParticlePerRing, LM *plmTilt, int cParticle, EMITVX *p
         STRUCT_OFFSET(pemitvx, 0x0, int) = cParticle;
     }
 
-    count = STRUCT_OFFSET(pemitvx, 0x0, int);
-    cBatch = (cParticle - 1 + count) / count;
-
-    gNorm = RadNormalize(plmTilt->gMax - plmTilt->gMin);
+    int count = STRUCT_OFFSET(pemitvx, 0x0, int);
+    int cBatch = (cParticle - 1 + count) / count;
+    float gNorm = RadNormalize(plmTilt->gMax - plmTilt->gMin);
 
     STRUCT_OFFSET(pemitvx, 0x8, float) = 6.2831855f / (float)STRUCT_OFFSET(pemitvx, 0x0, int);
     STRUCT_OFFSET(pemitvx, 0x4, float) = gNorm / (float)cBatch;
@@ -370,10 +364,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadExplgFromBrx__FP5EXPLGP18CBinaryI
 
 void CloneExplg(EXPLG *pexplg, EXPLG *pexplgBase)
 {
-    int i = 0;
-
     CloneLo((LO *)pexplg, (LO *)pexplgBase);
 
+    int i = 0;
     if (STRUCT_OFFSET(pexplg, 0x90, int) > 0)
     {
         LO **p = &STRUCT_OFFSET(pexplg, 0x94, LO *);
