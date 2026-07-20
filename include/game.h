@@ -237,10 +237,7 @@ struct GAME
  *
  * @todo implement
  */
-struct LevelLoadData
-{
-    // ...
-};
+struct LevelLoadData;
 
 extern const LevelLoadData *D_00247AB0[];
 
@@ -251,7 +248,15 @@ void StartupGame();
 
 // LevelLoadData * search_level_by_load_data(LevelLoadData *search_level);
 
-// LevelLoadData * search_level_by_id(int search_id);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+LevelLoadData *search_level_by_id(int search_id);
+
+#ifdef __cplusplus
+}
+#endif
 
 /**
  * @brief Gets the friendly name of a level from its world ID.
