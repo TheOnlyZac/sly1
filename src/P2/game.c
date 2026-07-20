@@ -25,6 +25,21 @@
 
 extern WORLDLEVEL g_worldlevelPrev;
 
+struct LevelLoadData
+{
+    uint unk_00;
+    uint unk_04;
+    uint unk_08;
+    uint unk_0C;
+    uint unk_10;
+    uint unk_14;
+    uint unk_18;
+    uint unk_1C;
+    int level_id;
+    const char *friendly;
+    uint unk_28;
+};
+
 void StartupGame()
 {
     StartGame();
@@ -36,7 +51,34 @@ JUNK_WORD(0x0000102D);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_load_data);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_id);
+extern LevelLoadData D_00247AF0[46];
+
+/**
+ * @brief Finds the level data associated with a level ID.
+ *
+ * @param search_id Level ID to search for.
+ * @return Pointer to the matching LevelLoadData, or NULL if no match is found.
+ */
+LevelLoadData *search_level_by_id(int search_id)
+{
+    LevelLoadData *level = D_00247AF0;
+    LevelLoadData *end = D_00247AF0 + 46;
+
+loop:
+    if (search_id != level->level_id)
+    {
+        level++;
+
+        if (level < end)
+        {
+            goto loop;
+        }
+
+        return NULL;
+    }
+
+    return level;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", PchzFriendlyFromWid);
 
