@@ -9,7 +9,6 @@ var cplcy_8c =
     [ "INCLUDE_ASM", "cplcy_8c.html#ada6c3e61091d433dde8c72911efb2a78", null ],
     [ "INCLUDE_ASM", "cplcy_8c.html#ac4883104cdfe5fbb12e3062c18250a62", null ],
     [ "INCLUDE_ASM", "cplcy_8c.html#a0df95ca5a526e7c87c2ccd252fcb7d67", null ],
-    [ "INCLUDE_ASM", "cplcy_8c.html#a78515a67203a3201f26f3ec13b9398fa", null ],
     [ "INCLUDE_ASM", "cplcy_8c.html#ae49a5a55bdefedf1a7c25f47e7e999fe", null ],
     [ "INCLUDE_ASM", "cplcy_8c.html#a79e048102a9def9c5b0c6bbe59179f93", null ],
     [ "INCLUDE_ASM", "cplcy_8c.html#adb8630ffb6442d6325288c9672eaaa64", null ],
@@ -19,5 +18,6 @@ var cplcy_8c =
     [ "INCLUDE_ASM", "cplcy_8c.html#ac69a4728253286cfc0453aa4fb663c8e", null ],
     [ "INCLUDE_ASM", "cplcy_8c.html#adc1649a200f03ffc42a26ebe1e393d4a", null ],
     [ "INCLUDE_ASM", "cplcy_8c.html#aee7dfb05c07ee345c39c79e4b1df583a", null ],
-    [ "INCLUDE_ASM", "cplcy_8c.html#a53f17cdca7cf8e3b8d7fd07ba1caabbb", null ]
+    [ "INCLUDE_ASM", "cplcy_8c.html#a53f17cdca7cf8e3b8d7fd07ba1caabbb", null ],
+    [ "InitCplcy", "cplcy_8c.html#a8842ed724fda95f3e7a7c783c610af37", null ]
 ];

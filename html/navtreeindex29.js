@@ -1,5 +1,6 @@
 var NAVTREEINDEX29 =
 {
+"shadow_8h.html#a3605f7d7f5129941036a22a0bf48cd10":[10,0,1,121,17],
 "shadow_8h.html#a437bbf03debb1b1608d1b0c36819fd7f":[10,0,1,121,1],
 "shadow_8h.html#a4eff1c80fbb31fb9f5c5d03fb970bd32":[10,0,1,121,21],
 "shadow_8h.html#a5ea6309ff68ab3a834016da1df9575c5":[10,0,1,121,8],
@@ -248,6 +249,5 @@ var NAVTREEINDEX29 =
 "slotheap_8c.html#ada5a2b8b5a1d08c2925fae365aeb4944":[10,0,2,0,112,2],
 "slotheap_8c.html#af810212b03cc7d87112cad922245b969":[10,0,2,0,112,6],
 "slotheap_8c_source.html":[10,0,2,0,112],
-"slotheap_8h.html":[10,0,1,126],
-"slotheap_8h.html#a417987fd094b0e3ee904b1c88cdd4213":[10,0,1,126,8]
+"slotheap_8h.html":[10,0,1,126]
 };
