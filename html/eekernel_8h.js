@@ -12,5 +12,6 @@ var eekernel_8h =
     [ "FlushCache", "eekernel_8h.html#ae79240dec6e7cd6cbe2edf48d348f540", null ],
     [ "GetThreadId", "eekernel_8h.html#ad794bf24bd9def7a20bf0d12d27d1e36", null ],
     [ "SignalSema", "eekernel_8h.html#a8be93a64a487b1c4598ea2376196c8e9", null ],
+    [ "StartThread", "eekernel_8h.html#acaef4e0d55495f3068fcc28e05fab32f", null ],
     [ "WaitSema", "eekernel_8h.html#aa31e2c4a5f29c4485427aeced35e1231", null ]
 ];

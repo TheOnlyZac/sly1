@@ -19,12 +19,12 @@ var jsg_8c =
     [ "INCLUDE_ASM", "jsg_8c.html#aa4037ab878b091d7221c2aa5d8a2b121", null ],
     [ "INCLUDE_ASM", "jsg_8c.html#a5bab892c6ea39f363bae3ab3e3d98e8b", null ],
     [ "INCLUDE_ASM", "jsg_8c.html#a05b7f575c9cc4d5ad3987254371ddd1e", null ],
-    [ "INCLUDE_ASM", "jsg_8c.html#a3f6362bbf3955c80c84612fe5d5b0fe0", null ],
     [ "INCLUDE_ASM", "jsg_8c.html#a65ddc9ad73a1c9eb9e338db18e327222", null ],
     [ "INCLUDE_ASM", "jsg_8c.html#a39e2515d2611a7d83c10c27542162699", null ],
     [ "INCLUDE_ASM", "jsg_8c.html#adde7270ec9d96069e021ed77a5d7ae3d", null ],
     [ "INCLUDE_ASM", "jsg_8c.html#a9cb3ab6a951532cd6f163498a6af2afc", null ],
     [ "InitJsg", "jsg_8c.html#aed5c924c261758a06a97e5a165cd3d7e", null ],
+    [ "PjsgeAllocJsg", "jsg_8c.html#a2effdd0d1aca769a286241a3954e326b", null ],
     [ "RetractJsg", "jsg_8c.html#a1ecb4957069b62a357721fd479c95cca", null ],
     [ "s_jsge", "jsg_8c.html#aee9fa718b4b6b18326498a1b0872d003", null ]
 ];

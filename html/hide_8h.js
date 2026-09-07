@@ -1,4 +1,38 @@
 var hide_8h =
 [
+    [ "HSHAPE", "structHSHAPE.html", null ],
+    [ "HPNT", "structHPNT.html", null ],
+    [ "HBSK", "structHBSK.html", null ],
+    [ "HBSKS", "hide_8h.html#a35a18eb1be3ab44fa00041434617e679", [
+      [ "HBSKS_Nil", "hide_8h.html#a35a18eb1be3ab44fa00041434617e679aa81bab1eb0b98916bdf8f8696a0b5264", null ],
+      [ "HBSKS_Available", "hide_8h.html#a35a18eb1be3ab44fa00041434617e679a2d3dbcc1501b7b7b93ac7cfd71a40853", null ],
+      [ "HBSKS_InUse", "hide_8h.html#a35a18eb1be3ab44fa00041434617e679ac78a88e34fbe4dc4185bd09b6418d262", null ],
+      [ "HBSKS_Max", "hide_8h.html#a35a18eb1be3ab44fa00041434617e679a0628660adfac2a04d488acd61820ed4a", null ]
+    ] ],
+    [ "BindHpnt", "hide_8h.html#ab3e10485287763988dbaf55103f35f36", null ],
+    [ "BindHshape", "hide_8h.html#aac30104b74f92abdd5c4ea34286fbc52", null ],
+    [ "CdartStuckHbsk", "hide_8h.html#a07eabcc1d606049d8cb511abb390b0f6", null ],
+    [ "CloneHbsk", "hide_8h.html#a61d8f128d91d7ecc32412e4434bb55a9", null ],
+    [ "CloneHpnt", "hide_8h.html#adc09efc15b73b5e600ea1078d2a8b43f", null ],
+    [ "CloneHshape", "hide_8h.html#a002dfab1e7dd0c34da35261c40f30510", null ],
+    [ "FIgnoreHbskIntersection", "hide_8h.html#a5e9f04e12f6c8d0206d0d896932f2e87", null ],
+    [ "GetHbskClosestHidePos", "hide_8h.html#a1a224c8157e0f23e82b4322e49161340", null ],
+    [ "GetHpntClosestHidePos", "hide_8h.html#af96d8b4e0d8120a6f6784d4bd773b854", null ],
+    [ "GetHshapeClosestHidePos", "hide_8h.html#a7f7810b7e2369f4f7c8ed9689eb9d2b5", null ],
+    [ "GetHshapeHidePos", "hide_8h.html#afe352894b2ca6b091b90b5c87b8d880a", null ],
+    [ "InitHbsk", "hide_8h.html#af070400ea6d0b15b66ba152dde22d8e8", null ],
+    [ "InitHpnt", "hide_8h.html#a0da0fec878a48d5ec410fb222df96fe2", null ],
+    [ "InitHshape", "hide_8h.html#a51e441ee2683dba185281911bbaa0166", null ],
+    [ "LoadHbskFromBrx", "hide_8h.html#af9db5db7f114a932e264900965c7c8d8", null ],
+    [ "OnHbskAdd", "hide_8h.html#a9813af608865c6cb8e68aa0c75500ebb", null ],
+    [ "OnHbskRemove", "hide_8h.html#a1e42f131cd606193f42f37f9dfa3c985", null ],
+    [ "OnHpntAdd", "hide_8h.html#aa5da2b6bdc6893cddb8df171fe3ddde3", null ],
+    [ "OnHpntRemove", "hide_8h.html#a0e2e5be52616f44731eba98c08b295c7", null ],
+    [ "OnHshapeAdd", "hide_8h.html#abb5c7e78817d863ed76093e8b90a8eaf", null ],
+    [ "OnHshapeRemove", "hide_8h.html#ad768ca4e6781f5c4993910840aaf9bfd", null ],
+    [ "PdartOldestHbskStuck", "hide_8h.html#a15c4f15fcd8296b496f6389a7d230a8e", null ],
+    [ "PresetHbskAccel", "hide_8h.html#aed6fa7d2076d1eb1a529dc992a46384c", null ],
+    [ "ResetHideList", "hide_8h.html#aedf8679c6f43142377a0efce10ef8f2f", null ],
+    [ "SetHbskHbsks", "hide_8h.html#ad6089115c65743ea1a15bd990d8711e2", null ],
     [ "StartupHide", "hide_8h.html#a2aaed535fc9d45f6b2cc58434c09833b", null ]
 ];

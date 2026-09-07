@@ -105,6 +105,7 @@ $(document).ready(function(){initNavTree('alarm_8c.html',''); initResizable(); }
 <div class="textblock"><code>#include &lt;<a class="el" href="alarm_8h_source.html">alarm.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="chkpnt_8h_source.html">chkpnt.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="button_8h_source.html">button.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="spliceobj_8h_source.html">spliceobj.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for alarm.c:</div>
 <div class="dyncontent">
@@ -152,8 +153,8 @@ Functions</h2></td></tr>
 <tr class="separator:a452df72d14e29721505e3068371eefe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b0ed10501fb8a9cc1bfabae18146b08" id="r_a2b0ed10501fb8a9cc1bfabae18146b08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alarm_8c.html#a2b0ed10501fb8a9cc1bfabae18146b08">SetAlarmRsmg</a> (<a class="el" href="structALARM.html">ALARM</a> *palarm, int fOnTrigger, <a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> oidRoot, <a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> oidSM, <a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> oidGoal)</td></tr>
 <tr class="separator:a2b0ed10501fb8a9cc1bfabae18146b08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91dacaefbc3f37d6be02049773eab7dc" id="r_a91dacaefbc3f37d6be02049773eab7dc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alarm_8c.html#a91dacaefbc3f37d6be02049773eab7dc">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/alarm&quot;, FGetAlarmSensorList__FP5ALARMPv)</td></tr>
-<tr class="separator:a91dacaefbc3f37d6be02049773eab7dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08f2265cf5362195b3987cc062e3e619" id="r_a08f2265cf5362195b3987cc062e3e619"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alarm_8c.html#a08f2265cf5362195b3987cc062e3e619">FGetAlarmSensorList</a> (<a class="el" href="structALARM.html">ALARM</a> *palarm, void *pvstate)</td></tr>
+<tr class="separator:a08f2265cf5362195b3987cc062e3e619"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a90f78397b6f92a1861e89b61b3c7ad1b" name="a90f78397b6f92a1861e89b61b3c7ad1b"></a>
@@ -191,7 +192,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00075">75</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00084">84</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
 
 </div>
 </div>
@@ -230,7 +231,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00087">87</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00093">93</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
 
 </div>
 </div>
@@ -269,7 +270,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00099">99</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00102">102</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
 
 </div>
 </div>
@@ -289,7 +290,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00005">5</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00006">6</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
 
 </div>
 </div>
@@ -319,7 +320,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00029">29</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00030">30</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
 
 </div>
 </div>
@@ -339,12 +340,42 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00064">64</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00073">73</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
+
+</div>
+</div>
+<a id="a08f2265cf5362195b3987cc062e3e619" name="a08f2265cf5362195b3987cc062e3e619"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08f2265cf5362195b3987cc062e3e619">&#9670;&#160;</a></span>FGetAlarmSensorList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FGetAlarmSensorList </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structALARM.html">ALARM</a> *&#160;</td>
+          <td class="paramname"><em>palarm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvstate</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00116">116</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
 
 </div>
 </div>
 <a id="afdc8eda1e43ef9599551cad245eabff9" name="afdc8eda1e43ef9599551cad245eabff9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afdc8eda1e43ef9599551cad245eabff9">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afdc8eda1e43ef9599551cad245eabff9">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -372,7 +403,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ac06ff1c4decf1c082e1f87ee46353557" name="ac06ff1c4decf1c082e1f87ee46353557"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac06ff1c4decf1c082e1f87ee46353557">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac06ff1c4decf1c082e1f87ee46353557">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -399,36 +430,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a91dacaefbc3f37d6be02049773eab7dc" name="a91dacaefbc3f37d6be02049773eab7dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91dacaefbc3f37d6be02049773eab7dc">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/8]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/alarm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">FGetAlarmSensorList__FP5ALARMPv&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a53e4e569da1e384268018a0060fdc38a" name="a53e4e569da1e384268018a0060fdc38a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53e4e569da1e384268018a0060fdc38a">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[4/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a53e4e569da1e384268018a0060fdc38a">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -456,7 +459,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a7a1b82f8a013e89d2cf69c7b5d8bb763" name="a7a1b82f8a013e89d2cf69c7b5d8bb763"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a1b82f8a013e89d2cf69c7b5d8bb763">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[5/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a1b82f8a013e89d2cf69c7b5d8bb763">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[4/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -484,7 +487,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="aa4b2076e9f3f27849464026adddc6da5" name="aa4b2076e9f3f27849464026adddc6da5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4b2076e9f3f27849464026adddc6da5">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[6/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4b2076e9f3f27849464026adddc6da5">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[5/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -512,7 +515,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a61986dfbcd83e503f99249e0cd99e874" name="a61986dfbcd83e503f99249e0cd99e874"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61986dfbcd83e503f99249e0cd99e874">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[7/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a61986dfbcd83e503f99249e0cd99e874">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[6/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -540,7 +543,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="aa04864ab8f125781371618a8484752f8" name="aa04864ab8f125781371618a8484752f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa04864ab8f125781371618a8484752f8">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[8/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa04864ab8f125781371618a8484752f8">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[7/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -583,7 +586,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00020">20</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00021">21</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
 
 </div>
 </div>
@@ -661,7 +664,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00015">15</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00016">16</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
 
 </div>
 </div>
@@ -691,7 +694,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00042">42</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="alarm_8c_source.html#l00043">43</a> of file <a class="el" href="alarm_8c_source.html">alarm.c</a>.</p>
 
 </div>
 </div>

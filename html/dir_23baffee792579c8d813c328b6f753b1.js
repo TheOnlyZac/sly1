@@ -1,7 +1,7 @@
 var dir_23baffee792579c8d813c328b6f753b1 =
 [
     [ "bif.h", "bif_8h.html", "bif_8h" ],
-    [ "eval.h", "eval_8h.html", null ],
+    [ "eval.h", "eval_8h.html", "eval_8h" ],
     [ "frame.h", "frame_8h.html", "frame_8h" ],
     [ "gc.h", "gc_8h.html", "gc_8h" ],
     [ "method.h", "method_8h.html", "method_8h" ],

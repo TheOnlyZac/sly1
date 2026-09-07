@@ -9,7 +9,13 @@ var so_8h =
       [ "CT_Project", "so_8h.html#a8a069ba1438df5dc275fdd4e27359402a5b5d327ab9af8178cc95a27844402cd1", null ],
       [ "CT_Locked", "so_8h.html#a8a069ba1438df5dc275fdd4e27359402aeb9f34b976038bdd8952f01651874526", null ]
     ] ],
-    [ "EGK", "so_8h.html#ac0d63429778aee1ff8bde7d41d0340a9", null ],
+    [ "EGK", "so_8h.html#ac0d63429778aee1ff8bde7d41d0340a9", [
+      [ "EGK_Nil", "so_8h.html#ac0d63429778aee1ff8bde7d41d0340a9a9bcbb22386e8c20c4cb210a65167dc76", null ],
+      [ "EGK_Inherit", "so_8h.html#ac0d63429778aee1ff8bde7d41d0340a9a82cc77b86908e1a68eb54b2be22df384", null ],
+      [ "EGK_Yes", "so_8h.html#ac0d63429778aee1ff8bde7d41d0340a9ac661c19ce18771bfb33852080fff56fa", null ],
+      [ "EGK_No", "so_8h.html#ac0d63429778aee1ff8bde7d41d0340a9a0729192d80f1ed8f97b9afd7d76bc2b2", null ],
+      [ "EGK_Max", "so_8h.html#ac0d63429778aee1ff8bde7d41d0340a9a64bfac717abbb2362fc9928a0bf9d5d1", null ]
+    ] ],
     [ "FSO", "so_8h.html#a348162739dfc6455b73b853a0ffc3915", [
       [ "FSO_FindChild", "so_8h.html#a348162739dfc6455b73b853a0ffc3915a78d4dc8a9d44014ba1e3add8fd118fe2", null ],
       [ "FSO_FindImmediateChild", "so_8h.html#a348162739dfc6455b73b853a0ffc3915a6a6d9ddfa36bf41fd61aaa71f9a29328", null ],

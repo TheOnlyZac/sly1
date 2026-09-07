@@ -46,7 +46,7 @@ var searchData=
   ['search_5fval_43',['search_val',['../structLevelTableStruct.html#a98d230850b483e0ec6caf75d7c0d58fc',1,'LevelTableStruct']]],
   ['sedge_44',['sEdge',['../structHP.html#a8dfc870911155c034771792e01081b93',1,'HP']]],
   ['sema_45',['sema',['../structCRITSECT.html#a356c4707646513e1b11efde61f0f2d2c',1,'CRITSECT']]],
-  ['semaphoreid_46',['semaphoreId',['../structMEMCARD.html#a7a51bc324515c42bec038fd074c8f462',1,'MEMCARD']]],
+  ['semaid_46',['semaId',['../structMEMCARD.html#ab0709572494623d89dc06e86fc63ed1d',1,'MEMCARD']]],
   ['sensors_47',['sensors',['../structSENSOR.html#a7e3a4e21af5446344b58e72c3baaaefe',1,'SENSOR']]],
   ['serve_48',['serve',['../struct__sif__client__data.html#a8e6a462ab6a248ea013b2bddcb8444c9',1,'_sif_client_data']]],
   ['sf_49',['sf',['../structDZ.html#abd4e4353b0be3c70bab1f6b472aedf43',1,'DZ']]],

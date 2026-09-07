@@ -146,6 +146,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ac415e46bb5e61bad5f678d063bd77f2a" id="r_ac415e46bb5e61bad5f678d063bd77f2a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eekernel_8h.html#ac415e46bb5e61bad5f678d063bd77f2a">CreateThread</a> (struct <a class="el" href="structThreadParam.html">ThreadParam</a> *tparam)</td></tr>
 <tr class="memdesc:ac415e46bb5e61bad5f678d063bd77f2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new thread.  <br /></td></tr>
 <tr class="separator:ac415e46bb5e61bad5f678d063bd77f2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaef4e0d55495f3068fcc28e05fab32f" id="r_acaef4e0d55495f3068fcc28e05fab32f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eekernel_8h.html#acaef4e0d55495f3068fcc28e05fab32f">StartThread</a> (int tid, unsigned long arg)</td></tr>
+<tr class="memdesc:acaef4e0d55495f3068fcc28e05fab32f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the given thread.  <br /></td></tr>
+<tr class="separator:acaef4e0d55495f3068fcc28e05fab32f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad794bf24bd9def7a20bf0d12d27d1e36" id="r_ad794bf24bd9def7a20bf0d12d27d1e36"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eekernel_8h.html#ad794bf24bd9def7a20bf0d12d27d1e36">GetThreadId</a> ()</td></tr>
 <tr class="memdesc:ad794bf24bd9def7a20bf0d12d27d1e36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the ID of the calling thread.  <br /></td></tr>
 <tr class="separator:ad794bf24bd9def7a20bf0d12d27d1e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -388,6 +391,43 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Semaphore ID on success, -1 on failure </dd></dl>
+
+</div>
+</div>
+<a id="acaef4e0d55495f3068fcc28e05fab32f" name="acaef4e0d55495f3068fcc28e05fab32f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaef4e0d55495f3068fcc28e05fab32f">&#9670;&#160;</a></span>StartThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int StartThread </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start the given thread. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tid</td><td>Thread id. </td></tr>
+    <tr><td class="paramname">arg</td><td>User data. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

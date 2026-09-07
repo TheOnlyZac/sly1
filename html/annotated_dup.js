@@ -231,6 +231,8 @@ var annotated_dup =
     [ "HOLOGRAM", "structHOLOGRAM.html", "structHOLOGRAM" ],
     [ "HOVER_TANK", "classHOVER__TANK.html", null ],
     [ "HP", "structHP.html", "structHP" ],
+    [ "HPNT", "structHPNT.html", null ],
+    [ "HSHAPE", "structHSHAPE.html", null ],
     [ "IK_HANDLE", "classIK__HANDLE.html", null ],
     [ "IKH", "structIKH.html", null ],
     [ "JLO", "structJLO.html", null ],

@@ -10,5 +10,6 @@ var searchData=
   ['sndcommandreturndefptr_7',['SndCommandReturnDefPtr',['../989snd_8c.html#a9d5aac3df34c139ae69e879eb5383650',1,'989snd.c']]],
   ['sndcompleteproc_8',['SndCompleteProc',['../989snd_8h.html#a8bbf878be405472b8284460cb4b7144e',1,'989snd.h']]],
   ['sndmessagedataptr_9',['SndMessageDataPtr',['../989snd_8c.html#a2ed58cb6c66ae60d390f3323c9409fe3',1,'989snd.c']]],
-  ['soundbankptr_10',['SoundBankPtr',['../989snd_8h.html#a4c8c7bd9ecaab9048b4fb4636af2929f',1,'989snd.h']]]
+  ['soundbankptr_10',['SoundBankPtr',['../989snd_8h.html#a4c8c7bd9ecaab9048b4fb4636af2929f',1,'989snd.h']]],
+  ['symid_11',['SYMID',['../frame_8h.html#aff15d3fa5df1cea21a9abfefe35e135f',1,'frame.h']]]
 ];

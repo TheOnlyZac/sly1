@@ -20,5 +20,6 @@ var shadow_8c =
     [ "SetShadowFarRadius", "shadow_8c.html#a7bb252344b569a1d37b5c22dad5b1336", null ],
     [ "SetShadowNearCast", "shadow_8c.html#a663388b9e5a9ad7ba62b560fb69ae076", null ],
     [ "SetShadowNearRadius", "shadow_8c.html#abe9ce06df045d6d7be996e7f9bf4a15e", null ],
-    [ "SetShadowShader", "shadow_8c.html#a0ae9f641ee042410976dc314a931f68a", null ]
+    [ "SetShadowShader", "shadow_8c.html#a0ae9f641ee042410976dc314a931f68a", null ],
+    [ "DW_Fade", "shadow_8c.html#af7fabdc56a96fdd12a071ce050ef940b", null ]
 ];
