@@ -2,6 +2,9 @@
 #include <shd.h>
 #include <gcc/math.h>
 
+// .data
+float DW_Fade = 50.0f;
+
 INCLUDE_ASM("asm/nonmatchings/P2/shadow", InitShadow__FP6SHADOW);
 
 INCLUDE_ASM("asm/nonmatchings/P2/shadow", PostShadowLoad__FP6SHADOW);

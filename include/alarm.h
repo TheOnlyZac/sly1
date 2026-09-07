@@ -53,18 +53,18 @@ struct ALARM : public SO
     float dtReset;
     /* 0x564 */ int calbrks;       // count of breakables
     /* 0x568 */ OID aoidAlbrks[4]; // array of breakable OIDs
-    int coidSensors;
-    OID aoidSensors[16];
-    int cpsensors;
-    SENSOR *apsensors[16];
-    int coidStepguards;
-    OID aoidStepguards[6];
-    int calbrksDisabled;
+    /* 0x578 */ int coidSensors;
+    /* 0x57c */ OID aoidSensors[16];
+    /* 0x5bc */ int cpsensors;
+    /* 0x5c0 */ SENSOR *apsensors[16];
+    /* 0x600 */ int coidStepguards;
+    /* 0x604 */ OID aoidStepguards[6];
+    /* 0x61c */ int calbrksDisabled;
     AMB *pambSiren;
     EXC *pexc;
     int fSilent;
-    int crsmg;
-    RSMG arsmg[8];
+    /* 0x62c */ int crsmg;
+    /* 0x630 */ RSMG arsmg[8];
     /* 0x6b0 */ int ichkDisabled;
 };
 

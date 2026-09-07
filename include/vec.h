@@ -11,8 +11,8 @@
 struct SO;
 
 /**
- * @brief Vector3 with X, Y, and Z
- * @todo This probably needs to be 16-byte aligned?
+ * @brief Vector3 with X, Y, and Z.
+ * @todo This should be 16 bytes in size.
  */
 struct VECTOR
 {

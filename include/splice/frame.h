@@ -9,6 +9,8 @@
 // Forward.
 class CRef;
 
+typedef uint SYMID;
+
 class CFrame
 {
 private:
@@ -19,10 +21,10 @@ private:
 public:
     void SetSingleParent(CFrame *pframeParent);
     void AddParent(CFrame *pframeParent);
-    CFrame *RefAddBinding(int symid, CRef * pref);
-    CFrame *RefSetBinding(int symid, CRef *pref);
-    int FFindBinding(int symid, int fRecursive, CRef *pref);
-    CRef *PrefFindBinding(int symid, int fRecursive);
+    CFrame *RefAddBinding(SYMID symid, CRef *pref);
+    CFrame *RefSetBinding(SYMID symid, CRef *pref);
+    int FFindBinding(SYMID symid, int fRecursive, CRef *pref);
+    CRef *PrefFindBinding(SYMID symid, int fRecursive);
     void CloneTo(CFrame *pframeClone);
 };
 

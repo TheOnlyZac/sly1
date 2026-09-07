@@ -391,8 +391,8 @@ _t18CStructTypeFactory1Z3SMP$s_slotheap     = 0x62C598; // size:0x10
 
 ////////////////////////////////////////////////////////////////
 // P2/989snd.c
-////////////////////////////////////////////////////////////////
 // Unmangled names were in the header with extern "C"
+////////////////////////////////////////////////////////////////
 snd_StartSoundSystem = 0x0011cbb8; //type:func size:632
 snd_FlushSoundCommands = 0x0011ce30; //type:func size:556
 junk_0x0011d060 = 0x0011d060; //type:func size:24
@@ -1607,6 +1607,7 @@ FUN_0014cd70                     = 0x14CD70; // type:func
 FUN_0014cdc8                     = 0x14CDC8; // type:func
 handle_crbrain_message           = 0x14CF30; // type:func
 
+// .sbss
 DAT_0027c008 = 0x27C008; // size:0x4
 
 
@@ -1674,6 +1675,7 @@ SetDartDarts__FP4DART5DARTS                   = 0x14F110; // type:func
 ApplyDartThrow__FP4DARTP2PO                   = 0x14F168; // type:func
 UpdateDartAirborne__FP4DARTf                  = 0x14F270; // type:func
 
+// .data
 s_asnipDart = 0x261CC8;
 
 
@@ -1740,6 +1742,7 @@ OnDifficultyCollectKey__FP10DIFFICULTY = 0x151FC8; // type:func
 OnDifficultyBreak = 0x152010; // type:func
 ChangeSuck__FfP10DIFFICULTY = 0x152410; // type:func
 
+// .data
 g_difficultyMedium = 0x261d70; // size:0x5c
 g_difficultyHard = 0x261e30; // size:0x5c
 g_difficultyEasy = 0x261e90; // size:0x5c
@@ -1763,6 +1766,7 @@ FIsDlEmpty__FP2DL = 0x152720; // type:func
 MergeDl__FP2DLT0 = 0x152730; // type:func
 CPvDl__FP2DL = 0x1527D8; // type:func
 
+// .sbss
 s_pdliFirst = 0x27B314; // size:0x4
 
 
@@ -1791,8 +1795,10 @@ EndDmaCnt__4DMAS = 0x152D70; // type:func
 EndPrim__4DMASi = 0x152E18; // type:func
 junk_00152E20 = 0x152E20; // type:func
 
+// .rodata
 _vt$4DMAS = 0x24A0E0; // size:0x10
 
+// .data
 g_pdcVif0 = 0x261f14; // size:0x4
 g_pdcVif1 = 0x261f18; // size:0x4
 g_pdcGif = 0x261f1c; // size:0x4
@@ -2228,6 +2234,9 @@ DrawGlob__FP3RPL                                 = 0x166690; // type:func
 glob__static_initialization_and_destruction_0    = 0x167D20; // type:func
 _GLOBAL_$I$g_dro                                 = 0x167D48; // type:func
 
+// .data
+g_iqwBase = 0x262474; // size:0xc
+
 
 ////////////////////////////////////////////////////////////////
 // P2/gomer.c
@@ -2276,6 +2285,17 @@ PropagateSurs__Fv = 0x169718; // type:func
 PqwVifsBitmapUpload__Fi = 0x169780; // type:func
 DrawOnBitmap__FP3BMPP4GIFS = 0x169B18; // type:func
 
+// .data
+g_clatchOdev    = 0x262480; // size:0x4
+g_ilatchOdev    = 0x262484; // size:0x4
+g_db            = 0x262490; // size:0x230
+g_cframeDisplay = 0x2626c0; // size:0x4
+g_odevDraw      = 0x2626c4; // size:0x4
+g_odevDisplay   = 0x2626c8; // size:0x4
+g_vbact         = 0x2626cc; // size:0x4
+g_csur          = 0x2626d0; // size:0x4
+g_gsbMove       = 0x2626d8; // size:0x10
+
 
 ////////////////////////////////////////////////////////////////
 // P2/hide.c
@@ -2308,6 +2328,7 @@ CdartStuckHbsk__FP4HBSK                        = 0x16A758; // type:func
 PdartOldestHbskStuck__FP4HBSK                  = 0x16A820; // type:func
 GetHbskClosestHidePos__FP4HBSKP6VECTORPf       = 0x16A910; // type:func
 
+// .data
 g_dlHshape = 0x2626E8; // size:0xc
 g_dlHpnt   = 0x2626F8; // size:0xc
 g_dlHbsk   = 0x262708; // size:0xc
@@ -2320,6 +2341,7 @@ InitHnd__FP3HND                             = 0x16C470; // type:func
 LoadHndFromBrx__FP3HNDP18CBinaryInputStream = 0x16C4B8; // type:func
 junk_0016c4d8                               = 0x16C4D8; // type:func
 
+// .rodata
 D_0024A7DC = 0x24A7DC; // size:0x4
 
 
@@ -2799,7 +2821,7 @@ InitMemcard__FP7MEMCARD              = 0x18B5C0; // type:func
 FUN_0018b600__Fv                     = 0x18B600; // type:func
 CreateMemcardThread__FP7MEMCARDii    = 0x18B670; // type:func
 SetMemcardThreadHighPrio__FP7MEMCARD = 0x18B720; // type:func
-FCheckMemcardThread__FP7MEMCARD      = 0x18B770; // type:func
+FMemcardThreadValid__FP7MEMCARD      = 0x18B770; // type:func
 FUN_0018b780                         = 0x18B780; // type:func
 FUN_0018b910__Fi                     = 0x18B910; // type:func
 FUN_0018b930__Fi                     = 0x18B930; // type:func
@@ -2822,7 +2844,7 @@ FUN_0018c7f8__FP4SAVE                = 0x18C7F8; // type:func
 FUN_0018c888                         = 0x18C888; // type:func
 FUN_0018c9c0                         = 0x18C9C0; // type:func
 FUN_0018ca10                         = 0x18CA10; // type:func
-load_sly_icon_from_disc              = 0x18CDF8; // type:func
+load_sly_icon_from_disc              = 0x18CBF8; // type:func
 load_file_from_disc                  = 0x18CC20; // type:func
 FUN_0018cdd8                         = 0x18CDD8; // type:func
 FUN_0018cfc0                         = 0x18CFC0; // type:func
@@ -3294,9 +3316,6 @@ DrawSw__FP2SWP2CM                 = 0x19DC98; // type:func
 FillScreenRect__FiiiiffffP4GIFS   = 0x19DDA0; // type:func
 StartupRender__Fv                 = 0x19DF48; // type:func
 
-// TODO: Does this belong here?
-g_iqwBase = 0x262474; // size:0xc
-
 g_vecScreenMultiply = 0x26abf0; // size:0x10
 g_vecScreenAdd      = 0x26ac00; // size:0x10
 g_prplCur           = 0x26ac10; // size:0x10
@@ -3517,7 +3536,7 @@ DAT_0026c3dc = 0x26C3DC;
 // P2/rwm.c
 ////////////////////////////////////////////////////////////////
 InitRwm__FP3RWM                         = 0x1A7FE8; // type:func
-OnRwmRemove                             = 0x1A80E0; // type:func
+OnRwmRemove__FP3RWM                     = 0x1A80E0; // type:func
 FUN_001a8110                            = 0x1A8110; // type:func
 FUN_001a8150                            = 0x1A8150; // type:func
 InitRwmCallback__FP3RWM5MSGIDPv         = 0x1A8208; // type:func
@@ -3760,6 +3779,9 @@ DrawShadow__FP6SHADOW                       = 0x1B2640; // type:func
 FShadowIntersectsSphere__FP6SHADOWP6VECTORf = 0x1B26F8; // type:func
 FindSwShadows__FP2SWP6VECTORfiPiPP6SHADOW   = 0x1B2790; // type:func
 
+// .data
+DW_Fade = 0x2744f0; // size:0x4
+
 
 ////////////////////////////////////////////////////////////////
 // P2/shape.c
@@ -3796,6 +3818,7 @@ SetSaiDuDv__FP3SAIff                           = 0x1B4750; // type:func
 PropagateSais__Fv                              = 0x1B47C0; // type:func
 UpdateShaders__Ff                              = 0x1B4878; // type:func
 
+// .data
 g_cshd                    = 0x2744f8; // size:0x4
 g_ashd                    = 0x2744fc; // size:0x4
 g_cbmp                    = 0x274500; // size:0x4
@@ -4464,19 +4487,19 @@ PostJtLoadZap__FP2JT                      = 0x1D4848; // type:func
 PresetJtAccelZap__FP2JT                   = 0x1D48E8; // type:func
 UpdateJtZap__FP2JT                        = 0x1D4A98; // type:func
 FUN_001d4c90                              = 0x1D4C90; // type:func
-FUN_001d4c98                              = 0x1D4C98; // type:func
+FUN_001d4c98__FP2JT                       = 0x1D4C98; // type:func
 FTakeJtDamage__FP2JTP3ZPR                 = 0x1D4D08; // type:func
-FUN_001d51a0                              = 0x1D51A0; // type:func
-FUN_001d5398                              = 0x1D5398; // type:func
-FUN_001d5418                              = 0x1D5418; // type:func
-FUN_001d5468                              = 0x1D5468; // type:func
+FUN_001d51a0__FP2JT                       = 0x1D51A0; // type:func
+FUN_001d5398__FP2JT                       = 0x1D5398; // type:func
+FUN_001d5418__FP2JT                       = 0x1D5418; // type:func
+FUN_001d5468__FP2JT                       = 0x1D5468; // type:func
 FUN_001d54e0                              = 0x1D54E0; // type:func
 FUN_001d5620                              = 0x1D5620; // type:func
 SgnCmpSpkn__FPCvT0                        = 0x1D5650; // type:func
 DrawHaloSpks__FP6VECTORiP4SPKSP4SPKDP3RPL = 0x1D5678; // type:func
 DrawJtHaloElectric__FP3RPL                = 0x1D5FA8; // type:func
 DrawJtHaloFire__FP3RPL                    = 0x1D60B0; // type:func
-FUN_001d61c8                              = 0x1D61C8; // type:func
+FUN_001d61c8__FP3RPL                      = 0x1D61C8; // type:func
 RenderJtSelfZap__FP2JTP2CMP2RO            = 0x1D62E0; // type:func
 JthsCurrentJt__FP2JT                      = 0x1D65D8; // type:func
 UseJtCharm__FP2JT                         = 0x1D6608; // type:func
@@ -5152,6 +5175,7 @@ rand = 0x1F6708; // type:func
 // klib.s
 ////////////////////////////////////////////////////////////////
 CreateThread = 0x1F6A10; // type:func
+StartThread = 0x1F6A20; // type:func
 ChangeThreadPriority = 0x1F6A50; // type:func
 GetThreadId = 0x1F6A90; // type:func
 CreateSema = 0x1F6B20; // type:func
@@ -5278,7 +5302,7 @@ fmodf = 0x2058a0; // type:func
 ////////////////////////////////////////////////////////////////
 // libmc.c
 ////////////////////////////////////////////////////////////////
-mcInit__Fv = 0x2093F0; // type:func
+sceMcInit = 0x2093F0; // type:func
 
 
 ////////////////////////////////////////////////////////////////

@@ -7,6 +7,7 @@
 #define SKY_H
 
 #include "common.h"
+#include <alo.h>
 
 /**
  * @class SKY
@@ -14,7 +15,7 @@
  *
  * @todo Fill out the structure.
  */
-struct SKY
+struct SKY : public ALO
 {
     // ...
 };

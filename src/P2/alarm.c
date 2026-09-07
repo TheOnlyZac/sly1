@@ -1,6 +1,7 @@
 #include <alarm.h>
 #include <chkpnt.h>
 #include <button.h>
+#include <spliceobj.h>
 
 void BreakAlbrk(ALBRK *palbrk)
 {
@@ -20,17 +21,17 @@ void SetAlbrkAlarm(ALBRK *palbrk, ALARM *palarm)
 void InitAlarm(ALARM *palarm)
 {
     InitSo(palarm);
-    STRUCT_OFFSET(palarm, 0x550, ALARMS) = ALARMS_Nil; // palarm->alarms
-    STRUCT_OFFSET(palarm, 0x6b0, int) = IchkAllocChkmgr(&g_chkmgr); // palarm->ichkDisabled
+    palarm->alarms = ALARMS_Nil;
+    palarm->ichkDisabled = IchkAllocChkmgr(&g_chkmgr);
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/alarm", PostAlarmLoad__FP5ALARM);
 
 void CloneAlarm(ALARM *palarm, ALARM *palarmBase)
 {
-    int ichkDisabled = STRUCT_OFFSET(palarm, 0x6b0, int); // palarm->ichkDisabled
+    int ichkDisabled = palarm->ichkDisabled;
     CloneSo(palarm, palarmBase);
-    STRUCT_OFFSET(palarm, 0x6b0, int) = ichkDisabled; // palarm->ichkDisabled
+    palarm->ichkDisabled = ichkDisabled;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/alarm", UpdateAlarm__FP5ALARMf);
@@ -46,16 +47,24 @@ void TriggerAlarm(ALARM *palarm, ALTK altk)
     switch (altk)
     {
         case ALTK_Trigger:
+        {
             alarms = ALARMS_Triggered;
             break;
+        }
         case ALTK_Untrigger:
+        {
             alarms = ALARMS_Enabled;
             break;
+        }
         case ALTK_Disable:
+        {
             alarms = ALARMS_Disabled;
             break;
+        }
         default:
+        {
             return;
+        }
     }
 
     SetAlarmAlarms(palarm, alarms);
@@ -63,7 +72,7 @@ void TriggerAlarm(ALARM *palarm, ALTK altk)
 
 void DisableAlarmAlbrk(ALARM *palarm)
 {
-    STRUCT_OFFSET(palarm, 0x61c, int)++; // palarm->calbrksDisabled
+    palarm->calbrksDisabled++;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/alarm", EnableAlarmSensors__FP5ALARM);
@@ -74,44 +83,45 @@ INCLUDE_ASM("asm/nonmatchings/P2/alarm", NotifyAlarmSensorsOnTrigger__FP5ALARM);
 
 void AddAlarmAlbrk(ALARM *palarm, OID oid)
 {
-    uint calbrks = STRUCT_OFFSET(palarm, 0x564, int); // palarm->calbrks
-
-    if (calbrks < 4) // Max 4 breakable alarms
+    if ((uint)palarm->calbrks < 4) // Max 4 breakable alarms
     {
         // Add new breakable object ID to the list
-        STRUCT_OFFSET_INDEX(palarm, 0x568, OID, calbrks) = oid; // palarm->aoidAlbrks[calbrks]
-        STRUCT_OFFSET(palarm, 0x564, int) = calbrks + 1;        // palarm->calbrks
+        palarm->aoidAlbrks[palarm->calbrks++] = oid;
     }
 }
 
 void AddAlarmSensor(ALARM *palarm, OID oid)
 {
-    uint coidSensors = STRUCT_OFFSET(palarm, 0x578, int); // palarm->coidSensors
-
-    if (coidSensors < 16) // Max 16 sensors
+    if ((uint)palarm->coidSensors < 16) // Max 16 sensors
     {
         // Add new sensor object ID to the list
-        STRUCT_OFFSET_INDEX(palarm, 0x57c, OID, coidSensors) = oid; // palarm->aoidSensors[coidSensors]
-        STRUCT_OFFSET(palarm, 0x578, int) = coidSensors + 1; // palarm->coidSensors
+        palarm->aoidSensors[palarm->coidSensors++] = oid;
     }
 }
 
 void AddAlarmStepguard(ALARM *palarm, OID oid)
 {
-    uint coidStepguards = STRUCT_OFFSET(palarm, 0x600, int); // palarm->coidStepguards
-
-    if (coidStepguards < 6) // Max 6 stepguards
+    if ((uint)palarm->coidStepguards < 6) // Max 6 stepguards
     {
         // Add new stepguard object ID to the list
-        STRUCT_OFFSET_INDEX(palarm, 0x604, OID, coidStepguards) = oid; // palarm->aoidStepguards[coidStepguards]
-        STRUCT_OFFSET(palarm, 0x600, int) = coidStepguards + 1; // palarm->coidStepguards
+        palarm->aoidStepguards[palarm->coidStepguards++] = oid;
     }
 }
 
 void SetAlarmRsmg(ALARM *palarm, int fOnTrigger, OID oidRoot, OID oidSM, OID oidGoal)
 {
-    // palarm->arsmg & palarm->crsmg
-    FAddRsmg(&STRUCT_OFFSET(palarm, 0x630, RSMG), 8, &STRUCT_OFFSET(palarm, 0x62c, int), fOnTrigger, oidRoot, oidSM, oidGoal);
+    FAddRsmg(palarm->arsmg, 8, &palarm->crsmg, fOnTrigger, oidRoot, oidSM, oidGoal);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alarm", FGetAlarmSensorList__FP5ALARMPv);
+int FGetAlarmSensorList(ALARM *palarm, void *pvstate)
+{
+    for (int i = 0; i < palarm->cpsensors; i++)
+    {
+        if (FAppendSpliceListElement(pvstate, &palarm->apsensors[i]) == 0)
+        {
+            return 0;
+        }
+    }
+
+    return 1;
+}

@@ -163,7 +163,7 @@ segments:
     - [0x86c18, c, P2/mark]
     - [0x894c0, c, P2/mat]
     - [0x8b388, c, P2/mb]
-    - [0x8c580, asm, P2/memcard]
+    - [0x8c580, c, P2/memcard]
     - [0x8e430, c, P2/memory]
     - [0x8e8e0, c, P2/missile]
     - [0x8f410, c, P2/mpeg]
@@ -295,10 +295,16 @@ segments:
     - [0x14aff8, rodata] # P2/dartgun Alignment issue, this should be 0x14b000.
     - [0x14b0e0, .rodata, P2/dmas]
     - [0x14b0f8, rodata]
+    #- [0x14b794, .rodata, P2/hide]
+    #- [0x14b7a0, .rodata, P2/hideout]
+    #- [0x14b7dc, .rodata, P2/hnd]
+    #- [0x14b7f0, .rodata, P2/jlo]
+    #- [0x14b848, .rodata, P2/joy]
+    #- [0x14b860, .rodata, P2/jt]
     - [0x14c1e8, .rodata, P2/main]
     - [0x14c258, rodata]
-    - [0x14E220, .rodata, P2/shdanim]
-    - [0x14E268, rodata]
+    - [0x14e220, .rodata, P2/shdanim]
+    - [0x14e268, rodata]
     #- [0x14e3b0, .rodata, P2/spire]
     #- [0x14e3c0, .rodata, P2/spliceobj]
     #- [0x14e560, .rodata, P2/squish] # TODO: Might be something else.
@@ -350,10 +356,7 @@ segments:
     - [0x162880, data, P2/cm]
     - [0x1629a0, data, P2/coin]
     - [0x162bf0, data, P2/cplcy]
-    #- [0x, data, P2/credit]
-    #- [0x, data, P2/crout]
-    #- [0x, data, P2/crusher]
-    #- [0x, data, P2/crv]
+    - [0x162c90, data, P2/crusher]
     - [0x162cc8, data, P2/dart]
     - [0x162ce0, data, P2/dartgun]
     - [0x162d08, data, P2/dialog]
@@ -364,26 +367,15 @@ segments:
     - [0x163180, data, P2/fly]
     - [0x163250, data, P2/font]
     - [0x163280, data, P2/frm]
-    #- [0x, data, P2/freeze]
-    #- [0x, data, P2/frzg]
     - [0x1633c0, data, P2/game]
-    #- [0x1633d8, data]
-
-    #- [0x, data, P2/geom]
-    #- [0x, data, P2/gifs]
-    #- [0x, data, P2/glbs]
-    #- [0x, data, P2/glob]
-    #- [0x, data, P2/gomer]
-    #- [0x, data, P2/gs]
-    #- [0x, data, P2/hide]
-    #- [0x, data, P2/hnd]
-    #- [0x, data, P2/ik]
-    #- [0x, data, P2/jlo]
+    - [0x1633e0, data, P2/glob]
+    - [0x163480, data, P2/gs]
+    - [0x1636e8, .data, P2/hide]
+    - [0x163718, data, P2/hideout]
+    - [0x1639c8, data, P2/jlo]
     - [0x163a30, data, P2/joy]
     - [0x163e10, data, P2/jt]
-    #- [0x163e40, data] # TBD
-
-    #- [0x, data, P2/jp]
+    - [0x1649c0, data, P2/jp]
     #- [0x164e34, data, P2/jsg] # TODO: Alignment issue.
     - [0x164e50, data, P2/jump]
     - [0x165098, data, P2/keyhole]
@@ -412,10 +404,9 @@ segments:
     - [0x16c530, data, P2/rip]
     - [0x16c778, data, P2/rog]
     #- [0x16d3dc, data, P2/rumble] # TODO: Alignment issue.
-    #- [0x, data, P2/rwm]
-    #- [0x, data, P2/screen]
+    #- [0x16d3ec, data, P2/screen] # TODO: Alignment issue.
     - [0x1754b8, data, P2/sensor]
-    - [0x1754f0, data, P2/shadow]
+    - [0x1754f0, .data, P2/shadow]
     - [0x1754f8, data, P2/shd]
     - [0x175568, data, P2/shdanim]
     - [0x175620, data, P2/smartguard]
@@ -476,6 +467,9 @@ segments:
     # - P2/cat
     # - P2/clip
     # - P2/cnvo
+    # - P2/credit
+    # - P2/crout
+    # - P2/crv
     # - P2/dl
     # - P2/dsp
     # - P2/dzg
@@ -484,6 +478,14 @@ segments:
     # - P2/UNKNOWN1
     # - P2/find
     # - P2/flash
+    # - P2/freeze
+    #-  P2/frzg
+    # - P2/geom
+    # - P2/gifs
+    # - P2/glbs
+    # - P2/gomer
+    # - P2/hnd
+    # - P2/ik
     # - P2/landing
     # - P2/lo
     # - P2/mat
@@ -492,6 +494,7 @@ segments:
     # - P2/prog
     # - P2/proxy
     # - P2/rail
+    # - P2/rwm
     # - P2/shape
     # - P2/sky
     # - P2/slotheap

@@ -9,7 +9,7 @@ extern JSGE s_jsge;
 void InitJsg(JSG *pjsg)
 {
     InitLo(pjsg);
-    pjsg->ajsge = (JSGE *)PvAllocSwImpl(0xa00);
+    pjsg->ajsge = (JSGE *)PvAllocSwImpl(128 * sizeof(JSGE));
     pjsg->unk3 = 1;
 }
 
@@ -30,14 +30,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/jsg", ReadJsgJoystick__FP3JSGP3JOY);
 int FIsJsgActive(JSG *pjsg)
 {
     UpdateJsgJsge(pjsg);
-
-    int fActive = 0;
-    if (pjsg->cjsge > 0)
-    {
-        fActive = pjsg->ijsgeCur < pjsg->cjsge;
-    }
-
-    return fActive;
+    return (pjsg->cjsge > 0 && pjsg->ijsgeCur < pjsg->cjsge);
 }
 
 void ClearJsg(JSG *pjsg)
@@ -96,35 +89,20 @@ void RetractJsg(JSG *pjsg)
     }
 }
 
-/**
- * @todo Objdiff reports a 100% match, but compiler seemingly
- * adds extra instructions?
- */
-INCLUDE_ASM("asm/nonmatchings/P2/jsg", PjsgeAllocJsg__FP3JSG5JSGEK3OIDi);
-#ifdef SKIP_ASM
 JSGE *PjsgeAllocJsg(JSG *pjsg, JSGEK jsgek, OID oid, int fAsync)
 {
-    JSGE *pjsge;
-    int cjsge = pjsg->cjsge;
-
-    if (cjsge < 0x80)
+    if (pjsg->cjsge >= 128)
     {
-        pjsg->cjsge = cjsge + 1;
-        pjsge = &pjsg->ajsge[cjsge];
-        memset(pjsge, 0, sizeof(JSGE));
-
-        pjsge->jsgek = jsgek;
-        pjsge->oid = oid;
-        pjsge->fAsync = fAsync;
-    }
-    else
-    {
-        pjsge = &s_jsge;
+        return &s_jsge;
     }
 
+    JSGE *pjsge = &pjsg->ajsge[pjsg->cjsge++];
+    memset(pjsge, 0, sizeof(JSGE));
+    pjsge->jsgek = jsgek;
+    pjsge->oid = oid;
+    pjsge->fAsync = fAsync;
     return pjsge;
 }
-#endif // SKIP_ASM
 
 void AddJsgContext(JSG *pjsg, OID oid)
 {

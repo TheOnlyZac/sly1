@@ -87,6 +87,14 @@ extern "C" {
     int CreateThread(struct ThreadParam *tparam);
 
     /**
+     * @brief Start the given thread.
+     *
+     * @param tid Thread id.
+     * @param arg User data.
+     */
+    int StartThread(int tid, unsigned long arg);
+
+    /**
      * @brief Get the ID of the calling thread.
      *
      * @return Thread ID

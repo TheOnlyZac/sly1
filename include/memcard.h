@@ -1,5 +1,6 @@
 /**
  * @file memcard.h
+ * @brief Memory Card access and save files.
  */
 #ifndef MEMCARD_H
 #define MEMCARD_H
@@ -7,11 +8,12 @@
 #include "common.h"
 
 /**
+ * @brief Memory Card.
  * @todo Incomplete.
  */
 struct MEMCARD
 {
-    /* 0x00 */ int semaphoreId;
+    /* 0x00 */ int semaId;
     /* 0x04 */ int threadId;
     /* 0x08 */ int field_0x08;
     /* 0x0c */ int field_0x0c;
@@ -32,6 +34,17 @@ struct SAVE
  * @brief Startup the memory card system.
  */
 void StartupMemcard();
+
+void InitMemcard(MEMCARD *pmemcard);
+
+// MemcardThreadEntry?
+void FUN_0018b600(void *data);
+
+void SetMemcardThreadHighPrio(MEMCARD *pmemcard);
+
+int FMemcardThreadValid(MEMCARD *pmemcard);
+
+void InitSave(SAVE *psave, int unk1, int unk2);
 
 void UpdateSave(SAVE *psave);
 

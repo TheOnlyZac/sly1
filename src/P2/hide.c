@@ -1,9 +1,9 @@
 #include <hide.h>
 #include <dl.h>
 
-extern DL g_dlHshape;
-extern DL g_dlHpnt;
-extern DL g_dlHbsk;
+DL g_dlHshape = {0};
+DL g_dlHpnt = {0};
+DL g_dlHbsk = {0};
 
 void StartupHide()
 {
@@ -12,13 +12,26 @@ void StartupHide()
     InitDl(&g_dlHbsk, 0x558);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", ResetHideList__Fv);
+void ResetHideList()
+{
+    ClearDl(&g_dlHshape);
+    ClearDl(&g_dlHpnt);
+    ClearDl(&g_dlHbsk);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", InitHshape__FP6HSHAPE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", OnHshapeAdd__FP6HSHAPE);
+void OnHshapeAdd(HSHAPE *phshape)
+{
+    OnLoAdd(phshape);
+    AppendDlEntry(&g_dlHshape, phshape);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", OnHshapeRemove__FP6HSHAPE);
+void OnHshapeRemove(HSHAPE *phshape)
+{
+    OnLoRemove(phshape);
+    RemoveDlEntry(&g_dlHshape, phshape);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", BindHshape__FP6HSHAPE);
 

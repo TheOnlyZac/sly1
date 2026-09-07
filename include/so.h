@@ -32,12 +32,16 @@ struct SURFX;
 typedef int GRFFSO;
 
 /**
- * @brief Unknown.
+ * @brief Edge Grab Kind.
  * @todo Does this belong here?
  */
 enum EGK
 {
-    // ...
+    EGK_Nil = -1,
+    EGK_Inherit = 0,
+    EGK_Yes = 1,
+    EGK_No = 2,
+    EGK_Max = 3,
 };
 
 /**

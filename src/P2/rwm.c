@@ -2,7 +2,7 @@
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", InitRwm__FP3RWM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rwm", OnRwmRemove);
+INCLUDE_ASM("asm/nonmatchings/P2/rwm", OnRwmRemove__FP3RWM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", FUN_001a8110);
 
