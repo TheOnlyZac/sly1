@@ -8,9 +8,15 @@ void InitCplcy(CPLCY *pcplcy, CM *pcm)
     pcplcy->pcm = pcm;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FActiveCplcy);
+int FActiveCplcy(CPLCY *pcplcy)
+{
+    return STRUCT_OFFSET(pcplcy->pcm, 0x3D8, CPLCY *) == pcplcy;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", SetCpmanCpmt);
+void SetCpmanCpmt(CPMAN *pcpman, CPMT cpmt)
+{
+    pcpman->cpmt = cpmt;
+}
 
 void FUN_001493c0(void)
 {
