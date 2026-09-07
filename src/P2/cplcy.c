@@ -10,7 +10,10 @@ void InitCplcy(CPLCY *pcplcy, CM *pcm)
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FActiveCplcy);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", SetCpmanCpmt);
+void SetCpmanCpmt(CPMAN *pcpman, CPMT cpmt)
+{
+    pcpman->cpmt = cpmt;
+}
 
 void FUN_001493c0(void)
 {

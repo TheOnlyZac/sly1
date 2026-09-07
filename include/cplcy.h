@@ -13,6 +13,8 @@
 
 void InitCplcy(CPLCY *pcplcy, CM *pcm);
 
+void SetCpmanCpmt(CPMAN *pcpman, CPMT cpmt);
+
 void PushCplookLookk(CPLOOK *pcplook, LOOKK lookk);
 
 LOOKK LookkPopCplook(CPLOOK *pcplook);
