@@ -1,5 +1,7 @@
 var NAVTREEINDEX41 =
 {
+"structRUMPAT.html#a14f65bb19249149ffc5de84477f73827":[9,0,361,1],
+"structRUMPAT.html#a5ac94ec16b9f4b1ad36e418142cade34":[9,0,361,0],
 "structRWAC.html":[9,0,362],
 "structRWC.html":[9,0,363],
 "structRWFI.html":[9,0,364],
@@ -247,7 +249,5 @@ var NAVTREEINDEX41 =
 "structSURF.html":[9,0,436],
 "structSURF.html#a11be7502902cefab190291ff93d2743b":[9,0,436,4],
 "structSURF.html#a6470e26bb83e814b454fc8ef8d7d5f48":[9,0,436,5],
-"structSURF.html#a822c5453b817864987fa73e610228141":[9,0,436,2],
-"structSURF.html#a8e5983b4418e1f66f031dc810c48a988":[9,0,436,3],
-"structSURF.html#a93b168f90dab5fc66925b3a7ce7fe08c":[9,0,436,0]
+"structSURF.html#a822c5453b817864987fa73e610228141":[9,0,436,2]
 };

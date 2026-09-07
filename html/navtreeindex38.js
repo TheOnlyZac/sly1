@@ -1,5 +1,7 @@
 var NAVTREEINDEX38 =
 {
+"structDZG.html#a12767d05003c6bc22b87fe554fa1937c":[9,0,170,1],
+"structDZG.html#a5b5ef0f13a59e385ffb68ca72f096de2":[9,0,170,0],
 "structDZG.html#a84015932158b4fb7ad8d591f2e715078":[9,0,170,9],
 "structDZG.html#a957eaa1287456b2767385eb6fbf3ef7d":[9,0,170,5],
 "structDZG.html#ab5d1c0b2137a335f4d26301c7e3f6d10":[9,0,170,10],
@@ -247,7 +249,5 @@ var NAVTREEINDEX38 =
 "structHOLOGRAM.html":[9,0,228],
 "structHOLOGRAM.html#a90500aa022587708bc1723f77f5c0bf6":[9,0,228,0],
 "structHOLOGRAM.html#ad2c0168dc010f22460c2ce1e4cd897f8":[9,0,228,2],
-"structHOLOGRAM.html#af62ee9877d863cca143cbb243ce08fda":[9,0,228,1],
-"structHP.html":[9,0,230],
-"structHP.html#a015a969e89bfbfde4fa158e8ac350c39":[9,0,230,1]
+"structHOLOGRAM.html#af62ee9877d863cca143cbb243ce08fda":[9,0,228,1]
 };

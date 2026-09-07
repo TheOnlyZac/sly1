@@ -1,5 +1,7 @@
 var NAVTREEINDEX44 =
 {
+"structVTTOTALS.html#ac2036f4da957866f6300b704fe841fce":[9,0,500,18],
+"structVTTOTALS.html#ac86beec95a702e798be82f149dd9d91b":[9,0,500,2],
 "structVTTOTALS.html#acb7ee9a8227f812b0d68a129ff1c203a":[9,0,500,15],
 "structVTTOTALS.html#acc7a19da0e952ca3969a03001b3e9d28":[9,0,500,8],
 "structVTTOTALS.html#adc40cd0d9f16a3d33688d72d5d8f111b":[9,0,500,5],
@@ -247,7 +249,5 @@ var NAVTREEINDEX44 =
 "structtD__CHCR.html#a181102048151dc0fe9351dbf9a2e70c1":[9,0,448,5],
 "structtD__CHCR.html#a203c48d3cdad9574a19de2e6f80d8a10":[9,0,448,6],
 "structtD__CHCR.html#a4608adafbd9db586e5b0e614a8a5e3b0":[9,0,448,2],
-"structtD__CHCR.html#a557a06b5e92a21ac2983bee8d52662fa":[9,0,448,3],
-"structtD__CHCR.html#a783e9298084ebcbcd8a07e891653c8df":[9,0,448,8],
-"structtD__CHCR.html#a8f0c3154a803d9ab3e2663d98dec05ae":[9,0,448,1]
+"structtD__CHCR.html#a557a06b5e92a21ac2983bee8d52662fa":[9,0,448,3]
 };
