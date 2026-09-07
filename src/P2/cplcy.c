@@ -3,7 +3,10 @@
  */
 #include <cplcy.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/cplcy", InitCplcy);
+void InitCplcy(CPLCY *pcplcy, CM *pcm)
+{
+    pcplcy->pcm = pcm;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cplcy", FActiveCplcy);
 

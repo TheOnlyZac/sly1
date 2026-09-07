@@ -11,6 +11,8 @@
 #include "common.h"
 #include <cm.h>
 
+void InitCplcy(CPLCY *pcplcy, CM *pcm);
+
 void PushCplookLookk(CPLOOK *pcplook, LOOKK lookk);
 
 LOOKK LookkPopCplook(CPLOOK *pcplook);
