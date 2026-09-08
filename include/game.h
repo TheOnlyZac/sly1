@@ -234,8 +234,7 @@ struct GAME
 
 /**
  * @brief Used to locate level data by its location on the disc.
- *
- * @todo verify unknown fields.
+ * @todo Verify unknown fields.
  */
 struct LevelLoadData
 {
@@ -263,11 +262,13 @@ void StartupGame();
 
 /**
  * @brief Finds the level data associated with a level ID.
+ * @todo Rename to better fit in with the naming convention.
  *
- * @param search_id Level ID to search for.
+ * @param id Level ID to search for.
+ * 
  * @return Pointer to the matching LevelLoadData, or NULL if no match is found.
  */
-extern "C" LevelLoadData *search_level_by_id(int search_id);
+LevelLoadData *search_level_by_id(int id);
 
 /**
  * @brief Gets the friendly name of a level from its world ID.
