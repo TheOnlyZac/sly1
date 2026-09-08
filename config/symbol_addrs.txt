@@ -2096,7 +2096,7 @@ StartupGame__Fv = 0x160070; // type:func
 
 junk_00160090 = 0x160090; // type:func
 search_level_by_load_data = 0x1600A0; // type:func
-search_level_by_id = 0x160110; // type:func
+search_level_by_id__Fi = 0x160110; // type:func
 PchzFriendlyFromWid = 0x160148; // type:func
 junk_00160178 = 0x160178; // type:func
 call_search_level_by_id = 0x160180; // type:func
@@ -3690,7 +3690,7 @@ g_unkblot6 = 0x26dfc8; // size:0x280
 g_unkblot7 = 0x26e248; // size:0x280
 g_unkblot8 = 0x26e4e0; // size:0x280
 g_unkblot9 = 0x26e760; // size:0x280
-g_note = 0x26e9f8; // size:0x280
+g_note = 0x26e9f8; // size:0x278
 g_unkblot11 = 0x26eed0; // size:0x268
 g_unkblot12 = 0x26ec70;
 g_totals = 0x26f138; // size:0x18

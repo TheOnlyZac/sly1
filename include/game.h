@@ -234,12 +234,21 @@ struct GAME
 
 /**
  * @brief Used to locate level data by its location on the disc.
- *
- * @todo implement
+ * @todo Verify unknown fields.
  */
 struct LevelLoadData
 {
-    // ...
+    uint unk_00;
+    uint unk_04;
+    uint unk_08;
+    uint unk_0C;
+    uint unk_10;
+    uint unk_14;
+    uint unk_18;
+    uint unk_1C;
+    int level_id;
+    const char *pchzFriendly;
+    uint unk_28;
 };
 
 extern const LevelLoadData *D_00247AB0[];
@@ -251,7 +260,15 @@ void StartupGame();
 
 // LevelLoadData * search_level_by_load_data(LevelLoadData *search_level);
 
-// LevelLoadData * search_level_by_id(int search_id);
+/**
+ * @brief Finds the level data associated with a level ID.
+ * @todo Rename to better fit in with the naming convention.
+ *
+ * @param id Level ID to search for.
+ * 
+ * @return Pointer to the matching LevelLoadData, or NULL if no match is found.
+ */
+LevelLoadData *search_level_by_id(int id);
 
 /**
  * @brief Gets the friendly name of a level from its world ID.

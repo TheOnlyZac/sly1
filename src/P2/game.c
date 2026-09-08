@@ -24,6 +24,7 @@
 // }
 
 extern WORLDLEVEL g_worldlevelPrev;
+extern LevelLoadData D_00247AF0[46];
 
 void StartupGame()
 {
@@ -36,7 +37,19 @@ JUNK_WORD(0x0000102D);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_load_data);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_id);
+LevelLoadData *search_level_by_id(int id)
+{
+    for (uint i = 0; i < sizeof(D_00247AF0) / sizeof(LevelLoadData); i++)
+    {
+        LevelLoadData *level = &D_00247AF0[i];
+        if (id == level->level_id)
+        {
+            return level;
+        }
+    }
+
+    return NULL;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", PchzFriendlyFromWid);
 
