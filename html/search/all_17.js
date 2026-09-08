@@ -13,7 +13,7 @@ var searchData=
   ['leaf_10',['LEAF',['../structLEAF.html',1,'']]],
   ['leavecritsect_11',['leavecritsect',['../thread_8c.html#ae971797adfaa0b33aea3607c30b79070',1,'LeaveCritSect(CRITSECT *pcritsect):&#160;thread.c'],['../thread_8h.html#ae971797adfaa0b33aea3607c30b79070',1,'LeaveCritSect(CRITSECT *pcritsect):&#160;thread.c']]],
   ['letterbox_12',['LETTERBOX',['../structLETTERBOX.html',1,'']]],
-  ['level_5fid_13',['level_id',['../structLevelTableStruct.html#ab770c285d9ffe19f8a476c32927a2be7',1,'LevelTableStruct']]],
+  ['level_5fid_13',['level_id',['../structLevelTableStruct.html#ab770c285d9ffe19f8a476c32927a2be7',1,'LevelTableStruct::level_id'],['../structLevelLoadData.html#a6b617e92ad30d1b4f2875454030e546e',1,'LevelLoadData::level_id']]],
   ['level_5fname_14',['level_name',['../structLevelTableStruct.html#a1640b396cc01f7cd358f91aea6cb76c0',1,'LevelTableStruct']]],
   ['levelloaddata_15',['LevelLoadData',['../structLevelLoadData.html',1,'']]],
   ['leveltablestruct_16',['LevelTableStruct',['../structLevelTableStruct.html',1,'']]],

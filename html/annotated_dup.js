@@ -256,7 +256,7 @@ var annotated_dup =
     [ "LBEAM", "structLBEAM.html", null ],
     [ "LEAF", "structLEAF.html", null ],
     [ "LETTERBOX", "structLETTERBOX.html", null ],
-    [ "LevelLoadData", "structLevelLoadData.html", null ],
+    [ "LevelLoadData", "structLevelLoadData.html", "structLevelLoadData" ],
     [ "LevelTableStruct", "structLevelTableStruct.html", "structLevelTableStruct" ],
     [ "LGN", "structLGN.html", "structLGN" ],
     [ "LGNR", "structLGNR.html", null ],

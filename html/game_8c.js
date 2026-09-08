@@ -21,7 +21,6 @@ var game_8c =
     [ "INCLUDE_ASM", "game_8c.html#a2d87b944dcd0e0cce5f07783eb3fdb00", null ],
     [ "INCLUDE_ASM", "game_8c.html#ab83da571b176d57098cc0b9dd5573566", null ],
     [ "INCLUDE_ASM", "game_8c.html#aced49380b535f1b72bc6bb246f381656", null ],
-    [ "INCLUDE_ASM", "game_8c.html#a72f81f2cb96aaf5c72bcffa33f7c28ee", null ],
     [ "INCLUDE_ASM", "game_8c.html#a5243a9ed9dcac9f65348d249a259ee6c", null ],
     [ "INCLUDE_ASM", "game_8c.html#ac27bd2885d6c29d308377283ed9471aa", null ],
     [ "INCLUDE_ASM", "game_8c.html#a22d536c2e906ca564d2a310ecf191a72", null ],
@@ -36,9 +35,11 @@ var game_8c =
     [ "OnGameAlarmTriggered", "game_8c.html#a30b5523f69b10f232623631b58b59196", null ],
     [ "PfLookupDialog", "game_8c.html#addff8991a071109561ee3e6cb5c7c6b5", null ],
     [ "RetryGame", "game_8c.html#a9ffd346929121e80c8cb81367e5d6ee9", null ],
+    [ "search_level_by_id", "game_8c.html#a1c3e3fb2803ba2bcce59de084bdf47cf", null ],
     [ "SetCcharm", "game_8c.html#ae767cb82bc0ca912bdd7ccfbc3f1fbc7", null ],
     [ "StartGame", "game_8c.html#a93ecb4242527b80e76b5e28209f67d2d", null ],
     [ "StartupGame", "game_8c.html#ac910d4646c5d3629c6c9ec83204c0a31", null ],
     [ "UpdateGameState", "game_8c.html#aaec7f89e5b3cd373f42793841d43fb06", null ],
+    [ "D_00247AF0", "game_8c.html#a65db5f18f376fa7c287c08aa3d21168d", null ],
     [ "g_worldlevelPrev", "game_8c.html#a5110e8feb17c806a58005fe6fc7fddb3", null ]
 ];

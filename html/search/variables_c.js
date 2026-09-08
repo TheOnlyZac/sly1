@@ -1,7 +1,7 @@
 var searchData=
 [
   ['label_0',['label',['../structJSGE.html#a8442c0d0c9c4cf4cf2297038897737c4',1,'JSGE']]],
-  ['level_5fid_1',['level_id',['../structLevelTableStruct.html#ab770c285d9ffe19f8a476c32927a2be7',1,'LevelTableStruct']]],
+  ['level_5fid_1',['level_id',['../structLevelLoadData.html#a6b617e92ad30d1b4f2875454030e546e',1,'LevelLoadData::level_id'],['../structLevelTableStruct.html#ab770c285d9ffe19f8a476c32927a2be7',1,'LevelTableStruct::level_id']]],
   ['level_5fname_2',['level_name',['../structLevelTableStruct.html#a1640b396cc01f7cd358f91aea6cb76c0',1,'LevelTableStruct']]],
   ['lhubnatural_3',['lhubNatural',['../structRCHM.html#aa5beefc48bef50728a89d0ced81e31e6',1,'RCHM']]],
   ['link_4',['link',['../struct__sif__serve__data.html#a06055699f5097cf8e986c18e95dfc178',1,'_sif_serve_data::link'],['../struct__sif__queue__data.html#af1cec8471a5cc9638d590be48e43e4bd',1,'_sif_queue_data::link']]],
