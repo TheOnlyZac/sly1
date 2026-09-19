@@ -1,5 +1,6 @@
 #include <splice/pair.h>
 #include <splice/splotheap.h>
+#include <splice/ref.h>
 #include <sce/memset.h>
 
 void CPair::CloneTo(CPair *ppairClone, CFrame *pframeClone)
@@ -14,20 +15,27 @@ void CPair::CloneTo(CPair *ppairClone, CFrame *pframeClone)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/pair", PpairNew__Fv);
-#ifdef SKIP_ASM
 /**
- * @todo 89.50% matched.
+ * Placement new without non-throwing decorator, which assumes unconditional success
+ * and forces the compiler to emit a call without any checks.
+ * @todo: should probably find a more generic/global place to put this?
  */
+inline void *operator new(uint, void *place)
+{
+    return place;
+}
+
 CPair *PpairNew()
 {
     CPair *ppair = (CPair *)g_splotheapPair.PvAllocClear();
-    memset(ppair, 0, 0xC);
-    CRef *pref = new CRef();
-    STRUCT_OFFSET(ppair, 0, int) = -1;
+    memset(ppair, 0, sizeof(CPair));
+
+    /* Initialize the cref with operator new */
+    new (ppair) CRef();
+    ppair->m_ref.m_tagk = TAGK_Nil;
+
     return ppair;
 }
-#endif
 
 void DeletePair(CPair *ppair)
 {
