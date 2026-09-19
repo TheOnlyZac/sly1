@@ -177,6 +177,7 @@ __8VU_FLOATf                    = 0x118CF0; // type:func
 __9VU_VECTORRC6VECTOR           = 0x118D10; // type:func
 __as__6VECTORG9VU_VECTOR        = 0x118D20; // type:func
 __ml__FG8VU_FLOATG9VU_VECTOR    = 0x118D30; // type:func
+g_BIFDispatchTable              = 0x259958; // size:0x48C
 
 
 ////////////////////////////////////////////////////////////////
@@ -199,8 +200,6 @@ RefEvalBegin__FP5CPairP6CFrame      = 0x119AF8; // type:func
 RefEvalApply__FP5CPairP6CFrame      = 0x119BB0; // type:func
 RefEvalImport__FP5CPairP6CFrame     = 0x119FA0; // type:func
 RefEval__FP5CPairP6CFrame           = 0x11A080; // type:func
-
-chzSpliceAssert                     = 0x249200; // size:0x10
 
 
 ////////////////////////////////////////////////////////////////
@@ -3003,7 +3002,7 @@ CollectMurrayPrize__FP6MURRAY3PCKP3ALO      = 0x1906F8; // type:func
 CheckMurrayStunOrDying__FP6MURRAY           = 0x190740; // type:func
 HandleMurrayMessage__FP6MURRAY5MSGIDPv      = 0x190770; // type:func
 
-D_00269B60 = 0x269B60;                              
+D_00269B60 = 0x269B60;
 
 
 ////////////////////////////////////////////////////////////////

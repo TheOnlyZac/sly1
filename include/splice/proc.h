@@ -16,14 +16,13 @@ class CPair;
  */
 class CProc
 {
-private:
+public:
     CFrame *m_pframe;
     CPair *m_ppair;
     int m_crefReq;
     int m_fVarArg;
     CPair *m_ppairCodeExpr;
 
-public:
     void CloneTo(CProc *pprocClone, CFrame *pframeClone);
 };
 

@@ -7,14 +7,16 @@
 #include "common.h"
 
 struct BASIC;
+class CRef;
 
 /**
  * @class CMethod
  */
 class CMethod
 {
+public:
     BASIC* m_pbasic;
-    void* m_pfnthunk; //todo: fix type?
+    CRef (*m_pfnthunk)(BASIC*, int, CRef*);
     int m_crefReq;
 };
 
