@@ -409,7 +409,7 @@ CRef RefEvalApply(CPair *ppair, CFrame *pframe)
     if (cref.m_tagk == TAGK_Bifk)
     {
         /* Built-in function */
-        pEntry = &g_BIFDispatchTable[cref.m_tag.m_bifk];
+        pEntry = &g_mpbifkbif[cref.m_tag.m_bifk];
         crefReq = pEntry->m_crefReq;
         fVarArg = pEntry->m_fVarArg;
     }
