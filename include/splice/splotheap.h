@@ -37,15 +37,8 @@ public:
     void FreeGarbage();
 };
 
-extern CSplotheap g_splotheapPair;
-extern CSplotheap g_splotheapFrame;
-extern CSplotheap g_splotheapUnk1;
-extern CSplotheap g_splotheapProc;
-extern CSplotheap g_splotheapMethod;
-
-static void *PvFromPsplot(SPLOT *psplot);
-static SPLOT *PsplotFromPv(void *pv);
 bool FIsPvGarbage(void *pv);
+
 void MarkPvAlive(void *pv);
 
 #endif // SPLICE_SPLOTHEAP_H

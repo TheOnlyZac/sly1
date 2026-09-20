@@ -3,6 +3,10 @@
 #include <splice/gc.h>
 #include <memory.h>
 
+// Forward declarations.
+static void *PvFromPsplot(SPLOT *psplot);
+static SPLOT *PsplotFromPv(void *pv);
+
 /**
  * @todo 94.76% match.
  * https://decomp.me/scratch/3gv6F
@@ -104,6 +108,10 @@ void MarkPvAlive(void *pv)
     SPLOT *psplot = PsplotFromPv(pv);
     psplot->fAlive = 1;
 }
+
+/**
+ * @todo The following functions might be it's own TU.
+ */
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", FUN_0011C418);
 

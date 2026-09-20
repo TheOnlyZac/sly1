@@ -1,5 +1,5 @@
 #include <splice/pair.h>
-#include <splice/splotheap.h>
+#include <splice/spliceutils.h>
 #include <sce/memset.h>
 
 void CPair::CloneTo(CPair *ppairClone, CFrame *pframeClone)

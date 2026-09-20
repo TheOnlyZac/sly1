@@ -15,6 +15,73 @@
 /**
  * @brief World ID.
  */
+enum WID
+{
+    // Intro
+    WID_stock_objects = 0x0,
+    WID_splash = 0x1,
+    WID_attract = 0x2,
+    WID_jb_intro = 0x3,
+
+    // Underwater
+    WID_uw_exterior_approach = 0x4,
+    WID_uw_exterior_boat = 0x5,
+    WID_uw_bonus_security = 0x6,
+    WID_uw_bonus_drivewheels_final = 0x7,
+    WID_uw_bonus_library = 0x8,
+    WID_uw_t3_final = 0x9,
+    WID_uw_rip_off = 0xa,
+    WID_uw_c2_final = 0xb,
+    WID_uw_boss_blimp = 0xc,
+
+    // Mesa
+    WID_ms_approach = 0xd,
+    WID_ms_casino = 0xe,
+    WID_ms_exterior = 0xf,
+    WID_ms_inspector = 0x10,
+    WID_ms_rooftop = 0x11,
+    WID_ms_vertigo = 0x12,
+    WID_ms_sniper = 0x13,
+    WID_ms_suv = 0x14,
+    WID_ms_boss_battle = 0x15,
+
+    // Voodoo
+    WID_v_approach = 0x16,
+    WID_v_gomerville = 0x17,
+    WID_v_swamp_monster = 0x18,
+    WID_v_hub = 0x19,
+    WID_v_skinterior = 0x1a,
+    WID_v_murray = 0x1b,
+    WID_v_chicken = 0x1c,
+    WID_v_puffer = 0x1d,
+    WID_v_boss = 0x1e,
+
+    // Snow
+    WID_s_approach = 0x1f,
+    WID_s_barrel = 0x20,
+    WID_s_hub = 0x21,
+    WID_s_inspector = 0x22,
+    WID_s_security = 0x23,
+    WID_s_sniper = 0x24,
+    WID_s_suv = 0x25,
+    WID_s_tank = 0x26,
+    WID_s_boss = 0x27,
+
+    // Clockwerk
+    WID_cw_suv = 0x28,
+    WID_cw_turret = 0x29,
+    WID_cw_security = 0x2a,
+    WID_cw_bentley = 0x2b,
+    WID_cw_reverse_sniper = 0x2c,
+    WID_cw_outclimb = 0x2d,
+    WID_cw_finish = 0x2e,
+
+    WID_Max = 0x2f
+};
+
+/**
+ * @brief Hub ID.
+ */
 enum GAMEWORLD
 {
     GAMEWORLD_Nil = -1,
@@ -28,7 +95,7 @@ enum GAMEWORLD
 };
 
 /**
- * @brief Level ID.
+ * @brief Hub level ID.
  */
 enum WORLDLEVEL
 {
@@ -151,76 +218,9 @@ struct GS
     int ccoin;                // Coin count
     GRFGS grfgs;              // Game settings flags(?)
     GRFVAULT grfvault;        // Unlocked powerup flags
-    unsigned int unlocked_cutscenes;
-    unsigned int fgs;
+    uint unlocked_cutscenes;
+    uint fgs;
     int fspLast; // Last selected powerup
-};
-
-/**
- * @brief World ID
- */
-enum WID
-{
-    // Intro
-    WID_stock_objects = 0x0,
-    WID_splash = 0x1,
-    WID_attract = 0x2,
-    WID_jb_intro = 0x3,
-
-    // Underwater
-    WID_uw_exterior_approach = 0x4,
-    WID_uw_exterior_boat = 0x5,
-    WID_uw_bonus_security = 0x6,
-    WID_uw_bonus_drivewheels_final = 0x7,
-    WID_uw_bonus_library = 0x8,
-    WID_uw_t3_final = 0x9,
-    WID_uw_rip_off = 0xa,
-    WID_uw_c2_final = 0xb,
-    WID_uw_boss_blimp = 0xc,
-
-    // Mesa
-    WID_ms_approach = 0xd,
-    WID_ms_casino = 0xe,
-    WID_ms_exterior = 0xf,
-    WID_ms_inspector = 0x10,
-    WID_ms_rooftop = 0x11,
-    WID_ms_vertigo = 0x12,
-    WID_ms_sniper = 0x13,
-    WID_ms_suv = 0x14,
-    WID_ms_boss_battle = 0x15,
-
-    // Voodoo
-    WID_v_approach = 0x16,
-    WID_v_gomerville = 0x17,
-    WID_v_swamp_monster = 0x18,
-    WID_v_hub = 0x19,
-    WID_v_skinterior = 0x1a,
-    WID_v_murray = 0x1b,
-    WID_v_chicken = 0x1c,
-    WID_v_puffer = 0x1d,
-    WID_v_boss = 0x1e,
-
-    // Snow
-    WID_s_approach = 0x1f,
-    WID_s_barrel = 0x20,
-    WID_s_hub = 0x21,
-    WID_s_inspector = 0x22,
-    WID_s_security = 0x23,
-    WID_s_sniper = 0x24,
-    WID_s_suv = 0x25,
-    WID_s_tank = 0x26,
-    WID_s_boss = 0x27,
-
-    // Clockwerk
-    WID_cw_suv = 0x28,
-    WID_cw_turret = 0x29,
-    WID_cw_security = 0x2a,
-    WID_cw_bentley = 0x2b,
-    WID_cw_reverse_sniper = 0x2c,
-    WID_cw_outclimb = 0x2d,
-    WID_cw_finish = 0x2e,
-
-    WID_Max = 0x2f
 };
 
 struct GAME
@@ -246,7 +246,7 @@ struct LevelLoadData
     uint unk_14;
     uint unk_18;
     uint unk_1C;
-    int level_id;
+    WID wid;
     const char *pchzFriendly;
     uint unk_28;
 };
@@ -261,21 +261,21 @@ void StartupGame();
 // LevelLoadData * search_level_by_load_data(LevelLoadData *search_level);
 
 /**
- * @brief Finds the level data associated with a level ID.
+ * @brief Finds the level data associated with a world ID.
  * @todo Rename to better fit in with the naming convention.
  *
- * @param id Level ID to search for.
+ * @param wid World ID.
  * 
  * @return Pointer to the matching LevelLoadData, or NULL if no match is found.
  */
-LevelLoadData *search_level_by_id(int id);
+LevelLoadData *search_level_by_id(WID wid);
 
 /**
  * @brief Gets the friendly name of a level from its world ID.
  *
  * @param wid World ID.
  */
-char *PchzFriendlyFromWid(int wid);
+char *PchzFriendlyFromWid(WID wid);
 
 // LevelLoadData *call_search_level_by_id(int level_id);
 

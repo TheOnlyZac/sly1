@@ -2,6 +2,7 @@
 #include <joy.h>
 #include <wipe.h>
 #include <chkpnt.h>
+#include <rumble.h>
 #include <difficulty.h>
 #include <sce/memset.h>
 
@@ -25,6 +26,7 @@
 
 extern WORLDLEVEL g_worldlevelPrev;
 extern LevelLoadData D_00247AF0[46];
+extern char *chz_none; // NOTE: This is in .data probably due to PchzFriendlyFromWid returning a mutable pointer.
 
 void StartupGame()
 {
@@ -35,14 +37,14 @@ JUNK_NOP();
 JUNK_WORD(0x00E0102D);
 JUNK_WORD(0x0000102D);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_load_data);
+INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_load_data__FP13LevelLoadData);
 
-LevelLoadData *search_level_by_id(int id)
+LevelLoadData *search_level_by_id(WID wid)
 {
     for (uint i = 0; i < sizeof(D_00247AF0) / sizeof(LevelLoadData); i++)
     {
         LevelLoadData *level = &D_00247AF0[i];
-        if (id == level->level_id)
+        if (wid == level->wid)
         {
             return level;
         }
@@ -51,7 +53,17 @@ LevelLoadData *search_level_by_id(int id)
     return NULL;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", PchzFriendlyFromWid);
+/**
+ * @todo 95% match.
+ */
+INCLUDE_ASM("asm/nonmatchings/P2/game", PchzFriendlyFromWid__F3WID);
+#ifdef SKIP_ASM
+char *PchzFriendlyFromWid(WID wid)
+{
+    LevelLoadData *level = search_level_by_id(wid);
+    return level ? (char *)level->pchzFriendly : chz_none;
+}
+#endif // SKIP_ASM
 
 JUNK_WORD(0x24420010);
 
@@ -67,36 +79,47 @@ INCLUDE_ASM("asm/nonmatchings/P2/game", tally_world_completion);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", get_game_completion__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", UnlockIntroCutsceneFromWid__Fi);
+INCLUDE_ASM("asm/nonmatchings/P2/game", UnlockIntroCutsceneFromWid__F9GAMEWORLD);
 #ifdef SKIP_ASM
 /**
- * @todo Close to matching but there's a problem with the rodata.
+ * @todo Migrate .rodata.
  */
-void UnlockIntroCutsceneFromWid(int wid)
+void UnlockIntroCutsceneFromWid(GAMEWORLD gameworld)
 {
     /* Check the unlocked cutscene by setting the corresponding
        flag on the unlocked_cutscenes in the game state */
-    switch (wid)
+    switch (gameworld)
     {
-    case 1:
-        /* Unlock cutscene "Tide of Terror" */
-        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x10;
-        return;
-    case 2:
-        /* Unlock cutscene "Sunset Snake Eyes" */
-        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x40;
-        return;
-    case 3:
-        /* Unlock cutscene "Vicious Voodoo" */
-        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x100;
-        return;
-    case 4:
-        /* Unlock cutscene "Fire in the Sky" */
-        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x400;
-        return;
-    case 5:
-        /* Unlock cutscene "The Cold Heart of Hate" */
-        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x1000;
+        case GAMEWORLD_Underwater:
+        {
+            /* Unlock cutscene "Tide of Terror" */
+            g_pgsCur->unlocked_cutscenes |= 0x10;
+            break;
+        }
+        case GAMEWORLD_Muggshot:
+        {
+            /* Unlock cutscene "Sunset Snake Eyes" */
+            g_pgsCur->unlocked_cutscenes |= 0x40;
+            break;
+        }
+        case GAMEWORLD_Voodoo:
+        {
+            /* Unlock cutscene "Vicious Voodoo" */
+            g_pgsCur->unlocked_cutscenes |= 0x100;
+            break;
+        }
+        case GAMEWORLD_Snow:
+        {
+            /* Unlock cutscene "Fire in the Sky" */
+            g_pgsCur->unlocked_cutscenes |= 0x400;
+            break;
+        }
+        case GAMEWORLD_Clockwerk:
+        {
+            /* Unlock cutscene "The Cold Heart of Hate" */
+            g_pgsCur->unlocked_cutscenes |= 0x1000;
+            break;
+        }
     }
 }
 #endif // SKIP_ASM
@@ -107,11 +130,6 @@ INCLUDE_ASM("asm/nonmatchings/P2/game", UnlockEndgameCutscenesFromFgs);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", PlayEndingFromCompletionFlags);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", InitGameState__FP2GS);
-/**
- * @todo 86.46% matched.
- */
-#ifdef SKIP_ASM
 void InitGameState(GS *pgs)
 {
     memset(pgs, 0, sizeof(GS));
@@ -122,10 +140,8 @@ void InitGameState(GS *pgs)
     pgs->worldlevelCur = WORLDLEVEL_Level2;
     pgs->clife = 5;
     pgs->fspLast = -1;
-    // todo: implement function (name is wrong)
-    // reset_settings(pgs);
+    RumbleUnknown2(pgs);
 }
-#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", FUN_00160650);
 

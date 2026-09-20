@@ -2,10 +2,7 @@
 #include <splice/frame.h>
 #include <splice/gc.h>
 #include <splice/pair.h>
-#include <splice/splotheap.h>
 #include <splice/vecmat.h>
-
-extern CGc g_gc;
 
 // todo: match and fix blocked references
 INCLUDE_ASM("asm/nonmatchings/P2/splice/spliceutils", StartupSplice__Fv);

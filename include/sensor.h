@@ -41,7 +41,7 @@ enum SENSM
 
 
 /**
- * @brief (?) state.
+ * @brief Camera sensor (?) state.
  */
 enum CSDTS
 {
@@ -60,20 +60,21 @@ enum CSDTS
 struct SENSOR : public SO
 {
     /* 0x550 */ ALARM *palarm; // Pointer to the alarm this sensor is associated with.
-    STRUCT_PADDING(1);
+    /* 0x554 */ SENSM sensm; // Current sensor mode.
     /* 0x558 */ SENSORS sensors; // Current sensor state.
-    STRUCT_PADDING(2);
+    /* 0x55c */ float tSensors; // Time of latest sensor state change.
+    /* 0x560 */ SENSORS sensorsInitial; // Initial sensor state.
     /* 0x564 */ uint ctriggerObjects; // Current count of trigger object IDs.
     /* 0x568 */ OID atriggerObjects[4]; // Array of trigger object IDs.
-    STRUCT_PADDING(4);
     /* 0x578 */ uint cnoTriggerObjects; // Current count of no-trigger object IDs.
     /* 0x57C */ OID anoTriggerObjects[4]; // Array of no-trigger object IDs.
-    STRUCT_PADDING(4);
     /* 0x58c */ uint ctriggerClasses; // Current count of trigger class IDs.
     /* 0x590 */ CID atriggerClasses[4]; // Array of trigger class IDs.
-    STRUCT_PADDING(4);
     /* 0x5a0 */ uint cnoTriggerClasses; // Current count of no-trigger class IDs.
     /* 0x5a4 */ CID anoTriggerClasses[4]; // Array of no-trigger class IDs.
+    /* 0x5b4 */ STRUCT_PADDING(5);
+    /* 0x5c8 */ ASEGA *pasegaPause;
+    /* 0x5cc */ float svtRestore;
 };
 
 /**
@@ -84,6 +85,8 @@ struct SENSOR : public SO
 struct LASEN : public SENSOR
 {
     // ...
+    /* 0xaf8 */ int fBusyLasen;
+    // ...
 };
 
 /**
@@ -93,6 +96,8 @@ struct LASEN : public SENSOR
  */
 struct CAMSEN : public SENSOR
 {
+    // ...
+    /* 0x5d8 */ CSDTS csdts;
     // ...
 };
 

@@ -6,6 +6,7 @@
 
 #include "common.h"
 #include <flash.h>
+#include <alo.h>
 #include <mat.h>
 #include <vec.h>
 #include <oid.h>
@@ -42,26 +43,12 @@ enum BLIPOK
 /**
  * @brief Unknown.
  */
-struct BLIP
-{
-    // ...
-};
-
-/**
- * @class BLIPG
- * @brief Unknown.
- */
-struct BLIPG
-{
-    // ...
-};
-
-/**
- * @brief Unknown.
- */
 struct BLIPP
 {
-    // ...
+    /* 0x00 */ float x;
+    /* 0x04 */ float y;
+    /* 0x08 */ float z;
+    /* 0x0c */ float tCreated;
 };
 
 /**
@@ -69,7 +56,10 @@ struct BLIPP
  */
 struct BLIPV
 {
-    // ...
+    /* 0x00 */ float x;
+    /* 0x04 */ float y;
+    /* 0x08 */ float z;
+    /* 0x0c */ float tDestroy;
 };
 
 /**
@@ -77,6 +67,50 @@ struct BLIPV
  */
 struct BLIPX
 {
+    /* 0x00 */ uint irgba;
+    /* 0x04 */ uint itex0;
+    /* 0x08 */ float swRoll;
+    /* 0x0c */ float radRoll;
+};
+
+/**
+ * @brief Unknown.
+ */
+struct BLIPF
+{
+    /* 0x000 */ BLIPP ablipp[44];
+    /* 0x2c0 */ BLIPV ablipv[44];
+    /* 0x580 */ BLIPX ablipx[44];
+};
+
+/**
+ * @class BLIPG
+ * @brief Unknown.
+ */
+struct BLIPG : public ALO
+{
+    // ...
+};
+
+/**
+ * @brief Unknown.
+ */
+struct BLIPSP
+{
+    // ...
+};
+
+/**
+ * @brief Unknown.
+ */
+struct BLIP
+{
+    /* 0x0000 */ BLIPF ablipf[2];
+    /* 0x1080 */ int iblipfLatest;
+    /* 0x1084 */ int cblipe;
+    /* 0x1088 */ BLIPSP *pblipsp;
+    /* 0x108c */ BLIPG *pblipg;
+    /* 0x1090 */ DLE dle;
     // ...
 };
 

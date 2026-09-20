@@ -8,7 +8,6 @@ _exit = 0x1000B8; // type:func
 _gpReg = 0x2832F0;
 
 g_chzCiphertext = 0x2483b8; // size:0x9
-g_chzThePasswordIs = 0x24a848; // size:0x14
 
 //g_rng = 0x276680; // size:0x5c
 //g_prng = 0x27696c; // size:0x4
@@ -26,12 +25,42 @@ g_aqwGifsClearZB  = 0x2bdee0; // size:0x2C0
 g_phasemem = 0x5e4700; // size:0x344C00
 
 D_00270458 = 0x270458; // size:0x4
-SMP_00274f78 = 0x274f78; // size:0xC
 
 ////////////////////////////////////////////////////////////////
 // ps2t/spaprops.ic
 ////////////////////////////////////////////////////////////////
 BuildEopids__Fv = 0x109488; // type:func
+
+// .rodata
+g_vtbasic        = 0x217410;
+g_vtlo           = 0x217418;
+g_vtalo          = 0x217498;
+g_vtso           = 0x217568;
+g_vtact          = 0x219560;
+g_vtactval       = 0x219588;
+g_vtactref       = 0x2195b0;
+g_vtactadj       = 0x2195d8;
+g_vtactbank      = 0x219600;
+g_vtactseg       = 0x2197c0;
+g_vtactla        = 0x21a790;
+g_vtsensor       = 0x21ac38;
+g_vtlasen        = 0x21ad80;
+g_vtcamsen       = 0x21aec8;
+g_vtprsen        = 0x21b010;
+g_vtloop         = 0x21e358;
+g_vtpingpong     = 0x21e378;
+g_vtshuffle      = 0x21e398;
+g_vthologram     = 0x21e3b8;
+g_vtscroller     = 0x21e3d8;
+g_vtcircler      = 0x21e3f8;
+g_vtlooker       = 0x21e418;
+g_vteyes         = 0x21e438;
+g_mpcidarysplopt = 0x244950;
+g_mpcidpvt       = 0x247448; // size:0x328
+g_vtwpsg         = 0x2505c0;
+
+// .data
+g_aeopid = 0x2505D8;
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -318,6 +347,13 @@ spliceutils__static_initialization_and_destruction_0 = 0x11C0A8; // type:func
 _GLOBAL_$I$g_splotheapPair = 0x11C0E8; // type:func
 _GLOBAL_$D$g_splotheapPair = 0x11C108; // type:func
 
+// .data
+g_splotheapPair   = 0x25C250; // size:0x1C
+g_splotheapFrame  = 0x25C270; // size:0x1C
+g_splotheapUnk1   = 0x25C290; // size:0x1C
+g_splotheapProc   = 0x25C2B0; // size:0x1C
+g_splotheapMethod = 0x25C2D0; // size:0x1C
+
 
 ////////////////////////////////////////////////////////////////
 // P2/splice/splotheap.cpp
@@ -337,12 +373,6 @@ MarkPvAlive__FPv                = 0x11C3F0; // type:func
 FUN_0011C418                    = 0x11C418; // type:func
 FUN_0011C498                    = 0x11C498; // type:func
 FUN_0011C4E8                    = 0x11C4E8; // type:func
-
-g_splotheapPair                 = 0x25C250; // size:0x1C
-g_splotheapFrame                = 0x25C270; // size:0x1C
-g_splotheapUnk1                 = 0x25C290; // size:0x1C
-g_splotheapProc                 = 0x25C2B0; // size:0x1C
-g_splotheapMethod               = 0x25C2D0; // size:0x1C
 
 
 ////////////////////////////////////////////////////////////////
@@ -508,8 +538,6 @@ LoadOptionsFromBrx__FPvP18CBinaryInputStream = 0x11EC40; // type:func
 IploFromStockOid__Fi = 0x11ECA0; // type:func
 LoadSwObjectsFromBrx__FP2SWP3ALOP18CBinaryInputStream = 0x11ECB8; // type:func
 SetLoDefaults__FP2LO = 0x11EDA8; // type:func
-
-g_aeopid = 0x2505D8;
 
 
 ////////////////////////////////////////////////////////////////
@@ -865,12 +893,8 @@ junk_0012B6A0                                              = 0x12B6A0; // type:f
 FUN_0012b6b8                                               = 0x12B6B8; // type:func
 anticrack_itm_firewall                                     = 0x12B760; // type:func
 
-// TODO: Where do these belong to?
-g_vtact    = 0x219560;
-g_vtactadj = 0x2195d8;
-g_vtactseg = 0x2197c0;
-g_vtactla  = 0x21a790;
-s_shadow   = 0x27b520;
+// TODO: Where does this belong to?
+s_shadow = 0x27b520;
 
 
 ////////////////////////////////////////////////////////////////
@@ -1421,7 +1445,7 @@ SetCm = 0x145718; // type:func
 PsoEnemyStepguard = 0x145810; // type:func
 FUN_00145950 = 0x145950; // type:func
 FUN_00145b68 = 0x145B68; // type:func
-FUN_00145DD8 = 0x145DD8; // type:func
+FUN_00145dd8__FP2CM = 0x145DD8; // type:func
 FUN_00145de8 = 0x145DE8; // type:func
 FUN_00145e68 = 0x145E68; // type:func
 PushLookkCm__FP2CM5LOOKK = 0x145FB8; // type:func
@@ -1950,8 +1974,6 @@ CploFindSwObjectsByClass__FP2SWi3CIDP2LOiPP2LO = 0x15A4F0; // type:func
 PloFindSwObjectByClass__FP2SWi3CIDP2LO = 0x15A838; // type:func
 PaloFindLoCommonParent__FP2LOT0 = 0x15A868; // type:func
 
-g_mpcidpvt = 0x247448; // size:0x328
-
 
 ////////////////////////////////////////////////////////////////
 // P2/flash.c
@@ -2054,12 +2076,13 @@ ClearPendingFrame__FP3FRM = 0x15EFE8; // type:func
 FlushFrames__Fi = 0x15F210; // type:func
 BlendPrevFrame__Fv = 0x15F320; // type:func
 
-g_gifs      = 0x262280; // size:0x28
-g_vifs      = 0x2622a8; // size:0xc
-g_cframe    = 0x2622cc; // size:0x4
-g_psliCur   = 0x2622d4; // size:0x4
-g_pfrmOpen  = 0x2622d8; // size:0x4
-g_pvVu1Code = 0x26230c; // size:0x4
+g_gifs          = 0x262280; // size:0x28
+g_vifs          = 0x2622a8; // size:0xc
+g_cframe        = 0x2622cc; // size:0x4
+g_psliCur       = 0x2622d4; // size:0x4
+g_pfrmOpen      = 0x2622d8; // size:0x4
+g_glBlipPending = 0x2622f0; // size:0xc
+g_pvVu1Code     = 0x26230c; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
@@ -2090,14 +2113,13 @@ AddFrzgObject__FP4FRZG3OID = 0x160050; // type:func
 
 ////////////////////////////////////////////////////////////////
 // P2/game.c
-// TODO mangle function names
+// TODO: mangle function names
 ////////////////////////////////////////////////////////////////
 StartupGame__Fv = 0x160070; // type:func
-
 junk_00160090 = 0x160090; // type:func
-search_level_by_load_data = 0x1600A0; // type:func
-search_level_by_id__Fi = 0x160110; // type:func
-PchzFriendlyFromWid = 0x160148; // type:func
+search_level_by_load_data__FP13LevelLoadData = 0x1600A0; // type:func
+search_level_by_id__F3WID = 0x160110; // type:func
+PchzFriendlyFromWid__F3WID = 0x160148; // type:func
 junk_00160178 = 0x160178; // type:func
 call_search_level_by_id = 0x160180; // type:func
 FFindLevel = 0x1601A0; // type:func
@@ -2105,42 +2127,32 @@ junk_001601D0 = 0x1601D0; // type:func
 get_level_completion_by_id = 0x1601D8; // type:func
 tally_world_completion = 0x160208; // type:func
 get_game_completion__Fv = 0x1602A0; // type:func
-UnlockIntroCutsceneFromWid__Fi = 0x160340; // type:func
+UnlockIntroCutsceneFromWid__F9GAMEWORLD = 0x160340; // type:func
 DefeatBossFromWid = 0x1603E8; // type:func
 UnlockEndgameCutscenesFromFgs = 0x1604B8; // type:func
 PlayEndingFromCompletionFlags = 0x160578; // type:func
-
 InitGameState__FP2GS = 0x1605E8; // type:func
-
 FUN_00160650 = 0x160650; // type:func
-
 SetupGame__FPci = 0x160690; // type:func
 UpdateGameState__Ff = 0x1607D0; // type:func
-
 LsFromWid = 0x160810; // type:func
 GrflsFromWid__F3WID = 0x160850; // type:func
-
 UnloadGame__Fv = 0x160880; // type:func
 RetryGame__Fv = 0x1608E0; // type:func
 StartGame__Fv = 0x160918; // type:func
-
 FUN_00160948 = 0x160948; // type:func
 CalculatePercentCompletion__FP2GS = 0x160B28; // type:func
-
 SetCcharm__Fi = 0x160C48; // type:func
 FCharmAvailable__Fv = 0x160C58; // type:func
 FUN_00160C90 = 0x160C90; // type:func
 PfLookupDialog__FP2LS3OID = 0x160CA0; // type:func
-
 clr_8_bytes_1 = 0x160CC8; // type:func
 FUN_00160ce8__Fi = 0x160CE8; // type:func
 OnGameAlarmTriggered__FP4GAME = 0x160CF0; // type:func
 OnGameAlarmDisabled__FP4GAME = 0x160D00; // type:func
 GetGrfvault_unknown__Fv = 0x160D10; // type:func
-
 GetBlueprintInfo__FPiT0 = 0x160D30; // type:func
 CcharmMost__Fv = 0x160D98; // type:func
-
 reload_post_death__Fv = 0x160DA0; // type:func
 
 // data
@@ -2424,6 +2436,9 @@ g_joy = 0x262C70; // size:0xc4
 g_joyZero = 0x262D38; // size:0xc4
 g_pcode = 0x262DFC; // size:0x4
 g_tCodeCheck = 0x262E00;
+
+// .rodata
+g_chzThePasswordIs = 0x24a848; // size:0x14
 
 
 ////////////////////////////////////////////////////////////////
@@ -2889,19 +2904,22 @@ __builtin_delete = 0x18D778; // type:func
 CopyAqw__FPvT0i = 0x18D780; // type:func
 CopyAb__FPvT0Ui = 0x18D800; // type:func
 
-s_pvGlobalMin = 0x2C2A10; // size:0x4
-s_pvGlobalMac = 0x2C2A14; // size:0x4
-s_pvWorldMin = 0x2C2A18; // size:0x4
-s_pvWorldMac = 0x2C2A1C; // size:0x4
-s_pvStackMin = 0x2C2A20; // size:0x4
-s_pvStackMac = 0x2C2A24; // size:0x4
-s_critsectStack = 0x2C2A28; // size:0xc
-s_ipvStackCur = 0x2C2A34; // size:0x4
-s_apvStackMin = 0x2C2A38; // size:0x4
-
-// TODO: Move elsewhere?
+// .data
 g_pvHeapMin = 0x2699A4; // size:0x4
 g_pvHeapMax = 0x2699A8; // size:0x4
+
+// .sbss
+s_pvGlobalMin   = 0x2C2A10; // size:0x4
+s_pvGlobalMac   = 0x2C2A14; // size:0x4
+s_pvWorldMin    = 0x2C2A18; // size:0x4
+s_pvWorldMac    = 0x2C2A1C; // size:0x4
+s_pvStackMin    = 0x2C2A20; // size:0x4
+s_pvStackMac    = 0x2C2A24; // size:0x4
+s_critsectStack = 0x2C2A28; // size:0xc
+s_ipvStackCur   = 0x2C2A34; // size:0x4
+s_apvStackMin   = 0x2C2A38; // size:0x4
+
+// TODO: Move elsewhere?
 D_0064C70F = 0x64C70F; // size:0x04
 
 
@@ -2923,8 +2941,9 @@ PresetAccmissAccel__FP7ACCMISSf                     = 0x18DE70; // type:func
 FireSplmiss__FP7SPLMISSP3ALOP6VECTOR                = 0x18DEE8; // type:func
 ProjectSplmissTransform__FP7SPLMISSfi               = 0x18E040; // type:func
 
-s_asnipMissile = 0x2699b0;
-
+// .data
+s_asnipMissile       = 0x2699b0; // size:0xc
+DT_MissilePredictMax = 0x2699bc; // size:0x4
 
 ////////////////////////////////////////////////////////////////
 // P2/mpeg.c
@@ -3524,12 +3543,14 @@ TriggerRumbleRumk__FP6RUMBLE4RUMKf      = 0x1A7CE8; // type:func
 TriggerRumbleRumpat__FP6RUMBLEP6RUMPATf = 0x1A7D18; // type:func
 SetRumbleRums__FP6RUMBLE4RUMS           = 0x1A7D98; // type:func
 StopRumbleActuators__FP6RUMBLE          = 0x1A7E40; // type:func
-FUN_001A7E70__Fv                        = 0x1A7E70; // type:func
-FUN_001A7E90                            = 0x1A7E90; // type:func
-FUN_001A7EE8                            = 0x1A7EE8; // type:func
-FUN_001A7F50                            = 0x1A7F50; // type:func
+RumbleUnknown1__Fv                      = 0x1A7E70; // type:func
+RumbleUnknown2__FP2GS                   = 0x1A7E90; // type:func
+RumbleUnknown3__FP2GS                   = 0x1A7EE8; // type:func
+RumbleUnknown4__FP2GS                   = 0x1A7F50; // type:func
 
-DAT_0026c3dc = 0x26C3DC;
+// .data
+s_mprumkrumpat = 0x26B8B0;
+g_rumbleUnk = 0x26C3DC;
 
 
 ////////////////////////////////////////////////////////////////
@@ -3752,6 +3773,11 @@ DisablePrsen__FP5PRSEN                          = 0x1B1608; // type:func
 OnPrsenAlarmTriggered__FP5PRSEN                 = 0x1B1698; // type:func
 SetPrsenSensors__FP5PRSEN7SENSORS               = 0x1B1710; // type:func
 UpdatePrsenLoopShader__FP5PRSEN                 = 0x1B1898; // type:func
+
+// .data
+s_asnipLasen           = 0x2744b8; // size:0x18
+g_fLasenBusyListChange = 0x2744d0; // size:0x4
+s_asnipCamsen          = 0x2744d8; // size:0x18
 
 
 ////////////////////////////////////////////////////////////////
@@ -4170,6 +4196,7 @@ OnSpireAdd__FP5SPIRE    = 0x1C10D8; // type:func
 OnSpireRemove__FP5SPIRE = 0x1C1110; // type:func
 CloneSpire__FP5SPIRET0  = 0x1C1148; // type:func
 
+// .rodata
 DAT_0024d3b4 = 0x24D3B4; // size:0x4
 
 
@@ -4438,7 +4465,7 @@ IRotatePowerUp__FP3JOYiiPi = 0x1d3100; // type:func
 
 s_mpfspachz = 0x274f58; //size:0x1c
 g_fsp = 0x274f74; //size:0x4
-// float[3] @ 0x274f78
+SMP_00274f78 = 0x274f78; // size:0xC
 RT_JtSpeedUpClock = 0x274f84; // size:0x4
 RT_JtSlowDownClock = 0x274f88; // size:0x4
 
@@ -5022,9 +5049,6 @@ EnsureWpsgCallback__FP4WPSG                = 0x1EFC98; // type:func
 junk_001EFCE0                              = 0x1EFCE0; // type:func
 
 s_asnipPostWaypointLoad = 0x275E10;
-
-// TODO: Where does this belong to?
-g_vtwpsg = 0x2505c0;
 
 
 ////////////////////////////////////////////////////////////////

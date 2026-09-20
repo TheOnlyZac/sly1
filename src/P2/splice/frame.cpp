@@ -1,5 +1,5 @@
 #include <splice/frame.h>
-#include <splice/splotheap.h>
+#include <splice/spliceutils.h>
 #include <sce/memset.h>
 
 void CFrame::SetSingleParent(CFrame *pframeParent)

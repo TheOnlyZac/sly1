@@ -19,7 +19,7 @@ struct MRG;
 struct ASEGA;
 struct ASEGD;
 struct ACT;
-struct ACTLY;
+struct ACTLA;
 struct ACTSEG;
 struct ACTADJ;
 struct ACTBANK;
@@ -135,8 +135,8 @@ struct FICG
 struct SNIP
 {
     /* 0x00 */ GRFSNIP grfsnip;
-    OID oid;
-    int ib;
+    /* 0x04 */ OID oid;
+    /* 0x08 */ int ib;
 };
 
 /**
@@ -187,7 +187,7 @@ struct ALO : public LO
     ACT *pactScale;
     ACT **apactPost;
     ACT *pactRestore;
-    ACTLY *pactla;
+    ACTLA *pactla;
     ACTBANK *pactbank;
     IKH *pikh;
     CLQ *pclqPosSpring;

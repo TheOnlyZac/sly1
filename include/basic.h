@@ -20,6 +20,8 @@ struct BASIC
         /* 0x00 */ VTBASIC *pvtbasic;
         /* 0x00 */ VTLO *pvtlo;
         /* 0x00 */ VTSO *pvtso;
+        /* 0x00 */ VTLASEN *pvtlasen;
+        /* 0x00 */ VTCAMSEN *pvtcamsen;
     };
     /* 0x04 */ CSidebag *psidebag;
 };
