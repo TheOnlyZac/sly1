@@ -1,5 +1,8 @@
 var bif_8h =
 [
+    [ "BIF", "structBIF.html", "structBIF" ],
+    [ "PFNBIF", "bif_8h.html#ad8b788ce3580ce39e9f1d2af3ad08ff5", null ],
+    [ "PFNUFO", "bif_8h.html#afa5b44d04156e156591d75b67a6f9ef7", null ],
     [ "BIFK", "bif_8h.html#a2a0c06339a87a07451ee518543689df0", [
       [ "BIFK_AddO", "bif_8h.html#a2a0c06339a87a07451ee518543689df0a1cd9d9d0c9f656193ea628cc26faa531", null ],
       [ "BIFK_EnsureO", "bif_8h.html#a2a0c06339a87a07451ee518543689df0ac83b270e3d83fd39bb21a5f31956ccb8", null ],
@@ -155,5 +158,6 @@ var bif_8h =
     [ "RefOpVectorProjectTangent", "bif_8h.html#a695e47e729a84947ce108ea628cb98bf", null ],
     [ "RefOpVectorRadianNormal", "bif_8h.html#ab4c21ce0ca88afaea61a8969bf27666c", null ],
     [ "RefPairFromAplo", "bif_8h.html#a8902ffb930a832ac0e075f691fd6c5a0", null ],
-    [ "RefUfo", "bif_8h.html#a01a18c06219589c1702da7f618bf3859", null ]
+    [ "RefUfo", "bif_8h.html#a01a18c06219589c1702da7f618bf3859", null ],
+    [ "g_mpbifkbif", "bif_8h.html#a5e9a55f6955dbf3fbc5e9fe76b01f3be", null ]
 ];

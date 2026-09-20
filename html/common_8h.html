@@ -154,6 +154,9 @@ Macros</h2></td></tr>
 <tr class="memitem:a0bb7e7d13eb9e011e45c05fad9207f68" id="r_a0bb7e7d13eb9e011e45c05fad9207f68"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a0bb7e7d13eb9e011e45c05fad9207f68">JUNK_NOP</a>()&#160;&#160;&#160;asm(&quot;.word 0x00000000\n\t&quot;)</td></tr>
 <tr class="memdesc:a0bb7e7d13eb9e011e45c05fad9207f68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts a four-byte nop on it's own.  <br /></td></tr>
 <tr class="separator:a0bb7e7d13eb9e011e45c05fad9207f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ce93483ed704408392fe94928475ced" id="r_a8ce93483ed704408392fe94928475ced"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a8ce93483ed704408392fe94928475ced">ALIGN_SECTION</a>(section,  n)&#160;&#160;&#160;asm(&quot;.section .&quot; #section &quot;\n.align &quot; #n &quot;\n.section .text\n&quot;)</td></tr>
+<tr class="memdesc:a8ce93483ed704408392fe94928475ced"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aligns a specified binary section to a 2^n byte boundary.  <br /></td></tr>
+<tr class="separator:a8ce93483ed704408392fe94928475ced"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -165,6 +168,38 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="common_8h_source.html">common.h</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a8ce93483ed704408392fe94928475ced" name="a8ce93483ed704408392fe94928475ced"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ce93483ed704408392fe94928475ced">&#9670;&#160;</a></span>ALIGN_SECTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ALIGN_SECTION</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">section, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">n&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;asm(&quot;.section .&quot; #section &quot;\n.align &quot; #n &quot;\n.section .text\n&quot;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Aligns a specified binary section to a 2^n byte boundary. </p>
+
+<p class="definition">Definition at line <a class="el" href="common_8h_source.html#l00070">70</a> of file <a class="el" href="common_8h_source.html">common.h</a>.</p>
+
+</div>
+</div>
 <a id="a27e7b5104f011f1f89f57f8903f348af" name="a27e7b5104f011f1f89f57f8903f348af"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a27e7b5104f011f1f89f57f8903f348af">&#9670;&#160;</a></span>JUNK_ADDIU</h2>
 

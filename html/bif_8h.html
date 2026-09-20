@@ -98,8 +98,11 @@ $(document).ready(function(){initNavTree('bif_8h.html',''); initResizable(); });
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">bif.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -111,6 +114,21 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 <p><a href="bif_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBIF.html">BIF</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A single entry in the global <a class="el" href="structBIF.html" title="A single entry in the global BIF dispatch table.">BIF</a> dispatch table.  <a href="structBIF.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ad8b788ce3580ce39e9f1d2af3ad08ff5" id="r_ad8b788ce3580ce39e9f1d2af3ad08ff5"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classCRef.html">CRef</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8h.html#ad8b788ce3580ce39e9f1d2af3ad08ff5">PFNBIF</a>) (int, <a class="el" href="classCRef.html">CRef</a> *, <a class="el" href="classCFrame.html">CFrame</a> *)</td></tr>
+<tr class="memdesc:ad8b788ce3580ce39e9f1d2af3ad08ff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function pointer for built-in function dispatch.  <br /></td></tr>
+<tr class="separator:ad8b788ce3580ce39e9f1d2af3ad08ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5b44d04156e156591d75b67a6f9ef7" id="r_afa5b44d04156e156591d75b67a6f9ef7"><td class="memItemLeft" align="right" valign="top">typedef float(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8h.html#afa5b44d04156e156591d75b67a6f9ef7">PFNUFO</a>) (float)</td></tr>
+<tr class="memdesc:afa5b44d04156e156591d75b67a6f9ef7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function pointer for uniform float operation (?) dispatch.  <br /></td></tr>
+<tr class="separator:afa5b44d04156e156591d75b67a6f9ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a2a0c06339a87a07451ee518543689df0" id="r_a2a0c06339a87a07451ee518543689df0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0">BIFK</a> { <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a1cd9d9d0c9f656193ea628cc26faa531">BIFK_AddO</a> = 99
@@ -118,6 +136,7 @@ Enumerations</h2></td></tr>
 , <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a8a7498d74a5e45a533e965ed7acfeb43">BIFK_SetO</a> = 101
 , <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a0afc6c42f9ae10801a3d28b367c597d3">BIFK_GetO</a> = 102
  }</td></tr>
+<tr class="memdesc:a2a0c06339a87a07451ee518543689df0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Built-in function kind.  <a href="bif_8h.html#a2a0c06339a87a07451ee518543689df0">More...</a><br /></td></tr>
 <tr class="separator:a2a0c06339a87a07451ee518543689df0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a641a272cb893254c073739aaefdd6907" id="r_a641a272cb893254c073739aaefdd6907"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8h.html#a641a272cb893254c073739aaefdd6907">CMPK</a> { <br />
 &#160;&#160;<a class="el" href="bif_8h.html#a641a272cb893254c073739aaefdd6907a5a89e8aa3019f0e1a88e6612e8c10dc1">CMPK_L</a> = 0
@@ -144,7 +163,7 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="bif_8h.html#aeb8756f210900f8a151c0fecec21931aa945f836b3efab5e8cad07fcca1a7a0bf">UFOK_Max</a> = 8
 <br />
  }</td></tr>
-<tr class="memdesc:aeb8756f210900f8a151c0fecec21931a"><td class="mdescLeft">&#160;</td><td class="mdescRight">(?) operation kind?  <a href="bif_8h.html#aeb8756f210900f8a151c0fecec21931a">More...</a><br /></td></tr>
+<tr class="memdesc:aeb8756f210900f8a151c0fecec21931a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kind of Uniform Float Operation (?)  <a href="bif_8h.html#aeb8756f210900f8a151c0fecec21931a">More...</a><br /></td></tr>
 <tr class="separator:aeb8756f210900f8a151c0fecec21931a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -413,7 +432,49 @@ Functions</h2></td></tr>
 <tr class="separator:aa2173e490d0c78ac8e0db2d85e6f9974"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46093873a8cb1e635ed9537339e45c92" id="r_a46093873a8cb1e635ed9537339e45c92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8h.html#a46093873a8cb1e635ed9537339e45c92">RefOpPredictAnimationEffect</a> (int carg, <a class="el" href="classCRef.html">CRef</a> *aref, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
 <tr class="separator:a46093873a8cb1e635ed9537339e45c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a5e9a55f6955dbf3fbc5e9fe76b01f3be" id="r_a5e9a55f6955dbf3fbc5e9fe76b01f3be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structBIF.html">BIF</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8h.html#a5e9a55f6955dbf3fbc5e9fe76b01f3be">g_mpbifkbif</a> []</td></tr>
+<tr class="separator:a5e9a55f6955dbf3fbc5e9fe76b01f3be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="ad8b788ce3580ce39e9f1d2af3ad08ff5" name="ad8b788ce3580ce39e9f1d2af3ad08ff5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8b788ce3580ce39e9f1d2af3ad08ff5">&#9670;&#160;</a></span>PFNBIF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="classCRef.html">CRef</a>(* PFNBIF) (int, <a class="el" href="classCRef.html">CRef</a> *, <a class="el" href="classCFrame.html">CFrame</a> *)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function pointer for built-in function dispatch. </p>
+
+<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00029">29</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
+
+</div>
+</div>
+<a id="afa5b44d04156e156591d75b67a6f9ef7" name="afa5b44d04156e156591d75b67a6f9ef7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa5b44d04156e156591d75b67a6f9ef7">&#9670;&#160;</a></span>PFNUFO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef float(* PFNUFO) (float)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function pointer for uniform float operation (?) dispatch. </p>
+
+<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00073">73</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a2a0c06339a87a07451ee518543689df0" name="a2a0c06339a87a07451ee518543689df0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2a0c06339a87a07451ee518543689df0">&#9670;&#160;</a></span>BIFK</h2>
@@ -426,7 +487,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000234">Todo:</a></b></dt><dd>Fill in enum. </dd></dl>
+
+<p>Built-in function kind. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a1cd9d9d0c9f656193ea628cc26faa531" name="a2a0c06339a87a07451ee518543689df0a1cd9d9d0c9f656193ea628cc26faa531"></a>BIFK_AddO&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ac83b270e3d83fd39bb21a5f31956ccb8" name="a2a0c06339a87a07451ee518543689df0ac83b270e3d83fd39bb21a5f31956ccb8"></a>BIFK_EnsureO&#160;</td><td class="fielddoc"></td></tr>
@@ -434,7 +496,7 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a0afc6c42f9ae10801a3d28b367c597d3" name="a2a0c06339a87a07451ee518543689df0a0afc6c42f9ae10801a3d28b367c597d3"></a>BIFK_GetO&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00017">17</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00016">16</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
 
 </div>
 </div>
@@ -459,7 +521,7 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a641a272cb893254c073739aaefdd6907afc4b1ed3909ea0df844b0d668518fdcd" name="a641a272cb893254c073739aaefdd6907afc4b1ed3909ea0df844b0d668518fdcd"></a>CMPK_Max&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00030">30</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00045">45</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
 
 </div>
 </div>
@@ -475,7 +537,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>(?) operation kind? </p>
+<p>Kind of Uniform Float Operation (?) </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aeb8756f210900f8a151c0fecec21931aa01c4443edd5eef2b065f9683e52803d6" name="aeb8756f210900f8a151c0fecec21931aa01c4443edd5eef2b065f9683e52803d6"></a>UFOK_Sqrt&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aeb8756f210900f8a151c0fecec21931aa6e5c85c75a5b1db3f291b33f18ebd040" name="aeb8756f210900f8a151c0fecec21931aa6e5c85c75a5b1db3f291b33f18ebd040"></a>UFOK_Sin&#160;</td><td class="fielddoc"></td></tr>
@@ -488,7 +550,7 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="aeb8756f210900f8a151c0fecec21931aa945f836b3efab5e8cad07fcca1a7a0bf" name="aeb8756f210900f8a151c0fecec21931aa945f836b3efab5e8cad07fcca1a7a0bf"></a>UFOK_Max&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00042">42</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00057">57</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
 
 </div>
 </div>
@@ -5055,6 +5117,29 @@ Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a5e9a55f6955dbf3fbc5e9fe76b01f3be" name="a5e9a55f6955dbf3fbc5e9fe76b01f3be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e9a55f6955dbf3fbc5e9fe76b01f3be">&#9670;&#160;</a></span>g_mpbifkbif</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structBIF.html">BIF</a> g_mpbifkbif[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

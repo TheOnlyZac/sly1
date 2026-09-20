@@ -338,7 +338,7 @@ var searchData=
   ['dvspeed_335',['dvSpeed',['../structSCROLLER.html#a53c107bfdcbe496935caa9c00a9684dc',1,'SCROLLER']]],
   ['dw_336',['dw',['../structFX.html#a5ab379ee12a8a4c78095c882df72ffce',1,'FX::dw'],['../structXF.html#a451b85e3dac956d3ddf161f2d72fde10',1,'XF::dw']]],
   ['dw_5ffade_337',['DW_Fade',['../shadow_8c.html#af7fabdc56a96fdd12a071ce050ef940b',1,'shadow.c']]],
-  ['dx_338',['dx',['../structBMPF.html#aa1b57db05b7f395df9f780727c4fe7a0',1,'BMPF::dx'],['../classCRichText.html#ab168157c85862bc3607045fcc31625b3',1,'CRichText::Dx()'],['../structBLOT.html#acb4be07d4c0169b31455c03a7382be93',1,'BLOT::dx'],['../structGLYFF.html#a97ba00704d9e588a9e343c01944497ee',1,'GLYFF::dx']]],
+  ['dx_338',['dx',['../structBLOT.html#acb4be07d4c0169b31455c03a7382be93',1,'BLOT::dx'],['../structBMPF.html#aa1b57db05b7f395df9f780727c4fe7a0',1,'BMPF::dx'],['../structGLYFF.html#a97ba00704d9e588a9e343c01944497ee',1,'GLYFF::dx'],['../classCRichText.html#ab168157c85862bc3607045fcc31625b3',1,'CRichText::Dx()']]],
   ['dxdrawch_339',['DxDrawCh',['../classCFontBrx.html#af3f7067a2b12d4bfefa11451902cfa08',1,'CFontBrx']]],
   ['dxfromch_340',['DxFromCh',['../classCFontBrx.html#aa4481e610f606227a08a2b03107c941b',1,'CFontBrx']]],
   ['dxfrompchz_341',['DxFromPchz',['../classCFont.html#a16efe6460971d468da188ce9f91e5ed1',1,'CFont']]],

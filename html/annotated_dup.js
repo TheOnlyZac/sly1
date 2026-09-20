@@ -56,6 +56,7 @@ var annotated_dup =
     [ "BARRIER", "structBARRIER.html", "structBARRIER" ],
     [ "BASIC", "structBASIC.html", "structBASIC" ],
     [ "BEI", "structBEI.html", "structBEI" ],
+    [ "BIF", "structBIF.html", "structBIF" ],
     [ "BINOC", "structBINOC.html", "structBINOC" ],
     [ "BL", "structBL.html", null ],
     [ "BLACK_HOLD", "classBLACK__HOLD.html", null ],

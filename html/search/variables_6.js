@@ -163,7 +163,8 @@ var searchData=
   ['fupperize_160',['fUpperize',['../structTFT.html#a1bc0c0a5ced099b98b8bb70d8f86c3f9',1,'TFT']]],
   ['fusetarget_161',['fUseTarget',['../structACTLA.html#ad3ed73440c6c105ae58746242780bf9e',1,'ACTLA']]],
   ['fvalueschanged_162',['fvalueschanged',['../structEMITTER.html#a5765f540721fc5f45d1051966a5f8c1c',1,'EMITTER::fValuesChanged'],['../structWR.html#a30b61f39fe3790929b6393270f267370',1,'WR::fValuesChanged']]],
-  ['fws_163',['fws',['../structWS.html#aee97b83c45ffe5d83a3c8cea4a0a21ce',1,'WS']]],
-  ['fzero_164',['fZero',['../structTFT.html#a205f0939a462d1eff01e2f0666b133ef',1,'TFT']]],
-  ['fzeroprecision_165',['fZeroPrecision',['../structTFT.html#a5e5c3d956995eddf466f3911ea8fe701',1,'TFT']]]
+  ['fvararg_163',['fVarArg',['../structBIF.html#a4a0a93c1cb804c49235de8230e18e7d2',1,'BIF']]],
+  ['fws_164',['fws',['../structWS.html#aee97b83c45ffe5d83a3c8cea4a0a21ce',1,'WS']]],
+  ['fzero_165',['fZero',['../structTFT.html#a205f0939a462d1eff01e2f0666b133ef',1,'TFT']]],
+  ['fzeroprecision_166',['fZeroPrecision',['../structTFT.html#a5e5c3d956995eddf466f3911ea8fe701',1,'TFT']]]
 ];

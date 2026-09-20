@@ -202,6 +202,7 @@ var hierarchy =
       [ "SMA", "structSMA.html", null ]
     ] ],
     [ "BEI", "structBEI.html", null ],
+    [ "BIF", "structBIF.html", null ],
     [ "BL", "structBL.html", [
       [ "BLRUN", "structBLRUN.html", null ],
       [ "BLSS", "structBLSS.html", null ]

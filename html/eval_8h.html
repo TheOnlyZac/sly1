@@ -102,6 +102,9 @@ $(document).ready(function(){initNavTree('eval_8h.html',''); initResizable(); })
   <div class="headertitle"><div class="title">eval.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Evaluation methods for Splice, which is semantically very close to Scheme.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="ref_8h_source.html">splice/ref.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for eval.h:</div>
@@ -119,41 +122,62 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a816916ec21d6477df678b3131d4e2fb8" id="r_a816916ec21d6477df678b3131d4e2fb8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#a816916ec21d6477df678b3131d4e2fb8">RefEvalSymbol</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:a816916ec21d6477df678b3131d4e2fb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a symbol by looking up its ID in the frame structure.  <br /></td></tr>
 <tr class="separator:a816916ec21d6477df678b3131d4e2fb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d444ae4900e5c42d554730923bb6477" id="r_a7d444ae4900e5c42d554730923bb6477"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#a7d444ae4900e5c42d554730923bb6477">RefEvalSet</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:a7d444ae4900e5c42d554730923bb6477"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a "set" statement, assigning a new value to an existing variable.  <br /></td></tr>
 <tr class="separator:a7d444ae4900e5c42d554730923bb6477"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee6279efe65331b822915b318f88f04b" id="r_aee6279efe65331b822915b318f88f04b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#aee6279efe65331b822915b318f88f04b">RefEvalDefine</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:aee6279efe65331b822915b318f88f04b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a "define" statement, declaring a new variable with its value.  <br /></td></tr>
 <tr class="separator:aee6279efe65331b822915b318f88f04b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa22fcb4277a00434637515006471812c" id="r_aa22fcb4277a00434637515006471812c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#aa22fcb4277a00434637515006471812c">RefEvalAssert</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:aa22fcb4277a00434637515006471812c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates an "assert" statement, printing to the debug console if it fails, along with the "description" field.  <br /></td></tr>
 <tr class="separator:aa22fcb4277a00434637515006471812c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62ee58f07b5a4ab3952c565eee9eeb25" id="r_a62ee58f07b5a4ab3952c565eee9eeb25"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#a62ee58f07b5a4ab3952c565eee9eeb25">RefEvalIf</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:a62ee58f07b5a4ab3952c565eee9eeb25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates an "if" statement, which conditionally executes a body and optional else statement depending on the value of its input.  <br /></td></tr>
 <tr class="separator:a62ee58f07b5a4ab3952c565eee9eeb25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50604b6c1e21d6dcb84acde9f44bc330" id="r_a50604b6c1e21d6dcb84acde9f44bc330"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#a50604b6c1e21d6dcb84acde9f44bc330">RefEvalOr</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:a50604b6c1e21d6dcb84acde9f44bc330"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates an "or" expression, which returns true if any of its variadic arguments are true. Will short circuit at the first truthy expression.  <br /></td></tr>
 <tr class="separator:a50604b6c1e21d6dcb84acde9f44bc330"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00afe5258e5b502beefc9ee3898d3ce5" id="r_a00afe5258e5b502beefc9ee3898d3ce5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#a00afe5258e5b502beefc9ee3898d3ce5">RefEvalAnd</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:a00afe5258e5b502beefc9ee3898d3ce5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates an "and" expression, which returns true if all of its variadic arguments are true. Will short circuit at the first false expression.  <br /></td></tr>
 <tr class="separator:a00afe5258e5b502beefc9ee3898d3ce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec11c7d741aa0004bf6e40f94c8b0f44" id="r_aec11c7d741aa0004bf6e40f94c8b0f44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#aec11c7d741aa0004bf6e40f94c8b0f44">RefEvalCond</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:aec11c7d741aa0004bf6e40f94c8b0f44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a "cond" expression, which searches through a list of conditional statements and evaluates and returns the first one that evaluates to true.  <br /></td></tr>
 <tr class="separator:aec11c7d741aa0004bf6e40f94c8b0f44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75d8210f267ad33b3e72db9018eb2872" id="r_a75d8210f267ad33b3e72db9018eb2872"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#a75d8210f267ad33b3e72db9018eb2872">RefEvalCase</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:a75d8210f267ad33b3e72db9018eb2872"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a "case" expression, which searches through a list of statements, each with a list of potential values and evaluates and returns the first one that matches.  <br /></td></tr>
 <tr class="separator:a75d8210f267ad33b3e72db9018eb2872"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6cb8f147011061b6f0659c4ec968f6b" id="r_ae6cb8f147011061b6f0659c4ec968f6b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#ae6cb8f147011061b6f0659c4ec968f6b">RefEvalLet</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:ae6cb8f147011061b6f0659c4ec968f6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a "let" expression, which defines variables for a scoped body expression.  <br /></td></tr>
 <tr class="separator:ae6cb8f147011061b6f0659c4ec968f6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada3f3696cef69c756547a902411039bb" id="r_ada3f3696cef69c756547a902411039bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#ada3f3696cef69c756547a902411039bb">RefEvalWhile</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:ada3f3696cef69c756547a902411039bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a "while" expression: the body continues to execute while the conditional is truthy.  <br /></td></tr>
 <tr class="separator:ada3f3696cef69c756547a902411039bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78e08fb77221070be891171e125ce3eb" id="r_a78e08fb77221070be891171e125ce3eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#a78e08fb77221070be891171e125ce3eb">RefEvalLambda</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:a78e08fb77221070be891171e125ce3eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an anonymous lambda function.  <br /></td></tr>
 <tr class="separator:a78e08fb77221070be891171e125ce3eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3291cf21e6344323312b189e03ffe6e" id="r_af3291cf21e6344323312b189e03ffe6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#af3291cf21e6344323312b189e03ffe6e">RefEvalLambdaBody</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:af3291cf21e6344323312b189e03ffe6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates each body statment of a lambda function. This is used by <a class="el" href="eval_8h.html#a88b4ae0c257856a2e3ae9f082f39579b" title="Calls a function. The last argument may be an (optional) variadic list of arguments that is unpacked ...">RefEvalApply()</a>.  <br /></td></tr>
 <tr class="separator:af3291cf21e6344323312b189e03ffe6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30a5e7c61772789a7574322afcda91c3" id="r_a30a5e7c61772789a7574322afcda91c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#a30a5e7c61772789a7574322afcda91c3">RefEvalBegin</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:a30a5e7c61772789a7574322afcda91c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a "begin" statement, which simply executes several child statements and returns the value of the last one.  <br /></td></tr>
 <tr class="separator:a30a5e7c61772789a7574322afcda91c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88b4ae0c257856a2e3ae9f082f39579b" id="r_a88b4ae0c257856a2e3ae9f082f39579b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#a88b4ae0c257856a2e3ae9f082f39579b">RefEvalApply</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:a88b4ae0c257856a2e3ae9f082f39579b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls a function. The last argument may be an (optional) variadic list of arguments that is unpacked and passed to the target function.  <br /></td></tr>
 <tr class="separator:a88b4ae0c257856a2e3ae9f082f39579b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7770e481a1d742c80859b8449722d71c" id="r_a7770e481a1d742c80859b8449722d71c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#a7770e481a1d742c80859b8449722d71c">RefEvalImport</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:a7770e481a1d742c80859b8449722d71c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imports a module, exact semantics unknown.  <br /></td></tr>
 <tr class="separator:a7770e481a1d742c80859b8449722d71c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd896768088f2cdcf8f9170a6456ea8e" id="r_acd896768088f2cdcf8f9170a6456ea8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eval_8h.html#acd896768088f2cdcf8f9170a6456ea8e">RefEval</a> (<a class="el" href="classCPair.html">CPair</a> *ppair, <a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:acd896768088f2cdcf8f9170a6456ea8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generically evaluates a pair, dispatching to one of the above routines.  <br /></td></tr>
 <tr class="separator:acd896768088f2cdcf8f9170a6456ea8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Evaluation methods for Splice, which is semantically very close to Scheme. </p>
+
+<p class="definition">Definition in file <a class="el" href="eval_8h_source.html">eval.h</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="acd896768088f2cdcf8f9170a6456ea8e" name="acd896768088f2cdcf8f9170a6456ea8e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acd896768088f2cdcf8f9170a6456ea8e">&#9670;&#160;</a></span>RefEval()</h2>
 
@@ -179,6 +203,18 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Generically evaluates a pair, dispatching to one of the above routines. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair to evaluate. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return reference of the evaluation. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="eval_8cpp_source.html#l00546">546</a> of file <a class="el" href="eval_8cpp_source.html">eval.cpp</a>.</p>
 
 </div>
 </div>
@@ -208,6 +244,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Evaluates an "and" expression, which returns true if all of its variadic arguments are true. Will short circuit at the first false expression. </p>
+<p>(and &lt;expr1&gt; ...)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair whose first entry contains a list of the arguments. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Truthy value of the last evaluated expression, or explicit false reference. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="eval_8cpp_source.html#l00104">104</a> of file <a class="el" href="eval_8cpp_source.html">eval.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a88b4ae0c257856a2e3ae9f082f39579b" name="a88b4ae0c257856a2e3ae9f082f39579b"></a>
@@ -235,6 +284,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Calls a function. The last argument may be an (optional) variadic list of arguments that is unpacked and passed to the target function. </p>
+<p>(apply &lt;function&gt; &lt;arg-expr-1&gt; ... {list})</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair whose first entry contains a list of the arguments. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return value of the evaluated function. </dd></dl>
 
 </div>
 </div>
@@ -264,6 +324,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Evaluates an "assert" statement, printing to the debug console if it fails, along with the "description" field. </p>
+<p>(assert &lt;expression&gt; {description})</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair whose first entry contains a list of the arguments. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Void reference. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="eval_8cpp_source.html#l00036">36</a> of file <a class="el" href="eval_8cpp_source.html">eval.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a30a5e7c61772789a7574322afcda91c3" name="a30a5e7c61772789a7574322afcda91c3"></a>
@@ -291,6 +364,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Evaluates a "begin" statement, which simply executes several child statements and returns the value of the last one. </p>
+<p>(begin &lt;statement-1&gt; ...)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair whose first entry contains a list of the arguments. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Evaluation of the last statement. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="eval_8cpp_source.html#l00373">373</a> of file <a class="el" href="eval_8cpp_source.html">eval.cpp</a>.</p>
 
 </div>
 </div>
@@ -320,6 +406,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Evaluates a "case" expression, which searches through a list of statements, each with a list of potential values and evaluates and returns the first one that matches. </p>
+<p>(case </p>
+<p>{((&lt;datum-1 ...&gt;) &lt;body-stmt-1&gt; ...)} {((&lt;datum-2 ...&gt;) &lt;body-stmt-2&gt; ...)} {(else &lt;default-stmt-1&gt; ...)} ) ) Each sublist is traversed in order and its datum list matched against "value". If it evaluates truthy, then the body expression(s) are evaluated and returned. If no expression evaluates truthy, then the first "else" statement is evaluated and returned. If no else statements exist, then the return type is a Void reference.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair whose first entry contains a list of the arguments. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Matched expression. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="eval_8cpp_source.html#l00185">185</a> of file <a class="el" href="eval_8cpp_source.html">eval.cpp</a>.</p>
+
 </div>
 </div>
 <a id="aec11c7d741aa0004bf6e40f94c8b0f44" name="aec11c7d741aa0004bf6e40f94c8b0f44"></a>
@@ -347,6 +447,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Evaluates a "cond" expression, which searches through a list of conditional statements and evaluates and returns the first one that evaluates to true. </p>
+<p>(cond {(&lt;test-expr-1&gt; &lt;body-stmt-1&gt; ...)} {(&lt;test-expr-2&gt; &lt;body-stmt-2&gt; ...)} {(else &lt;else-stmt-1&gt; ...}) ) Each sublist is traversed in order and its expression is evaluated. If it evaluates truthy, then the body expression(s) are evaluated and returned. If no expression evaluates truthy, then the first "else" statement is evaluated and returned. If no else statements exist, then the return type is a Void reference.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair whose first entry contains a list of the arguments. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Matched expression. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="eval_8cpp_source.html#l00131">131</a> of file <a class="el" href="eval_8cpp_source.html">eval.cpp</a>.</p>
 
 </div>
 </div>
@@ -376,6 +489,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Evaluates a "define" statement, declaring a new variable with its value. </p>
+<p>(define &lt;variable&gt; &lt;expression&gt;)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair whose first entry contains a list of the arguments. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Void reference. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="eval_8cpp_source.html#l00025">25</a> of file <a class="el" href="eval_8cpp_source.html">eval.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a62ee58f07b5a4ab3952c565eee9eeb25" name="a62ee58f07b5a4ab3952c565eee9eeb25"></a>
@@ -403,6 +529,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Evaluates an "if" statement, which conditionally executes a body and optional else statement depending on the value of its input. </p>
+<p>(if &lt;expression&gt; &lt;true-stmt&gt; {else-stmt})</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair whose first entry contains a list of the arguments. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The return of whatever branch was taken, or void reference if none executed. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="eval_8cpp_source.html#l00056">56</a> of file <a class="el" href="eval_8cpp_source.html">eval.cpp</a>.</p>
 
 </div>
 </div>
@@ -432,6 +571,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Imports a module, exact semantics unknown. </p>
+<p>(import &lt;module?&gt;)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair whose first entry contains a list of the arguments. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Void reference; </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="eval_8cpp_source.html#l00526">526</a> of file <a class="el" href="eval_8cpp_source.html">eval.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a78e08fb77221070be891171e125ce3eb" name="a78e08fb77221070be891171e125ce3eb"></a>
@@ -459,6 +611,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creates an anonymous lambda function. </p>
+<p>(lambda (&lt;param-1&gt; &lt;param-2&gt; ...) &lt;body-stmt&gt;)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair whose first entry contains a list of the arguments. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the newly created lambda. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="eval_8cpp_source.html#l00313">313</a> of file <a class="el" href="eval_8cpp_source.html">eval.cpp</a>.</p>
 
 </div>
 </div>
@@ -488,6 +653,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Evaluates each body statment of a lambda function. This is used by <a class="el" href="eval_8h.html#a88b4ae0c257856a2e3ae9f082f39579b" title="Calls a function. The last argument may be an (optional) variadic list of arguments that is unpacked ...">RefEvalApply()</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair containing the lambda body. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return value of the last executed body statement. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="eval_8cpp_source.html#l00358">358</a> of file <a class="el" href="eval_8cpp_source.html">eval.cpp</a>.</p>
+
 </div>
 </div>
 <a id="ae6cb8f147011061b6f0659c4ec968f6b" name="ae6cb8f147011061b6f0659c4ec968f6b"></a>
@@ -515,6 +692,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Evaluates a "let" expression, which defines variables for a scoped body expression. </p>
+<p>(let ( (&lt;var-1&gt; &lt;expr-1&gt;) (&lt;var-2&gt; &lt;expr-2&gt;) ...) body-expr-1... )</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair whose first entry contains a list of the arguments. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Evaluation of the body expression(s). </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="eval_8cpp_source.html#l00248">248</a> of file <a class="el" href="eval_8cpp_source.html">eval.cpp</a>.</p>
 
 </div>
 </div>
@@ -544,6 +734,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Evaluates an "or" expression, which returns true if any of its variadic arguments are true. Will short circuit at the first truthy expression. </p>
+<p>(or &lt;expr1&gt; ...)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair whose first entry contains a list of the arguments. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Truthy value of the last evaluated expression, or explicit false reference. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="eval_8cpp_source.html#l00082">82</a> of file <a class="el" href="eval_8cpp_source.html">eval.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a7d444ae4900e5c42d554730923bb6477" name="a7d444ae4900e5c42d554730923bb6477"></a>
@@ -571,6 +774,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Evaluates a "set" statement, assigning a new value to an existing variable. </p>
+<p>(set &lt;variable&gt; &lt;expression&gt;)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair whose first entry contains a list of the arguments. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Void reference. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="eval_8cpp_source.html#l00014">14</a> of file <a class="el" href="eval_8cpp_source.html">eval.cpp</a>.</p>
 
 </div>
 </div>
@@ -600,6 +816,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Evaluates a symbol by looking up its ID in the frame structure. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair containing a symbol in its first slot. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of the evaluated symbol. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="eval_8cpp_source.html#l00007">7</a> of file <a class="el" href="eval_8cpp_source.html">eval.cpp</a>.</p>
+
 </div>
 </div>
 <a id="ada3f3696cef69c756547a902411039bb" name="ada3f3696cef69c756547a902411039bb"></a>
@@ -627,6 +855,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Evaluates a "while" expression: the body continues to execute while the conditional is truthy. </p>
+<p>(while &lt;cond-expr&gt; &lt;body-stmt&gt;)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Lisp pair whose first entry contains a list of the arguments. </td></tr>
+    <tr><td class="paramname">pframe</td><td>Context frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Void reference. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="eval_8cpp_source.html#l00289">289</a> of file <a class="el" href="eval_8cpp_source.html">eval.cpp</a>.</p>
 
 </div>
 </div>
