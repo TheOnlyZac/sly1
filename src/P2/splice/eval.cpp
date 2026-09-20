@@ -386,9 +386,10 @@ CRef RefEvalBegin(CPair *ppair, CFrame *pframe)
 }
 
 /**
- * @todo: 99.5259% matching
- * There are several mismatched registers in the variadic arguments loop
- * and TAGK_Proc case, as well as one swapped pair of instructions in the latter.
+ * @todo: 99.78% matching
+ * This mainly differs from the source in register allocation and scheduling:
+ * - Instructions for setting pTail and pHead in the variadic loop is switched.
+ * - Registers for the loop counter and cref binding in the TAGK_Proc loop are switched.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/splice/eval", RefEvalApply__FP5CPairP6CFrame);
 #ifdef SKIP_ASM
@@ -405,6 +406,7 @@ CRef RefEvalApply(CPair *ppair, CFrame *pframe)
     int carg;
     int fVarArg;
     int cparam;
+    int i;
     BIF *pEntry;
     CMethod *pMethod;
     CProc *pProc;
@@ -436,7 +438,6 @@ CRef RefEvalApply(CPair *ppair, CFrame *pframe)
     /* Flatten cref arguments into an array */
     cparam = crefReq + (fVarArg != 0);
     carg = crefReq;
-    int i;
     for (i = 0; i < carg; i++)
     {
         crefResult = RefEval(pPair, pframe);
@@ -446,13 +447,11 @@ CRef RefEvalApply(CPair *ppair, CFrame *pframe)
 
     /* If we have variadic arguments, then place them into a list
        that gets passed as the last argument. */
+    CPair *pRest = pPair;
     if (fVarArg)
     {
-        CPair *pRest = pPair;
-
         CPair *pTail = NULL;
         CPair *pHead = NULL;
-
         while (pRest != NULL)
         {
             pPair = PpairNew();
@@ -489,7 +488,6 @@ CRef RefEvalApply(CPair *ppair, CFrame *pframe)
             crefResult = pEntry->pfnbif(carg, arefs, pframe);
             break;
         }
-
         case TAGK_Proc:
         {
             pProc = cref.m_tag.m_pproc;
@@ -497,35 +495,24 @@ CRef RefEvalApply(CPair *ppair, CFrame *pframe)
             pFrameNew->SetSingleParent(pProc->m_pframe);
             pPair = pProc->m_ppair;
 
-            if (cparam > 0)
+            for (int i = 0; i < cparam; i++)
             {
-                TAGK tagkPipe = TAGK_Pipe;
-                CRef *pArg = arefs;
-                int cparamRem = cparam;
-
-                while (cparamRem != 0)
+                CRef crefBinding;
+                if (pPair->m_ref.m_tagk == TAGK_Pipe)
                 {
-                    CRef crefBinding;
-                    if (pPair->m_ref.m_tagk == tagkPipe)
-                    {
-                        pPair = pPair->m_ppairNext;
-                    }
-                    crefBinding = pFrameNew->RefAddBinding(pPair->m_ref.m_tag.m_symid, pArg);
-                    cparamRem--;
-                    pArg++;
                     pPair = pPair->m_ppairNext;
                 }
+                crefBinding = pFrameNew->RefAddBinding(pPair->m_ref.m_tag.m_symid, &arefs[i]);
+                pPair = pPair->m_ppairNext;
             }
             crefResult = RefEvalLambdaBody(pProc->m_ppairCodeExpr, pFrameNew);
             break;
         }
-
         case TAGK_Method:
         {
             crefResult = pMethod->m_pfnthunk(pMethod->m_pbasic, carg, arefs);
             break;
         }
-
         default:
         {
             break;
