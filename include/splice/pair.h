@@ -16,6 +16,7 @@ class CPair
 {
 public:
     CRef m_ref;
+    CPair *m_ppairNext;
 
     /**
      * @brief Clones this pair to another pair, recursively cloning any next pairs.
@@ -24,9 +25,6 @@ public:
      * @param pframeClone Pointer to the frame to use for cloning references.
      */
     void CloneTo(CPair *ppairClone, CFrame *pframeClone);
-
-private:
-    CPair *m_ppairNext;
 };
 
 /**

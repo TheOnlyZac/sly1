@@ -282,8 +282,7 @@ segments:
     #--------------------------------------------------------
     - [0x118380, rodata] #MARK: rodata
     - [0x149fe0, .rodata, P2/splice/bif]
-    - [0x14a200, rodata] #todo: remove line and uncomment next for RefEvalAssert
-    #- [0x14a200, .rodata, P2/splice/eval]
+    - [0x14a200, .rodata, P2/splice/eval]
     - [0x14a2f0, .rodata, P2/splice/ref]
     - [0x14a3a0, .rodata, P2/splice/serialize]
     - [0x14a428, rodata] #, P2/989snd]

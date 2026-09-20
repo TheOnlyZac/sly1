@@ -12,8 +12,7 @@ class CFrame;
 
 /**
  * @enum BIFK
- *
- * @todo Fill in enum.
+ * @brief Built-in function kind.
  */
 enum BIFK
 {
@@ -24,6 +23,22 @@ enum BIFK
     BIFK_GetO = 102,
     // ...
 };
+
+/**
+ * @brief Function pointer for built-in function dispatch.
+ */
+typedef CRef (*PFNBIF)(int, CRef *, CFrame *);
+
+/**
+ * @brief A single entry in the global BIF dispatch table.
+ */
+struct BIF
+{
+    PFNBIF pfnbif;
+    int crefReq;
+    int fVarArg;
+};
+extern BIF g_mpbifkbif[];
 
 /**
  * @brief Comparison Kind.
@@ -38,7 +53,7 @@ enum CMPK
 };
 
 /**
- * @brief (?) operation kind?
+ * @brief Kind of Uniform Float Operation (?)
  */
 enum UFOK
 {
@@ -52,6 +67,11 @@ enum UFOK
     UFOK_RadNormalize = 7,
     UFOK_Max = 8,
 };
+
+/**
+ * @brief Function pointer for uniform float operation (?) dispatch.
+ */
+typedef float (*PFNUFO)(float);
 
 CRef RefOpAdd(int carg, CRef *aref, CFrame *pframe);
 
