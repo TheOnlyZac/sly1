@@ -12,8 +12,7 @@ class CFrame;
 
 /**
  * @enum BIFK
- *
- * @todo Kind of built-in function.
+ * @brief Built-in function kind.
  */
 enum BIFK
 {
@@ -28,12 +27,13 @@ enum BIFK
 /**
  * @brief Function pointer for built-in function dispatch.
  */
-typedef CRef (*PFNBIF)(int, CRef*, CFrame*);
+typedef CRef (*PFNBIF)(int, CRef *, CFrame *);
 
 /**
  * @brief A single entry in the global BIF dispatch table.
  */
-struct BIF {
+struct BIF
+{
     PFNBIF pfnbif;
     int crefReq;
     int fVarArg;

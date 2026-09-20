@@ -85,7 +85,7 @@ CRef RefEvalOr(CPair *ppair, CFrame *pframe)
 
     /* Loop over all arguments and short circuit at the first true
        or non-bool element (which is considered to be truthy) */
-    for (CPair* ppairArg = ppair->m_ref.m_tag.m_ppair->m_ppairNext;
+    for (CPair *ppairArg = ppair->m_ref.m_tag.m_ppair->m_ppairNext;
          ppairArg != NULL;
          ppairArg = ppairArg->m_ppairNext)
     {
@@ -108,7 +108,7 @@ CRef RefEvalAnd(CPair *ppair, CFrame *pframe)
 
     /* Loop over all arguments and short circuit at the first false
        element (non-bool args are considered truthy) */
-    for (CPair* ppairArg = ppair->m_ref.m_tag.m_ppair->m_ppairNext;
+    for (CPair *ppairArg = ppair->m_ref.m_tag.m_ppair->m_ppairNext;
          ppairArg != NULL;
          ppairArg = ppairArg->m_ppairNext)
     {
@@ -250,18 +250,18 @@ CRef RefEvalLet(CPair *ppair, CFrame *pframe)
     CRef cref;
     CRef cEval, cBinding;
 
-    CPair* pDefinitions = ppair->m_ref.m_tag.m_ppair->m_ppairNext;
-    CFrame* pCurrentFrame;
+    CPair *pDefinitions = ppair->m_ref.m_tag.m_ppair->m_ppairNext;
+    CFrame *pCurrentFrame;
 
     /* Loop through each variable definition and add them to a new binding frame. */
     if (pDefinitions->m_ref.m_tagk == TAGK_Pair)
     {
         pCurrentFrame = PframeNew();
 
-        CPair* pDefinition = pDefinitions->m_ref.m_tag.m_ppair;
+        CPair *pDefinition = pDefinitions->m_ref.m_tag.m_ppair;
         while (pDefinition != NULL)
         {
-            CPair* pDefPair = pDefinition->m_ref.m_tag.m_ppair;
+            CPair *pDefPair = pDefinition->m_ref.m_tag.m_ppair;
             cEval = RefEval(pDefPair->m_ppairNext, pframe);
             cBinding = pCurrentFrame->RefAddBinding(pDefPair->m_ref.m_tag.m_symid, &cEval);
 
@@ -276,7 +276,7 @@ CRef RefEvalLet(CPair *ppair, CFrame *pframe)
     }
 
     /* Evaluate all body expressions */
-    CPair* pBody = pDefinitions->m_ppairNext;
+    CPair *pBody = pDefinitions->m_ppairNext;
     while (pBody != NULL)
     {
         cref = RefEval(pBody, pCurrentFrame);
@@ -290,8 +290,8 @@ CRef RefEvalWhile(CPair *ppair, CFrame *pframe)
 {
     CRef cref;
 
-    CPair* pCond = ppair->m_ref.m_tag.m_ppair->m_ppairNext;
-    CPair* pBody = pCond->m_ppairNext;
+    CPair *pCond = ppair->m_ref.m_tag.m_ppair->m_ppairNext;
+    CPair *pBody = pCond->m_ppairNext;
 
     /* Keeping looping until we get an explicit FALSE value */
     while (true)
@@ -314,11 +314,11 @@ CRef RefEvalLambda(CPair *ppair, CFrame *pframe)
 {
     CRef cref;
 
-    CPair* pPair = ppair->m_ref.m_tag.m_ppair->m_ppairNext;
-    CPair* pCodeExpr = pPair->m_ppairNext;
+    CPair *pPair = ppair->m_ref.m_tag.m_ppair->m_ppairNext;
+    CPair *pCodeExpr = pPair->m_ppairNext;
 
     /* Create a new procedure with optional arguments */
-    CProc* pProc = PprocNew();
+    CProc *pProc = PprocNew();
     pProc->m_pframe = pframe;
     if (pPair->m_ref.m_tagk == TAGK_None)
     {
@@ -334,7 +334,7 @@ CRef RefEvalLambda(CPair *ppair, CFrame *pframe)
     int crefReq = 0;
 
     /* Count the number of arguments */
-    CPair* pCur = pProc->m_ppair;
+    CPair *pCur = pProc->m_ppair;
     while (pCur != NULL)
     {
         if (pCur->m_ref.m_tagk == TAGK_Pipe)
@@ -359,7 +359,7 @@ CRef RefEvalLambdaBody(CPair *ppair, CFrame *pframe)
 {
     CRef cref;
 
-    CPair* pCurrent = ppair;
+    CPair *pCurrent = ppair;
     do
     {
         cref = RefEval(pCurrent, pframe);
@@ -375,7 +375,7 @@ CRef RefEvalBegin(CPair *ppair, CFrame *pframe)
     CRef cref;
 
     cref.SetTag(TAGK_Void);
-    CPair* pPair = ppair->m_ref.m_tag.m_ppair->m_ppairNext;
+    CPair *pPair = ppair->m_ref.m_tag.m_ppair->m_ppairNext;
     while (pPair != NULL)
     {
         cref = RefEval(pPair, pframe);
@@ -529,7 +529,7 @@ CRef RefEvalImport(CPair *ppair, CFrame *pframe)
 
     CPair *ppairVar = ppair->m_ref.m_tag.m_ppair->m_ppairNext;
     int isplice = ppairVar->m_ref.m_tag.m_n;
-    CFrame* pParentFrame = PframeFromIsplice(isplice, g_psw);
+    CFrame *pParentFrame = PframeFromIsplice(isplice, g_psw);
 
     if (pParentFrame == NULL)
     {
@@ -573,7 +573,7 @@ CRef RefEval(CPair *ppair, CFrame *pframe)
         }
         case TAGK_Pair:
         {
-            CPair* pRest = ppair->m_ref.m_tag.m_ppair;
+            CPair *pRest = ppair->m_ref.m_tag.m_ppair;
             TAGK tagk_rest = pRest->m_ref.m_tagk;
             switch (tagk_rest)
             {

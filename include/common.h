@@ -67,7 +67,7 @@
 /**
  * @brief Aligns a specified binary section to a 2^n byte boundary.
  */
-#define ALIGN_SECTION(section, n) __asm__(".section ." #section "\n.align " #n "\n.section .text\n")
+#define ALIGN_SECTION(section, n) asm(".section ." #section "\n.align " #n "\n.section .text\n")
 
 // Global system values
 extern int _gpReg; // Global pointer register

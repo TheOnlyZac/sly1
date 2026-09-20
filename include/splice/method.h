@@ -15,8 +15,8 @@ class CRef;
 class CMethod
 {
 public:
-    BASIC* m_pbasic;
-    CRef (*m_pfnthunk)(BASIC*, int, CRef*);
+    BASIC *m_pbasic;
+    CRef (*m_pfnthunk)(BASIC *, int, CRef *);
     int m_crefReq;
 };
 
