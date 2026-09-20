@@ -31,12 +31,12 @@ enum BIFK
 typedef CRef (*PFNBIF)(int, CRef*, CFrame*);
 
 /**
- * @brief A single entry in the global BIF table.
+ * @brief A single entry in the global BIF dispatch table.
  */
 struct BIF {
-    PFNBIF m_proutine;
-    int m_crefReq;
-    int m_fVarArg;
+    PFNBIF pfnbif;
+    int crefReq;
+    int fVarArg;
 };
 extern BIF g_mpbifkbif[];
 

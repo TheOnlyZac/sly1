@@ -156,7 +156,8 @@ CRef RefEvalCond(CPair *ppair, CFrame *pframe)
                 fMatch = 1;
             }
 
-            if (fMatch && pClause->m_ppairNext == NULL) {
+            if (fMatch && pClause->m_ppairNext == NULL)
+            {
                 cref = crefTest;
             }
         }
@@ -385,7 +386,9 @@ CRef RefEvalBegin(CPair *ppair, CFrame *pframe)
 }
 
 /**
- * @brief TODO: 99.5259% matching
+ * @todo: 99.5259% matching
+ * There are several mismatched registers in the variadic arguments loop
+ * and TAGK_Proc case, as well as one swapped pair of instructions in the latter.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/splice/eval", RefEvalApply__FP5CPairP6CFrame);
 #ifdef SKIP_ASM
@@ -402,7 +405,7 @@ CRef RefEvalApply(CPair *ppair, CFrame *pframe)
     int carg;
     int fVarArg;
     int cparam;
-    BIFENTRY *pEntry;
+    BIF *pEntry;
     CMethod *pMethod;
     CProc *pProc;
 
@@ -410,8 +413,8 @@ CRef RefEvalApply(CPair *ppair, CFrame *pframe)
     {
         /* Built-in function */
         pEntry = &g_mpbifkbif[cref.m_tag.m_bifk];
-        crefReq = pEntry->m_crefReq;
-        fVarArg = pEntry->m_fVarArg;
+        crefReq = pEntry->crefReq;
+        fVarArg = pEntry->fVarArg;
     }
     else if (cref.m_tagk == TAGK_Method)
     {
@@ -481,45 +484,52 @@ CRef RefEvalApply(CPair *ppair, CFrame *pframe)
     /* Dispatch based on the original call */
     switch (cref.m_tagk)
     {
-    case TAGK_Bifk:
-        crefResult = pEntry->m_proutine(carg, arefs, pframe);
-        break;
-
-    case TAGK_Proc:
-    {
-        pProc = cref.m_tag.m_pproc;
-        CFrame *pFrameNew = PframeNew();
-        pFrameNew->SetSingleParent(pProc->m_pframe);
-        pPair = pProc->m_ppair;
-
-        if (cparam > 0)
+        case TAGK_Bifk:
         {
-            TAGK tagkPipe = TAGK_Pipe;
-            CRef *pArg = arefs;
-            int cparamRem = cparam;
+            crefResult = pEntry->pfnbif(carg, arefs, pframe);
+            break;
+        }
 
-            while (cparamRem != 0)
+        case TAGK_Proc:
+        {
+            pProc = cref.m_tag.m_pproc;
+            CFrame *pFrameNew = PframeNew();
+            pFrameNew->SetSingleParent(pProc->m_pframe);
+            pPair = pProc->m_ppair;
+
+            if (cparam > 0)
             {
-                CRef crefBinding;
-                if (pPair->m_ref.m_tagk == tagkPipe) {
+                TAGK tagkPipe = TAGK_Pipe;
+                CRef *pArg = arefs;
+                int cparamRem = cparam;
+
+                while (cparamRem != 0)
+                {
+                    CRef crefBinding;
+                    if (pPair->m_ref.m_tagk == tagkPipe)
+                    {
+                        pPair = pPair->m_ppairNext;
+                    }
+                    crefBinding = pFrameNew->RefAddBinding(pPair->m_ref.m_tag.m_symid, pArg);
+                    cparamRem--;
+                    pArg++;
                     pPair = pPair->m_ppairNext;
                 }
-                crefBinding = pFrameNew->RefAddBinding(pPair->m_ref.m_tag.m_symid, pArg);
-                cparamRem--;
-                pArg++;
-                pPair = pPair->m_ppairNext;
             }
+            crefResult = RefEvalLambdaBody(pProc->m_ppairCodeExpr, pFrameNew);
+            break;
         }
-        crefResult = RefEvalLambdaBody(pProc->m_ppairCodeExpr, pFrameNew);
-        break;
-    }
 
-    case TAGK_Method:
-        crefResult = pMethod->m_pfnthunk(pMethod->m_pbasic, carg, arefs);
-        break;
+        case TAGK_Method:
+        {
+            crefResult = pMethod->m_pfnthunk(pMethod->m_pbasic, carg, arefs);
+            break;
+        }
 
-    default:
-        break;
+        default:
+        {
+            break;
+        }
     }
 
     return crefResult;
@@ -551,77 +561,112 @@ CRef RefEval(CPair *ppair, CFrame *pframe)
     CRef cref;
 
     TAGK tagk = ppair->m_ref.m_tagk;
-    switch (tagk) {
-    case TAGK_None:
-    case TAGK_S32:
-    case TAGK_F32:
-    case TAGK_Vector:
-    case TAGK_Matrix:
-    case TAGK_Clq:
-    case TAGK_Lm:
-    case TAGK_Smp:
-    case TAGK_Bool:
-    case TAGK_Bifk:
-    case TAGK_Basic:
-    case TAGK_Method:
-        cref = ppair->m_ref;
-        break;
-    case TAGK_Symid:
-        cref = RefEvalSymbol(ppair, pframe);
-        break;
-    case TAGK_Pair:
+    switch (tagk)
     {
-        CPair* pRest = ppair->m_ref.m_tag.m_ppair;
-        TAGK tagk_rest = pRest->m_ref.m_tagk;
-        switch (tagk_rest)
+        case TAGK_None:
+        case TAGK_S32:
+        case TAGK_F32:
+        case TAGK_Vector:
+        case TAGK_Matrix:
+        case TAGK_Clq:
+        case TAGK_Lm:
+        case TAGK_Smp:
+        case TAGK_Bool:
+        case TAGK_Bifk:
+        case TAGK_Basic:
+        case TAGK_Method:
         {
-        case TAGK_Set:
-            cref = RefEvalSet(ppair, pframe);
-            break;
-        case TAGK_Define:
-            cref = RefEvalDefine(ppair, pframe);
-            break;
-        case TAGK_Assert:
-            cref = RefEvalAssert(ppair, pframe);
-            break;
-        case TAGK_If:
-            cref = RefEvalIf(ppair, pframe);
-            break;
-        case TAGK_Or:
-            cref = RefEvalOr(ppair, pframe);
-            break;
-        case TAGK_And:
-            cref = RefEvalAnd(ppair, pframe);
-            break;
-        case TAGK_Cond:
-            cref = RefEvalCond(ppair, pframe);
-            break;
-        case TAGK_Case:
-            cref = RefEvalCase(ppair, pframe);
-            break;
-        case TAGK_Let:
-            cref = RefEvalLet(ppair, pframe);
-            break;
-        case TAGK_While:
-            cref = RefEvalWhile(ppair, pframe);
-            break;
-        case TAGK_Begin:
-            cref = RefEvalBegin(ppair, pframe);
-            break;
-        case TAGK_Lambda:
-            cref = RefEvalLambda(ppair, pframe);
-            break;
-        case TAGK_Quote:
-            cref = pRest->m_ppairNext->m_ref;
-            break;
-        case TAGK_Import:
-            cref = RefEvalImport(ppair, pframe);
-            break;
-        default:
-            cref = RefEvalApply(ppair, pframe);
+            cref = ppair->m_ref;
             break;
         }
-    }
+        case TAGK_Symid:
+        {
+            cref = RefEvalSymbol(ppair, pframe);
+            break;
+        }
+        case TAGK_Pair:
+        {
+            CPair* pRest = ppair->m_ref.m_tag.m_ppair;
+            TAGK tagk_rest = pRest->m_ref.m_tagk;
+            switch (tagk_rest)
+            {
+                case TAGK_Set:
+                {
+                    cref = RefEvalSet(ppair, pframe);
+                    break;
+                }
+                case TAGK_Define:
+                {
+                    cref = RefEvalDefine(ppair, pframe);
+                    break;
+                }
+                case TAGK_Assert:
+                {
+                    cref = RefEvalAssert(ppair, pframe);
+                    break;
+                }
+                case TAGK_If:
+                {
+                    cref = RefEvalIf(ppair, pframe);
+                    break;
+                }
+                case TAGK_Or:
+                {
+                    cref = RefEvalOr(ppair, pframe);
+                    break;
+                }
+                case TAGK_And:
+                {
+                    cref = RefEvalAnd(ppair, pframe);
+                    break;
+                }
+                case TAGK_Cond:
+                {
+                    cref = RefEvalCond(ppair, pframe);
+                    break;
+                }
+                case TAGK_Case:
+                {
+                    cref = RefEvalCase(ppair, pframe);
+                    break;
+                }
+                case TAGK_Let:
+                {
+                    cref = RefEvalLet(ppair, pframe);
+                    break;
+                }
+                case TAGK_While:
+                {
+                    cref = RefEvalWhile(ppair, pframe);
+                    break;
+                }
+                case TAGK_Begin:
+                {
+                    cref = RefEvalBegin(ppair, pframe);
+                    break;
+                }
+                case TAGK_Lambda:
+                {
+                    cref = RefEvalLambda(ppair, pframe);
+                    break;
+                }
+                case TAGK_Quote:
+                {
+                    cref = pRest->m_ppairNext->m_ref;
+                    break;
+                }
+                case TAGK_Import:
+                {
+                    cref = RefEvalImport(ppair, pframe);
+                    break;
+                }
+                default:
+                {
+                    cref = RefEvalApply(ppair, pframe);
+                    break;
+                }
+            }
+        }
     }
 
     return cref;
