@@ -154,6 +154,6 @@ extern "C"
     char *strchr(char *pchz, int ch);
 }
 
-void UpperizePchz(const char *pchz);
+void UpperizePchz(char *pchz);
 
 #endif // TEXT_H
