@@ -627,4 +627,4 @@ CRef RefEval(CPair *ppair, CFrame *pframe)
     return cref;
 }
 
-ALIGN_RODATA(4);
+ALIGN_SECTION(rodata, 4);

@@ -33,12 +33,12 @@ typedef CRef (*PFNBIF)(int, CRef*, CFrame*);
 /**
  * @brief A single entry in the global BIF table.
  */
-struct BIFENTRY {
+struct BIF {
     PFNBIF m_proutine;
     int m_crefReq;
     int m_fVarArg;
 };
-extern "C" BIFENTRY g_BIFDispatchTable[];
+extern BIF g_mpbifkbif[];
 
 /**
  * @brief Comparison Kind.
@@ -72,7 +72,6 @@ enum UFOK
  * @brief Function pointer for uniform float operation (?) dispatch.
  */
 typedef float (*PFNUFO)(float);
-
 
 CRef RefOpAdd(int carg, CRef *aref, CFrame *pframe);
 

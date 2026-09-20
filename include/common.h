@@ -65,9 +65,9 @@
 #define JUNK_NOP() asm(".word 0x00000000\n\t")
 
 /**
- * @brief Aligns the .rodata section to a 2^n byte boundary.
+ * @brief Aligns a specified binary section to a 2^n byte boundary.
  */
-#define ALIGN_RODATA(n) __asm__(".section .rodata\n.align " #n "\n.section .text\n")
+#define ALIGN_SECTION(section, n) __asm__(".section ." #section "\n.align " #n "\n.section .text\n")
 
 // Global system values
 extern int _gpReg; // Global pointer register
