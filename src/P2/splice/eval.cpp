@@ -141,6 +141,8 @@ CRef RefEvalCond(CPair *ppair, CFrame *pframe)
         CPair *pClause = pClauseList->m_ref.m_tag.m_ppair;
         int fMatch;
 
+        /* Check if we have a match, which is either trivially true for an "else",
+           or if the condition evaluates to true. */
         if (pClause->m_ref.m_tagk == TAGK_Else)
         {
             fMatch = 1;
@@ -159,6 +161,7 @@ CRef RefEvalCond(CPair *ppair, CFrame *pframe)
             }
         }
 
+        /* If we have a match, then execute all expressions and return. */
         if (fMatch)
         {
             pClause = pClause->m_ppairNext;
@@ -195,6 +198,8 @@ CRef RefEvalCase(CPair *ppair, CFrame *pframe)
         CPair *pClause = pClauseList->m_ref.m_tag.m_ppair;
         int fMatch;
 
+        /* Check if we have a match, which is either trivially true for an "else",
+           or if one of the data conditions matches. */
         if (pClause->m_ref.m_tagk == TAGK_Else)
         {
             fMatch = 1;
@@ -219,6 +224,7 @@ CRef RefEvalCase(CPair *ppair, CFrame *pframe)
             }
         }
 
+        /* If we have a match, then execute all expressions and return. */
         if (fMatch)
         {
             pClause = pClause->m_ppairNext;
