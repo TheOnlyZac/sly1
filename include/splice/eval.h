@@ -28,7 +28,7 @@ CRef RefEvalSymbol(CPair *ppair, CFrame *pframe);
  *
  * @param ppair Lisp pair whose first entry contains a list of the arguments.
  * @param pframe Context frame.
- * @return TODO: whatever is returned by CFrame::RefSetBinding()
+ * @return Void reference.
  */
 CRef RefEvalSet(CPair *ppair, CFrame *pframe);
 
@@ -39,7 +39,7 @@ CRef RefEvalSet(CPair *ppair, CFrame *pframe);
  *
  * @param ppair Lisp pair whose first entry contains a list of the arguments.
  * @param pframe Context frame.
- * @return TODO: whatever is returned by CFrame::RefAddBinding()
+ * @return Void reference.
  */
 CRef RefEvalDefine(CPair *ppair, CFrame *pframe);
 
