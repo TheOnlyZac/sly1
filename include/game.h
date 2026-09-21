@@ -248,7 +248,7 @@ struct LevelLoadData
     uint unk_1C;
     int level_id;
     const char *pchzFriendly;
-    uint unk_28;
+    FLS completionState;
 };
 
 extern const LevelLoadData *D_00247AB0[];
