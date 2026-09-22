@@ -73,9 +73,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/game", FFindLevel);
 
 JUNK_WORD(0x24420010);
 
-FLS GetLevelCompletionById(int id)
+FLS GetLevelCompletionById(WID wid)
 {
-    LevelLoadData *plevel = search_level_by_id(id);
+    LevelLoadData *plevel = search_level_by_id(wid);
     return plevel ? plevel->completionState : (FLS)0;
 }
 
