@@ -83,8 +83,8 @@ CRef RefEvalModule(int isplice, SW *psw)
 {
     CRef cref;
 
-    if (psw->asplcSplice[isplice].ppairCompile != NULL &&
-        psw->asplcSplice[isplice].pframe == NULL)
+    if (psw->asplcSplice[isplice].ppairCompile &&
+        !psw->asplcSplice[isplice].pframe)
     {
         psw->asplcSplice[isplice].pframe = PframeNew();
         cref = RefEval(psw->asplcSplice[isplice].ppairCompile, psw->asplcSplice[isplice].pframe);
