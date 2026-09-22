@@ -135,7 +135,7 @@ var searchData=
   ['unk_5fsuck_5f0x10_132',['unk_suck_0x10',['../structLS.html#aa974942c25caa58e5c57e1899d8535e5',1,'LS']]],
   ['unknown_133',['unknown',['../structWRBG.html#a97b4d8eff288ed3397aa7d6ced207aa1',1,'WRBG::unknown'],['../structWEKI.html#a5b41cf4f62865f7ea0e5ecdf2b0a4698',1,'WEKI::unknown'],['../structWAYPOINT.html#aff7c4982f56ba4bb891162980680637f',1,'WAYPOINT::unknown'],['../structDZ.html#a41a5d12aba5d6b824a7961d57667d856',1,'DZ::unknown'],['../structCRV.html#aaf6cdbab1773ca78942760e78e96d190',1,'CRV::unknown'],['../structBTN.html#a9613efa6f8599727dd18b452464b311d',1,'BTN::unknown']]],
   ['unknown1_134',['unknown1',['../classCBinaryInputStream.html#ac6b5b52889b3d36e67d24016a3006837',1,'CBinaryInputStream::Unknown1()'],['../structOPTDAT.html#a9eb04f1dbb26b659d732ce293d217bce',1,'OPTDAT::unknown1']]],
-  ['unknown2_135',['unknown2',['../structOPTDAT.html#af387d097d4ec37752056881d73eb978f',1,'OPTDAT::unknown2'],['../classCBinaryInputStream.html#aea638cb58bd3fa63a4d4b0cd76344be7',1,'CBinaryInputStream::Unknown2()']]],
+  ['unknown2_135',['unknown2',['../classCBinaryInputStream.html#aea638cb58bd3fa63a4d4b0cd76344be7',1,'CBinaryInputStream::Unknown2()'],['../structOPTDAT.html#af387d097d4ec37752056881d73eb978f',1,'OPTDAT::unknown2']]],
   ['unknown3_136',['unknown3',['../structOPTDAT.html#aae355d71bbd68c27b2afa1f48ee7802e',1,'OPTDAT']]],
   ['unknown4_137',['unknown4',['../structOPTDAT.html#a49f11a9ee5619fb765e993bc01c3a832',1,'OPTDAT']]],
   ['unknown5_138',['unknown5',['../structOPTDAT.html#a718a5ad3b3014438da042cbdf69a7f55',1,'OPTDAT']]],

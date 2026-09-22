@@ -8,7 +8,7 @@ var dir_23baffee792579c8d813c328b6f753b1 =
     [ "pair.h", "pair_8h.html", "pair_8h" ],
     [ "proc.h", "proc_8h.html", "proc_8h" ],
     [ "ref.h", "ref_8h.html", "ref_8h" ],
-    [ "serialize.h", "serialize_8h.html", null ],
+    [ "serialize.h", "serialize_8h.html", "serialize_8h" ],
     [ "sidebag.h", "sidebag_8h.html", "sidebag_8h" ],
     [ "spliceutils.h", "spliceutils_8h.html", "spliceutils_8h" ],
     [ "splotheap.h", "splotheap_8h.html", "splotheap_8h" ],

@@ -98,11 +98,16 @@ $(document).ready(function(){initNavTree('splicemap_8c.html',''); initResizable(
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">splicemap.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="splicemap_8h_source.html">splicemap.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="serialize_8h_source.html">splice/serialize.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="eval_8h_source.html">splice/eval.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="gc_8h_source.html">splice/gc.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="memory_8h_source.html">memory.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for splicemap.c:</div>
 <div class="dyncontent">
@@ -113,31 +118,39 @@ Include dependency graph for splicemap.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa678436b622596071ba964ce8f64aaf0" id="r_aa678436b622596071ba964ce8f64aaf0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splicemap_8c.html#aa678436b622596071ba964ce8f64aaf0">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/splicemap&quot;, LoadSwSpliceFromBrx__FP2SWP18CBinaryInputStream)</td></tr>
-<tr class="separator:aa678436b622596071ba964ce8f64aaf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd74cc765d218a04d0daafb3ba0ef737" id="r_afd74cc765d218a04d0daafb3ba0ef737"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splicemap_8c.html#afd74cc765d218a04d0daafb3ba0ef737">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/splicemap&quot;, PframeFromIsplice__FiP2SW)</td></tr>
-<tr class="separator:afd74cc765d218a04d0daafb3ba0ef737"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08ec13ed6d2524c8261032576714259f" id="r_a08ec13ed6d2524c8261032576714259f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splicemap_8c.html#a08ec13ed6d2524c8261032576714259f">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/splicemap&quot;, RefEvalModule__FiP2SW)</td></tr>
-<tr class="separator:a08ec13ed6d2524c8261032576714259f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2374a5379fed695eaa1766eefec68973" id="r_a2374a5379fed695eaa1766eefec68973"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splicemap_8c.html#a2374a5379fed695eaa1766eefec68973">LoadSwSpliceFromBrx</a> (<a class="el" href="structSW.html">SW</a> *psw, <a class="el" href="classCBinaryInputStream.html">CBinaryInputStream</a> *pbis)</td></tr>
+<tr class="memdesc:a2374a5379fed695eaa1766eefec68973"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads and initializes the Splice instances for a world. A single world may have an array of separate Splice instances; these are each indexed in functions by the argument "isplice".  <br /></td></tr>
+<tr class="separator:a2374a5379fed695eaa1766eefec68973"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28c512f7fc712c433734398aaa803701" id="r_a28c512f7fc712c433734398aaa803701"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrame.html">CFrame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splicemap_8c.html#a28c512f7fc712c433734398aaa803701">PframeFromIsplice</a> (int isplice, <a class="el" href="structSW.html">SW</a> *psw)</td></tr>
+<tr class="memdesc:a28c512f7fc712c433734398aaa803701"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks up a context frame for a Splice instance (which may be NULL). If it is non-null, will automatically add the global frame as a parent.  <br /></td></tr>
+<tr class="separator:a28c512f7fc712c433734398aaa803701"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3394695c695778d5c65feba6b96ab392" id="r_a3394695c695778d5c65feba6b96ab392"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splicemap_8c.html#a3394695c695778d5c65feba6b96ab392">RefEvalModule</a> (int isplice, <a class="el" href="structSW.html">SW</a> *psw)</td></tr>
+<tr class="memdesc:a3394695c695778d5c65feba6b96ab392"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a Splice instance.  <br /></td></tr>
+<tr class="separator:a3394695c695778d5c65feba6b96ab392"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:aad3df49c93409795b6cb51241aca1df3" id="r_aad3df49c93409795b6cb51241aca1df3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splicemap_8c.html#aad3df49c93409795b6cb51241aca1df3">g_fLoadDebugInfo</a></td></tr>
+<tr class="separator:aad3df49c93409795b6cb51241aca1df3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aa678436b622596071ba964ce8f64aaf0" name="aa678436b622596071ba964ce8f64aaf0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa678436b622596071ba964ce8f64aaf0">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/3]</span></h2>
+<a id="a2374a5379fed695eaa1766eefec68973" name="a2374a5379fed695eaa1766eefec68973"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2374a5379fed695eaa1766eefec68973">&#9670;&#160;</a></span>LoadSwSpliceFromBrx()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname">void LoadSwSpliceFromBrx </td>
           <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/splicemap&quot;&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramtype"><a class="el" href="structSW.html">SW</a> *&#160;</td>
+          <td class="paramname"><em>psw</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">LoadSwSpliceFromBrx__FP2SWP18CBinaryInputStream&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype"><a class="el" href="classCBinaryInputStream.html">CBinaryInputStream</a> *&#160;</td>
+          <td class="paramname"><em>pbis</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -147,25 +160,36 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Loads and initializes the Splice instances for a world. A single world may have an array of separate Splice instances; these are each indexed in functions by the argument "isplice". </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">psw</td><td>World object. </td></tr>
+    <tr><td class="paramname">pbis</td><td>Current input loading stream. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="splicemap_8c_source.html#l00009">9</a> of file <a class="el" href="splicemap_8c_source.html">splicemap.c</a>.</p>
+
 </div>
 </div>
-<a id="afd74cc765d218a04d0daafb3ba0ef737" name="afd74cc765d218a04d0daafb3ba0ef737"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd74cc765d218a04d0daafb3ba0ef737">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/3]</span></h2>
+<a id="a28c512f7fc712c433734398aaa803701" name="a28c512f7fc712c433734398aaa803701"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28c512f7fc712c433734398aaa803701">&#9670;&#160;</a></span>PframeFromIsplice()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname"><a class="el" href="classCFrame.html">CFrame</a> * PframeFromIsplice </td>
           <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/splicemap&quot;&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>isplice</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">PframeFromIsplice__FiP2SW&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype"><a class="el" href="structSW.html">SW</a> *&#160;</td>
+          <td class="paramname"><em>psw</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -175,25 +199,37 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Looks up a context frame for a Splice instance (which may be NULL). If it is non-null, will automatically add the global frame as a parent. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">isplice</td><td>Splice instance. </td></tr>
+    <tr><td class="paramname">psw</td><td>World object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Context frame, if it exists. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="splicemap_8c_source.html#l00066">66</a> of file <a class="el" href="splicemap_8c_source.html">splicemap.c</a>.</p>
+
 </div>
 </div>
-<a id="a08ec13ed6d2524c8261032576714259f" name="a08ec13ed6d2524c8261032576714259f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a08ec13ed6d2524c8261032576714259f">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/3]</span></h2>
+<a id="a3394695c695778d5c65feba6b96ab392" name="a3394695c695778d5c65feba6b96ab392"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3394695c695778d5c65feba6b96ab392">&#9670;&#160;</a></span>RefEvalModule()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname"><a class="el" href="classCRef.html">CRef</a> RefEvalModule </td>
           <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/splicemap&quot;&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>isplice</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">RefEvalModule__FiP2SW&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype"><a class="el" href="structSW.html">SW</a> *&#160;</td>
+          <td class="paramname"><em>psw</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -201,6 +237,41 @@ Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+<p>Evaluates a Splice instance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">isplice</td><td>Splice instance. </td></tr>
+    <tr><td class="paramname">psw</td><td>World object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Evaluated (void) reference. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="splicemap_8c_source.html#l00082">82</a> of file <a class="el" href="splicemap_8c_source.html">splicemap.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="aad3df49c93409795b6cb51241aca1df3" name="aad3df49c93409795b6cb51241aca1df3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad3df49c93409795b6cb51241aca1df3">&#9670;&#160;</a></span>g_fLoadDebugInfo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int g_fLoadDebugInfo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

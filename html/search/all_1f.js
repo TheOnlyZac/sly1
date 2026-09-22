@@ -267,7 +267,7 @@ var searchData=
   ['twipe_264',['tWipe',['../structEXIT.html#a19cef84843b517d2e4d3a343e273d9b4',1,'EXIT']]],
   ['twipes_265',['tWipes',['../structWIPE.html#aeb3b1536f80a74cd48abcd68e15eb445',1,'WIPE']]],
   ['two_5fpi_266',['TWO_PI',['../shdanim_8c.html#a3b947f4b635461030ff2d87833e5049e',1,'shdanim.c']]],
-  ['twps_267',['twps',['../structRGL.html#aba13e94a266b4eeb12f49f5e4d3560d4',1,'RGL::twps'],['../structWAYPOINT.html#a575183a614bd1a2b0feea289e1c5776d',1,'WAYPOINT::tWps'],['../light_8h.html#a3d5ebff89501676607bd734d6037196b',1,'TWPS:&#160;light.h']]],
+  ['twps_267',['twps',['../structWAYPOINT.html#a575183a614bd1a2b0feea289e1c5776d',1,'WAYPOINT::tWps'],['../structRGL.html#aba13e94a266b4eeb12f49f5e4d3560d4',1,'RGL::twps'],['../light_8h.html#a3d5ebff89501676607bd734d6037196b',1,'TWPS:&#160;light.h']]],
   ['twps_5fshadow_268',['TWPS_Shadow',['../light_8h.html#a3d5ebff89501676607bd734d6037196ba6e55691b7ef1605980e525d2d0f48ff8',1,'light.h']]],
   ['twps_5fshadowmidtone_269',['TWPS_ShadowMidtone',['../light_8h.html#a3d5ebff89501676607bd734d6037196bac7c00a528e877846277ed6966a17000e',1,'light.h']]],
   ['twps_5fshadowmidtonesaturate_270',['TWPS_ShadowMidtoneSaturate',['../light_8h.html#a3d5ebff89501676607bd734d6037196baa98f9ef3e7257f5db5c224bd960e5662',1,'light.h']]],

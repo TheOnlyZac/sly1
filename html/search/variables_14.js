@@ -60,6 +60,6 @@ var searchData=
   ['twakeripple_57',['tWakeRipple',['../structPO.html#a4dff2fde4b67ff2681498f9ca2e8acf6',1,'PO']]],
   ['twipe_58',['tWipe',['../structEXIT.html#a19cef84843b517d2e4d3a343e273d9b4',1,'EXIT']]],
   ['twipes_59',['tWipes',['../structWIPE.html#aeb3b1536f80a74cd48abcd68e15eb445',1,'WIPE']]],
-  ['twps_60',['twps',['../structWAYPOINT.html#a575183a614bd1a2b0feea289e1c5776d',1,'WAYPOINT::tWps'],['../structRGL.html#aba13e94a266b4eeb12f49f5e4d3560d4',1,'RGL::twps']]],
+  ['twps_60',['twps',['../structRGL.html#aba13e94a266b4eeb12f49f5e4d3560d4',1,'RGL::twps'],['../structWAYPOINT.html#a575183a614bd1a2b0feea289e1c5776d',1,'WAYPOINT::tWps']]],
   ['txt_61',['txt',['../structSAI.html#ad13374596a2ad98957b057447053389d',1,'SAI']]]
 ];

@@ -499,6 +499,7 @@ var hierarchy =
     [ "SndSystemStatus", "structSndSystemStatus.html", null ],
     [ "SNIP", "structSNIP.html", null ],
     [ "SPACE_WARM", "classSPACE__WARM.html", null ],
+    [ "SPLC", "structSPLC.html", null ],
     [ "SPLINE_MISSILE", "classSPLINE__MISSILE.html", null ],
     [ "SPLOT", "structSPLOT.html", null ],
     [ "SQTRM", "structSQTRM.html", null ],

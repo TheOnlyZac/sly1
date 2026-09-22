@@ -1,5 +1,8 @@
 var NAVTREEINDEX37 =
 {
+"structCODE.html#a8cd6a11e21a173e6d4f349aec837589a":[9,0,111,0],
+"structCODE.html#ab2e3121451b080ca31e0b4085796b61a":[9,0,111,4],
+"structCOIN.html":[9,0,112],
 "structCOIN.html#a00394478d7dfd5fb6ef088ce6db9b924":[9,0,112,0],
 "structCOIN.html#a91b7f1073a54cb8bee954be8e80cf706":[9,0,112,1],
 "structCOINCTR.html":[9,0,113],
@@ -246,8 +249,5 @@ var NAVTREEINDEX37 =
 "structDZ.html":[9,0,170],
 "structDZ.html#a029b1a9bda5889cdc447d91017446221":[9,0,170,8],
 "structDZ.html#a0f6f9506addead1c4ceb61ddf0a9fc59":[9,0,170,6],
-"structDZ.html#a1baab94d5957c957844243e2d7ff5724":[9,0,170,3],
-"structDZ.html#a41a5d12aba5d6b824a7961d57667d856":[9,0,170,13],
-"structDZ.html#a446b0566985a8a3df8a92ef2e3a5c3d8":[9,0,170,1],
-"structDZ.html#a5169a8d1fe2c2f363679909ddc9e7f6e":[9,0,170,10]
+"structDZ.html#a1baab94d5957c957844243e2d7ff5724":[9,0,170,3]
 };

@@ -423,6 +423,7 @@ var annotated_dup =
     [ "SPARK", "structSPARK.html", null ],
     [ "SPEAKER", "structSPEAKER.html", null ],
     [ "SPIRE", "structSPIRE.html", "structSPIRE" ],
+    [ "SPLC", "structSPLC.html", "structSPLC" ],
     [ "SPLINE_MISSILE", "classSPLINE__MISSILE.html", null ],
     [ "SPLMISS", "structSPLMISS.html", null ],
     [ "SPLOT", "structSPLOT.html", "structSPLOT" ],

@@ -1,5 +1,7 @@
 var NAVTREEINDEX32 =
 {
+"sound_8c.html#a9fa8c28a46e9f289915207b8b359ee27":[10,0,2,0,119,20],
+"sound_8c.html#aa00c2b7d25e90cc5274e9f3dbc213a16":[10,0,2,0,119,38],
 "sound_8c.html#aab5cb8a1af1ba5bbb57b1f981aa150cc":[10,0,2,0,119,11],
 "sound_8c.html#aadc555653fe9c9263fddca15c539b271":[10,0,2,0,119,26],
 "sound_8c.html#ab40931590024d46cf0486ac63a431379":[10,0,2,0,119,60],
@@ -172,14 +174,15 @@ var NAVTREEINDEX32 =
 "spire_8h.html#ae3341d601f1ce0e8165602841eec3db5":[10,0,1,135,4],
 "spire_8h_source.html":[10,0,1,135],
 "splicemap_8c.html":[10,0,2,0,122],
-"splicemap_8c.html#a08ec13ed6d2524c8261032576714259f":[10,0,2,0,122,2],
-"splicemap_8c.html#aa678436b622596071ba964ce8f64aaf0":[10,0,2,0,122,0],
-"splicemap_8c.html#afd74cc765d218a04d0daafb3ba0ef737":[10,0,2,0,122,1],
+"splicemap_8c.html#a2374a5379fed695eaa1766eefec68973":[10,0,2,0,122,0],
+"splicemap_8c.html#a28c512f7fc712c433734398aaa803701":[10,0,2,0,122,1],
+"splicemap_8c.html#a3394695c695778d5c65feba6b96ab392":[10,0,2,0,122,2],
+"splicemap_8c.html#aad3df49c93409795b6cb51241aca1df3":[10,0,2,0,122,3],
 "splicemap_8c_source.html":[10,0,2,0,122],
 "splicemap_8h.html":[10,0,1,136],
-"splicemap_8h.html#a2374a5379fed695eaa1766eefec68973":[10,0,1,136,0],
-"splicemap_8h.html#a28c512f7fc712c433734398aaa803701":[10,0,1,136,1],
-"splicemap_8h.html#a3394695c695778d5c65feba6b96ab392":[10,0,1,136,2],
+"splicemap_8h.html#a2374a5379fed695eaa1766eefec68973":[10,0,1,136,1],
+"splicemap_8h.html#a28c512f7fc712c433734398aaa803701":[10,0,1,136,2],
+"splicemap_8h.html#a3394695c695778d5c65feba6b96ab392":[10,0,1,136,3],
 "splicemap_8h_source.html":[10,0,1,136],
 "spliceobj_8c.html":[10,0,2,0,123],
 "spliceobj_8c.html#a1b4c65c7a52ea3de4a6d0cf2e2fd5075":[10,0,2,0,123,9],
@@ -246,8 +249,5 @@ var NAVTREEINDEX32 =
 "splotheap_8h.html#a7186eaeed42fdf9d580d7aef1ebf8295":[10,0,1,4,11,7],
 "splotheap_8h.html#a9a41eaa3ffbbdf82b7c3aa20c070cce7":[10,0,1,4,11,10],
 "splotheap_8h.html#ad7980bea0cdc1670d4175766c5a59de7":[10,0,1,4,11,3],
-"splotheap_8h_source.html":[10,0,1,4,11],
-"sprbuf_8c.html":[10,0,2,0,124],
-"sprbuf_8c.html#a0931c1c6771564caef5c4115d809b1aa":[10,0,2,0,124,1],
-"sprbuf_8c.html#a38b5d8dacec256acd0219afefd0ae342":[10,0,2,0,124,0]
+"splotheap_8h_source.html":[10,0,1,4,11]
 };
