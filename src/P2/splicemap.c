@@ -22,7 +22,7 @@ void LoadSwSpliceFromBrx(SW *psw, CBinaryInputStream *pbis)
 
     for (isplc = 0; isplc < psw->csplcSplice; isplc++)
     {
-        SPLC* psplc = &psw->asplcSplice[isplc];
+        SPLC *psplc = &psw->asplcSplice[isplc];
         psplc->ppairCompile = PpairSerializeIn(pbis);
         psplc->pframe = NULL;
 
@@ -47,7 +47,7 @@ void LoadSwSpliceFromBrx(SW *psw, CBinaryInputStream *pbis)
         }
     }
 
-    CFrame* pframe = PframeNew();
+    CFrame *pframe = PframeNew();
     psw->pframe = pframe;
     g_gc.AddRootFrame(pframe);
 
