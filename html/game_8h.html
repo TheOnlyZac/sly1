@@ -300,8 +300,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a343b367ae13c2c6c744ca83ea87bbc19" id="r_a343b367ae13c2c6c744ca83ea87bbc19"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a343b367ae13c2c6c744ca83ea87bbc19">PchzFriendlyFromWid</a> (int wid)</td></tr>
 <tr class="memdesc:a343b367ae13c2c6c744ca83ea87bbc19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the friendly name of a level from its world ID.  <br /></td></tr>
 <tr class="separator:a343b367ae13c2c6c744ca83ea87bbc19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d55a54a768db127fab12da905235ce2" id="r_a9d55a54a768db127fab12da905235ce2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a9d55a54a768db127fab12da905235ce2">get_level_completion_by_id</a> (int level_id)</td></tr>
-<tr class="separator:a9d55a54a768db127fab12da905235ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6741a9d7aea5b3bfabec5ea7db5142c7" id="r_a6741a9d7aea5b3bfabec5ea7db5142c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="game_8h.html#a69c07e7119507370cb17c01479d16bc5">FLS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a6741a9d7aea5b3bfabec5ea7db5142c7">GetLevelCompletionById</a> (int <a class="el" href="libdma_8h.html#aba67014c1faff5b6095d88830649c3f4">id</a>)</td></tr>
+<tr class="memdesc:a6741a9d7aea5b3bfabec5ea7db5142c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the completion state of a level based on its ID.  <br /></td></tr>
+<tr class="separator:a6741a9d7aea5b3bfabec5ea7db5142c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26b93a44df983ef861bf340a89bb8a11" id="r_a26b93a44df983ef861bf340a89bb8a11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a26b93a44df983ef861bf340a89bb8a11">tally_world_completion</a> (int wid, int *ckey, int *cvault, int *cmts)</td></tr>
 <tr class="memdesc:a26b93a44df983ef861bf340a89bb8a11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tally the completion of a world.  <br /></td></tr>
 <tr class="separator:a26b93a44df983ef861bf340a89bb8a11"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -725,7 +726,7 @@ Variables</h2></td></tr>
 <p>Returns the max number of charms the player can hold. </p>
 <dl class="section note"><dt>Note</dt><dd>Always returns 2. This is a holdover from earlier in development where there was a powerup that allowed you to have more than 2 charms. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00381">381</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00385">385</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -762,7 +763,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00316">316</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00320">320</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -812,7 +813,7 @@ Variables</h2></td></tr>
 <p>Will return true if the ccharm on the g_gs is &gt; 0, of if the infinite charms cheat is enabled.</p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>77.50% matched. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00298">298</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00302">302</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -885,7 +886,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00321">321</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00325">325</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -905,24 +906,6 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the game completion flags based on the current game state. </p>
-
-</div>
-</div>
-<a id="a9d55a54a768db127fab12da905235ce2" name="a9d55a54a768db127fab12da905235ce2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d55a54a768db127fab12da905235ce2">&#9670;&#160;</a></span>get_level_completion_by_id()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> get_level_completion_by_id </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>level_id</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -981,7 +964,36 @@ Variables</h2></td></tr>
 
 <p>Unknown function. </p>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00336">336</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00340">340</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+
+</div>
+</div>
+<a id="a6741a9d7aea5b3bfabec5ea7db5142c7" name="a6741a9d7aea5b3bfabec5ea7db5142c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6741a9d7aea5b3bfabec5ea7db5142c7">&#9670;&#160;</a></span>GetLevelCompletionById()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="game_8h.html#a69c07e7119507370cb17c01479d16bc5">FLS</a> GetLevelCompletionById </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the completion state of a level based on its ID. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID of the level to get the completion state of.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The completion state of the level. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00064">64</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1082,7 +1094,7 @@ Variables</h2></td></tr>
 <p>Decreases the count of alarms triggered in the given <a class="el" href="structGAME.html">GAME</a>. </p>
 <p>The count is used as a multiplier for the MTS countdown timer. </p>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00331">331</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00335">335</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1105,7 +1117,7 @@ Variables</h2></td></tr>
 <p>Increases the count of alarms triggered in the given <a class="el" href="structGAME.html">GAME</a>. </p>
 <p>The count is used as a multiplier for the MTS countdown timer. </p>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00326">326</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00330">330</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1197,7 +1209,7 @@ Variables</h2></td></tr>
 
 <p>TBD. </p>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00162">162</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00166">166</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1255,7 +1267,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00290">290</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00294">294</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1275,7 +1287,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <p>Unloads the game and wipes to the default world warp. </p>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00170">170</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00174">174</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1447,7 +1459,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00134">134</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00138">138</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>

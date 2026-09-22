@@ -166,7 +166,7 @@ var NAVTREEINDEX =
 "dmas_8h.html",
 "eval_8h.html#a78e08fb77221070be891171e125ce3eb",
 "frm_8c.html#a7d0643b0b9241b32cce6f75611b5020f",
-"game_8h.html#a7b66087aaf45f736b057d73ed660a059a045dbdf469e6ddcb490f4e81d2113763",
+"game_8h.html#a7b66087aaf45f736b057d73ed660a059",
 "gs_8c.html#acd557f04a9f9dc41060c60cb8572e343",
 "joy_8h.html#a36a5e3ae90f39dc35fcc17465ad1c8f6a09f7ea019f2d92465413ca5eaf3bc9ff",
 "jt_8h.html#a68314d7340e742bcdb56d3f5afe1d02ea85d5ddb1426eb05dd84b09131ce7018e",
