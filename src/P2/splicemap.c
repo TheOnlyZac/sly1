@@ -8,7 +8,6 @@ extern int g_fLoadDebugInfo;
 
 void LoadSwSpliceFromBrx(SW *psw, CBinaryInputStream *pbis)
 {
-    int isplc;
     CRef cref;
 
     int csplc = pbis->U32Read();
@@ -20,6 +19,8 @@ void LoadSwSpliceFromBrx(SW *psw, CBinaryInputStream *pbis)
     /* In the debug build, this is used for some extra symid metadata */
     int symidExtraMetadata = pbis->U32Read();
 
+    /* This loop index reused in both loops, so we need to declare it here */
+    int isplc;
     for (isplc = 0; isplc < psw->csplcSplice; isplc++)
     {
         SPLC *psplc = &psw->asplcSplice[isplc];
@@ -64,13 +65,12 @@ void LoadSwSpliceFromBrx(SW *psw, CBinaryInputStream *pbis)
 
 CFrame *PframeFromIsplice(int isplice, SW *psw)
 {
-    CFrame *pframe;
     if (isplice == -1)
     {
         return NULL;
     }
 
-    pframe = psw->asplcSplice[isplice].pframe;
+    CFrame *pframe = psw->asplcSplice[isplice].pframe;
     if (pframe != NULL)
     {
         g_gc.AddRootFrame(pframe);

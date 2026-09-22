@@ -8,7 +8,7 @@ extern int g_fLoadDebugInfo;
 
 CPair *PpairSerializeIn(CBinaryInputStream *pstrm)
 {
-    unsigned char uctagk = pstrm->U8Read();
+    uchar uctagk = pstrm->U8Read();
     if (uctagk == (unsigned char)TAGK_Nil)
     {
         return NULL;
@@ -68,7 +68,7 @@ CPair *PpairSerializeIn(CBinaryInputStream *pstrm)
         case TAGK_Vector:
         {
             VECTOR *pvector = PvectorNew();
-            float *pout = (float *)(&pvector->x);
+            float *pout = (float *)pvector;
             for (int i = 0; i < 3; ++i)
             {
                 pout[i] = pstrm->F32Read();
@@ -80,7 +80,7 @@ CPair *PpairSerializeIn(CBinaryInputStream *pstrm)
         case TAGK_Matrix:
         {
             MATRIX4 *pmatrix = PmatrixNew();
-            float *pout = (float *)pmatrix->mat;
+            float *pout = (float *)pmatrix;
             for (int i = 0; i < 16; ++i)
             {
                 pout[i] = pstrm->F32Read();
