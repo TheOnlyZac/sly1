@@ -388,7 +388,7 @@ struct VTLASEN : VT
     /* 0x138 */ void (*pfnDisableLasen)(LASEN *);
     /* 0x13c */ void (*pfnOnLasenAlarmTriggered)(LASEN *);
     /* 0x140 */ void (*pfnSetSensorAlarm)(LASEN *);
-    /* 0x144 */ void (*pfnSetLasenSensors)(LASEN *);
+    /* 0x144 */ void (*pfnSetLasenSensors)(LASEN *, int);
 };
 
 /**
@@ -560,7 +560,7 @@ struct VTPRSEN : VT
     /* 0x138 */ void (*pfnDisablePrsen)(PRSEN *);
     /* 0x13c */ void (*pfnOnPrsenAlarmTriggered)(PRSEN *);
     /* 0x140 */ void (*pfnSetSensorAlarm)(PRSEN *);
-    /* 0x144 */ void (*pfnSetPrsenSensors)(PRSEN *);
+    /* 0x144 */ void (*pfnSetPrsenSensors)(PRSEN *, int);
 };
 
 /*****************************************************************

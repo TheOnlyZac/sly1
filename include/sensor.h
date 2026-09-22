@@ -39,7 +39,6 @@ enum SENSM
     SENSM_Max = 2
 };
 
-
 /**
  * @brief Camera sensor (?) state.
  */
@@ -64,15 +63,16 @@ struct SENSOR : public SO
     /* 0x558 */ SENSORS sensors; // Current sensor state.
     /* 0x55c */ float tSensors; // Time of latest sensor state change.
     /* 0x560 */ SENSORS sensorsInitial; // Initial sensor state.
-    /* 0x564 */ uint ctriggerObjects; // Current count of trigger object IDs.
-    /* 0x568 */ OID atriggerObjects[4]; // Array of trigger object IDs.
-    /* 0x578 */ uint cnoTriggerObjects; // Current count of no-trigger object IDs.
-    /* 0x57C */ OID anoTriggerObjects[4]; // Array of no-trigger object IDs.
-    /* 0x58c */ uint ctriggerClasses; // Current count of trigger class IDs.
-    /* 0x590 */ CID atriggerClasses[4]; // Array of trigger class IDs.
-    /* 0x5a0 */ uint cnoTriggerClasses; // Current count of no-trigger class IDs.
-    /* 0x5a4 */ CID anoTriggerClasses[4]; // Array of no-trigger class IDs.
-    /* 0x5b4 */ STRUCT_PADDING(5);
+    /* 0x564 */ uint coidTrigger; // Current count of trigger object IDs.
+    /* 0x568 */ OID aoidTrigger[4]; // Array of trigger object IDs.
+    /* 0x578 */ uint coidNoTrigger; // Current count of no-trigger object IDs.
+    /* 0x57C */ OID aoidNoTrigger[4]; // Array of no-trigger object IDs.
+    /* 0x58c */ uint ccidTrigger; // Current count of trigger class IDs.
+    /* 0x590 */ CID acidTrigger[4]; // Array of trigger class IDs.
+    /* 0x5a0 */ uint ccidNoTrigger; // Current count of no-trigger class IDs.
+    /* 0x5a4 */ CID acidNoTrigger[4]; // Array of no-trigger class IDs.
+    /* 0x5b4 */ int fTriggerAll;
+    /* 0x5b8 */ STRUCT_PADDING(4);
     /* 0x5c8 */ ASEGA *pasegaPause;
     /* 0x5cc */ float svtRestore;
 };
@@ -103,7 +103,7 @@ struct CAMSEN : public SENSOR
 
 /**
  * @class PRESSURE_SENSOR
- * @brief Pressusre sensor for alarm systems.
+ * @brief Pressure sensor for alarm systems.
  * @todo Implement the struct.
  */
 struct PRSEN : public SENSOR
@@ -208,7 +208,7 @@ void FreezeLasen(LASEN *plasen, int fFreeze);
 
 void RenderLasenSelf(LASEN *plasen, CM *pcm, RO *pro);
 
-int FFilterLasen(void *pv, SO *pso);
+ulong FFilterLasen(void *pv, SO *pso);
 
 void SenseLasen(LASEN *plasen, SENSORS *psensors);
 

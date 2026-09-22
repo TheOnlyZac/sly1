@@ -2075,13 +2075,25 @@ ClearPendingFrame__FP3FRM = 0x15EFE8; // type:func
 FlushFrames__Fi = 0x15F210; // type:func
 BlendPrevFrame__Fv = 0x15F320; // type:func
 
-g_gifs          = 0x262280; // size:0x28
-g_vifs          = 0x2622a8; // size:0xc
-g_cframe        = 0x2622cc; // size:0x4
-g_psliCur       = 0x2622d4; // size:0x4
-g_pfrmOpen      = 0x2622d8; // size:0x4
-g_glBlipPending = 0x2622f0; // size:0xc
-g_pvVu1Code     = 0x26230c; // size:0x4
+// .data
+g_gifs            = 0x262280; // size:0x28
+g_vifs            = 0x2622a8; // size:0xc
+g_cframe          = 0x2622cc; // size:0x4
+g_psliNext        = 0x2622d0; // size:0x4
+g_psliCur         = 0x2622d4; // size:0x4
+g_pfrmOpen        = 0x2622d8; // size:0x4
+g_dlBlipgPending  = 0x2622e0; // size:0xc
+g_dlBlipPending   = 0x2622f0; // size:0xc
+g_dlShadowPending = 0x262300; // size:0xc
+g_pvVu1Code       = 0x26230c; // size:0x4
+g_anticrack_frm   = 0x262310; // size:0x4
+g_ifrmMic         = 0x262314; // size:0x4
+g_ifrmMac         = 0x262318; // size:0x4
+g_pfrmRender      = 0x26231c; // size:0x4
+g_afrm            = 0x262320; // size:0x90
+g_semaFrmMic      = 0x2623b0; // size:0x4
+g_semaFrmMac      = 0x2623b4; // size:0x4
+g_fRenderLoopIdle = 0x2623b8; // size:0x4
 
 
 ////////////////////////////////////////////////////////////////
@@ -2127,7 +2139,7 @@ GetLevelCompletionById__F3WID = 0x1601D8; // type:func
 tally_world_completion = 0x160208; // type:func
 get_game_completion__Fv = 0x1602A0; // type:func
 UnlockIntroCutsceneFromWid__F9GAMEWORLD = 0x160340; // type:func
-DefeatBossFromWid = 0x1603E8; // type:func
+DefeatBossFromWorld__F9GAMEWORLD = 0x1603E8; // type:func
 UnlockEndgameCutscenesFromFgs = 0x1604B8; // type:func
 PlayEndingFromCompletionFlags = 0x160578; // type:func
 InitGameState__FP2GS = 0x1605E8; // type:func
@@ -2145,22 +2157,25 @@ SetCcharm__Fi = 0x160C48; // type:func
 FCharmAvailable__Fv = 0x160C58; // type:func
 FUN_00160C90 = 0x160C90; // type:func
 PfLookupDialog__FP2LS3OID = 0x160CA0; // type:func
-clr_8_bytes_1 = 0x160CC8; // type:func
-FUN_00160ce8__Fi = 0x160CE8; // type:func
+OnGameLoad__FP4GAME = 0x160CC8; // type:func
+OnGameWorldTransition__FP4GAME = 0x160CE8; // type:func
 OnGameAlarmTriggered__FP4GAME = 0x160CF0; // type:func
 OnGameAlarmDisabled__FP4GAME = 0x160D00; // type:func
 GetGrfvault_unknown__Fv = 0x160D10; // type:func
-GetBlueprintInfo__FPiT0 = 0x160D30; // type:func
+GetBlueprintInfo__FP8GRFVAULT = 0x160D30; // type:func
 CcharmMost__Fv = 0x160D98; // type:func
 reload_post_death__Fv = 0x160DA0; // type:func
 
-// data
+// .rodata
 D_00247AB0 = 0x247ab0; // size:0x2c
+
+// .data
 g_pgsCur = 0x2623c0; // size:0x4
 g_pwsCur = 0x2623c4; // size:0x4
 g_plsCur = 0x2623c8; // size:0x4
 g_worldlevelPrev = 0x2623cc; // size:0x4
 chz_none = 0x2623d0; // size:0x7
+g_game   = 0x2623d8;
 
 // static
 g_gsCur = 0xea0; // size:0x1a00
@@ -3742,7 +3757,7 @@ UpdateBusyLasenSenseTimes__Fv                   = 0x1AF508; // type:func
 UpdateLasen__FP5LASENf                          = 0x1AF5C8; // type:func
 FreezeLasen__FP5LASENi                          = 0x1AF7A8; // type:func
 RenderLasenSelf__FP5LASENP2CMP2RO               = 0x1AF820; // type:func
-FUN_001afaf8__FP6SENSORP2SO                     = 0x1AFAF8; // type:func
+FFilterLasen__FPvP2SO                           = 0x1AFAF8; // type:func
 SenseLasen__FP5LASENP7SENSORS                   = 0x1AFBB0; // type:func
 EnableLasen__FP5LASEN5SENSM                     = 0x1B00E8; // type:func
 DisableLasen__FP5LASEN                          = 0x1B0120; // type:func

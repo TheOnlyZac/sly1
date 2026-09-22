@@ -69,6 +69,11 @@
  */
 #define ALIGN_SECTION(section, n) asm(".section ." #section "\n.align " #n "\n.section .text\n")
 
+/**
+ * @brief Calculate the absolute value of the given value.
+ */
+#define ABS(x) ((x) < 0 ? -(x) : (x))
+
 // Global system values
 extern int _gpReg; // Global pointer register
 

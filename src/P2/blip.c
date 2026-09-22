@@ -2,7 +2,7 @@
 
 extern QW *g_aqwBlipeGifsNormal;
 extern QW *g_aqwBlipeGifsClampedAdd;
-extern DL g_glBlipPending;
+extern DL g_dlBlipPending;
 
 INCLUDE_ASM("asm/nonmatchings/P2/blip", BuildBlipAqwGifs__FiPP2QW);
 
@@ -17,7 +17,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/blip", PblipNew__FP5BLIPG);
 void RemoveBlip(BLIP *pblip)
 {
     RemoveDlEntry(&STRUCT_OFFSET(pblip->pblipg, 0x624, DL), pblip);
-    AppendDlEntry(&g_glBlipPending, pblip);
+    AppendDlEntry(&g_dlBlipPending, pblip);
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/blip", PblipgNew__FP2SW);
