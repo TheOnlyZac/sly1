@@ -64,7 +64,7 @@ JUNK_WORD(0x24420010);
 FLS GetLevelCompletionById(int id)
 {
     LevelLoadData *plevel = search_level_by_id(id);
-    return plevel ? plevel->completionState : false;
+    return plevel ? plevel->completionState : (FLS)0;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", tally_world_completion);

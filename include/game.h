@@ -282,12 +282,12 @@ char *PchzFriendlyFromWid(int wid);
 // WORLDLEVEL FFindLevel(LevelLoadData *level)
 
 /**
-* @brief Returns completion state of a level given its ID
-* 
-* @param id ID of the level to get the completion state of
-*
-* @return The completion state of the level
-**/
+ * @brief Get the completion state of a level based on its ID.
+ *
+ * @param id ID of the level to get the completion state of.
+ *
+ * @return The completion state of the level.
+ */
 FLS GetLevelCompletionById(int id);
 
 /**
