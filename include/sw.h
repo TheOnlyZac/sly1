@@ -78,7 +78,7 @@ struct SW : public LO
     /* 0x1ef0 */ int csplcSplice;
     /* 0x1ef4 */ SPLC* asplcSplice;
     /* 0x1ef8 */ unsigned int symidScheduledCallbackList;
-    /* 0x22f8 */ STRUCT_PADDING(263);
+    /* 0x1efc */ STRUCT_PADDING(263);
     /* 0x2318 */ float gexcMenu;
     /* 0x231c */ int cHandsOff;
     /* 0x2320 */ STRUCT_PADDING(11);
