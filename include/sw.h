@@ -76,7 +76,7 @@ struct SW : public LO
     /* 0x1ecc */ MQ *pmqCallbackLast;
     /* 0x1ed0 */ STRUCT_PADDING(8);
     /* 0x1ef0 */ int csplcSplice;
-    /* 0x1ef4 */ SPLC* asplcSplice;
+    /* 0x1ef4 */ SPLC *asplcSplice;
     /* 0x1ef8 */ unsigned int symidScheduledCallbackList;
     /* 0x1efc */ STRUCT_PADDING(263);
     /* 0x2318 */ float gexcMenu;
