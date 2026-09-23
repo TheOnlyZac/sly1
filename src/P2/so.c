@@ -148,7 +148,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", AdjustSoMomint__FP2SOf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", DiscardSoXps__FP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", UpdateSoPosWorldPrev__FP2SO);
+typedef int int128 __attribute__((mode(TI)));
+
+void UpdateSoPosWorldPrev(SO *pso)
+{
+    *(int128 *)((char *)pso + 0x370) = *(int128 *)((char *)pso + 0x140);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", TranslateSoToPos__FP2SOP6VECTOR);
 
