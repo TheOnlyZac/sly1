@@ -9,33 +9,19 @@
 #include "common.h"
 
 class CRef;
-
-/**
- * @brief Unknown.
- * @todo Find where this struct should be implemented.
- */
-struct SBB
-{
-    int n;
-    // CRef ref;
-};
+class CVarb;
 
 /**
  * @brief Sidebag.
  */
 class CSidebag
 {
-private:
-    int m_csbb;
-    SBB m_asbb[16];
-
 public:
-    CSidebag& RefAddBinding(int n, CRef *pref);
+    CVarb *m_pvarb;
 
-    CSidebag& RefSetBinding(int n, CRef *pref);
-
-    bool FFindBinding(int n, CRef *pref);
-
+    CRef RefAddBinding(int n, CRef *pref);
+    CRef RefSetBinding(int n, CRef *pref);
+    int FFindBinding(int n, CRef *pref);
     void CloneTo(CSidebag *psidebagClone);
 };
 

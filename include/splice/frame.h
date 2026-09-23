@@ -8,17 +8,20 @@
 
 // Forward.
 class CRef;
-
+class CVarb;
 typedef uint SYMID;
 
+/**
+ * @brief Splice stack frame
+ */
 class CFrame
 {
-private:
+public:
     /* 0x00 */ int m_cpframeParent;
     /* 0x04 */ CFrame *m_apframeParent[4];
-    // ...
+    /* 0x14 */ CVarb *m_pvarb;
+    /* 0x18 */ int m_fVisited;
 
-public:
     void SetSingleParent(CFrame *pframeParent);
     void AddParent(CFrame *pframeParent);
     CRef RefAddBinding(SYMID symid, CRef *pref);

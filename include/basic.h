@@ -7,7 +7,9 @@
 #define BASIC_H
 
 #include "common.h"
-#include <splice/sidebag.h>
+
+// Forward declaration
+class CSidebag;
 
 /**
  * @class BASIC

@@ -104,9 +104,3 @@ void MarkPvAlive(void *pv)
     SPLOT *psplot = PsplotFromPv(pv);
     psplot->fAlive = 1;
 }
-
-INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", FUN_0011C418);
-
-INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", FUN_0011C498);
-
-INCLUDE_ASM("asm/nonmatchings/P2/splice/splotheap", FUN_0011C4E8);

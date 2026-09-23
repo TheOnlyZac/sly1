@@ -333,15 +333,20 @@ PvFromPsplot__FP5SPLOT          = 0x11C3B8; // type:func
 PsplotFromPv__FPv               = 0x11C3C0; // type:func
 FIsPvGarbage__FPv               = 0x11C3C8; // type:func
 MarkPvAlive__FPv                = 0x11C3F0; // type:func
-FUN_0011C418                    = 0x11C418; // type:func
-FUN_0011C498                    = 0x11C498; // type:func
-FUN_0011C4E8                    = 0x11C4E8; // type:func
 
 g_splotheapPair                 = 0x25C250; // size:0x1C
 g_splotheapFrame                = 0x25C270; // size:0x1C
-g_splotheapUnk1                 = 0x25C290; // size:0x1C
+g_splotheapVarb                 = 0x25C290; // size:0x1C
 g_splotheapProc                 = 0x25C2B0; // size:0x1C
 g_splotheapMethod               = 0x25C2D0; // size:0x1C
+
+
+////////////////////////////////////////////////////////////////
+// P2/splice/varb.cpp
+////////////////////////////////////////////////////////////////
+CloneTo__5CVarbP5CVarbP6CFrame  = 0x11C418; // type:func
+PvarbNew__Fv                    = 0x11C498; // type:func
+DeleteVarb__FP5CVarb            = 0x11C4E8; // type:func
 
 
 ////////////////////////////////////////////////////////////////

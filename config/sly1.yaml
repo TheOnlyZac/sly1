@@ -74,6 +74,7 @@ segments:
     - [0x1cd28, cpp, P2/splice/sidebag]
     - [0x1cf70, cpp, P2/splice/spliceutils]
     - [0x1d128, cpp, P2/splice/splotheap]
+    - [0x1d418, cpp, P2/splice/varb]
     - [0x1d508, cpp, P2/splice/vecmat]
 
     #--------------------------------------------------------
@@ -335,7 +336,7 @@ segments:
     #- [0x, data, P2/splice/bif]
     #- [0x, data, P2/splice/eval]
     #- [0x, data, P2/splice/frame]
-    - [0x15af38, data, P2/splice/gc]
+    - [0x15af38, .data, P2/splice/gc]
     #- [0x, data, P2/splice/pair]
     #- [0x, data, P2/splice/serialize]
     #- [0x, data, P2/splice/sidebag]
