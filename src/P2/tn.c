@@ -90,7 +90,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/tn", UpdateCptn__FP4CPTNP6CPDEFIP3JOYf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/tn", FUN_001e4578);
 
-INCLUDE_ASM("asm/nonmatchings/P2/tn", FUN_001e4880);
+extern "C" float FUN_001e4880(int a0, int a1, int a2, void *a3)
+{
+    return STRUCT_OFFSET(a3, 0x20, float);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/tn", FUN_001e4888);
 
