@@ -61,7 +61,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/game", FFindLevel);
 
 JUNK_WORD(0x24420010);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", get_level_completion_by_id);
+FLS GetLevelCompletionById(int id)
+{
+    LevelLoadData *plevel = search_level_by_id(id);
+    return plevel ? plevel->completionState : (FLS)0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", tally_world_completion);
 
