@@ -8,6 +8,7 @@
 
 #include "common.h"
 
+// Forward declarations
 class CRef;
 class CVarb;
 
@@ -19,9 +20,9 @@ class CSidebag
 public:
     CVarb *m_pvarb;
 
-    CRef RefAddBinding(int n, CRef *pref);
-    CRef RefSetBinding(int n, CRef *pref);
-    int FFindBinding(int n, CRef *pref);
+    CRef RefAddBinding(int symid, CRef *pref);
+    CRef RefSetBinding(int symid, CRef *pref);
+    int FFindBinding(int symid, CRef *pref);
     void CloneTo(CSidebag *psidebagClone);
 };
 

@@ -1,10 +1,36 @@
 #include <splice/sidebag.h>
+#include <splice/ref.h>
+#include <splice/varb.h>
 #include <sce/memset.h>
 #include <memory.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/sidebag", RefAddBinding__8CSidebagiP4CRef);
+CRef CSidebag::RefAddBinding(int symid, CRef *pref) {
+    CRef ref;
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/sidebag", RefSetBinding__8CSidebagiP4CRef);
+    CVarb* pvarbNew = PvarbNew();
+    pvarbNew->m_symid = symid;
+    pvarbNew->m_ref = *pref;
+    pvarbNew->m_pvarbNext = m_pvarb;
+    m_pvarb = pvarbNew;
+
+    ref.SetTag(TAGK_Void);
+    return ref;
+}
+
+CRef CSidebag::RefSetBinding(int symid, CRef *pref) {
+    for (CVarb* pvarb = m_pvarb; pvarb != NULL; pvarb = pvarb->m_pvarbNext) {
+        if (pvarb->m_symid == symid) {
+            CRef ref;
+            pvarb->m_ref = *pref;
+            ref.SetTag(TAGK_Void);
+            return ref;
+        }
+    }
+
+    CRef ref;
+    ref.SetTag(TAGK_Void);
+    return ref;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/sidebag", FFindBinding__8CSidebagiP4CRef);
 
