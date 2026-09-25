@@ -2,10 +2,9 @@
 #include <splice/splotheap.h>
 #include <sce/memset.h>
 
-inline void *operator new(size_t, void *place)
-{
-    return place;
-}
+/** @note This flag is required so that we don't compile with exception support in new() */
+#define __EMBEDDED_CXX__
+#include <new>
 
 void CVarb::CloneTo(CVarb *pvarbClone, CFrame *pframeClone)
 {

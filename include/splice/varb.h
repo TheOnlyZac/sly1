@@ -7,7 +7,7 @@
 #define SPLICE_VARB_H
 
 #include "common.h"
-#include "splice/ref.h"
+#include <splice/ref.h>
 
 class CFrame;
 
@@ -44,4 +44,4 @@ CVarb *PvarbNew();
  */
 void DeleteVarb(CVarb *pvarb);
 
-#endif // SPLICE_VARB_H
+#endif
