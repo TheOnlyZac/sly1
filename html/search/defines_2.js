@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['joy_5fbutton_5fpressed_0',['JOY_BUTTON_PRESSED',['../joy_8h.html#a396d234ff4e4dd1d21caad0f8b915de7',1,'joy.h']]],
-  ['junk_5faddiu_1',['JUNK_ADDIU',['../common_8h.html#a27e7b5104f011f1f89f57f8903f348af',1,'common.h']]],
-  ['junk_5fnop_2',['JUNK_NOP',['../common_8h.html#a0bb7e7d13eb9e011e45c05fad9207f68',1,'common.h']]],
-  ['junk_5fword_3',['JUNK_WORD',['../common_8h.html#a5ccf06cdd1d39aebace9e697214b4c54',1,'common.h']]]
+  ['include_5fasm_0',['INCLUDE_ASM',['../include__asm_8h.html#a1427610b9d91eeb6cc73f3619eff4bd6',1,'include_asm.h']]],
+  ['include_5frodata_1',['INCLUDE_RODATA',['../include__asm_8h.html#a32a1434d247c44a2b8b0855ea6b82b34',1,'include_asm.h']]],
+  ['inv_5ftwo_5fpi_2',['INV_TWO_PI',['../shdanim_8c.html#a82381d4d4e0de7d29cc4a04f25e48a60',1,'shdanim.c']]],
+  ['invalidate_5fcache_3',['INVALIDATE_CACHE',['../eekernel_8h.html#a23aef16d4e0351fd101945d529c78d9e',1,'eekernel.h']]],
+  ['invalidate_5fdcache_4',['INVALIDATE_DCACHE',['../eekernel_8h.html#af23c899f60614c24dffcecd36203ff8c',1,'eekernel.h']]],
+  ['invalidate_5ficache_5',['INVALIDATE_ICACHE',['../eekernel_8h.html#a204bf3760256fd4c97bc5527826e7eb9',1,'eekernel.h']]]
 ];

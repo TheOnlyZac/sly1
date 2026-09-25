@@ -98,13 +98,16 @@ $(document).ready(function(){initNavTree('pair_8cpp.html',''); initResizable(); 
 
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">pair.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="pair_8h_source.html">splice/pair.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="splotheap_8h_source.html">splice/splotheap.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="ref_8h_source.html">splice/ref.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="memset_8h_source.html">sce/memset.h</a>&gt;</code><br />
+<code>#include &lt;new&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for pair.cpp:</div>
 <div class="dyncontent">
@@ -113,14 +116,38 @@ Include dependency graph for pair.cpp:</div>
 </div>
 <p><a href="pair_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a5beaaaf702364358d0ffd0c4e5a2e7b0" id="r_a5beaaaf702364358d0ffd0c4e5a2e7b0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pair_8cpp.html#a5beaaaf702364358d0ffd0c4e5a2e7b0">__EMBEDDED_CXX__</a></td></tr>
+<tr class="separator:a5beaaaf702364358d0ffd0c4e5a2e7b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae7535dd2bdc872d12042bd5795d03921" id="r_ae7535dd2bdc872d12042bd5795d03921"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pair_8cpp.html#ae7535dd2bdc872d12042bd5795d03921">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/splice/pair&quot;, PpairNew__Fv)</td></tr>
-<tr class="separator:ae7535dd2bdc872d12042bd5795d03921"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4232c27765f9ffd7d624f3101c3e877e" id="r_a4232c27765f9ffd7d624f3101c3e877e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCPair.html">CPair</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pair_8cpp.html#a4232c27765f9ffd7d624f3101c3e877e">PpairNew</a> ()</td></tr>
+<tr class="memdesc:a4232c27765f9ffd7d624f3101c3e877e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates a new pair from the pair splot heap.  <br /></td></tr>
+<tr class="separator:a4232c27765f9ffd7d624f3101c3e877e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94de5cae8db99761dfa3e17a17993806" id="r_a94de5cae8db99761dfa3e17a17993806"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pair_8cpp.html#a94de5cae8db99761dfa3e17a17993806">DeletePair</a> (<a class="el" href="classCPair.html">CPair</a> *ppair)</td></tr>
 <tr class="memdesc:a94de5cae8db99761dfa3e17a17993806"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a pair by the calling destructor for its ref.  <br /></td></tr>
 <tr class="separator:a94de5cae8db99761dfa3e17a17993806"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a5beaaaf702364358d0ffd0c4e5a2e7b0" name="a5beaaaf702364358d0ffd0c4e5a2e7b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5beaaaf702364358d0ffd0c4e5a2e7b0">&#9670;&#160;</a></span>__EMBEDDED_CXX__</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define __EMBEDDED_CXX__</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section note"><dt>Note</dt><dd>This flag is required so that we don't compile with exception support in new() </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="pair_8cpp_source.html#l00007">7</a> of file <a class="el" href="pair_8cpp_source.html">pair.cpp</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a94de5cae8db99761dfa3e17a17993806" name="a94de5cae8db99761dfa3e17a17993806"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a94de5cae8db99761dfa3e17a17993806">&#9670;&#160;</a></span>DeletePair()</h2>
@@ -146,35 +173,29 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pair_8cpp_source.html#l00032">32</a> of file <a class="el" href="pair_8cpp_source.html">pair.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pair_8cpp_source.html#l00034">34</a> of file <a class="el" href="pair_8cpp_source.html">pair.cpp</a>.</p>
 
 </div>
 </div>
-<a id="ae7535dd2bdc872d12042bd5795d03921" name="ae7535dd2bdc872d12042bd5795d03921"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7535dd2bdc872d12042bd5795d03921">&#9670;&#160;</a></span>INCLUDE_ASM()</h2>
+<a id="a4232c27765f9ffd7d624f3101c3e877e" name="a4232c27765f9ffd7d624f3101c3e877e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4232c27765f9ffd7d624f3101c3e877e">&#9670;&#160;</a></span>PpairNew()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname"><a class="el" href="classCPair.html">CPair</a> * PpairNew </td>
           <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/splice/pair&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">PpairNew__Fv&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Allocates a new pair from the pair splot heap. </p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the newly allocated pair. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="pair_8cpp_source.html#l00022">22</a> of file <a class="el" href="pair_8cpp_source.html">pair.cpp</a>.</p>
 
 </div>
 </div>

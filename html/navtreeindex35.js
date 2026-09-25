@@ -1,5 +1,6 @@
 var NAVTREEINDEX35 =
 {
+"stream_8h.html":[10,0,1,152],
 "stream_8h_source.html":[10,0,1,152],
 "structACCMISS.html":[9,0,13],
 "structACG.html":[9,0,14],
@@ -248,6 +249,5 @@ var NAVTREEINDEX35 =
 "structBLOT.html#a3ed3a1f2fd731eacaa9fdd95b8fcef82":[9,0,65,18],
 "structBLOT.html#a5c25212adb50724ceabc8ade4c43f7ab":[9,0,65,22],
 "structBLOT.html#a5d21839af0b2cd62deb5bfa910df1d4a":[9,0,65,13],
-"structBLOT.html#a631533622e1ce5c5b0aae4b7d3a88237":[9,0,65,17],
-"structBLOT.html#a663d5de7eb62a2e2d7c81236530fb957":[9,0,65,21]
+"structBLOT.html#a631533622e1ce5c5b0aae4b7d3a88237":[9,0,65,17]
 };

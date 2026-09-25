@@ -1,5 +1,6 @@
 var NAVTREEINDEX40 =
 {
+"structMBG.html":[9,0,283],
 "structMEMCARD.html":[9,0,284],
 "structMEMCARD.html#a5ce09d780442e7a9c45b92791753b702":[9,0,284,2],
 "structMEMCARD.html#a76c9612cec885a36f749026f8d56e61d":[9,0,284,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX40 =
 "structRPL.html#a4176a64a55377178c5b3135236b664ca":[9,0,358,8],
 "structRPL.html#a4d95a12a6d72c37439b4ce5a3d87f901":[9,0,358,5],
 "structRPL.html#aa0aef58e8b853ad69e46c2b71e9e8b8e":[9,0,358,7],
-"structRPL.html#aa568255bba2ae2fcba8d3e0618c0aba3":[9,0,358,3],
-"structRPL.html#abc014330e4dd62f26e158bb8a411ff0e":[9,0,358,4]
+"structRPL.html#aa568255bba2ae2fcba8d3e0618c0aba3":[9,0,358,3]
 };

@@ -1,5 +1,6 @@
 var NAVTREEINDEX36 =
 {
+"structBLOT.html#a663d5de7eb62a2e2d7c81236530fb957":[9,0,65,21],
 "structBLOT.html#a702774f27622ae41c84ae5e2b066265f":[9,0,65,4],
 "structBLOT.html#a73ffe2407d72dec1fbb472f8a0512248":[9,0,65,1],
 "structBLOT.html#a7957b7b4e66bbb5e3fc005c565582b52":[9,0,65,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX36 =
 "structCODE.html#a2fb4da28b7cb711a0dac138156398154":[9,0,111,2],
 "structCODE.html#a34232fff05a8840132eb165f5c2e64fd":[9,0,111,1],
 "structCODE.html#a4d57b8cc90429edaac07fc6a30ed7fd2":[9,0,111,3],
-"structCODE.html#a70591d2cfec36a1ec1549a6b903820a1":[9,0,111,6],
-"structCODE.html#a74b82debe7710990e88dc16ef215f1db":[9,0,111,5]
+"structCODE.html#a70591d2cfec36a1ec1549a6b903820a1":[9,0,111,6]
 };

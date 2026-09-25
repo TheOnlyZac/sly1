@@ -1,5 +1,6 @@
 var NAVTREEINDEX37 =
 {
+"structCODE.html#a74b82debe7710990e88dc16ef215f1db":[9,0,111,5],
 "structCODE.html#a8cd6a11e21a173e6d4f349aec837589a":[9,0,111,0],
 "structCODE.html#ab2e3121451b080ca31e0b4085796b61a":[9,0,111,4],
 "structCOIN.html":[9,0,112],
@@ -248,6 +249,5 @@ var NAVTREEINDEX37 =
 "structDYSH.html":[9,0,169],
 "structDZ.html":[9,0,170],
 "structDZ.html#a029b1a9bda5889cdc447d91017446221":[9,0,170,8],
-"structDZ.html#a0f6f9506addead1c4ceb61ddf0a9fc59":[9,0,170,6],
-"structDZ.html#a1baab94d5957c957844243e2d7ff5724":[9,0,170,3]
+"structDZ.html#a0f6f9506addead1c4ceb61ddf0a9fc59":[9,0,170,6]
 };
