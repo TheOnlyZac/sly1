@@ -181,7 +181,7 @@ var NAVTREEINDEX =
 "screen_8c.html#a16baf6730890dd9c2fbbe8095b715bb5",
 "sensor_8c.html#af0f0a5d17321333a61abff4b6b33a499",
 "shdanim_8c.html#a5993d0d2e4e1adb3232705cfbf32f382",
-"so_8c.html#a77107ba20ac739198060029c1e5130c7",
+"so_8c.html#a774176b5dd0ef5c7720d96bf7904ed05",
 "sound_8c.html#a9868f4a6eeb7c655145d494abbfc40ec",
 "splotheap_8h_source.html",
 "stepguard_8h.html#a2ef71e3be56da88455b948f300fccef7ae0c9fc62f3fda09837df583a46cc520a",

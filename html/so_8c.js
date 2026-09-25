@@ -72,7 +72,6 @@ var so_8c =
     [ "INCLUDE_ASM", "so_8c.html#addfb9c9dd6514aa279aa0c3a6cd323d5", null ],
     [ "INCLUDE_ASM", "so_8c.html#a7d3248ac772a3c38cbeb6020ff3b41a2", null ],
     [ "INCLUDE_ASM", "so_8c.html#a7974c2f3d13c62c1120862e2c165e507", null ],
-    [ "INCLUDE_ASM", "so_8c.html#a735ff1c5930db4aa4d97bfd322040370", null ],
     [ "INCLUDE_ASM", "so_8c.html#a23ad452d074df0888b847b5123db833b", null ],
     [ "INCLUDE_ASM", "so_8c.html#a4213b35a1d635aa994c37f2088656805", null ],
     [ "INCLUDE_ASM", "so_8c.html#ad159befd6404acc3d2a83a09260dca34", null ],
@@ -88,5 +87,6 @@ var so_8c =
     [ "SetSoMtlk", "so_8c.html#a27e77e3ce851228d3ed2eb6792fef856", null ],
     [ "SetSoNoInteract", "so_8c.html#aa62c1c31091aafdf8e1ef642108234ec", null ],
     [ "SetSoSphere", "so_8c.html#a9521caa561be8fc24bf897a206abff41", null ],
-    [ "UpdateSo", "so_8c.html#a3e97ea78e4a2138dd82253b2e1cf0789", null ]
+    [ "UpdateSo", "so_8c.html#a3e97ea78e4a2138dd82253b2e1cf0789", null ],
+    [ "UpdateSoPosWorldPrev", "so_8c.html#a9627209e17308025c7e6682378efd5f7", null ]
 ];
