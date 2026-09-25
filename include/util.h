@@ -67,7 +67,10 @@ struct LM
 	float gMin, gMax;
 };
 
+extern CLQ g_clqZero;
+extern CLQ g_clqOne;
 extern LM g_lmZeroOne;
+extern LM g_lmNegOneOne;
 
 /**
  * @brief Normalizes a float to the range [-PI, PI].

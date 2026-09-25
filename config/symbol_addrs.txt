@@ -206,7 +206,10 @@ __8VU_FLOATf                    = 0x118CF0; // type:func
 __9VU_VECTORRC6VECTOR           = 0x118D10; // type:func
 __as__6VECTORG9VU_VECTOR        = 0x118D20; // type:func
 __ml__FG8VU_FLOATG9VU_VECTOR    = 0x118D30; // type:func
-g_mpbifkbif                     = 0x259958; // size:0x48C
+
+// .data
+s_mpufokpfnufo = 0x259938; // size:0x20
+g_mpbifkbif    = 0x259958; // size:0x5DC
 
 
 ////////////////////////////////////////////////////////////////
@@ -267,7 +270,8 @@ gc__static_initialization_and_destruction_0 = 0x11ADF8; // type:func
 _GLOBAL_$I$g_gc                 = 0x11AE38; // type:func
 _GLOBAL_$D$g_gc                 = 0x11AE58; // type:func
 
-g_gc                            = 0x259F38; // size:0x2314
+// .data
+g_gc = 0x259F38; // size:0x2314
 
 
 ////////////////////////////////////////////////////////////////
@@ -2931,7 +2935,7 @@ s_pvStackMin    = 0x2C2A20; // size:0x4
 s_pvStackMac    = 0x2C2A24; // size:0x4
 s_critsectStack = 0x2C2A28; // size:0xc
 s_ipvStackCur   = 0x2C2A34; // size:0x4
-s_apvStackMin   = 0x2C2A38; // size:0x4
+s_apvStackMin   = 0x2C2A38; // size:0xc8
 
 // TODO: Move elsewhere?
 D_0064C70F = 0x64C70F; // size:0x04
@@ -4970,7 +4974,11 @@ Force__FPv = 0x1EB160; // type:func
 MinimizeRange = 0x1EB168; // type:func
 junk_001EB458 = 0x1EB458; // type:func
 
-g_lmZeroOne = 0x275C60;
+// .data
+g_clqZero = 0x275c40; // size:0x10
+g_clqOne = 0x275c50; // size:0x10
+g_lmZeroOne = 0x275c60; // size:0x8
+g_lmNegOneOne = 0x275c68; // size:0x8
 
 
 ////////////////////////////////////////////////////////////////
@@ -5314,15 +5322,39 @@ scePadEnterPressMode = 0x204D48; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// /usr/local/sce/ee/gcc/src/newlib/libm/math/sf_atan.c
+////////////////////////////////////////////////////////////////
+atanf = 0x204f68; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // /usr/local/sce/ee/gcc/src/newlib/libm/math/sf_cos.c
 ////////////////////////////////////////////////////////////////
 cosf = 0x205210; // type:func
 
 
 ////////////////////////////////////////////////////////////////
+// /usr/local/sce/ee/gcc/src/newlib/libm/math/sf_sin.c
+////////////////////////////////////////////////////////////////
+sinf = 0x205400; // type:func
+
+
+////////////////////////////////////////////////////////////////
 // /usr/local/sce/ee/gcc/src/newlib/libm/math/sf_tan.c
 ////////////////////////////////////////////////////////////////
 tanf = 0x2054F0; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// /usr/local/sce/ee/gcc/src/newlib/libm/math/wf_acos.c
+////////////////////////////////////////////////////////////////
+acosf = 0x205578; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// /usr/local/sce/ee/gcc/src/newlib/libm/math/wf_asin.c
+////////////////////////////////////////////////////////////////
+asinf = 0x205678; // type:func
 
 
 ////////////////////////////////////////////////////////////////
@@ -5335,6 +5367,19 @@ atan2f = 0x205778; // type:func
 // /usr/local/sce/ee/gcc/src/newlib/libm/math/wf_fmod.c
 ////////////////////////////////////////////////////////////////
 fmodf = 0x2058a0; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// /usr/local/sce/ee/gcc/src/newlib/libm/math/wf_log.c
+////////////////////////////////////////////////////////////////
+logf = 0x2059e0; // type:func
+
+
+////////////////////////////////////////////////////////////////
+// /usr/local/sce/ee/gcc/src/newlib/libm/math/wf_sqrtf.c
+// NOTE: Path not present in prototype. Verify.
+////////////////////////////////////////////////////////////////
+sqrtf = 0x206180; // type:func
 
 
 ////////////////////////////////////////////////////////////////

@@ -383,13 +383,8 @@ segments:
     # Data (variable data)
     #--------------------------------------------------------
     - [0x151580, data] #MARK: data
-    #- [0x, data, P2/splice/bif]
-    #- [0x, data, P2/splice/eval]
-    #- [0x, data, P2/splice/frame]
+    - [0x15a938, .data, P2/splice/bif]
     - [0x15af38, .data, P2/splice/gc]
-    #- [0x, data, P2/splice/pair]
-    #- [0x, data, P2/splice/serialize]
-    #- [0x, data, P2/splice/sidebag]
     - [0x15d250, data, P2/splice/spliceutils]
     - [0x15d2f0, data, P2/splice/vecmat]
     - [0x15d340, .data, P2/989snd]
@@ -488,7 +483,7 @@ segments:
     - [0x176b60, data, P2/ub]
     - [0x176bc0, data, P2/ui]
     - [0x176c18, data, P2/update]
-    - [0x176c40, data, P2/util]
+    - [0x176c40, .data, P2/util]
     - [0x176c70, data, P2/vb]
     - [0x176dd0, data, P2/vifs]
     - [0x176e10, data, P2/waypoint]
@@ -497,6 +492,11 @@ segments:
     - [0x177680, databin]
 
     ## Files with seemingly no data;
+    # - P2/splice/eval
+    # - P2/splice/frame
+    # - P2/splice/pair
+    # - P2/splice/serialize
+    # - P2/splice/sidebag
     # - P2/splice/splotheap
     # - P2/brx
     # - P2/ac
