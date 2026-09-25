@@ -36,13 +36,33 @@ CRef CSidebag::RefSetBinding(int symid, CRef *pref)
     return ref;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/sidebag", FFindBinding__8CSidebagiP4CRef);
+int CSidebag::FFindBinding(int symid, CRef *pref)
+{
+    for (CVarb *pvarb = m_pvarb; pvarb != NULL; pvarb = pvarb->m_pvarbNext)
+    {
+        if (pvarb->m_symid == symid)
+        {
+            if (pref != NULL)
+            {
+                *pref = pvarb->m_ref;
+            }
+            return 1;
+        }
+    }
 
-INCLUDE_ASM("asm/nonmatchings/P2/splice/sidebag", CloneTo__8CSidebagP8CSidebag);
+    return 0;
+}
+
+void CSidebag::CloneTo(CSidebag *psidebagClone)
+{
+    CVarb *pvarbNew = PvarbNew();
+    m_pvarb->CloneTo(pvarbNew, NULL);
+    psidebagClone->m_pvarb = pvarbNew;
+}
 
 CSidebag *PsidebagNew()
 {
-    CSidebag *psidebag = (CSidebag *)PvAllocSwClearImpl(4);
+    CSidebag *psidebag = (CSidebag *)PvAllocSwClearImpl(sizeof(CSidebag));
     memset(psidebag, 0, 4);
     return psidebag;
 }
