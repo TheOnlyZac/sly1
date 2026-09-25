@@ -3,6 +3,10 @@
 #include <splice/ref.h>
 #include <sce/memset.h>
 
+/** @note This flag is required so that we don't compile with exception support in new() */
+#define __EMBEDDED_CXX__
+#include <new>
+
 void CPair::CloneTo(CPair *ppairClone, CFrame *pframeClone)
 {
     m_ref.CloneTo(&ppairClone->m_ref, pframeClone);
@@ -13,16 +17,6 @@ void CPair::CloneTo(CPair *ppairClone, CFrame *pframeClone)
         m_ppairNext->CloneTo(ppairNew, pframeClone);
         ppairClone->m_ppairNext = ppairNew;
     }
-}
-
-/**
- * Placement new without non-throwing decorator, which assumes unconditional success
- * and forces the compiler to emit a call without any checks.
- * @todo: should probably find a more generic/global place to put this?
- */
-inline void *operator new(uint, void *place)
-{
-    return place;
 }
 
 CPair *PpairNew()
