@@ -15,19 +15,13 @@ void IncrefVector(VECTOR *pvector);
 
 void DecrefVector(VECTOR *pvector);
 
-MATRIX4 *PmatrixNew();
-
 void IncrefMatrix(MATRIX4 *pmatrix);
 
 void DecrefMatrix(MATRIX4 *pmatrix);
 
-CLQ *PclqNew();
-
 void IncrefClq(CLQ *pclq);
 
 void DecrefClq(CLQ *pclq);
-
-LM *PlmNew();
 
 void IncrefLm(LM *plm);
 

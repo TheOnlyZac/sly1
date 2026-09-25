@@ -248,7 +248,7 @@ struct LevelLoadData
     uint unk_1C;
     int level_id;
     const char *pchzFriendly;
-    FLS completionState;
+    uint unk_28;
 };
 
 extern const LevelLoadData *D_00247AB0[];
@@ -281,14 +281,7 @@ char *PchzFriendlyFromWid(int wid);
 
 // WORLDLEVEL FFindLevel(LevelLoadData *level)
 
-/**
- * @brief Get the completion state of a level based on its ID.
- *
- * @param id ID of the level to get the completion state of.
- *
- * @return The completion state of the level.
- */
-FLS GetLevelCompletionById(int id);
+uint get_level_completion_by_id(int level_id);
 
 /**
  * @brief Tally the completion of a world.
