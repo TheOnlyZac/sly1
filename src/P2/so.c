@@ -148,17 +148,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", AdjustSoMomint__FP2SOf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", DiscardSoXps__FP2SO);
 
-<<<<<<< HEAD
-typedef int int128 __attribute__((mode(TI)));
-
-void UpdateSoPosWorldPrev(SO *pso)
-{
-    *(int128 *)((char *)pso + 0x370) = *(int128 *)((char *)pso + 0x140);
-=======
 void UpdateSoPosWorldPrev(SO *pso)
 {
     STRUCT_OFFSET(pso, 0x370, qword) = STRUCT_OFFSET(pso, 0x140, qword);
->>>>>>> 5c932cad (Use qword and STRUCT_OFFSET in UpdateSoPosWorldPrev)
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", TranslateSoToPos__FP2SOP6VECTOR);
