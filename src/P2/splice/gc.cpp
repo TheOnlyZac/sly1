@@ -236,13 +236,12 @@ void CGc::Collect()
     g_splotheapProc.UnmarkAll();
     g_splotheapMethod.UnmarkAll();
 
-    int i = m_cpframeRoot;
     m_cpframeStack = 0;
     m_cppairStack = 0;
     m_cpprocStack = 0;
 
     /* This loop iteration structure looks weird but it seems to be required to match */
-    while (--i >= 0)
+    for (int i = m_cpframeRoot; --i >= 0;)
     {
         CFrame *pframe = m_apframeRoot[i];
         if (FIsPvGarbage(pframe))
@@ -253,8 +252,7 @@ void CGc::Collect()
     }
 
     /* Same comment as above on the loop structure */
-    int j = m_cpsidebagRoot;
-    while (--j >= 0)
+    for (int j = m_cpsidebagRoot; --j >= 0;)
     {
         CSidebag *psidebag = m_apsidebagRoot[j];
         for (CVarb *pvarb = psidebag->m_pvarb; pvarb != NULL; pvarb = pvarb->m_pvarbNext)
