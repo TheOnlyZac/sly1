@@ -46,11 +46,11 @@ int CSidebag::FFindBinding(int symid, CRef *pref)
             {
                 *pref = pvarb->m_ref;
             }
-            return 1;
+            return true;
         }
     }
 
-    return 0;
+    return false;
 }
 
 void CSidebag::CloneTo(CSidebag *psidebagClone)
