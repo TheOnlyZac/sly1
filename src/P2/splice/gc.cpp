@@ -7,6 +7,9 @@
 #include <splice/varb.h>
 #include <sw.h>
 
+/** @brief Global garbage colllector singleton */
+CGc g_gc;
+
 CGc::CGc()
 {
     return;
@@ -309,5 +312,3 @@ void CGc::Collect()
     g_splotheapProc.FreeGarbage();
     g_splotheapMethod.FreeGarbage();
 }
-
-CGc g_gc;

@@ -63,6 +63,6 @@ void CSidebag::CloneTo(CSidebag *psidebagClone)
 CSidebag *PsidebagNew()
 {
     CSidebag *psidebag = (CSidebag *)PvAllocSwClearImpl(sizeof(CSidebag));
-    memset(psidebag, 0, 4);
+    memset(psidebag, 0, sizeof(CSidebag));
     return psidebag;
 }
