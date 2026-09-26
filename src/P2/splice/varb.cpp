@@ -1,5 +1,5 @@
 #include <splice/varb.h>
-#include <splice/splotheap.h>
+#include <splice/spliceutils.h>
 #include <sce/memset.h>
 
 /** @note This flag is required so that we don't compile with exception support in new() */

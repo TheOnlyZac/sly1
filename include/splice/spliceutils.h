@@ -11,7 +11,7 @@
 
 extern CSplotheap g_splotheapPair;
 extern CSplotheap g_splotheapFrame;
-extern CSplotheap g_splotheapUnk1;
+extern CSplotheap g_splotheapVarb;
 extern CSplotheap g_splotheapProc;
 extern CSplotheap g_splotheapMethod;
 
