@@ -210,11 +210,13 @@ var NAVTREEINDEX8 =
 "classCFontBrx.html#af3f7067a2b12d4bfefa11451902cfa08":[9,0,92,2],
 "classCFrame.html":[9,0,93],
 "classCFrame.html#a07422be1ddfdffc91cd6b23040f4b196":[9,0,93,4],
+"classCFrame.html#a52ea54e87a78f1ce9055012ae70af4b5":[9,0,93,10],
 "classCFrame.html#a6156cb4777a953ea4d9f207bafd685af":[9,0,93,5],
 "classCFrame.html#a66c99ddc31eb889ec00bb684ee400913":[9,0,93,7],
 "classCFrame.html#a71082dcc4fbea634867e1a26b6e9c9ab":[9,0,93,2],
 "classCFrame.html#a85d3ac9cfa0120283351dadd150f6edf":[9,0,93,0],
 "classCFrame.html#a88a4ad40a1f98da649a697d2d4d959da":[9,0,93,8],
+"classCFrame.html#aa6ca47e53d709345f51dc4b2dbc0e072":[9,0,93,9],
 "classCFrame.html#abf7051f40fe3b1a780023a7ee909f73b":[9,0,93,6],
 "classCFrame.html#aca367dc5e7c064d1602850258ee88f4e":[9,0,93,3],
 "classCFrame.html#ae25e2f1abdac819279977ee95969a5ea":[9,0,93,1],
@@ -247,7 +249,5 @@ var NAVTREEINDEX8 =
 "classCGc.html#afc3f8ba8dcde28b217388a2d5fabce4e":[9,0,94,2],
 "classCHECK__POINT.html":[9,0,96],
 "classCMethod.html":[9,0,108],
-"classCMethod.html#a2afcc983458f9bcb18d6ab4766d63f82":[9,0,108,2],
-"classCMethod.html#ab3a9d6f13a486e47d2adf03e498793a1":[9,0,108,1],
-"classCMethod.html#ae0b8819cedd46f446e585020a7a5d568":[9,0,108,0]
+"classCMethod.html#a2afcc983458f9bcb18d6ab4766d63f82":[9,0,108,2]
 };

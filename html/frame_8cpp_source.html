@@ -102,62 +102,182 @@ $(document).ready(function(){initNavTree('frame_8cpp_source.html',''); initResiz
 <div class="contents">
 <a href="frame_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;<a class="code" href="frame_8h.html">splice/frame.h</a>&gt;</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;<a class="code" href="splotheap_8h.html">splice/splotheap.h</a>&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="memset_8h.html">sce/memset.h</a>&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="foldopen" id="foldopen00005" data-start="{" data-end="}">
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="classCFrame.html#abf7051f40fe3b1a780023a7ee909f73b">    5</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classCFrame.html#abf7051f40fe3b1a780023a7ee909f73b">CFrame::SetSingleParent</a>(<a class="code hl_class" href="classCFrame.html">CFrame</a> *pframeParent)</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>{</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <a class="code hl_variable" href="classCFrame.html#a66c99ddc31eb889ec00bb684ee400913">m_apframeParent</a>[0] = pframeParent;</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <a class="code hl_variable" href="classCFrame.html#a88a4ad40a1f98da649a697d2d4d959da">m_cpframeParent</a> = 1;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>}</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="varb_8h.html">splice/varb.h</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="code" href="memset_8h.html">sce/memset.h</a>&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="code" href="memory_8h.html">memory.h</a>&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="foldopen" id="foldopen00007" data-start="{" data-end="}">
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classCFrame.html#abf7051f40fe3b1a780023a7ee909f73b">    7</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classCFrame.html#abf7051f40fe3b1a780023a7ee909f73b">CFrame::SetSingleParent</a>(<a class="code hl_class" href="classCFrame.html">CFrame</a> *pframeParent)</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <a class="code hl_variable" href="classCFrame.html#a66c99ddc31eb889ec00bb684ee400913">m_apframeParent</a>[0] = pframeParent;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <a class="code hl_variable" href="classCFrame.html#a88a4ad40a1f98da649a697d2d4d959da">m_cpframeParent</a> = 1;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>}</div>
 </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="foldopen" id="foldopen00011" data-start="{" data-end="}">
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classCFrame.html#a85d3ac9cfa0120283351dadd150f6edf">   11</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classCFrame.html#a85d3ac9cfa0120283351dadd150f6edf">CFrame::AddParent</a>(<a class="code hl_class" href="classCFrame.html">CFrame</a> *pframeParent)</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <a class="code hl_variable" href="classCFrame.html#a66c99ddc31eb889ec00bb684ee400913">m_apframeParent</a>[<a class="code hl_variable" href="classCFrame.html#a88a4ad40a1f98da649a697d2d4d959da">m_cpframeParent</a>++] = pframeParent;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>}</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="}">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classCFrame.html#a85d3ac9cfa0120283351dadd150f6edf">   13</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classCFrame.html#a85d3ac9cfa0120283351dadd150f6edf">CFrame::AddParent</a>(<a class="code hl_class" href="classCFrame.html">CFrame</a> *pframeParent)</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <a class="code hl_variable" href="classCFrame.html#a66c99ddc31eb889ec00bb684ee400913">m_apframeParent</a>[<a class="code hl_variable" href="classCFrame.html#a88a4ad40a1f98da649a697d2d4d959da">m_cpframeParent</a>++] = pframeParent;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>}</div>
 </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="frame_8cpp.html#a8930a60d1b53fea9d79d78181e55bb53">   16</a></span><a class="code hl_define" href="include__asm_8h.html#a1427610b9d91eeb6cc73f3619eff4bd6">INCLUDE_ASM</a>(<span class="stringliteral">&quot;asm/nonmatchings/P2/splice/frame&quot;</span>, RefAddBinding__6CFrameUiP4CRef);</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="frame_8cpp.html#a09f2b1b08aa9fe313710c9ccabbb181d">   18</a></span><a class="code hl_define" href="include__asm_8h.html#a1427610b9d91eeb6cc73f3619eff4bd6">INCLUDE_ASM</a>(<span class="stringliteral">&quot;asm/nonmatchings/P2/splice/frame&quot;</span>, RefSetBinding__6CFrameUiP4CRef);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="frame_8cpp.html#a0db66d26ddbe80e588fcb2751ff4f2a0">   20</a></span><a class="code hl_define" href="include__asm_8h.html#a1427610b9d91eeb6cc73f3619eff4bd6">INCLUDE_ASM</a>(<span class="stringliteral">&quot;asm/nonmatchings/P2/splice/frame&quot;</span>, FFindBinding__6CFrameUiiP4CRef);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="frame_8cpp.html#ab671f6c4e207f3408962351b664c47c9">   22</a></span><a class="code hl_define" href="include__asm_8h.html#a1427610b9d91eeb6cc73f3619eff4bd6">INCLUDE_ASM</a>(<span class="stringliteral">&quot;asm/nonmatchings/P2/splice/frame&quot;</span>, PrefFindBinding__6CFrameUii);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="frame_8cpp.html#a50f1408842bc14c19a984566cf76abd1">   24</a></span><a class="code hl_define" href="include__asm_8h.html#a1427610b9d91eeb6cc73f3619eff4bd6">INCLUDE_ASM</a>(<span class="stringliteral">&quot;asm/nonmatchings/P2/splice/frame&quot;</span>, CloneTo__6CFrameP6CFrame);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="foldopen" id="foldopen00026" data-start="{" data-end="}">
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="frame_8cpp.html#a09d050b38ccd2f0d05b23e61319d16e5">   26</a></span><a class="code hl_class" href="classCFrame.html">CFrame</a> *<a class="code hl_function" href="frame_8cpp.html#a09d050b38ccd2f0d05b23e61319d16e5">PframeNew</a>()</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>{</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_class" href="classCFrame.html">CFrame</a> *pframe = (<a class="code hl_class" href="classCFrame.html">CFrame</a> *)<a class="code hl_variable" href="splotheap_8h.html#a7186eaeed42fdf9d580d7aef1ebf8295">g_splotheapFrame</a>.<a class="code hl_function" href="classCSplotheap.html#a7d376d74c463740245db1adf6ab097e5">PvAllocClear</a>();</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_function" href="memset_8h.html#a8859618d1590f896d8eb7cd301cdad72">memset</a>(pframe, 0, 0x1c);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">return</span> pframe;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classCFrame.html#a07422be1ddfdffc91cd6b23040f4b196">   18</a></span><a class="code hl_class" href="classCRef.html">CRef</a> <a class="code hl_function" href="classCFrame.html#a07422be1ddfdffc91cd6b23040f4b196">CFrame::RefAddBinding</a>(<a class="code hl_typedef" href="frame_8h.html#aff15d3fa5df1cea21a9abfefe35e135f">SYMID</a> symid, <a class="code hl_class" href="classCRef.html">CRef</a> *pref)</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_class" href="classCRef.html">CRef</a> cref;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <a class="code hl_class" href="classCVarb.html">CVarb</a> *pvarb = <a class="code hl_function" href="varb_8cpp.html#a0ec33c1618a7024e025fe258afbb1f1c">PvarbNew</a>();</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    pvarb-&gt;<a class="code hl_variable" href="classCVarb.html#af3c22c710fe6236dc4bb769d6e994053">m_symid</a> = symid;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    pvarb-&gt;<a class="code hl_variable" href="classCVarb.html#a001585ab0ff7487e174958a55420433f">m_ref</a> = *pref;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    pvarb-&gt;<a class="code hl_variable" href="classCVarb.html#a752ddc3b1f423c0375b2f13f583f094d">m_pvarbNext</a> = <a class="code hl_variable" href="classCFrame.html#a52ea54e87a78f1ce9055012ae70af4b5">m_pvarb</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_variable" href="classCFrame.html#a52ea54e87a78f1ce9055012ae70af4b5">m_pvarb</a> = pvarb;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    cref.<a class="code hl_function" href="classCRef.html#aeca95dbe8317d593e6861d463c5a144f">SetTag</a>(<a class="code hl_enumvalue" href="ref_8h.html#a4e55c80470e633730d036482bd72bd52af26df33493c32984a7174001803fd0c9">TAGK_Void</a>);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">return</span> cref;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
 </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="frame_8cpp.html#addeaf06414b4c875442563659244fa6d">   33</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="frame_8cpp.html#addeaf06414b4c875442563659244fa6d">DeleteFrame</a>(<a class="code hl_class" href="classCFrame.html">CFrame</a> *pframe)</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classCFrame.html#a6156cb4777a953ea4d9f207bafd685af">   31</a></span><a class="code hl_class" href="classCRef.html">CRef</a> <a class="code hl_function" href="classCFrame.html#a6156cb4777a953ea4d9f207bafd685af">CFrame::RefSetBinding</a>(<a class="code hl_typedef" href="frame_8h.html#aff15d3fa5df1cea21a9abfefe35e135f">SYMID</a> symid, <a class="code hl_class" href="classCRef.html">CRef</a> *pref)</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_class" href="classCRef.html">CRef</a> cref;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="comment">/* Update the symbol if we find it */</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_class" href="classCRef.html">CRef</a> *prefBound = <a class="code hl_function" href="classCFrame.html#aca367dc5e7c064d1602850258ee88f4e">PrefFindBinding</a>(symid, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordflow">if</span> (prefBound != NULL)</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        *prefBound = *pref;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    cref.<a class="code hl_function" href="classCRef.html#aeca95dbe8317d593e6861d463c5a144f">SetTag</a>(<a class="code hl_enumvalue" href="ref_8h.html#a4e55c80470e633730d036482bd72bd52af26df33493c32984a7174001803fd0c9">TAGK_Void</a>);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">return</span> cref;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
 </div>
-<div class="ttc" id="aclassCFrame_html"><div class="ttname"><a href="classCFrame.html">CFrame</a></div><div class="ttdef"><b>Definition</b> <a href="frame_8h_source.html#l00013">frame.h:14</a></div></div>
-<div class="ttc" id="aclassCFrame_html_a66c99ddc31eb889ec00bb684ee400913"><div class="ttname"><a href="classCFrame.html#a66c99ddc31eb889ec00bb684ee400913">CFrame::m_apframeParent</a></div><div class="ttdeci">CFrame * m_apframeParent[4]</div><div class="ttdef"><b>Definition</b> <a href="frame_8h_source.html#l00017">frame.h:17</a></div></div>
-<div class="ttc" id="aclassCFrame_html_a85d3ac9cfa0120283351dadd150f6edf"><div class="ttname"><a href="classCFrame.html#a85d3ac9cfa0120283351dadd150f6edf">CFrame::AddParent</a></div><div class="ttdeci">void AddParent(CFrame *pframeParent)</div><div class="ttdef"><b>Definition</b> <a href="frame_8cpp_source.html#l00011">frame.cpp:11</a></div></div>
-<div class="ttc" id="aclassCFrame_html_a88a4ad40a1f98da649a697d2d4d959da"><div class="ttname"><a href="classCFrame.html#a88a4ad40a1f98da649a697d2d4d959da">CFrame::m_cpframeParent</a></div><div class="ttdeci">int m_cpframeParent</div><div class="ttdef"><b>Definition</b> <a href="frame_8h_source.html#l00016">frame.h:16</a></div></div>
-<div class="ttc" id="aclassCFrame_html_abf7051f40fe3b1a780023a7ee909f73b"><div class="ttname"><a href="classCFrame.html#abf7051f40fe3b1a780023a7ee909f73b">CFrame::SetSingleParent</a></div><div class="ttdeci">void SetSingleParent(CFrame *pframeParent)</div><div class="ttdef"><b>Definition</b> <a href="frame_8cpp_source.html#l00005">frame.cpp:5</a></div></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classCFrame.html#a71082dcc4fbea634867e1a26b6e9c9ab">   46</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classCFrame.html#a71082dcc4fbea634867e1a26b6e9c9ab">CFrame::FFindBinding</a>(<a class="code hl_typedef" href="frame_8h.html#aff15d3fa5df1cea21a9abfefe35e135f">SYMID</a> symid, <span class="keywordtype">int</span> fRecursive, <a class="code hl_class" href="classCRef.html">CRef</a> *pref)</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>{</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_class" href="classCRef.html">CRef</a> *prefBound = <a class="code hl_function" href="classCFrame.html#aca367dc5e7c064d1602850258ee88f4e">PrefFindBinding</a>(symid, fRecursive);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">if</span> (prefBound != NULL)</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">if</span> (pref != NULL)</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            *pref = *prefBound;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
+</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classCFrame.html#aca367dc5e7c064d1602850258ee88f4e">   61</a></span><a class="code hl_class" href="classCRef.html">CRef</a> *<a class="code hl_function" href="classCFrame.html#aca367dc5e7c064d1602850258ee88f4e">CFrame::PrefFindBinding</a>(<a class="code hl_typedef" href="frame_8h.html#aff15d3fa5df1cea21a9abfefe35e135f">SYMID</a> symid, <span class="keywordtype">int</span> fRecursive)</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>{</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="comment">/* Set this flag to true while we are searching for bindings in case there is a loop</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">     * in the frame DAG. */</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <a class="code hl_variable" href="classCFrame.html#aa6ca47e53d709345f51dc4b2dbc0e072">m_fVisited</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <a class="code hl_class" href="classCRef.html">CRef</a> *prefFound = NULL;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">/* First search for bindings in this frame */</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">for</span> (<a class="code hl_class" href="classCVarb.html">CVarb</a> *pvarb = <a class="code hl_variable" href="classCFrame.html#a52ea54e87a78f1ce9055012ae70af4b5">m_pvarb</a>; pvarb != NULL; pvarb = pvarb-&gt;<a class="code hl_variable" href="classCVarb.html#a752ddc3b1f423c0375b2f13f583f094d">m_pvarbNext</a>)</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordflow">if</span> (pvarb-&gt;m_symid == symid)</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            prefFound = &amp;pvarb-&gt;m_ref;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            <span class="keywordflow">goto</span> done;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">/* If we didn&#39;t find the binding, recurse on the parent frames */</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordflow">if</span> (fRecursive)</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ipframe = 0; ipframe &lt; <a class="code hl_variable" href="classCFrame.html#a88a4ad40a1f98da649a697d2d4d959da">m_cpframeParent</a>; ipframe++)</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <a class="code hl_class" href="classCFrame.html">CFrame</a> *pframeParent = <a class="code hl_variable" href="classCFrame.html#a66c99ddc31eb889ec00bb684ee400913">m_apframeParent</a>[ipframe];</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            <span class="keywordflow">if</span> (pframeParent-&gt;<a class="code hl_variable" href="classCFrame.html#aa6ca47e53d709345f51dc4b2dbc0e072">m_fVisited</a>)</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            prefFound = pframeParent-&gt;<a class="code hl_function" href="classCFrame.html#aca367dc5e7c064d1602850258ee88f4e">PrefFindBinding</a>(symid, fRecursive);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            <span class="keywordflow">if</span> (!prefFound)</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            <span class="keywordflow">goto</span> done;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        }</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>done:</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <a class="code hl_variable" href="classCFrame.html#aa6ca47e53d709345f51dc4b2dbc0e072">m_fVisited</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordflow">return</span> prefFound;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>}</div>
+</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="foldopen" id="foldopen00104" data-start="{" data-end="}">
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classCFrame.html#ae25e2f1abdac819279977ee95969a5ea">  104</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classCFrame.html#ae25e2f1abdac819279977ee95969a5ea">CFrame::CloneTo</a>(<a class="code hl_class" href="classCFrame.html">CFrame</a> *pframeClone)</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>{</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    pframeClone-&gt;<a class="code hl_variable" href="classCFrame.html#a88a4ad40a1f98da649a697d2d4d959da">m_cpframeParent</a> = <a class="code hl_variable" href="classCFrame.html#a88a4ad40a1f98da649a697d2d4d959da">m_cpframeParent</a>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <a class="code hl_function" href="memory_8c.html#a3e78f7cf55ae71512308bf6529e52a0a">CopyAb</a>(pframeClone-&gt;<a class="code hl_variable" href="classCFrame.html#a66c99ddc31eb889ec00bb684ee400913">m_apframeParent</a>, <a class="code hl_variable" href="classCFrame.html#a66c99ddc31eb889ec00bb684ee400913">m_apframeParent</a>, <a class="code hl_variable" href="classCFrame.html#a88a4ad40a1f98da649a697d2d4d959da">m_cpframeParent</a> * <span class="keyword">sizeof</span>(<a class="code hl_class" href="classCFrame.html">CFrame</a> *));</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classCFrame.html#a52ea54e87a78f1ce9055012ae70af4b5">m_pvarb</a> != NULL)</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <a class="code hl_class" href="classCVarb.html">CVarb</a> *pvarbNew = <a class="code hl_function" href="varb_8cpp.html#a0ec33c1618a7024e025fe258afbb1f1c">PvarbNew</a>();</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <a class="code hl_variable" href="classCFrame.html#a52ea54e87a78f1ce9055012ae70af4b5">m_pvarb</a>-&gt;<a class="code hl_function" href="classCVarb.html#a455c09c28f825b2f4c87eb854b893b22">CloneTo</a>(pvarbNew, pframeClone);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        pframeClone-&gt;<a class="code hl_variable" href="classCFrame.html#a52ea54e87a78f1ce9055012ae70af4b5">m_pvarb</a> = pvarbNew;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>}</div>
+</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="foldopen" id="foldopen00117" data-start="{" data-end="}">
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="frame_8cpp.html#a09d050b38ccd2f0d05b23e61319d16e5">  117</a></span><a class="code hl_class" href="classCFrame.html">CFrame</a> *<a class="code hl_function" href="frame_8cpp.html#a09d050b38ccd2f0d05b23e61319d16e5">PframeNew</a>()</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>{</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <a class="code hl_class" href="classCFrame.html">CFrame</a> *pframe = (<a class="code hl_class" href="classCFrame.html">CFrame</a> *)<a class="code hl_variable" href="splotheap_8h.html#a7186eaeed42fdf9d580d7aef1ebf8295">g_splotheapFrame</a>.<a class="code hl_function" href="classCSplotheap.html#a7d376d74c463740245db1adf6ab097e5">PvAllocClear</a>();</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <a class="code hl_function" href="memset_8h.html#a8859618d1590f896d8eb7cd301cdad72">memset</a>(pframe, 0, 0x1c);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keywordflow">return</span> pframe;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>}</div>
+</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="foldopen" id="foldopen00124" data-start="{" data-end="}">
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="frame_8cpp.html#addeaf06414b4c875442563659244fa6d">  124</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="frame_8cpp.html#addeaf06414b4c875442563659244fa6d">DeleteFrame</a>(<a class="code hl_class" href="classCFrame.html">CFrame</a> *pframe)</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>{</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>}</div>
+</div>
+<div class="ttc" id="aclassCFrame_html"><div class="ttname"><a href="classCFrame.html">CFrame</a></div><div class="ttdoc">Splice stack frame. Each frame can have up to 4 parent frames.</div><div class="ttdef"><b>Definition</b> <a href="frame_8h_source.html#l00016">frame.h:17</a></div></div>
+<div class="ttc" id="aclassCFrame_html_a07422be1ddfdffc91cd6b23040f4b196"><div class="ttname"><a href="classCFrame.html#a07422be1ddfdffc91cd6b23040f4b196">CFrame::RefAddBinding</a></div><div class="ttdeci">CRef RefAddBinding(SYMID symid, CRef *pref)</div><div class="ttdoc">Adds a new variable binding to this frame. Does not check if the symbol already exists,...</div><div class="ttdef"><b>Definition</b> <a href="frame_8cpp_source.html#l00018">frame.cpp:18</a></div></div>
+<div class="ttc" id="aclassCFrame_html_a52ea54e87a78f1ce9055012ae70af4b5"><div class="ttname"><a href="classCFrame.html#a52ea54e87a78f1ce9055012ae70af4b5">CFrame::m_pvarb</a></div><div class="ttdeci">CVarb * m_pvarb</div><div class="ttdef"><b>Definition</b> <a href="frame_8h_source.html#l00021">frame.h:21</a></div></div>
+<div class="ttc" id="aclassCFrame_html_a6156cb4777a953ea4d9f207bafd685af"><div class="ttname"><a href="classCFrame.html#a6156cb4777a953ea4d9f207bafd685af">CFrame::RefSetBinding</a></div><div class="ttdeci">CRef RefSetBinding(SYMID symid, CRef *pref)</div><div class="ttdoc">Sets the value for an existing variable binding. If the symbol was not found, then this silently fail...</div><div class="ttdef"><b>Definition</b> <a href="frame_8cpp_source.html#l00031">frame.cpp:31</a></div></div>
+<div class="ttc" id="aclassCFrame_html_a66c99ddc31eb889ec00bb684ee400913"><div class="ttname"><a href="classCFrame.html#a66c99ddc31eb889ec00bb684ee400913">CFrame::m_apframeParent</a></div><div class="ttdeci">CFrame * m_apframeParent[4]</div><div class="ttdef"><b>Definition</b> <a href="frame_8h_source.html#l00020">frame.h:20</a></div></div>
+<div class="ttc" id="aclassCFrame_html_a71082dcc4fbea634867e1a26b6e9c9ab"><div class="ttname"><a href="classCFrame.html#a71082dcc4fbea634867e1a26b6e9c9ab">CFrame::FFindBinding</a></div><div class="ttdeci">int FFindBinding(SYMID symid, int fRecursive, CRef *pref)</div><div class="ttdoc">Checks if a symbol binding exists in this frame.</div><div class="ttdef"><b>Definition</b> <a href="frame_8cpp_source.html#l00046">frame.cpp:46</a></div></div>
+<div class="ttc" id="aclassCFrame_html_a85d3ac9cfa0120283351dadd150f6edf"><div class="ttname"><a href="classCFrame.html#a85d3ac9cfa0120283351dadd150f6edf">CFrame::AddParent</a></div><div class="ttdeci">void AddParent(CFrame *pframeParent)</div><div class="ttdoc">Adds a parent frame to this frame. This method isn't bounds checked and can overflow with too many pa...</div><div class="ttdef"><b>Definition</b> <a href="frame_8cpp_source.html#l00013">frame.cpp:13</a></div></div>
+<div class="ttc" id="aclassCFrame_html_a88a4ad40a1f98da649a697d2d4d959da"><div class="ttname"><a href="classCFrame.html#a88a4ad40a1f98da649a697d2d4d959da">CFrame::m_cpframeParent</a></div><div class="ttdeci">int m_cpframeParent</div><div class="ttdef"><b>Definition</b> <a href="frame_8h_source.html#l00019">frame.h:19</a></div></div>
+<div class="ttc" id="aclassCFrame_html_aa6ca47e53d709345f51dc4b2dbc0e072"><div class="ttname"><a href="classCFrame.html#aa6ca47e53d709345f51dc4b2dbc0e072">CFrame::m_fVisited</a></div><div class="ttdeci">int m_fVisited</div><div class="ttdef"><b>Definition</b> <a href="frame_8h_source.html#l00022">frame.h:22</a></div></div>
+<div class="ttc" id="aclassCFrame_html_abf7051f40fe3b1a780023a7ee909f73b"><div class="ttname"><a href="classCFrame.html#abf7051f40fe3b1a780023a7ee909f73b">CFrame::SetSingleParent</a></div><div class="ttdeci">void SetSingleParent(CFrame *pframeParent)</div><div class="ttdoc">Sets this frame to have one single parent frame.</div><div class="ttdef"><b>Definition</b> <a href="frame_8cpp_source.html#l00007">frame.cpp:7</a></div></div>
+<div class="ttc" id="aclassCFrame_html_aca367dc5e7c064d1602850258ee88f4e"><div class="ttname"><a href="classCFrame.html#aca367dc5e7c064d1602850258ee88f4e">CFrame::PrefFindBinding</a></div><div class="ttdeci">CRef * PrefFindBinding(SYMID symid, int fRecursive)</div><div class="ttdoc">Finds a symbol binding in this frame.</div><div class="ttdef"><b>Definition</b> <a href="frame_8cpp_source.html#l00061">frame.cpp:61</a></div></div>
+<div class="ttc" id="aclassCFrame_html_ae25e2f1abdac819279977ee95969a5ea"><div class="ttname"><a href="classCFrame.html#ae25e2f1abdac819279977ee95969a5ea">CFrame::CloneTo</a></div><div class="ttdeci">void CloneTo(CFrame *pframeClone)</div><div class="ttdoc">Clones this frame into a new frame.</div><div class="ttdef"><b>Definition</b> <a href="frame_8cpp_source.html#l00104">frame.cpp:104</a></div></div>
+<div class="ttc" id="aclassCRef_html"><div class="ttname"><a href="classCRef.html">CRef</a></div><div class="ttdef"><b>Definition</b> <a href="ref_8h_source.html#l00075">ref.h:76</a></div></div>
+<div class="ttc" id="aclassCRef_html_aeca95dbe8317d593e6861d463c5a144f"><div class="ttname"><a href="classCRef.html#aeca95dbe8317d593e6861d463c5a144f">CRef::SetTag</a></div><div class="ttdeci">void SetTag(TAGK tagk)</div><div class="ttdef"><b>Definition</b> <a href="ref_8cpp_source.html#l00140">ref.cpp:140</a></div></div>
 <div class="ttc" id="aclassCSplotheap_html_a7d376d74c463740245db1adf6ab097e5"><div class="ttname"><a href="classCSplotheap.html#a7d376d74c463740245db1adf6ab097e5">CSplotheap::PvAllocClear</a></div><div class="ttdeci">void * PvAllocClear()</div><div class="ttdef"><b>Definition</b> <a href="splotheap_8cpp_source.html#l00057">splotheap.cpp:57</a></div></div>
-<div class="ttc" id="aframe_8cpp_html_a09d050b38ccd2f0d05b23e61319d16e5"><div class="ttname"><a href="frame_8cpp.html#a09d050b38ccd2f0d05b23e61319d16e5">PframeNew</a></div><div class="ttdeci">CFrame * PframeNew()</div><div class="ttdoc">Creates a new frame.</div><div class="ttdef"><b>Definition</b> <a href="frame_8cpp_source.html#l00026">frame.cpp:26</a></div></div>
-<div class="ttc" id="aframe_8cpp_html_addeaf06414b4c875442563659244fa6d"><div class="ttname"><a href="frame_8cpp.html#addeaf06414b4c875442563659244fa6d">DeleteFrame</a></div><div class="ttdeci">void DeleteFrame(CFrame *pframe)</div><div class="ttdoc">Deletes the frame.</div><div class="ttdef"><b>Definition</b> <a href="frame_8cpp_source.html#l00033">frame.cpp:33</a></div></div>
+<div class="ttc" id="aclassCVarb_html"><div class="ttname"><a href="classCVarb.html">CVarb</a></div><div class="ttdoc">Variable binding, stored as a linked list.</div><div class="ttdef"><b>Definition</b> <a href="varb_8h_source.html#l00016">varb.h:17</a></div></div>
+<div class="ttc" id="aclassCVarb_html_a001585ab0ff7487e174958a55420433f"><div class="ttname"><a href="classCVarb.html#a001585ab0ff7487e174958a55420433f">CVarb::m_ref</a></div><div class="ttdeci">CRef m_ref</div><div class="ttdef"><b>Definition</b> <a href="varb_8h_source.html#l00020">varb.h:20</a></div></div>
+<div class="ttc" id="aclassCVarb_html_a455c09c28f825b2f4c87eb854b893b22"><div class="ttname"><a href="classCVarb.html#a455c09c28f825b2f4c87eb854b893b22">CVarb::CloneTo</a></div><div class="ttdeci">void CloneTo(CVarb *pvarbClone, CFrame *pframeClone)</div><div class="ttdoc">Clones this variable binding to another binding.</div><div class="ttdef"><b>Definition</b> <a href="varb_8cpp_source.html#l00009">varb.cpp:9</a></div></div>
+<div class="ttc" id="aclassCVarb_html_a752ddc3b1f423c0375b2f13f583f094d"><div class="ttname"><a href="classCVarb.html#a752ddc3b1f423c0375b2f13f583f094d">CVarb::m_pvarbNext</a></div><div class="ttdeci">CVarb * m_pvarbNext</div><div class="ttdef"><b>Definition</b> <a href="varb_8h_source.html#l00021">varb.h:21</a></div></div>
+<div class="ttc" id="aclassCVarb_html_af3c22c710fe6236dc4bb769d6e994053"><div class="ttname"><a href="classCVarb.html#af3c22c710fe6236dc4bb769d6e994053">CVarb::m_symid</a></div><div class="ttdeci">SYMID m_symid</div><div class="ttdef"><b>Definition</b> <a href="varb_8h_source.html#l00019">varb.h:19</a></div></div>
+<div class="ttc" id="aframe_8cpp_html_a09d050b38ccd2f0d05b23e61319d16e5"><div class="ttname"><a href="frame_8cpp.html#a09d050b38ccd2f0d05b23e61319d16e5">PframeNew</a></div><div class="ttdeci">CFrame * PframeNew()</div><div class="ttdoc">Creates a new frame.</div><div class="ttdef"><b>Definition</b> <a href="frame_8cpp_source.html#l00117">frame.cpp:117</a></div></div>
+<div class="ttc" id="aframe_8cpp_html_addeaf06414b4c875442563659244fa6d"><div class="ttname"><a href="frame_8cpp.html#addeaf06414b4c875442563659244fa6d">DeleteFrame</a></div><div class="ttdeci">void DeleteFrame(CFrame *pframe)</div><div class="ttdoc">Deletes the frame.</div><div class="ttdef"><b>Definition</b> <a href="frame_8cpp_source.html#l00124">frame.cpp:124</a></div></div>
 <div class="ttc" id="aframe_8h_html"><div class="ttname"><a href="frame_8h.html">frame.h</a></div></div>
-<div class="ttc" id="ainclude__asm_8h_html_a1427610b9d91eeb6cc73f3619eff4bd6"><div class="ttname"><a href="include__asm_8h.html#a1427610b9d91eeb6cc73f3619eff4bd6">INCLUDE_ASM</a></div><div class="ttdeci">#define INCLUDE_ASM(FOLDER, NAME)</div><div class="ttdef"><b>Definition</b> <a href="include__asm_8h_source.html#l00007">include_asm.h:7</a></div></div>
+<div class="ttc" id="aframe_8h_html_aff15d3fa5df1cea21a9abfefe35e135f"><div class="ttname"><a href="frame_8h.html#aff15d3fa5df1cea21a9abfefe35e135f">SYMID</a></div><div class="ttdeci">uint SYMID</div><div class="ttdef"><b>Definition</b> <a href="frame_8h_source.html#l00011">frame.h:11</a></div></div>
+<div class="ttc" id="amemory_8c_html_a3e78f7cf55ae71512308bf6529e52a0a"><div class="ttname"><a href="memory_8c.html#a3e78f7cf55ae71512308bf6529e52a0a">CopyAb</a></div><div class="ttdeci">void CopyAb(void *pvDst, void *pvSrc, uint cb)</div><div class="ttdoc">Copies an array of bytes.</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00201">memory.c:201</a></div></div>
+<div class="ttc" id="amemory_8h_html"><div class="ttname"><a href="memory_8h.html">memory.h</a></div></div>
 <div class="ttc" id="amemset_8h_html"><div class="ttname"><a href="memset_8h.html">memset.h</a></div><div class="ttdoc">Memset.</div></div>
 <div class="ttc" id="amemset_8h_html_a8859618d1590f896d8eb7cd301cdad72"><div class="ttname"><a href="memset_8h.html#a8859618d1590f896d8eb7cd301cdad72">memset</a></div><div class="ttdeci">void * memset(void *ptr, int value, size_t num)</div></div>
+<div class="ttc" id="aref_8h_html_a4e55c80470e633730d036482bd72bd52af26df33493c32984a7174001803fd0c9"><div class="ttname"><a href="ref_8h.html#a4e55c80470e633730d036482bd72bd52af26df33493c32984a7174001803fd0c9">TAGK_Void</a></div><div class="ttdeci">@ TAGK_Void</div><div class="ttdef"><b>Definition</b> <a href="ref_8h_source.html#l00052">ref.h:52</a></div></div>
 <div class="ttc" id="asplotheap_8h_html"><div class="ttname"><a href="splotheap_8h.html">splotheap.h</a></div></div>
 <div class="ttc" id="asplotheap_8h_html_a7186eaeed42fdf9d580d7aef1ebf8295"><div class="ttname"><a href="splotheap_8h.html#a7186eaeed42fdf9d580d7aef1ebf8295">g_splotheapFrame</a></div><div class="ttdeci">CSplotheap g_splotheapFrame</div></div>
+<div class="ttc" id="avarb_8cpp_html_a0ec33c1618a7024e025fe258afbb1f1c"><div class="ttname"><a href="varb_8cpp.html#a0ec33c1618a7024e025fe258afbb1f1c">PvarbNew</a></div><div class="ttdeci">CVarb * PvarbNew()</div><div class="ttdoc">Allocates a new variable binding from the varb splot heap.</div><div class="ttdef"><b>Definition</b> <a href="varb_8cpp_source.html#l00022">varb.cpp:22</a></div></div>
+<div class="ttc" id="avarb_8h_html"><div class="ttname"><a href="varb_8h.html">varb.h</a></div><div class="ttdoc">Variable bindings for splice.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

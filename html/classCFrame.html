@@ -99,41 +99,56 @@ $(document).ready(function(){initNavTree('classCFrame.html',''); initResizable()
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classCFrame-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">CFrame Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Splice stack frame. Each frame can have up to 4 parent frames.  
+ <a href="classCFrame.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="frame_8h_source.html">frame.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abf7051f40fe3b1a780023a7ee909f73b" id="r_abf7051f40fe3b1a780023a7ee909f73b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrame.html#abf7051f40fe3b1a780023a7ee909f73b">SetSingleParent</a> (<a class="el" href="classCFrame.html">CFrame</a> *pframeParent)</td></tr>
+<tr class="memdesc:abf7051f40fe3b1a780023a7ee909f73b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets this frame to have one single parent frame.  <br /></td></tr>
 <tr class="separator:abf7051f40fe3b1a780023a7ee909f73b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85d3ac9cfa0120283351dadd150f6edf" id="r_a85d3ac9cfa0120283351dadd150f6edf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrame.html#a85d3ac9cfa0120283351dadd150f6edf">AddParent</a> (<a class="el" href="classCFrame.html">CFrame</a> *pframeParent)</td></tr>
+<tr class="memdesc:a85d3ac9cfa0120283351dadd150f6edf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a parent frame to this frame. This method isn't bounds checked and can overflow with too many parents.  <br /></td></tr>
 <tr class="separator:a85d3ac9cfa0120283351dadd150f6edf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07422be1ddfdffc91cd6b23040f4b196" id="r_a07422be1ddfdffc91cd6b23040f4b196"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrame.html#a07422be1ddfdffc91cd6b23040f4b196">RefAddBinding</a> (<a class="el" href="frame_8h.html#aff15d3fa5df1cea21a9abfefe35e135f">SYMID</a> symid, <a class="el" href="classCRef.html">CRef</a> *pref)</td></tr>
+<tr class="memdesc:a07422be1ddfdffc91cd6b23040f4b196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new variable binding to this frame. Does not check if the symbol already exists, so this may insert duplicates.  <br /></td></tr>
 <tr class="separator:a07422be1ddfdffc91cd6b23040f4b196"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6156cb4777a953ea4d9f207bafd685af" id="r_a6156cb4777a953ea4d9f207bafd685af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrame.html#a6156cb4777a953ea4d9f207bafd685af">RefSetBinding</a> (<a class="el" href="frame_8h.html#aff15d3fa5df1cea21a9abfefe35e135f">SYMID</a> symid, <a class="el" href="classCRef.html">CRef</a> *pref)</td></tr>
+<tr class="memdesc:a6156cb4777a953ea4d9f207bafd685af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the value for an existing variable binding. If the symbol was not found, then this silently fails.  <br /></td></tr>
 <tr class="separator:a6156cb4777a953ea4d9f207bafd685af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71082dcc4fbea634867e1a26b6e9c9ab" id="r_a71082dcc4fbea634867e1a26b6e9c9ab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrame.html#a71082dcc4fbea634867e1a26b6e9c9ab">FFindBinding</a> (<a class="el" href="frame_8h.html#aff15d3fa5df1cea21a9abfefe35e135f">SYMID</a> symid, int fRecursive, <a class="el" href="classCRef.html">CRef</a> *pref)</td></tr>
+<tr class="memdesc:a71082dcc4fbea634867e1a26b6e9c9ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a symbol binding exists in this frame.  <br /></td></tr>
 <tr class="separator:a71082dcc4fbea634867e1a26b6e9c9ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca367dc5e7c064d1602850258ee88f4e" id="r_aca367dc5e7c064d1602850258ee88f4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCRef.html">CRef</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrame.html#aca367dc5e7c064d1602850258ee88f4e">PrefFindBinding</a> (<a class="el" href="frame_8h.html#aff15d3fa5df1cea21a9abfefe35e135f">SYMID</a> symid, int fRecursive)</td></tr>
+<tr class="memdesc:aca367dc5e7c064d1602850258ee88f4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds a symbol binding in this frame.  <br /></td></tr>
 <tr class="separator:aca367dc5e7c064d1602850258ee88f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae25e2f1abdac819279977ee95969a5ea" id="r_ae25e2f1abdac819279977ee95969a5ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrame.html#ae25e2f1abdac819279977ee95969a5ea">CloneTo</a> (<a class="el" href="classCFrame.html">CFrame</a> *pframeClone)</td></tr>
+<tr class="memdesc:ae25e2f1abdac819279977ee95969a5ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clones this frame into a new frame.  <br /></td></tr>
 <tr class="separator:ae25e2f1abdac819279977ee95969a5ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
 <tr class="memitem:a88a4ad40a1f98da649a697d2d4d959da" id="r_a88a4ad40a1f98da649a697d2d4d959da"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrame.html#a88a4ad40a1f98da649a697d2d4d959da">m_cpframeParent</a></td></tr>
 <tr class="separator:a88a4ad40a1f98da649a697d2d4d959da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66c99ddc31eb889ec00bb684ee400913" id="r_a66c99ddc31eb889ec00bb684ee400913"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrame.html">CFrame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrame.html#a66c99ddc31eb889ec00bb684ee400913">m_apframeParent</a> [4]</td></tr>
 <tr class="separator:a66c99ddc31eb889ec00bb684ee400913"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52ea54e87a78f1ce9055012ae70af4b5" id="r_a52ea54e87a78f1ce9055012ae70af4b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCVarb.html">CVarb</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrame.html#a52ea54e87a78f1ce9055012ae70af4b5">m_pvarb</a></td></tr>
+<tr class="separator:a52ea54e87a78f1ce9055012ae70af4b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6ca47e53d709345f51dc4b2dbc0e072" id="r_aa6ca47e53d709345f51dc4b2dbc0e072"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrame.html#aa6ca47e53d709345f51dc4b2dbc0e072">m_fVisited</a></td></tr>
+<tr class="separator:aa6ca47e53d709345f51dc4b2dbc0e072"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="frame_8h_source.html#l00013">13</a> of file <a class="el" href="frame_8h_source.html">frame.h</a>.</p>
+<div class="textblock"><p>Splice stack frame. Each frame can have up to 4 parent frames. </p>
+
+<p class="definition">Definition at line <a class="el" href="frame_8h_source.html#l00016">16</a> of file <a class="el" href="frame_8h_source.html">frame.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a85d3ac9cfa0120283351dadd150f6edf" name="a85d3ac9cfa0120283351dadd150f6edf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a85d3ac9cfa0120283351dadd150f6edf">&#9670;&#160;</a></span>AddParent()</h2>
@@ -151,7 +166,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="frame_8cpp_source.html#l00011">11</a> of file <a class="el" href="frame_8cpp_source.html">frame.cpp</a>.</p>
+<p>Adds a parent frame to this frame. This method isn't bounds checked and can overflow with too many parents. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pframeParent</td><td>Parent frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="frame_8cpp_source.html#l00013">13</a> of file <a class="el" href="frame_8cpp_source.html">frame.cpp</a>.</p>
 
 </div>
 </div>
@@ -170,6 +193,16 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Clones this frame into a new frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pframeClone</td><td>New frame to clone into. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="frame_8cpp_source.html#l00104">104</a> of file <a class="el" href="frame_8cpp_source.html">frame.cpp</a>.</p>
 
 </div>
 </div>
@@ -205,6 +238,19 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks if a symbol binding exists in this frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">symid</td><td>Symbol ID to search for. </td></tr>
+    <tr><td class="paramname">fRecursive</td><td>If true, will also search parent frames. </td></tr>
+    <tr><td class="paramname">pref</td><td>If found, will be set to the value of the bound symbol. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if found, false otherwise. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="frame_8cpp_source.html#l00046">46</a> of file <a class="el" href="frame_8cpp_source.html">frame.cpp</a>.</p>
+
 </div>
 </div>
 <a id="aca367dc5e7c064d1602850258ee88f4e" name="aca367dc5e7c064d1602850258ee88f4e"></a>
@@ -232,6 +278,18 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Finds a symbol binding in this frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">symid</td><td>Symbol ID to search for. </td></tr>
+    <tr><td class="paramname">fRecursive</td><td>If true, will also search parent frames. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The reference value of the symbol if found, NULL otherwise. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="frame_8cpp_source.html#l00061">61</a> of file <a class="el" href="frame_8cpp_source.html">frame.cpp</a>.</p>
 
 </div>
 </div>
@@ -261,6 +319,18 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Adds a new variable binding to this frame. Does not check if the symbol already exists, so this may insert duplicates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">symid</td><td>Symbol ID to add. </td></tr>
+    <tr><td class="paramname">pref</td><td>Value of the symbol to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Void reference. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="frame_8cpp_source.html#l00018">18</a> of file <a class="el" href="frame_8cpp_source.html">frame.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a6156cb4777a953ea4d9f207bafd685af" name="a6156cb4777a953ea4d9f207bafd685af"></a>
@@ -289,6 +359,18 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Sets the value for an existing variable binding. If the symbol was not found, then this silently fails. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">symid</td><td>Symbol ID to set. </td></tr>
+    <tr><td class="paramname">pref</td><td>Value of the symbol to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Void reference. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="frame_8cpp_source.html#l00031">31</a> of file <a class="el" href="frame_8cpp_source.html">frame.cpp</a>.</p>
+
 </div>
 </div>
 <a id="abf7051f40fe3b1a780023a7ee909f73b" name="abf7051f40fe3b1a780023a7ee909f73b"></a>
@@ -307,7 +389,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="frame_8cpp_source.html#l00005">5</a> of file <a class="el" href="frame_8cpp_source.html">frame.cpp</a>.</p>
+<p>Sets this frame to have one single parent frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pframeParent</td><td>Parent frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="frame_8cpp_source.html#l00007">7</a> of file <a class="el" href="frame_8cpp_source.html">frame.cpp</a>.</p>
 
 </div>
 </div>
@@ -317,22 +407,14 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classCFrame.html">CFrame</a>* CFrame::m_apframeParent[4]</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="frame_8h_source.html#l00017">17</a> of file <a class="el" href="frame_8h_source.html">frame.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="frame_8h_source.html#l00020">20</a> of file <a class="el" href="frame_8h_source.html">frame.h</a>.</p>
 
 </div>
 </div>
@@ -341,22 +423,46 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int CFrame::m_cpframeParent</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="frame_8h_source.html#l00016">16</a> of file <a class="el" href="frame_8h_source.html">frame.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="frame_8h_source.html#l00019">19</a> of file <a class="el" href="frame_8h_source.html">frame.h</a>.</p>
+
+</div>
+</div>
+<a id="aa6ca47e53d709345f51dc4b2dbc0e072" name="aa6ca47e53d709345f51dc4b2dbc0e072"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6ca47e53d709345f51dc4b2dbc0e072">&#9670;&#160;</a></span>m_fVisited</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CFrame::m_fVisited</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="frame_8h_source.html#l00022">22</a> of file <a class="el" href="frame_8h_source.html">frame.h</a>.</p>
+
+</div>
+</div>
+<a id="a52ea54e87a78f1ce9055012ae70af4b5" name="a52ea54e87a78f1ce9055012ae70af4b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52ea54e87a78f1ce9055012ae70af4b5">&#9670;&#160;</a></span>m_pvarb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCVarb.html">CVarb</a>* CFrame::m_pvarb</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="frame_8h_source.html#l00021">21</a> of file <a class="el" href="frame_8h_source.html">frame.h</a>.</p>
 
 </div>
 </div>

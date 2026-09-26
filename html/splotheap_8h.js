@@ -11,5 +11,5 @@ var splotheap_8h =
     [ "g_splotheapMethod", "splotheap_8h.html#a066c10b3427b1ed20dcb85f5210991b0", null ],
     [ "g_splotheapPair", "splotheap_8h.html#a1ec650098c36459297b5117bd2704b59", null ],
     [ "g_splotheapProc", "splotheap_8h.html#a9a41eaa3ffbbdf82b7c3aa20c070cce7", null ],
-    [ "g_splotheapUnk1", "splotheap_8h.html#a53314ead556a3d2e7aeb3b6ec082c57d", null ]
+    [ "g_splotheapVarb", "splotheap_8h.html#a55debcf5dffdfa57ae5e3fd814471355", null ]
 ];

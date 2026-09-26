@@ -4,7 +4,7 @@ var searchData=
   ['_5f_5fattribute_5f_5f_1',['__attribute__',['../libdma_8h.html#afc3ac1fde7e7d2fced81eae0ceba910c',1,'__attribute__((aligned(16))):&#160;libdma.h'],['../989snd_8c.html#ae2119e5c570f830715d4f33f81a386a6',1,'__attribute__((aligned(16))):&#160;989snd.c'],['../libdma_8h.html#ad589ecffc3d35e2994b126335ada2c6a',1,'__attribute__:&#160;libdma.h'],['../types_8h.html#a3b04fa216a8a90ee99f46d34f2fcdf48',1,'__attribute__:&#160;types.h']]],
   ['_5f_5fbuiltin_5fdelete_2',['__builtin_delete',['../memory_8c.html#a4b59e021d8430d7cf419bef5ce884097',1,'memory.c']]],
   ['_5f_5fbuiltin_5fnew_3',['__builtin_new',['../memory_8c.html#a64beda5518ae95c09e131b28101ef986',1,'memory.c']]],
-  ['_5f_5fembedded_5fcxx_5f_5f_4',['__EMBEDDED_CXX__',['../pair_8cpp.html#a5beaaaf702364358d0ffd0c4e5a2e7b0',1,'pair.cpp']]],
+  ['_5f_5fembedded_5fcxx_5f_5f_4',['__embedded_cxx__',['../pair_8cpp.html#a5beaaaf702364358d0ffd0c4e5a2e7b0',1,'__EMBEDDED_CXX__:&#160;pair.cpp'],['../varb_8cpp.html#a5beaaaf702364358d0ffd0c4e5a2e7b0',1,'__EMBEDDED_CXX__:&#160;varb.cpp']]],
   ['_5fbrk_5',['_BRK',['../class__BRK.html',1,'']]],
   ['_5fcamera_6',['_CAMERA',['../class__CAMERA.html',1,'']]],
   ['_5fdprize_7',['_DPRIZE',['../class__DPRIZE.html',1,'']]],

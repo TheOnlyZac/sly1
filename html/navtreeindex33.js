@@ -1,15 +1,5 @@
 var NAVTREEINDEX33 =
 {
-"splotheap_8h_source.html":[10,0,1,4,11],
-"sprbuf_8c.html":[10,0,2,0,124],
-"sprbuf_8c.html#a0931c1c6771564caef5c4115d809b1aa":[10,0,2,0,124,1],
-"sprbuf_8c.html#a38b5d8dacec256acd0219afefd0ae342":[10,0,2,0,124,0],
-"sprbuf_8c.html#a3dc314a9f9a4ebebeff887e36f273718":[10,0,2,0,124,2],
-"sprbuf_8c.html#a5421261ddf7e0e45a4c1d7bd72d39931":[10,0,2,0,124,4],
-"sprbuf_8c.html#ae44097ab8661557ed7f820280784029f":[10,0,2,0,124,3],
-"sprbuf_8c_source.html":[10,0,2,0,124],
-"sprbuf_8h.html":[10,0,1,138],
-"sprbuf_8h.html#aa9e5f023aee63ff6cb9a5df654db0605":[10,0,1,138,0],
 "sprbuf_8h.html#af5af85f7e6008bb24085be266b9042f7":[10,0,1,138,1],
 "sprbuf_8h_source.html":[10,0,1,138],
 "sqtr_8c.html":[10,0,2,0,125],
@@ -249,5 +239,15 @@ var NAVTREEINDEX33 =
 "stepguard_8h.html#a2ef71e3be56da88455b948f300fccef7aca2d9a65e27e08f2ee00fade2ca04008":[10,0,1,143,4,13],
 "stepguard_8h.html#a2ef71e3be56da88455b948f300fccef7ad1630548b22d8c375c9ac0d217417283":[10,0,1,143,4,14],
 "stepguard_8h.html#a2ef71e3be56da88455b948f300fccef7ad511156d3378e8eba78b0a61e27a42f0":[10,0,1,143,4,0],
-"stepguard_8h.html#a2ef71e3be56da88455b948f300fccef7ad6218644e37a27b5a580a5cb2e02fdd1":[10,0,1,143,4,17]
+"stepguard_8h.html#a2ef71e3be56da88455b948f300fccef7ad6218644e37a27b5a580a5cb2e02fdd1":[10,0,1,143,4,17],
+"stepguard_8h.html#a2ef71e3be56da88455b948f300fccef7ae0c9fc62f3fda09837df583a46cc520a":[10,0,1,143,4,12],
+"stepguard_8h.html#a2ef71e3be56da88455b948f300fccef7af7fccfba7c1db3dafc71ca77690c59d3":[10,0,1,143,4,5],
+"stepguard_8h.html#a2ef71e3be56da88455b948f300fccef7af98048ca3730270d3f99cc70783529b9":[10,0,1,143,4,4],
+"stepguard_8h.html#a2ef71e3be56da88455b948f300fccef7af98bc2f1bc83fd082f162c8ac0820f30":[10,0,1,143,4,18],
+"stepguard_8h.html#a2ef71e3be56da88455b948f300fccef7aff1e281b89d6583d660dfaf36386bd4a":[10,0,1,143,4,10],
+"stepguard_8h.html#a3276accd0de25cfa1ce58ba47c3ee118":[10,0,1,143,42],
+"stepguard_8h.html#a344180f4f59a4a7dacb5fab3c2216a50":[10,0,1,143,3],
+"stepguard_8h.html#a344180f4f59a4a7dacb5fab3c2216a50a09d9e8cfbff69421026bc34fc8ccb833":[10,0,1,143,3,3],
+"stepguard_8h.html#a344180f4f59a4a7dacb5fab3c2216a50a1b9b1b3e100d93e2c1d2ec22366a0a8e":[10,0,1,143,3,4],
+"stepguard_8h.html#a344180f4f59a4a7dacb5fab3c2216a50a1dcff37759a2937523a49ed468430a23":[10,0,1,143,3,2]
 };

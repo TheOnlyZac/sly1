@@ -106,6 +106,9 @@ $(document).ready(function(){initNavTree('classCGc.html',''); initResizable(); }
 </div><!--header-->
 <div class="contents">
 
+<p>Splice garbage collector.  
+ <a href="classCGc.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="gc_8h_source.html">gc.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -115,36 +118,49 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad3f0d0122e766d671e709ea50aa8e339" id="r_ad3f0d0122e766d671e709ea50aa8e339"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#ad3f0d0122e766d671e709ea50aa8e339">~CGc</a> ()</td></tr>
 <tr class="separator:ad3f0d0122e766d671e709ea50aa8e339"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2d858d168dc926dc13ad82fdfb3766f" id="r_af2d858d168dc926dc13ad82fdfb3766f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#af2d858d168dc926dc13ad82fdfb3766f">Startup</a> ()</td></tr>
+<tr class="memdesc:af2d858d168dc926dc13ad82fdfb3766f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the garbage collector.  <br /></td></tr>
 <tr class="separator:af2d858d168dc926dc13ad82fdfb3766f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9e6d734e0f8e281fdc82fbe85615d36" id="r_af9e6d734e0f8e281fdc82fbe85615d36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#af9e6d734e0f8e281fdc82fbe85615d36">Shutdown</a> ()</td></tr>
+<tr class="memdesc:af9e6d734e0f8e281fdc82fbe85615d36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the garbage collector (which doesn't do anything)  <br /></td></tr>
 <tr class="separator:af9e6d734e0f8e281fdc82fbe85615d36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc3f8ba8dcde28b217388a2d5fabce4e" id="r_afc3f8ba8dcde28b217388a2d5fabce4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#afc3f8ba8dcde28b217388a2d5fabce4e">AddRootFrame</a> (<a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:afc3f8ba8dcde28b217388a2d5fabce4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a root splice frame to the GC list.  <br /></td></tr>
 <tr class="separator:afc3f8ba8dcde28b217388a2d5fabce4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91d4db0c96d56f4cab54adee7a683730" id="r_a91d4db0c96d56f4cab54adee7a683730"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#a91d4db0c96d56f4cab54adee7a683730">AddRootSidebag</a> (<a class="el" href="classCSidebag.html">CSidebag</a> *psidebag)</td></tr>
+<tr class="memdesc:a91d4db0c96d56f4cab54adee7a683730"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a root splice sidebag to the GC list.  <br /></td></tr>
 <tr class="separator:a91d4db0c96d56f4cab54adee7a683730"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33d1d76023005d762fb4777add2a8800" id="r_a33d1d76023005d762fb4777add2a8800"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#a33d1d76023005d762fb4777add2a8800">PushFrame</a> (<a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
-<tr class="separator:a33d1d76023005d762fb4777add2a8800"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54a9b1a765a19b00a7f45eaf18247d94" id="r_a54a9b1a765a19b00a7f45eaf18247d94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrame.html">CFrame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#a54a9b1a765a19b00a7f45eaf18247d94">PframePop</a> ()</td></tr>
-<tr class="separator:a54a9b1a765a19b00a7f45eaf18247d94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58307e6b0d298f61bdde8e44cb005b19" id="r_a58307e6b0d298f61bdde8e44cb005b19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#a58307e6b0d298f61bdde8e44cb005b19">PushPair</a> (<a class="el" href="classCPair.html">CPair</a> *ppair)</td></tr>
-<tr class="separator:a58307e6b0d298f61bdde8e44cb005b19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dfb845d78746f1c053926b5d8ea6bc4" id="r_a7dfb845d78746f1c053926b5d8ea6bc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCPair.html">CPair</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#a7dfb845d78746f1c053926b5d8ea6bc4">PpairPop</a> ()</td></tr>
-<tr class="separator:a7dfb845d78746f1c053926b5d8ea6bc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa534eaea895c6d8f5eb7713b64f98448" id="r_aa534eaea895c6d8f5eb7713b64f98448"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#aa534eaea895c6d8f5eb7713b64f98448">PushProc</a> (<a class="el" href="classCProc.html">CProc</a> *pproc)</td></tr>
-<tr class="separator:aa534eaea895c6d8f5eb7713b64f98448"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7875d14fef458e48edacb5a3f2430c6" id="r_ad7875d14fef458e48edacb5a3f2430c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCProc.html">CProc</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#ad7875d14fef458e48edacb5a3f2430c6">PprocPop</a> ()</td></tr>
-<tr class="separator:ad7875d14fef458e48edacb5a3f2430c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a775705dd0d9890a1554f83f6e73ac4fe" id="r_a775705dd0d9890a1554f83f6e73ac4fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#a775705dd0d9890a1554f83f6e73ac4fe">UpdateRecyclable</a> ()</td></tr>
+<tr class="memdesc:a775705dd0d9890a1554f83f6e73ac4fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls <a class="el" href="classCGc.html#a775705dd0d9890a1554f83f6e73ac4fe" title="Calls UpdateRecyclable() on each global splotheap.">UpdateRecyclable()</a> on each global splotheap.  <br /></td></tr>
 <tr class="separator:a775705dd0d9890a1554f83f6e73ac4fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9303375234a22b2b41b370d8dab88b3f" id="r_a9303375234a22b2b41b370d8dab88b3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#a9303375234a22b2b41b370d8dab88b3f">MarkLiveObjects</a> ()</td></tr>
-<tr class="separator:a9303375234a22b2b41b370d8dab88b3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28f94619e567e412c6a1333b945a4e2f" id="r_a28f94619e567e412c6a1333b945a4e2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#a28f94619e567e412c6a1333b945a4e2f">Collect</a> ()</td></tr>
+<tr class="memdesc:a28f94619e567e412c6a1333b945a4e2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks live objects and frees memory that is no longer in use.  <br /></td></tr>
 <tr class="separator:a28f94619e567e412c6a1333b945a4e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a6b4cbbaf570e3cefbf55cbf0e4eef11d" id="r_a6b4cbbaf570e3cefbf55cbf0e4eef11d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#a6b4cbbaf570e3cefbf55cbf0e4eef11d">STRUCT_PADDING</a> (64)</td></tr>
 <tr class="separator:a6b4cbbaf570e3cefbf55cbf0e4eef11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33d1d76023005d762fb4777add2a8800" id="r_a33d1d76023005d762fb4777add2a8800"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#a33d1d76023005d762fb4777add2a8800">PushFrame</a> (<a class="el" href="classCFrame.html">CFrame</a> *pframe)</td></tr>
+<tr class="memdesc:a33d1d76023005d762fb4777add2a8800"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a frame to the processing stack when searching for live objects.  <br /></td></tr>
+<tr class="separator:a33d1d76023005d762fb4777add2a8800"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54a9b1a765a19b00a7f45eaf18247d94" id="r_a54a9b1a765a19b00a7f45eaf18247d94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrame.html">CFrame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#a54a9b1a765a19b00a7f45eaf18247d94">PframePop</a> ()</td></tr>
+<tr class="memdesc:a54a9b1a765a19b00a7f45eaf18247d94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops a frame from the processing stack when searching for live objects.  <br /></td></tr>
+<tr class="separator:a54a9b1a765a19b00a7f45eaf18247d94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58307e6b0d298f61bdde8e44cb005b19" id="r_a58307e6b0d298f61bdde8e44cb005b19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#a58307e6b0d298f61bdde8e44cb005b19">PushPair</a> (<a class="el" href="classCPair.html">CPair</a> *ppair)</td></tr>
+<tr class="memdesc:a58307e6b0d298f61bdde8e44cb005b19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a pair to the processing stack when searching for live objects.  <br /></td></tr>
+<tr class="separator:a58307e6b0d298f61bdde8e44cb005b19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dfb845d78746f1c053926b5d8ea6bc4" id="r_a7dfb845d78746f1c053926b5d8ea6bc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCPair.html">CPair</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#a7dfb845d78746f1c053926b5d8ea6bc4">PpairPop</a> ()</td></tr>
+<tr class="memdesc:a7dfb845d78746f1c053926b5d8ea6bc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops a pair from the processing stack when searching for live objects.  <br /></td></tr>
+<tr class="separator:a7dfb845d78746f1c053926b5d8ea6bc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa534eaea895c6d8f5eb7713b64f98448" id="r_aa534eaea895c6d8f5eb7713b64f98448"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#aa534eaea895c6d8f5eb7713b64f98448">PushProc</a> (<a class="el" href="classCProc.html">CProc</a> *pproc)</td></tr>
+<tr class="memdesc:aa534eaea895c6d8f5eb7713b64f98448"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a proc to the processing stack when searching for live objects.  <br /></td></tr>
+<tr class="separator:aa534eaea895c6d8f5eb7713b64f98448"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7875d14fef458e48edacb5a3f2430c6" id="r_ad7875d14fef458e48edacb5a3f2430c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCProc.html">CProc</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#ad7875d14fef458e48edacb5a3f2430c6">PprocPop</a> ()</td></tr>
+<tr class="memdesc:ad7875d14fef458e48edacb5a3f2430c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops a proc from the processing stack when searching for live objects.  <br /></td></tr>
+<tr class="separator:ad7875d14fef458e48edacb5a3f2430c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9303375234a22b2b41b370d8dab88b3f" id="r_a9303375234a22b2b41b370d8dab88b3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGc.html#a9303375234a22b2b41b370d8dab88b3f">MarkLiveObjects</a> ()</td></tr>
+<tr class="memdesc:a9303375234a22b2b41b370d8dab88b3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches for all live <a class="el" href="classCFrame.html" title="Splice stack frame. Each frame can have up to 4 parent frames.">CFrame</a>, <a class="el" href="classCPair.html">CPair</a>, and <a class="el" href="classCProc.html">CProc</a> instances and marks them alive.  <br /></td></tr>
+<tr class="separator:a9303375234a22b2b41b370d8dab88b3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -170,8 +186,9 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a59d99a69e00b2ffed76061a1763f2abc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00013">13</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
+<div class="textblock"><p>Splice garbage collector. </p>
+
+<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00016">16</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae02a76a14f45c798fa7f3f2fcbb49323" name="ae02a76a14f45c798fa7f3f2fcbb49323"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae02a76a14f45c798fa7f3f2fcbb49323">&#9670;&#160;</a></span>CGc()</h2>
@@ -188,7 +205,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00005">5</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00013">13</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
 
 </div>
 </div>
@@ -207,7 +224,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00010">10</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00018">18</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
 
 </div>
 </div>
@@ -228,7 +245,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00023">23</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
+<p>Adds a root splice frame to the GC list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pframe</td><td>Frame to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00031">31</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
 
 </div>
 </div>
@@ -248,7 +273,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00035">35</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
+<p>Adds a root splice sidebag to the GC list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">psidebag</td><td>Sidebag to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00043">43</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
 
 </div>
 </div>
@@ -267,6 +300,10 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks live objects and frees memory that is no longer in use. </p>
+
+<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00231">231</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a9303375234a22b2b41b370d8dab88b3f" name="a9303375234a22b2b41b370d8dab88b3f"></a>
@@ -274,6 +311,9 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void CGc::MarkLiveObjects </td>
@@ -282,7 +322,16 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+
+<p>Searches for all live <a class="el" href="classCFrame.html" title="Splice stack frame. Each frame can have up to 4 parent frames.">CFrame</a>, <a class="el" href="classCPair.html">CPair</a>, and <a class="el" href="classCProc.html">CProc</a> instances and marks them alive. </p>
+
+<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00099">99</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
 
 </div>
 </div>
@@ -291,6 +340,9 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classCFrame.html">CFrame</a> * CGc::PframePop </td>
@@ -299,9 +351,17 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00045">45</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
+<p>Pops a frame from the processing stack when searching for live objects. </p>
+<dl class="section return"><dt>Returns</dt><dd>Next frame to process. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00053">53</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
 
 </div>
 </div>
@@ -310,6 +370,9 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classCPair.html">CPair</a> * CGc::PpairPop </td>
@@ -318,9 +381,17 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00059">59</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
+<p>Pops a pair from the processing stack when searching for live objects. </p>
+<dl class="section return"><dt>Returns</dt><dd>Next pair to process. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00067">67</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
 
 </div>
 </div>
@@ -329,6 +400,9 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classCProc.html">CProc</a> * CGc::PprocPop </td>
@@ -337,9 +411,17 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00073">73</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
+<p>Pops a proc from the processing stack when searching for live objects. </p>
+<dl class="section return"><dt>Returns</dt><dd>Next proc to process. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00081">81</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
 
 </div>
 </div>
@@ -348,6 +430,9 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void CGc::PushFrame </td>
@@ -357,9 +442,22 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00040">40</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
+<p>Adds a frame to the processing stack when searching for live objects. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pframe</td><td>Frame to push. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00048">48</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
 
 </div>
 </div>
@@ -368,6 +466,9 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void CGc::PushPair </td>
@@ -377,9 +478,22 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00054">54</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
+<p>Adds a pair to the processing stack when searching for live objects. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ppair</td><td>Pair to push. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00062">62</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
 
 </div>
 </div>
@@ -388,6 +502,9 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void CGc::PushProc </td>
@@ -397,9 +514,22 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00068">68</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
+<p>Adds a proc to the processing stack when searching for live objects. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pproc</td><td>Proc to push. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00076">76</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
 
 </div>
 </div>
@@ -418,7 +548,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00021">21</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
+<p>Stops the garbage collector (which doesn't do anything) </p>
+
+<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00029">29</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
 
 </div>
 </div>
@@ -437,7 +569,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00015">15</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
+<p>Initializes the garbage collector. </p>
+
+<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00023">23</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
 
 </div>
 </div>
@@ -464,6 +598,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000235">Todo:</a></b></dt><dd>: This might be more root frames? I don't see anything else referencing this memory. </dd></dl>
 
 </div>
 </div>
@@ -482,7 +617,10 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00082">82</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
+<p>Calls <a class="el" href="classCGc.html#a775705dd0d9890a1554f83f6e73ac4fe" title="Calls UpdateRecyclable() on each global splotheap.">UpdateRecyclable()</a> on each global splotheap. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000236">Todo:</a></b></dt><dd>Come up with a better description once Splotheap's <a class="el" href="classCGc.html#a775705dd0d9890a1554f83f6e73ac4fe" title="Calls UpdateRecyclable() on each global splotheap.">UpdateRecyclable()</a> is decompiled. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00090">90</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
 
 </div>
 </div>
@@ -507,7 +645,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00017">17</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00020">20</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
 
 </div>
 </div>
@@ -531,7 +669,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00024">24</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00028">28</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
 
 </div>
 </div>
@@ -555,7 +693,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00026">26</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00030">30</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
 
 </div>
 </div>
@@ -579,7 +717,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00028">28</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00032">32</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
 
 </div>
 </div>
@@ -603,7 +741,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00022">22</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00026">26</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
 
 </div>
 </div>
@@ -627,7 +765,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00016">16</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00019">19</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
 
 </div>
 </div>
@@ -651,7 +789,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00023">23</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00027">27</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
 
 </div>
 </div>
@@ -675,7 +813,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00025">25</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00029">29</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
 
 </div>
 </div>
@@ -699,7 +837,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00027">27</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00031">31</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
 
 </div>
 </div>
@@ -723,7 +861,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00021">21</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gc_8h_source.html#l00025">25</a> of file <a class="el" href="gc_8h_source.html">gc.h</a>.</p>
 
 </div>
 </div>

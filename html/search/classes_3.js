@@ -65,5 +65,6 @@ var searchData=
   ['ctextbox_62',['CTextBox',['../classCTextBox.html',1,'']]],
   ['ctextedge_63',['CTextEdge',['../classCTextEdge.html',1,'']]],
   ['ctr_64',['CTR',['../structCTR.html',1,'']]],
-  ['ctransition_65',['CTransition',['../classCTransition.html',1,'']]]
+  ['ctransition_65',['CTransition',['../classCTransition.html',1,'']]],
+  ['cvarb_66',['CVarb',['../classCVarb.html',1,'']]]
 ];

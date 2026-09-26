@@ -1,15 +1,5 @@
 var NAVTREEINDEX36 =
 {
-"structBLOT.html#a663d5de7eb62a2e2d7c81236530fb957":[9,0,65,21],
-"structBLOT.html#a702774f27622ae41c84ae5e2b066265f":[9,0,65,4],
-"structBLOT.html#a73ffe2407d72dec1fbb472f8a0512248":[9,0,65,1],
-"structBLOT.html#a7957b7b4e66bbb5e3fc005c565582b52":[9,0,65,3],
-"structBLOT.html#a805a49a50250339d31463e552a8be50f":[9,0,65,14],
-"structBLOT.html#a9b0924e0c5dbbe02264a110944e897d1":[9,0,65,5],
-"structBLOT.html#aa58e02d001d9e52f9bece7cd717afe97":[9,0,65,23],
-"structBLOT.html#aaafe65a865eab1d19e84650c7fb15167":[9,0,65,9],
-"structBLOT.html#ab157a079bb0e114cd9827dfe7febfdb9":[9,0,65,25],
-"structBLOT.html#ac18da68473ba7801d4e1d5cd7ee4753e":[9,0,65,7],
 "structBLOT.html#ac2ab7ee81be4af6dbd7382f394b28e0c":[9,0,65,15],
 "structBLOT.html#ac2d128b5502504deb97c2084d931f7a1":[9,0,65,6],
 "structBLOT.html#acb4be07d4c0169b31455c03a7382be93":[9,0,65,8],
@@ -249,5 +239,15 @@ var NAVTREEINDEX36 =
 "structCODE.html#a2fb4da28b7cb711a0dac138156398154":[9,0,111,2],
 "structCODE.html#a34232fff05a8840132eb165f5c2e64fd":[9,0,111,1],
 "structCODE.html#a4d57b8cc90429edaac07fc6a30ed7fd2":[9,0,111,3],
-"structCODE.html#a70591d2cfec36a1ec1549a6b903820a1":[9,0,111,6]
+"structCODE.html#a70591d2cfec36a1ec1549a6b903820a1":[9,0,111,6],
+"structCODE.html#a74b82debe7710990e88dc16ef215f1db":[9,0,111,5],
+"structCODE.html#a8cd6a11e21a173e6d4f349aec837589a":[9,0,111,0],
+"structCODE.html#ab2e3121451b080ca31e0b4085796b61a":[9,0,111,4],
+"structCOIN.html":[9,0,112],
+"structCOIN.html#a00394478d7dfd5fb6ef088ce6db9b924":[9,0,112,0],
+"structCOIN.html#a91b7f1073a54cb8bee954be8e80cf706":[9,0,112,1],
+"structCOINCTR.html":[9,0,113],
+"structCONSTR.html":[9,0,114],
+"structCPALIGN.html":[9,0,117],
+"structCPALIGN.html#a176e994740644281a3cbdf63fb412052":[9,0,117,1]
 };

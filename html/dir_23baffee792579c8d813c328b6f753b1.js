@@ -12,5 +12,6 @@ var dir_23baffee792579c8d813c328b6f753b1 =
     [ "sidebag.h", "sidebag_8h.html", "sidebag_8h" ],
     [ "spliceutils.h", "spliceutils_8h.html", "spliceutils_8h" ],
     [ "splotheap.h", "splotheap_8h.html", "splotheap_8h" ],
+    [ "varb.h", "varb_8h.html", "varb_8h" ],
     [ "vecmat.h", "vecmat_8h.html", "vecmat_8h" ]
 ];

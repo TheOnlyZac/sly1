@@ -1,11 +1,47 @@
 <map id="src/P2/splice/frame.cpp" name="src/P2/splice/frame.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="128,5,301,31"/>
-<area shape="rect" id="Node000002" href="$frame_8h.html" title=" " alt="" coords="5,79,120,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,33,101,75,99,70,189,28"/>
-<area shape="rect" id="Node000003" href="$splotheap_8h.html" title=" " alt="" coords="145,79,285,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="217,31,217,65,212,65,212,31"/>
-<area shape="rect" id="Node000004" href="$memset_8h.html" title="Memset." alt="" coords="309,79,424,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="240,28,331,70,329,75,238,33"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="329,152,404,177"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="369,104,369,138,364,138,364,104"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="228,5,401,31"/>
+<area shape="rect" id="Node000002" href="$frame_8h.html" title=" " alt="" coords="44,445,159,471"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,26,155,38,118,49,83,63,53,81,29,103,14,130,8,164,8,312,15,349,32,383,55,412,78,434,74,438,51,415,28,386,10,351,3,313,3,163,9,129,25,100,50,76,81,58,116,44,154,33,227,21"/>
+<area shape="rect" id="Node000003" href="$splotheap_8h.html" title=" " alt="" coords="245,79,385,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="317,31,317,65,312,65,312,31"/>
+<area shape="rect" id="Node000004" href="$varb_8h.html" title="Variable bindings for splice." alt="" coords="115,79,221,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="292,33,205,75,203,70,290,28"/>
+<area shape="rect" id="Node000018" href="$memset_8h.html" title="Memset." alt="" coords="409,79,524,104"/>
+<area shape="poly" id="edge23_Node000001_Node000018" title=" " alt="" coords="340,28,431,70,429,75,338,33"/>
+<area shape="rect" id="Node000020" href="$memory_8h.html" title=" " alt="" coords="549,79,635,104"/>
+<area shape="poly" id="edge25_Node000001_Node000020" title=" " alt="" coords="360,28,536,73,534,78,359,33"/>
+<area shape="rect" id="Node000005" href="$ref_8h.html" title=" " alt="" coords="235,152,328,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="188,102,253,142,250,147,185,106"/>
+<area shape="rect" id="Node000006" href="$proc_8h.html" title=" " alt="" coords="467,225,571,251"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="320,175,468,219,466,224,319,180"/>
+<area shape="rect" id="Node000007" href="$method_8h.html" title=" " alt="" coords="43,225,170,251"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="254,180,149,222,147,218,252,175"/>
+<area shape="rect" id="Node000008" href="$bif_8h.html" title=" " alt="" coords="194,225,286,251"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="277,179,256,215,251,212,272,176"/>
+<area shape="rect" id="Node000009" href="$basic_8h.html" title="Basic object." alt="" coords="279,445,347,471"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="288,177,300,225,312,340,316,431,311,432,307,340,295,226,283,178"/>
+<area shape="rect" id="Node000010" href="$util_8h.html" title="Utility functions." alt="" coords="387,225,442,251"/>
+<area shape="poly" id="edge9_Node000005_Node000010" title=" " alt="" coords="304,175,382,216,380,221,302,180"/>
+<area shape="rect" id="Node000011" href="$vec_8h.html" title="Vector math." alt="" coords="535,372,593,397"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="443,247,499,271,524,284,541,297,557,327,564,357,559,358,552,329,537,300,521,288,496,275,441,252"/>
+<area shape="rect" id="Node000012" href="$mat_8h.html" title="3x3 and 4x4 matrix types." alt="" coords="466,299,526,324"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="429,249,474,288,471,292,426,253"/>
+<area shape="rect" id="Node000013" href="$sm_8h.html" title="Probabilistic finite state machines." alt="" coords="387,299,442,324"/>
+<area shape="poly" id="edge13_Node000010_Node000013" title=" " alt="" coords="417,251,417,285,412,285,412,251"/>
+<area shape="poly" id="edge12_Node000012_Node000011" title=" " alt="" coords="509,322,545,360,541,364,505,326"/>
+<area shape="rect" id="Node000014" href="$dl_8h.html" title="Doubly&#45;linked list." alt="" coords="423,445,470,471"/>
+<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="420,324,444,431,439,433,415,325"/>
+<area shape="rect" id="Node000016" href="$mq_8h.html" title="Message queue." alt="" coords="494,445,549,471"/>
+<area shape="poly" id="edge16_Node000013_Node000016" title=" " alt="" coords="426,323,507,433,503,436,421,326"/>
+<area shape="rect" id="Node000017" href="$lo_8h.html" title="Level objects." alt="" coords="362,372,409,397"/>
+<area shape="poly" id="edge17_Node000013_Node000017" title=" " alt="" coords="412,325,398,360,393,358,407,323"/>
+<area shape="rect" id="Node000015" href="$oid_8h.html" title="Object IDs." alt="" coords="389,519,443,544"/>
+<area shape="poly" id="edge15_Node000014_Node000015" title=" " alt="" coords="444,472,429,507,424,505,439,470"/>
+<area shape="poly" id="edge22_Node000017_Node000002" title=" " alt="" coords="362,394,161,445,159,439,361,389"/>
+<area shape="poly" id="edge21_Node000017_Node000009" title=" " alt="" coords="375,400,337,438,333,434,372,396"/>
+<area shape="poly" id="edge18_Node000017_Node000014" title=" " alt="" coords="397,396,430,433,426,437,393,399"/>
+<area shape="poly" id="edge20_Node000017_Node000015" title=" " alt="" coords="390,397,413,505,408,506,385,398"/>
+<area shape="poly" id="edge19_Node000017_Node000016" title=" " alt="" coords="408,395,488,437,486,441,406,400"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="429,152,504,177"/>
+<area shape="poly" id="edge24_Node000018_Node000019" title=" " alt="" coords="469,104,469,138,464,138,464,104"/>
 </map>

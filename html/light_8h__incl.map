@@ -1,38 +1,36 @@
 <map id="include/light.h" name="include/light.h">
-<area shape="rect" id="Node000001" title="Light and shadow system." alt="" coords="258,5,373,31"/>
-<area shape="rect" id="Node000002" href="$alo_8h.html" title=" " alt="" coords="413,79,468,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="337,28,410,69,407,74,334,33"/>
-<area shape="rect" id="Node000004" href="$util_8h.html" title="Utility functions." alt="" coords="376,225,431,251"/>
-<area shape="poly" id="edge22_Node000001_Node000004" title=" " alt="" coords="319,31,329,95,340,136,356,176,384,214,379,217,352,179,335,138,324,96,314,31"/>
-<area shape="rect" id="Node000003" href="$sound_8h.html" title="Sound playback." alt="" coords="367,152,440,177"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="437,106,418,141,413,139,432,103"/>
-<area shape="rect" id="Node000005" href="$vec_8h.html" title="Vector math." alt="" coords="449,372,507,397"/>
-<area shape="poly" id="edge18_Node000002_Node000005" title=" " alt="" coords="450,103,475,151,505,223,523,298,525,311,523,325,513,345,501,363,496,360,509,343,518,323,520,311,518,299,500,224,470,153,445,105"/>
-<area shape="rect" id="Node000006" href="$mat_8h.html" title="3x3 and 4x4 matrix types." alt="" coords="448,299,508,324"/>
-<area shape="poly" id="edge19_Node000002_Node000006" title=" " alt="" coords="445,104,454,152,477,285,471,286,449,152,440,105"/>
-<area shape="rect" id="Node000008" href="$dl_8h.html" title="Doubly&#45;linked list." alt="" coords="396,445,443,471"/>
-<area shape="poly" id="edge21_Node000002_Node000008" title=" " alt="" coords="469,101,509,120,551,149,570,167,585,188,596,211,599,236,599,313,595,339,584,363,568,383,547,401,501,429,457,448,455,443,499,425,544,397,564,380,580,360,590,337,594,312,594,237,590,213,581,191,566,171,548,153,506,125,467,106"/>
-<area shape="rect" id="Node000011" href="$lo_8h.html" title="Level objects." alt="" coords="256,372,303,397"/>
-<area shape="poly" id="edge20_Node000002_Node000011" title=" " alt="" coords="417,106,385,126,356,154,326,206,305,263,292,316,285,359,279,358,286,315,299,261,321,204,352,150,382,122,414,102"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="406,178,406,212,401,212,401,178"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="409,250,420,283,438,323,462,360,458,363,433,325,415,285,404,252"/>
-<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="417,249,458,287,454,291,413,253"/>
-<area shape="rect" id="Node000007" href="$sm_8h.html" title="Probabilistic finite state machines." alt="" coords="317,299,372,324"/>
-<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="396,253,365,290,361,287,392,249"/>
-<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="481,324,481,358,475,358,475,324"/>
-<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="353,323,409,432,405,434,348,326"/>
-<area shape="rect" id="Node000010" href="$mq_8h.html" title="Message queue." alt="" coords="317,445,372,471"/>
-<area shape="poly" id="edge10_Node000007_Node000010" title=" " alt="" coords="347,324,347,432,342,432,342,324"/>
-<area shape="poly" id="edge11_Node000007_Node000011" title=" " alt="" coords="336,326,301,364,297,360,332,323"/>
-<area shape="rect" id="Node000009" href="$oid_8h.html" title="Object IDs." alt="" coords="321,519,376,544"/>
-<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="410,473,372,511,368,507,406,469"/>
-<area shape="poly" id="edge12_Node000011_Node000008" title=" " alt="" coords="303,395,386,437,383,441,301,400"/>
-<area shape="poly" id="edge14_Node000011_Node000009" title=" " alt="" coords="284,397,292,430,307,469,332,507,327,510,302,472,287,432,279,398"/>
-<area shape="poly" id="edge13_Node000011_Node000010" title=" " alt="" coords="292,396,327,433,323,437,288,399"/>
-<area shape="rect" id="Node000012" href="$basic_8h.html" title="Basic object." alt="" coords="35,445,103,471"/>
-<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="257,396,116,444,115,438,255,391"/>
-<area shape="rect" id="Node000014" href="$frame_8h.html" title=" " alt="" coords="127,445,242,471"/>
-<area shape="poly" id="edge17_Node000011_Node000014" title=" " alt="" coords="266,399,213,439,210,435,263,395"/>
-<area shape="rect" id="Node000013" href="$sidebag_8h.html" title="Sidebag for splice." alt="" coords="5,519,132,544"/>
-<area shape="poly" id="edge16_Node000012_Node000013" title=" " alt="" coords="71,471,71,505,66,505,66,471"/>
+<area shape="rect" id="Node000001" title="Light and shadow system." alt="" coords="191,5,305,31"/>
+<area shape="rect" id="Node000002" href="$alo_8h.html" title=" " alt="" coords="134,79,189,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,33,188,72,184,68,232,29"/>
+<area shape="rect" id="Node000004" href="$util_8h.html" title="Utility functions." alt="" coords="171,225,226,251"/>
+<area shape="poly" id="edge21_Node000001_Node000004" title=" " alt="" coords="253,31,260,95,258,137,249,178,238,199,224,217,220,213,234,196,244,176,253,136,255,95,248,31"/>
+<area shape="rect" id="Node000003" href="$sound_8h.html" title="Sound playback." alt="" coords="162,152,235,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="170,103,189,139,184,141,165,106"/>
+<area shape="rect" id="Node000005" href="$vec_8h.html" title="Vector math." alt="" coords="95,372,153,397"/>
+<area shape="poly" id="edge17_Node000002_Node000005" title=" " alt="" coords="157,105,120,185,99,241,84,299,82,311,84,323,93,343,106,360,101,363,89,345,79,325,77,311,79,298,94,239,115,183,153,103"/>
+<area shape="rect" id="Node000006" href="$mat_8h.html" title="3x3 and 4x4 matrix types." alt="" coords="94,299,154,324"/>
+<area shape="poly" id="edge18_Node000002_Node000006" title=" " alt="" coords="162,105,152,152,130,286,125,285,147,152,156,103"/>
+<area shape="rect" id="Node000008" href="$dl_8h.html" title="Doubly&#45;linked list." alt="" coords="133,445,179,471"/>
+<area shape="poly" id="edge20_Node000002_Node000008" title=" " alt="" coords="135,106,96,125,54,153,36,171,21,191,12,213,8,237,8,312,11,335,19,355,48,391,85,419,121,439,119,444,82,423,44,395,15,358,6,336,3,313,3,236,6,211,17,188,32,167,51,149,93,120,133,101"/>
+<area shape="rect" id="Node000011" href="$lo_8h.html" title="Level objects." alt="" coords="299,372,346,397"/>
+<area shape="poly" id="edge19_Node000002_Node000011" title=" " alt="" coords="187,102,219,122,249,150,280,204,302,262,315,315,322,358,317,359,310,317,296,263,275,206,245,154,216,126,184,106"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="201,178,201,212,196,212,196,178"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="197,252,186,286,168,325,144,362,139,359,163,323,181,284,192,250"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="189,253,148,291,144,287,185,249"/>
+<area shape="rect" id="Node000007" href="$sm_8h.html" title="Probabilistic finite state machines." alt="" coords="230,299,285,324"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="210,249,241,287,237,290,206,253"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="127,324,127,358,121,358,121,324"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="251,326,174,436,170,433,247,323"/>
+<area shape="rect" id="Node000010" href="$mq_8h.html" title="Message queue." alt="" coords="203,445,258,471"/>
+<area shape="poly" id="edge10_Node000007_Node000010" title=" " alt="" coords="258,325,238,432,233,431,253,324"/>
+<area shape="poly" id="edge11_Node000007_Node000011" title=" " alt="" coords="270,323,305,360,301,364,266,326"/>
+<area shape="rect" id="Node000009" href="$oid_8h.html" title="Object IDs." alt="" coords="267,519,322,544"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="179,468,261,510,259,515,177,473"/>
+<area shape="poly" id="edge12_Node000011_Node000008" title=" " alt="" coords="300,398,193,444,191,439,298,394"/>
+<area shape="poly" id="edge14_Node000011_Node000009" title=" " alt="" coords="347,393,374,406,399,424,415,446,416,459,412,472,396,490,377,505,336,523,334,518,375,500,393,487,407,469,411,458,410,448,395,428,371,411,345,398"/>
+<area shape="poly" id="edge13_Node000011_Node000010" title=" " alt="" coords="310,399,258,439,255,435,306,395"/>
+<area shape="rect" id="Node000012" href="$basic_8h.html" title="Basic object." alt="" coords="473,445,541,471"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="347,393,465,438,463,443,345,398"/>
+<area shape="rect" id="Node000013" href="$frame_8h.html" title=" " alt="" coords="283,445,397,471"/>
+<area shape="poly" id="edge16_Node000011_Node000013" title=" " alt="" coords="328,397,337,432,331,433,323,398"/>
 </map>

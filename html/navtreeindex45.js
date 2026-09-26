@@ -1,17 +1,5 @@
 var NAVTREEINDEX45 =
 {
-"structsceCdRMode.html#a23569ad288134be671a3146d0d859905":[9,0,377,0],
-"structsceCdRMode.html#a2aa041848a7e7ca8fbc7c3942b483876":[9,0,377,1],
-"structsceCdRMode.html#a391a3aa8596156f26d29fe0581f60a91":[9,0,377,2],
-"structsceCdRMode.html#ae8b7e6dbebd41d4ad4e8fb4f96dc062b":[9,0,377,3],
-"structsceDmaChan.html":[9,0,378],
-"structsceDmaChan.html#a01f2e8fb9f86a167609802bfd85c2285":[9,0,378,15],
-"structsceDmaChan.html#a06bc523189a84c521b1bd8c8618ee41e":[9,0,378,4],
-"structsceDmaChan.html#a2ea97ba02ed8b1165da0c5b5a2ad6a2c":[9,0,378,8],
-"structsceDmaChan.html#a42ae4cdc02998a64a3ada0bab16be8c9":[9,0,378,5],
-"structsceDmaChan.html#a4d3446ab87280c5b0a679f9929eb8d59":[9,0,378,12],
-"structsceDmaChan.html#a4e272310878c34580a4d41ffacec8b6a":[9,0,378,13],
-"structsceDmaChan.html#a5b7e158a8af3412fec87749c672cd3ef":[9,0,378,11],
 "structsceDmaChan.html#a8bfd1a2e5a29941b146d3dcda413b327":[9,0,378,9],
 "structsceDmaChan.html#a8f2e3c4776512122d734feacee6fde4d":[9,0,378,2],
 "structsceDmaChan.html#aadce82e1b0e9ab06809e8085a00eb3bc":[9,0,378,1],
@@ -249,5 +237,17 @@ var NAVTREEINDEX45 =
 "tank_8c.html#ad7aa4652b6e6cde80eb6462356afb19a":[10,0,2,0,141,4],
 "tank_8c.html#affcdcfa06a170dbbc9cc7d18eb05547a":[10,0,2,0,141,10],
 "tank_8c_source.html":[10,0,2,0,141],
-"tank_8h.html":[10,0,1,156]
+"tank_8h.html":[10,0,1,156],
+"tank_8h.html#a04dab4d42a6afa25bf7808f33a5f38d3":[10,0,1,156,7],
+"tank_8h.html#a0bb4f0daa29b240151969bab1f7e867e":[10,0,1,156,11],
+"tank_8h.html#a0ecf6aac915d1f8184152cbe84d297d7":[10,0,1,156,6],
+"tank_8h.html#a131305765bbc71e83c533c61f25607a3":[10,0,1,156,15],
+"tank_8h.html#a183b97346190bd5a7ff3d003443fede5":[10,0,1,156,3],
+"tank_8h.html#a34dcdff55c605e148b2a7bc98d8a3d93":[10,0,1,156,5],
+"tank_8h.html#a4ef8d9bd095b5e9859ef00f511cc217e":[10,0,1,156,12],
+"tank_8h.html#a59e3ccd047701a8e82eb46c7c7372ec7":[10,0,1,156,4],
+"tank_8h.html#a63de4b7a9c1c517a8195723c4a538474":[10,0,1,156,2],
+"tank_8h.html#a818e075bcacfc256a2b618ef6b1bab42":[10,0,1,156,14],
+"tank_8h.html#aa39764a4b4bca652606e3ec8e02f9180":[10,0,1,156,8],
+"tank_8h.html#ab4695e74cb314736c2d18b7b6715985a":[10,0,1,156,10]
 };

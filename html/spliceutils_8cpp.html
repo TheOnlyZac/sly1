@@ -109,6 +109,7 @@ $(document).ready(function(){initNavTree('spliceutils_8cpp.html',''); initResiza
 <code>#include &lt;<a class="el" href="pair_8h_source.html">splice/pair.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="splotheap_8h_source.html">splice/splotheap.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="vecmat_8h_source.html">splice/vecmat.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="varb_8h_source.html">splice/varb.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for spliceutils.cpp:</div>
 <div class="dyncontent">
@@ -119,8 +120,9 @@ Include dependency graph for spliceutils.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a638d55fca2043c1378e1766013c60eb0" id="r_a638d55fca2043c1378e1766013c60eb0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spliceutils_8cpp.html#a638d55fca2043c1378e1766013c60eb0">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/splice/spliceutils&quot;, StartupSplice__Fv)</td></tr>
-<tr class="separator:a638d55fca2043c1378e1766013c60eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a095454f74e460e647c88b1109f9585ae" id="r_a095454f74e460e647c88b1109f9585ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spliceutils_8cpp.html#a095454f74e460e647c88b1109f9585ae">StartupSplice</a> ()</td></tr>
+<tr class="memdesc:a095454f74e460e647c88b1109f9585ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Splice startup function.  <br /></td></tr>
+<tr class="separator:a095454f74e460e647c88b1109f9585ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d68cf3732b661569ea1a9a12a22bb75" id="r_a9d68cf3732b661569ea1a9a12a22bb75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spliceutils_8cpp.html#a9d68cf3732b661569ea1a9a12a22bb75">ShutdownSplice</a> ()</td></tr>
 <tr class="separator:a9d68cf3732b661569ea1a9a12a22bb75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93a728cdf35a1c48f440cf6c4dbbfa9c" id="r_a93a728cdf35a1c48f440cf6c4dbbfa9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spliceutils_8cpp.html#a93a728cdf35a1c48f440cf6c4dbbfa9c">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/splice/spliceutils&quot;, spliceutils__static_initialization_and_destruction_0)</td></tr>
@@ -133,11 +135,12 @@ Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a441e146ebb1ded19e24908fc1eced875" id="r_a441e146ebb1ded19e24908fc1eced875"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCGc.html">CGc</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spliceutils_8cpp.html#a441e146ebb1ded19e24908fc1eced875">g_gc</a></td></tr>
+<tr class="memdesc:a441e146ebb1ded19e24908fc1eced875"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global garbage colllector singleton.  <br /></td></tr>
 <tr class="separator:a441e146ebb1ded19e24908fc1eced875"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a353419435c75e965b7ca11316e09b9e8" name="a353419435c75e965b7ca11316e09b9e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a353419435c75e965b7ca11316e09b9e8">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a353419435c75e965b7ca11316e09b9e8">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -165,7 +168,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="ab7aff942f911421143d2a078b2a795f8" name="ab7aff942f911421143d2a078b2a795f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7aff942f911421143d2a078b2a795f8">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7aff942f911421143d2a078b2a795f8">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -193,7 +196,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="a93a728cdf35a1c48f440cf6c4dbbfa9c" name="a93a728cdf35a1c48f440cf6c4dbbfa9c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93a728cdf35a1c48f440cf6c4dbbfa9c">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a93a728cdf35a1c48f440cf6c4dbbfa9c">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -208,34 +211,6 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">spliceutils__static_initialization_and_destruction_0&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a638d55fca2043c1378e1766013c60eb0" name="a638d55fca2043c1378e1766013c60eb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a638d55fca2043c1378e1766013c60eb0">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[4/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/splice/spliceutils&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">StartupSplice__Fv&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -263,7 +238,28 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="spliceutils_8cpp_source.html#l00033">33</a> of file <a class="el" href="spliceutils_8cpp_source.html">spliceutils.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="spliceutils_8cpp_source.html#l00030">30</a> of file <a class="el" href="spliceutils_8cpp_source.html">spliceutils.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a095454f74e460e647c88b1109f9585ae" name="a095454f74e460e647c88b1109f9585ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a095454f74e460e647c88b1109f9585ae">&#9670;&#160;</a></span>StartupSplice()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StartupSplice </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Splice startup function. </p>
+
+<p class="definition">Definition at line <a class="el" href="spliceutils_8cpp_source.html#l00011">11</a> of file <a class="el" href="spliceutils_8cpp_source.html">spliceutils.cpp</a>.</p>
 
 </div>
 </div>
@@ -287,6 +283,10 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Global garbage colllector singleton. </p>
+
+<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00011">11</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
 
 </div>
 </div>

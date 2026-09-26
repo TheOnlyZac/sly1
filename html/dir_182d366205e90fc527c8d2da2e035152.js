@@ -12,5 +12,6 @@ var dir_182d366205e90fc527c8d2da2e035152 =
     [ "sidebag.cpp", "sidebag_8cpp.html", "sidebag_8cpp" ],
     [ "spliceutils.cpp", "spliceutils_8cpp.html", "spliceutils_8cpp" ],
     [ "splotheap.cpp", "splotheap_8cpp.html", "splotheap_8cpp" ],
+    [ "varb.cpp", "varb_8cpp.html", "varb_8cpp" ],
     [ "vecmat.cpp", "vecmat_8cpp.html", "vecmat_8cpp" ]
 ];

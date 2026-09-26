@@ -122,7 +122,7 @@ var searchData=
   ['ffilterspliceevent_119',['FFilterSpliceEvent',['../lo_8h.html#a4a40e72c02306f0cae5615b40cd95ef6',1,'lo.h']]],
   ['ffilterstepguardjump_120',['FFilterStepguardJump',['../stepguard_8h.html#a792339eb4bbe61d48d3d933b43fcbf99',1,'stepguard.h']]],
   ['ffilterturret_121',['FFilterTurret',['../turret_8h.html#a9670f8355e0e15fb0326e946a2b329d0',1,'turret.h']]],
-  ['ffindbinding_122',['ffindbinding',['../classCFrame.html#a71082dcc4fbea634867e1a26b6e9c9ab',1,'CFrame::FFindBinding()'],['../classCSidebag.html#a5231f587082a15c9a74310bab80de6c3',1,'CSidebag::FFindBinding()']]],
+  ['ffindbinding_122',['ffindbinding',['../classCFrame.html#a71082dcc4fbea634867e1a26b6e9c9ab',1,'CFrame::FFindBinding()'],['../classCSidebag.html#a36f77f1712a673feefa56c435d6991ce',1,'CSidebag::FFindBinding()']]],
   ['ffinddlentry_123',['ffinddlentry',['../dl_8h.html#a247c49d70735c14c58b19e3da64a0655',1,'FFindDlEntry(DL *pdl, void *pv):&#160;dl.c'],['../dl_8c.html#a247c49d70735c14c58b19e3da64a0655',1,'FFindDlEntry(DL *pdl, void *pv):&#160;dl.c']]],
   ['ffindflyclosestlandingpos_124',['FFindFlyClosestLandingPos',['../fly_8h.html#a588ae6509cce2721f3bf1ac2bc4fc72a',1,'fly.h']]],
   ['ffindloparent_125',['ffindloparent',['../lo_8c.html#ace11a60247923aadcae81f51157fa0f6',1,'FFindLoParent(LO *plo, ALO *paloParent):&#160;lo.c'],['../lo_8h.html#ace11a60247923aadcae81f51157fa0f6',1,'FFindLoParent(LO *plo, ALO *paloParent):&#160;lo.c']]],
