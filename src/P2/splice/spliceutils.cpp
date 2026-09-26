@@ -21,10 +21,10 @@ void StartupSplice()
     g_splotheapVarb.Startup(sizeof(CVarb), 0x800);
     g_splotheapVarb.m_pfndelete = reinterpret_cast<PFNDELETE>(DeleteVarb);
 
-    g_splotheapProc.Startup(0x14, 0x800);
+    g_splotheapProc.Startup(sizeof(CProc), 0x800);
     StartupSpliceStructuredTypeFactories();
 
-    g_splotheapMethod.Startup(0xc, 0x80);
+    g_splotheapMethod.Startup(sizeof(CMethod), 0x80);
 }
 
 void ShutdownSplice()
