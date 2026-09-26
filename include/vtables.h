@@ -31,6 +31,8 @@ struct CBinaryInputStream;
 struct LO;
 struct ALO;
 struct SO;
+struct VECTOR;
+struct MATRIX3;
 
 /**
  * @brief VT for basic objects.
@@ -125,8 +127,8 @@ struct VTALO : VT
     void (*pfnRenderAloSelf)(ALO *);
     void (*pfnRenderAloGlobset)(ALO *);
     void (*pfnUpdateAloInfluences)(ALO *);
-    void (*pfnAdjustAloPosition)(ALO *);
-    void (*pfnAdjustAloRotation)(ALO *);
+    void (*pfnAdjustAloPosition)(ALO *, VECTOR *, void *);
+    void (*pfnAdjustAloRotation)(ALO *, MATRIX3 *, VECTOR *);
     void (*pfnUnadjustAloRotation)(ALO *);
     void (*pfnRecacheAloActList)(ALO *);
     void (*pfnUpdateAloConstraints)(ALO *);

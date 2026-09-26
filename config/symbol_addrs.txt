@@ -41,6 +41,20 @@ g_vtactval       = 0x219588;
 g_vtactref       = 0x2195b0;
 g_vtactadj       = 0x2195d8;
 g_vtactbank      = 0x219600;
+g_vtacgb         = 0x219668;
+g_vtacgbw        = 0x219678;
+g_vtacgl         = 0x219688;
+g_vtacgblt       = 0x219698;
+g_vtacgblp       = 0x2196a8;
+g_vtacpc         = 0x2196b8;
+g_vtacpb         = 0x2196c8;
+g_vtacpbl        = 0x2196d8;
+g_vtacrc         = 0x2196e8;
+g_vtacrb         = 0x2196f8;
+g_vtacrbl        = 0x219708;
+g_vtacsc         = 0x219718;
+g_vtacsb         = 0x219728;
+g_vtaseg         = 0x219738;
 g_vtactseg       = 0x2197c0;
 g_vtactla        = 0x21a790;
 g_vtsensor       = 0x21ac38;
@@ -58,6 +72,7 @@ g_vteyes         = 0x21e438;
 g_mpcidarysplopt = 0x244950;
 g_mpcidpvt       = 0x247448; // size:0x328
 g_vtwpsg         = 0x2505c0;
+
 
 // .data
 g_aeopid = 0x2505D8;

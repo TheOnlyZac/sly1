@@ -288,8 +288,9 @@ segments:
     - [0x14a428, rodata] #, P2/989snd]
     - [0x14a870, rodata]
     #- [0x14a870, .rodata, P2/brx]
-    #- [0x14a970, .rodata, P2/ac]
-    #- [0x14a990, .rodata, P2/act]
+    - [0x14a970, .rodata, P2/ac]
+    - [0x14a988, rodata] # TODO: Alignment issue. This should be 0x14a990.
+    #- [0x14a990, rodata] #, P2/act]
     #- [0x14a9f0, .rodata, P2/alo]
     #- [0x14aa20, .rodata, P2/aseg]
     #- [0x14ab20, .rodata, P2/asega]
