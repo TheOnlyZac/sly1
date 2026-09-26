@@ -3,6 +3,10 @@
 #include <splice/gc.h>
 #include <memory.h>
 
+// Forward declarations.
+static void *PvFromPsplot(SPLOT *psplot);
+static SPLOT *PsplotFromPv(void *pv);
+
 /**
  * @todo 94.76% match.
  * https://decomp.me/scratch/3gv6F

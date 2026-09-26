@@ -8,13 +8,16 @@
 
 #include "common.h"
 
-struct JOY; // Forward declaration
+// Forward declarations.
+struct JOY;
+struct GS;
 
 /**
- * @brief Rumble state
+ * @brief Rumble state.
  */
 enum RUMS
 {
+    RUMS_Nil = -1,
     RUMS_Dead = 0,
     RUMS_Idle = 1,
     RUMS_Rumble = 2,
@@ -24,7 +27,7 @@ enum RUMS
 };
 
 /**
- * @brief Rumble kind
+ * @brief Rumble kind.
  */
 enum RUMK
 {
@@ -44,7 +47,7 @@ enum RUMK
 };
 
 /**
- * @brief Rumble intensity
+ * @brief Rumble intensity.
  */
 struct RUMINS
 {
@@ -56,7 +59,7 @@ struct RUMINS
 };
 
 /**
- * @brief Rumble pattern
+ * @brief Rumble pattern.
  */
 struct RUMPAT
 {
@@ -65,10 +68,9 @@ struct RUMPAT
 };
 
 /**
- * @brief Rumble
- *
- * Combines the rumble state, rumble pattern, and rumble intensity along with the
- * port and slot of the controller.
+ * @brief Rumble.
+ * @details Combines the rumble state, rumble pattern,
+ * and rumble intensity along with the port and slot of the controller.
  */
 struct RUMBLE
 {
@@ -76,18 +78,55 @@ struct RUMBLE
     /* 0x04 */ int nPort;
     /* 0x08 */ int nSlot;
     /* 0x0c */ RUMS rums;
-    RUMPAT *prumpat;
-    int irumins;
-    float dtRumble;
-    float dtRumins;
+    /* 0x10 */ RUMPAT *prumpat;
+    /* 0x14 */ int irumins;
+    /* 0x18 */ float dtRumble;
+    /* 0x1c */ float dtRumins;
 };
 
+/**
+ * @brief Initialize the joypad rumble system.
+ */
 void InitRumble(RUMBLE *prumble, int nPort, int nSlot);
 
+/**
+ * @brief Trigger a rumble pattern for the given rumble kind.
+ */
 void TriggerRumbleRumk(RUMBLE *prumble, RUMK rumk, float dt);
 
+/**
+ * @brief Trigger the given rumble pattern.
+ */
+void TriggerRumbleRumpat(RUMBLE *prumble, RUMPAT *prumpat, float dt);
+
+/**
+ * @brief Set the rumble state.
+ */
 void SetRumbleRums(RUMBLE *prumble, RUMS rums);
 
+/**
+ * @brief Stop joypad actuators.
+ */
 void StopRumbleActuators(RUMBLE *prumble);
+
+/**
+ * @todo Rename.
+ */
+void RumbleUnknown1();
+
+/**
+ * @todo Rename.
+ */
+void RumbleUnknown2(GS *pgs);
+
+/**
+ * @todo Rename.
+ */
+int RumbleUnknown3(GS *pgs);
+
+/**
+ * @todo Rename.
+ */
+void RumbleUnknown4(GS *pgs);
 
 #endif // RUMBLE_H

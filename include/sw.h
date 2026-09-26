@@ -66,9 +66,13 @@ struct SW : public LO
     /* 0x1c84 */ DL dlSpire;
     /* 0x1c90 */ DL dlRail;
     /* 0x1c9c */ DL dlLanding;
-    /* 0x1ca8 */ STRUCT_PADDING(9); // Likely 3 DL's.
+    /* 0x1ca8 */ DL dlBusyLasen;
+    /* 0x1cb4 */ DL dlBlipg;
+    /* 0x1cc0 */ DL dlBlipgFree;
     /* 0x1ccc */ DL dlCrfod;
-    /* 0x1cd8 */ STRUCT_PADDING(36);
+    /* 0x1cd8 */ STRUCT_PADDING(4);
+    /* 0x1ce8 */ LO *aploStock[29];
+    /* 0x1d5c */ STRUCT_PADDING(3);
     /* 0x1d68 */ LSM lsmDefault;
     /* 0x1d70 */ STRUCT_PADDING(85);
     /* 0x1ec4 */ VISMAP *pvismap;

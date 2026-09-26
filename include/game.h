@@ -15,6 +15,73 @@
 /**
  * @brief World ID.
  */
+enum WID
+{
+    // Intro
+    WID_stock_objects = 0x0,
+    WID_splash = 0x1,
+    WID_attract = 0x2,
+    WID_jb_intro = 0x3,
+
+    // Underwater
+    WID_uw_exterior_approach = 0x4,
+    WID_uw_exterior_boat = 0x5,
+    WID_uw_bonus_security = 0x6,
+    WID_uw_bonus_drivewheels_final = 0x7,
+    WID_uw_bonus_library = 0x8,
+    WID_uw_t3_final = 0x9,
+    WID_uw_rip_off = 0xa,
+    WID_uw_c2_final = 0xb,
+    WID_uw_boss_blimp = 0xc,
+
+    // Mesa
+    WID_ms_approach = 0xd,
+    WID_ms_casino = 0xe,
+    WID_ms_exterior = 0xf,
+    WID_ms_inspector = 0x10,
+    WID_ms_rooftop = 0x11,
+    WID_ms_vertigo = 0x12,
+    WID_ms_sniper = 0x13,
+    WID_ms_suv = 0x14,
+    WID_ms_boss_battle = 0x15,
+
+    // Voodoo
+    WID_v_approach = 0x16,
+    WID_v_gomerville = 0x17,
+    WID_v_swamp_monster = 0x18,
+    WID_v_hub = 0x19,
+    WID_v_skinterior = 0x1a,
+    WID_v_murray = 0x1b,
+    WID_v_chicken = 0x1c,
+    WID_v_puffer = 0x1d,
+    WID_v_boss = 0x1e,
+
+    // Snow
+    WID_s_approach = 0x1f,
+    WID_s_barrel = 0x20,
+    WID_s_hub = 0x21,
+    WID_s_inspector = 0x22,
+    WID_s_security = 0x23,
+    WID_s_sniper = 0x24,
+    WID_s_suv = 0x25,
+    WID_s_tank = 0x26,
+    WID_s_boss = 0x27,
+
+    // Clockwerk
+    WID_cw_suv = 0x28,
+    WID_cw_turret = 0x29,
+    WID_cw_security = 0x2a,
+    WID_cw_bentley = 0x2b,
+    WID_cw_reverse_sniper = 0x2c,
+    WID_cw_outclimb = 0x2d,
+    WID_cw_finish = 0x2e,
+
+    WID_Max = 0x2f
+};
+
+/**
+ * @brief Hub ID.
+ */
 enum GAMEWORLD
 {
     GAMEWORLD_Nil = -1,
@@ -28,7 +95,7 @@ enum GAMEWORLD
 };
 
 /**
- * @brief Level ID.
+ * @brief Hub level ID.
  */
 enum WORLDLEVEL
 {
@@ -107,18 +174,18 @@ typedef int GRFVAULT;
  */
 struct LS
 {
-    FLS fls;                // Level state flags
-    float dt;               // Time spent in level (secs)
-    float dtTimedBest;      // Best MTS time for level (secs)
-    float uSuck;            // Current player suck for this level
-    float unk_suck_0x10;    // unknown, seems suck related
-    int afDialogPlayed[12]; // Dialog played flags
-    int sceneVars[2][4];    // Scene variables
-    int cclue;              // Count of clues collected
-    uint fclue;             // Clue collected flags
-    int unk_field_0x6c;     // Unknown
-    int unk_field_0x70;     // Unknown
-    char *unk_field_0x74;   // Unknown
+    /* 0x00 */ FLS fls;                // Level state flags
+    /* 0x04 */ float dt;               // Time spent in level (secs)
+    /* 0x08 */ float dtTimedBest;      // Best MTS time for level (secs)
+    /* 0x0c */ float uSuck;            // Current player suck for this level
+    /* 0x10 */ float unk_suck_0x10;    // unknown, seems suck related
+    /* 0x14 */ int afDialogPlayed[12]; // Dialog played flags
+    /* 0x44 */ int sceneVars[2][4];    // Scene variables
+    /* 0x64 */ int cclue;              // Count of clues collected
+    /* 0x68 */ uint fclue;             // Clue collected flags
+    /* 0x6c */ int unk_field_0x6c;     // Unknown
+    /* 0x70 */ int unk_field_0x70;     // Unknown
+    /* 0x74 */ char *unk_field_0x74;   // Unknown
 };
 
 /**
@@ -131,7 +198,7 @@ struct WS
     int cvault; // Count of vaults opened on worls
     int ctimed; // Count of MTSs completed in world
     float dt;   // Time spent in world (secs)
-    FWS fws;    // World state flags
+    GRFWS fws;    // World state flags
 };
 
 /**
@@ -139,90 +206,27 @@ struct WS
  */
 struct GS
 {
-    int gsv;                  // not sure why this isn't caled fgs
-    int cbThis;               // Struct size (bytes)
-    int nChecksum;            // Expected size (bytes)
-    float dt;                 // Time spent in game (secs)
-    WS aws[6];                // World states array
-    GAMEWORLD gameworldCur;   // Current world
-    WORLDLEVEL worldlevelCur; // Current level
-    int clife;                // Lives count
-    int ccharm;               // Charm count
-    int ccoin;                // Coin count
-    GRFGS grfgs;              // Game settings flags(?)
-    GRFVAULT grfvault;        // Unlocked powerup flags
-    unsigned int unlocked_cutscenes;
-    unsigned int fgs;
-    int fspLast; // Last selected powerup
+    /* 0x0000 */ int gsv; // not sure why this isn't caled fgs
+    /* 0x0004 */ int cbThis; // Size of the struct in bytes.
+    /* 0x0008 */ int nChecksum; // Expected size (bytes)
+    /* 0x000c */ float dt; // Time spent in game (secs)
+    /* 0x0010 */ WS aws[6]; // Array of world states.
+    /* 0x19d8 */ GAMEWORLD gameworldCur; // Current world.
+    /* 0x19dc */ WORLDLEVEL worldlevelCur; // Current level.
+    /* 0x19e0 */ int clife; // Number of lives.
+    /* 0x19e4 */ int ccharm; // Number of charms.
+    /* 0x19e8 */ int ccoin; // Number of coins.
+    /* 0x19ec */ GRFGS grfgs; // Game settings flags(?)
+    /* 0x19f0 */ GRFVAULT grfvault; // Unlocked powerup flags
+    /* 0x19f4 */ uint unlocked_cutscenes;
+    /* 0x19f8 */ uint fgs;
+    /* 0x19fc */ int fspLast; // Last selected powerup
 };
 
 /**
- * @brief World ID
+ * @brief Game.
+ * @todo Verify that the last 3 fields actually exist.
  */
-enum WID
-{
-    // Intro
-    WID_stock_objects = 0x0,
-    WID_splash = 0x1,
-    WID_attract = 0x2,
-    WID_jb_intro = 0x3,
-
-    // Underwater
-    WID_uw_exterior_approach = 0x4,
-    WID_uw_exterior_boat = 0x5,
-    WID_uw_bonus_security = 0x6,
-    WID_uw_bonus_drivewheels_final = 0x7,
-    WID_uw_bonus_library = 0x8,
-    WID_uw_t3_final = 0x9,
-    WID_uw_rip_off = 0xa,
-    WID_uw_c2_final = 0xb,
-    WID_uw_boss_blimp = 0xc,
-
-    // Mesa
-    WID_ms_approach = 0xd,
-    WID_ms_casino = 0xe,
-    WID_ms_exterior = 0xf,
-    WID_ms_inspector = 0x10,
-    WID_ms_rooftop = 0x11,
-    WID_ms_vertigo = 0x12,
-    WID_ms_sniper = 0x13,
-    WID_ms_suv = 0x14,
-    WID_ms_boss_battle = 0x15,
-
-    // Voodoo
-    WID_v_approach = 0x16,
-    WID_v_gomerville = 0x17,
-    WID_v_swamp_monster = 0x18,
-    WID_v_hub = 0x19,
-    WID_v_skinterior = 0x1a,
-    WID_v_murray = 0x1b,
-    WID_v_chicken = 0x1c,
-    WID_v_puffer = 0x1d,
-    WID_v_boss = 0x1e,
-
-    // Snow
-    WID_s_approach = 0x1f,
-    WID_s_barrel = 0x20,
-    WID_s_hub = 0x21,
-    WID_s_inspector = 0x22,
-    WID_s_security = 0x23,
-    WID_s_sniper = 0x24,
-    WID_s_suv = 0x25,
-    WID_s_tank = 0x26,
-    WID_s_boss = 0x27,
-
-    // Clockwerk
-    WID_cw_suv = 0x28,
-    WID_cw_turret = 0x29,
-    WID_cw_security = 0x2a,
-    WID_cw_bentley = 0x2b,
-    WID_cw_reverse_sniper = 0x2c,
-    WID_cw_outclimb = 0x2d,
-    WID_cw_finish = 0x2e,
-
-    WID_Max = 0x2f
-};
-
 struct GAME
 {
     VTGAME *pvtgame;
@@ -246,7 +250,7 @@ struct LevelLoadData
     uint unk_14;
     uint unk_18;
     uint unk_1C;
-    int level_id;
+    WID wid;
     const char *pchzFriendly;
     FLS completionState;
 };
@@ -261,21 +265,21 @@ void StartupGame();
 // LevelLoadData * search_level_by_load_data(LevelLoadData *search_level);
 
 /**
- * @brief Finds the level data associated with a level ID.
+ * @brief Finds the level data associated with a world ID.
  * @todo Rename to better fit in with the naming convention.
  *
- * @param id Level ID to search for.
+ * @param wid World ID.
  * 
  * @return Pointer to the matching LevelLoadData, or NULL if no match is found.
  */
-LevelLoadData *search_level_by_id(int id);
+LevelLoadData *search_level_by_id(WID wid);
 
 /**
  * @brief Gets the friendly name of a level from its world ID.
  *
  * @param wid World ID.
  */
-char *PchzFriendlyFromWid(int wid);
+char *PchzFriendlyFromWid(WID wid);
 
 // LevelLoadData *call_search_level_by_id(int level_id);
 
@@ -428,21 +432,19 @@ bool FCharmAvailable();
 //int PfLookupDialog(LS *pls, OID oidDialog);
 
 /**
- * @brief Clears 8 bytes of memory.
+ * @brief Clear the GAME struct.
  *
- * Used in UnloadGame and FUN_00160948.
- * Probably used to clear a pointer or something.
- *
- * @param pv Pointer to the memory to clear.
+ * @param pv Pointer to a GAME struct.
  */
-extern "C" void *clr_8_bytes_1(void *pv);
+void OnGameLoad(GAME *pgame);
 
 /**
- * @brief Unknown function.
+ * @brief Called during level transition. Only resets the amount of alamrs triggered.
+ * @note This function used to reset more data in the prototype build.
  *
- * @param param_1 Unknown parameter.
+ * @param pgame Pointer to a GAME struct.
  */
-void FUN_00160ce8(int param_1);
+void OnGameWorldTransition(GAME *pgame);
 
 /**
  * @brief Increases the count of alarms triggered in the given GAME.

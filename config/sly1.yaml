@@ -33,7 +33,7 @@ options:
   create_undefined_syms_auto: True
   undefined_syms_auto_path: config/undefined_syms_auto.txt
 
-  # Manually defined symvols
+  # Manually defined symbols
   symbol_addrs_path: config/symbol_addrs.txt
 
   # Splat extensions
@@ -282,19 +282,46 @@ segments:
     # Rodata (read-only data)
     #--------------------------------------------------------
     - [0x118380, rodata] #MARK: rodata
-    # - [0x1225a0, .rodata, P2/cm] # todo causes errors
-    - [0x141000, rodata] # todo
     - [0x149fe0, .rodata, P2/splice/bif]
     - [0x14a200, .rodata, P2/splice/eval]
     - [0x14a2f0, .rodata, P2/splice/ref]
     - [0x14a3a0, .rodata, P2/splice/serialize]
     - [0x14a428, rodata] #, P2/989snd]
     - [0x14a870, rodata]
-    #- [0x14ae20, .rodata, P2/cd]
+    #- [0x14a870, .rodata, P2/brx]
+    - [0x14a970, .rodata, P2/ac]
+    - [0x14a988, rodata] # TODO: Alignment issue. This should be 0x14a990.
+    #- [0x14a990, rodata] #, P2/act]
+    #- [0x14a9f0, .rodata, P2/alo]
+    #- [0x14aa20, .rodata, P2/aseg]
+    #- [0x14ab20, .rodata, P2/asega]
+    #- [0x14ac90, .rodata, P2/bez]
+    #- [0x14aca0, .rodata, P2/binoc]
+    #- [0x14ad64, .rodata, P2/blip]
+    #- [0x14ad74, .rodata, P2/bomb]
+    #- [0x14ad98, .rodata, P2/bq]
+    #- [0x14adb0, .rodata, P2/break]
+    #- [0x14add0, .rodata, P2/button]
+    #- [0x14ae18, .rodata, P2/cd]
+    #- [0x14ae3c, .rodata, P2/chkpnt]
+    #- [0x14ae44, .rodata, P2/clip]
+    #- [0x14ae4c, .rodata, P2/cm]
+    #- [0x14aed0, .rodata, P2/cplcy]
+    #- [0x14aef0, .rodata, P2/crusher]
+    #- [0x14afbc, .rodata, P2/crv]
     - [0x14afe0, .rodata, P2/dart]
     - [0x14aff8, rodata] # P2/dartgun Alignment issue, this should be 0x14b000.
+    #- [0x14b020, .rodata, P2/dialog]
     - [0x14b0e0, .rodata, P2/dmas]
     - [0x14b0f8, rodata]
+    #- [0x14b100, .rodata, P2/dzg]
+    #- [0x14b120, .rodata, P2/emitter]
+    #- [0x14b170, .rodata, P2/find]
+    #- [0x14b190, .rodata, P2/fly]
+    #- [0x14b220, .rodata, P2/font]
+    #- [0x14b2d0, .rodata, P2/game]
+    #- [0x14b6f8, .rodata, P2/gifs]
+    #- [0x14b710, .rodata, P2/glob]
     #- [0x14b794, .rodata, P2/hide]
     #- [0x14b7a0, .rodata, P2/hideout]
     #- [0x14b7dc, .rodata, P2/hnd]
@@ -303,9 +330,34 @@ segments:
     #- [0x14b860, .rodata, P2/jt]
     - [0x14c1e8, .rodata, P2/main]
     - [0x14c258, rodata]
+    #- [0x14c258, .rodata, P2/mark]
+    #- [0x14c260, .rodata, P2/mat]
+    #- [0x14c270, .rodata, P2/mb]
+    #- [0x14c280, .rodata, P2/memcard]
+    #- [0x14c598, .rodata, P2/mpeg]
+    #- [0x14c5e0, .rodata, P2/ms]
+    #- [0x14c610, .rodata, P2/murray]
+    #- [0x14c64c, .rodata, P2/path]
+    #- [0x14c650, .rodata, P2/pipe]
+    #- [0x14c660, .rodata, P2/prompt]
+    #- [0x14d860, .rodata, P2/proxy]
+    #- [0x14d864, .rodata, P2/puffer]
+    #- [0x14d870, .rodata, P2/pzo]
+    #- [0x14d8c4, .rodata, P2/rail]
+    #- [0x14d8d0, .rodata, P2/rat]
+    #- [0x14d930, .rodata, P2/rip]
+    #- [0x14d9c0, .rodata, P2/rog]
+    #- [0x14dbb0, .rodata, P2/rumble]
+    #- [0x14dbc4, .rodata, P2/rwm]
+    #- [0x14dbd0, .rodata, P2/screen]
+    #- [0x14dfc0, .rodata, P2/sensor]
+    #- [0x14e164, .rodata, P2/shadow]
+    #- [0x14e170, .rodata, P2/shd]
     - [0x14e220, .rodata, P2/shdanim]
     - [0x14e268, rodata]
-    #- [0x14e3b0, .rodata, P2/spire]
+    #- [0x14e280, .rodata, P2/so]
+    #- [0x14e2a8, .rodata, P2/sound]
+    #- [0x14e3b4, .rodata, P2/spire]
     #- [0x14e3c0, .rodata, P2/spliceobj]
     #- [0x14e560, .rodata, P2/squish] # TODO: Might be something else.
     #- [0x14e588, .rodata, P2/step] # TODO: Verify.
@@ -333,15 +385,9 @@ segments:
     # Data (variable data)
     #--------------------------------------------------------
     - [0x151580, data] #MARK: data
-    #- [0x, data, P2/splice/bif]
-    #- [0x, data, P2/splice/eval]
-    #- [0x, data, P2/splice/frame]
+    - [0x15a938, .data, P2/splice/bif]
     - [0x15af38, .data, P2/splice/gc]
-    #- [0x, data, P2/splice/pair]
-    #- [0x, data, P2/splice/serialize]
-    #- [0x, data, P2/splice/sidebag]
-    #- [0x, data, P2/splice/spliceutils]
-    - [0x15d250, data, P2/splice/splotheap]
+    - [0x15d250, data, P2/splice/spliceutils]
     - [0x15d2f0, data, P2/splice/vecmat]
     - [0x15d340, .data, P2/989snd]
     - [0x161e60, data, P2/act]
@@ -387,7 +433,7 @@ segments:
     - [0x165910, data, P2/mb]
     - [0x165a40, data, P2/memcard]
     #- [0x16a9a4, data, P2/memory] # TODO: Alignment issue.
-    - [0x16a9b0, data, P2/missile]
+    - [0x16a9b0, .data, P2/missile]
     - [0x16a9c0, data, P2/mpeg]
     - [0x16ab50, data, P2/ms]
     - [0x16ab60, data, P2/murray]
@@ -403,9 +449,9 @@ segments:
     - [0x16bbf0, data, P2/render]
     - [0x16c530, data, P2/rip]
     - [0x16c778, data, P2/rog]
-    #- [0x16d3dc, data, P2/rumble] # TODO: Alignment issue.
-    #- [0x16d3ec, data, P2/screen] # TODO: Alignment issue.
-    - [0x1754b8, data, P2/sensor]
+    - [0x16c8b0, .data, P2/rumble]
+    - [0x16d3e0, data, P2/screen]
+    - [0x1754b8, .data, P2/sensor]
     - [0x1754f0, .data, P2/shadow]
     - [0x1754f8, data, P2/shd]
     - [0x175568, data, P2/shdanim]
@@ -439,7 +485,7 @@ segments:
     - [0x176b60, data, P2/ub]
     - [0x176bc0, data, P2/ui]
     - [0x176c18, data, P2/update]
-    - [0x176c40, data, P2/util]
+    - [0x176c40, .data, P2/util]
     - [0x176c70, data, P2/vb]
     - [0x176dd0, data, P2/vifs]
     - [0x176e10, data, P2/waypoint]
@@ -448,6 +494,12 @@ segments:
     - [0x177680, databin]
 
     ## Files with seemingly no data;
+    # - P2/splice/eval
+    # - P2/splice/frame
+    # - P2/splice/pair
+    # - P2/splice/serialize
+    # - P2/splice/sidebag
+    # - P2/splice/splotheap
     # - P2/brx
     # - P2/ac
     # - P2/actseg

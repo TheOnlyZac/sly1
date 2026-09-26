@@ -1,5 +1,7 @@
 #include <find.h>
 
+extern VT *g_mpcidpvt[162];
+
 DL *PdlFromSwOid(SW *psw, OID oid)
 {
     return &psw->adlHash[(oid * 0x95675) & 0x1ff];
@@ -32,15 +34,15 @@ LO *PloFindSwChild(SW *psw, OID oid, ALO *paloAncestor)
 
 int FIsCidDerivedFrom(CID cid, CID cidAncestor)
 {
-    void **ppv = (&g_mpcidpvt)[cid];
-    while (ppv)
+    VT *vt = g_mpcidpvt[cid];
+    while (vt)
     {
-        if (ppv[1] == (void *)cidAncestor)
+        if (vt->cid == cidAncestor)
         {
             return 1;
         }
 
-        ppv = (void **)*ppv;
+        vt = vt->pvtSuper;
     }
 
     return 0;

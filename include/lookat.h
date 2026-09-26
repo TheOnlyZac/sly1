@@ -23,7 +23,7 @@ struct ACTLA : public ACT
     int nPriorityEnabled;
     int nPriorityDisabled;
     int fPaused;
-    CLQ clqPanToPan;
+    /* 0x50 */ CLQ clqPanToPan;
     LM lmPan;
     CLQ clqTiltToTilt;
     LM lmTilt;

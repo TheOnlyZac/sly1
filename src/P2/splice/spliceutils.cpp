@@ -2,7 +2,6 @@
 #include <splice/frame.h>
 #include <splice/gc.h>
 #include <splice/pair.h>
-#include <splice/splotheap.h>
 #include <splice/vecmat.h>
 #include <splice/varb.h>
 
