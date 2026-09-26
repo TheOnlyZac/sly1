@@ -252,9 +252,9 @@ void CGc::Collect()
     }
 
     /* Same comment as above on the loop structure */
-    for (int j = m_cpsidebagRoot; --j >= 0;)
+    for (int i = m_cpsidebagRoot; --i >= 0;)
     {
-        CSidebag *psidebag = m_apsidebagRoot[j];
+        CSidebag *psidebag = m_apsidebagRoot[i];
         for (CVarb *pvarb = psidebag->m_pvarb; pvarb != NULL; pvarb = pvarb->m_pvarbNext)
         {
             MarkPvAlive(pvarb);
