@@ -54,10 +54,8 @@ int CFrame::FFindBinding(SYMID symid, int fRecursive, CRef *pref)
         }
         return true;
     }
-    else
-    {
-        return false;
-    }
+
+    return false;
 }
 
 CRef *CFrame::PrefFindBinding(SYMID symid, int fRecursive)
@@ -83,14 +81,18 @@ CRef *CFrame::PrefFindBinding(SYMID symid, int fRecursive)
         for (int ipframe = 0; ipframe < m_cpframeParent; ipframe++)
         {
             CFrame *pframeParent = m_apframeParent[ipframe];
-            if (!pframeParent->m_fVisited)
+            if (pframeParent->m_fVisited)
             {
-                prefFound = pframeParent->PrefFindBinding(symid, fRecursive);
-                if (prefFound != NULL)
-                {
-                    goto done;
-                }
+                continue;
             }
+
+            prefFound = pframeParent->PrefFindBinding(symid, fRecursive);
+            if (!prefFound)
+            {
+                continue;
+            }
+
+            goto done;
         }
     }
 
