@@ -105,7 +105,7 @@ void UnlockIntroCutsceneFromWid(int wid)
 }
 #endif // SKIP_ASM
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", DefeatBossFromWid);
+INCLUDE_ASM("asm/nonmatchings/P2/game", DefeatBossFromWid__Fi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", UnlockEndgameCutscenesFromFgs);
 

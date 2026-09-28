@@ -199,6 +199,7 @@ int FLevelSwSecondary(SW *psw, WID wid);
 int FLevelSwTertiary(SW *psw, WID wid);
 
 // TODO: Add unknown functions here.
+void FUN_001ddc38(SW *psw, LO *plo);
 
 void SetSwPlayerSuck(SW *psw, float uSuck);
 
