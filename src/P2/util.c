@@ -369,6 +369,6 @@ void Force(void *pv)
     return;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/util", MinimizeRange);
+INCLUDE_ASM("asm/nonmatchings/P2/util", MinimizeRange__FPFPvf_fPvffffPfT6);
 
 JUNK_ADDIU(C0);

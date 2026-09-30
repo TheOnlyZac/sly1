@@ -4501,13 +4501,13 @@ SetFsp__F3FSP = 0x1D29C8; // type:func
 UpdateJtActivePowerUp__FP2JTP3JOY = 0x1d2bb8; // type:func
 IRotatePowerUp__FP3JOYiiPi = 0x1d3100; // type:func
 
+// .data
+s_mpfspgrfvault = 0x274f38; // size:0x1c
 s_mpfspachz = 0x274f58; //size:0x1c
 g_fsp = 0x274f74; //size:0x4
 SMP_00274f78 = 0x274f78; // size:0xC
 RT_JtSpeedUpClock = 0x274f84; // size:0x4
 RT_JtSlowDownClock = 0x274f88; // size:0x4
-
-s_mpfspgrfvault = 0x274F38; // size:0x1c
 
 
 ////////////////////////////////////////////////////////////////
@@ -4770,6 +4770,7 @@ OnTargetAdd__FP6TARGET    = 0x1DFDC8; // type:func
 OnTargetRemove__FP6TARGET = 0x1DFE00; // type:func
 CloneTarget__FP6TARGETT0  = 0x1DFE38; // type:func
 
+// .data
 g_dlTarget     = 0x2758D0; // size:0xc
 g_fShowTargets = 0x2758DC; // size:0x4
 
@@ -4991,7 +4992,7 @@ FCheckAlm__FiP2LMf = 0x1EB080; // type:func
 GLimitLm__FP2LMf = 0x1EB0F8; // type:func
 SgnCompareG__FPfT0 = 0x1EB128; // type:func
 Force__FPv = 0x1EB160; // type:func
-MinimizeRange = 0x1EB168; // type:func
+MinimizeRange__FPFPvf_fPvffffPfT6 = 0x1EB168; // type:func
 junk_001EB458 = 0x1EB458; // type:func
 
 // .data
@@ -5016,9 +5017,9 @@ FindClosestPointBetweenLineSegments__FP6VECTORN40PfT0 = 0x1EDC08; // type:func
 CalculateVectorPanTilt__FP6VECTORPfT1 = 0x1EDDB0; // type:func
 ConvertDeulToW__FP6VECTORN20 = 0x1EDE38; // type:func
 FCalculateMuzzleVelocity__FP6VECTORT0fT0P2SO = 0x1EDEF0; // type:func
-FCalculateMuzzleVelocity1 = 0x1EE090; // type:func
+FCalculateMuzzleVelocitySpeed__FP6VECTORT0fT0P2SO = 0x1EE090; // type:func
 FCalculateMuzzleVelocityAngle__FP6VECTORT0fT0P2SO = 0x1EE290; // type:func
-LimitVectorLength = 0x1EE2B0; // type:func
+LimitVectorLength__FP6VECTORfT0 = 0x1EE2B0; // type:func
 
 
 ////////////////////////////////////////////////////////////////

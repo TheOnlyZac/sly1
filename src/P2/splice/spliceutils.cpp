@@ -5,7 +5,12 @@
 #include <splice/vecmat.h>
 #include <splice/varb.h>
 
-extern CGc g_gc;
+// .data
+CSplotheap g_splotheapPair;
+CSplotheap g_splotheapFrame;
+CSplotheap g_splotheapVarb;
+CSplotheap g_splotheapProc;
+CSplotheap g_splotheapMethod;
 
 void StartupSplice()
 {
@@ -36,9 +41,3 @@ void ShutdownSplice()
     g_splotheapMethod.Shutdown();
     g_gc.Shutdown();
 }
-
-INCLUDE_ASM("asm/nonmatchings/P2/splice/spliceutils", spliceutils__static_initialization_and_destruction_0);
-
-INCLUDE_ASM("asm/nonmatchings/P2/splice/spliceutils", _GLOBAL_$I$g_splotheapPair);
-
-INCLUDE_ASM("asm/nonmatchings/P2/splice/spliceutils", _GLOBAL_$D$g_splotheapPair);

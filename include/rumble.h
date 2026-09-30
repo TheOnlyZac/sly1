@@ -51,11 +51,11 @@ enum RUMK
  */
 struct RUMINS
 {
-    byte fHighSpeedMotor;
-    byte bLowSpeedMotor;
-    byte unk1;
-    byte unk2;
-    float dt;
+    /* 0x00 */ byte fHighSpeedMotor;
+    /* 0x01 */ byte bLowSpeedMotor;
+    /* 0x02 */ byte unk1;
+    /* 0x03 */ byte unk2;
+    /* 0x04 */ float dt;
 };
 
 /**
@@ -63,8 +63,8 @@ struct RUMINS
  */
 struct RUMPAT
 {
-    int crumins;
-    RUMINS arumins[32];
+    /* 0x00 */ int crumins;
+    /* 0x04 */ RUMINS arumins[32];
 };
 
 /**

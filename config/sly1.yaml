@@ -387,7 +387,7 @@ segments:
     - [0x151580, data] #MARK: data
     - [0x15a938, .data, P2/splice/bif]
     - [0x15af38, .data, P2/splice/gc]
-    - [0x15d250, data, P2/splice/spliceutils]
+    - [0x15d250, .data, P2/splice/spliceutils]
     - [0x15d2f0, data, P2/splice/vecmat]
     - [0x15d340, .data, P2/989snd]
     - [0x161e60, data, P2/act]
@@ -466,7 +466,7 @@ segments:
     - [0x175c20, data, P2/stepguard]
     - [0x175d40, data, P2/stephang]
     - [0x175e00, data, P2/stephide]
-    #- [0x175f34, data, P2/steppower] # TODO: Alignment issue.
+    - [0x175f30, data, P2/steppower]
     - [0x175f90, data, P2/steprail]
     - [0x175fa0, data, P2/steprun]
     - [0x175fc0, data, P2/stepzap]

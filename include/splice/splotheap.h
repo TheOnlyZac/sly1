@@ -27,6 +27,9 @@ private:
 public:
     PFNDELETE m_pfndelete;
 
+    CSplotheap() : m_pfndelete(NULL) {}
+    ~CSplotheap() {}
+
     void Startup(int cb, int c);
     void Shutdown();
     void *PvAllocUnsafe();
