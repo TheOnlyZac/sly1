@@ -8,37 +8,11 @@
 #include <lo.h>
 #include <po.h>
 #include <so.h>
-
-
-extern char D_00625760;
-extern char g_unkblot7;
-extern SNIP D_00275C90;
-extern SNIP D_00275CA0;
-extern OID D_00275CF8;
+#include <vb.h>
 
 
 struct STEPGUARD;
 struct XFM;
-
-
-enum SGS { SGS_Nil = 0 };
-
-
-void func_001ED318(void *pv, int *pn);
-void func_001ED210(void *pv);
-void *PvAllocSwImpl(int cb);
-void SubscribeAsegaObject(ASEGA *pasega, LO *plo);
-void LoadStepguardFromBrx(STEPGUARD *pstepguard, CBinaryInputStream *pbis);
-void *PasegFindStepguard(STEPGUARD *pstepguard, OID oid);
-void GetXfmPos(XFM *pxfm, VECTOR *ppos);
-void SetStepguardGoal(STEPGUARD *pstepguard, VECTOR *ppos);
-void UpdateStepguardGoal(STEPGUARD *pstepguard, int n);
-void OnPoActive(PO *ppo, int n, PO *ppoOther);
-void SetSmaGoal(SMA *psma, OID oid);
-void GetSmaCur(SMA *psma, OID *poid);
-void *FUN_001e9970(void);
-void OnStepguardExitingSgs(STEPGUARD *pstepguard, SGS sgs);
-LO *PloFindSwObjectByClass(SW *psw, int n, CID cid, LO *plo);
 
 
 INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001EB460);
