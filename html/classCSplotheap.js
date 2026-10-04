@@ -1,5 +1,7 @@
 var classCSplotheap =
 [
+    [ "CSplotheap", "classCSplotheap.html#ae9100bbdd08fed8b626a9fb1c8f4df4c", null ],
+    [ "~CSplotheap", "classCSplotheap.html#a317306717246f2c4b887b7dc1ee9bebd", null ],
     [ "FreeGarbage", "classCSplotheap.html#ac5fcabebc68aef79208b7c5a694a5db1", null ],
     [ "PsplotLookup", "classCSplotheap.html#a79be185bfe09f71b2229dcf4aa46700f", null ],
     [ "PvAllocClear", "classCSplotheap.html#a7d376d74c463740245db1adf6ab097e5", null ],

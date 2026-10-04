@@ -2,11 +2,13 @@ var brx_8h =
 [
     [ "OPTDAT", "structOPTDAT.html", "structOPTDAT" ],
     [ "EOPID", "structEOPID.html", "structEOPID" ],
+    [ "SPLOPT", "structSPLOPT.html", "structSPLOPT" ],
+    [ "ARYSPLOPT", "structARYSPLOPT.html", "structARYSPLOPT" ],
     [ "GRFEOPID", "brx_8h.html#a14d36bfe8210d30bcb75aba8a6ce3b39", null ],
     [ "OTYP", "brx_8h.html#a47be069729bf11809624e6c1494a1be3", [
       [ "OTYP_Nil", "brx_8h.html#a47be069729bf11809624e6c1494a1be3a0bfac9c14e11b086cfa6e53f4cd930bc", null ]
     ] ],
-    [ "IploFromStockOid", "brx_8h.html#a1bfc85d26e128954ba07f868dc29c090", null ],
+    [ "IploFromStockOid", "brx_8h.html#a6c488bce914e109b4252af6dfd9734aa", null ],
     [ "LoadOptionFromBrx", "brx_8h.html#a9289fa94a9b295731c8f61ae2d06b8d5", null ],
     [ "LoadOptionsFromBrx", "brx_8h.html#a0e204f20f8cc8342765855e73306ee21", null ],
     [ "LoadSwObjectsFromBrx", "brx_8h.html#a77a9584e643c9502faf9888115a2c59f", null ],

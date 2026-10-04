@@ -107,6 +107,7 @@ $(document).ready(function(){initNavTree('game_8c.html',''); initResizable(); })
 <code>#include &lt;<a class="el" href="joy_8h_source.html">joy.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="wipe_8h_source.html">wipe.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="chkpnt_8h_source.html">chkpnt.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="rumble_8h_source.html">rumble.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="difficulty_8h_source.html">difficulty.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="memset_8h_source.html">sce/memset.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -128,36 +129,36 @@ Functions</h2></td></tr>
 <tr class="separator:af810212b03cc7d87112cad922245b969"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88ae388d886486536c14c2295ce1fbff" id="r_a88ae388d886486536c14c2295ce1fbff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a88ae388d886486536c14c2295ce1fbff">JUNK_WORD</a> (0x0000102D)</td></tr>
 <tr class="separator:a88ae388d886486536c14c2295ce1fbff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5243a9ed9dcac9f65348d249a259ee6c" id="r_a5243a9ed9dcac9f65348d249a259ee6c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a5243a9ed9dcac9f65348d249a259ee6c">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, search_level_by_load_data)</td></tr>
-<tr class="separator:a5243a9ed9dcac9f65348d249a259ee6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c3e3fb2803ba2bcce59de084bdf47cf" id="r_a1c3e3fb2803ba2bcce59de084bdf47cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structLevelLoadData.html">LevelLoadData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a1c3e3fb2803ba2bcce59de084bdf47cf">search_level_by_id</a> (int <a class="el" href="libdma_8h.html#aba67014c1faff5b6095d88830649c3f4">id</a>)</td></tr>
-<tr class="memdesc:a1c3e3fb2803ba2bcce59de084bdf47cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the level data associated with a level ID.  <br /></td></tr>
-<tr class="separator:a1c3e3fb2803ba2bcce59de084bdf47cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d87b944dcd0e0cce5f07783eb3fdb00" id="r_a2d87b944dcd0e0cce5f07783eb3fdb00"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a2d87b944dcd0e0cce5f07783eb3fdb00">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, <a class="el" href="game_8h.html#a343b367ae13c2c6c744ca83ea87bbc19">PchzFriendlyFromWid</a>)</td></tr>
-<tr class="separator:a2d87b944dcd0e0cce5f07783eb3fdb00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad469b358cedf8850f295555930cf0202" id="r_ad469b358cedf8850f295555930cf0202"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#ad469b358cedf8850f295555930cf0202">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, search_level_by_load_data__FP13LevelLoadData)</td></tr>
+<tr class="separator:ad469b358cedf8850f295555930cf0202"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afea80366a3c3ced05468cdbc7e47e8d1" id="r_afea80366a3c3ced05468cdbc7e47e8d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structLevelLoadData.html">LevelLoadData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#afea80366a3c3ced05468cdbc7e47e8d1">search_level_by_id</a> (<a class="el" href="game_8h.html#a73a5f862a351662bf22487f62e26cb5e">WID</a> wid)</td></tr>
+<tr class="memdesc:afea80366a3c3ced05468cdbc7e47e8d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the level data associated with a world ID.  <br /></td></tr>
+<tr class="separator:afea80366a3c3ced05468cdbc7e47e8d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c57ebad04cef03cf66788e4249e903a" id="r_a8c57ebad04cef03cf66788e4249e903a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a8c57ebad04cef03cf66788e4249e903a">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, PchzFriendlyFromWid__F3WID)</td></tr>
+<tr class="separator:a8c57ebad04cef03cf66788e4249e903a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6ab7b1cd767dbc04f2ad6441299dd6d" id="r_ae6ab7b1cd767dbc04f2ad6441299dd6d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#ae6ab7b1cd767dbc04f2ad6441299dd6d">JUNK_WORD</a> (0x24420010)</td></tr>
 <tr class="separator:ae6ab7b1cd767dbc04f2ad6441299dd6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a667df1cb1baa7eeb742029ca99eace74" id="r_a667df1cb1baa7eeb742029ca99eace74"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a667df1cb1baa7eeb742029ca99eace74">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, call_search_level_by_id)</td></tr>
 <tr class="separator:a667df1cb1baa7eeb742029ca99eace74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c1a104e61368c6a4b2155823ace9e81" id="r_a6c1a104e61368c6a4b2155823ace9e81"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a6c1a104e61368c6a4b2155823ace9e81">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, FFindLevel)</td></tr>
 <tr class="separator:a6c1a104e61368c6a4b2155823ace9e81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6741a9d7aea5b3bfabec5ea7db5142c7" id="r_a6741a9d7aea5b3bfabec5ea7db5142c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="game_8h.html#a69c07e7119507370cb17c01479d16bc5">FLS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a6741a9d7aea5b3bfabec5ea7db5142c7">GetLevelCompletionById</a> (int <a class="el" href="libdma_8h.html#aba67014c1faff5b6095d88830649c3f4">id</a>)</td></tr>
-<tr class="memdesc:a6741a9d7aea5b3bfabec5ea7db5142c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the completion state of a level based on its ID.  <br /></td></tr>
-<tr class="separator:a6741a9d7aea5b3bfabec5ea7db5142c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a240fc4936c24c8c9c2dce8f533aeb5b8" id="r_a240fc4936c24c8c9c2dce8f533aeb5b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="game_8h.html#a69c07e7119507370cb17c01479d16bc5">FLS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a240fc4936c24c8c9c2dce8f533aeb5b8">GetLevelCompletionById</a> (<a class="el" href="game_8h.html#a73a5f862a351662bf22487f62e26cb5e">WID</a> wid)</td></tr>
+<tr class="separator:a240fc4936c24c8c9c2dce8f533aeb5b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22d536c2e906ca564d2a310ecf191a72" id="r_a22d536c2e906ca564d2a310ecf191a72"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a22d536c2e906ca564d2a310ecf191a72">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, <a class="el" href="game_8h.html#a26b93a44df983ef861bf340a89bb8a11">tally_world_completion</a>)</td></tr>
 <tr class="separator:a22d536c2e906ca564d2a310ecf191a72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a307d6d0ed791c7f40f65bb7f765e61fa" id="r_a307d6d0ed791c7f40f65bb7f765e61fa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a307d6d0ed791c7f40f65bb7f765e61fa">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, get_game_completion__Fv)</td></tr>
 <tr class="separator:a307d6d0ed791c7f40f65bb7f765e61fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8463ce10dace0e85b59e871408b8b7d6" id="r_a8463ce10dace0e85b59e871408b8b7d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a8463ce10dace0e85b59e871408b8b7d6">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, UnlockIntroCutsceneFromWid__Fi)</td></tr>
-<tr class="separator:a8463ce10dace0e85b59e871408b8b7d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dc567bee75299a39915ea6dfb25ff0e" id="r_a1dc567bee75299a39915ea6dfb25ff0e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a1dc567bee75299a39915ea6dfb25ff0e">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, <a class="el" href="game_8h.html#a4294b9224468438466b7efc1c982ef50">DefeatBossFromWid</a>)</td></tr>
-<tr class="separator:a1dc567bee75299a39915ea6dfb25ff0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8deeffdb32004f03006f8dcfc99f3b0" id="r_ae8deeffdb32004f03006f8dcfc99f3b0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#ae8deeffdb32004f03006f8dcfc99f3b0">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, UnlockIntroCutsceneFromWid__F9GAMEWORLD)</td></tr>
+<tr class="separator:ae8deeffdb32004f03006f8dcfc99f3b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87afc571e39de3ffa585215f2bab3f79" id="r_a87afc571e39de3ffa585215f2bab3f79"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a87afc571e39de3ffa585215f2bab3f79">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, DefeatBossFromWorld__F9GAMEWORLD)</td></tr>
+<tr class="separator:a87afc571e39de3ffa585215f2bab3f79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9506af67d80a95c18b623f44f1aed7bf" id="r_a9506af67d80a95c18b623f44f1aed7bf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a9506af67d80a95c18b623f44f1aed7bf">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, <a class="el" href="game_8h.html#abc25f859fdc375f9923d8d0ecb225d65">UnlockEndgameCutscenesFromFgs</a>)</td></tr>
 <tr class="separator:a9506af67d80a95c18b623f44f1aed7bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab83da571b176d57098cc0b9dd5573566" id="r_ab83da571b176d57098cc0b9dd5573566"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#ab83da571b176d57098cc0b9dd5573566">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, <a class="el" href="game_8h.html#a703f0a3c95efede5ae0c33e74158465b">PlayEndingFromCompletionFlags</a>)</td></tr>
 <tr class="separator:ab83da571b176d57098cc0b9dd5573566"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9068582346534551674233b76b07b0e6" id="r_a9068582346534551674233b76b07b0e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a9068582346534551674233b76b07b0e6">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, InitGameState__FP2GS)</td></tr>
-<tr class="separator:a9068582346534551674233b76b07b0e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a772cb4dc231e983beeb4a40328a1dea4" id="r_a772cb4dc231e983beeb4a40328a1dea4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a772cb4dc231e983beeb4a40328a1dea4">InitGameState</a> (<a class="el" href="structGS.html">GS</a> *pgs)</td></tr>
+<tr class="memdesc:a772cb4dc231e983beeb4a40328a1dea4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the game state.  <br /></td></tr>
+<tr class="separator:a772cb4dc231e983beeb4a40328a1dea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4c37fd3c56542030e43b9d7f391d6a6" id="r_ae4c37fd3c56542030e43b9d7f391d6a6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#ae4c37fd3c56542030e43b9d7f391d6a6">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, <a class="el" href="game_8h.html#a7be77cccf4a8c9f5e9c6a0f500b67008">FUN_00160650</a>)</td></tr>
 <tr class="separator:ae4c37fd3c56542030e43b9d7f391d6a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac27bd2885d6c29d308377283ed9471aa" id="r_ac27bd2885d6c29d308377283ed9471aa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#ac27bd2885d6c29d308377283ed9471aa">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, SetupGame__FPci)</td></tr>
@@ -190,23 +191,23 @@ Functions</h2></td></tr>
 <tr class="separator:a25064fdbaaecf0d88dfaf0a5f7b227c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addff8991a071109561ee3e6cb5c7c6b5" id="r_addff8991a071109561ee3e6cb5c7c6b5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#addff8991a071109561ee3e6cb5c7c6b5">PfLookupDialog</a> (<a class="el" href="structLS.html">LS</a> *pls, <a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> oidDialog)</td></tr>
 <tr class="separator:addff8991a071109561ee3e6cb5c7c6b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb50a8d0e02cd779b1341923bcc6d51d" id="r_acb50a8d0e02cd779b1341923bcc6d51d"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#acb50a8d0e02cd779b1341923bcc6d51d">clr_8_bytes_1</a> (void *pv)</td></tr>
-<tr class="memdesc:acb50a8d0e02cd779b1341923bcc6d51d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unknown function, TBD.  <br /></td></tr>
-<tr class="separator:acb50a8d0e02cd779b1341923bcc6d51d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7a6e0e43b45c7cd270868b04160259a" id="r_af7a6e0e43b45c7cd270868b04160259a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#af7a6e0e43b45c7cd270868b04160259a">FUN_00160ce8</a> (int param_1)</td></tr>
-<tr class="memdesc:af7a6e0e43b45c7cd270868b04160259a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unknown function.  <br /></td></tr>
-<tr class="separator:af7a6e0e43b45c7cd270868b04160259a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63835c81c1cb66119bda84bce2c56c6e" id="r_a63835c81c1cb66119bda84bce2c56c6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a63835c81c1cb66119bda84bce2c56c6e">OnGameLoad</a> (<a class="el" href="structGAME.html">GAME</a> *pgame)</td></tr>
+<tr class="memdesc:a63835c81c1cb66119bda84bce2c56c6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unknown function, TBD.  <br /></td></tr>
+<tr class="separator:a63835c81c1cb66119bda84bce2c56c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19f7e868cfe0eab4c042232506bffc3c" id="r_a19f7e868cfe0eab4c042232506bffc3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a19f7e868cfe0eab4c042232506bffc3c">OnGameWorldTransition</a> (<a class="el" href="structGAME.html">GAME</a> *pgame)</td></tr>
+<tr class="memdesc:a19f7e868cfe0eab4c042232506bffc3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called during level transition. Only resets the amount of alamrs triggered.  <br /></td></tr>
+<tr class="separator:a19f7e868cfe0eab4c042232506bffc3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30b5523f69b10f232623631b58b59196" id="r_a30b5523f69b10f232623631b58b59196"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a30b5523f69b10f232623631b58b59196">OnGameAlarmTriggered</a> (<a class="el" href="structGAME.html">GAME</a> *pgame)</td></tr>
-<tr class="memdesc:a30b5523f69b10f232623631b58b59196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increases the count of alarms triggered in the given <a class="el" href="structGAME.html">GAME</a>.  <br /></td></tr>
+<tr class="memdesc:a30b5523f69b10f232623631b58b59196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increases the count of alarms triggered in the given <a class="el" href="structGAME.html" title="Game.">GAME</a>.  <br /></td></tr>
 <tr class="separator:a30b5523f69b10f232623631b58b59196"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fab3fd5e4e06cde617964dac173d856" id="r_a0fab3fd5e4e06cde617964dac173d856"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a0fab3fd5e4e06cde617964dac173d856">OnGameAlarmDisabled</a> (<a class="el" href="structGAME.html">GAME</a> *pgame)</td></tr>
-<tr class="memdesc:a0fab3fd5e4e06cde617964dac173d856"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decreases the count of alarms triggered in the given <a class="el" href="structGAME.html">GAME</a>.  <br /></td></tr>
+<tr class="memdesc:a0fab3fd5e4e06cde617964dac173d856"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decreases the count of alarms triggered in the given <a class="el" href="structGAME.html" title="Game.">GAME</a>.  <br /></td></tr>
 <tr class="separator:a0fab3fd5e4e06cde617964dac173d856"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21e1eebcfa9c265a70955ed123a08560" id="r_a21e1eebcfa9c265a70955ed123a08560"><td class="memItemLeft" align="right" valign="top"><a class="el" href="game_8h.html#a011ed7d35b76f7711b21e7a5cb43c47e">GRFVAULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a21e1eebcfa9c265a70955ed123a08560">GetGrfvault_unknown</a> ()</td></tr>
 <tr class="memdesc:a21e1eebcfa9c265a70955ed123a08560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unknown function.  <br /></td></tr>
 <tr class="separator:a21e1eebcfa9c265a70955ed123a08560"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac325cf438437a52160933d69d896fdfc" id="r_ac325cf438437a52160933d69d896fdfc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#ac325cf438437a52160933d69d896fdfc">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, GetBlueprintInfo__FPiT0)</td></tr>
-<tr class="separator:ac325cf438437a52160933d69d896fdfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53ec3e1b9f344670d462ed8865e89e2f" id="r_a53ec3e1b9f344670d462ed8865e89e2f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a53ec3e1b9f344670d462ed8865e89e2f">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/game&quot;, GetBlueprintInfo__FP8GRFVAULT)</td></tr>
+<tr class="separator:a53ec3e1b9f344670d462ed8865e89e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c302fb2a66756b8ade0cb21a4519691" id="r_a8c302fb2a66756b8ade0cb21a4519691"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a8c302fb2a66756b8ade0cb21a4519691">CcharmMost</a> ()</td></tr>
 <tr class="memdesc:a8c302fb2a66756b8ade0cb21a4519691"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the max number of charms the player can hold.  <br /></td></tr>
 <tr class="separator:a8c302fb2a66756b8ade0cb21a4519691"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -219,6 +220,10 @@ Variables</h2></td></tr>
 <tr class="separator:a5110e8feb17c806a58005fe6fc7fddb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65db5f18f376fa7c287c08aa3d21168d" id="r_a65db5f18f376fa7c287c08aa3d21168d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structLevelLoadData.html">LevelLoadData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a65db5f18f376fa7c287c08aa3d21168d">D_00247AF0</a> [46]</td></tr>
 <tr class="separator:a65db5f18f376fa7c287c08aa3d21168d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a425362bc3b0fdbee8c611621feb51d3b" id="r_a425362bc3b0fdbee8c611621feb51d3b"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a425362bc3b0fdbee8c611621feb51d3b">chz_none</a></td></tr>
+<tr class="separator:a425362bc3b0fdbee8c611621feb51d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafb345ac58673d0fd026ee6da0becf1e" id="r_aafb345ac58673d0fd026ee6da0becf1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structGAME.html">GAME</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#aafb345ac58673d0fd026ee6da0becf1e">g_game</a></td></tr>
+<tr class="separator:aafb345ac58673d0fd026ee6da0becf1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a8c302fb2a66756b8ade0cb21a4519691" name="a8c302fb2a66756b8ade0cb21a4519691"></a>
@@ -239,44 +244,7 @@ Variables</h2></td></tr>
 <p>Returns the max number of charms the player can hold. </p>
 <dl class="section note"><dt>Note</dt><dd>Always returns 2. This is a holdover from earlier in development where there was a powerup that allowed you to have more than 2 charms. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00385">385</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
-
-</div>
-</div>
-<a id="acb50a8d0e02cd779b1341923bcc6d51d" name="acb50a8d0e02cd779b1341923bcc6d51d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb50a8d0e02cd779b1341923bcc6d51d">&#9670;&#160;</a></span>clr_8_bytes_1()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void * clr_8_bytes_1 </td>
-          <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>pv</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Unknown function, TBD. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pls</td><td>Pointer to level state. </td></tr>
-    <tr><td class="paramname">param_2</td><td>OID of the dialog.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Clears 8 bytes of memory.</p>
-<p>Used in UnloadGame and FUN_00160948. Probably used to clear a pointer or something.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pv</td><td>Pointer to the memory to clear. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00320">320</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00432">432</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -296,37 +264,9 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Checks if the player has any charms available. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>77.50% matched. </dd></dl>
+<p>Will return true if the ccharm on the g_gs is &gt; 0, of if the infinite charms cheat is enabled. </p>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00302">302</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
-
-</div>
-</div>
-<a id="af7a6e0e43b45c7cd270868b04160259a" name="af7a6e0e43b45c7cd270868b04160259a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af7a6e0e43b45c7cd270868b04160259a">&#9670;&#160;</a></span>FUN_00160ce8()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FUN_00160ce8 </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>param_1</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Unknown function. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">param_1</td><td>Unknown parameter. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00325">325</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00345">345</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -347,12 +287,12 @@ Variables</h2></td></tr>
 
 <p>Unknown function. </p>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00340">340</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00382">382</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
-<a id="a6741a9d7aea5b3bfabec5ea7db5142c7" name="a6741a9d7aea5b3bfabec5ea7db5142c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6741a9d7aea5b3bfabec5ea7db5142c7">&#9670;&#160;</a></span>GetLevelCompletionById()</h2>
+<a id="a240fc4936c24c8c9c2dce8f533aeb5b8" name="a240fc4936c24c8c9c2dce8f533aeb5b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a240fc4936c24c8c9c2dce8f533aeb5b8">&#9670;&#160;</a></span>GetLevelCompletionById()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -360,28 +300,19 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="game_8h.html#a69c07e7119507370cb17c01479d16bc5">FLS</a> GetLevelCompletionById </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>id</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="game_8h.html#a73a5f862a351662bf22487f62e26cb5e">WID</a>&#160;</td>
+          <td class="paramname"><em>wid</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get the completion state of a level based on its ID. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">id</td><td>ID of the level to get the completion state of.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The completion state of the level. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00064">64</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00073">73</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
 <a id="a832468b0f23f04f3b5be14f2faba075a" name="a832468b0f23f04f3b5be14f2faba075a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a832468b0f23f04f3b5be14f2faba075a">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a832468b0f23f04f3b5be14f2faba075a">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -409,7 +340,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="a667df1cb1baa7eeb742029ca99eace74" name="a667df1cb1baa7eeb742029ca99eace74"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a667df1cb1baa7eeb742029ca99eace74">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a667df1cb1baa7eeb742029ca99eace74">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -436,8 +367,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a1dc567bee75299a39915ea6dfb25ff0e" name="a1dc567bee75299a39915ea6dfb25ff0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1dc567bee75299a39915ea6dfb25ff0e">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/21]</span></h2>
+<a id="a87afc571e39de3ffa585215f2bab3f79" name="a87afc571e39de3ffa585215f2bab3f79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87afc571e39de3ffa585215f2bab3f79">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -451,7 +382,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="game_8h.html#a4294b9224468438466b7efc1c982ef50">DefeatBossFromWid</a>&#160;</td>
+          <td class="paramtype">DefeatBossFromWorld__F9GAMEWORLD&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -465,7 +396,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="a6c1a104e61368c6a4b2155823ace9e81" name="a6c1a104e61368c6a4b2155823ace9e81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c1a104e61368c6a4b2155823ace9e81">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[4/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c1a104e61368c6a4b2155823ace9e81">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[4/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -493,7 +424,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="ae4c37fd3c56542030e43b9d7f391d6a6" name="ae4c37fd3c56542030e43b9d7f391d6a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4c37fd3c56542030e43b9d7f391d6a6">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[5/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4c37fd3c56542030e43b9d7f391d6a6">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[5/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -517,12 +448,11 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>86.46% matched. </dd></dl>
 
 </div>
 </div>
 <a id="a88da19f952920afb17ae90a44e6676c5" name="a88da19f952920afb17ae90a44e6676c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a88da19f952920afb17ae90a44e6676c5">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[6/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a88da19f952920afb17ae90a44e6676c5">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[6/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -550,7 +480,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="a25064fdbaaecf0d88dfaf0a5f7b227c3" name="a25064fdbaaecf0d88dfaf0a5f7b227c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a25064fdbaaecf0d88dfaf0a5f7b227c3">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[7/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a25064fdbaaecf0d88dfaf0a5f7b227c3">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[7/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -578,7 +508,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="a307d6d0ed791c7f40f65bb7f765e61fa" name="a307d6d0ed791c7f40f65bb7f765e61fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a307d6d0ed791c7f40f65bb7f765e61fa">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[8/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a307d6d0ed791c7f40f65bb7f765e61fa">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[8/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -605,8 +535,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ac325cf438437a52160933d69d896fdfc" name="ac325cf438437a52160933d69d896fdfc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac325cf438437a52160933d69d896fdfc">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[9/21]</span></h2>
+<a id="a53ec3e1b9f344670d462ed8865e89e2f" name="a53ec3e1b9f344670d462ed8865e89e2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53ec3e1b9f344670d462ed8865e89e2f">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[9/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -620,7 +550,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GetBlueprintInfo__FPiT0&#160;</td>
+          <td class="paramtype">GetBlueprintInfo__FP8GRFVAULT&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -634,7 +564,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="ad0069b3cc0244227dd5ee58ffed05137" name="ad0069b3cc0244227dd5ee58ffed05137"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0069b3cc0244227dd5ee58ffed05137">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[10/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0069b3cc0244227dd5ee58ffed05137">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[10/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -661,36 +591,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a9068582346534551674233b76b07b0e6" name="a9068582346534551674233b76b07b0e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9068582346534551674233b76b07b0e6">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[11/21]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/game&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">InitGameState__FP2GS&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a3002b0dc1dcca9d77b3eb6ab6bbdc498" name="a3002b0dc1dcca9d77b3eb6ab6bbdc498"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3002b0dc1dcca9d77b3eb6ab6bbdc498">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[12/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3002b0dc1dcca9d77b3eb6ab6bbdc498">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[11/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -717,8 +619,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a2d87b944dcd0e0cce5f07783eb3fdb00" name="a2d87b944dcd0e0cce5f07783eb3fdb00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2d87b944dcd0e0cce5f07783eb3fdb00">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[13/21]</span></h2>
+<a id="a8c57ebad04cef03cf66788e4249e903a" name="a8c57ebad04cef03cf66788e4249e903a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c57ebad04cef03cf66788e4249e903a">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[12/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -732,7 +634,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="game_8h.html#a343b367ae13c2c6c744ca83ea87bbc19">PchzFriendlyFromWid</a>&#160;</td>
+          <td class="paramtype">PchzFriendlyFromWid__F3WID&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -742,11 +644,12 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>95% match. </dd></dl>
 
 </div>
 </div>
 <a id="ab83da571b176d57098cc0b9dd5573566" name="ab83da571b176d57098cc0b9dd5573566"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab83da571b176d57098cc0b9dd5573566">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[14/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab83da571b176d57098cc0b9dd5573566">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[13/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -774,7 +677,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="aced49380b535f1b72bc6bb246f381656" name="aced49380b535f1b72bc6bb246f381656"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aced49380b535f1b72bc6bb246f381656">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[15/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aced49380b535f1b72bc6bb246f381656">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[14/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -801,8 +704,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a5243a9ed9dcac9f65348d249a259ee6c" name="a5243a9ed9dcac9f65348d249a259ee6c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5243a9ed9dcac9f65348d249a259ee6c">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[16/21]</span></h2>
+<a id="ad469b358cedf8850f295555930cf0202" name="ad469b358cedf8850f295555930cf0202"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad469b358cedf8850f295555930cf0202">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[15/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -816,7 +719,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">search_level_by_load_data&#160;</td>
+          <td class="paramtype">search_level_by_load_data__FP13LevelLoadData&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -830,7 +733,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="ac27bd2885d6c29d308377283ed9471aa" name="ac27bd2885d6c29d308377283ed9471aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac27bd2885d6c29d308377283ed9471aa">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[17/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac27bd2885d6c29d308377283ed9471aa">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[16/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -858,7 +761,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="a22d536c2e906ca564d2a310ecf191a72" name="a22d536c2e906ca564d2a310ecf191a72"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a22d536c2e906ca564d2a310ecf191a72">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[18/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a22d536c2e906ca564d2a310ecf191a72">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[17/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -886,7 +789,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="a159d0148cb05c36c8db652f75b293d71" name="a159d0148cb05c36c8db652f75b293d71"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a159d0148cb05c36c8db652f75b293d71">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[19/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a159d0148cb05c36c8db652f75b293d71">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[18/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -914,7 +817,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="a9506af67d80a95c18b623f44f1aed7bf" name="a9506af67d80a95c18b623f44f1aed7bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9506af67d80a95c18b623f44f1aed7bf">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[20/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9506af67d80a95c18b623f44f1aed7bf">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[19/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -941,8 +844,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a8463ce10dace0e85b59e871408b8b7d6" name="a8463ce10dace0e85b59e871408b8b7d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8463ce10dace0e85b59e871408b8b7d6">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[21/21]</span></h2>
+<a id="ae8deeffdb32004f03006f8dcfc99f3b0" name="ae8deeffdb32004f03006f8dcfc99f3b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8deeffdb32004f03006f8dcfc99f3b0">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[20/20]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -956,7 +859,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">UnlockIntroCutsceneFromWid__Fi&#160;</td>
+          <td class="paramtype">UnlockIntroCutsceneFromWid__F9GAMEWORLD&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -966,6 +869,34 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a772cb4dc231e983beeb4a40328a1dea4" name="a772cb4dc231e983beeb4a40328a1dea4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a772cb4dc231e983beeb4a40328a1dea4">&#9670;&#160;</a></span>InitGameState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InitGameState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structGS.html">GS</a> *&#160;</td>
+          <td class="paramname"><em>pgs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the game state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pgs</td><td>Game state. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00173">173</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1056,10 +987,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Decreases the count of alarms triggered in the given <a class="el" href="structGAME.html">GAME</a>. </p>
+<p>Decreases the count of alarms triggered in the given <a class="el" href="structGAME.html" title="Game.">GAME</a>. </p>
 <p>The count is used as a multiplier for the MTS countdown timer. </p>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00335">335</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00377">377</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1079,10 +1010,75 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Increases the count of alarms triggered in the given <a class="el" href="structGAME.html">GAME</a>. </p>
+<p>Increases the count of alarms triggered in the given <a class="el" href="structGAME.html" title="Game.">GAME</a>. </p>
 <p>The count is used as a multiplier for the MTS countdown timer. </p>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00330">330</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00372">372</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+
+</div>
+</div>
+<a id="a63835c81c1cb66119bda84bce2c56c6e" name="a63835c81c1cb66119bda84bce2c56c6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63835c81c1cb66119bda84bce2c56c6e">&#9670;&#160;</a></span>OnGameLoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OnGameLoad </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structGAME.html">GAME</a> *&#160;</td>
+          <td class="paramname"><em>pgame</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unknown function, TBD. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pls</td><td>Pointer to level state. </td></tr>
+    <tr><td class="paramname">param_2</td><td>OID of the dialog.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Clear the <a class="el" href="structGAME.html" title="Game.">GAME</a> struct.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pv</td><td>Pointer to a <a class="el" href="structGAME.html" title="Game.">GAME</a> struct. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00362">362</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+
+</div>
+</div>
+<a id="a19f7e868cfe0eab4c042232506bffc3c" name="a19f7e868cfe0eab4c042232506bffc3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19f7e868cfe0eab4c042232506bffc3c">&#9670;&#160;</a></span>OnGameWorldTransition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OnGameWorldTransition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structGAME.html">GAME</a> *&#160;</td>
+          <td class="paramname"><em>pgame</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Called during level transition. Only resets the amount of alamrs triggered. </p>
+<dl class="section note"><dt>Note</dt><dd>This function used to reset more data in the prototype build.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pgame</td><td>Pointer to a <a class="el" href="structGAME.html" title="Game.">GAME</a> struct. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00367">367</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1112,7 +1108,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00309">309</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00352">352</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1133,12 +1129,12 @@ Variables</h2></td></tr>
 
 <p>TBD. </p>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00166">166</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00218">218</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
-<a id="a1c3e3fb2803ba2bcce59de084bdf47cf" name="a1c3e3fb2803ba2bcce59de084bdf47cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c3e3fb2803ba2bcce59de084bdf47cf">&#9670;&#160;</a></span>search_level_by_id()</h2>
+<a id="afea80366a3c3ced05468cdbc7e47e8d1" name="afea80366a3c3ced05468cdbc7e47e8d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afea80366a3c3ced05468cdbc7e47e8d1">&#9670;&#160;</a></span>search_level_by_id()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1146,24 +1142,24 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="structLevelLoadData.html">LevelLoadData</a> * search_level_by_id </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>id</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="game_8h.html#a73a5f862a351662bf22487f62e26cb5e">WID</a>&#160;</td>
+          <td class="paramname"><em>wid</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Finds the level data associated with a level ID. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000123">Todo:</a></b></dt><dd>Rename to better fit in with the naming convention.</dd></dl>
+<p>Finds the level data associated with a world ID. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000131">Todo:</a></b></dt><dd>Rename to better fit in with the naming convention.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td>Level ID to search for.</td></tr>
+    <tr><td class="paramname">wid</td><td>World ID.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the matching <a class="el" href="structLevelLoadData.html" title="Used to locate level data by its location on the disc.">LevelLoadData</a>, or NULL if no match is found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00040">40</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00039">39</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1191,7 +1187,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00294">294</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00340">340</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1211,7 +1207,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <p>Unloads the game and wipes to the default world warp. </p>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00174">174</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00226">226</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1232,7 +1228,7 @@ Variables</h2></td></tr>
 
 <p>Calls StartGame. </p>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00029">29</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00028">28</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
@@ -1260,11 +1256,33 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00138">138</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00190">190</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="a425362bc3b0fdbee8c611621feb51d3b" name="a425362bc3b0fdbee8c611621feb51d3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a425362bc3b0fdbee8c611621feb51d3b">&#9670;&#160;</a></span>chz_none</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* chz_none</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a65db5f18f376fa7c287c08aa3d21168d" name="a65db5f18f376fa7c287c08aa3d21168d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a65db5f18f376fa7c287c08aa3d21168d">&#9670;&#160;</a></span>D_00247AF0</h2>
 
@@ -1276,6 +1294,28 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structLevelLoadData.html">LevelLoadData</a> D_00247AF0[46]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aafb345ac58673d0fd026ee6da0becf1e" name="aafb345ac58673d0fd026ee6da0becf1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafb345ac58673d0fd026ee6da0becf1e">&#9670;&#160;</a></span>g_game</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structGAME.html">GAME</a> g_game</td>
         </tr>
       </table>
   </td>

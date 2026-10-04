@@ -35,10 +35,11 @@ var searchData=
   ['ammo_5fmanager_32',['AMMO_MANAGER',['../classAMMO__MANAGER.html',1,'']]],
   ['animation_5fsegment_33',['ANIMATION_SEGMENT',['../classANIMATION__SEGMENT.html',1,'']]],
   ['animation_5fsegment_5fapplication_34',['ANIMATION_SEGMENT_APPLICATION',['../classANIMATION__SEGMENT__APPLICATION.html',1,'']]],
-  ['aseg_35',['ASEG',['../structASEG.html',1,'']]],
-  ['asega_36',['ASEGA',['../structASEGA.html',1,'']]],
-  ['asegbl_37',['ASEGBL',['../structASEGBL.html',1,'']]],
-  ['asegd_38',['ASEGD',['../structASEGD.html',1,'']]],
-  ['ash_39',['ASH',['../structASH.html',1,'']]],
-  ['attract_40',['ATTRACT',['../structATTRACT.html',1,'']]]
+  ['arysplopt_35',['ARYSPLOPT',['../structARYSPLOPT.html',1,'']]],
+  ['aseg_36',['ASEG',['../structASEG.html',1,'']]],
+  ['asega_37',['ASEGA',['../structASEGA.html',1,'']]],
+  ['asegbl_38',['ASEGBL',['../structASEGBL.html',1,'']]],
+  ['asegd_39',['ASEGD',['../structASEGD.html',1,'']]],
+  ['ash_40',['ASH',['../structASH.html',1,'']]],
+  ['attract_41',['ATTRACT',['../structATTRACT.html',1,'']]]
 ];

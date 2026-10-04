@@ -125,19 +125,9 @@ Typedefs</h2></td></tr>
 <tr class="memitem:ad8b788ce3580ce39e9f1d2af3ad08ff5" id="r_ad8b788ce3580ce39e9f1d2af3ad08ff5"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classCRef.html">CRef</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8h.html#ad8b788ce3580ce39e9f1d2af3ad08ff5">PFNBIF</a>) (int, <a class="el" href="classCRef.html">CRef</a> *, <a class="el" href="classCFrame.html">CFrame</a> *)</td></tr>
 <tr class="memdesc:ad8b788ce3580ce39e9f1d2af3ad08ff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function pointer for built-in function dispatch.  <br /></td></tr>
 <tr class="separator:ad8b788ce3580ce39e9f1d2af3ad08ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa5b44d04156e156591d75b67a6f9ef7" id="r_afa5b44d04156e156591d75b67a6f9ef7"><td class="memItemLeft" align="right" valign="top">typedef float(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8h.html#afa5b44d04156e156591d75b67a6f9ef7">PFNUFO</a>) (float)</td></tr>
-<tr class="memdesc:afa5b44d04156e156591d75b67a6f9ef7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function pointer for uniform float operation (?) dispatch.  <br /></td></tr>
-<tr class="separator:afa5b44d04156e156591d75b67a6f9ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a2a0c06339a87a07451ee518543689df0" id="r_a2a0c06339a87a07451ee518543689df0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0">BIFK</a> { <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a1cd9d9d0c9f656193ea628cc26faa531">BIFK_AddO</a> = 99
-, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ac83b270e3d83fd39bb21a5f31956ccb8">BIFK_EnsureO</a> = 100
-, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a8a7498d74a5e45a533e965ed7acfeb43">BIFK_SetO</a> = 101
-, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a0afc6c42f9ae10801a3d28b367c597d3">BIFK_GetO</a> = 102
- }</td></tr>
-<tr class="memdesc:a2a0c06339a87a07451ee518543689df0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Built-in function kind.  <a href="bif_8h.html#a2a0c06339a87a07451ee518543689df0">More...</a><br /></td></tr>
-<tr class="separator:a2a0c06339a87a07451ee518543689df0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a641a272cb893254c073739aaefdd6907" id="r_a641a272cb893254c073739aaefdd6907"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8h.html#a641a272cb893254c073739aaefdd6907">CMPK</a> { <br />
 &#160;&#160;<a class="el" href="bif_8h.html#a641a272cb893254c073739aaefdd6907a5a89e8aa3019f0e1a88e6612e8c10dc1">CMPK_L</a> = 0
 , <a class="el" href="bif_8h.html#a641a272cb893254c073739aaefdd6907a834f1672a4e12202094d35c37ebd4381">CMPK_LE</a> = 1
@@ -149,6 +139,169 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a641a272cb893254c073739aaefdd6907"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison Kind.  <a href="bif_8h.html#a641a272cb893254c073739aaefdd6907">More...</a><br /></td></tr>
 <tr class="separator:a641a272cb893254c073739aaefdd6907"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a0c06339a87a07451ee518543689df0" id="r_a2a0c06339a87a07451ee518543689df0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0">BIFK</a> { <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a13c50d20aca5515f5da85f48b4b0f24e">BIFK_Nil</a> = -1
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ad5d30a5659ee6071ca036d65c3e2f6e2">BIFK_Add</a> = 0
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0aa78ed082cef28939f86fb31dd5570a09">BIFK_Subtract</a> = 1
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ab9f841e3cf3697e4e945b45a5de9ad87">BIFK_Multiply</a> = 2
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a1cf67c9185c697cc42c9ba5b70aec25a">BIFK_Divide</a> = 3
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ab83a880a81a8a79624564de3ae4312c1">BIFK_Print</a> = 4
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ace4306aed066f8325fdeee819645a07b">BIFK_PrintFrame</a> = 5
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ac73458e3dc995b0705149e9d0e721fc5">BIFK_PrintSidebag</a> = 6
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a57fb973fe3781b9a129db9be60d8a1c3">BIFK_IntEqual</a> = 7
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a2e74e310d0b6e39feb4be3e10664f6c3">BIFK_Less</a> = 8
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a4352f715320bc69941005425b35a893a">BIFK_LE</a> = 9
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a981937ce094a2f7a60eef48e8adbc18a">BIFK_Greater</a> = 10
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a37ff05670b850ad5bc1837c1a616d539">BIFK_GE</a> = 11
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a5269d2bd714200229f63b7d9721b101f">BIFK_Eqv</a> = 12
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a327988644df66bbcaad18bee14d66883">BIFK_Equal</a> = 13
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a1adeb824e6d61b980d3897baf2d7662d">BIFK_IsBoolean</a> = 14
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ac9ed5e842de980303f2ff75e7088a69b">BIFK_IsNumber</a> = 15
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a44a587508bcdc5bace5edb9c17d0c95a">BIFK_IsInteger</a> = 16
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ad956f42412663af98dbc98953b339f6b">BIFK_IsFloat</a> = 17
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a1502ef486e7511b6ff9f8e87732df696">BIFK_IsSymbol</a> = 18
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ab0d4d52fa924ed661b78624e4f500d1e">BIFK_IsVector</a> = 19
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ac4e25cd61b19ba2797d96c6bea414067">BIFK_IsMatrix</a> = 20
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a2f6d51542f2bad2f2d3e544100e39241">BIFK_IsClq</a> = 21
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ae644b908caa408bc1a9f46674c2be0d8">BIFK_IsLm</a> = 22
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a91d53d3a836a6fafdddac487001dfaa4">BIFK_IsSmp</a> = 23
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a44ee6d528f3d77cec6e4fa37566f0fa7">BIFK_IsList</a> = 24
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a5268fd79183ba178ad5f915b7360f725">BIFK_IsNull</a> = 25
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a18d33a23892a31b12fd15ca89c5c0955">BIFK_IsObject</a> = 26
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a652f1e7f64686c36453606437b0d90b2">BIFK_IsNullObj</a> = 27
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a9c843d0615b44f6ee4b38df03d2e9281">BIFK_IsMethod</a> = 28
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ac509474d204cc4840e7094460cd30009">BIFK_IsProcedure</a> = 29
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a75f2ef39ede0669e6ba67ee022b47972">BIFK_AreNear</a> = 30
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a2ac5cc70e9fd93be1645e321502880a5">BIFK_Not</a> = 31
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a7346caf296c14f0223627d2e21dd0685">BIFK_Cons</a> = 32
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0aaf4cd29ac5cab7e5c7a3c879bba00b59">BIFK_Car</a> = 33
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a42b162c8afd250c683481d12245b6262">BIFK_Cdr</a> = 34
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a8cea747aa6f3945a44d7a93313ab1401">BIFK_SetCar</a> = 35
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a5fecf73da269288211dd4771f845c66a">BIFK_SetCdr</a> = 36
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a2179bee557a68a79f9d8eb496a49f080">BIFK_Length</a> = 37
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a2c58a1c0e04e18419a949caa11a8fc38">BIFK_Nth</a> = 38
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a296497e6068341da42489727c3d8a8dd">BIFK_IsMember</a> = 39
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ae750435d19551f75f70134991b0d78b4">BIFK_List</a> = 40
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a6d3e3f58bb2e9a04dc6793fc5c3eec71">BIFK_Append</a> = 41
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a6ea8dff790c0f092c5a1febe4bcc2be0">BIFK_Map</a> = 42
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0aff0a8db5df757d82347b2608f23528ce">BIFK_Filter</a> = 43
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a45bed178b2202fee79597ef736f092d2">BIFK_ForEach</a> = 44
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a121f8e9fbfe057abbb9c31c91bd2e8b5">BIFK_Eval</a> = 45
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a44a518fb88fc32a87f3a37633ffe70b7">BIFK_Vector</a> = 46
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a863f333cb4f133ed0759d03e3eafa0e2">BIFK_Matrix</a> = 47
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a1a662c48658cdedfd7fd7d9b1cc433f1">BIFK_Clq</a> = 48
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a66a9c52dbd18932800eaa3caeeb1df08">BIFK_Lm</a> = 49
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a2907bcbd818533d80c027fe270e456e2">BIFK_Smp</a> = 50
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0aa7c502497c9ebf6413e3fbb256d9c67d">BIFK_GetElement</a> = 51
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a02031a472b219bb799372fc2c714fdab">BIFK_RandomSeed</a> = 52
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0aa89fa109ea00acd72b7e88f2c22d79ea">BIFK_Random</a> = 53
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0acc6bb1ce8e469c7e01e74f1af4089d4d">BIFK_Sqrt</a> = 54
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a3259115679cbeeb355dad89440019212">BIFK_Sin</a> = 55
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0af823910599e0fcc4528029d42b9a53d9">BIFK_Cos</a> = 56
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0adc44eb34eee7433821b95cc3f85ede28">BIFK_Tan</a> = 57
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a3c1fa9b891862884f7f4634cd7a6d71d">BIFK_Asin</a> = 58
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0aaada4f7e4d81d008426264163027e312">BIFK_Acos</a> = 59
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a8bd17b98fda72d533ff508944429b259">BIFK_Atan</a> = 60
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a4e5fcf3c39d0dd341c69e259e705f1bf">BIFK_RadNormalize</a> = 61
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a574aaca8ee1b1e57927bcb6b579258b0">BIFK_Atan2</a> = 62
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a003a3563eecebf9b4b9d1e36be12d374">BIFK_VectorDotProduct</a> = 63
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ad332e1e560f8c6d64949b422033c8bc9">BIFK_VectorCrossProduct</a> = 64
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a9b6a47b0554e722198af16d13ae4655c">BIFK_VectorLth</a> = 65
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a9a5802967f832a504821278ac67dbc8c">BIFK_VectorDistance</a> = 66
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a2fab638a5dc0f90235b8cb9e30bd2241">BIFK_VectorDistanceSquared</a> = 67
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a996f354b090d80eaf632287efef1fa1e">BIFK_VectorNormalize</a> = 68
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0aba754b795a539209584267fde8cbbd62">BIFK_VectorProjectNormal</a> = 69
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a8651f85131b2dfe5edc6398014c620d6">BIFK_VectorProjectTangent</a> = 70
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a5898a540b5c2e9a2dde109a9b3a842ac">BIFK_VectorBallisticVelocity</a> = 71
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0aef091763d485b1fbf4455547471d27a5">BIFK_VectorRadianNormal</a> = 72
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a302ac114f0638681b08ae846f4860178">BIFK_MatrixTranspose</a> = 73
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a9a4d81043daaa03d3d4c33a0a3a89e16">BIFK_MatrixInvert</a> = 74
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a9d7fd98c9dbf33d2432790ca6d670fac">BIFK_MatrixCalculateDmat</a> = 75
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a0b04f53a7b524e9ef47023acb2edf4e7">BIFK_MatrixInterpolateRotate</a> = 76
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a2134b63d1fa5620aef988aacb26f7f1c">BIFK_MatrixDecomposeToTranslate</a> = 77
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a78856865f0602abfe18a87dc70634fd4">BIFK_MatrixDecomposeToRotate</a> = 78
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a8c385c710d8dfe328908912f17893f60">BIFK_MatrixDecomposeToEuler</a> = 79
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a6e99fc5160ade0565cc589f6935b41d0">BIFK_MatrixDecomposeToRadianNormal</a> = 80
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0afabe7b9be77044739194bceb2a0fa14b">BIFK_MatrixLookAt</a> = 81
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0aaea5752e12ddcfd1a1b946e4502d05de">BIFK_MatrixTiltUpright</a> = 82
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a7de4e2e33ced5df40df09773b04f485f">BIFK_ClqEvaluate</a> = 83
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a156c287a917fa617916757d567bb2cac">BIFK_ClqEvaluateLm</a> = 84
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0aa58468ff2923625d593020548427e6dd">BIFK_ClqFit</a> = 85
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a01665fdc488af29f7d62062a62548213">BIFK_LmLimit</a> = 86
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ab75f0b49e5c82736ab5005e0ffaed191">BIFK_LmCheck</a> = 87
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a12988c03d6694e253f8652617baa4908">BIFK_Floor</a> = 88
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a195165292c329f8fdb72b37d56b652dc">BIFK_Ceiling</a> = 89
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a96ff19f56a7c773198df36a65bd2f1a0">BIFK_Round</a> = 90
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a2ed30ce52b3edcc1d582153a3304397c">BIFK_Truncate</a> = 91
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0aa45952f62c87b6c12ed571b82f006b09">BIFK_Abs</a> = 92
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ae004a861725a1d6d40a04f26fc3d6d90">BIFK_Maximum</a> = 93
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a15e9490b83f4391ac82883210d3f8fe1">BIFK_Minimum</a> = 94
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a28af43e8a7acb17acfd1e29af6e78045">BIFK_Modulo</a> = 95
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0aa5988c87fad8bccabae0229f73743273">BIFK_CurrentTime</a> = 96
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0aa2220cf0feeb3d2f36eb282d1dbca74f">BIFK_ScheduleCallback</a> = 97
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a2886fe00e972e3ebaaf3c94056d2d216">BIFK_DeferObjectUpdate</a> = 98
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a1cd9d9d0c9f656193ea628cc26faa531">BIFK_AddO</a> = 99
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ac83b270e3d83fd39bb21a5f31956ccb8">BIFK_EnsureO</a> = 100
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a8a7498d74a5e45a533e965ed7acfeb43">BIFK_SetO</a> = 101
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a0afc6c42f9ae10801a3d28b367c597d3">BIFK_GetO</a> = 102
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a6da96030ed2588180e2b0f2b1e89ff1d">BIFK_FindObject</a> = 103
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a56f08a47cf4855d8d87b51b731db5cd0">BIFK_FindObjects</a> = 104
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a887c4b2c60f058f821d9b27bf5a4c9a6">BIFK_FindNearestObject</a> = 105
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0afad82fa089ba8e70b51dd96b499f1b83">BIFK_FindNearestObjects</a> = 106
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0af6548c303ccfca5150da93ccddba254d">BIFK_FindPlayerObject</a> = 107
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0abe5d14c0aeb309b29d20bf17e0353613">BIFK_FindWorldObject</a> = 108
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a5b39b86b7771b8ad684ad7198225c553">BIFK_FindCameraObject</a> = 109
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a42412245f086ee10197fbc6c241c1ba3">BIFK_FindClassObjects</a> = 110
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0acc829c9b5bc420d3b48bb1ee0880f202">BIFK_FindObjectsInBoundingBox</a> = 111
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0aa46391645349df400e65947e7082a6ae">BIFK_FindObjectsInBoundingSphere</a> = 112
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0aff79a34fe8ca6f4b62050d38f8313eff">BIFK_HitTestObjects</a> = 113
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a5fe4b8b7c44e5159dbf34da2a916b7a7">BIFK_HitTestObjectsFirst</a> = 114
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ac849c560ee8d225cf7534b79a4357d7c">BIFK_ConvertObjectPosition</a> = 115
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a6ae0b684bec9efa51f0f83649068f27e">BIFK_ConvertObjectVector</a> = 116
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a0982dd5a671d15139a94e4d35ac27479">BIFK_ConvertObjectMatrix</a> = 117
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a6de7b98df7f5fa0cfdd99c5599a589f0">BIFK_NearClipCenter</a> = 118
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a773f195ba714e5fe9cd868a47bd0b492">BIFK_StartSound</a> = 119
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a6eb1da4eee9e03d71b95c96aa4332857">BIFK_StopSound</a> = 120
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a42926d97d6a799fed501b304bae80dcd">BIFK_StartRumble</a> = 121
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a0534a533d9a05bf3221bb64823784a86">BIFK_EmitSmokeCloud</a> = 122
+, <br />
+&#160;&#160;<a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a264510253a0f3397f3e59a2df8e8c27e">BIFK_PredictAnimationEffect</a> = 123
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0a40539ddd3829e3dadedcd8a06d440f44">BIFK_SetMusicReg</a> = 124
+, <a class="el" href="bif_8h.html#a2a0c06339a87a07451ee518543689df0ab210981ccb71b0ab8c87618ffea54e7a">BIFK_Max</a> = 125
+<br />
+ }</td></tr>
+<tr class="memdesc:a2a0c06339a87a07451ee518543689df0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Built-in function kind.  <a href="bif_8h.html#a2a0c06339a87a07451ee518543689df0">More...</a><br /></td></tr>
+<tr class="separator:a2a0c06339a87a07451ee518543689df0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb8756f210900f8a151c0fecec21931a" id="r_aeb8756f210900f8a151c0fecec21931a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8h.html#aeb8756f210900f8a151c0fecec21931a">UFOK</a> { <br />
 &#160;&#160;<a class="el" href="bif_8h.html#aeb8756f210900f8a151c0fecec21931aa01c4443edd5eef2b065f9683e52803d6">UFOK_Sqrt</a> = 0
 , <a class="el" href="bif_8h.html#aeb8756f210900f8a151c0fecec21931aa6e5c85c75a5b1db3f291b33f18ebd040">UFOK_Sin</a> = 1
@@ -163,7 +316,7 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="bif_8h.html#aeb8756f210900f8a151c0fecec21931aa945f836b3efab5e8cad07fcca1a7a0bf">UFOK_Max</a> = 8
 <br />
  }</td></tr>
-<tr class="memdesc:aeb8756f210900f8a151c0fecec21931a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kind of Uniform Float Operation (?)  <a href="bif_8h.html#aeb8756f210900f8a151c0fecec21931a">More...</a><br /></td></tr>
+<tr class="memdesc:aeb8756f210900f8a151c0fecec21931a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uniform Float Operation Kind.  <a href="bif_8h.html#aeb8756f210900f8a151c0fecec21931a">More...</a><br /></td></tr>
 <tr class="separator:aeb8756f210900f8a151c0fecec21931a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -436,6 +589,7 @@ Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a5e9a55f6955dbf3fbc5e9fe76b01f3be" id="r_a5e9a55f6955dbf3fbc5e9fe76b01f3be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structBIF.html">BIF</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8h.html#a5e9a55f6955dbf3fbc5e9fe76b01f3be">g_mpbifkbif</a> []</td></tr>
+<tr class="memdesc:a5e9a55f6955dbf3fbc5e9fe76b01f3be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Table of built-in functions.  <br /></td></tr>
 <tr class="separator:a5e9a55f6955dbf3fbc5e9fe76b01f3be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -453,25 +607,7 @@ Variables</h2></td></tr>
 
 <p>Function pointer for built-in function dispatch. </p>
 
-<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00029">29</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
-
-</div>
-</div>
-<a id="afa5b44d04156e156591d75b67a6f9ef7" name="afa5b44d04156e156591d75b67a6f9ef7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa5b44d04156e156591d75b67a6f9ef7">&#9670;&#160;</a></span>PFNUFO</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef float(* PFNUFO) (float)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function pointer for uniform float operation (?) dispatch. </p>
-
-<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00073">73</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00178">178</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
 
 </div>
 </div>
@@ -490,13 +626,136 @@ Variables</h2></td></tr>
 
 <p>Built-in function kind. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a1cd9d9d0c9f656193ea628cc26faa531" name="a2a0c06339a87a07451ee518543689df0a1cd9d9d0c9f656193ea628cc26faa531"></a>BIFK_AddO&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a13c50d20aca5515f5da85f48b4b0f24e" name="a2a0c06339a87a07451ee518543689df0a13c50d20aca5515f5da85f48b4b0f24e"></a>BIFK_Nil&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ad5d30a5659ee6071ca036d65c3e2f6e2" name="a2a0c06339a87a07451ee518543689df0ad5d30a5659ee6071ca036d65c3e2f6e2"></a>BIFK_Add&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0aa78ed082cef28939f86fb31dd5570a09" name="a2a0c06339a87a07451ee518543689df0aa78ed082cef28939f86fb31dd5570a09"></a>BIFK_Subtract&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ab9f841e3cf3697e4e945b45a5de9ad87" name="a2a0c06339a87a07451ee518543689df0ab9f841e3cf3697e4e945b45a5de9ad87"></a>BIFK_Multiply&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a1cf67c9185c697cc42c9ba5b70aec25a" name="a2a0c06339a87a07451ee518543689df0a1cf67c9185c697cc42c9ba5b70aec25a"></a>BIFK_Divide&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ab83a880a81a8a79624564de3ae4312c1" name="a2a0c06339a87a07451ee518543689df0ab83a880a81a8a79624564de3ae4312c1"></a>BIFK_Print&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ace4306aed066f8325fdeee819645a07b" name="a2a0c06339a87a07451ee518543689df0ace4306aed066f8325fdeee819645a07b"></a>BIFK_PrintFrame&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ac73458e3dc995b0705149e9d0e721fc5" name="a2a0c06339a87a07451ee518543689df0ac73458e3dc995b0705149e9d0e721fc5"></a>BIFK_PrintSidebag&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a57fb973fe3781b9a129db9be60d8a1c3" name="a2a0c06339a87a07451ee518543689df0a57fb973fe3781b9a129db9be60d8a1c3"></a>BIFK_IntEqual&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a2e74e310d0b6e39feb4be3e10664f6c3" name="a2a0c06339a87a07451ee518543689df0a2e74e310d0b6e39feb4be3e10664f6c3"></a>BIFK_Less&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a4352f715320bc69941005425b35a893a" name="a2a0c06339a87a07451ee518543689df0a4352f715320bc69941005425b35a893a"></a>BIFK_LE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a981937ce094a2f7a60eef48e8adbc18a" name="a2a0c06339a87a07451ee518543689df0a981937ce094a2f7a60eef48e8adbc18a"></a>BIFK_Greater&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a37ff05670b850ad5bc1837c1a616d539" name="a2a0c06339a87a07451ee518543689df0a37ff05670b850ad5bc1837c1a616d539"></a>BIFK_GE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a5269d2bd714200229f63b7d9721b101f" name="a2a0c06339a87a07451ee518543689df0a5269d2bd714200229f63b7d9721b101f"></a>BIFK_Eqv&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a327988644df66bbcaad18bee14d66883" name="a2a0c06339a87a07451ee518543689df0a327988644df66bbcaad18bee14d66883"></a>BIFK_Equal&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a1adeb824e6d61b980d3897baf2d7662d" name="a2a0c06339a87a07451ee518543689df0a1adeb824e6d61b980d3897baf2d7662d"></a>BIFK_IsBoolean&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ac9ed5e842de980303f2ff75e7088a69b" name="a2a0c06339a87a07451ee518543689df0ac9ed5e842de980303f2ff75e7088a69b"></a>BIFK_IsNumber&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a44a587508bcdc5bace5edb9c17d0c95a" name="a2a0c06339a87a07451ee518543689df0a44a587508bcdc5bace5edb9c17d0c95a"></a>BIFK_IsInteger&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ad956f42412663af98dbc98953b339f6b" name="a2a0c06339a87a07451ee518543689df0ad956f42412663af98dbc98953b339f6b"></a>BIFK_IsFloat&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a1502ef486e7511b6ff9f8e87732df696" name="a2a0c06339a87a07451ee518543689df0a1502ef486e7511b6ff9f8e87732df696"></a>BIFK_IsSymbol&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ab0d4d52fa924ed661b78624e4f500d1e" name="a2a0c06339a87a07451ee518543689df0ab0d4d52fa924ed661b78624e4f500d1e"></a>BIFK_IsVector&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ac4e25cd61b19ba2797d96c6bea414067" name="a2a0c06339a87a07451ee518543689df0ac4e25cd61b19ba2797d96c6bea414067"></a>BIFK_IsMatrix&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a2f6d51542f2bad2f2d3e544100e39241" name="a2a0c06339a87a07451ee518543689df0a2f6d51542f2bad2f2d3e544100e39241"></a>BIFK_IsClq&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ae644b908caa408bc1a9f46674c2be0d8" name="a2a0c06339a87a07451ee518543689df0ae644b908caa408bc1a9f46674c2be0d8"></a>BIFK_IsLm&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a91d53d3a836a6fafdddac487001dfaa4" name="a2a0c06339a87a07451ee518543689df0a91d53d3a836a6fafdddac487001dfaa4"></a>BIFK_IsSmp&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a44ee6d528f3d77cec6e4fa37566f0fa7" name="a2a0c06339a87a07451ee518543689df0a44ee6d528f3d77cec6e4fa37566f0fa7"></a>BIFK_IsList&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a5268fd79183ba178ad5f915b7360f725" name="a2a0c06339a87a07451ee518543689df0a5268fd79183ba178ad5f915b7360f725"></a>BIFK_IsNull&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a18d33a23892a31b12fd15ca89c5c0955" name="a2a0c06339a87a07451ee518543689df0a18d33a23892a31b12fd15ca89c5c0955"></a>BIFK_IsObject&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a652f1e7f64686c36453606437b0d90b2" name="a2a0c06339a87a07451ee518543689df0a652f1e7f64686c36453606437b0d90b2"></a>BIFK_IsNullObj&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a9c843d0615b44f6ee4b38df03d2e9281" name="a2a0c06339a87a07451ee518543689df0a9c843d0615b44f6ee4b38df03d2e9281"></a>BIFK_IsMethod&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ac509474d204cc4840e7094460cd30009" name="a2a0c06339a87a07451ee518543689df0ac509474d204cc4840e7094460cd30009"></a>BIFK_IsProcedure&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a75f2ef39ede0669e6ba67ee022b47972" name="a2a0c06339a87a07451ee518543689df0a75f2ef39ede0669e6ba67ee022b47972"></a>BIFK_AreNear&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a2ac5cc70e9fd93be1645e321502880a5" name="a2a0c06339a87a07451ee518543689df0a2ac5cc70e9fd93be1645e321502880a5"></a>BIFK_Not&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a7346caf296c14f0223627d2e21dd0685" name="a2a0c06339a87a07451ee518543689df0a7346caf296c14f0223627d2e21dd0685"></a>BIFK_Cons&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0aaf4cd29ac5cab7e5c7a3c879bba00b59" name="a2a0c06339a87a07451ee518543689df0aaf4cd29ac5cab7e5c7a3c879bba00b59"></a>BIFK_Car&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a42b162c8afd250c683481d12245b6262" name="a2a0c06339a87a07451ee518543689df0a42b162c8afd250c683481d12245b6262"></a>BIFK_Cdr&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a8cea747aa6f3945a44d7a93313ab1401" name="a2a0c06339a87a07451ee518543689df0a8cea747aa6f3945a44d7a93313ab1401"></a>BIFK_SetCar&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a5fecf73da269288211dd4771f845c66a" name="a2a0c06339a87a07451ee518543689df0a5fecf73da269288211dd4771f845c66a"></a>BIFK_SetCdr&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a2179bee557a68a79f9d8eb496a49f080" name="a2a0c06339a87a07451ee518543689df0a2179bee557a68a79f9d8eb496a49f080"></a>BIFK_Length&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a2c58a1c0e04e18419a949caa11a8fc38" name="a2a0c06339a87a07451ee518543689df0a2c58a1c0e04e18419a949caa11a8fc38"></a>BIFK_Nth&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a296497e6068341da42489727c3d8a8dd" name="a2a0c06339a87a07451ee518543689df0a296497e6068341da42489727c3d8a8dd"></a>BIFK_IsMember&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ae750435d19551f75f70134991b0d78b4" name="a2a0c06339a87a07451ee518543689df0ae750435d19551f75f70134991b0d78b4"></a>BIFK_List&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a6d3e3f58bb2e9a04dc6793fc5c3eec71" name="a2a0c06339a87a07451ee518543689df0a6d3e3f58bb2e9a04dc6793fc5c3eec71"></a>BIFK_Append&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a6ea8dff790c0f092c5a1febe4bcc2be0" name="a2a0c06339a87a07451ee518543689df0a6ea8dff790c0f092c5a1febe4bcc2be0"></a>BIFK_Map&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0aff0a8db5df757d82347b2608f23528ce" name="a2a0c06339a87a07451ee518543689df0aff0a8db5df757d82347b2608f23528ce"></a>BIFK_Filter&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a45bed178b2202fee79597ef736f092d2" name="a2a0c06339a87a07451ee518543689df0a45bed178b2202fee79597ef736f092d2"></a>BIFK_ForEach&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a121f8e9fbfe057abbb9c31c91bd2e8b5" name="a2a0c06339a87a07451ee518543689df0a121f8e9fbfe057abbb9c31c91bd2e8b5"></a>BIFK_Eval&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a44a518fb88fc32a87f3a37633ffe70b7" name="a2a0c06339a87a07451ee518543689df0a44a518fb88fc32a87f3a37633ffe70b7"></a>BIFK_Vector&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a863f333cb4f133ed0759d03e3eafa0e2" name="a2a0c06339a87a07451ee518543689df0a863f333cb4f133ed0759d03e3eafa0e2"></a>BIFK_Matrix&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a1a662c48658cdedfd7fd7d9b1cc433f1" name="a2a0c06339a87a07451ee518543689df0a1a662c48658cdedfd7fd7d9b1cc433f1"></a>BIFK_Clq&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a66a9c52dbd18932800eaa3caeeb1df08" name="a2a0c06339a87a07451ee518543689df0a66a9c52dbd18932800eaa3caeeb1df08"></a>BIFK_Lm&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a2907bcbd818533d80c027fe270e456e2" name="a2a0c06339a87a07451ee518543689df0a2907bcbd818533d80c027fe270e456e2"></a>BIFK_Smp&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0aa7c502497c9ebf6413e3fbb256d9c67d" name="a2a0c06339a87a07451ee518543689df0aa7c502497c9ebf6413e3fbb256d9c67d"></a>BIFK_GetElement&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a02031a472b219bb799372fc2c714fdab" name="a2a0c06339a87a07451ee518543689df0a02031a472b219bb799372fc2c714fdab"></a>BIFK_RandomSeed&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0aa89fa109ea00acd72b7e88f2c22d79ea" name="a2a0c06339a87a07451ee518543689df0aa89fa109ea00acd72b7e88f2c22d79ea"></a>BIFK_Random&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0acc6bb1ce8e469c7e01e74f1af4089d4d" name="a2a0c06339a87a07451ee518543689df0acc6bb1ce8e469c7e01e74f1af4089d4d"></a>BIFK_Sqrt&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a3259115679cbeeb355dad89440019212" name="a2a0c06339a87a07451ee518543689df0a3259115679cbeeb355dad89440019212"></a>BIFK_Sin&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0af823910599e0fcc4528029d42b9a53d9" name="a2a0c06339a87a07451ee518543689df0af823910599e0fcc4528029d42b9a53d9"></a>BIFK_Cos&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0adc44eb34eee7433821b95cc3f85ede28" name="a2a0c06339a87a07451ee518543689df0adc44eb34eee7433821b95cc3f85ede28"></a>BIFK_Tan&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a3c1fa9b891862884f7f4634cd7a6d71d" name="a2a0c06339a87a07451ee518543689df0a3c1fa9b891862884f7f4634cd7a6d71d"></a>BIFK_Asin&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0aaada4f7e4d81d008426264163027e312" name="a2a0c06339a87a07451ee518543689df0aaada4f7e4d81d008426264163027e312"></a>BIFK_Acos&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a8bd17b98fda72d533ff508944429b259" name="a2a0c06339a87a07451ee518543689df0a8bd17b98fda72d533ff508944429b259"></a>BIFK_Atan&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a4e5fcf3c39d0dd341c69e259e705f1bf" name="a2a0c06339a87a07451ee518543689df0a4e5fcf3c39d0dd341c69e259e705f1bf"></a>BIFK_RadNormalize&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a574aaca8ee1b1e57927bcb6b579258b0" name="a2a0c06339a87a07451ee518543689df0a574aaca8ee1b1e57927bcb6b579258b0"></a>BIFK_Atan2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a003a3563eecebf9b4b9d1e36be12d374" name="a2a0c06339a87a07451ee518543689df0a003a3563eecebf9b4b9d1e36be12d374"></a>BIFK_VectorDotProduct&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ad332e1e560f8c6d64949b422033c8bc9" name="a2a0c06339a87a07451ee518543689df0ad332e1e560f8c6d64949b422033c8bc9"></a>BIFK_VectorCrossProduct&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a9b6a47b0554e722198af16d13ae4655c" name="a2a0c06339a87a07451ee518543689df0a9b6a47b0554e722198af16d13ae4655c"></a>BIFK_VectorLth&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a9a5802967f832a504821278ac67dbc8c" name="a2a0c06339a87a07451ee518543689df0a9a5802967f832a504821278ac67dbc8c"></a>BIFK_VectorDistance&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a2fab638a5dc0f90235b8cb9e30bd2241" name="a2a0c06339a87a07451ee518543689df0a2fab638a5dc0f90235b8cb9e30bd2241"></a>BIFK_VectorDistanceSquared&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a996f354b090d80eaf632287efef1fa1e" name="a2a0c06339a87a07451ee518543689df0a996f354b090d80eaf632287efef1fa1e"></a>BIFK_VectorNormalize&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0aba754b795a539209584267fde8cbbd62" name="a2a0c06339a87a07451ee518543689df0aba754b795a539209584267fde8cbbd62"></a>BIFK_VectorProjectNormal&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a8651f85131b2dfe5edc6398014c620d6" name="a2a0c06339a87a07451ee518543689df0a8651f85131b2dfe5edc6398014c620d6"></a>BIFK_VectorProjectTangent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a5898a540b5c2e9a2dde109a9b3a842ac" name="a2a0c06339a87a07451ee518543689df0a5898a540b5c2e9a2dde109a9b3a842ac"></a>BIFK_VectorBallisticVelocity&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0aef091763d485b1fbf4455547471d27a5" name="a2a0c06339a87a07451ee518543689df0aef091763d485b1fbf4455547471d27a5"></a>BIFK_VectorRadianNormal&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a302ac114f0638681b08ae846f4860178" name="a2a0c06339a87a07451ee518543689df0a302ac114f0638681b08ae846f4860178"></a>BIFK_MatrixTranspose&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a9a4d81043daaa03d3d4c33a0a3a89e16" name="a2a0c06339a87a07451ee518543689df0a9a4d81043daaa03d3d4c33a0a3a89e16"></a>BIFK_MatrixInvert&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a9d7fd98c9dbf33d2432790ca6d670fac" name="a2a0c06339a87a07451ee518543689df0a9d7fd98c9dbf33d2432790ca6d670fac"></a>BIFK_MatrixCalculateDmat&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a0b04f53a7b524e9ef47023acb2edf4e7" name="a2a0c06339a87a07451ee518543689df0a0b04f53a7b524e9ef47023acb2edf4e7"></a>BIFK_MatrixInterpolateRotate&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a2134b63d1fa5620aef988aacb26f7f1c" name="a2a0c06339a87a07451ee518543689df0a2134b63d1fa5620aef988aacb26f7f1c"></a>BIFK_MatrixDecomposeToTranslate&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a78856865f0602abfe18a87dc70634fd4" name="a2a0c06339a87a07451ee518543689df0a78856865f0602abfe18a87dc70634fd4"></a>BIFK_MatrixDecomposeToRotate&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a8c385c710d8dfe328908912f17893f60" name="a2a0c06339a87a07451ee518543689df0a8c385c710d8dfe328908912f17893f60"></a>BIFK_MatrixDecomposeToEuler&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a6e99fc5160ade0565cc589f6935b41d0" name="a2a0c06339a87a07451ee518543689df0a6e99fc5160ade0565cc589f6935b41d0"></a>BIFK_MatrixDecomposeToRadianNormal&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0afabe7b9be77044739194bceb2a0fa14b" name="a2a0c06339a87a07451ee518543689df0afabe7b9be77044739194bceb2a0fa14b"></a>BIFK_MatrixLookAt&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0aaea5752e12ddcfd1a1b946e4502d05de" name="a2a0c06339a87a07451ee518543689df0aaea5752e12ddcfd1a1b946e4502d05de"></a>BIFK_MatrixTiltUpright&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a7de4e2e33ced5df40df09773b04f485f" name="a2a0c06339a87a07451ee518543689df0a7de4e2e33ced5df40df09773b04f485f"></a>BIFK_ClqEvaluate&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a156c287a917fa617916757d567bb2cac" name="a2a0c06339a87a07451ee518543689df0a156c287a917fa617916757d567bb2cac"></a>BIFK_ClqEvaluateLm&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0aa58468ff2923625d593020548427e6dd" name="a2a0c06339a87a07451ee518543689df0aa58468ff2923625d593020548427e6dd"></a>BIFK_ClqFit&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a01665fdc488af29f7d62062a62548213" name="a2a0c06339a87a07451ee518543689df0a01665fdc488af29f7d62062a62548213"></a>BIFK_LmLimit&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ab75f0b49e5c82736ab5005e0ffaed191" name="a2a0c06339a87a07451ee518543689df0ab75f0b49e5c82736ab5005e0ffaed191"></a>BIFK_LmCheck&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a12988c03d6694e253f8652617baa4908" name="a2a0c06339a87a07451ee518543689df0a12988c03d6694e253f8652617baa4908"></a>BIFK_Floor&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a195165292c329f8fdb72b37d56b652dc" name="a2a0c06339a87a07451ee518543689df0a195165292c329f8fdb72b37d56b652dc"></a>BIFK_Ceiling&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a96ff19f56a7c773198df36a65bd2f1a0" name="a2a0c06339a87a07451ee518543689df0a96ff19f56a7c773198df36a65bd2f1a0"></a>BIFK_Round&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a2ed30ce52b3edcc1d582153a3304397c" name="a2a0c06339a87a07451ee518543689df0a2ed30ce52b3edcc1d582153a3304397c"></a>BIFK_Truncate&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0aa45952f62c87b6c12ed571b82f006b09" name="a2a0c06339a87a07451ee518543689df0aa45952f62c87b6c12ed571b82f006b09"></a>BIFK_Abs&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ae004a861725a1d6d40a04f26fc3d6d90" name="a2a0c06339a87a07451ee518543689df0ae004a861725a1d6d40a04f26fc3d6d90"></a>BIFK_Maximum&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a15e9490b83f4391ac82883210d3f8fe1" name="a2a0c06339a87a07451ee518543689df0a15e9490b83f4391ac82883210d3f8fe1"></a>BIFK_Minimum&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a28af43e8a7acb17acfd1e29af6e78045" name="a2a0c06339a87a07451ee518543689df0a28af43e8a7acb17acfd1e29af6e78045"></a>BIFK_Modulo&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0aa5988c87fad8bccabae0229f73743273" name="a2a0c06339a87a07451ee518543689df0aa5988c87fad8bccabae0229f73743273"></a>BIFK_CurrentTime&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0aa2220cf0feeb3d2f36eb282d1dbca74f" name="a2a0c06339a87a07451ee518543689df0aa2220cf0feeb3d2f36eb282d1dbca74f"></a>BIFK_ScheduleCallback&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a2886fe00e972e3ebaaf3c94056d2d216" name="a2a0c06339a87a07451ee518543689df0a2886fe00e972e3ebaaf3c94056d2d216"></a>BIFK_DeferObjectUpdate&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a1cd9d9d0c9f656193ea628cc26faa531" name="a2a0c06339a87a07451ee518543689df0a1cd9d9d0c9f656193ea628cc26faa531"></a>BIFK_AddO&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ac83b270e3d83fd39bb21a5f31956ccb8" name="a2a0c06339a87a07451ee518543689df0ac83b270e3d83fd39bb21a5f31956ccb8"></a>BIFK_EnsureO&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a8a7498d74a5e45a533e965ed7acfeb43" name="a2a0c06339a87a07451ee518543689df0a8a7498d74a5e45a533e965ed7acfeb43"></a>BIFK_SetO&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a0afc6c42f9ae10801a3d28b367c597d3" name="a2a0c06339a87a07451ee518543689df0a0afc6c42f9ae10801a3d28b367c597d3"></a>BIFK_GetO&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a6da96030ed2588180e2b0f2b1e89ff1d" name="a2a0c06339a87a07451ee518543689df0a6da96030ed2588180e2b0f2b1e89ff1d"></a>BIFK_FindObject&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a56f08a47cf4855d8d87b51b731db5cd0" name="a2a0c06339a87a07451ee518543689df0a56f08a47cf4855d8d87b51b731db5cd0"></a>BIFK_FindObjects&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a887c4b2c60f058f821d9b27bf5a4c9a6" name="a2a0c06339a87a07451ee518543689df0a887c4b2c60f058f821d9b27bf5a4c9a6"></a>BIFK_FindNearestObject&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0afad82fa089ba8e70b51dd96b499f1b83" name="a2a0c06339a87a07451ee518543689df0afad82fa089ba8e70b51dd96b499f1b83"></a>BIFK_FindNearestObjects&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0af6548c303ccfca5150da93ccddba254d" name="a2a0c06339a87a07451ee518543689df0af6548c303ccfca5150da93ccddba254d"></a>BIFK_FindPlayerObject&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0abe5d14c0aeb309b29d20bf17e0353613" name="a2a0c06339a87a07451ee518543689df0abe5d14c0aeb309b29d20bf17e0353613"></a>BIFK_FindWorldObject&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a5b39b86b7771b8ad684ad7198225c553" name="a2a0c06339a87a07451ee518543689df0a5b39b86b7771b8ad684ad7198225c553"></a>BIFK_FindCameraObject&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a42412245f086ee10197fbc6c241c1ba3" name="a2a0c06339a87a07451ee518543689df0a42412245f086ee10197fbc6c241c1ba3"></a>BIFK_FindClassObjects&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0acc829c9b5bc420d3b48bb1ee0880f202" name="a2a0c06339a87a07451ee518543689df0acc829c9b5bc420d3b48bb1ee0880f202"></a>BIFK_FindObjectsInBoundingBox&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0aa46391645349df400e65947e7082a6ae" name="a2a0c06339a87a07451ee518543689df0aa46391645349df400e65947e7082a6ae"></a>BIFK_FindObjectsInBoundingSphere&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0aff79a34fe8ca6f4b62050d38f8313eff" name="a2a0c06339a87a07451ee518543689df0aff79a34fe8ca6f4b62050d38f8313eff"></a>BIFK_HitTestObjects&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a5fe4b8b7c44e5159dbf34da2a916b7a7" name="a2a0c06339a87a07451ee518543689df0a5fe4b8b7c44e5159dbf34da2a916b7a7"></a>BIFK_HitTestObjectsFirst&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ac849c560ee8d225cf7534b79a4357d7c" name="a2a0c06339a87a07451ee518543689df0ac849c560ee8d225cf7534b79a4357d7c"></a>BIFK_ConvertObjectPosition&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a6ae0b684bec9efa51f0f83649068f27e" name="a2a0c06339a87a07451ee518543689df0a6ae0b684bec9efa51f0f83649068f27e"></a>BIFK_ConvertObjectVector&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a0982dd5a671d15139a94e4d35ac27479" name="a2a0c06339a87a07451ee518543689df0a0982dd5a671d15139a94e4d35ac27479"></a>BIFK_ConvertObjectMatrix&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a6de7b98df7f5fa0cfdd99c5599a589f0" name="a2a0c06339a87a07451ee518543689df0a6de7b98df7f5fa0cfdd99c5599a589f0"></a>BIFK_NearClipCenter&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a773f195ba714e5fe9cd868a47bd0b492" name="a2a0c06339a87a07451ee518543689df0a773f195ba714e5fe9cd868a47bd0b492"></a>BIFK_StartSound&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a6eb1da4eee9e03d71b95c96aa4332857" name="a2a0c06339a87a07451ee518543689df0a6eb1da4eee9e03d71b95c96aa4332857"></a>BIFK_StopSound&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a42926d97d6a799fed501b304bae80dcd" name="a2a0c06339a87a07451ee518543689df0a42926d97d6a799fed501b304bae80dcd"></a>BIFK_StartRumble&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a0534a533d9a05bf3221bb64823784a86" name="a2a0c06339a87a07451ee518543689df0a0534a533d9a05bf3221bb64823784a86"></a>BIFK_EmitSmokeCloud&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a264510253a0f3397f3e59a2df8e8c27e" name="a2a0c06339a87a07451ee518543689df0a264510253a0f3397f3e59a2df8e8c27e"></a>BIFK_PredictAnimationEffect&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0a40539ddd3829e3dadedcd8a06d440f44" name="a2a0c06339a87a07451ee518543689df0a40539ddd3829e3dadedcd8a06d440f44"></a>BIFK_SetMusicReg&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a0c06339a87a07451ee518543689df0ab210981ccb71b0ab8c87618ffea54e7a" name="a2a0c06339a87a07451ee518543689df0ab210981ccb71b0ab8c87618ffea54e7a"></a>BIFK_Max&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00016">16</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00028">28</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
 
 </div>
 </div>
@@ -521,7 +780,7 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a641a272cb893254c073739aaefdd6907afc4b1ed3909ea0df844b0d668518fdcd" name="a641a272cb893254c073739aaefdd6907afc4b1ed3909ea0df844b0d668518fdcd"></a>CMPK_Max&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00045">45</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00015">15</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
 
 </div>
 </div>
@@ -537,7 +796,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Kind of Uniform Float Operation (?) </p>
+<p>Uniform Float Operation Kind. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aeb8756f210900f8a151c0fecec21931aa01c4443edd5eef2b065f9683e52803d6" name="aeb8756f210900f8a151c0fecec21931aa01c4443edd5eef2b065f9683e52803d6"></a>UFOK_Sqrt&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aeb8756f210900f8a151c0fecec21931aa6e5c85c75a5b1db3f291b33f18ebd040" name="aeb8756f210900f8a151c0fecec21931aa6e5c85c75a5b1db3f291b33f18ebd040"></a>UFOK_Sin&#160;</td><td class="fielddoc"></td></tr>
@@ -550,7 +809,7 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="aeb8756f210900f8a151c0fecec21931aa945f836b3efab5e8cad07fcca1a7a0bf" name="aeb8756f210900f8a151c0fecec21931aa945f836b3efab5e8cad07fcca1a7a0bf"></a>UFOK_Max&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00057">57</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8h_source.html#l00162">162</a> of file <a class="el" href="bif_8h_source.html">bif.h</a>.</p>
 
 </div>
 </div>
@@ -677,7 +936,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00272">272</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00426">426</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -747,7 +1006,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00363">363</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00517">517</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -851,7 +1110,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00267">267</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00421">421</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -887,7 +1146,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00277">277</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00431">431</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -1331,7 +1590,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00257">257</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00411">411</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -1503,7 +1762,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00368">368</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00522">522</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -1539,7 +1798,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00068">68</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00222">222</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -1677,7 +1936,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00407">407</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00561">561</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -1951,7 +2210,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00393">393</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00547">547</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -1987,7 +2246,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00400">400</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00554">554</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2091,7 +2350,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00054">54</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00208">208</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2127,7 +2386,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00059">59</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00213">213</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2197,7 +2456,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00378">378</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00532">532</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2341,7 +2600,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00035">35</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00189">189</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2377,7 +2636,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00073">73</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00227">227</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2413,7 +2672,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00122">122</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00276">276</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2449,7 +2708,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00087">87</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00241">241</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2485,7 +2744,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00094">94</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00248">248</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2521,7 +2780,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00143">143</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00297">297</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2557,7 +2816,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00129">129</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00283">283</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2593,7 +2852,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00115">115</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00269">269</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2663,7 +2922,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00171">171</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00325">325</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2699,7 +2958,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00150">150</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00304">304</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2735,7 +2994,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00164">164</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00318">318</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2771,7 +3030,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00080">80</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00234">234</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2807,7 +3066,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00157">157</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00311">311</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2843,7 +3102,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00178">178</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00332">332</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2879,7 +3138,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00136">136</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00290">290</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2915,7 +3174,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00101">101</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00255">255</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2951,7 +3210,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00108">108</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00262">262</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -2987,7 +3246,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00044">44</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00198">198</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3023,7 +3282,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00049">49</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00203">203</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3093,7 +3352,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00212">212</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00366">366</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3809,7 +4068,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00187">187</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00341">341</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3953,7 +4212,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00014">14</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00168">168</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3989,7 +4248,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00021">21</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00175">175</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4025,7 +4284,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00028">28</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00182">182</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4061,7 +4320,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00282">282</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00436">436</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4375,7 +4634,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00373">373</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00527">527</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4411,7 +4670,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00252">252</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00406">406</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4481,7 +4740,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00247">247</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00401">401</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4653,7 +4912,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00262">262</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00416">416</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -5141,6 +5400,10 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Table of built-in functions. </p>
+
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00031">31</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>

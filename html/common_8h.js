@@ -1,6 +1,7 @@
 var common_8h =
 [
     [ "RGBA", "structRGBA.html", "structRGBA" ],
+    [ "ABS", "common_8h.html#a996f7be338ccb40d1a2a5abc1ad61759", null ],
     [ "ALIGN_SECTION", "common_8h.html#a8ce93483ed704408392fe94928475ced", null ],
     [ "JUNK_ADDIU", "common_8h.html#a27e7b5104f011f1f89f57f8903f348af", null ],
     [ "JUNK_NOP", "common_8h.html#a0bb7e7d13eb9e011e45c05fad9207f68", null ],

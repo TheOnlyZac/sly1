@@ -83,7 +83,7 @@ var searchData=
   ['unknown3_80',['unknown3',['../structOPTDAT.html#aae355d71bbd68c27b2afa1f48ee7802e',1,'OPTDAT']]],
   ['unknown4_81',['unknown4',['../structOPTDAT.html#a49f11a9ee5619fb765e993bc01c3a832',1,'OPTDAT']]],
   ['unknown5_82',['unknown5',['../structOPTDAT.html#a718a5ad3b3014438da042cbdf69a7f55',1,'OPTDAT']]],
-  ['unlocked_5fcutscenes_83',['unlocked_cutscenes',['../structGS.html#a954978dba399d81d3e00760bf76dfe25',1,'GS']]],
+  ['unlocked_5fcutscenes_83',['unlocked_cutscenes',['../structGS.html#a5979e87959463d0d5fd882eb95fc3060',1,'GS']]],
   ['uon_84',['uOn',['../structBLOT.html#aa58e02d001d9e52f9bece7cd717afe97',1,'BLOT']]],
   ['uouter_85',['uOuter',['../structWEKI.html#a7e93b4378415f6125377004b47030a77',1,'WEKI']]],
   ['upanprogress_86',['uPanProgress',['../structCM.html#a6de3eb85695c6f1ae97b66b46de1bd77',1,'CM']]],

@@ -104,31 +104,31 @@ $(document).ready(function(){initNavTree('memory_8c_source.html',''); initResiza
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;<a class="code" href="thread_8h.html">thread.h</a>&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="memset_8h.html">sce/memset.h</a>&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="memory_8c.html#a5b6a28f28eb7e3c4111d495685a6f9d4">s_pvGlobalMin</a>;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="memory_8c.html#a7236b7521eb7689c4455496de3480e63">s_pvGlobalMac</a>;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="memory_8c.html#a0c5cc3bea4937128c40fdf1a711a3c17">s_pvWorldMin</a>;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="memory_8c.html#a2fd03feacdbf25f5588b2f51ed383d2c">s_pvWorldMac</a>;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="memory_8c.html#a9aee6ac08e679750cc6be33046bdc4b5">s_pvStackMin</a>;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="memory_8c.html#a8dc8a010f4b703949e69f36fcb7b5d2b">s_pvStackMac</a>;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">extern</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="memory_8c.html#ae73421b0e49c9eb6458a2d2248561b83">s_pvGlobalMin</a>;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">extern</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="memory_8c.html#a6eefa12f2e21e5fcc617a3f039f9caca">s_pvGlobalMac</a>;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">extern</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="memory_8c.html#a4225cbff329102d926fa28fee665387a">s_pvWorldMin</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">extern</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="memory_8c.html#a05aedee37be0d009285e212b83f1b693">s_pvWorldMac</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">extern</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="memory_8c.html#a9a4b09b65d4d4ced44e1255e7d747701">s_pvStackMin</a>;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">extern</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="memory_8c.html#a283c46888bb29fec382f53025fbef2a4">s_pvStackMac</a>;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">extern</span> <a class="code hl_struct" href="structCRITSECT.html">CRITSECT</a> <a class="code hl_variable" href="memory_8c.html#a8ae568b820dbb4034d509a00b021355b">s_critsectStack</a>;</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="memory_8c.html#a706b6db8f423c429a1f7b8706002b1de">s_ipvStackCur</a>;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="memory_8c.html#ac8a375958ab0acacc5bc10e68cc012d9">s_apvStackMin</a>[];</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">extern</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="memory_8c.html#a5b3731745fea91a320facc152a8d6476">s_apvStackMin</a>[50];</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="memory_8c.html#ae025d91f43b1f8ea22c7425219074309">g_pvHeapMin</a>;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="memory_8c.html#ab85215d1b55139a51efb3b70795f6cdb">g_pvHeapMax</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">extern</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="memory_8c.html#a7125a35236e9b3a4bcf5b08e58906b26">g_pvHeapMin</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">extern</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="memory_8c.html#a92fc9e06192799dd6378cc9aab68aefa">g_pvHeapMax</a>;</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="memory_8c.html#a800cd99209cd4b2f024580b7e9cf65b5">D_0064C70F</a>;</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="memory_8c.html#a11bb27f1e17021f99f37b1df3b7db63e">   22</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="memory_8c.html#a11bb27f1e17021f99f37b1df3b7db63e">StartupMemMgr</a>()</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">int</span> end = (int)&amp;<a class="code hl_variable" href="memory_8c.html#a800cd99209cd4b2f024580b7e9cf65b5">D_0064C70F</a> &amp; ~0x0f;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">void</span> *end = (<span class="keywordtype">void</span> *)((<span class="keywordtype">int</span>)&amp;<a class="code hl_variable" href="memory_8c.html#a800cd99209cd4b2f024580b7e9cf65b5">D_0064C70F</a> &amp; ~0x0f);</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_variable" href="memory_8c.html#ae025d91f43b1f8ea22c7425219074309">g_pvHeapMin</a> = end;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <a class="code hl_variable" href="memory_8c.html#ab85215d1b55139a51efb3b70795f6cdb">g_pvHeapMax</a> = 0x02000000;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_variable" href="memory_8c.html#a7125a35236e9b3a4bcf5b08e58906b26">g_pvHeapMin</a> = end;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <a class="code hl_variable" href="memory_8c.html#a92fc9e06192799dd6378cc9aab68aefa">g_pvHeapMax</a> = (<span class="keywordtype">void</span> *)0x02000000;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_variable" href="memory_8c.html#a5b6a28f28eb7e3c4111d495685a6f9d4">s_pvGlobalMin</a> = <a class="code hl_variable" href="memory_8c.html#a7236b7521eb7689c4455496de3480e63">s_pvGlobalMac</a> = <a class="code hl_variable" href="memory_8c.html#a0c5cc3bea4937128c40fdf1a711a3c17">s_pvWorldMin</a> = <a class="code hl_variable" href="memory_8c.html#a2fd03feacdbf25f5588b2f51ed383d2c">s_pvWorldMac</a> = end;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_variable" href="memory_8c.html#ae73421b0e49c9eb6458a2d2248561b83">s_pvGlobalMin</a> = <a class="code hl_variable" href="memory_8c.html#a6eefa12f2e21e5fcc617a3f039f9caca">s_pvGlobalMac</a> = <a class="code hl_variable" href="memory_8c.html#a4225cbff329102d926fa28fee665387a">s_pvWorldMin</a> = <a class="code hl_variable" href="memory_8c.html#a05aedee37be0d009285e212b83f1b693">s_pvWorldMac</a> = end;</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_variable" href="memory_8c.html#a9aee6ac08e679750cc6be33046bdc4b5">s_pvStackMin</a> = <a class="code hl_variable" href="memory_8c.html#a8dc8a010f4b703949e69f36fcb7b5d2b">s_pvStackMac</a> = 0x02000000;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_variable" href="memory_8c.html#a9a4b09b65d4d4ced44e1255e7d747701">s_pvStackMin</a> = <a class="code hl_variable" href="memory_8c.html#a283c46888bb29fec382f53025fbef2a4">s_pvStackMac</a> = (<span class="keywordtype">void</span> *)0x02000000;</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <a class="code hl_variable" href="memory_8c.html#a706b6db8f423c429a1f7b8706002b1de">s_ipvStackCur</a> = -1;</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_function" href="thread_8c.html#a9a58dd7c4bd35d8bf7191bd21ea90759">InitCritSect</a>(&amp;<a class="code hl_variable" href="memory_8c.html#a8ae568b820dbb4034d509a00b021355b">s_critsectStack</a>);</div>
@@ -143,9 +143,9 @@ $(document).ready(function(){initNavTree('memory_8c_source.html',''); initResiza
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> *pv = (<span class="keywordtype">void</span> *)<a class="code hl_variable" href="memory_8c.html#a7236b7521eb7689c4455496de3480e63">s_pvGlobalMac</a>;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_variable" href="memory_8c.html#a7236b7521eb7689c4455496de3480e63">s_pvGlobalMac</a> += (cb + 0x0f) &amp; -0x10;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_variable" href="memory_8c.html#a0c5cc3bea4937128c40fdf1a711a3c17">s_pvWorldMin</a> = <a class="code hl_variable" href="memory_8c.html#a2fd03feacdbf25f5588b2f51ed383d2c">s_pvWorldMac</a> = <a class="code hl_variable" href="memory_8c.html#a7236b7521eb7689c4455496de3480e63">s_pvGlobalMac</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> *pv = (<span class="keywordtype">void</span> *)<a class="code hl_variable" href="memory_8c.html#a6eefa12f2e21e5fcc617a3f039f9caca">s_pvGlobalMac</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    (<span class="keywordtype">byte</span> *)<a class="code hl_variable" href="memory_8c.html#a6eefa12f2e21e5fcc617a3f039f9caca">s_pvGlobalMac</a> += (cb + 0x0f) &amp; -0x10;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_variable" href="memory_8c.html#a4225cbff329102d926fa28fee665387a">s_pvWorldMin</a> = <a class="code hl_variable" href="memory_8c.html#a05aedee37be0d009285e212b83f1b693">s_pvWorldMac</a> = <a class="code hl_variable" href="memory_8c.html#a6eefa12f2e21e5fcc617a3f039f9caca">s_pvGlobalMac</a>;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">return</span> pv;</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
 </div>
@@ -175,8 +175,8 @@ $(document).ready(function(){initNavTree('memory_8c_source.html',''); initResiza
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <a class="code hl_function" href="memory_8c.html#ab17bfa972cec59b23082ef10706726a7">CheckForOutOfMemory</a>();</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">void</span> *pvSw = (<span class="keywordtype">void</span> *)<a class="code hl_variable" href="memory_8c.html#a2fd03feacdbf25f5588b2f51ed383d2c">s_pvWorldMac</a>;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <a class="code hl_variable" href="memory_8c.html#a2fd03feacdbf25f5588b2f51ed383d2c">s_pvWorldMac</a> += (cb + 0x0f) &amp; -0x10;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">void</span> *pvSw = (<span class="keywordtype">void</span> *)<a class="code hl_variable" href="memory_8c.html#a05aedee37be0d009285e212b83f1b693">s_pvWorldMac</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    (<span class="keywordtype">byte</span> *)<a class="code hl_variable" href="memory_8c.html#a05aedee37be0d009285e212b83f1b693">s_pvWorldMac</a> += (cb + 0x0f) &amp; -0x10;</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordflow">return</span> pvSw;</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>}</div>
 </div>
@@ -184,7 +184,7 @@ $(document).ready(function(){initNavTree('memory_8c_source.html',''); initResiza
 <div class="foldopen" id="foldopen00080" data-start="{" data-end="}">
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="memory_8c.html#ad10010d376784ff5fad2f3acf0e27018">   80</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="memory_8c.html#ad10010d376784ff5fad2f3acf0e27018">FreeSw</a>()</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>{</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_variable" href="memory_8c.html#a2fd03feacdbf25f5588b2f51ed383d2c">s_pvWorldMac</a> = <a class="code hl_variable" href="memory_8c.html#a0c5cc3bea4937128c40fdf1a711a3c17">s_pvWorldMin</a>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_variable" href="memory_8c.html#a05aedee37be0d009285e212b83f1b693">s_pvWorldMac</a> = <a class="code hl_variable" href="memory_8c.html#a4225cbff329102d926fa28fee665387a">s_pvWorldMin</a>;</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>}</div>
 </div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
@@ -218,7 +218,7 @@ $(document).ready(function(){initNavTree('memory_8c_source.html',''); initResiza
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="memory_8c.html#ad8c6ee65de7e81b18c8797c4a739ff39">  107</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="memory_8c.html#ad8c6ee65de7e81b18c8797c4a739ff39">InitStackImpl</a>()</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>{</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <a class="code hl_function" href="thread_8c.html#a733b7d2f598a5e2dde6107d5f6885796">EnterCritSect</a>(&amp;<a class="code hl_variable" href="memory_8c.html#a8ae568b820dbb4034d509a00b021355b">s_critsectStack</a>);</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <a class="code hl_variable" href="memory_8c.html#ac8a375958ab0acacc5bc10e68cc012d9">s_apvStackMin</a>[++<a class="code hl_variable" href="memory_8c.html#a706b6db8f423c429a1f7b8706002b1de">s_ipvStackCur</a>] = <a class="code hl_variable" href="memory_8c.html#a9aee6ac08e679750cc6be33046bdc4b5">s_pvStackMin</a>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <a class="code hl_variable" href="memory_8c.html#a5b3731745fea91a320facc152a8d6476">s_apvStackMin</a>[++<a class="code hl_variable" href="memory_8c.html#a706b6db8f423c429a1f7b8706002b1de">s_ipvStackCur</a>] = <a class="code hl_variable" href="memory_8c.html#a9a4b09b65d4d4ced44e1255e7d747701">s_pvStackMin</a>;</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>}</div>
 </div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
@@ -231,8 +231,8 @@ $(document).ready(function(){initNavTree('memory_8c_source.html',''); initResiza
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    }</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <a class="code hl_function" href="memory_8c.html#ab17bfa972cec59b23082ef10706726a7">CheckForOutOfMemory</a>();</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <a class="code hl_variable" href="memory_8c.html#a9aee6ac08e679750cc6be33046bdc4b5">s_pvStackMin</a> -= (cb + 0x0f) &amp; -0x10;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordflow">return</span> (<span class="keywordtype">void</span> *)<a class="code hl_variable" href="memory_8c.html#a9aee6ac08e679750cc6be33046bdc4b5">s_pvStackMin</a>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    (<span class="keywordtype">byte</span> *)<a class="code hl_variable" href="memory_8c.html#a9a4b09b65d4d4ced44e1255e7d747701">s_pvStackMin</a> -= (cb + 0x0f) &amp; -0x10;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordflow">return</span> (<span class="keywordtype">void</span> *)<a class="code hl_variable" href="memory_8c.html#a9a4b09b65d4d4ced44e1255e7d747701">s_pvStackMin</a>;</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>}</div>
 </div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
@@ -252,7 +252,7 @@ $(document).ready(function(){initNavTree('memory_8c_source.html',''); initResiza
 <div class="foldopen" id="foldopen00136" data-start="{" data-end="}">
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="memory_8c.html#ad2af9373fb312125f9b22b9267e109a5">  136</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="memory_8c.html#ad2af9373fb312125f9b22b9267e109a5">FreeStackImpl</a>()</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>{</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <a class="code hl_variable" href="memory_8c.html#a9aee6ac08e679750cc6be33046bdc4b5">s_pvStackMin</a> = <a class="code hl_variable" href="memory_8c.html#ac8a375958ab0acacc5bc10e68cc012d9">s_apvStackMin</a>[<a class="code hl_variable" href="memory_8c.html#a706b6db8f423c429a1f7b8706002b1de">s_ipvStackCur</a>--];</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <a class="code hl_variable" href="memory_8c.html#a9a4b09b65d4d4ced44e1255e7d747701">s_pvStackMin</a> = <a class="code hl_variable" href="memory_8c.html#a5b3731745fea91a320facc152a8d6476">s_apvStackMin</a>[<a class="code hl_variable" href="memory_8c.html#a706b6db8f423c429a1f7b8706002b1de">s_ipvStackCur</a>--];</div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <a class="code hl_function" href="thread_8c.html#ae971797adfaa0b33aea3607c30b79070">LeaveCritSect</a>(&amp;<a class="code hl_variable" href="memory_8c.html#a8ae568b820dbb4034d509a00b021355b">s_critsectStack</a>);</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>}</div>
 </div>
@@ -295,129 +295,121 @@ $(document).ready(function(){initNavTree('memory_8c_source.html',''); initResiza
 <div class="foldopen" id="foldopen00167" data-start="{" data-end="}">
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="memory_8c.html#a40fcac569aa89682d36d6cab5952b697">  167</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="memory_8c.html#a40fcac569aa89682d36d6cab5952b697">CopyAqw</a>(<span class="keywordtype">void</span> *pvDst, <span class="keywordtype">void</span> *pvSrc, <span class="keywordtype">int</span> cqw)</div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>{</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    qword *dst = (qword *)pvDst;</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    qword *src = (qword *)pvSrc;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    qword *pqwdst = (qword *)pvDst;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    qword *pqwsrc = (qword *)pvSrc;</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keywordtype">int</span> remainder = cqw &amp; 0x03;</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordtype">int</span> nQWords = cqw - remainder;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keywordtype">int</span> cRemain = cqw &amp; 0x03;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordtype">int</span> cBulk = cqw - cRemain;</div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordtype">int</span> processed = 0;</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keywordflow">while</span> (processed &lt; remainder)</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keywordflow">for</span> (; i &lt; cRemain; i++)</div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    {</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        *dst++ = *src++;</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        processed++;</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    }</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    processed = 0;</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keywordflow">while</span> (processed &lt; nQWords)</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    {</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        qword qw0 = src[0];</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        qword qw1 = src[1];</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        qword qw2 = src[2];</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        qword qw3 = src[3];</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        src += 4;</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        dst[0] = qw0;</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        dst[1] = qw1;</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        dst[2] = qw2;</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        dst[3] = qw3;</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        dst += 4;</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        processed += 4;</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    }</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>}</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        *pqwdst++ = *pqwsrc++;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    }</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    i = 0;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keywordflow">for</span> (; i &lt; cBulk; i += 4)</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    {</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        qword qw0 = pqwsrc[0];</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        qword qw1 = pqwsrc[1];</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        qword qw2 = pqwsrc[2];</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        qword qw3 = pqwsrc[3];</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        pqwsrc += 4;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        pqwdst[0] = qw0;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        pqwdst[1] = qw1;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        pqwdst[2] = qw2;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        pqwdst[3] = qw3;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        pqwdst += 4;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    }</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>}</div>
 </div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
-<div class="foldopen" id="foldopen00201" data-start="{" data-end="}">
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="memory_8c.html#a3e78f7cf55ae71512308bf6529e52a0a">  201</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="memory_8c.html#a3e78f7cf55ae71512308bf6529e52a0a">CopyAb</a>(<span class="keywordtype">void</span> *pvDst, <span class="keywordtype">void</span> *pvSrc, <a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> cb)</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>{</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="comment">// Do a byte copy, if not word aligned.</span></div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keywordflow">if</span> (((<a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a>)pvDst | (<a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a>)pvSrc | cb) &amp; 0x03)</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    {</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        <a class="code hl_typedef" href="types_8h.html#a27c902d5ca78afa82d5ed75554d5cedc">uchar</a> *dst = (<a class="code hl_typedef" href="types_8h.html#a27c902d5ca78afa82d5ed75554d5cedc">uchar</a> *)pvDst;</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        <a class="code hl_typedef" href="types_8h.html#a27c902d5ca78afa82d5ed75554d5cedc">uchar</a> *src = (<a class="code hl_typedef" href="types_8h.html#a27c902d5ca78afa82d5ed75554d5cedc">uchar</a> *)pvSrc;</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> i = 0; i &lt; cb; i++)</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        {</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>            *dst++ = *src++;</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        }</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="foldopen" id="foldopen00198" data-start="{" data-end="}">
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="memory_8c.html#a3e78f7cf55ae71512308bf6529e52a0a">  198</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="memory_8c.html#a3e78f7cf55ae71512308bf6529e52a0a">CopyAb</a>(<span class="keywordtype">void</span> *pvDst, <span class="keywordtype">void</span> *pvSrc, <a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> cb)</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>{</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="comment">// Do a byte copy, if not word aligned.</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordflow">if</span> (((<a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a>)pvDst | (<a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a>)pvSrc | cb) &amp; 0x03)</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    {</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        <a class="code hl_typedef" href="types_8h.html#a27c902d5ca78afa82d5ed75554d5cedc">uchar</a> *pbDst = (<a class="code hl_typedef" href="types_8h.html#a27c902d5ca78afa82d5ed75554d5cedc">uchar</a> *)pvDst;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        <a class="code hl_typedef" href="types_8h.html#a27c902d5ca78afa82d5ed75554d5cedc">uchar</a> *pbSrc = (<a class="code hl_typedef" href="types_8h.html#a27c902d5ca78afa82d5ed75554d5cedc">uchar</a> *)pvSrc;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> i = 0; i &lt; cb; i++)</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>            *pbDst++ = *pbSrc++;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        }</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    }</div>
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    }</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="comment">// Copy 4 uints at a time, if aligned properly.</span></div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keywordflow">if</span> (((<a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a>)pvDst | (<a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a>)pvSrc | cb) &amp; 0x0f)</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    {</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> *dst = (<a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> *)pvDst;</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> *src = (<a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> *)pvSrc;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="comment">// Copy 4 uints at a time, if aligned properly.</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="keywordflow">if</span> (((<a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a>)pvDst | (<a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a>)pvSrc | cb) &amp; 0x0f)</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    {</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        <a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> *puDst = (<a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> *)pvDst;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> *puSrc = (<a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> *)pvSrc;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <span class="keywordtype">int</span> cRemain = (cb / <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a>)) &amp; 0x03;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <span class="keywordtype">int</span> cBluk = (cb / <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a>)) - cRemain;</div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        <span class="keywordtype">int</span> remainder = (cb &gt;&gt; 2) &amp; 0x03;</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        <span class="keywordtype">int</span> nWords = (cb &gt;&gt; 2) - remainder;</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        <span class="keywordtype">int</span> processed = 0;</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        <span class="keywordflow">while</span> (processed &lt; remainder)</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        {</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>            *dst++ = *src++;</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>            processed++;</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        }</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        <span class="comment">// TODO: This part might be possible to clean up,</span></div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>        <span class="comment">// but I wasn&#39;t able to. -545u</span></div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        processed = 0;</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        <span class="keywordflow">while</span> (processed &lt; nWords)</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        {</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>            <a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> w0 = src[0];</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>            <a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> w1 = src[1];</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>            <a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> w2 = src[2];</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>            <a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> w3 = src[3];</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>            src += 4;</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>            dst[0] = w0;</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>            dst[1] = w1;</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>            dst[2] = w2;</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>            dst[3] = w3;</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>            dst += 4;</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>            processed += 4;</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        }</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    }</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="comment">// Use CopyAqw, if fully 16-byte aligned.</span></div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <a class="code hl_function" href="memory_8c.html#a40fcac569aa89682d36d6cab5952b697">CopyAqw</a>(pvDst, pvSrc, cb &gt;&gt; 4);</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>}</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        <span class="keywordflow">for</span> (; i &lt; cRemain; i++)</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        {</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>            *puDst++ = *puSrc++;</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        }</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        i = 0;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        <span class="keywordflow">for</span> (; i &lt; cBluk; i += 4)</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        {</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>            <a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> w0 = puSrc[0];</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>            <a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> w1 = puSrc[1];</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>            <a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> w2 = puSrc[2];</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>            <a class="code hl_typedef" href="types_8h.html#a4f5fce8c1ef282264f9214809524d836">uint</a> w3 = puSrc[3];</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>            puSrc += 4;</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>            puDst[0] = w0;</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>            puDst[1] = w1;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>            puDst[2] = w2;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>            puDst[3] = w3;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>            puDst += 4;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        }</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    }</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="comment">// Use CopyAqw, if fully 16-byte aligned.</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <a class="code hl_function" href="memory_8c.html#a40fcac569aa89682d36d6cab5952b697">CopyAqw</a>(pvDst, pvSrc, cb &gt;&gt; 4);</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>}</div>
 </div>
 <div class="ttc" id="acommon_8h_html_a5ccf06cdd1d39aebace9e697214b4c54"><div class="ttname"><a href="common_8h.html#a5ccf06cdd1d39aebace9e697214b4c54">JUNK_WORD</a></div><div class="ttdeci">#define JUNK_WORD(val)</div><div class="ttdoc">Inserts a four-byte word followed by four bytes of 0x00.</div><div class="ttdef"><b>Definition</b> <a href="common_8h_source.html#l00054">common.h:54</a></div></div>
+<div class="ttc" id="amemory_8c_html_a05aedee37be0d009285e212b83f1b693"><div class="ttname"><a href="memory_8c.html#a05aedee37be0d009285e212b83f1b693">s_pvWorldMac</a></div><div class="ttdeci">void * s_pvWorldMac</div></div>
 <div class="ttc" id="amemory_8c_html_a088f1a1078353363844adf042936370a"><div class="ttname"><a href="memory_8c.html#a088f1a1078353363844adf042936370a">PvAllocStackClearImpl</a></div><div class="ttdeci">void * PvAllocStackClearImpl(int cb)</div><div class="ttdoc">Allocates memory on the stack and clears it.</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00125">memory.c:125</a></div></div>
 <div class="ttc" id="amemory_8c_html_a0bb7e7d13eb9e011e45c05fad9207f68"><div class="ttname"><a href="memory_8c.html#a0bb7e7d13eb9e011e45c05fad9207f68">JUNK_NOP</a></div><div class="ttdeci">JUNK_NOP()</div></div>
-<div class="ttc" id="amemory_8c_html_a0c5cc3bea4937128c40fdf1a711a3c17"><div class="ttname"><a href="memory_8c.html#a0c5cc3bea4937128c40fdf1a711a3c17">s_pvWorldMin</a></div><div class="ttdeci">int s_pvWorldMin</div></div>
 <div class="ttc" id="amemory_8c_html_a11bb27f1e17021f99f37b1df3b7db63e"><div class="ttname"><a href="memory_8c.html#a11bb27f1e17021f99f37b1df3b7db63e">StartupMemMgr</a></div><div class="ttdeci">void StartupMemMgr()</div><div class="ttdoc">Starts up the memory manager system.</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00022">memory.c:22</a></div></div>
 <div class="ttc" id="amemory_8c_html_a14f821e7da3f2a17b6b0347f3d31e947"><div class="ttname"><a href="memory_8c.html#a14f821e7da3f2a17b6b0347f3d31e947">free</a></div><div class="ttdeci">void free(void *pv)</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00152">memory.c:152</a></div></div>
+<div class="ttc" id="amemory_8c_html_a283c46888bb29fec382f53025fbef2a4"><div class="ttname"><a href="memory_8c.html#a283c46888bb29fec382f53025fbef2a4">s_pvStackMac</a></div><div class="ttdeci">void * s_pvStackMac</div></div>
 <div class="ttc" id="amemory_8c_html_a2a546b8bb91eb193072d455a62da8c61"><div class="ttname"><a href="memory_8c.html#a2a546b8bb91eb193072d455a62da8c61">PvAllocSwCopyImpl</a></div><div class="ttdeci">void * PvAllocSwCopyImpl(int cb, void *pvBase)</div><div class="ttdoc">Allocates memory for an SW and copies data to it.</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00085">memory.c:85</a></div></div>
-<div class="ttc" id="amemory_8c_html_a2fd03feacdbf25f5588b2f51ed383d2c"><div class="ttname"><a href="memory_8c.html#a2fd03feacdbf25f5588b2f51ed383d2c">s_pvWorldMac</a></div><div class="ttdeci">int s_pvWorldMac</div></div>
 <div class="ttc" id="amemory_8c_html_a31315db358894bd4e2f33b6a1a9b9db4"><div class="ttname"><a href="memory_8c.html#a31315db358894bd4e2f33b6a1a9b9db4">PvAllocStackImpl</a></div><div class="ttdeci">void * PvAllocStackImpl(int cb)</div><div class="ttdoc">Allocates memory on the stack.</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00113">memory.c:113</a></div></div>
-<div class="ttc" id="amemory_8c_html_a3e78f7cf55ae71512308bf6529e52a0a"><div class="ttname"><a href="memory_8c.html#a3e78f7cf55ae71512308bf6529e52a0a">CopyAb</a></div><div class="ttdeci">void CopyAb(void *pvDst, void *pvSrc, uint cb)</div><div class="ttdoc">Copies an array of bytes.</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00201">memory.c:201</a></div></div>
+<div class="ttc" id="amemory_8c_html_a3e78f7cf55ae71512308bf6529e52a0a"><div class="ttname"><a href="memory_8c.html#a3e78f7cf55ae71512308bf6529e52a0a">CopyAb</a></div><div class="ttdeci">void CopyAb(void *pvDst, void *pvSrc, uint cb)</div><div class="ttdoc">Copies an array of bytes.</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00198">memory.c:198</a></div></div>
 <div class="ttc" id="amemory_8c_html_a40fcac569aa89682d36d6cab5952b697"><div class="ttname"><a href="memory_8c.html#a40fcac569aa89682d36d6cab5952b697">CopyAqw</a></div><div class="ttdeci">void CopyAqw(void *pvDst, void *pvSrc, int cqw)</div><div class="ttdoc">Copies an array of quadwords (16-byte blocks).</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00167">memory.c:167</a></div></div>
+<div class="ttc" id="amemory_8c_html_a4225cbff329102d926fa28fee665387a"><div class="ttname"><a href="memory_8c.html#a4225cbff329102d926fa28fee665387a">s_pvWorldMin</a></div><div class="ttdeci">void * s_pvWorldMin</div></div>
 <div class="ttc" id="amemory_8c_html_a4b59e021d8430d7cf419bef5ce884097"><div class="ttname"><a href="memory_8c.html#a4b59e021d8430d7cf419bef5ce884097">__builtin_delete</a></div><div class="ttdeci">void __builtin_delete()</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00162">memory.c:162</a></div></div>
 <div class="ttc" id="amemory_8c_html_a4ed78c1fcc4de2d7e7332b8caaaedbdb"><div class="ttname"><a href="memory_8c.html#a4ed78c1fcc4de2d7e7332b8caaaedbdb">PvAllocSwClearImpl</a></div><div class="ttdeci">void * PvAllocSwClearImpl(int cb)</div><div class="ttdoc">Allocates memory for an SW and clears it.</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00096">memory.c:96</a></div></div>
-<div class="ttc" id="amemory_8c_html_a5b6a28f28eb7e3c4111d495685a6f9d4"><div class="ttname"><a href="memory_8c.html#a5b6a28f28eb7e3c4111d495685a6f9d4">s_pvGlobalMin</a></div><div class="ttdeci">int s_pvGlobalMin</div></div>
+<div class="ttc" id="amemory_8c_html_a5b3731745fea91a320facc152a8d6476"><div class="ttname"><a href="memory_8c.html#a5b3731745fea91a320facc152a8d6476">s_apvStackMin</a></div><div class="ttdeci">void * s_apvStackMin[50]</div></div>
 <div class="ttc" id="amemory_8c_html_a64beda5518ae95c09e131b28101ef986"><div class="ttname"><a href="memory_8c.html#a64beda5518ae95c09e131b28101ef986">__builtin_new</a></div><div class="ttdeci">void * __builtin_new(unsigned int cb)</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00157">memory.c:157</a></div></div>
+<div class="ttc" id="amemory_8c_html_a6eefa12f2e21e5fcc617a3f039f9caca"><div class="ttname"><a href="memory_8c.html#a6eefa12f2e21e5fcc617a3f039f9caca">s_pvGlobalMac</a></div><div class="ttdeci">void * s_pvGlobalMac</div></div>
 <div class="ttc" id="amemory_8c_html_a706b6db8f423c429a1f7b8706002b1de"><div class="ttname"><a href="memory_8c.html#a706b6db8f423c429a1f7b8706002b1de">s_ipvStackCur</a></div><div class="ttdeci">int s_ipvStackCur</div></div>
-<div class="ttc" id="amemory_8c_html_a7236b7521eb7689c4455496de3480e63"><div class="ttname"><a href="memory_8c.html#a7236b7521eb7689c4455496de3480e63">s_pvGlobalMac</a></div><div class="ttdeci">int s_pvGlobalMac</div></div>
+<div class="ttc" id="amemory_8c_html_a7125a35236e9b3a4bcf5b08e58906b26"><div class="ttname"><a href="memory_8c.html#a7125a35236e9b3a4bcf5b08e58906b26">g_pvHeapMin</a></div><div class="ttdeci">void * g_pvHeapMin</div></div>
 <div class="ttc" id="amemory_8c_html_a800cd99209cd4b2f024580b7e9cf65b5"><div class="ttname"><a href="memory_8c.html#a800cd99209cd4b2f024580b7e9cf65b5">D_0064C70F</a></div><div class="ttdeci">int D_0064C70F</div></div>
 <div class="ttc" id="amemory_8c_html_a8ae568b820dbb4034d509a00b021355b"><div class="ttname"><a href="memory_8c.html#a8ae568b820dbb4034d509a00b021355b">s_critsectStack</a></div><div class="ttdeci">CRITSECT s_critsectStack</div></div>
-<div class="ttc" id="amemory_8c_html_a8dc8a010f4b703949e69f36fcb7b5d2b"><div class="ttname"><a href="memory_8c.html#a8dc8a010f4b703949e69f36fcb7b5d2b">s_pvStackMac</a></div><div class="ttdeci">int s_pvStackMac</div></div>
-<div class="ttc" id="amemory_8c_html_a9aee6ac08e679750cc6be33046bdc4b5"><div class="ttname"><a href="memory_8c.html#a9aee6ac08e679750cc6be33046bdc4b5">s_pvStackMin</a></div><div class="ttdeci">int s_pvStackMin</div></div>
+<div class="ttc" id="amemory_8c_html_a92fc9e06192799dd6378cc9aab68aefa"><div class="ttname"><a href="memory_8c.html#a92fc9e06192799dd6378cc9aab68aefa">g_pvHeapMax</a></div><div class="ttdeci">void * g_pvHeapMax</div></div>
+<div class="ttc" id="amemory_8c_html_a9a4b09b65d4d4ced44e1255e7d747701"><div class="ttname"><a href="memory_8c.html#a9a4b09b65d4d4ced44e1255e7d747701">s_pvStackMin</a></div><div class="ttdeci">void * s_pvStackMin</div></div>
 <div class="ttc" id="amemory_8c_html_aa852a13cfafeaae0becf8876ff6d6230"><div class="ttname"><a href="memory_8c.html#aa852a13cfafeaae0becf8876ff6d6230">_malloc_r</a></div><div class="ttdeci">void * _malloc_r(_reent *pre, uint __size)</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00147">memory.c:147</a></div></div>
 <div class="ttc" id="amemory_8c_html_ab17bfa972cec59b23082ef10706726a7"><div class="ttname"><a href="memory_8c.html#ab17bfa972cec59b23082ef10706726a7">CheckForOutOfMemory</a></div><div class="ttdeci">void CheckForOutOfMemory()</div><div class="ttdoc">Stubbed, does nothing.</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00062">memory.c:62</a></div></div>
-<div class="ttc" id="amemory_8c_html_ab85215d1b55139a51efb3b70795f6cdb"><div class="ttname"><a href="memory_8c.html#ab85215d1b55139a51efb3b70795f6cdb">g_pvHeapMax</a></div><div class="ttdeci">int g_pvHeapMax</div></div>
-<div class="ttc" id="amemory_8c_html_ac8a375958ab0acacc5bc10e68cc012d9"><div class="ttname"><a href="memory_8c.html#ac8a375958ab0acacc5bc10e68cc012d9">s_apvStackMin</a></div><div class="ttdeci">int s_apvStackMin[]</div></div>
 <div class="ttc" id="amemory_8c_html_ace542dcb7a64626d78a9f15ddc7361b4"><div class="ttname"><a href="memory_8c.html#ace542dcb7a64626d78a9f15ddc7361b4">PvAllocSwImpl</a></div><div class="ttdeci">void * PvAllocSwImpl(int cb)</div><div class="ttdoc">Allocates memory for an SW.</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00067">memory.c:67</a></div></div>
 <div class="ttc" id="amemory_8c_html_acf36cd13ad768ca50a3342eb97d2ee3f"><div class="ttname"><a href="memory_8c.html#acf36cd13ad768ca50a3342eb97d2ee3f">malloc</a></div><div class="ttdeci">void * malloc(uint __size)</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00142">memory.c:142</a></div></div>
 <div class="ttc" id="amemory_8c_html_ad10010d376784ff5fad2f3acf0e27018"><div class="ttname"><a href="memory_8c.html#ad10010d376784ff5fad2f3acf0e27018">FreeSw</a></div><div class="ttdeci">void FreeSw()</div><div class="ttdoc">Clears the SW stack.</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00080">memory.c:80</a></div></div>
 <div class="ttc" id="amemory_8c_html_ad2af9373fb312125f9b22b9267e109a5"><div class="ttname"><a href="memory_8c.html#ad2af9373fb312125f9b22b9267e109a5">FreeStackImpl</a></div><div class="ttdeci">void FreeStackImpl()</div><div class="ttdoc">Unravels the current stack allocation frame.</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00136">memory.c:136</a></div></div>
 <div class="ttc" id="amemory_8c_html_ad8c6ee65de7e81b18c8797c4a739ff39"><div class="ttname"><a href="memory_8c.html#ad8c6ee65de7e81b18c8797c4a739ff39">InitStackImpl</a></div><div class="ttdeci">void InitStackImpl()</div><div class="ttdoc">Initializes a new allocation frame on the stack.</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00107">memory.c:107</a></div></div>
-<div class="ttc" id="amemory_8c_html_ae025d91f43b1f8ea22c7425219074309"><div class="ttname"><a href="memory_8c.html#ae025d91f43b1f8ea22c7425219074309">g_pvHeapMin</a></div><div class="ttdeci">int g_pvHeapMin</div></div>
+<div class="ttc" id="amemory_8c_html_ae73421b0e49c9eb6458a2d2248561b83"><div class="ttname"><a href="memory_8c.html#ae73421b0e49c9eb6458a2d2248561b83">s_pvGlobalMin</a></div><div class="ttdeci">void * s_pvGlobalMin</div></div>
 <div class="ttc" id="amemory_8c_html_afd3a9ce1186b836341ebbc8d3803a11f"><div class="ttname"><a href="memory_8c.html#afd3a9ce1186b836341ebbc8d3803a11f">PvAllocGlobalImpl</a></div><div class="ttdeci">void * PvAllocGlobalImpl(int cb)</div><div class="ttdoc">Allocates memory from the global heap.</div><div class="ttdef"><b>Definition</b> <a href="memory_8c_source.html#l00037">memory.c:37</a></div></div>
 <div class="ttc" id="amemory_8h_html"><div class="ttname"><a href="memory_8h.html">memory.h</a></div></div>
 <div class="ttc" id="amemset_8h_html"><div class="ttname"><a href="memset_8h.html">memset.h</a></div><div class="ttdoc">Memset.</div></div>

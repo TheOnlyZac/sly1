@@ -25,7 +25,7 @@ var structALO =
     [ "grfzon", "structALO.html#a14096ea53b81131c07f2b570a046bb53", null ],
     [ "matOrig", "structALO.html#a19a64f2dbe71cf11d0fd14dbb1c2a983", null ],
     [ "pactbank", "structALO.html#a747f79686246a2b1759d2701011fc4eb", null ],
-    [ "pactla", "structALO.html#aa7ce52ddd110165fa6cab19f6633e32c", null ],
+    [ "pactla", "structALO.html#a846ef08871f20fa0e6eb943a0710028d", null ],
     [ "pactPos", "structALO.html#aaf6524810f01238515bc9e8eb0cf027f", null ],
     [ "pactrefCombo", "structALO.html#a75f511e271a80b107b4cfad5bd37c49b", null ],
     [ "pactRestore", "structALO.html#ad2f4d738882544a0d5087114873a6c79", null ],

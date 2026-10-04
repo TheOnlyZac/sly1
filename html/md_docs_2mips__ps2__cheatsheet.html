@@ -173,7 +173,7 @@ C · Struct alignment rules &amp; padding</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Struct size multiple   </td><td class="markdownTableBodyNone">Total size is rounded up to the largest field alignment.   </td><td class="markdownTableBodyNone"><code>struct { char; float; }</code> → 8 bytes, not 5    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">C++ inheritance (PS2)   </td><td class="markdownTableBodyNone">Parent fields precede child fields in memory.   </td><td class="markdownTableBodyNone"><code><a class="el" href="structACPB.html" title="Unknown.">ACPB</a> : public <a class="el" href="structACP.html" title="Unknown.">ACP</a></code> → <a class="el" href="structACP.html" title="Unknown.">ACP</a> fields first at offset <code>0x00</code>    </td></tr>
+<td class="markdownTableBodyNone">C++ inheritance (PS2)   </td><td class="markdownTableBodyNone">Parent fields precede child fields in memory.   </td><td class="markdownTableBodyNone"><code><a class="el" href="structACPB.html" title="Animation Curve Position Bezier.">ACPB</a> : public <a class="el" href="structACP.html" title="Animation Curve Position.">ACP</a></code> → <a class="el" href="structACP.html" title="Animation Curve Position.">ACP</a> fields first at offset <code>0x00</code>    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><a class="el" href="structVECTOR.html" title="Vector3 with X, Y, and Z.">VECTOR</a> = 0x10 (16 B)   </td><td class="markdownTableBodyNone">Always 16-aligned — <code>lq</code>/<code>sq</code> require it on EE.   </td><td class="markdownTableBodyNone">Valid offsets: <code>0x10</code>, <code>0x20</code>, <code>0x30</code>… An odd offset = instant bug    </td></tr>
 <tr class="markdownTableRowEven">
@@ -402,7 +402,7 @@ D · Bits → bytes → hex — quick reference</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>GetDifficulty__Fv</code>   </td><td class="markdownTableBodyNone"><code>int/enum GetDifficulty(void)</code>    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>EvaluateAcpb__FP4ACPBP3ALOffiP6VECTORT5</code>   </td><td class="markdownTableBodyNone"><code>void <a class="el" href="ac_8h.html#ae45afb9deaafdaa6ffd9eea7e59fd73d">EvaluateAcpb(ACPB*, ALO*, float, float, int, VECTOR*, VECTOR*)</a></code>    </td></tr>
+<td class="markdownTableBodyNone"><code>EvaluateAcpb__FP4ACPBP3ALOffiP6VECTORT5</code>   </td><td class="markdownTableBodyNone"><code>void <a class="el" href="ac_8c.html#ae45afb9deaafdaa6ffd9eea7e59fd73d">EvaluateAcpb(ACPB*, ALO*, float, float, int, VECTOR*, VECTOR*)</a></code>    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>OnDifficultyGameLoad__FP10DIFFICULTY</code>   </td><td class="markdownTableBodyNone"><code>void <a class="el" href="difficulty_8c.html#a6874f5e8bc778a07830560acd25647ed" title="Clears the difficulty struct.">OnDifficultyGameLoad(DIFFICULTY*)</a></code>   </td></tr>
 </table>
@@ -422,9 +422,9 @@ D · Bits → bytes → hex — quick reference</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>lw $2, 0x04($4)</code>   </td><td class="markdownTableBodyNone"><code>field_0x04</code>   </td><td class="markdownTableBodyNone">2nd field (if 1st was 4 bytes)    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>lw $2, 0x0C($4)</code>   </td><td class="markdownTableBodyNone"><code>field_0x0C</code>   </td><td class="markdownTableBodyNone">Offset 12 — e.g. <code>ACPB::ckvb</code> in EvaluateAcpb    </td></tr>
+<td class="markdownTableBodyNone"><code>lw $2, 0x0C($4)</code>   </td><td class="markdownTableBodyNone"><code>field_0x0C</code>   </td><td class="markdownTableBodyNone">Offset 12 — e.g. <code><a class="el" href="structACPB.html#ae0a7890f6a99e69f6ec8fc5ac0a44d67">ACPB::ckvb</a></code> in EvaluateAcpb    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>lw $2, 0x10($4)</code>   </td><td class="markdownTableBodyNone"><code>field_0x10</code>   </td><td class="markdownTableBodyNone">Offset 16 — e.g. <code>ACPB::akvb</code> (KVB* pointer)    </td></tr>
+<td class="markdownTableBodyNone"><code>lw $2, 0x10($4)</code>   </td><td class="markdownTableBodyNone"><code>field_0x10</code>   </td><td class="markdownTableBodyNone">Offset 16 — e.g. <code><a class="el" href="structACPB.html#ae6cc2edb5b8fd555a049b8bbd726d947">ACPB::akvb</a></code> (KVB* pointer)    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>lw $2, 0xB0($4)</code>   </td><td class="markdownTableBodyNone"><code>vtable[0xB0]</code>   </td><td class="markdownTableBodyNone">vtable entry — virtual method #44 (<code>0xB0/4=44</code>)    </td></tr>
 <tr class="markdownTableRowEven">
@@ -442,7 +442,7 @@ D · Bits → bytes → hex — quick reference</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">3   </td><td class="markdownTableBodyNone">Deduce type   </td><td class="markdownTableBodyNone"><code>lw</code>=int/ptr, <code>lwc1</code>=float, <code>lbu</code>=char, <code>lhu</code>=short, <code>lq</code>=128-bit vector    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">Check inheritance   </td><td class="markdownTableBodyNone"><code><a class="el" href="structACPB.html" title="Unknown.">ACPB</a> : public <a class="el" href="structACP.html" title="Unknown.">ACP</a></code> → <a class="el" href="structACP.html" title="Unknown.">ACP</a> fields come first (offset 0)    </td></tr>
+<td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">Check inheritance   </td><td class="markdownTableBodyNone"><code><a class="el" href="structACPB.html" title="Animation Curve Position Bezier.">ACPB</a> : public <a class="el" href="structACP.html" title="Animation Curve Position.">ACP</a></code> → <a class="el" href="structACP.html" title="Animation Curve Position.">ACP</a> fields come first (offset 0)    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">5   </td><td class="markdownTableBodyNone">Name the fields   </td><td class="markdownTableBodyNone">Compare with Ghidra + other functions accessing the same struct   </td></tr>
 </table>
@@ -496,10 +496,10 @@ D · Bits → bytes → hex — quick reference</h2>
 <td class="markdownTableBodyNone"><code>lq $18,..</code> <code>lq $17,..</code> <code>lq $16,..</code> <code>jr $31</code> <code>addiu $sp,$29,0x40</code>   </td><td class="markdownTableBodyNone">epilogue   </td><td class="markdownTableBodyNone">Restores <code>$s2</code>,<code>$s1</code>,<code>$s0</code>. <code>return</code>. Delay slot frees stack.   </td></tr>
 </table>
 <p><b>Resulting C code:</b></p>
-<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="ac_8h.html#ae45afb9deaafdaa6ffd9eea7e59fd73d">EvaluateAcpb</a>(<a class="code hl_struct" href="structACPB.html">ACPB</a> *pacpb, <a class="code hl_struct" href="structALO.html">ALO</a> *palo, <span class="keywordtype">float</span> t, <span class="keywordtype">float</span> svt,</div>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="ac_8c.html#ae45afb9deaafdaa6ffd9eea7e59fd73d">EvaluateAcpb</a>(<a class="code hl_struct" href="structACPB.html">ACPB</a> *pacpb, <a class="code hl_struct" href="structALO.html">ALO</a> *palo, <span class="keywordtype">float</span> t, <span class="keywordtype">float</span> svt,</div>
 <div class="line">                  <a class="code hl_typedef" href="ac_8h.html#a3de558f8d5eb61724fa73a83141381f9">GRFEVAL</a> grfeval, <a class="code hl_struct" href="structVECTOR.html">VECTOR</a> *ppos, <a class="code hl_struct" href="structVECTOR.html">VECTOR</a> *pv)</div>
 <div class="line">{</div>
-<div class="line">    <a class="code hl_function" href="ac_8h.html#a77bd542bf531fc1384e651ad7edb3b6b">EvaluateAkvb</a>(pacpb-&gt;ckvb, pacpb-&gt;akvb, t, svt, grfeval, ppos, pv);</div>
+<div class="line">    <a class="code hl_function" href="ac_8c.html#a77bd542bf531fc1384e651ad7edb3b6b">EvaluateAkvb</a>(pacpb-&gt;<a class="code hl_variable" href="structACPB.html#ae0a7890f6a99e69f6ec8fc5ac0a44d67">ckvb</a>, pacpb-&gt;<a class="code hl_variable" href="structACPB.html#ae6cc2edb5b8fd555a049b8bbd726d947">akvb</a>, t, svt, grfeval, ppos, pv);</div>
 <div class="line">    <span class="comment">// ckvb at offset 0x0C, akvb at 0x10 in ACPB (after ACP inheritance)</span></div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">if</span> (palo != NULL) {</div>
@@ -510,10 +510,12 @@ D · Bits → bytes → hex — quick reference</h2>
 <div class="line">        <span class="comment">// Conditional call — some ALOs don&#39;t implement this method</span></div>
 <div class="line">    }</div>
 <div class="line">}</div>
-<div class="ttc" id="aac_8h_html_a3de558f8d5eb61724fa73a83141381f9"><div class="ttname"><a href="ac_8h.html#a3de558f8d5eb61724fa73a83141381f9">GRFEVAL</a></div><div class="ttdeci">int GRFEVAL</div><div class="ttdef"><b>Definition</b> <a href="ac_8h_source.html#l00014">ac.h:14</a></div></div>
-<div class="ttc" id="aac_8h_html_a77bd542bf531fc1384e651ad7edb3b6b"><div class="ttname"><a href="ac_8h.html#a77bd542bf531fc1384e651ad7edb3b6b">EvaluateAkvb</a></div><div class="ttdeci">void EvaluateAkvb(int ckvb, KVB *akvb, float t, float svt, GRFEVAL grfeval, VECTOR *pvec, VECTOR *pdvec)</div></div>
-<div class="ttc" id="aac_8h_html_ae45afb9deaafdaa6ffd9eea7e59fd73d"><div class="ttname"><a href="ac_8h.html#ae45afb9deaafdaa6ffd9eea7e59fd73d">EvaluateAcpb</a></div><div class="ttdeci">void EvaluateAcpb(ACPB *pacpb, ALO *palo, float t, float svt, GRFEVAL grfeval, VECTOR *ppos, VECTOR *pv)</div></div>
-<div class="ttc" id="astructACPB_html"><div class="ttname"><a href="structACPB.html">ACPB</a></div><div class="ttdoc">Unknown.</div><div class="ttdef"><b>Definition</b> <a href="ac_8h_source.html#l00101">ac.h:102</a></div></div>
+<div class="ttc" id="aac_8c_html_a77bd542bf531fc1384e651ad7edb3b6b"><div class="ttname"><a href="ac_8c.html#a77bd542bf531fc1384e651ad7edb3b6b">EvaluateAkvb</a></div><div class="ttdeci">void EvaluateAkvb(int ckvb, KVB *akvb, float t, float svt, GRFEVAL grfeval, VECTOR *pvec, VECTOR *pdvec)</div><div class="ttdef"><b>Definition</b> <a href="ac_8c_source.html#l00338">ac.c:338</a></div></div>
+<div class="ttc" id="aac_8c_html_ae45afb9deaafdaa6ffd9eea7e59fd73d"><div class="ttname"><a href="ac_8c.html#ae45afb9deaafdaa6ffd9eea7e59fd73d">EvaluateAcpb</a></div><div class="ttdeci">void EvaluateAcpb(ACPB *pacpb, ALO *palo, float t, float svt, GRFEVAL grfeval, VECTOR *ppos, VECTOR *pv)</div><div class="ttdef"><b>Definition</b> <a href="ac_8c_source.html#l00387">ac.c:387</a></div></div>
+<div class="ttc" id="aac_8h_html_a3de558f8d5eb61724fa73a83141381f9"><div class="ttname"><a href="ac_8h.html#a3de558f8d5eb61724fa73a83141381f9">GRFEVAL</a></div><div class="ttdeci">int GRFEVAL</div><div class="ttdef"><b>Definition</b> <a href="ac_8h_source.html#l00019">ac.h:19</a></div></div>
+<div class="ttc" id="astructACPB_html"><div class="ttname"><a href="structACPB.html">ACPB</a></div><div class="ttdoc">Animation Curve Position Bezier.</div><div class="ttdef"><b>Definition</b> <a href="ac_8h_source.html#l00155">ac.h:156</a></div></div>
+<div class="ttc" id="astructACPB_html_ae0a7890f6a99e69f6ec8fc5ac0a44d67"><div class="ttname"><a href="structACPB.html#ae0a7890f6a99e69f6ec8fc5ac0a44d67">ACPB::ckvb</a></div><div class="ttdeci">int ckvb</div><div class="ttdef"><b>Definition</b> <a href="ac_8h_source.html#l00157">ac.h:157</a></div></div>
+<div class="ttc" id="astructACPB_html_ae6cc2edb5b8fd555a049b8bbd726d947"><div class="ttname"><a href="structACPB.html#ae6cc2edb5b8fd555a049b8bbd726d947">ACPB::akvb</a></div><div class="ttdeci">KVB * akvb</div><div class="ttdef"><b>Definition</b> <a href="ac_8h_source.html#l00158">ac.h:158</a></div></div>
 <div class="ttc" id="astructALO_html"><div class="ttname"><a href="structALO.html">ALO</a></div><div class="ttdef"><b>Definition</b> <a href="alo_8h_source.html#l00162">alo.h:163</a></div></div>
 <div class="ttc" id="astructVECTOR_html"><div class="ttname"><a href="structVECTOR.html">VECTOR</a></div><div class="ttdoc">Vector3 with X, Y, and Z.</div><div class="ttdef"><b>Definition</b> <a href="vec_8h_source.html#l00016">vec.h:17</a></div></div>
 </div><!-- fragment --><hr  />
@@ -593,7 +595,7 @@ D · Bits → bytes → hex — quick reference</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Floats   </td><td class="markdownTableBodyNone"><code>$f12</code>, <code>$f13</code>, <code>$f14</code>, <code>$f15</code> (then <code>$f16</code>, <code>$f17</code>… per ABI)   </td><td class="markdownTableBodyNone">Float args use FPU registers — independent from <code>$a</code>. A float does NOT consume a <code>$a</code>.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Mixed int+float   </td><td class="markdownTableBodyNone"><code><a class="el" href="ac_8h.html#ae45afb9deaafdaa6ffd9eea7e59fd73d">EvaluateAcpb(ACPB*,ALO*,float,float,int,VECTOR*,VECTOR*)</a></code>   </td><td class="markdownTableBodyNone"><code>$a0=pacpb</code> <code>$a1=palo</code> <code>$f12=t</code> <code>$f13=svt</code> <code>$a2=grfeval</code> <code>$a3=ppos</code> <code>$a4=pv</code> — ints and floats have their own slots    </td></tr>
+<td class="markdownTableBodyNone">Mixed int+float   </td><td class="markdownTableBodyNone"><code><a class="el" href="ac_8c.html#ae45afb9deaafdaa6ffd9eea7e59fd73d">EvaluateAcpb(ACPB*,ALO*,float,float,int,VECTOR*,VECTOR*)</a></code>   </td><td class="markdownTableBodyNone"><code>$a0=pacpb</code> <code>$a1=palo</code> <code>$f12=t</code> <code>$f13=svt</code> <code>$a2=grfeval</code> <code>$a3=ppos</code> <code>$a4=pv</code> — ints and floats have their own slots    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Return value   </td><td class="markdownTableBodyNone">Integer: <code>$v0</code> / Float: <code>$f0</code>   </td><td class="markdownTableBodyNone"><code>void</code> functions: nothing. Usually one return. Two values: <code>$v0+$v1</code> or <code>$f0+$f2</code>.    </td></tr>
 <tr class="markdownTableRowOdd">
@@ -744,13 +746,13 @@ Animation System (AC* / ASEG / ACT / BLEND)</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code><a class="el" href="structACT.html" title="Action.">ACT</a></code>   </td><td class="markdownTableBodyNone"><code><a class="el" href="act_8c.html">P2/act.c</a></code>   </td><td class="markdownTableBodyNone">Action — animation sequence for an object. <code>PactNew</code>, <code>InitAct</code>, <code>RetractAct</code>, <code>GetActPositionGoal</code>.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code><a class="el" href="structACP.html" title="Unknown.">ACP</a></code>   </td><td class="markdownTableBodyNone"><code><a class="el" href="ac_8c.html">P2/ac.c</a></code>   </td><td class="markdownTableBodyNone">Animation Curve Position — base of position curves. <code>EvaluateAcp</code>. Subclasses: <a class="el" href="structACPB.html" title="Unknown.">ACPB</a>, <a class="el" href="structACPC.html" title="Unknown.">ACPC</a>, <a class="el" href="structACPBL.html" title="Unknown.">ACPBL</a>.    </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="structACP.html" title="Animation Curve Position.">ACP</a></code>   </td><td class="markdownTableBodyNone"><code><a class="el" href="ac_8c.html">P2/ac.c</a></code>   </td><td class="markdownTableBodyNone">Animation Curve Position — base of position curves. <code>EvaluateAcp</code>. Subclasses: <a class="el" href="structACPB.html" title="Animation Curve Position Bezier.">ACPB</a>, <a class="el" href="structACPC.html" title="Animation Curve Position Component.">ACPC</a>, <a class="el" href="structACPBL.html" title="Animation Curve Position Blend.">ACPBL</a>.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code><a class="el" href="structACR.html" title="Unknown.">ACR</a></code>   </td><td class="markdownTableBodyNone"><code><a class="el" href="ac_8c.html">P2/ac.c</a></code>   </td><td class="markdownTableBodyNone">Animation Curve Rotation — rotation curves. <code>EvaluateAcr</code>. Subclasses: <a class="el" href="structACRB.html" title="Unknown.">ACRB</a>, <a class="el" href="structACRC.html" title="Unknown.">ACRC</a>, <a class="el" href="structACRBL.html" title="Unknown.">ACRBL</a>.    </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="structACR.html" title="Animation Curve Rotation.">ACR</a></code>   </td><td class="markdownTableBodyNone"><code><a class="el" href="ac_8c.html">P2/ac.c</a></code>   </td><td class="markdownTableBodyNone">Animation Curve Rotation — rotation curves. <code>EvaluateAcr</code>. Subclasses: <a class="el" href="structACRB.html" title="Animation Curve Rotation Bezier.">ACRB</a>, <a class="el" href="structACRC.html" title="Animation Curve Rotation Component.">ACRC</a>, <a class="el" href="structACRBL.html" title="Animation Curve Rotation Blend.">ACRBL</a>.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code><a class="el" href="structACS.html" title="Unknown.">ACS</a></code>   </td><td class="markdownTableBodyNone"><code><a class="el" href="ac_8c.html">P2/ac.c</a></code>   </td><td class="markdownTableBodyNone">Animation Curve Scale — scale curves. <code>EvaluateAcs</code>. Subclasses: <a class="el" href="structACSB.html" title="Unknown.">ACSB</a>, <a class="el" href="structACSC.html" title="Unknown.">ACSC</a>.    </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="structACS.html" title="Animation Curve Scale.">ACS</a></code>   </td><td class="markdownTableBodyNone"><code><a class="el" href="ac_8c.html">P2/ac.c</a></code>   </td><td class="markdownTableBodyNone">Animation Curve Scale — scale curves. <code>EvaluateAcs</code>. Subclasses: <a class="el" href="structACSB.html" title="Animation Curve Scale Bezier.">ACSB</a>, <a class="el" href="structACSC.html" title="Animation Curve Scale Component.">ACSC</a>.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code><a class="el" href="structKVB.html" title="Unknown.">KVB</a></code>   </td><td class="markdownTableBodyNone"><code><a class="el" href="ac_8c.html">P2/ac.c</a></code>   </td><td class="markdownTableBodyNone">Key Value Bezier — scalar Bezier keyframe. Atomic block of curves. <code>EvaluateAkvb</code>. Contains time, value, tangents.    </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="structKVB.html" title="Key Vector Bezier.">KVB</a></code>   </td><td class="markdownTableBodyNone"><code><a class="el" href="ac_8c.html">P2/ac.c</a></code>   </td><td class="markdownTableBodyNone">Key Value Bezier — scalar Bezier keyframe. Atomic block of curves. <code>EvaluateAkvb</code>. Contains time, value, tangents.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>GRFEVAL</code>   </td><td class="markdownTableBodyNone"><code><a class="el" href="ac_8c.html">P2/ac.c</a></code>   </td><td class="markdownTableBodyNone">Eval flags (int bitfield). Controls interpolation, extrapolation, loop. Passed to all <code>Evaluate*</code>.    </td></tr>
 <tr class="markdownTableRowOdd">
@@ -870,7 +872,7 @@ Enemies, Gameplay &amp; Interactive Objects</h2>
 </table>
 <blockquote class="doxtable">
 <p>&zwj;<b>AC* suffix hierarchy:</b> B=Bezier | C=Component (x/y/z separate) | L=Linear | W=Weighted | <a class="el" href="structBL.html" title="Unknown.">BL</a>=Blend | BLT=BlendTwist | BLP=BlendPose <br  />
- Example: <code><a class="el" href="structACRBL.html" title="Unknown.">ACRBL</a></code> = Animation Curve Rotation Bezier Linear </p>
+ Example: <code><a class="el" href="structACRBL.html" title="Animation Curve Rotation Blend.">ACRBL</a></code> = Animation Curve Rotation Bezier Linear </p>
 </blockquote>
 <blockquote class="doxtable">
 <p>&zwj;<b>Prototype vs Release:</b> Some modules from the May 2002 prototype were removed from the release: <code>cycle.c</code> (wheeled vehicle), <code>hg.c</code> (hang glider), <code>stepski.c</code> (ski), <code>rope.c</code>, <code>sc.c</code>, <code>mouthgame.c</code>, debug menu. Functions from these modules may appear in Ghidra but have no <code>.s</code> in the repo. </p>
@@ -892,7 +894,7 @@ Enemies, Gameplay &amp; Interactive Objects</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Context   </td><td class="markdownTableBodyNone">Type definitions used   </td><td class="markdownTableBodyNone">Paste needed structs and typedefs from the <code>.h</code> files. Without this m2c can't type variables.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Context — what   </td><td class="markdownTableBodyNone">Structs, enums, prototypes of called functions   </td><td class="markdownTableBodyNone">e.g. for EvaluateAcpb: paste <code>struct <a class="el" href="structKVB.html" title="Unknown.">KVB</a></code>, <code>struct <a class="el" href="structACP.html" title="Unknown.">ACP</a></code>, <code>struct <a class="el" href="structACPB.html" title="Unknown.">ACPB</a></code>, <code>typedef GRFEVAL</code>, <code>EvaluateAkvb</code> prototype    </td></tr>
+<td class="markdownTableBodyNone">Context — what   </td><td class="markdownTableBodyNone">Structs, enums, prototypes of called functions   </td><td class="markdownTableBodyNone">e.g. for EvaluateAcpb: paste <code>struct <a class="el" href="structKVB.html" title="Key Vector Bezier.">KVB</a></code>, <code>struct <a class="el" href="structACP.html" title="Animation Curve Position.">ACP</a></code>, <code>struct <a class="el" href="structACPB.html" title="Animation Curve Position Bezier.">ACPB</a></code>, <code>typedef GRFEVAL</code>, <code>EvaluateAkvb</code> prototype    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Options &gt; Debug   </td><td class="markdownTableBodyNone"><code>-g3</code> (Macro expansions)   </td><td class="markdownTableBodyNone">Shows source line numbers in generated ASM — helps match ASM/C correspondence    </td></tr>
 <tr class="markdownTableRowOdd">

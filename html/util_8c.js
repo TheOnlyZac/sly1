@@ -16,7 +16,7 @@ var util_8c =
     [ "INCLUDE_ASM", "util_8c.html#a27cc8dbb4dfe37d616b1318618b464fa", null ],
     [ "INCLUDE_ASM", "util_8c.html#a7d9a425af40f85f4b17283adf6ee5c2a", null ],
     [ "INCLUDE_ASM", "util_8c.html#ad439e3395562289ea29efd0b7f7be9e4", null ],
-    [ "INCLUDE_ASM", "util_8c.html#a15e9f41c7e3ab7195561d5939111e074", null ],
+    [ "INCLUDE_ASM", "util_8c.html#aed8989445de4c34fda4d5feed3935ce6", null ],
     [ "INCLUDE_ASM", "util_8c.html#af9aaa9e9208748c19144b8f2393b7aed", null ],
     [ "INCLUDE_ASM", "util_8c.html#aa7cad4df98f92f57d16695581145b3fd", null ],
     [ "JUNK_ADDIU", "util_8c.html#a2e9388a107b5bbe8af8e060a3a9c626f", null ],
@@ -27,6 +27,10 @@ var util_8c =
     [ "RadSmooth", "util_8c.html#a75f21c63972b878f298849b70ea42888", null ],
     [ "RadSmoothA", "util_8c.html#aa15aa728b5a15e07058059d409c68b98", null ],
     [ "SgnCompareG", "util_8c.html#a32acfc0bce6a17971f228c8e225454fa", null ],
+    [ "g_clqOne", "util_8c.html#a694fc7598c67d06548a50bde97975b4f", null ],
+    [ "g_clqZero", "util_8c.html#a2d4155018260e67e36aa01614239ebf1", null ],
+    [ "g_lmNegOneOne", "util_8c.html#a6c3f111542550b25e3c88ca7161fbeca", null ],
+    [ "g_lmZeroOne", "util_8c.html#aeee4823b200985156b402f1c57becb78", null ],
     [ "PI", "util_8c.html#aa08a577393243b86dfd2a97e61443673", null ],
     [ "PRIME_MOD", "util_8c.html#ae2072271810450483fbd3d38788f9dab", null ]
 ];

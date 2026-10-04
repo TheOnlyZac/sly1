@@ -39,13 +39,12 @@ var shdanim_8c =
     [ "UpdatePingpong", "shdanim_8c.html#a35ad741a09c30bb9b3d280403d5da119", null ],
     [ "UpdateScroller", "shdanim_8c.html#abf76d534a182f854cfe2696135c6a2d5", null ],
     [ "UpdateShuffle", "shdanim_8c.html#a0ce640d3448152243695d5ad0fd7b517", null ],
-    [ "D_0021E358", "shdanim_8c.html#af03004c3d638927ca758a4383ae00927", null ],
-    [ "D_0021E378", "shdanim_8c.html#ac0b2015f7c598bd73fb91bde6766a17d", null ],
-    [ "D_0021E398", "shdanim_8c.html#aee14f6d83289fc2cdc964fd34bce2a39", null ],
-    [ "D_0021E3B8", "shdanim_8c.html#a38f2689968c8dfa373afbd62209cd64f", null ],
-    [ "D_0021E3D8", "shdanim_8c.html#aedba8e38b7c6ef612300e6bec9481880", null ],
-    [ "D_0021E3F8", "shdanim_8c.html#ac9d41de20985e17c49c3fc5fbb204744", null ],
-    [ "D_0021E418", "shdanim_8c.html#a5a219767385c539a2ab12dcb077f61c9", null ],
-    [ "D_0021E438", "shdanim_8c.html#a26e62cfde7dbcf7b7ff6917ed4c28fcc", null ],
-    [ "g_clock", "shdanim_8c.html#a265c0096832085486287b2bb6603595c", null ]
+    [ "g_vtcircler", "shdanim_8c.html#a0894143878391457b20c0d55fd9e0bc3", null ],
+    [ "g_vteyes", "shdanim_8c.html#a32f1efa7e000c04682647bf5896ef92b", null ],
+    [ "g_vthologram", "shdanim_8c.html#aa3e324867ffa3e131fe1f6c93fe4bba9", null ],
+    [ "g_vtlooker", "shdanim_8c.html#aded6fe235532415c6280da7bddf4546d", null ],
+    [ "g_vtloop", "shdanim_8c.html#afa5e8c10e3f0f73257f050d5a7046586", null ],
+    [ "g_vtpingpong", "shdanim_8c.html#a6c6681d9fc65c29b843d100f1d84c7a9", null ],
+    [ "g_vtscroller", "shdanim_8c.html#a6e5ba6f96b88b757e2c96ac1cda9590a", null ],
+    [ "g_vtshuffle", "shdanim_8c.html#ace48028c26be665e43fe175ae28fa4ca", null ]
 ];

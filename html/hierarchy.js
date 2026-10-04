@@ -48,12 +48,14 @@ var hierarchy =
     [ "AMMO_MANAGER", "classAMMO__MANAGER.html", null ],
     [ "ANIMATION_SEGMENT", "classANIMATION__SEGMENT.html", null ],
     [ "ANIMATION_SEGMENT_APPLICATION", "classANIMATION__SEGMENT__APPLICATION.html", null ],
+    [ "ARYSPLOPT", "structARYSPLOPT.html", null ],
     [ "ASEGD", "structASEGD.html", null ],
     [ "ASH", "structASH.html", null ],
     [ "BASIC", "structBASIC.html", [
       [ "ASEGA", "structASEGA.html", null ],
       [ "LO", "structLO.html", [
         [ "ALO", "structALO.html", [
+          [ "BLIPG", "structBLIPG.html", null ],
           [ "CAMERA", "structCAMERA.html", null ],
           [ "CHKPNT", "structCHKPNT.html", null ],
           [ "CRBRAIN", "structCRBRAIN.html", null ],
@@ -209,8 +211,9 @@ var hierarchy =
     ] ],
     [ "BLACK_HOLD", "classBLACK__HOLD.html", null ],
     [ "BLIP", "structBLIP.html", null ],
-    [ "BLIPG", "structBLIPG.html", null ],
+    [ "BLIPF", "structBLIPF.html", null ],
     [ "BLIPP", "structBLIPP.html", null ],
+    [ "BLIPSP", "structBLIPSP.html", null ],
     [ "BLIPV", "structBLIPV.html", null ],
     [ "BLIPX", "structBLIPX.html", null ],
     [ "BLOT", "structBLOT.html", [
@@ -359,6 +362,11 @@ var hierarchy =
     [ "JOY", "structJOY.html", null ],
     [ "JSGE", "structJSGE.html", null ],
     [ "JUMP_TARGET", "classJUMP__TARGET.html", null ],
+    [ "KGB", "structKGB.html", null ],
+    [ "KGBT", "structKGBT.html", null ],
+    [ "KGBW", "structKGBW.html", null ],
+    [ "KGBWT", "structKGBWT.html", null ],
+    [ "KGL", "structKGL.html", null ],
     [ "KVB", "structKVB.html", null ],
     [ "LASER_SENSOR", "classLASER__SENSOR.html", null ],
     [ "LBEAM", "structLBEAM.html", null ],
@@ -501,6 +509,7 @@ var hierarchy =
     [ "SPACE_WARM", "classSPACE__WARM.html", null ],
     [ "SPLC", "structSPLC.html", null ],
     [ "SPLINE_MISSILE", "classSPLINE__MISSILE.html", null ],
+    [ "SPLOPT", "structSPLOPT.html", null ],
     [ "SPLOT", "structSPLOT.html", null ],
     [ "SQTRM", "structSQTRM.html", null ],
     [ "STATE_MACHINE", "classSTATE__MACHINE.html", null ],
@@ -541,7 +550,11 @@ var hierarchy =
     [ "VOLUME", "classVOLUME.html", null ],
     [ "VT", "structVT.html", [
       [ "VTALO", "structVTALO.html", null ],
+      [ "VTCAMSEN", "structVTCAMSEN.html", null ],
+      [ "VTLASEN", "structVTLASEN.html", null ],
       [ "VTLO", "structVTLO.html", null ],
+      [ "VTPRSEN", "structVTPRSEN.html", null ],
+      [ "VTSENSOR", "structVTSENSOR.html", null ],
       [ "VTSO", "structVTSO.html", null ]
     ] ],
     [ "VTACT", "structVTACT.html", null ],

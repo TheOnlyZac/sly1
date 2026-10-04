@@ -98,13 +98,17 @@ $(document).ready(function(){initNavTree('bif_8cpp.html',''); initResizable(); }
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">bif.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="bif_8h_source.html">splice/bif.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="ref_8h_source.html">splice/ref.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="frame_8h_source.html">splice/frame.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="math_8h_source.html">gcc/math.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="util_8h_source.html">util.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="po_8h_source.html">po.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for bif.cpp:</div>
@@ -114,6 +118,12 @@ Include dependency graph for bif.cpp:</div>
 </div>
 <p><a href="bif_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:afa5b44d04156e156591d75b67a6f9ef7" id="r_afa5b44d04156e156591d75b67a6f9ef7"><td class="memItemLeft" align="right" valign="top">typedef float(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8cpp.html#afa5b44d04156e156591d75b67a6f9ef7">PFNUFO</a>) (float)</td></tr>
+<tr class="memdesc:afa5b44d04156e156591d75b67a6f9ef7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function pointer for uniform float operation dispatch.  <br /></td></tr>
+<tr class="separator:afa5b44d04156e156591d75b67a6f9ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a00aacdc695eb14614c0fcb7ffea02dc5" id="r_a00aacdc695eb14614c0fcb7ffea02dc5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8cpp.html#a00aacdc695eb14614c0fcb7ffea02dc5">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/splice/bif&quot;, RefOpAdd__FiP4CRefP6CFrame)</td></tr>
@@ -388,7 +398,35 @@ Functions</h2></td></tr>
 <tr class="separator:af3a039d80dfbb1bd8576cb74888574e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8746709fe3cc144841c88e41b16c78e" id="r_ae8746709fe3cc144841c88e41b16c78e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8cpp.html#ae8746709fe3cc144841c88e41b16c78e">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/splice/bif&quot;, __ml__FG8VU_FLOATG9VU_VECTOR)</td></tr>
 <tr class="separator:ae8746709fe3cc144841c88e41b16c78e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:af05bac91f8cfd50a56f3913f4a45e06e" id="r_af05bac91f8cfd50a56f3913f4a45e06e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="bif_8cpp.html#afa5b44d04156e156591d75b67a6f9ef7">PFNUFO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8cpp.html#af05bac91f8cfd50a56f3913f4a45e06e">s_mpufokpfnufo</a> []</td></tr>
+<tr class="memdesc:af05bac91f8cfd50a56f3913f4a45e06e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Table of uniform float operation functions.  <br /></td></tr>
+<tr class="separator:af05bac91f8cfd50a56f3913f4a45e06e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b03f54ad98f901049b91b8f41d1eaeb" id="r_a6b03f54ad98f901049b91b8f41d1eaeb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structBIF.html">BIF</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bif_8cpp.html#a6b03f54ad98f901049b91b8f41d1eaeb">g_mpbifkbif</a> [125]</td></tr>
+<tr class="memdesc:a6b03f54ad98f901049b91b8f41d1eaeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Table of built-in functions.  <br /></td></tr>
+<tr class="separator:a6b03f54ad98f901049b91b8f41d1eaeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="afa5b44d04156e156591d75b67a6f9ef7" name="afa5b44d04156e156591d75b67a6f9ef7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa5b44d04156e156591d75b67a6f9ef7">&#9670;&#160;</a></span>PFNUFO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef float(* PFNUFO) (float)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function pointer for uniform float operation dispatch. </p>
+
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00011">11</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a6f0fd4de5c11dc4d5ecc9e666660b506" name="a6f0fd4de5c11dc4d5ecc9e666660b506"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6f0fd4de5c11dc4d5ecc9e666660b506">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/94]</span></h2>
@@ -3054,7 +3092,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00272">272</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00426">426</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3090,7 +3128,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00363">363</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00517">517</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3126,7 +3164,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00267">267</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00421">421</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3162,7 +3200,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00277">277</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00431">431</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3198,7 +3236,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00257">257</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00411">411</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3234,7 +3272,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00368">368</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00522">522</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3270,7 +3308,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00068">68</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00222">222</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3306,7 +3344,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00407">407</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00561">561</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3342,7 +3380,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00393">393</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00547">547</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3378,7 +3416,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00400">400</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00554">554</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3414,7 +3452,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00054">54</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00208">208</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3450,7 +3488,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00059">59</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00213">213</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3486,7 +3524,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00378">378</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00532">532</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3522,7 +3560,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00035">35</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00189">189</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3558,7 +3596,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00073">73</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00227">227</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3594,7 +3632,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00122">122</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00276">276</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3630,7 +3668,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00087">87</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00241">241</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3666,7 +3704,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00094">94</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00248">248</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3702,7 +3740,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00143">143</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00297">297</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3738,7 +3776,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00129">129</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00283">283</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3774,7 +3812,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00115">115</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00269">269</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3810,7 +3848,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00171">171</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00325">325</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3846,7 +3884,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00150">150</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00304">304</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3882,7 +3920,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00164">164</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00318">318</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3918,7 +3956,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00080">80</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00234">234</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3954,7 +3992,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00157">157</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00311">311</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -3990,7 +4028,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00178">178</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00332">332</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4026,7 +4064,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00136">136</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00290">290</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4062,7 +4100,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00101">101</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00255">255</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4098,7 +4136,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00108">108</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00262">262</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4134,7 +4172,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00044">44</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00198">198</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4170,7 +4208,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00049">49</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00203">203</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4206,7 +4244,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00212">212</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00366">366</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4242,7 +4280,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00187">187</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00341">341</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4278,7 +4316,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00014">14</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00168">168</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4314,7 +4352,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00021">21</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00175">175</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4350,7 +4388,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00028">28</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00182">182</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4386,7 +4424,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00282">282</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00436">436</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4422,7 +4460,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00373">373</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00527">527</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4458,7 +4496,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00252">252</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00406">406</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4494,7 +4532,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00247">247</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00401">401</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>
@@ -4530,7 +4568,71 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00262">262</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00416">416</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a6b03f54ad98f901049b91b8f41d1eaeb" name="a6b03f54ad98f901049b91b8f41d1eaeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b03f54ad98f901049b91b8f41d1eaeb">&#9670;&#160;</a></span>g_mpbifkbif</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structBIF.html">BIF</a> g_mpbifkbif[125]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Table of built-in functions. </p>
+
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00031">31</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af05bac91f8cfd50a56f3913f4a45e06e" name="af05bac91f8cfd50a56f3913f4a45e06e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af05bac91f8cfd50a56f3913f4a45e06e">&#9670;&#160;</a></span>s_mpufokpfnufo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="bif_8cpp.html#afa5b44d04156e156591d75b67a6f9ef7">PFNUFO</a> s_mpufokpfnufo[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">{</div>
+<div class="line">    <a class="code hl_function" href="math_8h.html#a46c9a8d40cde7c4d5ab40a67e55316bb">sqrtf</a>,        </div>
+<div class="line">    <a class="code hl_function" href="math_8h.html#a8a7dc2a88e109f4e15b661247665709a">sinf</a>,         </div>
+<div class="line">    <a class="code hl_function" href="math_8h.html#a7b126b2344591e649c21c9ab0b8adb40">cosf</a>,         </div>
+<div class="line">    <a class="code hl_function" href="math_8h.html#a67d5bfe80effce6adebf5fcbc5a7dae0">tanf</a>,         </div>
+<div class="line">    <a class="code hl_function" href="math_8h.html#a7447a7400ca474ba42d127b04d6ee2b7">asinf</a>,        </div>
+<div class="line">    <a class="code hl_function" href="math_8h.html#a983a9e1aa7568df39153ea4d8e16653b">acosf</a>,        </div>
+<div class="line">    <a class="code hl_function" href="math_8h.html#aa582bc257e477e805f4ec384a39a3a8e">atanf</a>,        </div>
+<div class="line">    <a class="code hl_function" href="util_8c.html#a14639672f9ca35fa2c7e362348d26c5d">RadNormalize</a>, </div>
+<div class="line">}</div>
+<div class="ttc" id="amath_8h_html_a46c9a8d40cde7c4d5ab40a67e55316bb"><div class="ttname"><a href="math_8h.html#a46c9a8d40cde7c4d5ab40a67e55316bb">sqrtf</a></div><div class="ttdeci">float sqrtf(float x)</div></div>
+<div class="ttc" id="amath_8h_html_a67d5bfe80effce6adebf5fcbc5a7dae0"><div class="ttname"><a href="math_8h.html#a67d5bfe80effce6adebf5fcbc5a7dae0">tanf</a></div><div class="ttdeci">float tanf(float x)</div></div>
+<div class="ttc" id="amath_8h_html_a7447a7400ca474ba42d127b04d6ee2b7"><div class="ttname"><a href="math_8h.html#a7447a7400ca474ba42d127b04d6ee2b7">asinf</a></div><div class="ttdeci">float asinf(float x)</div></div>
+<div class="ttc" id="amath_8h_html_a7b126b2344591e649c21c9ab0b8adb40"><div class="ttname"><a href="math_8h.html#a7b126b2344591e649c21c9ab0b8adb40">cosf</a></div><div class="ttdeci">float cosf(float x)</div></div>
+<div class="ttc" id="amath_8h_html_a8a7dc2a88e109f4e15b661247665709a"><div class="ttname"><a href="math_8h.html#a8a7dc2a88e109f4e15b661247665709a">sinf</a></div><div class="ttdeci">float sinf(float x)</div></div>
+<div class="ttc" id="amath_8h_html_a983a9e1aa7568df39153ea4d8e16653b"><div class="ttname"><a href="math_8h.html#a983a9e1aa7568df39153ea4d8e16653b">acosf</a></div><div class="ttdeci">float acosf(float x)</div></div>
+<div class="ttc" id="amath_8h_html_aa582bc257e477e805f4ec384a39a3a8e"><div class="ttname"><a href="math_8h.html#aa582bc257e477e805f4ec384a39a3a8e">atanf</a></div><div class="ttdeci">float atanf(float x)</div></div>
+<div class="ttc" id="autil_8c_html_a14639672f9ca35fa2c7e362348d26c5d"><div class="ttname"><a href="util_8c.html#a14639672f9ca35fa2c7e362348d26c5d">RadNormalize</a></div><div class="ttdeci">float RadNormalize(float rad)</div><div class="ttdoc">Normalizes a float to the range [-PI, PI].</div><div class="ttdef"><b>Definition</b> <a href="util_8c_source.html#l00015">util.c:15</a></div></div>
+</div><!-- fragment -->
+<p>Table of uniform float operation functions. </p>
+
+<p class="definition">Definition at line <a class="el" href="bif_8cpp_source.html#l00016">16</a> of file <a class="el" href="bif_8cpp_source.html">bif.cpp</a>.</p>
 
 </div>
 </div>

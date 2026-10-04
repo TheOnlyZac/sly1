@@ -105,11 +105,12 @@ $(document).ready(function(){initNavTree('rumble_8c.html',''); initResizable(); 
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="rumble_8h_source.html">rumble.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="clock_8h_source.html">clock.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="gs_8h_source.html">gs.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="libpad_8h_source.html">sdk/ee/libpad.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for rumble.c:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="rumble_8c__incl.svg" width="330" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="rumble_8c__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div>
 <p><a href="rumble_8c_source.html">Go to the source code of this file.</a></p>
@@ -117,56 +118,42 @@ Include dependency graph for rumble.c:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a22a347bba35744030a7f57363defa7ab" id="r_a22a347bba35744030a7f57363defa7ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#a22a347bba35744030a7f57363defa7ab">InitRumble</a> (<a class="el" href="structRUMBLE.html">RUMBLE</a> *prumble, int nPort, int nSlot)</td></tr>
+<tr class="memdesc:a22a347bba35744030a7f57363defa7ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the joypad rumble system.  <br /></td></tr>
 <tr class="separator:a22a347bba35744030a7f57363defa7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5aa929994f890c2c1b75f6853231301a" id="r_a5aa929994f890c2c1b75f6853231301a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#a5aa929994f890c2c1b75f6853231301a">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/rumble&quot;, UpdateRumble__FP6RUMBLE)</td></tr>
-<tr class="separator:a5aa929994f890c2c1b75f6853231301a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e10ac196d82d5154b421a955bc4eb99" id="r_a0e10ac196d82d5154b421a955bc4eb99"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#a0e10ac196d82d5154b421a955bc4eb99">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/rumble&quot;, TriggerRumbleRumk__FP6RUMBLE4RUMKf)</td></tr>
-<tr class="separator:a0e10ac196d82d5154b421a955bc4eb99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44c7b671270836bd7f287f7d46200771" id="r_a44c7b671270836bd7f287f7d46200771"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#a44c7b671270836bd7f287f7d46200771">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/rumble&quot;, TriggerRumbleRumpat__FP6RUMBLEP6RUMPATf)</td></tr>
-<tr class="separator:a44c7b671270836bd7f287f7d46200771"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc347bec9bd86aca173ca49640059ffc" id="r_afc347bec9bd86aca173ca49640059ffc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#afc347bec9bd86aca173ca49640059ffc">UpdateRumble</a> (<a class="el" href="structRUMBLE.html">RUMBLE</a> *prumble)</td></tr>
+<tr class="separator:afc347bec9bd86aca173ca49640059ffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab353ad72a3fee627405e3cd498f84c2e" id="r_ab353ad72a3fee627405e3cd498f84c2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#ab353ad72a3fee627405e3cd498f84c2e">TriggerRumbleRumk</a> (<a class="el" href="structRUMBLE.html">RUMBLE</a> *prumble, <a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8">RUMK</a> rumk, float dt)</td></tr>
+<tr class="memdesc:ab353ad72a3fee627405e3cd498f84c2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger a rumble pattern for the given rumble kind.  <br /></td></tr>
+<tr class="separator:ab353ad72a3fee627405e3cd498f84c2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5de65d7d1b268a23b905673fab2ba256" id="r_a5de65d7d1b268a23b905673fab2ba256"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#a5de65d7d1b268a23b905673fab2ba256">TriggerRumbleRumpat</a> (<a class="el" href="structRUMBLE.html">RUMBLE</a> *prumble, <a class="el" href="structRUMPAT.html">RUMPAT</a> *prumpat, float dt)</td></tr>
+<tr class="memdesc:a5de65d7d1b268a23b905673fab2ba256"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger the given rumble pattern.  <br /></td></tr>
+<tr class="separator:a5de65d7d1b268a23b905673fab2ba256"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b90b557de22e9751bca7d8672cbf7bd" id="r_a2b90b557de22e9751bca7d8672cbf7bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#a2b90b557de22e9751bca7d8672cbf7bd">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/rumble&quot;, SetRumbleRums__FP6RUMBLE4RUMS)</td></tr>
 <tr class="memdesc:a2b90b557de22e9751bca7d8672cbf7bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">100% match. Rodata issue. <a href="https://decomp.me/scratch/tFbRA">https://decomp.me/scratch/tFbRA</a>  <br /></td></tr>
 <tr class="separator:a2b90b557de22e9751bca7d8672cbf7bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12fc08862918688470f047b3480f1a09" id="r_a12fc08862918688470f047b3480f1a09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#a12fc08862918688470f047b3480f1a09">StopRumbleActuators</a> (<a class="el" href="structRUMBLE.html">RUMBLE</a> *prumble)</td></tr>
+<tr class="memdesc:a12fc08862918688470f047b3480f1a09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop joypad actuators.  <br /></td></tr>
 <tr class="separator:a12fc08862918688470f047b3480f1a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91308125a872694f116a62b9986c9491" id="r_a91308125a872694f116a62b9986c9491"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#a91308125a872694f116a62b9986c9491">FUN_001A7E70</a> ()</td></tr>
-<tr class="separator:a91308125a872694f116a62b9986c9491"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0560739e5561b76dcd7b0c4c7c0a1164" id="r_a0560739e5561b76dcd7b0c4c7c0a1164"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#a0560739e5561b76dcd7b0c4c7c0a1164">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/rumble&quot;, FUN_001A7E90)</td></tr>
-<tr class="separator:a0560739e5561b76dcd7b0c4c7c0a1164"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac447d124761ae39fe10c0395f76fc0ae" id="r_ac447d124761ae39fe10c0395f76fc0ae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#ac447d124761ae39fe10c0395f76fc0ae">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/rumble&quot;, FUN_001A7EE8)</td></tr>
-<tr class="separator:ac447d124761ae39fe10c0395f76fc0ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dd4dcd67fc3f139f0a6e567553bfd93" id="r_a7dd4dcd67fc3f139f0a6e567553bfd93"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#a7dd4dcd67fc3f139f0a6e567553bfd93">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/rumble&quot;, FUN_001A7F50)</td></tr>
-<tr class="separator:a7dd4dcd67fc3f139f0a6e567553bfd93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a828f376661e2a21e1ef23db88b92a1" id="r_a6a828f376661e2a21e1ef23db88b92a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#a6a828f376661e2a21e1ef23db88b92a1">RumbleUnknown1</a> ()</td></tr>
+<tr class="separator:a6a828f376661e2a21e1ef23db88b92a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fe8ac9d1cef21a56fda37661ad7aee1" id="r_a7fe8ac9d1cef21a56fda37661ad7aee1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#a7fe8ac9d1cef21a56fda37661ad7aee1">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/rumble&quot;, RumbleUnknown2__FP2GS)</td></tr>
+<tr class="separator:a7fe8ac9d1cef21a56fda37661ad7aee1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c7748a67eb73a5807711d616672f9f2" id="r_a3c7748a67eb73a5807711d616672f9f2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#a3c7748a67eb73a5807711d616672f9f2">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/rumble&quot;, RumbleUnknown3__FP2GS)</td></tr>
+<tr class="separator:a3c7748a67eb73a5807711d616672f9f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a766bcf91162e1dbbf229e3b59cc5eb99" id="r_a766bcf91162e1dbbf229e3b59cc5eb99"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#a766bcf91162e1dbbf229e3b59cc5eb99">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/rumble&quot;, RumbleUnknown4__FP2GS)</td></tr>
+<tr class="separator:a766bcf91162e1dbbf229e3b59cc5eb99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:aef6324037b467c5464f478c0388dcd91" id="r_aef6324037b467c5464f478c0388dcd91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#aef6324037b467c5464f478c0388dcd91">DAT_0026c3dc</a></td></tr>
-<tr class="memdesc:aef6324037b467c5464f478c0388dcd91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rename.  <br /></td></tr>
-<tr class="separator:aef6324037b467c5464f478c0388dcd91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b97786f761fb89dd5c4ebe67a416fdb" id="r_a0b97786f761fb89dd5c4ebe67a416fdb"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structRUMPAT.html">RUMPAT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#a0b97786f761fb89dd5c4ebe67a416fdb">s_mprumkrumpat</a> [<a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8a389ca6531b562403d6c93841202bd103">RUMK_Max</a>]</td></tr>
+<tr class="memdesc:a0b97786f761fb89dd5c4ebe67a416fdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of rumble patterns for each RUMK.  <br /></td></tr>
+<tr class="separator:a0b97786f761fb89dd5c4ebe67a416fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa10defe747c592198d3ff3099e66e996" id="r_aa10defe747c592198d3ff3099e66e996"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8c.html#aa10defe747c592198d3ff3099e66e996">g_rumbleUnk</a> = 0</td></tr>
+<tr class="separator:aa10defe747c592198d3ff3099e66e996"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a91308125a872694f116a62b9986c9491" name="a91308125a872694f116a62b9986c9491"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91308125a872694f116a62b9986c9491">&#9670;&#160;</a></span>FUN_001A7E70()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FUN_001A7E70 </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>Rename and figure out what does this do. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00084">84</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
-
-</div>
-</div>
-<a id="a0560739e5561b76dcd7b0c4c7c0a1164" name="a0560739e5561b76dcd7b0c4c7c0a1164"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0560739e5561b76dcd7b0c4c7c0a1164">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/7]</span></h2>
+<a id="a7fe8ac9d1cef21a56fda37661ad7aee1" name="a7fe8ac9d1cef21a56fda37661ad7aee1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fe8ac9d1cef21a56fda37661ad7aee1">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -180,7 +167,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FUN_001A7E90&#160;</td>
+          <td class="paramtype">RumbleUnknown2__FP2GS&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -193,8 +180,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ac447d124761ae39fe10c0395f76fc0ae" name="ac447d124761ae39fe10c0395f76fc0ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac447d124761ae39fe10c0395f76fc0ae">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/7]</span></h2>
+<a id="a3c7748a67eb73a5807711d616672f9f2" name="a3c7748a67eb73a5807711d616672f9f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c7748a67eb73a5807711d616672f9f2">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -208,7 +195,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FUN_001A7EE8&#160;</td>
+          <td class="paramtype">RumbleUnknown3__FP2GS&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -221,8 +208,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a7dd4dcd67fc3f139f0a6e567553bfd93" name="a7dd4dcd67fc3f139f0a6e567553bfd93"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7dd4dcd67fc3f139f0a6e567553bfd93">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/7]</span></h2>
+<a id="a766bcf91162e1dbbf229e3b59cc5eb99" name="a766bcf91162e1dbbf229e3b59cc5eb99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a766bcf91162e1dbbf229e3b59cc5eb99">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -236,7 +223,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FUN_001A7F50&#160;</td>
+          <td class="paramtype">RumbleUnknown4__FP2GS&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -250,7 +237,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="a2b90b557de22e9751bca7d8672cbf7bd" name="a2b90b557de22e9751bca7d8672cbf7bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b90b557de22e9751bca7d8672cbf7bd">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[4/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b90b557de22e9751bca7d8672cbf7bd">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -276,90 +263,6 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>100% match. Rodata issue. <a href="https://decomp.me/scratch/tFbRA">https://decomp.me/scratch/tFbRA</a> </p>
-
-</div>
-</div>
-<a id="a0e10ac196d82d5154b421a955bc4eb99" name="a0e10ac196d82d5154b421a955bc4eb99"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e10ac196d82d5154b421a955bc4eb99">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[5/7]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/rumble&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">TriggerRumbleRumk__FP6RUMBLE4RUMKf&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a44c7b671270836bd7f287f7d46200771" name="a44c7b671270836bd7f287f7d46200771"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a44c7b671270836bd7f287f7d46200771">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[6/7]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/rumble&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">TriggerRumbleRumpat__FP6RUMBLEP6RUMPATf&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5aa929994f890c2c1b75f6853231301a" name="a5aa929994f890c2c1b75f6853231301a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5aa929994f890c2c1b75f6853231301a">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[7/7]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/rumble&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">UpdateRumble__FP6RUMBLE&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -395,7 +298,29 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00010">10</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
+<p>Initialize the joypad rumble system. </p>
+
+<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00115">115</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
+
+</div>
+</div>
+<a id="a6a828f376661e2a21e1ef23db88b92a1" name="a6a828f376661e2a21e1ef23db88b92a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a828f376661e2a21e1ef23db88b92a1">&#9670;&#160;</a></span>RumbleUnknown1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RumbleUnknown1 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000032">Todo:</a></b></dt><dd>Rename and figure out what does this do. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00260">260</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
 
 </div>
 </div>
@@ -415,13 +340,128 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00073">73</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
+<p>Stop joypad actuators. </p>
+
+<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00249">249</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
+
+</div>
+</div>
+<a id="ab353ad72a3fee627405e3cd498f84c2e" name="ab353ad72a3fee627405e3cd498f84c2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab353ad72a3fee627405e3cd498f84c2e">&#9670;&#160;</a></span>TriggerRumbleRumk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TriggerRumbleRumk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structRUMBLE.html">RUMBLE</a> *&#160;</td>
+          <td class="paramname"><em>prumble</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8">RUMK</a>&#160;</td>
+          <td class="paramname"><em>rumk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Trigger a rumble pattern for the given rumble kind. </p>
+
+<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00189">189</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
+
+</div>
+</div>
+<a id="a5de65d7d1b268a23b905673fab2ba256" name="a5de65d7d1b268a23b905673fab2ba256"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5de65d7d1b268a23b905673fab2ba256">&#9670;&#160;</a></span>TriggerRumbleRumpat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TriggerRumbleRumpat </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structRUMBLE.html">RUMBLE</a> *&#160;</td>
+          <td class="paramname"><em>prumble</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structRUMPAT.html">RUMPAT</a> *&#160;</td>
+          <td class="paramname"><em>prumpat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Trigger the given rumble pattern. </p>
+
+<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00194">194</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
+
+</div>
+</div>
+<a id="afc347bec9bd86aca173ca49640059ffc" name="afc347bec9bd86aca173ca49640059ffc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc347bec9bd86aca173ca49640059ffc">&#9670;&#160;</a></span>UpdateRumble()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UpdateRumble </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structRUMBLE.html">RUMBLE</a> *&#160;</td>
+          <td class="paramname"><em>prumble</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00130">130</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="aef6324037b467c5464f478c0388dcd91" name="aef6324037b467c5464f478c0388dcd91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef6324037b467c5464f478c0388dcd91">&#9670;&#160;</a></span>DAT_0026c3dc</h2>
+<a id="aa10defe747c592198d3ff3099e66e996" name="aa10defe747c592198d3ff3099e66e996"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa10defe747c592198d3ff3099e66e996">&#9670;&#160;</a></span>g_rumbleUnk</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int g_rumbleUnk = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000031">Todo:</a></b></dt><dd>Rename. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00113">113</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
+
+</div>
+</div>
+<a id="a0b97786f761fb89dd5c4ebe67a416fdb" name="a0b97786f761fb89dd5c4ebe67a416fdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b97786f761fb89dd5c4ebe67a416fdb">&#9670;&#160;</a></span>s_mprumkrumpat</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -430,17 +470,19 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int DAT_0026c3dc</td>
+          <td class="memname"><a class="el" href="structRUMPAT.html">RUMPAT</a> s_mprumkrumpat[<a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8a389ca6531b562403d6c93841202bd103">RUMK_Max</a>]</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Rename. </p>
+<p>List of rumble patterns for each RUMK. </p>
+
+<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00009">9</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
 
 </div>
 </div>

@@ -6,6 +6,6 @@ var searchData=
   ['pfnfilter_3',['PFNFILTER',['../sw_8h.html#aefac9f87c832c18eda2145401495be57',1,'sw.h']]],
   ['pfnget_4',['PFNGET',['../spliceobj_8h.html#aceb53278c1b918fef67ecdbb8333ed45',1,'spliceobj.h']]],
   ['pfnmq_5',['PFNMQ',['../mq_8h.html#afb2da8044a0d6595070abbf54edaf7f8',1,'mq.h']]],
-  ['pfnufo_6',['PFNUFO',['../bif_8h.html#afa5b44d04156e156591d75b67a6f9ef7',1,'bif.h']]],
+  ['pfnufo_6',['PFNUFO',['../bif_8cpp.html#afa5b44d04156e156591d75b67a6f9ef7',1,'bif.cpp']]],
   ['pfnzap_7',['PFNZAP',['../zap_8h.html#a5d8207e524268769430143c1dc5e9938',1,'zap.h']]]
 ];

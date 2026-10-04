@@ -1,8 +1,8 @@
 var sensor_8h =
 [
     [ "SENSOR", "structSENSOR.html", "structSENSOR" ],
-    [ "LASEN", "structLASEN.html", null ],
-    [ "CAMSEN", "structCAMSEN.html", null ],
+    [ "LASEN", "structLASEN.html", "structLASEN" ],
+    [ "CAMSEN", "structCAMSEN.html", "structCAMSEN" ],
     [ "PRSEN", "structPRSEN.html", null ],
     [ "LBEAM", "structLBEAM.html", null ],
     [ "CSDTS", "sensor_8h.html#ae91767c7e5a00bdf872ebaa12c95a453", [
@@ -45,7 +45,7 @@ var sensor_8h =
     [ "ExtendLasen", "sensor_8h.html#ae722940afdfd4c2873a12ad462f193cb", null ],
     [ "FCheckSensorObject", "sensor_8h.html#a6c9812d8987b4beaab1344a0e54290e7", null ],
     [ "FFilterCamsen", "sensor_8h.html#ae539542de731d145a95a8f528e1603d7", null ],
-    [ "FFilterLasen", "sensor_8h.html#a2bc75f806a9919a293724243b14f1585", null ],
+    [ "FFilterLasen", "sensor_8h.html#ac769b185a2119d4fbabf1a51af6b97bb", null ],
     [ "FIgnoreCamsenIntersection", "sensor_8h.html#a338a2c956f266d204674c5ad98d8b9b9", null ],
     [ "FIgnoreSensorObject", "sensor_8h.html#aa3b17738df3ac134d2cb85d33e41909b", null ],
     [ "FOnlySensorTriggerObject", "sensor_8h.html#a653c46c405ce39d6caf3131a957fade9", null ],

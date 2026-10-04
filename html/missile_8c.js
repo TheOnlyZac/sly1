@@ -7,11 +7,13 @@ var missile_8c =
     [ "INCLUDE_ASM", "missile_8c.html#a8f442b227f140c18765680f13353fb2f", null ],
     [ "INCLUDE_ASM", "missile_8c.html#a757e2e1a81430dd098f63e08ea1c4f44", null ],
     [ "INCLUDE_ASM", "missile_8c.html#aa7d09a0fc10cb6cc4134578c70d6a962", null ],
-    [ "INCLUDE_ASM", "missile_8c.html#adb7fc41c34aeca1360693f3e6f257268", null ],
     [ "INCLUDE_ASM", "missile_8c.html#a1df71f5e2e13ba152a909f8080807bbf", null ],
     [ "INCLUDE_ASM", "missile_8c.html#aee07c775cd81ef65d4db91de9db87e79", null ],
     [ "INCLUDE_ASM", "missile_8c.html#a45238cd1107a8499d4bca10b83631e31", null ],
     [ "INCLUDE_ASM", "missile_8c.html#a35fed250718d16af428d552bb89572fb", null ],
     [ "InitMissile", "missile_8c.html#a583c01baa9e4d6d3b9fd75031b110fdd", null ],
-    [ "OnMissileRemove", "missile_8c.html#a9a4b30cf85dd03fe224e6d8506c60a91", null ]
+    [ "LoadMissileFromBrx", "missile_8c.html#a68206a942e6211ddf3fa6b3f7e2ee87e", null ],
+    [ "OnMissileRemove", "missile_8c.html#a9a4b30cf85dd03fe224e6d8506c60a91", null ],
+    [ "DT_MissilePredictMax", "missile_8c.html#ae74fb0f00b3ec1e29d4d26f2c035ef7a", null ],
+    [ "s_asnipMissile", "missile_8c.html#a1d70d820807b9e7c7f4f2aee8737e089", null ]
 ];

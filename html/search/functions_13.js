@@ -25,14 +25,15 @@ var searchData=
   ['triggerbtn_22',['triggerbtn',['../button_8c.html#a10ca72032a94e552228ea6fd8a3d5191',1,'TriggerBtn(BTN *pbtn, int fSeekToEnd, int fChkTrigger):&#160;button.c'],['../button_8h.html#a10ca72032a94e552228ea6fd8a3d5191',1,'TriggerBtn(BTN *pbtn, int fSeekToEnd, int fChkTrigger):&#160;button.c']]],
   ['triggerchkpnt_23',['TriggerChkpnt',['../chkpnt_8h.html#a0bcbfff10dff0216dd20fd2b61b21d6c',1,'chkpnt.h']]],
   ['triggerdefaultexit_24',['TriggerDefaultExit',['../xform_8h.html#a21be8021842778109810600f98cf82e6',1,'xform.h']]],
-  ['triggerdialog_25',['triggerdialog',['../dialog_8h.html#ac644f475584d5846b3d1b2f087fa7dc6',1,'TriggerDialog(DIALOG *pdialog):&#160;dialog.c'],['../dialog_8c.html#ac644f475584d5846b3d1b2f087fa7dc6',1,'TriggerDialog(DIALOG *pdialog):&#160;dialog.c']]],
+  ['triggerdialog_25',['triggerdialog',['../dialog_8c.html#ac644f475584d5846b3d1b2f087fa7dc6',1,'TriggerDialog(DIALOG *pdialog):&#160;dialog.c'],['../dialog_8h.html#ac644f475584d5846b3d1b2f087fa7dc6',1,'TriggerDialog(DIALOG *pdialog):&#160;dialog.c']]],
   ['triggerexit_26',['TriggerExit',['../xform_8h.html#ab2a7fc84a4b402df7335216e00857032',1,'xform.h']]],
   ['triggerjoyrumblerumk_27',['triggerjoyrumblerumk',['../joy_8c.html#a4a50899171813a3d813cc02cfe7116b3',1,'TriggerJoyRumbleRumk(JOY *pjoy, RUMK rumk, float dt):&#160;joy.c'],['../joy_8h.html#a66a6965e1813eefbd3a45096b19e332b',1,'TriggerJoyRumbleRumk(RUMBLE *prumble, JOY *pjoy, float dt):&#160;joy.h']]],
   ['triggerlockg_28',['TriggerLockg',['../pzo_8h.html#a477d12bb75896a4ff6d320c474c1168c',1,'pzo.h']]],
   ['triggerrsmg_29',['TriggerRsmg',['../button_8h.html#aa14c7a44368fd9352f85c6402802ad00',1,'button.h']]],
-  ['triggerrumblerumk_30',['TriggerRumbleRumk',['../rumble_8h.html#ab353ad72a3fee627405e3cd498f84c2e',1,'rumble.h']]],
-  ['triggersggalarms_31',['triggersggalarms',['../stepguard_8c.html#a4a09050f556bf1b374fdfcacf1445c3a',1,'TriggerSggAlarms(SGG *psgg, ALTK altk):&#160;stepguard.c'],['../stepguard_8h.html#a4a09050f556bf1b374fdfcacf1445c3a',1,'TriggerSggAlarms(SGG *psgg, ALTK altk):&#160;stepguard.c']]],
-  ['triggerwarp_32',['TriggerWarp',['../xform_8h.html#a15165447365bf8df2c31f941ae051379',1,'xform.h']]],
-  ['trim_33',['Trim',['../classCRichText.html#a2e96161c78406e6a1007984a1794d3c0',1,'CRichText']]],
-  ['twpsfindswlights_34',['TwpsFindSwLights',['../light_8h.html#a307847492bbf24dda0eae815146e09c1',1,'light.h']]]
+  ['triggerrumblerumk_30',['triggerrumblerumk',['../rumble_8c.html#ab353ad72a3fee627405e3cd498f84c2e',1,'TriggerRumbleRumk(RUMBLE *prumble, RUMK rumk, float dt):&#160;rumble.c'],['../rumble_8h.html#ab353ad72a3fee627405e3cd498f84c2e',1,'TriggerRumbleRumk(RUMBLE *prumble, RUMK rumk, float dt):&#160;rumble.c']]],
+  ['triggerrumblerumpat_31',['triggerrumblerumpat',['../rumble_8c.html#a5de65d7d1b268a23b905673fab2ba256',1,'TriggerRumbleRumpat(RUMBLE *prumble, RUMPAT *prumpat, float dt):&#160;rumble.c'],['../rumble_8h.html#a5de65d7d1b268a23b905673fab2ba256',1,'TriggerRumbleRumpat(RUMBLE *prumble, RUMPAT *prumpat, float dt):&#160;rumble.c']]],
+  ['triggersggalarms_32',['triggersggalarms',['../stepguard_8c.html#a4a09050f556bf1b374fdfcacf1445c3a',1,'TriggerSggAlarms(SGG *psgg, ALTK altk):&#160;stepguard.c'],['../stepguard_8h.html#a4a09050f556bf1b374fdfcacf1445c3a',1,'TriggerSggAlarms(SGG *psgg, ALTK altk):&#160;stepguard.c']]],
+  ['triggerwarp_33',['TriggerWarp',['../xform_8h.html#a15165447365bf8df2c31f941ae051379',1,'xform.h']]],
+  ['trim_34',['Trim',['../classCRichText.html#a2e96161c78406e6a1007984a1794d3c0',1,'CRichText']]],
+  ['twpsfindswlights_35',['TwpsFindSwLights',['../light_8h.html#a307847492bbf24dda0eae815146e09c1',1,'light.h']]]
 ];

@@ -102,26 +102,24 @@ $(document).ready(function(){initNavTree('method_8cpp_source.html',''); initResi
 <div class="contents">
 <a href="method_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;<a class="code" href="memset_8h.html">sce/memset.h</a>&gt;</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;<a class="code" href="method_8h.html">splice/method.h</a>&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="splotheap_8h.html">splice/splotheap.h</a>&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="spliceutils_8h.html">splice/spliceutils.h</a>&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// todo: matches but blocked by reference in 001c15d8</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// INCLUDE_ASM(&quot;asm/nonmatchings/P2/splice/method&quot;, PmethodNew__Fv);</span></div>
-<div class="foldopen" id="foldopen00007" data-start="{" data-end="}">
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="method_8cpp.html#a12677583dcc1262df0792a1893ee9f77">    7</a></span><a class="code hl_class" href="classCMethod.html">CMethod</a> *<a class="code hl_function" href="method_8cpp.html#a12677583dcc1262df0792a1893ee9f77">PmethodNew</a>()</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <a class="code hl_class" href="classCMethod.html">CMethod</a> *method = (<a class="code hl_class" href="classCMethod.html">CMethod</a> *)<a class="code hl_variable" href="splotheap_8h.html#a066c10b3427b1ed20dcb85f5210991b0">g_splotheapMethod</a>.<a class="code hl_function" href="classCSplotheap.html#a7d376d74c463740245db1adf6ab097e5">PvAllocClear</a>();</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <a class="code hl_function" href="memset_8h.html#a8859618d1590f896d8eb7cd301cdad72">memset</a>(method, 0, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classCMethod.html">CMethod</a>));</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keywordflow">return</span> method;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>}</div>
+<div class="foldopen" id="foldopen00005" data-start="{" data-end="}">
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="method_8cpp.html#a12677583dcc1262df0792a1893ee9f77">    5</a></span><a class="code hl_class" href="classCMethod.html">CMethod</a> *<a class="code hl_function" href="method_8cpp.html#a12677583dcc1262df0792a1893ee9f77">PmethodNew</a>()</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>{</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <a class="code hl_class" href="classCMethod.html">CMethod</a> *method = (<a class="code hl_class" href="classCMethod.html">CMethod</a> *)<a class="code hl_variable" href="spliceutils_8cpp.html#a066c10b3427b1ed20dcb85f5210991b0">g_splotheapMethod</a>.<a class="code hl_function" href="classCSplotheap.html#a7d376d74c463740245db1adf6ab097e5">PvAllocClear</a>();</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <a class="code hl_function" href="memset_8h.html#a8859618d1590f896d8eb7cd301cdad72">memset</a>(method, 0, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classCMethod.html">CMethod</a>));</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keywordflow">return</span> method;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>}</div>
 </div>
 <div class="ttc" id="aclassCMethod_html"><div class="ttname"><a href="classCMethod.html">CMethod</a></div><div class="ttdef"><b>Definition</b> <a href="method_8h_source.html#l00014">method.h:15</a></div></div>
-<div class="ttc" id="aclassCSplotheap_html_a7d376d74c463740245db1adf6ab097e5"><div class="ttname"><a href="classCSplotheap.html#a7d376d74c463740245db1adf6ab097e5">CSplotheap::PvAllocClear</a></div><div class="ttdeci">void * PvAllocClear()</div><div class="ttdef"><b>Definition</b> <a href="splotheap_8cpp_source.html#l00057">splotheap.cpp:57</a></div></div>
+<div class="ttc" id="aclassCSplotheap_html_a7d376d74c463740245db1adf6ab097e5"><div class="ttname"><a href="classCSplotheap.html#a7d376d74c463740245db1adf6ab097e5">CSplotheap::PvAllocClear</a></div><div class="ttdeci">void * PvAllocClear()</div><div class="ttdef"><b>Definition</b> <a href="splotheap_8cpp_source.html#l00055">splotheap.cpp:55</a></div></div>
 <div class="ttc" id="amemset_8h_html"><div class="ttname"><a href="memset_8h.html">memset.h</a></div><div class="ttdoc">Memset.</div></div>
 <div class="ttc" id="amemset_8h_html_a8859618d1590f896d8eb7cd301cdad72"><div class="ttname"><a href="memset_8h.html#a8859618d1590f896d8eb7cd301cdad72">memset</a></div><div class="ttdeci">void * memset(void *ptr, int value, size_t num)</div></div>
-<div class="ttc" id="amethod_8cpp_html_a12677583dcc1262df0792a1893ee9f77"><div class="ttname"><a href="method_8cpp.html#a12677583dcc1262df0792a1893ee9f77">PmethodNew</a></div><div class="ttdeci">CMethod * PmethodNew()</div><div class="ttdef"><b>Definition</b> <a href="method_8cpp_source.html#l00007">method.cpp:7</a></div></div>
+<div class="ttc" id="amethod_8cpp_html_a12677583dcc1262df0792a1893ee9f77"><div class="ttname"><a href="method_8cpp.html#a12677583dcc1262df0792a1893ee9f77">PmethodNew</a></div><div class="ttdeci">CMethod * PmethodNew()</div><div class="ttdef"><b>Definition</b> <a href="method_8cpp_source.html#l00005">method.cpp:5</a></div></div>
 <div class="ttc" id="amethod_8h_html"><div class="ttname"><a href="method_8h.html">method.h</a></div></div>
-<div class="ttc" id="asplotheap_8h_html"><div class="ttname"><a href="splotheap_8h.html">splotheap.h</a></div></div>
-<div class="ttc" id="asplotheap_8h_html_a066c10b3427b1ed20dcb85f5210991b0"><div class="ttname"><a href="splotheap_8h.html#a066c10b3427b1ed20dcb85f5210991b0">g_splotheapMethod</a></div><div class="ttdeci">CSplotheap g_splotheapMethod</div></div>
+<div class="ttc" id="aspliceutils_8cpp_html_a066c10b3427b1ed20dcb85f5210991b0"><div class="ttname"><a href="spliceutils_8cpp.html#a066c10b3427b1ed20dcb85f5210991b0">g_splotheapMethod</a></div><div class="ttdeci">CSplotheap g_splotheapMethod</div><div class="ttdef"><b>Definition</b> <a href="spliceutils_8cpp_source.html#l00013">spliceutils.cpp:13</a></div></div>
+<div class="ttc" id="aspliceutils_8h_html"><div class="ttname"><a href="spliceutils_8h.html">spliceutils.h</a></div><div class="ttdoc">Utility functions for the splice scripting engine.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

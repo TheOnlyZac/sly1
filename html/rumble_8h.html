@@ -130,12 +130,13 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a6d5d8122f09c957bc5514c4a73b9ec0f" id="r_a6d5d8122f09c957bc5514c4a73b9ec0f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0f">RUMS</a> { <br />
-&#160;&#160;<a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0faf3f06a542658b86bee2a23bea94e230a">RUMS_Dead</a> = 0
+&#160;&#160;<a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa7684c33ef4c0420b7b49514cc72ae044">RUMS_Nil</a> = -1
+, <a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0faf3f06a542658b86bee2a23bea94e230a">RUMS_Dead</a> = 0
 , <a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa091e469bf6075a481e8ef168a45298c7">RUMS_Idle</a> = 1
 , <a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa7c6c4cf5a7c761bcd39ba2a04bf759ad">RUMS_Rumble</a> = 2
-, <a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa2972609cecd4f97e0c2492a26f6016aa">RUMS_Stop</a> = 3
 , <br />
-&#160;&#160;<a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa56b51ed29c64c27e3ac333201f60152c">RUMS_Kill</a> = 4
+&#160;&#160;<a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa2972609cecd4f97e0c2492a26f6016aa">RUMS_Stop</a> = 3
+, <a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa56b51ed29c64c27e3ac333201f60152c">RUMS_Kill</a> = 4
 , <a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa72b058661e02b3c95ad855a51b55e604">RUMS_Max</a> = 5
 <br />
  }</td></tr>
@@ -166,13 +167,28 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a22a347bba35744030a7f57363defa7ab" id="r_a22a347bba35744030a7f57363defa7ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8h.html#a22a347bba35744030a7f57363defa7ab">InitRumble</a> (<a class="el" href="structRUMBLE.html">RUMBLE</a> *prumble, int nPort, int nSlot)</td></tr>
+<tr class="memdesc:a22a347bba35744030a7f57363defa7ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the joypad rumble system.  <br /></td></tr>
 <tr class="separator:a22a347bba35744030a7f57363defa7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab353ad72a3fee627405e3cd498f84c2e" id="r_ab353ad72a3fee627405e3cd498f84c2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8h.html#ab353ad72a3fee627405e3cd498f84c2e">TriggerRumbleRumk</a> (<a class="el" href="structRUMBLE.html">RUMBLE</a> *prumble, <a class="el" href="rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8">RUMK</a> rumk, float dt)</td></tr>
+<tr class="memdesc:ab353ad72a3fee627405e3cd498f84c2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger a rumble pattern for the given rumble kind.  <br /></td></tr>
 <tr class="separator:ab353ad72a3fee627405e3cd498f84c2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5de65d7d1b268a23b905673fab2ba256" id="r_a5de65d7d1b268a23b905673fab2ba256"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8h.html#a5de65d7d1b268a23b905673fab2ba256">TriggerRumbleRumpat</a> (<a class="el" href="structRUMBLE.html">RUMBLE</a> *prumble, <a class="el" href="structRUMPAT.html">RUMPAT</a> *prumpat, float dt)</td></tr>
+<tr class="memdesc:a5de65d7d1b268a23b905673fab2ba256"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger the given rumble pattern.  <br /></td></tr>
+<tr class="separator:a5de65d7d1b268a23b905673fab2ba256"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72b5390eb5413ab7c0238d8a7d03750d" id="r_a72b5390eb5413ab7c0238d8a7d03750d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8h.html#a72b5390eb5413ab7c0238d8a7d03750d">SetRumbleRums</a> (<a class="el" href="structRUMBLE.html">RUMBLE</a> *prumble, <a class="el" href="rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0f">RUMS</a> rums)</td></tr>
+<tr class="memdesc:a72b5390eb5413ab7c0238d8a7d03750d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the rumble state.  <br /></td></tr>
 <tr class="separator:a72b5390eb5413ab7c0238d8a7d03750d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12fc08862918688470f047b3480f1a09" id="r_a12fc08862918688470f047b3480f1a09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8h.html#a12fc08862918688470f047b3480f1a09">StopRumbleActuators</a> (<a class="el" href="structRUMBLE.html">RUMBLE</a> *prumble)</td></tr>
+<tr class="memdesc:a12fc08862918688470f047b3480f1a09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop joypad actuators.  <br /></td></tr>
 <tr class="separator:a12fc08862918688470f047b3480f1a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a828f376661e2a21e1ef23db88b92a1" id="r_a6a828f376661e2a21e1ef23db88b92a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8h.html#a6a828f376661e2a21e1ef23db88b92a1">RumbleUnknown1</a> ()</td></tr>
+<tr class="separator:a6a828f376661e2a21e1ef23db88b92a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3658ff8add6120482476e97b47d46bbe" id="r_a3658ff8add6120482476e97b47d46bbe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8h.html#a3658ff8add6120482476e97b47d46bbe">RumbleUnknown2</a> (<a class="el" href="structGS.html">GS</a> *pgs)</td></tr>
+<tr class="separator:a3658ff8add6120482476e97b47d46bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13a9523f6c5625f8edf8e6214217aa49" id="r_a13a9523f6c5625f8edf8e6214217aa49"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8h.html#a13a9523f6c5625f8edf8e6214217aa49">RumbleUnknown3</a> (<a class="el" href="structGS.html">GS</a> *pgs)</td></tr>
+<tr class="separator:a13a9523f6c5625f8edf8e6214217aa49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8886b485594310dab3c5fa5f6b87b316" id="r_a8886b485594310dab3c5fa5f6b87b316"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rumble_8h.html#a8886b485594310dab3c5fa5f6b87b316">RumbleUnknown4</a> (<a class="el" href="structGS.html">GS</a> *pgs)</td></tr>
+<tr class="separator:a8886b485594310dab3c5fa5f6b87b316"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Joypad rumble. </p>
@@ -208,7 +224,7 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a76ef29bd51d1244b6a0e57440206d8e8a389ca6531b562403d6c93841202bd103" name="a76ef29bd51d1244b6a0e57440206d8e8a389ca6531b562403d6c93841202bd103"></a>RUMK_Max&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="rumble_8h_source.html#l00028">28</a> of file <a class="el" href="rumble_8h_source.html">rumble.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rumble_8h_source.html#l00031">31</a> of file <a class="el" href="rumble_8h_source.html">rumble.h</a>.</p>
 
 </div>
 </div>
@@ -226,7 +242,8 @@ Functions</h2></td></tr>
 
 <p>Rumble state. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0faf3f06a542658b86bee2a23bea94e230a" name="a6d5d8122f09c957bc5514c4a73b9ec0faf3f06a542658b86bee2a23bea94e230a"></a>RUMS_Dead&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0fa7684c33ef4c0420b7b49514cc72ae044" name="a6d5d8122f09c957bc5514c4a73b9ec0fa7684c33ef4c0420b7b49514cc72ae044"></a>RUMS_Nil&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0faf3f06a542658b86bee2a23bea94e230a" name="a6d5d8122f09c957bc5514c4a73b9ec0faf3f06a542658b86bee2a23bea94e230a"></a>RUMS_Dead&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0fa091e469bf6075a481e8ef168a45298c7" name="a6d5d8122f09c957bc5514c4a73b9ec0fa091e469bf6075a481e8ef168a45298c7"></a>RUMS_Idle&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0fa7c6c4cf5a7c761bcd39ba2a04bf759ad" name="a6d5d8122f09c957bc5514c4a73b9ec0fa7c6c4cf5a7c761bcd39ba2a04bf759ad"></a>RUMS_Rumble&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0fa2972609cecd4f97e0c2492a26f6016aa" name="a6d5d8122f09c957bc5514c4a73b9ec0fa2972609cecd4f97e0c2492a26f6016aa"></a>RUMS_Stop&#160;</td><td class="fielddoc"></td></tr>
@@ -234,7 +251,7 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a6d5d8122f09c957bc5514c4a73b9ec0fa72b058661e02b3c95ad855a51b55e604" name="a6d5d8122f09c957bc5514c4a73b9ec0fa72b058661e02b3c95ad855a51b55e604"></a>RUMS_Max&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="rumble_8h_source.html#l00015">15</a> of file <a class="el" href="rumble_8h_source.html">rumble.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rumble_8h_source.html#l00017">17</a> of file <a class="el" href="rumble_8h_source.html">rumble.h</a>.</p>
 
 </div>
 </div>
@@ -271,7 +288,87 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00010">10</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
+<p>Initialize the joypad rumble system. </p>
+
+<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00115">115</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
+
+</div>
+</div>
+<a id="a6a828f376661e2a21e1ef23db88b92a1" name="a6a828f376661e2a21e1ef23db88b92a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a828f376661e2a21e1ef23db88b92a1">&#9670;&#160;</a></span>RumbleUnknown1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RumbleUnknown1 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000217">Todo:</a></b></dt><dd>Rename. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000032">Todo:</a></b></dt><dd>Rename and figure out what does this do. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00260">260</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
+
+</div>
+</div>
+<a id="a3658ff8add6120482476e97b47d46bbe" name="a3658ff8add6120482476e97b47d46bbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3658ff8add6120482476e97b47d46bbe">&#9670;&#160;</a></span>RumbleUnknown2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RumbleUnknown2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structGS.html">GS</a> *&#160;</td>
+          <td class="paramname"><em>pgs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000218">Todo:</a></b></dt><dd>Rename. </dd></dl>
+
+</div>
+</div>
+<a id="a13a9523f6c5625f8edf8e6214217aa49" name="a13a9523f6c5625f8edf8e6214217aa49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13a9523f6c5625f8edf8e6214217aa49">&#9670;&#160;</a></span>RumbleUnknown3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int RumbleUnknown3 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structGS.html">GS</a> *&#160;</td>
+          <td class="paramname"><em>pgs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000219">Todo:</a></b></dt><dd>Rename. </dd></dl>
+
+</div>
+</div>
+<a id="a8886b485594310dab3c5fa5f6b87b316" name="a8886b485594310dab3c5fa5f6b87b316"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8886b485594310dab3c5fa5f6b87b316">&#9670;&#160;</a></span>RumbleUnknown4()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RumbleUnknown4 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structGS.html">GS</a> *&#160;</td>
+          <td class="paramname"><em>pgs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000220">Todo:</a></b></dt><dd>Rename. </dd></dl>
 
 </div>
 </div>
@@ -301,6 +398,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Set the rumble state. </p>
+
 </div>
 </div>
 <a id="a12fc08862918688470f047b3480f1a09" name="a12fc08862918688470f047b3480f1a09"></a>
@@ -319,7 +418,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00073">73</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
+<p>Stop joypad actuators. </p>
+
+<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00249">249</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
 
 </div>
 </div>
@@ -354,6 +455,48 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Trigger a rumble pattern for the given rumble kind. </p>
+
+<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00189">189</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
+
+</div>
+</div>
+<a id="a5de65d7d1b268a23b905673fab2ba256" name="a5de65d7d1b268a23b905673fab2ba256"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5de65d7d1b268a23b905673fab2ba256">&#9670;&#160;</a></span>TriggerRumbleRumpat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TriggerRumbleRumpat </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structRUMBLE.html">RUMBLE</a> *&#160;</td>
+          <td class="paramname"><em>prumble</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structRUMPAT.html">RUMPAT</a> *&#160;</td>
+          <td class="paramname"><em>prumpat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Trigger the given rumble pattern. </p>
+
+<p class="definition">Definition at line <a class="el" href="rumble_8c_source.html#l00194">194</a> of file <a class="el" href="rumble_8c_source.html">rumble.c</a>.</p>
 
 </div>
 </div>

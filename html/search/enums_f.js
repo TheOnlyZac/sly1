@@ -1,13 +1,20 @@
 var searchData=
 [
-  ['saak_0',['SAAK',['../shd_8h.html#a17156c86ed7fd6d9586270b8c90ea4e3',1,'shd.h']]],
-  ['scecdvdmediatype_1',['SCECdvdMediaType',['../libcdvd_8h.html#acbbdb899026171f42b2b82b4b1ebc661',1,'libcdvd.h']]],
-  ['seek_2',['SEEK',['../aseg_8h.html#a83ab6bde26e00a10105b66b8cc3f139a',1,'aseg.h']]],
-  ['sensm_3',['SENSM',['../sensor_8h.html#a34713ba01163d471ad4888ef7c742eae',1,'sensor.h']]],
-  ['sensors_4',['SENSORS',['../sensor_8h.html#a5dcd55e97d43491d17306b50be122458',1,'sensor.h']]],
-  ['sfxid_5',['SFXID',['../sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dba',1,'sound.h']]],
-  ['sgas_6',['SGAS',['../stepguard_8h.html#ad7d069bd573fc89e56cdcb4330b48c39',1,'stepguard.h']]],
-  ['sggs_7',['SGGS',['../stepguard_8h.html#a344180f4f59a4a7dacb5fab3c2216a50',1,'stepguard.h']]],
-  ['sgs_8',['SGS',['../stepguard_8h.html#a2ef71e3be56da88455b948f300fccef7',1,'stepguard.h']]],
-  ['shdk_9',['SHDK',['../shd_8h.html#a5c2fb94224d75ab01fa69373d0dcb3ee',1,'shd.h']]]
+  ['rats_0',['RATS',['../rat_8h.html#a1830b79b5f73d8de32e9e2687b29e4c8',1,'rat.h']]],
+  ['respk_1',['RESPK',['../prompt_8h.html#aeb0746a396bac9c423378f0ad165ae0d',1,'prompt.h']]],
+  ['ripgt_2',['RIPGT',['../rip_8h.html#a9f750804cff29b19a97cefda01be856e',1,'rip.h']]],
+  ['ript_3',['RIPT',['../rip_8h.html#afd3174b00666ea8ffe9d6558b4808041',1,'rip.h']]],
+  ['robk_4',['ROBK',['../rog_8h.html#a4b5a9f8a9d144d9c06b9577c1d0ff338',1,'rog.h']]],
+  ['robs_5',['ROBS',['../rog_8h.html#a3d94197c1035abc37601ea505a8d0498',1,'rog.h']]],
+  ['rocs_6',['ROCS',['../rog_8h.html#ab7054526ef447334353779aa3974466f',1,'rog.h']]],
+  ['rohs_7',['ROHS',['../rog_8h.html#ab3c5152a092b2d479a77e3f54af5f062',1,'rog.h']]],
+  ['rops_8',['ROPS',['../rog_8h.html#a777bdc2a17c28b7fed1186ffa1ae8b0c',1,'rog.h']]],
+  ['roses_9',['ROSES',['../rip_8h.html#a34f1ddfa7da41f2830885b533a215dca',1,'rip.h']]],
+  ['rosts_10',['ROSTS',['../rog_8h.html#a601b7847985c6ee419601cd76e435f2d',1,'rog.h']]],
+  ['rovs_11',['ROVS',['../rog_8h.html#acc7e34c2e8be7aa48ddf3357cb68cd56',1,'rog.h']]],
+  ['rovts_12',['ROVTS',['../rog_8h.html#ac811040c57c012e2460a687a15c2b97e',1,'rog.h']]],
+  ['rp_13',['RP',['../render_8h.html#a4f8dc32776380b2be043b775ce1638f3',1,'render.h']]],
+  ['rtck_14',['RTCK',['../alo_8h.html#a5c23dd5c83c6557de6e693f36d87f1fb',1,'alo.h']]],
+  ['rumk_15',['RUMK',['../rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8',1,'rumble.h']]],
+  ['rums_16',['RUMS',['../rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0f',1,'rumble.h']]]
 ];

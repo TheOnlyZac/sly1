@@ -1,11 +1,13 @@
 var blip_8h =
 [
     [ "VU_FLOAT", "structVU__FLOAT.html", "structVU__FLOAT" ],
-    [ "BLIP", "structBLIP.html", null ],
+    [ "BLIPP", "structBLIPP.html", "structBLIPP" ],
+    [ "BLIPV", "structBLIPV.html", "structBLIPV" ],
+    [ "BLIPX", "structBLIPX.html", "structBLIPX" ],
+    [ "BLIPF", "structBLIPF.html", "structBLIPF" ],
     [ "BLIPG", "structBLIPG.html", null ],
-    [ "BLIPP", "structBLIPP.html", null ],
-    [ "BLIPV", "structBLIPV.html", null ],
-    [ "BLIPX", "structBLIPX.html", null ],
+    [ "BLIPSP", "structBLIPSP.html", null ],
+    [ "BLIP", "structBLIP.html", "structBLIP" ],
     [ "GRFZON", "blip_8h.html#ad89747f2e68dd5c8fbbcf7c90a3f93fe", null ],
     [ "BLIPOK", "blip_8h.html#a095d7c104de5f680e7a4c101128e0ef5", [
       [ "BLIPOK_Nil", "blip_8h.html#a095d7c104de5f680e7a4c101128e0ef5a3fae70d2c0d675b184376b3e6201068a", null ],

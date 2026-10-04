@@ -1,5 +1,6 @@
 var bif_8cpp =
 [
+    [ "PFNUFO", "bif_8cpp.html#afa5b44d04156e156591d75b67a6f9ef7", null ],
     [ "INCLUDE_ASM", "bif_8cpp.html#a6f0fd4de5c11dc4d5ecc9e666660b506", null ],
     [ "INCLUDE_ASM", "bif_8cpp.html#a3f5776989e91ce55cadcce12cebac01c", null ],
     [ "INCLUDE_ASM", "bif_8cpp.html#af3a039d80dfbb1bd8576cb74888574e6", null ],
@@ -135,5 +136,7 @@ var bif_8cpp =
     [ "RefOpSetO", "bif_8cpp.html#a72469a9c1db6bac2d3857bb434d5ce10", null ],
     [ "RefOpSin", "bif_8cpp.html#aa9edbea8d62cb055fd7f413886e769e4", null ],
     [ "RefOpSqrt", "bif_8cpp.html#aef9f38d9d915d261a4da573a1b2622e4", null ],
-    [ "RefOpTan", "bif_8cpp.html#a5bea496fe0414ec653fd9edfa8d861a5", null ]
+    [ "RefOpTan", "bif_8cpp.html#a5bea496fe0414ec653fd9edfa8d861a5", null ],
+    [ "g_mpbifkbif", "bif_8cpp.html#a6b03f54ad98f901049b91b8f41d1eaeb", null ],
+    [ "s_mpufokpfnufo", "bif_8cpp.html#af05bac91f8cfd50a56f3913f4a45e06e", null ]
 ];

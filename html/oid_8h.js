@@ -17,8 +17,13 @@ var oid_8h =
       [ "OID_16B", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26a0a6d7f5fc42952f21723fdc56e9a3bf5", null ],
       [ "OID_16C", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26ace9f1bd65d400cc45bb77543ffd8f8d3", null ],
       [ "OID_16D", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26af2cc295e76aada312ebb224d813d2e1b", null ],
+      [ "OID_laser_sensor_render", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26a0ce74124e8019a6dbe1108daf95c3ca0", null ],
+      [ "OID_laser_damage_render", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26a01ab6a37973c66a0b19695eb31ff4c86", null ],
+      [ "OID_camera_damage_render", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26abf53ae72b8b9ec442e66be13a88f70d1", null ],
+      [ "OID_camera_zap_render", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26a9b5bb0f186e96b383439f130782909b8", null ],
       [ "OID_state_ubb_round_2", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26ac24f8094889e1560cc9b97e4c93dd0f4", null ],
       [ "OID_state_ubb_round_3", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26a1634f72add4db41cc05ac4e650a28140", null ],
-      [ "OID_state_ubb_dunk", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26a9742d274e58bdbf995af96e86da169a4", null ]
+      [ "OID_state_ubb_dunk", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26a9742d274e58bdbf995af96e86da169a4", null ],
+      [ "OID_aseg_missile_fire", "oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26acbb5cac01763a79f864bf4fb8e871ede", null ]
     ] ]
 ];

@@ -107,7 +107,6 @@ $(document).ready(function(){initNavTree('spliceutils_8cpp.html',''); initResiza
 <code>#include &lt;<a class="el" href="frame_8h_source.html">splice/frame.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="gc_8h_source.html">splice/gc.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="pair_8h_source.html">splice/pair.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="splotheap_8h_source.html">splice/splotheap.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="vecmat_8h_source.html">splice/vecmat.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="varb_8h_source.html">splice/varb.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -124,105 +123,23 @@ Functions</h2></td></tr>
 <tr class="memdesc:a095454f74e460e647c88b1109f9585ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Splice startup function.  <br /></td></tr>
 <tr class="separator:a095454f74e460e647c88b1109f9585ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d68cf3732b661569ea1a9a12a22bb75" id="r_a9d68cf3732b661569ea1a9a12a22bb75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spliceutils_8cpp.html#a9d68cf3732b661569ea1a9a12a22bb75">ShutdownSplice</a> ()</td></tr>
+<tr class="memdesc:a9d68cf3732b661569ea1a9a12a22bb75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shutdown the splice scripting engine.  <br /></td></tr>
 <tr class="separator:a9d68cf3732b661569ea1a9a12a22bb75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93a728cdf35a1c48f440cf6c4dbbfa9c" id="r_a93a728cdf35a1c48f440cf6c4dbbfa9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spliceutils_8cpp.html#a93a728cdf35a1c48f440cf6c4dbbfa9c">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/splice/spliceutils&quot;, spliceutils__static_initialization_and_destruction_0)</td></tr>
-<tr class="separator:a93a728cdf35a1c48f440cf6c4dbbfa9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7aff942f911421143d2a078b2a795f8" id="r_ab7aff942f911421143d2a078b2a795f8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spliceutils_8cpp.html#ab7aff942f911421143d2a078b2a795f8">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/splice/spliceutils&quot;, _GLOBAL_$I$g_splotheapPair)</td></tr>
-<tr class="separator:ab7aff942f911421143d2a078b2a795f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a353419435c75e965b7ca11316e09b9e8" id="r_a353419435c75e965b7ca11316e09b9e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spliceutils_8cpp.html#a353419435c75e965b7ca11316e09b9e8">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/splice/spliceutils&quot;, _GLOBAL_$D$g_splotheapPair)</td></tr>
-<tr class="separator:a353419435c75e965b7ca11316e09b9e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a441e146ebb1ded19e24908fc1eced875" id="r_a441e146ebb1ded19e24908fc1eced875"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCGc.html">CGc</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spliceutils_8cpp.html#a441e146ebb1ded19e24908fc1eced875">g_gc</a></td></tr>
-<tr class="memdesc:a441e146ebb1ded19e24908fc1eced875"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global garbage colllector singleton.  <br /></td></tr>
-<tr class="separator:a441e146ebb1ded19e24908fc1eced875"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ec650098c36459297b5117bd2704b59" id="r_a1ec650098c36459297b5117bd2704b59"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCSplotheap.html">CSplotheap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spliceutils_8cpp.html#a1ec650098c36459297b5117bd2704b59">g_splotheapPair</a></td></tr>
+<tr class="separator:a1ec650098c36459297b5117bd2704b59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7186eaeed42fdf9d580d7aef1ebf8295" id="r_a7186eaeed42fdf9d580d7aef1ebf8295"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCSplotheap.html">CSplotheap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spliceutils_8cpp.html#a7186eaeed42fdf9d580d7aef1ebf8295">g_splotheapFrame</a></td></tr>
+<tr class="separator:a7186eaeed42fdf9d580d7aef1ebf8295"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55debcf5dffdfa57ae5e3fd814471355" id="r_a55debcf5dffdfa57ae5e3fd814471355"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCSplotheap.html">CSplotheap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spliceutils_8cpp.html#a55debcf5dffdfa57ae5e3fd814471355">g_splotheapVarb</a></td></tr>
+<tr class="separator:a55debcf5dffdfa57ae5e3fd814471355"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a41eaa3ffbbdf82b7c3aa20c070cce7" id="r_a9a41eaa3ffbbdf82b7c3aa20c070cce7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCSplotheap.html">CSplotheap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spliceutils_8cpp.html#a9a41eaa3ffbbdf82b7c3aa20c070cce7">g_splotheapProc</a></td></tr>
+<tr class="separator:a9a41eaa3ffbbdf82b7c3aa20c070cce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a066c10b3427b1ed20dcb85f5210991b0" id="r_a066c10b3427b1ed20dcb85f5210991b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCSplotheap.html">CSplotheap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spliceutils_8cpp.html#a066c10b3427b1ed20dcb85f5210991b0">g_splotheapMethod</a></td></tr>
+<tr class="separator:a066c10b3427b1ed20dcb85f5210991b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a353419435c75e965b7ca11316e09b9e8" name="a353419435c75e965b7ca11316e09b9e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a353419435c75e965b7ca11316e09b9e8">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/splice/spliceutils&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">_GLOBAL_$D$g_splotheapPair&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ab7aff942f911421143d2a078b2a795f8" name="ab7aff942f911421143d2a078b2a795f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7aff942f911421143d2a078b2a795f8">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/splice/spliceutils&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">_GLOBAL_$I$g_splotheapPair&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a93a728cdf35a1c48f440cf6c4dbbfa9c" name="a93a728cdf35a1c48f440cf6c4dbbfa9c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93a728cdf35a1c48f440cf6c4dbbfa9c">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/splice/spliceutils&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">spliceutils__static_initialization_and_destruction_0&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a9d68cf3732b661569ea1a9a12a22bb75" name="a9d68cf3732b661569ea1a9a12a22bb75"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9d68cf3732b661569ea1a9a12a22bb75">&#9670;&#160;</a></span>ShutdownSplice()</h2>
 
@@ -238,7 +155,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="spliceutils_8cpp_source.html#l00030">30</a> of file <a class="el" href="spliceutils_8cpp_source.html">spliceutils.cpp</a>.</p>
+<p>Shutdown the splice scripting engine. </p>
+
+<p class="definition">Definition at line <a class="el" href="spliceutils_8cpp_source.html#l00034">34</a> of file <a class="el" href="spliceutils_8cpp_source.html">spliceutils.cpp</a>.</p>
 
 </div>
 </div>
@@ -259,34 +178,88 @@ Variables</h2></td></tr>
 
 <p>Splice startup function. </p>
 
-<p class="definition">Definition at line <a class="el" href="spliceutils_8cpp_source.html#l00011">11</a> of file <a class="el" href="spliceutils_8cpp_source.html">spliceutils.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="spliceutils_8cpp_source.html#l00015">15</a> of file <a class="el" href="spliceutils_8cpp_source.html">spliceutils.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a441e146ebb1ded19e24908fc1eced875" name="a441e146ebb1ded19e24908fc1eced875"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a441e146ebb1ded19e24908fc1eced875">&#9670;&#160;</a></span>g_gc</h2>
+<a id="a7186eaeed42fdf9d580d7aef1ebf8295" name="a7186eaeed42fdf9d580d7aef1ebf8295"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7186eaeed42fdf9d580d7aef1ebf8295">&#9670;&#160;</a></span>g_splotheapFrame</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classCGc.html">CGc</a> g_gc</td>
+          <td class="memname"><a class="el" href="classCSplotheap.html">CSplotheap</a> g_splotheapFrame</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Global garbage colllector singleton. </p>
+<p class="definition">Definition at line <a class="el" href="spliceutils_8cpp_source.html#l00010">10</a> of file <a class="el" href="spliceutils_8cpp_source.html">spliceutils.cpp</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="gc_8cpp_source.html#l00011">11</a> of file <a class="el" href="gc_8cpp_source.html">gc.cpp</a>.</p>
+</div>
+</div>
+<a id="a066c10b3427b1ed20dcb85f5210991b0" name="a066c10b3427b1ed20dcb85f5210991b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a066c10b3427b1ed20dcb85f5210991b0">&#9670;&#160;</a></span>g_splotheapMethod</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCSplotheap.html">CSplotheap</a> g_splotheapMethod</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spliceutils_8cpp_source.html#l00013">13</a> of file <a class="el" href="spliceutils_8cpp_source.html">spliceutils.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a1ec650098c36459297b5117bd2704b59" name="a1ec650098c36459297b5117bd2704b59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ec650098c36459297b5117bd2704b59">&#9670;&#160;</a></span>g_splotheapPair</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCSplotheap.html">CSplotheap</a> g_splotheapPair</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spliceutils_8cpp_source.html#l00009">9</a> of file <a class="el" href="spliceutils_8cpp_source.html">spliceutils.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a9a41eaa3ffbbdf82b7c3aa20c070cce7" name="a9a41eaa3ffbbdf82b7c3aa20c070cce7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a41eaa3ffbbdf82b7c3aa20c070cce7">&#9670;&#160;</a></span>g_splotheapProc</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCSplotheap.html">CSplotheap</a> g_splotheapProc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spliceutils_8cpp_source.html#l00012">12</a> of file <a class="el" href="spliceutils_8cpp_source.html">spliceutils.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a55debcf5dffdfa57ae5e3fd814471355" name="a55debcf5dffdfa57ae5e3fd814471355"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55debcf5dffdfa57ae5e3fd814471355">&#9670;&#160;</a></span>g_splotheapVarb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCSplotheap.html">CSplotheap</a> g_splotheapVarb</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spliceutils_8cpp_source.html#l00011">11</a> of file <a class="el" href="spliceutils_8cpp_source.html">spliceutils.cpp</a>.</p>
 
 </div>
 </div>

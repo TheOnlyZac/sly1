@@ -26,5 +26,8 @@ var util_8h =
     [ "RadSmooth", "util_8h.html#a75f21c63972b878f298849b70ea42888", null ],
     [ "RadSmoothA", "util_8h.html#aa15aa728b5a15e07058059d409c68b98", null ],
     [ "SmoothMatrix", "util_8h.html#a238a2da54adf735b0555f83890b3b834", null ],
+    [ "g_clqOne", "util_8h.html#a694fc7598c67d06548a50bde97975b4f", null ],
+    [ "g_clqZero", "util_8h.html#a2d4155018260e67e36aa01614239ebf1", null ],
+    [ "g_lmNegOneOne", "util_8h.html#a6c3f111542550b25e3c88ca7161fbeca", null ],
     [ "g_lmZeroOne", "util_8h.html#aeee4823b200985156b402f1c57becb78", null ]
 ];

@@ -19,6 +19,7 @@ var rumble_8h =
       [ "RUMK_Max", "rumble_8h.html#a76ef29bd51d1244b6a0e57440206d8e8a389ca6531b562403d6c93841202bd103", null ]
     ] ],
     [ "RUMS", "rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0f", [
+      [ "RUMS_Nil", "rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa7684c33ef4c0420b7b49514cc72ae044", null ],
       [ "RUMS_Dead", "rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0faf3f06a542658b86bee2a23bea94e230a", null ],
       [ "RUMS_Idle", "rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa091e469bf6075a481e8ef168a45298c7", null ],
       [ "RUMS_Rumble", "rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa7c6c4cf5a7c761bcd39ba2a04bf759ad", null ],
@@ -27,7 +28,12 @@ var rumble_8h =
       [ "RUMS_Max", "rumble_8h.html#a6d5d8122f09c957bc5514c4a73b9ec0fa72b058661e02b3c95ad855a51b55e604", null ]
     ] ],
     [ "InitRumble", "rumble_8h.html#a22a347bba35744030a7f57363defa7ab", null ],
+    [ "RumbleUnknown1", "rumble_8h.html#a6a828f376661e2a21e1ef23db88b92a1", null ],
+    [ "RumbleUnknown2", "rumble_8h.html#a3658ff8add6120482476e97b47d46bbe", null ],
+    [ "RumbleUnknown3", "rumble_8h.html#a13a9523f6c5625f8edf8e6214217aa49", null ],
+    [ "RumbleUnknown4", "rumble_8h.html#a8886b485594310dab3c5fa5f6b87b316", null ],
     [ "SetRumbleRums", "rumble_8h.html#a72b5390eb5413ab7c0238d8a7d03750d", null ],
     [ "StopRumbleActuators", "rumble_8h.html#a12fc08862918688470f047b3480f1a09", null ],
-    [ "TriggerRumbleRumk", "rumble_8h.html#ab353ad72a3fee627405e3cd498f84c2e", null ]
+    [ "TriggerRumbleRumk", "rumble_8h.html#ab353ad72a3fee627405e3cd498f84c2e", null ],
+    [ "TriggerRumbleRumpat", "rumble_8h.html#a5de65d7d1b268a23b905673fab2ba256", null ]
 ];

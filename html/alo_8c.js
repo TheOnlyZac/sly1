@@ -213,7 +213,6 @@ var alo_8c =
     [ "SetAloUVolume", "alo_8c.html#a7bf5e656f37f8299d9d932457cdfc830", null ],
     [ "SetAloUVolumeSpl", "alo_8c.html#ad4b382622296ec30488f3be3d23fc61b", null ],
     [ "StopAloSound", "alo_8c.html#a885bb75ff5fd250e9113cb59c84f7a3a", null ],
-    [ "D_00275C40", "alo_8c.html#ad639d5dd9474e3039445c88474184ee1", null ],
     [ "g_vtact", "alo_8c.html#a8bf17b7df20200d83cb790eb153d4f1e", null ],
     [ "g_vtactadj", "alo_8c.html#adbba4b1bd8516949b648793c58d347d5", null ],
     [ "g_vtactla", "alo_8c.html#ade233d56e3a888614c663357c7a44c3e", null ],

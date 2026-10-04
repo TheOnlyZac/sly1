@@ -98,15 +98,22 @@ $(document).ready(function(){initNavTree('sensor_8c.html',''); initResizable(); 
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">sensor.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="sensor_8h_source.html">sensor.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="shdanim_8h_source.html">shdanim.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="lookat_8h_source.html">lookat.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="freeze_8h_source.html">freeze.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="alarm_8h_source.html">alarm.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="asega_8h_source.html">asega.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="game_8h_source.html">game.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="alo_8h_source.html">alo.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="so_8h_source.html">so.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="lo_8h_source.html">lo.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="alarm_8h_source.html">alarm.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="game_8h_source.html">game.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="jt_8h_source.html">jt.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for sensor.c:</div>
 <div class="dyncontent">
@@ -123,30 +130,35 @@ Functions</h2></td></tr>
 <tr class="memitem:a949daca517954f811f96538223945651" id="r_a949daca517954f811f96538223945651"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a949daca517954f811f96538223945651">SetSensorAlarm</a> (<a class="el" href="structSENSOR.html">SENSOR</a> *psensor, <a class="el" href="structALARM.html">ALARM</a> *palarm)</td></tr>
 <tr class="memdesc:a949daca517954f811f96538223945651"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the sensor's associated alarm.  <br /></td></tr>
 <tr class="separator:a949daca517954f811f96538223945651"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2da55ecf47c67f3c806e1685115b788" id="r_af2da55ecf47c67f3c806e1685115b788"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#af2da55ecf47c67f3c806e1685115b788">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, SetSensorSensors__FP6SENSOR7SENSORS)</td></tr>
-<tr class="separator:af2da55ecf47c67f3c806e1685115b788"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa01ce1270d0af76c620db3bdbb5bdc9" id="r_aaa01ce1270d0af76c620db3bdbb5bdc9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#aaa01ce1270d0af76c620db3bdbb5bdc9">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, FCheckSensorObject__FP6SENSORP2SO)</td></tr>
-<tr class="separator:aaa01ce1270d0af76c620db3bdbb5bdc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e82aa5e77e7f3581b197e16a6da35ea" id="r_a4e82aa5e77e7f3581b197e16a6da35ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a4e82aa5e77e7f3581b197e16a6da35ea">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, FIgnoreSensorObject__FP6SENSORP2SO)</td></tr>
-<tr class="separator:a4e82aa5e77e7f3581b197e16a6da35ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac175f1b3c24b3ed140d2b1b385b96950" id="r_ac175f1b3c24b3ed140d2b1b385b96950"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#ac175f1b3c24b3ed140d2b1b385b96950">SetSensorSensors</a> (<a class="el" href="structSENSOR.html">SENSOR</a> *psensor, <a class="el" href="sensor_8h.html#a5dcd55e97d43491d17306b50be122458">SENSORS</a> sensors)</td></tr>
+<tr class="memdesc:ac175f1b3c24b3ed140d2b1b385b96950"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the sensor's state and handles triggering the sensor's alarm.  <br /></td></tr>
+<tr class="separator:ac175f1b3c24b3ed140d2b1b385b96950"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c9812d8987b4beaab1344a0e54290e7" id="r_a6c9812d8987b4beaab1344a0e54290e7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a6c9812d8987b4beaab1344a0e54290e7">FCheckSensorObject</a> (<a class="el" href="structSENSOR.html">SENSOR</a> *psensor, <a class="el" href="structSO.html">SO</a> *psoOther)</td></tr>
+<tr class="separator:a6c9812d8987b4beaab1344a0e54290e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3b17738df3ac134d2cb85d33e41909b" id="r_aa3b17738df3ac134d2cb85d33e41909b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#aa3b17738df3ac134d2cb85d33e41909b">FIgnoreSensorObject</a> (<a class="el" href="structSENSOR.html">SENSOR</a> *psensor, <a class="el" href="structSO.html">SO</a> *psoOther)</td></tr>
+<tr class="separator:aa3b17738df3ac134d2cb85d33e41909b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa2c7c86c94ea1ae27e36f2bcbc49cd6" id="r_afa2c7c86c94ea1ae27e36f2bcbc49cd6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#afa2c7c86c94ea1ae27e36f2bcbc49cd6">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, FOnlySensorTriggerObject__FP6SENSORP2SO)</td></tr>
 <tr class="separator:afa2c7c86c94ea1ae27e36f2bcbc49cd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e8e99da50e1f1647f76a278bcec9c41" id="r_a6e8e99da50e1f1647f76a278bcec9c41"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a6e8e99da50e1f1647f76a278bcec9c41">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, PauseSensor__FP6SENSOR)</td></tr>
-<tr class="separator:a6e8e99da50e1f1647f76a278bcec9c41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a215a75883ee946f08024d9a2664566e8" id="r_a215a75883ee946f08024d9a2664566e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a215a75883ee946f08024d9a2664566e8">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, UpdateSensor__FP6SENSORf)</td></tr>
-<tr class="separator:a215a75883ee946f08024d9a2664566e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0f0a5d17321333a61abff4b6b33a499" id="r_af0f0a5d17321333a61abff4b6b33a499"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#af0f0a5d17321333a61abff4b6b33a499">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, AddSensorTriggerObject__FP6SENSOR3OID)</td></tr>
-<tr class="separator:af0f0a5d17321333a61abff4b6b33a499"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adac01debe932ecbe00b3bf54419a3b9e" id="r_adac01debe932ecbe00b3bf54419a3b9e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#adac01debe932ecbe00b3bf54419a3b9e">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, AddSensorNoTriggerObject__FP6SENSOR3OID)</td></tr>
-<tr class="separator:adac01debe932ecbe00b3bf54419a3b9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18009f42136590a529e359f49fce6d05" id="r_a18009f42136590a529e359f49fce6d05"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a18009f42136590a529e359f49fce6d05">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, AddSensorTriggerClass__FP6SENSOR3CID)</td></tr>
-<tr class="separator:a18009f42136590a529e359f49fce6d05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60878352a1cd694cbda84195cb44b246" id="r_a60878352a1cd694cbda84195cb44b246"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a60878352a1cd694cbda84195cb44b246">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, AddSensorNoTriggerClass__FP6SENSOR3CID)</td></tr>
-<tr class="separator:a60878352a1cd694cbda84195cb44b246"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65017f6739558be13c425c51df9361df" id="r_a65017f6739558be13c425c51df9361df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a65017f6739558be13c425c51df9361df">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, InitLasen__FP5LASEN)</td></tr>
-<tr class="separator:a65017f6739558be13c425c51df9361df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b6d1660a2bedb0edd53b8005e106b93" id="r_a3b6d1660a2bedb0edd53b8005e106b93"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a3b6d1660a2bedb0edd53b8005e106b93">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, LoadLasenFromBrx__FP5LASENP18CBinaryInputStream)</td></tr>
-<tr class="separator:a3b6d1660a2bedb0edd53b8005e106b93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab46302e703869720755fb22067de87f3" id="r_ab46302e703869720755fb22067de87f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#ab46302e703869720755fb22067de87f3">PauseSensor</a> (<a class="el" href="structSENSOR.html">SENSOR</a> *psensor)</td></tr>
+<tr class="separator:ab46302e703869720755fb22067de87f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa63efecf44c453700ffe48af59326dc6" id="r_aa63efecf44c453700ffe48af59326dc6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#aa63efecf44c453700ffe48af59326dc6">UpdateSensor</a> (<a class="el" href="structSENSOR.html">SENSOR</a> *psensor, float dt)</td></tr>
+<tr class="separator:aa63efecf44c453700ffe48af59326dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c88c36429323e4c8fd59870b3ae3175" id="r_a7c88c36429323e4c8fd59870b3ae3175"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a7c88c36429323e4c8fd59870b3ae3175">AddSensorTriggerObject</a> (<a class="el" href="structSENSOR.html">SENSOR</a> *psensor, <a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> oid)</td></tr>
+<tr class="memdesc:a7c88c36429323e4c8fd59870b3ae3175"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an object ID to the sensor's trigger list.  <br /></td></tr>
+<tr class="separator:a7c88c36429323e4c8fd59870b3ae3175"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ac6783a6405d0e2792d504bd8bc29f3" id="r_a9ac6783a6405d0e2792d504bd8bc29f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a9ac6783a6405d0e2792d504bd8bc29f3">AddSensorNoTriggerObject</a> (<a class="el" href="structSENSOR.html">SENSOR</a> *psensor, <a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> oid)</td></tr>
+<tr class="memdesc:a9ac6783a6405d0e2792d504bd8bc29f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an object ID to the sensor's no-trigger list.  <br /></td></tr>
+<tr class="separator:a9ac6783a6405d0e2792d504bd8bc29f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f4165fa0d63c17a9639eafac74d32e6" id="r_a8f4165fa0d63c17a9639eafac74d32e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a8f4165fa0d63c17a9639eafac74d32e6">AddSensorTriggerClass</a> (<a class="el" href="structSENSOR.html">SENSOR</a> *psensor, <a class="el" href="cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4">CID</a> cid)</td></tr>
+<tr class="memdesc:a8f4165fa0d63c17a9639eafac74d32e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a class ID to the sensor's trigger class list.  <br /></td></tr>
+<tr class="separator:a8f4165fa0d63c17a9639eafac74d32e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1c591ccf6101c6822d3da3195abcdec" id="r_aa1c591ccf6101c6822d3da3195abcdec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#aa1c591ccf6101c6822d3da3195abcdec">AddSensorNoTriggerClass</a> (<a class="el" href="structSENSOR.html">SENSOR</a> *psensor, <a class="el" href="cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4">CID</a> cid)</td></tr>
+<tr class="memdesc:aa1c591ccf6101c6822d3da3195abcdec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a class ID to the sensor's no-trigger class list.  <br /></td></tr>
+<tr class="separator:aa1c591ccf6101c6822d3da3195abcdec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c7a4d5d444eb3284c2b2cc2f94da096" id="r_a7c7a4d5d444eb3284c2b2cc2f94da096"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a7c7a4d5d444eb3284c2b2cc2f94da096">InitLasen</a> (<a class="el" href="structLASEN.html">LASEN</a> *plasen)</td></tr>
+<tr class="separator:a7c7a4d5d444eb3284c2b2cc2f94da096"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a572d0bd2510b5f88da2a6c5b126355e8" id="r_a572d0bd2510b5f88da2a6c5b126355e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a572d0bd2510b5f88da2a6c5b126355e8">LoadLasenFromBrx</a> (<a class="el" href="structLASEN.html">LASEN</a> *plasen, <a class="el" href="classCBinaryInputStream.html">CBinaryInputStream</a> *pbis)</td></tr>
+<tr class="separator:a572d0bd2510b5f88da2a6c5b126355e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af43297e1fb37450680ca1387a7098e19" id="r_af43297e1fb37450680ca1387a7098e19"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#af43297e1fb37450680ca1387a7098e19">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, BindLasen__FP5LASEN)</td></tr>
 <tr class="separator:af43297e1fb37450680ca1387a7098e19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca0015087c24e31f8c1a29d74514a7c1" id="r_aca0015087c24e31f8c1a29d74514a7c1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#aca0015087c24e31f8c1a29d74514a7c1">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, PostLasenLoad__FP5LASEN)</td></tr>
@@ -155,32 +167,32 @@ Functions</h2></td></tr>
 <tr class="separator:a7cfba457790866df565b346db4d404ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3648572e39ff68984bc826e049c040b9" id="r_a3648572e39ff68984bc826e049c040b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a3648572e39ff68984bc826e049c040b9">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, UpdateLasen__FP5LASENf)</td></tr>
 <tr class="separator:a3648572e39ff68984bc826e049c040b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ce3672e72013139b76e0736b5f2718a" id="r_a4ce3672e72013139b76e0736b5f2718a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a4ce3672e72013139b76e0736b5f2718a">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, FreezeLasen__FP5LASENi)</td></tr>
-<tr class="separator:a4ce3672e72013139b76e0736b5f2718a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff434f6fb66a8d92dc5917f0c138de6e" id="r_aff434f6fb66a8d92dc5917f0c138de6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#aff434f6fb66a8d92dc5917f0c138de6e">FreezeLasen</a> (<a class="el" href="structLASEN.html">LASEN</a> *plasen, int fFreeze)</td></tr>
+<tr class="separator:aff434f6fb66a8d92dc5917f0c138de6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83066d10f057f3ab8e68740365b80de0" id="r_a83066d10f057f3ab8e68740365b80de0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a83066d10f057f3ab8e68740365b80de0">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, RenderLasenSelf__FP5LASENP2CMP2RO)</td></tr>
 <tr class="separator:a83066d10f057f3ab8e68740365b80de0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36814bd69b77e89fd8d8e64cd3752ada" id="r_a36814bd69b77e89fd8d8e64cd3752ada"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a36814bd69b77e89fd8d8e64cd3752ada">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, FUN_001afaf8__FP6SENSORP2SO)</td></tr>
-<tr class="separator:a36814bd69b77e89fd8d8e64cd3752ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27b21b8d796027a3dbe0bafb7a74e9ce" id="r_a27b21b8d796027a3dbe0bafb7a74e9ce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a27b21b8d796027a3dbe0bafb7a74e9ce">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, FFilterLasen__FPvP2SO)</td></tr>
+<tr class="separator:a27b21b8d796027a3dbe0bafb7a74e9ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f54c2630064dfc211b4b673f629af75" id="r_a5f54c2630064dfc211b4b673f629af75"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a5f54c2630064dfc211b4b673f629af75">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, SenseLasen__FP5LASENP7SENSORS)</td></tr>
 <tr class="separator:a5f54c2630064dfc211b4b673f629af75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10e70065b75dbe85545f9a2239bda6bb" id="r_a10e70065b75dbe85545f9a2239bda6bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a10e70065b75dbe85545f9a2239bda6bb">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, EnableLasen__FP5LASEN5SENSM)</td></tr>
-<tr class="separator:a10e70065b75dbe85545f9a2239bda6bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42ea70b3696123d96fbdf871e3685c7f" id="r_a42ea70b3696123d96fbdf871e3685c7f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a42ea70b3696123d96fbdf871e3685c7f">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, DisableLasen__FP5LASEN)</td></tr>
-<tr class="separator:a42ea70b3696123d96fbdf871e3685c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33524faa51ad0ea7891e98a5dbfd7e0d" id="r_a33524faa51ad0ea7891e98a5dbfd7e0d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a33524faa51ad0ea7891e98a5dbfd7e0d">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, OnLasenAlarmTriggered__FP5LASEN)</td></tr>
-<tr class="separator:a33524faa51ad0ea7891e98a5dbfd7e0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af83f2d96449ed4fd36efdce33761de0f" id="r_af83f2d96449ed4fd36efdce33761de0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#af83f2d96449ed4fd36efdce33761de0f">EnableLasen</a> (<a class="el" href="structLASEN.html">LASEN</a> *plasen, <a class="el" href="sensor_8h.html#a34713ba01163d471ad4888ef7c742eae">SENSM</a> sensm)</td></tr>
+<tr class="separator:af83f2d96449ed4fd36efdce33761de0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad172c5b2c9c40728e03058ed415f65c4" id="r_ad172c5b2c9c40728e03058ed415f65c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#ad172c5b2c9c40728e03058ed415f65c4">DisableLasen</a> (<a class="el" href="structLASEN.html">LASEN</a> *plasen)</td></tr>
+<tr class="separator:ad172c5b2c9c40728e03058ed415f65c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29737ed6568e42c6a2655dd4648e7c44" id="r_a29737ed6568e42c6a2655dd4648e7c44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a29737ed6568e42c6a2655dd4648e7c44">OnLasenAlarmTriggered</a> (<a class="el" href="structLASEN.html">LASEN</a> *plasen)</td></tr>
+<tr class="separator:a29737ed6568e42c6a2655dd4648e7c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4c9637886c29ca76da91c2dde4a075b" id="r_af4c9637886c29ca76da91c2dde4a075b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#af4c9637886c29ca76da91c2dde4a075b">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, SetLasenSensors__FP5LASEN7SENSORS)</td></tr>
 <tr class="separator:af4c9637886c29ca76da91c2dde4a075b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab330a70652095d2901a4659856cc3ec5" id="r_ab330a70652095d2901a4659856cc3ec5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#ab330a70652095d2901a4659856cc3ec5">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, SCalcLasenShapeExtent__FP5LASENP5LBEAM)</td></tr>
 <tr class="separator:ab330a70652095d2901a4659856cc3ec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b8defe4826c0704f06dfacdb9abd377" id="r_a6b8defe4826c0704f06dfacdb9abd377"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a6b8defe4826c0704f06dfacdb9abd377">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, RetractLasen__FP5LASENf)</td></tr>
-<tr class="separator:a6b8defe4826c0704f06dfacdb9abd377"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade3193c9fde6bf99cfa7704b4fdbe735" id="r_ade3193c9fde6bf99cfa7704b4fdbe735"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#ade3193c9fde6bf99cfa7704b4fdbe735">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, ExtendLasen__FP5LASENf)</td></tr>
-<tr class="separator:ade3193c9fde6bf99cfa7704b4fdbe735"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90db3df666dc2e1b66231e5142e18bde" id="r_a90db3df666dc2e1b66231e5142e18bde"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a90db3df666dc2e1b66231e5142e18bde">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, InitCamsen__FP6CAMSEN)</td></tr>
-<tr class="separator:a90db3df666dc2e1b66231e5142e18bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00e17dad5c51ac2eaa53c2f1cae996f1" id="r_a00e17dad5c51ac2eaa53c2f1cae996f1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a00e17dad5c51ac2eaa53c2f1cae996f1">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, PostCamsenLoad__FP6CAMSEN)</td></tr>
-<tr class="separator:a00e17dad5c51ac2eaa53c2f1cae996f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7da3ad904068cfcb2ba2ac522959b78" id="r_ad7da3ad904068cfcb2ba2ac522959b78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#ad7da3ad904068cfcb2ba2ac522959b78">RetractLasen</a> (<a class="el" href="structLASEN.html">LASEN</a> *plasen, float dtRetract)</td></tr>
+<tr class="separator:ad7da3ad904068cfcb2ba2ac522959b78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae722940afdfd4c2873a12ad462f193cb" id="r_ae722940afdfd4c2873a12ad462f193cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#ae722940afdfd4c2873a12ad462f193cb">ExtendLasen</a> (<a class="el" href="structLASEN.html">LASEN</a> *plasen, float dtExpand)</td></tr>
+<tr class="separator:ae722940afdfd4c2873a12ad462f193cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af07b21928776e2308f77df10194d24de" id="r_af07b21928776e2308f77df10194d24de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#af07b21928776e2308f77df10194d24de">InitCamsen</a> (<a class="el" href="structCAMSEN.html">CAMSEN</a> *pcamsen)</td></tr>
+<tr class="separator:af07b21928776e2308f77df10194d24de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cd796b73f204a5170fbb030046425c0" id="r_a9cd796b73f204a5170fbb030046425c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a9cd796b73f204a5170fbb030046425c0">PostCamsenLoad</a> (<a class="el" href="structCAMSEN.html">CAMSEN</a> *pcamsen)</td></tr>
+<tr class="separator:a9cd796b73f204a5170fbb030046425c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8f4d7fad797830b431080dcb10a078a" id="r_ae8f4d7fad797830b431080dcb10a078a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#ae8f4d7fad797830b431080dcb10a078a">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, UpdateCamsen__FP6CAMSENf)</td></tr>
 <tr class="separator:ae8f4d7fad797830b431080dcb10a078a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2f079e483f6b4bc2e2b57713a04faf8" id="r_ac2f079e483f6b4bc2e2b57713a04faf8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#ac2f079e483f6b4bc2e2b57713a04faf8">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, RenderCamsenSelf__FP6CAMSENP2CMP2RO)</td></tr>
@@ -191,36 +203,411 @@ Functions</h2></td></tr>
 <tr class="separator:ad047ed6fe64d446549bad2fddc8cce12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26565e565b4d97d9d413ae9d60d5c853" id="r_a26565e565b4d97d9d413ae9d60d5c853"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a26565e565b4d97d9d413ae9d60d5c853">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, SenseCamsen__FP6CAMSENP7SENSORS)</td></tr>
 <tr class="separator:a26565e565b4d97d9d413ae9d60d5c853"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32f6a0397abfb0bf9fd5ce1c8a3dbeea" id="r_a32f6a0397abfb0bf9fd5ce1c8a3dbeea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a32f6a0397abfb0bf9fd5ce1c8a3dbeea">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, EnableCamsen__FP6CAMSEN5SENSM)</td></tr>
-<tr class="separator:a32f6a0397abfb0bf9fd5ce1c8a3dbeea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabcf349cd32edbdb7f8f7789d9f23265" id="r_aabcf349cd32edbdb7f8f7789d9f23265"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#aabcf349cd32edbdb7f8f7789d9f23265">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, DisableCamsen__FP6CAMSEN)</td></tr>
-<tr class="separator:aabcf349cd32edbdb7f8f7789d9f23265"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52f46a7ad457f12248561fde131388c6" id="r_a52f46a7ad457f12248561fde131388c6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a52f46a7ad457f12248561fde131388c6">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, OnCamsenAlarmTriggered__FP6CAMSEN)</td></tr>
-<tr class="separator:a52f46a7ad457f12248561fde131388c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9c742cd97fe4c3509a5ff909263b0d9" id="r_ae9c742cd97fe4c3509a5ff909263b0d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#ae9c742cd97fe4c3509a5ff909263b0d9">EnableCamsen</a> (<a class="el" href="structCAMSEN.html">CAMSEN</a> *pcamsen, <a class="el" href="sensor_8h.html#a34713ba01163d471ad4888ef7c742eae">SENSM</a> sensm)</td></tr>
+<tr class="separator:ae9c742cd97fe4c3509a5ff909263b0d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac12b43558f7dbdf567ec7b634f106fe5" id="r_ac12b43558f7dbdf567ec7b634f106fe5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#ac12b43558f7dbdf567ec7b634f106fe5">DisableCamsen</a> (<a class="el" href="structCAMSEN.html">CAMSEN</a> *pcamsen)</td></tr>
+<tr class="separator:ac12b43558f7dbdf567ec7b634f106fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5524cac1ec9c15f39c3010d88b95cc14" id="r_a5524cac1ec9c15f39c3010d88b95cc14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a5524cac1ec9c15f39c3010d88b95cc14">OnCamsenAlarmTriggered</a> (<a class="el" href="structCAMSEN.html">CAMSEN</a> *pcamsen)</td></tr>
+<tr class="separator:a5524cac1ec9c15f39c3010d88b95cc14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39bfde4a7f3f920efaca998343f5306d" id="r_a39bfde4a7f3f920efaca998343f5306d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a39bfde4a7f3f920efaca998343f5306d">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, SetCamsenSensors__FP6CAMSEN7SENSORS)</td></tr>
 <tr class="separator:a39bfde4a7f3f920efaca998343f5306d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a383582085443d41317c5ca138e335bcb" id="r_a383582085443d41317c5ca138e335bcb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a383582085443d41317c5ca138e335bcb">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, SetCamsenCsdts__FP6CAMSEN5CSDTS)</td></tr>
 <tr class="separator:a383582085443d41317c5ca138e335bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a889fa897b9ca4aab12e34e74641ff699" id="r_a889fa897b9ca4aab12e34e74641ff699"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a889fa897b9ca4aab12e34e74641ff699">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, InitPrsen__FP5PRSEN)</td></tr>
-<tr class="separator:a889fa897b9ca4aab12e34e74641ff699"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6769f7ee1a2e02632a2a7ff3be80d92" id="r_ab6769f7ee1a2e02632a2a7ff3be80d92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#ab6769f7ee1a2e02632a2a7ff3be80d92">InitPrsen</a> (<a class="el" href="structPRSEN.html">PRSEN</a> *pprsen)</td></tr>
+<tr class="separator:ab6769f7ee1a2e02632a2a7ff3be80d92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe3dad09165011351729ffa7a9e134ff" id="r_afe3dad09165011351729ffa7a9e134ff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#afe3dad09165011351729ffa7a9e134ff">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, PostPrsenLoad__FP5PRSEN)</td></tr>
 <tr class="separator:afe3dad09165011351729ffa7a9e134ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13b16a9c828f1799e163745a111f1371" id="r_a13b16a9c828f1799e163745a111f1371"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a13b16a9c828f1799e163745a111f1371">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, UpdatePrsen__FP5PRSENf)</td></tr>
 <tr class="separator:a13b16a9c828f1799e163745a111f1371"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cfae65c45ab735ebee072804bf0fe95" id="r_a7cfae65c45ab735ebee072804bf0fe95"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a7cfae65c45ab735ebee072804bf0fe95">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, SensePrsen__FP5PRSENP7SENSORS)</td></tr>
 <tr class="separator:a7cfae65c45ab735ebee072804bf0fe95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adafa021eb4c2252007f88fcf799f539a" id="r_adafa021eb4c2252007f88fcf799f539a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#adafa021eb4c2252007f88fcf799f539a">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, EnablePrsen__FP5PRSEN5SENSM)</td></tr>
-<tr class="separator:adafa021eb4c2252007f88fcf799f539a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8171dc5bf5aecc94cf4eb480fdddc0d5" id="r_a8171dc5bf5aecc94cf4eb480fdddc0d5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a8171dc5bf5aecc94cf4eb480fdddc0d5">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, DisablePrsen__FP5PRSEN)</td></tr>
-<tr class="separator:a8171dc5bf5aecc94cf4eb480fdddc0d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51d96d0c9e110540ba33111a5f673dc8" id="r_a51d96d0c9e110540ba33111a5f673dc8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a51d96d0c9e110540ba33111a5f673dc8">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, OnPrsenAlarmTriggered__FP5PRSEN)</td></tr>
-<tr class="separator:a51d96d0c9e110540ba33111a5f673dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef363c7188c0e8dccfdfef5fe077b25f" id="r_aef363c7188c0e8dccfdfef5fe077b25f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#aef363c7188c0e8dccfdfef5fe077b25f">EnablePrsen</a> (<a class="el" href="structPRSEN.html">PRSEN</a> *pprsen, <a class="el" href="sensor_8h.html#a34713ba01163d471ad4888ef7c742eae">SENSM</a> sensm)</td></tr>
+<tr class="separator:aef363c7188c0e8dccfdfef5fe077b25f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada9a36011571a14a0849bedc310fe87b" id="r_ada9a36011571a14a0849bedc310fe87b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#ada9a36011571a14a0849bedc310fe87b">DisablePrsen</a> (<a class="el" href="structPRSEN.html">PRSEN</a> *pprsen)</td></tr>
+<tr class="separator:ada9a36011571a14a0849bedc310fe87b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3566214253ff768470b27577d4d20c11" id="r_a3566214253ff768470b27577d4d20c11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a3566214253ff768470b27577d4d20c11">OnPrsenAlarmTriggered</a> (<a class="el" href="structPRSEN.html">PRSEN</a> *pprsen)</td></tr>
+<tr class="separator:a3566214253ff768470b27577d4d20c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cf3c9fcd80bd279c744b0fc690018de" id="r_a2cf3c9fcd80bd279c744b0fc690018de"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a2cf3c9fcd80bd279c744b0fc690018de">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, SetPrsenSensors__FP5PRSEN7SENSORS)</td></tr>
 <tr class="separator:a2cf3c9fcd80bd279c744b0fc690018de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0590a92a21beafc2c18c8509b3c64a56" id="r_a0590a92a21beafc2c18c8509b3c64a56"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a0590a92a21beafc2c18c8509b3c64a56">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sensor&quot;, UpdatePrsenLoopShader__FP5PRSEN)</td></tr>
 <tr class="separator:a0590a92a21beafc2c18c8509b3c64a56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a864f6271f41e39b434693d8484f3f4a7" id="r_a864f6271f41e39b434693d8484f3f4a7"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structSNIP.html">SNIP</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a864f6271f41e39b434693d8484f3f4a7">s_asnipLasen</a> [2]</td></tr>
+<tr class="separator:a864f6271f41e39b434693d8484f3f4a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8967fc75ca0a2cfbd330d2b5eb48ce37" id="r_a8967fc75ca0a2cfbd330d2b5eb48ce37"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a8967fc75ca0a2cfbd330d2b5eb48ce37">g_fLasenBusyListChange</a> = 0</td></tr>
+<tr class="separator:a8967fc75ca0a2cfbd330d2b5eb48ce37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10c339f0f07a36aa16450528c8a1e9e6" id="r_a10c339f0f07a36aa16450528c8a1e9e6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structSNIP.html">SNIP</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor_8c.html#a10c339f0f07a36aa16450528c8a1e9e6">s_asnipCamsen</a> [2]</td></tr>
+<tr class="separator:a10c339f0f07a36aa16450528c8a1e9e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="aa1c591ccf6101c6822d3da3195abcdec" name="aa1c591ccf6101c6822d3da3195abcdec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1c591ccf6101c6822d3da3195abcdec">&#9670;&#160;</a></span>AddSensorNoTriggerClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AddSensorNoTriggerClass </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSENSOR.html">SENSOR</a> *&#160;</td>
+          <td class="paramname"><em>psensor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4">CID</a>&#160;</td>
+          <td class="paramname"><em>cid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a class ID to the sensor's no-trigger class list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">psensor</td><td>Pointer to the sensor. </td></tr>
+    <tr><td class="paramname">cid</td><td>Class ID to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00195">195</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="a9ac6783a6405d0e2792d504bd8bc29f3" name="a9ac6783a6405d0e2792d504bd8bc29f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ac6783a6405d0e2792d504bd8bc29f3">&#9670;&#160;</a></span>AddSensorNoTriggerObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AddSensorNoTriggerObject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSENSOR.html">SENSOR</a> *&#160;</td>
+          <td class="paramname"><em>psensor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a>&#160;</td>
+          <td class="paramname"><em>oid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add an object ID to the sensor's no-trigger list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">psensor</td><td>Pointer to the sensor. </td></tr>
+    <tr><td class="paramname">oid</td><td>Object ID to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00179">179</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="a8f4165fa0d63c17a9639eafac74d32e6" name="a8f4165fa0d63c17a9639eafac74d32e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f4165fa0d63c17a9639eafac74d32e6">&#9670;&#160;</a></span>AddSensorTriggerClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AddSensorTriggerClass </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSENSOR.html">SENSOR</a> *&#160;</td>
+          <td class="paramname"><em>psensor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="cid_8h.html#a5a95f696191e6e81c14198ad0c7792f4">CID</a>&#160;</td>
+          <td class="paramname"><em>cid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a class ID to the sensor's trigger class list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">psensor</td><td>Pointer to the sensor. </td></tr>
+    <tr><td class="paramname">cid</td><td>Class ID to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00187">187</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="a7c88c36429323e4c8fd59870b3ae3175" name="a7c88c36429323e4c8fd59870b3ae3175"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c88c36429323e4c8fd59870b3ae3175">&#9670;&#160;</a></span>AddSensorTriggerObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AddSensorTriggerObject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSENSOR.html">SENSOR</a> *&#160;</td>
+          <td class="paramname"><em>psensor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a>&#160;</td>
+          <td class="paramname"><em>oid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add an object ID to the sensor's trigger list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">psensor</td><td>Pointer to the sensor. </td></tr>
+    <tr><td class="paramname">oid</td><td>Object ID to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00171">171</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="ac12b43558f7dbdf567ec7b634f106fe5" name="ac12b43558f7dbdf567ec7b634f106fe5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac12b43558f7dbdf567ec7b634f106fe5">&#9670;&#160;</a></span>DisableCamsen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DisableCamsen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCAMSEN.html">CAMSEN</a> *&#160;</td>
+          <td class="paramname"><em>pcamsen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00387">387</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="ad172c5b2c9c40728e03058ed415f65c4" name="ad172c5b2c9c40728e03058ed415f65c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad172c5b2c9c40728e03058ed415f65c4">&#9670;&#160;</a></span>DisableLasen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DisableLasen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structLASEN.html">LASEN</a> *&#160;</td>
+          <td class="paramname"><em>plasen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00292">292</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="ada9a36011571a14a0849bedc310fe87b" name="ada9a36011571a14a0849bedc310fe87b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada9a36011571a14a0849bedc310fe87b">&#9670;&#160;</a></span>DisablePrsen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DisablePrsen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structPRSEN.html">PRSEN</a> *&#160;</td>
+          <td class="paramname"><em>pprsen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00508">508</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="ae9c742cd97fe4c3509a5ff909263b0d9" name="ae9c742cd97fe4c3509a5ff909263b0d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9c742cd97fe4c3509a5ff909263b0d9">&#9670;&#160;</a></span>EnableCamsen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EnableCamsen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCAMSEN.html">CAMSEN</a> *&#160;</td>
+          <td class="paramname"><em>pcamsen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sensor_8h.html#a34713ba01163d471ad4888ef7c742eae">SENSM</a>&#160;</td>
+          <td class="paramname"><em>sensm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00380">380</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="af83f2d96449ed4fd36efdce33761de0f" name="af83f2d96449ed4fd36efdce33761de0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af83f2d96449ed4fd36efdce33761de0f">&#9670;&#160;</a></span>EnableLasen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EnableLasen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structLASEN.html">LASEN</a> *&#160;</td>
+          <td class="paramname"><em>plasen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sensor_8h.html#a34713ba01163d471ad4888ef7c742eae">SENSM</a>&#160;</td>
+          <td class="paramname"><em>sensm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00285">285</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="aef363c7188c0e8dccfdfef5fe077b25f" name="aef363c7188c0e8dccfdfef5fe077b25f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef363c7188c0e8dccfdfef5fe077b25f">&#9670;&#160;</a></span>EnablePrsen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EnablePrsen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structPRSEN.html">PRSEN</a> *&#160;</td>
+          <td class="paramname"><em>pprsen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sensor_8h.html#a34713ba01163d471ad4888ef7c742eae">SENSM</a>&#160;</td>
+          <td class="paramname"><em>sensm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00501">501</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="ae722940afdfd4c2873a12ad462f193cb" name="ae722940afdfd4c2873a12ad462f193cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae722940afdfd4c2873a12ad462f193cb">&#9670;&#160;</a></span>ExtendLasen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ExtendLasen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structLASEN.html">LASEN</a> *&#160;</td>
+          <td class="paramname"><em>plasen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dtExpand</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00325">325</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="a6c9812d8987b4beaab1344a0e54290e7" name="a6c9812d8987b4beaab1344a0e54290e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c9812d8987b4beaab1344a0e54290e7">&#9670;&#160;</a></span>FCheckSensorObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FCheckSensorObject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSENSOR.html">SENSOR</a> *&#160;</td>
+          <td class="paramname"><em>psensor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structSO.html">SO</a> *&#160;</td>
+          <td class="paramname"><em>psoOther</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00065">65</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
 <a id="a338a2c956f266d204674c5ad98d8b9b9" name="a338a2c956f266d204674c5ad98d8b9b9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a338a2c956f266d204674c5ad98d8b9b9">&#9670;&#160;</a></span>FIgnoreCamsenIntersection()</h2>
 
@@ -247,27 +634,27 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00208">208</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00371">371</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
 
 </div>
 </div>
-<a id="a60878352a1cd694cbda84195cb44b246" name="a60878352a1cd694cbda84195cb44b246"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60878352a1cd694cbda84195cb44b246">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/47]</span></h2>
+<a id="aa3b17738df3ac134d2cb85d33e41909b" name="aa3b17738df3ac134d2cb85d33e41909b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3b17738df3ac134d2cb85d33e41909b">&#9670;&#160;</a></span>FIgnoreSensorObject()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname">int FIgnoreSensorObject </td>
           <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramtype"><a class="el" href="structSENSOR.html">SENSOR</a> *&#160;</td>
+          <td class="paramname"><em>psensor</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">AddSensorNoTriggerClass__FP6SENSOR3CID&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype"><a class="el" href="structSO.html">SO</a> *&#160;</td>
+          <td class="paramname"><em>psoOther</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -277,25 +664,27 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00096">96</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
 </div>
 </div>
-<a id="adac01debe932ecbe00b3bf54419a3b9e" name="adac01debe932ecbe00b3bf54419a3b9e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adac01debe932ecbe00b3bf54419a3b9e">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/47]</span></h2>
+<a id="aff434f6fb66a8d92dc5917f0c138de6e" name="aff434f6fb66a8d92dc5917f0c138de6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff434f6fb66a8d92dc5917f0c138de6e">&#9670;&#160;</a></span>FreezeLasen()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname">void FreezeLasen </td>
           <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramtype"><a class="el" href="structLASEN.html">LASEN</a> *&#160;</td>
+          <td class="paramname"><em>plasen</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">AddSensorNoTriggerObject__FP6SENSOR3OID&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fFreeze</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -305,66 +694,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a18009f42136590a529e359f49fce6d05" name="a18009f42136590a529e359f49fce6d05"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18009f42136590a529e359f49fce6d05">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">AddSensorTriggerClass__FP6SENSOR3CID&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="af0f0a5d17321333a61abff4b6b33a499" name="af0f0a5d17321333a61abff4b6b33a499"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0f0a5d17321333a61abff4b6b33a499">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[4/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">AddSensorTriggerObject__FP6SENSOR3OID&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00223">223</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
 
 </div>
 </div>
 <a id="af43297e1fb37450680ca1387a7098e19" name="af43297e1fb37450680ca1387a7098e19"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af43297e1fb37450680ca1387a7098e19">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[5/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af43297e1fb37450680ca1387a7098e19">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -391,232 +726,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aabcf349cd32edbdb7f8f7789d9f23265" name="aabcf349cd32edbdb7f8f7789d9f23265"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aabcf349cd32edbdb7f8f7789d9f23265">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[6/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">DisableCamsen__FP6CAMSEN&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a42ea70b3696123d96fbdf871e3685c7f" name="a42ea70b3696123d96fbdf871e3685c7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a42ea70b3696123d96fbdf871e3685c7f">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[7/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">DisableLasen__FP5LASEN&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a8171dc5bf5aecc94cf4eb480fdddc0d5" name="a8171dc5bf5aecc94cf4eb480fdddc0d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8171dc5bf5aecc94cf4eb480fdddc0d5">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[8/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">DisablePrsen__FP5PRSEN&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a32f6a0397abfb0bf9fd5ce1c8a3dbeea" name="a32f6a0397abfb0bf9fd5ce1c8a3dbeea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32f6a0397abfb0bf9fd5ce1c8a3dbeea">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[9/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">EnableCamsen__FP6CAMSEN5SENSM&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a10e70065b75dbe85545f9a2239bda6bb" name="a10e70065b75dbe85545f9a2239bda6bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10e70065b75dbe85545f9a2239bda6bb">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[10/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">EnableLasen__FP5LASEN5SENSM&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="adafa021eb4c2252007f88fcf799f539a" name="adafa021eb4c2252007f88fcf799f539a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adafa021eb4c2252007f88fcf799f539a">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[11/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">EnablePrsen__FP5PRSEN5SENSM&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ade3193c9fde6bf99cfa7704b4fdbe735" name="ade3193c9fde6bf99cfa7704b4fdbe735"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade3193c9fde6bf99cfa7704b4fdbe735">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[12/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">ExtendLasen__FP5LASENf&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aaa01ce1270d0af76c620db3bdbb5bdc9" name="aaa01ce1270d0af76c620db3bdbb5bdc9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa01ce1270d0af76c620db3bdbb5bdc9">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[13/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">FCheckSensorObject__FP6SENSORP2SO&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ad047ed6fe64d446549bad2fddc8cce12" name="ad047ed6fe64d446549bad2fddc8cce12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad047ed6fe64d446549bad2fddc8cce12">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[14/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad047ed6fe64d446549bad2fddc8cce12">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -643,8 +754,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4e82aa5e77e7f3581b197e16a6da35ea" name="a4e82aa5e77e7f3581b197e16a6da35ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e82aa5e77e7f3581b197e16a6da35ea">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[15/47]</span></h2>
+<a id="a27b21b8d796027a3dbe0bafb7a74e9ce" name="a27b21b8d796027a3dbe0bafb7a74e9ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27b21b8d796027a3dbe0bafb7a74e9ce">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -658,7 +769,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FIgnoreSensorObject__FP6SENSORP2SO&#160;</td>
+          <td class="paramtype">FFilterLasen__FPvP2SO&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -672,7 +783,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="afa2c7c86c94ea1ae27e36f2bcbc49cd6" name="afa2c7c86c94ea1ae27e36f2bcbc49cd6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa2c7c86c94ea1ae27e36f2bcbc49cd6">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[16/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afa2c7c86c94ea1ae27e36f2bcbc49cd6">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[4/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -699,316 +810,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4ce3672e72013139b76e0736b5f2718a" name="a4ce3672e72013139b76e0736b5f2718a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4ce3672e72013139b76e0736b5f2718a">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[17/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">FreezeLasen__FP5LASENi&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a36814bd69b77e89fd8d8e64cd3752ada" name="a36814bd69b77e89fd8d8e64cd3752ada"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a36814bd69b77e89fd8d8e64cd3752ada">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[18/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">FUN_001afaf8__FP6SENSORP2SO&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a90db3df666dc2e1b66231e5142e18bde" name="a90db3df666dc2e1b66231e5142e18bde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90db3df666dc2e1b66231e5142e18bde">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[19/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">InitCamsen__FP6CAMSEN&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a65017f6739558be13c425c51df9361df" name="a65017f6739558be13c425c51df9361df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a65017f6739558be13c425c51df9361df">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[20/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">InitLasen__FP5LASEN&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a889fa897b9ca4aab12e34e74641ff699" name="a889fa897b9ca4aab12e34e74641ff699"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a889fa897b9ca4aab12e34e74641ff699">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[21/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">InitPrsen__FP5PRSEN&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a3b6d1660a2bedb0edd53b8005e106b93" name="a3b6d1660a2bedb0edd53b8005e106b93"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b6d1660a2bedb0edd53b8005e106b93">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[22/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">LoadLasenFromBrx__FP5LASENP18CBinaryInputStream&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a52f46a7ad457f12248561fde131388c6" name="a52f46a7ad457f12248561fde131388c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52f46a7ad457f12248561fde131388c6">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[23/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">OnCamsenAlarmTriggered__FP6CAMSEN&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a33524faa51ad0ea7891e98a5dbfd7e0d" name="a33524faa51ad0ea7891e98a5dbfd7e0d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a33524faa51ad0ea7891e98a5dbfd7e0d">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[24/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">OnLasenAlarmTriggered__FP5LASEN&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a51d96d0c9e110540ba33111a5f673dc8" name="a51d96d0c9e110540ba33111a5f673dc8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51d96d0c9e110540ba33111a5f673dc8">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[25/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">OnPrsenAlarmTriggered__FP5PRSEN&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6e8e99da50e1f1647f76a278bcec9c41" name="a6e8e99da50e1f1647f76a278bcec9c41"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e8e99da50e1f1647f76a278bcec9c41">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[26/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">PauseSensor__FP6SENSOR&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a00e17dad5c51ac2eaa53c2f1cae996f1" name="a00e17dad5c51ac2eaa53c2f1cae996f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00e17dad5c51ac2eaa53c2f1cae996f1">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[27/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">PostCamsenLoad__FP6CAMSEN&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="aca0015087c24e31f8c1a29d74514a7c1" name="aca0015087c24e31f8c1a29d74514a7c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca0015087c24e31f8c1a29d74514a7c1">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[28/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aca0015087c24e31f8c1a29d74514a7c1">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[5/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1036,7 +839,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="afe3dad09165011351729ffa7a9e134ff" name="afe3dad09165011351729ffa7a9e134ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe3dad09165011351729ffa7a9e134ff">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[29/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afe3dad09165011351729ffa7a9e134ff">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[6/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1064,7 +867,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ac2f079e483f6b4bc2e2b57713a04faf8" name="ac2f079e483f6b4bc2e2b57713a04faf8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2f079e483f6b4bc2e2b57713a04faf8">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[30/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2f079e483f6b4bc2e2b57713a04faf8">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[7/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1092,7 +895,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a83066d10f057f3ab8e68740365b80de0" name="a83066d10f057f3ab8e68740365b80de0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a83066d10f057f3ab8e68740365b80de0">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[31/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a83066d10f057f3ab8e68740365b80de0">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[8/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1119,36 +922,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6b8defe4826c0704f06dfacdb9abd377" name="a6b8defe4826c0704f06dfacdb9abd377"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b8defe4826c0704f06dfacdb9abd377">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[32/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">RetractLasen__FP5LASENf&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ab330a70652095d2901a4659856cc3ec5" name="ab330a70652095d2901a4659856cc3ec5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab330a70652095d2901a4659856cc3ec5">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[33/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab330a70652095d2901a4659856cc3ec5">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[9/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1176,7 +951,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a26565e565b4d97d9d413ae9d60d5c853" name="a26565e565b4d97d9d413ae9d60d5c853"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a26565e565b4d97d9d413ae9d60d5c853">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[34/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a26565e565b4d97d9d413ae9d60d5c853">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[10/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1204,7 +979,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a5f54c2630064dfc211b4b673f629af75" name="a5f54c2630064dfc211b4b673f629af75"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f54c2630064dfc211b4b673f629af75">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[35/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f54c2630064dfc211b4b673f629af75">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[11/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1232,7 +1007,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a7cfae65c45ab735ebee072804bf0fe95" name="a7cfae65c45ab735ebee072804bf0fe95"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7cfae65c45ab735ebee072804bf0fe95">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[36/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cfae65c45ab735ebee072804bf0fe95">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[12/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1260,7 +1035,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a383582085443d41317c5ca138e335bcb" name="a383582085443d41317c5ca138e335bcb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a383582085443d41317c5ca138e335bcb">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[37/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a383582085443d41317c5ca138e335bcb">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[13/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1288,7 +1063,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a39bfde4a7f3f920efaca998343f5306d" name="a39bfde4a7f3f920efaca998343f5306d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39bfde4a7f3f920efaca998343f5306d">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[38/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a39bfde4a7f3f920efaca998343f5306d">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[14/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1316,7 +1091,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="af4c9637886c29ca76da91c2dde4a075b" name="af4c9637886c29ca76da91c2dde4a075b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4c9637886c29ca76da91c2dde4a075b">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[39/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af4c9637886c29ca76da91c2dde4a075b">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[15/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1344,7 +1119,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a2cf3c9fcd80bd279c744b0fc690018de" name="a2cf3c9fcd80bd279c744b0fc690018de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2cf3c9fcd80bd279c744b0fc690018de">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[40/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cf3c9fcd80bd279c744b0fc690018de">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[16/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1371,36 +1146,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af2da55ecf47c67f3c806e1685115b788" name="af2da55ecf47c67f3c806e1685115b788"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2da55ecf47c67f3c806e1685115b788">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[41/47]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SetSensorSensors__FP6SENSOR7SENSORS&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a7cfba457790866df565b346db4d404ad" name="a7cfba457790866df565b346db4d404ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7cfba457790866df565b346db4d404ad">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[42/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cfba457790866df565b346db4d404ad">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[17/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1428,7 +1175,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ae8f4d7fad797830b431080dcb10a078a" name="ae8f4d7fad797830b431080dcb10a078a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8f4d7fad797830b431080dcb10a078a">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[43/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8f4d7fad797830b431080dcb10a078a">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[18/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1456,7 +1203,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a3648572e39ff68984bc826e049c040b9" name="a3648572e39ff68984bc826e049c040b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3648572e39ff68984bc826e049c040b9">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[44/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3648572e39ff68984bc826e049c040b9">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[19/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1484,7 +1231,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a13b16a9c828f1799e163745a111f1371" name="a13b16a9c828f1799e163745a111f1371"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a13b16a9c828f1799e163745a111f1371">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[45/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a13b16a9c828f1799e163745a111f1371">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[20/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1512,7 +1259,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a0590a92a21beafc2c18c8509b3c64a56" name="a0590a92a21beafc2c18c8509b3c64a56"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0590a92a21beafc2c18c8509b3c64a56">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[46/47]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0590a92a21beafc2c18c8509b3c64a56">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[21/21]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1539,31 +1286,63 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a215a75883ee946f08024d9a2664566e8" name="a215a75883ee946f08024d9a2664566e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a215a75883ee946f08024d9a2664566e8">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[47/47]</span></h2>
+<a id="af07b21928776e2308f77df10194d24de" name="af07b21928776e2308f77df10194d24de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af07b21928776e2308f77df10194d24de">&#9670;&#160;</a></span>InitCamsen()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname">void InitCamsen </td>
           <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sensor&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="structCAMSEN.html">CAMSEN</a> *&#160;</td>
+          <td class="paramname"><em>pcamsen</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">UpdateSensor__FP6SENSORf&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00331">331</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="a7c7a4d5d444eb3284c2b2cc2f94da096" name="a7c7a4d5d444eb3284c2b2cc2f94da096"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c7a4d5d444eb3284c2b2cc2f94da096">&#9670;&#160;</a></span>InitLasen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InitLasen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structLASEN.html">LASEN</a> *&#160;</td>
+          <td class="paramname"><em>plasen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00203">203</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="ab6769f7ee1a2e02632a2a7ff3be80d92" name="ab6769f7ee1a2e02632a2a7ff3be80d92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6769f7ee1a2e02632a2a7ff3be80d92">&#9670;&#160;</a></span>InitPrsen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InitPrsen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structPRSEN.html">PRSEN</a> *&#160;</td>
+          <td class="paramname"><em>pprsen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00458">458</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
 
 </div>
 </div>
@@ -1591,7 +1370,167 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00007">7</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00028">28</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="a572d0bd2510b5f88da2a6c5b126355e8" name="a572d0bd2510b5f88da2a6c5b126355e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a572d0bd2510b5f88da2a6c5b126355e8">&#9670;&#160;</a></span>LoadLasenFromBrx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LoadLasenFromBrx </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structLASEN.html">LASEN</a> *&#160;</td>
+          <td class="paramname"><em>plasen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCBinaryInputStream.html">CBinaryInputStream</a> *&#160;</td>
+          <td class="paramname"><em>pbis</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00209">209</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="a5524cac1ec9c15f39c3010d88b95cc14" name="a5524cac1ec9c15f39c3010d88b95cc14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5524cac1ec9c15f39c3010d88b95cc14">&#9670;&#160;</a></span>OnCamsenAlarmTriggered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OnCamsenAlarmTriggered </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCAMSEN.html">CAMSEN</a> *&#160;</td>
+          <td class="paramname"><em>pcamsen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00402">402</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="a29737ed6568e42c6a2655dd4648e7c44" name="a29737ed6568e42c6a2655dd4648e7c44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29737ed6568e42c6a2655dd4648e7c44">&#9670;&#160;</a></span>OnLasenAlarmTriggered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OnLasenAlarmTriggered </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structLASEN.html">LASEN</a> *&#160;</td>
+          <td class="paramname"><em>plasen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00301">301</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="a3566214253ff768470b27577d4d20c11" name="a3566214253ff768470b27577d4d20c11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3566214253ff768470b27577d4d20c11">&#9670;&#160;</a></span>OnPrsenAlarmTriggered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OnPrsenAlarmTriggered </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structPRSEN.html">PRSEN</a> *&#160;</td>
+          <td class="paramname"><em>pprsen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00523">523</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="ab46302e703869720755fb22067de87f3" name="ab46302e703869720755fb22067de87f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab46302e703869720755fb22067de87f3">&#9670;&#160;</a></span>PauseSensor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PauseSensor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSENSOR.html">SENSOR</a> *&#160;</td>
+          <td class="paramname"><em>psensor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00148">148</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="a9cd796b73f204a5170fbb030046425c0" name="a9cd796b73f204a5170fbb030046425c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cd796b73f204a5170fbb030046425c0">&#9670;&#160;</a></span>PostCamsenLoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PostCamsenLoad </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCAMSEN.html">CAMSEN</a> *&#160;</td>
+          <td class="paramname"><em>pcamsen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00337">337</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="ad7da3ad904068cfcb2ba2ac522959b78" name="ad7da3ad904068cfcb2ba2ac522959b78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7da3ad904068cfcb2ba2ac522959b78">&#9670;&#160;</a></span>RetractLasen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RetractLasen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structLASEN.html">LASEN</a> *&#160;</td>
+          <td class="paramname"><em>plasen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dtRetract</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00319">319</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
 
 </div>
 </div>
@@ -1630,6 +1569,155 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00035">35</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="ac175f1b3c24b3ed140d2b1b385b96950" name="ac175f1b3c24b3ed140d2b1b385b96950"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac175f1b3c24b3ed140d2b1b385b96950">&#9670;&#160;</a></span>SetSensorSensors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetSensorSensors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSENSOR.html">SENSOR</a> *&#160;</td>
+          <td class="paramname"><em>psensor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sensor_8h.html#a5dcd55e97d43491d17306b50be122458">SENSORS</a>&#160;</td>
+          <td class="paramname"><em>sensors</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the sensor's state and handles triggering the sensor's alarm. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">psensor</td><td>Pointer to the sensor. </td></tr>
+    <tr><td class="paramname">sensors</td><td>New sensor state.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>If the sensor is transitioning from SENSORS_SenseEnabled to SENSORS_SenseTriggered, it will trigger the associated alarm if one is set. If the sensor's state changes, it will also notify any listeners of the change via an <a class="el" href="structLO.html" title="Live Object, base class for all objects that exist in the world.">LO</a> splice event. </p>
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00040">40</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="aa63efecf44c453700ffe48af59326dc6" name="aa63efecf44c453700ffe48af59326dc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa63efecf44c453700ffe48af59326dc6">&#9670;&#160;</a></span>UpdateSensor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UpdateSensor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSENSOR.html">SENSOR</a> *&#160;</td>
+          <td class="paramname"><em>psensor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00159">159</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a8967fc75ca0a2cfbd330d2b5eb48ce37" name="a8967fc75ca0a2cfbd330d2b5eb48ce37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8967fc75ca0a2cfbd330d2b5eb48ce37">&#9670;&#160;</a></span>g_fLasenBusyListChange</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int g_fLasenBusyListChange = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00020">20</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="a10c339f0f07a36aa16450528c8a1e9e6" name="a10c339f0f07a36aa16450528c8a1e9e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10c339f0f07a36aa16450528c8a1e9e6">&#9670;&#160;</a></span>s_asnipCamsen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structSNIP.html">SNIP</a> s_asnipCamsen[2]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">{</div>
+<div class="line">    {2, <a class="code hl_enumvalue" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26abf53ae72b8b9ec442e66be13a88f70d1">OID_camera_damage_render</a>, 0x5d0},</div>
+<div class="line">    {2, <a class="code hl_enumvalue" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26a9b5bb0f186e96b383439f130782909b8">OID_camera_zap_render</a>, 0x5d4},</div>
+<div class="line">}</div>
+<div class="ttc" id="aoid_8h_html_a09ed43a0c8361f9f5a9428ae38d34b26a9b5bb0f186e96b383439f130782909b8"><div class="ttname"><a href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26a9b5bb0f186e96b383439f130782909b8">OID_camera_zap_render</a></div><div class="ttdeci">@ OID_camera_zap_render</div><div class="ttdef"><b>Definition</b> <a href="oid_8h_source.html#l00049">oid.h:49</a></div></div>
+<div class="ttc" id="aoid_8h_html_a09ed43a0c8361f9f5a9428ae38d34b26abf53ae72b8b9ec442e66be13a88f70d1"><div class="ttname"><a href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26abf53ae72b8b9ec442e66be13a88f70d1">OID_camera_damage_render</a></div><div class="ttdeci">@ OID_camera_damage_render</div><div class="ttdef"><b>Definition</b> <a href="oid_8h_source.html#l00048">oid.h:48</a></div></div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00022">22</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
+
+</div>
+</div>
+<a id="a864f6271f41e39b434693d8484f3f4a7" name="a864f6271f41e39b434693d8484f3f4a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a864f6271f41e39b434693d8484f3f4a7">&#9670;&#160;</a></span>s_asnipLasen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structSNIP.html">SNIP</a> s_asnipLasen[2]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">{</div>
+<div class="line">    {2, <a class="code hl_enumvalue" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26a0ce74124e8019a6dbe1108daf95c3ca0">OID_laser_sensor_render</a>, 0xae4},</div>
+<div class="line">    {2, <a class="code hl_enumvalue" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26a01ab6a37973c66a0b19695eb31ff4c86">OID_laser_damage_render</a>, 0xae8},</div>
+<div class="line">}</div>
+<div class="ttc" id="aoid_8h_html_a09ed43a0c8361f9f5a9428ae38d34b26a01ab6a37973c66a0b19695eb31ff4c86"><div class="ttname"><a href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26a01ab6a37973c66a0b19695eb31ff4c86">OID_laser_damage_render</a></div><div class="ttdeci">@ OID_laser_damage_render</div><div class="ttdef"><b>Definition</b> <a href="oid_8h_source.html#l00047">oid.h:47</a></div></div>
+<div class="ttc" id="aoid_8h_html_a09ed43a0c8361f9f5a9428ae38d34b26a0ce74124e8019a6dbe1108daf95c3ca0"><div class="ttname"><a href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26a0ce74124e8019a6dbe1108daf95c3ca0">OID_laser_sensor_render</a></div><div class="ttdeci">@ OID_laser_sensor_render</div><div class="ttdef"><b>Definition</b> <a href="oid_8h_source.html#l00046">oid.h:46</a></div></div>
+</div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="sensor_8c_source.html#l00014">14</a> of file <a class="el" href="sensor_8c_source.html">sensor.c</a>.</p>
 
 </div>
