@@ -192,45 +192,30 @@ void func_001EC478(void *pv, int nSgs)
     OnStepguardExitingSgs((STEPGUARD *)pv, (SGS)nSgs);
 
     nState = STRUCT_OFFSET(pv, 0x724, int);
-    if (nState == 0xE)
-        goto clear_e;
-    if (nState != 0x10)
+    if (nState != 0xE)
+    {
+        if (nState != 0x10)
+            return;
+
+        STRUCT_OFFSET(pv, 0xC94, int) = 0;
+        GetSmaCur(STRUCT_OFFSET(pv, 0xC54, SMA *), &oid);
+
+        switch (oid)
+        {
+        case (OID)0x4EE:
+            oidGoal = (OID)0x4EF;
+            break;
+        case (OID)0x4F1:
+            oidGoal = (OID)0x4F2;
+            break;
+        case (OID)0x4F4:
+            oidGoal = (OID)0x4F5;
+            break;
+        }
+        SetSmaGoal(STRUCT_OFFSET(pv, 0xC54, SMA *), oidGoal);
         return;
-
-    STRUCT_OFFSET(pv, 0xC94, int) = 0;
-    GetSmaCur(STRUCT_OFFSET(pv, 0xC54, SMA *), &oid);
-
-        if (oid == (OID)0x4F1)
-        goto goal_4f2;
-    if (oid >= (OID)0x4F2)
-        goto hi;
-
-    if (oid == (OID)0x4EE)
-    {
-        oidGoal = (OID)0x4EF;
-        goto set;
     }
-    goto set_miss;
 
-hi:
-    if (oid == (OID)0x4F4)
-    {
-        oidGoal = (OID)0x4F5;
-        goto set;
-    }
-    goto set_miss;
-
-goal_4f2:
-    oidGoal = (OID)0x4F2;
-set:
-    SetSmaGoal(STRUCT_OFFSET(pv, 0xC54, SMA *), oidGoal);
-    return;
-
-set_miss:
-    SetSmaGoal(STRUCT_OFFSET(pv, 0xC54, SMA *), oidGoal);
-    return;
-
-clear_e:
     STRUCT_OFFSET(pv, 0xC94, int) = 0;
 }
 
@@ -254,22 +239,16 @@ void func_001ECDF8(void *pv)
     GetSmaCur(STRUCT_OFFSET(pv, 0xC54, SMA *), &oid);
 
     pvUnk = (void *)0;
-    if (oid == (OID)0x4F1)
-        goto hit;
-    if (oid < (OID)0x4F2)
+    switch (oid)
     {
-        if (oid == (OID)0x4EE)
-            goto hit;
-        goto miss;
+    case (OID)0x4EE:
+    case (OID)0x4F1:
+    case (OID)0x4F4:
+    case (OID)0x4F7:
+        pvUnk = FUN_001e9970();
+        break;
     }
-    if (oid == (OID)0x4F4)
-        goto hit;
-    if (oid != (OID)0x4F7)
-        goto miss;
 
-hit:
-    pvUnk = FUN_001e9970();
-miss:
     if (pvUnk != (void *)0)
     {
         ((void (*)(void *))STRUCT_OFFSET(STRUCT_OFFSET(&g_unkblot7, 0, void *), 0x38, void *))(&g_unkblot7);
