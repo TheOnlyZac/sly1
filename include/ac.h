@@ -1,7 +1,6 @@
 /**
  * @file ac.h
- *
- * @todo Implement the structs.
+ * @brief Animation curve?
  */
 #ifndef AC_H
 #define AC_H
@@ -12,10 +11,16 @@
 #include <bis.h>
 #include <alo.h>
 
+// Forward declarations.
+struct ACP;
+struct ACR;
+struct ACS;
+struct ACG;
+
 typedef int GRFEVAL;
 
 /**
- * @brief (?) kind.
+ * @brief Animation Curve Variant Kind.
  */
 enum ACVK
 {
@@ -27,7 +32,7 @@ enum ACVK
 };
 
 /**
- * @brief (?) kind.
+ * @brief Animation Curve Graph Kind.
  */
 enum ACGK
 {
@@ -41,147 +46,250 @@ enum ACGK
 };
 
 /**
- * @brief Unknown.
+ * @brief Key Graph Bezier Tangent Kind.
+ */
+enum KGBTK
+{
+    KGBTK_Nil = -1,
+    KGBTK_Global = 0,
+    KGBTK_Fixed = 1,
+    KGBTK_Linear = 2,
+    KGBTK_Flat = 3,
+    KGBTK_Smooth = 4,
+    KGBTK_Step = 5,
+    KGBTK_Slow = 6,
+    KGBTK_Fast = 7,
+    KGBTK_Clamped = 8,
+    KGBTK_Max = 9,
+};
+
+/**
+ * @brief Key Vector Bezier.
  */
 struct KVB
 {
-    // ...
+    /* 0x00 */ float t;
+    /* 0x04 */ STRUCT_PADDING(3);
+    /* 0x10 */ VECTOR vec;
+    /* 0x1c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x20 */ VECTOR dvecIn;
+    /* 0x2c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x30 */ VECTOR dvecOut;
+    /* 0x3c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
 };
 
 /**
- * @brief Unknown.
+ * @brief Key Graph Linear.
+ */
+struct KGL
+{
+    /* 0x00 */ float t;
+    /* 0x04 */ float g;
+};
+
+/**
+ * @brief Key Graph Bezier Tangent.
+ */
+struct KGBT
+{
+    /* 0x00 */ KGBTK kgbtk;
+    /* 0x04 */ float gSlope;
+};
+
+/**
+ * @brief Key Graph Bezier.
+ */
+struct KGB
+{
+    /* 0x00 */ float t;
+    /* 0x04 */ float g;
+    /* 0x08 */ KGBT kgbtIn;
+    /* 0x10 */ KGBT kgbtOut;
+};
+
+/**
+ * @brief Key Graph Bezier Weighted Tangent.
+ */
+struct KGBWT
+{
+    /* 0x00 */ KGBTK kgbtk;
+    /* 0x04 */ float dt;
+    /* 0x08 */ float g;
+};
+
+/**
+ * @brief Key Graph Bezier Weighted.
+ */
+struct KGBW
+{
+    /* 0x00 */ float t;
+    /* 0x04 */ float g;
+    /* 0x08 */ KGBWT kgbwtIn;
+    /* 0x14 */ KGBWT kgbwtOut;
+};
+
+/**
+ * @brief Animation Curve Position.
  */
 struct ACP
 {
-    // ...
+    /* 0x00 */ STRUCT_PADDING(1); // TODO: Add vtables.
+    /* 0x04 */ ACVK acvk;
+    /* 0x08 */ int fContiguous;
 };
 
 /**
- * @brief Unknown.
- */
-struct ACR
-{
-    // ...
-};
-
-/**
- * @brief Unknown.
- */
-struct ACS
-{
-    // ...
-};
-
-/**
- * @brief Unknown.
- */
-struct ACG
-{
-    // ...
-};
-
-/**
- * @brief Unknown.
- */
-struct ACPBL : public ACP
-{
-    // ...
-};
-
-/**
- * @brief Unknown.
+ * @brief Animation Curve Position Component.
  */
 struct ACPC : public ACP
 {
-    // ...
+    /* 0x0c */ STRUCT_PADDING(1);
+    /* 0x10 */ VECTOR posDefault;
+    /* 0x1c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x20 */ ACG *apacg[3];
+    /* 0x2c */ STRUCT_PADDING(1);
 };
 
 /**
- * @brief Unknown.
+ * @brief Animation Curve Position Bezier.
  */
 struct ACPB : public ACP
 {
-    // ...
+    /* 0x0c */ int ckvb;
+    /* 0x10 */ KVB *akvb;
 };
 
 /**
- * @brief Unknown.
+ * @brief Animation Curve Position Blend.
+ * @todo Implement the struct.
+ */
+struct ACPBL : public ACP
+{
+    /* 0x0c */ STRUCT_PADDING(3);
+};
+
+/**
+ * @brief Animation Curve Rotation.
+ */
+struct ACR
+{
+    /* 0x00 */ STRUCT_PADDING(1); // TODO: Add vtables.
+    /* 0x04 */ ACVK acvk;
+    /* 0x08 */ int fContiguous;
+};
+
+/**
+ * @brief Animation Curve Rotation Component.
  */
 struct ACRC : public ACR
 {
-    // ...
+    /* 0x0c */ STRUCT_PADDING(1);
+    /* 0x10 */ VECTOR eulDefault;
+    /* 0x1c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x20 */ ACG *apacg[3];
+    /* 0x2c */ STRUCT_PADDING(1);
 };
 
 /**
- * @brief Unknown.
+ * @brief Animation Curve Rotation Bezier.
  */
 struct ACRB : public ACR
 {
-    // ...
+    /* 0x0c */ int ckvb;
+    /* 0x10 */ KVB *akvb;
 };
 
 /**
- * @brief Unknown.
+ * @brief Animation Curve Rotation Blend.
+ * @todo Implement the struct.
  */
 struct ACRBL : public ACR
 {
-    // ...
+    /* 0x0c */ STRUCT_PADDING(4);
 };
 
 /**
- * @brief Unknown.
+ * @brief Animation Curve Scale.
+ */
+struct ACS
+{
+    /* 0x00 */ STRUCT_PADDING(1); // TODO: Add vtables.
+    /* 0x04 */ ACVK acvk;
+};
+
+/**
+ * @brief Animation Curve Scale Component.
  */
 struct ACSC : public ACS
 {
-    // ...
+    /* 0x08 */ STRUCT_PADDING(2);
+    /* 0x10 */ VECTOR vecDefault;
+    /* 0x1c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x20 */ ACG *apacg[3];
+    /* 0x2c */ STRUCT_PADDING(1);
 };
 
 /**
- * @brief Unknown.
+ * @brief Animation Curve Scale Bezier.
  */
 struct ACSB : public ACS
 {
-    // ...
+    /* 0x08 */ int ckvb;
+    /* 0x0c */ KVB *akvb;
 };
 
 /**
- * @brief Unknown.
+ * @brief Animation Curve Graph.
+ */
+struct ACG
+{
+    /* 0x00 */ STRUCT_PADDING(1); // TODO: Add vtables.
+    /* 0x04 */ ACGK acgk;
+};
+
+/**
+ * @brief Animation Curve Graph Bezier.
  */
 struct ACGB : public ACG
 {
-    // ...
+    /* 0x08 */ int ckgb;
+    /* 0x0c */ KGB *akgb;
 };
 
 /**
- * @brief Unknown.
+ * @brief Animation Curve Graph Bezier Weighted.
  */
 struct ACGBW : public ACG
 {
-    // ...
+    /* 0x08 */ int ckgbw;
+    /* 0x0c */ KGBW *akgbw;
 };
 
 /**
- * @brief Unknown.
+ * @brief Animation Curve Graph Linear.
  */
 struct ACGL : public ACG
 {
-    // ...
+    /* 0x08 */ int ckgl;
+    /* 0x0c */ KGL *akgl;
 };
 
 /**
- * @brief Unknown.
+ * @brief Animation Curve Graph Blend Twist.
+ * @todo Implement the struct.
  */
 struct ACGBLT : public ACG
 {
-    // ...
+    /* 0x08 */ STRUCT_PADDING(3);
 };
 
 /**
- * @brief Unknown.
+ * @brief Animation Curve Graph Blend Pose.
+ * @todo Implement the struct.
  */
 struct ACGBLP : public ACG
 {
-    // ...
+    /* 0x08 */ STRUCT_PADDING(4);
 };
 
 void FindKey(float t, GRFEVAL grfeval, int cbKey, int ckey, char *abKey, float *pdt, float *pdtSeg, void **ppv);

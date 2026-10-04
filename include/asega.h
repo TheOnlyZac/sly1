@@ -17,7 +17,9 @@ struct ACTSEG;
  */
 struct ASEGA : public BASIC
 {
-    /* 0x08 */ STRUCT_PADDING(7);
+    /* 0x08 */ STRUCT_PADDING(4);
+    /* 0x18 */ float svtLocal;
+    /* 0x1c */ STRUCT_PADDING(2);
     /* 0x24 */ char fHandsOff;
     /* 0x25 */ undefined1 unk1;
     /* 0x26 */ undefined1 unk2;

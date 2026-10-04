@@ -1,13 +1,27 @@
 #include <missile.h>
 #include <asega.h>
 
+// .data
+static SNIP s_asnipMissile[1] =
+{
+    {2, OID_aseg_missile_fire, 0x6b0}
+};
+
+float DT_MissilePredictMax = 0.5f;
+
 void InitMissile(MISSILE *pmissile)
 {
     InitBomb(pmissile);
     STRUCT_OFFSET(pmissile, 0x6b8, int) = 1; // pmissile->fFollowTrajectory
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/missile", LoadMissileFromBrx__FP7MISSILEP18CBinaryInputStream);
+void LoadMissileFromBrx(MISSILE *pmissile, CBinaryInputStream *pbis)
+{
+    LoadBombFromBrx(pmissile, pbis);
+    SnipAloObjects(pmissile, 1, s_asnipMissile);
+    STRUCT_OFFSET(pmissile, 0x2c8, ulong) &= 0xfffffcffffffffff;
+    STRUCT_OFFSET(pmissile, 0x2c8, ulong) |= 0x10000000000;
+}
 
 void OnMissileRemove(MISSILE *pmissile)
 {

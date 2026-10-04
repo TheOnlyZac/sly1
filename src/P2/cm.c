@@ -269,11 +269,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145950);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145b68);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145DD8);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145dd8__FP2CM);
 #ifdef SKIP_ASM
-bool FUN_00145DD8(CM *pcm)
+bool FUN_00145dd8(CM *pcm)
 {
-    return pcm->cptn.tMoveLast != 0; //If tMoveLast is a int/undefined4 it matches only it uses a0 instead of a1 :/
+    return STRUCT_OFFSET(pcm, 0x538, int) != 0;
 }
 #endif
 

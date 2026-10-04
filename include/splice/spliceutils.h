@@ -7,6 +7,13 @@
 #define SPLICE_SPLICEUTILS_H
 
 #include "common.h"
+#include <splice/splotheap.h>
+
+extern CSplotheap g_splotheapPair;
+extern CSplotheap g_splotheapFrame;
+extern CSplotheap g_splotheapVarb;
+extern CSplotheap g_splotheapProc;
+extern CSplotheap g_splotheapMethod;
 
 /**
  * @brief Splice startup function.
@@ -14,8 +21,8 @@
 void StartupSplice();
 
 /**
- * @brief Startup function for the splice structured type factories.
-*/
-void StartupSpliceStructuredTypeFactories();
+ * @brief Shutdown the splice scripting engine.
+ */
+void ShutdownSplice();
 
 #endif // SPLICE_SPLICEUTILS_H

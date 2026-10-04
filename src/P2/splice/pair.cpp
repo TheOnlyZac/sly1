@@ -1,5 +1,5 @@
 #include <splice/pair.h>
-#include <splice/splotheap.h>
+#include <splice/spliceutils.h>
 #include <splice/ref.h>
 #include <sce/memset.h>
 

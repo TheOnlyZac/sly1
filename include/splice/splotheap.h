@@ -27,6 +27,9 @@ private:
 public:
     PFNDELETE m_pfndelete;
 
+    CSplotheap() : m_pfndelete(NULL) {}
+    ~CSplotheap() {}
+
     void Startup(int cb, int c);
     void Shutdown();
     void *PvAllocUnsafe();
@@ -37,15 +40,8 @@ public:
     void FreeGarbage();
 };
 
-extern CSplotheap g_splotheapPair;
-extern CSplotheap g_splotheapFrame;
-extern CSplotheap g_splotheapVarb;
-extern CSplotheap g_splotheapProc;
-extern CSplotheap g_splotheapMethod;
-
-static void *PvFromPsplot(SPLOT *psplot);
-static SPLOT *PsplotFromPv(void *pv);
 bool FIsPvGarbage(void *pv);
+
 void MarkPvAlive(void *pv);
 
 #endif // SPLICE_SPLOTHEAP_H

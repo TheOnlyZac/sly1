@@ -1,5 +1,5 @@
 #include <splice/frame.h>
-#include <splice/splotheap.h>
+#include <splice/spliceutils.h>
 #include <splice/varb.h>
 #include <sce/memset.h>
 #include <memory.h>

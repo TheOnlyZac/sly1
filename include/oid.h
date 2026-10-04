@@ -44,12 +44,23 @@ enum OID
 
     // ...
 
+    OID_laser_sensor_render = 0x28a,
+    OID_laser_damage_render = 0x28b,
+    OID_camera_damage_render = 0x28c,
+    OID_camera_zap_render = 0x28d,
+
+    // ...
+
     OID_state_ubb_round_2 = 0x2da,
     OID_state_ubb_round_3 = 0x2db,
 
     // ...
 
     OID_state_ubb_dunk = 0x2e0,
+
+    // ...
+
+    OID_aseg_missile_fire = 0x317,
 
     // ...
 };

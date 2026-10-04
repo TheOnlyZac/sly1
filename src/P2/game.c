@@ -2,6 +2,7 @@
 #include <joy.h>
 #include <wipe.h>
 #include <chkpnt.h>
+#include <rumble.h>
 #include <difficulty.h>
 #include <sce/memset.h>
 
@@ -18,13 +19,11 @@
 // {
 //  g_pgsCur->ccoin = nParam;
 // }
-// void OnGameLoad(GAME* pgame)
-// {
-//  memset(pgame, 0, sizeof(GAME));
-// }
 
 extern WORLDLEVEL g_worldlevelPrev;
 extern LevelLoadData D_00247AF0[46];
+extern char *chz_none; // NOTE: This is in .data probably due to PchzFriendlyFromWid returning a mutable pointer.
+extern GAME g_game;
 
 void StartupGame()
 {
@@ -35,14 +34,14 @@ JUNK_NOP();
 JUNK_WORD(0x00E0102D);
 JUNK_WORD(0x0000102D);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_load_data);
+INCLUDE_ASM("asm/nonmatchings/P2/game", search_level_by_load_data__FP13LevelLoadData);
 
-LevelLoadData *search_level_by_id(int id)
+LevelLoadData *search_level_by_id(WID wid)
 {
     for (uint i = 0; i < sizeof(D_00247AF0) / sizeof(LevelLoadData); i++)
     {
         LevelLoadData *level = &D_00247AF0[i];
-        if (id == level->level_id)
+        if (wid == level->wid)
         {
             return level;
         }
@@ -51,7 +50,17 @@ LevelLoadData *search_level_by_id(int id)
     return NULL;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", PchzFriendlyFromWid);
+/**
+ * @todo 95% match.
+ */
+INCLUDE_ASM("asm/nonmatchings/P2/game", PchzFriendlyFromWid__F3WID);
+#ifdef SKIP_ASM
+char *PchzFriendlyFromWid(WID wid)
+{
+    LevelLoadData *level = search_level_by_id(wid);
+    return level ? (char *)level->pchzFriendly : chz_none;
+}
+#endif // SKIP_ASM
 
 JUNK_WORD(0x24420010);
 
@@ -61,9 +70,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/game", FFindLevel);
 
 JUNK_WORD(0x24420010);
 
-FLS GetLevelCompletionById(int id)
+FLS GetLevelCompletionById(WID wid)
 {
-    LevelLoadData *plevel = search_level_by_id(id);
+    LevelLoadData *plevel = search_level_by_id(wid);
     return plevel ? plevel->completionState : (FLS)0;
 }
 
@@ -71,51 +80,96 @@ INCLUDE_ASM("asm/nonmatchings/P2/game", tally_world_completion);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", get_game_completion__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", UnlockIntroCutsceneFromWid__Fi);
+INCLUDE_ASM("asm/nonmatchings/P2/game", UnlockIntroCutsceneFromWid__F9GAMEWORLD);
 #ifdef SKIP_ASM
 /**
- * @todo Close to matching but there's a problem with the rodata.
+ * @todo Migrate .rodata.
  */
-void UnlockIntroCutsceneFromWid(int wid)
+void UnlockIntroCutsceneFromWid(GAMEWORLD gameworld)
 {
     /* Check the unlocked cutscene by setting the corresponding
        flag on the unlocked_cutscenes in the game state */
-    switch (wid)
+    switch (gameworld)
     {
-    case 1:
-        /* Unlock cutscene "Tide of Terror" */
-        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x10;
-        return;
-    case 2:
-        /* Unlock cutscene "Sunset Snake Eyes" */
-        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x40;
-        return;
-    case 3:
-        /* Unlock cutscene "Vicious Voodoo" */
-        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x100;
-        return;
-    case 4:
-        /* Unlock cutscene "Fire in the Sky" */
-        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x400;
-        return;
-    case 5:
-        /* Unlock cutscene "The Cold Heart of Hate" */
-        g_pgsCur->unlocked_cutscenes = g_pgsCur->unlocked_cutscenes | 0x1000;
+        case GAMEWORLD_Underwater:
+        {
+            /* Unlock cutscene "Tide of Terror" */
+            g_pgsCur->unlocked_cutscenes |= 0x10;
+            break;
+        }
+        case GAMEWORLD_Muggshot:
+        {
+            /* Unlock cutscene "Sunset Snake Eyes" */
+            g_pgsCur->unlocked_cutscenes |= 0x40;
+            break;
+        }
+        case GAMEWORLD_Voodoo:
+        {
+            /* Unlock cutscene "Vicious Voodoo" */
+            g_pgsCur->unlocked_cutscenes |= 0x100;
+            break;
+        }
+        case GAMEWORLD_Snow:
+        {
+            /* Unlock cutscene "Fire in the Sky" */
+            g_pgsCur->unlocked_cutscenes |= 0x400;
+            break;
+        }
+        case GAMEWORLD_Clockwerk:
+        {
+            /* Unlock cutscene "The Cold Heart of Hate" */
+            g_pgsCur->unlocked_cutscenes |= 0x1000;
+            break;
+        }
     }
 }
 #endif // SKIP_ASM
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", DefeatBossFromWid);
+INCLUDE_ASM("asm/nonmatchings/P2/game", DefeatBossFromWorld__F9GAMEWORLD);
+#ifdef SKIP_ASM
+/**
+ * @todo 99.65% match. Migrate .rodata.
+ */
+void DefeatBossFromWorld(GAMEWORLD gameworld)
+{
+    g_pgsCur->aws[gameworld].fws |= 0x20;
+
+    switch (gameworld)
+    {
+        case GAMEWORLD_Underwater:
+        {
+            g_pgsCur->unlocked_cutscenes |= 0x20;
+            break;
+        }
+        case GAMEWORLD_Muggshot:
+        {
+            g_pgsCur->unlocked_cutscenes |= 0x80;
+            break;
+        }
+        case GAMEWORLD_Voodoo:
+        {
+            g_pgsCur->unlocked_cutscenes |= 0x200;
+            g_pgsCur->grfvault |= 0x10000;
+            break;
+        }
+        case GAMEWORLD_Snow:
+        {
+            g_pgsCur->unlocked_cutscenes |= 0x800;
+            break;
+        }
+        case GAMEWORLD_Clockwerk:
+        {
+            UnlockEndgameCutscenesFromFgs(FGS_HalfClues);
+            break;
+        }
+    }
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", UnlockEndgameCutscenesFromFgs);
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", PlayEndingFromCompletionFlags);
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", InitGameState__FP2GS);
-/**
- * @todo 86.46% matched.
- */
-#ifdef SKIP_ASM
 void InitGameState(GS *pgs)
 {
     memset(pgs, 0, sizeof(GS));
@@ -126,10 +180,8 @@ void InitGameState(GS *pgs)
     pgs->worldlevelCur = WORLDLEVEL_Level2;
     pgs->clife = 5;
     pgs->fspLast = -1;
-    // todo: implement function (name is wrong)
-    // reset_settings(pgs);
+    RumbleUnknown2(pgs);
 }
-#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/game", FUN_00160650);
 
@@ -155,7 +207,7 @@ void UnloadGame()
 {
     InitGameState(g_pgsCur);
     // unk_gs? = NULL;
-    // clr_8_bytes_1(&DAT_002623d8);
+    OnGameLoad(&g_game);
     OnDifficultyGameLoad(&g_difficulty);
     g_grfcht = (GRFCHT)FCHT_None;
     g_worldlevelPrev = WORLDLEVEL_Nil;
@@ -184,7 +236,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/game", CalculatePercentCompletion__FP2GS);
 #ifdef SKIP_ASM
 PchzLevel pchzLevelTable[0x2e];
 /**
- * @todo 59.54% matched.
+ * @todo 72.96% matched.
  */
 int CalculatePercentCompletion(GS *pgs)
 {
@@ -194,28 +246,28 @@ int CalculatePercentCompletion(GS *pgs)
     // Iterate over all the levels in the PchzLevel table
     for (int i = 0; i < 0x2e; i++)
     {
-        int levelId = *(int*)&((pchzLevelTable[0].level_id)) + i * sizeof(PchzLevel);
+        int levelId = pchzLevelTable[i].level_id;
         int world = levelId >> 8;
 
         // if world is part of Intro (ie. Splash, Paris, Hideout), skip it
-        if (world != static_cast<int>(GAMEWORLD_Intro))
+        if (world != GAMEWORLD_Intro)
         {
             // get all tasks for the current level
-            int levelTasks = static_cast<int>(pchzLevelTable[0].tasks) + i;
+            FLS levelTasks = pchzLevelTable[i].tasks;
 
             // get save data for the current level
-            LS* currLs = pgs->aws[world].als + (levelId & 0xff);
+            LS *currLs = &pgs->aws[world].als[levelId];
             int currFls = (int)(currLs->fls);
 
             // check if the level is visited
             cTasksChecked++;
-            cTasksCompleted = cTasksCompleted + (currFls & (int)(FLS_Visited));
+            cTasksCompleted += (currFls & (int)(FLS_Visited));
 
             /* Loop over the bits in the FLS cmp and count how many are set,
             * but only if those bits are also set in the level_tasks the pchz table */
-            int flsMask = static_cast<int>(FLS_KeyCollected);
-            int tasksToCheck = (int)(levelTasks) & (int)(FLS_KeyCollected);
-            while ((flsMask & ((int)(FLS_KeyCollected) | (int)(FLS_Secondary) | (int)(FLS_Tertiary))) != 0)
+            GRFLS flsMask = FLS_KeyCollected;
+            int tasksToCheck = levelTasks & FLS_KeyCollected;
+            while ((flsMask & (FLS_KeyCollected | FLS_Secondary | FLS_Tertiary)) != 0)
             {
                 if (tasksToCheck != 0)
                 {
@@ -225,21 +277,17 @@ int CalculatePercentCompletion(GS *pgs)
                         cTasksCompleted++;
                     }
                 }
-                flsMask = flsMask << 1;
+                flsMask <<= 1;
                 tasksToCheck = levelTasks & flsMask;
             }
         }
     }
 
-    FWS* pCurrFws = &pgs->aws[1].fws;
-    int i = 4;
-    while (i > -1)
+    for (int i = 4; i > -1; i--)
     {
-        FWS fws_cmp = static_cast<FWS>(*pCurrFws);
+        GRFWS *fws = &pgs->aws[i].fws;
         cTasksChecked++;
-        pCurrFws += 1;
-        i--;
-        if (((int)(fws_cmp) & 0x20) != 0)
+        if ((*fws & 0x20) != 0)
         {
             cTasksCompleted++;
         }
@@ -256,8 +304,7 @@ int CalculatePercentCompletion(GS *pgs)
     * In all other cases, the if block sets finalPercent to a calculated value.
     */
     int finalPercent = 0;
-    if ((cTasksCompleted != 0) &&
-        (finalPercent = 100, cTasksCompleted != cTasksChecked))
+    if (cTasksCompleted != 0 && (finalPercent = 100, cTasksCompleted != cTasksChecked))
     {
         // if cTasksChecked is 0 then something has gone wrong
         if (cTasksChecked == 0)
@@ -280,8 +327,7 @@ int CalculatePercentCompletion(GS *pgs)
         * In all other cases, finalPercent is set to the calculated percent.
         */
         finalPercent = 1;
-        if ((cTasksChecked > 0) &&
-            (finalPercent = 99, percent < 100))
+        if (cTasksChecked > 0 && (finalPercent = 99, percent < 100))
         {
             finalPercent = percent;
         }
@@ -296,9 +342,6 @@ void SetCcharm(int ccharm)
     g_pgsCur->ccharm = ccharm;
 }
 
-/**
- * @todo 77.50% matched.
- */
 bool FCharmAvailable()
 {
     return (g_pgsCur->ccharm > 0) || (g_grfcht & (GRFCHT)FCHT_InfiniteCharms);
@@ -316,15 +359,14 @@ int PfLookupDialog(LS *pls, OID oidDialog)
     return -0xcd8 + (int)pls + (oidDialog * 4);
 }
 
-// TODO: Come up with a name and mangle it.
-void *clr_8_bytes_1(void *pv)
+void OnGameLoad(GAME *pgame)
 {
-    return memset(pv, 0, 8);
+    memset(pgame, 0, 8);
 }
 
-void FUN_00160ce8(int param_1)
+void OnGameWorldTransition(GAME *pgame)
 {
-    STRUCT_OFFSET(param_1, 4, undefined4) = 0;
+    pgame->cAlarmsTriggered = 0;
 }
 
 void OnGameAlarmTriggered(GAME *pgame)
@@ -342,42 +384,47 @@ GRFVAULT GetGrfvault_unknown()
     return g_pgsCur->grfvault & STRUCT_OFFSET(g_psw, 0x235c, GRFVAULT);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/game", GetBlueprintInfo__FPiT0);
+INCLUDE_ASM("asm/nonmatchings/P2/game", GetBlueprintInfo__FP8GRFVAULT);
 #ifdef SKIP_ASM
 /**
- * @todo 97.65% matched
- * https://decomp.me/scratch/l86al
+ * @todo Migrate .rodata.
  */
-void GetBlueprintInfo(int *pgrfvault, int *pipdialog)
+void GetBlueprintInfo(GRFVAULT *pgrfvault)
 {
+    int value;
     switch (g_pgsCur->gameworldCur)
     {
-    case GAMEWORLD_Snow:
-        pipdialog = (int *)0x00000000;
-        break;
-    case GAMEWORLD_Intro:
-        pipdialog = (int *)0x10000000;
-        break;
-    case GAMEWORLD_Clockwerk:
-        pipdialog = (int *)0x20000000;
-        break;
-    case GAMEWORLD_Underwater:
-        pipdialog = (int *)0x40000000;
-        break;
-    case GAMEWORLD_Muggshot:
-        pipdialog = (int *)0x60000000;
-        break;
-    case GAMEWORLD_Voodoo:
-        pipdialog = (int *)0x60000000;
-        break;
-    default:
-        pipdialog = (int *)0x00000000;
-        break;
+        case GAMEWORLD_Snow:
+        {
+            value = 0x10000000;
+            break;
+        }
+        case GAMEWORLD_Underwater:
+        {
+            value = 0x20000000;
+            break;
+        }
+        case GAMEWORLD_Muggshot:
+        {
+            value = 0x40000000;
+            break;
+        }
+        case GAMEWORLD_Voodoo:
+        {
+            value = 0x80000000;
+            break;
+        }
+        case GAMEWORLD_Intro:
+        case GAMEWORLD_Clockwerk:
+        {
+            value = 0;
+            break;
+        }
     }
 
     if (pgrfvault)
     {
-        *pgrfvault = (int)pipdialog;
+        *pgrfvault = value;
     }
 }
 #endif // SKIP_ASM

@@ -10,15 +10,14 @@
 #define TWO_PI 6.2831855f
 #define INV_TWO_PI 0.15915494f
 
-extern CLOCK g_clock;
-extern VTSAA D_0021E358; // Loop
-extern VTSAA D_0021E378; // PingPong
-extern VTSAA D_0021E398; // Shuffle
-extern VTSAA D_0021E3B8; // Hologram
-extern VTSAA D_0021E3D8; // Scroller
-extern VTSAA D_0021E3F8; // Circler
-extern VTSAA D_0021E418; // Looker
-extern VTSAA D_0021E438; // Eyes
+extern VTSAA g_vtloop;
+extern VTSAA g_vtpingpong;
+extern VTSAA g_vtshuffle;
+extern VTSAA g_vthologram;
+extern VTSAA g_vtscroller;
+extern VTSAA g_vtcircler;
+extern VTSAA g_vtlooker;
+extern VTSAA g_vteyes;
 
 int CbFromSaak(SAAK saak)
 {
@@ -41,14 +40,14 @@ VTSAA *PvtsaaFromSaak(SAAK saak)
 {
     switch (saak)
     {
-        case SAAK_Loop:     return &D_0021E358;
-        case SAAK_PingPong: return &D_0021E378;
-        case SAAK_Shuffle:  return &D_0021E398;
-        case SAAK_Hologram: return &D_0021E3B8;
-        case SAAK_Eyes:     return &D_0021E438;
-        case SAAK_Scroller: return &D_0021E3D8;
-        case SAAK_Circler:  return &D_0021E3F8;
-        case SAAK_Looker:   return &D_0021E418;
+        case SAAK_Loop:     return &g_vtloop;
+        case SAAK_PingPong: return &g_vtpingpong;
+        case SAAK_Shuffle:  return &g_vtshuffle;
+        case SAAK_Hologram: return &g_vthologram;
+        case SAAK_Eyes:     return &g_vteyes;
+        case SAAK_Scroller: return &g_vtscroller;
+        case SAAK_Circler:  return &g_vtcircler;
+        case SAAK_Looker:   return &g_vtlooker;
     }
 
     return 0;

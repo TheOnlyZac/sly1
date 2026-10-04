@@ -43,6 +43,24 @@ struct EOPID
 };
 
 /**
+ * @brief Unknown.
+ */
+struct SPLOPT
+{
+    int optid;
+    EOPID *peopid;
+};
+
+/**
+ * @brief Unknown.
+ */
+struct ARYSPLOPT
+{
+    int csplopt;
+    SPLOPT *asplopt;
+};
+
+/**
  * @brief Builds the eopids array.
  */
 void StartupBrx();
@@ -80,7 +98,7 @@ void LoadOptionsFromBrx(void *pvStruct, CBinaryInputStream *pbis);
  *
  * @return The level object index.
  */
-uint IploFromStockOid(int oid);
+int IploFromStockOid(int oid);
 
 /**
  * @brief TODO.

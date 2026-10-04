@@ -7,13 +7,13 @@
 #include <shd.h>
 #include <target.h>
 #include <lookat.h>
+#include <util.h>
 
 extern VTACT g_vtact;
 extern VTACT g_vtactadj; // TODO: ACTADJ has it's own vtable.
 extern VTACT g_vtactseg; // TODO: ACTSEG has it's own vtable.
 extern VTACT g_vtactla;  // TODO: ACTLA has it's own vtable.
 extern SHADOW s_shadow;
-extern CLQ D_00275C40;
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FIsZeroV__FP6VECTOR);
 
@@ -458,10 +458,13 @@ void GetAloLookAtPanFunction(ALO *palo, CLQ *pclq)
 {
     void *temp = STRUCT_OFFSET(palo, 0x200, void *);
 
-    if (temp != NULL) {
-        temp = (char *)temp + 0x50;
-    } else {
-        temp = &D_00275C40;
+    if (temp)
+    {
+        temp = &STRUCT_OFFSET(temp, 0x50, CLQ);
+    }
+    else
+    {
+        temp = &g_clqZero;
     }
 
     *(qword *)pclq = *(qword *)temp;

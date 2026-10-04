@@ -64,11 +64,11 @@ void ConvertDeulToW(VECTOR *peul, VECTOR *pdeul, VECTOR *pw)
 
 INCLUDE_ASM("asm/nonmatchings/P2/vec", FCalculateMuzzleVelocity__FP6VECTORT0fT0P2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vec", FCalculateMuzzleVelocity1);
+INCLUDE_ASM("asm/nonmatchings/P2/vec", FCalculateMuzzleVelocitySpeed__FP6VECTORT0fT0P2SO);
 
 int FCalculateMuzzleVelocityAngle(VECTOR *pposLaunch, VECTOR *pposTarget, float radTilt, VECTOR *pvecMuzzle, SO *psoLaunch)
 {
     return FCalculateMuzzleVelocity(pposLaunch, pposTarget, radTilt, pvecMuzzle, psoLaunch);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/vec", LimitVectorLength);
+INCLUDE_ASM("asm/nonmatchings/P2/vec", LimitVectorLength__FP6VECTORfT0);

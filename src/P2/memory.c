@@ -5,30 +5,30 @@
 /**
  * @todo Change these to static when possible.
  */
-extern int s_pvGlobalMin;
-extern int s_pvGlobalMac;
-extern int s_pvWorldMin;
-extern int s_pvWorldMac;
-extern int s_pvStackMin;
-extern int s_pvStackMac;
+extern void *s_pvGlobalMin;
+extern void *s_pvGlobalMac;
+extern void *s_pvWorldMin;
+extern void *s_pvWorldMac;
+extern void *s_pvStackMin;
+extern void *s_pvStackMac;
 extern CRITSECT s_critsectStack;
 extern int s_ipvStackCur;
-extern int s_apvStackMin[];
+extern void *s_apvStackMin[50];
 
-extern int g_pvHeapMin;
-extern int g_pvHeapMax;
+extern void *g_pvHeapMin;
+extern void *g_pvHeapMax;
 extern int D_0064C70F;
 
 void StartupMemMgr()
 {
-    int end = (int)&D_0064C70F & ~0x0f;
+    void *end = (void *)((int)&D_0064C70F & ~0x0f);
 
     g_pvHeapMin = end;
-    g_pvHeapMax = 0x02000000;
+    g_pvHeapMax = (void *)0x02000000;
 
     s_pvGlobalMin = s_pvGlobalMac = s_pvWorldMin = s_pvWorldMac = end;
 
-    s_pvStackMin = s_pvStackMac = 0x02000000;
+    s_pvStackMin = s_pvStackMac = (void *)0x02000000;
     s_ipvStackCur = -1;
 
     InitCritSect(&s_critsectStack);
@@ -42,7 +42,7 @@ void *PvAllocGlobalImpl(int cb)
     }
 
     void *pv = (void *)s_pvGlobalMac;
-    s_pvGlobalMac += (cb + 0x0f) & -0x10;
+    (byte *)s_pvGlobalMac += (cb + 0x0f) & -0x10;
     s_pvWorldMin = s_pvWorldMac = s_pvGlobalMac;
     return pv;
 }
@@ -73,7 +73,7 @@ void *PvAllocSwImpl(int cb)
 
     CheckForOutOfMemory();
     void *pvSw = (void *)s_pvWorldMac;
-    s_pvWorldMac += (cb + 0x0f) & -0x10;
+    (byte *)s_pvWorldMac += (cb + 0x0f) & -0x10;
     return pvSw;
 }
 
@@ -118,7 +118,7 @@ void *PvAllocStackImpl(int cb)
     }
 
     CheckForOutOfMemory();
-    s_pvStackMin -= (cb + 0x0f) & -0x10;
+    (byte *)s_pvStackMin -= (cb + 0x0f) & -0x10;
     return (void *)s_pvStackMin;
 }
 
@@ -166,35 +166,32 @@ void __builtin_delete()
 
 void CopyAqw(void *pvDst, void *pvSrc, int cqw)
 {
-    qword *dst = (qword *)pvDst;
-    qword *src = (qword *)pvSrc;
+    qword *pqwdst = (qword *)pvDst;
+    qword *pqwsrc = (qword *)pvSrc;
 
-    int remainder = cqw & 0x03;
-    int nQWords = cqw - remainder;
+    int cRemain = cqw & 0x03;
+    int cBulk = cqw - cRemain;
 
-    int processed = 0;
-    while (processed < remainder)
+    int i = 0;
+    for (; i < cRemain; i++)
     {
-        *dst++ = *src++;
-        processed++;
+        *pqwdst++ = *pqwsrc++;
     }
 
-    processed = 0;
-    while (processed < nQWords)
+    i = 0;
+    for (; i < cBulk; i += 4)
     {
-        qword qw0 = src[0];
-        qword qw1 = src[1];
-        qword qw2 = src[2];
-        qword qw3 = src[3];
-        src += 4;
+        qword qw0 = pqwsrc[0];
+        qword qw1 = pqwsrc[1];
+        qword qw2 = pqwsrc[2];
+        qword qw3 = pqwsrc[3];
+        pqwsrc += 4;
 
-        dst[0] = qw0;
-        dst[1] = qw1;
-        dst[2] = qw2;
-        dst[3] = qw3;
-        dst += 4;
-
-        processed += 4;
+        pqwdst[0] = qw0;
+        pqwdst[1] = qw1;
+        pqwdst[2] = qw2;
+        pqwdst[3] = qw3;
+        pqwdst += 4;
     }
 }
 
@@ -203,11 +200,11 @@ void CopyAb(void *pvDst, void *pvSrc, uint cb)
     // Do a byte copy, if not word aligned.
     if (((uint)pvDst | (uint)pvSrc | cb) & 0x03)
     {
-        uchar *dst = (uchar *)pvDst;
-        uchar *src = (uchar *)pvSrc;
+        uchar *pbDst = (uchar *)pvDst;
+        uchar *pbSrc = (uchar *)pvSrc;
         for (uint i = 0; i < cb; i++)
         {
-            *dst++ = *src++;
+            *pbDst++ = *pbSrc++;
         }
 
         return;
@@ -216,37 +213,32 @@ void CopyAb(void *pvDst, void *pvSrc, uint cb)
     // Copy 4 uints at a time, if aligned properly.
     if (((uint)pvDst | (uint)pvSrc | cb) & 0x0f)
     {
-        uint *dst = (uint *)pvDst;
-        uint *src = (uint *)pvSrc;
+        uint *puDst = (uint *)pvDst;
+        uint *puSrc = (uint *)pvSrc;
 
-        int remainder = (cb >> 2) & 0x03;
-        int nWords = (cb >> 2) - remainder;
+        int cRemain = (cb / sizeof(uint)) & 0x03;
+        int cBluk = (cb / sizeof(uint)) - cRemain;
 
-        int processed = 0;
-        while (processed < remainder)
+        int i = 0;
+        for (; i < cRemain; i++)
         {
-            *dst++ = *src++;
-            processed++;
+            *puDst++ = *puSrc++;
         }
 
-        // TODO: This part might be possible to clean up,
-        // but I wasn't able to. -545u
-        processed = 0;
-        while (processed < nWords)
+        i = 0;
+        for (; i < cBluk; i += 4)
         {
-            uint w0 = src[0];
-            uint w1 = src[1];
-            uint w2 = src[2];
-            uint w3 = src[3];
-            src += 4;
+            uint w0 = puSrc[0];
+            uint w1 = puSrc[1];
+            uint w2 = puSrc[2];
+            uint w3 = puSrc[3];
+            puSrc += 4;
 
-            dst[0] = w0;
-            dst[1] = w1;
-            dst[2] = w2;
-            dst[3] = w3;
-            dst += 4;
-
-            processed += 4;
+            puDst[0] = w0;
+            puDst[1] = w1;
+            puDst[2] = w2;
+            puDst[3] = w3;
+            puDst += 4;
         }
 
         return;
