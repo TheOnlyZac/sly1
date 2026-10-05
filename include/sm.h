@@ -18,6 +18,7 @@ struct SMT;
 struct SMS;
 struct SMP;
 struct SMPA; // todo define
+struct ASEG;
 struct ASEGA;
 
 typedef int GRFAPL;
@@ -44,18 +45,18 @@ struct SM : public LO
  */
 struct SMA : public BASIC
 {
-    DLE dleSm;
-    DLE dleSw;
-    SM *psm;
-    ALO *paloRoot;
-    int grfapl;
-    ASEGA *pasegaCur;
-    int ismsCur;
-    int ismsNext;
-    int ismsGoal;
-    SMT *psmtCur;
-    float svtLocal;
-    MQ *pmqFirst;
+    /* 0x08 */ DLE dleSm;
+    /* 0x10 */ DLE dleSw;
+    /* 0x18 */ SM *psm;
+    /* 0x1c */ ALO *paloRoot;
+    /* 0x20 */ int grfapl;
+    /* 0x24 */ ASEGA *pasegaCur;
+    /* 0x28 */ int ismsCur;
+    /* 0x2c */ int ismsNext;
+    /* 0x30 */ int ismsGoal;
+    /* 0x34 */ SMT *psmtCur;
+    /* 0x38 */ float svtLocal;
+    /* 0x3c */ MQ *pmqFirst;
 };
 
 /**
@@ -63,11 +64,15 @@ struct SMA : public BASIC
  */
 struct SMT
 {
-    undefined4 unk_0;
-    int ismsFrom; // From state
-    int ismsTo; // To state
-    GRFSMT grfsmt; // Unknown
-    float gProbability; // Probability of transition
+    union
+    {
+        /* 0x00 */ int fAseg;
+        /* 0x00 */ ASEG *paseg;
+    };
+    /* 0x04 */ int ismsFrom; // From state
+    /* 0x08 */ int ismsTo; // To state
+    /* 0x0c */ GRFSMT grfsmt; // Unknown
+    /* 0x10 */ float gProbability; // Probability of transition
 };
 
 /**
@@ -75,8 +80,12 @@ struct SMT
  */
 struct SMS
 {
-    OID oid;
-    undefined4 unk_0;
+    /* 0x00 */ OID oid;
+    union
+    {
+        /* 0x04 */ OID oidNext;
+        /* 0x04 */ int ismsNext;
+    };
 };
 
 /**

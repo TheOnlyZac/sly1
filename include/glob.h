@@ -8,6 +8,11 @@
 #include <alo.h>
 #include <vec.h>
 
+// Forward declarations.
+struct POSAD;
+struct UVQ;
+typedef struct UVQ UVQD;
+
 typedef int GRFGLOB;
 
 /**
@@ -39,7 +44,9 @@ struct SUBGLOB
  */
 struct SGVR
 {
-    // ...
+    /* 0x00 */ int *pcvtx;
+    /* 0x04 */ POSAD **ppposad;
+    /* 0x08 */ UVQD **ppuvqd;
 };
 
 /*

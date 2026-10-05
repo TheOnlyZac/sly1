@@ -35,8 +35,13 @@ struct UVF
  */
 struct UVQ
 {
-    float u, v, q, d;
+    float u, v, q;
 };
+
+/**
+ * @brief UV coordinates (Homogeneous/Q-depth).
+ */
+typedef struct UVQ UVQD;
 
 /**
  * @brief Loop shader animation.
@@ -47,10 +52,10 @@ struct LOOP : public SAA
     /* 0x30 */ float dtLoopMax;
     /* 0x34 */ float dtPauseMin;
     /* 0x38 */ float dtPauseMax;
-    /* 0x3c */ float dframe;
-    /* 0x40 */ float iframe;
-    /* 0x44 */ float dtPause;
-    /* 0x48 */ float dtPauseRemaining;
+    /* 0x3c */ float sviframe;
+    /* 0x40 */ float gframe;
+    /* 0x44 */ float dtPauseRequested;
+    /* 0x48 */ float dtPause;
 };
 
 /**
@@ -58,18 +63,18 @@ struct LOOP : public SAA
  */
 struct PINGPONG : public SAA
 {
-    /* 0x2c */ float dtLoopMin;
-    /* 0x30 */ float dtLoopMax;
+    /* 0x2c */ float dtPingpongMin;
+    /* 0x30 */ float dtPingpongMax;
     /* 0x34 */ float dtPauseMin;
     /* 0x38 */ float dtPauseMax;
-    /* 0x3c */ float dframe;
-    /* 0x40 */ float iframe;
-    /* 0x44 */ float dtPause;
-    /* 0x48 */ float dtPauseRemaining;
+    /* 0x3c */ float sviframe;
+    /* 0x40 */ float gframe;
+    /* 0x44 */ float dtPauseRequested;
+    /* 0x48 */ float dtPause;
 };
 
 /**
- * @brief Suffle shader animation.
+ * @brief Shuffle shader animation.
  */
 struct SHUFFLE : public SAA
 {
@@ -83,9 +88,9 @@ struct SHUFFLE : public SAA
  */
 struct HOLOGRAM : public SAA
 {
-    /* 0x2c */ float startAngle;
-    /* 0x30 */ float angleStep;
-    /* 0x34 */ float angleStepPerFrame;
+    /* 0x2c */ float dradAdjust;
+    /* 0x30 */ float dradSymmetry;
+    /* 0x34 */ float dradFrame;
 };
 
 /**
@@ -93,12 +98,12 @@ struct HOLOGRAM : public SAA
  */
 struct SCROLLER : public SAA
 {
-    /* 0x2c */ float duSpeed;
-    /* 0x30 */ float dvSpeed;
-    /* 0x34 */ float du;
-    /* 0x38 */ float dv;
-    /* 0x3c */ float su;
-    /* 0x40 */ float sv;
+    /* 0x2c */ float svu;
+    /* 0x30 */ float svv;
+    /* 0x34 */ float duMod;
+    /* 0x38 */ float dvMod;
+    /* 0x3c */ float svuMaster;
+    /* 0x40 */ float svvMaster;
 };
 
 /**
@@ -106,10 +111,10 @@ struct SCROLLER : public SAA
  */
 struct CIRCLER : public SAA
 {
-    /* 0x2c */ float radsSpeed;
-    /* 0x30 */ float radius;
-    /* 0x34 */ float duCenter;
-    /* 0x38 */ float dvCenter;
+    /* 0x2c */ float sw;
+    /* 0x30 */ float sRadius;
+    /* 0x34 */ float du;
+    /* 0x38 */ float dv;
 };
 
 /**
@@ -121,43 +126,53 @@ struct LOOKER : public SAA
     /* 0x30 */ float vCenter;
     /* 0x34 */ float duMin;
     /* 0x38 */ float duMax;
-    /* 0x3C */ float dvMin;
+    /* 0x3c */ float dvMin;
     /* 0x40 */ float dvMax;
-    // 0x44 - 0x4c (Likely runtime state like current look target)
+    /* 0x44 */ int cvtx;
+    /* 0x48 */ UVQD *puvqd;
+    /* 0x4c */ POSAD *pposad;
 };
 
 int CbFromSaak(SAAK saak);
 VTSAA *PvtsaaFromSaak(SAAK saak);
 SAA *PsaaLoadFromBrx(CBinaryInputStream *pbis);
+
 void InitSaa(SAA *psaa, SAAF *psaaf);
 void PostSaaLoad(SAA *psaa);
 int FUpdatableSaa(SAA *psaa);
 float UCompleteSaa(SAA *psaa);
 SAI *PsaiFromSaaShd(SAA *psaa, SHD *pshd);
+
 void InitLoop(LOOP *ploop, SAAF *psaaf);
 void PostLoopLoad(LOOP *ploop);
 void UpdateLoop(LOOP *ploop, float dt);
 float UCompleteLoop(LOOP *ploop);
+
 void InitPingpong(PINGPONG *ppingpong, SAAF *psaaf);
 void PostPingpongLoad(PINGPONG *ppingpong);
 void UpdatePingpong(PINGPONG *ppingpong, float dt);
 float UCompletePingpong(PINGPONG *ppingpong);
+
 void InitShuffle(SHUFFLE *pshuffle, SAAF *psaaf);
 void UpdateShuffle(SHUFFLE *pshuffle, float dt);
+
 void InitHologram(HOLOGRAM *phologram, SAAF *psaaf);
 void PostHologramLoad(HOLOGRAM *phologram);
 void NotifyHologramRender(HOLOGRAM *phologram, ALO *palo, RPL *prpl);
+
 void InitScroller(SCROLLER *pscroller, SAAF *psaaf);
 void UpdateScroller(SCROLLER *pscroller, float dt);
 float UCompleteScroller(SCROLLER *pscroller);
 void SetScrollerMasterSpeeds(SCROLLER *pscroller, float svu, float svv);
+
 void InitCircler(CIRCLER *pcircler, SAAF *psaaf);
 void UpdateCircler(CIRCLER *pcircler, float dt);
 float UCompleteCircler(CIRCLER *pcircler);
+
 void InitLooker(LOOKER *plooker, SAAF *psaaf);
 void SetLookerSgvr(LOOKER *plooker, SGVR *psgvr, GLOBSET *pglobset, GLOB *pglob, SUBGLOB *psubglob);
 void SetVecPosad(VECTOR *pvec, POSAD *pposad);
-void SetUvPuvqd(UVF *puv, UVQ *puvqd);
+void SetUvPuvqd(UVF *puv, UVQD *puvqd);
 void NotifyLookerRender(LOOKER *plooker, ALO *palo, RPL *prpl);
 
 #endif // SHDANIM_H
