@@ -17,7 +17,7 @@ struct SBG : public STEPGUARD
     // ...
 };
 
-extern BLOT* g_unkblot7;
+extern BLOT g_unkblot7;
 
 void PostSbgLoad(SBG *psbg);
 
@@ -27,7 +27,7 @@ void PostSbgLoad(SBG *psbg);
  * @return Unknown return value.
  * @todo Figure out what this actually does, give better name. 
  */
-undefined4 FUN_001a9928(SBG *psbg);
+int FUN_001a9928(SBG *psbg);
 
 /**
  * @brief Updates Panda King's goal. 

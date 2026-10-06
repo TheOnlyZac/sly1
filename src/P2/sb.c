@@ -1,18 +1,21 @@
 #include <sb.h>
 #include <asega.h>
 #include <memcard.h>
+#include <game.h>
 #include <sw.h>
 #include <ui.h>
 
-void PostSbgLoad(SBG* psbg) 
+void PostSbgLoad(SBG *psbg) 
 {
     PostStepguardLoad(psbg);
-    FUN_001ddc38(STRUCT_OFFSET(psbg, 0x14, SW *),  psbg);
+    FUN_001ddc38(psbg->psw,  psbg);
 }
 
-undefined4 FUN_001a9928(SBG* pSbg) {
-    if (IsSwHandsOff__FP2SW(STRUCT_OFFSET(pSbg, 0x14, SW *)) == 0) {
-        return STRUCT_OFFSET(pSbg, 0xC24, int);
+int FUN_001a9928(SBG *psbg) 
+{
+    if (IsSwHandsOff(psbg->psw) == 0) 
+    {
+        return STRUCT_OFFSET(psbg, 0xC24, int);
     }
     return 0;
 }
@@ -43,36 +46,35 @@ void UpdateSbgSgs(SBG *psbg)
     }
 }
 
-void OnSbgEnteringSgs(SBG* pSbg, SGS sgs, ASEG* pAseg) {
-    OnStepguardEnteringSgs(pSbg, sgs, pAseg);
-    if (STRUCT_OFFSET(pSbg, 0x724, int) == 0xB) {
-        DefeatBossFromWid(4);
+void OnSbgEnteringSgs(SBG *psbg, SGS sgs, ASEG *paseg) 
+{
+    OnStepguardEnteringSgs(psbg, sgs, paseg);
+    if (STRUCT_OFFSET(psbg, 0x724, int) == 0xB) 
+    {
+        DefeatBossFromWorld(GAMEWORLD_Snow);
         FUN_0018c7f8(&g_save);
     }
 }
 
-void UpdateSbg__FP3SBGf(SBG* psbg, float dt) 
+void UpdateSbg(SBG *psbg, float dt) 
 {
-    ASEGA *pasega;
-
     UpdateStepguard(psbg, dt);
-    pasega = STRUCT_OFFSET(psbg,0xC20,ASEGA *);
-    if ((pasega != 0) && (STRUCT_OFFSET(pasega,0x18,float) == 0.0f)) 
+    ASEGA *pasega = STRUCT_OFFSET(psbg, 0xC20, ASEGA *);
+    if (pasega != 0 && STRUCT_OFFSET(pasega, 0x18, float) == 0.0f) 
     {
         RetractAsega(pasega);
-        STRUCT_OFFSET(psbg,0xC20,ASEGA *) = 0;
+        STRUCT_OFFSET(psbg, 0xC20, ASEGA *) = 0;
     }
 }
 
 void FUN_001a9a98() 
 {
-    typedef void (*VFn)(BLOT**);
     if (FUN_001e9970() != 0) 
     {
-        STRUCT_OFFSET(g_unkblot7, 0x38, VFn)(&g_unkblot7);
+        g_unkblot7.pvtblot->pfnShowBlot(&g_unkblot7);
         return;
     }
-    STRUCT_OFFSET(g_unkblot7, 0x3C, VFn)(&g_unkblot7);
+    g_unkblot7.pvtblot->pfnHideBlot(&g_unkblot7);
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/sb", FAbsorbSbgWkr__FP3SBGP3WKR);
