@@ -14,6 +14,7 @@ var ui_8h =
       [ "UIS_Max", "ui_8h.html#a8d398e5912d266d75aa6565693ffc408aa0575016965cfd7df3c86abd11db90b6", null ]
     ] ],
     [ "DrawUi", "ui_8h.html#a4b4076b522f72e17ddf5874b62cd97db", null ],
+    [ "FUN_001e9970", "ui_8h.html#a80d3b329098d1b0aab8f052d99eaa63c", null ],
     [ "InitUi", "ui_8h.html#a1a5990afb235c0415e15abc50699755c", null ],
     [ "PopUiActiveBlot", "ui_8h.html#a14023ef99299c10e7a13882090ada0f2", null ],
     [ "PostUiLoad", "ui_8h.html#ab0a195a728c283a33e6cf5eebd71a36e", null ],

@@ -106,7 +106,7 @@ var game_8h =
     ] ],
     [ "CalculatePercentCompletion", "game_8h.html#ace3e2869d1606eced21896d335e0b7b3", null ],
     [ "CcharmMost", "game_8h.html#a8c302fb2a66756b8ade0cb21a4519691", null ],
-    [ "DefeatBossFromWid", "game_8h.html#a4294b9224468438466b7efc1c982ef50", null ],
+    [ "DefeatBossFromWorld", "game_8h.html#a2f754fd648d448b3662e1b6105fed6bc", null ],
     [ "FCharmAvailable", "game_8h.html#a7ea6a30556e6c301a85803b8f767ef5e", null ],
     [ "FUN_00160650", "game_8h.html#a7be77cccf4a8c9f5e9c6a0f500b67008", null ],
     [ "FUN_00160948", "game_8h.html#a2e1772bcc6bc91f88e9f35b2dbbb4a3c", null ],

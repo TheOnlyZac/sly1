@@ -26,6 +26,7 @@ var sw_8h =
     [ "FreeSwPoxa", "sw_8h.html#a3922e80fbd11c506c72e8d89f3d56d16", null ],
     [ "FreeSwStsoList", "sw_8h.html#a74e1da63ffcd5f91949f83ef32ae0f75", null ],
     [ "FreeSwXaList", "sw_8h.html#aa8e079d2cfa55dfbb4c0030ac9fae5ad", null ],
+    [ "FUN_001ddc38", "sw_8h.html#a7c9dc80ed7333401583fe87b866fa6a6", null ],
     [ "GetSwPlayerSuck", "sw_8h.html#a74afdff13e2bc0da216321d6d2d91f83", null ],
     [ "IncrementSwHandsOff", "sw_8h.html#ac84a0a8a54f895e6fdbd018e455c1c69", null ],
     [ "InitSw", "sw_8h.html#a28f708e60e59bb90be55432805ee5fe0", null ],

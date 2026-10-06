@@ -103,6 +103,11 @@ $(document).ready(function(){initNavTree('sb_8c.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="sb_8h_source.html">sb.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="asega_8h_source.html">asega.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="memcard_8h_source.html">memcard.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="game_8h_source.html">game.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="sw_8h_source.html">sw.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="ui_8h_source.html">ui.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for sb.c:</div>
 <div class="dyncontent">
@@ -113,26 +118,81 @@ Include dependency graph for sb.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab79b9167544a30b8bdaab1c95d0208f2" id="r_ab79b9167544a30b8bdaab1c95d0208f2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sb_8c.html#ab79b9167544a30b8bdaab1c95d0208f2">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sb&quot;, PostSbgLoad__FP3SBG)</td></tr>
-<tr class="separator:ab79b9167544a30b8bdaab1c95d0208f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fafd5220c810c5537d09c49b6f9f5e8" id="r_a0fafd5220c810c5537d09c49b6f9f5e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sb_8c.html#a0fafd5220c810c5537d09c49b6f9f5e8">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sb&quot;, FUN_001a9928__FP3SBG)</td></tr>
-<tr class="separator:a0fafd5220c810c5537d09c49b6f9f5e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a534b23f4e9afe574f032aef54c28639f" id="r_a534b23f4e9afe574f032aef54c28639f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sb_8c.html#a534b23f4e9afe574f032aef54c28639f">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sb&quot;, UpdateSbgGoal__FP3SBGi)</td></tr>
-<tr class="separator:a534b23f4e9afe574f032aef54c28639f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa37bfe272e2ab637a36bc856faa6ebff" id="r_aa37bfe272e2ab637a36bc856faa6ebff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sb_8c.html#aa37bfe272e2ab637a36bc856faa6ebff">PostSbgLoad</a> (<a class="el" href="structSBG.html">SBG</a> *psbg)</td></tr>
+<tr class="separator:aa37bfe272e2ab637a36bc856faa6ebff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada760d93f00dbee69978edf146384088" id="r_ada760d93f00dbee69978edf146384088"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sb_8c.html#ada760d93f00dbee69978edf146384088">FUN_001a9928</a> (<a class="el" href="structSBG.html">SBG</a> *psbg)</td></tr>
+<tr class="memdesc:ada760d93f00dbee69978edf146384088"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unknown function.  <br /></td></tr>
+<tr class="separator:ada760d93f00dbee69978edf146384088"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a409d961457e9cde2d46cbe5aa23c33ca" id="r_a409d961457e9cde2d46cbe5aa23c33ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sb_8c.html#a409d961457e9cde2d46cbe5aa23c33ca">UpdateSbgGoal</a> (<a class="el" href="structSBG.html">SBG</a> *psbg, int fEnter)</td></tr>
+<tr class="memdesc:a409d961457e9cde2d46cbe5aa23c33ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates Panda King's goal. Also sets the goal if Panda King is stunned.  <br /></td></tr>
+<tr class="separator:a409d961457e9cde2d46cbe5aa23c33ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96dfc96cb18ee6983afa18384ca8c863" id="r_a96dfc96cb18ee6983afa18384ca8c863"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sb_8c.html#a96dfc96cb18ee6983afa18384ca8c863">UpdateSbgSgs</a> (<a class="el" href="structSBG.html">SBG</a> *psbg)</td></tr>
 <tr class="separator:a96dfc96cb18ee6983afa18384ca8c863"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2809e225de79db20cd77c3f43e10a3dc" id="r_a2809e225de79db20cd77c3f43e10a3dc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sb_8c.html#a2809e225de79db20cd77c3f43e10a3dc">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sb&quot;, OnSbgEnteringSgs__FP3SBG3SGSP4ASEG)</td></tr>
-<tr class="separator:a2809e225de79db20cd77c3f43e10a3dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4eb6c3a645e1d21a9f7aef4d161fbcb7" id="r_a4eb6c3a645e1d21a9f7aef4d161fbcb7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sb_8c.html#a4eb6c3a645e1d21a9f7aef4d161fbcb7">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sb&quot;, UpdateSbg__FP3SBGf)</td></tr>
-<tr class="separator:a4eb6c3a645e1d21a9f7aef4d161fbcb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c771453b388e79d8711fd36d971e441" id="r_a3c771453b388e79d8711fd36d971e441"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sb_8c.html#a3c771453b388e79d8711fd36d971e441">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sb&quot;, FUN_001a9a98)</td></tr>
-<tr class="separator:a3c771453b388e79d8711fd36d971e441"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29e2dc889999d444881ea4dd0595f6dd" id="r_a29e2dc889999d444881ea4dd0595f6dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sb_8c.html#a29e2dc889999d444881ea4dd0595f6dd">OnSbgEnteringSgs</a> (<a class="el" href="structSBG.html">SBG</a> *psbg, <a class="el" href="stepguard_8h.html#a2ef71e3be56da88455b948f300fccef7">SGS</a> sgs, <a class="el" href="structASEG.html">ASEG</a> *paseg)</td></tr>
+<tr class="separator:a29e2dc889999d444881ea4dd0595f6dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa99e5510057c8d5eabe1cf1ae37061c2" id="r_aa99e5510057c8d5eabe1cf1ae37061c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sb_8c.html#aa99e5510057c8d5eabe1cf1ae37061c2">UpdateSbg</a> (<a class="el" href="structSBG.html">SBG</a> *psbg, float dt)</td></tr>
+<tr class="separator:aa99e5510057c8d5eabe1cf1ae37061c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3015cefb22a3367054e2551cf217d2d" id="r_ab3015cefb22a3367054e2551cf217d2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sb_8c.html#ab3015cefb22a3367054e2551cf217d2d">FUN_001a9a98</a> ()</td></tr>
+<tr class="memdesc:ab3015cefb22a3367054e2551cf217d2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls functions in g_unkblot7.  <br /></td></tr>
+<tr class="separator:ab3015cefb22a3367054e2551cf217d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8470458c7627bab4e692fe7e0182e419" id="r_a8470458c7627bab4e692fe7e0182e419"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sb_8c.html#a8470458c7627bab4e692fe7e0182e419">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sb&quot;, FAbsorbSbgWkr__FP3SBGP3WKR)</td></tr>
 <tr class="separator:a8470458c7627bab4e692fe7e0182e419"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21a8fa53a44ae4f7eb51bb87bafe4a9f" id="r_a21a8fa53a44ae4f7eb51bb87bafe4a9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sb_8c.html#a21a8fa53a44ae4f7eb51bb87bafe4a9f">FUN_001a9c58</a> (<a class="el" href="structSBG.html">SBG</a> *psbg, int a, int b, int c)</td></tr>
 <tr class="separator:a21a8fa53a44ae4f7eb51bb87bafe4a9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ada760d93f00dbee69978edf146384088" name="ada760d93f00dbee69978edf146384088"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada760d93f00dbee69978edf146384088">&#9670;&#160;</a></span>FUN_001a9928()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FUN_001a9928 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSBG.html">SBG</a> *&#160;</td>
+          <td class="paramname"><em>psbg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unknown function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">psbg</td><td>Pointer to Panda King. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Unknown return value. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000227">Todo:</a></b></dt><dd>Figure out what this actually does, give better name. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sb_8c_source.html#l00014">14</a> of file <a class="el" href="sb_8c_source.html">sb.c</a>.</p>
+
+</div>
+</div>
+<a id="ab3015cefb22a3367054e2551cf217d2d" name="ab3015cefb22a3367054e2551cf217d2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3015cefb22a3367054e2551cf217d2d">&#9670;&#160;</a></span>FUN_001a9a98()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001a9a98 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calls functions in g_unkblot7. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000228">Todo:</a></b></dt><dd>Figure out what this actually does, give better name. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sb_8c_source.html#l00070">70</a> of file <a class="el" href="sb_8c_source.html">sb.c</a>.</p>
+
+</div>
+</div>
 <a id="a21a8fa53a44ae4f7eb51bb87bafe4a9f" name="a21a8fa53a44ae4f7eb51bb87bafe4a9f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a21a8fa53a44ae4f7eb51bb87bafe4a9f">&#9670;&#160;</a></span>FUN_001a9c58()</h2>
 
@@ -171,12 +231,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sb_8c_source.html#l00028">28</a> of file <a class="el" href="sb_8c_source.html">sb.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sb_8c_source.html#l00082">82</a> of file <a class="el" href="sb_8c_source.html">sb.c</a>.</p>
 
 </div>
 </div>
 <a id="a8470458c7627bab4e692fe7e0182e419" name="a8470458c7627bab4e692fe7e0182e419"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8470458c7627bab4e692fe7e0182e419">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8470458c7627bab4e692fe7e0182e419">&#9670;&#160;</a></span>INCLUDE_ASM()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -203,23 +263,29 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0fafd5220c810c5537d09c49b6f9f5e8" name="a0fafd5220c810c5537d09c49b6f9f5e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0fafd5220c810c5537d09c49b6f9f5e8">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/7]</span></h2>
+<a id="a29e2dc889999d444881ea4dd0595f6dd" name="a29e2dc889999d444881ea4dd0595f6dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29e2dc889999d444881ea4dd0595f6dd">&#9670;&#160;</a></span>OnSbgEnteringSgs()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname">void OnSbgEnteringSgs </td>
           <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sb&quot;&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramtype"><a class="el" href="structSBG.html">SBG</a> *&#160;</td>
+          <td class="paramname"><em>psbg</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FUN_001a9928__FP3SBG&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype"><a class="el" href="stepguard_8h.html#a2ef71e3be56da88455b948f300fccef7">SGS</a>&#160;</td>
+          <td class="paramname"><em>sgs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structASEG.html">ASEG</a> *&#160;</td>
+          <td class="paramname"><em>paseg</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -229,25 +295,47 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="sb_8c_source.html#l00049">49</a> of file <a class="el" href="sb_8c_source.html">sb.c</a>.</p>
+
 </div>
 </div>
-<a id="a3c771453b388e79d8711fd36d971e441" name="a3c771453b388e79d8711fd36d971e441"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c771453b388e79d8711fd36d971e441">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/7]</span></h2>
+<a id="aa37bfe272e2ab637a36bc856faa6ebff" name="aa37bfe272e2ab637a36bc856faa6ebff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa37bfe272e2ab637a36bc856faa6ebff">&#9670;&#160;</a></span>PostSbgLoad()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname">void PostSbgLoad </td>
           <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sb&quot;&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramtype"><a class="el" href="structSBG.html">SBG</a> *&#160;</td>
+          <td class="paramname"><em>psbg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sb_8c_source.html#l00008">8</a> of file <a class="el" href="sb_8c_source.html">sb.c</a>.</p>
+
+</div>
+</div>
+<a id="aa99e5510057c8d5eabe1cf1ae37061c2" name="aa99e5510057c8d5eabe1cf1ae37061c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa99e5510057c8d5eabe1cf1ae37061c2">&#9670;&#160;</a></span>UpdateSbg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UpdateSbg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSBG.html">SBG</a> *&#160;</td>
+          <td class="paramname"><em>psbg</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FUN_001a9a98&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dt</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -257,25 +345,27 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="sb_8c_source.html#l00059">59</a> of file <a class="el" href="sb_8c_source.html">sb.c</a>.</p>
+
 </div>
 </div>
-<a id="a2809e225de79db20cd77c3f43e10a3dc" name="a2809e225de79db20cd77c3f43e10a3dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2809e225de79db20cd77c3f43e10a3dc">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[4/7]</span></h2>
+<a id="a409d961457e9cde2d46cbe5aa23c33ca" name="a409d961457e9cde2d46cbe5aa23c33ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a409d961457e9cde2d46cbe5aa23c33ca">&#9670;&#160;</a></span>UpdateSbgGoal()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname">void UpdateSbgGoal </td>
           <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sb&quot;&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramtype"><a class="el" href="structSBG.html">SBG</a> *&#160;</td>
+          <td class="paramname"><em>psbg</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">OnSbgEnteringSgs__FP3SBG3SGSP4ASEG&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fEnter</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -285,89 +375,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="ab79b9167544a30b8bdaab1c95d0208f2" name="ab79b9167544a30b8bdaab1c95d0208f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab79b9167544a30b8bdaab1c95d0208f2">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[5/7]</span></h2>
+<p>Updates Panda King's goal. Also sets the goal if Panda King is stunned. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">psbg</td><td>Pointer to Panda King. </td></tr>
+    <tr><td class="paramname">fEnter</td><td>Goal entry flag. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sb&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">PostSbgLoad__FP3SBG&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a4eb6c3a645e1d21a9f7aef4d161fbcb7" name="a4eb6c3a645e1d21a9f7aef4d161fbcb7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4eb6c3a645e1d21a9f7aef4d161fbcb7">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[6/7]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sb&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">UpdateSbg__FP3SBGf&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a534b23f4e9afe574f032aef54c28639f" name="a534b23f4e9afe574f032aef54c28639f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a534b23f4e9afe574f032aef54c28639f">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[7/7]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sb&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">UpdateSbgGoal__FP3SBGi&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p class="definition">Definition at line <a class="el" href="sb_8c_source.html#l00023">23</a> of file <a class="el" href="sb_8c_source.html">sb.c</a>.</p>
 
 </div>
 </div>
@@ -387,7 +404,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sb_8c_source.html#l00009">9</a> of file <a class="el" href="sb_8c_source.html">sb.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sb_8c_source.html#l00039">39</a> of file <a class="el" href="sb_8c_source.html">sb.c</a>.</p>
 
 </div>
 </div>

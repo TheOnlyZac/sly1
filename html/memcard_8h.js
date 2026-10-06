@@ -4,6 +4,7 @@ var memcard_8h =
     [ "SAVE", "structSAVE.html", "structSAVE" ],
     [ "FMemcardThreadValid", "memcard_8h.html#ace2bb87a50b041d6a79f384fb051b153", null ],
     [ "FUN_0018b600", "memcard_8h.html#aa6a9acb070a07396af05eb6dfdf2271d", null ],
+    [ "FUN_0018c7f8", "memcard_8h.html#acba3a46777efed97a269c4a8c1920ba0", null ],
     [ "InitMemcard", "memcard_8h.html#aede9e8eb0771abe34dc4b9699eb68ae2", null ],
     [ "InitSave", "memcard_8h.html#a790d66e88a937276145c5d48301455c2", null ],
     [ "SetMemcardThreadHighPrio", "memcard_8h.html#a4300f2c887f080ac03084701a9cef35c", null ],

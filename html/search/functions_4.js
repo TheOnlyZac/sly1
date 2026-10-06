@@ -14,7 +14,7 @@ var searchData=
   ['decrefvector_11',['decrefvector',['../vecmat_8cpp.html#ac9d344cb55989eda69f3a442193115c7',1,'DecrefVector(VECTOR *pvector):&#160;vecmat.cpp'],['../vecmat_8h.html#ac9d344cb55989eda69f3a442193115c7',1,'DecrefVector(VECTOR *pvector):&#160;vecmat.cpp']]],
   ['decrementcdreadlimit_12',['DecrementCdReadLimit',['../classCBinaryInputStream.html#aa72c931429d711dcbe0ede99575690ab',1,'CBinaryInputStream']]],
   ['decrementswhandsoff_13',['decrementswhandsoff',['../sw_8h.html#a08942635669d159e7e4bc4d594487b30',1,'DecrementSwHandsOff(SW *psw):&#160;sw.c'],['../sw_8c.html#a08942635669d159e7e4bc4d594487b30',1,'DecrementSwHandsOff(SW *psw):&#160;sw.c']]],
-  ['defeatbossfromwid_14',['DefeatBossFromWid',['../game_8h.html#a4294b9224468438466b7efc1c982ef50',1,'game.h']]],
+  ['defeatbossfromworld_14',['DefeatBossFromWorld',['../game_8h.html#a2f754fd648d448b3662e1b6105fed6bc',1,'game.h']]],
   ['deferloremove_15',['deferloremove',['../lo_8c.html#a99937de8f7ce5b7f1d746e6ae2530961',1,'DeferLoRemove(LO *plo):&#160;lo.c'],['../lo_8h.html#a99937de8f7ce5b7f1d746e6ae2530961',1,'DeferLoRemove(LO *plo):&#160;lo.c']]],
   ['deleteframe_16',['deleteframe',['../frame_8cpp.html#addeaf06414b4c875442563659244fa6d',1,'DeleteFrame(CFrame *pframe):&#160;frame.cpp'],['../frame_8h.html#addeaf06414b4c875442563659244fa6d',1,'DeleteFrame(CFrame *pframe):&#160;frame.cpp']]],
   ['deletematrix_17',['DeleteMatrix',['../vecmat_8cpp.html#ae59f553ca3256915209a91222c06505c',1,'vecmat.cpp']]],

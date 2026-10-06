@@ -63,7 +63,7 @@ var searchData=
   ['decrefvector_60',['decrefvector',['../vecmat_8cpp.html#ac9d344cb55989eda69f3a442193115c7',1,'DecrefVector(VECTOR *pvector):&#160;vecmat.cpp'],['../vecmat_8h.html#ac9d344cb55989eda69f3a442193115c7',1,'DecrefVector(VECTOR *pvector):&#160;vecmat.cpp']]],
   ['decrementcdreadlimit_61',['DecrementCdReadLimit',['../classCBinaryInputStream.html#aa72c931429d711dcbe0ede99575690ab',1,'CBinaryInputStream']]],
   ['decrementswhandsoff_62',['decrementswhandsoff',['../sw_8c.html#a08942635669d159e7e4bc4d594487b30',1,'DecrementSwHandsOff(SW *psw):&#160;sw.c'],['../sw_8h.html#a08942635669d159e7e4bc4d594487b30',1,'DecrementSwHandsOff(SW *psw):&#160;sw.c']]],
-  ['defeatbossfromwid_63',['DefeatBossFromWid',['../game_8h.html#a4294b9224468438466b7efc1c982ef50',1,'game.h']]],
+  ['defeatbossfromworld_63',['DefeatBossFromWorld',['../game_8h.html#a2f754fd648d448b3662e1b6105fed6bc',1,'game.h']]],
   ['deferloremove_64',['deferloremove',['../lo_8c.html#a99937de8f7ce5b7f1d746e6ae2530961',1,'DeferLoRemove(LO *plo):&#160;lo.c'],['../lo_8h.html#a99937de8f7ce5b7f1d746e6ae2530961',1,'DeferLoRemove(LO *plo):&#160;lo.c']]],
   ['degcone_65',['degCone',['../structLIGHT.html#a300468936d25b779ec2b1b8cf7347ec3',1,'LIGHT']]],
   ['deghighlight_66',['degHighlight',['../structLIGHT.html#a4e808abbf16fa7d16bfe5fe036f7a5bc',1,'LIGHT']]],
