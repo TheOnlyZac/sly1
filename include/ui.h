@@ -95,6 +95,10 @@ void SetUiUis(UI *pui, UIS uis);
 void SetUiUPause(UI *pui, float rPause);
 
 // ...more functions...
+/**
+ * @brief Unknown function.
+ */
+int FUN_001e9970();
 
 extern UI g_ui; // Global UI object
 

@@ -343,7 +343,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddbf8);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc18);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc38);
+INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc38__FP2SWP2LO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc40);
 
