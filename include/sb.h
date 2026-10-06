@@ -36,7 +36,6 @@ int FUN_001a9928(SBG *psbg);
  * @param psbg Pointer to Panda King.
  * @param fEnter Goal entry flag.
  */
-
 void UpdateSbgGoal(SBG *psbg, int fEnter);
 
 void UpdateSbgSgs(SBG *psbg, SGS sgsPrev, ASEG *pasegTargetOverride);
