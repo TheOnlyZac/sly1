@@ -320,10 +320,9 @@ void UnlockIntroCutsceneFromWid(int wid);
  * @brief Updates game state upon defeating the boss of a world.
  *
  * Unlocks specific reward cutscenes and powerups based on the world ID.
- *
  * @param wid World ID.
  */
-void DefeatBossFromWid(int wid);
+void DefeatBossFromWorld(GAMEWORLD wid);
 
 /**
  * @brief Unlocks the endgame cutscenes based on the completion flags.
