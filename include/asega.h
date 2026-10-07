@@ -34,4 +34,6 @@ struct ASEGA : public BASIC
 
 void RetractAsega(ASEGA *pasega);
 
+void SubscribeAsegaObject(ASEGA *pasega, LO *plo);
+
 #endif // ASEGA_H
