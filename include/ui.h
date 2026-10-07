@@ -94,6 +94,8 @@ void SetUiUis(UI *pui, UIS uis);
  */
 void SetUiUPause(UI *pui, float rPause);
 
+void *FUN_001e9970();
+
 // ...more functions...
 /**
  * @brief Unknown function.

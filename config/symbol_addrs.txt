@@ -5003,6 +5003,73 @@ g_lmNegOneOne = 0x275c68; // size:0x8
 
 
 ////////////////////////////////////////////////////////////////
+// P2/vb.c
+////////////////////////////////////////////////////////////////
+FUN_001EB460                             = 0x1EB460; // type:func
+FUN_001EB518__FP2SOP18CBinaryInputStream = 0x1EB518; // type:func
+FUN_001EB550__FPv                        = 0x1EB550; // type:func
+FUN_001EB598__FP3ALO                     = 0x1EB598; // type:func
+FUN_001EB608__FP2POiT0                   = 0x1EB608; // type:func
+FUN_001EB698                             = 0x1EB698; // type:func
+FUN_001EB748                             = 0x1EB748; // type:func
+FUN_001EBC88__FPv                        = 0x1EBC88; // type:func
+FUN_001EBCD8__FPvT0                      = 0x1EBCD8; // type:func
+FUN_001EBD08__Fv                         = 0x1EBD08; // type:func
+FUN_001EBD10                             = 0x1EBD10; // type:func
+FUN_001EBDD0                             = 0x1EBDD0; // type:func
+FUN_001EBEB0                             = 0x1EBEB0; // type:func
+FUN_001EBF40__FPvP18CBinaryInputStream   = 0x1EBF40; // type:func
+FUN_001EBFB0                             = 0x1EBFB0; // type:func
+FUN_001EC098__FP2PO                      = 0x1EC098; // type:func
+FUN_001EC0B8__FP2PO                      = 0x1EC0B8; // type:func
+FUN_001EC0D8                             = 0x1EC0D8; // type:func
+FUN_001EC188__Fv                         = 0x1EC188; // type:func
+FUN_001EC190                             = 0x1EC190; // type:func
+FUN_001EC380__FP3ALOP2CMP2RO             = 0x1EC380; // type:func
+FUN_001EC3D8                             = 0x1EC3D8; // type:func
+FUN_001EC478__FPvi                       = 0x1EC478; // type:func
+FUN_001EC528                             = 0x1EC528; // type:func
+FUN_001EC570                             = 0x1EC570; // type:func
+FUN_001EC7A8                             = 0x1EC7A8; // type:func
+FUN_001EC828                             = 0x1EC828; // type:func
+FUN_001ECB18                             = 0x1ECB18; // type:func
+FUN_001ECBC8                             = 0x1ECBC8; // type:func
+FUN_001ECDF8__FPv                        = 0x1ECDF8; // type:func
+FUN_001ECE98__FPvi                       = 0x1ECE98; // type:func
+FUN_001ECF10                             = 0x1ECF10; // type:func
+FUN_001ED018__FPvi                       = 0x1ED018; // type:func
+FUN_001ED020__FPv                        = 0x1ED020; // type:func
+FUN_001ED050__FPvi                       = 0x1ED050; // type:func
+FUN_001ED070__FPvi                       = 0x1ED070; // type:func
+FUN_001ED090__FPvN20                     = 0x1ED090; // type:func
+FUN_001ED0D8                             = 0x1ED0D8; // type:func
+FUN_001ED168__FP2LO                      = 0x1ED168; // type:func
+FUN_001ED198__FP2LO                      = 0x1ED198; // type:func
+FUN_001ED1D8__FPv                        = 0x1ED1D8; // type:func
+FUN_001ED210__FPv                        = 0x1ED210; // type:func
+FUN_001ED278                             = 0x1ED278; // type:func
+FUN_001ED318__FPvPi                      = 0x1ED318; // type:func
+FUN_001ED4C8__FPviT0f                    = 0x1ED4C8; // type:func
+FUN_001ED558__FPvN20f                    = 0x1ED558; // type:func
+FUN_001ED588__FPvN20f                    = 0x1ED588; // type:func
+FUN_001ED5B8__FPvT0f                     = 0x1ED5B8; // type:func
+FUN_001ED5D8__FPvT0f                     = 0x1ED5D8; // type:func
+FUN_001ED5F8__FPvT0f                     = 0x1ED5F8; // type:func
+FUN_001ED618__FPvT0f                     = 0x1ED618; // type:func
+FUN_001ED638                             = 0x1ED638; // type:func
+
+// .data
+D_00275C90 = 0x275C90;
+D_00275CA0 = 0x275CA0;
+D_00275CF8 = 0x275CF8;
+D_00275D08 = 0x275D08;
+D_00275D48 = 0x275D48;
+
+// .bss
+D_00625760 = 0x625760;
+
+
+////////////////////////////////////////////////////////////////
 // P2/vec.c
 ////////////////////////////////////////////////////////////////
 SetVectorCylind__FP6VECTORfff = 0x1ED650; // type:func
