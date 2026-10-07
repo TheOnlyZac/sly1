@@ -12,21 +12,6 @@
 
 #include "common.h"
 #include <stepguard.h>
-#include <po.h>
-#include <lo.h>
-#include <so.h>
-#include <alo.h>
-#include <oid.h>
-#include <cid.h>
-
-struct ASEGA;
-struct SMA;
-struct SM;
-struct XFM;
-struct SW;
-struct CBinaryInputStream;
-struct STEPGUARD;
-struct XFM;
 
 /**
  * @brief One 16-byte slot in the VBC event buffer.
@@ -66,13 +51,13 @@ void FUN_001EB518(SO *pso, CBinaryInputStream *pbis);
 void FUN_001EB550(void *pv);
 void FUN_001EB598(ALO *palo);
 void FUN_001EB608(PO *ppo, int fActive, PO *ppoOther);
-int  FUN_001EBC88(void *pv);
+int FUN_001EBC88(void *pv);
 void FUN_001EBCD8(void *pvb, void *pv);
-int  FUN_001EBD08(void);
+int FUN_001EBD08(void);
 void FUN_001EBF40(void *pv, CBinaryInputStream *pbis);
 void FUN_001EC098(PO *ppo);
 void FUN_001EC0B8(PO *ppo);
-int  FUN_001EC188(void);
+int FUN_001EC188();
 void FUN_001EC380(ALO *palo, CM *pcm, RO *pro);
 void FUN_001EC478(void *pv, int nSgs);
 void FUN_001ECDF8(void *pv);
@@ -94,17 +79,5 @@ void FUN_001ED5B8(void *pvb, void *pv, float g);
 void FUN_001ED5D8(void *pvb, void *pv, float g);
 void FUN_001ED5F8(void *pvb, void *pv, float g);
 void FUN_001ED618(void *pvb, void *pv, float g);
-void *FUN_001e9970(void);
-void *PvAllocSwImpl(int cb);
-void SubscribeAsegaObject(ASEGA *pasega, LO *plo);
-void GetXfmPos(XFM *pxfm, VECTOR *ppos);
-void SetSmaGoal(SMA *psma, OID oid);
-void GetSmaCur(SMA *psma, OID *poid);
-void LoadStepguardFromBrx(STEPGUARD *pstepguard, CBinaryInputStream *pbis);
-void SetStepguardGoal(STEPGUARD *pstepguard, VECTOR *ppos);
-void UpdateStepguardGoal(STEPGUARD *pstepguard, int n);
-void OnPoActive(PO *ppo, int n, PO *ppoOther);
-void OnStepguardExitingSgs(STEPGUARD *pstepguard, SGS sgs);
-LO *PloFindSwObjectByClass(SW *psw, int n, CID cid, LO *plo);
 
 #endif // VB_H

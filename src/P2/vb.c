@@ -1,11 +1,10 @@
 #include <vb.h>
-#include <sce/memset.h>
 #include <jt.h>
-#include <lo.h>
-#include <po.h>
-#include <so.h>
-#include <stepguard.h>
-
+#include <ui.h>
+#include <find.h>
+#include <asega.h>
+#include <memory.h>
+#include <sce/memset.h>
 
 extern char D_00625760;
 extern char g_unkblot7;
@@ -13,8 +12,7 @@ extern SNIP D_00275C90;
 extern SNIP D_00275CA0;
 extern OID D_00275CF8;
 
-
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001EB460);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001EB460);
 
 void FUN_001EB518(SO *pso, CBinaryInputStream *pbis)
 {
@@ -22,7 +20,7 @@ void FUN_001EB518(SO *pso, CBinaryInputStream *pbis)
     SnipAloObjects(pso, 1, &D_00275C90);
 }
 
-void FUN_001EB550(void *pv)
+void FUN_001EB550(void *pv, MSGID msgid, void *pvContext)
 {
     struct Block32
     {
@@ -55,23 +53,17 @@ void FUN_001EB598(ALO *palo)
 {
     PostAloLoad(palo);
     SnipAloObjects(palo, 4, &D_00275CA0);
-    STRUCT_OFFSET(palo, 0x614, void *) =
-        PsmaApplySm(STRUCT_OFFSET(palo, 0x610, SM *), palo, (OID)0x4CA, 1);
-    PostSwCallback(
-        STRUCT_OFFSET(palo, 0x14, SW *),
-        (void (*)(void *, MSGID, void *))FUN_001EB550,
-        palo,
-        (MSGID)0,
-        (void *)0);
+
+    STRUCT_OFFSET(palo, 0x614, void *) = PsmaApplySm(STRUCT_OFFSET(palo, 0x610, SM *), palo, (OID)0x4CA, 1);
+
+    PostSwCallback(palo->psw, FUN_001EB550, palo, MSGID_callback, NULL);
 }
 
 void FUN_001EB608(PO *ppo, int n, PO *ppoOther)
 {
-    LO *plo;
-
     OnPoActive(ppo, n, ppoOther);
-    plo = PloFindSwObjectByClass(STRUCT_OFFSET(ppo, 0x14, SW *), 5, (CID)0x13, (LO *)0);
 
+    LO *plo = PloFindSwObjectByClass(ppo->psw, 5, (CID)0x13, (LO *)0);
     if (n != 0)
     {
         SetSmaGoal(STRUCT_OFFSET(ppo, 0x614, SMA *), (OID)0x4CB);
@@ -85,9 +77,9 @@ void FUN_001EB608(PO *ppo, int n, PO *ppoOther)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001EB698);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001EB698);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001EB748);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001EB748);
 
 int FUN_001EBC88(void *pv)
 {
@@ -111,35 +103,30 @@ void FUN_001EBCD8(void *pvb, void *pv)
     *dst = *(struct U8 *)pv;
 }
 
-int FUN_001EBD08(void)
+int FUN_001EBD08()
 {
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001EBD10);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001EBD10);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001EBDD0);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001EBDD0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001EBEB0);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001EBEB0);
 
 void FUN_001EBF40(void *pv, CBinaryInputStream *pbis)
 {
-    STEPGUARD *pstepguard;
-    OID *poid;
-    void **ppv;
-    int i;
-
-    pstepguard = (STEPGUARD *)pv;
+    STEPGUARD *pstepguard = (STEPGUARD *)pv;
     LoadStepguardFromBrx(pstepguard, pbis);
 
-    poid = &D_00275CF8;
-    ppv = (void **)((char *)pstepguard + 0xC10);
+    OID *poid = &D_00275CF8;
+    void **ppv = (void **)((char *)pstepguard + 0xC10);
 
-    for (i = 3; i >= 0; i--)
+    for (int i = 3; i >= 0; i--)
     {
         *ppv = PasegFindStepguard(pstepguard, *poid);
-        poid = poid + 1;
-        ppv = ppv + 1;
+        poid++;
+        ppv++;
     }
 }
 
@@ -155,14 +142,14 @@ void FUN_001EC0B8(PO *ppo)
     OnPoAdd(ppo);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001EC0D8);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001EC0D8);
 
-int FUN_001EC188(void)
+int FUN_001EC188()
 {
     return 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001EC190);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001EC190);
 
 void FUN_001EC380(ALO *palo, CM *pcm, RO *pro)
 {
@@ -180,7 +167,7 @@ void FUN_001EC380(ALO *palo, CM *pcm, RO *pro)
     RenderAloAll(palo, pcm, pro);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001EC3D8);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001EC3D8);
 
 void FUN_001EC478(void *pv, int nSgs)
 {
@@ -218,17 +205,17 @@ void FUN_001EC478(void *pv, int nSgs)
     STRUCT_OFFSET(pv, 0xC94, int) = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001EC528);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001EC528);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001EC570);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001EC570);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001EC7A8);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001EC7A8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001EC828);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001EC828);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001ECB18);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001ECB18);
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001ECBC8);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001ECBC8);
 
 void FUN_001ECDF8(void *pv)
 {
@@ -284,7 +271,7 @@ void FUN_001ECE98(void *pv, int n)
     UpdateStepguardGoal((STEPGUARD *)pv, n);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001ECF10);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001ECF10);
 
 void FUN_001ED018(void *pvb, int n)
 {
@@ -326,7 +313,7 @@ void FUN_001ED090(void *pvb, void *pasega, void *pv)
     SubscribeAsegaObject((ASEGA *)pasega, (LO *)pvb);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001ED0D8);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001ED0D8);
 
 void FUN_001ED168(LO *plo)
 {
@@ -337,23 +324,21 @@ void FUN_001ED168(LO *plo)
 void FUN_001ED198(LO *plo)
 {
     PostLoLoad(plo);
-    STRUCT_OFFSET(plo, 0x40, LO *) = PloFindSwObjectByClass(STRUCT_OFFSET(plo, 0x14, SW *), 5, (CID)0x13, (LO *)0);
+    STRUCT_OFFSET(plo, 0x40, LO *) = PloFindSwObjectByClass(plo->psw, 5, (CID)0x13, NULL);
 }
 
 void FUN_001ED1D8(void *pv)
 {
     STRUCT_OFFSET(pv, 0x3C, int) = 0;
     STRUCT_OFFSET(pv, 0x44, int) = STRUCT_OFFSET(STRUCT_OFFSET(pv, 0x40, void *), 0xC70, int);
-    HandleLoSpliceEvent((LO *)pv, 0x1Au, 0, (void **)0);
+    HandleLoSpliceEvent((LO *)pv, 0x1A, 0, NULL);
 }
 
 void FUN_001ED210(void *pv)
 {
-    int n;
+    HandleLoSpliceEvent((LO *)pv, 0x1C, 0, NULL);
 
-    HandleLoSpliceEvent((LO *)pv, 0x1Cu, 0, (void **)0);
-
-    n = 5;
+    int n = 5;
     FUN_001ED318(pv, &n);
 
     if (STRUCT_OFFSET(STRUCT_OFFSET(pv, 0x40, void *), 0xC3C, int) != 0)
@@ -363,7 +348,7 @@ void FUN_001ED210(void *pv)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001ED278);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001ED278);
 
 INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001ED318__FPvPi);
 
@@ -424,4 +409,4 @@ void FUN_001ED618(void *pvb, void *pv, float g)
     FUN_001ED4C8(pvb, 5, pv, g);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/vb", func_001ED638);
+INCLUDE_ASM("asm/nonmatchings/P2/vb", FUN_001ED638);
