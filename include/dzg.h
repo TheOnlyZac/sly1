@@ -27,18 +27,18 @@ struct DZ
  */
 struct DZG
 {
-    int cdzMax;
-    int cdz;
-    DZ *adz;
-    DL dlPos;
-    DL dlZero;
-    DL dlMax;
-    DL dlUncat;
-    int cdzPos;
-    float *aagPos;
-    float *aagPosCrout;
-    float *asdv;
-    float *adsfPos;
+    /* 0x00 */ int cdzMax;
+    /* 0x04 */ int cdz;
+    /* 0x08 */ DZ *adz;
+    /* 0x0c */ DL dlPos;
+    /* 0x18 */ DL dlZero;
+    /* 0x24 */ DL dlMax;
+    /* 0x30 */ DL dlUncat;
+    /* 0x3c */ int cdzPos;
+    /* 0x40 */ float *aagPos;
+    /* 0x44 */ float *aagPosCrout;
+    /* 0x48 */ float *asdv;
+    /* 0x4c */ float *adsfPos;
 };
 
 void InitDzg(DZG *pdzg, int cpxp);
