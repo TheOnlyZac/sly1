@@ -153,6 +153,7 @@ var dir_df4299048442539871e543823f2c944f =
     [ "ui.c", "ui_8c.html", "ui_8c" ],
     [ "update.c", "update_8c.html", "update_8c" ],
     [ "util.c", "util_8c.html", "util_8c" ],
+    [ "vb.c", "vb_8c.html", "vb_8c" ],
     [ "vec.c", "vec_8c.html", "vec_8c" ],
     [ "vifs.c", "vifs_8c.html", "vifs_8c" ],
     [ "vis.c", "vis_8c.html", "vis_8c" ],

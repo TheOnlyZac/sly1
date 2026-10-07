@@ -109,9 +109,9 @@ var sectionId = 'dynsection-1';
 </g>
 </g>
 <!-- Node1&#45;&gt;Node7 -->
-<g id="edge18_Node000001_Node000007" class="edge">
+<g id="edge19_Node000001_Node000007" class="edge">
 <title>Node1&#45;&gt;Node7</title>
-<g id="a_edge18_Node000001_Node000007"><a xlink:title=" ">
+<g id="a_edge19_Node000001_Node000007"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M433.09,-168.39C373.11,-162.48 290.98,-150.65 267,-129 251.28,-114.81 248.34,-88.21 247.93,-74.38"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="432.98,-171.9 443.26,-169.36 433.64,-164.93 432.98,-171.9"/>
 </a>
@@ -163,9 +163,9 @@ var sectionId = 'dynsection-1';
 </g>
 </g>
 <!-- Node1&#45;&gt;Node11 -->
-<g id="edge19_Node000001_Node000011" class="edge">
+<g id="edge20_Node000001_Node000011" class="edge">
 <title>Node1&#45;&gt;Node11</title>
-<g id="a_edge19_Node000001_Node000011"><a xlink:title=" ">
+<g id="a_edge20_Node000001_Node000011"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M495.38,-154.76C491.98,-141.94 486.93,-124.69 481,-110 475.79,-97.1 468.11,-82.94 463.08,-74.14"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="492.05,-155.88 497.92,-164.7 498.83,-154.14 492.05,-155.88"/>
 </a>
@@ -228,7 +228,7 @@ var sectionId = 'dynsection-1';
 <!-- Node18 -->
 <g id="Node000018" class="node">
 <title>Node18</title>
-<g id="a_Node000018"><a xlink:href="vb_8h.html" target="_top" xlink:title="Voodoo boss.">
+<g id="a_Node000018"><a xlink:href="vb_8h.html" target="_top" xlink:title="Voodoo boss (Mz. Ruby) and the helper that feeds her events.">
 <polygon fill="white" stroke="#666666" points="945,-129 869,-129 869,-110 945,-110 945,-129"/>
 <text text-anchor="middle" x="907" y="-117" font-family="Helvetica,sans-Serif" font-size="10.00">include/vb.h</text>
 </a>
@@ -243,19 +243,19 @@ var sectionId = 'dynsection-1';
 </a>
 </g>
 </g>
-<!-- Node19 -->
-<g id="Node000019" class="node">
-<title>Node19</title>
-<g id="a_Node000019"><a xlink:href="stepguard_8c.html" target="_top" xlink:title=" ">
+<!-- Node20 -->
+<g id="Node000020" class="node">
+<title>Node20</title>
+<g id="a_Node000020"><a xlink:href="stepguard_8c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1069,-129 963,-129 963,-110 1069,-110 1069,-129"/>
 <text text-anchor="middle" x="1016" y="-117" font-family="Helvetica,sans-Serif" font-size="10.00">src/P2/stepguard.c</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node19 -->
-<g id="edge20_Node000001_Node000019" class="edge">
-<title>Node1&#45;&gt;Node19</title>
-<g id="a_edge20_Node000001_Node000019"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node20 -->
+<g id="edge21_Node000001_Node000020" class="edge">
+<title>Node1&#45;&gt;Node20</title>
+<g id="a_edge21_Node000001_Node000020"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M566.88,-167.76C655.5,-159.96 816.68,-145.14 954,-129 956.91,-128.66 959.9,-128.29 962.92,-127.91"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="566.35,-164.29 556.7,-168.65 566.97,-171.26 566.35,-164.29"/>
 </a>
@@ -402,6 +402,24 @@ var sectionId = 'dynsection-1';
 <g id="a_edge16_Node000016_Node000017"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M791,-99.66C791,-90.93 791,-80.99 791,-74.09"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="787.5,-99.75 791,-109.75 794.5,-99.75 787.5,-99.75"/>
+</a>
+</g>
+</g>
+<!-- Node19 -->
+<g id="Node000019" class="node">
+<title>Node19</title>
+<g id="a_Node000019"><a xlink:href="vb_8c.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="941.5,-74 872.5,-74 872.5,-55 941.5,-55 941.5,-74"/>
+<text text-anchor="middle" x="907" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">src/P2/vb.c</text>
+</a>
+</g>
+</g>
+<!-- Node18&#45;&gt;Node19 -->
+<g id="edge18_Node000018_Node000019" class="edge">
+<title>Node18&#45;&gt;Node19</title>
+<g id="a_edge18_Node000018_Node000019"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M907,-99.66C907,-90.93 907,-80.99 907,-74.09"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="903.5,-99.75 907,-109.75 910.5,-99.75 903.5,-99.75"/>
 </a>
 </g>
 </g>

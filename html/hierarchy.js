@@ -185,6 +185,7 @@ var hierarchy =
         ] ],
         [ "SM", "structSM.html", null ],
         [ "SW", "structSW.html", null ],
+        [ "VBC", "structVBC.html", null ],
         [ "VISMAP", "structVISMAP.html", null ],
         [ "WR", "structWR.html", null ],
         [ "XFM", "structXFM.html", [
@@ -542,7 +543,7 @@ var hierarchy =
     [ "UVF", "structUVF.html", null ],
     [ "UVQ", "structUVQ.html", null ],
     [ "UW_BOSS_GOMER", "classUW__BOSS__GOMER.html", null ],
-    [ "V_BOSS_GUARD", "classV__BOSS__GUARD.html", null ],
+    [ "VBEVENT", "structVBEVENT.html", null ],
     [ "VBSP", "structVBSP.html", null ],
     [ "VECTOR", "structVECTOR.html", null ],
     [ "VECTOR4", "structVECTOR4.html", null ],

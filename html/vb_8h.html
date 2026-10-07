@@ -98,12 +98,13 @@ $(document).ready(function(){initNavTree('vb_8h.html',''); initResizable(); });
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">vb.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Voodoo boss.  
+<p>Voodoo boss (Mz. Ruby) and the helper that feeds her events.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="stepguard_8h_source.html">stepguard.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -111,19 +112,1003 @@ Include dependency graph for vb.h:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="vb_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="vb_8h__dep__incl.svg" width="112" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 <p><a href="vb_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVBG.html">VBG</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVBEVENT.html">VBEVENT</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">One 16-byte slot in the <a class="el" href="structVBC.html" title="LO that owns the event list. FUN_001ED168 / FUN_001ED198. LO ends at 0x30, so these really are the ne...">VBC</a> event buffer. Buffer is 0xC0 slots (0xC00 bytes), allocated in FUN_001ED168.  <a href="structVBEVENT.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVBC.html">VBC</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structLO.html" title="Live Object, base class for all objects that exist in the world.">LO</a> that owns the event list. FUN_001ED168 / FUN_001ED198. <a class="el" href="structLO.html" title="Live Object, base class for all objects that exist in the world.">LO</a> ends at 0x30, so these really are the next fields.  <a href="structVBC.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVBG.html">VBG</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Voodoo-boss guard. Incomplete on purpose. 0xC10+ fields live past <a class="el" href="structSTEPGUARD.html">STEPGUARD</a>; do not declare them here yet.  <a href="structVBG.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ae9278a422eadcc69bb58118e0ad73b85" id="r_ae9278a422eadcc69bb58118e0ad73b85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#ae9278a422eadcc69bb58118e0ad73b85">FUN_001EB518</a> (<a class="el" href="structSO.html">SO</a> *pso, <a class="el" href="classCBinaryInputStream.html">CBinaryInputStream</a> *pbis)</td></tr>
+<tr class="separator:ae9278a422eadcc69bb58118e0ad73b85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade50cc81a6fcd03f69a2ba9d0a9ec756" id="r_ade50cc81a6fcd03f69a2ba9d0a9ec756"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#ade50cc81a6fcd03f69a2ba9d0a9ec756">FUN_001EB550</a> (void *pv)</td></tr>
+<tr class="separator:ade50cc81a6fcd03f69a2ba9d0a9ec756"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa55ec47d3e0b63a5afc19a60abb265bf" id="r_aa55ec47d3e0b63a5afc19a60abb265bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#aa55ec47d3e0b63a5afc19a60abb265bf">FUN_001EB598</a> (<a class="el" href="structALO.html">ALO</a> *palo)</td></tr>
+<tr class="separator:aa55ec47d3e0b63a5afc19a60abb265bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0c83f3ea72d8a484f5d6adafaa19dcb" id="r_ae0c83f3ea72d8a484f5d6adafaa19dcb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#ae0c83f3ea72d8a484f5d6adafaa19dcb">FUN_001EB608</a> (<a class="el" href="structPO.html">PO</a> *ppo, int fActive, <a class="el" href="structPO.html">PO</a> *ppoOther)</td></tr>
+<tr class="separator:ae0c83f3ea72d8a484f5d6adafaa19dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43e27d99e7185ed9870a3d641e05d7a3" id="r_a43e27d99e7185ed9870a3d641e05d7a3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a43e27d99e7185ed9870a3d641e05d7a3">FUN_001EBC88</a> (void *pv)</td></tr>
+<tr class="separator:a43e27d99e7185ed9870a3d641e05d7a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf701359e788345211627f4eb9a6c9dc" id="r_abf701359e788345211627f4eb9a6c9dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#abf701359e788345211627f4eb9a6c9dc">FUN_001EBCD8</a> (void *pvb, void *pv)</td></tr>
+<tr class="separator:abf701359e788345211627f4eb9a6c9dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a042d9e3ae4dd371fedc6c45eceb1e4ab" id="r_a042d9e3ae4dd371fedc6c45eceb1e4ab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a042d9e3ae4dd371fedc6c45eceb1e4ab">FUN_001EBD08</a> (void)</td></tr>
+<tr class="separator:a042d9e3ae4dd371fedc6c45eceb1e4ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18df1120c06fafe736ae6dc2a479ddfb" id="r_a18df1120c06fafe736ae6dc2a479ddfb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a18df1120c06fafe736ae6dc2a479ddfb">FUN_001EBF40</a> (void *pv, <a class="el" href="classCBinaryInputStream.html">CBinaryInputStream</a> *pbis)</td></tr>
+<tr class="separator:a18df1120c06fafe736ae6dc2a479ddfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe86aa41f74cc3ba083360e156cd0e5f" id="r_afe86aa41f74cc3ba083360e156cd0e5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#afe86aa41f74cc3ba083360e156cd0e5f">FUN_001EC098</a> (<a class="el" href="structPO.html">PO</a> *ppo)</td></tr>
+<tr class="separator:afe86aa41f74cc3ba083360e156cd0e5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f4ede63bb2e6d96da11245ec6112ed8" id="r_a9f4ede63bb2e6d96da11245ec6112ed8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a9f4ede63bb2e6d96da11245ec6112ed8">FUN_001EC0B8</a> (<a class="el" href="structPO.html">PO</a> *ppo)</td></tr>
+<tr class="separator:a9f4ede63bb2e6d96da11245ec6112ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af17fde28a97ae20104527459034b1ba2" id="r_af17fde28a97ae20104527459034b1ba2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#af17fde28a97ae20104527459034b1ba2">FUN_001EC188</a> ()</td></tr>
+<tr class="separator:af17fde28a97ae20104527459034b1ba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a062b82105a184e2f5634d58107413f29" id="r_a062b82105a184e2f5634d58107413f29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a062b82105a184e2f5634d58107413f29">FUN_001EC380</a> (<a class="el" href="structALO.html">ALO</a> *palo, <a class="el" href="structCM.html">CM</a> *pcm, <a class="el" href="structRO.html">RO</a> *pro)</td></tr>
+<tr class="separator:a062b82105a184e2f5634d58107413f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c84a8cb841456955af2f13d239cde87" id="r_a8c84a8cb841456955af2f13d239cde87"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a8c84a8cb841456955af2f13d239cde87">FUN_001EC478</a> (void *pv, int nSgs)</td></tr>
+<tr class="separator:a8c84a8cb841456955af2f13d239cde87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80233abc21ef743d5454d931f3f5c1cd" id="r_a80233abc21ef743d5454d931f3f5c1cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a80233abc21ef743d5454d931f3f5c1cd">FUN_001ECDF8</a> (void *pv)</td></tr>
+<tr class="separator:a80233abc21ef743d5454d931f3f5c1cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1655516141be46149d08b245ec0a8b14" id="r_a1655516141be46149d08b245ec0a8b14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a1655516141be46149d08b245ec0a8b14">FUN_001ECE98</a> (void *pv, int n)</td></tr>
+<tr class="separator:a1655516141be46149d08b245ec0a8b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f132d1fe1309ef13661791c7fbc63b7" id="r_a6f132d1fe1309ef13661791c7fbc63b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a6f132d1fe1309ef13661791c7fbc63b7">FUN_001ED018</a> (void *pvb, int n)</td></tr>
+<tr class="separator:a6f132d1fe1309ef13661791c7fbc63b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7778480cfc6fd0a01da7a79909c55679" id="r_a7778480cfc6fd0a01da7a79909c55679"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a7778480cfc6fd0a01da7a79909c55679">FUN_001ED020</a> (void *pvb)</td></tr>
+<tr class="separator:a7778480cfc6fd0a01da7a79909c55679"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7273609d44401aed061d9913dce40f04" id="r_a7273609d44401aed061d9913dce40f04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a7273609d44401aed061d9913dce40f04">FUN_001ED050</a> (void *pvb, int n)</td></tr>
+<tr class="separator:a7273609d44401aed061d9913dce40f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0d5b21c6fbfe5d987d17a4ea87b0cf3" id="r_ae0d5b21c6fbfe5d987d17a4ea87b0cf3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#ae0d5b21c6fbfe5d987d17a4ea87b0cf3">FUN_001ED070</a> (void *pvb, int n)</td></tr>
+<tr class="separator:ae0d5b21c6fbfe5d987d17a4ea87b0cf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f6abe09c47de3104018c7d000c3b212" id="r_a2f6abe09c47de3104018c7d000c3b212"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a2f6abe09c47de3104018c7d000c3b212">FUN_001ED090</a> (void *pvb, void *pasega, void *pv)</td></tr>
+<tr class="separator:a2f6abe09c47de3104018c7d000c3b212"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a887861bf91a55ed44ac26346e46773bb" id="r_a887861bf91a55ed44ac26346e46773bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a887861bf91a55ed44ac26346e46773bb">FUN_001ED168</a> (<a class="el" href="structLO.html">LO</a> *plo)</td></tr>
+<tr class="separator:a887861bf91a55ed44ac26346e46773bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9105e19054f7de55e3270e6fd4895a6" id="r_aa9105e19054f7de55e3270e6fd4895a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#aa9105e19054f7de55e3270e6fd4895a6">FUN_001ED198</a> (<a class="el" href="structLO.html">LO</a> *plo)</td></tr>
+<tr class="separator:aa9105e19054f7de55e3270e6fd4895a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac666eff33c1e5a9379c9d8d1e47a1454" id="r_ac666eff33c1e5a9379c9d8d1e47a1454"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#ac666eff33c1e5a9379c9d8d1e47a1454">FUN_001ED1D8</a> (void *pv)</td></tr>
+<tr class="separator:ac666eff33c1e5a9379c9d8d1e47a1454"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f1f4366b1b59ba640a801ce829ad189" id="r_a9f1f4366b1b59ba640a801ce829ad189"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a9f1f4366b1b59ba640a801ce829ad189">FUN_001ED210</a> (void *pv)</td></tr>
+<tr class="separator:a9f1f4366b1b59ba640a801ce829ad189"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a409957d7156c7e9bd1662d7e8566da46" id="r_a409957d7156c7e9bd1662d7e8566da46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a409957d7156c7e9bd1662d7e8566da46">FUN_001ED318</a> (void *pv, int *pn)</td></tr>
+<tr class="separator:a409957d7156c7e9bd1662d7e8566da46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8313f71868132b0e0c0d9f3d783ec2b1" id="r_a8313f71868132b0e0c0d9f3d783ec2b1"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a8313f71868132b0e0c0d9f3d783ec2b1">FUN_001ED4C8</a> (void *pvb, int n, void *pv, float g)</td></tr>
+<tr class="separator:a8313f71868132b0e0c0d9f3d783ec2b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb26739a9b9cb6efc6c5b45469259e05" id="r_acb26739a9b9cb6efc6c5b45469259e05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#acb26739a9b9cb6efc6c5b45469259e05">FUN_001ED558</a> (void *pvb, void *pv, void *pvExtra, float g)</td></tr>
+<tr class="separator:acb26739a9b9cb6efc6c5b45469259e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6464214533452962067860fd131ea612" id="r_a6464214533452962067860fd131ea612"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a6464214533452962067860fd131ea612">FUN_001ED588</a> (void *pvb, void *pv, void *pvExtra, float g)</td></tr>
+<tr class="separator:a6464214533452962067860fd131ea612"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4415a85268d94cbac4635e52cc8f572f" id="r_a4415a85268d94cbac4635e52cc8f572f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#a4415a85268d94cbac4635e52cc8f572f">FUN_001ED5B8</a> (void *pvb, void *pv, float g)</td></tr>
+<tr class="separator:a4415a85268d94cbac4635e52cc8f572f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa76b23e79852a97ff5c351f835a915a3" id="r_aa76b23e79852a97ff5c351f835a915a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#aa76b23e79852a97ff5c351f835a915a3">FUN_001ED5D8</a> (void *pvb, void *pv, float g)</td></tr>
+<tr class="separator:aa76b23e79852a97ff5c351f835a915a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8387b5b37c0e9442c07f382929263ae" id="r_ad8387b5b37c0e9442c07f382929263ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#ad8387b5b37c0e9442c07f382929263ae">FUN_001ED5F8</a> (void *pvb, void *pv, float g)</td></tr>
+<tr class="separator:ad8387b5b37c0e9442c07f382929263ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaea99964416b3133aede1a747af79e5b" id="r_aaea99964416b3133aede1a747af79e5b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vb_8h.html#aaea99964416b3133aede1a747af79e5b">FUN_001ED618</a> (void *pvb, void *pv, float g)</td></tr>
+<tr class="separator:aaea99964416b3133aede1a747af79e5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Voodoo boss. </p>
+<div class="textblock"><p>Voodoo boss (Mz. Ruby) and the helper that feeds her events. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000272">Todo:</a></b></dt><dd>Field offsets below are from the start of the object. <a class="el" href="structVBG.html" title="Voodoo-boss guard. Incomplete on purpose. 0xC10+ fields live past STEPGUARD; do not declare them here...">VBG</a> is left empty because <a class="el" href="structSTEPGUARD.html">STEPGUARD</a> already occupies 0x720–0xb74; do not add members until the base size is known. Access those fields with STRUCT_OFFSET. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="vb_8h_source.html">vb.h</a>.</p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="ae9278a422eadcc69bb58118e0ad73b85" name="ae9278a422eadcc69bb58118e0ad73b85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9278a422eadcc69bb58118e0ad73b85">&#9670;&#160;</a></span>FUN_001EB518()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001EB518 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSO.html">SO</a> *&#160;</td>
+          <td class="paramname"><em>pso</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCBinaryInputStream.html">CBinaryInputStream</a> *&#160;</td>
+          <td class="paramname"><em>pbis</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00017">17</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="ade50cc81a6fcd03f69a2ba9d0a9ec756" name="ade50cc81a6fcd03f69a2ba9d0a9ec756"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade50cc81a6fcd03f69a2ba9d0a9ec756">&#9670;&#160;</a></span>FUN_001EB550()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001EB550 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa55ec47d3e0b63a5afc19a60abb265bf" name="aa55ec47d3e0b63a5afc19a60abb265bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa55ec47d3e0b63a5afc19a60abb265bf">&#9670;&#160;</a></span>FUN_001EB598()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001EB598 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structALO.html">ALO</a> *&#160;</td>
+          <td class="paramname"><em>palo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00052">52</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="ae0c83f3ea72d8a484f5d6adafaa19dcb" name="ae0c83f3ea72d8a484f5d6adafaa19dcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0c83f3ea72d8a484f5d6adafaa19dcb">&#9670;&#160;</a></span>FUN_001EB608()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001EB608 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structPO.html">PO</a> *&#160;</td>
+          <td class="paramname"><em>ppo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fActive</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structPO.html">PO</a> *&#160;</td>
+          <td class="paramname"><em>ppoOther</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00062">62</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a43e27d99e7185ed9870a3d641e05d7a3" name="a43e27d99e7185ed9870a3d641e05d7a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43e27d99e7185ed9870a3d641e05d7a3">&#9670;&#160;</a></span>FUN_001EBC88()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FUN_001EBC88 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00084">84</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="abf701359e788345211627f4eb9a6c9dc" name="abf701359e788345211627f4eb9a6c9dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf701359e788345211627f4eb9a6c9dc">&#9670;&#160;</a></span>FUN_001EBCD8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001EBCD8 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00095">95</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a042d9e3ae4dd371fedc6c45eceb1e4ab" name="a042d9e3ae4dd371fedc6c45eceb1e4ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a042d9e3ae4dd371fedc6c45eceb1e4ab">&#9670;&#160;</a></span>FUN_001EBD08()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FUN_001EBD08 </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00106">106</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a18df1120c06fafe736ae6dc2a479ddfb" name="a18df1120c06fafe736ae6dc2a479ddfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18df1120c06fafe736ae6dc2a479ddfb">&#9670;&#160;</a></span>FUN_001EBF40()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001EBF40 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCBinaryInputStream.html">CBinaryInputStream</a> *&#160;</td>
+          <td class="paramname"><em>pbis</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00117">117</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="afe86aa41f74cc3ba083360e156cd0e5f" name="afe86aa41f74cc3ba083360e156cd0e5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe86aa41f74cc3ba083360e156cd0e5f">&#9670;&#160;</a></span>FUN_001EC098()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001EC098 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structPO.html">PO</a> *&#160;</td>
+          <td class="paramname"><em>ppo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00135">135</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a9f4ede63bb2e6d96da11245ec6112ed8" name="a9f4ede63bb2e6d96da11245ec6112ed8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f4ede63bb2e6d96da11245ec6112ed8">&#9670;&#160;</a></span>FUN_001EC0B8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001EC0B8 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structPO.html">PO</a> *&#160;</td>
+          <td class="paramname"><em>ppo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00140">140</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="af17fde28a97ae20104527459034b1ba2" name="af17fde28a97ae20104527459034b1ba2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af17fde28a97ae20104527459034b1ba2">&#9670;&#160;</a></span>FUN_001EC188()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FUN_001EC188 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00147">147</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a062b82105a184e2f5634d58107413f29" name="a062b82105a184e2f5634d58107413f29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a062b82105a184e2f5634d58107413f29">&#9670;&#160;</a></span>FUN_001EC380()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001EC380 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structALO.html">ALO</a> *&#160;</td>
+          <td class="paramname"><em>palo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCM.html">CM</a> *&#160;</td>
+          <td class="paramname"><em>pcm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structRO.html">RO</a> *&#160;</td>
+          <td class="paramname"><em>pro</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00154">154</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a8c84a8cb841456955af2f13d239cde87" name="a8c84a8cb841456955af2f13d239cde87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c84a8cb841456955af2f13d239cde87">&#9670;&#160;</a></span>FUN_001EC478()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001EC478 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nSgs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00172">172</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a80233abc21ef743d5454d931f3f5c1cd" name="a80233abc21ef743d5454d931f3f5c1cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80233abc21ef743d5454d931f3f5c1cd">&#9670;&#160;</a></span>FUN_001ECDF8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ECDF8 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00220">220</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a1655516141be46149d08b245ec0a8b14" name="a1655516141be46149d08b245ec0a8b14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1655516141be46149d08b245ec0a8b14">&#9670;&#160;</a></span>FUN_001ECE98()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ECE98 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00246">246</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a6f132d1fe1309ef13661791c7fbc63b7" name="a6f132d1fe1309ef13661791c7fbc63b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f132d1fe1309ef13661791c7fbc63b7">&#9670;&#160;</a></span>FUN_001ED018()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ED018 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00276">276</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a7778480cfc6fd0a01da7a79909c55679" name="a7778480cfc6fd0a01da7a79909c55679"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7778480cfc6fd0a01da7a79909c55679">&#9670;&#160;</a></span>FUN_001ED020()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ED020 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00281">281</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a7273609d44401aed061d9913dce40f04" name="a7273609d44401aed061d9913dce40f04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7273609d44401aed061d9913dce40f04">&#9670;&#160;</a></span>FUN_001ED050()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ED050 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00287">287</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="ae0d5b21c6fbfe5d987d17a4ea87b0cf3" name="ae0d5b21c6fbfe5d987d17a4ea87b0cf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0d5b21c6fbfe5d987d17a4ea87b0cf3">&#9670;&#160;</a></span>FUN_001ED070()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ED070 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00293">293</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a2f6abe09c47de3104018c7d000c3b212" name="a2f6abe09c47de3104018c7d000c3b212"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f6abe09c47de3104018c7d000c3b212">&#9670;&#160;</a></span>FUN_001ED090()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ED090 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pasega</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00299">299</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a887861bf91a55ed44ac26346e46773bb" name="a887861bf91a55ed44ac26346e46773bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a887861bf91a55ed44ac26346e46773bb">&#9670;&#160;</a></span>FUN_001ED168()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ED168 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structLO.html">LO</a> *&#160;</td>
+          <td class="paramname"><em>plo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00318">318</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="aa9105e19054f7de55e3270e6fd4895a6" name="aa9105e19054f7de55e3270e6fd4895a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9105e19054f7de55e3270e6fd4895a6">&#9670;&#160;</a></span>FUN_001ED198()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ED198 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structLO.html">LO</a> *&#160;</td>
+          <td class="paramname"><em>plo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00324">324</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="ac666eff33c1e5a9379c9d8d1e47a1454" name="ac666eff33c1e5a9379c9d8d1e47a1454"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac666eff33c1e5a9379c9d8d1e47a1454">&#9670;&#160;</a></span>FUN_001ED1D8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ED1D8 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00330">330</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a9f1f4366b1b59ba640a801ce829ad189" name="a9f1f4366b1b59ba640a801ce829ad189"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f1f4366b1b59ba640a801ce829ad189">&#9670;&#160;</a></span>FUN_001ED210()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ED210 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00337">337</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a409957d7156c7e9bd1662d7e8566da46" name="a409957d7156c7e9bd1662d7e8566da46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a409957d7156c7e9bd1662d7e8566da46">&#9670;&#160;</a></span>FUN_001ED318()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ED318 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>pn</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8313f71868132b0e0c0d9f3d783ec2b1" name="a8313f71868132b0e0c0d9f3d783ec2b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8313f71868132b0e0c0d9f3d783ec2b1">&#9670;&#160;</a></span>FUN_001ED4C8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * FUN_001ED4C8 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>g</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00355">355</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="acb26739a9b9cb6efc6c5b45469259e05" name="acb26739a9b9cb6efc6c5b45469259e05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb26739a9b9cb6efc6c5b45469259e05">&#9670;&#160;</a></span>FUN_001ED558()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ED558 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvExtra</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>g</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00380">380</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a6464214533452962067860fd131ea612" name="a6464214533452962067860fd131ea612"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6464214533452962067860fd131ea612">&#9670;&#160;</a></span>FUN_001ED588()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ED588 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvExtra</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>g</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00386">386</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="a4415a85268d94cbac4635e52cc8f572f" name="a4415a85268d94cbac4635e52cc8f572f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4415a85268d94cbac4635e52cc8f572f">&#9670;&#160;</a></span>FUN_001ED5B8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ED5B8 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>g</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00392">392</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="aa76b23e79852a97ff5c351f835a915a3" name="aa76b23e79852a97ff5c351f835a915a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa76b23e79852a97ff5c351f835a915a3">&#9670;&#160;</a></span>FUN_001ED5D8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ED5D8 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>g</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00397">397</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="ad8387b5b37c0e9442c07f382929263ae" name="ad8387b5b37c0e9442c07f382929263ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8387b5b37c0e9442c07f382929263ae">&#9670;&#160;</a></span>FUN_001ED5F8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ED5F8 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>g</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00402">402</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+<a id="aaea99964416b3133aede1a747af79e5b" name="aaea99964416b3133aede1a747af79e5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaea99964416b3133aede1a747af79e5b">&#9670;&#160;</a></span>FUN_001ED618()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_001ED618 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>g</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vb_8c_source.html#l00407">407</a> of file <a class="el" href="vb_8c_source.html">vb.c</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -5,6 +5,7 @@ var NAVTREEINDEX4 =
 "asega_8c_source.html":[10,0,2,0,8],
 "asega_8h.html":[10,0,1,12],
 "asega_8h.html#a0322be3a3ba608dee8f7fdd7baec47d5":[10,0,1,12,1],
+"asega_8h.html#a3b995a75f3d6e07c65ebd0c7bf1cb3b0":[10,0,1,12,2],
 "asega_8h_source.html":[10,0,1,12],
 "barrier_8c.html":[10,0,2,0,9],
 "barrier_8c.html#a0fee27b2379ae5df047eb887d6019d1c":[10,0,2,0,9,6],
@@ -248,6 +249,5 @@ var NAVTREEINDEX4 =
 "bif_8h.html#a10a70d79429b8d5f21aebc02fbf21055":[10,0,1,4,0,70],
 "bif_8h.html#a10ec55580682263cc5965b2b235b2fd1":[10,0,1,4,0,86],
 "bif_8h.html#a11c735dedf7406edea30d52d80d58086":[10,0,1,4,0,62],
-"bif_8h.html#a128d847064b6075f06851f7f1246293b":[10,0,1,4,0,83],
-"bif_8h.html#a1e5e8bd168d99b89cf38ae9ca71753c9":[10,0,1,4,0,17]
+"bif_8h.html#a128d847064b6075f06851f7f1246293b":[10,0,1,4,0,83]
 };
