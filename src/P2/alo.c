@@ -166,7 +166,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloInitialAngularVelocity__FP3ALOP6VEC
 
 ASEGD *PasegdEnsureAlo(ALO *palo)
 {
-    ASEGD *&pasegd = STRUCT_OFFSET(palo, 0x2a0, ASEGD *); // palo->pasegd
+    ASEGD *&pasegd = palo->pasegd;
 
     if (!pasegd)
     {
@@ -183,26 +183,22 @@ ASEGD *PasegdEnsureAlo(ALO *palo)
 
 void SetAloFastShadowRadius(ALO *palo, float sRadius)
 {
-    // palo->sFastShadowRadius
-    STRUCT_OFFSET(palo, 0x28c, float) = sRadius * 0.01f;
+    palo->sFastShadowRadius = sRadius * 0.01f;
 }
 
 void GetAloFastShadowRadius(ALO *palo, float *psRadius)
 {
-    // palo->sFastShadowRadius
-    *psRadius = STRUCT_OFFSET(palo, 0x28c, float) * 100.0f;
+    *psRadius = palo->sFastShadowRadius * 100.0f;
 }
 
 void SetAloFastShadowDepth(ALO *palo, float sDepth)
 {
-    // palo->sFastShadowDepth
-    STRUCT_OFFSET(palo, 0x290, float) = sDepth * 0.01f;
+    palo->sFastShadowDepth = sDepth * 0.01f;
 }
 
 void GetAloFastShadowDepth(ALO *palo, float *psDepth)
 {
-    // palo->sFastShadowDepth
-    *psDepth = STRUCT_OFFSET(palo, 0x290, float) * 100.0f;
+    *psDepth = palo->sFastShadowDepth * 100.0f;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", PshadowAloEnsure__FP3ALO);
@@ -259,10 +255,9 @@ void SetAloDynamicShadowObject(ALO *palo, OID oidDysh)
 
 SHADOW *PshadowInferAlo(ALO *palo)
 {
-    // palo->pshadow
-    if (STRUCT_OFFSET(palo, 0x284, SHADOW *))
+    if (palo->pshadow)
     {
-        return STRUCT_OFFSET(palo, 0x284, SHADOW *);
+        return palo->pshadow;
     }
 
     InitShadow(&s_shadow);
@@ -271,18 +266,14 @@ SHADOW *PshadowInferAlo(ALO *palo)
 
 void GetAloCastShadow(ALO *palo, int *pfCastShadow)
 {
-    // palo->pshadow
-    *pfCastShadow = (STRUCT_OFFSET(palo, 0x284, SHADOW *) != NULL);
+    *pfCastShadow = (palo->pshadow != NULL);
 }
 
 void GetAloShadowShader(ALO *palo, OID *poidShdShadow)
 {
-    // palo->pshadow
-    SHADOW *pshadow = STRUCT_OFFSET(palo, 0x284, SHADOW *);
-
-    if (pshadow && pshadow->pshd)
+    if (palo->pshadow && palo->pshadow->pshd)
     {
-        *poidShdShadow = (OID)pshadow->pshd->oid;
+        *poidShdShadow = (OID)palo->pshadow->pshd->oid;
     }
     else
     {
@@ -329,20 +320,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloEuler__FP3ALOP6VECTOR);
 
 void EnsureAloActRestore(ALO *palo)
 {
-    if (!STRUCT_OFFSET(palo, 0x1fc, ACT *)) // palo->pactRestore
+    if (!palo->pactRestore)
     {
         ACT *pact = PactNew(palo->psw, palo, &g_vtact);
-        STRUCT_OFFSET(palo, 0x1fc, ACT *) = pact; // palo->pactRestore
+        palo->pactRestore = pact;
         InsertAloAct(palo, pact);
     }
 }
 
 void EnsureAloActla(ALO *palo)
 {
-    if (!STRUCT_OFFSET(palo, 0x200, ACT *)) // palo->pactla
+    if (!palo->pactla)
     {
         ACTLA *pactla = (ACTLA *)PactNew(palo->psw, palo, &g_vtactla);
-        STRUCT_OFFSET(palo, 0x200, ACT *) = pactla; // palo->pactla
+        palo->pactla = pactla;
         InsertAloAct(palo, pactla);
     }
 }
@@ -376,7 +367,7 @@ void ResolveAlo(ALO *palo)
 {
     if (palo->paloRoot)
     {
-        STRUCT_OFFSET(palo->paloRoot, 0x228, int) = 0; // palo->paloRoot->cframeStatic
+        palo->paloRoot->cframeStatic = 0;
     }
 }
 
@@ -443,13 +434,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtIgnore__FP3ALOf);
 
 void GetAloLookAtIgnore(ALO *palo, float *psIgnore)
 {
-    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
-    float sIgnore = 0.0f;
-
-    if (pactla)
-        sIgnore = STRUCT_OFFSET(pactla, 0x40, float);
-
-    *psIgnore = sIgnore;
+    *psIgnore = palo->pactla ? STRUCT_OFFSET(palo->pactla, 0x40, float) : 0.0f;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtPanFunction__FP3ALOP3CLQ);
@@ -482,30 +467,28 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtTiltLimits__FP3ALOP2LM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloLookAtTiltLimits__FP3ALOP2LM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtEnabledPriority__FP3ALOi);
+void SetAloLookAtEnabledPriority(ALO *palo, int nPriority)
+{
+    EnsureAloActla(palo);
+    STRUCT_OFFSET(palo->pactla, 0x44, int) = nPriority; // palo->pactla->nPriorityEnabled
+}
 
 void GetAloLookAtEnabledPriority(ALO *palo, int *pnPriority)
 {
-    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
-    int nPriority = 0;
-
-    if (pactla)
-        nPriority = STRUCT_OFFSET(pactla, 0x44, int);
-
-    *pnPriority = nPriority;
+    // palo->pactla->nPriorityEnabled
+    *pnPriority = palo->pactla ? STRUCT_OFFSET(palo->pactla, 0x44, int) : 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloLookAtDisabledPriority__FP3ALOi);
+void SetAloLookAtDisabledPriority(ALO *palo, int nPriority)
+{
+    EnsureAloActla(palo);
+    STRUCT_OFFSET(palo->pactla, 0x48, int) = nPriority; // palo->pactla->nPriorityDisabled
+}
 
 void GetAloLookAtDisabledPriority(ALO *palo, int *pnPriority)
 {
-    void *pactla = STRUCT_OFFSET(palo, 0x200, void *);
-    int nPriority = 0;
-
-    if (pactla)
-        nPriority = STRUCT_OFFSET(pactla, 0x48, int);
-
-    *pnPriority = nPriority;
+    // palo->pactla->nPriorityDisabled
+    *pnPriority = palo->pactla ? STRUCT_OFFSET(palo->pactla, 0x48, int) : 0;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a810);
@@ -518,8 +501,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a888);
 
 void FUN_0012a8b8(ALO *palo)
 {
-    void *pactla = STRUCT_OFFSET(palo, 0x200, void*);
-    STRUCT_OFFSET(pactla, 0x4C, int) = 0;
+    STRUCT_OFFSET(palo->pactla, 0x4c, int) = 0; // palo->pactla->fPaused
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", FUN_0012a8c8);
@@ -548,135 +530,96 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloEyesClosed__FP3ALOf);
 
 void EnsureAloSfx(ALO *palo)
 {
-    // palo->psfx
-    if (!STRUCT_OFFSET(palo, 0x2ac, SFX *))
+    if (!palo->psfx)
     {
-        NewSfx(&STRUCT_OFFSET(palo, 0x2ac, SFX *));
+        NewSfx(&palo->psfx);
     }
 }
 
 void SetAloSfxid(ALO *palo, SFXID sfxid)
 {
     EnsureAloSfx(palo);
-    STRUCT_OFFSET(palo, 0x2ac, SFX *)->sfxid = sfxid; // palo->psfx
+    palo->psfx->sfxid = sfxid;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloSfxidSpl__FP3ALO5SFXID);
 
 void GetAloSfxid(ALO *palo, SFXID *psfxid)
 {
-    SFXID sfxid = SFXID_Nil;
-    if (STRUCT_OFFSET(palo, 0x2ac, SFX *)) // palo->psfx
-    {
-        sfxid = STRUCT_OFFSET(palo, 0x2ac, SFX *)->sfxid;
-    }
-
-    *psfxid = sfxid;
+    *psfxid = palo->psfx ? palo->psfx->sfxid : SFXID_Nil;
 }
 
 void SetAloSStart(ALO *palo, float sStart)
 {
     EnsureAloSfx(palo);
-    STRUCT_OFFSET(palo, 0x2ac, SFX *)->sStart = sStart; // palo->psfx
+    palo->psfx->sStart = sStart;
 }
 
 void GetAloSStart(ALO *palo, float *psStart)
 {
-    float sStart = 3000.0f;
-    if (STRUCT_OFFSET(palo, 0x2ac, SFX *)) // palo->psfx
-    {
-        sStart = STRUCT_OFFSET(palo, 0x2ac, SFX *)->sStart;
-    }
-
-    *psStart = sStart;
+    *psStart = palo->psfx ? palo->psfx->sStart : 3000.0f;
 }
 
 void SetAloSFull(ALO *palo, float sFull)
 {
     EnsureAloSfx(palo);
-    STRUCT_OFFSET(palo, 0x2ac, SFX *)->sFull = sFull; // palo->psfx
+    palo->psfx->sFull = sFull;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloSndRepeat__FP3ALOP2LM);
 
 void GetAloSFull(ALO *palo, float *psFull)
 {
-    float sFull = 300.0f;
-    if (STRUCT_OFFSET(palo, 0x2ac, SFX *)) // palo->psfx
-    {
-        sFull = STRUCT_OFFSET(palo, 0x2ac, SFX *)->sFull;
-    }
-
-    *psFull = sFull;
+    *psFull = palo->psfx ? palo->psfx->sFull : 300.0f;
 }
 
 void SetAloUVolume(ALO *palo, float uVol)
 {
     EnsureAloSfx(palo);
-    STRUCT_OFFSET(palo, 0x2ac, SFX *)->uVol = uVol; // palo->psfx
+    palo->psfx->uVol = uVol;
 }
 
 void SetAloUDoppler(ALO *palo, float uDoppler)
 {
     EnsureAloSfx(palo);
-    STRUCT_OFFSET(palo, 0x2ac, SFX *)->uDoppler = uDoppler; // palo->psfx
+    palo->psfx->uDoppler = uDoppler;
 }
 
 void GetAloUDoppler(ALO *palo, float *puDoppler)
 {
-    float uDoppler = 0.0f;
-    if (STRUCT_OFFSET(palo, 0x2ac, SFX *)) // palo->psfx
-    {
-        uDoppler = STRUCT_OFFSET(palo, 0x2ac, SFX *)->uDoppler;
-    }
-
-    *puDoppler = uDoppler;
+    *puDoppler = palo->psfx ? palo->psfx->uDoppler : 0.0f;
 }
 
 void SetAloUVolumeSpl(ALO *palo, float uVol)
 {
-    // palo->psfx
-    if (STRUCT_OFFSET(palo, 0x2ac, SFX *) && STRUCT_OFFSET(palo, 0x2ac, SFX *)->pamb)
+    if (palo->psfx && palo->psfx->pamb)
     {
-        SetPambVol(STRUCT_OFFSET(palo, 0x2ac, SFX *)->pamb, uVol);
+        SetPambVol(palo->psfx->pamb, uVol);
     }
 }
 
 void GetAloUVolume(ALO *palo, float *puVol)
 {
-    float uVol = 1.0f;
-    if (STRUCT_OFFSET(palo, 0x2ac, SFX *)) // palo->psfx
-    {
-        uVol = STRUCT_OFFSET(palo, 0x2ac, SFX *)->uVol;
-    }
-
-    *puVol = uVol;
+    *puVol = palo->psfx ? palo->psfx->uVol : 1.0f;
 }
 
 void SetAloUPitch(ALO *palo, float uPitch)
 {
     EnsureAloSfx(palo);
-    STRUCT_OFFSET(palo, 0x2ac, SFX *)->uPitch = uPitch; // palo->psfx
+    palo->psfx->uPitch = uPitch;
 }
 
 void SetAloUPitchSpl(ALO *palo, float uPitch)
 {
-    // palo->psfx
-    if (STRUCT_OFFSET(palo, 0x2ac, SFX *) && STRUCT_OFFSET(palo, 0x2ac, SFX *)->pamb)
+    if (palo->psfx && palo->psfx->pamb)
     {
-        SetPambFrq(STRUCT_OFFSET(palo, 0x2ac, SFX *)->pamb, uPitch);
+        SetPambFrq(palo->psfx->pamb, uPitch);
     }
 }
 
 void GetAloUPitch(ALO *palo, float *puPitch)
 {
-    float uPitch = 0.0f;
-    if (STRUCT_OFFSET(palo, 0x2ac, SFX *)) // palo->psfx
-    {
-        uPitch = STRUCT_OFFSET(palo, 0x2ac, SFX *)->uPitch;
-    }
-
-    *puPitch = uPitch;
+    *puPitch = palo->psfx ? palo->psfx->uPitch : 0.0f;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloSndRepeat__FP3ALOP2LM);
@@ -685,10 +628,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", StartAloSound__FP3ALO5SFXIDfffP2LM);
 
 void StopAloSound(ALO *palo)
 {
-    // palo->psfx
-    if (STRUCT_OFFSET(palo, 0x2ac, SFX *))
+    if (palo->psfx)
     {
-        StopSound(STRUCT_OFFSET(palo, 0x2ac, SFX *)->pamb, 0);
+        StopSound(palo->psfx->pamb, 0);
     }
 }
 
@@ -698,13 +640,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloThrobKind__FP3ALO6THROBK);
 
 void GetAloThrobKind(ALO *palo, THROBK *pthrobk)
 {
-    THROBK throbk = THROBK_Nil;
-    if (STRUCT_OFFSET(palo, 0x288, THROB *)) // palo->throb
-    {
-        throbk = STRUCT_OFFSET(palo, 0x288, THROB *)->throbk;
-    }
-
-    *pthrobk = throbk;
+    *pthrobk = palo->pthrob ? palo->pthrob->throbk : THROBK_Nil;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/alo", SetAloThrobInColor__FP3ALOP6VECTOR);
@@ -718,18 +654,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/alo", GetAloThrobOutColor__FP3ALOP6VECTOR);
 void SetAloThrobDtInOut(ALO *palo, float dtInOut)
 {
     EnsureAloThrob(palo);
-    STRUCT_OFFSET(palo, 0x288, THROB *)->dtInOut = dtInOut;
+    palo->pthrob->dtInOut = dtInOut;
 }
 
 void GetAloThrobDtInOut(ALO *palo, float *pdtInOut)
 {
-    float dtInOut = 0.0f;
-    if (STRUCT_OFFSET(palo, 0x288, THROB *)) // palo->throb
-    {
-        dtInOut = STRUCT_OFFSET(palo, 0x288, THROB *)->dtInOut;
-    }
-
-    *pdtInOut = dtInOut;
+    *pdtInOut = palo->pthrob ? palo->pthrob->dtInOut : 0.0f;
 }
 
 void SetAloInteractCane(ALO *palo, GRFIC grfic) 
@@ -738,7 +668,6 @@ void SetAloInteractCane(ALO *palo, GRFIC grfic)
     STRUCT_OFFSET(palo, 0x2B1, uchar) = grfic;
     STRUCT_OFFSET(palo, 0x2B0, uchar) = grfic;
 }
-
 
 void GetAloInteractCane(ALO *palo, GRFIC *pgrfic)
 {

@@ -729,6 +729,7 @@ struct VTWPSG
     // ...
 };
 
+// MARK: SAA
 struct SAA;
 struct SAAF;
 struct SAI;
@@ -745,14 +746,14 @@ struct SUBGLOB;
  */
 struct VTSAA
 {
-    void (*pfnInit)(SAA*, SAAF*);
-    void (*pfnPostLoad)(SAA*);
-    void (*pfnUpdate)(SAA*, float);
-    float (*pfnUComplete)(SAA*);
-    void (*pfnNotifyRender)(SAA*, ALO*, RPL*);
-    SAI* (*pfnPsaiFromSaaShd)(SAA*, SHD*);
-    void (*pfnSetSgvr)(SAA*, SGVR*, GLOBSET*, GLOB*, SUBGLOB*);
-    void* pfnUnk1C;
+    /* 0x00 */ void (*pfnInitSaa)(SAA *, SAAF *);
+    /* 0x04 */ void (*pfnPostSaaLoad)(SAA *);
+    /* 0x08 */ void (*pfnUpdateSaa)(SAA *, float);
+    /* 0x0c */ float (*pfnUCompleteSaa)(SAA *);
+    /* 0x10 */ void (*pfnNotifySaaRender)(SAA *, ALO *, RPL *);
+    /* 0x14 */ SAI *(*pfnPsaiFromSaaShd)(SAA *, SHD *);
+    /* 0x18 */ void (*pfnSetSaaSgvr)(SAA *, SGVR *, GLOBSET *, GLOB *, SUBGLOB *);
+    /* 0x1c */ void (*pfnUnk1C)();
 };
 
 /**

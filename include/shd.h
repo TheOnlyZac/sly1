@@ -120,12 +120,12 @@ struct SAIR
  */
 struct SAI
 {
-    /* 0x10 */ GRFSAI grfsai;
-    /* 0x14 */ SHD *pshd;
-    /* 0x18 */ int iframe;
-    /* 0x1c */ TCX txt;
-    /* 0x2c */ SAIR *psairFirst;
-    /* 0x30 */ SAI *psaiNext;
+    /* 0x00 */ GRFSAI grfsai;
+    /* 0x04 */ SHD *pshd;
+    /* 0x08 */ int iframe;
+    /* 0x0c */ TCX txt;
+    /* 0x14 */ SAIR *psairFirst;
+    /* 0x18 */ SAI *psaiNext;
 };
 
 
@@ -154,8 +154,8 @@ enum SAAK
  */
 struct SAA
 {
-    /* 0x00 */ VTSAA* pvtsaa;
-    /* 0x04 */ float tUpdates;
+    /* 0x00 */ VTSAA *pvtsaa;
+    /* 0x04 */ float tUpdated;
     /* 0x08 */ SAAK saak;
     /* 0x0c */ OID oid;
     /* 0x10 */ SAI sai;
@@ -167,16 +167,67 @@ struct SAA
 struct SAAF
 {
     /* 0x00 */ short oid;
-    /* 0x02 */ ushort grfsaaf;
-    /* 0x04 */ float dtLoopMin;
-    /* 0x08 */ float dtLoopMax;
-    /* 0x0c */ float dtPauseMin;
-    /* 0x10 */ float dtPauseMax;
-    union {
-        /* 0x14 */ ushort dframe;   
-        /* 0x14 */ float dtLookMin; 
+    /* 0x02 */ ushort fInstanced;
+    union
+    {
+        struct
+        {
+            /* 0x04 */ float dtLoopMin;
+            /* 0x08 */ float dtLoopMax;
+            /* 0x0c */ float dtPauseMin;
+            /* 0x10 */ float dtPauseMax;
+            /* 0x14 */ ushort iframeStart;
+        } loopf;
+        struct
+        {
+            /* 0x04 */ float dtPingpongMin;
+            /* 0x08 */ float dtPingpongMax;
+            /* 0x0c */ float dtPauseMin;
+            /* 0x10 */ float dtPauseMax;
+            /* 0x14 */ ushort iframeStart;
+        } pingpongf;
+        struct
+        {
+            /* 0x04 */ float dtPauseMin;
+            /* 0x08 */ float dtPauseMax;
+        } shufflef;
+        struct
+        {
+            /* 0x04 */ float dradAdjust;
+            /* 0x08 */ uint cSymmetry;
+        } hologramf;
+        struct
+        {
+            /* 0x04 */ float dtBlink;
+            /* 0x08 */ float dtOpenMin;
+            /* 0x0c */ float dtOpenMax;
+            /* 0x10 */ float uDoubleBlink;
+            /* 0x14 */ short oidOther;
+        } eyesf;
+        struct
+        {
+            /* 0x04 */ float svu;
+            /* 0x08 */ float svv;
+            /* 0x0c */ float duMod;
+            /* 0x10 */ float dvMod;
+        } scrollerf;
+        struct
+        {
+            /* 0x04 */ float sw;
+            /* 0x08 */ float sRadius;
+            /* 0x0c */ float du;
+            /* 0x10 */ float dv;
+        } circlerf;
+        struct
+        {
+            /* 0x04 */ float uCenter;
+            /* 0x08 */ float vCenter;
+            /* 0x0c */ float uMin;
+            /* 0x10 */ float uMax;
+            /* 0x14 */ float vMin;
+            /* 0x18 */ float vMax;
+        } lookerf;
     };
-    /* 0x18 */ float dtLookMax;     
 };
 
 /**

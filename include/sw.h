@@ -52,11 +52,15 @@ struct SW : public LO
     /* 0x1b58 */ SLOTHEAP slotheapAsega;
     /* 0x1b64 */ STRUCT_PADDING(6);
     /* 0x1b7c */ DL dlAsegaPending;
-    /* 0x1b88 */ STRUCT_PADDING(24);
+    /* 0x1b88 */ SLOTHEAP slotheapSma;
+    /* 0x1b94 */ DL dlSma;
+    /* 0x1ba0 */ STRUCT_PADDING(18);
     /* 0x1be8 */ DL dlLight;
     /* 0x1bf4 */ STRUCT_PADDING(6);
     /* 0x1c0c */ SLOTHEAP slotheapStso;
-    /* 0x1c18 */ STRUCT_PADDING(9);
+    /* 0x1c18 */ SLOTHEAP slotheapFader;
+    /* 0x1c24 */ DL dlFader;
+    /* 0x1c30 */ DL dlRealClockFader;
     /* 0x1c3c */ DL dlProxy;
     /* 0x1c48 */ DL dlFly;
     /* 0x1c54 */ DL dlDprize;
