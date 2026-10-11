@@ -20,9 +20,9 @@ struct ACTLA : public ACT
     ALO *paloTarget;
     VECTOR posTargetLocal;
     float sIgnore;
-    int nPriorityEnabled;
-    int nPriorityDisabled;
-    int fPaused;
+    /* 0x44 */ int nPriorityEnabled;
+    /* 0x48 */ int nPriorityDisabled;
+    /* 0x4c */ int fPaused;
     /* 0x50 */ CLQ clqPanToPan;
     LM lmPan;
     CLQ clqTiltToTilt;

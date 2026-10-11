@@ -5,13 +5,13 @@
 #include <sw.h>
 #include <ui.h>
 
-void PostSbgLoad(SBG *psbg) 
+void PostSbgLoad(SBG *psbg)
 {
     PostStepguardLoad(psbg);
     FUN_001ddc38(psbg->psw,  psbg);
 }
 
-int FUN_001a9928(SBG *psbg) 
+int FUN_001a9928(SBG *psbg)
 {
     if (IsSwHandsOff(psbg->psw) == 0) 
     {
@@ -20,7 +20,7 @@ int FUN_001a9928(SBG *psbg)
     return 0;
 }
 
-void UpdateSbgGoal(SBG *psbg, int fEnter) 
+void UpdateSbgGoal(SBG *psbg, int fEnter)
 {
     int vectorCheck;
 
@@ -46,7 +46,7 @@ void UpdateSbgSgs(SBG *psbg)
     }
 }
 
-void OnSbgEnteringSgs(SBG *psbg, SGS sgs, ASEG *paseg) 
+void OnSbgEnteringSgs(SBG *psbg, SGS sgs, ASEG *paseg)
 {
     OnStepguardEnteringSgs(psbg, sgs, paseg);
     if (STRUCT_OFFSET(psbg, 0x724, int) == 0xB) 
@@ -56,7 +56,7 @@ void OnSbgEnteringSgs(SBG *psbg, SGS sgs, ASEG *paseg)
     }
 }
 
-void UpdateSbg(SBG *psbg, float dt) 
+void UpdateSbg(SBG *psbg, float dt)
 {
     UpdateStepguard(psbg, dt);
     ASEGA *pasega = STRUCT_OFFSET(psbg, 0xC20, ASEGA *);
@@ -67,7 +67,7 @@ void UpdateSbg(SBG *psbg, float dt)
     }
 }
 
-void FUN_001a9a98() 
+void FUN_001a9a98()
 {
     if (FUN_001e9970() != 0) 
     {

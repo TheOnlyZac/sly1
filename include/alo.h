@@ -6,6 +6,7 @@
 
 #include "common.h"
 #include <sound.h>
+#include <glob.h>
 #include <vec.h>
 #include <mat.h>
 #include <lo.h>
@@ -122,11 +123,11 @@ struct WKR
  */
 struct FICG
 {
-    uchar grficSweep;
-    uchar grficRush;
-    uchar grficSmash;
-    uchar grficBomb;
-    uchar grficShock;
+    /* 0x00 */ uchar grficSweep;
+    /* 0x01 */ uchar grficRush;
+    /* 0x02 */ uchar grficSmash;
+    /* 0x03 */ uchar grficBomb;
+    /* 0x04 */ uchar grficShock;
 };
 
 /**
@@ -144,14 +145,22 @@ struct SNIP
  */
 struct XF
 {
-    MATRIX3 mat;
-    VECTOR pos;
-    MATRIX3 matWorld;
-    VECTOR posWorld;
-    VECTOR v;
-    VECTOR w;
-    VECTOR dv;
-    VECTOR dw;
+    /* 0x00 */ MATRIX3 mat;
+    STRUCT_PADDING(3); // TODO: Remove once MATRIX3 is 48 bytes.
+    /* 0x30 */ VECTOR pos;
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
+    /* 0x40 */ MATRIX3 matWorld;
+    STRUCT_PADDING(3); // TODO: Remove once MATRIX3 is 48 bytes.
+    /* 0x70 */ VECTOR posWorld;
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
+    /* 0x80 */ VECTOR v;
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
+    /* 0x90 */ VECTOR w;
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
+    /* 0xa0 */ VECTOR dv;
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
+    /* 0xb0 */ VECTOR dw;
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
 };
 
 /**
@@ -162,65 +171,66 @@ struct XF
  */
 struct ALO : public LO
 {
-    /* 0x34 */ DL dlChild;
-    DLE dleBusy;
-    /* 0x54 */ DLE dleMRD;
-    ALO *paloRoot;
-    ALO *paloFreezeRoot;
-    DLE dleFreeze;
-    /* 0x60 */ DL dlFreeze;
-    int cpmrg;
-    MRG *apmrg;
-    /* 0x80 */ float sMRD;
-    /* 0x84 */ float sCelBorderMRD;
-    /* 0x88 */ int grfzon;
-    float dsMRDSnap;
-    undefined4 unk_0x9c;
-    STRUCT_PADDING(10); // int frz[10];
-    XF xf;
-    VECTOR posOrig;
-    MATRIX3 matOrig;
-    VECTOR eulOrig;
+    /* 0x034 */ DL dlChild;
+    /* 0x040 */ DLE dleBusy;
+    /* 0x048 */ DLE dleMRD;
+    /* 0x050 */ ALO *paloRoot;
+    /* 0x054 */ ALO *paloFreezeRoot;
+    /* 0x058 */ DLE dleFreeze;
+    /* 0x060 */ DL dlFreeze;
+    /* 0x06c */ int cpmrg;
+    /* 0x070 */ MRG *apmrg[4];
+    /* 0x080 */ float sMRD;
+    /* 0x084 */ float sCelBorderMRD;
+    /* 0x088 */ int grfzon;
+    /* 0x08c */ float dsMRDSnap;
+    /* 0x090 */ STRUCT_PADDING(16); // FRZ frz;
+    /* 0x0d0 */ XF xf;
+    /* 0x190 */ VECTOR posOrig;
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
+    /* 0x1a0 */ MATRIX3 matOrig;
+    STRUCT_PADDING(3); // TODO: Remove once MATRIX3 is 48 bytes.
+    /* 0x1d0 */ VECTOR eulOrig;
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
     /* 0x1e0 */ DL dlAct;
-    ACT *pactPos;
-    ACT *pactRot;
-    ACT *pactScale;
-    ACT **apactPost;
-    ACT *pactRestore;
-    ACTLA *pactla;
-    ACTBANK *pactbank;
-    IKH *pikh;
-    CLQ *pclqPosSpring;
-    CLQ *pclwPosDamping;
-    CLQ *pclqRotSpring;
-    CLQ *pclqRotDamping;
-    SMPA *psmpaPos;
-    SMPA *psmapaRot;
-    ALOX *palox;
+    /* 0x1ec */ ACT *pactPos;
+    /* 0x1f0 */ ACT *pactRot;
+    /* 0x1f4 */ ACT *pactScale;
+    /* 0x1f8 */ ACT **apactPose;
+    /* 0x1fc */ ACT *pactRestore;
+    /* 0x200 */ ACTLA *pactla;
+    /* 0x204 */ ACTBANK *pactbank;
+    /* 0x208 */ IKH *pikh; // TODO: Might be unused.
+    /* 0x20c */ CLQ *pclqPosSpring;
+    /* 0x210 */ CLQ *pclwPosDamping;
+    /* 0x214 */ CLQ *pclqRotSpring;
+    /* 0x218 */ CLQ *pclqRotDamping;
+    /* 0x21c */ SMPA *psmpaPos;
+    /* 0x220 */ SMPA *psmapaRot;
+    /* 0x224 */ ALOX *palox;
     /* 0x228 */ int cframeStatic;
-    /* 0x22c */ STRUCT_PADDING(22); // GLOBSET globset;
+    /* 0x22c */ GLOBSET globset;
     /* 0x284 */ SHADOW *pshadow;
     /* 0x288 */ THROB *pthrob;
     /* 0x28c */ float sFastShadowRadius;
     /* 0x290 */ float sFastShadowDepth;
-    int fRealClock;
-    FADER *pfader;
-    float dtUpdatePause;
-    ASEGD *pasegd;
-    float sRadiusRenderSelf;
-    float sRadiusRenderAll;
+    /* 0x294 */ int fRealClock;
+    /* 0x298 */ FADER *pfader;
+    /* 0x29c */ float dtUpdatePause;
+    /* 0x2a0 */ ASEGD *pasegd;
+    /* 0x2a4 */ float sRadiusRenderSelf;
+    /* 0x2a8 */ float sRadiusRenderAll;
     /* 0x2ac */ SFX *psfx;
-    STRUCT_PADDING(25);
-    FICG ficg;
-    STRUCT_PADDING(1); // ???
-    int cposed;
-    POSEC *aposec;
-    ACTREF *pactrefCombo;
+    /* 0x2b0 */ FICG ficg;
+    /* 0x2b8 */ int cposed;
+    /* 0x2bc */ POSEC *aposec;
+    /* 0x2c0 */ ACTREF *pactrefCombo;
     /* 0x2c4 */ DLR *pdlrFirst;
-    // ???
-    ACK ackRot;
-    // ???
-    // ...
+    /* 0x2c8 */ STRUCT_PADDING(2); // TODO: 2 bitfields.
+
+    // TODO: These fields are a part of the bitfields at 0x2c8.
+    // /* 0x2c9 */ ACK ackPos;
+    // /* 0x2ca */ ACK ackRot;
 };
 
 int FIsZeroV(VECTOR *pv);

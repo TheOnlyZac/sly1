@@ -131,14 +131,14 @@ struct WARP : XFM
  */
 struct CAMERA : public ALO
 {
-    OID oidTarget;
-    PNT *ppntTarget;
-    ALO *paloTarget;
+    /* 0x2d0 */ OID oidTarget;
+    /* 0x2d4 */ PNT *ppntTarget;
+    /* 0x2d8 */ ALO *paloTarget;
     undefined4 unk_1;
     VECTOR posEye;
     VECTOR vecView;
     VECTOR vecUp;
-    int fSetCplcy;
+    /* 0x310 */ int fSetCplcy;
     undefined4 unk_2;
     undefined4 unk_3;
     undefined4 unk_4;
