@@ -1,7 +1,7 @@
 var structCIRCLER =
 [
-    [ "duCenter", "structCIRCLER.html#a20c1e840b08ec0d6db25a10fd54e724a", null ],
-    [ "dvCenter", "structCIRCLER.html#a06b51a630fd34a0834b80991202f181a", null ],
-    [ "radius", "structCIRCLER.html#aed0ab28a78134bcef35b41c31f5a14f0", null ],
-    [ "radsSpeed", "structCIRCLER.html#a7a4ac9840fd7be3f52d7adfa33184d54", null ]
+    [ "du", "structCIRCLER.html#ae029affb1502d6ebc53cbb68a8268719", null ],
+    [ "dv", "structCIRCLER.html#afc0f1e27764590c7d4fd034e086f31d8", null ],
+    [ "sRadius", "structCIRCLER.html#a516988781c13f668fe8a15801fba2dab", null ],
+    [ "sw", "structCIRCLER.html#a7269dd8ba565643f7d74738878b17c20", null ]
 ];

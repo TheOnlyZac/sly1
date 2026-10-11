@@ -1,11 +1,11 @@
 var structVTSAA =
 [
-    [ "pfnInit", "structVTSAA.html#a0beefcc56843becf143dade91e31581e", null ],
-    [ "pfnNotifyRender", "structVTSAA.html#aba02bdb5aa21bb04760499b632c7b63a", null ],
-    [ "pfnPostLoad", "structVTSAA.html#ad3c24ad03a9744ad71e729557adfd442", null ],
+    [ "pfnInitSaa", "structVTSAA.html#a8e3b005420a87103362b92b33604b262", null ],
+    [ "pfnNotifySaaRender", "structVTSAA.html#afb3a563ed903f98331ddbeef6c8a4b18", null ],
+    [ "pfnPostSaaLoad", "structVTSAA.html#a9aa67f872ac857838a8a6d492780dbde", null ],
     [ "pfnPsaiFromSaaShd", "structVTSAA.html#a2d379acd7149b29b2d1584ef17fd8f0d", null ],
-    [ "pfnSetSgvr", "structVTSAA.html#a447543f1d50828df5b81da2e3356e845", null ],
-    [ "pfnUComplete", "structVTSAA.html#a45f6125c5d561e18b9406cd0c77bb6c2", null ],
-    [ "pfnUnk1C", "structVTSAA.html#a446add53b4871bd8b08b77ed470a7c2c", null ],
-    [ "pfnUpdate", "structVTSAA.html#af0a41a7d04f50313d6a03a860c1d8e3b", null ]
+    [ "pfnSetSaaSgvr", "structVTSAA.html#acab425c25ad1c53387cd1f6c4a6cc385", null ],
+    [ "pfnUCompleteSaa", "structVTSAA.html#aaee795de34028f231ede1e9a33afba42", null ],
+    [ "pfnUnk1C", "structVTSAA.html#ad04160008c851ff8cfe32d671f26d685", null ],
+    [ "pfnUpdateSaa", "structVTSAA.html#af0f258c3a3a3c3b027e254745da06ca8", null ]
 ];

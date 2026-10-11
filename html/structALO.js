@@ -1,12 +1,12 @@
 var structALO =
 [
     [ "STRUCT_PADDING", "structALO.html#ab64fee890a8f950fd748cb30d2987f23", null ],
-    [ "STRUCT_PADDING", "structALO.html#a09e4182a545f063e57fa457e0f69e25c", null ],
-    [ "STRUCT_PADDING", "structALO.html#a1ccc8f12f77a13cdb48dded5eba57b01", null ],
-    [ "STRUCT_PADDING", "structALO.html#aad82bb551bba6f278b8c420c07dfa84d", null ],
-    [ "ackRot", "structALO.html#a01a31b88d6e0d72e6d67d7681883166a", null ],
-    [ "apactPost", "structALO.html#a4af3a24d71c5cce303395e30dbd64edf", null ],
-    [ "apmrg", "structALO.html#ad4ea428c33469220549674e0e1402d76", null ],
+    [ "STRUCT_PADDING", "structALO.html#ab64fee890a8f950fd748cb30d2987f23", null ],
+    [ "STRUCT_PADDING", "structALO.html#acf02dcc26fe4d76d216b5378e5bd1f41", null ],
+    [ "STRUCT_PADDING", "structALO.html#aa82a4eb4f995ba5340cb9249cf96917e", null ],
+    [ "STRUCT_PADDING", "structALO.html#adf7f39007c0c3032b0a734b97ed26953", null ],
+    [ "apactPose", "structALO.html#af22c5e346b45b8130b8d8ab5aff8de47", null ],
+    [ "apmrg", "structALO.html#a2d69ccba2f309e773318c65e804f6c84", null ],
     [ "aposec", "structALO.html#a7bbf1fb19ece515d066cf825e2deee58", null ],
     [ "cframeStatic", "structALO.html#a144757bee01bf723a71a8386d1d3c57f", null ],
     [ "cpmrg", "structALO.html#ae2bdbbe578fd600f29645e19d8b743af", null ],
@@ -22,6 +22,7 @@ var structALO =
     [ "eulOrig", "structALO.html#a39787e542f54758f25d1ebea733a169c", null ],
     [ "ficg", "structALO.html#a2775f65364af3486b35112f470ced639", null ],
     [ "fRealClock", "structALO.html#a5d3d7b93e0ceacbce7b1bb2cc567bcfd", null ],
+    [ "globset", "structALO.html#a9e555c127e8388f365756db78c9f1061", null ],
     [ "grfzon", "structALO.html#a14096ea53b81131c07f2b570a046bb53", null ],
     [ "matOrig", "structALO.html#a19a64f2dbe71cf11d0fd14dbb1c2a983", null ],
     [ "pactbank", "structALO.html#a747f79686246a2b1759d2701011fc4eb", null ],
@@ -54,6 +55,5 @@ var structALO =
     [ "sMRD", "structALO.html#a914aaae9a4e63ad2e2a66c07f0fa3b44", null ],
     [ "sRadiusRenderAll", "structALO.html#ad38190dc2a7d5ea2d2b94793ba27f530", null ],
     [ "sRadiusRenderSelf", "structALO.html#a0d08d1a99c6ee2c4490a9169b74093d9", null ],
-    [ "unk_0x9c", "structALO.html#a97ee207962e4ffdf85e291bd1f59a9c3", null ],
     [ "xf", "structALO.html#ace8cd30cd12cc53815a3e800e6087167", null ]
 ];

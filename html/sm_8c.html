@@ -104,6 +104,9 @@ $(document).ready(function(){initNavTree('sm_8c.html',''); initResizable(); });
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="sm_8h_source.html">sm.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="sw_8h_source.html">sw.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="brx_8h_source.html">brx.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="asega_8h_source.html">asega.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="memory_8h_source.html">memory.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for sm.c:</div>
 <div class="dyncontent">
@@ -114,8 +117,8 @@ Include dependency graph for sm.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab1502e10440445ad5befa83d792dde42" id="r_ab1502e10440445ad5befa83d792dde42"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#ab1502e10440445ad5befa83d792dde42">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, LoadSmFromBrx__FP2SMP18CBinaryInputStream)</td></tr>
-<tr class="separator:ab1502e10440445ad5befa83d792dde42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acda46f31d7b684c664d3e024205846e5" id="r_acda46f31d7b684c664d3e024205846e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#acda46f31d7b684c664d3e024205846e5">LoadSmFromBrx</a> (<a class="el" href="structSM.html">SM</a> *psm, <a class="el" href="classCBinaryInputStream.html">CBinaryInputStream</a> *pbis)</td></tr>
+<tr class="separator:acda46f31d7b684c664d3e024205846e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a772c68667af3c3cd497ce8fcf516988d" id="r_a772c68667af3c3cd497ce8fcf516988d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a772c68667af3c3cd497ce8fcf516988d">PostSmLoad</a> (<a class="el" href="structSM.html">SM</a> *psm)</td></tr>
 <tr class="separator:a772c68667af3c3cd497ce8fcf516988d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a196190ecd6beedb695d8fb61cecdad3c" id="r_a196190ecd6beedb695d8fb61cecdad3c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a196190ecd6beedb695d8fb61cecdad3c">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, PostSmLoadCallback__FP2SM5MSGIDPv)</td></tr>
@@ -124,44 +127,190 @@ Functions</h2></td></tr>
 <tr class="separator:acf9624b9f34f112cc1213e8dc787f68f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa86f31ab3de03a0eb6e6c2b073e5536b" id="r_aa86f31ab3de03a0eb6e6c2b073e5536b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#aa86f31ab3de03a0eb6e6c2b073e5536b">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, PsmaFindSm__FP2SMP3ALO)</td></tr>
 <tr class="separator:aa86f31ab3de03a0eb6e6c2b073e5536b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10743d7b3f5d1e79acbedd07344f86a5" id="r_a10743d7b3f5d1e79acbedd07344f86a5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a10743d7b3f5d1e79acbedd07344f86a5">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, IsmsFindSmOptional__FP2SM3OID)</td></tr>
-<tr class="separator:a10743d7b3f5d1e79acbedd07344f86a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad107c036a0757cec014ddaa786946ff8" id="r_ad107c036a0757cec014ddaa786946ff8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#ad107c036a0757cec014ddaa786946ff8">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, IsmsFindSmRequired__FP2SM3OID)</td></tr>
-<tr class="separator:ad107c036a0757cec014ddaa786946ff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf979fc07a58678b92f1a51b9f481dcd" id="r_acf979fc07a58678b92f1a51b9f481dcd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#acf979fc07a58678b92f1a51b9f481dcd">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, OidFromSmIsms__FP2SMi)</td></tr>
-<tr class="separator:acf979fc07a58678b92f1a51b9f481dcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acddeaf6b850bd0339f45470658927f39" id="r_acddeaf6b850bd0339f45470658927f39"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#acddeaf6b850bd0339f45470658927f39">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, RetractSma__FP3SMA)</td></tr>
-<tr class="separator:acddeaf6b850bd0339f45470658927f39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a502964cac86db2eb1c33f01ca903508d" id="r_a502964cac86db2eb1c33f01ca903508d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a502964cac86db2eb1c33f01ca903508d">IsmsFindSmOptional</a> (<a class="el" href="structSM.html">SM</a> *psm, <a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> oid)</td></tr>
+<tr class="separator:a502964cac86db2eb1c33f01ca903508d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb9c858f26a7112a8c5c4809400c9c79" id="r_acb9c858f26a7112a8c5c4809400c9c79"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#acb9c858f26a7112a8c5c4809400c9c79">IsmsFindSmRequired</a> (<a class="el" href="structSM.html">SM</a> *psm, <a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> oid)</td></tr>
+<tr class="separator:acb9c858f26a7112a8c5c4809400c9c79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad35daa69a26cb43976d2ea5e38682208" id="r_ad35daa69a26cb43976d2ea5e38682208"><td class="memItemLeft" align="right" valign="top"><a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#ad35daa69a26cb43976d2ea5e38682208">OidFromSmIsms</a> (<a class="el" href="structSM.html">SM</a> *psm, int isms)</td></tr>
+<tr class="separator:ad35daa69a26cb43976d2ea5e38682208"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4790bead21efffc2e93ff5706b161051" id="r_a4790bead21efffc2e93ff5706b161051"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a4790bead21efffc2e93ff5706b161051">RetractSma</a> (<a class="el" href="structSMA.html">SMA</a> *psma)</td></tr>
+<tr class="separator:a4790bead21efffc2e93ff5706b161051"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac030018622ef567444f9f78d0695bb2b" id="r_ac030018622ef567444f9f78d0695bb2b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#ac030018622ef567444f9f78d0695bb2b">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, SetSmaGoal__FP3SMA3OID)</td></tr>
 <tr class="separator:ac030018622ef567444f9f78d0695bb2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1851b720111e830e591fd71ef92d6d49" id="r_a1851b720111e830e591fd71ef92d6d49"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a1851b720111e830e591fd71ef92d6d49">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, GetSmaGoal__FP3SMAP3OID)</td></tr>
-<tr class="separator:a1851b720111e830e591fd71ef92d6d49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61d9465b64be5e607b5afa946cd14bb3" id="r_a61d9465b64be5e607b5afa946cd14bb3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a61d9465b64be5e607b5afa946cd14bb3">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, GetSmaCur__FP3SMAP3OID)</td></tr>
-<tr class="separator:a61d9465b64be5e607b5afa946cd14bb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae780be7a4330616c559317c7d364e33d" id="r_ae780be7a4330616c559317c7d364e33d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#ae780be7a4330616c559317c7d364e33d">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, GetSmaNext__FP3SMAP3OID)</td></tr>
-<tr class="separator:ae780be7a4330616c559317c7d364e33d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dbe1d09f97a5f3f763125f21533baff" id="r_a2dbe1d09f97a5f3f763125f21533baff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a2dbe1d09f97a5f3f763125f21533baff">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, SetSmaSvt__FP3SMAf)</td></tr>
-<tr class="separator:a2dbe1d09f97a5f3f763125f21533baff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad35b5f62bf61ab334d6fcaef29a38ca9" id="r_ad35b5f62bf61ab334d6fcaef29a38ca9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#ad35b5f62bf61ab334d6fcaef29a38ca9">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, SeekSma__FP3SMA3OID)</td></tr>
-<tr class="separator:ad35b5f62bf61ab334d6fcaef29a38ca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa39ffef7181863c64aa248902921552d" id="r_aa39ffef7181863c64aa248902921552d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#aa39ffef7181863c64aa248902921552d">GetSmaGoal</a> (<a class="el" href="structSMA.html">SMA</a> *psma, <a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> *poid)</td></tr>
+<tr class="separator:aa39ffef7181863c64aa248902921552d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaee97412621d9e4a9a7befa6806360e" id="r_acaee97412621d9e4a9a7befa6806360e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#acaee97412621d9e4a9a7befa6806360e">GetSmaCur</a> (<a class="el" href="structSMA.html">SMA</a> *psma, <a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> *poid)</td></tr>
+<tr class="separator:acaee97412621d9e4a9a7befa6806360e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d8c065bdffa8a13465b2761d0b4d4b5" id="r_a1d8c065bdffa8a13465b2761d0b4d4b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a1d8c065bdffa8a13465b2761d0b4d4b5">GetSmaNext</a> (<a class="el" href="structSMA.html">SMA</a> *psma, <a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> *poid)</td></tr>
+<tr class="separator:a1d8c065bdffa8a13465b2761d0b4d4b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a0b9d9d2326dd0ff43d11702a452f47" id="r_a4a0b9d9d2326dd0ff43d11702a452f47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a4a0b9d9d2326dd0ff43d11702a452f47">SetSmaSvt</a> (<a class="el" href="structSMA.html">SMA</a> *psma, float svt)</td></tr>
+<tr class="separator:a4a0b9d9d2326dd0ff43d11702a452f47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69637711b0eb97083f9c44233e2b7103" id="r_a69637711b0eb97083f9c44233e2b7103"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a69637711b0eb97083f9c44233e2b7103">SeekSma</a> (<a class="el" href="structSMA.html">SMA</a> *psma, <a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> oid)</td></tr>
+<tr class="separator:a69637711b0eb97083f9c44233e2b7103"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a353a0eb6d4d9297e15f78198803a9a1b" id="r_a353a0eb6d4d9297e15f78198803a9a1b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a353a0eb6d4d9297e15f78198803a9a1b">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, ChooseSmaTransition__FP3SMA)</td></tr>
 <tr class="separator:a353a0eb6d4d9297e15f78198803a9a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7dbdb1247b07a8ba17b08bf64db28ad" id="r_ac7dbdb1247b07a8ba17b08bf64db28ad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#ac7dbdb1247b07a8ba17b08bf64db28ad">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, EndSmaTransition__FP3SMA)</td></tr>
-<tr class="separator:ac7dbdb1247b07a8ba17b08bf64db28ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac257dd317a49427d7444675bde4119f4" id="r_ac257dd317a49427d7444675bde4119f4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#ac257dd317a49427d7444675bde4119f4">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, HandleSmaMessage__FP3SMA5MSGIDPv)</td></tr>
-<tr class="separator:ac257dd317a49427d7444675bde4119f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a698cdcf8e3414f098d56b5b547c97b42" id="r_a698cdcf8e3414f098d56b5b547c97b42"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a698cdcf8e3414f098d56b5b547c97b42">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, SkipSma__FP3SMAf)</td></tr>
-<tr class="separator:a698cdcf8e3414f098d56b5b547c97b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cffdd42f2d669c07168dfb5efa35768" id="r_a1cffdd42f2d669c07168dfb5efa35768"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a1cffdd42f2d669c07168dfb5efa35768">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, SendSmaMessage__FP3SMA5MSGIDPv)</td></tr>
-<tr class="separator:a1cffdd42f2d669c07168dfb5efa35768"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad583b2ceca345cde0622b8ecc273f1b1" id="r_ad583b2ceca345cde0622b8ecc273f1b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#ad583b2ceca345cde0622b8ecc273f1b1">EndSmaTransition</a> (<a class="el" href="structSMA.html">SMA</a> *psma)</td></tr>
+<tr class="separator:ad583b2ceca345cde0622b8ecc273f1b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb6b500e7c2a451aabfbab0f4de2a6a4" id="r_adb6b500e7c2a451aabfbab0f4de2a6a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#adb6b500e7c2a451aabfbab0f4de2a6a4">HandleSmaMessage</a> (<a class="el" href="structSMA.html">SMA</a> *psma, <a class="el" href="mq_8h.html#a7b3cf6396e3e361f51817756f0f372ce">MSGID</a> msgid, void *pv)</td></tr>
+<tr class="separator:adb6b500e7c2a451aabfbab0f4de2a6a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05c3fecf109138de8083d79851e5afa1" id="r_a05c3fecf109138de8083d79851e5afa1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a05c3fecf109138de8083d79851e5afa1">SkipSma</a> (<a class="el" href="structSMA.html">SMA</a> *psma, float dtSkip)</td></tr>
+<tr class="separator:a05c3fecf109138de8083d79851e5afa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a902f3b3d72ac0adf21876b18376afe21" id="r_a902f3b3d72ac0adf21876b18376afe21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a902f3b3d72ac0adf21876b18376afe21">SendSmaMessage</a> (<a class="el" href="structSMA.html">SMA</a> *psma, <a class="el" href="mq_8h.html#a7b3cf6396e3e361f51817756f0f372ce">MSGID</a> msgid, void *pv)</td></tr>
+<tr class="separator:a902f3b3d72ac0adf21876b18376afe21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bf783ede7664630c106b424dfd8fbc9" id="r_a6bf783ede7664630c106b424dfd8fbc9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a6bf783ede7664630c106b424dfd8fbc9">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, FUN_001b6df8)</td></tr>
 <tr class="separator:a6bf783ede7664630c106b424dfd8fbc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa44995ffd62948ec51bc676c4f41c483" id="r_aa44995ffd62948ec51bc676c4f41c483"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#aa44995ffd62948ec51bc676c4f41c483">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/sm&quot;, NotifySmaSpliceOnEnterState__FP3SMAii)</td></tr>
-<tr class="separator:aa44995ffd62948ec51bc676c4f41c483"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0917bdd03c333872764e9fc5d6d0ccaa" id="r_a0917bdd03c333872764e9fc5d6d0ccaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sm_8c.html#a0917bdd03c333872764e9fc5d6d0ccaa">NotifySmaSpliceOnEnterState</a> (<a class="el" href="structSMA.html">SMA</a> *psma, int ismsFrom, int ismsTo)</td></tr>
+<tr class="separator:a0917bdd03c333872764e9fc5d6d0ccaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ad583b2ceca345cde0622b8ecc273f1b1" name="ad583b2ceca345cde0622b8ecc273f1b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad583b2ceca345cde0622b8ecc273f1b1">&#9670;&#160;</a></span>EndSmaTransition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EndSmaTransition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSMA.html">SMA</a> *&#160;</td>
+          <td class="paramname"><em>psma</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00166">166</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
+
+</div>
+</div>
+<a id="acaee97412621d9e4a9a7befa6806360e" name="acaee97412621d9e4a9a7befa6806360e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaee97412621d9e4a9a7befa6806360e">&#9670;&#160;</a></span>GetSmaCur()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GetSmaCur </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSMA.html">SMA</a> *&#160;</td>
+          <td class="paramname"><em>psma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> *&#160;</td>
+          <td class="paramname"><em>poid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00131">131</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
+
+</div>
+</div>
+<a id="aa39ffef7181863c64aa248902921552d" name="aa39ffef7181863c64aa248902921552d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa39ffef7181863c64aa248902921552d">&#9670;&#160;</a></span>GetSmaGoal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GetSmaGoal </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSMA.html">SMA</a> *&#160;</td>
+          <td class="paramname"><em>psma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> *&#160;</td>
+          <td class="paramname"><em>poid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00126">126</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
+
+</div>
+</div>
+<a id="a1d8c065bdffa8a13465b2761d0b4d4b5" name="a1d8c065bdffa8a13465b2761d0b4d4b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d8c065bdffa8a13465b2761d0b4d4b5">&#9670;&#160;</a></span>GetSmaNext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GetSmaNext </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSMA.html">SMA</a> *&#160;</td>
+          <td class="paramname"><em>psma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> *&#160;</td>
+          <td class="paramname"><em>poid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00136">136</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
+
+</div>
+</div>
+<a id="adb6b500e7c2a451aabfbab0f4de2a6a4" name="adb6b500e7c2a451aabfbab0f4de2a6a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb6b500e7c2a451aabfbab0f4de2a6a4">&#9670;&#160;</a></span>HandleSmaMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HandleSmaMessage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSMA.html">SMA</a> *&#160;</td>
+          <td class="paramname"><em>psma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mq_8h.html#a7b3cf6396e3e361f51817756f0f372ce">MSGID</a>&#160;</td>
+          <td class="paramname"><em>msgid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00173">173</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
+
+</div>
+</div>
 <a id="a353a0eb6d4d9297e15f78198803a9a1b" name="a353a0eb6d4d9297e15f78198803a9a1b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a353a0eb6d4d9297e15f78198803a9a1b">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a353a0eb6d4d9297e15f78198803a9a1b">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -188,36 +337,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac7dbdb1247b07a8ba17b08bf64db28ad" name="ac7dbdb1247b07a8ba17b08bf64db28ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7dbdb1247b07a8ba17b08bf64db28ad">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/21]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">EndSmaTransition__FP3SMA&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a6bf783ede7664630c106b424dfd8fbc9" name="a6bf783ede7664630c106b424dfd8fbc9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6bf783ede7664630c106b424dfd8fbc9">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bf783ede7664630c106b424dfd8fbc9">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -244,260 +365,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a61d9465b64be5e607b5afa946cd14bb3" name="a61d9465b64be5e607b5afa946cd14bb3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61d9465b64be5e607b5afa946cd14bb3">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[4/21]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">GetSmaCur__FP3SMAP3OID&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a1851b720111e830e591fd71ef92d6d49" name="a1851b720111e830e591fd71ef92d6d49"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1851b720111e830e591fd71ef92d6d49">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[5/21]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">GetSmaGoal__FP3SMAP3OID&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ae780be7a4330616c559317c7d364e33d" name="ae780be7a4330616c559317c7d364e33d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae780be7a4330616c559317c7d364e33d">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[6/21]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">GetSmaNext__FP3SMAP3OID&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac257dd317a49427d7444675bde4119f4" name="ac257dd317a49427d7444675bde4119f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac257dd317a49427d7444675bde4119f4">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[7/21]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">HandleSmaMessage__FP3SMA5MSGIDPv&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a10743d7b3f5d1e79acbedd07344f86a5" name="a10743d7b3f5d1e79acbedd07344f86a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10743d7b3f5d1e79acbedd07344f86a5">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[8/21]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">IsmsFindSmOptional__FP2SM3OID&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ad107c036a0757cec014ddaa786946ff8" name="ad107c036a0757cec014ddaa786946ff8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad107c036a0757cec014ddaa786946ff8">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[9/21]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">IsmsFindSmRequired__FP2SM3OID&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ab1502e10440445ad5befa83d792dde42" name="ab1502e10440445ad5befa83d792dde42"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab1502e10440445ad5befa83d792dde42">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[10/21]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">LoadSmFromBrx__FP2SMP18CBinaryInputStream&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aa44995ffd62948ec51bc676c4f41c483" name="aa44995ffd62948ec51bc676c4f41c483"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa44995ffd62948ec51bc676c4f41c483">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[11/21]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">NotifySmaSpliceOnEnterState__FP3SMAii&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="acf979fc07a58678b92f1a51b9f481dcd" name="acf979fc07a58678b92f1a51b9f481dcd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf979fc07a58678b92f1a51b9f481dcd">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[12/21]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">OidFromSmIsms__FP2SMi&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a196190ecd6beedb695d8fb61cecdad3c" name="a196190ecd6beedb695d8fb61cecdad3c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a196190ecd6beedb695d8fb61cecdad3c">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[13/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a196190ecd6beedb695d8fb61cecdad3c">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -525,7 +394,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="acf9624b9f34f112cc1213e8dc787f68f" name="acf9624b9f34f112cc1213e8dc787f68f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf9624b9f34f112cc1213e8dc787f68f">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[14/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acf9624b9f34f112cc1213e8dc787f68f">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[4/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -553,7 +422,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="aa86f31ab3de03a0eb6e6c2b073e5536b" name="aa86f31ab3de03a0eb6e6c2b073e5536b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa86f31ab3de03a0eb6e6c2b073e5536b">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[15/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa86f31ab3de03a0eb6e6c2b073e5536b">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[5/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -580,92 +449,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="acddeaf6b850bd0339f45470658927f39" name="acddeaf6b850bd0339f45470658927f39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acddeaf6b850bd0339f45470658927f39">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[16/21]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">RetractSma__FP3SMA&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ad35b5f62bf61ab334d6fcaef29a38ca9" name="ad35b5f62bf61ab334d6fcaef29a38ca9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad35b5f62bf61ab334d6fcaef29a38ca9">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[17/21]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SeekSma__FP3SMA3OID&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a1cffdd42f2d669c07168dfb5efa35768" name="a1cffdd42f2d669c07168dfb5efa35768"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1cffdd42f2d669c07168dfb5efa35768">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[18/21]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SendSmaMessage__FP3SMA5MSGIDPv&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ac030018622ef567444f9f78d0695bb2b" name="ac030018622ef567444f9f78d0695bb2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac030018622ef567444f9f78d0695bb2b">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[19/21]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac030018622ef567444f9f78d0695bb2b">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[6/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -692,23 +477,23 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2dbe1d09f97a5f3f763125f21533baff" name="a2dbe1d09f97a5f3f763125f21533baff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2dbe1d09f97a5f3f763125f21533baff">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[20/21]</span></h2>
+<a id="a502964cac86db2eb1c33f01ca903508d" name="a502964cac86db2eb1c33f01ca903508d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a502964cac86db2eb1c33f01ca903508d">&#9670;&#160;</a></span>IsmsFindSmOptional()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname">int IsmsFindSmOptional </td>
           <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sm&quot;&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramtype"><a class="el" href="structSM.html">SM</a> *&#160;</td>
+          <td class="paramname"><em>psm</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">SetSmaSvt__FP3SMAf&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype"><a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a>&#160;</td>
+          <td class="paramname"><em>oid</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -718,25 +503,27 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00080">80</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
+
 </div>
 </div>
-<a id="a698cdcf8e3414f098d56b5b547c97b42" name="a698cdcf8e3414f098d56b5b547c97b42"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a698cdcf8e3414f098d56b5b547c97b42">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[21/21]</span></h2>
+<a id="acb9c858f26a7112a8c5c4809400c9c79" name="acb9c858f26a7112a8c5c4809400c9c79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb9c858f26a7112a8c5c4809400c9c79">&#9670;&#160;</a></span>IsmsFindSmRequired()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname">int IsmsFindSmRequired </td>
           <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/sm&quot;&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramtype"><a class="el" href="structSM.html">SM</a> *&#160;</td>
+          <td class="paramname"><em>psm</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">SkipSma__FP3SMAf&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype"><a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a>&#160;</td>
+          <td class="paramname"><em>oid</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -745,6 +532,104 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00094">94</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
+
+</div>
+</div>
+<a id="acda46f31d7b684c664d3e024205846e5" name="acda46f31d7b684c664d3e024205846e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acda46f31d7b684c664d3e024205846e5">&#9670;&#160;</a></span>LoadSmFromBrx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LoadSmFromBrx </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSM.html">SM</a> *&#160;</td>
+          <td class="paramname"><em>psm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCBinaryInputStream.html">CBinaryInputStream</a> *&#160;</td>
+          <td class="paramname"><em>pbis</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00007">7</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
+
+</div>
+</div>
+<a id="a0917bdd03c333872764e9fc5d6d0ccaa" name="a0917bdd03c333872764e9fc5d6d0ccaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0917bdd03c333872764e9fc5d6d0ccaa">&#9670;&#160;</a></span>NotifySmaSpliceOnEnterState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NotifySmaSpliceOnEnterState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSMA.html">SMA</a> *&#160;</td>
+          <td class="paramname"><em>psma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ismsFrom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ismsTo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00224">224</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
+
+</div>
+</div>
+<a id="ad35daa69a26cb43976d2ea5e38682208" name="ad35daa69a26cb43976d2ea5e38682208"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad35daa69a26cb43976d2ea5e38682208">&#9670;&#160;</a></span>OidFromSmIsms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> OidFromSmIsms </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSM.html">SM</a> *&#160;</td>
+          <td class="paramname"><em>psm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>isms</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00100">100</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
 
 </div>
 </div>
@@ -764,7 +649,153 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00006">6</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00065">65</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
+
+</div>
+</div>
+<a id="a4790bead21efffc2e93ff5706b161051" name="a4790bead21efffc2e93ff5706b161051"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4790bead21efffc2e93ff5706b161051">&#9670;&#160;</a></span>RetractSma()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RetractSma </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSMA.html">SMA</a> *&#160;</td>
+          <td class="paramname"><em>psma</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00105">105</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
+
+</div>
+</div>
+<a id="a69637711b0eb97083f9c44233e2b7103" name="a69637711b0eb97083f9c44233e2b7103"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69637711b0eb97083f9c44233e2b7103">&#9670;&#160;</a></span>SeekSma()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SeekSma </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSMA.html">SMA</a> *&#160;</td>
+          <td class="paramname"><em>psma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a>&#160;</td>
+          <td class="paramname"><em>oid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00150">150</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
+
+</div>
+</div>
+<a id="a902f3b3d72ac0adf21876b18376afe21" name="a902f3b3d72ac0adf21876b18376afe21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a902f3b3d72ac0adf21876b18376afe21">&#9670;&#160;</a></span>SendSmaMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SendSmaMessage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSMA.html">SMA</a> *&#160;</td>
+          <td class="paramname"><em>psma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mq_8h.html#a7b3cf6396e3e361f51817756f0f372ce">MSGID</a>&#160;</td>
+          <td class="paramname"><em>msgid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00205">205</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
+
+</div>
+</div>
+<a id="a4a0b9d9d2326dd0ff43d11702a452f47" name="a4a0b9d9d2326dd0ff43d11702a452f47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a0b9d9d2326dd0ff43d11702a452f47">&#9670;&#160;</a></span>SetSmaSvt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetSmaSvt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSMA.html">SMA</a> *&#160;</td>
+          <td class="paramname"><em>psma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>svt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00141">141</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
+
+</div>
+</div>
+<a id="a05c3fecf109138de8083d79851e5afa1" name="a05c3fecf109138de8083d79851e5afa1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05c3fecf109138de8083d79851e5afa1">&#9670;&#160;</a></span>SkipSma()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkipSma </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSMA.html">SMA</a> *&#160;</td>
+          <td class="paramname"><em>psma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dtSkip</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sm_8c_source.html#l00182">182</a> of file <a class="el" href="sm_8c_source.html">sm.c</a>.</p>
 
 </div>
 </div>

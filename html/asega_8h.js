@@ -1,6 +1,26 @@
 var asega_8h =
 [
     [ "ASEGA", "structASEGA.html", "structASEGA" ],
+    [ "AdaptAsega", "asega_8h.html#ae2efc2104e3678a056ad0413d8b5e7ce", null ],
+    [ "FindChnClosestPointLocal", "asega_8h.html#a67cd4fefbe867f5a9b9943631c05116f", null ],
+    [ "FWrapAsegaTime", "asega_8h.html#abe0289d9be5c84c679023d5037d69624", null ],
+    [ "HandleAsegaEvent", "asega_8h.html#a8283c86d37cb7c2a247252e8afdd596e", null ],
+    [ "HandleAsegaEvents", "asega_8h.html#a712e519b5cfe24caebbe45508b72e1fa", null ],
+    [ "HandleAsegaEventsFF", "asega_8h.html#a13972849cefacaf3bc8e54c394561c89", null ],
+    [ "PactsegFindAsega", "asega_8h.html#aa7cc168b510cab496e66c6c8126add17", null ],
+    [ "PasegaNew", "asega_8h.html#a4f9ba9bd43f0acf8e5853db53ec72492", null ],
+    [ "RemoveAsega", "asega_8h.html#a75aac9ee6dea3c471da47fc32d9c67d3", null ],
     [ "RetractAsega", "asega_8h.html#a0322be3a3ba608dee8f7fdd7baec47d5", null ],
-    [ "SubscribeAsegaObject", "asega_8h.html#a3b995a75f3d6e07c65ebd0c7bf1cb3b0", null ]
+    [ "SeekAsega", "asega_8h.html#a9d3e8dfb67db7ca7b2a8100723b6788f", null ],
+    [ "SendAsegaMessage", "asega_8h.html#abe306a8318ce5933032462922a5e720c", null ],
+    [ "SetAsegaHandsOff", "asega_8h.html#a10f4139f523e251a3917344290d43aa1", null ],
+    [ "SetAsegaMasterSpeed", "asega_8h.html#aa22cacfd8954d087197bb07725fc586a", null ],
+    [ "SetAsegaPriority", "asega_8h.html#ae944faf613232230d3a61b66c3d0697c", null ],
+    [ "SetAsegaSpeed", "asega_8h.html#a55fe79f1ffbb7bcabbfe11170a5ac48c", null ],
+    [ "SnapAsega", "asega_8h.html#a042d631a190723be5141df140a88d28a", null ],
+    [ "SubscribeAsegaObject", "asega_8h.html#aa162c04a6220651f16c0878a4ef62b4d", null ],
+    [ "SubscribeAsegaStruct", "asega_8h.html#a653632bb5980408c9575f846f0fc16af", null ],
+    [ "UFromEaErrorFunc", "asega_8h.html#ac8897b7f627521273df2e9ca34b20a93", null ],
+    [ "UpdateAsega", "asega_8h.html#af224eef0da7dfc6abfc3780e113d2c78", null ],
+    [ "UpdateAsegaIeaCur", "asega_8h.html#aa3f4554249b20d0278a7fbe2ef7cfa8e", null ]
 ];

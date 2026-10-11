@@ -24,7 +24,7 @@ var searchData=
   ['notifybarrierimpact_21',['NotifyBarrierImpact',['../barrier_8h.html#ae64a4551dcede0f1c7a9599454ac764e',1,'barrier.h']]],
   ['notifyhologramrender_22',['notifyhologramrender',['../shdanim_8h.html#afe867cb5588b26cca1a522426f4d13ce',1,'NotifyHologramRender(HOLOGRAM *phologram, ALO *palo, RPL *prpl):&#160;shdanim.c'],['../shdanim_8c.html#afe867cb5588b26cca1a522426f4d13ce',1,'NotifyHologramRender(HOLOGRAM *phologram, ALO *palo, RPL *prpl):&#160;shdanim.c']]],
   ['notifylookerrender_23',['NotifyLookerRender',['../shdanim_8h.html#ac89d23bb67f7e0fe82fe803bdb1d13a2',1,'shdanim.h']]],
-  ['notifysmaspliceonenterstate_24',['NotifySmaSpliceOnEnterState',['../sm_8h.html#a0917bdd03c333872764e9fc5d6d0ccaa',1,'sm.h']]],
+  ['notifysmaspliceonenterstate_24',['notifysmaspliceonenterstate',['../sm_8h.html#a0917bdd03c333872764e9fc5d6d0ccaa',1,'NotifySmaSpliceOnEnterState(SMA *psma, int ismsFrom, int ismsTo):&#160;sm.c'],['../sm_8c.html#a0917bdd03c333872764e9fc5d6d0ccaa',1,'NotifySmaSpliceOnEnterState(SMA *psma, int ismsFrom, int ismsTo):&#160;sm.c']]],
   ['nparam_25',['nParam',['../structCODE.html#ab2e3121451b080ca31e0b4085796b61a',1,'CODE']]],
   ['nport_26',['nport',['../structRUMBLE.html#ade91d34c21b24d6c7ef489e6728f96ad',1,'RUMBLE::nPort'],['../structJOY.html#ae9212c152bf24d935f29e48222d8a091',1,'JOY::nPort']]],
   ['npriority_27',['nPriority',['../structACT.html#aae4c2053f0f8dd429b612a83eeab6649',1,'ACT']]],

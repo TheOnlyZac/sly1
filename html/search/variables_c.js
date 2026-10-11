@@ -16,6 +16,9 @@ var searchData=
   ['lmrepeat_13',['lmrepeat',['../structAMB.html#a6fbbd04cb245ea97913a8738a6264383',1,'AMB::lmRepeat'],['../structSFX.html#aa1ea69509f41c399fcfdd2b28d3f43cd',1,'SFX::lmRepeat']]],
   ['lmtilt_14',['lmTilt',['../structACTLA.html#a614eacbb5e25ae340031a23a00b29345',1,'ACTLA']]],
   ['load_15',['load',['../unionPHASEMEM.html#ac1adb18b4a5df7de9b6098632a640050',1,'PHASEMEM']]],
-  ['lsgk_16',['lsgk',['../structLSG.html#a82e189cd82e18b5d576f0c96732c04f2',1,'LSG']]],
-  ['lsmdefault_17',['lsmDefault',['../structSW.html#ab7ac45a7872c04a9f864736eb6ee7559',1,'SW']]]
+  ['lookerf_16',['lookerf',['../structSAAF.html#afdf2590205a941b65af11e7186a7ddc0',1,'SAAF']]],
+  ['loopf_17',['loopf',['../structSAAF.html#a21d58330c9a43d5ae820cdf2dc170ffc',1,'SAAF']]],
+  ['lsgk_18',['lsgk',['../structLSG.html#a82e189cd82e18b5d576f0c96732c04f2',1,'LSG']]],
+  ['lsmdefault_19',['lsmDefault',['../structSW.html#ab7ac45a7872c04a9f864736eb6ee7559',1,'SW']]],
+  ['ltfn_20',['ltfn',['../structGLOBSET.html#a1885370ffbea90921ec7e259092072e0',1,'GLOBSET']]]
 ];

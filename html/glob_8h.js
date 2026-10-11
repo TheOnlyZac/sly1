@@ -1,9 +1,28 @@
 var glob_8h =
 [
-    [ "GLOBSET", "structGLOBSET.html", null ],
     [ "GLOB", "structGLOB.html", null ],
+    [ "GLOBI", "structGLOBI.html", null ],
     [ "SUBGLOB", "structSUBGLOB.html", null ],
-    [ "SGVR", "structSGVR.html", null ],
+    [ "SUBGLOBI", "structSUBGLOBI.html", null ],
+    [ "LTFN", "structLTFN.html", "structLTFN" ],
+    [ "GLOBSET", "structGLOBSET.html", "structGLOBSET" ],
+    [ "SGVR", "structSGVR.html", "structSGVR" ],
     [ "GRFGLOB", "glob_8h.html#a2044013c5d632f81afbb1030d636d490", null ],
-    [ "DrawGlob", "glob_8h.html#a70fbb164409e8f138b9b2fa7b959eaa6", null ]
+    [ "GRFGLOBSET", "glob_8h.html#a880ceb8210ddbd5298983812c6e99058", null ],
+    [ "UVQD", "glob_8h.html#a96158642552501af86ca0d8f5aa62c4f", null ],
+    [ "BindGlobset", "glob_8h.html#aeb60933e372c0bb6c5a67d389da62a16", null ],
+    [ "BuildGlobsetSaaArray", "glob_8h.html#a3b7f056c46739518bc8a6b5b0dbce410", null ],
+    [ "BuildSubglobLighting", "glob_8h.html#a18e31d91402f6fa9a6ca2157a63a7192", null ],
+    [ "CloneGlob", "glob_8h.html#adc7c69c9969956c2412ec87fd93a6611", null ],
+    [ "CloneGlobset", "glob_8h.html#a05a5c9ce05c595458d03b2760d022385", null ],
+    [ "DrawGlob", "glob_8h.html#a70fbb164409e8f138b9b2fa7b959eaa6", null ],
+    [ "EnsureBuffer", "glob_8h.html#a96a6c57137fa9dfc6f9f492310550160", null ],
+    [ "EnsureBufferCel", "glob_8h.html#a67d61a970cf932d3c2659c827bc8b0f4", null ],
+    [ "LoadGlobsetFromBrx", "glob_8h.html#a99e3ab450c0b28544ac42a115404e7ed", null ],
+    [ "PostGlobsetLoad", "glob_8h.html#ab08d18d5f5c666546b90f711ccac081b", null ],
+    [ "PredrawGlob", "glob_8h.html#a72bdbe5cbef4f2885cce11d21a17a8af", null ],
+    [ "RotateVu1Buffer", "glob_8h.html#aee9e82b6e36ed3621b6ae1b3fbf8c915", null ],
+    [ "UpdateAloConstraints", "glob_8h.html#aef4d1adcdfcb16e14bf2d785f4aea3a9", null ],
+    [ "UpdateAloInfluences", "glob_8h.html#a39849aa52349a27caa34a81aa0d5308a", null ],
+    [ "UpdateGlobset", "glob_8h.html#a8717aa79347a6b133cff6f3057a30f51", null ]
 ];

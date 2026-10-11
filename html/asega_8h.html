@@ -104,11 +104,13 @@ $(document).ready(function(){initNavTree('asega_8h.html',''); initResizable(); }
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="basic_8h_source.html">basic.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="aseg_8h_source.html">aseg.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="dl_8h_source.html">dl.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="sw_8h_source.html">sw.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for asega.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="asega_8h__incl.svg" width="154" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="asega_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -125,12 +127,342 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a4f9ba9bd43f0acf8e5853db53ec72492" id="r_a4f9ba9bd43f0acf8e5853db53ec72492"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#a4f9ba9bd43f0acf8e5853db53ec72492">PasegaNew</a> (<a class="el" href="structSW.html">SW</a> *psw)</td></tr>
+<tr class="separator:a4f9ba9bd43f0acf8e5853db53ec72492"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10f4139f523e251a3917344290d43aa1" id="r_a10f4139f523e251a3917344290d43aa1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#a10f4139f523e251a3917344290d43aa1">SetAsegaHandsOff</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega, int fHandsOff)</td></tr>
+<tr class="separator:a10f4139f523e251a3917344290d43aa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3f4554249b20d0278a7fbe2ef7cfa8e" id="r_aa3f4554249b20d0278a7fbe2ef7cfa8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#aa3f4554249b20d0278a7fbe2ef7cfa8e">UpdateAsegaIeaCur</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega)</td></tr>
+<tr class="separator:aa3f4554249b20d0278a7fbe2ef7cfa8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7cc168b510cab496e66c6c8126add17" id="r_aa7cc168b510cab496e66c6c8126add17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structACTSEG.html">ACTSEG</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#aa7cc168b510cab496e66c6c8126add17">PactsegFindAsega</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega, <a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> oid)</td></tr>
+<tr class="separator:aa7cc168b510cab496e66c6c8126add17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8283c86d37cb7c2a247252e8afdd596e" id="r_a8283c86d37cb7c2a247252e8afdd596e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#a8283c86d37cb7c2a247252e8afdd596e">HandleAsegaEvent</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega, <a class="el" href="structEA.html">EA</a> *pea, int *pfRetracted)</td></tr>
+<tr class="separator:a8283c86d37cb7c2a247252e8afdd596e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13972849cefacaf3bc8e54c394561c89" id="r_a13972849cefacaf3bc8e54c394561c89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#a13972849cefacaf3bc8e54c394561c89">HandleAsegaEventsFF</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega, <a class="el" href="structASEG.html">ASEG</a> *paseg, int *pfRetract)</td></tr>
+<tr class="separator:a13972849cefacaf3bc8e54c394561c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a712e519b5cfe24caebbe45508b72e1fa" id="r_a712e519b5cfe24caebbe45508b72e1fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#a712e519b5cfe24caebbe45508b72e1fa">HandleAsegaEvents</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega, <a class="el" href="structASEG.html">ASEG</a> *paseg, int *pfRetracted)</td></tr>
+<tr class="separator:a712e519b5cfe24caebbe45508b72e1fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75aac9ee6dea3c471da47fc32d9c67d3" id="r_a75aac9ee6dea3c471da47fc32d9c67d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#a75aac9ee6dea3c471da47fc32d9c67d3">RemoveAsega</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega)</td></tr>
+<tr class="separator:a75aac9ee6dea3c471da47fc32d9c67d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0322be3a3ba608dee8f7fdd7baec47d5" id="r_a0322be3a3ba608dee8f7fdd7baec47d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#a0322be3a3ba608dee8f7fdd7baec47d5">RetractAsega</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega)</td></tr>
 <tr class="separator:a0322be3a3ba608dee8f7fdd7baec47d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b995a75f3d6e07c65ebd0c7bf1cb3b0" id="r_a3b995a75f3d6e07c65ebd0c7bf1cb3b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#a3b995a75f3d6e07c65ebd0c7bf1cb3b0">SubscribeAsegaObject</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega, <a class="el" href="structLO.html">LO</a> *plo)</td></tr>
-<tr class="separator:a3b995a75f3d6e07c65ebd0c7bf1cb3b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8897b7f627521273df2e9ca34b20a93" id="r_ac8897b7f627521273df2e9ca34b20a93"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#ac8897b7f627521273df2e9ca34b20a93">UFromEaErrorFunc</a> (<a class="el" href="structEA.html">EA</a> *pea, float s)</td></tr>
+<tr class="separator:ac8897b7f627521273df2e9ca34b20a93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe0289d9be5c84c679023d5037d69624" id="r_abe0289d9be5c84c679023d5037d69624"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#abe0289d9be5c84c679023d5037d69624">FWrapAsegaTime</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega, float *ptLocal, float *psvtLocal)</td></tr>
+<tr class="separator:abe0289d9be5c84c679023d5037d69624"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af224eef0da7dfc6abfc3780e113d2c78" id="r_af224eef0da7dfc6abfc3780e113d2c78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#af224eef0da7dfc6abfc3780e113d2c78">UpdateAsega</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega, float dt)</td></tr>
+<tr class="separator:af224eef0da7dfc6abfc3780e113d2c78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d3e8dfb67db7ca7b2a8100723b6788f" id="r_a9d3e8dfb67db7ca7b2a8100723b6788f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#a9d3e8dfb67db7ca7b2a8100723b6788f">SeekAsega</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega, <a class="el" href="aseg_8h.html#a83ab6bde26e00a10105b66b8cc3f139a">SEEK</a> seek, float dtLocal, float svtLocal)</td></tr>
+<tr class="separator:a9d3e8dfb67db7ca7b2a8100723b6788f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a042d631a190723be5141df140a88d28a" id="r_a042d631a190723be5141df140a88d28a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#a042d631a190723be5141df140a88d28a">SnapAsega</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega, int fForce)</td></tr>
+<tr class="separator:a042d631a190723be5141df140a88d28a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2efc2104e3678a056ad0413d8b5e7ce" id="r_ae2efc2104e3678a056ad0413d8b5e7ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#ae2efc2104e3678a056ad0413d8b5e7ce">AdaptAsega</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega)</td></tr>
+<tr class="separator:ae2efc2104e3678a056ad0413d8b5e7ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67cd4fefbe867f5a9b9943631c05116f" id="r_a67cd4fefbe867f5a9b9943631c05116f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#a67cd4fefbe867f5a9b9943631c05116f">FindChnClosestPointLocal</a> (<a class="el" href="structCHN.html">CHN</a> *pchn, <a class="el" href="structALO.html">ALO</a> *palo, <a class="el" href="structVECTOR.html">VECTOR</a> *ppos, float tAsegMax, float sIgnore, float t, float *ptClosest, <a class="el" href="structVECTOR.html">VECTOR</a> *pposClosest, <a class="el" href="structVECTOR.html">VECTOR</a> *pvClosest)</td></tr>
+<tr class="separator:a67cd4fefbe867f5a9b9943631c05116f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55fe79f1ffbb7bcabbfe11170a5ac48c" id="r_a55fe79f1ffbb7bcabbfe11170a5ac48c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#a55fe79f1ffbb7bcabbfe11170a5ac48c">SetAsegaSpeed</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega, float svt)</td></tr>
+<tr class="separator:a55fe79f1ffbb7bcabbfe11170a5ac48c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa22cacfd8954d087197bb07725fc586a" id="r_aa22cacfd8954d087197bb07725fc586a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#aa22cacfd8954d087197bb07725fc586a">SetAsegaMasterSpeed</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega, float svtMaster)</td></tr>
+<tr class="separator:aa22cacfd8954d087197bb07725fc586a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae944faf613232230d3a61b66c3d0697c" id="r_ae944faf613232230d3a61b66c3d0697c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#ae944faf613232230d3a61b66c3d0697c">SetAsegaPriority</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega, int nPriority)</td></tr>
+<tr class="separator:ae944faf613232230d3a61b66c3d0697c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe306a8318ce5933032462922a5e720c" id="r_abe306a8318ce5933032462922a5e720c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#abe306a8318ce5933032462922a5e720c">SendAsegaMessage</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega, <a class="el" href="mq_8h.html#a7b3cf6396e3e361f51817756f0f372ce">MSGID</a> msgid, void *pv)</td></tr>
+<tr class="separator:abe306a8318ce5933032462922a5e720c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a653632bb5980408c9575f846f0fc16af" id="r_a653632bb5980408c9575f846f0fc16af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#a653632bb5980408c9575f846f0fc16af">SubscribeAsegaStruct</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega, <a class="el" href="mq_8h.html#afb2da8044a0d6595070abbf54edaf7f8">PFNMQ</a> pfnmq, void *pvContext)</td></tr>
+<tr class="separator:a653632bb5980408c9575f846f0fc16af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa162c04a6220651f16c0878a4ef62b4d" id="r_aa162c04a6220651f16c0878a4ef62b4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asega_8h.html#aa162c04a6220651f16c0878a4ef62b4d">SubscribeAsegaObject</a> (<a class="el" href="structASEGA.html">ASEGA</a> *pasega, <a class="el" href="structLO.html">LO</a> *ploTarget)</td></tr>
+<tr class="separator:aa162c04a6220651f16c0878a4ef62b4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ae2efc2104e3678a056ad0413d8b5e7ce" name="ae2efc2104e3678a056ad0413d8b5e7ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2efc2104e3678a056ad0413d8b5e7ce">&#9670;&#160;</a></span>AdaptAsega()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AdaptAsega </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a67cd4fefbe867f5a9b9943631c05116f" name="a67cd4fefbe867f5a9b9943631c05116f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67cd4fefbe867f5a9b9943631c05116f">&#9670;&#160;</a></span>FindChnClosestPointLocal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FindChnClosestPointLocal </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCHN.html">CHN</a> *&#160;</td>
+          <td class="paramname"><em>pchn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structALO.html">ALO</a> *&#160;</td>
+          <td class="paramname"><em>palo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVECTOR.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>ppos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>tAsegMax</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>sIgnore</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>ptClosest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVECTOR.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>pposClosest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVECTOR.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>pvClosest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abe0289d9be5c84c679023d5037d69624" name="abe0289d9be5c84c679023d5037d69624"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe0289d9be5c84c679023d5037d69624">&#9670;&#160;</a></span>FWrapAsegaTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FWrapAsegaTime </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>ptLocal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>psvtLocal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8283c86d37cb7c2a247252e8afdd596e" name="a8283c86d37cb7c2a247252e8afdd596e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8283c86d37cb7c2a247252e8afdd596e">&#9670;&#160;</a></span>HandleAsegaEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HandleAsegaEvent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structEA.html">EA</a> *&#160;</td>
+          <td class="paramname"><em>pea</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>pfRetracted</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a712e519b5cfe24caebbe45508b72e1fa" name="a712e519b5cfe24caebbe45508b72e1fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a712e519b5cfe24caebbe45508b72e1fa">&#9670;&#160;</a></span>HandleAsegaEvents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HandleAsegaEvents </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structASEG.html">ASEG</a> *&#160;</td>
+          <td class="paramname"><em>paseg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>pfRetracted</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a13972849cefacaf3bc8e54c394561c89" name="a13972849cefacaf3bc8e54c394561c89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13972849cefacaf3bc8e54c394561c89">&#9670;&#160;</a></span>HandleAsegaEventsFF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HandleAsegaEventsFF </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structASEG.html">ASEG</a> *&#160;</td>
+          <td class="paramname"><em>paseg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>pfRetract</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa7cc168b510cab496e66c6c8126add17" name="aa7cc168b510cab496e66c6c8126add17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7cc168b510cab496e66c6c8126add17">&#9670;&#160;</a></span>PactsegFindAsega()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structACTSEG.html">ACTSEG</a> * PactsegFindAsega </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a>&#160;</td>
+          <td class="paramname"><em>oid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4f9ba9bd43f0acf8e5853db53ec72492" name="a4f9ba9bd43f0acf8e5853db53ec72492"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f9ba9bd43f0acf8e5853db53ec72492">&#9670;&#160;</a></span>PasegaNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structASEGA.html">ASEGA</a> * PasegaNew </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSW.html">SW</a> *&#160;</td>
+          <td class="paramname"><em>psw</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a75aac9ee6dea3c471da47fc32d9c67d3" name="a75aac9ee6dea3c471da47fc32d9c67d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75aac9ee6dea3c471da47fc32d9c67d3">&#9670;&#160;</a></span>RemoveAsega()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RemoveAsega </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="asega_8c_source.html#l00035">35</a> of file <a class="el" href="asega_8c_source.html">asega.c</a>.</p>
+
+</div>
+</div>
 <a id="a0322be3a3ba608dee8f7fdd7baec47d5" name="a0322be3a3ba608dee8f7fdd7baec47d5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0322be3a3ba608dee8f7fdd7baec47d5">&#9670;&#160;</a></span>RetractAsega()</h2>
 
@@ -149,8 +481,224 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a3b995a75f3d6e07c65ebd0c7bf1cb3b0" name="a3b995a75f3d6e07c65ebd0c7bf1cb3b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b995a75f3d6e07c65ebd0c7bf1cb3b0">&#9670;&#160;</a></span>SubscribeAsegaObject()</h2>
+<a id="a9d3e8dfb67db7ca7b2a8100723b6788f" name="a9d3e8dfb67db7ca7b2a8100723b6788f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d3e8dfb67db7ca7b2a8100723b6788f">&#9670;&#160;</a></span>SeekAsega()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SeekAsega </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="aseg_8h.html#a83ab6bde26e00a10105b66b8cc3f139a">SEEK</a>&#160;</td>
+          <td class="paramname"><em>seek</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dtLocal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>svtLocal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abe306a8318ce5933032462922a5e720c" name="abe306a8318ce5933032462922a5e720c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe306a8318ce5933032462922a5e720c">&#9670;&#160;</a></span>SendAsegaMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SendAsegaMessage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mq_8h.html#a7b3cf6396e3e361f51817756f0f372ce">MSGID</a>&#160;</td>
+          <td class="paramname"><em>msgid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a10f4139f523e251a3917344290d43aa1" name="a10f4139f523e251a3917344290d43aa1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10f4139f523e251a3917344290d43aa1">&#9670;&#160;</a></span>SetAsegaHandsOff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetAsegaHandsOff </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fHandsOff</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="asega_8c_source.html#l00006">6</a> of file <a class="el" href="asega_8c_source.html">asega.c</a>.</p>
+
+</div>
+</div>
+<a id="aa22cacfd8954d087197bb07725fc586a" name="aa22cacfd8954d087197bb07725fc586a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa22cacfd8954d087197bb07725fc586a">&#9670;&#160;</a></span>SetAsegaMasterSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetAsegaMasterSpeed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>svtMaster</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae944faf613232230d3a61b66c3d0697c" name="ae944faf613232230d3a61b66c3d0697c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae944faf613232230d3a61b66c3d0697c">&#9670;&#160;</a></span>SetAsegaPriority()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetAsegaPriority </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nPriority</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a55fe79f1ffbb7bcabbfe11170a5ac48c" name="a55fe79f1ffbb7bcabbfe11170a5ac48c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55fe79f1ffbb7bcabbfe11170a5ac48c">&#9670;&#160;</a></span>SetAsegaSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetAsegaSpeed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>svt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a042d631a190723be5141df140a88d28a" name="a042d631a190723be5141df140a88d28a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a042d631a190723be5141df140a88d28a">&#9670;&#160;</a></span>SnapAsega()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SnapAsega </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fForce</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa162c04a6220651f16c0878a4ef62b4d" name="aa162c04a6220651f16c0878a4ef62b4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa162c04a6220651f16c0878a4ef62b4d">&#9670;&#160;</a></span>SubscribeAsegaObject()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -165,12 +713,120 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structLO.html">LO</a> *&#160;</td>
-          <td class="paramname"><em>plo</em>&#160;</td>
+          <td class="paramname"><em>ploTarget</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a653632bb5980408c9575f846f0fc16af" name="a653632bb5980408c9575f846f0fc16af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a653632bb5980408c9575f846f0fc16af">&#9670;&#160;</a></span>SubscribeAsegaStruct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SubscribeAsegaStruct </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mq_8h.html#afb2da8044a0d6595070abbf54edaf7f8">PFNMQ</a>&#160;</td>
+          <td class="paramname"><em>pfnmq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvContext</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac8897b7f627521273df2e9ca34b20a93" name="ac8897b7f627521273df2e9ca34b20a93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8897b7f627521273df2e9ca34b20a93">&#9670;&#160;</a></span>UFromEaErrorFunc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float UFromEaErrorFunc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structEA.html">EA</a> *&#160;</td>
+          <td class="paramname"><em>pea</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>s</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af224eef0da7dfc6abfc3780e113d2c78" name="af224eef0da7dfc6abfc3780e113d2c78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af224eef0da7dfc6abfc3780e113d2c78">&#9670;&#160;</a></span>UpdateAsega()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UpdateAsega </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa3f4554249b20d0278a7fbe2ef7cfa8e" name="aa3f4554249b20d0278a7fbe2ef7cfa8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3f4554249b20d0278a7fbe2ef7cfa8e">&#9670;&#160;</a></span>UpdateAsegaIeaCur()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UpdateAsegaIeaCur </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structASEGA.html">ASEGA</a> *&#160;</td>
+          <td class="paramname"><em>pasega</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">

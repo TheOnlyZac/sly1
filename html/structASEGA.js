@@ -1,12 +1,14 @@
 var structASEGA =
 [
     [ "STRUCT_PADDING", "structASEGA.html#a987d1ecb0cb6c3df0511fc96547322bd", null ],
-    [ "STRUCT_PADDING", "structASEGA.html#a73970b0b5296749f8a251a3647e1b289", null ],
+    [ "STRUCT_PADDING", "structASEGA.html#a987d1ecb0cb6c3df0511fc96547322bd", null ],
     [ "STRUCT_PADDING", "structASEGA.html#af65cb1cfbc6c1d7a1067a73ae9802a77", null ],
     [ "dlActseg", "structASEGA.html#ad5d0263ed45ff44573349fbd7d6de4c7", null ],
     [ "fHandsOff", "structASEGA.html#a16c9526e9f18ed338519af0e4343d332", null ],
     [ "pactsegError", "structASEGA.html#a623be4638302f0f9a0e86996fddca419", null ],
+    [ "paseg", "structASEGA.html#a683b1700faa6f1be4dd1627bc26c5a48", null ],
     [ "svtLocal", "structASEGA.html#a99b940bedbecdaf2e634ddb5ef165301", null ],
+    [ "tLocal", "structASEGA.html#a1474e9edf075a7c7315b4df1fa10bee8", null ],
     [ "unk1", "structASEGA.html#a47fd1b42c96d3d27215fa6c52f40402a", null ],
     [ "unk2", "structASEGA.html#abc39df336eeb7db75b03d0fe5fa560ee", null ],
     [ "unk3", "structASEGA.html#a59737f0c0d9e0bcad5b4986b58a91b3b", null ]

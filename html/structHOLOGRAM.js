@@ -1,6 +1,6 @@
 var structHOLOGRAM =
 [
-    [ "angleStep", "structHOLOGRAM.html#a90500aa022587708bc1723f77f5c0bf6", null ],
-    [ "angleStepPerFrame", "structHOLOGRAM.html#af62ee9877d863cca143cbb243ce08fda", null ],
-    [ "startAngle", "structHOLOGRAM.html#ad2c0168dc010f22460c2ce1e4cd897f8", null ]
+    [ "dradAdjust", "structHOLOGRAM.html#a90ff1baeac07d02b06be2dc14065cb66", null ],
+    [ "dradFrame", "structHOLOGRAM.html#af08fd2860a5ab2b8cf78fcab95c2e589", null ],
+    [ "dradSymmetry", "structHOLOGRAM.html#a3c42666e756bc55e62dc625c48dfb6e6", null ]
 ];

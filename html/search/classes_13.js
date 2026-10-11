@@ -69,10 +69,11 @@ var searchData=
   ['stso_66',['STSO',['../structSTSO.html',1,'']]],
   ['stuck_67',['STUCK',['../structSTUCK.html',1,'']]],
   ['subglob_68',['SUBGLOB',['../structSUBGLOB.html',1,'']]],
-  ['sur_69',['SUR',['../structSUR.html',1,'']]],
-  ['surf_70',['SURF',['../structSURF.html',1,'']]],
-  ['suv_71',['SUV',['../structSUV.html',1,'']]],
-  ['sw_72',['SW',['../structSW.html',1,'']]],
-  ['swooper_73',['SWOOPER',['../classSWOOPER.html',1,'']]],
-  ['swp_74',['SWP',['../structSWP.html',1,'']]]
+  ['subglobi_69',['SUBGLOBI',['../structSUBGLOBI.html',1,'']]],
+  ['sur_70',['SUR',['../structSUR.html',1,'']]],
+  ['surf_71',['SURF',['../structSURF.html',1,'']]],
+  ['suv_72',['SUV',['../structSUV.html',1,'']]],
+  ['sw_73',['SW',['../structSW.html',1,'']]],
+  ['swooper_74',['SWOOPER',['../classSWOOPER.html',1,'']]],
+  ['swp_75',['SWP',['../structSWP.html',1,'']]]
 ];

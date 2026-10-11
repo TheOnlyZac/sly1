@@ -1,9 +1,9 @@
 var structSCROLLER =
 [
-    [ "du", "structSCROLLER.html#a9060dee46fc55eb5cc6b2485e0e07916", null ],
-    [ "duSpeed", "structSCROLLER.html#af7ef1b5debbb0c52ad114ef27fdb4c53", null ],
-    [ "dv", "structSCROLLER.html#a42c58c1af2a6253b7a777616cfff7ce1", null ],
-    [ "dvSpeed", "structSCROLLER.html#a53c107bfdcbe496935caa9c00a9684dc", null ],
-    [ "su", "structSCROLLER.html#a9613159d3676a5665cd18322c7410a79", null ],
-    [ "sv", "structSCROLLER.html#acf25b22e30be31c1b9d6dbc05fcf389f", null ]
+    [ "duMod", "structSCROLLER.html#a64e7aa43d9519cb12f1ada9104009775", null ],
+    [ "dvMod", "structSCROLLER.html#a716fc449bda4b6559699c1674dfaaa2e", null ],
+    [ "svu", "structSCROLLER.html#a4988f0001d44be5cfed89c6a9e4fd6fd", null ],
+    [ "svuMaster", "structSCROLLER.html#ae6f71b32b94806debfe09a6755113ef6", null ],
+    [ "svv", "structSCROLLER.html#ab24510562c9c4036027ad3ca275e667d", null ],
+    [ "svvMaster", "structSCROLLER.html#ab87b2ee50e0eb216e64e940229f8ed3f", null ]
 ];
