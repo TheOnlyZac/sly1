@@ -54,8 +54,7 @@ void StartupCm()
 
 void CalcCmAdjust(CM *pcm, SO *psoFocus, CPDEFI *pcpdefi, VECTOR *pdpos)
 {
-    // pcpdefi->radHome, pcpdefi->sAdjust
-    SetVectorCylind(pdpos, STRUCT_OFFSET(pcpdefi, 0x30, float) + 3.14159265359f, STRUCT_OFFSET(pcpdefi, 0x34, float), 0);
+    SetVectorCylind(pdpos, pcpdefi->radHome + 3.14159265359f, pcpdefi->sAdjust, 0);
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SpringCm__FfffP2CMP6VECTORP6VECTORP6VECTOR);
