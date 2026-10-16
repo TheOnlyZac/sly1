@@ -8,15 +8,9 @@
 
 #include "common.h"
 #include <lo.h>
+#include <joy.h>
 #include <util.h>
-#include <binoc.h> // only for RGBA
-#include <xform.h>
-#include <sound.h>
-#include <clock.h>
-
-// Forward declarations.
-struct CM;
-struct TN;
+#include <cplcy.h>
 
 typedef int GRFRCP;
 
@@ -33,218 +27,14 @@ enum CMK
 };
 
 /**
- * @brief Unknown Kind.
- */
-enum CFK
-{
-    CFK_Nil = -1,
-    CFK_Behind = 0,
-    CFK_Side = 1,
-    CFK_Max = 2
-};
-
-/**
- * @brief Unknown, may be wrong.
- */
-enum CPP
-{
-    CPP_Nil = -1,
-    CPP_Base = 0,
-    CPP_Default = 1,
-    CPP_Tunnel_Pri0 = 2,
-    CPP_Tunnel_Pri1 = 3,
-    CPP_Tunnel_Pri2 = 4,
-    CPP_Tunnel_Pri3 = 5,
-    CPP_LookAround = 6,
-    CPP_Animated = 7,
-    CPP_ManualOverride = 8,
-    CPP_UserTestWalkthrough = 9,
-    CPP_Max = 10
-};
-
-/**
- * @brief Unknown.
- */
-enum CPMT
-{
-    CPMT_Truck = 0,
-    CPMT_Pan = 1,
-    CPMT_Slide = 2,
-    CPMT_Orbit = 3,
-    CPMT_Align = 4,
-    CPMT_Walkthrough = 5,
-    CPMT_Max = 6
-};
-
-/**
- * @brief Look kind.
- */
-enum LOOKK
-{
-    LOOKK_Nil = -1,
-    LOOKK_User = 0,
-    LOOKK_Sniper = 1,
-    LOOKK_Dialog = 2,
-    LOOKK_Confront = 3,
-    LOOKK_Max = 4
-};
-
-/**
- * @brief Unknown.
- * @todo Move to tn.h?
- */
-enum FTND
-{
-    FTND_Nil = -1,
-    FTND_Forward = 1,
-    FTND_Reverse = 2,
-    FTND_Manual = 4,
-    FTND_Max = 5
-};
-
-/**
  * @brief Fog parameters.
  */
 struct FGFN
 {
-    float duFogBias;
-    float ruFog;
-    float sNearFog;
-    float duFogPlusClipBias;
-};
-
-/**
- * @brief Unknown.
- */
-struct CPDEFI
-{
-    int grfcpd;
-    undefined4 field1_0x4;
-    undefined4 field2_0x8;
-    undefined4 field3_0xc;
-    VECTOR posBase;
-    VECTOR vBase;
-    float radHome;
-    float sAdjust;
-    float tMoveLast;
-    float field10_0x34;
-    //CFK cfk;
-    VECTOR posAdjust;
-};
-
-/**
- * @brief Camera policy.
- */
-struct CPLCY
-{
-    undefined4 vtable; // TODO: implement methods on this struct
-    CM *pcm;
-};
-
-/**
- * @brief Camera policy: manual.
- *
- * Normal orbit camera.
- */
-struct CPMAN : public CPLCY
-{
-    CPMT cpmt;
-    ALO *paloOrbit;
-    int cframeStatus;
-};
-
-/**
- * @brief Camera policy: look.
- *
- * Used for binoc-u-com, and probably sniper mode.
- */
-struct CPLOOK : public CPLCY
-{
-    float radPan;
-    float swPan;
-    float radTilt;
-    float swTilt;
-    float uZoom;
-    float svuZoom;
-    float rZoomMax;
-    LM lmFOV;
-    LOOKK alookk[4];
-    int clookk;
-    int fSoundPaused;
-    AMB *pambBinoc;
-    AMB *pambAmbient;
-    ALO *paloFocusSniper;
-    PNT *ppntAnchor;
-    float sRadiusSniper;
-    float rScreenSniper;
-};
-
-/**
- * @brief Camera policy: align
- *
- * Unknown usage.
- */
-struct CPALIGN : public CPLCY
-{
-    undefined4 field_1_0x0;
-    undefined4 field_2_0x4;
-    VECTOR posLocal;
-    undefined4 field_4_0xc;
-    undefined4 field_5_0x10;
-    undefined4 field_6_0x14;
-    float field_7_0x18;
-    float field_8_0x1c;
-};
-
-/**
- * @brief Camera policy: animation segment(?)
- *
- * Unknown usage.
- */
-struct CPASEG : public CPLCY
-{
-    CAMERA *pcamera;
-};
-
-/**
- * @brief Camera policy: tunnel.
- *
- * Unknown usage.
- *
- * @note Might be unused in release build, based on the name.
- */
-struct CPTN : public CPLCY
-{
-    TN *ptn;
-    float radManual;
-    float xyManual;
-    float zManual;
-    int fHome;
-    float radHome;
-    FTND ftnd;
-    int fActivate;
-    int fPanOnEntryDone;
-    float swOrbit;
-    float tLastOrbit;
-    float radCur;
-    float radFwdPrev;
-    float radRevPrev;
-    float tMoveLast;
-    float uFollowCur;
-    float vxy;
-    float vz;
-    VECTOR posEyePrev;
-};
-
-/**
- * @brief Camera policy: (?).
- */
-struct CPR
-{
-    CPP cpp;
-    CPLCY *pcplcy;
-    SO *psoFocus;
-    void *pv;
+    /* 0x00 */ float duFogBias;
+    /* 0x04 */ float ruFog;
+    /* 0x08 */ float sNearFog;
+    /* 0x0c */ float duFogPlusClipBias;
 };
 
 /**
@@ -253,89 +43,78 @@ struct CPR
  */
 struct CM : public LO
 {
-    /* 0x40 */ VECTOR pos;
-    VECTOR4 anormalFrustrumTranspose[3];
-    MATRIX3 mat;
-    float rMRDAdjust;
-    undefined4 field5_0x98;
-    undefined4 field6_0x9c;
-    undefined4 field7_0xa0;
-    MATRIX4 matProj;
-    MATRIX4 matWorldToClip;
-    MATRIX4 matClipToWorld;
-    VECTOR anormalFrustrum[4];
-    float rMRD;
-    float radFOV;
-    float rAspect;
-    float sRadiusNearClip;
-    float xScreenRange;
-    float yScreenRange;
-    float sNearFog;
-    float sFarFog;
-    float uFogMax;
-    RGBA rgbaFog;
-    FGFN fgfn;
-    float tJolt;
-    int grfzon;
-    int fCutNext;
-    int fCut;
-    int fRadCut;
-    float radCut;
-    float sNearClip;
-    float sFarClip;
-    int fDisplaced;
-    float uPanProgress;
-    float uTiltProgress;
-    float uSProgress;
-    float field35_0x1fc;
-    float field36_0x200;
-    VECTOR dposCenter;
-    VECTOR vCenter; //NOTE: this might not be a VECTOR... -Kestin
-    undefined4 field39_0x21c;
-    bool reset_flag;
-    int field41_0x224;
-    int field42_0x228;
-    float field43_0x22c;
-    undefined4 field44_0x230;
-    //VECTOR vAdjust;
-    VECTOR dposFocus;
-    VECTOR vFocus;
-    VECTOR posScreen;
-    VECTOR vScreen;
-    float swPanPos;
-    float swTiltPos;
-    float sv;
-    float swPanMat;
-    float swTiltMat;
-    undefined4 field52_0x278;
-    undefined4 field53_0x27c;
-    undefined4 field54_0x280;
-    VECTOR posCenterPrev;
-    VECTOR posClear;
-    MATRIX3 matClear;
-    SO *psoFocusPrev;
-    undefined4 field59_0x2c4;
-    undefined4 field60_0x2c8;
-    undefined4 field61_0x2cc;
-    CPDEFI cpdefiPrev;
-    int cpaloFade;
-    ALO *apaloFade[8];
-    float tActivateCplcy;
-    undefined4 field66_0x33c;
-    /* 0x340 */ int coidFade;
-    /* 0x344 */ OID aoidFade[8];
-    MATRIX3 matRotateToCam;
-    MATRIX3 matRotateTiltToCam;
-    int ccpr;
-    CPR acpr[8];
-    CPMAN cpman;
-    undefined8 field77_0x448;
-    undefined8 field78_0x450;
-    undefined8 field79_0x458;
-    CPLOOK cplook;
-    CPALIGN cpalign;
-    CPASEG cpaseg;
-    CPTN cptn;
+    /* 0x040 */ VECTOR pos;
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x050 */ VECTOR4 anormalFrustrumTranspose[3];
+    /* 0x080 */ MATRIX3 mat;
+    /* 0x0b0 */ float rMRDAdjust;
+    /* 0x0b4 */ STRUCT_PADDING(3);
+    /* 0x0c0 */ MATRIX4 matProj;
+    /* 0x100 */ MATRIX4 matWorldToClip;
+    /* 0x140 */ MATRIX4 matClipToWorld;
+    /* 0x180 */ VECTOR4 anormalFrustrum[4]; // TODO: Change to VECTOR once it is 16 bytes long.
+    /* 0x1c0 */ float rMRD;
+    /* 0x1c4 */ float radFOV;
+    /* 0x1c8 */ float radFOV2;
+    /* 0x1cc */ int unk;
+    /* 0x1d0 */ STRUCT_PADDING(4);
+    /* 0x1e0 */ float rAspect;
+    /* 0x1e4 */ float sNearClip;
+    /* 0x1e8 */ float sFarClip;
+    /* 0x1ec */ float sRadiusNearClip;
+    /* 0x1f0 */ float xScreenRange;
+    /* 0x1f4 */ float yScreenRange;
+    /* 0x1f8 */ float sNearFog;
+    /* 0x1fc */ float sFarFog;
+    /* 0x200 */ float uFogMax;
+    /* 0x204 */ RGBA rgbaFog;
+    /* 0x208 */ FGFN fgfn;
+    /* 0x218 */ float tJolt;
+    /* 0x21c */ int grfzon;
+    /* 0x220 */ int fCutNext;
+    /* 0x224 */ int fCut;
+    /* 0x228 */ int fRadCut;
+    /* 0x22c */ float radCut;
+    /* 0x230 */ VECTOR dposCenter;
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x240 */ VECTOR vCenter;
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x250 */ VECTOR dposAdjust;
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x260 */ VECTOR vAdjust;
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x270 */ VECTOR dposFocus;
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x280 */ VECTOR vFocus;
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x290 */ VECTOR posScreen; // TODO: Unused?
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x2a0 */ VECTOR vScreen; // TODO: Unused?
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x2b0 */ float swTiltPos;
+    /* 0x2b4 */ float sv;
+    /* 0x2b8 */ float swPanMat;
+    /* 0x2bc */ float swPanPos;
+    /* 0x2c0 */ float swTiltMat;
+    /* 0x2c4 */ STRUCT_PADDING(3);
+    /* 0x2d0 */ VECTOR posCenterPrev;
+    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x2e0 */ SO *psoFocusPrev;
+    /* 0x2e4 */ STRUCT_PADDING(3);
+    /* 0x2f0 */ CPDEFI cpdefiPrev;
+    /* 0x340 */ int cpaloFade;
+    /* 0x344 */ ALO *apaloFade[8];
+    /* 0x364 */ float tActivateCplcy;
+    /* 0x368 */ STRUCT_PADDING(2);
+    /* 0x370 */ MATRIX3 matRotateToCam;
+    /* 0x3a0 */ MATRIX3 matRotateTiltToCam;
+    /* 0x3d0 */ int ccpr;
+    /* 0x3d4 */ CPR acpr[8];
+    /* 0x454 */ CPMAN cpman;
+    /* 0x460 */ CPLOOK cplook;
+    /* 0x4c0 */ CPALIGN cpalign;
+    /* 0x510 */ CPASEG cpaseg;
+    /* 0x520 */ CPTN cptn;
 };
 
 // extern CM g_cm; // Main game camera.
@@ -373,21 +152,19 @@ void SetSwCameraNearClip(float sNearClip);
 void SetSwCameraFarClip(float sFarClip);
 
 /**
- * @brief Sets SProgress on the global camera.
+ * @brief Set the near fog distance (?) on the global camera.
  */
-void SetSwCameraSProgress(float uSProgress);
+void SetSwCameraNearFog(float sNearFog);
 
 /**
- * @brief Sets field35_0x1fc on the global camera.
- * @todo Rename.
+ * @brief Set the far fog distance (?) on the global camera.
  */
-void FUN_00143860(float param1);
+void SetSwCameraFarFog(float sFarFog);
 
 /**
- * @brief Sets field36_0x200 on the global camera.
- * @todo Rename.
+ * @brief Set the max fog distance (?) on the global camera.
  */
-void FUN_00143888(float param1);
+void SetSwCameraUFogMax(float uFogMax);
 
 /**
  * @brief Sets Fog on the global camera.
@@ -410,6 +187,11 @@ void SetCmPos(CM *pcm, VECTOR *ppos);
 void SetCmMat(CM *pcm, MATRIX3 *pmat);
 
 /**
+ * @brief Changes the FOV of the camera and then calls RecalcCmFrustrum.
+ */
+void SetCmFov(CM *pcm, float fov);
+
+/**
  * @brief Sets near clip plane on the given camera.
  */
 void SetCmNearClip(CM *pcm, float sNearClip);
@@ -420,24 +202,19 @@ void SetCmNearClip(CM *pcm, float sNearClip);
 void SetCmFarClip(CM *pcm, float sFarClip);
 
 /**
- * @brief Sets SProgress on the given camera.
+ * @brief Set the near fog distance (?) on the given camera.
  */
-void SetCmSProgress(CM *pcm, float uSProgress);
+void SetCmNearFog(CM *pcm, float sNearFog);
 
 /**
- * @brief Changes the FOV of the camera and then calls RecalcCmFrustrum.
+ * @brief Set the far fog distance (?) on the given camera.
  */
-void SetCmFov(CM *pcm, float fov);
+void SetCmFarFog(CM *pcm, float sFarFog);
 
 /**
- * @brief Sets field35_0x1fc on the given camera.
+ * @brief Set the maximum fog distance (?) on the given camera.
  */
-void FUN_001439c8(CM *pcm, float param_2); //TODO: Rename function
-
-/**
- * @brief Sets field36_0x200 on the given camera.
- */
-void FUN_001439e8(CM *pcm, float param_2); //TODO: Rename function
+void SetCmUFogMax(CM *pcm, float uFogMax);
 
 /**
  * @brief Sets the RGBA fog color for the camera.
@@ -457,7 +234,7 @@ void ClearCmFadeObjects(CM *pcm);
 /**
  * @brief Adds a fading objects to the list of the given camera.
  */
-void AddCmFadeObject(CM *pcm, OID oid);
+void AddCmFadeObject(CM *pcm, ALO *palo);
 
 /**
  * @brief Sets up the given camera.
@@ -486,9 +263,9 @@ void RevokeCmPolicy(CM *pcm, GRFRCP grfrcp, CPP cpp, CPLCY *pcplcy, SO *psoFocus
 void SetCmCut(CM *pcm, float *pradCut);
 
 /**
- * @brief Sets the reset flag on the given camera.
+ * @brief Enable the next cut on the given camera.
  */
-void SetResetFlag(CM *pcm);
+void EnableCmNextCut(CM *pcm);
 
 /**
  * @brief Clears cut from the given camera.
@@ -501,12 +278,12 @@ void ClearCmCut(CM *pcm);
 void PushLookkCm(CM *pcm, LOOKK lookk);
 
 /**
- * @brief Calls LookkPopCm on the given camera.
+ * @brief Pop the top most look kind of the given camera.
  */
 LOOKK LookkPopCm(CM *pcm);
 
 /**
- * @brief Calls LookkCurCm on the given camera.
+ * @brief Get the current look kind of the given camera.
  */
 LOOKK LookkCurCm(CM *pcm);
 
@@ -516,10 +293,9 @@ LOOKK LookkCurCm(CM *pcm);
 void SetCmSniperFocus(CM *pcm, PNT *ppntAnchor, float sRadiusSniper, float rScreenSniper);
 
 /**
- * @brief Calls FUN_00146028 on the given camera.
- * @todo Rename.
+ * @brief Jolt the given camera.
  */
-void FUN_00146028(CM *pcm);
+void JoltCm(CM *pcm);
 
 // todo fix undefined reference errors
 // extern VECTOR4 g_posEyeDefault;

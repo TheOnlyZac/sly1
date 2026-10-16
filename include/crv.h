@@ -1,5 +1,7 @@
 /**
  * @file crv.h
+ *
+ * @brief Curve.
  */
 #ifndef CRV_H
 #define CRV_H
@@ -10,8 +12,14 @@
 #include <bis.h>
 #include <cm.h>
 
+// Forward declarations.
+struct CRV;
+struct CRVL;
+struct CRVC;
+struct CONSTR;
+
 /**
- * @brief (?) kind.
+ * @brief Curve kind.
  */
 enum CRVK
 {
@@ -22,17 +30,110 @@ enum CRVK
 };
 
 /**
+ * @brief VT for CRV objects.
+ */
+struct VTCRV
+{
+    /* 0x00 */ void (*pfnLoadCrvFromBrx)(CRV *, CBinaryInputStream *);
+    /* 0x04 */ void (*pfnEvaluateCrvFromU)(CRV *, float, VECTOR *, VECTOR *);
+    /* 0x08 */ void (*pfnEvaluateCrvFromS)(CRV *, float, VECTOR *, VECTOR *);
+    /* 0x0c */ void (*pfnRenderCrvSegment)(CRV *, int, MATRIX4 *, CM *, RGBA *, int);
+    /* 0x10 */ void (*pfnConvertCrv)(CRV *, MATRIX4 *, MATRIX4 *);
+    /* 0x14 */ float (*pfnSFromCrvU)(CRV *, float);
+    /* 0x18 */ float (*pfnUFromCrvS)(CRV *, float);
+    /* 0x1c */ float (*pfnUMaxCrv)(CRV *);
+    /* 0x20 */ float (*pfnSMaxCrv)(CRV *);
+    /* 0x24 */ void (*pfnMeasureCrv)(CRV *);
+    /* 0x28 */ void (*pfnFindCrvClosestPointAll)(CRV *, VECTOR *, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+    /* 0x2c */ void (*pfnFindCrvClosestPointFromU)(CRV *, VECTOR *, float, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+    /* 0x30 */ void (*pfnFindCrvClosestPointFromS)(CRV *, VECTOR *, float, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+};
+
+/**
+ * @brief VT for CRVL objects.
+ */
+struct VTCRVL
+{
+    /* 0x00 */ void (*pfnLoadCrvlFromBrx)(CRVL *, CBinaryInputStream *);
+    /* 0x04 */ void (*pfnEvaluateCrvlFromU)(CRVL *, float, VECTOR *, VECTOR *);
+    /* 0x08 */ void (*pfnEvaluateCrvlFromS)(CRVL *, float, VECTOR *, VECTOR *);
+    /* 0x0c */ void (*pfnRenderCrvlSegment)(CRVL *, int, MATRIX4 *, CM *, RGBA *, int);
+    /* 0x10 */ void (*pfnConvertCrvl)(CRVL *, MATRIX4 *, MATRIX4 *);
+    /* 0x14 */ float (*pfnSFromCrvlU)(CRVL *, float);
+    /* 0x18 */ float (*pfnUFromCrvlS)(CRVL *, float);
+    /* 0x1c */ float (*pfnUMaxCrv)(CRVL *);
+    /* 0x20 */ float (*pfnSMaxCrv)(CRVL *);
+    /* 0x24 */ void (*pfnMeasureCrvl)(CRVL *);
+    /* 0x28 */ void (*pfnFindCrvlClosestPointAll)(CRVL *, VECTOR *, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+    /* 0x2c */ void (*pfnFindCrvlClosestPointFromU)(CRVL *, VECTOR *, float, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+    /* 0x30 */ void (*pfnFindCrvlClosestPointFromS)(CRVL *, VECTOR *, float, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+};
+
+/**
+ * @brief VT for CRVC objects.
+ */
+struct VTCRVC
+{
+    /* 0x00 */ void (*pfnLoadCrvcFromBrx)(CRVC *, CBinaryInputStream *);
+    /* 0x04 */ void (*pfnEvaluateCrvcFromU)(CRVC *, float, VECTOR *, VECTOR *);
+    /* 0x08 */ void (*pfnEvaluateCrvcFromS)(CRVC *, float, VECTOR *, VECTOR *);
+    /* 0x0c */ void (*pfnRenderCrvcSegment)(CRVC *, int, MATRIX4 *, CM *, RGBA *, int);
+    /* 0x10 */ void (*pfnConvertCrvc)(CRVC *, MATRIX4 *, MATRIX4 *);
+    /* 0x14 */ float (*pfnSFromCrvcU)(CRVC *, float);
+    /* 0x18 */ float (*pfnUFromCrvcS)(CRVC *, float);
+    /* 0x1c */ float (*pfnUMaxCrv)(CRVC *);
+    /* 0x20 */ float (*pfnSMaxCrv)(CRVC *);
+    /* 0x24 */ void (*pfnMeasureCrvc)(CRVC *);
+    /* 0x28 */ void (*pfnFindCrvcClosestPointAll)(CRVC *, VECTOR *, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+    /* 0x2c */ void (*pfnFindCrvcClosestPointFromU)(CRVC *, VECTOR *, float, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+    /* 0x30 */ void (*pfnFindCrvcClosestPointFromS)(CRVC *, VECTOR *, float, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+};
+
+/**
  * @brief Unknown.
+ */
+struct CTCE
+{
+    /* 0x000 */ VECTOR apos[20];
+    /* 0x140 */ float mpiposs[20];
+};
+
+/**
+ * @brief Curve.
  */
 struct CRV
 {
-    undefined4 unknown;
-    CRVK crvk;
-    int fClosed;
-    int ccv;
-    float *mpicvu;
-    float *mpicvs;
-    VECTOR *mpicvpos;
+    union
+    {
+        /* 0x00 */ VTCRV *pvtcrv;
+        /* 0x00 */ VTCRVL *pvtcrvl;
+        /* 0x00 */ VTCRVC *pvtcrvc;
+    };
+    /* 0x04 */ CRVK crvk;
+    /* 0x08 */ int fClosed;
+    /* 0x0c */ int ccv;
+    /* 0x10 */ float *mpicvu;
+    /* 0x14 */ float *mpicvs;
+    /* 0x18 */ VECTOR *mpicvpos;
+};
+
+/**
+ * @todo Curve Linear.
+ */
+struct CRVL : public CRV
+{
+    // ...
+};
+
+/**
+ * @brief Curve Cubic.
+ */
+struct CRVC : public CRV
+{
+    /* 0x01c */ VECTOR *mpicvdposIn;
+    /* 0x020 */ VECTOR *mpicvdposOut;
+    /* 0x024 */ STRUCT_PADDING(103); // CTCE ctce;
+    /* 0x1c0 */ int icvCache;
 };
 
 /**
@@ -48,23 +149,9 @@ struct CRVMC
  */
 struct CRVMS
 {
-    // ...
-};
-
-/**
- * @todo Implement.
- */
-struct CRVL
-{
-    // ...
-};
-
-/**
- * @todo Implement.
- */
-struct CRVC
-{
-    // ...
+    CRV *pcrv;
+    VECTOR *ppos0;
+    VECTOR *ppos1;
 };
 
 /**

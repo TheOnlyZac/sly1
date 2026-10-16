@@ -146,11 +146,9 @@ struct SNIP
 struct XF
 {
     /* 0x00 */ MATRIX3 mat;
-    STRUCT_PADDING(3); // TODO: Remove once MATRIX3 is 48 bytes.
     /* 0x30 */ VECTOR pos;
     STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
     /* 0x40 */ MATRIX3 matWorld;
-    STRUCT_PADDING(3); // TODO: Remove once MATRIX3 is 48 bytes.
     /* 0x70 */ VECTOR posWorld;
     STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
     /* 0x80 */ VECTOR v;
@@ -189,7 +187,6 @@ struct ALO : public LO
     /* 0x190 */ VECTOR posOrig;
     STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
     /* 0x1a0 */ MATRIX3 matOrig;
-    STRUCT_PADDING(3); // TODO: Remove once MATRIX3 is 48 bytes.
     /* 0x1d0 */ VECTOR eulOrig;
     STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
     /* 0x1e0 */ DL dlAct;

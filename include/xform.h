@@ -41,9 +41,8 @@ struct XFM : public LO
 {
     /* 0x34 */ STRUCT_PADDING(3);
     /* 0x40 */ VECTOR posLocal;
-    /* 0x4c */ uint padding; // TODO: Remove once VECTOR is 16 bytes long.
+    /* 0x4c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x50 */ MATRIX3 matLocal;
-    STRUCT_PADDING(3); // TODO: Remove once MATRIX3 is 48 bytes long.
 };
 
 /**

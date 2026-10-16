@@ -352,20 +352,20 @@ void CBinaryInputStream::ReadVector4(VECTOR4 *pvec)
 
 void CBinaryInputStream::ReadMatrix(MATRIX3 *pmat)
 {
-    int size = sizeof(pmat->mat[0]);
-    Read(size, &pmat->mat[0]);
-    Read(size, &pmat->mat[1][1]);
-    Read(size, &pmat->mat[2][2]);
+    const int cbRow = sizeof(float) * 3;
+    Read(cbRow, &pmat->aag[0]);
+    Read(cbRow, &pmat->aag[1]);
+    Read(cbRow, &pmat->aag[2]);
 }
 
 void CBinaryInputStream::ReadMatrix4(MATRIX4 *pmat)
 {
     // TODO: This might be possible to clean up, but I wasn't able to.
     // The compiler seems to insist that must we have pointer to each row. -545u
-    float *row0 = &pmat->mat[0][0];
-    float *row1 = &pmat->mat[1][0];
-    float *row2 = &pmat->mat[2][0];
-    float *row3 = &pmat->mat[3][0];
+    float *row0 = &pmat->aag[0][0];
+    float *row1 = &pmat->aag[1][0];
+    float *row2 = &pmat->aag[2][0];
+    float *row3 = &pmat->aag[3][0];
 
     const int cbRow = sizeof(float) * 3;
     Read(cbRow, row0);
@@ -419,9 +419,9 @@ void CBinaryInputStream::ReadVbsp(int *pcvbsp, VBSP **pavbsp)
 
 void CBinaryInputStream::ReadStringSw(char **pachz)
 {
-    ushort length = U16Read();
-    char *buffer = (char *)PvAllocSwImpl((int)length + 1);
-    Read((int)length, buffer);
+    int length = U16Read();
+    char *buffer = (char *)PvAllocSwImpl(length + 1);
+    Read(length, buffer);
     buffer[length] = 0;
     *pachz = buffer;
 }
