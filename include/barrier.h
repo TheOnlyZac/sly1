@@ -16,7 +16,7 @@ struct XP;
  */
 struct BARRIER : public SO
 {
-    // ...
+    /* 0x550 */ int fAllow;
     /* 0x554 */ int coid;
     /* 0x558 */ OID aoid[4];
     /* 0x568 */ int ccid;

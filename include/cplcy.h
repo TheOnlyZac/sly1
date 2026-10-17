@@ -98,15 +98,12 @@ struct CPDEFI
     undefined4 field2_0x8;
     undefined4 field3_0xc;
     VECTOR posBase;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     VECTOR vBase;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x30 */ float radHome;
     /* 0x34 */ float sAdjust;
     float tMoveLast;
     CFK cfk;
     VECTOR posAdjust;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
 };
 
 /**
@@ -166,7 +163,6 @@ struct CPALIGN : public CPLCY
     undefined4 field_1_0x0;
     undefined4 field_2_0x4;
     VECTOR posLocal;
-    undefined4 field_4_0xc;
     undefined4 field_5_0x10;
     undefined4 field_6_0x14;
     float field_7_0x18;

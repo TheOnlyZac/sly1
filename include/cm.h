@@ -44,7 +44,6 @@ struct FGFN
 struct CM : public LO
 {
     /* 0x040 */ VECTOR pos;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x050 */ VECTOR4 anormalFrustrumTranspose[3];
     /* 0x080 */ MATRIX3 mat;
     /* 0x0b0 */ float rMRDAdjust;
@@ -52,7 +51,7 @@ struct CM : public LO
     /* 0x0c0 */ MATRIX4 matProj;
     /* 0x100 */ MATRIX4 matWorldToClip;
     /* 0x140 */ MATRIX4 matClipToWorld;
-    /* 0x180 */ VECTOR4 anormalFrustrum[4]; // TODO: Change to VECTOR once it is 16 bytes long.
+    /* 0x180 */ VECTOR anormalFrustrum[4];
     /* 0x1c0 */ float rMRD;
     /* 0x1c4 */ float radFOV;
     /* 0x1c8 */ float radFOV2;
@@ -76,21 +75,13 @@ struct CM : public LO
     /* 0x228 */ int fRadCut;
     /* 0x22c */ float radCut;
     /* 0x230 */ VECTOR dposCenter;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x240 */ VECTOR vCenter;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x250 */ VECTOR dposAdjust;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x260 */ VECTOR vAdjust;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x270 */ VECTOR dposFocus;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x280 */ VECTOR vFocus;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x290 */ VECTOR posScreen; // TODO: Unused?
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x2a0 */ VECTOR vScreen; // TODO: Unused?
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x2b0 */ float swTiltPos;
     /* 0x2b4 */ float sv;
     /* 0x2b8 */ float swPanMat;
@@ -98,7 +89,6 @@ struct CM : public LO
     /* 0x2c0 */ float swTiltMat;
     /* 0x2c4 */ STRUCT_PADDING(3);
     /* 0x2d0 */ VECTOR posCenterPrev;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x2e0 */ SO *psoFocusPrev;
     /* 0x2e4 */ STRUCT_PADDING(3);
     /* 0x2f0 */ CPDEFI cpdefiPrev;

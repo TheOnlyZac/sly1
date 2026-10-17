@@ -113,9 +113,7 @@ struct WKR
     float gSort;
     STRUCT_PADDING(2);
     /* 0x20 */ VECTOR pos;
-    /* 0x2c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x30 */ VECTOR v;
-    /* 0x3c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
 };
 
 /**
@@ -147,18 +145,12 @@ struct XF
 {
     /* 0x00 */ MATRIX3 mat;
     /* 0x30 */ VECTOR pos;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
     /* 0x40 */ MATRIX3 matWorld;
     /* 0x70 */ VECTOR posWorld;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
     /* 0x80 */ VECTOR v;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
     /* 0x90 */ VECTOR w;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
     /* 0xa0 */ VECTOR dv;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
     /* 0xb0 */ VECTOR dw;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
 };
 
 /**
@@ -185,10 +177,8 @@ struct ALO : public LO
     /* 0x090 */ STRUCT_PADDING(16); // FRZ frz;
     /* 0x0d0 */ XF xf;
     /* 0x190 */ VECTOR posOrig;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
     /* 0x1a0 */ MATRIX3 matOrig;
     /* 0x1d0 */ VECTOR eulOrig;
-    STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes.
     /* 0x1e0 */ DL dlAct;
     /* 0x1ec */ ACT *pactPos;
     /* 0x1f0 */ ACT *pactRot;

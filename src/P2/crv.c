@@ -145,11 +145,6 @@ float DuGetCrvSearchIncrement(CRV *pcrv)
     return (pcrv->mpicvu[1] - pcrv->mpicvu[0]) * 0.1f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", LoadCrvlFromBrx__FP4CRVLP18CBinaryInputStream);
-#ifdef SKIP_ASM
-/**
- * @todo 83.41% match. Matches once the size of VECTOR is correct.
- */
 void LoadCrvlFromBrx(CRVL *pcrvl, CBinaryInputStream *pbis)
 {
     pcrvl->fClosed = pbis->U8Read();
@@ -157,7 +152,7 @@ void LoadCrvlFromBrx(CRVL *pcrvl, CBinaryInputStream *pbis)
 
     pcrvl->mpicvu = (float *)PvAllocSwImpl(pcrvl->ccv * sizeof(float));
     pcrvl->mpicvs = (float *)PvAllocSwImpl(pcrvl->ccv * sizeof(float));
-    pcrvl->mpicvpos = (VECTOR *)PvAllocSwImpl(pcrvl->ccv * 0x10); // TODO: Replace with sizeof(VECTOR).
+    pcrvl->mpicvpos = (VECTOR *)PvAllocSwImpl(pcrvl->ccv * sizeof(VECTOR));
 
     for (int i = 0; i < pcrvl->ccv; i++)
     {
@@ -170,7 +165,6 @@ void LoadCrvlFromBrx(CRVL *pcrvl, CBinaryInputStream *pbis)
         pcrvl->pvtcrv->pfnMeasureCrv(pcrvl);
     }
 }
-#endif // SKIP_ASM
 
 void EvaluateCrvlFromU(CRVL *pcrvl, float u, VECTOR *ppos, VECTOR *pnormTangent)
 {
@@ -270,20 +264,15 @@ void FindCrvlClosestPointFromS(CRVL *pcrvl, VECTOR *ppos, float s, CONSTR *pcons
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", LoadCrvcFromBrx__FP4CRVCP18CBinaryInputStream);
-#ifdef SKIP_ASM
-/**
- * @todo 95.67% match. Matches once the size of VECTOR is correct.
- */
 void LoadCrvcFromBrx(CRVC *pcrvc, CBinaryInputStream *pbis)
 {
     pcrvc->fClosed = pbis->U8Read();
     pcrvc->ccv = pbis->U8Read();
     pcrvc->mpicvu = (float *)PvAllocSwImpl(pcrvc->ccv * sizeof(float));
     pcrvc->mpicvs = (float *)PvAllocSwImpl(pcrvc->ccv * sizeof(float));
-    pcrvc->mpicvpos = (VECTOR *)PvAllocSwImpl(pcrvc->ccv * 0x10); // TODO: Replace with sizeof(VECTOR).
-    pcrvc->mpicvdposIn = (VECTOR *)PvAllocSwImpl(pcrvc->ccv * 0x10); // TODO: Replace with sizeof(VECTOR).
-    pcrvc->mpicvdposOut = (VECTOR *)PvAllocSwImpl(pcrvc->ccv * 0x10); // TODO: Replace with sizeof(VECTOR).
+    pcrvc->mpicvpos = (VECTOR *)PvAllocSwImpl(pcrvc->ccv * sizeof(VECTOR));
+    pcrvc->mpicvdposIn = (VECTOR *)PvAllocSwImpl(pcrvc->ccv * sizeof(VECTOR));
+    pcrvc->mpicvdposOut = (VECTOR *)PvAllocSwImpl(pcrvc->ccv * sizeof(VECTOR));
 
     for (int i = 0; i < pcrvc->ccv; i++)
     {
@@ -300,7 +289,6 @@ void LoadCrvcFromBrx(CRVC *pcrvc, CBinaryInputStream *pbis)
 
     InvalidateCrvcCache(pcrvc);
 }
-#endif // SKIP_ASM
 
 void InvalidateCrvcCache(CRVC *pcrvc)
 {
@@ -325,18 +313,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/crv", RenderCrvcSegment__FP4CRVCiP7MATRIX4P2CMG
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", ConvertCrvc__FP4CRVCP7MATRIX4T1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/crv", SFromCrvcU__FP4CRVCf);
-#ifdef SKIP_ASM
-/**
- * @todo 83.65% match. Matches once the size of VECTOR is correct.
- */
 float SFromCrvcU(CRVC *pcrvc, float u)
 {
     float du, duSeg;
     int icv = IcvFindCrvU(pcrvc, u, &du, &duSeg);
     return SBezierPosLength(duSeg, du, &pcrvc->mpicvpos[icv], &pcrvc->mpicvdposOut[icv], &pcrvc->mpicvpos[icv + 1], &pcrvc->mpicvdposIn[icv + 1]) + pcrvc->mpicvs[icv];
 }
-#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/crv", UFromCrvcS__FP4CRVCf);
 

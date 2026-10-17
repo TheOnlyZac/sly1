@@ -342,7 +342,8 @@ float CBinaryInputStream::F32Read()
 
 void CBinaryInputStream::ReadVector(VECTOR *pvec)
 {
-    Read(sizeof(VECTOR), pvec);
+    // NOTE: VECTOR has one extra float of padding.
+    Read(sizeof(VECTOR) - sizeof(float), pvec);
 }
 
 void CBinaryInputStream::ReadVector4(VECTOR4 *pvec)
