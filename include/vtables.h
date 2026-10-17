@@ -116,7 +116,7 @@ struct VTALO : VT
     void (*pfnUnsubscribeLoStruct)(ALO *);
     void (*pfnProjectAloTransform)(ALO *);
     void (*pfnPresetAloAccel)(ALO *);
-    void (*pfnTranslateAloToPos)(ALO *);
+    void (*pfnTranslateAloToPos)(ALO *, VECTOR *);
     void (*pfnRotateAloToMat)(ALO *);
     void (*pfnMatchAloOtherObject)(ALO *);
     void (*pfnSetAloVelocityVec)(ALO *);
@@ -762,6 +762,75 @@ struct VTSAA
 struct VTACT
 {
     // ...
+};
+
+// MARK: CRV
+struct CRV;
+struct CRVL;
+struct CRVC;
+struct CONSTR;
+struct MATRIX4;
+struct CM;
+struct RGBA;
+
+/**
+ * @brief VT for CRV objects.
+ */
+struct VTCRV
+{
+    /* 0x00 */ void (*pfnLoadCrvFromBrx)(CRV *, CBinaryInputStream *);
+    /* 0x04 */ void (*pfnEvaluateCrvFromU)(CRV *, float, VECTOR *, VECTOR *);
+    /* 0x08 */ void (*pfnEvaluateCrvFromS)(CRV *, float, VECTOR *, VECTOR *);
+    /* 0x0c */ void (*pfnRenderCrvSegment)(CRV *, int, MATRIX4 *, CM *, RGBA *, int);
+    /* 0x10 */ void (*pfnConvertCrv)(CRV *, MATRIX4 *, MATRIX4 *);
+    /* 0x14 */ float (*pfnSFromCrvU)(CRV *, float);
+    /* 0x18 */ float (*pfnUFromCrvS)(CRV *, float);
+    /* 0x1c */ float (*pfnUMaxCrv)(CRV *);
+    /* 0x20 */ float (*pfnSMaxCrv)(CRV *);
+    /* 0x24 */ void (*pfnMeasureCrv)(CRV *);
+    /* 0x28 */ void (*pfnFindCrvClosestPointAll)(CRV *, VECTOR *, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+    /* 0x2c */ void (*pfnFindCrvClosestPointFromU)(CRV *, VECTOR *, float, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+    /* 0x30 */ void (*pfnFindCrvClosestPointFromS)(CRV *, VECTOR *, float, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+};
+
+/**
+ * @brief VT for CRVL objects.
+ */
+struct VTCRVL
+{
+    /* 0x00 */ void (*pfnLoadCrvlFromBrx)(CRVL *, CBinaryInputStream *);
+    /* 0x04 */ void (*pfnEvaluateCrvlFromU)(CRVL *, float, VECTOR *, VECTOR *);
+    /* 0x08 */ void (*pfnEvaluateCrvlFromS)(CRVL *, float, VECTOR *, VECTOR *);
+    /* 0x0c */ void (*pfnRenderCrvlSegment)(CRVL *, int, MATRIX4 *, CM *, RGBA *, int);
+    /* 0x10 */ void (*pfnConvertCrvl)(CRVL *, MATRIX4 *, MATRIX4 *);
+    /* 0x14 */ float (*pfnSFromCrvlU)(CRVL *, float);
+    /* 0x18 */ float (*pfnUFromCrvlS)(CRVL *, float);
+    /* 0x1c */ float (*pfnUMaxCrv)(CRVL *);
+    /* 0x20 */ float (*pfnSMaxCrv)(CRVL *);
+    /* 0x24 */ void (*pfnMeasureCrvl)(CRVL *);
+    /* 0x28 */ void (*pfnFindCrvlClosestPointAll)(CRVL *, VECTOR *, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+    /* 0x2c */ void (*pfnFindCrvlClosestPointFromU)(CRVL *, VECTOR *, float, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+    /* 0x30 */ void (*pfnFindCrvlClosestPointFromS)(CRVL *, VECTOR *, float, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+};
+
+/**
+ * @brief VT for CRVC objects.
+ */
+struct VTCRVC
+{
+    /* 0x00 */ void (*pfnLoadCrvcFromBrx)(CRVC *, CBinaryInputStream *);
+    /* 0x04 */ void (*pfnEvaluateCrvcFromU)(CRVC *, float, VECTOR *, VECTOR *);
+    /* 0x08 */ void (*pfnEvaluateCrvcFromS)(CRVC *, float, VECTOR *, VECTOR *);
+    /* 0x0c */ void (*pfnRenderCrvcSegment)(CRVC *, int, MATRIX4 *, CM *, RGBA *, int);
+    /* 0x10 */ void (*pfnConvertCrvc)(CRVC *, MATRIX4 *, MATRIX4 *);
+    /* 0x14 */ float (*pfnSFromCrvcU)(CRVC *, float);
+    /* 0x18 */ float (*pfnUFromCrvcS)(CRVC *, float);
+    /* 0x1c */ float (*pfnUMaxCrv)(CRVC *);
+    /* 0x20 */ float (*pfnSMaxCrv)(CRVC *);
+    /* 0x24 */ void (*pfnMeasureCrvc)(CRVC *);
+    /* 0x28 */ void (*pfnFindCrvcClosestPointAll)(CRVC *, VECTOR *, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+    /* 0x2c */ void (*pfnFindCrvcClosestPointFromU)(CRVC *, VECTOR *, float, CONSTR *, VECTOR *, VECTOR *, float *, float *);
+    /* 0x30 */ void (*pfnFindCrvcClosestPointFromS)(CRVC *, VECTOR *, float, CONSTR *, VECTOR *, VECTOR *, float *, float *);
 };
 
 #endif // VTABLES_H

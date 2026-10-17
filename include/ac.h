@@ -71,11 +71,8 @@ struct KVB
     /* 0x00 */ float t;
     /* 0x04 */ STRUCT_PADDING(3);
     /* 0x10 */ VECTOR vec;
-    /* 0x1c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x20 */ VECTOR dvecIn;
-    /* 0x2c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x30 */ VECTOR dvecOut;
-    /* 0x3c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
 };
 
 /**
@@ -145,7 +142,6 @@ struct ACPC : public ACP
 {
     /* 0x0c */ STRUCT_PADDING(1);
     /* 0x10 */ VECTOR posDefault;
-    /* 0x1c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x20 */ ACG *apacg[3];
     /* 0x2c */ STRUCT_PADDING(1);
 };
@@ -185,7 +181,6 @@ struct ACRC : public ACR
 {
     /* 0x0c */ STRUCT_PADDING(1);
     /* 0x10 */ VECTOR eulDefault;
-    /* 0x1c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x20 */ ACG *apacg[3];
     /* 0x2c */ STRUCT_PADDING(1);
 };
@@ -224,7 +219,6 @@ struct ACSC : public ACS
 {
     /* 0x08 */ STRUCT_PADDING(2);
     /* 0x10 */ VECTOR vecDefault;
-    /* 0x1c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x20 */ ACG *apacg[3];
     /* 0x2c */ STRUCT_PADDING(1);
 };

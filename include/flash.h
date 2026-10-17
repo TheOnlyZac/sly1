@@ -7,9 +7,12 @@
 #define FLASH_H
 
 #include "common.h"
+#include <alo.h>
 #include <mat.h>
 #include <sm.h>
-#include <cm.h>
+
+// Forward declararations.
+struct CM;
 
 /**
  * @brief Unknown (render options?).

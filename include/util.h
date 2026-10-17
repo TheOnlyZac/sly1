@@ -11,6 +11,8 @@
 #include <mat.h>
 #include <sm.h>
 
+typedef float (*PFNGG)(void *, float);
+
 /**
  * @brief Constant Linear Quadratic.
  *
@@ -225,5 +227,7 @@ float GLimitLm(LM *plm, float g);
  * @brief Stubbed function, does nothing.
  */
 void Force(void *pv);
+
+void MinimizeRange(PFNGG pfn, void *pv, float g, float dg, float gMin, float gMax, float *pgDom, float *pgRng);
 
 #endif // UTIL_H
