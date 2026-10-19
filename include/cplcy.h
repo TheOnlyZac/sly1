@@ -16,6 +16,7 @@ struct CM;
 struct ALO;
 struct AMB;
 struct PNT;
+struct JOY;
 struct CAMERA;
 
 /**
@@ -111,7 +112,7 @@ struct CPDEFI
  */
 struct CPLCY
 {
-    undefined4 vtable; // TODO: implement methods on this struct
+    void *vtable; // TODO: implement methods on this struct
     CM *pcm;
 };
 
@@ -134,23 +135,24 @@ struct CPMAN : public CPLCY
  */
 struct CPLOOK : public CPLCY
 {
-    float radPan;
-    float swPan;
-    float radTilt;
-    float swTilt;
-    float uZoom;
-    float svuZoom;
-    float rZoomMax;
-    LM lmFOV;
-    LOOKK alookk[4];
-    int clookk;
-    int fSoundPaused;
-    AMB *pambBinoc;
-    AMB *pambAmbient;
-    ALO *paloFocusSniper;
-    PNT *ppntAnchor;
-    float sRadiusSniper;
-    float rScreenSniper;
+    /* 0x08 */ float radPan;
+    /* 0x0c */ float swPan;
+    /* 0x10 */ float radTilt;
+    /* 0x14 */ float swTilt;
+    /* 0x18 */ float uZoom;
+    /* 0x1c */ float svuZoom;
+    /* 0x20 */ float rZoomMax;
+    /* 0x24 */ LM lmFOV;
+    /* 0x2c */ float unknown;
+    /* 0x30 */ LOOKK alookk[4];
+    /* 0x40 */ int clookk;
+    /* 0x44 */ int fSoundPaused;
+    /* 0x48 */ AMB *pambBinoc;
+    /* 0x4c */ AMB *pambAmbient;
+    /* 0x50 */ ALO *paloFocusSniper;
+    /* 0x54 */ float rScreenSniper;
+    /* 0x58 */ float sRadiusSniper;
+    /* 0x5c */ PNT *ppntAnchor;
 };
 
 /**
@@ -226,10 +228,38 @@ int FActiveCplcy(CPLCY *pcplcy);
 
 void SetCpmanCpmt(CPMAN *pcpman, CPMT cpmt);
 
+void UpdateCpman(CPMAN *pcpman, CPDEFI *pcpdefi, JOY *pjoy, float dt);
+
+VECTOR PosCplookAnchor(CPLOOK *pcplook);
+
+VECTOR PosCplookEye(CPLOOK *pcplook);
+
+void StartCplookSound(CPLOOK *pcplook);
+
 void PushCplookLookk(CPLOOK *pcplook, LOOKK lookk);
 
 LOOKK LookkPopCplook(CPLOOK *pcplook);
 
 LOOKK LookkCurCplook(CPLOOK *pcplook);
+
+void InitCplook(CPLOOK *pcplook, CM *pcm);
+
+void ActivateCplook(CPLOOK *pcplook, void *pv);
+
+void UpdateCplook(CPLOOK *pcplook, CPDEFI *pcpdefi, JOY *pjoy, float dt);
+
+void DeactivateCplook(CPLOOK *pcplook, void *pv);
+
+void InitCpalign(CPALIGN *pcpalign, CM *pcm);
+
+void ActivateCpalign(CPALIGN *pcpalign, void *pv);
+
+void UpdateCpalign(CPALIGN *pcpalign, CPDEFI *pcpdefi, JOY *pjoy, float dt);
+
+void ActivateCpaseg(CPASEG *pcpaseg, void *pv);
+
+void DeactivateCpaseg(CPASEG *pcpaseg, void *pv);
+
+void UpdateCpaseg(CPASEG *pcpaseg, CPDEFI *pcpdefi, JOY *pjoy, float dt);
 
 #endif // CPLCY_H

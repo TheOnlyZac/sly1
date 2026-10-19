@@ -78,8 +78,8 @@ enum SFXID
     SFXID_Collect_Life = 105,
     SFXID_Last_Clue = 106,
     SFXID_Yipee = 109,
-    SFXID_Binoc_Hum = 112,
-    SFXID_Binoc_Zoom = 113,
+    SFXID_UiBinocAmbient = 112,
+    SFXID_UiBinocZoom = 113,
     SFXID_Unk114 = 114,   // Found in RebuildTimerAchzDraw()
     SFXID_Click2 = 115,
     SFXID_Collect_Charm = 116,

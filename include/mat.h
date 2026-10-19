@@ -32,6 +32,7 @@ struct MATRIX3
 		float ag[12];
 		float aag[3][4];
 		VECTOR avec[3];
+		qword data[3];
 	};
 };
 

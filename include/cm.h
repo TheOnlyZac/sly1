@@ -122,6 +122,11 @@ void StartupCm();
 void CalcCmAdjust(CM *pcm, SO *psoFocus, CPDEFI *pcpdefi, VECTOR *pdpos);
 
 /**
+ * @brief Set fog parameters based on current values in the camera.
+ */
+void BuildCmFgfn(CM *pcm, float uFog, FGFN *pfgfn);
+
+/**
  * @brief Calls RecalcCmFrustrum on the given camera.
  */
 void RecalcCmFrustrum(CM *pcm);
@@ -231,6 +236,8 @@ void AddCmFadeObject(CM *pcm, ALO *palo);
  */
 void SetupCm(CM *pcm);
 
+void UpdateCmMat4(CM *pcm);
+
 /**
  * @brief TODO.
  */
@@ -241,9 +248,11 @@ void DrawCm(CM *pcm);
  */
 void SetCmPosMat(CM *pcm, VECTOR *ppos, MATRIX3 *pmat);
 
+void SetCmPolicy(CM *pcm, CPP cpp, CPLCY *pcplcy, SO *psoFocus, void *pv);
+
 void AdjustCmJoy(CM *pcm, JOY *pjoy, JOYID joyid, float *prad);
 
-void SetCmPolicy(CM *pcm, CPP cpp, CPLCY *pcplcy, SO *psoFocus, void *pv);
+void ResetCmLookAtSmooth(CM *pcm, VECTOR *pposCenter);
 
 void RevokeCmPolicy(CM *pcm, GRFRCP grfrcp, CPP cpp, CPLCY *pcplcy, SO *psoFocus, void *pv);
 
@@ -280,7 +289,7 @@ LOOKK LookkCurCm(CM *pcm);
 /**
  * @brief Sets sniper focus on the given camera.
  */
-void SetCmSniperFocus(CM *pcm, PNT *ppntAnchor, float sRadiusSniper, float rScreenSniper);
+void SetCmSniperFocus(CM *pcm, ALO *palo, float rScreen, float sRadius);
 
 /**
  * @brief Jolt the given camera.

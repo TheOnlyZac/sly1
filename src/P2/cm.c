@@ -5,6 +5,7 @@
 #include <util.h>
 #include <binoc.h>
 #include <clock.h>
+#include <light.h>
 
 // todo fix data and rodata
 // VECTOR4 g_posEyeDefault = { 0.0f, -2000.0f, 500.0f, 0.0f };
@@ -65,7 +66,18 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", ResetCmAdjust__FP2CMP2SOP6CPDEFI);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", GetCmCpdefi__FP2CMP2SOfP6CPDEFI);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", BuildCmFgfn__FP2CMfP4FGFN);
+void BuildCmFgfn(CM *pcm, float uFog, FGFN *pfgfn)
+{
+    FitRecipFunction(
+        1.0f, 4080.0f,
+        pcm->sFarFog / pcm->sNearFog, (1.0f - pcm->uFogMax * uFog) * 4080.0f,
+        &pfgfn->duFogBias, &pfgfn->ruFog
+    );
+
+    pfgfn->duFogBias = pfgfn->duFogBias + 8388608.0f;
+    pfgfn->sNearFog = pcm->sNearFog;
+    pfgfn->duFogPlusClipBias = pfgfn->duFogBias + 36864.0f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", RecalcCmFrustrum__FP2CM);
 
@@ -218,7 +230,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertWorldToCylindVelocity);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCylindToWorldVelocity);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", ResetCmLookAtSmooth);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", ResetCmLookAtSmooth__FP2CMP6VECTOR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmLookAtSmooth);
 
@@ -290,11 +302,11 @@ LOOKK LookkCurCm(CM *pcm)
     return LookkCurCplook(&pcm->cplook);
 }
 
-void SetCmSniperFocus(CM *pcm, PNT *ppntAnchor, float sRadiusSniper, float rScreenSniper)
+void SetCmSniperFocus(CM *pcm, ALO *palo, float rScreen, float sRadius)
 {
-    pcm->cplook.ppntAnchor = ppntAnchor;
-    pcm->cplook.sRadiusSniper = sRadiusSniper;
-    pcm->cplook.rScreenSniper = rScreenSniper;
+    pcm->cplook.paloFocusSniper = palo;
+    pcm->cplook.rScreenSniper = rScreen;
+    pcm->cplook.sRadiusSniper = sRadius;
 }
 
 void JoltCm(CM *pcm)
