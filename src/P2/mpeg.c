@@ -1,13 +1,8 @@
-/**
- * @file mpeg.c
- *
- * @brief MPEG video and audio playback subsystem for cutscenes.
- */
-
 #include <mpeg.h>
 #include <gifs.h>
 #include <gs.h>
 #include <sdk/ee/eekernel.h>
+#include <sdk/ee/sifdev.h>
 #include <sce/memset.h>
 #include <clock.h>
 #include <joy.h>
@@ -17,7 +12,11 @@
 #include <cat.h>
 #include <game.h>
 #include <phasemem.h>
-extern int SemaCreate(int initCount, int maxCount);
+#include <thread.h>
+#include <sw.h>
+#include <989snd.h>
+#include <shd.h>
+
 // Cutscene OID tables and metadata
 extern char D_00248490[];   // Intro cutscene OID key
 extern char D_002484B0[];   // Table of cutscene OID keys (16 entries, 32 bytes each)
@@ -30,24 +29,9 @@ extern void *D_00269AEC;    // Global pointer initialized by static init
 extern char D_00269B4C[];   // Intro cutscene played flag (1 = played)
 extern char D_002C3B00[];   // Buffer for MPEG binary async stream
 extern char D_002CBB40[];   // Audio stream intermediate buffer (0xC000 bytes)
-struct SW;
-extern SW *g_psw;
 extern char D_0024B598[];   // Vtable pointer for CQueueOutputIpu
 extern char D_002C2B00[];   // Stack buffer for MPEG background display thread (0x1000 bytes)
 extern int D_00275964;      // Background display thread ID
-void RestoreGsBuffers(void);
-void SwapGsBuffers(void);
-
-extern "C" int func_0020B0B0(sceMpeg *);
-extern "C" void FUN_0018f0e8(CMpeg *mpeg, void *key);
-extern "C" int func_0020ADA0(void);
-extern "C" int func_0020AE40(sceMpeg *, void *, int);
-extern "C" int func_0020A538(sceMpeg *, int, int, void *, void *);
-extern "C" int func_0020B168(sceMpeg *, int, void *, void *);
-extern "C" int func_0020B058(sceMpeg *, void *, int);
-extern "C" int func_0020B0C0(sceMpeg *);
-extern "C" int func_0020B048(sceMpeg *);
-extern "C" int func_0020A518(sceMpeg *, void *, int);
 
 // Hardware and decoder work buffers
 extern char D_0045AAC0;     // Macroblock decoded RGB32 image buffer
@@ -64,50 +48,8 @@ extern int g_vbact;
 extern "C" void FlushCache(int);
 extern "C" int func_001F6CA0(void *, int);
 extern "C" int func_001F6C90(int);
-extern "C" int snd_GetTransStatus(void);
 
-extern "C" void snd_PauseAllSoundsInGroup(unsigned int);
-struct SW;
-enum REVERBK
-{
-    REVERBK_None = 0,
-    REVERBK_StudioA = 1,
-    REVERBK_StudioB = 2,
-    REVERBK_StudioC = 3,
-    REVERBK_Pipe = 4,
-    REVERBK_Room = 5,
-    REVERBK_Max = 6,
-    REVERBK_Nil = -1
-};
-void PushSwReverb(SW *psw, REVERBK reverb, const int k);
-extern "C" void snd_StopAllStreams(void);
-extern "C" int snd_FlushSoundCommands(void);
-extern "C" void snd_StreamSafeCheckCDIdle(int);
-extern "C" void snd_StreamSafeCdSync(int);
-extern "C" int snd_GetMasterVolume(int);
-extern "C" void snd_SetMasterVolume(int, int);
-extern "C" int snd_InitMovieSound(int, int, int, int, int);
-
-extern "C" void snd_ResetMovieSound(void);
-extern "C" void snd_StartMovieSound(int id1, int vol, int id2, int zero1, int zero2);
-
-extern "C" void snd_CloseMovieSound(void);
-void PopSwReverb(SW *psw);
-extern "C" void snd_ContinueAllSoundsInGroup(unsigned int);
-
-
-/**
- * @brief Static initialization helper for MPEG global state.
- */
-extern "C" void mpeg__static_initialization_and_destruction_0(int a1, int a2);
-
-/**
- * @brief Looks up the cutscene index (0-15) corresponding to an OID key descriptor.
- *
- * @param key Pointer to cutscene OID entry.
- * @return Cutscene index in [0, 15], or -1 if not found.
- */
-extern "C" int FUN_0018e410(void *key)
+int FUN_0018e410(void *key)
 {
     char *entry = D_002484B0;
     int index = 0;
@@ -129,8 +71,8 @@ extern "C" int FUN_0018e410(void *key)
         {
             int e8  = *(int *)(entry + 8);
             int e18 = *(int *)(entry + 0x18);
-            int k8  = *(int *)((char *)key + 8);
-            int k18 = *(int *)((char *)key + 0x18);
+            int k8  = STRUCT_OFFSET(key, 0x8, int);
+            int k18 = STRUCT_OFFSET(key, 0x18, int);
             match = ((e8 ^ e18) ^ (k8 ^ k18)) == 0;
         }
 
@@ -143,13 +85,7 @@ extern "C" int FUN_0018e410(void *key)
     return -1;
 }
 
-/**
- * @brief Retrieves the display name string for a cutscene by index.
- *
- * @param index Cutscene index.
- * @return Pointer to cutscene name string, or fallback string if index is out of bounds.
- */
-extern "C" void *FUN_0018e480(int index)
+void *FUN_0018e480(int index)
 {
     if ((unsigned)index < 0x10)
         return D_002699C0[index];
@@ -160,23 +96,12 @@ extern "C" void *FUN_0018e480(int index)
     return &D_0024B588;
 }
 
-/**
- * @brief Sets the next cutscene to play and marks it unlocked in the game state.
- *
- * @param index Cutscene index to unlock and queue.
- */
-extern "C" void FUN_0018e4c0(int index)
+void FUN_0018e4c0(int index)
 {
-    FUN_0018f0e8(&g_mpeg, D_002484B0 + (index << 5));
+    g_mpeg.FUN_0018f0e8(D_002484B0 + (index << 5));
 }
 
-/**
- * @brief Unlocks and queues a primary and secondary cutscene pair.
- *
- * @param index1 Primary cutscene index to queue for playback.
- * @param index2 Secondary cutscene index to mark unlocked in game state.
- */
-extern "C" void FUN_0018e4f0(int index1, int index2)
+void FUN_0018e4f0(int index1, int index2)
 {
     FUN_0018e4c0(index1);
 
@@ -191,15 +116,7 @@ extern "C" void FUN_0018e4f0(int index1, int index2)
     g_pgsCur->unlocked_cutscenes |= mask;
 }
 
-/**
- * @brief Background display thread procedure for double-buffered GIF rendering.
- *
- * @details Waits on semaphore field_130, then executes DMA transfers of GIF packets
- *          to present decoded MPEG frames to the GS framebuffer.
- *
- * @param param Unused thread parameter.
- */
-extern "C" void FUN_0018e558(void *)
+void FUN_0018e558(void *)
 {
     while (true)
     {
@@ -221,9 +138,6 @@ extern "C" void FUN_0018e558(void *)
     }
 }
 
-/**
- * @brief Initializes the MPEG playback subsystem and launches background render thread.
- */
 void StartupMpeg()
 {
     int sema = SemaCreate(0, 1);
@@ -243,12 +157,6 @@ void StartupMpeg()
     StartThread(tid, 0);
 }
 
-/**
- * @brief Initializes the IOP output queue with buffer capacity and destination address.
- *
- * @param a1 Queue capacity in bytes.
- * @param a2 Destination memory address on IOP.
- */
 void CQueueOutputIop::Init(int a1, int a2)
 {
     m_pbIop = a2;
@@ -256,9 +164,6 @@ void CQueueOutputIop::Init(int a1, int a2)
     Reset();
 }
 
-/**
- * @brief Resets IOP output queue pointers and byte counters.
- */
 void CQueueOutputIop::Reset()
 {
     m_cbFree = m_cb;
@@ -273,13 +178,6 @@ static inline int Min(int nA, int nB)
     return (nA < nB) ? nA : nB;
 }
 
-/**
- * @brief Clamps and transfers audio stream data to IOP memory in 1KB chunks.
- *
- * @param cb Number of bytes to write.
- * @param pv Source buffer containing audio stream data.
- * @return Total number of bytes sent to IOP.
- */
 int CQueueOutputIop::CbWrite(int cb, void *pv)
 {
     int cbSent = 0;
@@ -313,13 +211,6 @@ int CQueueOutputIop::CbWrite(int cb, void *pv)
     return cbSent;
 }
 
-/**
- * @brief Sends an audio buffer chunk to IOP sound memory via SIF DMA.
- *
- * @param size Number of bytes to transfer.
- * @param buf Pointer to data buffer.
- * @return Number of bytes transferred.
- */
 int CQueueOutputIop::CbSend(int size, void *buf)
 {
     struct {
@@ -346,9 +237,6 @@ int CQueueOutputIop::CbSend(int size, void *buf)
     return size;
 }
 
-/**
- * @brief Updates IOP audio stream buffer state and available free space.
- */
 void CQueueOutputIop::Update()
 {
     int cb = snd_GetTransStatus() & 0xFFFFFF;
@@ -368,23 +256,11 @@ void CQueueOutputIop::Update()
     m_ibAlloc = ib % m_cb;
 }
 
-/**
- * @brief Checks if IOP output queue has drained asynchronously.
- *
- * @return Always 0 (synchronous transfers).
- */
 int CQueueOutputIop::FAsyncDrain()
 {
     return 0;
 }
 
-/**
- * @brief Transmits compressed video macroblock bitstream to IPU via DMA.
- *
- * @param cb Number of bytes to send (max 4KB, 16-byte aligned).
- * @param pv Source bitstream buffer.
- * @return Bytes transferred.
- */
 int CQueueOutputIpu::CbWrite(int cb, void *pv)
 {
     cb = (unsigned int)cb & 0xFFFFFFF0;
@@ -403,19 +279,11 @@ int CQueueOutputIpu::CbWrite(int cb, void *pv)
     return cb;
 }
 
-/**
- * @brief Checks if IPU output queue drain operation is asynchronous.
- *
- * @return Always 1 (asynchronous DMA to IPU).
- */
 int CQueueOutputIpu::FAsyncDrain()
 {
     return 1;
 }
 
-/**
- * @brief Initializes MPEG streaming audio, pausing game sounds and setting movie volume.
- */
 void CMpegAudio::Init()
 {
     snd_PauseAllSoundsInGroup(0xFFFFFFFF);
@@ -432,7 +300,9 @@ void CMpegAudio::Init()
     int pbIop = snd_InitMovieSound(0x6000, 0x400, 0, 2, 2);
     if (pbIop < 0) {
         m_state = 0;
-    } else {
+    }
+    else
+    {
         m_state = 1;
         m_bqSsp.Init(0x28, &m_ssp);
         m_bq.Init(0xC000, D_002CBB40);
@@ -440,9 +310,6 @@ void CMpegAudio::Init()
     }
 }
 
-/**
- * @brief Resets movie sound stream and internal byte queues.
- */
 void CMpegAudio::Reset()
 {
     if (!m_state)
@@ -456,9 +323,6 @@ void CMpegAudio::Reset()
     m_qo.Reset();
 }
 
-/**
- * @brief Closes movie sound and restores global audio volumes and reverb.
- */
 void CMpegAudio::Close()
 {
     m_state = 0;
@@ -469,13 +333,6 @@ void CMpegAudio::Close()
     snd_ContinueAllSoundsInGroup(0xFFFFFFFF);
 }
 
-/**
- * @brief Ingests demuxed audio packets into preface and audio byte queues.
- *
- * @param cb Size of incoming audio packet.
- * @param pb Pointer to audio packet data.
- * @return 1 on success, 0 on failure or insufficient queue space.
- */
 int CMpegAudio::FAccept(int cb, unsigned char *pb)
 {
     if (m_state == 0)
@@ -503,9 +360,6 @@ LSuccess:
     return 1;
 }
 
-/**
- * @brief Drives audio queue playback states and feeds IOP audio ring buffer.
- */
 void CMpegAudio::Update()
 {
     switch (m_state)
@@ -527,14 +381,6 @@ void CMpegAudio::Update()
     }
 }
 
-/**
- * @brief Callback receiving demuxed MPEG video elementary stream data.
- *
- * @param mpeg Pointer to sceMpeg context.
- * @param data Pointer to demuxed stream callback data.
- * @param cmpeg Pointer to CMpeg instance.
- * @return 1 on success, 0 if buffer full.
- */
 int FMpegAcceptVideo(sceMpeg *mpeg, sceMpegCbDataStr *data, CMpeg *cmpeg)
 {
     int size = data->len;
@@ -545,27 +391,11 @@ int FMpegAcceptVideo(sceMpeg *mpeg, sceMpegCbDataStr *data, CMpeg *cmpeg)
     return 1;
 }
 
-/**
- * @brief Callback receiving demuxed MPEG audio elementary stream data.
- *
- * @param mpeg Pointer to sceMpeg context.
- * @param data Pointer to demuxed stream callback data.
- * @param cmpeg Pointer to CMpeg instance.
- * @return Result of CMpegAudio::FAccept.
- */
 int FMpegAcceptAudio(sceMpeg *mpeg, sceMpegCbDataStr *data, CMpeg *cmpeg)
 {
     return cmpeg->m_maud.FAccept(data->len, (uchar *)data->data);
 }
 
-/**
- * @brief Callback invoked when video decoder needs to supply bitstream to IPU.
- *
- * @param pscempeg Pointer to sceMpeg context.
- * @param pmcd Pointer to callback data.
- * @param pmpeg Pointer to CMpeg instance.
- * @return 1 on success.
- */
 int FMpegDecodeVideo(sceMpeg *pscempeg, sceMpegCbData *pmcd, CMpeg *pmpeg)
 {
     char ab[64];
@@ -587,44 +417,17 @@ int FMpegDecodeVideo(sceMpeg *pscempeg, sceMpegCbData *pmcd, CMpeg *pmpeg)
     return 1;
 }
 
-/**
- * @brief Callback invoked when MPEG demuxer is idle.
- *
- * @param mpeg Pointer to sceMpeg context.
- * @param data Pointer to callback data.
- * @param cmpeg Pointer to CMpeg instance.
- * @return 1.
- */
 int FMpegDecoderIdle(sceMpeg *mpeg, sceMpegCbData *data, CMpeg *cmpeg)
 {
     cmpeg->CbDemuxed(0);
     return 1;
 }
 
-/**
- * @brief Callback invoked on MPEG decoder error.
- *
- * @param mpeg Pointer to sceMpeg context.
- * @param data Pointer to callback data.
- * @param cmpeg Pointer to CMpeg instance.
- * @return 1.
- */
 int FMpegDecoderError(sceMpeg *mpeg, sceMpegCbData *data, CMpeg *cmpeg)
 {
     return 1;
 }
 
-/**
- * @brief Generates DMA/GIF display packet sending decoded macroblocks to GS framebuffer.
- *
- * @param aqwMpegGifs Output packet buffer.
- * @param ambImage Decoded macroblock pixel data.
- * @param dx Video frame width.
- * @param dy Video frame height.
- * @param igs GS context index.
- * @param x Frame X display coordinate.
- * @param y Frame Y display coordinate.
- */
 void BuildMpegGifs(
     QW *aqwMpegGifs,
     sceIpuRGB32 *ambImage,
@@ -666,14 +469,7 @@ void BuildMpegGifs(
     gifs.Detach(0, 0);
 }
 
-/**
- * @brief Constructs full-screen textured quad GIF packet to present decoded MPEG frame.
- *
- * @param dst Output buffer for DMA/GIF tags.
- * @param u Texture horizontal dimension in macroblocks.
- * @param v Texture vertical dimension in macroblocks.
- */
-extern "C" void FUN_0018ef78(void *dst, int u, int v)
+void FUN_0018ef78(void *dst, int u, int v)
 {
     GIFS gifs;
 
@@ -705,18 +501,12 @@ extern "C" void FUN_0018ef78(void *dst, int u, int v)
     gifs.Detach(0, 0);
 }
 
-/**
- * @brief Queues the cutscene specified by key into the MPEG player and marks it unlocked.
- *
- * @param mpeg Pointer to CMpeg instance.
- * @param key Pointer to cutscene OID key descriptor.
- */
-extern "C" void FUN_0018f0e8(CMpeg *mpeg, void *key)
+void CMpeg::FUN_0018f0e8(void *key)
 {
-    if (mpeg->oid_2)
+    if (oid_2)
         return;
 
-    mpeg->oid_2 = (OID)(uint)key;
+    oid_2 = (OID)(uint)key;
 
     int index = FUN_0018e410(key);
     int mask;
@@ -728,9 +518,6 @@ extern "C" void FUN_0018f0e8(CMpeg *mpeg, void *key)
     g_pgsCur->unlocked_cutscenes |= mask;
 }
 
-/**
- * @brief Plays queued cutscene OIDs sequentially.
- */
 void CMpeg::ExecuteOids()
 {
     void *oid2 = m_poidNext;
@@ -742,29 +529,17 @@ void CMpeg::ExecuteOids()
         Execute((OID *)oid2);
 }
 
-/**
- * @brief Compares two cutscene OID key descriptors for identity.
- *
- * @param entry Table entry pointer.
- * @param key Candidate key pointer.
- * @return 1 if keys match, 0 otherwise.
- */
 static inline int FEqualKey(void *entry, void *key)
 {
     if (entry == key)
         return 1;
     if (entry == NULL || key == NULL)
         return 0;
-    return (((*(int *)((char *)entry + 8) ^ *(int *)((char *)entry + 0x18)) ^
-             (*(int *)((char *)key + 8) ^ *(int *)((char *)key + 0x18)))) == 0;
+    return (((STRUCT_OFFSET(entry, 0x8, int) ^ STRUCT_OFFSET(entry, 0x18, int)) ^
+             (STRUCT_OFFSET(key, 0x8, int) ^ STRUCT_OFFSET(key, 0x18, int)))) == 0;
 }
 
-/**
- * @brief Core cutscene playback loop and controller.
- *
- * @param poid Pointer to cutscene OID key descriptor identifying file sector and length.
- */
-void CMpeg::Execute(OID *poid)
+void CMpeg::Execute(void *poid)
 {
     SetPhase(PHASE_Mpeg);
     oid_1 = (OID)FUN_0018e410(poid);
@@ -777,15 +552,15 @@ void CMpeg::Execute(OID *poid)
     }
     else
     {
-        fl.m_fcl.cb = *(uint *)((char *)poid + 0x4) ^ *(uint *)((char *)poid + 0x1C);
-        fl.m_fcl.isector = *(uint *)((char *)poid + 0x0) ^ *(uint *)((char *)poid + 0x14);
+        fl.m_fcl.cb = STRUCT_OFFSET(poid, 0x4, uint) ^ STRUCT_OFFSET(poid, 0x1C, uint);
+        fl.m_fcl.isector = STRUCT_OFFSET(poid, 0x0, uint) ^ STRUCT_OFFSET(poid, 0x14, uint);
         fOk = (bool)fl.m_fcl.cb;
     }
 
     if (fOk && bas.FOpenFile(&fl))
     {
         Start(&bas);
-        while (func_0020B0B0(&m_scempeg) == 0)
+        while (sceMpegIsEnd(&m_scempeg) == 0)
         {
             MarkClockTickRealOnly(&g_clock);
             UpdateJoy(&g_joy);
@@ -837,22 +612,11 @@ void CMpeg::Execute(OID *poid)
     ClearPhase(PHASE_Mpeg);
 }
 
-/**
- * @brief Converts a pointer to an uncached memory address.
- *
- * @param pv Pointer to convert.
- * @return Pointer in uncached KSEG1 address space.
- */
 static inline void *PvUncachedFromPv(void *pv)
 {
     return (void *)((uint)pv | 0x20000000);
 }
 
-/**
- * @brief Initializes MPEG decoder hardware, stream queues, and anti-tamper CRC table.
- *
- * @param pbas Source binary async stream.
- */
 void CMpeg::Start(CBinaryAsyncStream *pbas)
 {
     m_pbas = pbas;
@@ -861,15 +625,15 @@ void CMpeg::Start(CBinaryAsyncStream *pbas)
     m_bqVideo.Init(0x30000, PvUncachedFromPv(&D_0042AAC0));
     m_maud.Init();
 
-    func_0020ADA0();
-    func_0020AE40(&m_scempeg, m_pbWork, 0x152F68);
+    sceMpegInit();
+    sceMpegCreate(&m_scempeg, m_pbWork, 0x152F68);
 
-    func_0020A538(&m_scempeg, 0, 0, (void *)FMpegAcceptVideo, this);
-    func_0020A538(&m_scempeg, 2, 0, (void *)FMpegAcceptAudio, this);
+    sceMpegAddStrCallback(&m_scempeg, 0, 0, (void *)FMpegAcceptVideo, this);
+    sceMpegAddStrCallback(&m_scempeg, 2, 0, (void *)FMpegAcceptAudio, this);
 
-    func_0020B168(&m_scempeg, 1, (void *)FMpegDecodeVideo, this);
-    func_0020B168(&m_scempeg, 4, (void *)FMpegDecoderIdle, this);
-    func_0020B168(&m_scempeg, 0, (void *)FMpegDecoderError, this);
+    sceMpegAddCallback(&m_scempeg, 1, (void *)FMpegDecodeVideo, this);
+    sceMpegAddCallback(&m_scempeg, 4, (void *)FMpegDecoderIdle, this);
+    sceMpegAddCallback(&m_scempeg, 0, (void *)FMpegDecoderError, this);
 
     while (CbDemuxed(1) != 0)
     {
@@ -900,17 +664,8 @@ void CMpeg::Start(CBinaryAsyncStream *pbas)
     }
 }
 
-/**
- * @brief Anti-tamper verification failure flag (1 = checksum mismatch).
- */
 extern int D_00269B48;
 
-/**
- * @brief Progresses background anti-tamper CRC32 calculation over the game executable text segment.
- *
- * @details Checksums 4 bytes per call starting from 0x100010. If the final CRC fails to match
- *          the expected value, flag D_00269B48 is set to trigger anti-tamper countermeasures.
- */
 void CMpeg::FUN_0018f610()
 {
     if (field_140 <= 0)
@@ -931,9 +686,6 @@ void CMpeg::FUN_0018f610()
     }
 }
 
-/**
- * @brief Advances MPEG playback: demuxes stream, decodes video frame, and syncs display thread.
- */
 void CMpeg::Update()
 {
     if (field_134 == 1)
@@ -943,7 +695,7 @@ void CMpeg::Update()
         } while (field_134 == 1);
     }
 
-    if (func_0020B058(&m_scempeg, m_ambDecoded, 1200) < 0)
+    if (sceMpegGetPicture(&m_scempeg, m_ambDecoded, 1200) < 0)
         return;
 
     if (m_scempeg.frameCount == 0)
@@ -968,18 +720,13 @@ void CMpeg::Update()
 }
 
 
-void UploadPermShaders();
-
-/**
- * @brief Shuts down MPEG decoding, waits for render thread, restores GS shaders, and marks cutscene played.
- */
 void CMpeg::Finish()
 {
     m_pbas = 0;
     m_maud.Reset();
     m_maud.Close();
-    func_0020B0C0(&m_scempeg);
-    func_0020B048(&m_scempeg);
+    sceMpegReset(&m_scempeg);
+    sceMpegDelete(&m_scempeg);
 
     while (field_134 != 0)
         ;
@@ -996,25 +743,11 @@ void CMpeg::Finish()
     g_pgsCur->fgs |= mask;
 }
 
-/**
- * @brief Checks if a binary async stream internal buffer is exhausted.
- *
- * @note Inline needed for matching: prevents gcc from duplicating the loop exit test.
- *
- * @param pbas Pointer to binary async stream.
- * @return 1 if buffer is empty, 0 otherwise.
- */
 static inline int FBasEmpty(CBinaryAsyncStream *pbas)
 {
     return pbas->m_cb == pbas->m_ibCur;
 }
 
-/**
- * @brief Feeds the sceMpeg demuxer with new data from the binary async stream.
- *
- * @param fBlock Whether to wait synchronously if stream buffer needs spooling.
- * @return Number of bytes accepted by the demuxer.
- */
 int CMpeg::CbDemuxed(int fBlock)
 {
     while (FBasEmpty(m_pbas))
@@ -1027,26 +760,13 @@ int CMpeg::CbDemuxed(int fBlock)
     FlushCache(0);
     int cbAvail = m_pbas->m_cb - m_pbas->m_ibCur;
     byte *pb = m_pbas->m_pb + m_pbas->m_ibCur;
-    int cb = func_0020A518(&m_scempeg, pb, cbAvail);
+    int cb = sceMpegDemuxPss(&m_scempeg, pb, cbAvail);
     m_pbas->Skip(cb);
     return cb;
 }
 
 JUNK_WORD(0x0002102B);
 
-/**
- * @brief Static initialization helper for MPEG global state.
- */
-extern "C" void mpeg__static_initialization_and_destruction_0(int a1, int a2)
-{
-    if (a2 == 0xFFFF && a1)
-        D_00269AEC = &D_0024B5B8;
-}
+INCLUDE_ASM("asm/nonmatchings/P2/mpeg", mpeg__static_initialization_and_destruction_0);
 
-/**
- * @brief Global constructor calling static initialization for g_mpeg.
- */
-extern "C" void _GLOBAL_$I$g_mpeg()
-{
-    mpeg__static_initialization_and_destruction_0(1, 0xFFFF);
-}
+INCLUDE_ASM("asm/nonmatchings/P2/mpeg", _GLOBAL_$I$g_mpeg);

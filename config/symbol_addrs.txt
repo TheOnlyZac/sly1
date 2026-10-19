@@ -2928,11 +2928,11 @@ s_asnipMissile = 0x2699b0;
 ////////////////////////////////////////////////////////////////
 // P2/mpeg.c
 ////////////////////////////////////////////////////////////////
-FUN_0018e410                                           = 0x18E410; // type:func
-FUN_0018e480                                           = 0x18E480; // type:func
-FUN_0018e4c0                                           = 0x18E4C0; // type:func
-FUN_0018e4f0                                           = 0x18E4F0; // type:func
-FUN_0018e558                                           = 0x18E558; // type:func
+FUN_0018e410__FPv                                       = 0x18E410; // type:func
+FUN_0018e480__Fi                                        = 0x18E480; // type:func
+FUN_0018e4c0__Fi                                        = 0x18E4C0; // type:func
+FUN_0018e4f0__Fii                                       = 0x18E4F0; // type:func
+FUN_0018e558__FPv                                       = 0x18E558; // type:func
 StartupMpeg__Fv                                        = 0x18E5E8; // type:func
 Init__15CQueueOutputIopii                              = 0x18E678; // type:func
 Reset__15CQueueOutputIop                               = 0x18E6A0; // type:func
@@ -2953,10 +2953,10 @@ FMpegDecodeVideo__FP7sceMpegP13sceMpegCbDataP5CMpeg    = 0x18ECA8; // type:func
 FMpegDecoderIdle__FP7sceMpegP13sceMpegCbDataP5CMpeg    = 0x18ED78; // type:func
 FMpegDecoderError__FP7sceMpegP13sceMpegCbDataP5CMpeg   = 0x18EDA0; // type:func
 BuildMpegGifs__FP2QWP11sceIpuRGB32iiiii                = 0x18EDA8; // type:func
-FUN_0018ef78                                           = 0x18EF78; // type:func
-FUN_0018f0e8                                           = 0x18F0E8; // type:func
+FUN_0018ef78__FPvii                                     = 0x18EF78; // type:func
+FUN_0018f0e8__5CMpegPv                                  = 0x18F0E8; // type:func
 ExecuteOids__5CMpeg                                    = 0x18F148; // type:func
-Execute__5CMpegP3OID                                   = 0x18F198; // type:func
+Execute__5CMpegPv                                   = 0x18F198; // type:func
 Start__5CMpegP18CBinaryAsyncStream                     = 0x18F448; // type:func
 FUN_0018f610__5CMpeg                                   = 0x18F610; // type:func
 Update__5CMpeg                                         = 0x18F6E8; // type:func
@@ -5353,4 +5353,15 @@ sceMcInit = 0x2093F0; // type:func
 // misc
 ////////////////////////////////////////////////////////////////
 __floatdisf = 0x1fb6b0; // type:func
+
+sceMpegDemuxPss = 0x20A518; // type:func
+sceMpegAddStrCallback = 0x20A538; // type:func
+sceMpegInit = 0x20ADA0; // type:func
+sceMpegCreate = 0x20AE40; // type:func
+sceMpegDelete = 0x20B048; // type:func
+sceMpegGetPicture = 0x20B058; // type:func
+sceMpegIsEnd = 0x20B0B0; // type:func
+sceMpegReset = 0x20B0C0; // type:func
+sceMpegAddCallback = 0x20B168; // type:func
+
 

@@ -314,4 +314,21 @@ int GetAMRegister(int reg);
  */
 void UpdateAMRegister(int reg, int value);
 
+enum REVERBK
+{
+    REVERBK_None = 0,
+    REVERBK_StudioA = 1,
+    REVERBK_StudioB = 2,
+    REVERBK_StudioC = 3,
+    REVERBK_Pipe = 4,
+    REVERBK_Room = 5,
+    REVERBK_Max = 6,
+    REVERBK_Nil = -1
+};
+
+struct SW;
+
+void PushSwReverb(SW *psw, REVERBK reverb, int k);
+void PopSwReverb(SW *psw);
+
 #endif // SOUND_H
