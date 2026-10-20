@@ -149,6 +149,7 @@ struct JOY
 };
 
 extern JOY g_joy;
+extern JOY g_joyZero;
 
 // MARK:User
 

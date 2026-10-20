@@ -37,7 +37,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadVag__FPc2FK);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001be708);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadVag1);
+INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadVag1__FPc);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FPauseForVag__Fv);
 

@@ -15,9 +15,13 @@ struct ACTSEG;
  * @class ANIMATION_SEGMENT_APPLICATION
  * @brief Unknown.
  */
+struct ASEG;
+
 struct ASEGA : public BASIC
 {
-    /* 0x08 */ STRUCT_PADDING(7);
+    /* 0x08 */ ASEG *paseg;
+    /* 0x0c */ ALO *paloRoot;
+    /* 0x10 */ STRUCT_PADDING(5);
     /* 0x24 */ char fHandsOff;
     /* 0x25 */ undefined1 unk1;
     /* 0x26 */ undefined1 unk2;
@@ -31,5 +35,6 @@ struct ASEGA : public BASIC
 // ...
 
 void RetractAsega(ASEGA *pasega);
+void SubscribeAsegaObject(ASEGA *pasega, LO *plo);
 
 #endif // ASEGA_H

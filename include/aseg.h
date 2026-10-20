@@ -53,7 +53,8 @@ struct CHN
  */
 struct ASEG : public LO
 {
-    /* 0x34 */ STRUCT_PADDING(14);
+    /* 0x34 */ float tMax;
+    /* 0x38 */ STRUCT_PADDING(13);
     /* 0x6c */ DL dlAsega;
     /* 0x78 */ STRUCT_PADDING(2);
     /* 0x80 */ CLQ clqMasterSuck;

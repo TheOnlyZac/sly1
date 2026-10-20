@@ -216,4 +216,8 @@ void SetSwDarkenSmooth(SW *psw, float rDarkenSmooth);
 
 void CancelSwDialogPlaying(SW *psw);
 
+void FUN_001ddb58(SW *psw);
+
+void FUN_001ddbb8(SW *psw);
+
 #endif // SW_H
