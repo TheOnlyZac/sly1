@@ -54,7 +54,12 @@ class CFileLocation
 public:
     FCL m_fcl; // File sector and size.
 
-    // void Clear();
+    CFileLocation()
+    {
+        Clear();
+    }
+
+    void Clear();
 };
 
 /**
