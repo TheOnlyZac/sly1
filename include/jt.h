@@ -153,8 +153,10 @@ struct JT : public STEP
     JTS jts;                // 0x2220
     int unk_0x2224;
     JTBS jtbs;              // 0x2228
+    int unk_0x222c[4];
+    JTS jts_0x223c;         // 0x223C
 
-    STRUCT_PADDING(328);
+    STRUCT_PADDING(323);
     undefined1 padding2_extra;
 
     int unk_0x2750;

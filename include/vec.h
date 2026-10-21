@@ -171,4 +171,55 @@ int FCalculateMuzzleVelocityAngle(VECTOR *pposLaunch, VECTOR *pposTarget, float 
  */
 void LimitVectorLength(VECTOR *pvec, float glength, VECTOR *presult);
 
+extern VECTOR g_normalX;
+
+/**
+ * @brief Normalizes a 3D vector. If magnitude is near zero, defaults to g_normalX.
+ *
+ * @param pvecOut Pointer to resulting normalized vector.
+ * @param pvecIn Pointer to input vector.
+ * @param pvecDefault Default normal vector if length < 0.0001f.
+ */
+static inline void NormalizeVector(VECTOR *pvecOut, const VECTOR *pvecIn, const VECTOR *pvecDefault)
+{
+    asm (
+        ".set push\n"
+        ".set noreorder\n"
+        ".set noat\n"
+        "lqc2    $vf3, %1\n"
+        "vmul.xyz $vf1, $vf3, $vf3\n"
+        "vaddw.x $vf2, $vf0, $vf0w\n"
+        "vadday.x ACC, $vf1, $vf1y\n"
+        "vmaddz.x $vf1, $vf2, $vf1z\n"
+        "lui     $1, (0x38D1B717 >> 16)\n"
+        "ori     $1, $1, (0x38D1B717 & 0xFFFF)\n"
+        "mtc1    $1, $f1\n"
+        ".word   0x4A0103BD\n"
+        "vwaitq\n"
+        "vaddq.x $vf1, $vf0, Q\n"
+        "lq      $4, -16+%1\n"
+        "qmfc2.ni $3, $vf1\n"
+        "addiu   $2, $2, %%lo(g_normalX)\n"
+        "mtc1    $3, $f0\n"
+        "lq      $2, 0($2)\n"
+        "c.lt.s  $f0, $f1\n"
+        "addiu   $3, $0, 6\n"
+        "sq      $4, 16+%0\n"
+        "bc1f    1f\n"
+        "sw      $3, -16+%0\n"
+        "b       2f\n"
+        "qmtc2.ni $2, $vf1\n"
+        "1:\n"
+        "vdiv    Q, $vf0w, $vf1x\n"
+        "vwaitq\n"
+        "vmulq.xyzw $vf1, $vf3, Q\n"
+        "2:\n"
+        "sqc2    $vf1, %0\n"
+        ".set pop\n"
+        : "=m"(*pvecOut)
+        : "m"(*pvecIn), "m"(*pvecDefault)
+        : "$1", "$3", "$4", "$f0", "$f1", "memory"
+    );
+}
+
 #endif // VEC_H

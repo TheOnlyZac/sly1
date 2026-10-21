@@ -14,7 +14,12 @@
  */
 struct SBG : public STEPGUARD
 {
-    // ...
+    /* 0xb78 */ STRUCT_PADDING(38);
+    /* 0xc10 */ int cHit;
+    /* 0xc14 */ ASEG *pasegHit;
+    /* 0xc18 */ ASEG *pasegHit2;
+    /* 0xc1c */ ASEG *pasegHit3;
+    /* 0xc20 */ ASEGA *pasegaHit;
 };
 
 extern BLOT g_unkblot7;
