@@ -1,6 +1,6 @@
 #include <sce/memset.h>
 #include <splice/proc.h>
-#include <splice/splotheap.h>
+#include <splice/spliceutils.h>
 
 void CProc::CloneTo(CProc *pprocClone, CFrame *pframeClone)
 {

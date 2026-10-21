@@ -48,6 +48,13 @@ void InitSave(SAVE *psave, int unk1, int unk2);
 
 void UpdateSave(SAVE *psave);
 
+/**
+ * @brief Unknown function.
+ * @param psave Pointer to save file.
+ * @todo Figure out what this actually does, give better name. 
+ */
+void FUN_0018c7f8(SAVE *psave);
+
 extern SAVE g_save;
 
 #endif // MEMCARD_H

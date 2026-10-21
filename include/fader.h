@@ -8,11 +8,14 @@
 #include <alo.h>
 
 /**
- * @todo Implement the struct.
+ * @brief Fader.
  */
 struct FADER
 {
-    // ...
+    /* 0x00 */ ALO *palo;
+    /* 0x04 */ float uAlpha;
+    /* 0x08 */ float duAlpha;
+    /* 0x0c */ DLE dle;
 };
 
 /**

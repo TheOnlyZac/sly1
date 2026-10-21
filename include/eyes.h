@@ -25,13 +25,18 @@ enum EYESS
  */
 struct EYES : public SAA
 {
-    /* 0x30 */ int unk[0x4];
-    /* 0x3c */ OID oid;
-    /* 0x40 */ int unk2;
-    /* 0x44 */ SHD *pshd;
-    /* 0x48 */ int unk1[0x6];
+    /* 0x2c */ float dtBlink;
+    /* 0x30 */ float dtOpenMin;
+    /* 0x34 */ float dtOpenMax;
+    /* 0x38 */ float uDoubleBlink;
+    /* 0x3c */ OID oidOther;
+    /* 0x40 */ SAI saiOther;
+    /* 0x5c */ int cframe;
     /* 0x60 */ EYESS eyess;
-    /* 0x70 */ float iframe;
+    /* 0x64 */ float tEyess;
+    /* 0x68 */ float dtOpen;
+    /* 0x6c */ float sviframe;
+    /* 0x70 */ float gframe;
     /* 0x74 */ float uClosed;
 };
 

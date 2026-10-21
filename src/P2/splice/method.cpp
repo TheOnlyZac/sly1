@@ -1,9 +1,7 @@
 #include <sce/memset.h>
 #include <splice/method.h>
-#include <splice/splotheap.h>
+#include <splice/spliceutils.h>
 
-// todo: matches but blocked by reference in 001c15d8
-// INCLUDE_ASM("asm/nonmatchings/P2/splice/method", PmethodNew__Fv);
 CMethod *PmethodNew()
 {
     CMethod *method = (CMethod *)g_splotheapMethod.PvAllocClear();

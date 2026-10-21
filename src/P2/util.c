@@ -6,9 +6,11 @@
 static const float PI = 3.14159265359f;
 const int PRIME_MOD = 0x95675;
 
-#ifdef SKIP_ASM
+// .data
+CLQ g_clqZero = {0.0f, 0.0f, 0.0f, 0.0f};
+CLQ g_clqOne = {1.0f, 0.0f, 0.0f, 0.0f};
 LM g_lmZeroOne = {0.0f, 1.0f};
-#endif
+LM g_lmNegOneOne = {-1.0f, 1.0f};
 
 float RadNormalize(float rad)
 {
@@ -367,6 +369,6 @@ void Force(void *pv)
     return;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/util", MinimizeRange);
+INCLUDE_ASM("asm/nonmatchings/P2/util", MinimizeRange__FPFPvf_fPvffffPfT6);
 
 JUNK_ADDIU(C0);

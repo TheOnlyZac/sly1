@@ -21,6 +21,7 @@ typedef void (*PFNFILTER)(void *, SO *); // TODO: Figure out if this is correct.
 // Forward.
 struct OXA;
 struct VISMAP;
+struct SPLC;
 
 /**
  * @class WORLD
@@ -51,11 +52,15 @@ struct SW : public LO
     /* 0x1b58 */ SLOTHEAP slotheapAsega;
     /* 0x1b64 */ STRUCT_PADDING(6);
     /* 0x1b7c */ DL dlAsegaPending;
-    /* 0x1b88 */ STRUCT_PADDING(24);
+    /* 0x1b88 */ SLOTHEAP slotheapSma;
+    /* 0x1b94 */ DL dlSma;
+    /* 0x1ba0 */ STRUCT_PADDING(18);
     /* 0x1be8 */ DL dlLight;
     /* 0x1bf4 */ STRUCT_PADDING(6);
     /* 0x1c0c */ SLOTHEAP slotheapStso;
-    /* 0x1c18 */ STRUCT_PADDING(9);
+    /* 0x1c18 */ SLOTHEAP slotheapFader;
+    /* 0x1c24 */ DL dlFader;
+    /* 0x1c30 */ DL dlRealClockFader;
     /* 0x1c3c */ DL dlProxy;
     /* 0x1c48 */ DL dlFly;
     /* 0x1c54 */ DL dlDprize;
@@ -65,15 +70,23 @@ struct SW : public LO
     /* 0x1c84 */ DL dlSpire;
     /* 0x1c90 */ DL dlRail;
     /* 0x1c9c */ DL dlLanding;
-    /* 0x1ca8 */ STRUCT_PADDING(9); // Likely 3 DL's.
+    /* 0x1ca8 */ DL dlBusyLasen;
+    /* 0x1cb4 */ DL dlBlipg;
+    /* 0x1cc0 */ DL dlBlipgFree;
     /* 0x1ccc */ DL dlCrfod;
-    /* 0x1cd8 */ STRUCT_PADDING(36);
+    /* 0x1cd8 */ STRUCT_PADDING(4);
+    /* 0x1ce8 */ LO *aploStock[29];
+    /* 0x1d5c */ STRUCT_PADDING(3);
     /* 0x1d68 */ LSM lsmDefault;
     /* 0x1d70 */ STRUCT_PADDING(85);
     /* 0x1ec4 */ VISMAP *pvismap;
     /* 0x1ec8 */ MQ *pmqCallbackFirst;
     /* 0x1ecc */ MQ *pmqCallbackLast;
-    /* 0x1ed0 */ STRUCT_PADDING(274);
+    /* 0x1ed0 */ STRUCT_PADDING(8);
+    /* 0x1ef0 */ int csplcSplice;
+    /* 0x1ef4 */ SPLC *asplcSplice;
+    /* 0x1ef8 */ uint symidScheduledCallbackList;
+    /* 0x1efc */ STRUCT_PADDING(263);
     /* 0x2318 */ float gexcMenu;
     /* 0x231c */ int cHandsOff;
     /* 0x2320 */ STRUCT_PADDING(11);
@@ -194,6 +207,7 @@ int FLevelSwSecondary(SW *psw, WID wid);
 int FLevelSwTertiary(SW *psw, WID wid);
 
 // TODO: Add unknown functions here.
+void FUN_001ddc38(SW *psw, LO *plo);
 
 void SetSwPlayerSuck(SW *psw, float uSuck);
 

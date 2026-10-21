@@ -148,7 +148,10 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", AdjustSoMomint__FP2SOf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", DiscardSoXps__FP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", UpdateSoPosWorldPrev__FP2SO);
+void UpdateSoPosWorldPrev(SO *pso)
+{
+    STRUCT_OFFSET(pso, 0x370, qword) = STRUCT_OFFSET(pso, 0x140, qword);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", TranslateSoToPos__FP2SOP6VECTOR);
 

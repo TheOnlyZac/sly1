@@ -10,6 +10,7 @@
 #include <splice/gc.h>
 #include <splice/ref.h>
 #include <splice/vecmat.h>
+#include <splice/sidebag.h>
 
 extern CGc g_gc;
 

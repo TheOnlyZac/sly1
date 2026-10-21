@@ -1,7 +1,161 @@
 #include <splice/bif.h>
 #include <splice/ref.h>
 #include <splice/frame.h>
+#include <gcc/math.h>
+#include <util.h>
 #include <po.h>
+
+/**
+ * @brief Function pointer for uniform float operation dispatch.
+ */
+typedef float (*PFNUFO)(float);
+
+/**
+ * @brief Table of uniform float operation functions.
+ */
+static PFNUFO s_mpufokpfnufo[] =
+{
+    sqrtf,        // UFOK_Sqrt
+    sinf,         // UFOK_Sin
+    cosf,         // UFOK_Cos
+    tanf,         // UFOK_Tan
+    asinf,        // UFOK_Asin
+    acosf,        // UFOK_Acos
+    atanf,        // UFOK_Atan
+    RadNormalize, // UFOK_RadNormalize
+};
+
+/**
+ * @brief Table of built-in functions.
+ */
+BIF g_mpbifkbif[125] =
+{
+    {RefOpAdd, 1, 1},
+    {RefOpSub, 1, 1},
+    {RefOpMult, 1, 1},
+    {RefOpDiv, 1, 1},
+    {RefOpPrint, 1, 0},
+    {RefOpPrintFrame, 0, 1},
+    {RefOpPrintSidebag, 1, 0},
+    {RefOpIntEqual, 2, 0},
+    {RefOpL, 2, 0},
+    {RefOpLE, 2, 0},
+    {RefOpG, 2, 0},
+    {RefOpGE, 2, 0},
+    {RefOpEqv, 2, 0},
+    {RefOpEqual, 2, 0},
+    {RefOpIsBoolean, 1, 0},
+    {RefOpIsNum, 1, 0},
+    {RefOpIsInteger, 1, 0},
+    {RefOpIsFloat, 1, 0},
+    {RefOpIsSymbol, 1, 0},
+    {RefOpIsVector, 1, 0},
+    {RefOpIsMatrix, 1, 0},
+    {RefOpIsClq, 1, 0},
+    {RefOpIsLm, 1, 0},
+    {RefOpIsSmp, 1, 0},
+    {RefOpIsList, 1, 0},
+    {RefOpIsNull, 1, 0},
+    {RefOpIsObject, 1, 0},
+    {RefOpIsNullObj, 1, 0},
+    {RefOpIsMethod, 1, 0},
+    {RefOpIsProcedure, 1, 0},
+    {RefOpAreNear, 3, 0},
+    {RefOpNot, 1, 0},
+    {RefOpCons, 2, 0},
+    {RefOpCar, 1, 0},
+    {RefOpCdr, 1, 0},
+    {RefOpSetCar, 2, 0},
+    {RefOpSetCdr, 2, 0},
+    {RefOpLength, 1, 0},
+    {RefOpNth, 2, 0},
+    {RefOpIsMember, 2, 0},
+    {RefOpList, 0, 1},
+    {RefOpAppend, 0, 1},
+    {RefOpMap, 2, 0},
+    {RefOpFilter, 2, 0},
+    {RefOpForEach, 2, 0},
+    {RefOpEval, 1, 0},
+    {RefOpVector, 3, 0},
+    {RefOpMatrix, 0, 1},
+    {RefOpClq, 3, 0},
+    {RefOpLm, 2, 0},
+    {RefOpSmp, 3, 0},
+    {RefOpGetElement, 1, 1},
+    {RefOpRandomSeed, 1, 0},
+    {RefOpRandom, 2, 0},
+    {RefOpSqrt, 1, 0},
+    {RefOpSin, 1, 0},
+    {RefOpCos, 1, 0},
+    {RefOpTan, 1, 0},
+    {RefOpAsin, 1, 0},
+    {RefOpAcos, 1, 0},
+    {RefOpAtan, 1, 0},
+    {RefOpRadNormalize, 1, 0},
+    {RefOpAtan2, 2, 0},
+    {RefOpVectorDotProduct, 2, 0},
+    {RefOpVectorCrossProduct, 2, 0},
+    {RefOpVectorLth, 1, 0},
+    {RefOpVectorDistance, 1, 1},
+    {RefOpVectorDistanceSquared, 1, 1},
+    {RefOpVectorNormalize, 1, 1},
+    {RefOpVectorProjectNormal, 2, 0},
+    {RefOpVectorProjectTangent, 2, 0},
+    {RefOpVectorBallisticVelocity, 3, 1},
+    {RefOpVectorRadianNormal, 2, 0},
+    {RefOpMatrixTranspose, 1, 0},
+    {RefOpMatrixInvert, 1, 0},
+    {RefOpMatrixCalculateDmat, 2, 0},
+    {RefOpMatrixInterpolateRotate, 3, 0},
+    {RefOpMatrixDecomposeToTranslate, 1, 0},
+    {RefOpMatrixDecomposeToRotate, 1, 0},
+    {RefOpMatrixDecomposeToEuler, 1, 0},
+    {RefOpMatrixDecomposeToRadianNormal, 1, 0},
+    {RefOpMatrixLookAt, 2, 1},
+    {RefOpMatrixTiltUpright, 1, 0},
+    {RefOpClqEvaluate, 2, 0},
+    {RefOpClqEvaluateLm, 3, 0},
+    {RefOpClqFit, 4, 0},
+    {RefOpLmLimit, 2, 0},
+    {RefOpLmCheck, 2, 0},
+    {RefOpFloor, 1, 0},
+    {RefOpCeiling, 1, 0},
+    {RefOpRound, 1, 0},
+    {RefOpTruncate, 1, 0},
+    {RefOpAbs, 1, 0},
+    {RefOpMaximum, 1, 1},
+    {RefOpMinimum, 1, 1},
+    {RefOpModulo, 2, 0},
+    {RefOpCurrentTime, 0, 0},
+    {RefOpScheduleCallback, 2, 1},
+    {RefOpDeferObjectUpdate, 2, 0},
+    {RefOpAddO, 3, 0},
+    {RefOpEnsureO, 3, 0},
+    {RefOpSetO, 3, 0},
+    {RefOpGetO, 2, 0},
+    {RefOpFindObject, 2, 0},
+    {RefOpFindObjects, 2, 0},
+    {RefOpFindNearestObject, 2, 0},
+    {RefOpFindNearestObjects, 2, 0},
+    {RefOpFindPlayerObject, 0, 0},
+    {RefOpFindWorldObject, 0, 0},
+    {RefOpFindCameraObject, 0, 0},
+    {RefOpFindClassObjects, 2, 0},
+    {RefOpFindObjectsInBoundingBox, 2, 0},
+    {RefOpFindObjectsInBoundingSphere, 2, 0},
+    {RefOpHitTestObjects, 3, 0},
+    {RefOpHitTestObjectsFirst, 3, 0},
+    {RefOpConvertObjectPosition, 3, 0},
+    {RefOpConvertObjectVector, 3, 0},
+    {RefOpConvertObjectMatrix, 3, 0},
+    {RefOpNearClipCenter, 0, 0},
+    {RefOpStartSound, 2, 0},
+    {RefOpStopSound, 1, 0},
+    {RefOpStartRumble, 2, 0},
+    {RefOpEmitSmokeCloud, 2, 0},
+    {RefOpPredictAnimationEffect, 7, 0},
+    {RefOpSetMusicRegister, 2, 0},
+};
 
 INCLUDE_ASM("asm/nonmatchings/P2/splice/bif", RefOpAdd__FiP4CRefP6CFrame);
 
