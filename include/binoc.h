@@ -29,19 +29,50 @@ struct BEI
     /* 0x28 */ float gNotchCenter;  // Y value at the notch center
 };
 
+/**
+ * @brief Binocular State.
+ */
+enum BINOCS
+{
+    BINOCS_Nil = -1,
+    BINOCS_None = 0,
+    BINOCS_Peek = 1,
+    BINOCS_Dialog = 2,
+    BINOCS_Instruct = 3,
+    BINOCS_Confront = 4,
+    BINOCS_Sniper = 5,
+    BINOCS_Max = 6
+};
+
 struct BINOC : public BLOT
 {
-    STRUCT_PADDING(36);
-    float unk0;
-    undefined4 unk1; // RGBA color value?
-    undefined4 unk2;
+    int binocs;
+    float tBinocs;
+    float tAchzSet;
+    int cichLR;
+    int aichLR[32];
+    union {
+        float svch;
+        float unk0;
+    };
+    union {
+        RGBA rgbaText;
+        undefined4 unk1;
+    };
+    char chPause;
+    char pad_0x2f9[3];
     ALO *paloLookat;
-    float zoom;
+    union {
+        float uZoom;
+        float zoom;
+    };
     float dxReticle;
     float dyReticle;
+    float radReticle;
+    CFont *pfontCompass;
+    float uCompassBarOffset;
     undefined4 unk3;
     undefined4 unk4;
-    float uCompassBarOffset;
 };
 
 /**
@@ -82,6 +113,8 @@ float GEvaluateBei(BEI *pbei, int iseg);
 bool FDoneBinocAchz(BINOC *pbinoc);
 
 void SetBinocLookat(BINOC *binoc, ALO *paloLookat);
+void SetBinocZoom(BINOC *binoc, float zoom);
+void open_close_binoc(void *pbinoc, BINOCS binocs);
 
 /**
  * @brief Horizontal text justification.
@@ -156,5 +189,7 @@ private:
     enum JH m_jh; // Horizontal text justification.
     enum JV m_jv; // Vertical text justification;
 };
+
+extern BINOC g_binoc;
 
 #endif /* BINOC_H */

@@ -311,7 +311,7 @@ segments:
     #- [0x14afbc, .rodata, P2/crv]
     - [0x14afe0, .rodata, P2/dart]
     - [0x14aff8, rodata] # P2/dartgun Alignment issue, this should be 0x14b000.
-    #- [0x14b020, .rodata, P2/dialog]
+    - [0x14b020, .rodata, P2/dialog]
     - [0x14b0e0, .rodata, P2/dmas]
     - [0x14b0f8, rodata]
     #- [0x14b100, .rodata, P2/dzg]

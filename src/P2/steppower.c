@@ -6,7 +6,7 @@
 #include <steprail.h>
 
 // GRFVAULT s_mpfspgrfvault[7];
-extern BLOT g_binoc;   // todo: find where this belongs.
+extern BINOC g_binoc;   // todo: find where this belongs.
 extern int D_00270458; // temp
 // SMP SMP_00274f78; // initialized with { 2.0f, 0.0f, 0.1f }
 

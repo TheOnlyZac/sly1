@@ -84,9 +84,10 @@ enum LOOKK
     LOOKK_Nil = -1,
     LOOKK_User = 0,
     LOOKK_Sniper = 1,
-    LOOKK_Dialog = 2,
-    LOOKK_Confront = 3,
-    LOOKK_Max = 4
+    LOOKK_Unknown = 2,
+    LOOKK_Dialog = 3,
+    LOOKK_Confront = 4,
+    LOOKK_Max = 5
 };
 
 /**
@@ -173,10 +174,11 @@ struct CPLOOK : public CPLCY
     int fSoundPaused;
     AMB *pambBinoc;
     AMB *pambAmbient;
+    undefined4 unk_0x4c;
     ALO *paloFocusSniper;
-    PNT *ppntAnchor;
     float sRadiusSniper;
     float rScreenSniper;
+    PNT *ppntAnchor;
 };
 
 /**

@@ -200,6 +200,21 @@ typedef int IEXC;
 extern IEXC g_iexcHyst;
 
 /**
+ * @brief Preloads a VAG stream by name.
+ */
+void PreloadVag1(char *pchz);
+
+/**
+ * @brief Check if dialog should pause while waiting for VAG buffering.
+ */
+int FPauseForVag();
+
+/**
+ * @brief Stops the currently playing VAG stream.
+ */
+void StopVag();
+
+/**
  * @brief Check if a VAG is playing.
  */
 int FVagPlaying();

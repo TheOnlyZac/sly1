@@ -334,9 +334,9 @@ void CancelSwDialogPlaying(SW *psw)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddb20);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddb58);
+INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddb58__FP2SW);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddbb8);
+INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddbb8__FP2SW);
 JUNK_WORD(0x0002102a);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddbf8);

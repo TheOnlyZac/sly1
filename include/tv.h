@@ -12,6 +12,7 @@
 
 // Forward.
 struct RPL;
+struct LIGHT;
 
 /**
  * @brief TV State.
@@ -43,8 +44,19 @@ enum TVGS
  */
 struct TV : public BLOT
 {
+    TVS tvs;
+    float tTvs;
+    TVGS tvgs;
+    float tTvgs;
+    SPEAKER *pspeaker;
+    SPEAKER *pspeakerDraw;
+    ALO *paloReplace;
+    LIGHT *plight;
     // ...
 };
+
+extern TV g_tvLeft;
+extern TV g_tvRight;
 
 void InitTv(TV *ptv, BLOTK blotk);
 

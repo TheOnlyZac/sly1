@@ -298,7 +298,7 @@ LOOKK LookkCurCm(CM *pcm)
 
 void SetCmSniperFocus(CM *pcm, PNT *ppntAnchor, float sRadiusSniper, float rScreenSniper)
 {
-    pcm->cplook.ppntAnchor = ppntAnchor;
+    pcm->cplook.paloFocusSniper = (ALO *)ppntAnchor;
     pcm->cplook.sRadiusSniper = sRadiusSniper;
     pcm->cplook.rScreenSniper = rScreenSniper;
 }

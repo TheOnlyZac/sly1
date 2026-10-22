@@ -103,7 +103,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/binoc", DrawBinocFilter);
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_00135550);
 
-INCLUDE_ASM("asm/nonmatchings/P2/binoc", open_close_binoc);
+INCLUDE_ASM("asm/nonmatchings/P2/binoc", open_close_binoc__FPv6BINOCS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_001357f0);
 
