@@ -269,6 +269,19 @@ Enumerations</h2></td></tr>
 , <a class="el" href="sound_8h.html#a4e23a876da329fd0e51bf7b110943e85a80b51c33af06fd8c34b84e3f0b6a0fb0">MVGK_Max</a> = 0x9
  }</td></tr>
 <tr class="separator:a4e23a876da329fd0e51bf7b110943e85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94e1ea3b3c55c6496854304f58c4b36d" id="r_a94e1ea3b3c55c6496854304f58c4b36d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36d">REVERBK</a> { <br />
+&#160;&#160;<a class="el" href="sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36da50f2c46cbaaafabbd5cd6abf1ee13798">REVERBK_None</a> = 0
+, <a class="el" href="sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36da0e9da79eb77a0b4871781ca2f9924f26">REVERBK_StudioA</a> = 1
+, <a class="el" href="sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36daa68bbdc979ddf10a688eaef0242fe54f">REVERBK_StudioB</a> = 2
+, <a class="el" href="sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36da909301dc34989765189bd9ff97992ae2">REVERBK_StudioC</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36dafface96e401ace8aa9c3f0cc95f92cee">REVERBK_Pipe</a> = 4
+, <a class="el" href="sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36dac33c4a3efebed4f8ca953b48ec77a2c6">REVERBK_Room</a> = 5
+, <a class="el" href="sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36dace474c94bdc59ed1a733030f319685ca">REVERBK_Max</a> = 6
+, <a class="el" href="sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36dafd06c1a950df63dd3519f0cc9b2d8e0e">REVERBK_Nil</a> = -1
+<br />
+ }</td></tr>
+<tr class="separator:a94e1ea3b3c55c6496854304f58c4b36d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -332,6 +345,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a1295f9f3aa9ca4fb5b663beb474eb89f" id="r_a1295f9f3aa9ca4fb5b663beb474eb89f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sound_8h.html#a1295f9f3aa9ca4fb5b663beb474eb89f">UpdateAMRegister</a> (int reg, int value)</td></tr>
 <tr class="memdesc:a1295f9f3aa9ca4fb5b663beb474eb89f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refreshes the cached AM register <code>reg</code> from the live sequencer value. (<code>value</code> is unused by the body but kept for the caller's ABI.)  <br /></td></tr>
 <tr class="separator:a1295f9f3aa9ca4fb5b663beb474eb89f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe6e6ff712d1f440d006d892a01add21" id="r_abe6e6ff712d1f440d006d892a01add21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sound_8h.html#abe6e6ff712d1f440d006d892a01add21">PushSwReverb</a> (<a class="el" href="structSW.html">SW</a> *psw, <a class="el" href="sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36d">REVERBK</a> reverb, int k)</td></tr>
+<tr class="separator:abe6e6ff712d1f440d006d892a01add21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c991bb023d03044b4a8dc81694fc13a" id="r_a7c991bb023d03044b4a8dc81694fc13a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sound_8h.html#a7c991bb023d03044b4a8dc81694fc13a">PopSwReverb</a> (<a class="el" href="structSW.html">SW</a> *psw)</td></tr>
+<tr class="separator:a7c991bb023d03044b4a8dc81694fc13a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -381,6 +398,32 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a94e1ea3b3c55c6496854304f58c4b36d" name="a94e1ea3b3c55c6496854304f58c4b36d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94e1ea3b3c55c6496854304f58c4b36d">&#9670;&#160;</a></span>REVERBK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36d">REVERBK</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a94e1ea3b3c55c6496854304f58c4b36da50f2c46cbaaafabbd5cd6abf1ee13798" name="a94e1ea3b3c55c6496854304f58c4b36da50f2c46cbaaafabbd5cd6abf1ee13798"></a>REVERBK_None&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a94e1ea3b3c55c6496854304f58c4b36da0e9da79eb77a0b4871781ca2f9924f26" name="a94e1ea3b3c55c6496854304f58c4b36da0e9da79eb77a0b4871781ca2f9924f26"></a>REVERBK_StudioA&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a94e1ea3b3c55c6496854304f58c4b36daa68bbdc979ddf10a688eaef0242fe54f" name="a94e1ea3b3c55c6496854304f58c4b36daa68bbdc979ddf10a688eaef0242fe54f"></a>REVERBK_StudioB&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a94e1ea3b3c55c6496854304f58c4b36da909301dc34989765189bd9ff97992ae2" name="a94e1ea3b3c55c6496854304f58c4b36da909301dc34989765189bd9ff97992ae2"></a>REVERBK_StudioC&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a94e1ea3b3c55c6496854304f58c4b36dafface96e401ace8aa9c3f0cc95f92cee" name="a94e1ea3b3c55c6496854304f58c4b36dafface96e401ace8aa9c3f0cc95f92cee"></a>REVERBK_Pipe&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a94e1ea3b3c55c6496854304f58c4b36dac33c4a3efebed4f8ca953b48ec77a2c6" name="a94e1ea3b3c55c6496854304f58c4b36dac33c4a3efebed4f8ca953b48ec77a2c6"></a>REVERBK_Room&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a94e1ea3b3c55c6496854304f58c4b36dace474c94bdc59ed1a733030f319685ca" name="a94e1ea3b3c55c6496854304f58c4b36dace474c94bdc59ed1a733030f319685ca"></a>REVERBK_Max&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a94e1ea3b3c55c6496854304f58c4b36dafd06c1a950df63dd3519f0cc9b2d8e0e" name="a94e1ea3b3c55c6496854304f58c4b36dafd06c1a950df63dd3519f0cc9b2d8e0e"></a>REVERBK_Nil&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="sound_8h_source.html#l00316">316</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+
+</div>
+</div>
 <a id="a34e9cff1b7a75a2c6744fadf0d600dba" name="a34e9cff1b7a75a2c6744fadf0d600dba"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a34e9cff1b7a75a2c6744fadf0d600dba">&#9670;&#160;</a></span>SFXID</h2>
 
@@ -394,7 +437,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="structSFX.html" title="Sound Effect.">SFX</a> ID. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000249">Todo:</a></b></dt><dd>Figure out what DAT_00262050 is as well as what value is being used in the following functions: WakeSoWater (Gets sound 0, 16, 32, or 48 from DAT_00262050) FireExplsExplso (Seems like an enemy or actor that moves and emits particles) StartSwIntermittentSounds() <a class="el" href="stepcane_8h.html#a50340cade238d14a0fc78a8665f95da9">SetJtJtcs()</a> FUN_001eb748 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000251">Todo:</a></b></dt><dd>Figure out what DAT_00262050 is as well as what value is being used in the following functions: WakeSoWater (Gets sound 0, 16, 32, or 48 from DAT_00262050) FireExplsExplso (Seems like an enemy or actor that moves and emits particles) StartSwIntermittentSounds() <a class="el" href="stepcane_8h.html#a50340cade238d14a0fc78a8665f95da9">SetJtJtcs()</a> FUN_001eb748 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a34e9cff1b7a75a2c6744fadf0d600dbaaf3b1635c97d05f87e4867a965327c59e" name="a34e9cff1b7a75a2c6744fadf0d600dbaaf3b1635c97d05f87e4867a965327c59e"></a>SFXID_UnkNeg2&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a34e9cff1b7a75a2c6744fadf0d600dbaa28896da668c89f2baab78919f8dba266" name="a34e9cff1b7a75a2c6744fadf0d600dbaa28896da668c89f2baab78919f8dba266"></a>SFXID_Nil&#160;</td><td class="fielddoc"></td></tr>
@@ -612,7 +655,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Stops everything related to the sound system. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000036">Todo:</a></b></dt><dd>Figure out func_001c0cb0, and use enum values for params where applicable. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000038">Todo:</a></b></dt><dd>Figure out func_001c0cb0, and use enum values for params where applicable. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="sound_8c_source.html#l00199">199</a> of file <a class="el" href="sound_8c_source.html">sound.c</a>.</p>
 
@@ -676,6 +719,58 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Create a new sound effect. </p>
+
+</div>
+</div>
+<a id="a7c991bb023d03044b4a8dc81694fc13a" name="a7c991bb023d03044b4a8dc81694fc13a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c991bb023d03044b4a8dc81694fc13a">&#9670;&#160;</a></span>PopSwReverb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PopSwReverb </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSW.html">SW</a> *&#160;</td>
+          <td class="paramname"><em>psw</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abe6e6ff712d1f440d006d892a01add21" name="abe6e6ff712d1f440d006d892a01add21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe6e6ff712d1f440d006d892a01add21">&#9670;&#160;</a></span>PushSwReverb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PushSwReverb </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSW.html">SW</a> *&#160;</td>
+          <td class="paramname"><em>psw</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36d">REVERBK</a>&#160;</td>
+          <td class="paramname"><em>reverb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>k</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

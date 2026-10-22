@@ -97,6 +97,10 @@ $(document).ready(function(){initNavTree('classCQueueOutput.html',''); initResiz
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="classCQueueOutput-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">CQueueOutput Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -105,12 +109,101 @@ $(document).ready(function(){initNavTree('classCQueueOutput.html',''); initResiz
  <a href="classCQueueOutput.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="bq_8h_source.html">bq.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for CQueueOutput:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCQueueOutput__inherit__graph.svg" width="310" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a6ceb2a83c45b709a1c49167330d0374d" id="r_a6ceb2a83c45b709a1c49167330d0374d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCQueueOutput.html#a6ceb2a83c45b709a1c49167330d0374d">CbWrite</a> (int cb, void *pv)</td></tr>
+<tr class="memdesc:a6ceb2a83c45b709a1c49167330d0374d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to the queue output destination.  <br /></td></tr>
+<tr class="separator:a6ceb2a83c45b709a1c49167330d0374d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa047c7947bb12fa304fd07894e71601c" id="r_aa047c7947bb12fa304fd07894e71601c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCQueueOutput.html#aa047c7947bb12fa304fd07894e71601c">FAsyncDrain</a> ()</td></tr>
+<tr class="memdesc:aa047c7947bb12fa304fd07894e71601c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if queue output has drained asynchronously.  <br /></td></tr>
+<tr class="separator:aa047c7947bb12fa304fd07894e71601c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a03372d1e3647a50376d897a3b1e45252" id="r_a03372d1e3647a50376d897a3b1e45252"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCQueueOutput.html#a03372d1e3647a50376d897a3b1e45252">m_vtable</a></td></tr>
+<tr class="separator:a03372d1e3647a50376d897a3b1e45252"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>TODO. </p>
+<p>Base interface for draining demuxed data to an output destination. </p>
 
 <p class="definition">Definition at line <a class="el" href="bq_8h_source.html#l00022">22</a> of file <a class="el" href="bq_8h_source.html">bq.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6ceb2a83c45b709a1c49167330d0374d" name="a6ceb2a83c45b709a1c49167330d0374d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ceb2a83c45b709a1c49167330d0374d">&#9670;&#160;</a></span>CbWrite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CQueueOutput::CbWrite </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>cb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes data to the queue output destination. </p>
+
+</div>
+</div>
+<a id="aa047c7947bb12fa304fd07894e71601c" name="aa047c7947bb12fa304fd07894e71601c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa047c7947bb12fa304fd07894e71601c">&#9670;&#160;</a></span>FAsyncDrain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CQueueOutput::FAsyncDrain </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if queue output has drained asynchronously. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a03372d1e3647a50376d897a3b1e45252" name="a03372d1e3647a50376d897a3b1e45252"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03372d1e3647a50376d897a3b1e45252">&#9670;&#160;</a></span>m_vtable</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* CQueueOutput::m_vtable</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpeg_8h_source.html#l00035">35</a> of file <a class="el" href="mpeg_8h_source.html">mpeg.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="bq_8h_source.html">bq.h</a></li>
+<li>include/<a class="el" href="mpeg_8h_source.html">mpeg.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

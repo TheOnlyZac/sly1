@@ -43,7 +43,7 @@ var searchData=
   ['tlastupdate_40',['tLastUpdate',['../structWR.html#ae58320860a26aa009f38b447b2c1cb8c',1,'WR']]],
   ['tlatchx_41',['tLatchX',['../structJOY.html#aefc4c20bb3b9c3981f43cb505a8a7779',1,'JOY']]],
   ['tlatchy_42',['tLatchY',['../structJOY.html#a571daf60980e0d6085165cfa13ae55dc',1,'JOY']]],
-  ['tlocal_43',['tlocal',['../structEA.html#a3297811f0a2fda59fa406ea24f9e7de5',1,'EA::tLocal'],['../structASEGA.html#a1474e9edf075a7c7315b4df1fa10bee8',1,'ASEGA::tLocal'],['../structASEGD.html#a4f3ff7ee757dc3f2872980d25dcf21d5',1,'ASEGD::tLocal']]],
+  ['tlocal_43',['tlocal',['../structASEGD.html#a4f3ff7ee757dc3f2872980d25dcf21d5',1,'ASEGD::tLocal'],['../structEA.html#a3297811f0a2fda59fa406ea24f9e7de5',1,'EA::tLocal'],['../structASEGA.html#a1474e9edf075a7c7315b4df1fa10bee8',1,'ASEGA::tLocal']]],
   ['tlose_44',['tLose',['../structCOIN.html#a91b7f1073a54cb8bee954be8e80cf706',1,'COIN']]],
   ['tmatch_45',['tMatch',['../structACT.html#a269bb92fb630229a2abd72dd0bce6f56',1,'ACT']]],
   ['tmax_46',['tMax',['../structASEG.html#ad16c1b910b4a08b860d52150777cda03',1,'ASEG']]],
@@ -66,5 +66,6 @@ var searchData=
   ['twipe_63',['tWipe',['../structEXIT.html#a19cef84843b517d2e4d3a343e273d9b4',1,'EXIT']]],
   ['twipes_64',['tWipes',['../structWIPE.html#aeb3b1536f80a74cd48abcd68e15eb445',1,'WIPE']]],
   ['twps_65',['twps',['../structWAYPOINT.html#a575183a614bd1a2b0feea289e1c5776d',1,'WAYPOINT::tWps'],['../structRGL.html#aba13e94a266b4eeb12f49f5e4d3560d4',1,'RGL::twps']]],
-  ['txt_66',['txt',['../structSAI.html#ad13374596a2ad98957b057447053389d',1,'SAI']]]
+  ['txt_66',['txt',['../structSAI.html#ad13374596a2ad98957b057447053389d',1,'SAI']]],
+  ['type_67',['type',['../structsceMpegCbDataStr.html#a5a4630fda984ae77fb77562c3fd8fe00',1,'sceMpegCbDataStr::type'],['../structsceMpegCbData.html#a8bc1e2e69ab868431451f4e921079422',1,'sceMpegCbData::type']]]
 ];

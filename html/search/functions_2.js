@@ -33,10 +33,11 @@ var searchData=
   ['buildcontactgroup_30',['BuildContactGroup',['../solve_8h.html#a65e3d031c00e2e705449e58fe69fbf8c',1,'solve.h']]],
   ['buildeopids_31',['BuildEopids',['../spaprops_8h.html#a36b14e769acb10515ac10ca278f50ad7',1,'spaprops.h']]],
   ['buildglobsetsaaarray_32',['BuildGlobsetSaaArray',['../glob_8h.html#a3b7f056c46739518bc8a6b5b0dbce410',1,'glob.h']]],
-  ['buildorthonormalmatrixy_33',['BuildOrthonormalMatrixY',['../mat_8h.html#ad5f65a2d621b879fd99b1ec5d74aaee7',1,'mat.h']]],
-  ['buildorthonormalmatrixz_34',['BuildOrthonormalMatrixZ',['../mat_8h.html#a8a4ef318b3d465d12c003cec636e3cfa',1,'mat.h']]],
-  ['buildrchmcoefficients_35',['BuildRchmCoefficients',['../rchm_8h.html#a4a962702730dbc03d5f08553f3329e47',1,'rchm.h']]],
-  ['buildrotatevectorsmatrix_36',['BuildRotateVectorsMatrix',['../mat_8h.html#a98413387d7ee7ebe18feade283097181',1,'mat.h']]],
-  ['buildsimpleprojectionmatrix_37',['buildsimpleprojectionmatrix',['../mat_8c.html#aadbf7011362315cc50971e0112785d7e',1,'BuildSimpleProjectionMatrix(float rx, float ry, float dxOffset, float dyOffset, float sFar, float sNear, MATRIX4 *pmat):&#160;mat.c'],['../mat_8h.html#aadbf7011362315cc50971e0112785d7e',1,'BuildSimpleProjectionMatrix(float rx, float ry, float dxOffset, float dyOffset, float sFar, float sNear, MATRIX4 *pmat):&#160;mat.c']]],
-  ['buildsubgloblighting_38',['BuildSubglobLighting',['../glob_8h.html#a18e31d91402f6fa9a6ca2157a63a7192',1,'glob.h']]]
+  ['buildmpeggifs_33',['buildmpeggifs',['../mpeg_8c.html#a75cc74fb6c23477005a26c7836ee1475',1,'BuildMpegGifs(QW *aqwMpegGifs, sceIpuRGB32 *ambImage, int w, int h):&#160;mpeg.c'],['../mpeg_8h.html#a75cc74fb6c23477005a26c7836ee1475',1,'BuildMpegGifs(QW *aqwMpegGifs, sceIpuRGB32 *ambImage, int w, int h):&#160;mpeg.c']]],
+  ['buildorthonormalmatrixy_34',['BuildOrthonormalMatrixY',['../mat_8h.html#ad5f65a2d621b879fd99b1ec5d74aaee7',1,'mat.h']]],
+  ['buildorthonormalmatrixz_35',['BuildOrthonormalMatrixZ',['../mat_8h.html#a8a4ef318b3d465d12c003cec636e3cfa',1,'mat.h']]],
+  ['buildrchmcoefficients_36',['BuildRchmCoefficients',['../rchm_8h.html#a4a962702730dbc03d5f08553f3329e47',1,'rchm.h']]],
+  ['buildrotatevectorsmatrix_37',['BuildRotateVectorsMatrix',['../mat_8h.html#a98413387d7ee7ebe18feade283097181',1,'mat.h']]],
+  ['buildsimpleprojectionmatrix_38',['buildsimpleprojectionmatrix',['../mat_8c.html#aadbf7011362315cc50971e0112785d7e',1,'BuildSimpleProjectionMatrix(float rx, float ry, float dxOffset, float dyOffset, float sFar, float sNear, MATRIX4 *pmat):&#160;mat.c'],['../mat_8h.html#aadbf7011362315cc50971e0112785d7e',1,'BuildSimpleProjectionMatrix(float rx, float ry, float dxOffset, float dyOffset, float sFar, float sNear, MATRIX4 *pmat):&#160;mat.c']]],
+  ['buildsubgloblighting_39',['BuildSubglobLighting',['../glob_8h.html#a18e31d91402f6fa9a6ca2157a63a7192',1,'glob.h']]]
 ];

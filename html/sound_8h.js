@@ -9,6 +9,16 @@ var sound_8h =
       [ "MVGK_Music", "sound_8h.html#a4e23a876da329fd0e51bf7b110943e85a122e6aa9ee7462ee437cd3008093d036", null ],
       [ "MVGK_Max", "sound_8h.html#a4e23a876da329fd0e51bf7b110943e85a80b51c33af06fd8c34b84e3f0b6a0fb0", null ]
     ] ],
+    [ "REVERBK", "sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36d", [
+      [ "REVERBK_None", "sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36da50f2c46cbaaafabbd5cd6abf1ee13798", null ],
+      [ "REVERBK_StudioA", "sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36da0e9da79eb77a0b4871781ca2f9924f26", null ],
+      [ "REVERBK_StudioB", "sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36daa68bbdc979ddf10a688eaef0242fe54f", null ],
+      [ "REVERBK_StudioC", "sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36da909301dc34989765189bd9ff97992ae2", null ],
+      [ "REVERBK_Pipe", "sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36dafface96e401ace8aa9c3f0cc95f92cee", null ],
+      [ "REVERBK_Room", "sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36dac33c4a3efebed4f8ca953b48ec77a2c6", null ],
+      [ "REVERBK_Max", "sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36dace474c94bdc59ed1a733030f319685ca", null ],
+      [ "REVERBK_Nil", "sound_8h.html#a94e1ea3b3c55c6496854304f58c4b36dafd06c1a950df63dd3519f0cc9b2d8e0e", null ]
+    ] ],
     [ "SFXID", "sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dba", [
       [ "SFXID_UnkNeg2", "sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaaf3b1635c97d05f87e4867a965327c59e", null ],
       [ "SFXID_Nil", "sound_8h.html#a34e9cff1b7a75a2c6744fadf0d600dbaa28896da668c89f2baab78919f8dba266", null ],
@@ -114,6 +124,8 @@ var sound_8h =
     [ "MvgkUnknown1", "sound_8h.html#a2d7dd500e9a719cff2b8048b3cd7beb8", null ],
     [ "MvgkUnknown2", "sound_8h.html#a9452aa099f780976d3065682c6ef824d", null ],
     [ "NewSfx", "sound_8h.html#ac81f1f8c228a7f4261fe16add55985e3", null ],
+    [ "PopSwReverb", "sound_8h.html#a7c991bb023d03044b4a8dc81694fc13a", null ],
+    [ "PushSwReverb", "sound_8h.html#abe6e6ff712d1f440d006d892a01add21", null ],
     [ "SbpEnsureBank", "sound_8h.html#a2bd3d425f827fb71a90e018d90e9e816", null ],
     [ "SetMvgkRvol", "sound_8h.html#ad3b5bad53c411a48a6b711c6e3bf6c14", null ],
     [ "SetMvgkUvol", "sound_8h.html#a9249ca420174871455e9acd082546bb8", null ],

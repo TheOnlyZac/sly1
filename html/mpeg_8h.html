@@ -99,20 +99,24 @@ $(document).ready(function(){initNavTree('mpeg_8h.html',''); initResizable(); })
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">mpeg.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Mpeg video.  
+<p>MPEG video and audio playback stream subsystem.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="oid_8h_source.html">oid.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="bas_8h_source.html">bas.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="libipu_8h_source.html">sdk/ee/libipu.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="libmpeg_8h_source.html">sdk/ee/libmpeg.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="spustrm_8h_source.html">sdk/ee/spustrm.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for mpeg.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="mpeg_8h__incl.svg" width="462" height="476"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="mpeg_8h__incl.svg" width="634" height="476"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -124,12 +128,81 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMpeg.html">CMpeg</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCQueueOutput.html">CQueueOutput</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO.  <a href="classCQueueOutput.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCQueueOutputIop.html">CQueueOutputIop</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queue output implementation streaming audio data to IOP sound memory.  <a href="classCQueueOutputIop.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCQueueOutputIpu.html">CQueueOutputIpu</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queue output implementation streaming compressed video bitstream to IPU via DMA.  <a href="classCQueueOutputIpu.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCByteQueue.html">CByteQueue</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte Queue.  <a href="classCByteQueue.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMpegAudio.html">CMpegAudio</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages streaming MPEG audio playback, SPU buffering, and sound ducking.  <a href="classCMpegAudio.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMpeg.html">CMpeg</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Top-level MPEG cutscene playback controller.  <a href="classCMpeg.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:aaddf673024467ad0b1a5bd0ae7d83f32" id="r_aaddf673024467ad0b1a5bd0ae7d83f32"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeg_8h.html#aaddf673024467ad0b1a5bd0ae7d83f32">MAUDS</a> { <br />
+&#160;&#160;<a class="el" href="mpeg_8h.html#aaddf673024467ad0b1a5bd0ae7d83f32a79eafac5e6e2026454325795cc4407a2">MAUDS_Nil</a> = -1
+, <a class="el" href="mpeg_8h.html#aaddf673024467ad0b1a5bd0ae7d83f32accb60d981902eff20e58799465bb78bd">MAUDS_Dead</a> = 0
+, <a class="el" href="mpeg_8h.html#aaddf673024467ad0b1a5bd0ae7d83f32a89c051b1f0bc18cd8ad48b8fa56c92f9">MAUDS_FillPreface</a> = 1
+, <a class="el" href="mpeg_8h.html#aaddf673024467ad0b1a5bd0ae7d83f32a5db0b17990ffde07c3a64ab1dc3c62e8">MAUDS_FillIop</a> = 2
+, <br />
+&#160;&#160;<a class="el" href="mpeg_8h.html#aaddf673024467ad0b1a5bd0ae7d83f32aeb10f4180ac1af5bea6982a5b08a1e9a">MAUDS_Play</a> = 3
+, <a class="el" href="mpeg_8h.html#aaddf673024467ad0b1a5bd0ae7d83f32aba7f02bc37fd7da0dc156a86bfedd148">MAUDS_Pmaudse</a> = 4
+, <a class="el" href="mpeg_8h.html#aaddf673024467ad0b1a5bd0ae7d83f32a2e0b2a2cf919936d1cde920ed1b0feb0">MAUDS_Max</a> = 5
+<br />
+ }</td></tr>
+<tr class="memdesc:aaddf673024467ad0b1a5bd0ae7d83f32"><td class="mdescLeft">&#160;</td><td class="mdescRight">MPEG Audio State.  <a href="mpeg_8h.html#aaddf673024467ad0b1a5bd0ae7d83f32">More...</a><br /></td></tr>
+<tr class="separator:aaddf673024467ad0b1a5bd0ae7d83f32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a20f6b62713bc6ff6e4e69997553dfc9c" id="r_a20f6b62713bc6ff6e4e69997553dfc9c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeg_8h.html#a20f6b62713bc6ff6e4e69997553dfc9c">FUN_0018e410</a> (void *key)</td></tr>
+<tr class="memdesc:a20f6b62713bc6ff6e4e69997553dfc9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks up the cutscene index (0-15) corresponding to an OID key descriptor.  <br /></td></tr>
+<tr class="separator:a20f6b62713bc6ff6e4e69997553dfc9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab44895921436c9a6a3460a3404927ed4" id="r_ab44895921436c9a6a3460a3404927ed4"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeg_8h.html#ab44895921436c9a6a3460a3404927ed4">FUN_0018e480</a> (int index)</td></tr>
+<tr class="memdesc:ab44895921436c9a6a3460a3404927ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the display name string for a cutscene by index.  <br /></td></tr>
+<tr class="separator:ab44895921436c9a6a3460a3404927ed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae745b48c9762386d78d0d2ef11add579" id="r_ae745b48c9762386d78d0d2ef11add579"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeg_8h.html#ae745b48c9762386d78d0d2ef11add579">FUN_0018e4c0</a> (int index)</td></tr>
+<tr class="memdesc:ae745b48c9762386d78d0d2ef11add579"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the next cutscene to play and marks it unlocked in the game state.  <br /></td></tr>
+<tr class="separator:ae745b48c9762386d78d0d2ef11add579"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a858c6526e637b46e3920940bd96b8028" id="r_a858c6526e637b46e3920940bd96b8028"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeg_8h.html#a858c6526e637b46e3920940bd96b8028">FUN_0018e4f0</a> (int index1, int index2)</td></tr>
+<tr class="memdesc:a858c6526e637b46e3920940bd96b8028"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlocks and queues a primary and secondary cutscene pair.  <br /></td></tr>
+<tr class="separator:a858c6526e637b46e3920940bd96b8028"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa942c1505299d84d9e047158c537cdb6" id="r_aa942c1505299d84d9e047158c537cdb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeg_8h.html#aa942c1505299d84d9e047158c537cdb6">FUN_0018e558</a> (void *param)</td></tr>
+<tr class="memdesc:aa942c1505299d84d9e047158c537cdb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Background display thread procedure for double-buffered GIF rendering.  <br /></td></tr>
+<tr class="separator:aa942c1505299d84d9e047158c537cdb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4322c69937fed78fb40a5eafc06978c8" id="r_a4322c69937fed78fb40a5eafc06978c8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeg_8h.html#a4322c69937fed78fb40a5eafc06978c8">FMpegAcceptVideo</a> (<a class="el" href="structsceMpeg.html">sceMpeg</a> *mpeg, <a class="el" href="structsceMpegCbDataStr.html">sceMpegCbDataStr</a> *data, <a class="el" href="classCMpeg.html">CMpeg</a> *cmpeg)</td></tr>
+<tr class="memdesc:a4322c69937fed78fb40a5eafc06978c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback receiving demuxed MPEG video elementary stream data.  <br /></td></tr>
+<tr class="separator:a4322c69937fed78fb40a5eafc06978c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae825a31fa1738ba7924c62b94d2754b" id="r_aae825a31fa1738ba7924c62b94d2754b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeg_8h.html#aae825a31fa1738ba7924c62b94d2754b">FMpegAcceptAudio</a> (<a class="el" href="structsceMpeg.html">sceMpeg</a> *mpeg, <a class="el" href="structsceMpegCbDataStr.html">sceMpegCbDataStr</a> *data, <a class="el" href="classCMpeg.html">CMpeg</a> *cmpeg)</td></tr>
+<tr class="memdesc:aae825a31fa1738ba7924c62b94d2754b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback receiving demuxed MPEG audio elementary stream data.  <br /></td></tr>
+<tr class="separator:aae825a31fa1738ba7924c62b94d2754b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb63b5dfeb035ad5b34a86587547f591" id="r_acb63b5dfeb035ad5b34a86587547f591"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeg_8h.html#acb63b5dfeb035ad5b34a86587547f591">FMpegDecodeVideo</a> (<a class="el" href="structsceMpeg.html">sceMpeg</a> *pscempeg, <a class="el" href="structsceMpegCbData.html">sceMpegCbData</a> *pmcd, <a class="el" href="classCMpeg.html">CMpeg</a> *pmpeg)</td></tr>
+<tr class="memdesc:acb63b5dfeb035ad5b34a86587547f591"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback invoked when video decoder needs to supply bitstream to IPU.  <br /></td></tr>
+<tr class="separator:acb63b5dfeb035ad5b34a86587547f591"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c6e8452cf3bfb3d8afa0ec7dba55d6f" id="r_a5c6e8452cf3bfb3d8afa0ec7dba55d6f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeg_8h.html#a5c6e8452cf3bfb3d8afa0ec7dba55d6f">FMpegDecoderIdle</a> (<a class="el" href="structsceMpeg.html">sceMpeg</a> *mpeg, <a class="el" href="structsceMpegCbData.html">sceMpegCbData</a> *data, <a class="el" href="classCMpeg.html">CMpeg</a> *cmpeg)</td></tr>
+<tr class="memdesc:a5c6e8452cf3bfb3d8afa0ec7dba55d6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback invoked when MPEG demuxer is idle.  <br /></td></tr>
+<tr class="separator:a5c6e8452cf3bfb3d8afa0ec7dba55d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c5b72d2f2ec77562d35c51db22a32a8" id="r_a0c5b72d2f2ec77562d35c51db22a32a8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeg_8h.html#a0c5b72d2f2ec77562d35c51db22a32a8">FMpegDecoderError</a> (<a class="el" href="structsceMpeg.html">sceMpeg</a> *mpeg, <a class="el" href="structsceMpegCbData.html">sceMpegCbData</a> *data, <a class="el" href="classCMpeg.html">CMpeg</a> *cmpeg)</td></tr>
+<tr class="memdesc:a0c5b72d2f2ec77562d35c51db22a32a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback invoked on MPEG decoder error.  <br /></td></tr>
+<tr class="separator:a0c5b72d2f2ec77562d35c51db22a32a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75cc74fb6c23477005a26c7836ee1475" id="r_a75cc74fb6c23477005a26c7836ee1475"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeg_8h.html#a75cc74fb6c23477005a26c7836ee1475">BuildMpegGifs</a> (<a class="el" href="unionQW.html">QW</a> *aqwMpegGifs, <a class="el" href="structsceIpuRGB32.html">sceIpuRGB32</a> *ambImage, int w, int h)</td></tr>
+<tr class="memdesc:a75cc74fb6c23477005a26c7836ee1475"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates DMA/GIF display packet sending decoded macroblocks to <a class="el" href="structGS.html" title="Game State.">GS</a> framebuffer.  <br /></td></tr>
+<tr class="separator:a75cc74fb6c23477005a26c7836ee1475"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4185a39f444250da07ab473b8a9a09f5" id="r_a4185a39f444250da07ab473b8a9a09f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeg_8h.html#a4185a39f444250da07ab473b8a9a09f5">FUN_0018ef78</a> (void *dst, int u, int v)</td></tr>
+<tr class="memdesc:a4185a39f444250da07ab473b8a9a09f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs full-screen textured quad GIF packet to present decoded MPEG frame.  <br /></td></tr>
+<tr class="separator:a4185a39f444250da07ab473b8a9a09f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a511384d7c2874885466b7b148657e01b" id="r_a511384d7c2874885466b7b148657e01b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeg_8h.html#a511384d7c2874885466b7b148657e01b">StartupMpeg</a> ()</td></tr>
+<tr class="memdesc:a511384d7c2874885466b7b148657e01b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spawns the dedicated MPEG background display thread.  <br /></td></tr>
 <tr class="separator:a511384d7c2874885466b7b148657e01b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -138,10 +211,527 @@ Variables</h2></td></tr>
 <tr class="separator:a223cb8cf66b8444c076149a2d3dbea47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Mpeg video. </p>
+<div class="textblock"><p>MPEG video and audio playback stream subsystem. </p>
 
 <p class="definition">Definition in file <a class="el" href="mpeg_8h_source.html">mpeg.h</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="aaddf673024467ad0b1a5bd0ae7d83f32" name="aaddf673024467ad0b1a5bd0ae7d83f32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaddf673024467ad0b1a5bd0ae7d83f32">&#9670;&#160;</a></span>MAUDS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="mpeg_8h.html#aaddf673024467ad0b1a5bd0ae7d83f32">MAUDS</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MPEG Audio State. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aaddf673024467ad0b1a5bd0ae7d83f32a79eafac5e6e2026454325795cc4407a2" name="aaddf673024467ad0b1a5bd0ae7d83f32a79eafac5e6e2026454325795cc4407a2"></a>MAUDS_Nil&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaddf673024467ad0b1a5bd0ae7d83f32accb60d981902eff20e58799465bb78bd" name="aaddf673024467ad0b1a5bd0ae7d83f32accb60d981902eff20e58799465bb78bd"></a>MAUDS_Dead&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaddf673024467ad0b1a5bd0ae7d83f32a89c051b1f0bc18cd8ad48b8fa56c92f9" name="aaddf673024467ad0b1a5bd0ae7d83f32a89c051b1f0bc18cd8ad48b8fa56c92f9"></a>MAUDS_FillPreface&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaddf673024467ad0b1a5bd0ae7d83f32a5db0b17990ffde07c3a64ab1dc3c62e8" name="aaddf673024467ad0b1a5bd0ae7d83f32a5db0b17990ffde07c3a64ab1dc3c62e8"></a>MAUDS_FillIop&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaddf673024467ad0b1a5bd0ae7d83f32aeb10f4180ac1af5bea6982a5b08a1e9a" name="aaddf673024467ad0b1a5bd0ae7d83f32aeb10f4180ac1af5bea6982a5b08a1e9a"></a>MAUDS_Play&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaddf673024467ad0b1a5bd0ae7d83f32aba7f02bc37fd7da0dc156a86bfedd148" name="aaddf673024467ad0b1a5bd0ae7d83f32aba7f02bc37fd7da0dc156a86bfedd148"></a>MAUDS_Pmaudse&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaddf673024467ad0b1a5bd0ae7d83f32a2e0b2a2cf919936d1cde920ed1b0feb0" name="aaddf673024467ad0b1a5bd0ae7d83f32a2e0b2a2cf919936d1cde920ed1b0feb0"></a>MAUDS_Max&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="mpeg_8h_source.html#l00018">18</a> of file <a class="el" href="mpeg_8h_source.html">mpeg.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a75cc74fb6c23477005a26c7836ee1475" name="a75cc74fb6c23477005a26c7836ee1475"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75cc74fb6c23477005a26c7836ee1475">&#9670;&#160;</a></span>BuildMpegGifs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BuildMpegGifs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionQW.html">QW</a> *&#160;</td>
+          <td class="paramname"><em>aqwMpegGifs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structsceIpuRGB32.html">sceIpuRGB32</a> *&#160;</td>
+          <td class="paramname"><em>ambImage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>h</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generates DMA/GIF display packet sending decoded macroblocks to <a class="el" href="structGS.html" title="Game State.">GS</a> framebuffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aqwMpegGifs</td><td>Output packet buffer. </td></tr>
+    <tr><td class="paramname">ambImage</td><td>Decoded macroblock pixel data. </td></tr>
+    <tr><td class="paramname">w</td><td>Video frame width. </td></tr>
+    <tr><td class="paramname">h</td><td>Video frame height. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="mpeg_8c_source.html#l00421">421</a> of file <a class="el" href="mpeg_8c_source.html">mpeg.c</a>.</p>
+
+</div>
+</div>
+<a id="aae825a31fa1738ba7924c62b94d2754b" name="aae825a31fa1738ba7924c62b94d2754b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae825a31fa1738ba7924c62b94d2754b">&#9670;&#160;</a></span>FMpegAcceptAudio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FMpegAcceptAudio </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsceMpeg.html">sceMpeg</a> *&#160;</td>
+          <td class="paramname"><em>mpeg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structsceMpegCbDataStr.html">sceMpegCbDataStr</a> *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCMpeg.html">CMpeg</a> *&#160;</td>
+          <td class="paramname"><em>cmpeg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback receiving demuxed MPEG audio elementary stream data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mpeg</td><td>Pointer to <a class="el" href="structsceMpeg.html" title="PS2 sceMpeg library decoder state structure.">sceMpeg</a> context. </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to demuxed stream callback data. </td></tr>
+    <tr><td class="paramname">cmpeg</td><td>Pointer to <a class="el" href="classCMpeg.html" title="Top-level MPEG cutscene playback controller.">CMpeg</a> instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Result of <a class="el" href="classCMpegAudio.html#a605959f8035d48bdf7a62dc9ddb81ec1" title="Ingests demuxed audio packets into preface and audio byte queues.">CMpegAudio::FAccept</a>. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="mpeg_8c_source.html#l00385">385</a> of file <a class="el" href="mpeg_8c_source.html">mpeg.c</a>.</p>
+
+</div>
+</div>
+<a id="a4322c69937fed78fb40a5eafc06978c8" name="a4322c69937fed78fb40a5eafc06978c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4322c69937fed78fb40a5eafc06978c8">&#9670;&#160;</a></span>FMpegAcceptVideo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FMpegAcceptVideo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsceMpeg.html">sceMpeg</a> *&#160;</td>
+          <td class="paramname"><em>mpeg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structsceMpegCbDataStr.html">sceMpegCbDataStr</a> *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCMpeg.html">CMpeg</a> *&#160;</td>
+          <td class="paramname"><em>cmpeg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback receiving demuxed MPEG video elementary stream data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mpeg</td><td>Pointer to <a class="el" href="structsceMpeg.html" title="PS2 sceMpeg library decoder state structure.">sceMpeg</a> context. </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to demuxed stream callback data. </td></tr>
+    <tr><td class="paramname">cmpeg</td><td>Pointer to <a class="el" href="classCMpeg.html" title="Top-level MPEG cutscene playback controller.">CMpeg</a> instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 on success, 0 if buffer full. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="mpeg_8c_source.html#l00375">375</a> of file <a class="el" href="mpeg_8c_source.html">mpeg.c</a>.</p>
+
+</div>
+</div>
+<a id="a0c5b72d2f2ec77562d35c51db22a32a8" name="a0c5b72d2f2ec77562d35c51db22a32a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c5b72d2f2ec77562d35c51db22a32a8">&#9670;&#160;</a></span>FMpegDecoderError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FMpegDecoderError </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsceMpeg.html">sceMpeg</a> *&#160;</td>
+          <td class="paramname"><em>mpeg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structsceMpegCbData.html">sceMpegCbData</a> *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCMpeg.html">CMpeg</a> *&#160;</td>
+          <td class="paramname"><em>cmpeg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback invoked on MPEG decoder error. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mpeg</td><td>Pointer to <a class="el" href="structsceMpeg.html" title="PS2 sceMpeg library decoder state structure.">sceMpeg</a> context. </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to callback data. </td></tr>
+    <tr><td class="paramname">cmpeg</td><td>Pointer to <a class="el" href="classCMpeg.html" title="Top-level MPEG cutscene playback controller.">CMpeg</a> instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="mpeg_8c_source.html#l00416">416</a> of file <a class="el" href="mpeg_8c_source.html">mpeg.c</a>.</p>
+
+</div>
+</div>
+<a id="a5c6e8452cf3bfb3d8afa0ec7dba55d6f" name="a5c6e8452cf3bfb3d8afa0ec7dba55d6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c6e8452cf3bfb3d8afa0ec7dba55d6f">&#9670;&#160;</a></span>FMpegDecoderIdle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FMpegDecoderIdle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsceMpeg.html">sceMpeg</a> *&#160;</td>
+          <td class="paramname"><em>mpeg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structsceMpegCbData.html">sceMpegCbData</a> *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCMpeg.html">CMpeg</a> *&#160;</td>
+          <td class="paramname"><em>cmpeg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback invoked when MPEG demuxer is idle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mpeg</td><td>Pointer to <a class="el" href="structsceMpeg.html" title="PS2 sceMpeg library decoder state structure.">sceMpeg</a> context. </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to callback data. </td></tr>
+    <tr><td class="paramname">cmpeg</td><td>Pointer to <a class="el" href="classCMpeg.html" title="Top-level MPEG cutscene playback controller.">CMpeg</a> instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="mpeg_8c_source.html#l00410">410</a> of file <a class="el" href="mpeg_8c_source.html">mpeg.c</a>.</p>
+
+</div>
+</div>
+<a id="acb63b5dfeb035ad5b34a86587547f591" name="acb63b5dfeb035ad5b34a86587547f591"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb63b5dfeb035ad5b34a86587547f591">&#9670;&#160;</a></span>FMpegDecodeVideo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FMpegDecodeVideo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsceMpeg.html">sceMpeg</a> *&#160;</td>
+          <td class="paramname"><em>pscempeg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structsceMpegCbData.html">sceMpegCbData</a> *&#160;</td>
+          <td class="paramname"><em>pmcd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCMpeg.html">CMpeg</a> *&#160;</td>
+          <td class="paramname"><em>pmpeg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback invoked when video decoder needs to supply bitstream to IPU. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pscempeg</td><td>Pointer to <a class="el" href="structsceMpeg.html" title="PS2 sceMpeg library decoder state structure.">sceMpeg</a> context. </td></tr>
+    <tr><td class="paramname">pmcd</td><td>Pointer to callback data. </td></tr>
+    <tr><td class="paramname">pmpeg</td><td>Pointer to <a class="el" href="classCMpeg.html" title="Top-level MPEG cutscene playback controller.">CMpeg</a> instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 on success. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="mpeg_8c_source.html#l00390">390</a> of file <a class="el" href="mpeg_8c_source.html">mpeg.c</a>.</p>
+
+</div>
+</div>
+<a id="a20f6b62713bc6ff6e4e69997553dfc9c" name="a20f6b62713bc6ff6e4e69997553dfc9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20f6b62713bc6ff6e4e69997553dfc9c">&#9670;&#160;</a></span>FUN_0018e410()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FUN_0018e410 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Looks up the cutscene index (0-15) corresponding to an OID key descriptor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Pointer to cutscene OID entry. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Cutscene index in [0, 15], or -1 if not found. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="mpeg_8c_source.html#l00050">50</a> of file <a class="el" href="mpeg_8c_source.html">mpeg.c</a>.</p>
+
+</div>
+</div>
+<a id="ab44895921436c9a6a3460a3404927ed4" name="ab44895921436c9a6a3460a3404927ed4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab44895921436c9a6a3460a3404927ed4">&#9670;&#160;</a></span>FUN_0018e480()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * FUN_0018e480 </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the display name string for a cutscene by index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>Cutscene index. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to cutscene name string, or fallback string if index is out of bounds. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="mpeg_8c_source.html#l00086">86</a> of file <a class="el" href="mpeg_8c_source.html">mpeg.c</a>.</p>
+
+</div>
+</div>
+<a id="ae745b48c9762386d78d0d2ef11add579" name="ae745b48c9762386d78d0d2ef11add579"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae745b48c9762386d78d0d2ef11add579">&#9670;&#160;</a></span>FUN_0018e4c0()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_0018e4c0 </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the next cutscene to play and marks it unlocked in the game state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>Cutscene index to unlock and queue. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="mpeg_8c_source.html#l00097">97</a> of file <a class="el" href="mpeg_8c_source.html">mpeg.c</a>.</p>
+
+</div>
+</div>
+<a id="a858c6526e637b46e3920940bd96b8028" name="a858c6526e637b46e3920940bd96b8028"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a858c6526e637b46e3920940bd96b8028">&#9670;&#160;</a></span>FUN_0018e4f0()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_0018e4f0 </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unlocks and queues a primary and secondary cutscene pair. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index1</td><td>Primary cutscene index to queue for playback. </td></tr>
+    <tr><td class="paramname">index2</td><td>Secondary cutscene index to mark unlocked in game state. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="mpeg_8c_source.html#l00102">102</a> of file <a class="el" href="mpeg_8c_source.html">mpeg.c</a>.</p>
+
+</div>
+</div>
+<a id="aa942c1505299d84d9e047158c537cdb6" name="aa942c1505299d84d9e047158c537cdb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa942c1505299d84d9e047158c537cdb6">&#9670;&#160;</a></span>FUN_0018e558()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_0018e558 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>param</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Background display thread procedure for double-buffered GIF rendering. </p>
+<p>Waits on semaphore field_130, then executes DMA transfers of GIF packets to present decoded MPEG frames to the <a class="el" href="structGS.html" title="Game State.">GS</a> framebuffer.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">param</td><td>Unused thread parameter. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="mpeg_8c_source.html#l00117">117</a> of file <a class="el" href="mpeg_8c_source.html">mpeg.c</a>.</p>
+
+</div>
+</div>
+<a id="a4185a39f444250da07ab473b8a9a09f5" name="a4185a39f444250da07ab473b8a9a09f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4185a39f444250da07ab473b8a9a09f5">&#9670;&#160;</a></span>FUN_0018ef78()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUN_0018ef78 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>v</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs full-screen textured quad GIF packet to present decoded MPEG frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dst</td><td>Output buffer for DMA/GIF tags. </td></tr>
+    <tr><td class="paramname">u</td><td>Texture horizontal dimension in macroblocks. </td></tr>
+    <tr><td class="paramname">v</td><td>Texture vertical dimension in macroblocks.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>Figure out what the magic numbers mean. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="mpeg_8c_source.html#l00458">458</a> of file <a class="el" href="mpeg_8c_source.html">mpeg.c</a>.</p>
+
+</div>
+</div>
 <a id="a511384d7c2874885466b7b148657e01b" name="a511384d7c2874885466b7b148657e01b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a511384d7c2874885466b7b148657e01b">&#9670;&#160;</a></span>StartupMpeg()</h2>
 
@@ -156,6 +746,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Spawns the dedicated MPEG background display thread. </p>
+
+<p class="definition">Definition at line <a class="el" href="mpeg_8c_source.html#l00139">139</a> of file <a class="el" href="mpeg_8c_source.html">mpeg.c</a>.</p>
 
 </div>
 </div>

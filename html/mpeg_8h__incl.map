@@ -1,32 +1,39 @@
 <map id="include/mpeg.h" name="include/mpeg.h">
-<area shape="rect" id="Node000001" title="Mpeg video." alt="" coords="5,5,128,31"/>
-<area shape="rect" id="Node000002" href="$oid_8h.html" title="Object IDs." alt="" coords="42,445,97,471"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="61,32,29,87,16,124,11,164,11,312,15,347,26,379,55,433,51,435,21,381,10,348,5,313,5,163,11,123,25,85,56,30"/>
-<area shape="rect" id="Node000003" href="$bas_8h.html" title="Binary Async Stream." alt="" coords="169,79,226,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="89,28,165,70,163,74,86,33"/>
-<area shape="rect" id="Node000004" href="$util_8h.html" title="Utility functions." alt="" coords="170,152,225,177"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="200,104,200,138,195,138,195,104"/>
-<area shape="rect" id="Node000013" href="$cat_8h.html" title="WAL catalog." alt="" coords="249,152,303,177"/>
-<area shape="poly" id="edge17_Node000003_Node000013" title=" " alt="" coords="212,102,255,141,251,145,208,106"/>
-<area shape="rect" id="Node000005" href="$vec_8h.html" title="Vector math." alt="" coords="270,299,327,324"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="208,176,285,286,281,289,203,179"/>
-<area shape="rect" id="Node000006" href="$mat_8h.html" title="3x3 and 4x4 matrix types." alt="" coords="269,225,329,251"/>
-<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="215,175,272,215,269,219,212,180"/>
-<area shape="rect" id="Node000007" href="$sm_8h.html" title="Probabilistic finite state machines." alt="" coords="138,225,193,251"/>
-<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="194,179,178,214,174,212,190,177"/>
-<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="301,251,301,285,296,285,296,251"/>
-<area shape="rect" id="Node000008" href="$dl_8h.html" title="Doubly&#45;linked list." alt="" coords="46,372,93,397"/>
-<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="160,253,87,362,82,359,155,250"/>
-<area shape="rect" id="Node000009" href="$mq_8h.html" title="Message queue." alt="" coords="401,372,455,397"/>
-<area shape="poly" id="edge10_Node000007_Node000009" title=" " alt="" coords="177,249,212,284,260,322,316,345,388,369,387,374,314,350,257,326,208,288,173,253"/>
-<area shape="rect" id="Node000010" href="$lo_8h.html" title="Level objects." alt="" coords="143,299,190,324"/>
-<area shape="poly" id="edge11_Node000007_Node000010" title=" " alt="" coords="168,251,169,285,164,285,163,251"/>
-<area shape="poly" id="edge9_Node000008_Node000002" title=" " alt="" coords="72,398,72,432,67,432,67,398"/>
-<area shape="poly" id="edge14_Node000010_Node000002" title=" " alt="" coords="161,326,87,435,83,432,156,323"/>
-<area shape="poly" id="edge12_Node000010_Node000008" title=" " alt="" coords="153,326,98,366,95,361,149,322"/>
-<area shape="poly" id="edge13_Node000010_Node000009" title=" " alt="" coords="191,316,388,369,386,374,190,322"/>
-<area shape="rect" id="Node000011" href="$basic_8h.html" title="Basic object." alt="" coords="169,372,237,397"/>
-<area shape="poly" id="edge15_Node000010_Node000011" title=" " alt="" coords="175,323,193,358,188,361,170,326"/>
-<area shape="rect" id="Node000012" href="$frame_8h.html" title=" " alt="" coords="261,372,376,397"/>
-<area shape="poly" id="edge16_Node000010_Node000012" title=" " alt="" coords="192,321,283,364,281,369,189,326"/>
+<area shape="rect" id="Node000001" title="MPEG video and audio playback stream subsystem." alt="" coords="235,5,357,31"/>
+<area shape="rect" id="Node000002" href="$oid_8h.html" title="Object IDs." alt="" coords="39,445,94,471"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="235,26,163,37,125,47,89,61,57,79,31,102,14,130,8,164,8,312,12,347,23,379,53,433,48,435,19,381,7,348,3,313,3,163,9,128,27,98,54,75,87,56,124,42,162,32,234,20"/>
+<area shape="rect" id="Node000003" href="$bas_8h.html" title="Binary Async Stream." alt="" coords="201,79,258,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="287,33,251,70,248,67,283,29"/>
+<area shape="rect" id="Node000014" href="$libipu_8h.html" title="Image Processing Unit library." alt="" coords="343,152,460,177"/>
+<area shape="poly" id="edge18_Node000001_Node000014" title=" " alt="" coords="300,30,307,64,325,103,346,125,369,143,366,147,342,129,320,105,302,66,295,31"/>
+<area shape="rect" id="Node000015" href="$libmpeg_8h.html" title="MPEG video and audio decoding library." alt="" coords="334,79,469,104"/>
+<area shape="poly" id="edge19_Node000001_Node000015" title=" " alt="" coords="314,28,374,69,372,73,311,33"/>
+<area shape="rect" id="Node000016" href="$spustrm_8h.html" title="SPU audio streaming data structures for MPEG playback." alt="" coords="493,79,627,104"/>
+<area shape="poly" id="edge21_Node000001_Node000016" title=" " alt="" coords="339,28,505,72,503,78,338,33"/>
+<area shape="rect" id="Node000004" href="$util_8h.html" title="Utility functions." alt="" coords="185,152,239,177"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="229,105,221,140,215,138,224,104"/>
+<area shape="rect" id="Node000013" href="$cat_8h.html" title="WAL catalog." alt="" coords="263,152,318,177"/>
+<area shape="poly" id="edge17_Node000003_Node000013" title=" " alt="" coords="241,103,274,140,270,143,237,106"/>
+<area shape="rect" id="Node000005" href="$vec_8h.html" title="Vector math." alt="" coords="285,299,342,324"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="222,176,273,249,299,286,295,289,268,252,218,179"/>
+<area shape="rect" id="Node000006" href="$mat_8h.html" title="3x3 and 4x4 matrix types." alt="" coords="283,225,343,251"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="230,175,287,215,284,219,227,180"/>
+<area shape="rect" id="Node000007" href="$sm_8h.html" title="Probabilistic finite state machines." alt="" coords="153,225,207,251"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="209,179,193,214,188,212,204,177"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="316,251,316,285,311,285,311,251"/>
+<area shape="rect" id="Node000008" href="$dl_8h.html" title="Doubly&#45;linked list." alt="" coords="43,372,90,397"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="173,253,86,363,82,360,169,249"/>
+<area shape="rect" id="Node000009" href="$mq_8h.html" title="Message queue." alt="" coords="398,372,453,397"/>
+<area shape="poly" id="edge10_Node000007_Node000009" title=" " alt="" coords="192,249,226,285,273,322,322,344,386,367,384,372,320,349,271,326,223,288,188,253"/>
+<area shape="rect" id="Node000010" href="$lo_8h.html" title="Level objects." alt="" coords="158,299,205,324"/>
+<area shape="poly" id="edge11_Node000007_Node000010" title=" " alt="" coords="183,251,184,285,178,285,178,251"/>
+<area shape="poly" id="edge9_Node000008_Node000002" title=" " alt="" coords="69,398,69,432,64,432,64,398"/>
+<area shape="poly" id="edge14_Node000010_Node000002" title=" " alt="" coords="174,326,86,436,82,433,170,323"/>
+<area shape="poly" id="edge12_Node000010_Node000008" title=" " alt="" coords="164,326,98,367,96,362,162,322"/>
+<area shape="poly" id="edge13_Node000010_Node000009" title=" " alt="" coords="205,317,386,369,384,374,204,322"/>
+<area shape="rect" id="Node000011" href="$basic_8h.html" title="Basic object." alt="" coords="166,372,234,397"/>
+<area shape="poly" id="edge15_Node000010_Node000011" title=" " alt="" coords="187,324,196,358,191,360,182,325"/>
+<area shape="rect" id="Node000012" href="$frame_8h.html" title=" " alt="" coords="259,372,373,397"/>
+<area shape="poly" id="edge16_Node000010_Node000012" title=" " alt="" coords="204,322,283,363,281,368,202,326"/>
+<area shape="poly" id="edge20_Node000015_Node000014" title=" " alt="" coords="404,104,404,138,399,138,399,104"/>
 </map>
