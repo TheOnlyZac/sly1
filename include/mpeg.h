@@ -3,18 +3,29 @@
  *
  * @brief MPEG video and audio playback stream subsystem.
  */
-
 #ifndef MPEG_H
 #define MPEG_H
 
 #include "common.h"
 #include <oid.h>
 #include <bas.h>
-#include <libmpeg.h>
-#include <libipu.h>
-#include <spustrm.h>
+#include <sdk/ee/libipu.h>
+#include <sdk/ee/libmpeg.h>
+#include <sdk/ee/spustrm.h>
 
-struct sceDmaChan;
+/**
+ * @brief MPEG Audio State.
+ */
+enum MAUDS
+{
+    MAUDS_Nil = -1,
+    MAUDS_Dead = 0,
+    MAUDS_FillPreface = 1,
+    MAUDS_FillIop = 2,
+    MAUDS_Play = 3,
+    MAUDS_Pmaudse = 4,
+    MAUDS_Max = 5,
+};
 
 /**
  * @brief Base interface for draining demuxed data to an output destination.
@@ -74,11 +85,11 @@ public:
     /**
      * @brief Sends an audio buffer chunk to IOP sound memory via SIF DMA.
      *
-     * @param size Number of bytes to transfer.
-     * @param buf Pointer to data buffer.
+     * @param cb Number of bytes to transfer.
+     * @param pv Pointer to data buffer.
      * @return Number of bytes transferred.
      */
-    int CbSend(int size, void *buf);
+    int CbSend(int cb, void *pv);
 
     /**
      * @brief Updates IOP audio stream buffer state and available free space.
@@ -171,18 +182,17 @@ public:
     int CbDrain(int cb, CQueueOutput *pqo);
 };
 
-
 /**
  * @brief Manages streaming MPEG audio playback, SPU buffering, and sound ducking.
  */
 class CMpegAudio
 {
 public:
-    /* 0x00 */ int m_state;
+    /* 0x00 */ MAUDS m_mauds;
     /* 0x04 */ SpuStreamPreface m_ssp;
     /* 0x2c */ CByteQueue m_bqSsp;
     /* 0x4c */ CByteQueue m_bq;
-    /* 0x6c */ CQueueOutputIop m_qo;
+    /* 0x6c */ CQueueOutputIop m_qoi;
     /* 0x8c */ int m_nvolDialogRestore;
     /* 0x90 */ int m_nvolGlobalRestore;
 
@@ -216,22 +226,21 @@ public:
     int FAccept(int cb, unsigned char *pb);
 };
 
-
 /**
  * @brief Top-level MPEG cutscene playback controller.
  */
 class CMpeg
 {
 public:
-    /* 0x00 */ OID oid_1;
-    /* 0x04 */ OID oid_2;
-    /* 0x08 */ void *m_poidNext;
-    /* 0x0c */ CBinaryAsyncStream *m_pbas;
-    /* 0x10 */ sceMpeg m_scempeg;
-    /* 0x54 */ void *m_pbWork;
-    /* 0x58 */ sceIpuRGB32 *m_ambDecoded;
-    /* 0x5c */ CByteQueue m_bqVideo;
-    /* 0x7c */ CMpegAudio m_maud;
+    /* 0x000 */ OID oid_1;
+    /* 0x004 */ OID oid_2;
+    /* 0x008 */ void *m_poidNext;
+    /* 0x00c */ CBinaryAsyncStream *m_pbas;
+    /* 0x010 */ sceMpeg m_scempeg;
+    /* 0x054 */ void *m_pbWork;
+    /* 0x058 */ sceIpuRGB32 *m_ambDecoded;
+    /* 0x05c */ CByteQueue m_bqVideo;
+    /* 0x07c */ CMpegAudio m_maud;
     /* 0x114 */ QW *m_aaqwGifs[2];
     /* 0x11c */ STRUCT_PADDING(5);
     /* 0x130 */ int field_130;
@@ -386,20 +395,10 @@ int FMpegDecoderError(sceMpeg *mpeg, sceMpegCbData *data, CMpeg *cmpeg);
  *
  * @param aqwMpegGifs Output packet buffer.
  * @param ambImage Decoded macroblock pixel data.
- * @param dx Video frame width.
- * @param dy Video frame height.
- * @param igs GS context index.
- * @param x Frame X display coordinate.
- * @param y Frame Y display coordinate.
+ * @param w Video frame width.
+ * @param h Video frame height.
  */
-void BuildMpegGifs(
-    QW *aqwMpegGifs,
-    sceIpuRGB32 *ambImage,
-    int dx,
-    int dy,
-    int igs,
-    int x,
-    int y);
+void BuildMpegGifs(QW *aqwMpegGifs, sceIpuRGB32 *ambImage, int w, int h);
 
 /**
  * @brief Constructs full-screen textured quad GIF packet to present decoded MPEG frame.
