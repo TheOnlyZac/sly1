@@ -8,6 +8,7 @@
 #include <shape.h>
 #include <vec.h>
 #include <bis.h>
+#include <pnt.h>
 #include <so.h>
 
 /**

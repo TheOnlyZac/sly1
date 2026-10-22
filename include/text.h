@@ -143,6 +143,8 @@ extern "C"
      */
     //char *strcpy(char *pchzDst, char *pchzSrc); // conflicts with built-in strcpy
 
+    char *strcpy1(char *pchzDst, char *pchzSrc);
+
     /**
      * @brief Search for a character in a string.
      *

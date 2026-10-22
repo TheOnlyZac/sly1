@@ -51,7 +51,8 @@ struct LSM
  */
 struct LIGHT : public ALO
 {
-    // ...
+    /* 0x2d0 */ LIGHTK lightk;
+    /* 0x2d4 */ STRUCT_PADDING(3);
     /* 0x2e0 */ VECTOR vecHighlight;
     /* 0x2f0 */ float gMidtone;
     /* 0x2f4 */ float gShadow;

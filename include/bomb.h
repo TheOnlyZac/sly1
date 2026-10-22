@@ -15,13 +15,27 @@
 struct WKR;
 
 /**
+ * @brief Bomb detonation type?
+ */
+enum BDT
+{
+    BDT_Nil = -1,
+    BDT_Impact = 0,
+    BDT_Timed = 1,
+    BDT_PropImpact = 2,
+    BDT_Manual = 3,
+    BDT_Player = 4,
+    BDT_Max = 5,
+};
+
+/**
  * @class BOMB
  * @brief Bomb (?).
  * @todo Implement the struct.
  */
 struct BOMB : public SO
 {
-    // ...
+    /* 0x550 */ BDT bdt;
     /* 0x554 */ float tDetonate;
     // ...
     /* 0x680 */ SFX *psfxDet;

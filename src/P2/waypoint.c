@@ -9,8 +9,8 @@ extern VTWPSG g_vtwpsg;
 void InitWaypoint(WAYPOINT *pwaypoint)
 {
     InitAlo(pwaypoint);
-    STRUCT_OFFSET(pwaypoint, 0x2d0, int) = -1; // pwaypoint->oidSync
-    STRUCT_OFFSET(pwaypoint, 0x2e0, int) = -1; // pwaypoint->wps
+    pwaypoint->wps = WPS_Nil;
+    pwaypoint->oidSync = OID_Nil;
 }
 
 void PostWaypointLoad(WAYPOINT *pwaypoint)
@@ -23,8 +23,7 @@ void PostWaypointLoad(WAYPOINT *pwaypoint)
 
 void SetWaypointRsmg(WAYPOINT *pwaypoint, int fOnTrigger, OID oidRoot, OID oidSm, OID oidGoal)
 {
-    // pwaypoint->arsmgSet & pwaypoint->crsmgSet
-    FAddRsmg(&STRUCT_OFFSET(pwaypoint, 0x2e8, RSMG), 4, &STRUCT_OFFSET(pwaypoint, 0x2e4, int), fOnTrigger, oidRoot, oidSm, oidGoal);
+    FAddRsmg(pwaypoint->arsmgSet, 4, &pwaypoint->crsmgSet, fOnTrigger, oidRoot, oidSm, oidGoal);
 }
 
 void UpdateWaypoint(WAYPOINT *pwaypoint, float dt)
@@ -33,13 +32,46 @@ void UpdateWaypoint(WAYPOINT *pwaypoint, float dt)
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/waypoint", SetWaypointWps__FP8WAYPOINT3WPS);
+#ifdef SKIP_ASM
+/**
+ * @todo 98.60% match. Uses "bnez" instead of "beqz".
+ */
+void SetWaypointWps(WAYPOINT *pwaypoint, WPS wps)
+{
+    if (pwaypoint->wps == wps)
+    {
+        return;
+    }
+
+    if (wps == WPS_Passive)
+    {
+        if (pwaypoint->wps == WPS_Active)
+        {
+            TriggerRsmg(g_psw, pwaypoint->crsmgSet, pwaypoint->arsmgSet, pwaypoint, 1);
+        }
+    }
+    else if (wps == WPS_Active)
+    {
+        TriggerRsmg(g_psw, pwaypoint->crsmgSet, pwaypoint->arsmgSet, pwaypoint, 0);
+    }
+
+    MSGWPT msgwpt;
+    msgwpt.pwaypoint = pwaypoint;
+    msgwpt.wpsFrom = pwaypoint->wps;
+    msgwpt.wpsTo = wps;
+
+    pwaypoint->wps = wps;
+    pwaypoint->tWps = g_clock.t;
+
+    pwaypoint->pvtlo->pfnSendLoMessage(pwaypoint, (MSGID)0x16, &msgwpt);
+}
+#endif // SKIP_ASM
 
 void HandleWaypointMessage(WAYPOINT *pwaypoint, MSGID msgid, void *pv)
 {
     HandleAloMessage(pwaypoint, msgid, pv);
 
-    // pwaypoint->paseg
-    if (msgid == MSGID_asega_limit && STRUCT_OFFSET(pv, 0x08, ASEG *) == STRUCT_OFFSET(pwaypoint, 0x2dc, ASEG *))
+    if (msgid == MSGID_asega_limit && STRUCT_OFFSET(pv, 0x08, ASEG *) == pwaypoint->paseg)
     {
         SetWaypointWps(pwaypoint, WPS_Passive);
     }
@@ -54,7 +86,7 @@ WPSG *PwpsgNew()
 
 void AddWpsgWaypoint(WPSG *pwpsg, WAYPOINT *pwaypoint)
 {
-    if (pwpsg->cpwaypoint < 8)
+    if ((uint)pwpsg->cpwaypoint < 8)
     {
         pwpsg->apwaypoint[pwpsg->cpwaypoint++] = pwaypoint;
     }

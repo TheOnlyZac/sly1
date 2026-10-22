@@ -15,12 +15,6 @@
 #include <sound.h>
 #include <target.h>
 
-// Forward declarations
-struct DPRIZE;
-struct COIN;
-struct KEY;
-struct CHARM;
-
 /**
  * @brief DPRIZE state.
  *
@@ -46,42 +40,41 @@ enum DPRIZES
  */
 struct DPRIZE : public ALO
 {
-    OID oidInitialState;
-    float tDprizes;
-    DPRIZES dprizesInit;
-    DPRIZES dprizes; // State
-    float dtInitialSkip;
-    SM *psm;   // State machine
-    SMA *psma; // State machine action
-    TARGET *ptarget;
-    VECTOR posCenter;
-    VECTOR vCenter;
-    VECTOR dvCenter;
-    PNT *ppntFrontGlint;
-    PNT *ppntBackGlint;
-    int fLeft;
-    float uGlintChance;
-    float tGlint;
-    undefined4 unk_0[4];
-    int fNeverReuse;
-    int fReuseCandidate;
-    int fLastBounce;
-    float svLastBounceMax;
-    float svLastBounce;
-    float sRadiusBounce;
-    float sRadiusCollect;
-    float rzBounce;
-    float rxyBounce;
-    float radSmooth;
-    VECTOR normalSmooth;
-    int fSwirlDone;
-    undefined4 unk_1;
-    DLE dle;
-    int ichkCollected;
-    EXPL *pexplCollect;
-    EXPL *pexplAttract;
-    float svcAttract;
-    float cAttract;
+    /* 0x2d0 */ DPRIZES dprizes;
+    /* 0x2d4 */ float tDprizes;
+    /* 0x2d8 */ DPRIZES dprizesInit;
+    /* 0x2dc */ OID oidInitialState;
+    /* 0x2e0 */ float dtInitialSkip;
+    /* 0x2e4 */ SM *psm;
+    /* 0x2e8 */ SMA *psma;
+    /* 0x2ec */ TARGET *ptarget;
+    /* 0x2f0 */ VECTOR posCenter;
+    /* 0x300 */ VECTOR vCenter;
+    /* 0x310 */ VECTOR dvCenter;
+    /* 0x320 */ float uGlintChance;
+    /* 0x324 */ PNT *ppntFrontGlint;
+    /* 0x328 */ PNT *ppntBackGlint;
+    /* 0x32c */ int fLeft;
+    /* 0x330 */ float tGlint;
+    /* 0x334 */ int fNeverReuse;
+    /* 0x338 */ int fReuseCandidate;
+    /* 0x33c */ int fLastBounce;
+    /* 0x340 */ int fUnknown;
+    /* 0x344 */ float svLastBounceMax;
+    /* 0x348 */ float svLastBounce;
+    /* 0x34c */ float sRadiusBounce;
+    /* 0x350 */ float sRadiusCollect;
+    /* 0x354 */ float rzBounce;
+    /* 0x358 */ float rxyBounce;
+    /* 0x35c */ float radSmooth;
+    /* 0x360 */ VECTOR normalSmooth;
+    /* 0x370 */ int fSwirlDone;
+    /* 0x374 */ DLE dle;
+    /* 0x37c */ int ichkCollected;
+    /* 0x380 */ EXPL *pexplCollect;
+    /* 0x384 */ EXPL *pexplAttract;
+    /* 0x388 */ float svcAttract;
+    /* 0x38c */ float cAttract;
 };
 
 /**
@@ -90,22 +83,8 @@ struct DPRIZE : public ALO
  */
 struct COIN : public DPRIZE
 {
-    LM lmDtMaxLifetime;
-    float tLose;
-};
-
-/**
- * @class KEY
- * @brief Treasure key.
- */
-struct KEY : public DPRIZE
-{
-    STRUCT_PADDING(5);  // 0x0 - 0x13 Padding?
-    SW* psw;            // 0x14
-    STRUCT_PADDING(19); // 0x18-0x2b Pading?
-    CFrame* pCFrame;    // 0x2c
-    STRUCT_PADDING(670); // 0x31 - 0x2cf Padding?
-    DPRIZES dprizes;    // 0x2d0
+    /* 0x390 */ LM lmDtMaxLifetime;
+    /* 0x398 */ float tLose;
 };
 
 /**
@@ -115,6 +94,15 @@ struct KEY : public DPRIZE
 struct CHARM : public DPRIZE
 {
     //...
+};
+
+/**
+ * @class KEY
+ * @brief Treasure key.
+ */
+struct KEY : public DPRIZE
+{
+    // ...
 };
 
 /**
