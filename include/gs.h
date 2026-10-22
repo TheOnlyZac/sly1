@@ -55,4 +55,7 @@ void ClearFrameBuffers();
 
 void UploadBitmaps(GRFZON grfzon, GSB *pgsb);
 
+void RestoreGsBuffers();
+void SwapGsBuffers();
+
 #endif // GS_H
