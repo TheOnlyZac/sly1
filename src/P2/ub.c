@@ -1,6 +1,17 @@
 #include <ub.h>
 
-INCLUDE_ASM("asm/nonmatchings/P2/ub", InitUbg__FP3UBG);
+void InitUbg(UBG *pubg)
+{
+    InitGomer(pubg);
+
+    pubg->oidPatrolGoal = OID_state_ubb_round_0;
+    pubg->dzAbandon = 30000.0f;
+    pubg->sAbandon = 30000000.0f;
+    pubg->lmSDetect.gMin = 3000000.0f;
+    pubg->lmSDetect.gMax = 3000000.0f;
+    pubg->lmRadDetect.gMin = 0.0f;
+    pubg->lmRadDetect.gMax = 6.2831855f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/ub", PostUbgLoad__FP3UBG);
 
@@ -33,22 +44,18 @@ SGS SgsNextUbgAI(UBG *pubg)
 
 int FDetectUbg(UBG *pubg)
 {
-    // pubg->fAbandonExternal
-    if (STRUCT_OFFSET(pubg, 0xc40, int) != 0)
+    if (pubg->fAbandonExternal != 0)
         return 0;
 
-    // pubg->cJump
-    return (STRUCT_OFFSET(pubg, 0xc5c, int)) != 0;
+    return pubg->cJump != 0;
 }
 
 int FCanUbgAttack(UBG *pubg)
 {
-    // pubg->oidPatrolGoal
-    if(STRUCT_OFFSET(pubg, 0xc58, OID) != OID_state_ubb_round_3)
+    if (pubg->oidPatrolGoal != OID_state_ubb_round_3)
         return 0;
 
-    // pubg->cJump
-    if(STRUCT_OFFSET(pubg, 0xc5c, int) == 5 || STRUCT_OFFSET(pubg, 0xc5c, int) == 0)
+    if (pubg->cJump == 5 || pubg->cJump == 0)
         return 0;
 
     return 1;
@@ -56,13 +63,11 @@ int FCanUbgAttack(UBG *pubg)
 
 void DoUbgFreefallJump(UBG *pubg)
 {
-    // pubg->oidPatrolGoal
-    if (STRUCT_OFFSET(pubg, 0xc58, OID) != OID_state_ubb_round_2)
+    if (pubg->oidPatrolGoal != OID_state_ubb_round_2)
     {
-        // pubg->cJump
-        int cJump = STRUCT_OFFSET(pubg, 0xc5c, int) - 1;
+        int cJump = pubg->cJump - 1;
         if (cJump < 1) cJump = 0;
-        STRUCT_OFFSET(pubg, 0xc5c, int) = cJump;
+        pubg->cJump = cJump;
     }
 
     DoStepguardFreefallJump(pubg);
@@ -119,9 +124,7 @@ int FIgnoreUbgIntersection(UBG *pubg, SO *psoOther)
 {
     for (uint i = 0; i < 6; i++)
     {
-        // pubg->apsoPads
-        SO **apsoPads = &STRUCT_OFFSET(pubg, 0xc64, SO *);
-        if ((SO *)psoOther->paloRoot == apsoPads[i])
+        if ((SO *)psoOther->paloRoot == pubg->apsoPads[i])
             return 0;
     }
 

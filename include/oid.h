@@ -51,6 +51,8 @@ enum OID
 
     // ...
 
+    OID_state_ubb_round_0 = 0x2d8,
+    OID_state_ubb_round_1 = 0x2d9,
     OID_state_ubb_round_2 = 0x2da,
     OID_state_ubb_round_3 = 0x2db,
 
