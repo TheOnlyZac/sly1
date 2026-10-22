@@ -118,7 +118,16 @@ void UpdateUbgSgs(UBG *pubg)
     UpdateStepguardSgs(pubg);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/ub", FUN_001e8fe8);
+void FUN_001e8fe8()
+{
+    if (FUN_001e9970() != NULL)
+    {
+        g_unkblot7.pvtblot->pfnShowBlot(&g_unkblot7);
+        return;
+    }
+
+    g_unkblot7.pvtblot->pfnHideBlot(&g_unkblot7);
+}
 
 int FIgnoreUbgIntersection(UBG *pubg, SO *psoOther)
 {
