@@ -6,18 +6,11 @@
 #ifndef SCE_SPUSTRM_H
 #define SCE_SPUSTRM_H
 
-#include "types.h"
-
-enum SSK
-{
-    SSK_16bitBigEndian = 0,
-    SSK_16bitLittleEndian = 1
-};
-
 /**
  * @brief Header preface for SPU audio stream chunks.
  */
-struct SpuStreamHeaderPreface {
+struct SpuStreamHeaderPreface
+{
     char achId[4];
     int cbHeader;
 };
@@ -25,7 +18,8 @@ struct SpuStreamHeaderPreface {
 /**
  * @brief Format parameters and loop points for SPU audio stream.
  */
-struct SpuStreamHeader {
+struct SpuStreamHeader
+{
     int ssk;
     int hz;
     int cchan;
@@ -37,7 +31,8 @@ struct SpuStreamHeader {
 /**
  * @brief Body preface preceding audio sample payload chunks.
  */
-struct SpuStreamBodyPreface {
+struct SpuStreamBodyPreface
+{
     char achId[4];
     int cbBody;
 };
@@ -45,7 +40,8 @@ struct SpuStreamBodyPreface {
 /**
  * @brief Full SPU audio stream header composed of prefaces and channel info.
  */
-struct SpuStreamPreface {
+struct SpuStreamPreface
+{
     SpuStreamHeaderPreface sshp;
     SpuStreamHeader ssh;
     SpuStreamBodyPreface ssbp;

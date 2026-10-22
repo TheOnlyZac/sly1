@@ -6,8 +6,7 @@
 #ifndef SCE_LIBMPEG_H
 #define SCE_LIBMPEG_H
 
-#include "types.h"
-#include <libipu.h>
+#include <sdk/ee/libipu.h>
 
 extern "C"
 {
@@ -31,17 +30,12 @@ extern "C"
         sceMpegCbStr = 6
     };
 
-    struct sceMpeg;
-    struct sceMpegCbData;
-    struct sceMpegCbDataStr;
-
-    typedef int (*sceMpegCallback)(sceMpeg *mp, sceMpegCbData *cbData, void *data);
-
     /**
      * @brief MPEG callback data structure for demuxed elementary streams (video/audio).
      */
-    struct sceMpegCbDataStr {
-        int type;
+    struct sceMpegCbDataStr
+    {
+        sceMpegCbType type;
         void *header;
         void *data;
         int len;
@@ -52,7 +46,8 @@ extern "C"
     /**
      * @brief PS2 sceMpeg library decoder state structure.
      */
-    struct sceMpeg {
+    struct sceMpeg
+    {
         int width;
         int height;
         int frameCount;
@@ -63,10 +58,13 @@ extern "C"
         int pad_1C[11];
     };
 
-    struct sceMpegCbData {
+    struct sceMpegCbData
+    {
         int type;
         int pad[7];
     };
+
+    typedef int (*sceMpegCallback)(sceMpeg *mp, sceMpegCbData *cbData, void *data);
 
     int sceMpegDemuxPss(sceMpeg *mpeg, void *data, int size);
     int sceMpegAddStrCallback(sceMpeg *mpeg, int strType, int ch, void *cb, void *data);

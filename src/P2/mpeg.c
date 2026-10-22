@@ -3,6 +3,7 @@
 #include <gs.h>
 #include <sdk/ee/eekernel.h>
 #include <sdk/ee/sifdev.h>
+#include <sdk/ee/sif.h>
 #include <sce/memset.h>
 #include <clock.h>
 #include <joy.h>
@@ -29,7 +30,7 @@ extern void *D_00269AEC;    // Global pointer initialized by static init
 extern char D_00269B4C[];   // Intro cutscene played flag (1 = played)
 extern char D_002C3B00[];   // Buffer for MPEG binary async stream
 extern char D_002CBB40[];   // Audio stream intermediate buffer (0xC000 bytes)
-extern char D_0024B598[];   // Vtable pointer for CQueueOutputIpu
+extern char D_0024B598[];   // Vtable pointer for CQueueOutputIpu (_vt$15CQueueOutputIpu).
 extern char D_002C2B00[];   // Stack buffer for MPEG background display thread (0x1000 bytes)
 extern int D_00275964;      // Background display thread ID
 
@@ -44,10 +45,7 @@ extern char D_00586AC0;     // Display packet GIF buffer 0
 extern char D_00148D68;     // Length of executable text segment to checksum
 extern uint D_005A2E60[256];// CRC32 table calculated at MPEG start
 extern int g_vbact;
-
-extern "C" void FlushCache(int);
-extern "C" int func_001F6CA0(void *, int);
-extern "C" int func_001F6C90(int);
+extern int D_00269B48;
 
 int FUN_0018e410(void *key)
 {
@@ -69,9 +67,9 @@ int FUN_0018e410(void *key)
 
         else
         {
-            int e8  = *(int *)(entry + 8);
-            int e18 = *(int *)(entry + 0x18);
-            int k8  = STRUCT_OFFSET(key, 0x8, int);
+            int e8  = STRUCT_OFFSET(entry, 0x08, int);
+            int e18 = STRUCT_OFFSET(entry, 0x18, int);
+            int k8  = STRUCT_OFFSET(key, 0x08, int);
             int k18 = STRUCT_OFFSET(key, 0x18, int);
             match = ((e8 ^ e18) ^ (k8 ^ k18)) == 0;
         }
@@ -211,30 +209,18 @@ int CQueueOutputIop::CbWrite(int cb, void *pv)
     return cbSent;
 }
 
-int CQueueOutputIop::CbSend(int size, void *buf)
+int CQueueOutputIop::CbSend(int cb, void *pv)
 {
-    struct {
-        void *buf;
-        void *addr;
-        int size;
-        int pad;
-    } pkt;
-
-    pkt.buf = buf;
-    pkt.addr = (char *)m_pbIop + m_ibFree;
-    pkt.size = size;
-    pkt.pad = 0;
+    sceSifDmaData sdma;
+    sdma.data = (unsigned int)pv;
+    sdma.addr = (unsigned int)((char *)m_pbIop + m_ibFree);
+    sdma.size = cb;
+    sdma.mode = 0;
 
     FlushCache(0);
-    int handle = func_001F6CA0(&pkt, 1);
-
-    int result;
-    do {
-        result = func_001F6C90(handle);
-
-    } while (result >= 0);
-
-    return size;
+    int handle = sceSifSetDma(&sdma, 1);
+    while (sceSifDmaStat(handle) >= 0);
+    return cb;
 }
 
 void CQueueOutputIop::Update()
@@ -288,44 +274,47 @@ void CMpegAudio::Init()
 {
     snd_PauseAllSoundsInGroup(0xFFFFFFFF);
     PushSwReverb(g_psw, REVERBK_None, 0);
+
     snd_StopAllStreams();
-    while (snd_FlushSoundCommands())
-        ;
+    while (snd_FlushSoundCommands());
     snd_StreamSafeCheckCDIdle(1);
     snd_StreamSafeCdSync(0);
+
     m_nvolDialogRestore = snd_GetMasterVolume(2);
     m_nvolGlobalRestore = snd_GetMasterVolume(8);
     snd_SetMasterVolume(2, 0x400);
     snd_SetMasterVolume(8, 0x200);
+
     int pbIop = snd_InitMovieSound(0x6000, 0x400, 0, 2, 2);
-    if (pbIop < 0) {
-        m_state = 0;
+    if (pbIop < 0)
+    {
+        m_mauds = MAUDS_Dead;
     }
     else
     {
-        m_state = 1;
+        m_mauds = MAUDS_FillPreface;
         m_bqSsp.Init(0x28, &m_ssp);
         m_bq.Init(0xC000, D_002CBB40);
-        m_qo.Init(0x6000, pbIop);
+        m_qoi.Init(0x6000, pbIop);
     }
 }
 
 void CMpegAudio::Reset()
 {
-    if (!m_state)
+    if (!m_mauds)
         return;
 
     snd_ResetMovieSound();
-    m_state = 1;
+    m_mauds = MAUDS_FillPreface;
 
     m_bqSsp.Reset();
     m_bq.Reset();
-    m_qo.Reset();
+    m_qoi.Reset();
 }
 
 void CMpegAudio::Close()
 {
-    m_state = 0;
+    m_mauds = MAUDS_Dead;
     snd_CloseMovieSound();
     snd_SetMasterVolume(2, m_nvolDialogRestore);
     snd_SetMasterVolume(8, m_nvolGlobalRestore);
@@ -335,20 +324,20 @@ void CMpegAudio::Close()
 
 int CMpegAudio::FAccept(int cb, unsigned char *pb)
 {
-    if (m_state == 0)
+    if (m_mauds == MAUDS_Dead)
         return 0;
 
     cb -= 4;
     pb += 4;
 
-    if (m_state == 1)
+    if (m_mauds == MAUDS_FillPreface)
     {
         int cbFilled = m_bqSsp.CbFill(cb, pb);
         cb -= cbFilled;
         pb += cbFilled;
         if (m_bqSsp.m_cbFree > 0)
             goto LSuccess;
-        m_state = 2;
+        m_mauds = MAUDS_FillIop;
     }
 
     if (m_bq.m_cbFree < cb)
@@ -362,22 +351,24 @@ LSuccess:
 
 void CMpegAudio::Update()
 {
-    switch (m_state)
+    switch (m_mauds)
     {
-    case 2:
-
-        m_bq.CbDrain(m_qo.m_cbFree, &m_qo);
-        if (m_qo.m_cbFree == 0)
+        case MAUDS_FillIop:
         {
-            snd_StartMovieSound(m_qo.m_pbIop, m_qo.m_cb, m_qo.m_pbIop, 0, 0);
-            m_state = 3;
+            m_bq.CbDrain(m_qoi.m_cbFree, &m_qoi);
+            if (m_qoi.m_cbFree == 0)
+            {
+                snd_StartMovieSound(m_qoi.m_pbIop, m_qoi.m_cb, m_qoi.m_pbIop, 0, 0);
+                m_mauds = MAUDS_Play;
+            }
+            break;
         }
-        break;
-
-    case 3:
-        m_qo.Update();
-        m_bq.CbDrain(m_qo.m_cbFree, &m_qo);
-        break;
+        case MAUDS_Play:
+        {
+            m_qoi.Update();
+            m_bq.CbDrain(m_qoi.m_cbFree, &m_qoi);
+            break;
+        }
     }
 }
 
@@ -399,7 +390,6 @@ int FMpegAcceptAudio(sceMpeg *mpeg, sceMpegCbDataStr *data, CMpeg *cmpeg)
 int FMpegDecodeVideo(sceMpeg *pscempeg, sceMpegCbData *pmcd, CMpeg *pmpeg)
 {
     char ab[64];
-
     while (pmpeg->m_bqVideo.m_cbAlloc < 0x1000)
     {
         if (!pmpeg->CbDemuxed(1))
@@ -411,7 +401,7 @@ int FMpegDecodeVideo(sceMpeg *pscempeg, sceMpegCbData *pmcd, CMpeg *pmpeg)
     }
 
     CQueueOutputIpu *pqoipu = (CQueueOutputIpu *)ab;
-    pqoipu->m_vtable = &D_0024B598;
+    pqoipu->m_vtable = &D_0024B598; // TODO: Migrate data, change functions to virtual and remove.
     pmpeg->m_bqVideo.FreeDrain(0);
     pmpeg->m_bqVideo.CbDrain(0, pqoipu);
     return 1;
@@ -428,17 +418,10 @@ int FMpegDecoderError(sceMpeg *mpeg, sceMpegCbData *data, CMpeg *cmpeg)
     return 1;
 }
 
-void BuildMpegGifs(
-    QW *aqwMpegGifs,
-    sceIpuRGB32 *ambImage,
-    int dx,
-    int dy,
-    int igs,
-    int x,
-    int y)
+void BuildMpegGifs(QW *aqwMpegGifs, sceIpuRGB32 *ambImage, int w, int h)
 {
-    int cmbx = dx / 16;
-    int cmby = dy / 16;
+    int cmbx = w / 16;
+    int cmby = h / 16;
 
     GIFS gifs;
     gifs.AllocStatic(0x1C28, aqwMpegGifs);
@@ -469,6 +452,9 @@ void BuildMpegGifs(
     gifs.Detach(0, 0);
 }
 
+/**
+ * @todo Figure out what the magic numbers mean.
+ */
 void FUN_0018ef78(void *dst, int u, int v)
 {
     GIFS gifs;
@@ -501,6 +487,9 @@ void FUN_0018ef78(void *dst, int u, int v)
     gifs.Detach(0, 0);
 }
 
+/**
+ * @todo "key" is an unknown type.
+ */
 void CMpeg::FUN_0018f0e8(void *key)
 {
     if (oid_2)
@@ -635,9 +624,7 @@ void CMpeg::Start(CBinaryAsyncStream *pbas)
     sceMpegAddCallback(&m_scempeg, 4, (void *)FMpegDecoderIdle, this);
     sceMpegAddCallback(&m_scempeg, 0, (void *)FMpegDecoderError, this);
 
-    while (CbDemuxed(1) != 0)
-    {
-    }
+    while (CbDemuxed(1) != 0);
 
     m_aaqwGifs[0] = (QW *)&D_00586AC0;
     m_aaqwGifs[1] = (QW *)&D_005A2D40;
@@ -664,8 +651,6 @@ void CMpeg::Start(CBinaryAsyncStream *pbas)
     }
 }
 
-extern int D_00269B48;
-
 void CMpeg::FUN_0018f610()
 {
     if (field_140 <= 0)
@@ -676,6 +661,7 @@ void CMpeg::FUN_0018f610()
     field_138 = D_005A2E60[(field_138 ^ pb[0]) & 0xFF] ^ (field_138 >> 8);
     field_138 = D_005A2E60[(field_138 ^ pb[1]) & 0xFF] ^ (field_138 >> 8);
     field_140 -= 4;
+
     field_138 = D_005A2E60[(field_138 ^ pb[2]) & 0xFF] ^ (field_138 >> 8);
     field_138 = D_005A2E60[(field_138 ^ pb[3]) & 0xFF] ^ (field_138 >> 8);
     field_13C += 4;
@@ -690,7 +676,8 @@ void CMpeg::Update()
 {
     if (field_134 == 1)
     {
-        do {
+        do
+        {
             CbDemuxed(0);
         } while (field_134 == 1);
     }
@@ -700,16 +687,15 @@ void CMpeg::Update()
 
     if (m_scempeg.frameCount == 0)
     {
-        typedef void (*pfn_build_t)(QW *, sceIpuRGB32 *, int, int);
-        ((pfn_build_t)BuildMpegGifs)(m_aaqwGifs[0], m_ambDecoded,
-                              m_scempeg.width, m_scempeg.height);
+        BuildMpegGifs(m_aaqwGifs[0], m_ambDecoded, m_scempeg.width, m_scempeg.height);
         FUN_0018ef78(m_aaqwGifs[1], m_scempeg.width, m_scempeg.height);
         FlushCache(0);
     }
 
     if (field_134 != 0)
     {
-        do {
+        do
+        {
             CbDemuxed(0);
             FUN_0018f610();
         } while (field_134 != 0);
@@ -728,8 +714,7 @@ void CMpeg::Finish()
     sceMpegReset(&m_scempeg);
     sceMpegDelete(&m_scempeg);
 
-    while (field_134 != 0)
-        ;
+    while (field_134 != 0);
 
     g_vbact = 3;
     UploadPermShaders();
