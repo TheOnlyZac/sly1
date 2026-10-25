@@ -775,4 +775,11 @@ struct VTACT
     // ...
 };
 
+struct STEPGUARD;
+struct VTSTEPGUARD
+{
+    void *pfns[0x198 / 4];
+    SO *(*pfnPsoEnemyStepguard)(STEPGUARD *);
+};
+
 #endif // VTABLES_H

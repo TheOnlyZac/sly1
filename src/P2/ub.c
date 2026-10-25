@@ -140,7 +140,39 @@ void DoUbgFreefallLanding(UBG *pubg)
     DoStepguardFreefallLanding(pubg);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/ub", UpdateUbgGoal__FP3UBGi);
+void UpdateUbgGoal(UBG *pubg, int fEnter)
+{
+    SGS sgs = STRUCT_OFFSET(pubg, 0x724, SGS);
+    switch (sgs)
+    {
+    case SGS_ReturnToPatrol:
+        if (pubg->fAbandonExternal)
+        {
+            SetStepguardGoal(pubg, &pubg->posOrig);
+            break;
+        }
+        {
+            VECTOR pos;
+            GetXfmPos(pubg->pxfmMiddle, &pos);
+            SetStepguardGoal(pubg, &pos);
+        }
+        break;
+
+    case SGS_LostPlayer:
+        {
+            SO *psoEnemy = ((VTSTEPGUARD *)pubg->pvtstepguard)->pfnPsoEnemyStepguard(pubg);
+            if (psoEnemy != NULL)
+            {
+                SetStepguardGoal(pubg, &psoEnemy->xf.posWorld);
+            }
+        }
+        break;
+
+    default:
+        UpdateStepguardGoal(pubg, fEnter);
+        break;
+    }
+}
 
 void UpdateUbgSgs(UBG *pubg)
 {
