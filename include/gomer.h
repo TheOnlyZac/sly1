@@ -41,5 +41,6 @@ struct GOMER : public STEPGUARD
 };
 
 void InitGomer(GOMER *pgomer);
+void PostGomerLoad(GOMER *pgomer);
 
 #endif // GOMER_H

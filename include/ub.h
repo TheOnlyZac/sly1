@@ -27,9 +27,9 @@ extern BLOT g_unkblot7;
  */
 struct UBG : public GOMER
 {
-    /* 0xc44 */ SM *psmWorld;
-    /* 0xc48 */ SMA *psmaWorld;
-    /* 0xc4c */ STRUCT_PADDING(3);
+    STRUCT_PADDING(3);
+    /* 0xc50 */ SM *psmWorld;
+    /* 0xc54 */ SMA *psmaWorld;
     /* 0xc58 */ OID oidPatrolGoal;
     /* 0xc5c */ int cJump;
     /* 0xc60 */ XFM *pxfmMiddle;

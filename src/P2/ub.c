@@ -1,4 +1,8 @@
 #include <ub.h>
+#include <chkpnt.h>
+#include <sw.h>
+#include <sm.h>
+#include <alo.h>
 
 void InitUbg(UBG *pubg)
 {
@@ -13,7 +17,39 @@ void InitUbg(UBG *pubg)
     pubg->lmRadDetect.gMax = 6.2831855f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/ub", PostUbgLoad__FP3UBG);
+// .data
+static SNIP s_asnipUbg[8] =
+{
+    {3, OID_sm_ubb_world, 0xc50},
+    {3, OID_xfm_ubg_middle, 0xc60},
+    {7, OID_pad_root_0, 0xc64},
+    {7, OID_pad_root_1, 0xc68},
+    {7, OID_pad_root_2, 0xc6c},
+    {7, OID_pad_root_3, 0xc70},
+    {7, OID_pad_root_4, 0xc74},
+    {7, OID_pad_root_5, 0xc78},
+};
+
+void PostUbgLoad(UBG *pubg)
+{
+    SnipAloObjects(pubg, 8, s_asnipUbg);
+    FUN_001ddc38(pubg->psw, pubg);
+    if (pubg->psmWorld != NULL)
+    {
+        pubg->psmaWorld = PsmaApplySm(pubg->psmWorld, NULL, OID_state_ubb_challenge, 0);
+    }
+
+    pubg->nBossctr = 4;
+    uint iichk = 0;
+    while (true)
+    {
+        pubg->aichk[iichk++] = IchkAllocChkmgr(&g_chkmgr);
+        if (iichk >= 4)
+            break;
+    }
+
+    PostGomerLoad(pubg);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/ub", PsoPadUbgClosest__FP3UBGP6VECTOR);
 
