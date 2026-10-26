@@ -1,6 +1,7 @@
 var structLIGHT =
 [
     [ "STRUCT_PADDING", "structLIGHT.html#adfa9b5333081b1dac037150555d7b6ff", null ],
+    [ "STRUCT_PADDING", "structLIGHT.html#af6281727404f855718836c86b72ad7f1", null ],
     [ "degCone", "structLIGHT.html#a300468936d25b779ec2b1b8cf7347ec3", null ],
     [ "degHighlight", "structLIGHT.html#a4e808abbf16fa7d16bfe5fe036f7a5bc", null ],
     [ "degHotSpot", "structLIGHT.html#a99d631352afd02f1312917775ac9daad", null ],
@@ -10,5 +11,6 @@ var structLIGHT =
     [ "fDynamic", "structLIGHT.html#ab3db1cff4de106d5dba1d08bf4fdcb82", null ],
     [ "gMidtone", "structLIGHT.html#adb9bc6da0faa59b0957d63b106fb43ff", null ],
     [ "gShadow", "structLIGHT.html#ae8e725a031623175672e9baf4635ef4c", null ],
+    [ "lightk", "structLIGHT.html#a14565aa34eea95cebf768e2a2c6f8d12", null ],
     [ "vecHighlight", "structLIGHT.html#a9a8e729280378e3697d1e81c1729e0ff", null ]
 ];

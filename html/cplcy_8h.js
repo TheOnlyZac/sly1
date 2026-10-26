@@ -1,9 +1,75 @@
 var cplcy_8h =
 [
+    [ "CPDEFI", "structCPDEFI.html", "structCPDEFI" ],
+    [ "CPLCY", "structCPLCY.html", "structCPLCY" ],
+    [ "CPMAN", "structCPMAN.html", "structCPMAN" ],
+    [ "CPLOOK", "structCPLOOK.html", "structCPLOOK" ],
+    [ "CPALIGN", "structCPALIGN.html", "structCPALIGN" ],
+    [ "CPASEG", "structCPASEG.html", "structCPASEG" ],
+    [ "CPTN", "structCPTN.html", "structCPTN" ],
+    [ "CPR", "structCPR.html", "structCPR" ],
+    [ "CFK", "cplcy_8h.html#a384baae5f23b856efb237faa821d6af9", [
+      [ "CFK_Nil", "cplcy_8h.html#a384baae5f23b856efb237faa821d6af9ad06ffdeb3380f543ea265f3cbc9c4d12", null ],
+      [ "CFK_Behind", "cplcy_8h.html#a384baae5f23b856efb237faa821d6af9af52230960d07beb770267aef12bf94e0", null ],
+      [ "CFK_Side", "cplcy_8h.html#a384baae5f23b856efb237faa821d6af9a759c5095046b0b6af7e744a33fbe1981", null ],
+      [ "CFK_Max", "cplcy_8h.html#a384baae5f23b856efb237faa821d6af9af2783c3e7ba61eeb9560271c12c40bda", null ]
+    ] ],
+    [ "CPMT", "cplcy_8h.html#a46131c10c339f32b969cf78801c5839d", [
+      [ "CPMT_Truck", "cplcy_8h.html#a46131c10c339f32b969cf78801c5839da900c2c17f196fb9ded04ac8ebe1e94b6", null ],
+      [ "CPMT_Pan", "cplcy_8h.html#a46131c10c339f32b969cf78801c5839da05e7d4f7077bff0d68ef8c21f57a004b", null ],
+      [ "CPMT_Slide", "cplcy_8h.html#a46131c10c339f32b969cf78801c5839da5da5537cdb0c1e3e6591dcf9d6801bf9", null ],
+      [ "CPMT_Orbit", "cplcy_8h.html#a46131c10c339f32b969cf78801c5839da1f3d598f682a94becd4036ee229800f0", null ],
+      [ "CPMT_Align", "cplcy_8h.html#a46131c10c339f32b969cf78801c5839dab138afc1fe134c9cf3c76038b481b330", null ],
+      [ "CPMT_Walkthrough", "cplcy_8h.html#a46131c10c339f32b969cf78801c5839dad04699c51d801ca1081e030c1f1f9208", null ],
+      [ "CPMT_Max", "cplcy_8h.html#a46131c10c339f32b969cf78801c5839da0202f86a8fb50750dbeffb24177359c5", null ]
+    ] ],
+    [ "CPP", "cplcy_8h.html#acbb4d86a8760ab09ef1e91cebc16eed3", [
+      [ "CPP_Nil", "cplcy_8h.html#acbb4d86a8760ab09ef1e91cebc16eed3aeac035a0f61055792c30b47f7086a2fe", null ],
+      [ "CPP_Base", "cplcy_8h.html#acbb4d86a8760ab09ef1e91cebc16eed3a1ab63cf6a2f3dd2b4beb35a41847652f", null ],
+      [ "CPP_Default", "cplcy_8h.html#acbb4d86a8760ab09ef1e91cebc16eed3a8318321d0126cf941c1aa5b4b5b6a733", null ],
+      [ "CPP_Tunnel_Pri0", "cplcy_8h.html#acbb4d86a8760ab09ef1e91cebc16eed3ad0b18bf3c1dc7c0a8916f71e5a5ffbaf", null ],
+      [ "CPP_Tunnel_Pri1", "cplcy_8h.html#acbb4d86a8760ab09ef1e91cebc16eed3a2c8ee375643d36fa600728708acc46f6", null ],
+      [ "CPP_Tunnel_Pri2", "cplcy_8h.html#acbb4d86a8760ab09ef1e91cebc16eed3a43538a14ef1670048e22622383235db6", null ],
+      [ "CPP_Tunnel_Pri3", "cplcy_8h.html#acbb4d86a8760ab09ef1e91cebc16eed3aa2b87ac281c5759ce063cbd8ca73d12c", null ],
+      [ "CPP_LookAround", "cplcy_8h.html#acbb4d86a8760ab09ef1e91cebc16eed3a8a1646f6b384aa624ff307fea73949fe", null ],
+      [ "CPP_Animated", "cplcy_8h.html#acbb4d86a8760ab09ef1e91cebc16eed3ae57f47882d6fd420e9d9676a3a764475", null ],
+      [ "CPP_ManualOverride", "cplcy_8h.html#acbb4d86a8760ab09ef1e91cebc16eed3a7d18ae487e72b4425c117140e3345632", null ],
+      [ "CPP_UserTestWalkthrough", "cplcy_8h.html#acbb4d86a8760ab09ef1e91cebc16eed3a20988b793ce0deb8807bfa7e621a02ee", null ],
+      [ "CPP_Max", "cplcy_8h.html#acbb4d86a8760ab09ef1e91cebc16eed3a38af596647d68efe78d5a80a6d214636", null ]
+    ] ],
+    [ "FTND", "cplcy_8h.html#af3a39ae3212748dd9ab1cf945fd942c0", [
+      [ "FTND_Nil", "cplcy_8h.html#af3a39ae3212748dd9ab1cf945fd942c0a9251cf50ec18dec9bccbb8e9257eea8c", null ],
+      [ "FTND_Forward", "cplcy_8h.html#af3a39ae3212748dd9ab1cf945fd942c0a67fa9aa0634136a2a87a7f8bdfc0cc18", null ],
+      [ "FTND_Reverse", "cplcy_8h.html#af3a39ae3212748dd9ab1cf945fd942c0a93bad2bfb1ac178e3a02d6bba9da7cf9", null ],
+      [ "FTND_Manual", "cplcy_8h.html#af3a39ae3212748dd9ab1cf945fd942c0a5375d8a1c47b2050f69746250e15703a", null ],
+      [ "FTND_Max", "cplcy_8h.html#af3a39ae3212748dd9ab1cf945fd942c0a4acf27c31823b6f41d3e88f49b798d47", null ]
+    ] ],
+    [ "LOOKK", "cplcy_8h.html#a9d64726a719f2db9e9f4029ef8c41809", [
+      [ "LOOKK_Nil", "cplcy_8h.html#a9d64726a719f2db9e9f4029ef8c41809a25e494a10e2994767a49ce488f068212", null ],
+      [ "LOOKK_User", "cplcy_8h.html#a9d64726a719f2db9e9f4029ef8c41809a7f64086c271ef4043260ad71de3bde10", null ],
+      [ "LOOKK_Sniper", "cplcy_8h.html#a9d64726a719f2db9e9f4029ef8c41809ad316c942835e470d7257421d975af2d7", null ],
+      [ "LOOKK_Dialog", "cplcy_8h.html#a9d64726a719f2db9e9f4029ef8c41809abd591b467eaae4d7f9493092ba3a1cf5", null ],
+      [ "LOOKK_Confront", "cplcy_8h.html#a9d64726a719f2db9e9f4029ef8c41809a81d3058be10a278e52d63bc52c76438a", null ],
+      [ "LOOKK_Max", "cplcy_8h.html#a9d64726a719f2db9e9f4029ef8c41809afb10fa36356a477636d787e044ce9b14", null ]
+    ] ],
+    [ "ActivateCpalign", "cplcy_8h.html#a98b2ff55896deaab69eac3f215a98956", null ],
+    [ "ActivateCpaseg", "cplcy_8h.html#a905a38f9fda92d365200d0b02e0f7a6c", null ],
+    [ "ActivateCplook", "cplcy_8h.html#a441e25e49fd3676aec1eb1425d8ca939", null ],
+    [ "DeactivateCpaseg", "cplcy_8h.html#a383a9a9474f51446dac223f465ad10c9", null ],
+    [ "DeactivateCplook", "cplcy_8h.html#a7fd70c01fccf9f054c82543697c6d067", null ],
     [ "FActiveCplcy", "cplcy_8h.html#aa07cdd32de44f89c4e68e6557609b822", null ],
+    [ "InitCpalign", "cplcy_8h.html#a15a6c4286d54915184dc20aa729249cd", null ],
     [ "InitCplcy", "cplcy_8h.html#a8842ed724fda95f3e7a7c783c610af37", null ],
+    [ "InitCplook", "cplcy_8h.html#a037ce1eb98c709a89d3500b67ce77412", null ],
     [ "LookkCurCplook", "cplcy_8h.html#a4a4bff8bc7d39e3d3c31359ce34e6948", null ],
     [ "LookkPopCplook", "cplcy_8h.html#a59263b07eb9824f873abdd7d7c8b4d14", null ],
+    [ "PosCplookAnchor", "cplcy_8h.html#a1ce3d81a224bfe846a20bb45f6f3fd57", null ],
+    [ "PosCplookEye", "cplcy_8h.html#ae7a4607cd512c086fadd5ff1776dc174", null ],
     [ "PushCplookLookk", "cplcy_8h.html#acde0c752de0700590c5358ecbe4ef8c4", null ],
-    [ "SetCpmanCpmt", "cplcy_8h.html#ae5a59abddb9a6c76057a753589d07235", null ]
+    [ "SetCpmanCpmt", "cplcy_8h.html#ae5a59abddb9a6c76057a753589d07235", null ],
+    [ "StartCplookSound", "cplcy_8h.html#a00d35c6346e9feb94706855e2c64518f", null ],
+    [ "UpdateCpalign", "cplcy_8h.html#aeda23a815a00926bb6d7d757e725e367", null ],
+    [ "UpdateCpaseg", "cplcy_8h.html#a95234d5ccce1de210aea0e8f126cad52", null ],
+    [ "UpdateCplook", "cplcy_8h.html#a225dee228d764277faf6f0d0ff38ae55", null ],
+    [ "UpdateCpman", "cplcy_8h.html#a547834ca9638fd4264c6e857854cee9a", null ]
 ];

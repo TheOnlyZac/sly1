@@ -105,7 +105,8 @@ $(document).ready(function(){initNavTree('cm_8c.html',''); initResizable(); });
 <div class="textblock"><code>#include &lt;<a class="el" href="cm_8h_source.html">cm.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="util_8h_source.html">util.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="binoc_8h_source.html">binoc.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="cplcy_8h_source.html">cplcy.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="clock_8h_source.html">clock.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="light_8h_source.html">light.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for cm.c:</div>
 <div class="dyncontent">
@@ -130,8 +131,9 @@ Functions</h2></td></tr>
 <tr class="separator:a281c09a2e8e2aef66c9b5a800bd5f449"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7812871adfb4dd69a50ac6c0773211ee" id="r_a7812871adfb4dd69a50ac6c0773211ee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a7812871adfb4dd69a50ac6c0773211ee">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, GetCmCpdefi__FP2CMP2SOfP6CPDEFI)</td></tr>
 <tr class="separator:a7812871adfb4dd69a50ac6c0773211ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc17da5a0e544173e5f43161b89c57f2" id="r_abc17da5a0e544173e5f43161b89c57f2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#abc17da5a0e544173e5f43161b89c57f2">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, BuildCmFgfn__FP2CMfP4FGFN)</td></tr>
-<tr class="separator:abc17da5a0e544173e5f43161b89c57f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa22ced1f8ab6f7060ae2a8fcc6a1b57d" id="r_aa22ced1f8ab6f7060ae2a8fcc6a1b57d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#aa22ced1f8ab6f7060ae2a8fcc6a1b57d">BuildCmFgfn</a> (<a class="el" href="structCM.html">CM</a> *pcm, float uFog, <a class="el" href="structFGFN.html">FGFN</a> *pfgfn)</td></tr>
+<tr class="memdesc:aa22ced1f8ab6f7060ae2a8fcc6a1b57d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set fog parameters based on current values in the camera.  <br /></td></tr>
+<tr class="separator:aa22ced1f8ab6f7060ae2a8fcc6a1b57d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4eae73a94c2bfc9bb88ab60811d857e" id="r_ad4eae73a94c2bfc9bb88ab60811d857e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#ad4eae73a94c2bfc9bb88ab60811d857e">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, RecalcCmFrustrum__FP2CM)</td></tr>
 <tr class="separator:ad4eae73a94c2bfc9bb88ab60811d857e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb2efdee6f4502b9e828aa910e7af18c" id="r_adb2efdee6f4502b9e828aa910e7af18c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#adb2efdee6f4502b9e828aa910e7af18c">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, InitCm__FP2CM)</td></tr>
@@ -145,15 +147,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a53e684e68659354580415b75859eeddc" id="r_a53e684e68659354580415b75859eeddc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a53e684e68659354580415b75859eeddc">SetSwCameraFarClip</a> (float sFarClip)</td></tr>
 <tr class="memdesc:a53e684e68659354580415b75859eeddc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets far clip plane on the global camera.  <br /></td></tr>
 <tr class="separator:a53e684e68659354580415b75859eeddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad00aa27e00baa6c7569efad6f2d008a0" id="r_ad00aa27e00baa6c7569efad6f2d008a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#ad00aa27e00baa6c7569efad6f2d008a0">SetSwCameraSProgress</a> (float uSProgress)</td></tr>
-<tr class="memdesc:ad00aa27e00baa6c7569efad6f2d008a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets SProgress on the global camera.  <br /></td></tr>
-<tr class="separator:ad00aa27e00baa6c7569efad6f2d008a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2523ddf6b69e1be870b61ae1cc1fb1e8" id="r_a2523ddf6b69e1be870b61ae1cc1fb1e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a2523ddf6b69e1be870b61ae1cc1fb1e8">FUN_00143860</a> (float param1)</td></tr>
-<tr class="memdesc:a2523ddf6b69e1be870b61ae1cc1fb1e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets field35_0x1fc on the global camera.  <br /></td></tr>
-<tr class="separator:a2523ddf6b69e1be870b61ae1cc1fb1e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29fd9ef7ad980ebc11560d05cb3cc5b2" id="r_a29fd9ef7ad980ebc11560d05cb3cc5b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a29fd9ef7ad980ebc11560d05cb3cc5b2">FUN_00143888</a> (float param1)</td></tr>
-<tr class="memdesc:a29fd9ef7ad980ebc11560d05cb3cc5b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets field36_0x200 on the global camera.  <br /></td></tr>
-<tr class="separator:a29fd9ef7ad980ebc11560d05cb3cc5b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3726d8ab79ddce1941ef183aeb7ab2e0" id="r_a3726d8ab79ddce1941ef183aeb7ab2e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a3726d8ab79ddce1941ef183aeb7ab2e0">SetSwCameraNearFog</a> (float sNearFog)</td></tr>
+<tr class="memdesc:a3726d8ab79ddce1941ef183aeb7ab2e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the near fog distance (?) on the global camera.  <br /></td></tr>
+<tr class="separator:a3726d8ab79ddce1941ef183aeb7ab2e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b66505e301341940a0b16ec0fc8cb62" id="r_a9b66505e301341940a0b16ec0fc8cb62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a9b66505e301341940a0b16ec0fc8cb62">SetSwCameraFarFog</a> (float sFarFog)</td></tr>
+<tr class="memdesc:a9b66505e301341940a0b16ec0fc8cb62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the far fog distance (?) on the global camera.  <br /></td></tr>
+<tr class="separator:a9b66505e301341940a0b16ec0fc8cb62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a080adc14071536fc72b2dff8f2d65bf4" id="r_a080adc14071536fc72b2dff8f2d65bf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a080adc14071536fc72b2dff8f2d65bf4">SetSwCameraUFogMax</a> (float uFogMax)</td></tr>
+<tr class="memdesc:a080adc14071536fc72b2dff8f2d65bf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the max fog distance (?) on the global camera.  <br /></td></tr>
+<tr class="separator:a080adc14071536fc72b2dff8f2d65bf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3aa977af25e1920bcff5c995cef76b0e" id="r_a3aa977af25e1920bcff5c995cef76b0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a3aa977af25e1920bcff5c995cef76b0e">SetSwCameraRgbaFog</a> (<a class="el" href="structSW.html">SW</a> *psw, <a class="el" href="structRGBA.html">RGBA</a> *prgbaFog)</td></tr>
 <tr class="memdesc:a3aa977af25e1920bcff5c995cef76b0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets Fog on the global camera.  <br /></td></tr>
 <tr class="separator:a3aa977af25e1920bcff5c995cef76b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,33 +177,33 @@ Functions</h2></td></tr>
 <tr class="memitem:a5b93bf655eda0067247138fcf531ce47" id="r_a5b93bf655eda0067247138fcf531ce47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a5b93bf655eda0067247138fcf531ce47">SetCmFarClip</a> (<a class="el" href="structCM.html">CM</a> *pcm, float sFarClip)</td></tr>
 <tr class="memdesc:a5b93bf655eda0067247138fcf531ce47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets far clip plane on the given camera.  <br /></td></tr>
 <tr class="separator:a5b93bf655eda0067247138fcf531ce47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55f47d31653867b2ecdcc8bf23062941" id="r_a55f47d31653867b2ecdcc8bf23062941"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a55f47d31653867b2ecdcc8bf23062941">SetCmSProgress</a> (<a class="el" href="structCM.html">CM</a> *pcm, float uSProgress)</td></tr>
-<tr class="memdesc:a55f47d31653867b2ecdcc8bf23062941"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets SProgress on the given camera.  <br /></td></tr>
-<tr class="separator:a55f47d31653867b2ecdcc8bf23062941"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33ca965ae173723a712dbf9460e94790" id="r_a33ca965ae173723a712dbf9460e94790"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a33ca965ae173723a712dbf9460e94790">FUN_001439c8</a> (<a class="el" href="structCM.html">CM</a> *pcm, float param_2)</td></tr>
-<tr class="memdesc:a33ca965ae173723a712dbf9460e94790"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets field35_0x1fc on the given camera.  <br /></td></tr>
-<tr class="separator:a33ca965ae173723a712dbf9460e94790"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6021a969cee3b083a5c54102a6e039f2" id="r_a6021a969cee3b083a5c54102a6e039f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a6021a969cee3b083a5c54102a6e039f2">FUN_001439e8</a> (<a class="el" href="structCM.html">CM</a> *pcm, float param_2)</td></tr>
-<tr class="memdesc:a6021a969cee3b083a5c54102a6e039f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets field36_0x200 on the given camera.  <br /></td></tr>
-<tr class="separator:a6021a969cee3b083a5c54102a6e039f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0f8366c02675363c2825532fc21f793" id="r_ae0f8366c02675363c2825532fc21f793"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#ae0f8366c02675363c2825532fc21f793">SetCmNearFog</a> (<a class="el" href="structCM.html">CM</a> *pcm, float sNearFog)</td></tr>
+<tr class="memdesc:ae0f8366c02675363c2825532fc21f793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the near fog distance (?) on the given camera.  <br /></td></tr>
+<tr class="separator:ae0f8366c02675363c2825532fc21f793"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addd2436a4e13e01e52d27a86a4f2ef36" id="r_addd2436a4e13e01e52d27a86a4f2ef36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#addd2436a4e13e01e52d27a86a4f2ef36">SetCmFarFog</a> (<a class="el" href="structCM.html">CM</a> *pcm, float sFarFog)</td></tr>
+<tr class="memdesc:addd2436a4e13e01e52d27a86a4f2ef36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the far fog distance (?) on the given camera.  <br /></td></tr>
+<tr class="separator:addd2436a4e13e01e52d27a86a4f2ef36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a550083488a2257d005866a6011998f15" id="r_a550083488a2257d005866a6011998f15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a550083488a2257d005866a6011998f15">SetCmUFogMax</a> (<a class="el" href="structCM.html">CM</a> *pcm, float uFogMax)</td></tr>
+<tr class="memdesc:a550083488a2257d005866a6011998f15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the maximum fog distance (?) on the given camera.  <br /></td></tr>
+<tr class="separator:a550083488a2257d005866a6011998f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0973cb492f8fd6f4d357f2767728ebc7" id="r_a0973cb492f8fd6f4d357f2767728ebc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a0973cb492f8fd6f4d357f2767728ebc7">SetCmRgbaFog</a> (<a class="el" href="structCM.html">CM</a> *pcm, <a class="el" href="structRGBA.html">RGBA</a> *prgbaFog)</td></tr>
 <tr class="memdesc:a0973cb492f8fd6f4d357f2767728ebc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the <a class="el" href="structRGBA.html" title="RGBA color value.">RGBA</a> fog color for the camera.  <br /></td></tr>
 <tr class="separator:a0973cb492f8fd6f4d357f2767728ebc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab05ee21867b34a49a649759041f9734e" id="r_ab05ee21867b34a49a649759041f9734e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#ab05ee21867b34a49a649759041f9734e">SetCmMrdRatio</a> (<a class="el" href="structCM.html">CM</a> *pcm, float ratio)</td></tr>
-<tr class="memdesc:ab05ee21867b34a49a649759041f9734e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the minimum render distance ratio (?) on the given camera.  <br /></td></tr>
-<tr class="separator:ab05ee21867b34a49a649759041f9734e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02de8296632618aece91978cb0dced96" id="r_a02de8296632618aece91978cb0dced96"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a02de8296632618aece91978cb0dced96">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, ResetCm)</td></tr>
-<tr class="separator:a02de8296632618aece91978cb0dced96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a02f4d700f344022899868e9ecb25d2" id="r_a8a02f4d700f344022899868e9ecb25d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a8a02f4d700f344022899868e9ecb25d2">SetCmMrdRatio</a> (<a class="el" href="structCM.html">CM</a> *pcm, float rMRD)</td></tr>
+<tr class="memdesc:a8a02f4d700f344022899868e9ecb25d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the minimum render distance ratio (?) on the given camera.  <br /></td></tr>
+<tr class="separator:a8a02f4d700f344022899868e9ecb25d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6cd9fde2405d4a971766fad8f7e3471" id="r_ae6cd9fde2405d4a971766fad8f7e3471"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#ae6cd9fde2405d4a971766fad8f7e3471">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, ResetCm__FP2CMi)</td></tr>
+<tr class="separator:ae6cd9fde2405d4a971766fad8f7e3471"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f6a3f1218127d73e674e6fa66b1d020" id="r_a1f6a3f1218127d73e674e6fa66b1d020"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a1f6a3f1218127d73e674e6fa66b1d020">ClearCmFadeObjects</a> (<a class="el" href="structCM.html">CM</a> *pcm)</td></tr>
 <tr class="memdesc:a1f6a3f1218127d73e674e6fa66b1d020"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears fading objects from the given camera.  <br /></td></tr>
 <tr class="separator:a1f6a3f1218127d73e674e6fa66b1d020"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f6545c8f2dc3c66ae6242c92b840f07" id="r_a8f6545c8f2dc3c66ae6242c92b840f07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a8f6545c8f2dc3c66ae6242c92b840f07">AddCmFadeObject</a> (<a class="el" href="structCM.html">CM</a> *pcm, <a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a> oid)</td></tr>
-<tr class="memdesc:a8f6545c8f2dc3c66ae6242c92b840f07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a fading objects to the list of the given camera.  <br /></td></tr>
-<tr class="separator:a8f6545c8f2dc3c66ae6242c92b840f07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afde1a7f61861233d59b3b38f22975fc2" id="r_afde1a7f61861233d59b3b38f22975fc2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#afde1a7f61861233d59b3b38f22975fc2">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, RemoveCmFadeObject)</td></tr>
-<tr class="separator:afde1a7f61861233d59b3b38f22975fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0261b93d90d16ccb0b5bbc9f253fdb8a" id="r_a0261b93d90d16ccb0b5bbc9f253fdb8a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a0261b93d90d16ccb0b5bbc9f253fdb8a">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, FUN_00143BA8)</td></tr>
-<tr class="separator:a0261b93d90d16ccb0b5bbc9f253fdb8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1460cac207ae8fc42145c429a60ec34" id="r_af1460cac207ae8fc42145c429a60ec34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#af1460cac207ae8fc42145c429a60ec34">AddCmFadeObject</a> (<a class="el" href="structCM.html">CM</a> *pcm, <a class="el" href="structALO.html">ALO</a> *palo)</td></tr>
+<tr class="memdesc:af1460cac207ae8fc42145c429a60ec34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a fading objects to the list of the given camera.  <br /></td></tr>
+<tr class="separator:af1460cac207ae8fc42145c429a60ec34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7618d6adeeca7d1e60733ae7769e04df" id="r_a7618d6adeeca7d1e60733ae7769e04df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a7618d6adeeca7d1e60733ae7769e04df">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, RemoveCmFadeObject__FP2CMP3ALO)</td></tr>
+<tr class="separator:a7618d6adeeca7d1e60733ae7769e04df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a707e79b2d77f6f0eb316773f4dd2fbf1" id="r_a707e79b2d77f6f0eb316773f4dd2fbf1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a707e79b2d77f6f0eb316773f4dd2fbf1">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, FFilterCamera__FPvP2SO)</td></tr>
+<tr class="separator:a707e79b2d77f6f0eb316773f4dd2fbf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbc5e80abb97a5795c90c617ec92d9b3" id="r_acbc5e80abb97a5795c90c617ec92d9b3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#acbc5e80abb97a5795c90c617ec92d9b3">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, UpdateCmFade)</td></tr>
 <tr class="separator:acbc5e80abb97a5795c90c617ec92d9b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a55bd3feeefa6f0e574ce74f444ad47" id="r_a1a55bd3feeefa6f0e574ce74f444ad47"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a1a55bd3feeefa6f0e574ce74f444ad47">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, UpdateCmLast)</td></tr>
@@ -218,7 +220,7 @@ Functions</h2></td></tr>
 <tr class="separator:aab37e93e8afcc8facdebf974d3f7e88b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ee7b6da84572e101a4aea5a0388db6f" id="r_a4ee7b6da84572e101a4aea5a0388db6f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a4ee7b6da84572e101a4aea5a0388db6f">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, BuildFrustrum)</td></tr>
 <tr class="separator:a4ee7b6da84572e101a4aea5a0388db6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a468a0944c42a3f0c3ce050db8030e8f9" id="r_a468a0944c42a3f0c3ce050db8030e8f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a468a0944c42a3f0c3ce050db8030e8f9">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, UpdateCmMat4)</td></tr>
+<tr class="memitem:a468a0944c42a3f0c3ce050db8030e8f9" id="r_a468a0944c42a3f0c3ce050db8030e8f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a468a0944c42a3f0c3ce050db8030e8f9">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, <a class="el" href="cm_8h.html#ab1928cc8120fb5159de1f2dc0022b3c2">UpdateCmMat4</a>)</td></tr>
 <tr class="separator:a468a0944c42a3f0c3ce050db8030e8f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a730e374de31728d53d512518f3839c7f" id="r_a730e374de31728d53d512518f3839c7f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a730e374de31728d53d512518f3839c7f">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, DrawCm__FP2CM)</td></tr>
 <tr class="separator:a730e374de31728d53d512518f3839c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -230,8 +232,8 @@ Functions</h2></td></tr>
 <tr class="separator:a3e1a2f39dd7e706e3a2b1d30cc4610bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8c4c2dd172a838a640b970e18347f68" id="r_aa8c4c2dd172a838a640b970e18347f68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#aa8c4c2dd172a838a640b970e18347f68">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, ConvertCylindToWorldVelocity)</td></tr>
 <tr class="separator:aa8c4c2dd172a838a640b970e18347f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4b10381159472487107f8361be36e76" id="r_ae4b10381159472487107f8361be36e76"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#ae4b10381159472487107f8361be36e76">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, ResetCmLookAtSmooth)</td></tr>
-<tr class="separator:ae4b10381159472487107f8361be36e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacd25bc27ac3e3cd9d389d9e1a9cac79" id="r_aacd25bc27ac3e3cd9d389d9e1a9cac79"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#aacd25bc27ac3e3cd9d389d9e1a9cac79">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, ResetCmLookAtSmooth__FP2CMP6VECTOR)</td></tr>
+<tr class="separator:aacd25bc27ac3e3cd9d389d9e1a9cac79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b7258d4f0b3349f87215f03267fc09d" id="r_a3b7258d4f0b3349f87215f03267fc09d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a3b7258d4f0b3349f87215f03267fc09d">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, SetCmLookAtSmooth)</td></tr>
 <tr class="separator:a3b7258d4f0b3349f87215f03267fc09d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e6a523b9a3138abab7507c11d0ba1e8" id="r_a4e6a523b9a3138abab7507c11d0ba1e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a4e6a523b9a3138abab7507c11d0ba1e8">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, AdjustCmJoy__FP2CMP3JOY5JOYIDPf)</td></tr>
@@ -251,9 +253,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a67ed6b2148888b94cb16505759cc9cfc" id="r_a67ed6b2148888b94cb16505759cc9cfc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a67ed6b2148888b94cb16505759cc9cfc">SetCmCut</a> (<a class="el" href="structCM.html">CM</a> *pcm, float *pradCut)</td></tr>
 <tr class="memdesc:a67ed6b2148888b94cb16505759cc9cfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets Cut on the given camera.  <br /></td></tr>
 <tr class="separator:a67ed6b2148888b94cb16505759cc9cfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59f294f6d936f9c90f1925d2e66ac370" id="r_a59f294f6d936f9c90f1925d2e66ac370"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a59f294f6d936f9c90f1925d2e66ac370">SetResetFlag</a> (<a class="el" href="structCM.html">CM</a> *pcm)</td></tr>
-<tr class="memdesc:a59f294f6d936f9c90f1925d2e66ac370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the reset flag on the given camera.  <br /></td></tr>
-<tr class="separator:a59f294f6d936f9c90f1925d2e66ac370"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3dc4a345e4e754b69482abd04823d11" id="r_ad3dc4a345e4e754b69482abd04823d11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#ad3dc4a345e4e754b69482abd04823d11">EnableCmNextCut</a> (<a class="el" href="structCM.html">CM</a> *pcm)</td></tr>
+<tr class="memdesc:ad3dc4a345e4e754b69482abd04823d11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the next cut on the given camera.  <br /></td></tr>
+<tr class="separator:ad3dc4a345e4e754b69482abd04823d11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d841af930bbecb39e035f21b84d59bf" id="r_a8d841af930bbecb39e035f21b84d59bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a8d841af930bbecb39e035f21b84d59bf">ClearCmCut</a> (<a class="el" href="structCM.html">CM</a> *pcm)</td></tr>
 <tr class="memdesc:a8d841af930bbecb39e035f21b84d59bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears cut from the given camera.  <br /></td></tr>
 <tr class="separator:a8d841af930bbecb39e035f21b84d59bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -261,33 +263,33 @@ Functions</h2></td></tr>
 <tr class="separator:a8790b897dddbcfbdd3a48ffbf63101b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a477c75ea67588808d524e30c62b70d3f" id="r_a477c75ea67588808d524e30c62b70d3f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a477c75ea67588808d524e30c62b70d3f">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, SetCm)</td></tr>
 <tr class="separator:a477c75ea67588808d524e30c62b70d3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc8511e442ce2a35d5db5d53af18637e" id="r_afc8511e442ce2a35d5db5d53af18637e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#afc8511e442ce2a35d5db5d53af18637e">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, <a class="el" href="stepguard_8h.html#adaf36841203c1d245010dbb39c623be8">PsoEnemyStepguard</a>)</td></tr>
-<tr class="separator:afc8511e442ce2a35d5db5d53af18637e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3197a0e8115147ce76ebb206561ce0f0" id="r_a3197a0e8115147ce76ebb206561ce0f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a3197a0e8115147ce76ebb206561ce0f0">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, FUN_00145810)</td></tr>
+<tr class="separator:a3197a0e8115147ce76ebb206561ce0f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b2eeb625ecefd97caa65d809a6ff1e9" id="r_a8b2eeb625ecefd97caa65d809a6ff1e9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a8b2eeb625ecefd97caa65d809a6ff1e9">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, FUN_00145950)</td></tr>
 <tr class="separator:a8b2eeb625ecefd97caa65d809a6ff1e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae385bcca1d44dc183e9f8c12884636bd" id="r_ae385bcca1d44dc183e9f8c12884636bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#ae385bcca1d44dc183e9f8c12884636bd">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, FUN_00145b68)</td></tr>
 <tr class="separator:ae385bcca1d44dc183e9f8c12884636bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9400c609e69d3a5760248f541c044098" id="r_a9400c609e69d3a5760248f541c044098"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a9400c609e69d3a5760248f541c044098">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, FUN_00145dd8__FP2CM)</td></tr>
-<tr class="separator:a9400c609e69d3a5760248f541c044098"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac08241c3649da60578d3fc1043035367" id="r_ac08241c3649da60578d3fc1043035367"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#ac08241c3649da60578d3fc1043035367">FUN_00145dd8</a> (void *punk, <a class="el" href="structSO.html">SO</a> *pso)</td></tr>
+<tr class="separator:ac08241c3649da60578d3fc1043035367"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfa718e1267c61e0c9d349c5fbff2614" id="r_abfa718e1267c61e0c9d349c5fbff2614"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#abfa718e1267c61e0c9d349c5fbff2614">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, FUN_00145de8)</td></tr>
 <tr class="separator:abfa718e1267c61e0c9d349c5fbff2614"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad861a8150fd538fdca7e4f0210ef3c87" id="r_ad861a8150fd538fdca7e4f0210ef3c87"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#ad861a8150fd538fdca7e4f0210ef3c87">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, FUN_00145e68)</td></tr>
 <tr class="separator:ad861a8150fd538fdca7e4f0210ef3c87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c5180ebaa97309e381c3e501c2ca421" id="r_a1c5180ebaa97309e381c3e501c2ca421"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a1c5180ebaa97309e381c3e501c2ca421">PushLookkCm</a> (<a class="el" href="structCM.html">CM</a> *pcm, <a class="el" href="cm_8h.html#a9d64726a719f2db9e9f4029ef8c41809">LOOKK</a> lookk)</td></tr>
+<tr class="memitem:a1c5180ebaa97309e381c3e501c2ca421" id="r_a1c5180ebaa97309e381c3e501c2ca421"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a1c5180ebaa97309e381c3e501c2ca421">PushLookkCm</a> (<a class="el" href="structCM.html">CM</a> *pcm, <a class="el" href="cplcy_8h.html#a9d64726a719f2db9e9f4029ef8c41809">LOOKK</a> lookk)</td></tr>
 <tr class="memdesc:a1c5180ebaa97309e381c3e501c2ca421"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push lookk on the given camera.  <br /></td></tr>
 <tr class="separator:a1c5180ebaa97309e381c3e501c2ca421"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50ac70065ccd82832fdf947db420ebf0" id="r_a50ac70065ccd82832fdf947db420ebf0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cm_8h.html#a9d64726a719f2db9e9f4029ef8c41809">LOOKK</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a50ac70065ccd82832fdf947db420ebf0">LookkPopCm</a> (<a class="el" href="structCM.html">CM</a> *pcm)</td></tr>
-<tr class="memdesc:a50ac70065ccd82832fdf947db420ebf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls LookkPopCm on the given camera.  <br /></td></tr>
+<tr class="memitem:a50ac70065ccd82832fdf947db420ebf0" id="r_a50ac70065ccd82832fdf947db420ebf0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cplcy_8h.html#a9d64726a719f2db9e9f4029ef8c41809">LOOKK</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a50ac70065ccd82832fdf947db420ebf0">LookkPopCm</a> (<a class="el" href="structCM.html">CM</a> *pcm)</td></tr>
+<tr class="memdesc:a50ac70065ccd82832fdf947db420ebf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop the top most look kind of the given camera.  <br /></td></tr>
 <tr class="separator:a50ac70065ccd82832fdf947db420ebf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a248ca091dd62558955828f190dd57c2f" id="r_a248ca091dd62558955828f190dd57c2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cm_8h.html#a9d64726a719f2db9e9f4029ef8c41809">LOOKK</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a248ca091dd62558955828f190dd57c2f">LookkCurCm</a> (<a class="el" href="structCM.html">CM</a> *pcm)</td></tr>
-<tr class="memdesc:a248ca091dd62558955828f190dd57c2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls LookkCurCm on the given camera.  <br /></td></tr>
+<tr class="memitem:a248ca091dd62558955828f190dd57c2f" id="r_a248ca091dd62558955828f190dd57c2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cplcy_8h.html#a9d64726a719f2db9e9f4029ef8c41809">LOOKK</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a248ca091dd62558955828f190dd57c2f">LookkCurCm</a> (<a class="el" href="structCM.html">CM</a> *pcm)</td></tr>
+<tr class="memdesc:a248ca091dd62558955828f190dd57c2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current look kind of the given camera.  <br /></td></tr>
 <tr class="separator:a248ca091dd62558955828f190dd57c2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4f199f8087fb9d79e894aeeded070a7" id="r_ad4f199f8087fb9d79e894aeeded070a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#ad4f199f8087fb9d79e894aeeded070a7">SetCmSniperFocus</a> (<a class="el" href="structCM.html">CM</a> *pcm, <a class="el" href="structPNT.html">PNT</a> *ppntAnchor, float sRadiusSniper, float rScreenSniper)</td></tr>
-<tr class="memdesc:ad4f199f8087fb9d79e894aeeded070a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets sniper focus on the given camera.  <br /></td></tr>
-<tr class="separator:ad4f199f8087fb9d79e894aeeded070a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a884f42c5466197e790f96667742ca2c1" id="r_a884f42c5466197e790f96667742ca2c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a884f42c5466197e790f96667742ca2c1">FUN_00146028</a> (<a class="el" href="structCM.html">CM</a> *pcm)</td></tr>
-<tr class="memdesc:a884f42c5466197e790f96667742ca2c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls FUN_00146028 on the given camera.  <br /></td></tr>
-<tr class="separator:a884f42c5466197e790f96667742ca2c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa68d1da52a85748fefd989b51ebe3c41" id="r_aa68d1da52a85748fefd989b51ebe3c41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#aa68d1da52a85748fefd989b51ebe3c41">SetCmSniperFocus</a> (<a class="el" href="structCM.html">CM</a> *pcm, <a class="el" href="structALO.html">ALO</a> *palo, float rScreen, float sRadius)</td></tr>
+<tr class="memdesc:aa68d1da52a85748fefd989b51ebe3c41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets sniper focus on the given camera.  <br /></td></tr>
+<tr class="separator:aa68d1da52a85748fefd989b51ebe3c41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad75b5b7ce79286cab550e0b393a4d45e" id="r_ad75b5b7ce79286cab550e0b393a4d45e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#ad75b5b7ce79286cab550e0b393a4d45e">JoltCm</a> (<a class="el" href="structCM.html">CM</a> *pcm)</td></tr>
+<tr class="memdesc:ad75b5b7ce79286cab550e0b393a4d45e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jolt the given camera.  <br /></td></tr>
+<tr class="separator:ad75b5b7ce79286cab550e0b393a4d45e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a787fd717025adfce441c076ca9f1a104" id="r_a787fd717025adfce441c076ca9f1a104"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a787fd717025adfce441c076ca9f1a104">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/cm&quot;, FUN_00146038)</td></tr>
 <tr class="separator:a787fd717025adfce441c076ca9f1a104"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a816ec640e0fa8e94dc331561006cf398" id="r_a816ec640e0fa8e94dc331561006cf398"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cm_8c.html#a816ec640e0fa8e94dc331561006cf398">cm__static_initialization_and_destruction_0</a> (int __initialize_p, int __priority)</td></tr>
@@ -310,13 +312,14 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>This is a compiler generated function. Remove once data is migrated. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00321">321</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00333">333</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
-<a id="a8f6545c8f2dc3c66ae6242c92b840f07" name="a8f6545c8f2dc3c66ae6242c92b840f07"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f6545c8f2dc3c66ae6242c92b840f07">&#9670;&#160;</a></span>AddCmFadeObject()</h2>
+<a id="af1460cac207ae8fc42145c429a60ec34" name="af1460cac207ae8fc42145c429a60ec34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1460cac207ae8fc42145c429a60ec34">&#9670;&#160;</a></span>AddCmFadeObject()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -330,8 +333,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="oid_8h.html#a09ed43a0c8361f9f5a9428ae38d34b26">OID</a>&#160;</td>
-          <td class="paramname"><em>oid</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structALO.html">ALO</a> *&#160;</td>
+          <td class="paramname"><em>palo</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -343,7 +346,45 @@ Functions</h2></td></tr>
 
 <p>Adds a fading objects to the list of the given camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00181">181</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00193">193</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+
+</div>
+</div>
+<a id="aa22ced1f8ab6f7060ae2a8fcc6a1b57d" name="aa22ced1f8ab6f7060ae2a8fcc6a1b57d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa22ced1f8ab6f7060ae2a8fcc6a1b57d">&#9670;&#160;</a></span>BuildCmFgfn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BuildCmFgfn </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCM.html">CM</a> *&#160;</td>
+          <td class="paramname"><em>pcm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>uFog</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structFGFN.html">FGFN</a> *&#160;</td>
+          <td class="paramname"><em>pfgfn</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set fog parameters based on current values in the camera. </p>
+
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00069">69</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -386,9 +427,9 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Calculates adjustments on the given camera. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000089">Todo:</a></b></dt><dd>Actually find out what this does. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000088">Todo:</a></b></dt><dd>Actually find out what this does. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00055">55</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00056">56</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -410,7 +451,7 @@ Functions</h2></td></tr>
 
 <p>Clears cut from the given camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00257">257</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00266">266</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -432,7 +473,7 @@ Functions</h2></td></tr>
 
 <p>Clears fading objects from the given camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00176">176</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00188">188</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -461,129 +502,20 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>This is a compiler generated function. Remove once data is migrated. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00313">313</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00322">322</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
-<a id="a2523ddf6b69e1be870b61ae1cc1fb1e8" name="a2523ddf6b69e1be870b61ae1cc1fb1e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2523ddf6b69e1be870b61ae1cc1fb1e8">&#9670;&#160;</a></span>FUN_00143860()</h2>
+<a id="ad3dc4a345e4e754b69482abd04823d11" name="ad3dc4a345e4e754b69482abd04823d11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3dc4a345e4e754b69482abd04823d11">&#9670;&#160;</a></span>EnableCmNextCut()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void FUN_00143860 </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>param1</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets field35_0x1fc on the global camera. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000090">Todo:</a></b></dt><dd>Rename. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00094">94</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
-
-</div>
-</div>
-<a id="a29fd9ef7ad980ebc11560d05cb3cc5b2" name="a29fd9ef7ad980ebc11560d05cb3cc5b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29fd9ef7ad980ebc11560d05cb3cc5b2">&#9670;&#160;</a></span>FUN_00143888()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FUN_00143888 </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>param1</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets field36_0x200 on the global camera. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000091">Todo:</a></b></dt><dd>Rename. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00099">99</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
-
-</div>
-</div>
-<a id="a33ca965ae173723a712dbf9460e94790" name="a33ca965ae173723a712dbf9460e94790"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a33ca965ae173723a712dbf9460e94790">&#9670;&#160;</a></span>FUN_001439c8()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FUN_001439c8 </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structCM.html">CM</a> *&#160;</td>
-          <td class="paramname"><em>pcm</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>param_2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets field35_0x1fc on the given camera. </p>
-
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00150">150</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
-
-</div>
-</div>
-<a id="a6021a969cee3b083a5c54102a6e039f2" name="a6021a969cee3b083a5c54102a6e039f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6021a969cee3b083a5c54102a6e039f2">&#9670;&#160;</a></span>FUN_001439e8()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FUN_001439e8 </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structCM.html">CM</a> *&#160;</td>
-          <td class="paramname"><em>pcm</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>param_2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets field36_0x200 on the given camera. </p>
-
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00156">156</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
-
-</div>
-</div>
-<a id="a884f42c5466197e790f96667742ca2c1" name="a884f42c5466197e790f96667742ca2c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a884f42c5466197e790f96667742ca2c1">&#9670;&#160;</a></span>FUN_00146028()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FUN_00146028 </td>
+          <td class="memname">void EnableCmNextCut </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structCM.html">CM</a> *&#160;</td>
           <td class="paramname"><em>pcm</em></td><td>)</td>
@@ -592,15 +524,44 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calls FUN_00146028 on the given camera. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000092">Todo:</a></b></dt><dd>Rename. </dd></dl>
+<p>Enable the next cut on the given camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00306">306</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00261">261</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+
+</div>
+</div>
+<a id="ac08241c3649da60578d3fc1043035367" name="ac08241c3649da60578d3fc1043035367"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac08241c3649da60578d3fc1043035367">&#9670;&#160;</a></span>FUN_00145dd8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FUN_00145dd8 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>punk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structSO.html">SO</a> *&#160;</td>
+          <td class="paramname"><em>pso</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00281">281</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
 <a id="a8790b897dddbcfbdd3a48ffbf63101b3" name="a8790b897dddbcfbdd3a48ffbf63101b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8790b897dddbcfbdd3a48ffbf63101b3">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8790b897dddbcfbdd3a48ffbf63101b3">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -628,7 +589,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="aa937c80e601bc9da9b58cc140f9c7d01" name="aa937c80e601bc9da9b58cc140f9c7d01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa937c80e601bc9da9b58cc140f9c7d01">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa937c80e601bc9da9b58cc140f9c7d01">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -656,7 +617,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a4e6a523b9a3138abab7507c11d0ba1e8" name="a4e6a523b9a3138abab7507c11d0ba1e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e6a523b9a3138abab7507c11d0ba1e8">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e6a523b9a3138abab7507c11d0ba1e8">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[3/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -683,36 +644,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="abc17da5a0e544173e5f43161b89c57f2" name="abc17da5a0e544173e5f43161b89c57f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc17da5a0e544173e5f43161b89c57f2">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[4/41]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/cm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">BuildCmFgfn__FP2CMfP4FGFN&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a4ee7b6da84572e101a4aea5a0388db6f" name="a4ee7b6da84572e101a4aea5a0388db6f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4ee7b6da84572e101a4aea5a0388db6f">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[5/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ee7b6da84572e101a4aea5a0388db6f">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[4/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -740,7 +673,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="aab37e93e8afcc8facdebf974d3f7e88b" name="aab37e93e8afcc8facdebf974d3f7e88b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab37e93e8afcc8facdebf974d3f7e88b">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[6/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aab37e93e8afcc8facdebf974d3f7e88b">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[5/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -768,7 +701,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a21d3d8d9547c12068cbc54c1c602d851" name="a21d3d8d9547c12068cbc54c1c602d851"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21d3d8d9547c12068cbc54c1c602d851">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[7/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a21d3d8d9547c12068cbc54c1c602d851">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[6/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -796,7 +729,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ad5fb76906182eac703fbe469b96707e4" name="ad5fb76906182eac703fbe469b96707e4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5fb76906182eac703fbe469b96707e4">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[8/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5fb76906182eac703fbe469b96707e4">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[7/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -824,7 +757,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="aa8c4c2dd172a838a640b970e18347f68" name="aa8c4c2dd172a838a640b970e18347f68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa8c4c2dd172a838a640b970e18347f68">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[9/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8c4c2dd172a838a640b970e18347f68">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[8/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -852,7 +785,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a3e1a2f39dd7e706e3a2b1d30cc4610bd" name="a3e1a2f39dd7e706e3a2b1d30cc4610bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e1a2f39dd7e706e3a2b1d30cc4610bd">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[10/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e1a2f39dd7e706e3a2b1d30cc4610bd">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[9/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -880,7 +813,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a19109c9eba99b5b1bf7544f948521e75" name="a19109c9eba99b5b1bf7544f948521e75"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a19109c9eba99b5b1bf7544f948521e75">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[11/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a19109c9eba99b5b1bf7544f948521e75">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[10/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -908,7 +841,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a75e7bbd4aab0ec008c27b9c3b7d7751d" name="a75e7bbd4aab0ec008c27b9c3b7d7751d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75e7bbd4aab0ec008c27b9c3b7d7751d">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[12/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a75e7bbd4aab0ec008c27b9c3b7d7751d">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[11/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -936,7 +869,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a730e374de31728d53d512518f3839c7f" name="a730e374de31728d53d512518f3839c7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a730e374de31728d53d512518f3839c7f">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[13/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a730e374de31728d53d512518f3839c7f">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[12/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -963,8 +896,36 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a707e79b2d77f6f0eb316773f4dd2fbf1" name="a707e79b2d77f6f0eb316773f4dd2fbf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a707e79b2d77f6f0eb316773f4dd2fbf1">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[13/39]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">INCLUDE_ASM </td>
+          <td>(</td>
+          <td class="paramtype">&quot;asm/nonmatchings/P2/cm&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FFilterCamera__FPvP2SO&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a8aa7d62a8fbca2151033d1c11c26c587" name="a8aa7d62a8fbca2151033d1c11c26c587"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8aa7d62a8fbca2151033d1c11c26c587">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[14/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8aa7d62a8fbca2151033d1c11c26c587">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[14/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -991,8 +952,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0261b93d90d16ccb0b5bbc9f253fdb8a" name="a0261b93d90d16ccb0b5bbc9f253fdb8a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0261b93d90d16ccb0b5bbc9f253fdb8a">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[15/41]</span></h2>
+<a id="a3197a0e8115147ce76ebb206561ce0f0" name="a3197a0e8115147ce76ebb206561ce0f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3197a0e8115147ce76ebb206561ce0f0">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[15/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1006,7 +967,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FUN_00143BA8&#160;</td>
+          <td class="paramtype">FUN_00145810&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -1020,7 +981,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a8b2eeb625ecefd97caa65d809a6ff1e9" name="a8b2eeb625ecefd97caa65d809a6ff1e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b2eeb625ecefd97caa65d809a6ff1e9">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[16/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b2eeb625ecefd97caa65d809a6ff1e9">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[16/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1048,7 +1009,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ae385bcca1d44dc183e9f8c12884636bd" name="ae385bcca1d44dc183e9f8c12884636bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae385bcca1d44dc183e9f8c12884636bd">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[17/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae385bcca1d44dc183e9f8c12884636bd">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[17/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1075,36 +1036,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a9400c609e69d3a5760248f541c044098" name="a9400c609e69d3a5760248f541c044098"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9400c609e69d3a5760248f541c044098">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[18/41]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/cm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">FUN_00145dd8__FP2CM&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="abfa718e1267c61e0c9d349c5fbff2614" name="abfa718e1267c61e0c9d349c5fbff2614"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abfa718e1267c61e0c9d349c5fbff2614">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[19/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abfa718e1267c61e0c9d349c5fbff2614">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[18/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1132,7 +1065,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ad861a8150fd538fdca7e4f0210ef3c87" name="ad861a8150fd538fdca7e4f0210ef3c87"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad861a8150fd538fdca7e4f0210ef3c87">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[20/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad861a8150fd538fdca7e4f0210ef3c87">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[19/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1160,7 +1093,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a787fd717025adfce441c076ca9f1a104" name="a787fd717025adfce441c076ca9f1a104"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a787fd717025adfce441c076ca9f1a104">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[21/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a787fd717025adfce441c076ca9f1a104">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[20/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1188,7 +1121,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a7812871adfb4dd69a50ac6c0773211ee" name="a7812871adfb4dd69a50ac6c0773211ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7812871adfb4dd69a50ac6c0773211ee">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[22/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7812871adfb4dd69a50ac6c0773211ee">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[21/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1216,7 +1149,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="adb2efdee6f4502b9e828aa910e7af18c" name="adb2efdee6f4502b9e828aa910e7af18c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb2efdee6f4502b9e828aa910e7af18c">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[23/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#adb2efdee6f4502b9e828aa910e7af18c">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[22/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1243,36 +1176,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="afc8511e442ce2a35d5db5d53af18637e" name="afc8511e442ce2a35d5db5d53af18637e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc8511e442ce2a35d5db5d53af18637e">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[24/41]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">INCLUDE_ASM </td>
-          <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/cm&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="stepguard_8h.html#adaf36841203c1d245010dbb39c623be8">PsoEnemyStepguard</a>&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ad4eae73a94c2bfc9bb88ab60811d857e" name="ad4eae73a94c2bfc9bb88ab60811d857e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4eae73a94c2bfc9bb88ab60811d857e">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[25/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4eae73a94c2bfc9bb88ab60811d857e">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[23/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1299,8 +1204,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="afde1a7f61861233d59b3b38f22975fc2" name="afde1a7f61861233d59b3b38f22975fc2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afde1a7f61861233d59b3b38f22975fc2">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[26/41]</span></h2>
+<a id="a7618d6adeeca7d1e60733ae7769e04df" name="a7618d6adeeca7d1e60733ae7769e04df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7618d6adeeca7d1e60733ae7769e04df">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[24/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1314,7 +1219,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">RemoveCmFadeObject&#160;</td>
+          <td class="paramtype">RemoveCmFadeObject__FP2CMP3ALO&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -1327,8 +1232,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a02de8296632618aece91978cb0dced96" name="a02de8296632618aece91978cb0dced96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02de8296632618aece91978cb0dced96">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[27/41]</span></h2>
+<a id="ae6cd9fde2405d4a971766fad8f7e3471" name="ae6cd9fde2405d4a971766fad8f7e3471"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6cd9fde2405d4a971766fad8f7e3471">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[25/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1342,7 +1247,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">ResetCm&#160;</td>
+          <td class="paramtype">ResetCm__FP2CMi&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -1356,7 +1261,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a281c09a2e8e2aef66c9b5a800bd5f449" name="a281c09a2e8e2aef66c9b5a800bd5f449"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a281c09a2e8e2aef66c9b5a800bd5f449">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[28/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a281c09a2e8e2aef66c9b5a800bd5f449">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[26/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1383,8 +1288,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae4b10381159472487107f8361be36e76" name="ae4b10381159472487107f8361be36e76"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4b10381159472487107f8361be36e76">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[29/41]</span></h2>
+<a id="aacd25bc27ac3e3cd9d389d9e1a9cac79" name="aacd25bc27ac3e3cd9d389d9e1a9cac79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacd25bc27ac3e3cd9d389d9e1a9cac79">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[27/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1398,7 +1303,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">ResetCmLookAtSmooth&#160;</td>
+          <td class="paramtype">ResetCmLookAtSmooth__FP2CMP6VECTOR&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -1412,7 +1317,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a07d29584ea1a5e38b2dfe11b89438224" name="a07d29584ea1a5e38b2dfe11b89438224"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07d29584ea1a5e38b2dfe11b89438224">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[30/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a07d29584ea1a5e38b2dfe11b89438224">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[28/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1440,7 +1345,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a477c75ea67588808d524e30c62b70d3f" name="a477c75ea67588808d524e30c62b70d3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a477c75ea67588808d524e30c62b70d3f">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[31/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a477c75ea67588808d524e30c62b70d3f">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[29/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1468,7 +1373,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a0668acd0ff8acf1239d4c580c95c6b80" name="a0668acd0ff8acf1239d4c580c95c6b80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0668acd0ff8acf1239d4c580c95c6b80">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[32/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0668acd0ff8acf1239d4c580c95c6b80">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[30/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1496,7 +1401,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a3b7258d4f0b3349f87215f03267fc09d" name="a3b7258d4f0b3349f87215f03267fc09d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b7258d4f0b3349f87215f03267fc09d">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[33/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b7258d4f0b3349f87215f03267fc09d">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[31/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1524,7 +1429,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a4e483c17e11fba6e00ee3a2779c0adef" name="a4e483c17e11fba6e00ee3a2779c0adef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e483c17e11fba6e00ee3a2779c0adef">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[34/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e483c17e11fba6e00ee3a2779c0adef">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[32/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1552,7 +1457,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a5a90d1317c8ad2da9dc5bb8a34a97045" name="a5a90d1317c8ad2da9dc5bb8a34a97045"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a90d1317c8ad2da9dc5bb8a34a97045">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[35/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a90d1317c8ad2da9dc5bb8a34a97045">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[33/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1580,7 +1485,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a7cd3f83d1d174cf46ea3f594c0be3f09" name="a7cd3f83d1d174cf46ea3f594c0be3f09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7cd3f83d1d174cf46ea3f594c0be3f09">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[36/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cd3f83d1d174cf46ea3f594c0be3f09">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[34/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1608,7 +1513,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a00bb0dc6913cf510622adaf08d680892" name="a00bb0dc6913cf510622adaf08d680892"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00bb0dc6913cf510622adaf08d680892">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[37/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a00bb0dc6913cf510622adaf08d680892">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[35/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1636,7 +1541,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a3773770ac5200dad851c4b8203fed55d" name="a3773770ac5200dad851c4b8203fed55d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3773770ac5200dad851c4b8203fed55d">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[38/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3773770ac5200dad851c4b8203fed55d">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[36/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1664,7 +1569,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="acbc5e80abb97a5795c90c617ec92d9b3" name="acbc5e80abb97a5795c90c617ec92d9b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbc5e80abb97a5795c90c617ec92d9b3">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[39/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acbc5e80abb97a5795c90c617ec92d9b3">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[37/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1692,7 +1597,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a1a55bd3feeefa6f0e574ce74f444ad47" name="a1a55bd3feeefa6f0e574ce74f444ad47"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a55bd3feeefa6f0e574ce74f444ad47">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[40/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a55bd3feeefa6f0e574ce74f444ad47">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[38/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1720,7 +1625,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a468a0944c42a3f0c3ce050db8030e8f9" name="a468a0944c42a3f0c3ce050db8030e8f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a468a0944c42a3f0c3ce050db8030e8f9">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[41/41]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a468a0944c42a3f0c3ce050db8030e8f9">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[39/39]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1734,7 +1639,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">UpdateCmMat4&#160;</td>
+          <td class="paramtype"><a class="el" href="cm_8h.html#ab1928cc8120fb5159de1f2dc0022b3c2">UpdateCmMat4</a>&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -1744,6 +1649,28 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad75b5b7ce79286cab550e0b393a4d45e" name="ad75b5b7ce79286cab550e0b393a4d45e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad75b5b7ce79286cab550e0b393a4d45e">&#9670;&#160;</a></span>JoltCm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JoltCm </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCM.html">CM</a> *&#160;</td>
+          <td class="paramname"><em>pcm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Jolt the given camera. </p>
+
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00312">312</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -1772,7 +1699,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="cm_8h.html#a9d64726a719f2db9e9f4029ef8c41809">LOOKK</a> LookkCurCm </td>
+          <td class="memname"><a class="el" href="cplcy_8h.html#a9d64726a719f2db9e9f4029ef8c41809">LOOKK</a> LookkCurCm </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structCM.html">CM</a> *&#160;</td>
           <td class="paramname"><em>pcm</em></td><td>)</td>
@@ -1781,9 +1708,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calls LookkCurCm on the given camera. </p>
+<p>Get the current look kind of the given camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00294">294</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00300">300</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -1794,7 +1721,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="cm_8h.html#a9d64726a719f2db9e9f4029ef8c41809">LOOKK</a> LookkPopCm </td>
+          <td class="memname"><a class="el" href="cplcy_8h.html#a9d64726a719f2db9e9f4029ef8c41809">LOOKK</a> LookkPopCm </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structCM.html">CM</a> *&#160;</td>
           <td class="paramname"><em>pcm</em></td><td>)</td>
@@ -1803,9 +1730,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calls LookkPopCm on the given camera. </p>
+<p>Pop the top most look kind of the given camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00289">289</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00295">295</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -1824,7 +1751,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="cm_8h.html#a9d64726a719f2db9e9f4029ef8c41809">LOOKK</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="cplcy_8h.html#a9d64726a719f2db9e9f4029ef8c41809">LOOKK</a>&#160;</td>
           <td class="paramname"><em>lookk</em>&#160;</td>
         </tr>
         <tr>
@@ -1837,7 +1764,7 @@ Functions</h2></td></tr>
 
 <p>Push lookk on the given camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00284">284</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00290">290</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -1869,7 +1796,7 @@ Functions</h2></td></tr>
 
 <p>Sets Cut on the given camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00242">242</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00251">251</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -1901,7 +1828,39 @@ Functions</h2></td></tr>
 
 <p>Sets far clip plane on the given camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00138">138</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00150">150</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+
+</div>
+</div>
+<a id="addd2436a4e13e01e52d27a86a4f2ef36" name="addd2436a4e13e01e52d27a86a4f2ef36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addd2436a4e13e01e52d27a86a4f2ef36">&#9670;&#160;</a></span>SetCmFarFog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetCmFarFog </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCM.html">CM</a> *&#160;</td>
+          <td class="paramname"><em>pcm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>sFarFog</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the far fog distance (?) on the given camera. </p>
+
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00162">162</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -1933,7 +1892,7 @@ Functions</h2></td></tr>
 
 <p>Changes the FOV of the camera and then calls RecalcCmFrustrum. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00124">124</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00136">136</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -1965,12 +1924,12 @@ Functions</h2></td></tr>
 
 <p>Sets matrix on the given camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00119">119</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00131">131</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
-<a id="ab05ee21867b34a49a649759041f9734e" name="ab05ee21867b34a49a649759041f9734e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab05ee21867b34a49a649759041f9734e">&#9670;&#160;</a></span>SetCmMrdRatio()</h2>
+<a id="a8a02f4d700f344022899868e9ecb25d2" name="a8a02f4d700f344022899868e9ecb25d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a02f4d700f344022899868e9ecb25d2">&#9670;&#160;</a></span>SetCmMrdRatio()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1985,7 +1944,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>ratio</em>&#160;</td>
+          <td class="paramname"><em>rMRD</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1997,7 +1956,7 @@ Functions</h2></td></tr>
 
 <p>Sets the minimum render distance ratio (?) on the given camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00168">168</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00180">180</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -2029,7 +1988,39 @@ Functions</h2></td></tr>
 
 <p>Sets near clip plane on the given camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00132">132</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00144">144</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+
+</div>
+</div>
+<a id="ae0f8366c02675363c2825532fc21f793" name="ae0f8366c02675363c2825532fc21f793"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0f8366c02675363c2825532fc21f793">&#9670;&#160;</a></span>SetCmNearFog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetCmNearFog </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCM.html">CM</a> *&#160;</td>
+          <td class="paramname"><em>pcm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>sNearFog</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the near fog distance (?) on the given camera. </p>
+
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00156">156</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -2061,7 +2052,7 @@ Functions</h2></td></tr>
 
 <p>Sets position on the given camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00114">114</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00126">126</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -2093,12 +2084,12 @@ Functions</h2></td></tr>
 
 <p>Sets the <a class="el" href="structRGBA.html" title="RGBA color value.">RGBA</a> fog color for the camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00162">162</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00174">174</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
-<a id="ad4f199f8087fb9d79e894aeeded070a7" name="ad4f199f8087fb9d79e894aeeded070a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4f199f8087fb9d79e894aeeded070a7">&#9670;&#160;</a></span>SetCmSniperFocus()</h2>
+<a id="aa68d1da52a85748fefd989b51ebe3c41" name="aa68d1da52a85748fefd989b51ebe3c41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa68d1da52a85748fefd989b51ebe3c41">&#9670;&#160;</a></span>SetCmSniperFocus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2112,20 +2103,20 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structPNT.html">PNT</a> *&#160;</td>
-          <td class="paramname"><em>ppntAnchor</em>, </td>
+          <td class="paramtype"><a class="el" href="structALO.html">ALO</a> *&#160;</td>
+          <td class="paramname"><em>palo</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>sRadiusSniper</em>, </td>
+          <td class="paramname"><em>rScreen</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>rScreenSniper</em>&#160;</td>
+          <td class="paramname"><em>sRadius</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2137,18 +2128,18 @@ Functions</h2></td></tr>
 
 <p>Sets sniper focus on the given camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00299">299</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00305">305</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
-<a id="a55f47d31653867b2ecdcc8bf23062941" name="a55f47d31653867b2ecdcc8bf23062941"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a55f47d31653867b2ecdcc8bf23062941">&#9670;&#160;</a></span>SetCmSProgress()</h2>
+<a id="a550083488a2257d005866a6011998f15" name="a550083488a2257d005866a6011998f15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a550083488a2257d005866a6011998f15">&#9670;&#160;</a></span>SetCmUFogMax()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SetCmSProgress </td>
+          <td class="memname">void SetCmUFogMax </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structCM.html">CM</a> *&#160;</td>
           <td class="paramname"><em>pcm</em>, </td>
@@ -2157,7 +2148,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>uSProgress</em>&#160;</td>
+          <td class="paramname"><em>uFogMax</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2167,31 +2158,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets SProgress on the given camera. </p>
+<p>Set the maximum fog distance (?) on the given camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00144">144</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
-
-</div>
-</div>
-<a id="a59f294f6d936f9c90f1925d2e66ac370" name="a59f294f6d936f9c90f1925d2e66ac370"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a59f294f6d936f9c90f1925d2e66ac370">&#9670;&#160;</a></span>SetResetFlag()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SetResetFlag </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structCM.html">CM</a> *&#160;</td>
-          <td class="paramname"><em>pcm</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets the reset flag on the given camera. </p>
-
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00252">252</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00168">168</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -2213,7 +2182,29 @@ Functions</h2></td></tr>
 
 <p>Sets far clip plane on the global camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00084">84</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00096">96</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+
+</div>
+</div>
+<a id="a9b66505e301341940a0b16ec0fc8cb62" name="a9b66505e301341940a0b16ec0fc8cb62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b66505e301341940a0b16ec0fc8cb62">&#9670;&#160;</a></span>SetSwCameraFarFog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetSwCameraFarFog </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>sFarFog</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the far fog distance (?) on the global camera. </p>
+
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00106">106</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -2235,7 +2226,7 @@ Functions</h2></td></tr>
 
 <p>Sets fov on the global camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00074">74</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00086">86</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -2257,7 +2248,7 @@ Functions</h2></td></tr>
 
 <p>Sets the minimum render distance ratio (?) on the global camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00109">109</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00121">121</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -2279,7 +2270,29 @@ Functions</h2></td></tr>
 
 <p>Sets near clip plane on the global camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00079">79</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00091">91</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+
+</div>
+</div>
+<a id="a3726d8ab79ddce1941ef183aeb7ab2e0" name="a3726d8ab79ddce1941ef183aeb7ab2e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3726d8ab79ddce1941ef183aeb7ab2e0">&#9670;&#160;</a></span>SetSwCameraNearFog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetSwCameraNearFog </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>sNearFog</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the near fog distance (?) on the global camera. </p>
+
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00101">101</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -2311,29 +2324,29 @@ Functions</h2></td></tr>
 
 <p>Sets Fog on the global camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00104">104</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00116">116</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
-<a id="ad00aa27e00baa6c7569efad6f2d008a0" name="ad00aa27e00baa6c7569efad6f2d008a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad00aa27e00baa6c7569efad6f2d008a0">&#9670;&#160;</a></span>SetSwCameraSProgress()</h2>
+<a id="a080adc14071536fc72b2dff8f2d65bf4" name="a080adc14071536fc72b2dff8f2d65bf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a080adc14071536fc72b2dff8f2d65bf4">&#9670;&#160;</a></span>SetSwCameraUFogMax()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SetSwCameraSProgress </td>
+          <td class="memname">void SetSwCameraUFogMax </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>uSProgress</em></td><td>)</td>
+          <td class="paramname"><em>uFogMax</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets SProgress on the global camera. </p>
+<p>Set the max fog distance (?) on the global camera. </p>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00089">89</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00111">111</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>
@@ -2353,9 +2366,9 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Starts up the camera system. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>Mangle all function names in INCLUDE_ASM macros. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>Mangle all function names in INCLUDE_ASM macros. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00050">50</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cm_8c_source.html#l00051">51</a> of file <a class="el" href="cm_8c_source.html">cm.c</a>.</p>
 
 </div>
 </div>

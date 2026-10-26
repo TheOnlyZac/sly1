@@ -31,6 +31,6 @@ var step_8c =
     [ "INCLUDE_ASM", "step_8c.html#a0a09977de263e193771424429cb85402", null ],
     [ "INCLUDE_ASM", "step_8c.html#a24741e1757ade68aef24b1e059f98fd2", null ],
     [ "PresetStepAccel", "step_8c.html#a1bdfb39c4122ec9e5fb3055e9528e5d0", null ],
-    [ "RenderStepSelf__FP4STEPP2CMP2RO", "step_8c.html#a487491079993be7036cff03c03a2f6ac", null ],
+    [ "RenderStepSelf", "step_8c.html#add6cd24ab60d98dca41b2162d06da381", null ],
     [ "UpdateStep", "step_8c.html#acb4eeb4c26ccc175370d00d40d799b31", null ]
 ];

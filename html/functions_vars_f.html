@@ -106,6 +106,7 @@ $(document).ready(function(){initNavTree('functions_vars_f.html',''); initResiza
 <li>fActivate&#160;:&#160;<a class="el" href="structCPTN.html#a82ca53e098ce44b20fe2ddc130da6c8d">CPTN</a></li>
 <li>fActive&#160;:&#160;<a class="el" href="structBLOT.html#ad1e919c41353b0efa3c7eee8fd16173f">BLOT</a></li>
 <li>fAlive&#160;:&#160;<a class="el" href="structSPLOT.html#a58e5a0ab43d13226a48aaf8194b59269">SPLOT</a></li>
+<li>fAllow&#160;:&#160;<a class="el" href="structBARRIER.html#afb1fc7c1c7ca282cf1b7cc26c3896dc2">BARRIER</a></li>
 <li>fAseg&#160;:&#160;<a class="el" href="structSMT.html#a950ef7f4a916aa15237949db1dc363ca">SMT</a></li>
 <li>fAsync&#160;:&#160;<a class="el" href="structJSGE.html#a58a096ab30b18fff5270f1b779f0313e">JSGE</a></li>
 <li>fAttached&#160;:&#160;<a class="el" href="structAMB.html#aeb6ae17ef79d38984cf3c2cf8e7eac2d">AMB</a></li>
@@ -129,7 +130,6 @@ $(document).ready(function(){initNavTree('functions_vars_f.html',''); initResiza
 <li>fCut&#160;:&#160;<a class="el" href="structCM.html#a315f0fe266a97b0a5e102c9bdf361c38">CM</a></li>
 <li>fCutNext&#160;:&#160;<a class="el" href="structCM.html#aaabbc433814993c32a1befab302da063">CM</a></li>
 <li>fDefault&#160;:&#160;<a class="el" href="structDIALOG.html#ac0ae9f0fc7f563bb77ceb96bbfa60f5a">DIALOG</a>, <a class="el" href="structEXIT.html#ae6f579791dcf87b388f06a0d177dc048">EXIT</a>, <a class="el" href="structSM.html#a0a3047e584ec2b3718db8256b53c14aa">SM</a>, <a class="el" href="structWARP.html#aeefed1f28ba17bb0abf9bc0ab8c96735">WARP</a></li>
-<li>fDisplaced&#160;:&#160;<a class="el" href="structCM.html#aed1fc9525708c1bdfc6b3ceb537168ef">CM</a></li>
 <li>fDpos&#160;:&#160;<a class="el" href="structWRBG.html#aa212f32a0bc914be470cb31bfe670947">WRBG</a></li>
 <li>fDuv&#160;:&#160;<a class="el" href="structWRBG.html#a6ef837888f4a2dcf33327f163025222a">WRBG</a></li>
 <li>fDynamic&#160;:&#160;<a class="el" href="structLIGHT.html#ab3db1cff4de106d5dba1d08bf4fdcb82">LIGHT</a></li>
@@ -137,6 +137,7 @@ $(document).ready(function(){initNavTree('functions_vars_f.html',''); initResiza
 <li>fFlash&#160;:&#160;<a class="el" href="structLGN.html#ad34e2c4ecb585cde64e085bf306db83f">LGN</a></li>
 <li>fFollowDefault&#160;:&#160;<a class="el" href="structEXIT.html#ac33591670b5f08b9a510fc1bdecd24b2">EXIT</a></li>
 <li>fFollowTrajectory&#160;:&#160;<a class="el" href="structMISSILE.html#a10b29973b823cb66c6b31ded2b142e8c">MISSILE</a></li>
+<li>fFollowZ&#160;:&#160;<a class="el" href="structSKY.html#af060a8e811a9ab7d00399402201f11fc">SKY</a></li>
 <li>fgfn&#160;:&#160;<a class="el" href="structCM.html#aca864659152bdb958edec31eb33836a0">CM</a>, <a class="el" href="structRGL.html#a34ee7ea41777fe8bc7ec817791c070ac">RGL</a></li>
 <li>fgs&#160;:&#160;<a class="el" href="structGS.html#ab3e0dbb592f5634ba5f4f7100ed53d14">GS</a></li>
 <li>fHandsOff&#160;:&#160;<a class="el" href="structASEGA.html#a16c9526e9f18ed338519af0e4343d332">ASEGA</a></li>
@@ -149,7 +150,6 @@ $(document).ready(function(){initNavTree('functions_vars_f.html',''); initResiza
 <li>field0_0x0&#160;:&#160;<a class="el" href="structRNG.html#af044765c8bb7b205a47cbc9266049e6c">RNG</a></li>
 <li>field10_0x20&#160;:&#160;<a class="el" href="structDIFFICULTYLEVEL.html#a7a00793ad384f1e1404ae07966ce5d7b">DIFFICULTYLEVEL</a></li>
 <li>field10_0x28&#160;:&#160;<a class="el" href="structRNG.html#a27ecc730e36a275e55517d2c51cbf34a">RNG</a></li>
-<li>field10_0x34&#160;:&#160;<a class="el" href="structCPDEFI.html#a24edfdd9b844c560b5bbf9364757763e">CPDEFI</a></li>
 <li>field11_0x24&#160;:&#160;<a class="el" href="structDIFFICULTYLEVEL.html#ac09af45b40925b8683df649a40f08279">DIFFICULTYLEVEL</a></li>
 <li>field11_0x2c&#160;:&#160;<a class="el" href="structRNG.html#a5dbf3bae236de366e523c527919e803e">RNG</a></li>
 <li>field12_0x28&#160;:&#160;<a class="el" href="structDIFFICULTYLEVEL.html#a6c60b6a9ba76276b5018c916d8311bc3">DIFFICULTYLEVEL</a></li>
@@ -171,32 +171,12 @@ $(document).ready(function(){initNavTree('functions_vars_f.html',''); initResiza
 <li>field21_0x54&#160;:&#160;<a class="el" href="structRNG.html#a2cf9e581e0a14676fcdd4b82b06bfac0">RNG</a></li>
 <li>field22_0x50&#160;:&#160;<a class="el" href="structDIFFICULTYLEVEL.html#a2c6d68facdc8fce17157d2d3d1ca33c0">DIFFICULTYLEVEL</a></li>
 <li>field2_0x8&#160;:&#160;<a class="el" href="structCPDEFI.html#a40cf288f148a4bb056eca6f7fb998602">CPDEFI</a>, <a class="el" href="structRNG.html#ae0dc9261b96458b2e89df676332d533e">RNG</a></li>
-<li>field35_0x1fc&#160;:&#160;<a class="el" href="structCM.html#a8487a0ad1c51357cd114ace8b2c8eaba">CM</a></li>
-<li>field36_0x200&#160;:&#160;<a class="el" href="structCM.html#a325da2494a3aa7eae575da0b1cffc447">CM</a></li>
-<li>field39_0x21c&#160;:&#160;<a class="el" href="structCM.html#afd158ff02a41f12224a5de85bab6553e">CM</a></li>
 <li>field3_0xc&#160;:&#160;<a class="el" href="structCPDEFI.html#a99a1f3199f1877a25a21fa18ef477f6b">CPDEFI</a>, <a class="el" href="structRNG.html#a58de94281ecdbc1ad9e1c5ec4ebc76ef">RNG</a></li>
-<li>field41_0x224&#160;:&#160;<a class="el" href="structCM.html#a3a21a623427d4b40df0b4bf0f086f457">CM</a></li>
-<li>field42_0x228&#160;:&#160;<a class="el" href="structCM.html#af0c6a77ebc06183196cb56456c5f7805">CM</a></li>
-<li>field43_0x22c&#160;:&#160;<a class="el" href="structCM.html#a84c5c49933357047db6284bc5c0cf6b6">CM</a></li>
-<li>field44_0x230&#160;:&#160;<a class="el" href="structCM.html#a8168d5553748bf24eaa9c3e940a4e9a2">CM</a></li>
 <li>field4_0x10&#160;:&#160;<a class="el" href="structRNG.html#a5300ec9d7eb8273cd553ed933084cf01">RNG</a></li>
 <li>field4_0xc&#160;:&#160;<a class="el" href="structDIFFICULTYLEVEL.html#ad1770764acdd1b28d23ee315aa339a7a">DIFFICULTYLEVEL</a></li>
-<li>field52_0x278&#160;:&#160;<a class="el" href="structCM.html#a6582b9ef7e327223f320c85d9b2665a4">CM</a></li>
-<li>field53_0x27c&#160;:&#160;<a class="el" href="structCM.html#a23afd19efecb53eda65845ac955d724f">CM</a></li>
-<li>field54_0x280&#160;:&#160;<a class="el" href="structCM.html#afdf07f37c7aaea8038f234d41be84f18">CM</a></li>
-<li>field59_0x2c4&#160;:&#160;<a class="el" href="structCM.html#aa3d1aa2e35305e41b5a2e7eaf3ab9e56">CM</a></li>
 <li>field5_0x14&#160;:&#160;<a class="el" href="structRNG.html#a12cadc300267d8f7d60c373f48094b77">RNG</a></li>
-<li>field5_0x98&#160;:&#160;<a class="el" href="structCM.html#aad481bd58e1f0b1431c38040ddccd91d">CM</a></li>
-<li>field60_0x2c8&#160;:&#160;<a class="el" href="structCM.html#a7d8b8393eef8441beeef558787780349">CM</a></li>
-<li>field61_0x2cc&#160;:&#160;<a class="el" href="structCM.html#a00265b5ac402ea95c2c74af297234470">CM</a></li>
-<li>field66_0x33c&#160;:&#160;<a class="el" href="structCM.html#a51060222057146c5f27ce5150e74802c">CM</a></li>
 <li>field6_0x18&#160;:&#160;<a class="el" href="structRNG.html#a0bedf1f3ecba498b18ae2f5811d1948e">RNG</a></li>
-<li>field6_0x9c&#160;:&#160;<a class="el" href="structCM.html#a81aa478bf1bea83ba99703efe55dafd2">CM</a></li>
-<li>field77_0x448&#160;:&#160;<a class="el" href="structCM.html#a1edde993966412edd6c1a2c263406e63">CM</a></li>
-<li>field78_0x450&#160;:&#160;<a class="el" href="structCM.html#ab3e4208ccaa2b5e8cddb649f12612693">CM</a></li>
-<li>field79_0x458&#160;:&#160;<a class="el" href="structCM.html#afcee8e791a72831129b26bd1a07bdc49">CM</a></li>
 <li>field7_0x1c&#160;:&#160;<a class="el" href="structRNG.html#a21018203bb1e08676514dfe5235d9f5f">RNG</a></li>
-<li>field7_0xa0&#160;:&#160;<a class="el" href="structCM.html#a52da64de6595da342f347b8d8336418e">CM</a></li>
 <li>field8_0x20&#160;:&#160;<a class="el" href="structRNG.html#a05a531869f0dc94c7083d77cbc43b0bd">RNG</a></li>
 <li>field9_0x24&#160;:&#160;<a class="el" href="structRNG.html#ae79ff5166a2c5e8abef5bcf05444a7b3">RNG</a></li>
 <li>field_0x00&#160;:&#160;<a class="el" href="structSAVE.html#a1a64c72cc04011f1769ef3af79991db6">SAVE</a></li>
@@ -211,7 +191,6 @@ $(document).ready(function(){initNavTree('functions_vars_f.html',''); initResiza
 <li>field_140&#160;:&#160;<a class="el" href="classCMpeg.html#a6b600ab7c5aae948a25373d917af019e">CMpeg</a></li>
 <li>field_1_0x0&#160;:&#160;<a class="el" href="structCPALIGN.html#a384798a07fd54245da6cba96d582bdf9">CPALIGN</a></li>
 <li>field_2_0x4&#160;:&#160;<a class="el" href="structCPALIGN.html#a176e994740644281a3cbdf63fb412052">CPALIGN</a></li>
-<li>field_4_0xc&#160;:&#160;<a class="el" href="structCPALIGN.html#afc17830b6249ddacc5e2bce97e164196">CPALIGN</a></li>
 <li>field_5_0x10&#160;:&#160;<a class="el" href="structCPALIGN.html#a5f68d777519d35a3f4524407e8141f5b">CPALIGN</a></li>
 <li>field_6_0x14&#160;:&#160;<a class="el" href="structCPALIGN.html#a90575834bdd49fb2bd22e4fb99b55c6e">CPALIGN</a></li>
 <li>field_7_0x18&#160;:&#160;<a class="el" href="structCPALIGN.html#a6d4b1d49c32188468599cf2d6b96e41e">CPALIGN</a></li>
@@ -272,6 +251,7 @@ $(document).ready(function(){initNavTree('functions_vars_f.html',''); initResiza
 <li>fTotals&#160;:&#160;<a class="el" href="structEXIT.html#a69fc15f4bd31186aac9705b17d20760d">EXIT</a></li>
 <li>fTriggerAll&#160;:&#160;<a class="el" href="structSENSOR.html#a5b0cc03ca1b7982ae7d76f8e84694562">SENSOR</a></li>
 <li>func&#160;:&#160;<a class="el" href="struct__sif__client__data.html#ad02b516a208bf83443279b8aa16cecd8">_sif_client_data</a>, <a class="el" href="struct__sif__serve__data.html#a04b722c9482db09099d968bda57b2942">_sif_serve_data</a></li>
+<li>fUnknown&#160;:&#160;<a class="el" href="structDPRIZE.html#a8545fc35183c3d47691a26b3d79c798d">DPRIZE</a></li>
 <li>fUpperize&#160;:&#160;<a class="el" href="structTFT.html#a1bc0c0a5ced099b98b8bb70d8f86c3f9">TFT</a></li>
 <li>fUseTarget&#160;:&#160;<a class="el" href="structACTLA.html#ad3ed73440c6c105ae58746242780bf9e">ACTLA</a></li>
 <li>fValuesChanged&#160;:&#160;<a class="el" href="structEMITTER.html#a5765f540721fc5f45d1051966a5f8c1c">EMITTER</a>, <a class="el" href="structWR.html#a30b61f39fe3790929b6393270f267370">WR</a></li>

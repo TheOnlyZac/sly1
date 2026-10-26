@@ -14,6 +14,7 @@ var searchData=
   ['mrsg_11',['MRSG',['../structMRSG.html',1,'']]],
   ['ms_12',['MS',['../structMS.html',1,'']]],
   ['ms_5fboss_5fguard_13',['MS_BOSS_GUARD',['../classMS__BOSS__GUARD.html',1,'']]],
-  ['murray_14',['MURRAY',['../structMURRAY.html',1,'']]],
-  ['mvg_15',['MVG',['../structMVG.html',1,'']]]
+  ['msgwpt_14',['MSGWPT',['../structMSGWPT.html',1,'']]],
+  ['murray_15',['MURRAY',['../structMURRAY.html',1,'']]],
+  ['mvg_16',['MVG',['../structMVG.html',1,'']]]
 ];

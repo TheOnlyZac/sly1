@@ -1,7 +1,5 @@
 var structWKR =
 [
-    [ "STRUCT_PADDING", "structWKR.html#af623a81826def9b460d6c3bb495fa3c3", null ],
-    [ "STRUCT_PADDING", "structWKR.html#af623a81826def9b460d6c3bb495fa3c3", null ],
     [ "STRUCT_PADDING", "structWKR.html#a7f5f1fac8622fb3aa1271bd2556eda1e", null ],
     [ "grfic", "structWKR.html#ac345224cb0daae762bdec0cd907e1c2f", null ],
     [ "grftak", "structWKR.html#ad735b9cca8d032272b7b871349ab119f", null ],

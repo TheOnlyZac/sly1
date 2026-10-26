@@ -2,8 +2,8 @@ var coin_8h =
 [
     [ "DPRIZE", "structDPRIZE.html", "structDPRIZE" ],
     [ "COIN", "structCOIN.html", "structCOIN" ],
-    [ "KEY", "structKEY.html", "structKEY" ],
     [ "CHARM", "structCHARM.html", null ],
+    [ "KEY", "structKEY.html", null ],
     [ "DPRIZES", "coin_8h.html#a278f27aa0df68ffcb451a8de1766e0a5", [
       [ "DPRIZES_Nil", "coin_8h.html#a278f27aa0df68ffcb451a8de1766e0a5a733765c15807606660750a5abc64391c", null ],
       [ "DPRIZES_Normal", "coin_8h.html#a278f27aa0df68ffcb451a8de1766e0a5a221be6f73c07296281d749ec1b62a91a", null ],

@@ -6,5 +6,7 @@ var structCRV =
     [ "mpicvpos", "structCRV.html#aa1514f481bb44cb1a38756fd21115214", null ],
     [ "mpicvs", "structCRV.html#aa20c3daa22338cc27c2a12613d6db6b7", null ],
     [ "mpicvu", "structCRV.html#a52281ed4e34ff9b297206c22a8d86275", null ],
-    [ "unknown", "structCRV.html#aaf6cdbab1773ca78942760e78e96d190", null ]
+    [ "pvtcrv", "structCRV.html#a3553302c617e1928a0b20fe7b3d53947", null ],
+    [ "pvtcrvc", "structCRV.html#a746399c7d4782531f3999771c7ab5abf", null ],
+    [ "pvtcrvl", "structCRV.html#a4d5018ad5a26a67541507db20ed96a5b", null ]
 ];

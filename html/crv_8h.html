@@ -104,6 +104,9 @@ $(document).ready(function(){initNavTree('crv_8h.html',''); initResizable(); });
   <div class="headertitle"><div class="title">crv.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Curve.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="vec_8h_source.html">vec.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="mat_8h_source.html">mat.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="bis_8h_source.html">bis.h</a>&gt;</code><br />
@@ -123,16 +126,20 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCTCE.html">CTCE</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unknown.  <a href="structCTCE.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCRV.html">CRV</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unknown.  <a href="structCRV.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCRVMC.html">CRVMC</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCRVMS.html">CRVMS</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Curve.  <a href="structCRV.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCRVL.html">CRVL</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCRVC.html">CRVC</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Curve Cubic.  <a href="structCRVC.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCRVMC.html">CRVMC</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCRVMS.html">CRVMS</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCONSTR.html">CONSTR</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,7 +151,7 @@ Enumerations</h2></td></tr>
 , <a class="el" href="crv_8h.html#a62667ba24cb9b05e105d769139008ee5a5beb7eed59f966343b964e6a4c8837f8">CRVK_Cubic</a> = 1
 , <a class="el" href="crv_8h.html#a62667ba24cb9b05e105d769139008ee5a72e3a3433a10543bf83292aabbca62a9">CRVK_Max</a> = 2
  }</td></tr>
-<tr class="memdesc:a62667ba24cb9b05e105d769139008ee5"><td class="mdescLeft">&#160;</td><td class="mdescRight">(?) kind.  <a href="crv_8h.html#a62667ba24cb9b05e105d769139008ee5">More...</a><br /></td></tr>
+<tr class="memdesc:a62667ba24cb9b05e105d769139008ee5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Curve kind.  <a href="crv_8h.html#a62667ba24cb9b05e105d769139008ee5">More...</a><br /></td></tr>
 <tr class="separator:a62667ba24cb9b05e105d769139008ee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -240,7 +247,11 @@ Functions</h2></td></tr>
 <tr class="memitem:aed284c71161b818b43cce536e364e58b" id="r_aed284c71161b818b43cce536e364e58b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crv_8h.html#aed284c71161b818b43cce536e364e58b">FindCrvcClosestPointFromS</a> (<a class="el" href="structCRVC.html">CRVC</a> *pcrvc, <a class="el" href="structVECTOR.html">VECTOR</a> *ppos, float s, <a class="el" href="structCONSTR.html">CONSTR</a> *pconstr, <a class="el" href="structVECTOR.html">VECTOR</a> *pposClosest, <a class="el" href="structVECTOR.html">VECTOR</a> *pnormTangentClosest, float *pu, float *ps)</td></tr>
 <tr class="separator:aed284c71161b818b43cce536e364e58b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Curve. </p>
+
+<p class="definition">Definition in file <a class="el" href="crv_8h_source.html">crv.h</a>.</p>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a62667ba24cb9b05e105d769139008ee5" name="a62667ba24cb9b05e105d769139008ee5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a62667ba24cb9b05e105d769139008ee5">&#9670;&#160;</a></span>CRVK</h2>
 
@@ -253,7 +264,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>(?) kind. </p>
+<p>Curve kind. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a62667ba24cb9b05e105d769139008ee5abbcb779ad329d88a2c196c6ff803df49" name="a62667ba24cb9b05e105d769139008ee5abbcb779ad329d88a2c196c6ff803df49"></a>CRVK_Nil&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a62667ba24cb9b05e105d769139008ee5a26cca9369299002a481535a6d38c7208" name="a62667ba24cb9b05e105d769139008ee5a26cca9369299002a481535a6d38c7208"></a>CRVK_Linear&#160;</td><td class="fielddoc"></td></tr>
@@ -261,7 +272,7 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a62667ba24cb9b05e105d769139008ee5a72e3a3433a10543bf83292aabbca62a9" name="a62667ba24cb9b05e105d769139008ee5a72e3a3433a10543bf83292aabbca62a9"></a>CRVK_Max&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="crv_8h_source.html#l00015">15</a> of file <a class="el" href="crv_8h_source.html">crv.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="crv_8h_source.html#l00017">17</a> of file <a class="el" href="crv_8h_source.html">crv.h</a>.</p>
 
 </div>
 </div>
@@ -372,6 +383,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00181">181</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
+
 </div>
 </div>
 <a id="a187dbb13a1b505559d2f6e3764a9e4c0" name="a187dbb13a1b505559d2f6e3764a9e4c0"></a>
@@ -389,6 +402,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00143">143</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
 
 </div>
 </div>
@@ -488,6 +503,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00302">302</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
+
 </div>
 </div>
 <a id="a69ae94bf11b8c97cbf5dd316a2ea5edb" name="a69ae94bf11b8c97cbf5dd316a2ea5edb"></a>
@@ -568,6 +585,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00174">174</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
+
 </div>
 </div>
 <a id="a84a08a7d2afa3a5930a81964dc475875" name="a84a08a7d2afa3a5930a81964dc475875"></a>
@@ -607,6 +626,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00169">169</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
 
 </div>
 </div>
@@ -898,6 +919,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00331">331</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
+
 </div>
 </div>
 <a id="a2fd1e06fcfa1cda889995ffdbe856cdd" name="a2fd1e06fcfa1cda889995ffdbe856cdd"></a>
@@ -1026,6 +1049,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00107">107</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
+
 </div>
 </div>
 <a id="a9df1e95953aad15b347b8e4f528987f4" name="a9df1e95953aad15b347b8e4f528987f4"></a>
@@ -1083,6 +1108,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00205">205</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
 
 </div>
 </div>
@@ -1148,6 +1175,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00244">244</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
+
 </div>
 </div>
 <a id="afd2b021843eb1b493f033ea545ed5ad0" name="afd2b021843eb1b493f033ea545ed5ad0"></a>
@@ -1211,6 +1240,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00221">221</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
 
 </div>
 </div>
@@ -1320,6 +1351,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00075">75</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
+
 </div>
 </div>
 <a id="a83f88b8c98bd4d46c01aba3e6122afb2" name="a83f88b8c98bd4d46c01aba3e6122afb2"></a>
@@ -1360,6 +1393,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00070">70</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
+
 </div>
 </div>
 <a id="ad2f2da0d056c500b503f321ee7e1e724" name="ad2f2da0d056c500b503f321ee7e1e724"></a>
@@ -1377,6 +1412,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00293">293</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
 
 </div>
 </div>
@@ -1458,6 +1495,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00267">267</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
+
 </div>
 </div>
 <a id="a0d556d4e3a492bccdfdece2b5378d5da" name="a0d556d4e3a492bccdfdece2b5378d5da"></a>
@@ -1485,6 +1524,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00148">148</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
 
 </div>
 </div>
@@ -1522,6 +1563,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00200">200</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
+
 </div>
 </div>
 <a id="a637235bb08d2146d028dbd07c14b1231" name="a637235bb08d2146d028dbd07c14b1231"></a>
@@ -1539,6 +1582,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00028">28</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
 
 </div>
 </div>
@@ -1810,6 +1855,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00316">316</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
+
 </div>
 </div>
 <a id="a0374513ac39690fdbc0d64a9de958f45" name="a0374513ac39690fdbc0d64a9de958f45"></a>
@@ -1837,6 +1884,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00186">186</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
 
 </div>
 </div>
@@ -1866,6 +1915,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00060">60</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
+
 </div>
 </div>
 <a id="afd82ff5036ee8597f5ddddd46880bf36" name="afd82ff5036ee8597f5ddddd46880bf36"></a>
@@ -1883,6 +1934,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00087">87</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
 
 </div>
 </div>
@@ -1946,6 +1999,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00094">94</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
+
 </div>
 </div>
 <a id="ae0ebbe595526f52311cffea13556b883" name="ae0ebbe595526f52311cffea13556b883"></a>
@@ -2002,6 +2057,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00193">193</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
+
 </div>
 </div>
 <a id="af410055fe02abaeee5220e7923f712ed" name="af410055fe02abaeee5220e7923f712ed"></a>
@@ -2030,6 +2087,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00065">65</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
+
 </div>
 </div>
 <a id="a5bd6ebf807b02dfb44a8bba7c283f026" name="a5bd6ebf807b02dfb44a8bba7c283f026"></a>
@@ -2047,6 +2106,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="crv_8c_source.html#l00082">82</a> of file <a class="el" href="crv_8c_source.html">crv.c</a>.</p>
 
 </div>
 </div>

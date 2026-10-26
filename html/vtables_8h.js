@@ -19,5 +19,8 @@ var vtables_8h =
     [ "VTWPSG", "structVTWPSG.html", null ],
     [ "VTSAA", "structVTSAA.html", "structVTSAA" ],
     [ "VTACT", "structVTACT.html", null ],
+    [ "VTCRV", "structVTCRV.html", "structVTCRV" ],
+    [ "VTCRVL", "structVTCRVL.html", "structVTCRVL" ],
+    [ "VTCRVC", "structVTCRVC.html", "structVTCRVC" ],
     [ "GRFCID", "vtables_8h.html#ac218d2aa8ade644e037374f834267902", null ]
 ];

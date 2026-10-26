@@ -2,7 +2,6 @@ var coin_8c =
 [
     [ "AddLife", "coin_8c.html#a5d21c77e9e2528d06d0e5125c760c788", null ],
     [ "CloneDprize", "coin_8c.html#a13e2e8df5086cd13dda046a5168b61b7", null ],
-    [ "FUN_00148910", "coin_8c.html#a5453a55b252ddd163fe263c0e662646b", null ],
     [ "INCLUDE_ASM", "coin_8c.html#a7aff1affa6dbfb3b6272cbf9b50b9df5", null ],
     [ "INCLUDE_ASM", "coin_8c.html#ac4ab5ca4934f737746f87cae891122ec", null ],
     [ "INCLUDE_ASM", "coin_8c.html#a6ec7b1e55843da2b60ff352dd1d1e750", null ],
@@ -41,5 +40,6 @@ var coin_8c =
     [ "InitDprize", "coin_8c.html#a861f067745a91a9656469e0ea5dd7608", null ],
     [ "InitKey", "coin_8c.html#aebf2a6c5c7ddbc715a2ebc5f00a404ff", null ],
     [ "LoadDprizeFromBrx", "coin_8c.html#acfc36dc9afc7d963cd4c085ed65b54f5", null ],
-    [ "SetCharmDprizes", "coin_8c.html#a59a51430618f26481227ade3c8a19e3b", null ]
+    [ "SetCharmDprizes", "coin_8c.html#a59a51430618f26481227ade3c8a19e3b", null ],
+    [ "SgnCompareSdprize", "coin_8c.html#a312dbb238e037eab92f3fadebd0a808c", null ]
 ];

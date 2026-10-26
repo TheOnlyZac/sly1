@@ -1,10 +1,7 @@
 var structALO =
 [
-    [ "STRUCT_PADDING", "structALO.html#ab64fee890a8f950fd748cb30d2987f23", null ],
-    [ "STRUCT_PADDING", "structALO.html#ab64fee890a8f950fd748cb30d2987f23", null ],
     [ "STRUCT_PADDING", "structALO.html#acf02dcc26fe4d76d216b5378e5bd1f41", null ],
     [ "STRUCT_PADDING", "structALO.html#aa82a4eb4f995ba5340cb9249cf96917e", null ],
-    [ "STRUCT_PADDING", "structALO.html#adf7f39007c0c3032b0a734b97ed26953", null ],
     [ "apactPose", "structALO.html#af22c5e346b45b8130b8d8ab5aff8de47", null ],
     [ "apmrg", "structALO.html#a2d69ccba2f309e773318c65e804f6c84", null ],
     [ "aposec", "structALO.html#a7bbf1fb19ece515d066cf825e2deee58", null ],

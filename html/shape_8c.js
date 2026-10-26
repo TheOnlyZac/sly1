@@ -1,5 +1,6 @@
 var shape_8c =
 [
-    [ "INCLUDE_ASM", "shape_8c.html#af18220e2c7f0046467393a474d5bbd20", null ],
-    [ "INCLUDE_ASM", "shape_8c.html#a30dadf308c8d688584dfcb33f915ed26", null ]
+    [ "LoadShapeFromBrx", "shape_8c.html#aae5f8b1aadec676014dd51585b89fdcb", null ],
+    [ "SetShapeParent", "shape_8c.html#a6c8966781d40813e996de1cb55db8468", null ],
+    [ "g_mat4Identity", "shape_8c.html#ab0c857a46e5d075c7e91d51b6cc14aa2", null ]
 ];

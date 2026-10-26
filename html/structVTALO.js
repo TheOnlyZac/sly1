@@ -37,7 +37,7 @@ var structVTALO =
     [ "pfnSetLoDefaults", "structVTALO.html#a969a1186e2f9ac06f9fba6e27cd804b4", null ],
     [ "pfnSubscribeLoObject", "structVTALO.html#aba64783ca21388beb6ef58ad000fefe4", null ],
     [ "pfnSubscribeLoStruct", "structVTALO.html#af339a7c5bedecb87ae2fc3735efc8d6a", null ],
-    [ "pfnTranslateAloToPos", "structVTALO.html#a186dfe512e7ca2bd4914d75bd10dd114", null ],
+    [ "pfnTranslateAloToPos", "structVTALO.html#a10f2f93534775267823dfe6d8e62f1c1", null ],
     [ "pfnUnadjustAloRotation", "structVTALO.html#a4531f0504d71ca961c1136e207f5b21c", null ],
     [ "pfnUnsubscribeLoObject", "structVTALO.html#adc1cb73d95707a0c8bdfd98a2ae9fa95", null ],
     [ "pfnUnsubscribeLoStruct", "structVTALO.html#adc988877c12db057abbbdfa5351db2d1", null ],

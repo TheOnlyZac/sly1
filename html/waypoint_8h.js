@@ -2,6 +2,7 @@ var waypoint_8h =
 [
     [ "WAYPOINT", "structWAYPOINT.html", "structWAYPOINT" ],
     [ "WPSG", "structWPSG.html", "structWPSG" ],
+    [ "MSGWPT", "structMSGWPT.html", "structMSGWPT" ],
     [ "WPS", "waypoint_8h.html#a5accaa7e9dff79fbe9397a572c538e66", [
       [ "WPS_Nil", "waypoint_8h.html#a5accaa7e9dff79fbe9397a572c538e66addfddc88c6ea3dcc4f8d268e2ea61194", null ],
       [ "WPS_Passive", "waypoint_8h.html#a5accaa7e9dff79fbe9397a572c538e66a8cecfd100f4c3fd87910b935a48c8375", null ],

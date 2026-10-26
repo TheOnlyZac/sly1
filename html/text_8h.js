@@ -32,6 +32,7 @@ var text_8h =
     [ "printf", "text_8h.html#a96750f7c0275fdc26ff7080e8d87a43e", null ],
     [ "sprintf", "text_8h.html#a3f5e217e378c4dec2991d818ff7f0781", null ],
     [ "strchr", "text_8h.html#a18d3d19898c648b9dc465b4df42e4387", null ],
+    [ "strcpy1", "text_8h.html#a196edc6734e67b7b225d2f9d82ce1d11", null ],
     [ "UnRadixFromChConversion", "text_8h.html#ac1c6d9af59c6be8f5c5a0509a2f78dbc", null ],
     [ "UpperizePchz", "text_8h.html#abdf1fbbeadd9f49fdccb75354bc8ecaa", null ],
     [ "vprintf", "text_8h.html#adad1256324bbf809d5a774d58cea72e1", null ],

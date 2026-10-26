@@ -98,11 +98,13 @@ $(document).ready(function(){initNavTree('shape_8c.html',''); initResizable(); }
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">shape.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="shape_8h_source.html">shape.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="brx_8h_source.html">brx.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for shape.c:</div>
 <div class="dyncontent">
@@ -113,29 +115,34 @@ Include dependency graph for shape.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af18220e2c7f0046467393a474d5bbd20" id="r_af18220e2c7f0046467393a474d5bbd20"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shape_8c.html#af18220e2c7f0046467393a474d5bbd20">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/shape&quot;, LoadShapeFromBrx__FP5SHAPEP18CBinaryInputStream)</td></tr>
-<tr class="separator:af18220e2c7f0046467393a474d5bbd20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30dadf308c8d688584dfcb33f915ed26" id="r_a30dadf308c8d688584dfcb33f915ed26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shape_8c.html#a30dadf308c8d688584dfcb33f915ed26">INCLUDE_ASM</a> (&quot;asm/nonmatchings/P2/shape&quot;, SetShapeParent__FP5SHAPEP3ALO)</td></tr>
-<tr class="separator:a30dadf308c8d688584dfcb33f915ed26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae5f8b1aadec676014dd51585b89fdcb" id="r_aae5f8b1aadec676014dd51585b89fdcb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shape_8c.html#aae5f8b1aadec676014dd51585b89fdcb">LoadShapeFromBrx</a> (<a class="el" href="structSHAPE.html">SHAPE</a> *pshape, <a class="el" href="classCBinaryInputStream.html">CBinaryInputStream</a> *pbis)</td></tr>
+<tr class="separator:aae5f8b1aadec676014dd51585b89fdcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c8966781d40813e996de1cb55db8468" id="r_a6c8966781d40813e996de1cb55db8468"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shape_8c.html#a6c8966781d40813e996de1cb55db8468">SetShapeParent</a> (<a class="el" href="structSHAPE.html">SHAPE</a> *pshape, <a class="el" href="structALO.html">ALO</a> *paloParent)</td></tr>
+<tr class="separator:a6c8966781d40813e996de1cb55db8468"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ab0c857a46e5d075c7e91d51b6cc14aa2" id="r_ab0c857a46e5d075c7e91d51b6cc14aa2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMATRIX4.html">MATRIX4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shape_8c.html#ab0c857a46e5d075c7e91d51b6cc14aa2">g_mat4Identity</a></td></tr>
+<tr class="separator:ab0c857a46e5d075c7e91d51b6cc14aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="af18220e2c7f0046467393a474d5bbd20" name="af18220e2c7f0046467393a474d5bbd20"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af18220e2c7f0046467393a474d5bbd20">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[1/2]</span></h2>
+<a id="aae5f8b1aadec676014dd51585b89fdcb" name="aae5f8b1aadec676014dd51585b89fdcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae5f8b1aadec676014dd51585b89fdcb">&#9670;&#160;</a></span>LoadShapeFromBrx()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname">void LoadShapeFromBrx </td>
           <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/shape&quot;&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramtype"><a class="el" href="structSHAPE.html">SHAPE</a> *&#160;</td>
+          <td class="paramname"><em>pshape</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">LoadShapeFromBrx__FP5SHAPEP18CBinaryInputStream&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype"><a class="el" href="classCBinaryInputStream.html">CBinaryInputStream</a> *&#160;</td>
+          <td class="paramname"><em>pbis</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -145,25 +152,27 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="shape_8c_source.html#l00006">6</a> of file <a class="el" href="shape_8c_source.html">shape.c</a>.</p>
+
 </div>
 </div>
-<a id="a30dadf308c8d688584dfcb33f915ed26" name="a30dadf308c8d688584dfcb33f915ed26"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30dadf308c8d688584dfcb33f915ed26">&#9670;&#160;</a></span>INCLUDE_ASM() <span class="overload">[2/2]</span></h2>
+<a id="a6c8966781d40813e996de1cb55db8468" name="a6c8966781d40813e996de1cb55db8468"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c8966781d40813e996de1cb55db8468">&#9670;&#160;</a></span>SetShapeParent()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">INCLUDE_ASM </td>
+          <td class="memname">void SetShapeParent </td>
           <td>(</td>
-          <td class="paramtype">&quot;asm/nonmatchings/P2/shape&quot;&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramtype"><a class="el" href="structSHAPE.html">SHAPE</a> *&#160;</td>
+          <td class="paramname"><em>pshape</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">SetShapeParent__FP5SHAPEP3ALO&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype"><a class="el" href="structALO.html">ALO</a> *&#160;</td>
+          <td class="paramname"><em>paloParent</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -171,6 +180,31 @@ Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="shape_8c_source.html#l00020">20</a> of file <a class="el" href="shape_8c_source.html">shape.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="ab0c857a46e5d075c7e91d51b6cc14aa2" name="ab0c857a46e5d075c7e91d51b6cc14aa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0c857a46e5d075c7e91d51b6cc14aa2">&#9670;&#160;</a></span>g_mat4Identity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structMATRIX4.html">MATRIX4</a> g_mat4Identity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

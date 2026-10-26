@@ -11,6 +11,7 @@ var structDPRIZE =
     [ "fNeverReuse", "structDPRIZE.html#aa228a162e6664d1f18c1fd931b85b9c1", null ],
     [ "fReuseCandidate", "structDPRIZE.html#a712b45049e201bd124c72df70ac85aa8", null ],
     [ "fSwirlDone", "structDPRIZE.html#aaee7024ec8fcb8cd4cf374a4d82706d3", null ],
+    [ "fUnknown", "structDPRIZE.html#a8545fc35183c3d47691a26b3d79c798d", null ],
     [ "ichkCollected", "structDPRIZE.html#a68cae3032a7035f73f15e806f4772a0d", null ],
     [ "normalSmooth", "structDPRIZE.html#a79fd768a0e3765acc3f0771fc4dfde38", null ],
     [ "oidInitialState", "structDPRIZE.html#a55a2745f78a6b55e4274fed97d9a6df1", null ],
@@ -33,7 +34,5 @@ var structDPRIZE =
     [ "tDprizes", "structDPRIZE.html#a2ea870c8ada15a313d219df0333f9060", null ],
     [ "tGlint", "structDPRIZE.html#a9aa4a4963d2edba1eb71d4fa53a4ea9f", null ],
     [ "uGlintChance", "structDPRIZE.html#ac9c57b80dd014062025cf64a429685af", null ],
-    [ "unk_0", "structDPRIZE.html#a304085c1c8a79953624f141e7848cba3", null ],
-    [ "unk_1", "structDPRIZE.html#a0ae6f6b6aac5f1daa5cef76c2f8edc01", null ],
     [ "vCenter", "structDPRIZE.html#a9ca3dbc033fa748916f4ae4f9d969f5a", null ]
 ];

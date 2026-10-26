@@ -17,5 +17,7 @@ var searchData=
   ['wipes_14',['wipes',['../structWIPE.html#a16030835cd3bc7392f4dc8adaf96ae56',1,'WIPE']]],
   ['worldlevelcur_15',['worldlevelCur',['../structGS.html#ad32bb98affcc5cdc347e61c40fb58575',1,'GS']]],
   ['wps_16',['wps',['../structWAYPOINT.html#a73d89eb4fc749cd35ad20a36d148e7e1',1,'WAYPOINT']]],
-  ['wrek_17',['wrek',['../structWRE.html#aff1d6907db03139c0d404ba5d6de357b',1,'WRE']]]
+  ['wpsfrom_17',['wpsFrom',['../structMSGWPT.html#a89e72204bc3f07cb27df956a79b1a693',1,'MSGWPT']]],
+  ['wpsto_18',['wpsTo',['../structMSGWPT.html#a665898054c15ef7caa15a5d38f6114d3',1,'MSGWPT']]],
+  ['wrek_19',['wrek',['../structWRE.html#aff1d6907db03139c0d404ba5d6de357b',1,'WRE']]]
 ];

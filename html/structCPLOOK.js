@@ -16,5 +16,6 @@ var structCPLOOK =
     [ "svuZoom", "structCPLOOK.html#aa4c87a9901d2254d3959f42a7a5b187e", null ],
     [ "swPan", "structCPLOOK.html#adf098262202d6f0230edd80caa80caa1", null ],
     [ "swTilt", "structCPLOOK.html#a1039c01301dd741a89551fb371e822d3", null ],
+    [ "unknown", "structCPLOOK.html#a29dddd9627312fa57ab15e5136b39e66", null ],
     [ "uZoom", "structCPLOOK.html#ad4e57c6000cdbc7f21c44a9efa23d833", null ]
 ];

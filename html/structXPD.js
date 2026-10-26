@@ -1,9 +1,6 @@
 var structXPD =
 [
     [ "STRUCT_PADDING", "structXPD.html#a59c8e07b51b092be04de3123f064404e", null ],
-    [ "STRUCT_PADDING", "structXPD.html#a59c8e07b51b092be04de3123f064404e", null ],
-    [ "STRUCT_PADDING", "structXPD.html#a59c8e07b51b092be04de3123f064404e", null ],
-    [ "STRUCT_PADDING", "structXPD.html#a59c8e07b51b092be04de3123f064404e", null ],
     [ "mtlk", "structXPD.html#aa7cfbc558d4e44419a7dc3fe73226ea0", null ],
     [ "pos", "structXPD.html#a18069755e9aaf7bd4abb58c333981243", null ],
     [ "posLeaf", "structXPD.html#abb4cef4ea83c775b3425d2ba31b01c61", null ],

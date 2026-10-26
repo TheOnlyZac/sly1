@@ -1,5 +1,9 @@
 var structSTEP =
 [
+    [ "STRUCT_PADDING", "structSTEP.html#ad55f0925f864d15deeaa4d144feda9df", null ],
+    [ "STRUCT_PADDING", "structSTEP.html#ad55f0925f864d15deeaa4d144feda9df", null ],
+    [ "STRUCT_PADDING", "structSTEP.html#aba586f8b618ae42e9e04043b8eb27a87", null ],
+    [ "STRUCT_PADDING", "structSTEP.html#aeea9af91f517d7262d96ab2760f276c1", null ],
     [ "clqDradToURun", "structSTEP.html#a193bde205f975f2fad066c73c12ea8f3", null ],
     [ "dzBase", "structSTEP.html#a78008f74d047d812254e8aff875666fd", null ],
     [ "fBaseXp", "structSTEP.html#a375b2fcd98df5e1c3ec031a69ac8f041", null ],
@@ -29,10 +33,6 @@ var structSTEP =
     [ "tLastFootfall", "structSTEP.html#a60a9ada356a2f0ce13d2e2ea1fa3810a", null ],
     [ "uFootFall", "structSTEP.html#acff7b99633a079942253a17bfb82870e", null ],
     [ "uJoyDeflect", "structSTEP.html#a30503941ce58dde558b4b333010c4869", null ],
-    [ "unk_0x614", "structSTEP.html#a6e18a38c21b72abc0e1159cdf7de4b54", null ],
-    [ "unk_0x658", "structSTEP.html#ad28e56ee72bd9f2dc6586095dbd8c34a", null ],
-    [ "unk_0x6ac", "structSTEP.html#a55c9923f97c8280c859bd524a04357a1", null ],
-    [ "unk_0x6dc", "structSTEP.html#ac40f61e6e4b2e480e3c338d30c6145a3", null ],
     [ "uTarget", "structSTEP.html#a237e0fbd8fd1211f21eef62b863ff062", null ],
     [ "vTarget", "structSTEP.html#a2ca41cedb60bc53f25c7a3f8c9727e6e", null ],
     [ "zBaseTarget", "structSTEP.html#af172816a366459bbfc172663438124f0", null ]

@@ -2,6 +2,7 @@ var util_8h =
 [
     [ "CLQ", "structCLQ.html", "structCLQ" ],
     [ "LM", "structLM.html", "structLM" ],
+    [ "PFNGG", "util_8h.html#a3c95851bdab63dd4e9facad745bc5bfc", null ],
     [ "CalculateSinCos", "util_8h.html#a0033025333613b94763e2dd9525d6627", null ],
     [ "CSolveQuadratic", "util_8h.html#a567e3a24beb2e2c281a88ecec05c2bc3", null ],
     [ "FCheckLm", "util_8h.html#a605551daee615bf5acabd1dde4bce94d", null ],
@@ -19,6 +20,7 @@ var util_8h =
     [ "GSmoothA", "util_8h.html#a2360fe486ec07a843912e419d1747a5d", null ],
     [ "GTrunc", "util_8h.html#ac2b6b9f5c0cb1e56ca7757f04bfeecb1", null ],
     [ "GTrunc", "util_8h.html#a2f0b7dccbef4dacbdd56f8c22ee615db", null ],
+    [ "MinimizeRange", "util_8h.html#ad6522054716bf4bbc2dada0408a06593", null ],
     [ "NRandInRange", "util_8h.html#aaef9d30a8058d3b98eabff5950f76724", null ],
     [ "PosSmooth", "util_8h.html#a5d8123adbc8a9f5efe414c6808c8467a", null ],
     [ "PrescaleClq", "util_8h.html#a49f2ecf9e2d63396d5045dc32e9030f4", null ],

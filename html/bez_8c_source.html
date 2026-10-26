@@ -119,33 +119,30 @@ $(document).ready(function(){initNavTree('bez_8c_source.html',''); initResizable
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; cpos; i++)</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="comment">// TODO: Simplify to &amp;apos[i] once VECTOR is 16 bytes long.</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <a class="code hl_function" href="bez_8h.html#af2936b96ea431caf1f26d0ef8f5f110c">EvaluateBezierPos</a>(dtSeg, tCurrent, 1.0f, ppos0, pv0, ppos1, pv1, (<a class="code hl_struct" href="structVECTOR.html">VECTOR</a> *)((<a class="code hl_typedef" href="types_8h.html#a27c902d5ca78afa82d5ed75554d5cedc">uchar</a> *)apos + (i * 16)), NULL, NULL);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        tCurrent += step;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    }</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>}</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <a class="code hl_function" href="bez_8h.html#af2936b96ea431caf1f26d0ef8f5f110c">EvaluateBezierPos</a>(dtSeg, tCurrent, 1.0f, ppos0, pv0, ppos1, pv1, &amp;apos[i], NULL, NULL);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        tCurrent += step;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    }</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>}</div>
 </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="bez_8c.html#a9819e49834efae7c91c5affc0fc4ad92">   29</a></span><a class="code hl_define" href="include__asm_8h.html#a1427610b9d91eeb6cc73f3619eff4bd6">INCLUDE_ASM</a>(<span class="stringliteral">&quot;asm/nonmatchings/P2/bez&quot;</span>, SBezierPosLength__FffP6VECTORN32);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#ifdef SKIP_ASM</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keywordtype">float</span> <a class="code hl_function" href="bez_8h.html#ad520adc201d82078e835654c952bc628">SBezierPosLength</a>(<span class="keywordtype">float</span> dtSeg, <span class="keywordtype">float</span> tSeg, <a class="code hl_struct" href="structVECTOR.html">VECTOR</a> *ppos0, <a class="code hl_struct" href="structVECTOR.html">VECTOR</a> *pv0, <a class="code hl_struct" href="structVECTOR.html">VECTOR</a> *ppos1, <a class="code hl_struct" href="structVECTOR.html">VECTOR</a> *pv1)</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_struct" href="structVECTOR.html">VECTOR</a> apos[20];</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_function" href="bez_8c.html#a5b0e5707a5dd79cbe44ecb710cb2e522">TesselateBezier</a>(dtSeg, 0.0f, tSeg, ppos0, pv0, ppos1, pv1, 20, apos);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="crv_8h.html#a881c071d51e2fca94de1b2edfd738ed3">SMeasureApos</a>(20, apos, NULL);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#endif </span><span class="comment">// SKIP_ASM</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="bez_8c.html#ac868fa27b7aac32a3519abdb7d29ba03">   39</a></span><a class="code hl_define" href="include__asm_8h.html#a1427610b9d91eeb6cc73f3619eff4bd6">INCLUDE_ASM</a>(<span class="stringliteral">&quot;asm/nonmatchings/P2/bez&quot;</span>, LimitBezierMulti__Fie);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="bez_8c.html#ad520adc201d82078e835654c952bc628">   24</a></span><span class="keywordtype">float</span> <a class="code hl_function" href="bez_8c.html#ad520adc201d82078e835654c952bc628">SBezierPosLength</a>(<span class="keywordtype">float</span> dtSeg, <span class="keywordtype">float</span> tSeg, <a class="code hl_struct" href="structVECTOR.html">VECTOR</a> *ppos0, <a class="code hl_struct" href="structVECTOR.html">VECTOR</a> *pv0, <a class="code hl_struct" href="structVECTOR.html">VECTOR</a> *ppos1, <a class="code hl_struct" href="structVECTOR.html">VECTOR</a> *pv1)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>{</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_struct" href="structVECTOR.html">VECTOR</a> apos[20];</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <a class="code hl_function" href="bez_8c.html#a5b0e5707a5dd79cbe44ecb710cb2e522">TesselateBezier</a>(dtSeg, 0.0f, tSeg, ppos0, pv0, ppos1, pv1, 20, apos);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="crv_8h.html#a881c071d51e2fca94de1b2edfd738ed3">SMeasureApos</a>(<span class="keyword">sizeof</span>(apos) / <span class="keyword">sizeof</span>(apos[0]), apos, NULL);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
+</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="bez_8c.html#ac868fa27b7aac32a3519abdb7d29ba03">   31</a></span><a class="code hl_define" href="include__asm_8h.html#a1427610b9d91eeb6cc73f3619eff4bd6">INCLUDE_ASM</a>(<span class="stringliteral">&quot;asm/nonmatchings/P2/bez&quot;</span>, LimitBezierMulti__Fie);</div>
 <div class="ttc" id="abez_8c_html_a5b0e5707a5dd79cbe44ecb710cb2e522"><div class="ttname"><a href="bez_8c.html#a5b0e5707a5dd79cbe44ecb710cb2e522">TesselateBezier</a></div><div class="ttdeci">void TesselateBezier(float dtSeg, float tStart, float tEnd, VECTOR *ppos0, VECTOR *pv0, VECTOR *ppos1, VECTOR *pv1, int cpos, VECTOR *apos)</div><div class="ttdef"><b>Definition</b> <a href="bez_8c_source.html#l00012">bez.c:12</a></div></div>
+<div class="ttc" id="abez_8c_html_ad520adc201d82078e835654c952bc628"><div class="ttname"><a href="bez_8c.html#ad520adc201d82078e835654c952bc628">SBezierPosLength</a></div><div class="ttdeci">float SBezierPosLength(float dtSeg, float tSeg, VECTOR *ppos0, VECTOR *pv0, VECTOR *ppos1, VECTOR *pv1)</div><div class="ttdef"><b>Definition</b> <a href="bez_8c_source.html#l00024">bez.c:24</a></div></div>
 <div class="ttc" id="abez_8h_html"><div class="ttname"><a href="bez_8h.html">bez.h</a></div><div class="ttdoc">Bezier curves.</div></div>
-<div class="ttc" id="abez_8h_html_ad520adc201d82078e835654c952bc628"><div class="ttname"><a href="bez_8h.html#ad520adc201d82078e835654c952bc628">SBezierPosLength</a></div><div class="ttdeci">float SBezierPosLength(float dtSeg, float tSeg, VECTOR *ppos0, VECTOR *pv0, VECTOR *ppos1, VECTOR *pv1)</div></div>
 <div class="ttc" id="abez_8h_html_af2936b96ea431caf1f26d0ef8f5f110c"><div class="ttname"><a href="bez_8h.html#af2936b96ea431caf1f26d0ef8f5f110c">EvaluateBezierPos</a></div><div class="ttdeci">void EvaluateBezierPos(float dtSeg, float tSeg, float svt, VECTOR *ppos0, VECTOR *pv0, VECTOR *ppos1, VECTOR *pv1, VECTOR *ppos, VECTOR *pv, VECTOR *pdv)</div></div>
-<div class="ttc" id="acrv_8h_html"><div class="ttname"><a href="crv_8h.html">crv.h</a></div></div>
+<div class="ttc" id="acrv_8h_html"><div class="ttname"><a href="crv_8h.html">crv.h</a></div><div class="ttdoc">Curve.</div></div>
 <div class="ttc" id="acrv_8h_html_a881c071d51e2fca94de1b2edfd738ed3"><div class="ttname"><a href="crv_8h.html#a881c071d51e2fca94de1b2edfd738ed3">SMeasureApos</a></div><div class="ttdeci">float SMeasureApos(int cpos, VECTOR *apos, float *mpiposs)</div></div>
 <div class="ttc" id="ainclude__asm_8h_html_a1427610b9d91eeb6cc73f3619eff4bd6"><div class="ttname"><a href="include__asm_8h.html#a1427610b9d91eeb6cc73f3619eff4bd6">INCLUDE_ASM</a></div><div class="ttdeci">#define INCLUDE_ASM(FOLDER, NAME)</div><div class="ttdef"><b>Definition</b> <a href="include__asm_8h_source.html#l00007">include_asm.h:7</a></div></div>
-<div class="ttc" id="astructVECTOR_html"><div class="ttname"><a href="structVECTOR.html">VECTOR</a></div><div class="ttdoc">Vector3 with X, Y, and Z.</div><div class="ttdef"><b>Definition</b> <a href="vec_8h_source.html#l00016">vec.h:17</a></div></div>
-<div class="ttc" id="atypes_8h_html_a27c902d5ca78afa82d5ed75554d5cedc"><div class="ttname"><a href="types_8h.html#a27c902d5ca78afa82d5ed75554d5cedc">uchar</a></div><div class="ttdeci">uint8_t uchar</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00023">types.h:23</a></div></div>
+<div class="ttc" id="astructVECTOR_html"><div class="ttname"><a href="structVECTOR.html">VECTOR</a></div><div class="ttdoc">3D vector.</div><div class="ttdef"><b>Definition</b> <a href="vec_8h_source.html#l00016">vec.h:17</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

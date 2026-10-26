@@ -117,7 +117,7 @@ Include dependency graph for text.h:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="text_8h__dep__incl.svg" width="568" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="text_8h__dep__incl.svg" width="100%" height="382"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div>
 <p><a href="text_8h_source.html">Go to the source code of this file.</a></p>
@@ -201,8 +201,11 @@ Functions</h2></td></tr>
 <tr class="memitem:a98666d83aa05245611154508fe0b6848" id="r_a98666d83aa05245611154508fe0b6848"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text_8h.html#a98666d83aa05245611154508fe0b6848">_snprintf</a> (char *pchzDest, int cchDest, char *pchzFormat,...)</td></tr>
 <tr class="memdesc:a98666d83aa05245611154508fe0b6848"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write formatted output to a string with a specified length.  <br /></td></tr>
 <tr class="separator:a98666d83aa05245611154508fe0b6848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a196edc6734e67b7b225d2f9d82ce1d11" id="r_a196edc6734e67b7b225d2f9d82ce1d11"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text_8h.html#a196edc6734e67b7b225d2f9d82ce1d11">strcpy1</a> (char *pchzDst, char *pchzSrc)</td></tr>
+<tr class="memdesc:a196edc6734e67b7b225d2f9d82ce1d11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count the number of characters in a string.  <br /></td></tr>
+<tr class="separator:a196edc6734e67b7b225d2f9d82ce1d11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18d3d19898c648b9dc465b4df42e4387" id="r_a18d3d19898c648b9dc465b4df42e4387"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text_8h.html#a18d3d19898c648b9dc465b4df42e4387">strchr</a> (char *pchz, int ch)</td></tr>
-<tr class="memdesc:a18d3d19898c648b9dc465b4df42e4387"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count the number of characters in a string.  <br /></td></tr>
+<tr class="memdesc:a18d3d19898c648b9dc465b4df42e4387"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search for a character in a string.  <br /></td></tr>
 <tr class="separator:a18d3d19898c648b9dc465b4df42e4387"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdf1fbbeadd9f49fdccb75354bc8ecaa" id="r_abdf1fbbeadd9f49fdccb75354bc8ecaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text_8h.html#abdf1fbbeadd9f49fdccb75354bc8ecaa">UpperizePchz</a> (char *pchz)</td></tr>
 <tr class="separator:abdf1fbbeadd9f49fdccb75354bc8ecaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -360,7 +363,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000271">Todo:</a></b></dt><dd>Document this function. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000265">Todo:</a></b></dt><dd>Document this function. </dd></dl>
 
 </div>
 </div>
@@ -733,6 +736,46 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Search for a character in a string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pchz</td><td>The string to search. </td></tr>
+    <tr><td class="paramname">ch</td><td>The character to search for.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the first occurrence of the character in the string, or NULL if the character is not found. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="text_8c_source.html#l00120">120</a> of file <a class="el" href="text_8c_source.html">text.c</a>.</p>
+
+</div>
+</div>
+<a id="a196edc6734e67b7b225d2f9d82ce1d11" name="a196edc6734e67b7b225d2f9d82ce1d11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a196edc6734e67b7b225d2f9d82ce1d11">&#9670;&#160;</a></span>strcpy1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * strcpy1 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>pchzDst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>pchzSrc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
 <p>Count the number of characters in a string. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -744,21 +787,12 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pchzDst</td><td>The destination string. </td></tr>
-    <tr><td class="paramname">pchzSrc</td><td>The source string.</td></tr>
+    <tr><td class="paramname">pchzSrc</td><td>The source string. </td></tr>
   </table>
   </dd>
 </dl>
-<p>Search for a character in a string.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pchz</td><td>The string to search. </td></tr>
-    <tr><td class="paramname">ch</td><td>The character to search for.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to the first occurrence of the character in the string, or NULL if the character is not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="text_8c_source.html#l00120">120</a> of file <a class="el" href="text_8c_source.html">text.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="text_8c_source.html#l00112">112</a> of file <a class="el" href="text_8c_source.html">text.c</a>.</p>
 
 </div>
 </div>
@@ -823,7 +857,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000269">Todo:</a></b></dt><dd>Document this function. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000263">Todo:</a></b></dt><dd>Document this function. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="text_8c_source.html#l00030">30</a> of file <a class="el" href="text_8c_source.html">text.c</a>.</p>
 
@@ -860,7 +894,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000270">Todo:</a></b></dt><dd>Document this function. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000264">Todo:</a></b></dt><dd>Document this function. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="text_8c_source.html#l00045">45</a> of file <a class="el" href="text_8c_source.html">text.c</a>.</p>
 
