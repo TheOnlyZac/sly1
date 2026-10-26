@@ -24,7 +24,7 @@ enum CDS
 /**
  * @todo Unknown.
  */
-void CpchzTokenizePath(char *pchzPath);
+int CpchzTokenizePath(char *pchzPath);
 
 /**
  * @brief Checks if the disc is a PS2 DVD.

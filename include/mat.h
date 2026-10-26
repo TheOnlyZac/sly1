@@ -1,7 +1,7 @@
 /**
  * @file mat.h
  *
- * @brief 3x3 and 4x4 matrix types.
+ * @brief 3x4 and 4x4 matrix types.
 */
 #ifndef MAT_H
 #define MAT_H
@@ -9,20 +9,31 @@
 #include <vec.h>
 
 /**
- * @brief 4x4 Matrix
+ * @brief 4x4 Matrix.
  */
 struct MATRIX4
 {
-	float mat[4][4];
+	union
+	{
+		float ag[16];
+		float aag[4][4];
+		VECTOR4 avec[4];
+		qword data[4];
+	};
 };
 
 /**
- * @brief 3x3 Matrix
- * @todo This is supposed to be a 3x4 matrix and 48 bytes in size.
+ * @brief 3x4 Matrix.
  */
 struct MATRIX3
 {
-	float mat[3][3];
+	union
+	{
+		float ag[12];
+		float aag[3][4];
+		VECTOR avec[3];
+		qword data[3];
+	};
 };
 
 void PostCopyMatrix3(MATRIX4 *pmat);

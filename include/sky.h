@@ -17,6 +17,7 @@
  */
 struct SKY : public ALO
 {
+    /* 0x2d0 */ int fFollowZ;
     // ...
 };
 

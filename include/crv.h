@@ -1,5 +1,7 @@
 /**
  * @file crv.h
+ *
+ * @brief Curve.
  */
 #ifndef CRV_H
 #define CRV_H
@@ -11,7 +13,7 @@
 #include <cm.h>
 
 /**
- * @brief (?) kind.
+ * @brief Curve kind.
  */
 enum CRVK
 {
@@ -24,15 +26,48 @@ enum CRVK
 /**
  * @brief Unknown.
  */
+struct CTCE
+{
+    /* 0x000 */ VECTOR apos[20];
+    /* 0x140 */ float mpiposs[20];
+};
+
+/**
+ * @brief Curve.
+ */
 struct CRV
 {
-    undefined4 unknown;
-    CRVK crvk;
-    int fClosed;
-    int ccv;
-    float *mpicvu;
-    float *mpicvs;
-    VECTOR *mpicvpos;
+    union
+    {
+        /* 0x00 */ VTCRV *pvtcrv;
+        /* 0x00 */ VTCRVL *pvtcrvl;
+        /* 0x00 */ VTCRVC *pvtcrvc;
+    };
+    /* 0x04 */ CRVK crvk;
+    /* 0x08 */ int fClosed;
+    /* 0x0c */ int ccv;
+    /* 0x10 */ float *mpicvu;
+    /* 0x14 */ float *mpicvs;
+    /* 0x18 */ VECTOR *mpicvpos;
+};
+
+/**
+ * @todo Curve Linear.
+ */
+struct CRVL : public CRV
+{
+    // ...
+};
+
+/**
+ * @brief Curve Cubic.
+ */
+struct CRVC : public CRV
+{
+    /* 0x01c */ VECTOR *mpicvdposIn;
+    /* 0x020 */ VECTOR *mpicvdposOut;
+    /* 0x024 */ STRUCT_PADDING(103); // CTCE ctce;
+    /* 0x1c0 */ int icvCache;
 };
 
 /**
@@ -48,23 +83,9 @@ struct CRVMC
  */
 struct CRVMS
 {
-    // ...
-};
-
-/**
- * @todo Implement.
- */
-struct CRVL
-{
-    // ...
-};
-
-/**
- * @todo Implement.
- */
-struct CRVC
-{
-    // ...
+    CRV *pcrv;
+    VECTOR *ppos0;
+    VECTOR *ppos1;
 };
 
 /**

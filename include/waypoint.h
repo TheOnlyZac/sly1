@@ -8,9 +8,11 @@
 #include <alo.h>
 #include <oid.h>
 #include <mq.h>
+#include <rs.h>
 
 // Forward.
 struct SGG;
+struct WPSG;
 
 /**
  * @brief Waypoint state.
@@ -30,11 +32,14 @@ enum WPS
  */
 struct WAYPOINT : public ALO
 {
-    undefined1 unknown[2];
-    WPS wps;
-    float tWps;
+    /* 0x2d0 */ WPS wps;
+    /* 0x2d4 */ float tWps;
     float dtPause;
-    // ...
+    /* 0x2dc */ ASEG *paseg;
+    /* 0x2e0 */ OID oidSync;
+    /* 0x2e4 */ int crsmgSet;
+    /* 0x2e8 */ RSMG arsmgSet[4];
+    WPSG *pwpsg;
 };
 
 /**
@@ -43,10 +48,20 @@ struct WAYPOINT : public ALO
 struct WPSG
 {
     /* 0x00 */ VTWPSG *pvtwpsg;
-    /* 0x04 */ uint cpwaypoint;
+    /* 0x04 */ int cpwaypoint;
     /* 0x08 */ WAYPOINT *apwaypoint[8];
     /* 0x28 */ int fCallback;
     /* 0x2c */ SGG *psgg;
+};
+
+/**
+ * @brief Message waypoint?
+ */
+struct MSGWPT
+{
+    /* 0x00 */ WAYPOINT *pwaypoint;
+    /* 0x04 */ WPS wpsFrom;
+    /* 0x08 */ WPS wpsTo;
 };
 
 void InitWaypoint(WAYPOINT *pwaypoint);

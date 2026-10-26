@@ -13,7 +13,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/step", FUN_001c4790);
 
 INCLUDE_ASM("asm/nonmatchings/P2/step", FUN_001c4848);
 
-void RenderStepSelf__FP4STEPP2CMP2RO(STEP *pstep, CM *pcm, RO *pro)
+void RenderStepSelf(STEP *pstep, CM *pcm, RO *pro)
 {
     RenderSoSelf(pstep, pcm, pro);
 }
