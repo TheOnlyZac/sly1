@@ -13,9 +13,9 @@
 struct ALO;
 
 /**
- * @brief Binocular Edge Info (?)
+ * @brief Binoc-u-com Edge Info (?)
  * 
- * @note Used for binocular outline rendering
+ * @note Used for Binoc-u-com outline rendering
  */
 struct BEI
 {
@@ -30,7 +30,7 @@ struct BEI
 };
 
 /**
- * @brief Binocular State.
+ * @brief Binoc-u-com State.
  */
 enum BINOCS
 {
@@ -51,21 +51,12 @@ struct BINOC : public BLOT
     float tAchzSet;
     int cichLR;
     int aichLR[32];
-    union {
-        float svch;
-        float unk0;
-    };
-    union {
-        RGBA rgbaText;
-        undefined4 unk1;
-    };
+    float svch;
+    RGBA rgbaText;
     char chPause;
     char pad_0x2f9[3];
     ALO *paloLookat;
-    union {
-        float uZoom;
-        float zoom;
-    };
+    float uZoom;
     float dxReticle;
     float dyReticle;
     float radReticle;
@@ -76,10 +67,10 @@ struct BINOC : public BLOT
 };
 
 /**
- * @brief Initializes a BEI struct for binocular outline rendering.
+ * @brief Initializes a BEI struct for Binoc-u-com outline rendering.
  *
  * @details Sets up the quadratic curve parameters and calculates segment indices for the
- *          notch region in the binocular outline. The notch is positioned at the midpoint
+ *          notch region in the Binoc-u-com outline. The notch is positioned at the midpoint
  *          of the curve for UI elements like the compass.
  *
  * @param pbei Pointer to the BEI struct to initialize.
@@ -91,7 +82,7 @@ struct BINOC : public BLOT
 void InitBei(BEI *pbei, CLQ *pclq, float duWidth, float dgHeight, int cseg);
 
 /**
- * @brief Evaluates the binocular edge curve at a given segment.
+ * @brief Evaluates the Binoc-u-com edge curve at a given segment.
  *
  * @details Returns the Y-coordinate for the outline at segment index iseg. For segments
  *          outside the notch region, evaluates the quadratic curve directly. Within the
@@ -105,7 +96,7 @@ void InitBei(BEI *pbei, CLQ *pclq, float duWidth, float dgHeight, int cseg);
 float GEvaluateBei(BEI *pbei, int iseg);
 
 /**
- * @brief Checks if the binocular text reveal animation is complete.
+ * @brief Checks if the Binoc-u-com text reveal animation is complete.
  *
  * @param pbinoc Pointer to BINOC instance.
  * @return true if the text animation is complete, false otherwise.
@@ -113,7 +104,9 @@ float GEvaluateBei(BEI *pbei, int iseg);
 bool FDoneBinocAchz(BINOC *pbinoc);
 
 void SetBinocLookat(BINOC *binoc, ALO *paloLookat);
+
 void SetBinocZoom(BINOC *binoc, float zoom);
+
 void open_close_binoc(void *pbinoc, BINOCS binocs);
 
 /**

@@ -70,8 +70,8 @@ void InitBinoc(BINOC *binoc, BLOTK blotk)
 {
     binoc->width = 640.0f;
     binoc->height = 492.80001f;
-    binoc->unk0 = 15.0f;
-    binoc->unk1 = 0x80ffffff;
+    binoc->svch = 15.0f;
+    *(int *)&binoc->rgbaText = 0x80ffffff;
     InitBlot(binoc, blotk);
 }
 
@@ -82,7 +82,7 @@ void ResetBinoc(BINOC *binoc)
     binoc->dxReticle = 0.0f;
     binoc->dyReticle = 0.0f;
     binoc->uCompassBarOffset = 0.4f;
-    binoc->zoom = 0.0f;
+    binoc->uZoom = 0.0f;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", PostBinocLoad__FP5BINOC);
@@ -168,7 +168,7 @@ void SetBinocZoom(BINOC *binoc, float zoom)
     {
         cappedZoom = one;
     }
-    binoc->zoom = cappedZoom;
+    binoc->uZoom = cappedZoom;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/binoc", FUN_001365f0);

@@ -21,24 +21,17 @@
 #include <jt.h>
 #include <sce/memset.h>
 
-extern "C" uint strlen(const char *pchz);
-
 struct CALL : public BLOT
 {
     /* 0x260 */ DIALOG *pdialog;
 };
 
-extern CALL D_0026F5A0;
-extern int D_00261D38;
-extern TV D_002708E0;
-extern TV D_00271558;
-extern GRFBTN D_00261D08[];
-extern char D_00261D28[];
-
-#define g_tvLeft D_002708E0
-#define g_tvRight D_00271558
-#define s_mpdpkgrfbtn D_00261D08
-#define s_mpdpkchPause D_00261D28
+extern CALL g_call;
+extern int s_cpdialogCalling;
+extern TV g_tvLeft;
+extern TV g_tvRight;
+extern GRFBTN s_mpdpkgrfbtn[];
+extern char s_mpdpkchPause[];
 
 void InitDialog(DIALOG *pdialog)
 {
@@ -67,7 +60,7 @@ void LoadDialogEventsFromBrx(DIALOG *pdialog, CBinaryInputStream *pbis, int *pcd
         {
         case DEK_PreloadVag:
         case DEK_ShowMovie:
-            pbis->Unknown2((void **)&pde->string.pchz);
+            pbis->Unknown2((void **)&pde->pchz);
             break;
 
         case DEK_SpeakerLeft:
@@ -89,7 +82,7 @@ void LoadDialogEventsFromBrx(DIALOG *pdialog, CBinaryInputStream *pbis, int *pcd
             break;
 
         case DEK_CallSplice:
-            pde->splice.oidLabel = (OID)pbis->S16Read();
+            pde->oidLabel = (OID)pbis->S16Read();
             break;
 
         case DEK_ShowLetterbox:
@@ -144,16 +137,16 @@ void SetDialogDialogs(DIALOG *pdialog, DIALOGS dialogs)
     switch (pdialog->dialogs)
     {
     case DIALOGS_UnableToCall:
-        if (D_0026F5A0.pdialog == pdialog)
+        if (g_call.pdialog == pdialog)
         {
-            D_0026F5A0.pdialog = NULL;
+            g_call.pdialog = NULL;
         }
         break;
 
     case DIALOGS_Triggered:
         if (pdialog->dialogk != DIALOGK_Instruct)
         {
-            D_00261D38--;
+            s_cpdialogCalling--;
         }
         break;
 
@@ -201,17 +194,17 @@ void SetDialogDialogs(DIALOG *pdialog, DIALOGS dialogs)
     switch (dialogs)
     {
     case DIALOGS_UnableToCall:
-        if (D_0026F5A0.pdialog != NULL)
+        if (g_call.pdialog != NULL)
         {
-            SetDialogDialogs(D_0026F5A0.pdialog, DIALOGS_Enabled);
+            SetDialogDialogs(g_call.pdialog, DIALOGS_Enabled);
         }
-        D_0026F5A0.pdialog = pdialog;
+        g_call.pdialog = pdialog;
         break;
 
     case DIALOGS_Triggered:
         if (pdialog->dialogk != DIALOGK_Instruct)
         {
-            D_00261D38++;
+            s_cpdialogCalling++;
         }
         break;
 
@@ -420,7 +413,7 @@ void HandleDialogEvent(DIALOG *pdialog, DE *pde)
     switch (pde->dek)
     {
     case DEK_PreloadVag:
-        PreloadVag1(pde->string.pchz);
+        PreloadVag1(pde->pchz);
         pdialog->dp.grfdp |= FDP_PreloadSound;
         break;
 
@@ -589,7 +582,7 @@ void HandleDialogEvent(DIALOG *pdialog, DE *pde)
 
     case DEK_CallSplice:
     {
-        void *pvArg = &pde->splice.oidLabel;
+        void *pvArg = &pde->oidLabel;
         HandleLoSpliceEvent(pdialog, 0x10, 1, &pvArg);
         break;
     }
@@ -603,7 +596,7 @@ void HandleDialogEvent(DIALOG *pdialog, DE *pde)
         break;
 
     case DEK_ShowMovie:
-        g_mpeg.FUN_0018f0e8(pde->string.pchz);
+        g_mpeg.FUN_0018f0e8(pde->pchz);
         break;
 
     default:
@@ -791,7 +784,7 @@ void FUN_001516c0(DIALOG *pdialog)
             {
             case DEK_CallSplice:
             {
-                void *pvArg = &pde->splice.oidLabel;
+                void *pvArg = &pde->oidLabel;
                 HandleLoSpliceEvent(pdialog, 0x10, 1, &pvArg);
                 break;
             }

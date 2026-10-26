@@ -148,40 +148,38 @@ enum DEK
 /**
  * @brief Dialog Event.
  */
+struct DESPEAKER
+{
+    /* 0x00 */ OID oid;
+    /* 0x04 */ OID oidReplace;
+};
+
+struct DETALK
+{
+    /* 0x00 */ float uZoom;
+    /* 0x04 */ float dtPause;
+    /* 0x08 */ int fUser;
+    /* 0x0c */ DPK dpk;
+    /* 0x10 */ char *pchzText;
+    /* 0x14 */ OID oidSpeaker;
+    /* 0x18 */ OID oidLipsAseg;
+    /* 0x1c */ OID oidFocus;
+    /* 0x20 */ OID oidPntAnchor;
+};
+
+/**
+ * @brief Dialog Event.
+ */
 struct DE
 {
     /* 0x00 */ DEK dek;
     /* 0x04 */ union
     {
-        /* 0x04 */ struct
-        {
-            /* 0x04 */ char *pchz;
-        } string;
-        /* 0x04 */ struct
-        {
-            /* 0x04 */ OID oid;
-        } object;
-        /* 0x04 */ struct
-        {
-            /* 0x04 */ OID oid;
-            /* 0x08 */ OID oidReplace;
-        } speaker;
-        /* 0x04 */ struct
-        {
-            /* 0x04 */ float uZoom;
-            /* 0x08 */ float dtPause;
-            /* 0x0c */ int fUser;
-            /* 0x10 */ DPK dpk;
-            /* 0x14 */ char *pchzText;
-            /* 0x18 */ OID oidSpeaker;
-            /* 0x1c */ OID oidLipsAseg;
-            /* 0x20 */ OID oidFocus;
-            /* 0x24 */ OID oidPntAnchor;
-        } talk;
-        /* 0x04 */ struct
-        {
-            /* 0x04 */ OID oidLabel;
-        } splice;
+        /* 0x04 */ char *pchz;
+        /* 0x04 */ OID oid;
+        /* 0x04 */ DESPEAKER speaker;
+        /* 0x04 */ DETALK talk;
+        /* 0x04 */ OID oidLabel;
     };
 };
 

@@ -19,8 +19,6 @@ struct EA;
  * @class ANIMATION_SEGMENT_APPLICATION
  * @brief Unknown.
  */
-struct ASEG;
-
 struct ASEGA : public BASIC
 {
     /* 0x08 */ ASEG *paseg;
@@ -56,6 +54,7 @@ void HandleAsegaEvents(ASEGA *pasega, ASEG *paseg, int *pfRetracted);
 void RemoveAsega(ASEGA *pasega);
 
 void RetractAsega(ASEGA *pasega);
+
 void SubscribeAsegaObject(ASEGA *pasega, LO *plo);
 
 float UFromEaErrorFunc(EA *pea, float s);
