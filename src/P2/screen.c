@@ -180,7 +180,7 @@ float FUN_001ABE60()
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001abe70);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac060);
+INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac060__FP4BLOT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac0e8);
 

@@ -315,7 +315,7 @@ float DtVisibleCrusherctr(CRUSHERCTR *pcrusherctr);
 
 void FUN_001abe70(BLOT *pblot);
 
-extern "C" void FUN_001ac060(BLOT *pblot);
+void FUN_001ac060(BLOT *pblot);
 
 void FUN_001ac0e8(int param_1);
 

@@ -83,43 +83,7 @@ void FUN_001a9a98()
     g_unkblot7.pvtblot->pfnHideBlot(&g_unkblot7);
 }
 
-int FAbsorbSbgWkr(SBG *psbg, WKR *pwkr)
-{
-    if (psbg->pasegHit != NULL && (pwkr->grfic & 0x20) != 0)
-    {
-        psbg->cHit++;
-        FUN_001ac060(&g_unkblot7);
-
-        if (psbg->pexpl != NULL)
-        {
-            EXPLSO explso;
-            NormalizeVector(&explso.vec, &pwkr->v, &g_normalX);
-            psbg->pexpl->pvtexpl->pfnExplodeExplExplso(psbg->pexpl, &explso);
-        }
-
-        ASEG *paseg;
-        if ((pwkr->grftak & 2) != 0)
-        {
-            paseg = (g_pjt != NULL && g_pjt->jts_0x223c != JTS_Sidestep && g_pjt->jts_0x223c != JTS_Pipe)
-                ? psbg->pasegHit2
-                : psbg->pasegHit;
-        }
-        else if ((pwkr->grftak & 4) != 0)
-        {
-            paseg = psbg->pasegHit3;
-        }
-        else
-        {
-            paseg = psbg->pasegHit;
-        }
-
-        ApplyAsegCur(paseg, (ALO *)psbg, 0.0f, 1.0f, (GRFAPL)1, &psbg->pasegaHit);
-
-        pwkr->grfic &= ~0x20;
-    }
-
-    return FAbsorbStepguardWkr(psbg, pwkr);
-}
+INCLUDE_ASM("asm/nonmatchings/P2/sb", FAbsorbSbgWkr__FP3SBGP3WKR);
 
 void FUN_001a9c58(SBG *psbg, int a, int b, int c)
 {

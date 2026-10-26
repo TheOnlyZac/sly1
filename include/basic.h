@@ -28,7 +28,7 @@ struct BASIC
         /* 0x00 */ VTCAMSEN *pvtcamsen;
         /* 0x00 */ VTPRSEN *pvtprsen;
         /* 0x00 */ VTEXPL *pvtexpl;
-        /* 0x00 */ struct VTSTEPGUARD *pvtstepguard;
+        /* 0x00 */ VTSTEPGUARD *pvtstepguard;
     };
     /* 0x04 */ CSidebag *psidebag;
 };

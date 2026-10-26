@@ -226,6 +226,13 @@ struct VTSO : VT
     void (*pfnFInflictSoZap)();
 };
 
+struct STEPGUARD;
+struct VTSTEPGUARD
+{
+    void *pfns[0x198 / 4];
+    SO *(*pfnPsoEnemyStepguard)(STEPGUARD *);
+};
+
 // MARK: SENSOR
 struct SENSOR;
 struct LASEN;
@@ -775,11 +782,5 @@ struct VTACT
     // ...
 };
 
-struct STEPGUARD;
-struct VTSTEPGUARD
-{
-    void *pfns[0x198 / 4];
-    SO *(*pfnPsoEnemyStepguard)(STEPGUARD *);
-};
 
 #endif // VTABLES_H

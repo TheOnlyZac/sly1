@@ -29,7 +29,6 @@ struct EXPLG;
 struct EXPLO;
 struct EXPLS;
 struct EXPLSO;
-typedef int GRFEXPLSO;
 struct EXPLSTE;
 struct CAMERA;
 struct ASEG;
@@ -88,19 +87,7 @@ struct EXPLS : public EXPLO
  */
 struct EXPLSO
 {
-    /* 0x00 */ GRFEXPLSO grfexplso;
-    /* 0x04 */ ALO *paloReference;
-    /* 0x08 */ STRUCT_PADDING(2); // padding to 16 bytes for VECTOR
-    /* 0x10 */ VECTOR vec;
-    /* 0x1C */ uint pad_vec;
-    /* 0x20 */ VECTOR posOrigin;
-    /* 0x2C */ uint pad_pos;
-    /* 0x30 */ float rScale;
-    /* 0x34 */ float sRadius;
-    /* 0x38 */ SO *psoTouch;
-    /* 0x3C */ void *pemitolxf;
-    /* 0x40 */ int cParticle;
-    /* 0x44 */ STRUCT_PADDING(3);
+    // ...
 };
 
 /**
