@@ -58,6 +58,10 @@ enum OID
     OID_state_ubb_round_1 = 0x2d9,
     OID_state_ubb_round_2 = 0x2da,
     OID_state_ubb_round_3 = 0x2db,
+    OID_state_ubb_round_4 = 0x2dc,
+    OID_state_ubb_victory = 0x2dd,
+    OID_state_ubb_up = 0x2de,
+    OID_state_ubb_down = 0x2df,
 
     // ...
 
