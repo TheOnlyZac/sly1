@@ -68,9 +68,8 @@ SO *PsoPadUbgClosest(UBG *pubg, VECTOR *pvec)
     register SO *psoClosest asm("$5");
 
     /*
-     * How Sucker Punch originally wrote this code:
      * When the original Sucker Punch programmers wrote Sly Cooper back in 2001–2002,
-     * they themselves wrote inline assembly macros for vector math.
+     * they themselves wrote inline assembly macros for PS2EE vector math.
      * You can see this already in the repo's existing codebase:
      * Look at include/vec.h (lines 183–225): NormalizeVector is full of asm("lqc2 ... vmul ... vdiv ...")
      * because even the original developers had to write it that way.
@@ -168,7 +167,6 @@ void OnUbgEnteringSgs(UBG *pubg, SGS sgsPrev, ASEG *pasegOverride)
             }
 
             /*
-             * How Sucker Punch originally wrote this code:
              * When the original Sucker Punch programmers wrote Sly Cooper back in 2001–2002,
              * they themselves wrote inline assembly macros for vector math.
              * You can see this already in the repo's existing codebase:
