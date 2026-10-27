@@ -142,15 +142,17 @@ enum JTPDK
  */
 struct JT : public STEP
 {
-    STRUCT_PADDING(930);
-    undefined2 padding0_extra;
+    /* 0x0720 */ // BLRUN ablrunRun[6];
+    /* 0x0900 */ // ASEGBL *pasegblRun;
 
-    ALO *paloMine_0x1518;   // 0x1518
+    STRUCT_PADDING(918);
+
+    /* 0x1518 */ ALO *paloMine;
 
     STRUCT_PADDING(832);
     undefined2 padding1_extra;
 
-    JTS jts;                // 0x2220
+    /* 0x2220 */ JTS jts;
     int unk_0x2224;
     JTBS jtbs;              // 0x2228
     int unk_0x222c[4];
@@ -159,7 +161,7 @@ struct JT : public STEP
     STRUCT_PADDING(323);
     undefined1 padding2_extra;
 
-    int unk_0x2750;
+    /* 0x2750 */ int unk_0x2750;
 };
 
 /**

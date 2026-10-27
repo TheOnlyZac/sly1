@@ -27,7 +27,7 @@ void AddMatrix4Matrix4(MATRIX4 *pmatLeft, MATRIX4 *pmatRight, MATRIX4 *pmatDst)
 {
     for (int i = 0; i < 16; i++)
     {
-        pmatDst->mat[0][i] = pmatLeft->mat[0][i] + pmatRight->mat[0][i];
+        pmatDst->aag[0][i] = pmatLeft->aag[0][i] + pmatRight->aag[0][i];
     }
 }
 
@@ -100,15 +100,15 @@ void BuildSimpleProjectionMatrix(float rx, float ry, float dxOffset, float dyOff
     float zScale = (sFar + sNear) / (sFar - sNear);
     float zTrans = (sFar * (1.0f - zScale));
 
-    pmat->mat[0][0] = rx;
-    pmat->mat[2][3] = 1.0f;
-    pmat->mat[2][0] = dxOffset;
+    pmat->aag[0][0] = rx;
+    pmat->aag[2][3] = 1.0f;
+    pmat->aag[2][0] = dxOffset;
 
-    pmat->mat[1][1] = ry;
-    pmat->mat[2][1] = dyOffset;
+    pmat->aag[1][1] = ry;
+    pmat->aag[2][1] = dyOffset;
 
-    pmat->mat[2][2] = zScale;
-    pmat->mat[3][2] = zTrans;
+    pmat->aag[2][2] = zScale;
+    pmat->aag[3][2] = zTrans;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/mat", LoadScaleMatrixScalar__FP6VECTORfP7MATRIX4);

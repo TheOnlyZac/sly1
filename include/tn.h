@@ -5,14 +5,16 @@
 #define TN_H
 
 #include "common.h"
+#include <cplcy.h>
 #include <alo.h>
 #include <bsp.h>
 #include <vec.h>
-#include <cm.h>
 #include <mq.h>
 
 // Forward.
+struct CM;
 struct RO;
+struct JOY;
 
 /**
  * @brief Tunnel state?

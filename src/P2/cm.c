@@ -4,7 +4,8 @@
 #include <cm.h>
 #include <util.h>
 #include <binoc.h>
-#include <cplcy.h>
+#include <clock.h>
+#include <light.h>
 
 // todo fix data and rodata
 // VECTOR4 g_posEyeDefault = { 0.0f, -2000.0f, 500.0f, 0.0f };
@@ -54,7 +55,7 @@ void StartupCm()
 
 void CalcCmAdjust(CM *pcm, SO *psoFocus, CPDEFI *pcpdefi, VECTOR *pdpos)
 {
-    SetVectorCylind(pdpos, pcpdefi->tMoveLast + 3.14159265359f, pcpdefi->field10_0x34, 0);
+    SetVectorCylind(pdpos, pcpdefi->radHome + 3.14159265359f, pcpdefi->sAdjust, 0);
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SpringCm__FfffP2CMP6VECTORP6VECTORP6VECTOR);
@@ -65,7 +66,18 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", ResetCmAdjust__FP2CMP2SOP6CPDEFI);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", GetCmCpdefi__FP2CMP2SOfP6CPDEFI);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", BuildCmFgfn__FP2CMfP4FGFN);
+void BuildCmFgfn(CM *pcm, float uFog, FGFN *pfgfn)
+{
+    FitRecipFunction(
+        1.0f, 4080.0f,
+        pcm->sFarFog / pcm->sNearFog, (1.0f - pcm->uFogMax * uFog) * 4080.0f,
+        &pfgfn->duFogBias, &pfgfn->ruFog
+    );
+
+    pfgfn->duFogBias = pfgfn->duFogBias + 8388608.0f;
+    pfgfn->sNearFog = pcm->sNearFog;
+    pfgfn->duFogPlusClipBias = pfgfn->duFogBias + 36864.0f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", RecalcCmFrustrum__FP2CM);
 
@@ -86,19 +98,19 @@ void SetSwCameraFarClip(float sFarClip)
     SetCmFarClip(g_pcm, sFarClip);
 }
 
-void SetSwCameraSProgress(float uSProgress)
+void SetSwCameraNearFog(float sNearFog)
 {
-    SetCmSProgress(g_pcm, uSProgress);
+    SetCmNearFog(g_pcm, sNearFog);
 }
 
-void FUN_00143860(float param1)
+void SetSwCameraFarFog(float sFarFog)
 {
-    FUN_001439c8(g_pcm, param1);
+    SetCmFarFog(g_pcm, sFarFog);
 }
 
-void FUN_00143888(float param1)
+void SetSwCameraUFogMax(float uFogMax)
 {
-    FUN_001439e8(g_pcm, param1);
+    SetCmUFogMax(g_pcm, uFogMax);
 }
 
 void SetSwCameraRgbaFog(SW *psw, RGBA *prgbaFog)
@@ -123,9 +135,9 @@ void SetCmMat(CM *pcm, MATRIX3 *pmat)
 
 void SetCmFov(CM *pcm, float fov)
 {
-    STRUCT_OFFSET(pcm, 0x1c4, float) = fov;
-    STRUCT_OFFSET(pcm, 0x1c8, float) = fov;
-    STRUCT_OFFSET(pcm, 0x1cc, int) = 0;
+    pcm->radFOV = fov;
+    pcm->radFOV2 = fov;
+    pcm->unk = 0;
     RecalcCmFrustrum(pcm);
 }
 
@@ -141,57 +153,54 @@ void SetCmFarClip(CM *pcm, float sFarClip)
     RecalcCmFrustrum(pcm);
 }
 
-void SetCmSProgress(CM *pcm, float uSProgress)
+void SetCmNearFog(CM *pcm, float sNearFog)
 {
-    pcm->uSProgress = uSProgress;
+    pcm->sNearFog = sNearFog;
     RecalcCmFrustrum(pcm);
 }
 
-void FUN_001439c8(CM *pcm, float param_2)
+void SetCmFarFog(CM *pcm, float sFarFog)
 {
-    pcm->field35_0x1fc = param_2;
+    pcm->sFarFog = sFarFog;
     RecalcCmFrustrum(pcm);
 }
 
-void FUN_001439e8(CM *pcm, float param_2)
+void SetCmUFogMax(CM *pcm, float uFogMax)
 {
-    pcm->field36_0x200 = param_2;
+    pcm->uFogMax = uFogMax;
     RecalcCmFrustrum(pcm);
 }
 
 void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog)
 {
-    STRUCT_OFFSET(pcm, 0x204, RGBA) = *prgbaFog; // pcm->rgbaFog = *prgbaFog;
+    pcm->rgbaFog = *prgbaFog;
     RecalcCmFrustrum(pcm);
 }
 
-void SetCmMrdRatio(CM *pcm, float ratio)
+void SetCmMrdRatio(CM *pcm, float rMRD)
 {
-    STRUCT_OFFSET(pcm, 0x1c0, float) = ratio;
+    pcm->rMRD = rMRD;
     RecalcCmFrustrum(g_pcm);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", ResetCm);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", ResetCm__FP2CMi);
 
 void ClearCmFadeObjects(CM *pcm)
 {
-    pcm->coidFade = 0;
+    pcm->cpaloFade = 0;
 }
 
-void AddCmFadeObject(CM *pcm, OID oid)
+void AddCmFadeObject(CM *pcm, ALO *palo)
 {
-    uint coidFade = STRUCT_OFFSET(pcm, 0x340, int); // palarm->coidFade
-
-    if (coidFade < 8)
+    if ((uint)pcm->cpaloFade < 8)
     {
-        STRUCT_OFFSET_INDEX(pcm, 0x344, OID, coidFade) = oid; // palarm->aoidFade[coidFade]
-        STRUCT_OFFSET(pcm, 0x340, int) = coidFade + 1;        // palarm->coidFade
+        pcm->apaloFade[pcm->cpaloFade++] = palo;
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", RemoveCmFadeObject);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", RemoveCmFadeObject__FP2CMP3ALO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00143BA8);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", FFilterCamera__FPvP2SO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", UpdateCmFade);
 
@@ -221,7 +230,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertWorldToCylindVelocity);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCylindToWorldVelocity);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", ResetCmLookAtSmooth);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", ResetCmLookAtSmooth__FP2CMP6VECTOR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmLookAtSmooth);
 
@@ -241,17 +250,17 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", DecomposeSphere);
 
 void SetCmCut(CM *pcm, float *pradCut)
 {
-    pcm->field41_0x224 = 1; // Likely pcm->fCut
+    pcm->fCut = 1;
     if (pradCut)
     {
-        pcm->field42_0x228 = 1; // Likely pcm->fRadCut
-        pcm->field43_0x22c = pradCut[0]; // Likely pcm->radCut
+        pcm->fRadCut = 1;
+        pcm->radCut = *pradCut;
     }
 }
 
-void SetResetFlag(CM *pcm)
+void EnableCmNextCut(CM *pcm)
 {
-    pcm->reset_flag = true;
+    pcm->fCutNext = 1;
 }
 
 void ClearCmCut(CM *pcm)
@@ -263,19 +272,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", AdaptCm);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCm);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", PsoEnemyStepguard);
+INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145810);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145950);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145b68);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145dd8__FP2CM);
-#ifdef SKIP_ASM
-bool FUN_00145dd8(CM *pcm)
+int FUN_00145dd8(void *punk, SO *pso)
 {
-    return STRUCT_OFFSET(pcm, 0x538, int) != 0;
+    return STRUCT_OFFSET(pso, 0x538, int) != 0;
 }
-#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145de8);
 
@@ -296,20 +302,23 @@ LOOKK LookkCurCm(CM *pcm)
     return LookkCurCplook(&pcm->cplook);
 }
 
-void SetCmSniperFocus(CM *pcm, PNT *ppntAnchor, float sRadiusSniper, float rScreenSniper)
+void SetCmSniperFocus(CM *pcm, ALO *palo, float rScreen, float sRadius)
 {
-    pcm->cplook.ppntAnchor = ppntAnchor;
-    pcm->cplook.sRadiusSniper = sRadiusSniper;
-    pcm->cplook.rScreenSniper = rScreenSniper;
+    pcm->cplook.paloFocusSniper = palo;
+    pcm->cplook.rScreenSniper = rScreen;
+    pcm->cplook.sRadiusSniper = sRadius;
 }
 
-void FUN_00146028(CM *pcm)
+void JoltCm(CM *pcm)
 {
-    pcm->vCenter.z = g_clock.t;
+    pcm->tJolt = g_clock.t;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00146038);
 
+/**
+ * @todo This is a compiler generated function. Remove once data is migrated.
+ */
 void cm__static_initialization_and_destruction_0(int __initialize_p, int __priority)
 {
     if ((__priority == 0xFFFF) && (__initialize_p != 0))
@@ -318,6 +327,9 @@ void cm__static_initialization_and_destruction_0(int __initialize_p, int __prior
     }
 }
 
+/**
+ * @todo This is a compiler generated function. Remove once data is migrated.
+ */
 void _GLOBAL_$I$StartupCm()
 {
     cm__static_initialization_and_destruction_0(1, 0xffff);
