@@ -26,7 +26,7 @@ struct VOL;
  */
 struct GOMER : public STEPGUARD
 {
-    STRUCT_PADDING(38);
+    STRUCT_PADDING(36);
     /* 0xc10 */ float sAbandon;
     /* 0xc14 */ float dzAbandon;
     /* 0xc18 */ OID oidAbandon;

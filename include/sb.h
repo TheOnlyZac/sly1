@@ -14,7 +14,7 @@
  */
 struct SBG : public STEPGUARD
 {
-    /* 0xb78 */ STRUCT_PADDING(38);
+    /* 0xb78 */ STRUCT_PADDING(36);
     /* 0xc10 */ int cHit;
     /* 0xc14 */ ASEG *pasegHit;
     /* 0xc18 */ ASEG *pasegHit2;

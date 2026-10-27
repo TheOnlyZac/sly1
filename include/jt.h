@@ -145,7 +145,7 @@ struct JT : public STEP
     /* 0x0720 */ // BLRUN ablrunRun[6];
     /* 0x0900 */ // ASEGBL *pasegblRun;
 
-    STRUCT_PADDING(918);
+    STRUCT_PADDING(894);
 
     /* 0x1518 */ ALO *paloMine;
 
