@@ -482,7 +482,7 @@ segments:
     - [0x176af0, data, P2/transition]
     - [0x176b28, data, P2/turret]
     - [0x176b50, data, P2/tv]
-    - [0x176b60, data, P2/ub]
+    - [0x176b60, .data, P2/ub]
     - [0x176bc0, data, P2/ui]
     - [0x176c18, data, P2/update]
     - [0x176c40, .data, P2/util]

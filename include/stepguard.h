@@ -88,7 +88,7 @@ struct STEPGUARD : public STEP
     /* 0x724 */ SGS sgs;
     /* 0x728 */ STRUCT_PADDING(11);
     /* 0x754 */ ASEGA *pasegaPatrol;
-    /* 0x758 */ STRUCT_PADDING(35);
+    /* 0x758 */ STRUCT_PADDING(34);
     /* 0x7e0 */ ASEGA *pasegaSgs;
     /* 0x7e4 */ STRUCT_PADDING(203);
     /* 0xb10 */ int ichkDead;

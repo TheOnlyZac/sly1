@@ -5,6 +5,12 @@
 #include <sw.h>
 #include <ui.h>
 
+#include <screen.h>
+#include <emitter.h>
+#include <jt.h>
+
+extern VECTOR g_normalX;
+
 void PostSbgLoad(SBG *psbg)
 {
     PostStepguardLoad(psbg);

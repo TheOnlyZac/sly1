@@ -145,7 +145,7 @@ struct JT : public STEP
     /* 0x0720 */ // BLRUN ablrunRun[6];
     /* 0x0900 */ // ASEGBL *pasegblRun;
 
-    STRUCT_PADDING(918);
+    STRUCT_PADDING(894);
 
     /* 0x1518 */ ALO *paloMine;
 
@@ -155,8 +155,10 @@ struct JT : public STEP
     /* 0x2220 */ JTS jts;
     int unk_0x2224;
     /* 0x2228 */ JTBS jtbs;
+    /* 0x222c */ int unk_0x222c[4];
+    /* 0x223c */ JTS jts_0x223c;
 
-    STRUCT_PADDING(328);
+    STRUCT_PADDING(323);
     undefined1 padding2_extra;
 
     /* 0x2750 */ int unk_0x2750;

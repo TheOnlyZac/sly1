@@ -81,6 +81,17 @@ struct VTLO : VT
     void (*pfnUnsubscribeLoStruct)();
 };
 
+struct EXPL;
+struct EXPLSO;
+
+/**
+ * @brief VT for EXPL objects.
+ */
+struct VTEXPL : VTLO
+{
+    void (*pfnExplodeExplExplso)(EXPL *, EXPLSO *);
+};
+
 /**
  * @brief VT for ALO objects.
  * @todo Verify the fields and add parameters.
@@ -213,6 +224,13 @@ struct VTSO : VT
     void (*pfnGetSoCpdefi)();
     void (*pfnAddSoWaterAcceleration)();
     void (*pfnFInflictSoZap)();
+};
+
+struct STEPGUARD;
+struct VTSTEPGUARD
+{
+    void *pfns[0x198 / 4];
+    SO *(*pfnPsoEnemyStepguard)(STEPGUARD *);
 };
 
 // MARK: SENSOR

@@ -51,12 +51,28 @@ enum OID
 
     // ...
 
+    OID_sm_ubb_world = 0x2d5,
+    OID_sm_ubb_pad = 0x2d6,
+    OID_state_ubb_challenge = 0x2d7,
+    OID_state_ubb_round_0 = 0x2d8,
+    OID_state_ubb_round_1 = 0x2d9,
     OID_state_ubb_round_2 = 0x2da,
     OID_state_ubb_round_3 = 0x2db,
+    OID_state_ubb_round_4 = 0x2dc,
+    OID_state_ubb_victory = 0x2dd,
+    OID_state_ubb_up = 0x2de,
+    OID_state_ubb_down = 0x2df,
 
     // ...
 
     OID_state_ubb_dunk = 0x2e0,
+    OID_pad_root_0 = 0x2e1,
+    OID_pad_root_1 = 0x2e2,
+    OID_pad_root_2 = 0x2e3,
+    OID_pad_root_3 = 0x2e4,
+    OID_pad_root_4 = 0x2e5,
+    OID_pad_root_5 = 0x2e6,
+    OID_xfm_ubg_middle = 0x2e7,
 
     // ...
 

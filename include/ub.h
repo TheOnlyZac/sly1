@@ -10,9 +10,16 @@
 #include <gomer.h>
 #include <vec.h>
 #include <so.h>
+#include <screen.h>
+#include <ui.h>
 
 // Forward.
 struct ASEG;
+struct SM;
+struct SMA;
+struct XFM;
+
+extern BLOT g_unkblot7;
 
 /**
  * @class UW_BOSS_GOMER
@@ -20,12 +27,15 @@ struct ASEG;
  */
 struct UBG : public GOMER
 {
-    // ...
+    /* 0xc50 */ SM *psmWorld;
+    /* 0xc54 */ SMA *psmaWorld;
     /* 0xc58 */ OID oidPatrolGoal;
     /* 0xc5c */ int cJump;
-    /* 0xc60 */ STRUCT_PADDING(1);
+    /* 0xc60 */ XFM *pxfmMiddle;
     /* 0xc64 */ SO *apsoPads[6];
-    // ...
+    /* 0xc7c */ SO *psoLastDunk;
+    /* 0xc80 */ int aichk[4];
+    /* 0xc90 */ int nBossctr;
 };
 
 void InitUbg(UBG *pubg);
@@ -49,6 +59,8 @@ void DoUbgFreefallLanding(UBG *pubg);
 void UpdateUbgGoal(UBG *pubg, int fEnter);
 
 void UpdateUbgSgs(UBG *pubg);
+
+void FUN_001e8fe8();
 
 int FIgnoreUbgIntersection(UBG *pubg, SO *psoOther);
 

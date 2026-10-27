@@ -55,6 +55,7 @@ struct PO : public SO
     /* 0x574 */ AMB *pambWake;
     /* 0x578 */ STRUCT_PADDING(2);
     /* 0x580 */ PZI pzi;
+    STRUCT_PADDING(24);
     /* 0x604 */ ALO *paloUseCharm;
     /* 0x608 */ STRUCT_PADDING(2);
 };
