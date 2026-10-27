@@ -12,6 +12,7 @@
 #include <rs.h>
 
 // Forward.
+struct XFM;
 struct ASEG;
 struct DIALOG;
 

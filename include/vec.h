@@ -11,14 +11,17 @@
 struct SO;
 
 /**
- * @brief Vector3 with X, Y, and Z.
- * @todo This should be 16 bytes in size.
+ * @brief 3D vector.
+ * @note Contains an additional float for padding to 16 bytes.
  */
 struct VECTOR
 {
-    float x, y, z;
+    float x, y, z, gUnused;
 };
 
+/**
+ * @brief 4D vector.
+ */
 struct VECTOR4
 {
     float x, y, z, w;
@@ -148,7 +151,7 @@ void ConvertDeulToW(VECTOR *peul, VECTOR *pdeul, VECTOR *pw);
  *
  * @note This is an educated guess and may not be accurate.
  */
-int FCalculateMuzzleVelocity(VECTOR *pposLaunch,VECTOR *pposTarget,float radVert,VECTOR *pvecMuzzle,SO *psoLaunch);
+int FCalculateMuzzleVelocity(VECTOR *pposLaunch, VECTOR *pposTarget, float radVert, VECTOR *pvecMuzzle, SO *psoLaunch);
 
 /**
  * @brief Calculates the muzzle velocity angle of a projectile.

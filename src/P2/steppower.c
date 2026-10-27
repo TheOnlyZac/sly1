@@ -27,9 +27,9 @@ void SetFsp(FSP fsp)
         case FSP_Mine:
         {
             // If current powerup is mine, fade out the mine.
-            if (g_pjt && g_pjt->paloMine_0x1518 && FIsLoInWorld(g_pjt->paloMine_0x1518))
+            if (g_pjt && g_pjt->paloMine && FIsLoInWorld(g_pjt->paloMine))
             {
-                FadeAloOut(g_pjt->paloMine_0x1518, 0.5f);
+                FadeAloOut(g_pjt->paloMine, 0.5f);
             }
             break;
         }

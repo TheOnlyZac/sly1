@@ -119,11 +119,8 @@ struct XPD
     /* 0x08 */ MTLK mtlk;
     /* 0x0c */ STRUCT_PADDING(1);
     /* 0x10 */ VECTOR pos;
-    /* 0x1c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x20 */ VECTOR posLeaf;
-    /* 0x2c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
     /* 0x30 */ VECTOR v;
-    /* 0x3c */ STRUCT_PADDING(1); // TODO: Remove once VECTOR is 16 bytes long.
 };
 
 /**

@@ -6,17 +6,17 @@
 void InitDprize(DPRIZE *pdprize)
 {
     pdprize->dprizesInit = DPRIZES_Normal;
-    pdprize->dprizes = DPRIZES_Nil;
     pdprize->svcAttract = 30.0f;
     pdprize->oidInitialState = OID_Nil;
+    pdprize->dprizes = DPRIZES_Nil;
     InitAlo(pdprize);
     AppendDlEntry(&pdprize->psw->dlDprize, pdprize);
     pdprize->ichkCollected = IchkAllocChkmgr(&g_chkmgr);
-    pdprize->ficg.grficSmash = '\x10';
-    pdprize->ficg.grficRush = '\x10';
-    pdprize->ficg.grficSweep = '\x10';
-    pdprize->ficg.grficBomb = '\x10';
-    pdprize->fLastBounce = 1;
+    pdprize->ficg.grficSmash = 0x10;
+    pdprize->ficg.grficRush = 0x10;
+    pdprize->ficg.grficSweep = 0x10;
+    pdprize->ficg.grficBomb = 0x10;
+    pdprize->fUnknown = 1;
 }
 
 void LoadDprizeFromBrx(DPRIZE *pdprize, CBinaryInputStream *pbis)
@@ -93,9 +93,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", OnCoinSmack__FP4COIN);
  */
 void OnCoinSmack(COIN *pcoin)
 {
-    g_pgsCur->ccoin++;
-
-    if (g_pgsCur->ccoin < 100)
+    if (++g_pgsCur->ccoin < 100)
         return;
 
     if (g_pgsCur->ccharm < CcharmMost())
@@ -106,22 +104,19 @@ void OnCoinSmack(COIN *pcoin)
         g_coinctr.pfnsmack = CreateSwCharm;
         g_coinctr.pv = pcoin->psw;
     }
+    else if (g_pgsCur->clife < 99)
+    {
+        // Give the player a life and reset the coin count
+        g_pgsCur->ccoin = 0;
+        g_coinctr.dgDisplayMax = 250.0f;
+        g_coinctr.pv = NULL;
+        g_coinctr.pfnsmack = AddLife;
+        g_lifectr.pvtblot->pfnShowBlot(&g_lifectr);
+    }
     else
     {
-        if (g_pgsCur->clife < 99)
-        {
-            // Give the player a life and reset the coin count
-            g_pgsCur->ccoin = 0;
-            g_coinctr.dgDisplayMax = 250.0f;
-            g_coinctr.pv = NULL;
-            g_coinctr.pfnsmack = AddLife;
-            g_lifectr.pvtblot->pfnShowBlot(&g_lifectr);
-        }
-        else
-        {
-            // Clamp coin count to 99
-            g_pgsCur->ccoin = 99;
-        }
+        // Clamp coin count to 99
+        g_pgsCur->ccoin = 99;
     }
 }
 #endif
@@ -142,8 +137,7 @@ void InitCharm(CHARM *pcharm)
 
 void SetCharmDprizes(CHARM *pcharm, DPRIZES dprizes)
 {
-    // if (pcharm->dprizes == dprizes)
-    if (STRUCT_OFFSET(pcharm, 0x2d0, DPRIZES) == dprizes)
+    if (pcharm->dprizes == dprizes)
         return;
 
     if (dprizes == DPRIZES_Collect)
@@ -188,9 +182,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148828);
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148888);
 
-int FUN_00148910(float *pf0, float *pf1)
+int SgnCompareSdprize(const void *pv1, const void *pv2)
 {
-    return (*pf0 < *pf1) ? 1 : -1;
+    return (*(float *)pv1 < *(float *)pv2) ? 1 : -1;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148938);

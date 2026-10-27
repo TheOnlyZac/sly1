@@ -50,7 +50,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/xform", TriggerWarp__FP4WARP);
 
 void SetWarpRsmg(WARP *pwarp, int fOnTrigger, OID oidRoot, OID oidSM, OID oidGoal)
 {
-    // pwarp->arsmg & pwarp->crsmg
+    // pwarp->arsmg & pwarp->crsmg
     FAddRsmg(&STRUCT_OFFSET(pwarp, 0xb8, RSMG), 4, &STRUCT_OFFSET(pwarp, 0xb4, int), fOnTrigger, oidRoot, oidSM, oidGoal);
 }
 

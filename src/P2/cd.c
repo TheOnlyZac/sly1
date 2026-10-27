@@ -1,4 +1,5 @@
 #include <cd.h>
+#include <text.h>
 #include <989snd.h>
 #include <sdk/libcdvd.h>
 
@@ -42,6 +43,35 @@ void StartupCd()
 INCLUDE_ASM("asm/nonmatchings/P2/cd", UpdateCd__Fv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cd", CdPath__FPcT0i);
+#ifdef SKIP_ASM
+
+// TODO: Remove once .rodata is migrated.
+extern const char D_00249E28[]; // "%s\\%s"
+extern const char D_00249E38[]; // 0x00000000
+extern const char D_00249E30[]; // "cdrom0:"
+extern const ushort D_00249E20; // '\\\0'
+
+/**
+ * @todo 80.87% match. Loop isn't matching correctly and rodata isn't migrated.
+ */
+void CdPath(char *pchzDst, char *pchzPath, int fIncludeDevice)
+{
+    char achzTokens[256];
+    *((ushort *)achzTokens) = D_00249E20; // NOTE: Needed for the "lhu" instruction.
+    strcpy1(achzTokens, pchzPath);
+
+    int ctoken = CpchzTokenizePath(achzTokens);
+    if (ctoken > 1)
+    {
+        for (int i = ctoken - 1; i != 0; i--)
+        {
+            achzTokens[strlen(achzTokens)] = '\\';
+        }
+    }
+
+    sprintf(pchzDst, (char *)D_00249E28, (fIncludeDevice != 0) ? D_00249E30 : D_00249E38, achzTokens);
+}
+#endif // SKIP_ASM
 
 void ReadCd(uint isector, uint csector, void *pv)
 {

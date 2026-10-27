@@ -34,7 +34,7 @@ enum PCK
  */
 struct PZI
 {
-    int fCollectEnabled;
+    /* 0x00 */ int fCollectEnabled;
     ALO *paloBag;
     ALO *mpccharmpaloCharm[5];
     float sAutoCollect;
@@ -44,18 +44,19 @@ struct PZI
 /**
  * @class PO
  * @brief Used for playable objects (e.g. JT).
- *
- * @note Based on proto, may be inaccurate.
  */
 struct PO : public SO
 {
     /* 0x550 */ int fPlayable;
-    int fLockBase;
-    VECTOR posBasePrev;
-    float tWakeRipple;
-    AMB *pambWake;
-    PZI pzi;
-    ALO *paloUseCharm;
+    /* 0x554 */ int fLockBase;
+    /* 0x558 */ STRUCT_PADDING(2);
+    /* 0x560 */ VECTOR posBasePrev;
+    /* 0x570 */ float tWakeRipple; // TODO: Unused?
+    /* 0x574 */ AMB *pambWake;
+    /* 0x578 */ STRUCT_PADDING(2);
+    /* 0x580 */ PZI pzi;
+    /* 0x604 */ ALO *paloUseCharm;
+    /* 0x608 */ STRUCT_PADDING(2);
 };
 
 void InitPo(PO *ppo);

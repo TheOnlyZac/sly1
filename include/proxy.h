@@ -14,8 +14,8 @@
  */
 struct PROXY : public ALO
 {
-    DL dlProxyRoot;
-    DLE dleProxy;
+    /* 0x2d0 */ DL dlProxyRoot;
+    /* 0x2dc */ DLE dleProxy;
     undefined4 unk_0x8;
     undefined4 unk_0xC;
     undefined4 unk_0x10;
