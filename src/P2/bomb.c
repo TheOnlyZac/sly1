@@ -25,7 +25,12 @@ void CloneBomb(BOMB *pbomb, BOMB *pbombBase)
 
 INCLUDE_ASM("asm/nonmatchings/P2/bomb", PostBombLoad__FP4BOMB);
 
-INCLUDE_ASM("asm/nonmatchings/P2/bomb", HandleBombMessage__FP4BOMB5MSGIDPv);
+void HandleBombMessage(BOMB *pbomb, MSGID msgid, void *pv)
+{
+    HandleAloMessage(pbomb, msgid, pv);
+    if (msgid == 10 && STRUCT_OFFSET(pv, 0x4, void*) == pbomb && STRUCT_OFFSET(pbomb, 0x550, BDT) == 0)
+        PrimeBomb(pbomb, 0.f);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/bomb", UpdateBomb__FP4BOMBf);
 
@@ -49,4 +54,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/bomb", ApplyBombThrow__FP4BOMBP2PO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/bomb", DetonateBomb__FP4BOMB);
 
-INCLUDE_ASM("asm/nonmatchings/P2/bomb", PsfxEnsureBomb__FP4BOMB4ENSK);
+SFX *PsfxEnsureBomb(BOMB *pbomb, ENSK ensk)
+{
+    if (!STRUCT_OFFSET(pbomb, 0x680, SFX*))
+        NewSfx(&STRUCT_OFFSET(pbomb, 0x680, SFX*));
+    return STRUCT_OFFSET(pbomb, 0x680, SFX*);
+}
