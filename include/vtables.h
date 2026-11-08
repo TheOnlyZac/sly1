@@ -756,11 +756,16 @@ struct VTSAA
     /* 0x1c */ void (*pfnUnk1C)();
 };
 
+struct ACT;
+
 /**
  * @brief VT for an act related struct.
  */
 struct VTACT
 {
+    void (*pfnInitAct)(ACT *, ALO *);
+    void (*pfnCloneAct)(ACT *, ACT *);
+    void (*pfnRetractAct)(ACT *, int);
     // ...
 };
 
