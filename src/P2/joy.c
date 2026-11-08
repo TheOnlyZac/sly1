@@ -1,5 +1,7 @@
 #include <joy.h>
+#include <rumble.h>
 #include <game.h>
+#include <cm.h>
 #include <text.h>
 #include <clock.h>
 #include <sound.h>
@@ -70,107 +72,150 @@ void InitJoy(JOY *pjoy, int nPort, int nSlot)
     pjoy->fRumbleEnabled = true;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", UpdateJoy__FP3JOY);
-#ifdef SKIP_ASM
-/**
- * @todo 31.94% matched.
- */
 void UpdateJoy(JOY *pjoy)
 {
-    bool cond = false;
-    JOYS joysNew;
-    JOYK joykNew, joyk;
-    uint padState;
-
-    // if the joy manager is initializing, early return
     if (pjoy->joys == JOYS_Initing)
         return;
 
-    padState = scePadGetState(pjoy->nPort, pjoy->nSlot);
-    if (padState == 6 || padState == 2) // todo: enum for padState
-    {
-        cond = true; // todo: what is this condition?
-    }
-    joysNew = pjoy->joys;
+    int fCheck = 0;
+    int nState = scePadGetState(pjoy->nPort, pjoy->nSlot);
+    if (nState == 6 || nState == 2)
+        fCheck = 1;
 
-    if (joysNew != JOYS_Ready)
+    JOYK joykCur = pjoy->joyk;
+    if (pjoy->joys != JOYS_Ready)
     {
-        if (pjoy->joyk != JOYK_Unknown)
+        if (joykCur != JOYK_Unknown)
         {
             if (g_clock.tReal - pjoy->tJoys >= 2.0f)
-            {
-                padState = 0;
-            }
+                nState = 0;
         }
     }
 
-    if (pjoy->joyk != JOYK_Unknown && padState == 0)
-    {
+    if (joykCur != JOYK_Unknown && nState == 0)
         SetJoyJoys(pjoy, JOYS_Searching, JOYK_Unknown);
-    }
 
-    // Return if condition not met
-    if (!cond)
+    if (!fCheck)
         return;
 
-    joysNew = pjoy->joys;
-    joykNew = pjoy->joyk;
-    if (joysNew == JOYS_Waiting)
-    {
-        padState = scePadGetState(pjoy->nPort, pjoy->nSlot);
-        if (padState != '\x01')
-        {
-            if (padState > '\x01')
-            {
-                if (padState != '\x02')
-                {
-                    joykNew = JOYK_Unknown;
-                }
-                SetJoyJoys(pjoy, joysNew, joykNew);
-                return;
-            }
-            joykNew = JOYK_Unknown;
-            if (padState != '\0')
-            {
-                SetJoyJoys(pjoy, joysNew, joykNew);
-                return;
-            }
+    JOYS joysNew = pjoy->joys;
+    JOYK joykNew = pjoy->joyk;
 
-            joyk = pjoy->joyk;
-            if (joyk == JOYK_Analog)
+    switch (joysNew)
+    {
+    case JOYS_Searching:
+        switch (joykNew)
+        {
+        case JOYK_Unknown:
+        {
+            int nId = scePadInfoMode(pjoy->nPort, pjoy->nSlot, 1, 0);
+            if (nId != 0)
             {
-                joykNew = JOYK_Shock;
+                int nExId = scePadInfoMode(pjoy->nPort, pjoy->nSlot, 2, 0);
+                if (nExId > 0)
+                    nId = nExId;
+                if (nId == 4 || nId == 7)
+                {
+                    joykNew = JOYK_Digital;
+                    joysNew = nExId ? JOYS_Searching : JOYS_Ready;
+                }
+            }
+            break;
+        }
+        case JOYK_Digital:
+            if (scePadSetMainMode(pjoy->nPort, pjoy->nSlot, 1, 3) == 1)
+                joysNew = JOYS_Waiting;
+            else
+                joysNew = JOYS_Searching;
+            break;
+        case JOYK_Analog:
+        {
+            int cAct = scePadInfoAct(pjoy->nPort, pjoy->nSlot, -1, 0);
+            if (cAct != 2 ||
+                scePadInfoAct(pjoy->nPort, pjoy->nSlot, 0, 1) != 1 ||
+                scePadInfoAct(pjoy->nPort, pjoy->nSlot, 0, 2) != 2 ||
+                scePadInfoAct(pjoy->nPort, pjoy->nSlot, 0, 3) != 0 ||
+                scePadInfoAct(pjoy->nPort, pjoy->nSlot, 1, 1) != 1 ||
+                scePadInfoAct(pjoy->nPort, pjoy->nSlot, 1, 2) != 1 ||
+                scePadInfoAct(pjoy->nPort, pjoy->nSlot, 1, 3) != 1)
+            {
+                joysNew = JOYS_Ready;
             }
             else
             {
-                if (static_cast<int>(joyk) > 2)
-                {
-                    joykNew = JOYK_Unknown;
-
-                    if (joyk != JOYK_Shock)
-                    {
-                        SetJoyJoys(pjoy, joysNew, joykNew);
-                        return;
-                    }
-                    joykNew = JOYK_Shock2;
-                    joysNew = JOYS_Ready;
-                    SetJoyJoys(pjoy, joysNew, joykNew);
-                    return;
-                }
-                // todo
-                //...
+                u_char abAct[6];
+                memset(abAct, 0xFF, sizeof(abAct));
+                for (int i = 0; i < cAct; i++)
+                    abAct[i] = i;
+                if (scePadSetActAlign(pjoy->nPort, pjoy->nSlot, abAct) == 1)
+                    joysNew = JOYS_Waiting;
             }
+            break;
         }
-    }
-    else
-    {
-        // todo
-        // ...
+        case JOYK_Shock:
+            if (scePadInfoPressMode(pjoy->nPort, pjoy->nSlot) != 1)
+            {
+                joysNew = JOYS_Ready;
+            }
+            else
+            {
+                if (scePadEnterPressMode(pjoy->nPort, pjoy->nSlot) == 1)
+                    joysNew = JOYS_Waiting;
+            }
+            break;
+        }
+        break;
+
+    case JOYS_Waiting:
+        switch (scePadGetReqState(pjoy->nPort, pjoy->nSlot))
+        {
+        case 0:
+            switch (pjoy->joyk)
+            {
+            case JOYK_Digital:
+                joykNew = JOYK_Analog;
+                joysNew = JOYS_Searching;
+                break;
+            case JOYK_Analog:
+                joykNew = JOYK_Shock;
+                joysNew = JOYS_Searching;
+                break;
+            case JOYK_Shock:
+                joykNew = JOYK_Shock2;
+                joysNew = JOYS_Ready;
+                break;
+            default:
+                joykNew = JOYK_Unknown;
+                break;
+            }
+            break;
+        case 1:
+            joysNew = JOYS_Searching;
+            break;
+        case 2:
+            break;
+        default:
+            joykNew = JOYK_Unknown;
+            break;
+        }
+        break;
+
+    case JOYS_Ready:
+        if (FReadJoy(pjoy))
+        {
+            if (pjoy->fRumbleEnabled && pjoy->joyk >= JOYK_Shock)
+                UpdateRumble(pjoy->prumble);
+        }
+        else
+        {
+            joysNew = JOYS_Searching;
+            joykNew = JOYK_Unknown;
+        }
+        break;
     }
 
     SetJoyJoys(pjoy, joysNew, joykNew);
 }
-#endif // SKIP_ASM
 
 void SetJoyJoys(JOY *pjoy, JOYS joys, JOYK joyk)
 {
@@ -224,8 +269,166 @@ void SetJoyJoys(JOY *pjoy, JOYS joys, JOYK joyk)
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/joy", GetJoyXYDeflection__FP3JOYUcUcPfN23PUcT6PiP2LM);
+#ifdef SKIP_ASM
+/**
+ * @todo ~60% matched, the logic is right but the float register allocation differs.
+ */
+void GetJoyXYDeflection(JOY *pjoy, uchar bX, uchar bY, float *pdx, float *pdy, float *pu, uchar *pbXPrev, uchar *pbYPrev, int *pfMoved, LM *alm)
+{
+    int fMoved = *pfMoved;
+    float x, y;
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", FReadJoy__FP3JOY);
+    if (fMoved == 0)
+    {
+        if (pjoy->tRead != 0.0f)
+        {
+            if (bX != *pbXPrev || bY != *pbYPrev || bX < 0x60 || bX > 0xA0 || bY < 0x60 || bY > 0xA0)
+                fMoved = 1;
+        }
+        *pfMoved = fMoved;
+    }
+
+    if (fMoved)
+    {
+        x = (float)bX * 2.0f * (1.0f / 255.0f) + -1.0f;
+        y = 1.0f - (float)bY * 2.0f * (1.0f / 255.0f);
+    }
+    else
+    {
+        x = 0.0f;
+        y = 0.0f;
+    }
+
+    float xx = x * x;
+    float yy = y * y;
+    float uMax = 0.0f;
+    for (uint i = 0; i < 4; i++)
+    {
+        float d = x * g_aja[i][0] + y * g_aja[i][1];
+        float lim;
+        if (d >= 0.0f)
+        {
+            if (alm[i].gMax < d)
+                alm[i].gMax = d;
+            lim = alm[i].gMax;
+        }
+        else
+        {
+            if (d < alm[i].gMin)
+                alm[i].gMin = d;
+            lim = alm[i].gMin;
+        }
+        lim = d / lim;
+        if (uMax < lim)
+            uMax = lim;
+    }
+
+    float uLo = 0.0f;
+    float uHi = 1.0f;
+    float uRaw = (uMax - 0.35f) * 2.0f;
+    float u;
+    if (uRaw < uLo)
+        u = uLo;
+    else if (uRaw > uHi)
+        u = uHi;
+    else
+        u = uRaw;
+    *pu = u;
+
+    float len = __builtin_sqrtf(xx + yy);
+    if (len > 0.0001f)
+    {
+        *pdx = u * x / len;
+        *pdy = u * y / len;
+    }
+    else
+    {
+        *pdx = *pdy = 0.0f;
+    }
+
+    *pbXPrev = bX;
+    *pbYPrev = bY;
+}
+#endif // SKIP_ASM
+
+int FReadJoy(JOY *pjoy)
+{
+    u_char abPad[0x40];
+    u_char *pabPad = abPad;
+    int fRet = 1;
+
+    memset(pabPad, 0, sizeof(abPad));
+
+    if (scePadRead(pjoy->nPort, pjoy->nSlot, pabPad) > 0)
+    {
+        GRFBTN grfbtnPrev = pjoy->grfbtn;
+        pjoy->grfbtn = ~((abPad[2] << 8) | abPad[3]);
+
+        if (pjoy->term != 0)
+        {
+            if (pjoy->term != abPad[1])
+                fRet = 0;
+        }
+        pjoy->term = abPad[1];
+
+        if (pjoy->joyk == JOYK_Shock2)
+            CopyAb(pjoy->mpbtnpb, &abPad[8], 12);
+
+        pjoy->grfbtnPressed = pjoy->grfbtn & ~grfbtnPrev;
+        pjoy->grfbtnReleased = grfbtnPrev & ~pjoy->grfbtn;
+
+        if (pjoy->joyk >= JOYK_Analog)
+        {
+            GetJoyXYDeflection(pjoy, abPad[6], abPad[7], &pjoy->x, &pjoy->y, &pjoy->uDeflect, &pjoy->bX, &pjoy->bY, &pjoy->fStickMoved, pjoy->almDeflect);
+            GetJoyXYDeflection(pjoy, abPad[4], abPad[5], &pjoy->x2, &pjoy->y2, &pjoy->uDeflect2, &pjoy->bX2, &pjoy->bY2, &pjoy->fStickMoved2, pjoy->almDeflect2);
+        }
+        else
+        {
+            pjoy->y2 = pjoy->uDeflect2 = pjoy->x = pjoy->y = pjoy->uDeflect = pjoy->x2 = 0.0f;
+            // the repeated store is needed to match
+            pjoy->x2 = 0.0f;
+        }
+
+        // let the d-pad stand in for the left stick unless the camera is in a state that handles input itself
+        if (g_pcm == NULL || STRUCT_OFFSET(g_pcm, 0x3D0, int) == 0 || STRUCT_OFFSET(g_pcm, 0x3D8, void *) != (void *)((uint8_t *)g_pcm + 0x454))
+        {
+            if (pjoy->grfbtn & 0xF000)
+            {
+                pjoy->x = pjoy->y = pjoy->uDeflect = 0.0f;
+
+                if (pjoy->grfbtn & PAD_LEFT_ARROW)
+                    pjoy->x = -1.0f;
+                else if (pjoy->grfbtn & PAD_RIGHT_ARROW)
+                    pjoy->x = 1.0f;
+
+                if (pjoy->grfbtn & PAD_UP_ARROW)
+                    pjoy->y = 1.0f;
+                else if (pjoy->grfbtn & PAD_DOWN_ARROW)
+                    pjoy->y = -1.0f;
+
+                if (pjoy->x * pjoy->y != 0.0f)
+                {
+                    pjoy->x *= 0.8f;
+                    pjoy->y *= 0.8f;
+                }
+                pjoy->uDeflect = 1.0f;
+            }
+        }
+
+        _MatchCodes(pjoy, grfbtnPrev);
+        pjoy->tRead = g_clock.tReal;
+
+        if (pjoy->grfbtn != 0 || pjoy->uDeflect != 0.0f || pjoy->uDeflect2 != 0.0f)
+            pjoy->tActive = g_clock.tReal;
+    }
+    else
+    {
+        if (g_clock.tReal - pjoy->tRead >= 2.0f)
+            fRet = 0;
+    }
+
+    return fRet;
+}
 
 void SetJoyBtnHandled(JOY *pjoy, GRFBTN btn)
 {
@@ -249,11 +452,160 @@ void StartJoySelection(JOY *pjoy)
     pjoy->dyLatch = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", DxSelectionJoy__FP3JOY);
+int DxSelectionJoy(JOY *pjoy)
+{
+    if (pjoy->dxLatch == 0)
+    {
+        if (pjoy->grfbtnPressed & PAD_LEFT_ARROW)
+        {
+            SetJoyBtnHandled(pjoy, PAD_LEFT_ARROW);
+            pjoy->dxLatch = -1;
+        }
+        else if (pjoy->grfbtnPressed & PAD_RIGHT_ARROW)
+        {
+            SetJoyBtnHandled(pjoy, PAD_RIGHT_ARROW);
+            pjoy->dxLatch = 1;
+        }
+        else if (pjoy->uDeflect >= 0.8f && __builtin_fabsf(pjoy->x) > __builtin_fabsf(pjoy->y))
+        {
+            if (pjoy->x < 0.0f)
+                pjoy->dxLatch = -1;
+            else
+                pjoy->dxLatch = 1;
+        }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", DySelectionJoy__FP3JOY);
+        if (pjoy->dxLatch != 0)
+        {
+            pjoy->dtLatchX = 0.3333f;
+            pjoy->tLatchX = g_clock.tReal + pjoy->dtLatchX;
+        }
+    }
+    else
+    {
+        int fHeld = 0;
+        if (pjoy->dxLatch < 0)
+        {
+            if ((pjoy->grfbtn & PAD_LEFT_ARROW) || (pjoy->uDeflect >= 0.25f && __builtin_fabsf(pjoy->x) > __builtin_fabsf(pjoy->y) && pjoy->x < 0.0f))
+                fHeld = 1;
+        }
+        else
+        {
+            if ((pjoy->grfbtn & PAD_RIGHT_ARROW) || (pjoy->uDeflect >= 0.25f && __builtin_fabsf(pjoy->x) > __builtin_fabsf(pjoy->y) && 0.0f < pjoy->x))
+                fHeld = 1;
+        }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", UBtnpJoy__FP3JOY4BTNP);
+        if (!fHeld)
+        {
+            pjoy->dxLatch = 0;
+        }
+        else if (pjoy->tLatchX <= g_clock.tReal)
+        {
+            float dtMin = 0.1f;
+            float dtMax = 0.3333f;
+            float dt = pjoy->dtLatchX * 2.0f * 0.33333334f;
+            float dtNew;
+            if (dt < dtMin)
+                dtNew = dtMin;
+            else if (dt > dtMax)
+                dtNew = dtMax;
+            else
+                dtNew = dt;
+            pjoy->dtLatchX = dtNew;
+            pjoy->tLatchX = g_clock.tReal + dtNew;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    return pjoy->dxLatch;
+}
+
+int DySelectionJoy(JOY *pjoy)
+{
+    if (pjoy->dyLatch == 0)
+    {
+        if (pjoy->grfbtnPressed & PAD_UP_ARROW)
+        {
+            SetJoyBtnHandled(pjoy, PAD_UP_ARROW);
+            pjoy->dyLatch = -1;
+        }
+        else if (pjoy->grfbtnPressed & PAD_DOWN_ARROW)
+        {
+            SetJoyBtnHandled(pjoy, PAD_DOWN_ARROW);
+            pjoy->dyLatch = 1;
+        }
+        else if (pjoy->uDeflect >= 0.8f && __builtin_fabsf(pjoy->y) > __builtin_fabsf(pjoy->x))
+        {
+            if (0.0f < pjoy->y)
+                pjoy->dyLatch = -1;
+            else
+                pjoy->dyLatch = 1;
+        }
+
+        if (pjoy->dyLatch != 0)
+        {
+            pjoy->dtLatchY = 0.3333f;
+            pjoy->tLatchY = g_clock.tReal + pjoy->dtLatchY;
+        }
+    }
+    else
+    {
+        int fHeld = 0;
+        if (pjoy->dyLatch < 0)
+        {
+            if ((pjoy->grfbtn & PAD_UP_ARROW) || (pjoy->uDeflect >= 0.25f && __builtin_fabsf(pjoy->y) > __builtin_fabsf(pjoy->x) && 0.0f < pjoy->y))
+                fHeld = 1;
+        }
+        else
+        {
+            if ((pjoy->grfbtn & PAD_DOWN_ARROW) || (pjoy->uDeflect >= 0.25f && __builtin_fabsf(pjoy->y) > __builtin_fabsf(pjoy->x) && pjoy->y < 0.0f))
+                fHeld = 1;
+        }
+
+        if (!fHeld)
+        {
+            pjoy->dyLatch = 0;
+        }
+        else if (pjoy->tLatchY <= g_clock.tReal)
+        {
+            float dtMin = 0.1f;
+            float dtMax = 0.3333f;
+            float dt = pjoy->dtLatchY * 2.0f * 0.33333334f;
+            float dtNew;
+            if (dt < dtMin)
+                dtNew = dtMin;
+            else if (dt > dtMax)
+                dtNew = dtMax;
+            else
+                dtNew = dt;
+            pjoy->dtLatchY = dtNew;
+            pjoy->tLatchY = g_clock.tReal + dtNew;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    return pjoy->dyLatch;
+}
+
+float UBtnpJoy(JOY *pjoy, BTNP btnp)
+{
+    if (pjoy->grfbtn & g_mpbtnpfbtn[btnp])
+    {
+        if (pjoy->joyk >= JOYK_Shock2)
+        {
+            int r = 1;
+            int b = pjoy->mpbtnpb[btnp];
+            if (r < b)
+                r = b;
+            return r * (1.0f / 255.0f);
+        }
+        return 1.0f;
+    }
+    return 0.0f;
+}
 
 void AddCode(CODE *pcode)
 {
@@ -322,71 +674,45 @@ void _MatchCodes(JOY *pjoy, GRFBTN btn)
     g_tCodeCheck = g_clock.tReal + 1.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", UpdateCodes__Fv);
-#ifdef SKIP_ASM
-/**
- * @todo 45.89% matched.
- */
 void UpdateCodes()
 {
-    int i;
-    CODE **ppcht;
-    CODE *pchtToExecute;
-    CODE *pcht;
-
-    if (g_tCodeCheck != 0x0f && g_tCodeCheck <= g_clock.tReal)
+    if (g_tCodeCheck != 0.0f && g_tCodeCheck <= g_clock.tReal)
     {
-        pchtToExecute = NULL;
-        pcht = g_pcode;
+        CODE *pcodeBest = NULL;
+        CODE **ppcode = &g_pcode;
+        CODE *pcode = g_pcode;
 
-        if (g_pcode != NULL)
+        while (pcode)
         {
-            i = g_pcode->index;
-            pcht = g_pcode;
-            while (true)
+            if (pcode->index != 0)
             {
-                if (i == 0)
-                {
-                    if (pcht->nInputCounter < pcht->cjbc)
-                    {
-                        ppcht = &pcht->pchtNext;
-                    }
-                    else if ((/* pchtToExecute == NULL || */ // todo fix
-                              ppcht = &pcht->pchtNext,
-                              pchtToExecute->cjbc < pcht->cjbc))
-                    {
-                        ppcht = &pcht->pchtNext;
-                        pchtToExecute = pcht;
-                    }
-                }
-                else
-                {
-                    *ppcht = pcht->pchtNext;
-                    pcht->pchtNext = NULL;
-                    pcht->nInputCounter = 0;
-                    pcht->index = 0;
-                }
-                pcht = *ppcht;
-                if (pcht == NULL)
-                    break;
-
-                i = pcht->index;
+                *ppcode = pcode->pchtNext;
+                pcode->nInputCounter = 0;
+                pcode->index = 0;
+                pcode->pchtNext = NULL;
             }
+            else
+            {
+                if (pcode->nInputCounter >= pcode->cjbc)
+                {
+                    if (pcodeBest == NULL || pcodeBest->cjbc < pcode->cjbc)
+                        pcodeBest = pcode;
+                }
+                ppcode = &pcode->pchtNext;
+            }
+            pcode = *ppcode;
         }
 
-        // Check if we found a match
-        if (pchtToExecute != NULL)
+        if (pcodeBest)
         {
-            // Execute the cheat
-            StartSound(SFXID_UiTick, NULL, NULL, NULL, 3000, 300, 1, 0, 0, NULL, NULL);
-            //(pchtToExecute->pfn)(pchtToExecute->nParam); //todo fix function pointer
+            StartSound(SFXID_Click3, NULL, NULL, NULL, 3000.0f, 300.0f, 1.0f, 0.0f, 0.0f, NULL, NULL);
+            pcodeBest->pfn(pcodeBest->nParam);
         }
 
         _ResetCodes();
         g_tCodeCheck = 0.0f;
     }
 }
-#endif
 
 void ClearFchts()
 {
@@ -439,21 +765,25 @@ void Chetkido()
     ((NOTE *)&g_note.unk278)->pvtnote->pfnShowBlot((NOTE *)&g_note.unk278);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", StartupCodes__Fv);
-#ifdef SKIP_ASM
-/**
- * @todo 4.38% matched.
- */
+extern CODE D_00262A80; // calls ResetWorld
+extern CODE D_00262AB8; // calls ClearFchts
+extern CODE D_00262AF0; // calls AddFcht(0x4004)
+extern CODE D_00262B28; // calls AddFcht(8)
+extern CODE D_00262B60; // calls AddFcht(2)
+extern CODE D_00262B98; // calls CollectAllClues
+extern CODE D_00262BD0; // calls SetGrfvault(0xF000FFFF)
+extern CODE D_00262C08; // calls FUN_0019a0f0
+extern CODE D_00262C48; // calls Chetkido
+
 void StartupCodes()
 {
-    ////AddCode(&cheat_reload_level.pCodeSeq);
-    ////AddCode(&cheat_reload_no_cheats.pCodeSeq);
-    ////AddCode(&cheat_reload_slippery_movement.pCodeSeq);
-    ////AddCode(&cheat_slippery_objects.pCodeSeq);
-    ////AddCode(&cheat_infinite_charms.pCodeSeq);
-    ////AddCode(&cheat_collect_bottles.pCodeSeq);
-    ////AddCode(&cheat_unlock_pages.pCodeSeq);
-    ////AddCode(&cheat_unlock_all_worlds.pCodeSeq);
-    ////AddCode(&cheat_chetkido_password.pCodeSeq);
+    AddCode(&D_00262A80);
+    AddCode(&D_00262AB8);
+    AddCode(&D_00262AF0);
+    AddCode(&D_00262B28);
+    AddCode(&D_00262B60);
+    AddCode(&D_00262B98);
+    AddCode(&D_00262BD0);
+    AddCode(&D_00262C08);
+    AddCode(&D_00262C48);
 }
-#endif // SKIP_ASM

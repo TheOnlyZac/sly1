@@ -5413,7 +5413,9 @@ sceCdBreak       = 0x203E28; // type:func
 ////////////////////////////////////////////////////////////////
 scePadInit = 0x2040E8; // type:func
 scePadPortOpen = 0x2042C8; // type:func
-scePadGetState = 0x204678; // type:func
+scePadRead = 0x204510; // type:func
+scePadGetState = 0x204590; // type:func
+scePadGetReqState = 0x204678; // type:func
 scePadInfoAct = 0x2046D0; // type:func
 scePadInfoMode = 0x2047F8; // type:func
 scePadSetMainMode = 0x204930; // type:func

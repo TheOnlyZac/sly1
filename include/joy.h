@@ -150,6 +150,10 @@ struct JOY
 
 extern JOY g_joy;
 
+extern float g_aja[4][2];
+
+extern ushort g_mpbtnpfbtn[BTNP_Max];
+
 // MARK:User
 
 /**
@@ -229,12 +233,52 @@ void UpdateGrfjoytFromGrfusr();
 
 void InitJoy(JOY *pjoy, int nPort, int nSlot);
 
+/**
+ * @brief Runs the joypad state machine, once per frame.
+ *
+ * Detects the pad and walks it through the setup steps (digital to analog to
+ * pressure sensitive, plus rumble motor alignment) while searching and waiting,
+ * and polls it with FReadJoy once it is ready. Drops back to searching if the
+ * pad disconnects or setup takes longer than 2 seconds.
+ *
+ * @param pjoy Joypad to update.
+ */
 void UpdateJoy(JOY *pjoy);
 
 void SetJoyJoys(JOY *pjoy, JOYS joys, JOYK joyk);
 
+/**
+ * @brief Converts one analog stick's raw bytes into a deflection.
+ *
+ * Maps the bytes to -1..1 (y is flipped so up is positive), tracks the largest
+ * deflection seen along each of four axes in alm to auto calibrate the range,
+ * and writes the direction scaled by how far the stick is pushed.
+ *
+ * @param pjoy Joypad being read.
+ * @param bX Raw stick x byte.
+ * @param bY Raw stick y byte.
+ * @param pdx Output: scaled x.
+ * @param pdy Output: scaled y.
+ * @param pu Output: deflection from 0 to 1.
+ * @param pbXPrev In/out: previous raw x byte.
+ * @param pbYPrev In/out: previous raw y byte.
+ * @param pfMoved In/out: set once the stick has moved off center.
+ * @param alm The four per axis limits being calibrated.
+ */
 void GetJoyXYDeflection(JOY *pjoy, uchar bX, uchar bY, float *px, float *py, float *puDeflect, uchar *pbX, uchar *pbY, int *pfStickMoved, LM *almDeflect);
 
+void GetJoyXYDeflection(JOY *pjoy, uchar bX, uchar bY, float *pdx, float *pdy, float *pu, uchar *pbXPrev, uchar *pbYPrev, int *pfMoved, LM *alm);
+
+/**
+ * @brief Polls the pad and updates the joypad state.
+ *
+ * Reads the buttons, computes pressed and released masks, converts both analog
+ * sticks, lets the d-pad stand in for the left stick, and checks cheat codes.
+ *
+ * @param pjoy Joypad to update.
+ * @return 0 if the pad looks disconnected (terminal id changed or no data for
+ * 2 seconds), otherwise 1.
+ */
 int FReadJoy(JOY *pjoy);
 
 void SetJoyBtnHandled(JOY *joy, ushort btn);
@@ -243,18 +287,51 @@ void TriggerJoyRumbleRumk(RUMBLE *prumble, JOY *pjoy, float dt);
 
 void StartJoySelection(JOY *pjoy);
 
+/**
+ * @brief Gets the horizontal menu navigation step from the d-pad or left stick.
+ *
+ * Fires once when a direction is first pressed, then repeats while it is held,
+ * with the delay between repeats shrinking down to a minimum.
+ *
+ * @param pjoy Joypad to read.
+ * @return -1 for left, 1 for right, 0 for no step this frame.
+ */
 int DxSelectionJoy(JOY *pjoy);
 
+/**
+ * @brief Gets the vertical menu navigation step from the d-pad or left stick.
+ *
+ * Same latching and key repeat behavior as DxSelectionJoy. The stick y axis is
+ * positive when pushed up (see GetJoyXYDeflection), so up maps to -1.
+ *
+ * @param pjoy Joypad to read.
+ * @return -1 for up, 1 for down, 0 for no step this frame.
+ */
 int DySelectionJoy(JOY *pjoy);
 
+/**
+ * @brief Gets how hard a button is pressed.
+ *
+ * @param pjoy Joypad to read.
+ * @param btnp Button to check.
+ * @return 0 if not held, 1 on pads without pressure sensitivity, otherwise
+ * the pressure scaled to 1/255 through 1.
+ */
 float UBtnpJoy(JOY *pjoy, BTNP btnp);
 
 void AddCode(CODE *pcode);
 
 void _ResetCodes();
 
-void _MatchCodes(JOY *pjoy, short grfbtnPrev);
+void _MatchCodes(JOY *pjoy, GRFBTN grfbtnPrev);
 
+/**
+ * @brief Runs the cheat code that was entered, if any.
+ *
+ * Once the input pause after a button press elapses, drops dead list entries,
+ * picks the completed code with the longest sequence, plays a click and calls
+ * its handler, then resets all progress.
+ */
 void UpdateCodes();
 
 void ClearFchts();
@@ -263,6 +340,9 @@ void AddFcht(uint nParam);
 
 void Chetkido();
 
+/**
+ * @brief Registers the built in cheat codes with the code matcher.
+ */
 void StartupCodes();
 
 #endif // JOY_H

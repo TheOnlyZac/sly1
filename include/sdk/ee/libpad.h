@@ -13,6 +13,8 @@ extern "C"
     int scePadInit(int mode);
     int scePadPortOpen(int port, int slot, void *data);
     int scePadGetState(int port, int slot);
+    int scePadGetReqState(int port, int slot);
+    int scePadRead(int port, int slot, u_char *data);
     int scePadInfoAct(int port, int slot, int actno, int term);
     int scePadInfoMode(int port, int slow, int term, int offs);
     int scePadSetMainMode(int port, int slow, int offs, int lock);
