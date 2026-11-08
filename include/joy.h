@@ -150,6 +150,8 @@ struct JOY
 
 extern JOY g_joy;
 
+extern ushort g_mpbtnpfbtn[BTNP_Max];
+
 // MARK:User
 
 /**
@@ -243,10 +245,36 @@ void TriggerJoyRumbleRumk(RUMBLE *prumble, JOY *pjoy, float dt);
 
 void StartJoySelection(JOY *pjoy);
 
+/**
+ * @brief Gets the horizontal menu navigation step from the d-pad or left stick.
+ *
+ * Fires once when a direction is first pressed, then repeats while it is held,
+ * with the delay between repeats shrinking down to a minimum.
+ *
+ * @param pjoy Joypad to read.
+ * @return -1 for left, 1 for right, 0 for no step this frame.
+ */
 int DxSelectionJoy(JOY *pjoy);
 
+/**
+ * @brief Gets the vertical menu navigation step from the d-pad or left stick.
+ *
+ * Same latching and key repeat behavior as DxSelectionJoy. The stick y axis is
+ * positive when pushed up (see GetJoyXYDeflection), so up maps to -1.
+ *
+ * @param pjoy Joypad to read.
+ * @return -1 for up, 1 for down, 0 for no step this frame.
+ */
 int DySelectionJoy(JOY *pjoy);
 
+/**
+ * @brief Gets how hard a button is pressed.
+ *
+ * @param pjoy Joypad to read.
+ * @param btnp Button to check.
+ * @return 0 if not held, 1 on pads without pressure sensitivity, otherwise
+ * the pressure scaled to 1/255 through 1.
+ */
 float UBtnpJoy(JOY *pjoy, BTNP btnp);
 
 void AddCode(CODE *pcode);
