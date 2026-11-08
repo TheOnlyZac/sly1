@@ -146,7 +146,7 @@ void SetSoMass(SO *pso, float mass)
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", AdjustSoMomint__FP2SOf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", DiscardSoXps__FP2SO);
+INCLUDE_ASM("asm/nonmatchings/P2/so", DiscardSoXps__FP2SOi);
 
 void UpdateSoPosWorldPrev(SO *pso)
 {
@@ -236,30 +236,76 @@ INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoCnstrForce__FP2SO5CNSTR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoCnstrTorque__FP2SO5CNSTR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoCameraStyle__FP2SO3CMK);
+// Sets grfso bit 32..35.
+void SetSoCameraStyle(SO *pso, CMK cmk)
+{
+    uint64_t grfso = STRUCT_OFFSET(pso, 0x538, uint64_t);
+    STRUCT_OFFSET(pso, 0x538, uint64_t) = (grfso & 0xFFFFFFF0FFFFFFFF) | ((uint64_t)(cmk & 0xF) << 32);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoIgnoreLocked__FP2SOi);
+// Sets grfso bit 47.
+void SetSoIgnoreLocked(SO *pso, int fIgnoreLocked)
+{
+    uint64_t grfso = STRUCT_OFFSET(pso, 0x538, uint64_t);
+    STRUCT_OFFSET(pso, 0x538, uint64_t) = (grfso & 0xFFFF7FFFFFFFFFFF) | ((uint64_t)(fIgnoreLocked & 1) << 47);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoIceable__FP2SOi);
+// Sets grfso bit 48.
+void SetSoIceable(SO *pso, int fIceable)
+{
+    uint64_t grfso = STRUCT_OFFSET(pso, 0x538, uint64_t);
+    STRUCT_OFFSET(pso, 0x538, uint64_t) = (grfso & 0xFFFEFFFFFFFFFFFF) | ((uint64_t)(fIceable & 1) << 48);
+}
 
 void SetSoMtlk(SO *pso, MTLK mtlk)
 {
     STRUCT_OFFSET(pso, 0x2c8, char) = mtlk;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoEdgeGrab__FP2SO3EGK);
+// Sets grfso bit 36..39.
+void SetSoEdgeGrab(SO *pso, EGK egk)
+{
+    uint64_t grfso = STRUCT_OFFSET(pso, 0x538, uint64_t);
+    STRUCT_OFFSET(pso, 0x538, uint64_t) = (grfso & 0xFFFFFF0FFFFFFFFF) | ((uint64_t)(egk & 0xF) << 36);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", SendSoMessage__FP2SO5MSGIDPv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", PxpFindSoGround__FP2SOT0Pi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoNoGravity__FP2SOi);
+// Sets grfso bit 51.
+void SetSoNoGravity(SO *pso, int fNoGravity)
+{
+    uint64_t grfso = STRUCT_OFFSET(pso, 0x538, uint64_t);
+    STRUCT_OFFSET(pso, 0x538, uint64_t) = (grfso & 0xFFF7FFFFFFFFFFFF) | ((uint64_t)(fNoGravity & 1) << 51);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoNoXpsAll__FP2SOi);
+// Sets grfso bit 42.
+void SetSoNoXpsAll(SO *pso, int fNoXps)
+{
+    uint64_t bit = (uint64_t)(fNoXps & 1) << 42;
+    uint64_t grfso = STRUCT_OFFSET(pso, 0x538, uint64_t);
+    STRUCT_OFFSET(pso, 0x538, uint64_t) = (grfso & 0xFFFFFBFFFFFFFFFF) | bit;
+    DiscardSoXps(pso, fNoXps != 0);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoNoXpsSelf__FP2SOi);
+// Sets grfso bit 43.
+void SetSoNoXpsSelf(SO *pso, int fNoXps)
+{
+    uint64_t bit = (uint64_t)(fNoXps & 1) << 43;
+    uint64_t grfso = STRUCT_OFFSET(pso, 0x538, uint64_t);
+    STRUCT_OFFSET(pso, 0x538, uint64_t) = (grfso & 0xFFFFF7FFFFFFFFFF) | bit;
+    DiscardSoXps(pso, fNoXps ? 2 : 0);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/so", SetSoNoXpsCenter__FP2SOi);
+// Sets grfso bit 44.
+void SetSoNoXpsCenter(SO *pso, int fNoXps)
+{
+    uint64_t bit = (uint64_t)(fNoXps & 1) << 44;
+    uint64_t grfso = STRUCT_OFFSET(pso, 0x538, uint64_t);
+    STRUCT_OFFSET(pso, 0x538, uint64_t) = (grfso & 0xFFFFEFFFFFFFFFFF) | bit;
+    DiscardSoXps(pso, fNoXps ? 3 : 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/so", RebuildSoPhysHook__FP2SO);
 

@@ -166,7 +166,14 @@ void SetSoMass(SO *pso, float m);
 
 void AdjustSoMomint(SO *pso, float r);
 
-void DiscardSoXps(SO *pso);
+/**
+ * @brief Discards the xps of an object.
+ *
+ * @param pso The object whose xps to discard.
+ * @param mode Which xps to discard. Callers pass 0 to 3.
+ * @note The parameter was missing from the prototype's signature.
+ */
+void DiscardSoXps(SO *pso, int mode);
 
 void UpdateSoPosWorldPrev(SO *pso);
 
@@ -238,26 +245,74 @@ void SetSoCnstrForce(SO *pso, CNSTR cnstr);
 
 void SetSoCnstrTorque(SO *pso, CNSTR cnstr);
 
+/**
+ * @brief Sets the camera style of an object.
+ *
+ * @param pso The object to update.
+ * @param cmk The camera style.
+ */
 void SetSoCameraStyle(SO *pso, CMK cmk);
 
+/**
+ * @brief Sets the "ignore locked" flag of an object.
+ *
+ * @param pso The object to update.
+ * @param fIgnoreLocked Nonzero to set the flag.
+ */
 void SetSoIgnoreLocked(SO *pso, int fIgnoreLocked);
 
+/**
+ * @brief Sets the "iceable" flag of an object.
+ *
+ * @param pso The object to update.
+ * @param fIceable Nonzero to set the flag.
+ */
 void SetSoIceable(SO *pso, int fIceable);
 
 void SetSoMtlk(SO *pso, MTLK mtlk);
 
+/**
+ * @brief Sets the edge grab kind of an object.
+ *
+ * @param pso The object to update.
+ * @param egk The edge grab kind.
+ */
 void SetSoEdgeGrab(SO *pso, EGK egk);
 
 void SendSoMessage(SO *pso, MSGID msgid, void *pv);
 
 XP *PxpFindSoGround(SO *psoRoot, SO *psoLeaf, int *pixpd);
 
+/**
+ * @brief Sets whether gravity is disabled for an object.
+ *
+ * @param pso The object to update.
+ * @param fNoGravity Nonzero to disable gravity.
+ */
 void SetSoNoGravity(SO *pso, int fNoGravity);
 
+/**
+ * @brief Sets the "no xps (all)" flag of an object and discards its xps.
+ *
+ * @param pso The object to update.
+ * @param fNoXps Nonzero to set the flag.
+ */
 void SetSoNoXpsAll(SO *pso, int fNoXps);
 
+/**
+ * @brief Sets the "no xps (self)" flag of an object and discards its xps.
+ *
+ * @param pso The object to update.
+ * @param fNoXps Nonzero to set the flag.
+ */
 void SetSoNoXpsSelf(SO *pso, int fNoXps);
 
+/**
+ * @brief Sets the "no xps (center)" flag of an object and discards its xps.
+ *
+ * @param pso The object to update.
+ * @param fNoXps Nonzero to set the flag.
+ */
 void SetSoNoXpsCenter(SO *pso, int fNoXps);
 
 void RebuildSoPhysHook(SO *pso);
