@@ -150,6 +150,8 @@ struct JOY
 
 extern JOY g_joy;
 
+extern float g_aja[4][2];
+
 extern ushort g_mpbtnpfbtn[BTNP_Max];
 
 // MARK:User
@@ -235,8 +237,38 @@ void UpdateJoy(JOY *pjoy);
 
 void SetJoyJoys(JOY *pjoy, JOYS joys, JOYK joyk);
 
+/**
+ * @brief Converts one analog stick's raw bytes into a deflection.
+ *
+ * Maps the bytes to -1..1 (y is flipped so up is positive), tracks the largest
+ * deflection seen along each of four axes in alm to auto calibrate the range,
+ * and writes the direction scaled by how far the stick is pushed.
+ *
+ * @param pjoy Joypad being read.
+ * @param bX Raw stick x byte.
+ * @param bY Raw stick y byte.
+ * @param pdx Output: scaled x.
+ * @param pdy Output: scaled y.
+ * @param pu Output: deflection from 0 to 1.
+ * @param pbXPrev In/out: previous raw x byte.
+ * @param pbYPrev In/out: previous raw y byte.
+ * @param pfMoved In/out: set once the stick has moved off center.
+ * @param alm The four per axis limits being calibrated.
+ */
 void GetJoyXYDeflection(JOY *pjoy, uchar bX, uchar bY, float *px, float *py, float *puDeflect, uchar *pbX, uchar *pbY, int *pfStickMoved, LM *almDeflect);
 
+void GetJoyXYDeflection(JOY *pjoy, uchar bX, uchar bY, float *pdx, float *pdy, float *pu, uchar *pbXPrev, uchar *pbYPrev, int *pfMoved, LM *alm);
+
+/**
+ * @brief Polls the pad and updates the joypad state.
+ *
+ * Reads the buttons, computes pressed and released masks, converts both analog
+ * sticks, lets the d-pad stand in for the left stick, and checks cheat codes.
+ *
+ * @param pjoy Joypad to update.
+ * @return 0 if the pad looks disconnected (terminal id changed or no data for
+ * 2 seconds), otherwise 1.
+ */
 int FReadJoy(JOY *pjoy);
 
 void SetJoyBtnHandled(JOY *joy, ushort btn);
@@ -281,7 +313,7 @@ void AddCode(CODE *pcode);
 
 void _ResetCodes();
 
-void _MatchCodes(JOY *pjoy, short grfbtnPrev);
+void _MatchCodes(JOY *pjoy, GRFBTN grfbtnPrev);
 
 void UpdateCodes();
 

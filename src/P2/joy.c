@@ -1,5 +1,6 @@
 #include <joy.h>
 #include <game.h>
+#include <cm.h>
 #include <text.h>
 #include <clock.h>
 #include <sound.h>
@@ -224,8 +225,166 @@ void SetJoyJoys(JOY *pjoy, JOYS joys, JOYK joyk)
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/joy", GetJoyXYDeflection__FP3JOYUcUcPfN23PUcT6PiP2LM);
+#ifdef SKIP_ASM
+/**
+ * @todo ~60% matched, the logic is right but the float register allocation differs.
+ */
+void GetJoyXYDeflection(JOY *pjoy, uchar bX, uchar bY, float *pdx, float *pdy, float *pu, uchar *pbXPrev, uchar *pbYPrev, int *pfMoved, LM *alm)
+{
+    int fMoved = *pfMoved;
+    float x, y;
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", FReadJoy__FP3JOY);
+    if (fMoved == 0)
+    {
+        if (pjoy->tRead != 0.0f)
+        {
+            if (bX != *pbXPrev || bY != *pbYPrev || bX < 0x60 || bX > 0xA0 || bY < 0x60 || bY > 0xA0)
+                fMoved = 1;
+        }
+        *pfMoved = fMoved;
+    }
+
+    if (fMoved)
+    {
+        x = (float)bX * 2.0f * (1.0f / 255.0f) + -1.0f;
+        y = 1.0f - (float)bY * 2.0f * (1.0f / 255.0f);
+    }
+    else
+    {
+        x = 0.0f;
+        y = 0.0f;
+    }
+
+    float xx = x * x;
+    float yy = y * y;
+    float uMax = 0.0f;
+    for (uint i = 0; i < 4; i++)
+    {
+        float d = x * g_aja[i][0] + y * g_aja[i][1];
+        float lim;
+        if (d >= 0.0f)
+        {
+            if (alm[i].gMax < d)
+                alm[i].gMax = d;
+            lim = alm[i].gMax;
+        }
+        else
+        {
+            if (d < alm[i].gMin)
+                alm[i].gMin = d;
+            lim = alm[i].gMin;
+        }
+        lim = d / lim;
+        if (uMax < lim)
+            uMax = lim;
+    }
+
+    float uLo = 0.0f;
+    float uHi = 1.0f;
+    float uRaw = (uMax - 0.35f) * 2.0f;
+    float u;
+    if (uRaw < uLo)
+        u = uLo;
+    else if (uRaw > uHi)
+        u = uHi;
+    else
+        u = uRaw;
+    *pu = u;
+
+    float len = __builtin_sqrtf(xx + yy);
+    if (len > 0.0001f)
+    {
+        *pdx = u * x / len;
+        *pdy = u * y / len;
+    }
+    else
+    {
+        *pdx = *pdy = 0.0f;
+    }
+
+    *pbXPrev = bX;
+    *pbYPrev = bY;
+}
+#endif // SKIP_ASM
+
+int FReadJoy(JOY *pjoy)
+{
+    u_char abPad[0x40];
+    u_char *pabPad = abPad;
+    int fRet = 1;
+
+    memset(pabPad, 0, sizeof(abPad));
+
+    if (scePadRead(pjoy->nPort, pjoy->nSlot, pabPad) > 0)
+    {
+        GRFBTN grfbtnPrev = pjoy->grfbtn;
+        pjoy->grfbtn = ~((abPad[2] << 8) | abPad[3]);
+
+        if (pjoy->term != 0)
+        {
+            if (pjoy->term != abPad[1])
+                fRet = 0;
+        }
+        pjoy->term = abPad[1];
+
+        if (pjoy->joyk == JOYK_Shock2)
+            CopyAb(pjoy->mpbtnpb, &abPad[8], 12);
+
+        pjoy->grfbtnPressed = pjoy->grfbtn & ~grfbtnPrev;
+        pjoy->grfbtnReleased = grfbtnPrev & ~pjoy->grfbtn;
+
+        if (pjoy->joyk >= JOYK_Analog)
+        {
+            GetJoyXYDeflection(pjoy, abPad[6], abPad[7], &pjoy->x, &pjoy->y, &pjoy->uDeflect, &pjoy->bX, &pjoy->bY, &pjoy->fStickMoved, pjoy->almDeflect);
+            GetJoyXYDeflection(pjoy, abPad[4], abPad[5], &pjoy->x2, &pjoy->y2, &pjoy->uDeflect2, &pjoy->bX2, &pjoy->bY2, &pjoy->fStickMoved2, pjoy->almDeflect2);
+        }
+        else
+        {
+            pjoy->y2 = pjoy->uDeflect2 = pjoy->x = pjoy->y = pjoy->uDeflect = pjoy->x2 = 0.0f;
+            // the repeated store is needed to match
+            pjoy->x2 = 0.0f;
+        }
+
+        // let the d-pad stand in for the left stick unless the camera is in a state that handles input itself
+        if (g_pcm == NULL || STRUCT_OFFSET(g_pcm, 0x3D0, int) == 0 || STRUCT_OFFSET(g_pcm, 0x3D8, void *) != (void *)((uint8_t *)g_pcm + 0x454))
+        {
+            if (pjoy->grfbtn & 0xF000)
+            {
+                pjoy->x = pjoy->y = pjoy->uDeflect = 0.0f;
+
+                if (pjoy->grfbtn & PAD_LEFT_ARROW)
+                    pjoy->x = -1.0f;
+                else if (pjoy->grfbtn & PAD_RIGHT_ARROW)
+                    pjoy->x = 1.0f;
+
+                if (pjoy->grfbtn & PAD_UP_ARROW)
+                    pjoy->y = 1.0f;
+                else if (pjoy->grfbtn & PAD_DOWN_ARROW)
+                    pjoy->y = -1.0f;
+
+                if (pjoy->x * pjoy->y != 0.0f)
+                {
+                    pjoy->x *= 0.8f;
+                    pjoy->y *= 0.8f;
+                }
+                pjoy->uDeflect = 1.0f;
+            }
+        }
+
+        _MatchCodes(pjoy, grfbtnPrev);
+        pjoy->tRead = g_clock.tReal;
+
+        if (pjoy->grfbtn != 0 || pjoy->uDeflect != 0.0f || pjoy->uDeflect2 != 0.0f)
+            pjoy->tActive = g_clock.tReal;
+    }
+    else
+    {
+        if (g_clock.tReal - pjoy->tRead >= 2.0f)
+            fRet = 0;
+    }
+
+    return fRet;
+}
 
 void SetJoyBtnHandled(JOY *pjoy, GRFBTN btn)
 {
