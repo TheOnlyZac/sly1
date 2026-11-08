@@ -32,7 +32,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/rwm", CycleRwmCache__FP3RWM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", ReloadRwm__FP3RWM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rwm", FEnsureRwmLoaded__FP3RWM);
+int FEnsureRwmLoaded(RWM *prwm)
+{
+    if (prwm->punk48 != 0)
+    {
+        return 1;
+    }
+    ReloadRwm(prwm);
+    return prwm->punk48 != 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rwm", FFireRwm__FP3RWMi);
 

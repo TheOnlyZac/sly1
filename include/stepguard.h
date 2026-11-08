@@ -11,6 +11,7 @@
 
 // Forward.
 struct ASEG;
+struct RWM;
 
 /**
  * @brief Unknown.
@@ -88,7 +89,12 @@ struct STEPGUARD : public STEP
     /* 0x6c0 */ STRUCT_PADDING(24);
     /* 0x720 */ SGG *psgg;
     /* 0x724 */ SGS sgs;
-    /* 0x728 */ STRUCT_PADDING(11);
+    /* 0x728 */ STRUCT_PADDING(4);
+    /* 0x738 */ LM lmUnk738; // Range checked against the distance to the enemy.
+    /* 0x740 */ STRUCT_PADDING(2);
+    /* 0x748 */ float unk748; // Timer, compared against g_clock.t.
+    /* 0x74c */ float unk74c; // Largest allowed turn toward the enemy, scaled by distance.
+    /* 0x750 */ STRUCT_PADDING(1);
     /* 0x754 */ ASEGA *pasegaPatrol;
     /* 0x758 */ STRUCT_PADDING(21);
     /* 0x7ac */ int unk7ac; // Nonzero lets a guard taunt when unkBFC expires.
@@ -105,7 +111,8 @@ struct STEPGUARD : public STEP
     /* 0x930 */ int unk930;
     /* 0x934 */ STRUCT_PADDING(75);
     /* 0xa60 */ int unka60; // Nonzero while the guard has a goal it has not reached.
-    /* 0xa64 */ STRUCT_PADDING(43);
+    /* 0xa64 */ STRUCT_PADDING(42);
+    /* 0xb0c */ RWM *prwm;
     /* 0xb10 */ int ichkDead;
     /* 0xb14 */ STRUCT_PADDING(24);
     /* 0xb74 */ STEPGUARD *pstepguardBase;
@@ -140,6 +147,12 @@ void OnStepguardRemove(STEPGUARD *pstepguard);
 
 void PresetStepguardAccel(STEPGUARD *pstepguard, float dt);
 
+/**
+ * @brief Gets the angle between a stepguard's heading and the direction to its enemy.
+ *
+ * @param pstepguard The stepguard.
+ * @return The angle in radians, normalized, or 0 if the guard has no enemy.
+ */
 float DradEnemyStepguard(STEPGUARD *pstepguard);
 
 void SetStepguardTargetHeading(STEPGUARD *pstepguard, float radTarget, float radTilt);
@@ -216,6 +229,15 @@ void HandleStepguardMessage(STEPGUARD *pstepguard, MSGID msgid, void *pv);
 
 SGAS SgasGetStepguard(STEPGUARD *pstepguard);
 
+/**
+ * @brief Checks whether a stepguard can attack its enemy right now.
+ *
+ * @details The guard needs an enemy within range, facing it closely enough for the
+ * distance, with its attack timer elapsed and its attack data loaded.
+ *
+ * @param pstepguard The stepguard.
+ * @return Nonzero if the guard can attack.
+ */
 int FCanStepguardAttack(STEPGUARD *pstepguard);
 
 void RenderStepguardSelf(STEPGUARD *pstepguard, CM *pcm, RO *pro);
