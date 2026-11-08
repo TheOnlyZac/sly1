@@ -45,12 +45,21 @@ INCLUDE_ASM("asm/nonmatchings/P2/glbs", DrawThreeWay__4GLBS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/glbs", EndStrip__4GLBS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/glbs", SetNormal__4GLBSP6VECTOR);
+void GLBS::SetNormal(VECTOR *pnormal)
+{
+    m_vtxg.xNormal = pnormal->x;
+    m_vtxg.yNormal = pnormal->y;
+    m_vtxg.zNormal = pnormal->z;
+}
 
+JUNK_NOP();
 JUNK_WORD(0xE4800110);
 
 INCLUDE_ASM("asm/nonmatchings/P2/glbs", SetRgba__4GLBSG4RGBA);
 
-INCLUDE_ASM("asm/nonmatchings/P2/glbs", SetUv__4GLBSP3UVF);
+void GLBS::SetUv(UVF *puv)
+{
+    m_vtxg.uv = *puv;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/glbs", AddVtx__4GLBSi);
