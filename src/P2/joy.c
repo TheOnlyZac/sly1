@@ -630,71 +630,45 @@ void _MatchCodes(JOY *pjoy, GRFBTN btn)
     g_tCodeCheck = g_clock.tReal + 1.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", UpdateCodes__Fv);
-#ifdef SKIP_ASM
-/**
- * @todo 45.89% matched.
- */
 void UpdateCodes()
 {
-    int i;
-    CODE **ppcht;
-    CODE *pchtToExecute;
-    CODE *pcht;
-
-    if (g_tCodeCheck != 0x0f && g_tCodeCheck <= g_clock.tReal)
+    if (g_tCodeCheck != 0.0f && g_tCodeCheck <= g_clock.tReal)
     {
-        pchtToExecute = NULL;
-        pcht = g_pcode;
+        CODE *pcodeBest = NULL;
+        CODE **ppcode = &g_pcode;
+        CODE *pcode = g_pcode;
 
-        if (g_pcode != NULL)
+        while (pcode)
         {
-            i = g_pcode->index;
-            pcht = g_pcode;
-            while (true)
+            if (pcode->index != 0)
             {
-                if (i == 0)
-                {
-                    if (pcht->nInputCounter < pcht->cjbc)
-                    {
-                        ppcht = &pcht->pchtNext;
-                    }
-                    else if ((/* pchtToExecute == NULL || */ // todo fix
-                              ppcht = &pcht->pchtNext,
-                              pchtToExecute->cjbc < pcht->cjbc))
-                    {
-                        ppcht = &pcht->pchtNext;
-                        pchtToExecute = pcht;
-                    }
-                }
-                else
-                {
-                    *ppcht = pcht->pchtNext;
-                    pcht->pchtNext = NULL;
-                    pcht->nInputCounter = 0;
-                    pcht->index = 0;
-                }
-                pcht = *ppcht;
-                if (pcht == NULL)
-                    break;
-
-                i = pcht->index;
+                *ppcode = pcode->pchtNext;
+                pcode->nInputCounter = 0;
+                pcode->index = 0;
+                pcode->pchtNext = NULL;
             }
+            else
+            {
+                if (pcode->nInputCounter >= pcode->cjbc)
+                {
+                    if (pcodeBest == NULL || pcodeBest->cjbc < pcode->cjbc)
+                        pcodeBest = pcode;
+                }
+                ppcode = &pcode->pchtNext;
+            }
+            pcode = *ppcode;
         }
 
-        // Check if we found a match
-        if (pchtToExecute != NULL)
+        if (pcodeBest)
         {
-            // Execute the cheat
-            StartSound(SFXID_UiTick, NULL, NULL, NULL, 3000, 300, 1, 0, 0, NULL, NULL);
-            //(pchtToExecute->pfn)(pchtToExecute->nParam); //todo fix function pointer
+            StartSound(SFXID_Click3, NULL, NULL, NULL, 3000.0f, 300.0f, 1.0f, 0.0f, 0.0f, NULL, NULL);
+            pcodeBest->pfn(pcodeBest->nParam);
         }
 
         _ResetCodes();
         g_tCodeCheck = 0.0f;
     }
 }
-#endif
 
 void ClearFchts()
 {
@@ -747,21 +721,25 @@ void Chetkido()
     ((NOTE *)&g_note.unk278)->pvtnote->pfnShowBlot((NOTE *)&g_note.unk278);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", StartupCodes__Fv);
-#ifdef SKIP_ASM
-/**
- * @todo 4.38% matched.
- */
+extern CODE D_00262A80; // calls ResetWorld
+extern CODE D_00262AB8; // calls ClearFchts
+extern CODE D_00262AF0; // calls AddFcht(0x4004)
+extern CODE D_00262B28; // calls AddFcht(8)
+extern CODE D_00262B60; // calls AddFcht(2)
+extern CODE D_00262B98; // calls CollectAllClues
+extern CODE D_00262BD0; // calls SetGrfvault(0xF000FFFF)
+extern CODE D_00262C08; // calls FUN_0019a0f0
+extern CODE D_00262C48; // calls Chetkido
+
 void StartupCodes()
 {
-    ////AddCode(&cheat_reload_level.pCodeSeq);
-    ////AddCode(&cheat_reload_no_cheats.pCodeSeq);
-    ////AddCode(&cheat_reload_slippery_movement.pCodeSeq);
-    ////AddCode(&cheat_slippery_objects.pCodeSeq);
-    ////AddCode(&cheat_infinite_charms.pCodeSeq);
-    ////AddCode(&cheat_collect_bottles.pCodeSeq);
-    ////AddCode(&cheat_unlock_pages.pCodeSeq);
-    ////AddCode(&cheat_unlock_all_worlds.pCodeSeq);
-    ////AddCode(&cheat_chetkido_password.pCodeSeq);
+    AddCode(&D_00262A80);
+    AddCode(&D_00262AB8);
+    AddCode(&D_00262AF0);
+    AddCode(&D_00262B28);
+    AddCode(&D_00262B60);
+    AddCode(&D_00262B98);
+    AddCode(&D_00262BD0);
+    AddCode(&D_00262C08);
+    AddCode(&D_00262C48);
 }
-#endif // SKIP_ASM

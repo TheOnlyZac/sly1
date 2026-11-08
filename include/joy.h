@@ -315,6 +315,13 @@ void _ResetCodes();
 
 void _MatchCodes(JOY *pjoy, GRFBTN grfbtnPrev);
 
+/**
+ * @brief Runs the cheat code that was entered, if any.
+ *
+ * Once the input pause after a button press elapses, drops dead list entries,
+ * picks the completed code with the longest sequence, plays a click and calls
+ * its handler, then resets all progress.
+ */
 void UpdateCodes();
 
 void ClearFchts();
@@ -323,6 +330,9 @@ void AddFcht(uint nParam);
 
 void Chetkido();
 
+/**
+ * @brief Registers the built in cheat codes with the code matcher.
+ */
 void StartupCodes();
 
 #endif // JOY_H
