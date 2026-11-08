@@ -13,6 +13,7 @@
 struct OVR;
 struct CHN;
 struct ASEGA;
+struct EA;
 
 /**
  * @brief Unknown.
@@ -54,7 +55,10 @@ struct CHN
 struct ASEG : public LO
 {
     /* 0x34 */ float tMax;
-    /* 0x38 */ STRUCT_PADDING(13);
+    /* 0x38 */ STRUCT_PADDING(9);
+    /* 0x5c */ int cea;
+    /* 0x60 */ EA *aea;
+    /* 0x64 */ STRUCT_PADDING(2);
     /* 0x6c */ DL dlAsega;
     /* 0x78 */ STRUCT_PADDING(2);
     /* 0x80 */ CLQ clqMasterSuck;
@@ -89,7 +93,8 @@ struct ASEGBL : public ASEG
  */
 struct EA
 {
-    float tLocal;
+    /* 0x00 */ float tLocal;
+    /* 0x04 */ STRUCT_PADDING(3);
 };
 
 /**
