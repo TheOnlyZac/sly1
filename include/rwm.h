@@ -17,6 +17,8 @@
  */
 struct RWM : public LO
 {
+    /* 0x34 */ STRUCT_PADDING(5);
+    /* 0x48 */ void *punk48; // Set once the data has been loaded.
     // ...
 };
 
@@ -76,6 +78,12 @@ void CycleRwmCache(RWM *prwm);
 
 void ReloadRwm(RWM *prwm);
 
+/**
+ * @brief Makes sure an RWM's data is loaded, reloading it if needed.
+ *
+ * @param prwm The RWM.
+ * @return Nonzero if the data is loaded.
+ */
 int FEnsureRwmLoaded(RWM *prwm);
 
 int FFireRwm(RWM *prwm, int fAim);
