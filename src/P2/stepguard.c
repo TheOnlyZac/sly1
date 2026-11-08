@@ -1,4 +1,5 @@
 #include <stepguard.h>
+#include <clock.h>
 #include <asega.h>
 
 extern SNIP s_asnipStepguardLoad;
@@ -99,11 +100,301 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepguard", UpdateStepguardDrive__FP9STEPGUARD)
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", UpdateStepguard__FP9STEPGUARDf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", SgsNextStepguardAI__FP9STEPGUARD);
+typedef int (*PFNFCANATTACK)(STEPGUARD *);
+
+SGS SgsNextStepguardAI(STEPGUARD *pstepguard)
+{
+    SGS sgs = pstepguard->sgs;
+    SGGS sggs = SggsGetStepguard(pstepguard);
+
+    if (pstepguard->unkbfc < g_clock.t && pstepguard->sgs != SGS_Dying && pstepguard->sgs != SGS_Stun && pstepguard->unk7ac != 0)
+    {
+        sgs = SGS_Taunt;
+    }
+    else
+    {
+        switch (pstepguard->sgs)
+        {
+        case SGS_Reset:
+            switch (sggs)
+            {
+            case SGGS_Patrol:
+                sgs = SGS_ReturnToPatrol;
+                break;
+            case SGGS_Search:
+                sgs = SGS_Search;
+                break;
+            case SGGS_Attack:
+                sgs = SGS_Discover;
+                break;
+            }
+            break;
+
+        case SGS_Patrol:
+            switch (sggs)
+            {
+            case SGGS_Patrol:
+                if (pstepguard->pasegaPatrol != 0)
+                {
+                    if ((STRUCT_OFFSET(pstepguard, 0x2C8, uint64_t) & 0xC0000000) == 0x40000000)
+                    {
+                        sgs = SGS_PatrolIdle;
+                    }
+                }
+                else
+                {
+                    sgs = SGS_PatrolIdle;
+                }
+                break;
+            case SGGS_Search:
+                if (pstepguard->unkbf8 < g_clock.t)
+                {
+                    sgs = SGS_Search;
+                }
+                break;
+            case SGGS_Attack:
+                if (pstepguard->unkbf8 < g_clock.t)
+                {
+                    sgs = SGS_Discover;
+                }
+                break;
+            }
+            break;
+
+        case SGS_PatrolIdle:
+            switch (sggs)
+            {
+            case SGGS_Patrol:
+                if (pstepguard->pasegaPatrol != 0)
+                {
+                    if ((STRUCT_OFFSET(pstepguard, 0x2C8, uint64_t) & 0xC0000000) == 0)
+                    {
+                        sgs = SGS_Patrol;
+                    }
+                }
+                break;
+            case SGGS_Search:
+                if (pstepguard->unkbf8 < g_clock.t)
+                {
+                    sgs = SGS_Search;
+                }
+                break;
+            case SGGS_Attack:
+                if (pstepguard->unkbf8 < g_clock.t)
+                {
+                    sgs = SGS_Discover;
+                }
+                break;
+            }
+            break;
+
+        case SGS_PatrolWaypoint:
+            switch (sggs)
+            {
+            case SGGS_Patrol:
+                break;
+            case SGGS_Search:
+                if (pstepguard->unkbf8 < g_clock.t)
+                {
+                    sgs = SGS_Search;
+                }
+                break;
+            case SGGS_Attack:
+                if (pstepguard->unkbf8 < g_clock.t)
+                {
+                    sgs = SGS_Discover;
+                }
+                break;
+            }
+            break;
+
+        case SGS_Search:
+            switch (sggs)
+            {
+            case SGGS_Patrol:
+                sgs = SGS_GiveUpSearch;
+                break;
+            case SGGS_Search:
+                if (FReachedStepguardGoal(pstepguard))
+                {
+                    sgs = SGS_SearchIdle;
+                }
+                break;
+            case SGGS_Attack:
+                sgs = SGS_Discover;
+                break;
+            }
+            break;
+
+        case SGS_SearchIdle:
+            switch (sggs)
+            {
+            case SGGS_Patrol:
+                if (pstepguard->unkbf4 < g_clock.t)
+                {
+                    sgs = SGS_GiveUpSearch;
+                }
+                break;
+            case SGGS_Search:
+                if (pstepguard->unka60 == 0)
+                {
+                    sgs = SGS_Search;
+                }
+                break;
+            case SGGS_Attack:
+                sgs = SGS_Discover;
+                break;
+            }
+            break;
+
+        case SGS_ReturnToPatrol:
+            switch (sggs)
+            {
+            case SGGS_Patrol:
+                if (FReachedStepguardGoal(pstepguard))
+                {
+                    sgs = SGS_Patrol;
+                }
+                break;
+            case SGGS_Search:
+                if (pstepguard->unkbf8 < g_clock.t)
+                {
+                    sgs = SGS_Search;
+                }
+                break;
+            case SGGS_Attack:
+                if (pstepguard->unkbf8 < g_clock.t)
+                {
+                    sgs = SGS_Discover;
+                }
+                break;
+            }
+            break;
+
+        case SGS_GiveUpSearch:
+            switch (sggs)
+            {
+            case SGGS_Patrol:
+                if (pstepguard->pasegaSgs == 0)
+                {
+                    sgs = SGS_ReturnToPatrol;
+                }
+                break;
+            case SGGS_Search:
+                sgs = SGS_Search;
+                break;
+            case SGGS_Attack:
+                if (pstepguard->unkbf8 < g_clock.t)
+                {
+                    sgs = SGS_Discover;
+                }
+                break;
+            }
+            break;
+
+        case SGS_LostPlayer:
+        case SGS_Taunt:
+        case SGS_Stun:
+            if (pstepguard->pasegaSgs == 0)
+            {
+                sgs = SGS_Reset;
+            }
+            break;
+
+        case SGS_Pursue:
+            switch (sggs)
+            {
+            case SGGS_Patrol:
+            case SGGS_Search:
+                if (pstepguard->unkc00 < g_clock.t)
+                {
+                    sgs = SGS_LostPlayer;
+                }
+                break;
+            case SGGS_Attack:
+                if (pstepguard->pasegaSgs == 0)
+                {
+                    sgs = SGS_PursueIdle;
+                }
+                else if (pstepguard->unk7cc != 0 && STRUCT_OFFSET(STRUCT_OFFSET(pstepguard, 0, uint8_t *), 0x184, PFNFCANATTACK)(pstepguard))
+                {
+                    sgs = SGS_Attack;
+                }
+                else if (FReachedStepguardGoal(pstepguard) && pstepguard->unk7c4 != 0)
+                {
+                    sgs = SGS_PursueIdle;
+                }
+                break;
+            }
+            break;
+
+        case SGS_PursueIdle:
+            switch (sggs)
+            {
+            case SGGS_Patrol:
+            case SGGS_Search:
+                if (pstepguard->unkc00 < g_clock.t)
+                {
+                    sgs = SGS_LostPlayer;
+                }
+                break;
+            case SGGS_Attack:
+                if (pstepguard->unk7cc != 0 && STRUCT_OFFSET(STRUCT_OFFSET(pstepguard, 0, uint8_t *), 0x184, PFNFCANATTACK)(pstepguard))
+                {
+                    sgs = SGS_Attack;
+                }
+                else if (pstepguard->unka60 == 0 && pstepguard->unk7bc != 0)
+                {
+                    sgs = SGS_Pursue;
+                }
+                break;
+            }
+            break;
+
+        case SGS_Attack:
+            switch (sggs)
+            {
+            case SGGS_Patrol:
+            case SGGS_Search:
+                if (pstepguard->unkc00 < g_clock.t)
+                {
+                    sgs = SGS_LostPlayer;
+                }
+                break;
+            case SGGS_Attack:
+                if (pstepguard->pasegaSgs == 0)
+                {
+                    sgs = SGS_Pursue;
+                }
+                break;
+            }
+            break;
+
+        case SGS_Discover:
+            if (pstepguard->pasegaSgs == 0)
+            {
+                sgs = SGS_Pursue;
+            }
+            break;
+        }
+    }
+
+    return sgs;
+}
+
+ALIGN_SECTION(rodata, 4); // Pad the jump table to 16 bytes like the original.
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", SetStepguardGoal__FP9STEPGUARDP6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FReachedStepguardGoal__FP9STEPGUARD);
+int FReachedStepguardGoal(STEPGUARD *pstepguard)
+{
+    int fReached = 0;
+    if (pstepguard->unka60 != 0)
+    {
+        fReached = (pstepguard->unk930 == pstepguard->unk92c);
+    }
+    return fReached;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FFilterStepguardJump__FP9STEPGUARDP2SO);
 
@@ -129,7 +420,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepguard", OnStepguardExitingSgs__FP9STEPGUARD
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", OnStepguardEnteringSgs__FP9STEPGUARD3SGSP4ASEG);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", SggsGetStepguard__FP9STEPGUARD);
+SGGS SggsGetStepguard(STEPGUARD *pstepguard)
+{
+    if (pstepguard->psgg == 0)
+    {
+        return SGGS_Dead;
+    }
+    return pstepguard->psgg->sggs;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FAbsorbStepguardWkr__FP9STEPGUARDP3WKR);
 

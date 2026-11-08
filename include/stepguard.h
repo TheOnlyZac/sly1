@@ -69,10 +69,12 @@ enum SGS
  */
 struct SGG : public LO
 {
-    // ...
+    /* 0x34 */ STRUCT_PADDING(7);
+    /* 0x50 */ SGGS sggs;
+    /* 0x54 */ STRUCT_PADDING(69);
     /* 0x168 */ int calarms;        // count of alarms
     /* 0x16c */ ALARM **palarms;    // array of alarm pointers
-    // ...
+    /* 0x170 */ STRUCT_PADDING(4);
     /* 0x180 */ OID oidSync;
     // ...
 };
@@ -83,17 +85,35 @@ struct SGG : public LO
  */
 struct STEPGUARD : public STEP
 {
-    // ...
+    /* 0x6c0 */ STRUCT_PADDING(24);
     /* 0x720 */ SGG *psgg;
     /* 0x724 */ SGS sgs;
     /* 0x728 */ STRUCT_PADDING(11);
     /* 0x754 */ ASEGA *pasegaPatrol;
-    /* 0x758 */ STRUCT_PADDING(35);
+    /* 0x758 */ STRUCT_PADDING(21);
+    /* 0x7ac */ int unk7ac; // Nonzero lets a guard taunt when unkBFC expires.
+    /* 0x7b0 */ STRUCT_PADDING(3);
+    /* 0x7bc */ int unk7bc;
+    /* 0x7c0 */ STRUCT_PADDING(1);
+    /* 0x7c4 */ int unk7c4;
+    /* 0x7c8 */ STRUCT_PADDING(1);
+    /* 0x7cc */ int unk7cc; // Nonzero means FCanStepguardAttack is consulted.
+    /* 0x7d0 */ STRUCT_PADDING(4);
     /* 0x7e0 */ ASEGA *pasegaSgs;
-    /* 0x7e4 */ STRUCT_PADDING(203);
+    /* 0x7e4 */ STRUCT_PADDING(82);
+    /* 0x92c */ int unk92c;
+    /* 0x930 */ int unk930;
+    /* 0x934 */ STRUCT_PADDING(75);
+    /* 0xa60 */ int unka60; // Nonzero while the guard has a goal it has not reached.
+    /* 0xa64 */ STRUCT_PADDING(43);
     /* 0xb10 */ int ichkDead;
     /* 0xb14 */ STRUCT_PADDING(24);
     /* 0xb74 */ STEPGUARD *pstepguardBase;
+    /* 0xb78 */ STRUCT_PADDING(31);
+    /* 0xbf4 */ float unkbf4; // Timers, compared against g_clock.t.
+    /* 0xbf8 */ float unkbf8;
+    /* 0xbfc */ float unkbfc;
+    /* 0xc00 */ float unkc00;
     // ...
 };
 
@@ -128,10 +148,30 @@ void UpdateStepguardDrive(STEPGUARD *pstepguard);
 
 void UpdateStepguard(STEPGUARD *pstepguard, float dt);
 
+/**
+ * @brief Decides which state a stepguard should be in next.
+ *
+ * @details Looks at the guard's current state and the state of its group (patrol,
+ * search or attack). Returns SGS_Taunt if the taunt timer has run out, otherwise
+ * moves the guard along its patrol, search and attack states, for example from
+ * SGS_Discover to SGS_Pursue once its animation ends, or from the pursue and attack
+ * states to SGS_LostPlayer when the lost-player timer expires. Returns the current
+ * state if nothing should change.
+ *
+ * @param pstepguard The stepguard.
+ * @return The state the guard should move to.
+ * @note Some of the fields it reads are not named yet.
+ */
 SGS SgsNextStepguardAI(STEPGUARD *pstepguard);
 
 void SetStepguardGoal(STEPGUARD *pstepguard, VECTOR *pposGoal);
 
+/**
+ * @brief Checks whether a stepguard has reached its goal.
+ *
+ * @param pstepguard The stepguard.
+ * @return Nonzero if the guard has a goal and its two goal values are equal.
+ */
 int FReachedStepguardGoal(STEPGUARD *pstepguard);
 
 int FFilterStepguardJump(STEPGUARD *pstepguard, SO *pso);
@@ -154,6 +194,12 @@ void OnStepguardExitingSgs(STEPGUARD *pstepguard, SGS sgsNext);
 
 void OnStepguardEnteringSgs(STEPGUARD *pstepguard, SGS sgsPrev, ASEG *pasegTargetOverride);
 
+/**
+ * @brief Gets the state of a stepguard's group.
+ *
+ * @param pstepguard The stepguard.
+ * @return The group's state, or SGGS_Dead if the guard has no group.
+ */
 SGGS SggsGetStepguard(STEPGUARD *pstepguard);
 
 int FAbsorbStepguardWkr(STEPGUARD *pstepguard, WKR *pwkr);

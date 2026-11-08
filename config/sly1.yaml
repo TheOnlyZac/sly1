@@ -362,7 +362,8 @@ segments:
     #- [0x14e560, .rodata, P2/squish] # TODO: Might be something else.
     #- [0x14e588, .rodata, P2/step] # TODO: Verify.
     #- [0x14e5a0, .rodata, P2/stepcane]
-    #- [0x14e650, .rodata, P2/stepguard]
+    - [0x14e650, .rodata, P2/stepguard]
+    - [0x14eaa0, rodata]
     #- [0x14eaa0, .rodata, P2/stephide]
     #- [0x14eb20, .rodata, P2/steppower]
     #- [0x14ebd0, .rodata, P2/stepside]
