@@ -1,4 +1,5 @@
 #include <joy.h>
+#include <rumble.h>
 #include <game.h>
 #include <cm.h>
 #include <text.h>
@@ -71,107 +72,150 @@ void InitJoy(JOY *pjoy, int nPort, int nSlot)
     pjoy->fRumbleEnabled = true;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", UpdateJoy__FP3JOY);
-#ifdef SKIP_ASM
-/**
- * @todo 31.94% matched.
- */
 void UpdateJoy(JOY *pjoy)
 {
-    bool cond = false;
-    JOYS joysNew;
-    JOYK joykNew, joyk;
-    uint padState;
-
-    // if the joy manager is initializing, early return
     if (pjoy->joys == JOYS_Initing)
         return;
 
-    padState = scePadGetState(pjoy->nPort, pjoy->nSlot);
-    if (padState == 6 || padState == 2) // todo: enum for padState
-    {
-        cond = true; // todo: what is this condition?
-    }
-    joysNew = pjoy->joys;
+    int fCheck = 0;
+    int nState = scePadGetState(pjoy->nPort, pjoy->nSlot);
+    if (nState == 6 || nState == 2)
+        fCheck = 1;
 
-    if (joysNew != JOYS_Ready)
+    JOYK joykCur = pjoy->joyk;
+    if (pjoy->joys != JOYS_Ready)
     {
-        if (pjoy->joyk != JOYK_Unknown)
+        if (joykCur != JOYK_Unknown)
         {
             if (g_clock.tReal - pjoy->tJoys >= 2.0f)
-            {
-                padState = 0;
-            }
+                nState = 0;
         }
     }
 
-    if (pjoy->joyk != JOYK_Unknown && padState == 0)
-    {
+    if (joykCur != JOYK_Unknown && nState == 0)
         SetJoyJoys(pjoy, JOYS_Searching, JOYK_Unknown);
-    }
 
-    // Return if condition not met
-    if (!cond)
+    if (!fCheck)
         return;
 
-    joysNew = pjoy->joys;
-    joykNew = pjoy->joyk;
-    if (joysNew == JOYS_Waiting)
-    {
-        padState = scePadGetState(pjoy->nPort, pjoy->nSlot);
-        if (padState != '\x01')
-        {
-            if (padState > '\x01')
-            {
-                if (padState != '\x02')
-                {
-                    joykNew = JOYK_Unknown;
-                }
-                SetJoyJoys(pjoy, joysNew, joykNew);
-                return;
-            }
-            joykNew = JOYK_Unknown;
-            if (padState != '\0')
-            {
-                SetJoyJoys(pjoy, joysNew, joykNew);
-                return;
-            }
+    JOYS joysNew = pjoy->joys;
+    JOYK joykNew = pjoy->joyk;
 
-            joyk = pjoy->joyk;
-            if (joyk == JOYK_Analog)
+    switch (joysNew)
+    {
+    case JOYS_Searching:
+        switch (joykNew)
+        {
+        case JOYK_Unknown:
+        {
+            int nId = scePadInfoMode(pjoy->nPort, pjoy->nSlot, 1, 0);
+            if (nId != 0)
             {
-                joykNew = JOYK_Shock;
+                int nExId = scePadInfoMode(pjoy->nPort, pjoy->nSlot, 2, 0);
+                if (nExId > 0)
+                    nId = nExId;
+                if (nId == 4 || nId == 7)
+                {
+                    joykNew = JOYK_Digital;
+                    joysNew = nExId ? JOYS_Searching : JOYS_Ready;
+                }
+            }
+            break;
+        }
+        case JOYK_Digital:
+            if (scePadSetMainMode(pjoy->nPort, pjoy->nSlot, 1, 3) == 1)
+                joysNew = JOYS_Waiting;
+            else
+                joysNew = JOYS_Searching;
+            break;
+        case JOYK_Analog:
+        {
+            int cAct = scePadInfoAct(pjoy->nPort, pjoy->nSlot, -1, 0);
+            if (cAct != 2 ||
+                scePadInfoAct(pjoy->nPort, pjoy->nSlot, 0, 1) != 1 ||
+                scePadInfoAct(pjoy->nPort, pjoy->nSlot, 0, 2) != 2 ||
+                scePadInfoAct(pjoy->nPort, pjoy->nSlot, 0, 3) != 0 ||
+                scePadInfoAct(pjoy->nPort, pjoy->nSlot, 1, 1) != 1 ||
+                scePadInfoAct(pjoy->nPort, pjoy->nSlot, 1, 2) != 1 ||
+                scePadInfoAct(pjoy->nPort, pjoy->nSlot, 1, 3) != 1)
+            {
+                joysNew = JOYS_Ready;
             }
             else
             {
-                if (static_cast<int>(joyk) > 2)
-                {
-                    joykNew = JOYK_Unknown;
-
-                    if (joyk != JOYK_Shock)
-                    {
-                        SetJoyJoys(pjoy, joysNew, joykNew);
-                        return;
-                    }
-                    joykNew = JOYK_Shock2;
-                    joysNew = JOYS_Ready;
-                    SetJoyJoys(pjoy, joysNew, joykNew);
-                    return;
-                }
-                // todo
-                //...
+                u_char abAct[6];
+                memset(abAct, 0xFF, sizeof(abAct));
+                for (int i = 0; i < cAct; i++)
+                    abAct[i] = i;
+                if (scePadSetActAlign(pjoy->nPort, pjoy->nSlot, abAct) == 1)
+                    joysNew = JOYS_Waiting;
             }
+            break;
         }
-    }
-    else
-    {
-        // todo
-        // ...
+        case JOYK_Shock:
+            if (scePadInfoPressMode(pjoy->nPort, pjoy->nSlot) != 1)
+            {
+                joysNew = JOYS_Ready;
+            }
+            else
+            {
+                if (scePadEnterPressMode(pjoy->nPort, pjoy->nSlot) == 1)
+                    joysNew = JOYS_Waiting;
+            }
+            break;
+        }
+        break;
+
+    case JOYS_Waiting:
+        switch (scePadGetReqState(pjoy->nPort, pjoy->nSlot))
+        {
+        case 0:
+            switch (pjoy->joyk)
+            {
+            case JOYK_Digital:
+                joykNew = JOYK_Analog;
+                joysNew = JOYS_Searching;
+                break;
+            case JOYK_Analog:
+                joykNew = JOYK_Shock;
+                joysNew = JOYS_Searching;
+                break;
+            case JOYK_Shock:
+                joykNew = JOYK_Shock2;
+                joysNew = JOYS_Ready;
+                break;
+            default:
+                joykNew = JOYK_Unknown;
+                break;
+            }
+            break;
+        case 1:
+            joysNew = JOYS_Searching;
+            break;
+        case 2:
+            break;
+        default:
+            joykNew = JOYK_Unknown;
+            break;
+        }
+        break;
+
+    case JOYS_Ready:
+        if (FReadJoy(pjoy))
+        {
+            if (pjoy->fRumbleEnabled && pjoy->joyk >= JOYK_Shock)
+                UpdateRumble(pjoy->prumble);
+        }
+        else
+        {
+            joysNew = JOYS_Searching;
+            joykNew = JOYK_Unknown;
+        }
+        break;
     }
 
     SetJoyJoys(pjoy, joysNew, joykNew);
 }
-#endif // SKIP_ASM
 
 void SetJoyJoys(JOY *pjoy, JOYS joys, JOYK joyk)
 {

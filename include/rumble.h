@@ -87,6 +87,8 @@ struct RUMBLE
 /**
  * @brief Initialize the joypad rumble system.
  */
+void UpdateRumble(RUMBLE *prumble);
+
 void InitRumble(RUMBLE *prumble, int nPort, int nSlot);
 
 /**

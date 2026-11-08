@@ -233,6 +233,16 @@ void UpdateGrfjoytFromGrfusr();
 
 void InitJoy(JOY *pjoy, int nPort, int nSlot);
 
+/**
+ * @brief Runs the joypad state machine, once per frame.
+ *
+ * Detects the pad and walks it through the setup steps (digital to analog to
+ * pressure sensitive, plus rumble motor alignment) while searching and waiting,
+ * and polls it with FReadJoy once it is ready. Drops back to searching if the
+ * pad disconnects or setup takes longer than 2 seconds.
+ *
+ * @param pjoy Joypad to update.
+ */
 void UpdateJoy(JOY *pjoy);
 
 void SetJoyJoys(JOY *pjoy, JOYS joys, JOYK joyk);
