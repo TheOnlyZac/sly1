@@ -10,9 +10,9 @@
 #include <vec.h>
 #include <shd.h>
 #include <light.h>
+#include <shdanim.h>
 
 // Forward.
-struct UV;
 
 /**
  * @brief (?) kind.
@@ -49,7 +49,11 @@ typedef struct RGL
  */
 struct VTXG
 {
-    STRUCT_PADDING(10);
+    /* 0x00 */ float xNormal, yNormal, zNormal;
+    /* 0x0c */ STRUCT_PADDING(3);
+    /* 0x18 */ RGBA rgba;
+    /* 0x1c */ UVF uv;
+    /* 0x24 */ STRUCT_PADDING(1);
 };
 
 /**
@@ -90,11 +94,21 @@ struct GLBS
 
     void EndStrip();
 
-    void SetNormal(VECTOR *ppos); // Might be SetPos?
+    /**
+     * @brief Sets the normal of the current vertex.
+     *
+     * @param pnormal The normal.
+     */
+    void SetNormal(VECTOR *pnormal);
 
-    void SetRgba(RGBA &rgba); // Might not be correct.
+    void SetRgba(RGBA rgba);
 
-    void SetUv(UV *puv);
+    /**
+     * @brief Sets the UV coordinates of the current vertex.
+     *
+     * @param puv The UV coordinates.
+     */
+    void SetUv(UVF *puv);
 
     void SetVtx(int fAdc);
 };

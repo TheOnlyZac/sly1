@@ -1,5 +1,7 @@
 #include <act.h>
 
+extern MATRIX3 g_matIdentity;
+
 INCLUDE_ASM("asm/nonmatchings/P2/act", PactNew__FP2SWP3ALOP5VTACT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", PactNewClone__FP3ACTP2SWP3ALO);
@@ -20,7 +22,12 @@ void GetActTwistGoal(ACT *pact, float *pradTwist, float *pdradTwist)
     *(int *)pdradTwist = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", GetActScale__FP3ACTP7MATRIX3);
+void GetActScale(ACT *pact, MATRIX3 *pmat)
+{
+    STRUCT_OFFSET(pmat, 0x00, qword) = STRUCT_OFFSET(&g_matIdentity, 0x00, qword);
+    STRUCT_OFFSET(pmat, 0x10, qword) = STRUCT_OFFSET(&g_matIdentity, 0x10, qword);
+    STRUCT_OFFSET(pmat, 0x20, qword) = STRUCT_OFFSET(&g_matIdentity, 0x20, qword);
+}
 
 float GGetActPoseGoal(ACT *pact, int ipose)
 {
@@ -45,7 +52,17 @@ INCLUDE_ASM("asm/nonmatchings/P2/act", PredictAloPosition__FP3ALOfP6VECTORT2);
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", PredictAloRotation__FP3ALOfP7MATRIX3P6VECTOR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", AdaptAct__FP3ACT);
+void AdaptAct(ACT *pact)
+{
+    if (pact->ack0 == 7)
+    {
+        pact->ack0 = 3;
+    }
+    if (pact->ack1 == 7)
+    {
+        pact->ack1 = 3;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/act", InitActval__FP6ACTVALP3ALO);
 
@@ -59,7 +76,12 @@ void GetActvalTwistGoal(ACTVAL *pactval, float *pradTwist, float *pdradTwist)
     *pdradTwist = pactval->dradTwistGoal;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", GetActvalScale__FP6ACTVALP7MATRIX3);
+void GetActvalScale(ACTVAL *pactval, MATRIX3 *pmat)
+{
+    STRUCT_OFFSET(pmat, 0x00, qword) = STRUCT_OFFSET(pactval, 0x90, qword);
+    STRUCT_OFFSET(pmat, 0x10, qword) = STRUCT_OFFSET(pactval, 0xA0, qword);
+    STRUCT_OFFSET(pmat, 0x20, qword) = STRUCT_OFFSET(pactval, 0xB0, qword);
+}
 
 float GGetActvalPoseGoal(ACTVAL *pactval, int ipose)
 {
@@ -78,7 +100,13 @@ void GetActrefTwistGoal(ACTREF *pactref, float *pradTwist, float *pdradTwist)
     *pdradTwist = *pactref->pdradTwistGoal;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/act", GetActrefScale__FP6ACTREFP7MATRIX3);
+void GetActrefScale(ACTREF *pactref, MATRIX3 *pmat)
+{
+    MATRIX3 *pmatSrc = pactref->pmatScale;
+    STRUCT_OFFSET(pmat, 0x00, qword) = STRUCT_OFFSET(pmatSrc, 0x00, qword);
+    STRUCT_OFFSET(pmat, 0x10, qword) = STRUCT_OFFSET(pmatSrc, 0x10, qword);
+    STRUCT_OFFSET(pmat, 0x20, qword) = STRUCT_OFFSET(pmatSrc, 0x20, qword);
+}
 
 float GGetActrefPoseGoal(ACTREF *pactref, int ipose)
 {
