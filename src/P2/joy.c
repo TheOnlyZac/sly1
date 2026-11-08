@@ -249,11 +249,160 @@ void StartJoySelection(JOY *pjoy)
     pjoy->dyLatch = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", DxSelectionJoy__FP3JOY);
+int DxSelectionJoy(JOY *pjoy)
+{
+    if (pjoy->dxLatch == 0)
+    {
+        if (pjoy->grfbtnPressed & PAD_LEFT_ARROW)
+        {
+            SetJoyBtnHandled(pjoy, PAD_LEFT_ARROW);
+            pjoy->dxLatch = -1;
+        }
+        else if (pjoy->grfbtnPressed & PAD_RIGHT_ARROW)
+        {
+            SetJoyBtnHandled(pjoy, PAD_RIGHT_ARROW);
+            pjoy->dxLatch = 1;
+        }
+        else if (pjoy->uDeflect >= 0.8f && __builtin_fabsf(pjoy->x) > __builtin_fabsf(pjoy->y))
+        {
+            if (pjoy->x < 0.0f)
+                pjoy->dxLatch = -1;
+            else
+                pjoy->dxLatch = 1;
+        }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", DySelectionJoy__FP3JOY);
+        if (pjoy->dxLatch != 0)
+        {
+            pjoy->dtLatchX = 0.3333f;
+            pjoy->tLatchX = g_clock.tReal + pjoy->dtLatchX;
+        }
+    }
+    else
+    {
+        int fHeld = 0;
+        if (pjoy->dxLatch < 0)
+        {
+            if ((pjoy->grfbtn & PAD_LEFT_ARROW) || (pjoy->uDeflect >= 0.25f && __builtin_fabsf(pjoy->x) > __builtin_fabsf(pjoy->y) && pjoy->x < 0.0f))
+                fHeld = 1;
+        }
+        else
+        {
+            if ((pjoy->grfbtn & PAD_RIGHT_ARROW) || (pjoy->uDeflect >= 0.25f && __builtin_fabsf(pjoy->x) > __builtin_fabsf(pjoy->y) && 0.0f < pjoy->x))
+                fHeld = 1;
+        }
 
-INCLUDE_ASM("asm/nonmatchings/P2/joy", UBtnpJoy__FP3JOY4BTNP);
+        if (!fHeld)
+        {
+            pjoy->dxLatch = 0;
+        }
+        else if (pjoy->tLatchX <= g_clock.tReal)
+        {
+            float dtMin = 0.1f;
+            float dtMax = 0.3333f;
+            float dt = pjoy->dtLatchX * 2.0f * 0.33333334f;
+            float dtNew;
+            if (dt < dtMin)
+                dtNew = dtMin;
+            else if (dt > dtMax)
+                dtNew = dtMax;
+            else
+                dtNew = dt;
+            pjoy->dtLatchX = dtNew;
+            pjoy->tLatchX = g_clock.tReal + dtNew;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    return pjoy->dxLatch;
+}
+
+int DySelectionJoy(JOY *pjoy)
+{
+    if (pjoy->dyLatch == 0)
+    {
+        if (pjoy->grfbtnPressed & PAD_UP_ARROW)
+        {
+            SetJoyBtnHandled(pjoy, PAD_UP_ARROW);
+            pjoy->dyLatch = -1;
+        }
+        else if (pjoy->grfbtnPressed & PAD_DOWN_ARROW)
+        {
+            SetJoyBtnHandled(pjoy, PAD_DOWN_ARROW);
+            pjoy->dyLatch = 1;
+        }
+        else if (pjoy->uDeflect >= 0.8f && __builtin_fabsf(pjoy->y) > __builtin_fabsf(pjoy->x))
+        {
+            if (0.0f < pjoy->y)
+                pjoy->dyLatch = -1;
+            else
+                pjoy->dyLatch = 1;
+        }
+
+        if (pjoy->dyLatch != 0)
+        {
+            pjoy->dtLatchY = 0.3333f;
+            pjoy->tLatchY = g_clock.tReal + pjoy->dtLatchY;
+        }
+    }
+    else
+    {
+        int fHeld = 0;
+        if (pjoy->dyLatch < 0)
+        {
+            if ((pjoy->grfbtn & PAD_UP_ARROW) || (pjoy->uDeflect >= 0.25f && __builtin_fabsf(pjoy->y) > __builtin_fabsf(pjoy->x) && 0.0f < pjoy->y))
+                fHeld = 1;
+        }
+        else
+        {
+            if ((pjoy->grfbtn & PAD_DOWN_ARROW) || (pjoy->uDeflect >= 0.25f && __builtin_fabsf(pjoy->y) > __builtin_fabsf(pjoy->x) && pjoy->y < 0.0f))
+                fHeld = 1;
+        }
+
+        if (!fHeld)
+        {
+            pjoy->dyLatch = 0;
+        }
+        else if (pjoy->tLatchY <= g_clock.tReal)
+        {
+            float dtMin = 0.1f;
+            float dtMax = 0.3333f;
+            float dt = pjoy->dtLatchY * 2.0f * 0.33333334f;
+            float dtNew;
+            if (dt < dtMin)
+                dtNew = dtMin;
+            else if (dt > dtMax)
+                dtNew = dtMax;
+            else
+                dtNew = dt;
+            pjoy->dtLatchY = dtNew;
+            pjoy->tLatchY = g_clock.tReal + dtNew;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    return pjoy->dyLatch;
+}
+
+float UBtnpJoy(JOY *pjoy, BTNP btnp)
+{
+    if (pjoy->grfbtn & g_mpbtnpfbtn[btnp])
+    {
+        if (pjoy->joyk >= JOYK_Shock2)
+        {
+            int r = 1;
+            int b = pjoy->mpbtnpb[btnp];
+            if (r < b)
+                r = b;
+            return r * (1.0f / 255.0f);
+        }
+        return 1.0f;
+    }
+    return 0.0f;
+}
 
 void AddCode(CODE *pcode)
 {
