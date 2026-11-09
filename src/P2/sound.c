@@ -24,6 +24,7 @@ struct MVG
 
 extern float D_00274838[10][4]; // temp
 
+
 extern uint D_00274728; // music sfx handle (guess)
 extern uint D_0027472C; // vag handle (guess)
 extern int D_00274730;
@@ -42,7 +43,19 @@ extern int D_006047D0[];
 
 
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", UnloadMusic__Fv);
+void UnloadMusic()
+{
+    if (D_0027473C)
+    {
+        if (D_00274728)
+            snd_StopSound(D_00274728);
+        snd_UnloadBank((SoundBankPtr)D_0027473C);
+        while (snd_FlushSoundCommands()) {}
+        D_0027473C = 0;
+    }
+    D_00274720 = 0;
+    D_00274728 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SbpEnsureBank__Fi);
 
@@ -392,17 +405,36 @@ void KillSoundSystem()
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", KillSounds__Fi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PushSwReverb__FP2SW7REVERBKi);
+void PushSwReverb(SW *psw, REVERBK reverbk, const int depth)
+{
+    if ((uint)psw->cswrev < 4)
+    {
+        snd_SetReverbType(2, D_00274808[reverbk]);
+        snd_SetReverbDepth(2, depth, depth);
+        psw->aswrev[psw->cswrev].reverbk = reverbk;
+        psw->aswrev[psw->cswrev].depth = depth;
+        psw->cswrev++;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PopSwReverb__FP2SW);
+void PopSwReverb(SW *psw)
+{
+    if (psw->cswrev >= 2)
+    {
+        psw->cswrev--;
+        snd_SetReverbType(2, D_00274808[psw->aswrev[psw->cswrev - 1].reverbk]);
+        int depth = psw->aswrev[psw->cswrev - 1].depth;
+        snd_SetReverbDepth(2, depth, depth);
+    }
+}
 
 void SetSwDefaultReverb(SW *psw, REVERBK reverbk, const int depth)
 {
     snd_SetReverbType(2, D_00274808[reverbk]);
     snd_SetReverbDepth(2, depth, depth);
-    STRUCT_OFFSET(psw, 0x2328, int) = reverbk;
-    STRUCT_OFFSET(psw, 0x232C, int) = depth;
-    STRUCT_OFFSET(psw, 0x2348, int) = 1;
+    psw->aswrev[0].reverbk = reverbk;
+    psw->aswrev[0].depth = depth;
+    psw->cswrev = 1;
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0A50);

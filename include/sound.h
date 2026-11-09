@@ -202,6 +202,11 @@ typedef int IEXC;
 extern IEXC g_iexcHyst;
 
 /**
+ * @brief Stops and unloads the music bank (if loaded) and resets the music state.
+ */
+void UnloadMusic();
+
+/**
  * @brief Check if a VAG is playing.
  * @return Nonzero if a VAG stream handle is currently held.
  */
@@ -509,7 +514,18 @@ void NextSneakyFootstep();
  */
 int HsNextFootFall();
 
+/**
+ * @brief Pushes a reverb setting on the world's reverb stack and applies it (stack holds up to 4 entries, bounds are from the asm).
+ * @param psw World.
+ * @param reverb Reverb kind.
+ * @param k Reverb depth (named k in the existing header, used for both channels).
+ */
 void PushSwReverb(SW *psw, REVERBK reverb, int k);
+
+/**
+ * @brief Pops the top reverb setting from the world's reverb stack and re-applies the previous one.
+ * @param psw World.
+ */
 void PopSwReverb(SW *psw);
 
 #endif // SOUND_H

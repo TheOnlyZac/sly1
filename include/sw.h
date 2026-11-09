@@ -31,6 +31,15 @@ struct SPLC;
  *
  * @todo Add the rest of the fields.
  */
+/**
+ * @brief Reverb stack entry (name and fields are guesses).
+ */
+struct SWREV
+{
+    int reverbk; // REVERBK value, indexes a table of hardware reverb types.
+    int depth;
+};
+
 struct SW : public LO
 {
     /* 0x34   */ int cpsoAll;
@@ -93,7 +102,9 @@ struct SW : public LO
     /* 0x1efc */ STRUCT_PADDING(263);
     /* 0x2318 */ float gexcMenu;
     /* 0x231c */ int cHandsOff;
-    /* 0x2320 */ STRUCT_PADDING(11);
+    /* 0x2320 */ STRUCT_PADDING(2);
+    /* 0x2328 */ SWREV aswrev[4]; // Reverb stack (name is a guess).
+    /* 0x2348 */ int cswrev; // Number of entries in the reverb stack.
     /* 0x234c */ float rDarken;
     /* 0x2350 */ float rDarkenSmooth;
     // ...
