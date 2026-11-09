@@ -479,6 +479,12 @@ void UnsubscribeRipStruct(RIP *prip, PFNMQ pfnmq, void *pvContext);
  */
 void InitDroplet(DROPLET *pdroplet, VECTOR *ppos, float gScale, SO *psoTouch);
 
+/**
+ * @brief Touch callback for a droplet; when touching it clips its path against the BSP, spawns a splash rip (type 4) at the hit point and removes itself.
+ * @param pdroplet Droplet particle.
+ * @param fTouching Non-zero if currently touching.
+ * @note Splash type, constants and fields set on it are guesses. LSG in bsp.h is 0x68 bytes there but 0x70 in the original (the local array here is sized by hand).
+ */
 void TouchDroplet(DROPLET *pdroplet, int fTouching);
 
 void InitBublet(BUBLET *pbublet, VECTOR *ppos, float gScale, SO *psoTouch);
