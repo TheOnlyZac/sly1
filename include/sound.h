@@ -155,6 +155,7 @@ struct AMB
     int fOutOfRange;
     int fAttached;
     int fStopped;
+    undefined4 unk_pre; // Padding found from asm offsets (guess).
     float volAttenuated;
     float pan;
     float frq;
@@ -168,6 +169,7 @@ struct AMB
     undefined4 unk_2;
     undefined4 unk_3;
     undefined4 unk_4;
+    undefined4 unk_5;
 };
 
 /**
@@ -268,6 +270,44 @@ int FAmbientsPaused();
  * @brief Stops the current VAG.
  */
 void StopVag();
+
+/**
+ * @brief Allocates a zeroed excitement (EXC) from the world's EXC heap and links it into the EXC list.
+ * @return The new EXC, or 0 if the heap is full.
+ */
+EXC *PexcAlloc();
+
+/**
+ * @brief Allocates a zeroed ambient sound (AMB) from the world's AMB heap and links it into the AMB list.
+ * @return The new AMB, or 0 if the heap is full.
+ */
+AMB *PambAlloc();
+
+/**
+ * @brief Unlinks an EXC from the world's EXC list and frees it.
+ */
+void RemoveExc(EXC *pexc);
+
+/**
+ * @brief Clears the owner pointer of an AMB, invalidates its serial, then unlinks and frees it.
+ */
+void RemoveAmb(AMB *pamb);
+
+/**
+ * @brief Stops the music if it is currently playing. (State values are guesses.)
+ */
+void KillMusic();
+
+/**
+ * @brief Removes an EXC and, if it was the hysteresis level, makes it the current high. (Meaning is a guess.)
+ * @param pexc The EXC to remove, may be null.
+ */
+void UnsetExcitementHyst(EXC *pexc);
+
+/**
+ * @brief Unknown.
+ */
+void SetIexcCurHigh(EXC *pexc);
 
 /**
  * @brief Unknown.

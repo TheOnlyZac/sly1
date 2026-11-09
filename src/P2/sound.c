@@ -1,6 +1,11 @@
 #include <sound.h>
 #include <989snd.h>
 #include <sce/memset.h>
+#include <sw.h>
+#include <po.h>
+#include <cm.h>
+#include <dl.h>
+#include <slotheap.h>
 
 extern uchar D_00604790[]; // temp
 extern int D_006053E0[];
@@ -28,6 +33,8 @@ extern int D_00245020[][2]; // sfxid -> bank table (guess)
 extern int D_00274720;
 extern int D_00274724;
 extern uint D_0027473C;
+extern int D_00274734;
+
 
 
 
@@ -102,7 +109,15 @@ void ContinueVag()
         snd_ContinueSound(D_0027472C);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", KillMusic__Fv);
+void KillMusic()
+{
+    if (D_00274720 == 3)
+    {
+        snd_StopSound(D_00274728);
+        D_00274728 = 0;
+        D_00274720 = 2;
+    }
+}
 
 void PreloadMusidSongComplete(uint handle, unsigned long userData)
 {
@@ -143,9 +158,22 @@ void SfxhMusicUnknown2()
     snd_ContinueSound(D_00274728);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PexcAlloc__Fv);
+EXC *PexcAlloc()
+{
+    EXC *pexc = (EXC *)PvAllocSlotheapUnsafe(&g_psw->slotheapExc);
+    if (pexc)
+    {
+        memset(pexc, 0, sizeof(EXC));
+        AppendDlEntry(&g_psw->dlExc, pexc);
+    }
+    return pexc;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", RemoveExc__FP3EXC);
+void RemoveExc(EXC *pexc)
+{
+    RemoveDlEntry(&g_psw->dlExc, pexc);
+    FreeSlotheapPv(&g_psw->slotheapExc, pexc);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", KillExcitement__Fv);
 
@@ -155,7 +183,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", SetIexcCurHigh__FP3EXC);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", UnsetExcitement__FP3EXC);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", UnsetExcitementHyst__FP3EXC);
+void UnsetExcitementHyst(EXC *pexc)
+{
+    if (pexc)
+    {
+        int iexc = pexc->iexc;
+        RemoveExc(pexc);
+        if (iexc == D_00274734)
+        {
+            g_iexcHyst = iexc;
+            SetIexcCurHigh(pexc);
+        }
+    }
+}
 
 void StartupSound()
 {
@@ -187,7 +227,17 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BF2E0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BF398);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PposEar__Fv);
+VECTOR *PposEar()
+{
+    PO *ppo = PpoCur();
+    VECTOR *ppos;
+    typedef int (*PFN)(PO *);
+    if (ppo && ((PFN *)STRUCT_OFFSET(ppo, 0, void *))[0x138 / 4](ppo))
+        ppos = &STRUCT_OFFSET(ppo, 0x140, VECTOR);
+    else
+        ppos = &STRUCT_OFFSET(g_pcm, 0x40, VECTOR);
+    return ppos;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SetDoppler__FP3AMB);
 
@@ -201,7 +251,16 @@ float SDistEar(VECTOR *ppos)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", CalculateDistVolPan__FP6VECTORPfT1fff);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PambAlloc__Fv);
+AMB *PambAlloc()
+{
+    AMB *pamb = (AMB *)PvAllocSlotheapUnsafe(&g_psw->slotheapAmb);
+    if (pamb)
+    {
+        memset(pamb, 0, sizeof(AMB));
+        AppendDlEntry(&g_psw->dlAmb, pamb);
+    }
+    return pamb;
+}
 
 void DropPamb(AMB **ppamb)
 {
@@ -209,7 +268,14 @@ void DropPamb(AMB **ppamb)
     *ppamb = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", RemoveAmb__FP3AMB);
+void RemoveAmb(AMB *pamb)
+{
+    if (pamb->ppamb)
+        *pamb->ppamb = 0;
+    pamb->iSerial = -1;
+    RemoveDlEntry(&g_psw->dlAmb, pamb);
+    FreeSlotheapPv(&g_psw->slotheapAmb, pamb);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StopSound__FP3AMBi);
 
@@ -219,7 +285,7 @@ void SetPambVol(AMB *pamb, float uVolAtSource)
 {
     if (pamb)
     {
-        STRUCT_OFFSET(pamb, 0x50, float) *= uVolAtSource / pamb->uVolAtSource;
+        pamb->volAttenuated *= uVolAtSource / pamb->uVolAtSource;
         pamb->uVolAtSource = uVolAtSource;
         RefreshPambVolPan(pamb);
     }

@@ -54,7 +54,11 @@ struct SW : public LO
     /* 0x1b7c */ DL dlAsegaPending;
     /* 0x1b88 */ SLOTHEAP slotheapSma;
     /* 0x1b94 */ DL dlSma;
-    /* 0x1ba0 */ STRUCT_PADDING(18);
+    /* 0x1ba0 */ SLOTHEAP slotheapAmb; // Ambient sound (AMB) heap, name is a guess.
+    /* 0x1bac */ DL dlAmb;
+    /* 0x1bb8 */ SLOTHEAP slotheapExc; // Excitement (EXC) heap, name is a guess.
+    /* 0x1bc4 */ DL dlExc;
+    /* 0x1bd0 */ STRUCT_PADDING(6);
     /* 0x1be8 */ DL dlLight;
     /* 0x1bf4 */ STRUCT_PADDING(6);
     /* 0x1c0c */ SLOTHEAP slotheapStso;
