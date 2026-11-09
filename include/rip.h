@@ -12,6 +12,7 @@
 #include <so.h>
 #include <lo.h>
 #include <cm.h>
+#include <find.h>
 
 // Forward.
 struct RO;
@@ -161,6 +162,15 @@ struct RIPPLE : public RIP
  * @todo Implement the struct.
  */
 struct DABLET : public RIP
+{
+    // ...
+};
+
+/**
+ * @brief Puff particle.
+ * @todo Implement the struct.
+ */
+struct PUFF : public RIP
 {
     // ...
 };
@@ -390,6 +400,12 @@ void ReleaseRip(RIP *prip);
 
 void TouchRip(RIP *prip, int fTouching);
 
+/**
+ * @brief Forces a rip to finish fading within dtFade seconds if it would otherwise last longer.
+ * @param prip Rip.
+ * @param dtFade Maximum remaining time.
+ * @note Fields +0x18 (start time) and +0x1c (lifetime) are inferred.
+ */
 void ForceRipFade(RIP *prip, float dtFade);
 
 int FBounceRip(RIP *prip, SO *psoOther, VECTOR *ppos, VECTOR *pnormal);
@@ -402,12 +418,37 @@ int FRenderRipPosMat(RIP *prip, CM *pcm, VECTOR *ppos, MATRIX3 *pmat);
 
 void RenderRip(RIP *prip, CM *pcm);
 
+/**
+ * @brief Subscribes a rip's message queue to another object's message handler.
+ * @param prip Rip.
+ * @param ploTarget Object whose handler receives the messages.
+ */
 void SubscribeRipObject(RIP *prip, LO *ploTarget);
 
+/**
+ * @brief Subscribes a callback with context to a rip's message queue.
+ * @param prip Rip.
+ * @param pfnmq Message callback.
+ * @param pvContext Context passed to the callback.
+ */
 void SubscribeRipStruct(RIP *prip, PFNMQ pfnmq, void *pvContext);
 
+/**
+ * @brief Unsubscribes a callback with context from a rip's message queue.
+ * @param prip Rip.
+ * @param pfnmq Message callback.
+ * @param pvContext Context passed to the callback.
+ */
 void UnsubscribeRipStruct(RIP *prip, PFNMQ pfnmq, void *pvContext);
 
+/**
+ * @brief Initializes a droplet particle (InitDroplet).
+ * @param pdroplet Particle to initialize.
+ * @param ppos Starting position.
+ * @param gScale Scale passed through to InitRip.
+ * @param psoTouch Object the particle touches (passed through to InitRip).
+ * @note Field meanings are guesses; the constants set here are not named.
+ */
 void InitDroplet(DROPLET *pdroplet, VECTOR *ppos, float gScale, SO *psoTouch);
 
 void TouchDroplet(DROPLET *pdroplet, int fTouching);
@@ -416,6 +457,11 @@ void InitBublet(BUBLET *pbublet, VECTOR *ppos, float gScale, SO *psoTouch);
 
 void ProjectBubletTransform(BUBLET *pbublet, float dt);
 
+/**
+ * @brief Touch callback for a bublet, forwarding to TouchDroplet with the flag inverted.
+ * @param pbublet Bublet particle.
+ * @param fTouching Non-zero if currently touching.
+ */
 void TouchBublet(BUBLET *pbublet, int fTouching);
 
 void InitRipple(RIPPLE *pripple, VECTOR *ppos, float gScale, SO *psoTouch);
@@ -424,12 +470,25 @@ void InitPuff(PUFF *ppuff, VECTOR *ppos, float gScale, SO *psoTouch);
 
 void InitDablet(DABLET *pdablet, VECTOR *ppos, float gScale, SO *psoTouch);
 
+/**
+ * @brief Initializes a flake particle (InitFlake).
+ * @param pflake Particle to initialize.
+ * @param ppos Starting position.
+ * @param gScale Scale passed through to InitRip.
+ * @param psoTouch Object the particle touches (passed through to InitRip).
+ * @note Field meanings are guesses; the constants set here are not named.
+ */
 void InitFlake(FLAKE *pflake, VECTOR *ppos, float gScale, SO *psoTouch);
 
 void UpdateFlake(FLAKE *pflake, float dt);
 
 void RenderFlake(FLAKE *pflake, CM *pcm);
 
+/**
+ * @brief Touch callback for a flake; removes it when touching.
+ * @param pflake Flake particle.
+ * @param fTouching Non-zero if currently touching.
+ */
 void TouchFlake(FLAKE *pflake, int fTouching);
 
 void InitSpark(SPARK *pspark, VECTOR *ppos, float gScale, SO *psoTouch);
@@ -440,6 +499,10 @@ void InitBurst(BURST *pburst, VECTOR *ppos, float gScale, SO *psoTouch);
 
 void InitTrail(TRAIL *ptrail, VECTOR *ppos, float gScale, SO *psoTouch);
 
+/**
+ * @brief Removal callback for a trail; clears its tracking state.
+ * @param ptrail Trail being removed.
+ */
 void OnTrailRemove(TRAIL *ptrail);
 
 void SetTrailTrls(TRAIL *ptrail, TRLS trls, void *pv);
@@ -460,6 +523,14 @@ void InitSmokecloud(SMOKECLOUD *psmokecloud, VECTOR *ppos, float gScale, SO *pso
 
 void InitSmoketrail(SMOKETRAIL *psmoketrail, VECTOR *ppos, float gScale, SO *psoTouch);
 
+/**
+ * @brief Initializes a debris particle (InitDebris).
+ * @param pdebris Particle to initialize.
+ * @param ppos Starting position.
+ * @param gScale Scale passed through to InitRip.
+ * @param psoTouch Object the particle touches (passed through to InitRip).
+ * @note Field meanings are guesses; the constants set here are not named.
+ */
 void InitDebris(DEBRIS *pdebris, VECTOR *ppos, float gScale, SO *psoTouch);
 
 void InitSmack(SMACK *psmack, VECTOR *ppos, float gScale, SO *psoTouch);
@@ -470,6 +541,14 @@ void RenderSmack(SMACK *psmack, CM *pcm);
 
 void UpdateSmack(SMACK *psmack, float dt);
 
+/**
+ * @brief Initializes a orbit particle (InitOrbit).
+ * @param porbit Particle to initialize.
+ * @param ppos Starting position.
+ * @param gScale Scale passed through to InitRip.
+ * @param psoTouch Object the particle touches (passed through to InitRip).
+ * @note Field meanings are guesses; the constants set here are not named.
+ */
 void InitOrbit(ORBIT *porbit, VECTOR *ppos, float gScale, SO *psoTouch);
 
 void ProjectOrbitTransform(ORBIT *porbit, float dt);
@@ -478,8 +557,24 @@ void UpdateOrbit(ORBIT *porbit, float dt);
 
 void RenderOrbit(ORBIT *porbit, CM *pcm);
 
+/**
+ * @brief Initializes a ray particle (InitRay).
+ * @param pray Particle to initialize.
+ * @param ppos Starting position.
+ * @param gScale Scale passed through to InitRip.
+ * @param psoTouch Object the particle touches (passed through to InitRip).
+ * @note Field meanings are guesses; the constants set here are not named.
+ */
 void InitRay(RAY *pray, VECTOR *ppos, float gScale, SO *psoTouch);
 
+/**
+ * @brief Initializes a rose particle (InitRose).
+ * @param prose Particle to initialize.
+ * @param ppos Starting position.
+ * @param gScale Scale passed through to InitRip.
+ * @param psoTouch Object the particle touches (passed through to InitRip).
+ * @note Field meanings are guesses; the constants set here are not named.
+ */
 void InitRose(ROSE *prose, VECTOR *ppos, float gScale, SO *psoTouch);
 
 void ProjectRoseTransform(ROSE *prose, float dt);
@@ -490,12 +585,24 @@ void RenderRose(ROSE *prose, CM *pcm);
 
 void SetRoseRoses(ROSE *prose, ROSES roses);
 
-int SgnCmpHp(void *pv0, void *pv1);
+/**
+ * @brief Comparison callback for sorting hull points by the float at +0x20.
+ * @param pv0 First element.
+ * @param pv1 Second element.
+ * @return -1 if the first is smaller, otherwise 1 (never 0).
+ */
+int SgnCmpHp(const void *pv0, const void *pv1);
 
 int ChpBuildConvexHullScreen(VECTOR *pposCenter, int chp, HP *ahp);
 
 int ChpBuildConvexHullXY(MATRIX4 *pdmat, int chp, HP *ahp);
 
+/**
+ * @brief Copies emitter parameters into a flying particle after emit.
+ * @param pflying Flying particle.
+ * @param pemitb Emitter that spawned it.
+ * @note The meaning of the copied fields (emitter +0x1dc/+0x1f0) is a guess.
+ */
 void PostFlyingEmit(FLYING *pflying, EMITB *pemitb);
 
 void RenderFlying(FLYING *pflying, CM *pcm);
@@ -504,6 +611,12 @@ void CreateStuck(RIP *pripSrc, ALO *paloRender, SO *psoOther, VECTOR *ppos, VECT
 
 int FBounceFlying(FLYING *pflying, SO *psoOther, VECTOR *ppos, VECTOR *pnormal);
 
+/**
+ * @brief Updates a stuck particle; removes it when its attached object leaves the world.
+ * @param pstuck Stuck particle.
+ * @param dt Time step.
+ * @note The object pointer at +0x120 is a guess.
+ */
 void UpdateStuck(STUCK *pstuck, float dt);
 
 void RenderStuck(STUCK *pstuck, CM *pcm);
@@ -514,10 +627,21 @@ void ProjectLeafTransform(LEAF *pleaf, float dt);
 
 int FBounceLeaf(LEAF *pleaf, SO *psoOther, VECTOR *ppos, VECTOR *pnormal);
 
+/**
+ * @brief Filter for flame collisions: skips objects with a certain SO flag bit set and the flame's own owner.
+ * @param pv Flame particle (the owner pointer at +0x7c is a guess).
+ * @param pso Candidate object.
+ * @return Non-zero if the object should be considered.
+ */
 int FFilterFlameObjects(void *pv, SO *pso);
 
 void PostFlameEmit(FLAME *pflame, EMITB *pemitb);
 
+/**
+ * @brief Post-emit setup for a bullet: converts the emit position to world space and copies emitter parameters.
+ * @param pbullet Bullet particle.
+ * @param pemitb Emitter that spawned it.
+ */
 void PostBulletEmit(BULLET *pbullet, EMITB *pemitb);
 
 void RenderBullet(BULLET *pbullet, CM *pcm);
@@ -544,6 +668,12 @@ void UpdateMatch(MATCH *pmatch, float dt);
 
 void RenderMatch(MATCH *pmatch, CM *pcm);
 
+/**
+ * @brief Post-emit setup for a remit: looks up the target object and copies a float from the emitter.
+ * @param premit Remit particle.
+ * @param pemitb Emitter that spawned it.
+ * @note Names of the looked up object (OID at emitter +0x1f0) are guesses.
+ */
 void PostRemitEmit(REMIT *premit, EMITB *pemitb);
 
 void UpdateRemit(REMIT *premit, float dt);
