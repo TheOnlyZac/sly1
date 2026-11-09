@@ -262,6 +262,67 @@ struct PO;
  */
 void FUN_00173708(JT *pjt, int fActive, PO *ppoOther);
 
+/**
+ * @brief Checks whether JT is currently in a state where the sound base applies (not a ball/electric zap, and the camera policy is inactive).
+ *
+ * @param pjt Pointer to JT instance.
+ * @return Nonzero if the sound base condition holds.
+ *
+ * @note Meaning is a guess from the name and the checks performed.
+ */
+int FIsJtSoundBase(JT *pjt);
+
+struct DIALOG;
+
+/**
+ * @brief Plays a dialog: pushes the binoculars blot for dialog kinds 1 and 2, otherwise requests a JT state change (state 12 / body state 0x21) carrying the dialog.
+ *
+ * @param pjt Pointer to JT instance.
+ * @param pdialog Dialog to play.
+ *
+ * @note Fields at 0x2254..0x225c (pending state request) and 0x2bd0 (dialog) are unnamed guesses.
+ */
+void PlayJtDialog(JT *pjt, DIALOG *pdialog);
+
+/**
+ * @brief Applies pending JT state change requests (grfjtsc flags at 0x2254): state, cane state and a follow-up call.
+ *
+ * @param pjt Pointer to JT instance.
+ *
+ * @note The "grfjtsc" name is from the symbol; flag meanings are inferred.
+ */
+extern "C" void HandleJtGrfjtsc(JT *pjt);
+
+/**
+ * @brief Unhooks JT from a rail/pipe-like state and drops it into the jump/fall state.
+ *
+ * @param pjt Pointer to JT instance.
+ *
+ * @note Semantics inferred from the states handled (Zap, Pipe, Edge); may be inaccurate.
+ */
+void UnhookJt(JT *pjt);
+
+struct CBinaryInputStream;
+
+/**
+ * @brief Loads JT from a BRX stream, snips its objects, infers its explosion and sets the global g_pjt.
+ *
+ * @param pjt Pointer to JT instance.
+ * @param pbis Input stream.
+ *
+ * @note The snip table (D_00262E40) is declared as an unnamed extern.
+ */
+void LoadJtFromBrx(JT *pjt, CBinaryInputStream *pbis);
+
+/**
+ * @brief Resets JT extra-bound positions: stores the previous/current positions (0x21d0..0x21f0, count 3) and updates the bounds.
+ *
+ * @param pjt Pointer to JT instance.
+ *
+ * @note Name and meaning unknown; likely a pre-update step related to UpdateJtBounds. Purely a guess.
+ */
+void FUN_00172b08(JT *pjt);
+
 extern JT *g_pjt;
 
 #endif // JT_H
