@@ -1,5 +1,10 @@
 #include <hide.h>
 #include <dl.h>
+#include <jt.h>
+
+// Float constants in .rodata, both are FLT_MAX.
+extern float D_0024A794;
+extern float D_0024A798;
 
 DL g_dlHshape = {0};
 DL g_dlHpnt = {0};
@@ -19,7 +24,14 @@ void ResetHideList()
     ClearDl(&g_dlHbsk);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", InitHshape__FP6HSHAPE);
+void InitHshape(HSHAPE *phshape)
+{
+    InitLo(phshape);
+    phshape->oidTarget = OID_Nil;
+    phshape->unk4c = 1;
+    phshape->unk50 = 3;
+    phshape->unk58 = D_0024A794;
+}
 
 void OnHshapeAdd(HSHAPE *phshape)
 {
@@ -33,39 +45,106 @@ void OnHshapeRemove(HSHAPE *phshape)
     RemoveDlEntry(&g_dlHshape, phshape);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", BindHshape__FP6HSHAPE);
+void BindHshape(HSHAPE *phshape)
+{
+    if (phshape->oidTarget != OID_Nil)
+    {
+        LO *plo = PloFindSwNearest(phshape->psw, phshape->oidTarget, phshape->paloParent);
+        phshape->ploTarget = plo;
+        STRUCT_OFFSET(plo, 0x398, int) = 0;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", CloneHshape__FP6HSHAPET0);
+void CloneHshape(HSHAPE *phshape, HSHAPE *phshapeBase)
+{
+    DLE dle = phshape->dleHshape;
+    CloneLo(phshape, phshapeBase);
+    phshape->dleHshape = dle;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", GetHshapeHidePos__FP6HSHAPEfP6VECTORPf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", GetHshapeClosestHidePos__FP6HSHAPEPfP6VECTORT1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", InitHpnt__FP4HPNT);
+void InitHpnt(HPNT *phpnt)
+{
+    InitLo(phpnt);
+    phpnt->oidTarget = OID_Nil;
+    phpnt->unk68 = 1;
+    phpnt->unk70 = D_0024A798;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", OnHpntAdd__FP4HPNT);
+void OnHpntAdd(HPNT *phpnt)
+{
+    OnLoAdd(phpnt);
+    AppendDlEntry(&g_dlHpnt, phpnt);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", OnHpntRemove__FP4HPNT);
+void OnHpntRemove(HPNT *phpnt)
+{
+    OnLoRemove(phpnt);
+    RemoveDlEntry(&g_dlHpnt, phpnt);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", BindHpnt__FP4HPNT);
+void BindHpnt(HPNT *phpnt)
+{
+    if (phpnt->oidTarget != OID_Nil)
+    {
+        LO *plo = PloFindSwNearest(phpnt->psw, phpnt->oidTarget, phpnt->paloParent);
+        phpnt->ploTarget = plo;
+        STRUCT_OFFSET(plo, 0x398, int) = 0;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", CloneHpnt__FP4HPNTT0);
+void CloneHpnt(HPNT *phpnt, HPNT *phpntBase)
+{
+    DLE dle = phpnt->dleHpnt;
+    CloneLo(phpnt, phpntBase);
+    phpnt->dleHpnt = dle;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", GetHpntClosestHidePos__FP4HPNTP6VECTORPf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", FUN_0016a320);
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", InitHbsk__FP4HBSK);
+void InitHbsk(HBSK *phbsk)
+{
+    InitSo(phbsk);
+    SetAloRotationSpring(phbsk, 3.0f);
+    SetAloRotationDamping(phbsk, 3.0f);
+    SetAloPositionSmooth(phbsk, 3.0f);
+    SetAloRotationSmooth(phbsk, 2.0f);
+    STRUCT_OFFSET(phbsk, 0x568, float) = 300.0f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", LoadHbskFromBrx__FP4HBSKP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", OnHbskAdd__FP4HBSK);
+void OnHbskAdd(HBSK *phbsk)
+{
+    OnSoAdd(phbsk);
+    AppendDlEntry(&g_dlHbsk, phbsk);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", OnHbskRemove__FP4HBSK);
+void OnHbskRemove(HBSK *phbsk)
+{
+    OnSoRemove(phbsk);
+    RemoveDlEntry(&g_dlHbsk, phbsk);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", CloneHbsk__FP4HBSKT0);
+void CloneHbsk(HBSK *phbsk, HBSK *phbskBase)
+{
+    DLE dle = STRUCT_OFFSET(phbsk, 0x558, DLE);
+    CloneSo(phbsk, phbskBase);
+    STRUCT_OFFSET(phbsk, 0x558, DLE) = dle;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", FIgnoreHbskIntersection__FP4HBSKP2SO);
+int FIgnoreHbskIntersection(HBSK *phbsk, SO *psoOther)
+{
+    if (psoOther == g_pjt && phbsk == STRUCT_OFFSET(g_pjt, 0x23B0, HBSK *))
+        return 1;
+
+    return FIgnoreSoIntersection(phbsk, psoOther);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", PresetHbskAccel__FP4HBSKf);
 
