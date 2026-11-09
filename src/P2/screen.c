@@ -13,7 +13,15 @@ void PostBlotsLoad()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateBlots__Fv);
+void UpdateBlots()
+{
+    for (int i = 0x24; i >= 0; i--)
+    {
+        BLOT *pblot = D_002486B0[i];
+        pblot->pvtblot->pfnUpdateBlot(pblot);
+    }
+    UpdateWipe(&g_wipe, (g_grfjoyt & 4) ? &g_joy : &g_joyZero);
+}
 
 void ForceHideBlots()
 {
@@ -281,7 +289,30 @@ float FUN_001ABE60()
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001abe70);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac060);
+void FUN_001ac060(BLOT *pblot)
+{
+    int n = STRUCT_OFFSET(pblot, 0x270, int) - 1;
+    STRUCT_OFFSET(pblot, 0x270, int) = n;
+    if (n <= 0)
+    {
+        int m = STRUCT_OFFSET(pblot, 0x26c, int) - 1;
+        STRUCT_OFFSET(pblot, 0x26c, int) = m;
+        if (m <= 0)
+        {
+            STRUCT_OFFSET(pblot, 0x270, int) = 0;
+            STRUCT_OFFSET(pblot, 0x26c, int) = 0;
+        }
+        else
+        {
+            STRUCT_OFFSET(pblot, 0x270, int) = STRUCT_OFFSET(pblot, 0x264, int);
+        }
+    }
+    int k = STRUCT_OFFSET(pblot, 0x26c, int) - 1;
+    if (k < 0)
+        k = 0;
+    STRUCT_OFFSET(pblot, 0x278, float) = (float)(k * STRUCT_OFFSET(pblot, 0x264, int) + STRUCT_OFFSET(pblot, 0x270, int)) / (float)STRUCT_OFFSET(pblot, 0x268, int);
+    STRUCT_OFFSET(pblot, 0x27c, float) = g_clock.t;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac0e8);
 
@@ -332,7 +363,31 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawTitle__FP5TITLE);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", PostTotalsLoad__FP6TOTALS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ace38);
+void FUN_001ace38(BLOT *pblot, char *pchz)
+{
+    if (pblot->blots == BLOTS_Hidden)
+    {
+        SetBlotAchzDraw(pblot, pchz);
+        return;
+    }
+    if (pblot->blots >= 0)
+    {
+        if (pblot->blots < 4)
+        {
+            if (!STRUCT_OFFSET(pblot, 0x260, int))
+            {
+                if (!func_001F6738(pblot->achzDraw, pchz))
+                    return;
+            }
+            STRUCT_OFFSET(pblot, 0x260, int) = 1;
+            if (pchz)
+                strcpy(&STRUCT_OFFSET(pblot, 0x264, char), pchz);
+            else
+                STRUCT_OFFSET(pblot, 0x264, char) = 0;
+            pblot->pvtblot->pfnSetBlotBlots(pblot, 3);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001acee0);
 
@@ -425,7 +480,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae510);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae5e0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae758);
+void FUN_001ae758(BLOT *pblot)
+{
+    char achz[2];
+    PostBlotLoad(pblot);
+    SetBlotDtAppear(pblot, 0.25f);
+    SetBlotDtDisappear(pblot, 0.25f);
+    SetBlotDtVisible(pblot, 0.0f);
+    pblot->pfont = FUN_0015c1c0(1);
+    SetBlotFontScale(pblot, D_002744AC);
+    achz[0] = FUN_001aea08();
+    achz[1] = 0;
+    pblot->pvtblot->pfnSetBlotAchzDraw(pblot, achz);
+    pblot->achzDraw[0] = 0;
+}
 
 void FUN_001ae7f8(BLOT *pblot, BLOTS blots)
 {

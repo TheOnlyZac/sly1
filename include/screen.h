@@ -9,6 +9,8 @@
 #include "common.h"
 #include <font.h>
 #include <game.h>
+#include <joy.h>
+#include <wipe.h>
 
 struct SHD; // Forward declaration.
 class CTextEdge; // Forward declaration
@@ -228,6 +230,9 @@ void StartupScreen();
  */
 void PostBlotsLoad();
 
+/**
+ * @brief Updates every global blot (in reverse order) and then the screen wipe, using the joy state when its flag is set.
+ */
 void UpdateBlots();
 
 /**
@@ -314,6 +319,9 @@ void RepositionBlot(BLOT *pblot);
 void RepositionBlotDependents(BLOT *pblot);
 
 extern BLOT *D_002486B0[];
+extern float D_002744AC;
+extern JOY g_joyZero;
+extern "C" int func_001F6738(char *, char *);
 extern char D_0024CE00[];
 extern char *D_002744B0;
 extern "C" void FUN_001aea70(int, int);
@@ -372,6 +380,10 @@ float DtVisibleCrusherctr(CRUSHERCTR *pcrusherctr);
 
 void FUN_001abe70(BLOT *pblot);
 
+/**
+ * @brief Steps a nested countdown stored at 0x264..0x270 and writes a progress fraction at 0x278 (guess: some counter blot).
+ * @param pblot Blot; real type unknown.
+ */
 void FUN_001ac060(BLOT *pblot);
 
 void FUN_001ac0e8(int param_1);
@@ -419,7 +431,12 @@ void DrawTitle(TITLE *ptitle);
 
 void PostTotalsLoad(TOTALS *ptotals);
 
-void FUN_001ace38(undefined8 param_1, long param_2);
+/**
+ * @brief Sets the blot text, or queues a reshow of new text while the blot is not hidden (guess: totals/title blot).
+ * @param pblot Blot; type is a guess.
+ * @param pchz New text, may be null.
+ */
+void FUN_001ace38(BLOT *pblot, char *pchz);
 
 ulong FUN_001acee0(char *pchz, uint *param_2, ulong param_3);
 
@@ -509,5 +526,11 @@ char FUN_001aea08();
  * @brief Calls FUN_001aea70(1, 0xFFFF). Meaning is unknown.
  */
 void FUN_001aec90();
+
+/**
+ * @brief Post-load setup for a blot that shows one cycling character (guess).
+ * @param pblot Blot; type is a guess.
+ */
+void FUN_001ae758(BLOT *pblot);
 
 #endif // SCREEN_H
