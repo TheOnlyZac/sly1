@@ -37,6 +37,9 @@ extern int D_00274724;
 extern uint D_0027473C;
 extern int D_00274734;
 extern int D_002748EC;
+extern AMB *D_002748E8;
+extern LM D_00274820;
+extern LM D_00274828;
 extern int D_00274808[];
 extern void *D_006047B0[];
 extern int D_006047D0[];
@@ -449,13 +452,44 @@ void SetSwDefaultReverb(SW *psw, REVERBK reverbk, const int depth)
     psw->cswrev = 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0A50);
+void AddSwIntermittentSound(SW *psw, SFXID sfxid)
+{
+    if (psw->cswsi < 16)
+    {
+        SWSI *pswsi = &psw->aswsi[psw->cswsi];
+        pswsi->sfxid = sfxid;
+        pswsi->lmRepeat = D_00274820;
+        pswsi->lmRepDist = D_00274828;
+        psw->cswsi++;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0AB8);
+void SetSwIntermittentDist(SW *psw, LM *plm)
+{
+    if (psw->cswsi)
+    {
+        SWSI *pswsi = &psw->aswsi[psw->cswsi - 1];
+        pswsi->lmRepDist.gMin = 8000.0f - plm->gMax * 50.0f;
+        pswsi->lmRepDist.gMax = 8000.0f - plm->gMin * 50.0f;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0B08);
+void SetSwIntermittentRepeat(SW *psw, LM *plm)
+{
+    if (psw->cswsi)
+    {
+        SWSI *pswsi = &psw->aswsi[psw->cswsi - 1];
+        pswsi->lmRepeat = *plm;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSwIntermittentSounds__FP2SW);
+void StartSwIntermittentSounds(SW *psw)
+{
+    for (int i = 0; i < psw->cswsi; ++i)
+    {
+        StartSound((SFXID)psw->aswsi[i].sfxid, &D_002748E8, 0, 0, 8000.0f, 3000.0f, 1.0f, 0.0f, 0.0f, &psw->aswsi[i].lmRepeat, &psw->aswsi[i].lmRepDist);
+    }
+}
 
 // TODO: Verify signature.
 /**

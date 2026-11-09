@@ -531,6 +531,31 @@ int HsNextFootFall();
  * @param reverb Reverb kind.
  * @param k Reverb depth (named k in the existing header, used for both channels).
  */
+/**
+ * @brief Adds an intermittent sound to the world's list (max 16), with default repeat and distance limits.
+ * @param psw World.
+ * @param sfxid Sound to add.
+ * @note Name is a guess (originally FUN_001C0A50).
+ */
+void AddSwIntermittentSound(SW *psw, SFXID sfxid);
+
+/**
+ * @brief Sets the distance limits of the most recently added intermittent sound.
+ * @param plm Limits; stored as 8000 - 50 * (swapped min/max). Name and units are guesses (originally FUN_001C0AB8).
+ */
+void SetSwIntermittentDist(SW *psw, LM *plm);
+
+/**
+ * @brief Sets the repeat limits of the most recently added intermittent sound.
+ * @note Name is a guess (originally FUN_001C0B08).
+ */
+void SetSwIntermittentRepeat(SW *psw, LM *plm);
+
+/**
+ * @brief Starts every intermittent sound registered on the world.
+ */
+void StartSwIntermittentSounds(SW *psw);
+
 void PushSwReverb(SW *psw, REVERBK reverb, int k);
 
 /**

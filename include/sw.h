@@ -40,6 +40,16 @@ struct SWREV
     int depth;
 };
 
+/**
+ * @brief World intermittent sound entry (name and fields are guesses).
+ */
+struct SWSI
+{
+    int sfxid; // SFXID
+    LM lmRepeat;
+    LM lmRepDist;
+};
+
 struct SW : public LO
 {
     /* 0x34   */ int cpsoAll;
@@ -91,7 +101,9 @@ struct SW : public LO
     /* 0x1ce8 */ LO *aploStock[29];
     /* 0x1d5c */ STRUCT_PADDING(3);
     /* 0x1d68 */ LSM lsmDefault;
-    /* 0x1d70 */ STRUCT_PADDING(85);
+    /* 0x1d70 */ STRUCT_PADDING(4);
+    /* 0x1d80 */ int cswsi; // Number of intermittent sounds (name is a guess).
+    /* 0x1d84 */ SWSI aswsi[16];
     /* 0x1ec4 */ VISMAP *pvismap;
     /* 0x1ec8 */ MQ *pmqCallbackFirst;
     /* 0x1ecc */ MQ *pmqCallbackLast;
