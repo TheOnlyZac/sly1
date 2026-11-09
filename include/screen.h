@@ -223,14 +223,26 @@ extern COINCTR g_coinctr;
 
 void StartupScreen();
 
+/**
+ * @brief Calls the post-load virtual on every global blot, in reverse order.
+ */
 void PostBlotsLoad();
 
 void UpdateBlots();
 
+/**
+ * @brief Sets every global blot to the hidden state immediately.
+ */
 void ForceHideBlots();
 
+/**
+ * @brief Calls the reset virtual on every global blot.
+ */
 void ResetBlots();
 
+/**
+ * @brief Calls the render virtual on every global blot that is not hidden.
+ */
 void RenderBlots();
 
 void DrawBlots();
@@ -281,6 +293,12 @@ void HideBlot(BLOT *pblot);
 
 void SetBlotBlots(BLOT *pblot, BLOTS blots);
 
+/**
+ * @brief Decides whether another blot may be pegged to this one, based on both blot states.
+ * @param pblot Blot.
+ * @param pblotOther Other blot.
+ * @return 1 if included, otherwise 0.
+ */
 int FIncludeBlotForPeg(BLOT *pblot, BLOT *pblotOther);
 
 /**
@@ -296,6 +314,9 @@ void RepositionBlot(BLOT *pblot);
 void RepositionBlotDependents(BLOT *pblot);
 
 extern BLOT *D_002486B0[];
+extern char D_0024CE00[];
+extern char *D_002744B0;
+extern "C" void FUN_001aea70(int, int);
 extern float D_0024CD48;
 extern "C" CFont *FUN_0015c1c0(int);
 
@@ -402,9 +423,15 @@ void FUN_001ace38(undefined8 param_1, long param_2);
 
 ulong FUN_001acee0(char *pchz, uint *param_2, ulong param_3);
 
-void render_level_info_from_id(BLOT *pblot, uint level_id);
+/**
+ * @brief Renders level info for a packed level id (world in the high bits, map in the low byte); -1 draws a fallback string.
+ * @param pblot Blot to draw into.
+ * @param level_id Packed id, or -1.
+ * @note Name is a community name; the argument packing is inferred from the asm.
+ */
+extern "C" void render_level_info_from_id(BLOT *pblot, int level_id);
 
-void render_level_info(BLOT *pblot, uint world_id, uint map_id);
+extern "C" void render_level_info(BLOT *pblot, uint world_id, uint map_id);
 
 void render_hideout_world_info(BLOT *pblot, int world_id);
 
@@ -459,12 +486,28 @@ void DrawLogo(LOGO *ploto);
 
 void FUN_001adf28(BLOT *pblot);
 
-void FUN_001adff0(BLOT *pblot);
+extern "C" void FUN_001adff0(BLOT *pblot);
 
-void FUN_001ae130(BLOT *pblot, int param_2);
+/**
+ * @brief Blot state setter that clears the flag at 0x268 and calls FUN_001adff0 when hiding (guess: attract blot).
+ * @param pblot Blot; type is a guess.
+ * @param blots New blot state.
+ */
+void FUN_001ae130(BLOT *pblot, BLOTS blots);
 
 void UpdateAttract(ATTRACT *pattract);
 
 void DrawLineScreen(uint x1, uint y1, uint z1, uint x2, uint y2, uint z2, RGBA *rgba, int fDepthTest);
+
+/**
+ * @brief Returns a character cycling through a string, advancing five times per second of real time.
+ * @return Character from the string at (int)(tReal * 5) % strlen. Name/purpose are a guess.
+ */
+char FUN_001aea08();
+
+/**
+ * @brief Calls FUN_001aea70(1, 0xFFFF). Meaning is unknown.
+ */
+void FUN_001aec90();
 
 #endif // SCREEN_H
