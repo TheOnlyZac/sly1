@@ -327,6 +327,11 @@ void RepositionBlot(BLOT *pblot);
 void RepositionBlotDependents(BLOT *pblot);
 
 extern BLOT *D_002486B0[];
+extern char D_0024CEE0[];
+extern CTextEdge D_002743D0;
+extern CTextEdge D_002743F0;
+extern CTextEdge D_00274410;
+extern "C" int FUN_0015c188(int);
 extern BLOTI D_0026C3E0[];
 extern int D_00273EB0;
 extern "C" void FUN_001ae820(void *);
@@ -403,14 +408,20 @@ void FUN_001ac060(BLOT *pblot);
 
 void FUN_001ac0e8(int param_1);
 
-void PostNoteLoad();
-
-void PostNoteLoad(BLOT *pblot);
+/**
+ * @brief Post-load setup for the note blot: clones the font at 1.25 scale and sets up the text edge.
+ * @param pnote Note blot.
+ */
+void PostNoteLoad(NOTE *pnote);
 
 void SetNoteAchzDraw(NOTE *pnote, char *pchz);
 
 void DrawNote(BLOT *pblot);
 
+/**
+ * @brief Post-load setup for a blot with a 0.9 scale font clone and a colour (guess: title blot).
+ * @param pblot Blot; type is a guess.
+ */
 void FUN_001ac888(BLOT *pblot);
 
 /**
@@ -449,6 +460,10 @@ void FUN_001aca68(BLOT *pblot);
 
 void DrawTitle(TITLE *ptitle);
 
+/**
+ * @brief Post-load setup for the totals blot: font clone, font scale 0.8, disappear time 0.5 and text edge.
+ * @param ptotals Totals blot.
+ */
 void PostTotalsLoad(TOTALS *ptotals);
 
 /**
@@ -494,7 +509,11 @@ void HideTotals(TOTALS *ptotals);
 
 void DrawTotals(TOTALS *ptotals);
 
-void FUN_001ad6a8(undefined8 param_1);
+/**
+ * @brief Post-load setup for a blot: font clone, initial text from D_0024CEE0 and cleared reshow flag (guess).
+ * @param pblot Blot; type is a guess.
+ */
+void FUN_001ad6a8(BLOT *pblot);
 
 void FUN_001ad718(BLOT *pblot);
 

@@ -355,13 +355,32 @@ void FUN_001ac060(BLOT *pblot)
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac0e8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", PostNoteLoad__FP4NOTE);
+void PostNoteLoad(NOTE *pnote)
+{
+    PostBlotLoad(pnote);
+    pnote->pfont = pnote->pfont->PfontClone(1.25f, 1.25f);
+    if (FUN_0015c188(2))
+    {
+        pnote->pte = &D_002743D0;
+        STRUCT_OFFSET(pnote->pte, 0, CFont *) = FUN_0015c1c0(2);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", SetNoteAchzDraw__FP4NOTEPc);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawNote__FP4NOTE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac888);
+void FUN_001ac888(BLOT *pblot)
+{
+    PostBlotLoad(pblot);
+    pblot->pfont = pblot->pfont->PfontClone(0.9f, 0.9f);
+    *(int *)&pblot->rgba = 0xDF7F7F7F;
+    if (FUN_0015c188(2))
+    {
+        pblot->pte = &D_002743F0;
+        STRUCT_OFFSET(pblot->pte, 0, CFont *) = FUN_0015c1c0(2);
+    }
+}
 
 void FUN_001ac910(TITLE *ptitle, char *pchz)
 {
@@ -419,7 +438,18 @@ void FUN_001aca68(BLOT *pblot)
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawTitle__FP5TITLE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", PostTotalsLoad__FP6TOTALS);
+void PostTotalsLoad(TOTALS *ptotals)
+{
+    PostBlotLoad(ptotals);
+    ptotals->pfont = FUN_0015c1c0(0)->PfontClone(1.0f, 1.0f);
+    ptotals->rFontScale = 0.8f;
+    ptotals->dtDisappear = 0.5f;
+    if (FUN_0015c188(2))
+    {
+        ptotals->pte = &D_00274410;
+        STRUCT_OFFSET(ptotals->pte, 0, CFont *) = FUN_0015c1c0(2);
+    }
+}
 
 void FUN_001ace38(BLOT *pblot, char *pchz)
 {
@@ -493,7 +523,13 @@ void HideTotals(TOTALS *ptotals)
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawTotals__FP6TOTALS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad6a8);
+void FUN_001ad6a8(BLOT *pblot)
+{
+    PostBlotLoad(pblot);
+    pblot->pfont = FUN_0015c1c0(2)->PfontClone(1.0f, 1.0f);
+    pblot->pvtblot->pfnSetBlotAchzDraw(pblot, D_0024CEE0);
+    STRUCT_OFFSET(pblot, 0x260, int) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad718);
 
