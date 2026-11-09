@@ -16,9 +16,15 @@
 #include <act.h>
 #include <sm.h>
 #include <oid.h>
+#include <sqtr.h>
+#include <flash.h>
+#include <mat.h>
 
 extern BLOT g_binoc;
 void FUN_001d4c98(JT *pjt);
+extern "C" void FUN_001c4848(STEP *pstep, int a, int b, void *pd);
+extern "C" void FUN_001cdd98(JT *pjt);
+void RenderJtSelfZap(JT *pjt, CM *pcm, RO *pro);
 extern "C" void FUN_001c4618(STEP *pstep, float f, int a, int b, int c, int *pd);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", InitJt__FP2JT);
@@ -293,7 +299,46 @@ void FUN_00172530(JT *pjt)
     STRUCT_OFFSET(pjt, 0x12e0, int) = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_001725e0);
+void FUN_001725e0(JT *pjt, CM *pcm, RO *pro)
+{
+    MATRIX3 matTool;
+    RO roTool;
+    int i;
+
+    if (pjt->jts != JTS_Pipe || STRUCT_OFFSET(pjt, 0x239c, int) != 7)
+    {
+        int a = STRUCT_OFFSET(pjt, 0x610, int);
+        FUN_001c4848(pjt, a, a, (void *)((char *)pjt + 0x1190));
+        a = STRUCT_OFFSET(pjt, 0x614, int);
+        FUN_001c4848(pjt, a, a, (void *)((char *)pjt + 0x1290));
+    }
+    if (STRUCT_OFFSET(pjt, 0x2434, float) != 0.0f || STRUCT_OFFSET(pjt, 0x2430, float) != 0.0f)
+    {
+        STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0x61c, ALO *), 0x2c8, unsigned long long) &= ~(1ULL << 32);
+        DupAloRo(pjt, pro, &roTool);
+        roTool.uAlpha *= 0.25f;
+        i = 0;
+        do
+        {
+            CalculateJtToolSpin(pjt, i * 0.25f, &matTool);
+            i++;
+            LoadMatrixFromPosRot(&STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0x61c, ALO *), 0x140, VECTOR), &matTool, &roTool.mat);
+            ALO *palo = STRUCT_OFFSET(pjt, 0x61c, ALO *);
+            ((void (*)(ALO *, CM *, RO *))STRUCT_OFFSET(STRUCT_OFFSET(palo, 0, void *), 0xa0, void *))(palo, pcm, &roTool);
+        } while (i < 4);
+        STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0x61c, ALO *), 0x2c8, unsigned long long) |= (1ULL << 32);
+    }
+    if (pjt->jts == JTS_Zap)
+    {
+        FUN_001cdd98(pjt);
+    }
+    RenderStepSelf(pjt, pcm, pro);
+    if (STRUCT_OFFSET(pjt, 0x21c0, int) != 0)
+    {
+        RenderSqtrm((SQTRM *)((char *)pjt + 0x1520), pcm);
+    }
+    RenderJtSelfZap(pjt, pcm, pro);
+}
 
 extern float D_002638A0;
 

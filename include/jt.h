@@ -426,6 +426,12 @@ void ChooseJtPhys(JT *pjt);
 
 struct XMG;
 struct ACTADJ;
+struct MATRIX3;
+
+/**
+ * @brief Calculates the tool (cane) spin matrix at the given angle; not yet matched, meaning inferred from the name.
+ */
+void CalculateJtToolSpin(JT *pjt, float rad, MATRIX3 *pmat);
 
 /**
  * @brief Turns JT toward its target (field 0x2200 / 0x2208), updating the heading at 0x638.
@@ -455,6 +461,20 @@ int FMatchJtXmg(JT *pjt, XMG *pxmg, ACTADJ *pactadj);
  * @note Many fields (0x628/0x62c, 0x1188/0x118c, 0x2234) are unnamed; behaviour description is inferred from the asm.
  */
 void UpdateJtStand(JT *pjt);
+
+struct CM;
+struct RO;
+
+/**
+ * @brief JT self render step (probably RenderJtSelf): refreshes the extremity XMGs, draws the spinning tool (cane) as four ghosted copies, then renders the step self, squeak trim and zap effect.
+ *
+ * @param pjt Pointer to JT instance.
+ * @param pcm Camera.
+ * @param pro Render options.
+ *
+ * @note Name is a guess/unknown. The tool object is at field 0x61c; its vtable slot 0xa0 is called with a copy of the RO whose alpha is quartered.
+ */
+void FUN_001725e0(JT *pjt, CM *pcm, RO *pro);
 
 extern JT *g_pjt;
 
