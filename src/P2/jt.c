@@ -22,6 +22,7 @@
 #include <basic.h>
 #include <mark.h>
 #include <sw.h>
+#include <bsp.h>
 
 extern BLOT g_binoc;
 void FUN_001d4c98(JT *pjt);
@@ -539,7 +540,79 @@ int PsoGetJtEffect(JT *pjt, int *pn)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", AddJtCustomXps__FP2JTP2SOiP3BSPT3PP2XP);
+struct ALOFLAGS
+{
+    char pad[0x2b0];
+    unsigned char a[1];
+};
+
+extern "C" void FUN_001c4790(STEP *pstep, SO *pso, BSP *pbsp, void *pd);
+
+void AddJtCustomXps(JT *pjt, SO *pso, int cbspPruned, BSP *abspPruned, BSP *pbspPruned, XP **ppxpFirst)
+{
+    int ieffect;
+    SO *psoEffect;
+    ALO *palo;
+
+    switch (pjt->jts)
+    {
+    case JTS_Sidestep:
+        if (STRUCT_OFFSET(pjt, 0x2bd8, int) == 0)
+        {
+            int jtbs = pjt->jtbs;
+            if (jtbs != 0x24)
+            {
+                if (jtbs < 0x24)
+                {
+                    break;
+                }
+                if (jtbs >= 0x2c)
+                {
+                    break;
+                }
+                if (jtbs < 0x2a)
+                {
+                    break;
+                }
+            }
+            AddStepCustomXpsBase(pjt, pso, pbspPruned, ppxpFirst);
+        }
+        break;
+    case JTS_Zap:
+    case JTS_Edge:
+    case JTS_Max:
+        break;
+    default:
+        if (STRUCT_OFFSET(pjt, 0x2bd8, int) == 0)
+        {
+            AddStepCustomXpsBase(pjt, pso, pbspPruned, ppxpFirst);
+        }
+        break;
+    }
+    FUN_001c4790(pjt, pso, pbspPruned, (char *)pjt + 0x1190);
+    FUN_001c4790(pjt, pso, pbspPruned, (char *)pjt + 0x1290);
+    psoEffect = (SO *)PsoGetJtEffect(pjt, &ieffect);
+    if (psoEffect != 0)
+    {
+        for (palo = (ALO *)pso; palo != 0; palo = STRUCT_OFFSET(palo, 0x18, ALO *))
+        {
+            if (((ALOFLAGS *)palo)->a[ieffect] != 0)
+            {
+                if (STRUCT_OFFSET(pso, 0x538, unsigned long long) & (1ULL << 40))
+                {
+                    MarkSoContactsSphereBsp(pso, &STRUCT_OFFSET(pso, 0x140, VECTOR), STRUCT_OFFSET(pso, 0x3cc, float), psoEffect,
+                                            STRUCT_OFFSET(psoEffect, 0x3f0, int), STRUCT_OFFSET(psoEffect, 0x3f8, BSP *), 0, &STRUCT_OFFSET(pjt, 0x2670, XP *));
+                    return;
+                }
+                if (abspPruned != 0)
+                {
+                    MarkSoContactsBspBsp(psoEffect, pso, cbspPruned, abspPruned, pbspPruned, &STRUCT_OFFSET(pjt, 0x2670, XP *));
+                }
+                return;
+            }
+        }
+    }
+}
 
 CT CtTorqueJt(JT *pjt)
 {

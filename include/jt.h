@@ -476,6 +476,23 @@ struct RO;
  */
 void FUN_001725e0(JT *pjt, CM *pcm, RO *pro);
 
+struct BSP;
+struct XP;
+
+/**
+ * @brief JT override of AddStepCustomXps: adds the base custom contacts (depending on state), contacts for the two extremity XMGs, then contacts against the JT effect object (cane/tail?) via sphere/BSP marking.
+ *
+ * @param pjt Pointer to JT instance.
+ * @param pso Other object to collect contacts against.
+ * @param cbspPruned Number of pruned BSPs.
+ * @param abspPruned Pruned BSP array.
+ * @param pbspPruned Pruned BSP.
+ * @param ppxpFirst Output list of contacts.
+ *
+ * @note Parameter names follow the callee signatures and are guesses. FUN_001c4790 is still unnamed.
+ */
+void AddJtCustomXps(JT *pjt, SO *pso, int cbspPruned, BSP *abspPruned, BSP *pbspPruned, XP **ppxpFirst);
+
 extern JT *g_pjt;
 
 #endif // JT_H
