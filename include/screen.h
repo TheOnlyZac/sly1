@@ -326,6 +326,10 @@ void ResizeBlot(BLOT *pblot, float dx, float dy);
 
 void RepositionBlot(BLOT *pblot);
 
+/**
+ * @brief Repositions every global blot that is pegged to the given blot.
+ * @param pblot Blot whose dependents should be repositioned.
+ */
 void RepositionBlotDependents(BLOT *pblot);
 
 extern BLOT *D_002486B0[];

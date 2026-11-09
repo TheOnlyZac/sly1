@@ -215,7 +215,17 @@ void ResizeBlot(BLOT *pblot, float dx, float dy)
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", RepositionBlot__FP4BLOT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", RepositionBlotDependents__FP4BLOT);
+void RepositionBlotDependents(BLOT *pblot)
+{
+    BLOTI *pbloti = D_0026C3E0;
+    for (int i = 0; i < 0x25; i++)
+    {
+        BLOTK blotk = pbloti->blotkPeg;
+        pbloti++;
+        if (blotk != -1 && D_002486B0[blotk] == pblot)
+            RepositionBlot(D_002486B0[i]);
+    }
+}
 
 void SetBlotClock(BLOT *pblot, float *pt)
 {
