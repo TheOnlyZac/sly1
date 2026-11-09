@@ -453,7 +453,16 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", ScheduleNextIntermittentSound__FP3AMB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSound__F5SFXIDPP3AMBP3ALOP6VECTORfffffP2LMT9);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BFFC8);
+void AmbCompleteProc(int result, unsigned long userData)
+{
+    if (result == 0)
+    {
+        AMB *pamb = (AMB *)(userData & 0xFFFFFFFF);
+        int iSerial = (int)((long)userData >> 32);
+        if (pamb->iSerial == iSerial)
+            pamb->fStopped = 1;
+    }
+}
 
 void HandleWipeVolumes(int fMusic, float vol)
 {

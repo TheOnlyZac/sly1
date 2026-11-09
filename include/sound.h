@@ -558,6 +558,14 @@ void SetSwIntermittentRepeat(SW *psw, LM *plm);
  */
 void StartSwIntermittentSounds(SW *psw);
 
+/**
+ * @brief Sound completion callback for an ambient sound: marks the AMB stopped if it is still the same one.
+ * @param result Completion result; the callback only acts when 0.
+ * @param userData Packed value: low 32 bits are the AMB pointer, high 32 bits the AMB serial.
+ * @note Name and exact semantics are guesses (originally FUN_001BFFC8).
+ */
+void AmbCompleteProc(int result, unsigned long userData);
+
 void PushSwReverb(SW *psw, REVERBK reverb, int k);
 
 /**
