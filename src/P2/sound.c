@@ -4,6 +4,7 @@
 #include <sw.h>
 #include <po.h>
 #include <cm.h>
+#include <cplcy.h>
 #include <dl.h>
 #include <slotheap.h>
 
@@ -263,7 +264,18 @@ VECTOR *PposEar()
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SetDoppler__FP3AMB);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PfneardistGet__Fv);
+PFNEARDIST PfneardistGet()
+{
+    if (FActiveCplcy(&g_pcm->cplook))
+    {
+        int lookk = LookkCurCplook(&g_pcm->cplook);
+        if (lookk >= 3)
+            return FUN_001BF398;
+        if (lookk > 0)
+            return FUN_001BF2E0;
+    }
+    return FUN_001BF398;
+}
 
 float SDistEar(VECTOR *ppos)
 {

@@ -435,7 +435,18 @@ VECTOR *PposEar();
 typedef float (*PFNEARDIST)(VECTOR *, VECTOR *);
 
 /**
- * @brief Returns the near-distance function pointer used by SDistEar. (Guess.)
+ * @brief Distance function used for the listener, variant A (unmatched, name unknown).
+ */
+extern "C" float FUN_001BF2E0(VECTOR *, VECTOR *);
+
+/**
+ * @brief Plain 3D distance between two positions (VU0 code, not yet matched; name unknown).
+ */
+extern "C" float FUN_001BF398(VECTOR *, VECTOR *);
+
+/**
+ * @brief Returns the distance function to use for the listener: FUN_001BF2E0 for camera look kinds 1 and 2
+ * while the look policy is active, otherwise FUN_001BF398. (Interpretation is a guess.)
  */
 PFNEARDIST PfneardistGet();
 
