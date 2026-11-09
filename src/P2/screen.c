@@ -59,9 +59,30 @@ void RenderBlots()
     } while (i >= 0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawBlots__Fv);
+void DrawBlots()
+{
+    BLOT **ppblot = D_002486B0;
+    for (int i = 0; i < 0x25; i++)
+    {
+        BLOT *pblot = ppblot[i];
+        if (pblot->blots != BLOTS_Hidden)
+            pblot->pvtblot->pfnDrawBlot(pblot);
+    }
+    DrawWipe(&g_wipe);
+    FUN_001ae820(&D_00273EB0);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", InitBlot__FP4BLOT5BLOTK);
+void InitBlot(BLOT *pblot, BLOTK blotk)
+{
+    pblot->bloti = &D_0026C3E0[blotk];
+    pblot->dtDisappear = 0.25f;
+    pblot->dtAppear = 0.25f;
+    pblot->ptNow = &g_clock.tReal;
+    pblot->blotk = blotk;
+    ResizeBlot(pblot, pblot->width, pblot->height);
+    pblot->x = pblot->dx;
+    pblot->y = pblot->dy;
+}
 
 void PostBlotLoad(BLOT *pblot)
 {
@@ -210,7 +231,25 @@ void FUN_001ab600(BLOT *pblot)
     SetTimerTimers(ptimer, TIMERS_Expired);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateTimer__FP5TIMER);
+void UpdateTimer(TIMER *ptimer)
+{
+    UpdateBlot(ptimer);
+    if (ptimer->blots == BLOTS_Hidden)
+        return;
+    if (ptimer->timers == TIMERS_Expired)
+    {
+        int f = (g_clock.t - ptimer->tTimers >= 1.0f) ? 1 : 0;
+        if (ptimer->blots == BLOTS_Appearing || ptimer->blots == BLOTS_Visible)
+        {
+            if (ptimer->fStopped || f)
+                ptimer->pvttimer->pfnHideBlot(ptimer);
+        }
+    }
+    else
+    {
+        RebuildTimerAchzDraw(ptimer, g_clock.dt);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawTimer__FP5TIMER);
 
@@ -324,7 +363,26 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawNote__FP4NOTE);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac888);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac910);
+void FUN_001ac910(TITLE *ptitle, char *pchz)
+{
+    if (ptitle->blots == BLOTS_Hidden)
+    {
+        SetBlotAchzDraw(ptitle, pchz);
+        return;
+    }
+    if (ptitle->blots >= 0)
+    {
+        if (ptitle->blots < 4)
+        {
+            if (func_001F6738(ptitle->achzDraw, pchz))
+            {
+                ptitle->pchzReshow = pchz;
+                ptitle->fReshow = 1;
+                ptitle->pvtblot->pfnSetBlotBlots(ptitle, 3);
+            }
+        }
+    }
+}
 
 void FUN_001ac990(BLOT *pblot, BLOTS blots)
 {

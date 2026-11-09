@@ -250,8 +250,16 @@ void ResetBlots();
  */
 void RenderBlots();
 
+/**
+ * @brief Draws every non-hidden global blot, then the wipe and the extra overlay (FUN_001ae820).
+ */
 void DrawBlots();
 
+/**
+ * @brief Initialises a blot from its BLOTI table entry: default appear/disappear times, clock, and size.
+ * @param pblot Blot to initialise.
+ * @param blotk Blot kind, indexes the BLOTI table (D_0026C3E0).
+ */
 void InitBlot(BLOT *pblot, BLOTK blotk);
 
 void PostBlotLoad(BLOT *pblot);
@@ -319,6 +327,9 @@ void RepositionBlot(BLOT *pblot);
 void RepositionBlotDependents(BLOT *pblot);
 
 extern BLOT *D_002486B0[];
+extern BLOTI D_0026C3E0[];
+extern int D_00273EB0;
+extern "C" void FUN_001ae820(void *);
 extern float D_002744AC;
 extern JOY g_joyZero;
 extern "C" int func_001F6738(char *, char *);
@@ -356,6 +367,10 @@ float DtVisibleCtr(CTR *pctr);
  */
 void FUN_001ab600(BLOT *pblot);
 
+/**
+ * @brief Per-frame timer update: hides the timer after it expires (or when stopped) and rebuilds its text while running.
+ * @param ptimer Timer blot.
+ */
 void UpdateTimer(TIMER *ptimer);
 
 void DrawTimer(TIMER *ptimer);
@@ -398,7 +413,12 @@ void DrawNote(BLOT *pblot);
 
 void FUN_001ac888(BLOT *pblot);
 
-void FUN_001ac910(undefined8 param_1, char *param_2);
+/**
+ * @brief Title blot text setter: shows the new text immediately if hidden, otherwise queues a reshow of it (name is a guess).
+ * @param ptitle Title blot.
+ * @param pchz New text.
+ */
+void FUN_001ac910(TITLE *ptitle, char *pchz);
 
 /**
  * @brief Blot state setter with a reshow flag at 0x260 (guess: title-like blot).
