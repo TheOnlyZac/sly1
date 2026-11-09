@@ -380,6 +380,48 @@ int GetAMRegister(int reg);
  */
 void UpdateAMRegister(int reg, int value);
 
+/**
+ * @brief Returns the listener (ear) position. (Name/meaning inferred from usage in SDistEar.)
+ */
+VECTOR *PposEar();
+
+typedef float (*PFNEARDIST)(VECTOR *, VECTOR *);
+
+/**
+ * @brief Returns the near-distance function pointer used by SDistEar. (Guess.)
+ */
+PFNEARDIST PfneardistGet();
+
+/**
+ * @brief Distance from the listener to a position.
+ * @param ppos Position to measure to.
+ * @return Distance as computed by the near-distance function (return type is a guess).
+ */
+float SDistEar(VECTOR *ppos);
+
+/**
+ * @brief Recomputes volume and pan of an ambient sound.
+ */
+void RefreshPambVolPan(AMB *pamb);
+
+/**
+ * @brief Sets a cached AM register and forwards it to the music handle if it changed.
+ */
+void SetAMRegister(int reg, uchar value);
+
+/**
+ * @brief Continues a paused VAG stream when appropriate. (Meaning is a guess.)
+ * @return 1 if paused for VAG, otherwise 0 (guess).
+ */
+int FPauseForVag();
+
+/**
+ * @brief Records the preload completion handle and resolves bank XREFs.
+ * @param handle Completion handle (guess).
+ * @param userData Unused.
+ */
+void PreloadMusidSongComplete(uint handle, unsigned long userData);
+
 enum REVERBK
 {
     REVERBK_None = 0,

@@ -25,6 +25,10 @@ extern int D_00274730;
 extern int D_00274744;
 extern int D_00274748;
 extern int D_00245020[][2]; // sfxid -> bank table (guess)
+extern int D_00274720;
+extern int D_00274724;
+extern uint D_0027473C;
+
 
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", UnloadMusic__Fv);
@@ -60,7 +64,18 @@ void FUN_001be708()
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadVag1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FPauseForVag__Fv);
+int FPauseForVag()
+{
+    if (D_00274744)
+        return 0;
+    if (D_0027472C)
+    {
+        if (D_00274730)
+            return 1;
+        snd_ContinueVAGStream(D_0027472C);
+    }
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", RefreshPambVolPan__FP3AMB);
 
@@ -89,7 +104,20 @@ void ContinueVag()
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", KillMusic__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadMusidSongComplete__FUiUl);
+void PreloadMusidSongComplete(uint handle, unsigned long userData)
+{
+    D_0027473C = handle;
+    if (handle)
+    {
+        snd_ResolveBankXREFS();
+        D_00274720 = 2;
+    }
+    else
+    {
+        D_00274724 = 0;
+        D_00274720 = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadMusidSong__F5MUSID);
 
@@ -165,7 +193,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", SetDoppler__FP3AMB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PfneardistGet__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SDistEar__FP6VECTOR);
+float SDistEar(VECTOR *ppos)
+{
+    VECTOR *pposEar = PposEar();
+    return PfneardistGet()(pposEar, ppos);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", CalculateDistVolPan__FP6VECTORPfT1fff);
 
@@ -183,7 +215,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", StopSound__FP3AMBi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SetPambFrq__FP3AMBf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SetPambVol__FP3AMBf);
+void SetPambVol(AMB *pamb, float uVolAtSource)
+{
+    if (pamb)
+    {
+        STRUCT_OFFSET(pamb, 0x50, float) *= uVolAtSource / pamb->uVolAtSource;
+        pamb->uVolAtSource = uVolAtSource;
+        RefreshPambVolPan(pamb);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FillPamb__FP3AMBPP3AMBiP3ALOP6VECTORfffffP2LMT10_);
 
@@ -275,16 +315,36 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0B08);
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSwIntermittentSounds__FP2SW);
 
 // TODO: Verify signature.
+/**
+ * @todo 94% matched: the original does not zero-extend (andi 0xff) the uchar argument.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SetAMRegister__FiUc);
+#ifdef SKIP_ASM
+void SetAMRegister(int reg, uchar value)
+{
+    if ((int)value != D_006053E0[reg])
+    {
+        D_006053E0[reg] = (int)value;
+        snd_SetMIDIRegister(D_00274728, reg, (int)value);
+    }
+}
+#endif // SKIP_ASM
 
 int GetAMRegister(int reg) 
 {
     return D_006053E0[reg];
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", UpdateAMRegister__Fii);
+void UpdateAMRegister(int reg, int value)
+{
+    D_006053E0[reg] = snd_GetMIDIRegister(D_00274728, reg);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001c0cb0__Fv);
+void FUN_001c0cb0()
+{
+    for (int i = 0; i < 8; ++i)
+        SetAMRegister(i, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", HsNextFootFall__Fv);
 
