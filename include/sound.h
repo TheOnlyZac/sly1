@@ -566,6 +566,16 @@ void StartSwIntermittentSounds(SW *psw);
  */
 void AmbCompleteProc(int result, unsigned long userData);
 
+/**
+ * @brief Starts a sound (SFXID -2) attached to an ALO and refreshes its volume and pan; drops the AMB if no owner pointer was given.
+ * @param palo Object the sound is attached to.
+ * @param ppamb Optional owner pointer for the AMB; if null a temporary is used and released afterwards.
+ * @param sStart Start distance (passed through to StartSound).
+ * @param sFull Full distance (passed through to StartSound).
+ * @note Name is a guess (originally FUN_001be8f8).
+ */
+void StartAloSound(ALO *palo, AMB **ppamb, float sStart, float sFull);
+
 void PushSwReverb(SW *psw, REVERBK reverb, int k);
 
 /**

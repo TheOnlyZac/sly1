@@ -113,7 +113,23 @@ int FPauseForVag()
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", RefreshPambVolPan__FP3AMB);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001be8f8);
+void StartAloSound(ALO *palo, AMB **ppamb, float sStart, float sFull)
+{
+    AMB *pamb;
+    int fLocal = 0;
+    if (!ppamb)
+    {
+        fLocal = 1;
+        ppamb = &pamb;
+    }
+    StartSound(SFXID_UnkNeg2, ppamb, palo, 0, sStart, sFull, 1.0f, 0.0f, 0.0f, 0, 0);
+    if (*ppamb)
+    {
+        RefreshPambVolPan(*ppamb);
+        if (fLocal)
+            DropPamb(ppamb);
+    }
+}
 
 int FVagPlaying()
 {
