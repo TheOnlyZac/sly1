@@ -358,7 +358,9 @@ void NewSfx(SFX **ppsfx);
 void StartSound(SFXID sfxid, AMB **ppamb, ALO *palo, VECTOR *ppos, float sStart, float sFull, float uVolAtSource, float frq, float uDoppler, LM *plmRepeat, LM *plmRepDis);
 
 /**
- * @brief TODO
+ * @brief Ramps down (or stops immediately) an ambient sound and removes it.
+ * @param pamb Ambient sound, may be null.
+ * @param msRampdown Rampdown time in ms (scaled by a guessed constant); 0 stops immediately.
  */
 void StopSound(AMB *pamb, int msRampdown);
 
@@ -475,6 +477,37 @@ enum REVERBK
 };
 
 struct SW;
+
+/**
+ * @brief Sets the default reverb type and depth for a world.
+ * @param psw World.
+ * @param reverbk Reverb kind, indexes a table of hardware reverb types.
+ * @param depth Reverb depth (used for both left and right).
+ */
+void SetSwDefaultReverb(SW *psw, REVERBK reverbk, const int depth);
+
+/**
+ * @brief Sets the volume of the effects, dialog and others (and optionally music) on MVGK channel 6 for wipes.
+ * @param fMusic Nonzero to also set the music volume.
+ * @param vol Volume. (Name and channel semantics are guesses.)
+ */
+void HandleWipeVolumes(int fMusic, float vol);
+
+/**
+ * @brief Whether the SFX's soundbank is loaded (loads it first if needed) and a per-sfx continuous flag.
+ * @return Per-SFX table value (meaning is a guess).
+ */
+int FContinuousSound(SFXID sfxid);
+
+/**
+ * @brief Plays the next sneaky footstep sound if enabled. (Meaning is a guess.)
+ */
+void NextSneakyFootstep();
+
+/**
+ * @brief Gets the next foot fall index. (Guess.)
+ */
+int HsNextFootFall();
 
 void PushSwReverb(SW *psw, REVERBK reverb, int k);
 void PopSwReverb(SW *psw);

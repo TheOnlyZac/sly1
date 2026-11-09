@@ -34,6 +34,10 @@ extern int D_00274720;
 extern int D_00274724;
 extern uint D_0027473C;
 extern int D_00274734;
+extern int D_002748EC;
+extern int D_00274808[];
+extern void *D_006047B0[];
+extern int D_006047D0[];
 
 
 
@@ -49,7 +53,12 @@ void SbpEnsureBank(SFXID sfxid)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", NewSfx__FPP3SFX);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FContinuousSound__F5SFXID);
+int FContinuousSound(SFXID sfxid)
+{
+    if (!D_006047B0[D_00245020[sfxid][0]])
+        SbpEnsureBank(sfxid);
+    return D_006047D0[sfxid];
+}
 
 void FUN_001BE5D8()
 {
@@ -277,7 +286,17 @@ void RemoveAmb(AMB *pamb)
     FreeSlotheapPv(&g_psw->slotheapAmb, pamb);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", StopSound__FP3AMBi);
+void StopSound(AMB *pamb, int msRampdown)
+{
+    if (pamb)
+    {
+        if (msRampdown == 0)
+            snd_StopSound(pamb->sfxh);
+        else
+            snd_AutoVol(pamb->sfxh, -4, (int)((float)msRampdown * 0.24000001f), 2);
+        RemoveAmb(pamb);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SetPambFrq__FP3AMBf);
 
@@ -301,7 +320,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSound__F5SFXIDPP3AMBP3ALOP6VECTORf
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BFFC8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", HandleWipeHandleWipeVolumes__FifVolumes);
+void HandleWipeVolumes(int fMusic, float vol)
+{
+    SetMvgkRvol(6, MVGK_Effects, vol);
+    SetMvgkRvol(6, (MVGK)2, vol);
+    SetMvgkRvol(6, (MVGK)3, vol);
+    if (fMusic)
+        SetMvgkRvol(6, MVGK_Music, vol);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", UpdateSounds__Fv);
 
@@ -370,7 +396,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", PushSwReverb__FP2SW7REVERBKi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PopSwReverb__FP2SW);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SetSwDefaultReverb__FP2SW7REVERBKi);
+void SetSwDefaultReverb(SW *psw, REVERBK reverbk, const int depth)
+{
+    snd_SetReverbType(2, D_00274808[reverbk]);
+    snd_SetReverbDepth(2, depth, depth);
+    STRUCT_OFFSET(psw, 0x2328, int) = reverbk;
+    STRUCT_OFFSET(psw, 0x232C, int) = depth;
+    STRUCT_OFFSET(psw, 0x2348, int) = 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001C0A50);
 
@@ -414,4 +447,11 @@ void FUN_001c0cb0()
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", HsNextFootFall__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", NextSneakyFootstep__Fv);
+void NextSneakyFootstep()
+{
+    if (D_002748EC)
+    {
+        int hs = HsNextFootFall();
+        StartSound((SFXID)0x77, 0, 0, 0, 0.0f, 0.0f, 0.5f, (float)hs * 0.083333336f, 0.0f, 0, 0);
+    }
+}
