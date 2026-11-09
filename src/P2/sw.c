@@ -20,6 +20,11 @@
 #include <hide.h>
 #include <shd.h>
 #include <splice/spliceutils.h>
+#include <splice/eval.h>
+#include <splice/gc.h>
+#include <splice/frame.h>
+#include <splice/pair.h>
+#include <splice/ref.h>
 #include <joy.h>
 #include <cm.h>
 #include <clock.h>
@@ -370,6 +375,78 @@ void ProcessSwCallbacks(SW *psw)
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", ProcessSwSpliceScheduledCallbacks__FP2SWf);
+#ifdef SKIP_ASM
+/**
+ * @todo Matches in isolation (byte identical to the original), but enabling it breaks the build checksum:
+ * the assembler then inserts 3 extra nops before a loop branch inside the later INCLUDE_ASM function
+ * LoadSwFromBrx, which grows it by 16 bytes. ClearSwCallbacks has the same problem.
+ */
+void ProcessSwSpliceScheduledCallbacks(SW *psw, float dt)
+{
+    CRef refList;
+    CRef refResult;
+
+    g_gc.UpdateRecyclable();
+    psw->pframe->FFindBinding(STRUCT_OFFSET(psw, 0x1EF8, uint), 0, &refList);
+
+    if (refList.m_tagk != TAGK_Pair)
+        return;
+
+    CPair *ppair = refList.m_tag.m_ppair;
+    int fRan = 0;
+
+    // Run every scheduled callback whose time has come, and tick down the rest.
+    for (; ppair; ppair = ppair->m_ppairNext)
+    {
+        CPair *pentry = ppair->m_ref.m_tag.m_ppair;
+        float dtLeft = pentry->m_ref.m_tag.m_g - dt;
+        if (dtLeft <= 0.0f)
+        {
+            fRan = 1;
+            refResult = RefEval(pentry->m_ppairNext, psw->pframe);
+            ppair->m_ref.SetTag(TAGK_None);
+        }
+        else
+        {
+            pentry->m_ref.SetF32(dtLeft);
+        }
+    }
+
+    if (!fRan)
+        return;
+
+    // Something ran, so unlink the entries that were consumed and store the list back.
+    psw->pframe->FFindBinding(STRUCT_OFFSET(psw, 0x1EF8, uint), 0, &refList);
+
+    CPair *ppairHead = refList.m_tag.m_ppair;
+    CPair *ppairPrev = NULL;
+    for (ppair = ppairHead; ppair; ppair = ppair->m_ppairNext)
+    {
+        if (ppair->m_ref.m_tagk == TAGK_Pair)
+        {
+            ppairPrev = ppair;
+        }
+        else if (ppairPrev)
+        {
+            ppairPrev->m_ppairNext = ppair->m_ppairNext;
+        }
+        else
+        {
+            ppairHead = ppair->m_ppairNext;
+        }
+    }
+
+    if (ppairHead != refList.m_tag.m_ppair)
+    {
+        if (ppairHead)
+            refList.SetPair(ppairHead);
+        else
+            refList.SetTag(TAGK_None);
+
+        psw->pframe->RefSetBinding(STRUCT_OFFSET(psw, 0x1EF8, uint), &refList);
+    }
+}
+#endif // SKIP_ASM
 
 STSO *PstsoAllocSw(SW *psw)
 {
