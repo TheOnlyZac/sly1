@@ -181,6 +181,87 @@ void SetJtJts(JT *pjt, JTS jts, JTBS jtbs);
  */
 void ProfileJt(JT *pjt, int fProfile);
 
+/**
+ * @brief Gets the torque constraint type for JT: free while zapped or in state 13, otherwise locked.
+ *
+ * @param pjt Pointer to JT instance.
+ * @return Constraint type (CT).
+ *
+ * @note Meaning of state 13 (JTS_Max) is a guess; may be an invalid/sentinel state.
+ */
+CT CtTorqueJt(JT *pjt);
+
+struct WKR;
+
+/**
+ * @brief Comparison function (qsort style) for two WKR entries by their sort value (gSort).
+ *
+ * @param pwkr0 First WKR.
+ * @param pwkr1 Second WKR.
+ * @return 1 if pwkr0 sorts greater than pwkr1, otherwise -1.
+ */
+int NCmpWkr(WKR *pwkr0, WKR *pwkr1);
+
+struct ASEGA;
+
+/**
+ * @brief Puts JT into the puppet-related state: JTS_Peek (11) if an ASEGA is given, else JTS_Stand.
+ *
+ * @param pjt Pointer to JT instance.
+ * @param pasega Animation segment (ASEGA) driving the puppet; may be null.
+ *
+ * @note Name is from the symbol; the exact semantics (JTS_Peek vs puppet) are inferred from the constant 11.
+ */
+void SetJtPuppet(JT *pjt, ASEGA *pasega);
+
+/**
+ * @brief Updates the previous world position of JT and clears the extra-bounds position count (0x21cc).
+ *
+ * @param pjt Pointer to JT instance.
+ */
+void UpdateJtPosWorldPrev(JT *pjt);
+
+/**
+ * @brief Updates the JT bounds, then extends them to cover each extra position (array at 0x21d0, count at 0x21cc).
+ *
+ * @param pjt Pointer to JT instance.
+ *
+ * @note The field layout of the extra positions is a guess.
+ */
+void UpdateJtBounds(JT *pjt);
+
+/**
+ * @brief Collects a prize; JT enters the rush state (key: attack, gold: bounce).
+ *
+ * @param pjt Pointer to JT instance.
+ * @param pck Prize kind.
+ * @param paloOther The object the prize came from.
+ */
+void CollectJtPrize(JT *pjt, PCK pck, ALO *paloOther);
+
+/**
+ * @brief Sets the field at 0x2bd8 to the given value and clears the field at 0x4b8.
+ *
+ * @param pjt Pointer to JT instance.
+ * @param n Value stored at 0x2bd8.
+ *
+ * @note Name and meaning are unknown; purely mechanical description.
+ */
+void FUN_00177828(JT *pjt, int n);
+
+struct PO;
+
+/**
+ * @brief Active-state handler for JT: forwards to OnPoActive, then sets the steppower to the last selected one (or Nil when inactive).
+ *
+ * @param pjt Pointer to JT instance.
+ * @param fActive Whether JT became active.
+ * @param ppoOther Other PO (passed through).
+ *
+ * @note Name is unknown (likely OnJtActive); the third parameter type is a guess.
+ */
+void FUN_00173708(JT *pjt, int fActive, PO *ppoOther);
+
 extern JT *g_pjt;
 
 #endif // JT_H

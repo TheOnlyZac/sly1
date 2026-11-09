@@ -1,4 +1,8 @@
 #include <jt.h>
+#include <alo.h>
+#include <po.h>
+#include <steppower.h>
+#include <game.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", InitJt__FP2JT);
 
@@ -50,23 +54,46 @@ INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtTool__FP2JT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00172898);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtPosWorldPrev__FP2JT);
+void UpdateJtPosWorldPrev(JT *pjt)
+{
+    UpdateSoPosWorldPrev(pjt);
+    STRUCT_OFFSET(pjt, 0x21cc, int) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00172b08);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtBounds__FP2JT);
+void UpdateJtBounds(JT *pjt)
+{
+    int i;
+    UpdateSoBounds(pjt);
+    for (i = 0; i < STRUCT_OFFSET(pjt, 0x21cc, int); i++)
+    {
+        ExtendSoBounds(pjt, &STRUCT_OFFSET(pjt, 0x21d0 + i * 0x10, VECTOR), STRUCT_OFFSET(pjt, 0x2420, float));
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", PsoGetJtEffect__FP2JTPi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", AddJtCustomXps__FP2JTP2SOiP3BSPT3PP2XP);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", CtTorqueJt__FP2JT);
+CT CtTorqueJt(JT *pjt)
+{
+    if (pjt->jts == JTS_Zap || pjt->jts == (JTS)13)
+    {
+        return CT_Free;
+    }
+    return CT_Locked;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00172ee0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", GetJtCpdefiFlatten__FP2JTP6CPDEFI);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00173708);
+void FUN_00173708(JT *pjt, int fActive, PO *ppoOther)
+{
+    OnPoActive(pjt, fActive, ppoOther);
+    SetFsp((FSP)(fActive ? g_pgsCur->fspLast : -1));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00173750);
 
@@ -87,19 +114,41 @@ void ProfileJt(JT *pjt, int fProfile)
     return;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", SetJtPuppet__FP2JTP5ASEGA);
+void SetJtPuppet(JT *pjt, ASEGA *pasega)
+{
+    SetJtJts(pjt, pasega ? JTS_Peek : JTS_Stand, JTBS_Nil);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00177828);
+void FUN_00177828(JT *pjt, int n)
+{
+    STRUCT_OFFSET(pjt, 0x2bd8, int) = n;
+    STRUCT_OFFSET(pjt, 0x4b8, int) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", PaloAbsorbWkr__FP3WKRiPP3ALO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", NCmpWkr__FP3WKRT0);
+int NCmpWkr(WKR *pwkr0, WKR *pwkr1)
+{
+    return pwkr0->gSort > pwkr1->gSort ? 1 : -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtEffect__FP2JT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FIsJtSoundBase__FP2JT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", CollectJtPrize__FP2JT3PCKP3ALO);
+void CollectJtPrize(JT *pjt, PCK pck, ALO *paloOther)
+{
+    CollectPoPrize(pjt, pck, paloOther);
+    switch (pck)
+    {
+    case PCK_Key:
+        SetJtJts(pjt, JTS_Rush, JTBS_Rush_Attack);
+        break;
+    case PCK_Gold:
+        SetJtJts(pjt, JTS_Rush, JTBS_Rush_Bounce);
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", GetJtDiapi__FP2JTP6DIALOGP5DIAPI);
 
