@@ -315,7 +315,9 @@ void UnsetExcitementHyst(EXC *pexc);
 void SetIexcCurHigh(EXC *pexc);
 
 /**
- * @brief Unknown.
+ * @brief Removes an excitement (EXC). If it was the current high, recomputes the high and resets the global excite level and
+ * the music volume (channel 7). (Behavior inferred from the asm, meanings are guesses.)
+ * @param pexc The EXC to remove, may be null.
  */
 void UnsetExcitement(EXC *pexc);
 

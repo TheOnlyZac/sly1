@@ -36,6 +36,7 @@ extern int D_00274720;
 extern int D_00274724;
 extern uint D_0027473C;
 extern int D_00274734;
+extern DLI *s_pdliFirst; // Global iterator list (defined in dl.c).
 extern int D_002748EC;
 extern AMB *D_002748E8;
 extern LM D_00274820;
@@ -201,13 +202,119 @@ void RemoveExc(EXC *pexc)
     FreeSlotheapPv(&g_psw->slotheapExc, pexc);
 }
 
+/**
+ * @todo ~50% matched: DLI iteration register allocation differs (pv kept in $4 instead of $2).
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/sound", KillExcitement__Fv);
+#ifdef SKIP_ASM
+void KillExcitement()
+{
+    DL *pdl = &g_psw->dlExc;
+    DLI dli;
+    dli.m_pdl = pdl;
+    dli.m_ppv = (void **)pdl;
+    dli.m_ibDle = pdl->ibDle;
+    dli.m_pdliNext = s_pdliFirst;
+    s_pdliFirst = &dli;
+    void *pv = *dli.m_ppv;
+    dli.m_ppv = (void **)((char *)pv + dli.m_ibDle);
+    while (pv)
+    {
+        RemoveExc((EXC *)pv);
+        dli.m_ppv = (void **)((char *)(pv = *dli.m_ppv) + dli.m_ibDle);
+    }
+    snd_SetGlobalExcite(0x14);
+    D_002748EC = 0;
+    s_pdliFirst = dli.m_pdliNext;
+    g_iexcHyst = 0;
+    D_00274734 = 0;
+}
+#endif // SKIP_ASM
 
+/**
+ * @todo ~78% matched: clamp of iexc to [-20, 107] compiles to different branch/movz layout.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PexcSetExcitement__Fi);
+#ifdef SKIP_ASM
+EXC *PexcSetExcitement(int iexc)
+{
+    bool fEmpty = FIsDlEmpty(&g_psw->dlExc);
+    EXC *pexc = PexcAlloc();
+    int iexcNew = -20;
+    if (iexc >= -20)
+    {
+        iexcNew = 0x6B;
+        if (iexc <= 0x6B)
+            iexcNew = iexc;
+    }
+    if (pexc)
+    {
+        pexc->iexc = iexcNew;
+        int iexcCur = D_00274734;
+        if (iexcCur < iexcNew || fEmpty)
+        {
+            D_00274734 = iexcNew;
+            g_iexcHyst = iexcCur;
+        }
+    }
+    return pexc;
+}
+#endif // SKIP_ASM
 
+/**
+ * @todo ~50% matched: DLI iteration register allocation differs, same as KillExcitement.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SetIexcCurHigh__FP3EXC);
+#ifdef SKIP_ASM
+void SetIexcCurHigh(EXC *pexc)
+{
+    DL *pdl = &g_psw->dlExc;
+    DLI dli;
+    dli.m_pdl = pdl;
+    dli.m_ppv = (void **)pdl;
+    dli.m_ibDle = pdl->ibDle;
+    dli.m_pdliNext = s_pdliFirst;
+    s_pdliFirst = &dli;
+    if (FIsDlEmpty(pdl))
+    {
+        D_00274734 = 0;
+    }
+    else
+    {
+        D_00274734 = -20;
+        void *pv = *dli.m_ppv;
+        dli.m_ppv = (void **)((char *)pv + dli.m_ibDle);
+        while (pv)
+        {
+            int iexc = ((EXC *)pv)->iexc;
+            if (D_00274734 < iexc)
+                D_00274734 = iexc;
+            pv = *dli.m_ppv;
+            dli.m_ppv = (void **)((char *)pv + dli.m_ibDle);
+        }
+    }
+    s_pdliFirst = dli.m_pdliNext;
+}
+#endif // SKIP_ASM
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", UnsetExcitement__FP3EXC);
+void UnsetExcitement(EXC *pexc)
+{
+    if (pexc)
+    {
+        int iexc = pexc->iexc;
+        RemoveExc(pexc);
+        if (iexc == D_00274734)
+        {
+            SetIexcCurHigh(pexc);
+            if (D_00274734 >= 0)
+                D_002748EC = 0;
+            g_iexcHyst = D_00274734;
+            snd_SetGlobalExcite(D_00274734 + 0x14);
+            SetMvgkRvol(7, MVGK_Music, 1.0f);
+            g_iexcHyst = -100;
+        }
+    }
+}
 
 void UnsetExcitementHyst(EXC *pexc)
 {
