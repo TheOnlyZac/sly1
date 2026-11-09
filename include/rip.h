@@ -368,6 +368,13 @@ struct HP
     int xhpKey;
 };
 
+/**
+ * @brief Gets a rip group: for type 0 the shared group if it exists, otherwise takes one from the world's free list and initializes it.
+ * @param psw World.
+ * @param ripgt Group type.
+ * @return The group, or null if none was free.
+ * @note The free list and shared group slots (psw +0x1b38/+0x1b3c) are inferred from the asm; names are guesses.
+ */
 RIPG *PripgNew(SW *psw, RIPGT ripgt);
 
 void InitRipg(RIPG *pripg);
@@ -388,6 +395,12 @@ void RenderRipgSelf(RIPG *pripg, CM *pcm, RO *pro);
 
 VTRIP *PvtripFromRipt(RIPT ript);
 
+/**
+ * @brief Allocates a new rip of the given type from the world's rip slot heap and attaches it to a group.
+ * @param ript Rip type (selects the vtable via PvtripFromRipt).
+ * @param pripg Group to attach to; if null the shared group from PripgNew is used.
+ * @return The new rip (with one reference), or null if no group or slot was available.
+ */
 RIP *PripNewRipg(RIPT ript, RIPG *pripg);
 
 void InitRip(RIP *prip, VECTOR *ppos, float gScale, SO *psoTouch);

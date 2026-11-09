@@ -1,6 +1,7 @@
 #include <rip.h>
 #include <wr.h>
 #include <bsp.h>
+#include <sce/memset.h>
 
 typedef void (*PFNRIP)(RIP *);
 typedef void (*PFNINITRIP)(RIP *, VECTOR *, float, SO *);
@@ -10,9 +11,47 @@ extern qword D_0026B720;
 extern qword D_0026B5B0;
 extern qword D_0026B5C0;
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", PripgNew__FP2SW5RIPGT);
+RIPG *PripgNew(SW *psw, RIPGT ripgt)
+{
+    if (ripgt == 0)
+    {
+        RIPG *pripgShared = STRUCT_OFFSET(psw, 0x1b3c, RIPG *);
+        if (pripgShared)
+            return pripgShared;
+    }
+    RIPG *pripg = STRUCT_OFFSET(psw, 0x1b38, RIPG *);
+    if (pripg)
+    {
+        STRUCT_OFFSET(psw, 0x1b38, int) = STRUCT_OFFSET(pripg, 0x564, int);
+        STRUCT_OFFSET(pripg, 0x550, RIPGT) = ripgt;
+        typedef void (*PFNRIPG)(RIPG *);
+        STRUCT_OFFSET(STRUCT_OFFSET(pripg, 0, char *), 0x18, PFNRIPG)(pripg);
+        if (ripgt == 0)
+            STRUCT_OFFSET(psw, 0x1b3c, RIPG *) = pripg;
+    }
+    return pripg;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitRipg__FP4RIPG);
+// @todo 50% matched (flag update instruction order differs)
+#ifdef SKIP_ASM
+void InitRipg(RIPG *pripg)
+{
+    InitSo(pripg);
+    InitDl(&STRUCT_OFFSET(pripg, 0x558, DL), 0x10);
+    ulong f = STRUCT_OFFSET(pripg, 0x2c8, ulong);
+    f &= ~0x30000000UL;
+    ulong g = STRUCT_OFFSET(pripg, 0x538, ulong);
+    f |= 0x20000000UL;
+    f &= ~0x30000000000UL;
+    g |= 0x40000000000UL;
+    g |= 0x8000000000000UL;
+    f |= 0x10000000000UL;
+    STRUCT_OFFSET(pripg, 0x538, ulong) = g;
+    STRUCT_OFFSET(pripg, 0x2c8, ulong) = f;
+    STRUCT_OFFSET(pripg, 0x80, float) = 1.0e+10f;
+}
+#endif // SKIP_ASM
 
 void SetRipgEmitb(RIPG *pripg, EMITB *pemitb)
 {
@@ -37,7 +76,27 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderRipgSelf__FP4RIPGP2CMP2RO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", PvtripFromRipt__F4RIPT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", PripNewRipg__F4RIPTP4RIPG);
+RIP *PripNewRipg(RIPT ript, RIPG *pripg)
+{
+    if (pripg == 0)
+    {
+        pripg = PripgNew(g_psw, (RIPGT)0);
+        if (pripg == 0)
+            return 0;
+    }
+    RIP *prip = (RIP *)PvAllocSlotheapUnsafe(&STRUCT_OFFSET(pripg->psw, 0x1b2c, SLOTHEAP));
+    if (prip)
+    {
+        memset(prip, 0, STRUCT_OFFSET(pripg->psw, 0x1b2c, int));
+        VTRIP *pvtrip = PvtripFromRipt(ript);
+        STRUCT_OFFSET(prip, 4, RIPT) = ript;
+        prip->pripg = pripg;
+        STRUCT_OFFSET(prip, 0, VTRIP *) = pvtrip;
+        AppendDlEntry(&STRUCT_OFFSET(pripg, 0x558, DL), prip);
+        AddRipRef(prip);
+    }
+    return prip;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitRip__FP3RIPP6VECTORfP2SO);
 
