@@ -424,6 +424,38 @@ void AdjustJtNewXp(JT *pjt, XP *pxp, int ixpd);
  */
 void ChooseJtPhys(JT *pjt);
 
+struct XMG;
+struct ACTADJ;
+
+/**
+ * @brief Turns JT toward its target (field 0x2200 / 0x2208), updating the heading at 0x638.
+ *
+ * @param pjt Pointer to JT instance.
+ * @return Nonzero if a target existed and the turn was applied.
+ *
+ * @note Not yet matched; meaning inferred from the asm.
+ */
+int FTurnJtToTarget(JT *pjt);
+
+/**
+ * @brief Rebuilds a JT XMG for one extremity (hand/foot?); not yet matched, parameter meanings are guesses.
+ */
+void RebuildJtXmg(JT *pjt, ALO *palo, float g, ALO *palo2, ACTADJ *pactadj, XMG *pxmg);
+
+/**
+ * @brief Checks whether a JT XMG matches an ACTADJ; not yet matched, meaning is a guess.
+ */
+int FMatchJtXmg(JT *pjt, XMG *pxmg, ACTADJ *pactadj);
+
+/**
+ * @brief Updates JT while standing: turns toward the target or follows the moving basis, rebuilds the two XMGs and, if they stop matching, seeks the SMA to its first frame (once).
+ *
+ * @param pjt Pointer to JT instance.
+ *
+ * @note Many fields (0x628/0x62c, 0x1188/0x118c, 0x2234) are unnamed; behaviour description is inferred from the asm.
+ */
+void UpdateJtStand(JT *pjt);
+
 extern JT *g_pjt;
 
 #endif // JT_H

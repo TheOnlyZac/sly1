@@ -13,6 +13,9 @@
 #include <util.h>
 #include <lo.h>
 #include <math.h>
+#include <act.h>
+#include <sm.h>
+#include <oid.h>
 
 extern BLOT g_binoc;
 void FUN_001d4c98(JT *pjt);
@@ -190,7 +193,40 @@ INCLUDE_ASM("asm/nonmatchings/P2/jt", RebuildJtXmg__FP2JTP3ALOfT1P6ACTADJP3XMG);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FMatchJtXmg__FP2JTP3XMGP6ACTADJ);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtStand__FP2JT);
+void UpdateJtStand(JT *pjt)
+{
+    if (!FTurnJtToTarget(pjt))
+    {
+        if (STRUCT_OFFSET(pjt, 0x690, int) != 0)
+        {
+            VECTOR w;
+            CalculateAloMovement(STRUCT_OFFSET(pjt, 0x6c0, ALO *), 0, &STRUCT_OFFSET(pjt, 0x6a0, VECTOR), 0, &w, 0, 0);
+            w.z = GLimitAbs(w.z, 10.0f);
+            STRUCT_OFFSET(pjt, 0x638, float) += w.z * g_clock.dt;
+        }
+    }
+    if (STRUCT_OFFSET(pjt, 0x250c, ACTADJ *) != 0)
+    {
+        RebuildJtXmg(pjt, STRUCT_OFFSET(pjt, 0x628, ALO *), 5.0f, STRUCT_OFFSET(pjt, 0x620, ALO *), STRUCT_OFFSET(pjt, 0x250c, ACTADJ *), (XMG *)((char *)pjt + 0x1190));
+        RebuildJtXmg(pjt, STRUCT_OFFSET(pjt, 0x62c, ALO *), 5.0f, STRUCT_OFFSET(pjt, 0x624, ALO *), STRUCT_OFFSET(pjt, 0x2510, ACTADJ *), (XMG *)((char *)pjt + 0x1290));
+        if (!FMatchJtXmg(pjt, (XMG *)((char *)pjt + 0x1190), STRUCT_OFFSET(pjt, 0x250c, ACTADJ *)) ||
+            !FMatchJtXmg(pjt, (XMG *)((char *)pjt + 0x1290), STRUCT_OFFSET(pjt, 0x2510, ACTADJ *)))
+        {
+            if (STRUCT_OFFSET(pjt, 0x118c, int) == 0)
+            {
+                if (STRUCT_OFFSET(pjt, 0x1188, SM *) != 0)
+                {
+                    int isms = IsmsFindSmOptional(STRUCT_OFFSET(pjt, 0x1188, SM *), (OID)0x148);
+                    if (isms >= 0)
+                    {
+                        SeekSma(STRUCT_OFFSET(pjt, 0x2234, SMA *), (OID)0x148);
+                    }
+                    STRUCT_OFFSET(pjt, 0x118c, int) = 1;
+                }
+            }
+        }
+    }
+}
 
 void ThrowJt(JT *pjt, VECTOR *pposTarget, float radVert, float gSpin)
 {
