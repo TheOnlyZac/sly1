@@ -250,6 +250,12 @@ OXA *PoxaAllocSw(SW *psw, SO *pso);
  */
 void FreeSwPoxa(SW *psw, OXA *poxa);
 
+/**
+ * @brief Creates the default world lights selected by the g_grfdfl flags (bits 0 to 3).
+ * @param psw World.
+ * @note Static light parameters live in data (g_vecHighlight, D_00275670 and so on) and are not
+ * yet named. The vtable slot at +0x84 is called with D_00275680 and its purpose is unknown.
+ */
 void CreateSwDefaultLights(SW *psw);
 
 /**

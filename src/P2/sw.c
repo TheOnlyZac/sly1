@@ -24,6 +24,8 @@
 #include <cm.h>
 #include <clock.h>
 #include <screen.h>
+#include <brx.h>
+#include <light.h>
 
 // LsFromWid is still an unmangled INCLUDE_ASM symbol in game.c, so call it by its raw label.
 extern int *LsFromWidRaw(WID wid) __asm__("LsFromWid");
@@ -51,7 +53,83 @@ void InitSwDlHash(SW *psw)
     }
 }
 
+/**
+ * @todo ~97% matched (DIFFCOUNT 4). Only the order of three trailing stores differs (0x2354, 0x234C, 0x2350).
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/sw", InitSw__FP2SW);
+#ifdef SKIP_ASM
+void SetSwDefaultReverb(SW *psw, REVERBK reverbk, int k);
+#define SWSH(off) ((SLOTHEAP *)((char *)psw + (off)))
+void InitSw(SW *psw)
+{
+    InitLo(psw);
+    SetSwDefaultReverb(psw, REVERBK_None, 0);
+    STRUCT_OFFSET(psw, 0x1AD8, void *) = PvAllocSwImpl(0x4800);
+    STRUCT_OFFSET(psw, 0x1ADC, void *) = PvAllocSwClearImpl(0x10000);
+    InitSwAoxa(psw);
+    CreateSlotheapSw(SWSH(0x1AF0), 0x10, 0x400);
+    CreateSlotheapSw(SWSH(0x1AFC), 0xE0, 0x100);
+    CreateSlotheapSw(SWSH(0x1B08), 0x10, 0x80);
+    CreateSlotheapSw(SWSH(0x1B14), 0x14, 0x400);
+    CreateSlotheapSw(SWSH(0x1B2C), 0x140, 0x180);
+    CreateSlotheapSwAlign64(SWSH(0x1B40), 0x10C0, 0x80);
+    CreateSlotheapSw(SWSH(0x1B4C), 0x580, 0x20);
+    CreateSlotheapSw(SWSH(0x1B58), 0xEC, 0x100);
+    CreateSlotheapSw(SWSH(0x1B20), 0xD0, 0x400);
+    CreateSlotheapSw(SWSH(0x1BA0), 0x90, 0x80);
+    CreateSlotheapSw(SWSH(0x1BB8), 0xC, 0x20);
+    CreateSlotheapSw(SWSH(0x1B88), 0x40, 0x100);
+    CreateSlotheapSw(SWSH(0x1BF4), 0x2E0, 0x20);
+    CreateSlotheapSw(SWSH(0x1BD0), 0x70, 0x20);
+    CreateSlotheapSw(SWSH(0x1C0C), 0x8, 0x80);
+    CreateSlotheapSw(SWSH(0x1C18), 0x14, 0x100);
+    STRUCT_OFFSET(psw, 0x1ED4, void *) = PvAllocSwImpl(0x1000);
+    InitDl(&psw->dlChild, 0x1C);
+    InitDl(&psw->dlMRD, 0x48);
+    InitDl(&psw->dlMRDRealClock, 0x48);
+    InitDl(&psw->dlBusy, 0x40);
+    InitDl(&psw->dlBusySo, 0x414);
+    InitDl(&psw->dlRoot, 0x2D0);
+    InitDl(&STRUCT_OFFSET(psw, 0x1B64, DL), 0x34);
+    InitDl(&STRUCT_OFFSET(psw, 0x1B70, DL), 0x34);
+    InitDl(&psw->dlAsegaPending, 0x34);
+    InitDl(&psw->dlSma, 0x10);
+    InitDl(&STRUCT_OFFSET(psw, 0x1BAC, DL), 0x64);
+    InitDl(&STRUCT_OFFSET(psw, 0x1BC4, DL), 0x4);
+    InitDl(&psw->dlLight, 0x410);
+    InitDl(&STRUCT_OFFSET(psw, 0x1C00, DL), 0xB8);
+    InitDl(&STRUCT_OFFSET(psw, 0x1BDC, DL), 0x64);
+    InitDl(&psw->dlProxy, 0x2DC);
+    InitDl(&psw->dlFly, 0x5DC);
+    InitDl(&psw->dlDprize, 0x374);
+    InitDl(&psw->dlRat, 0x600);
+    InitDl(&psw->dlRathole, 0x90);
+    InitDl(&psw->dlDartFree, 0x56C);
+    InitDl(&psw->dlSpire, 0x50);
+    InitDl(&psw->dlRail, 0x38);
+    InitDl(&psw->dlLanding, 0x38);
+    InitDl(&psw->dlBusyLasen, 0xAF0);
+    InitDl(&psw->dlBlipg, 0x630);
+    InitDl(&psw->dlBlipgFree, 0x630);
+    InitDl(&psw->dlFader, 0xC);
+    InitDl(&psw->dlRealClockFader, 0xC);
+    InitDl(&psw->dlCrfod, 0xC10);
+    InitDl(&STRUCT_OFFSET(psw, 0x1CD8, DL), 0x34);
+    SetSwGravity(psw, (g_grfcht & 4) ? -900.0f : -1500.0f);
+    STRUCT_OFFSET(psw, 0x1D64, byte) = 0x10;
+    STRUCT_OFFSET(psw, 0x1D65, byte) = 0x10;
+    STRUCT_OFFSET(psw, 0x1D66, byte) = 0x40;
+    STRUCT_OFFSET(psw, 0x1D68, float) = 50.0f;
+    STRUCT_OFFSET(psw, 0x1D70, int) = -1;
+    STRUCT_OFFSET(psw, 0x1D74, int) = 0;
+    STRUCT_OFFSET(psw, 0x2308, float) = 15.0f;
+    STRUCT_OFFSET(psw, 0x230C, float) = 180.0f;
+    psw->rDarkenSmooth = 1.0f;
+    STRUCT_OFFSET(psw, 0x2354, int) = 1;
+    psw->rDarken = 1.0f;
+    STRUCT_OFFSET(psw, 0x235C, int) = 0xF03FFFFF;
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", DeleteSw__FP2SW);
 
@@ -420,7 +498,75 @@ void FreeSwPoxa(SW *psw, OXA *poxa)
     AddOxa(poxa, ppoxaFree);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", CreateSwDefaultLights__FP2SW);
+extern int g_grfdfl;
+extern VECTOR g_vecHighlight;
+extern float g_degHighlight;
+extern float g_gMidtone;
+extern float g_degMidtone;
+extern float g_gShadow;
+extern float g_degShadow;
+extern VECTOR D_00275670;
+extern VECTOR D_00275680;
+extern LM D_00275690;
+extern LM D_00275698;
+extern LM D_002756A0;
+typedef void (*PFNLIGHTVEC)(LIGHT *, VECTOR *);
+void CreateSwDefaultLights(SW *psw)
+{
+    LIGHT *plight;
+    if (g_grfdfl & 1)
+    {
+        plight = (LIGHT *)PloNew((CID)0x51, psw, 0, (OID)0x201, -1);
+        SetLightHighlightColor(plight, &g_vecHighlight);
+        SetLightHighlightAngle(plight, g_degHighlight);
+        SetLightMidtoneStrength(plight, g_gMidtone);
+        SetLightMidtoneAngle(plight, g_degMidtone);
+        SetLightShadowStrength(plight, g_gShadow);
+        SetLightShadowAngle(plight, g_degShadow);
+        SetLightDirection(plight, &D_00275670);
+    }
+    if (g_grfdfl & 2)
+    {
+        plight = (LIGHT *)PloNew((CID)0x51, psw, 0, (OID)0x201, -1);
+        SetLightKind(plight, (LIGHTK)1);
+        SetLightHighlightColor(plight, &g_vecHighlight);
+        SetLightHighlightAngle(plight, g_degHighlight);
+        SetLightMidtoneStrength(plight, g_gMidtone);
+        SetLightMidtoneAngle(plight, g_degMidtone);
+        SetLightShadowStrength(plight, g_gShadow);
+        SetLightShadowAngle(plight, g_degShadow);
+        SetLightFallOff(plight, &D_00275690);
+        STRUCT_OFFSET(plight->pvtlo, 0x84, PFNLIGHTVEC)(plight, &D_00275680);
+    }
+    if (g_grfdfl & 4)
+    {
+        plight = (LIGHT *)PloNew((CID)0x51, psw, 0, (OID)0x201, -1);
+        SetLightKind(plight, (LIGHTK)2);
+        SetLightHighlightColor(plight, &g_vecHighlight);
+        SetLightHighlightAngle(plight, g_degHighlight);
+        SetLightMidtoneStrength(plight, g_gMidtone);
+        SetLightMidtoneAngle(plight, g_degMidtone);
+        SetLightShadowStrength(plight, g_gShadow);
+        SetLightShadowAngle(plight, g_degShadow);
+        SetLightDirection(plight, &D_00275670);
+        SetLightFallOff(plight, &D_00275698);
+        STRUCT_OFFSET(plight->pvtlo, 0x84, PFNLIGHTVEC)(plight, &D_00275680);
+    }
+    if (g_grfdfl & 8)
+    {
+        plight = (LIGHT *)PloNew((CID)0x51, psw, 0, (OID)0x201, -1);
+        SetLightKind(plight, (LIGHTK)3);
+        SetLightHighlightColor(plight, &g_vecHighlight);
+        SetLightHighlightAngle(plight, g_degHighlight);
+        SetLightMidtoneStrength(plight, g_gMidtone);
+        SetLightMidtoneAngle(plight, g_degMidtone);
+        SetLightShadowStrength(plight, g_gShadow);
+        SetLightShadowAngle(plight, g_degShadow);
+        SetLightDirection(plight, &D_00275670);
+        SetLightFallOff(plight, &D_002756A0);
+        STRUCT_OFFSET(plight->pvtlo, 0x84, PFNLIGHTVEC)(plight, &D_00275680);
+    }
+}
 
 /**
  * @todo Rename.
