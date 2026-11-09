@@ -1,4 +1,14 @@
 #include <rip.h>
+#include <wr.h>
+#include <bsp.h>
+
+typedef void (*PFNRIP)(RIP *);
+typedef void (*PFNINITRIP)(RIP *, VECTOR *, float, SO *);
+
+extern qword D_0026B710;
+extern qword D_0026B720;
+extern qword D_0026B5B0;
+extern qword D_0026B5C0;
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", PripgNew__FP2SW5RIPGT);
 
@@ -42,7 +52,26 @@ void AddRipRef(RIP *prip)
     prip->cref++;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", ReleaseRip__FP3RIP);
+void ReleaseRip(RIP *prip)
+{
+    if (--prip->cref == 0)
+    {
+        PFNRIP pfn = STRUCT_OFFSET(STRUCT_OFFSET(prip, 0, char *), 8, PFNRIP);
+        if (pfn)
+            pfn(prip);
+        MQ *pmqFirst = STRUCT_OFFSET(prip, 0x118, MQ *);
+        if (pmqFirst)
+        {
+            STRUCT_OFFSET(prip, 0x118, MQ *) = 0;
+            for (MQ *pmq = pmqFirst; pmq != 0; pmq = pmq->pmqNext)
+            {
+                pmq->pfnmq(pmq->pvContext, MSGID_rip_removed, prip);
+            }
+            FreeSwMqList(g_psw, pmqFirst);
+        }
+        FreeSlotheapPv(&STRUCT_OFFSET(prip->pripg->psw, 0x1b2c, SLOTHEAP), prip);
+    }
+}
 
 void TouchRip(RIP *prip, int fTouching)
 {
@@ -70,11 +99,53 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", FBounceRip__FP3RIPP2SOP6VECTORT2);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", ProjectRipTransform__FP3RIPf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", UpdateRip__FP3RIPf);
+void UpdateRip(RIP *prip, float dt)
+{
+    if (STRUCT_OFFSET(prip, 0x1c, float) < g_clock.t - STRUCT_OFFSET(prip, 0x18, float))
+    {
+        RemoveRip(prip);
+    }
+    else if (STRUCT_OFFSET(prip->pripg, 0x550, int) != 1)
+    {
+        SO *pso = STRUCT_OFFSET(prip, 0x24, SO *);
+        if (pso != 0 && STRUCT_OFFSET(pso, 0x3f8, BSP *) != 0)
+        {
+            int fInBsp = 0;
+            if (FIsLoInWorld(pso))
+            {
+                if (PbspPointInBspQuick(&STRUCT_OFFSET(prip, 0x80, VECTOR), STRUCT_OFFSET(STRUCT_OFFSET(prip, 0x24, SO *), 0x3f8, BSP *)))
+                    fInBsp = 1;
+            }
+            typedef void (*PFNUP)(RIP *, int);
+            STRUCT_OFFSET(STRUCT_OFFSET(prip, 0, char *), 0x18, PFNUP)(prip, fInBsp);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", FRenderRipPosMat__FP3RIPP2CMP6VECTORP7MATRIX3);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderRip__FP3RIPP2CM);
+void RenderRip(RIP *prip, CM *pcm)
+{
+    VECTOR pos;
+    MATRIX3 mat;
+    VECTOR *ppos;
+    MATRIX3 *pmat;
+    if (STRUCT_OFFSET(prip, 0x114, WR *))
+    {
+        WarpWrTransform(STRUCT_OFFSET(prip, 0x114, WR *), 50.0f, &STRUCT_OFFSET(prip, 0x80, VECTOR), &STRUCT_OFFSET(prip, 0x50, MATRIX3), &pos, &mat, 0);
+        ppos = &pos;
+        pmat = &mat;
+    }
+    else
+    {
+        ppos = &STRUCT_OFFSET(prip, 0x80, VECTOR);
+        pmat = &STRUCT_OFFSET(prip, 0x50, MATRIX3);
+    }
+    if (!FRenderRipPosMat(prip, pcm, ppos, pmat))
+    {
+        RemoveRip(prip);
+    }
+}
 
 void SubscribeRipObject(RIP *prip, LO *ploTarget)
 {
@@ -215,9 +286,35 @@ void HandleTrailMessage(TRAIL *ptrail, MSGID msgid, void *pv)
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitFireball__FP8FIREBALLP6VECTORfP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", UpdateFireball__FP8FIREBALLf);
+void UpdateFireball(FIREBALL *pfireball, float dt)
+{
+    UpdateRip(pfireball, dt);
+    float dtAge = g_clock.t - STRUCT_OFFSET(pfireball, 0x18, float) - 0.15f;
+    if (dtAge >= 0.0f && dtAge < dt)
+    {
+        float gScale = -STRUCT_OFFSET(pfireball, 0x38, float);
+        RIP *prip = PripNewRipg((RIPT)12, 0);
+        if (prip)
+        {
+            STRUCT_OFFSET(STRUCT_OFFSET(prip, 0, char *), 0, PFNINITRIP)(prip, &STRUCT_OFFSET(pfireball, 0x80, VECTOR), gScale, 0);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitSmokecloud__FP10SMOKECLOUDP6VECTORfP2SO);
+// @todo 40% matched (store/load scheduling differs)
+#ifdef SKIP_ASM
+void InitSmokecloud(SMOKECLOUD *psmokecloud, VECTOR *ppos, float gScale, SO *psoTouch)
+{
+    InitRip(psmokecloud, ppos, gScale, psoTouch);
+    STRUCT_OFFSET(psmokecloud, 0x1c, float) = 3.0f;
+    STRUCT_OFFSET(psmokecloud, 0x20, int) = STRUCT_OFFSET(g_psw, 0x1d0c, int);
+    STRUCT_OFFSET(psmokecloud, 0x34, float) = STRUCT_OFFSET(psmokecloud, 0x30, float) * 0.25f;
+    STRUCT_OFFSET(psmokecloud, 0x40, qword) = D_0026B5B0;
+    STRUCT_OFFSET(psmokecloud, 0xb0, float) = -1.0f;
+    STRUCT_OFFSET(psmokecloud, 0xc0, qword) = D_0026B5C0;
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitSmoketrail__FP10SMOKETRAILP6VECTORfP2SO);
 
@@ -326,13 +423,35 @@ void UpdateStuck(STUCK *pstuck, float dt)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderStuck__FP5STUCKP2CM);
+void RenderStuck(STUCK *pstuck, CM *pcm)
+{
+    VECTOR pos;
+    MATRIX3 mat;
+    ConvertAloPos(STRUCT_OFFSET(pstuck, 0x120, ALO *), 0, &STRUCT_OFFSET(pstuck, 0x80, VECTOR), &pos);
+    ConvertAloMat(STRUCT_OFFSET(pstuck, 0x120, ALO *), 0, &STRUCT_OFFSET(pstuck, 0x50, MATRIX3), &mat);
+    FRenderRipPosMat(pstuck, pcm, &pos, &mat);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", PostLeafEmit__FP4LEAFP5EMITB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", ProjectLeafTransform__FP4LEAFf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", FBounceLeaf__FP4LEAFP2SOP6VECTORT2);
+int FBounceLeaf(LEAF *pleaf, SO *psoOther, VECTOR *ppos, VECTOR *pnormal)
+{
+    if (FIsBasicDerivedFrom(STRUCT_OFFSET(psoOther, 0x50, BASIC *), CID_MISSILE))
+        return 0;
+    if (FIsBasicDerivedFrom(STRUCT_OFFSET(psoOther, 0x50, BASIC *), CID_STEP))
+        return 0;
+    STUCK *pstuck;
+    CreateStuck(pleaf, STRUCT_OFFSET(pleaf, 0x20, ALO *), psoOther, ppos, pnormal, &pstuck);
+    if (pstuck)
+    {
+        MATRIX3 *pmat = &STRUCT_OFFSET(pstuck, 0x50, MATRIX3);
+        ConvertAloMat(0, (ALO *)psoOther, pmat, pmat);
+    }
+    RemoveRip(pleaf);
+    return 1;
+}
 
 int FFilterFlameObjects(void *pv, SO *pso)
 {
@@ -367,7 +486,16 @@ int FBounceShrapnel(SHRAPNEL *pshrapnel, SO *pso, VECTOR *pposCenter, VECTOR *pn
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderShrapnel__FP8SHRAPNELP2CM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", InitGlint__FP5GLINTP6VECTORfP2SO);
+void InitGlint(GLINT *pglint, VECTOR *ppos, float gScale, SO *psoTouch)
+{
+    InitRip(pglint, ppos, gScale, psoTouch);
+    float g = 0.5f;
+    SW *psw = g_psw;
+    STRUCT_OFFSET(pglint, 0x1c, float) = g;
+    STRUCT_OFFSET(pglint, 0x20, int) = STRUCT_OFFSET(psw, 0x1d30, int);
+    STRUCT_OFFSET(pglint, 0x40, qword) = D_0026B710;
+    STRUCT_OFFSET(pglint, 0x30, qword) = D_0026B720;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderGlint__FP5GLINTP2CM);
 
@@ -384,7 +512,19 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", LaunchMatch__FP5MATCH);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", ProjectMatchTransform__FP5MATCHf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", UpdateMatch__FP5MATCHf);
+void UpdateMatch(MATCH *pmatch, float dt)
+{
+    if (STRUCT_OFFSET(pmatch, 0x18, float) <= g_clock.t && STRUCT_OFFSET(pmatch, 0x134, int) != 0)
+    {
+        LaunchMatch(pmatch);
+    }
+    if (STRUCT_OFFSET(pmatch, 0x1c, float) < g_clock.t - STRUCT_OFFSET(pmatch, 0x18, float))
+    {
+        void *pv = STRUCT_OFFSET(pmatch, 0x20, void *);
+        ((void (*)(void *))STRUCT_OFFSET(STRUCT_OFFSET(pv, 0, char *), 0x18, int))(pv);
+        RemoveRip(pmatch);
+    }
+}
 
 void RenderMatch(MATCH *pmatch, CM *pcm)
 {
@@ -399,7 +539,33 @@ void PostRemitEmit(REMIT *premit, EMITB *pemitb)
     STRUCT_OFFSET(premit, 0x124, float) = STRUCT_OFFSET(pemitb, 0x1f4, float);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", UpdateRemit__FP5REMITf);
+void UpdateRemit(REMIT *premit, float dt)
+{
+    UpdateRip(premit, dt);
+    if (STRUCT_OFFSET(premit, 0x120, int) != 0)
+    {
+        float t = STRUCT_OFFSET(premit, 0x128, float) + dt * STRUCT_OFFSET(premit, 0x124, float);
+        STRUCT_OFFSET(premit, 0x128, float) = t;
+        if (t >= 1.0f)
+        {
+            do
+            {
+                struct
+                {
+                    int msgid;
+                    int apad[7];
+                    qword pos;
+                    int apad2[8];
+                } msg;
+                msg.msgid = 4;
+                msg.pos = STRUCT_OFFSET(premit, 0x80, qword);
+                typedef void (*PFNH)(void *, void *);
+                STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(premit, 0x120, char *), 0, char *), 0x7c, PFNH)(STRUCT_OFFSET(premit, 0x120, void *), &msg);
+                STRUCT_OFFSET(premit, 0x128, float) -= 1.0f;
+            } while (STRUCT_OFFSET(premit, 0x128, float) >= 1.0f);
+        }
+    }
+}
 
 JUNK_ADDIU(10);
 JUNK_WORD(0x7C450000);

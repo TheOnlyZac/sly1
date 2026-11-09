@@ -396,6 +396,11 @@ void RemoveRip(RIP *prip);
 
 void AddRipRef(RIP *prip);
 
+/**
+ * @brief Drops a reference to a rip; on the last one it runs the release hook, notifies and frees its message queue entries and frees the rip.
+ * @param prip Rip.
+ * @note Vtable slot 8 and the MQ list at +0x118 are inferred; the message sent is MSGID_rip_removed.
+ */
 void ReleaseRip(RIP *prip);
 
 void TouchRip(RIP *prip, int fTouching);
@@ -412,10 +417,20 @@ int FBounceRip(RIP *prip, SO *psoOther, VECTOR *ppos, VECTOR *pnormal);
 
 void ProjectRipTransform(RIP *prip, float dt);
 
+/**
+ * @brief Base per-frame update for a rip; removes it when expired, otherwise calls the virtual update with whether it is inside the BSP.
+ * @param prip Rip.
+ * @param dt Time step (unused).
+ */
 void UpdateRip(RIP *prip, float dt);
 
 int FRenderRipPosMat(RIP *prip, CM *pcm, VECTOR *ppos, MATRIX3 *pmat);
 
+/**
+ * @brief Base render for a rip; applies the warp transform if present, renders and removes the rip when rendering reports it is done.
+ * @param prip Rip.
+ * @param pcm Camera.
+ */
 void RenderRip(RIP *prip, CM *pcm);
 
 /**
@@ -555,6 +570,12 @@ void HandleTrailMessage(TRAIL *ptrail, MSGID msgid, void *pv);
 
 void InitFireball(FIREBALL *pfireball, VECTOR *ppos, float gScale, SO *psoTouch);
 
+/**
+ * @brief Updates a fireball; just after 0.15s of age it spawns a RIPT 12 rip (probably a trail/smoke puff) at its position.
+ * @param pfireball Fireball.
+ * @param dt Time step.
+ * @note The spawned type and the scale sign flip are inferred.
+ */
 void UpdateFireball(FIREBALL *pfireball, float dt);
 
 void InitSmokecloud(SMOKECLOUD *psmokecloud, VECTOR *ppos, float gScale, SO *psoTouch);
@@ -663,12 +684,25 @@ int FBounceFlying(FLYING *pflying, SO *psoOther, VECTOR *ppos, VECTOR *pnormal);
  */
 void UpdateStuck(STUCK *pstuck, float dt);
 
+/**
+ * @brief Renders a stuck particle by converting its position and matrix from its attached object to world space.
+ * @param pstuck Stuck particle.
+ * @param pcm Camera.
+ */
 void RenderStuck(STUCK *pstuck, CM *pcm);
 
 void PostLeafEmit(LEAF *pleaf, EMITB *pemitb);
 
 void ProjectLeafTransform(LEAF *pleaf, float dt);
 
+/**
+ * @brief Bounce test for a leaf; leaves stick to anything except missiles and STEP figures, then the leaf is removed.
+ * @param pleaf Leaf particle.
+ * @param psoOther Object hit.
+ * @param ppos Hit position.
+ * @param pnormal Hit normal.
+ * @return Non-zero if the leaf stuck and was removed.
+ */
 int FBounceLeaf(LEAF *pleaf, SO *psoOther, VECTOR *ppos, VECTOR *pnormal);
 
 /**
@@ -706,6 +740,14 @@ int FBounceShrapnel(SHRAPNEL *pshrapnel, SO *psoOther, VECTOR *ppos, VECTOR *pno
 
 void RenderShrapnel(SHRAPNEL *pshrapnel, CM *pcm);
 
+/**
+ * @brief Initializes a glint particle (calls InitRip then sets type specific defaults).
+ * @param pglint Particle to initialize.
+ * @param ppos Starting position.
+ * @param gScale Scale passed through to InitRip.
+ * @param psoTouch Object the particle touches (passed through to InitRip).
+ * @note Field meanings and the constants set here are guesses/unnamed.
+ */
 void InitGlint(GLINT *pglint, VECTOR *ppos, float gScale, SO *psoTouch);
 
 void RenderGlint(GLINT *pglint, CM *pcm);
@@ -724,6 +766,11 @@ void LaunchMatch(MATCH *pmatch);
 
 void ProjectMatchTransform(MATCH *pmatch, float dt);
 
+/**
+ * @brief Updates a match; launches it when its start time arrives and removes it when its lifetime is over.
+ * @param pmatch Match particle.
+ * @param dt Time step (unused).
+ */
 void UpdateMatch(MATCH *pmatch, float dt);
 
 /**
@@ -741,6 +788,12 @@ void RenderMatch(MATCH *pmatch, CM *pcm);
  */
 void PostRemitEmit(REMIT *premit, EMITB *pemitb);
 
+/**
+ * @brief Updates a remit particle; accumulates time and sends a message (id 4 with its position) to its target object for every whole unit reached.
+ * @param premit Remit particle.
+ * @param dt Time step.
+ * @note Meaning of the message and fields +0x120 (target), +0x124 (rate), +0x128 (accumulator) are guesses.
+ */
 void UpdateRemit(REMIT *premit, float dt);
 
 #endif // RIP_H
