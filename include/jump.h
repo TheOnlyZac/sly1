@@ -36,6 +36,21 @@ void UpdateJtActiveJump(JT *pjt, JOY *pjoy);
 
 int FCheckJtSingleEdge(JT *pjt, SO *psoOther, EDGE *pedge, VECTOR *pnormal);
 
+/**
+ * @brief Checks whether an edge with the given normal can be grabbed.
+ *
+ * Builds a coordinate frame at the edge and sweeps 11 pairs of probe points (from a table of
+ * offsets) through the nearby objects. A hit in either of the first two probes rejects the edge.
+ * Later hits only count when the z component of the first clipped normal is above 0.7.
+ *
+ * @param pjt Sly.
+ * @param pposEdge Position of the edge.
+ * @param pnormal Normal of the edge.
+ * @return 1 if at least two of the later probes count as hits, otherwise 0.
+ *
+ * @note The probe table layout, the object lists read from the JT and what the 0.7 threshold means are
+ * inferred from the asm.
+ */
 int FCheckJtEdgeNormal(JT *pjt, VECTOR *pposEdge, VECTOR *pnormal);
 
 int FCheckJtEdgeGrab(JT *pjt, SO *psoOther, VECTOR *pposEdge, XPK xpk, void *pv, VECTOR *pnormal);
