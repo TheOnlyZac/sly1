@@ -11,8 +11,10 @@
 #include <game.h>
 #include <joy.h>
 #include <wipe.h>
+#include <oid.h>
 
 struct SHD; // Forward declaration.
+SHD *PshdFindShader(OID oid);
 class CTextEdge; // Forward declaration
 
 // MARK: Blot
@@ -327,6 +329,15 @@ void RepositionBlot(BLOT *pblot);
 void RepositionBlotDependents(BLOT *pblot);
 
 extern BLOT *D_002486B0[];
+extern float D_00274448;
+extern float D_0027444C;
+extern CTextEdge D_00274450;
+extern char D_0024CEF0[];
+extern float D_0027446C;
+extern float D_00274470;
+extern CTextEdge D_00274488;
+extern char *D_00269988;
+extern int D_00275BF0;
 extern char D_0024CEE0[];
 extern CTextEdge D_002743D0;
 extern CTextEdge D_002743F0;
@@ -536,11 +547,15 @@ void FUN_001ad970(BLOT *pblot, uint blots);
 
 void DrawLetterbox(LETTERBOX *pletterbox);
 
-void FUN_001adc60(undefined8 param_1);
+/**
+ * @brief Post-load setup for the logo blot (guess: PostLogoLoad): font clone, text edge, looks up shader OID 0x493 and sizes the blot to it, or falls back to text.
+ * @param plogo Logo blot.
+ */
+void FUN_001adc60(LOGO *plogo);
 
 void DrawLogo(LOGO *ploto);
 
-void FUN_001adf28(BLOT *pblot);
+extern "C" void FUN_001adf28(ATTRACT *pattract);
 
 extern "C" void FUN_001adff0(BLOT *pblot);
 
@@ -551,6 +566,11 @@ extern "C" void FUN_001adff0(BLOT *pblot);
  */
 void FUN_001ae130(BLOT *pblot, BLOTS blots);
 
+/**
+ * @brief Per-frame update for the attract blot: refreshes joypad/idle flags and rebuilds the text when they change.
+ * @param pattract Attract blot.
+ * @note D_00275BF0 and D_00269988 are unidentified globals.
+ */
 void UpdateAttract(ATTRACT *pattract);
 
 void DrawLineScreen(uint x1, uint y1, uint z1, uint x2, uint y2, uint z2, RGBA *rgba, int fDepthTest);

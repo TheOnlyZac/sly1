@@ -545,11 +545,49 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad970);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawLetterbox__FP9LETTERBOX);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001adc60);
+void FUN_001adc60(LOGO *plogo)
+{
+    PostBlotLoad(plogo);
+    plogo->pfont = plogo->pfont->PfontClone(D_00274448, D_0027444C);
+    if (FUN_0015c1c0(2))
+    {
+        plogo->pte = &D_00274450;
+        STRUCT_OFFSET(plogo->pte, 0, CFont *) = FUN_0015c1c0(2);
+    }
+    plogo->pshd = PshdFindShader((OID)0x493);
+    if (plogo->pshd)
+        ResizeBlot(plogo, 366.75f, 165.75f);
+    else
+        plogo->pvtblot->pfnSetBlotAchzDraw(plogo, D_0024CEF0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawLogo__FP4LOGO);
 
+/// @todo ~85% matched (statement scheduling differs around the fReshow store).
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001adf28);
+#ifdef SKIP_ASM
+void FUN_001adf28(ATTRACT *pattract)
+{
+    PostBlotLoad(pattract);
+    pattract->pfont = pattract->pfont->PfontClone(D_0027446C, D_00274470);
+    if (FUN_0015c1c0(2))
+    {
+        pattract->pte = &D_00274488;
+        STRUCT_OFFSET(pattract->pte, 0, CFont *) = FUN_0015c1c0(2);
+    }
+    int fJoy = (g_joy.joys == 3);
+    pattract->fReshow = 0;
+    pattract->fJoyValid = fJoy;
+    int f = 0;
+    if (D_00269988)
+    {
+        if (STRUCT_OFFSET(D_00269988, 0xC, float) != 0.0f)
+            f = 1;
+    }
+    pattract->fReshow = f;
+    FUN_001adff0(pattract);
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001adff0);
 
@@ -564,7 +602,26 @@ void FUN_001ae130(BLOT *pblot, BLOTS blots)
     SetBlotBlots(pblot, blots);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateAttract__FP7ATTRACT);
+void UpdateAttract(ATTRACT *pattract)
+{
+    if (D_00275BF0 == 1)
+    {
+        int fJoy = (g_joy.joys == 3);
+        int f = 0;
+        if (D_00269988)
+        {
+            if (STRUCT_OFFSET(D_00269988, 0xC, float) != 0.0f)
+                f = 1;
+        }
+        if (!fJoy != !pattract->fJoyValid || !f != !pattract->fReshow)
+        {
+            pattract->fJoyValid = fJoy;
+            pattract->fReshow = f;
+            FUN_001adff0(pattract);
+        }
+    }
+    UpdateBlot(pattract);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawAttract__FP7ATTRACT);
 
