@@ -1,8 +1,14 @@
 #include <hide.h>
 #include <dl.h>
 #include <jt.h>
+#include <memory.h>
+#include <basic.h>
+#include <mat.h>
 
 // Float constants in .rodata, both are FLT_MAX.
+extern DLI *s_pdliFirst;
+extern MATRIX3 g_matIdentity;
+extern VECTOR D_00248D30;
 extern float D_0024A794;
 extern float D_0024A798;
 
@@ -117,7 +123,18 @@ void InitHbsk(HBSK *phbsk)
     STRUCT_OFFSET(phbsk, 0x568, float) = 300.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", LoadHbskFromBrx__FP4HBSKP18CBinaryInputStream);
+void LoadHbskFromBrx(HBSK *phbsk, CBinaryInputStream *pbis)
+{
+    LoadSoFromBrx(phbsk, pbis);
+    if (STRUCT_OFFSET(phbsk, 0x224, void *) == NULL)
+        STRUCT_OFFSET(phbsk, 0x224, void *) = PvAllocSwClearImpl(0xC0);
+
+    STRUCT_OFFSET(STRUCT_OFFSET(phbsk, 0x224, void *), 0xB0, uint) |= 1;
+    void *pv = STRUCT_OFFSET(phbsk, 0x224, void *);
+    STRUCT_OFFSET(pv, 0x00, qword) = STRUCT_OFFSET(&g_matIdentity, 0x00, qword);
+    STRUCT_OFFSET(pv, 0x10, qword) = STRUCT_OFFSET(&g_matIdentity, 0x10, qword);
+    STRUCT_OFFSET(pv, 0x20, qword) = STRUCT_OFFSET(&g_matIdentity, 0x20, qword);
+}
 
 void OnHbskAdd(HBSK *phbsk)
 {
@@ -146,11 +163,65 @@ int FIgnoreHbskIntersection(HBSK *phbsk, SO *psoOther)
     return FIgnoreSoIntersection(phbsk, psoOther);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/hide", PresetHbskAccel__FP4HBSKf);
+void PresetHbskAccel(HBSK *phbsk, float dt)
+{
+    PresetSoAccel(phbsk, dt);
+    if (STRUCT_OFFSET(phbsk, 0x550, int) == HBSKS_Available)
+    {
+        MATRIX3 matUpright;
+        TiltMatUpright(&STRUCT_OFFSET(phbsk, 0xD0, MATRIX3), NULL, &matUpright);
+        AccelSoTowardMatSpring(phbsk, &matUpright, STRUCT_OFFSET(phbsk, 0x214, CLQ *), &D_00248D30, STRUCT_OFFSET(phbsk, 0x218, CLQ *), dt);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", SetHbskHbsks__FP4HBSK5HBSKS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", CdartStuckHbsk__FP4HBSK);
+#ifdef SKIP_ASM
+/**
+ * @todo Loop body matches, the iterator setup is scheduled differently (22 differing lines).
+ * Iterates the child list with a DLI that links itself into the global s_pdliFirst chain.
+ */
+struct DLIX : DLI
+{
+    inline DLIX(DL *pdl)
+    {
+        m_pdl = pdl;
+        m_ppv = (void **)pdl;
+        m_pdliNext = s_pdliFirst;
+        s_pdliFirst = this;
+        m_ibDle = pdl->ibDle;
+    }
+    inline ~DLIX() { s_pdliFirst = m_pdliNext; }
+    inline void *PvFirst()
+    {
+        void *pv = m_pdl->head;
+        m_ppv = (void **)((char *)pv + m_ibDle);
+        return pv;
+    }
+    inline void *PvNext()
+    {
+        void *pv = *m_ppv;
+        m_ppv = (void **)((char *)pv + m_ibDle);
+        return pv;
+    }
+};
+
+int CdartStuckHbsk(HBSK *phbsk)
+{
+    int cdart = 0;
+    DLIX dli((DL *)((char *)phbsk + 0x34));
+    for (void *pv = dli.PvFirst(); pv; pv = dli.PvNext())
+    {
+        if (FIsBasicDerivedFrom((BASIC *)pv, (CID)70))
+        {
+            if ((uint)(STRUCT_OFFSET(pv, 0x550, int) - 3) <= 1)
+                cdart++;
+        }
+    }
+    return cdart;
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/hide", PdartOldestHbskStuck__FP4HBSK);
 

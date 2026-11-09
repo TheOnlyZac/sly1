@@ -149,6 +149,14 @@ void GetHpntClosestHidePos(HPNT *phpnt, VECTOR *ppos, float *pradTarget);
  */
 void InitHbsk(HBSK *phbsk);
 
+/**
+ * @brief Loads a hide basket from a BRX stream.
+ *
+ * Also allocates its extra block if it has none, sets a flag in it and resets its matrix to identity.
+ *
+ * @param phbsk Hide basket to load.
+ * @param pbis Stream to read from.
+ */
 void LoadHbskFromBrx(HBSK *phbsk, CBinaryInputStream *pbis);
 
 /**
@@ -180,6 +188,14 @@ void CloneHbsk(HBSK *phbsk, HBSK *phbskBase);
  */
 int FIgnoreHbskIntersection(HBSK *phbsk, SO *psoOther);
 
+/**
+ * @brief Presets the basket's acceleration for the frame.
+ *
+ * While the basket is available, it also springs toward an upright orientation.
+ *
+ * @param phbsk Hide basket.
+ * @param dt Time step.
+ */
 void PresetHbskAccel(HBSK *phbsk, float dt);
 
 void SetHbskHbsks(HBSK *phbsk, HBSKS hbsks);
