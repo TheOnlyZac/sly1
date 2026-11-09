@@ -13,6 +13,7 @@
 
 extern BLOT g_binoc;
 void FUN_001d4c98(JT *pjt);
+extern "C" void FUN_001c4618(STEP *pstep, float f, int a, int b, int c, int *pd);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", InitJt__FP2JT);
 
@@ -36,7 +37,35 @@ INCLUDE_ASM("asm/nonmatchings/P2/jt", PresetJtAccel__FP2JTf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", AdjustJtNewXp__FP2JTP2XPi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", AdjustJtDz__FP2JTiP2DZif);
+extern float D_002637BC;
+extern float D_002637C0;
+
+void AdjustJtDz(JT *pjt, GRFADJ grfadj, DZ *pdz, int ixpd, float dt)
+{
+    if (pjt->jts == JTS_Sidestep)
+    {
+        if (grfadj & 0x10)
+        {
+            float g;
+            if (grfadj & 1)
+            {
+                g = -STRUCT_OFFSET(pjt, 0x368, float) * STRUCT_OFFSET(pjt, 0x358, float) * g_clock.dt * D_002637BC;
+            }
+            else
+            {
+                g = -STRUCT_OFFSET(pjt, 0x368, float) * STRUCT_OFFSET(pjt, 0x358, float) * D_002637C0;
+            }
+            if (g < STRUCT_OFFSET(pdz, 0x30, float))
+            {
+                STRUCT_OFFSET(pdz, 0x30, float) = g;
+            }
+        }
+    }
+    else
+    {
+        AdjustStepDzBase(pjt, grfadj, pdz, ixpd);
+    }
+}
 
 extern "C" void HandleJtGrfjtsc(JT *pjt)
 {
@@ -65,7 +94,29 @@ extern "C" void HandleJtGrfjtsc(JT *pjt)
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtInternalXps__FP2JT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", FCheckJtXpBase__FP2JTP2XPi);
+extern float D_00274AD0[];
+
+int FCheckJtXpBase(JT *pjt, XP *pxp, int ixpd)
+{
+    if (pjt->jts != JTS_Max)
+    {
+        return FCheckStepXpBase(pjt, pxp, ixpd);
+    }
+    if (STRUCT_OFFSET(pxp, 0x88, float) * D_00274AD0[ixpd] < 0.7f)
+    {
+        return 0;
+    }
+    int n = STRUCT_OFFSET(pxp, 0x9c, int);
+    if (n < 7)
+    {
+        if (n < 4)
+        {
+            return 0;
+        }
+        return ixpd == 0;
+    }
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", AdjustJtXpVelocity__FP2JTP2XPi);
 
@@ -81,7 +132,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/jt", FMatchJtXmg__FP2JTP3XMGP6ACTADJ);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", UpdateJtStand__FP2JT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", ThrowJt__FP2JTP6VECTORff);
+void ThrowJt(JT *pjt, VECTOR *pposTarget, float radVert, float gSpin)
+{
+    VECTOR posLaunch;
+    VECTOR vecMuzzle;
+
+    STRUCT_OFFSET(&posLaunch, 0, qword) = STRUCT_OFFSET(pjt, 0x140, qword);
+    posLaunch.z -= 75.0f;
+    FCalculateMuzzleVelocity(&posLaunch, pposTarget, radVert, &vecMuzzle, pjt);
+    ((void (*)(JT *, VECTOR *))STRUCT_OFFSET(pjt->pvtso, 0x90, void *))(pjt, &vecMuzzle);
+    if (pjt->jts != JTS_Sidestep)
+    {
+        SetJtJts(pjt, JTS_Jump, JTBS_Jump_Thrown);
+        STRUCT_OFFSET(pjt, 0x226c, float) *= gSpin;
+        if (gSpin == 0.0f)
+        {
+            STRUCT_OFFSET(pjt, 0x2498, int) = 0;
+        }
+    }
+}
 
 void UnhookJt(JT *pjt)
 {
@@ -111,7 +180,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/jt", CalculateJtToolSpin__FP2JTfP7MATRIX3);
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", RenderJtAll__FP2JTP2CMP2RO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00172530);
+void FUN_00172530(JT *pjt)
+{
+    UpdateStepXfWorld(pjt);
+    if (pjt->jts != JTS_Pipe || STRUCT_OFFSET(pjt, 0x239c, int) != 7)
+    {
+        int a = STRUCT_OFFSET(pjt, 0x610, int);
+        if (a != 0 && STRUCT_OFFSET(pjt, 0x614, int) != 0)
+        {
+            FUN_001c4618(pjt, 6.0f, a, a, STRUCT_OFFSET(pjt, 0x620, int), &STRUCT_OFFSET(pjt, 0x1190, int));
+            FUN_001c4618(pjt, 6.0f, STRUCT_OFFSET(pjt, 0x614, int), STRUCT_OFFSET(pjt, 0x614, int), STRUCT_OFFSET(pjt, 0x624, int), &STRUCT_OFFSET(pjt, 0x1290, int));
+            return;
+        }
+    }
+    STRUCT_OFFSET(pjt, 0x11e0, int) = 0;
+    STRUCT_OFFSET(pjt, 0x12e0, int) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_001725e0);
 

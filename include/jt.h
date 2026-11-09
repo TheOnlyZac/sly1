@@ -323,6 +323,56 @@ void LoadJtFromBrx(JT *pjt, CBinaryInputStream *pbis);
  */
 void FUN_00172b08(JT *pjt);
 
+struct DZ;
+
+/**
+ * @brief JT override of AdjustStepDz. In the sidestep state with flag 0x10 set, clamps the DZ value at 0x30 to a speed-scaled limit; otherwise defers to AdjustStepDzBase.
+ *
+ * @param pjt Pointer to JT instance.
+ * @param grfadj Adjust flags.
+ * @param pdz Delta-Z (DZ) being adjusted.
+ * @param ixpd XP index.
+ * @param dt Frame delta time (unused).
+ *
+ * @note Field meanings (0x358/0x368 on JT, 0x30 on DZ) and the two float constants are unnamed guesses.
+ */
+void AdjustJtDz(JT *pjt, GRFADJ grfadj, DZ *pdz, int ixpd, float dt);
+
+struct XP;
+
+/**
+ * @brief JT override of FCheckStepXpBase: in state 13 applies a custom check, otherwise defers to FCheckStepXpBase.
+ *
+ * @param pjt Pointer to JT instance.
+ * @param pxp Contact (XP) to check.
+ * @param ixpd XP index.
+ * @return Nonzero if the XP passes the check.
+ *
+ * @note Semantics inferred from the asm only; state 13 (JTS_Max) and the XP fields at 0x88/0x9c are guesses.
+ */
+int FCheckJtXpBase(JT *pjt, XP *pxp, int ixpd);
+
+/**
+ * @brief Throws JT toward a target position: computes the muzzle velocity from a point 75 units below JT, applies it, and enters the thrown jump state.
+ *
+ * @param pjt Pointer to JT instance.
+ * @param pposTarget Target position.
+ * @param radVert Launch angle (radians) passed to FCalculateMuzzleVelocity.
+ * @param gSpin Spin multiplier; zero also clears the field at 0x2498.
+ *
+ * @note Parameter meanings are inferred from the callee; the vtable call uses slot 0x90 (SetSoVelocityVec).
+ */
+void ThrowJt(JT *pjt, VECTOR *pposTarget, float radVert, float gSpin);
+
+/**
+ * @brief Updates the JT world transform, then runs the unnamed FUN_001c4618 step on two extremities (fields 0x610/0x614) unless JT is in a pipe/edge sub-state.
+ *
+ * @param pjt Pointer to JT instance.
+ *
+ * @note Name and meaning are unknown (possibly hands/feet limit update); purely a guess.
+ */
+void FUN_00172530(JT *pjt);
+
 extern JT *g_pjt;
 
 #endif // JT_H
