@@ -10,7 +10,18 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateBlots__Fv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", ForceHideBlots__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", ResetBlots__Fv);
+void ResetBlots()
+{
+    int i = 0x24;
+    BLOT **ppblot = D_002486B0;
+    do
+    {
+        BLOT *pblot = *ppblot;
+        ppblot++;
+        i--;
+        pblot->pvtblot->pfnOnBlotReset(pblot);
+    } while (i >= 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", RenderBlots__Fv);
 
@@ -71,23 +82,61 @@ void SetBlotDtDisappear(BLOT *pblot, float dtDisappear)
     pblot->dtDisappear = dtDisappear;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", OnBlotReset__FP4BLOT);
+void OnBlotReset(BLOT *pblot)
+{
+    pblot->pvtblot->pfnSetBlotBlots(pblot, 0);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", ShowBlot__FP4BLOT);
+void ShowBlot(BLOT *pblot)
+{
+    switch (pblot->blots)
+    {
+    case BLOTS_Hidden:
+    case BLOTS_Disappearing:
+        pblot->pvtblot->pfnSetBlotBlots(pblot, BLOTS_Appearing);
+        break;
+    case BLOTS_Visible:
+        pblot->tBlots = *pblot->ptNow;
+        break;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", HideBlot__FP4BLOT);
+void HideBlot(BLOT *pblot)
+{
+    if (pblot->blots < BLOTS_Disappearing)
+    {
+        if (pblot->blots > BLOTS_Hidden)
+            pblot->pvtblot->pfnSetBlotBlots(pblot, BLOTS_Disappearing);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", SetBlotBlots__FP4BLOT5BLOTS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FIncludeBlotForPeg__FP4BLOTT0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", ResizeBlot__FP4BLOTff);
+void ResizeBlot(BLOT *pblot, float dx, float dy)
+{
+    if (0.0f <= dx)
+        pblot->width = dx;
+    if (0.0f <= dy)
+        pblot->height = dy;
+    RepositionBlot(pblot);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", RepositionBlot__FP4BLOT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", RepositionBlotDependents__FP4BLOT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", SetBlotClock__FP4BLOTPf);
+void SetBlotClock(BLOT *pblot, float *pt)
+{
+    if (pblot->ptNow != pt)
+    {
+        if (!pt)
+            pt = &g_clock.tReal;
+        pblot->tBlots = *pt;
+    }
+    pblot->ptNow = pt;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", PostCtrLoad__FP3CTR);
 
@@ -97,9 +146,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawCtr__FP3CTR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", RebuildCtrAchzDraw__FP3CTR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", DtVisibleCtr__FP3CTR);
+float DtVisibleCtr(CTR *pctr)
+{
+    float dt = 0.0f;
+    if (g_clock.fEnabled)
+        dt = 2.5f;
+    return dt;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ab600);
+void FUN_001ab600(BLOT *pblot)
+{
+    PostBlotLoad(pblot);
+    pblot->pfont = FUN_0015c1c0(2);
+    TIMER *ptimer = (TIMER *)pblot;
+    ptimer->nSecondsLast = -1;
+    ptimer->nTenthsLast = -1;
+    ptimer->dtThreshold = D_0024CD48;
+    ptimer->fStopped = 1;
+    SetTimerTimers(ptimer, TIMERS_Expired);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateTimer__FP5TIMER);
 
@@ -194,13 +259,38 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac888);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac910);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac990);
+void FUN_001ac990(BLOT *pblot, BLOTS blots)
+{
+    if (STRUCT_OFFSET(pblot, 0x260, int) && !blots)
+    {
+        STRUCT_OFFSET(pblot, 0x260, int) = 0;
+        SetBlotAchzDraw(pblot, STRUCT_OFFSET(pblot, 0x264, char *));
+        blots = BLOTS_Appearing;
+    }
+    SetBlotBlots(pblot, blots);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac9e0);
+int FUN_001ac9e0(BLOT *pblot, BLOT *pblotOther)
+{
+    int f = 0;
+    if (FIncludeBlotForPeg(pblot, pblotOther) || STRUCT_OFFSET(pblot, 0x260, int))
+        f = 1;
+    return f;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001aca30);
+void FUN_001aca30(BLOT *pblot)
+{
+    if (pblot->blots != BLOTS_Disappearing || !STRUCT_OFFSET(pblot, 0x260, int))
+        ShowBlot(pblot);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001aca68);
+void FUN_001aca68(BLOT *pblot)
+{
+    if (pblot->blots == BLOTS_Disappearing && STRUCT_OFFSET(pblot, 0x260, int))
+        STRUCT_OFFSET(pblot, 0x260, int) = 0;
+    else
+        HideBlot(pblot);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawTitle__FP5TITLE);
 
@@ -216,11 +306,35 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", render_level_info);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", render_hideout_world_info);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", SetTotalsBlots__FP6TOTALS5BLOTS);
+void SetTotalsBlots(TOTALS *ptotals, BLOTS blots)
+{
+    if (ptotals->fReshow)
+    {
+        if (blots == BLOTS_Hidden)
+        {
+            ptotals->fReshow = 0;
+            SetBlotAchzDraw(ptotals, &STRUCT_OFFSET(ptotals, 0x264, char));
+            blots = BLOTS_Appearing;
+        }
+    }
+    if (blots == BLOTS_Hidden)
+        STRUCT_OFFSET(ptotals, 0x464, int) = 0;
+    SetBlotBlots(ptotals, blots);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", ShowTotalsQMARK);
+void ShowTotals(TOTALS *ptotals)
+{
+    if (ptotals->blots != BLOTS_Disappearing || !ptotals->fReshow)
+        ShowBlot(ptotals);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", HideTotalsQMARK);
+void HideTotals(TOTALS *ptotals)
+{
+    if (ptotals->blots == BLOTS_Disappearing && ptotals->fReshow)
+        ptotals->fReshow = 0;
+    else
+        HideBlot(ptotals);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawTotals__FP6TOTALS);
 
@@ -230,7 +344,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad718);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad7b0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad940);
+void FUN_001ad940(BLOT *pblot)
+{
+    PostBlotLoad(pblot);
+    pblot->dtDisappear = 0.5f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad970);
 
@@ -258,7 +376,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae5e0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae758);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae7f8);
+void FUN_001ae7f8(BLOT *pblot, BLOTS blots)
+{
+    if (!blots)
+        STRUCT_OFFSET(pblot, 0x260, int) = 0;
+    SetBlotBlots(pblot, blots);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae820);
 

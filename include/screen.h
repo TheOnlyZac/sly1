@@ -261,22 +261,49 @@ void SetBlotDtVisible(BLOT *pblot, float dtVisible);
 
 void SetBlotDtDisappear(BLOT *pblot, float dtDisappear);
 
+/**
+ * @brief Resets a blot by setting it to the hidden state via its vtable.
+ * @param pblot Blot to reset.
+ */
 void OnBlotReset(BLOT *pblot);
 
+/**
+ * @brief Makes a blot appear. If already visible, restarts its visible timer.
+ * @param pblot Blot to show.
+ */
 void ShowBlot(BLOT *pblot);
 
+/**
+ * @brief Starts disappearing a blot that is appearing or visible.
+ * @param pblot Blot to hide.
+ */
 void HideBlot(BLOT *pblot);
 
 void SetBlotBlots(BLOT *pblot, BLOTS blots);
 
-int pfnFIncludeBlotForPeg(BLOT *pblot, BLOT *pblotOther);
+int FIncludeBlotForPeg(BLOT *pblot, BLOT *pblotOther);
 
+/**
+ * @brief Sets a blot's size (negative values leave the dimension unchanged) and repositions it.
+ * @param pblot Blot to resize.
+ * @param dx New width, ignored if negative.
+ * @param dy New height, ignored if negative.
+ */
 void ResizeBlot(BLOT *pblot, float dx, float dy);
 
 void RepositionBlot(BLOT *pblot);
 
 void RepositionBlotDependents(BLOT *pblot);
 
+extern BLOT *D_002486B0[];
+extern float D_0024CD48;
+extern "C" CFont *FUN_0015c1c0(int);
+
+/**
+ * @brief Sets the clock a blot reads time from, defaulting to the global real-time clock when null.
+ * @param pblot Blot to modify.
+ * @param pt Pointer to the time source, or null for g_clock.tReal.
+ */
 void SetBlotClock(BLOT *pblot, float *pt);
 
 void PostCtrLoad(CTR *pctr);
@@ -287,8 +314,17 @@ void DrawCtr(CTR *pctr);
 
 void RebuildCtrAchzDraw(CTR *pctr);
 
+/**
+ * @brief Returns how long a counter stays visible.
+ * @param pctr Counter.
+ * @return 2.5 seconds when the clock is enabled, otherwise 0.
+ */
 float DtVisibleCtr(CTR *pctr);
 
+/**
+ * @brief Post-load setup for a timer blot (guess: PostTimerLoad).
+ * @param pblot Timer blot; typed as BLOT, name and signature are a guess.
+ */
 void FUN_001ab600(BLOT *pblot);
 
 void UpdateTimer(TIMER *ptimer);
@@ -331,12 +367,31 @@ void FUN_001ac888(BLOT *pblot);
 
 void FUN_001ac910(undefined8 param_1, char *param_2);
 
-void FUN_001ac990(BLOT *pblot, int param_2);
+/**
+ * @brief Blot state setter with a reshow flag at 0x260 (guess: title-like blot).
+ * @param pblot Blot; type is a guess.
+ * @param blots New blot state.
+ */
+void FUN_001ac990(BLOT *pblot, BLOTS blots);
 
-undefined4 FUN_001ac9e0(BLOT *pblot, BLOT *pblotOther);
+/**
+ * @brief Returns true if the blot should be pegged/included, or if a flag at 0x260 is set (guess).
+ * @param pblot Blot.
+ * @param pblotOther Other blot.
+ * @return 1 or 0.
+ */
+int FUN_001ac9e0(BLOT *pblot, BLOT *pblotOther);
 
+/**
+ * @brief Show function that skips showing while disappearing with a reshow flag at 0x260 (guess: title blot).
+ * @param pblot Blot; type is a guess.
+ */
 void FUN_001aca30(BLOT *pblot);
 
+/**
+ * @brief Hide function that clears the reshow flag at 0x260 instead of hiding when disappearing (guess: title blot).
+ * @param pblot Blot; type is a guess.
+ */
 void FUN_001aca68(BLOT *pblot);
 
 void DrawTitle(TITLE *ptitle);
@@ -353,10 +408,24 @@ void render_level_info(BLOT *pblot, uint world_id, uint map_id);
 
 void render_hideout_world_info(BLOT *pblot, int world_id);
 
+/**
+ * @brief Sets the totals blot state, clearing pending reshow data when hiding.
+ * @param ptotals Totals blot.
+ * @param blots New blot state.
+ * @note Field offsets 0x264/0x464 are not yet named in TOTALS.
+ */
 void SetTotalsBlots(TOTALS *ptotals, BLOTS blots);
 
+/**
+ * @brief Shows the totals blot unless it is disappearing with a reshow pending.
+ * @param ptotals Totals blot.
+ */
 void ShowTotals(TOTALS *ptotals);
 
+/**
+ * @brief Hides the totals blot, or cancels a pending reshow if it is already disappearing.
+ * @param ptotals Totals blot.
+ */
 void HideTotals(TOTALS *ptotals);
 
 void DrawTotals(TOTALS *ptotals);
@@ -367,7 +436,18 @@ void FUN_001ad718(BLOT *pblot);
 
 void FUN_001ad7b0(int param_1);
 
+/**
+ * @brief Post-load setup: default blot load plus dtDisappear = 0.5 (name and type are a guess).
+ * @param pblot Blot.
+ */
 void FUN_001ad940(BLOT *pblot);
+
+/**
+ * @brief Blot state setter that clears the flag at 0x260 when hiding (guess).
+ * @param pblot Blot; type is a guess.
+ * @param blots New blot state.
+ */
+void FUN_001ae7f8(BLOT *pblot, BLOTS blots);
 
 void FUN_001ad970(BLOT *pblot, uint blots);
 

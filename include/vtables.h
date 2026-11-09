@@ -592,7 +592,7 @@ struct VTBLOT
     void (*pfnDtDisappearBlot)(BLOT *);
     void (*pfnShowBlot)(BLOT *);
     void (*pfnHideBlot)(BLOT *);
-    void (*pfnSetBlotBlots)(BLOT *);
+    void (*pfnSetBlotBlots)(BLOT *, int);
     void (*pfnSetBlotClock)(BLOT *);
     int  (*pfnFIncludeBlotForPeg)(BLOT *);
 };
@@ -618,7 +618,7 @@ struct VTNOTE
     void (*pfnDtDisappearBlot)(BLOT *);
     void (*pfnShowBlot)(BLOT *);
     void (*pfnHideBlot)(BLOT *);
-    void (*pfnSetBlotBlots)(BLOT *);
+    void (*pfnSetBlotBlots)(BLOT *, int);
     void (*pfnSetBlotClock)(BLOT *);
     int  (*pfnFIncludeBlotForPeg)(BLOT *);
 };
@@ -670,7 +670,7 @@ struct VTTIMER
     void (*pfnDtDisappearBlot)(BLOT *);
     void (*pfnShowBlot)(BLOT *);
     void (*pfnHideBlot)(BLOT *);
-    void (*pfnSetBlotBlots)(BLOT *);
+    void (*pfnSetBlotBlots)(BLOT *, int);
     void (*pfnSetBlotClock)(BLOT *);
     int  (*pfnFIncludeBlotForPeg)(BLOT *);
 };
@@ -696,7 +696,7 @@ struct VTTOTALS
     void (*pfnDtDisappearBlot)(BLOT *);
     void (*pfnShowBlot)(BLOT *);
     void (*pfnHideBlot)(BLOT *);
-    void (*pfnSetBlotBlots)(BLOT *);
+    void (*pfnSetBlotBlots)(BLOT *, int);
     void (*pfnSetBlotClock)(BLOT *);
     int (*pfnFIncludeBlotForPeg)(BLOT *);
 };
