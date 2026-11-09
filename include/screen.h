@@ -329,6 +329,10 @@ void RepositionBlot(BLOT *pblot);
 void RepositionBlotDependents(BLOT *pblot);
 
 extern BLOT *D_002486B0[];
+extern int D_00273C50;
+extern int D_002739F0;
+extern char D_0024CF98[];
+extern float D_002744A8;
 extern float D_00274448;
 extern float D_0027444C;
 extern CTextEdge D_00274450;
@@ -526,6 +530,11 @@ void DrawTotals(TOTALS *ptotals);
  */
 void FUN_001ad6a8(BLOT *pblot);
 
+/**
+ * @brief Update for a blot with a reshow flag at 0x260: shows or hides it depending on the UI state (guess: totals/title blot).
+ * @param pblot Blot; type is a guess.
+ * @note g_ui offsets 4 and 0x2c are not matched to named UI fields.
+ */
 void FUN_001ad718(BLOT *pblot);
 
 void FUN_001ad7b0(int param_1);
@@ -591,5 +600,11 @@ void FUN_001aec90();
  * @param pblot Blot; type is a guess.
  */
 void FUN_001ae758(BLOT *pblot);
+
+/**
+ * @brief Post-load for a one-line label blot (two known instances formatted with sprintf); sizes it from the font (guess).
+ * @param pblot Blot; type is a guess.
+ */
+void FUN_001ae510(BLOT *pblot);
 
 #endif // SCREEN_H

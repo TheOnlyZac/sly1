@@ -1,6 +1,9 @@
 #include <screen.h>
 #include <clock.h>
 #include <font.h>
+#include <jt.h>
+#include <ui.h>
+#include <text.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", StartupScreen__Fv);
 
@@ -94,7 +97,29 @@ void PostBlotLoad(BLOT *pblot)
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateBlot__FP4BLOT);
 
+/// @todo ~75% matched (only a $16/$17 register swap between pblot and pchz remains).
 INCLUDE_ASM("asm/nonmatchings/P2/screen", SetBlotAchzDraw__FP4BLOTPc);
+#ifdef SKIP_ASM
+void SetBlotAchzDraw(BLOT *pblot, char *pchz)
+{
+    if (pchz && strlen(pchz))
+    {
+        strcpy(pblot->achzDraw, pchz);
+        pchz = pblot->achzDraw;
+    }
+    else
+    {
+        pblot->achzDraw[0] = 0;
+        pchz = pblot->achzDraw;
+    }
+    pblot->pfont->PushScaling(pblot->rFontScale, pblot->rFontScale);
+    CRichText richtext(pchz, pblot->pfont);
+    float dx, dy;
+    richtext.GetExtents(&dx, &dy, 0.0f);
+    ResizeBlot(pblot, dx, dy);
+    pblot->pfont->PopScaling();
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", SetBlotRgba__FP4BLOTUi);
 
@@ -366,7 +391,34 @@ void PostNoteLoad(NOTE *pnote)
     }
 }
 
+/// @todo ~60% matched (register allocation of pnote/pchz is swapped, as in SetBlotAchzDraw).
 INCLUDE_ASM("asm/nonmatchings/P2/screen", SetNoteAchzDraw__FP4NOTEPc);
+#ifdef SKIP_ASM
+void SetNoteAchzDraw(NOTE *pnote, char *pchz)
+{
+    char *achz = pnote->achzDraw;
+    if (pchz && strlen(pchz))
+    {
+        strcpy(achz, pchz);
+        pchz = achz;
+    }
+    else
+    {
+        achz[0] = 0;
+        pchz = achz;
+    }
+    float zero = 0.0f;
+    pnote->pfont->PushScaling(pnote->rFontScale, pnote->rFontScale);
+    CRichText richtext(pchz, pnote->pfont);
+    float dx, dy;
+    richtext.GetExtents(&dx, &dy, zero);
+    float h = zero;
+    if (pnote->achzDraw[0])
+        h = dy;
+    ResizeBlot(pnote, dx, h);
+    pnote->pfont->PopScaling();
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawNote__FP4NOTE);
 
@@ -531,7 +583,17 @@ void FUN_001ad6a8(BLOT *pblot)
     STRUCT_OFFSET(pblot, 0x260, int) = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad718);
+void FUN_001ad718(BLOT *pblot)
+{
+    UpdateBlot(pblot);
+    if (STRUCT_OFFSET(pblot, 0x260, int) && (!g_pjt || STRUCT_OFFSET(g_pjt, 0x2220, int) != 6) &&
+        g_ui.tUis == 3 && STRUCT_OFFSET(&g_ui, 0x2c, int) < 2)
+    {
+        pblot->pvtblot->pfnShowBlot(pblot);
+        return;
+    }
+    pblot->pvtblot->pfnHideBlot(pblot);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad7b0);
 
@@ -627,7 +689,28 @@ INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawAttract__FP7ATTRACT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawLineScreen__FUiUiUiUiUiUiG4RGBAi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae510);
+void FUN_001ae510(BLOT *pblot)
+{
+    char *achz;
+    PostBlotLoad(pblot);
+    pblot->pfont = FUN_0015c1c0(2);
+    if (pblot == (BLOT *)&D_00273C50)
+    {
+        char *a2 = pblot->achzDraw;
+        sprintf(a2, D_0024CF98, 0x4C);
+        achz = a2;
+    }
+    else
+    {
+        achz = pblot->achzDraw;
+        if (pblot == (BLOT *)&D_002739F0)
+            sprintf(achz, D_0024CF98, 0x4B);
+    }
+    pblot->pfont->PushScaling(D_002744A8, D_002744A8);
+    pblot->width = pblot->pfont->DxFromPchz(achz);
+    pblot->height = (float)STRUCT_OFFSET(pblot->pfont, 8, int) * STRUCT_OFFSET(pblot->pfont, 0x48, float);
+    pblot->pfont->PopScaling();
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae5e0);
 
