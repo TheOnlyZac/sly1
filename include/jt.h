@@ -373,6 +373,57 @@ void ThrowJt(JT *pjt, VECTOR *pposTarget, float radVert, float gSpin);
  */
 void FUN_00172530(JT *pjt);
 
+/**
+ * @brief Enables or disables the JT ACTADJ objects (animation adjusters, pointers at 0x2500..0x2510) and notifies the five related objects via virtual call 0xbc.
+ *
+ * @param pjt Pointer to JT instance.
+ * @param grfea Enable flags: bit 0 controls the first three adjusters, bit 1 the last two.
+ *
+ * @note Parameter name, the byte at +0x10 of each adjuster (9 = on, -1 = off) and the meaning of vcall 0xbc are guesses.
+ */
+void EnableJtActadj(JT *pjt, int grfea);
+
+/**
+ * @brief Updates the JT tool (cane) spin angle: advances it by the spin rate, or smooths it back to rest (2*pi wrap) when the rate is zero.
+ *
+ * @param pjt Pointer to JT instance.
+ *
+ * @note Field names/offsets (0x242c rate, 0x2430 smoothing state, 0x2434 angle) are guesses.
+ */
+void UpdateJtTool(JT *pjt);
+
+/**
+ * @brief Returns the first of JT effect objects (at 0x25d8, 0x25e0, 0x25dc, 0x25e4, 0x25e8) that is in the world, writing a small kind index to pn.
+ *
+ * @param pjt Pointer to JT instance.
+ * @param pn Output kind index (0, 1 or 2).
+ * @return The effect object pointer (as int), or 0 if none is in the world.
+ *
+ * @note Return type is really a pointer (likely SO *); kept as int to match. Semantics are guesses.
+ */
+int PsoGetJtEffect(JT *pjt, int *pn);
+
+/**
+ * @brief JT override of AdjustStepNewXp: sets the two floats at 0x94/0x98 on the new contact (XP) from state-dependent constants, then divides the first by a JT scale (0x700).
+ *
+ * @param pjt Pointer to JT instance.
+ * @param pxp New contact (XP) to adjust.
+ * @param ixpd XP index (unused).
+ *
+ * @note Field meanings of the XP floats and the constants are unknown; the vtable call at 0x168 is probably FCheckXpBase.
+ */
+void AdjustJtNewXp(JT *pjt, XP *pxp, int ixpd);
+
+/**
+ * @brief Chooses the physics object (SO pointer from the tables at 0x1390 / 0x13d4 / 0x1418) for the current JT state and applies it with SetStepPhys.
+ *
+ * @param pjt Pointer to JT instance.
+ *
+ * @note Table layout and the fallback chain (D_00263930) are inferred from the asm. In the sidestep case the original leaves the chosen
+ * physics pointer uninitialised when the body state is -1; this is reproduced here.
+ */
+void ChooseJtPhys(JT *pjt);
+
 extern JT *g_pjt;
 
 #endif // JT_H
