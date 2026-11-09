@@ -11,12 +11,27 @@
 #include <bbmark.h>
 #include <coin.h>
 #include <memory.h>
+#include <mark.h>
+#include <po.h>
+#include <jt.h>
+#include <jump.h>
+#include <pipe.h>
+#include <target.h>
+#include <hide.h>
+#include <shd.h>
+#include <splice/spliceutils.h>
+#include <joy.h>
+#include <cm.h>
+#include <clock.h>
+#include <screen.h>
 
+// LsFromWid is still an unmangled INCLUDE_ASM symbol in game.c, so call it by its raw label.
+extern int *LsFromWidRaw(WID wid) __asm__("LsFromWid");
 extern SW *g_psw;
 extern BLOT D_002721D0;
 EXC *PexcSetExcitement(int iexc);
 void UnsetExcitementHyst(EXC *pexc);
-void SetAMRegister(int reg, int value);
+void SetAMRegister(int reg, unsigned char value);
 extern int g_fLoadDebugInfo;
 extern byte *g_pbBulkData;
 extern int g_fLoadBulkData;
@@ -39,7 +54,45 @@ INCLUDE_ASM("asm/nonmatchings/P2/sw", InitSw__FP2SW);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", DeleteSw__FP2SW);
 
+/**
+ * @todo ~65% matched. Logic is right; only register allocation and the clamp codegen differ.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/sw", SetupBulkDataFromBrx__FiP18CBinaryInputStream);
+#ifdef SKIP_ASM
+void SetupBulkDataFromBrx(int fLoadBulkData, CBinaryInputStream *pbis)
+{
+    int cb;
+    int nSig;
+    if (pbis->m_bisk == BISK_Cd)
+    {
+        if (!fLoadBulkData)
+        {
+            pbis->DecrementCdReadLimit(g_cbBulkDataReadAdjustment);
+            pbis->m_cbRemaining -= g_cbBulkDataReadAdjustment;
+        }
+        cb = pbis->S32Read();
+        nSig = pbis->S32Read();
+    }
+    else
+    {
+        cb = pbis->S32Read();
+        nSig = pbis->S32Read();
+        if (nSig != g_nBulkDataSig)
+            fLoadBulkData = 1;
+        if (!fLoadBulkData)
+        {
+            int c = pbis->m_cbRemaining - g_cbBulkDataReadAdjustment;
+            if (c < fLoadBulkData)
+                c = fLoadBulkData;
+            pbis->m_cbRemaining = c;
+        }
+    }
+    g_pbBulkData = (byte *)PvAllocSwImpl(cb);
+    g_nBulkDataSig = nSig;
+    g_cbBulkData = cb;
+    g_fLoadBulkData = fLoadBulkData;
+}
+#endif // SKIP_ASM
 
 void LoadBulkDataFromBrx(CBinaryInputStream *pbis)
 {
@@ -165,7 +218,63 @@ void PostSwCallback(SW *psw, PFNMQ pfnmq, void *pvContext, MSGID msgid, void *pv
     psw->pmqCallbackLast = pmq;
 }
 
+/**
+ * @todo Code below produces identical instructions (cmp.sh MATCH) but enabling it makes the
+ * assembler insert 3 nops in the later INCLUDE_ASM LoadSwFromBrx, which breaks the checksum.
+ * Cause unknown, so it stays disabled.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/sw", ClearSwCallbacks__FP2SWiPFPv5MSGIDPv_vPv5MSGIDT3);
+#ifdef SKIP_ASM
+void ClearSwCallbacks(SW *psw, GRFCMQ grfcmq, PFNMQ pfnmq, void *pvContext, MSGID msgid, void *pvCallbackData)
+{
+    MQ *pmqPrev = 0;
+    MQ *pmqRemoved = 0;
+    MQ *pmq = psw->pmqCallbackFirst;
+    while (pmq)
+    {
+        MQ *pmqNext = pmq->pmqNext;
+        for (int grf = 1; grf < 0x10; grf <<= 1)
+        {
+            if (grfcmq & grf)
+            {
+                switch (grf)
+                {
+                case 1:
+                    if (pmq->pfnmq != pfnmq)
+                        goto nomatch;
+                    break;
+                case 2:
+                    if (pmq->pvContext != pvContext)
+                        goto nomatch;
+                    break;
+                case 4:
+                    if (pmq->msgid != msgid)
+                        goto nomatch;
+                    break;
+                case 8:
+                    if (pmq->pvCallbackData != pvCallbackData)
+                        goto nomatch;
+                    break;
+                }
+            }
+        }
+        if (pmqPrev)
+            pmqPrev->pmqNext = pmqNext;
+        else
+            psw->pmqCallbackFirst = pmqNext;
+        if (!pmqNext)
+            psw->pmqCallbackLast = pmqPrev;
+        pmq->pmqNext = pmqRemoved;
+        pmqRemoved = pmq;
+        goto next;
+    nomatch:
+        pmqPrev = pmq;
+    next:
+        pmq = pmqNext;
+    }
+    FreeSwMqList(psw, pmqRemoved);
+}
+#endif // SKIP_ASM
 
 void ProcessSwCallbacks(SW *psw)
 {
@@ -268,7 +377,47 @@ OXA *PoxaAllocSw(SW *psw, SO *pso)
     return poxa;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FreeSwPoxa__FP2SWP3OXA);
+void FreeSwPoxa(SW *psw, OXA *poxa)
+{
+    OX *pox = poxa->pox;
+    while (pox)
+    {
+        SO *pso = pox->psoOther;
+        OX *poxNext = pox->poxNext;
+        OX *poxOther = PoxRemoveSw(psw, STRUCT_OFFSET(pso, 0x480, OXA *), poxa);
+        if (pox->pxp)
+        {
+            FreeSwXpList(psw, pox->pxp);
+            if (!(STRUCT_OFFSET(pox->psoOther, 0x538, long) & ((long)0x8000 << 40)))
+                ResolveAlo((ALO *)pox->psoOther);
+            if (!(STRUCT_OFFSET(poxOther->psoOther, 0x538, long) & ((long)0x8000 << 40)))
+                ResolveAlo((ALO *)poxOther->psoOther);
+        }
+        poxOther->pxp = 0;
+        pox->pxp = 0;
+        FreeSlotheapPv(&psw->slotheapOx, pox);
+        pox = poxNext;
+        FreeSlotheapPv(&psw->slotheapOx, poxOther);
+    }
+    poxa->pox = 0;
+    OXA **ppoxaUsed = &STRUCT_OFFSET(psw, 0x1AE8, OXA *);
+    OXA **ppoxaFree = &STRUCT_OFFSET(psw, 0x1AE4, OXA *);
+    OXA *poxaUsed = *ppoxaUsed;
+    int ipoxa = poxa - STRUCT_OFFSET(psw, 0x1AE0, OXA *);
+    while (poxaUsed)
+    {
+        int jpoxa = poxaUsed - STRUCT_OFFSET(psw, 0x1AE0, OXA *);
+        byte *pb = STRUCT_OFFSET(psw, 0x1ADC, byte *);
+        byte *p1 = pb + jpoxa * 256 + ipoxa;
+        byte *p2 = pb + ipoxa * 256 + jpoxa;
+        *p1 = 0;
+        *p2 = 0;
+        poxaUsed = poxaUsed->poxaNext;
+    }
+    poxa->pso = 0;
+    RemoveOxa(poxa, ppoxaUsed);
+    AddOxa(poxa, ppoxaFree);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", CreateSwDefaultLights__FP2SW);
 
@@ -364,10 +513,39 @@ int FUN_001dd7a0(SW *psw, WID wid)
     return (fls & 8) && (grf & g_plsCur->fls) == grf;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd7e8);
-
-// LsFromWid is still an unmangled INCLUDE_ASM symbol in game.c, so call it by its raw label.
-extern int *LsFromWidRaw(WID wid) __asm__("LsFromWid");
+struct SCV
+{
+    int id;
+    int value;
+};
+void FUN_001dd7e8(SW *psw, WID wid, int id, int value)
+{
+    LS *pls = (LS *)LsFromWidRaw(wid);
+    if (pls)
+    {
+        SCV *pfree = 0;
+        SCV *a = (SCV *)((char *)pls + 0x44);
+        for (uint i = 0; i < 4; i++)
+        {
+            SCV *p = &a[i];
+            if (!pfree && p->id == 0)
+            {
+                pfree = p;
+                continue;
+            }
+            if (p->id == id)
+            {
+                pfree = p;
+                break;
+            }
+        }
+        if (pfree)
+        {
+            pfree->id = id;
+            pfree->value = value;
+        }
+    }
+}
 
 int FUN_001dd888(SW *psw, WID wid, int id)
 {

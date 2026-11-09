@@ -167,6 +167,16 @@ void EnsureSwCallback(SW *psw, PFNMQ pfnmq, void *pvContext, MSGID msgid, void *
 
 void PostSwCallback(SW *psw, PFNMQ pfnmq, void *pvContext, MSGID msgid, void *pvCallbackData);
 
+/**
+ * @brief Removes (and frees) queued callbacks that match every criterion selected in `grfcmq`.
+ * @param psw World.
+ * @param grfcmq Bit mask of criteria: 1 = pfnmq, 2 = pvContext, 4 = msgid, 8 = pvCallbackData.
+ * @param pfnmq Callback to match when bit 1 is set.
+ * @param pvContext Context to match when bit 2 is set.
+ * @param msgid Message id to match when bit 4 is set.
+ * @param pvCallbackData Callback data to match when bit 8 is set.
+ * @note The meaning of the GRFCMQ bits is inferred from the assembly.
+ */
 void ClearSwCallbacks(SW *psw, GRFCMQ grfcmq, PFNMQ pfnmq, void *pvContext, MSGID msgid, void *pvCallback);
 
 /**
@@ -231,6 +241,13 @@ void AddOxa(OXA *poxa, OXA **ppoxaFirst);
  */
 OXA *PoxaAllocSw(SW *psw, SO *pso);
 
+/**
+ * @brief Frees an OXA: releases its OX list, clears its rows and columns in the world's pair
+ * matrix and moves it back to the free list.
+ * @param psw World.
+ * @param poxa OXA to free.
+ * @note Roles of the matrix at SW+0x1ADC and the ALO flag at +0x538 are guesses.
+ */
 void FreeSwPoxa(SW *psw, OXA *poxa);
 
 void CreateSwDefaultLights(SW *psw);
@@ -347,6 +364,16 @@ void FUN_001ddc40(SW *psw);
  * @param n Bit index.
  */
 void FUN_001ddc90(void *pv, int n);
+
+/**
+ * @brief Sets (or updates) a scene variable of a level state.
+ * @param psw World (unused).
+ * @param wid Level id.
+ * @param id Variable id. Takes the first free slot (id 0) or the slot already holding `id`.
+ * @param value Value to store.
+ * @note Name and meaning are guesses.
+ */
+void FUN_001dd7e8(SW *psw, WID wid, int id, int value);
 
 /**
  * @brief Writes the current charm count to `*pn`.
