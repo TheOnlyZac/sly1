@@ -112,31 +112,40 @@ void TouchBublet(BUBLET *pbublet, int fTouching)
     TouchDroplet((DROPLET *)pbublet, !fTouching);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", InitRipple__FP6RIPPLEP6VECTORfP2SO);
+void InitRipple(RIPPLE *pripple, VECTOR *ppos, float gScale, SO *psoTouch)
+{
+    InitRip(pripple, ppos, gScale, psoTouch);
+    float lim = 200.0f;
+    SW *psw = g_psw;
+    float g = (gScale < lim) ? gScale : lim;
+    float h = g * 0.6f;
+    int v = STRUCT_OFFSET(psw, 0x1cf0, int);
+    STRUCT_OFFSET(pripple, 0x30, float) = g;
+    STRUCT_OFFSET(pripple, 0x20, int) = v;
+    STRUCT_OFFSET(pripple, 0x34, float) = h;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", InitPuff__FP4PUFFP6VECTORfP2SO);
-// @todo 70% matched (store/schedule order differs)
-#ifdef SKIP_ASM
 void InitPuff(PUFF *ppuff, VECTOR *ppos, float gScale, SO *psoTouch)
 {
     InitRip(ppuff, ppos, gScale, psoTouch);
-    STRUCT_OFFSET(ppuff, 0x1c, float) = 3.0f;
-    STRUCT_OFFSET(ppuff, 0x34, float) = 0.6f;
-    STRUCT_OFFSET(ppuff, 0x20, int) = STRUCT_OFFSET(g_psw, 0x1cf4, int);
+    float g = 3.0f;
+    SW *psw = g_psw;
+    float h = 0.6f;
+    STRUCT_OFFSET(ppuff, 0x1c, float) = g;
+    STRUCT_OFFSET(ppuff, 0x20, int) = STRUCT_OFFSET(psw, 0x1cf4, int);
+    STRUCT_OFFSET(ppuff, 0x34, float) = h;
 }
-#endif // SKIP_ASM
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", InitDablet__FP6DABLETP6VECTORfP2SO);
-// @todo 78% matched (store/schedule order differs)
-#ifdef SKIP_ASM
 void InitDablet(DABLET *pdablet, VECTOR *ppos, float gScale, SO *psoTouch)
 {
     InitRip(pdablet, ppos, gScale, psoTouch);
-    STRUCT_OFFSET(pdablet, 0xc0, qword) = STRUCT_OFFSET(g_psw, 0x1ee0, qword);
-    STRUCT_OFFSET(pdablet, 0x1c, float) = 2.0f;
-    STRUCT_OFFSET(pdablet, 0x38, float) = -1.0f;
+    float g = 2.0f;
+    SW *psw = g_psw;
+    float h = -1.0f;
+    STRUCT_OFFSET(pdablet, 0x1c, float) = g;
+    STRUCT_OFFSET(pdablet, 0xc0, qword) = STRUCT_OFFSET(psw, 0x1ee0, qword);
+    STRUCT_OFFSET(pdablet, 0x38, float) = h;
 }
-#endif // SKIP_ASM
 
 void InitFlake(FLAKE *pflake, VECTOR *ppos, float gScale, SO *psoTouch)
 {
@@ -158,23 +167,17 @@ void TouchFlake(FLAKE *pflake, int fTouching)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", InitSpark__FP5SPARKP6VECTORfP2SO);
-// @todo 60% matched (store/schedule order differs)
-#ifdef SKIP_ASM
 void InitSpark(SPARK *pspark, VECTOR *ppos, float gScale, SO *psoTouch)
 {
     InitRip(pspark, ppos, gScale, psoTouch);
     float g = 0.25f;
     SW *psw = g_psw;
-    qword q = *(qword *)&g_clqOne;
-    STRUCT_OFFSET(pspark, 0x1c, float) = g;
     float h = 0.05f;
-    int v = STRUCT_OFFSET(psw, 0x1cf8, int);
-    STRUCT_OFFSET(pspark, 0x20, int) = v;
+    STRUCT_OFFSET(pspark, 0x1c, float) = g;
+    STRUCT_OFFSET(pspark, 0x20, int) = STRUCT_OFFSET(psw, 0x1cf8, int);
+    STRUCT_OFFSET(pspark, 0x40, qword) = *(qword *)&g_clqOne;
     STRUCT_OFFSET(pspark, 0x120, float) = h;
-    STRUCT_OFFSET(pspark, 0x40, qword) = q;
 }
-#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderSpark__FP5SPARKP2CM);
 
@@ -195,7 +198,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", ProjectTrailTransform__FP5TRAILf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderTrail__FP5TRAILP2CM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", HandleTrailMessage__FP5TRAIL5MSGIDPv);
+void HandleTrailMessage(TRAIL *ptrail, MSGID msgid, void *pv)
+{
+    switch (msgid)
+    {
+    case MSGID_removed:
+    case MSGID_water_entered:
+    case MSGID_rip_removed:
+        SetTrailTrls(ptrail, TRLS_None, 0);
+        break;
+    case MSGID_translated:
+        SetTrailTrls(ptrail, TRLS_None, (char *)pv + 0x10);
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", InitFireball__FP8FIREBALLP6VECTORfP2SO);
 
@@ -221,7 +237,15 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", ProjectSmackTransform__FP5SMACKf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderSmack__FP5SMACKP2CM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", UpdateSmack__FP5SMACKf);
+void UpdateSmack(SMACK *psmack, float dt)
+{
+    if (STRUCT_OFFSET(psmack, 0x1c, float) < g_clock.t - STRUCT_OFFSET(psmack, 0x18, float))
+    {
+        RemoveRip(psmack);
+        void *pv = STRUCT_OFFSET(psmack, 0x134, void *);
+        ((void (*)(void *))STRUCT_OFFSET(STRUCT_OFFSET(psmack, 0x130, char *), 0x60, int))(pv);
+    }
+}
 
 void InitOrbit(ORBIT *porbit, VECTOR *ppos, float gScale, SO *psoTouch)
 {
@@ -334,7 +358,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", FBounceBullet__FP6BULLETP2SOP6VECTORT2);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", PostShrapnelEmit__FP8SHRAPNELP5EMITB);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", FBounceShrapnel__FP8SHRAPNELP2SOP6VECTORT2);
+int FBounceShrapnel(SHRAPNEL *pshrapnel, SO *pso, VECTOR *pposCenter, VECTOR *pnormal)
+{
+    if (FIsBasicDerivedFrom(STRUCT_OFFSET(pso, 0x50, BASIC *), CID_STEP))
+        return 0;
+    return FBounceRip(pshrapnel, pso, pposCenter, pnormal);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderShrapnel__FP8SHRAPNELP2CM);
 
@@ -342,22 +371,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", InitGlint__FP5GLINTP6VECTORfP2SO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderGlint__FP5GLINTP2CM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", InitMatch__FP5MATCHP6VECTORfP2SO);
-// @todo 90% matched (store/schedule order differs)
-#ifdef SKIP_ASM
 void InitMatch(MATCH *pmatch, VECTOR *ppos, float gScale, SO *psoTouch)
 {
     InitRip(pmatch, ppos, gScale, psoTouch);
-    float one = 1.0f;
-    qword q = *(qword *)&g_clqOne;
-    float t = one - gScale;
+    STRUCT_OFFSET(pmatch, 0x40, qword) = *(qword *)&g_clqOne;
     STRUCT_OFFSET(pmatch, 0x30, float) = gScale;
+    STRUCT_OFFSET(pmatch, 0x34, float) = 1.0f - gScale;
     STRUCT_OFFSET(pmatch, 0x38, int) = 0;
-    STRUCT_OFFSET(pmatch, 0x40, qword) = q;
-    STRUCT_OFFSET(pmatch, 0x34, float) = t;
-    
 }
-#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", LaunchMatch__FP5MATCH);
 
@@ -365,7 +386,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/rip", ProjectMatchTransform__FP5MATCHf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rip", UpdateMatch__FP5MATCHf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rip", RenderMatch__FP5MATCHP2CM);
+void RenderMatch(MATCH *pmatch, CM *pcm)
+{
+    if (g_clock.t < STRUCT_OFFSET(pmatch, 0x18, float))
+        return;
+    RenderRip(pmatch, pcm);
+}
 
 void PostRemitEmit(REMIT *premit, EMITB *pemitb)
 {

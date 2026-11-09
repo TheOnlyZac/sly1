@@ -464,10 +464,34 @@ void ProjectBubletTransform(BUBLET *pbublet, float dt);
  */
 void TouchBublet(BUBLET *pbublet, int fTouching);
 
+/**
+ * @brief Initializes a ripple particle (calls InitRip then sets type specific defaults).
+ * @param pripple Particle to initialize.
+ * @param ppos Starting position.
+ * @param gScale Scale passed through to InitRip (clamped to 200 before being stored).
+ * @param psoTouch Object the particle touches (passed through to InitRip).
+ * @note Field meanings and the constants set here are guesses/unnamed.
+ */
 void InitRipple(RIPPLE *pripple, VECTOR *ppos, float gScale, SO *psoTouch);
 
+/**
+ * @brief Initializes a puff particle (calls InitRip then sets type specific defaults).
+ * @param ppuff Particle to initialize.
+ * @param ppos Starting position.
+ * @param gScale Scale passed through to InitRip.
+ * @param psoTouch Object the particle touches (passed through to InitRip).
+ * @note Field meanings and the constants set here are guesses/unnamed.
+ */
 void InitPuff(PUFF *ppuff, VECTOR *ppos, float gScale, SO *psoTouch);
 
+/**
+ * @brief Initializes a dablet particle (calls InitRip then sets type specific defaults).
+ * @param pdablet Particle to initialize.
+ * @param ppos Starting position.
+ * @param gScale Scale passed through to InitRip.
+ * @param psoTouch Object the particle touches (passed through to InitRip).
+ * @note Field meanings and the constants set here are guesses/unnamed.
+ */
 void InitDablet(DABLET *pdablet, VECTOR *ppos, float gScale, SO *psoTouch);
 
 /**
@@ -491,6 +515,14 @@ void RenderFlake(FLAKE *pflake, CM *pcm);
  */
 void TouchFlake(FLAKE *pflake, int fTouching);
 
+/**
+ * @brief Initializes a spark particle (calls InitRip then sets type specific defaults).
+ * @param pspark Particle to initialize.
+ * @param ppos Starting position.
+ * @param gScale Scale passed through to InitRip.
+ * @param psoTouch Object the particle touches (passed through to InitRip).
+ * @note Field meanings and the constants set here are guesses/unnamed.
+ */
 void InitSpark(SPARK *pspark, VECTOR *ppos, float gScale, SO *psoTouch);
 
 void RenderSpark(SPARK *pspark, CM *pcm);
@@ -513,6 +545,12 @@ void ProjectTrailTransform(TRAIL *ptrail, float dt);
 
 void RenderTrail(TRAIL *ptrail, CM *pcm);
 
+/**
+ * @brief Message handler for a trail: stops tracking when removed, entering water or its rip is removed.
+ * @param ptrail Trail.
+ * @param msgid Message id.
+ * @param pv Message payload (for MSGID_translated, a pointer offset by 0x10 is used as the track target; a guess).
+ */
 void HandleTrailMessage(TRAIL *ptrail, MSGID msgid, void *pv);
 
 void InitFireball(FIREBALL *pfireball, VECTOR *ppos, float gScale, SO *psoTouch);
@@ -539,6 +577,12 @@ void ProjectSmackTransform(SMACK *psmack, float dt);
 
 void RenderSmack(SMACK *psmack, CM *pcm);
 
+/**
+ * @brief Updates a smack particle; once its lifetime has elapsed it is removed and a callback is invoked.
+ * @param psmack Smack particle.
+ * @param dt Time step (unused).
+ * @note The callback object at +0x130 (function at vtable slot 0x60, argument at +0x134) is a guess.
+ */
 void UpdateSmack(SMACK *psmack, float dt);
 
 /**
@@ -650,6 +694,14 @@ int FBounceBullet(BULLET *pbullet, SO *psoOther, VECTOR *ppos, VECTOR *pnormal);
 
 void PostShrapnelEmit(SHRAPNEL *pshrapnel, EMITB *pemitb);
 
+/**
+ * @brief Bounce test for shrapnel; never bounces off STEP figures, otherwise defers to FBounceRip.
+ * @param pshrapnel Shrapnel particle.
+ * @param psoOther Object hit.
+ * @param ppos Hit position.
+ * @param pnormal Hit normal.
+ * @return Non-zero if the particle bounced.
+ */
 int FBounceShrapnel(SHRAPNEL *pshrapnel, SO *psoOther, VECTOR *ppos, VECTOR *pnormal);
 
 void RenderShrapnel(SHRAPNEL *pshrapnel, CM *pcm);
@@ -658,6 +710,14 @@ void InitGlint(GLINT *pglint, VECTOR *ppos, float gScale, SO *psoTouch);
 
 void RenderGlint(GLINT *pglint, CM *pcm);
 
+/**
+ * @brief Initializes a match particle (calls InitRip then sets type specific defaults).
+ * @param pmatch Particle to initialize.
+ * @param ppos Starting position.
+ * @param gScale Scale passed through to InitRip and stored in the particle.
+ * @param psoTouch Object the particle touches (passed through to InitRip).
+ * @note Field meanings and the constants set here are guesses/unnamed.
+ */
 void InitMatch(MATCH *pmatch, VECTOR *ppos, float gScale, SO *psoTouch);
 
 void LaunchMatch(MATCH *pmatch);
@@ -666,6 +726,11 @@ void ProjectMatchTransform(MATCH *pmatch, float dt);
 
 void UpdateMatch(MATCH *pmatch, float dt);
 
+/**
+ * @brief Renders a match; skipped until its start time has been reached.
+ * @param pmatch Match particle.
+ * @param pcm Camera.
+ */
 void RenderMatch(MATCH *pmatch, CM *pcm);
 
 /**
