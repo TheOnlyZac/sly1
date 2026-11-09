@@ -99,6 +99,15 @@ struct SW : public LO
 };
 
 /**
+ * @brief Proxy source list entry (count and clone array). Name is a guess.
+ */
+struct PSL
+{
+    /* 0x00 */ int cplo;
+    /* 0x04 */ LO **aplo;
+};
+
+/**
  * @brief Unknown.
  * @todo Implement the struct and figure out where it belongs.
  */
@@ -136,6 +145,14 @@ void SetSwGravity(SW *psw, float z);
 
 // TODO: Add unknown functions here.
 
+/**
+ * @brief Checks whether adding another object of this class would overflow the world.
+ * @param psw World.
+ * @param plo Object whose class flags are checked (flag 2 of its VT).
+ * @param fHiPri Non-zero if the object is high priority.
+ * @return Non-zero when the root object count is at least 247, the class has flag 2
+ * and the object is not high priority. Meaning of the flag is a guess.
+ */
 int FOverflowSwLo(SW *psw, LO *plo, int fHiPri);
 
 XA *PxaAllocSw(SW *psw);
@@ -152,6 +169,10 @@ void PostSwCallback(SW *psw, PFNMQ pfnmq, void *pvContext, MSGID msgid, void *pv
 
 void ClearSwCallbacks(SW *psw, GRFCMQ grfcmq, PFNMQ pfnmq, void *pvContext, MSGID msgid, void *pvCallback);
 
+/**
+ * @brief Dispatches and frees every queued world callback message.
+ * @param psw World.
+ */
 void ProcessSwCallbacks(SW *psw);
 
 void ProcessSwSpliceScheduledCallbacks(SW *psw, float dt);
@@ -160,20 +181,54 @@ STSO *PstsoAllocSw(SW *psw);
 
 void FreeSwStsoList(SW *psw, STSO *pstsoFirst);
 
+/**
+ * @brief Registers a proxy source in the world's proxy source list, creating
+ * `cploClone - 1` extra clones of it.
+ * @param psw World.
+ * @param ploProxySource Object used as the proxy source.
+ * @param cploClone Total number of copies requested (the clone array holds one fewer).
+ * @note Parameter names and the PSL layout are guesses from the assembly.
+ */
 void AddSwProxySource(SW *psw, LO *ploProxySource, int cploClone);
 
+/**
+ * @brief Pops the next clone from proxy source list entry `ipsl`.
+ * @param psw World.
+ * @param ipsl Index of the proxy source list entry.
+ * @return The popped clone object.
+ */
 LO *PloGetSwProxySource(SW *psw, int ipsl);
 
 void IntersectSwBoundingBox(SW *psw, SO *psoIntersect, VECTOR *ppos1, VECTOR *ppos2, PFNFILTER pfn, void *pvContext, int *pcpso, SO ***papso);
 
 void IntersectSwBoundingSphere(SW *psw, SO *psoIntersect, VECTOR *pposCenter, float sRadius, PFNFILTER pfn, void *pvContext, int *pcpso, SO ***papso);
 
+/**
+ * @brief Unlinks an OXA from a doubly linked list.
+ * @param poxa Element to remove.
+ * @param ppoxaFirst Pointer to the list head, updated if `poxa` was first.
+ */
 void RemoveOxa(OXA *poxa, OXA **ppoxaFirst);
 
+/**
+ * @brief Allocates the world's array of 256 OXAs and links them into a free list.
+ * @param psw World.
+ */
 void InitSwAoxa(SW *psw);
 
+/**
+ * @brief Pushes an OXA onto the front of a doubly linked list.
+ * @param poxa Element to add.
+ * @param ppoxaFirst Pointer to the list head.
+ */
 void AddOxa(OXA *poxa, OXA **ppoxaFirst);
 
+/**
+ * @brief Takes an OXA from the world's free list, moves it to the used list and assigns it to `pso`.
+ * @param psw World.
+ * @param pso Object the OXA is for.
+ * @return The allocated OXA.
+ */
 OXA *PoxaAllocSw(SW *psw, SO *pso);
 
 void FreeSwPoxa(SW *psw, OXA *poxa);
@@ -207,7 +262,105 @@ int FLevelSwSecondary(SW *psw, WID wid);
 int FLevelSwTertiary(SW *psw, WID wid);
 
 // TODO: Add unknown functions here.
+/**
+ * @brief Stores `plo` at SW offset 0x2324 (some tracked object; name unknown).
+ */
 void FUN_001ddc38(SW *psw, LO *plo);
+
+/**
+ * @brief Checks a level's completion flags (flag 4 of its completion) against the current level state.
+ * @param psw World (unused).
+ * @param wid Level id.
+ * @return Non-zero if flag 4 is set and the low 2 completion flags are all set in the current level state.
+ * @note Meaning is a guess; likely a secondary-objective check.
+ */
+int FUN_001dd758(SW *psw, WID wid);
+
+/**
+ * @brief Like FUN_001dd758 but flag 8 and the low 3 completion flags.
+ * @param psw World (unused).
+ * @param wid Level id.
+ * @return Non-zero if flag 8 is set and the low 3 completion flags are set in the current level state.
+ */
+int FUN_001dd7a0(SW *psw, WID wid);
+
+/**
+ * @brief Looks up a scene variable by id in a level state.
+ * @param psw World (unused).
+ * @param wid Level id.
+ * @param id Variable id to look for in the (id, value) pairs at LS+0x44.
+ * @return The value, or 0 if not found. Name and meaning are guesses.
+ */
+int FUN_001dd888(SW *psw, WID wid, int id);
+
+/**
+ * @brief Calculates the percent completion of the current game state (discards the result).
+ * @note Probably a script callback wrapper; the return value handling is a guess.
+ */
+void FUN_001dd928();
+
+/**
+ * @brief Randomly picks a count in [nLow, nHigh] and attracts that many dprizes (cid 0x58) to a position.
+ * @param psw World (unused, g_psw is used).
+ * @param nLow Minimum count.
+ * @param nHigh Maximum count.
+ * @param ppos Center position.
+ * @note Parameter names are guesses.
+ */
+void FUN_001dd950(SW *psw, int nLow, int nHigh, VECTOR *ppos);
+
+/**
+ * @brief Increments the SW counter at 0x2320 and, when it becomes 1, shows a blot.
+ * @param psw World.
+ */
+void FUN_001ddb58(SW *psw);
+
+/**
+ * @brief Decrements the SW counter at 0x2320 and, when it reaches 0, hides a blot.
+ * @param psw World.
+ */
+void FUN_001ddbb8(SW *psw);
+
+/**
+ * @brief Calls PexcSetExcitement(n), discarding the result.
+ * @param pv Unused.
+ * @param n Excitement index.
+ */
+void FUN_001ddbf8(void *pv, int n);
+
+/**
+ * @brief Calls UnsetExcitementHyst(pexc).
+ * @param pv Unused.
+ * @param pexc Excitement to unset.
+ */
+void FUN_001ddc18(void *pv, EXC *pexc);
+
+/**
+ * @brief Calls the virtual function at VT offset 0xC8 of the object stored at SW offset 0x2324, if any.
+ * @param psw World.
+ */
+void FUN_001ddc40(SW *psw);
+
+/**
+ * @brief Clears bit `n` of the flags at SW offset 0x235C.
+ * @param pv World.
+ * @param n Bit index.
+ */
+void FUN_001ddc90(void *pv, int n);
+
+/**
+ * @brief Writes the current charm count to `*pn`.
+ * @param pv Unused.
+ * @param pn Output.
+ */
+void FUN_001ddcb0(void *pv, int *pn);
+
+/**
+ * @brief Writes the current life count to `*pn`.
+ * @param pv Unused.
+ * @param pn Output.
+ */
+void FUN_001ddcc8(void *pv, int *pn);
 
 void SetSwPlayerSuck(SW *psw, float uSuck);
 

@@ -8,8 +8,15 @@
 #include <sce/memset.h>
 #include <game.h>
 #include <difficulty.h>
+#include <bbmark.h>
+#include <coin.h>
+#include <memory.h>
 
 extern SW *g_psw;
+extern BLOT D_002721D0;
+EXC *PexcSetExcitement(int iexc);
+void UnsetExcitementHyst(EXC *pexc);
+void SetAMRegister(int reg, int value);
 extern int g_fLoadDebugInfo;
 extern byte *g_pbBulkData;
 extern int g_fLoadBulkData;
@@ -44,9 +51,32 @@ void LoadBulkDataFromBrx(CBinaryInputStream *pbis)
     }
 }
 
+/**
+ * @todo 40% matched. The target builds the vector in registers (pextlw/pcpyld) before the quadword store.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/sw", SetSwGravity__FP2SWf);
+#ifdef SKIP_ASM
+void SetSwGravity(SW *psw, float z)
+{
+    VECTOR v;
+    v.x = 0.0f;
+    v.y = 0.0f;
+    v.z = z;
+    v.gUnused = 0.0f;
+    STRUCT_OFFSET(psw, 0x1EE0, qword) = *(qword *)&v;
+}
+#endif // SKIP_ASM
 
+/**
+ * @todo 75% matched. Only the argument masking before the call differs (andi vs daddu).
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dbac0);
+#ifdef SKIP_ASM
+extern "C" void FUN_001dbac0(SW *psw, int reg, unsigned char value)
+{
+    SetAMRegister(reg, value);
+}
+#endif // SKIP_ASM
 
 int FUN_001dbae0(SW *psw, int reg)
 {
@@ -58,7 +88,10 @@ void FUN_001dbb00(SW *psw, int reg, int value)
     UpdateAMRegister(reg, value);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FOverflowSwLo__FP2SWP2LOi);
+int FOverflowSwLo(SW *psw, LO *plo, int fHiPri)
+{
+    return (plo->pvtlo->grfcid & 2) && psw->cpsoRoot >= 0xF7 && !fHiPri;
+}
 
 XA *PxaAllocSw(SW *psw)
 {
@@ -134,7 +167,19 @@ void PostSwCallback(SW *psw, PFNMQ pfnmq, void *pvContext, MSGID msgid, void *pv
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", ClearSwCallbacks__FP2SWiPFPv5MSGIDPv_vPv5MSGIDT3);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", ProcessSwCallbacks__FP2SW);
+void ProcessSwCallbacks(SW *psw)
+{
+    while (psw->pmqCallbackFirst)
+    {
+        MQ *pmq = psw->pmqCallbackFirst;
+        if (pmq == psw->pmqCallbackLast)
+            psw->pmqCallbackLast = 0;
+        psw->pmqCallbackFirst = pmq->pmqNext;
+        pmq->pmqNext = 0;
+        pmq->pfnmq(pmq->pvContext, pmq->msgid, pmq->pvCallbackData);
+        FreeSwMqList(psw, pmq);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", ProcessSwSpliceScheduledCallbacks__FP2SWf);
 
@@ -155,21 +200,73 @@ void FreeSwStsoList(SW *psw, STSO *pstsoFirst)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", AddSwProxySource__FP2SWP2LOi);
+void AddSwProxySource(SW *psw, LO *plo, int cpsl)
+{
+    PSL psl;
+    psl.cplo = cpsl - 1;
+    if (psl.cplo > 0)
+    {
+        psl.aplo = (LO **)PvAllocSwImpl(psl.cplo * 4);
+        for (int i = 0; i < psl.cplo; i++)
+        {
+            psl.aplo[i] = PloCloneLo(plo, psw, 0);
+        }
+    }
+    int n = STRUCT_OFFSET(psw, 0x1EFC, int);
+    STRUCT_OFFSET(psw, 0x1F00 + n * 8, PSL) = psl;
+    STRUCT_OFFSET(psw, 0x1EFC, int) = n + 1;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", PloGetSwProxySource__FP2SWi);
+LO *PloGetSwProxySource(SW *psw, int ipsl)
+{
+    int *p = (int *)((char *)psw + 0x1F00 + ipsl * 8);
+    int n = p[0] - 1;
+    p[0] = n;
+    return ((LO **)p[1])[n];
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", IntersectSwBoundingBox__FP2SWP2SOP6VECTORT2PFPvP2SO_iPvPiPPP2SO);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", IntersectSwBoundingSphere__FP2SWP2SOP6VECTORfPFPvP2SO_iPvPiPPP2SO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", RemoveOxa__FP3OXAPP3OXA);
+void RemoveOxa(OXA *poxa, OXA **ppoxaFirst)
+{
+    if (poxa->poxaNext)
+        poxa->poxaNext->poxaPrev = poxa->poxaPrev;
+    if (poxa->poxaPrev)
+        poxa->poxaPrev->poxaNext = poxa->poxaNext;
+    else
+        *ppoxaFirst = poxa->poxaNext;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", InitSwAoxa__FP2SW);
+void InitSwAoxa(SW *psw)
+{
+    STRUCT_OFFSET(psw, 0x1AE4, OXA *) = STRUCT_OFFSET(psw, 0x1AE0, OXA *) = (OXA *)PvAllocSwClearImpl(0x1000);
+    for (int i = 0; i < 256; i++)
+    {
+        OXA *poxa = STRUCT_OFFSET(psw, 0x1AE0, OXA *) + i;
+        poxa->poxaPrev = (i > 0) ? poxa - 1 : 0;
+        poxa->poxaNext = (i < 255) ? poxa + 1 : 0;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", AddOxa__FP3OXAPP3OXA);
+void AddOxa(OXA *poxa, OXA **ppoxaFirst)
+{
+    poxa->poxaNext = *ppoxaFirst;
+    poxa->poxaPrev = 0;
+    if (*ppoxaFirst)
+        (*ppoxaFirst)->poxaPrev = poxa;
+    *ppoxaFirst = poxa;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", PoxaAllocSw__FP2SWP2SO);
+OXA *PoxaAllocSw(SW *psw, SO *pso)
+{
+    OXA *poxa = STRUCT_OFFSET(psw, 0x1AE4, OXA *);
+    RemoveOxa(poxa, &STRUCT_OFFSET(psw, 0x1AE4, OXA *));
+    AddOxa(poxa, &STRUCT_OFFSET(psw, 0x1AE8, OXA *));
+    poxa->pso = pso;
+    return poxa;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FreeSwPoxa__FP2SWP3OXA);
 
@@ -241,15 +338,54 @@ int FLevelSwTertiary(SW *psw, WID wid)
     return GrflsFromWid(wid) & 8;
 }
 
+/**
+ * @todo 60% matched. Target uses movz on the second flag test.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd710);
+#ifdef SKIP_ASM
+extern "C" int FUN_001dd710(SW *psw, WID wid)
+{
+    int fls = GetLevelCompletionById(wid);
+    return (fls & 2) && (g_plsCur->fls & 1) ? 1 : 0;
+}
+#endif // SKIP_ASM
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd758);
+int FUN_001dd758(SW *psw, WID wid)
+{
+    int fls = GetLevelCompletionById(wid);
+    int grf = fls & 3;
+    return (fls & 4) && (grf & g_plsCur->fls) == grf;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd7a0);
+int FUN_001dd7a0(SW *psw, WID wid)
+{
+    int fls = GetLevelCompletionById(wid);
+    int grf = fls & 7;
+    return (fls & 8) && (grf & g_plsCur->fls) == grf;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd7e8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd888);
+// LsFromWid is still an unmangled INCLUDE_ASM symbol in game.c, so call it by its raw label.
+extern int *LsFromWidRaw(WID wid) __asm__("LsFromWid");
+
+int FUN_001dd888(SW *psw, WID wid, int id)
+{
+    LS *pls = (LS *)LsFromWidRaw(wid);
+    if (pls)
+    {
+        uint i = 0;
+        int *p = (int *)((char *)pls + 0x44);
+        do
+        {
+            if (p[0] == id)
+                return p[1];
+            i++;
+            p += 2;
+        } while (i < 4);
+    }
+    return 0;
+}
 
 int FUN_001dd8e8(SW *psw, GAMEWORLD gameworld)
 {
@@ -261,9 +397,17 @@ int FUN_001dd908(SW *psw, GAMEWORLD gameworld)
     return g_pgsCur->aws[gameworld].fws & 0x20;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd928);
+void FUN_001dd928()
+{
+    CalculatePercentCompletion(g_pgsCur);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001dd950);
+void FUN_001dd950(SW *psw, int nLow, int nHigh, VECTOR *ppos)
+{
+    int n = NRandInRange(nLow, nHigh);
+    if (n)
+        CpdprizeAttractSwDprizes(g_psw, (CID)0x58, ppos, n, 0);
+}
 
 void FUN_001dd9a0(float nParam)
 {
@@ -334,26 +478,65 @@ void CancelSwDialogPlaying(SW *psw)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddb20);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddb58);
+void FUN_001ddb58(SW *psw)
+{
+    if (++STRUCT_OFFSET(psw, 0x2320, int) == 1)
+    {
+        SetBlotDtVisible(&D_002721D0, 0.0f);
+        D_002721D0.pvtblot->pfnShowBlot(&D_002721D0);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddbb8);
+void FUN_001ddbb8(SW *psw)
+{
+    if (--STRUCT_OFFSET(psw, 0x2320, int) == 0)
+        D_002721D0.pvtblot->pfnHideBlot(&D_002721D0);
+}
 JUNK_WORD(0x0002102a);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddbf8);
+void FUN_001ddbf8(void *pv, int n)
+{
+    PexcSetExcitement(n);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc18);
+void FUN_001ddc18(void *pv, EXC *pexc)
+{
+    UnsetExcitementHyst(pexc);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc38__FP2SWP2LO);
+void FUN_001ddc38(SW *psw, LO *plo)
+{
+    STRUCT_OFFSET(psw, 0x2324, LO *) = plo;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc40);
+typedef void (*PFNLOX)(LO *);
+void FUN_001ddc40(SW *psw)
+{
+    LO *plo = STRUCT_OFFSET(psw, 0x2324, LO *);
+    if (plo)
+    {
+        PFNLOX pfn = STRUCT_OFFSET(plo->pvtlo, 0xC8, PFNLOX);
+        if (pfn)
+            pfn(plo);
+    }
+}
 
 void FUN_001ddc78(void *pv, int n)
 {
     STRUCT_OFFSET(pv, 0x235C, int) |= (1 << n);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddc90);
+void FUN_001ddc90(void *pv, int n)
+{
+    STRUCT_OFFSET(pv, 0x235C, int) &= ~(1 << n);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddcb0);
+void FUN_001ddcb0(void *pv, int *pn)
+{
+    *pn = g_pgsCur->ccharm;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", FUN_001ddcc8);
+void FUN_001ddcc8(void *pv, int *pn)
+{
+    *pn = g_pgsCur->clife;
+}
