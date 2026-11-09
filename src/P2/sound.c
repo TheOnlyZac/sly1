@@ -19,23 +19,44 @@ struct MVG
 
 extern float D_00274838[10][4]; // temp
 
+extern uint D_00274728; // music sfx handle (guess)
+extern uint D_0027472C; // vag handle (guess)
+extern int D_00274730;
+extern int D_00274744;
+extern int D_00274748;
+extern int D_00245020[][2]; // sfxid -> bank table (guess)
+
+
 INCLUDE_ASM("asm/nonmatchings/P2/sound", UnloadMusic__Fv);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SbpEnsureBank__Fi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SbpEnsureBank__F5SFXID);
+void SbpEnsureBank(SFXID sfxid)
+{
+    SbpEnsureBank(D_00245020[sfxid][0]);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", NewSfx__FPP3SFX);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FContinuousSound__F5SFXID);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BE5D8);
+void FUN_001BE5D8()
+{
+    D_00274730 = 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SetVagUnpaused__Fv);
+int SetVagUnpaused()
+{
+    return D_00274744;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadVag__FPc2FK);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001be708);
+void FUN_001be708()
+{
+    D_00274744 = 0;
+    StopVag();
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadVag1);
 
@@ -45,15 +66,26 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", RefreshPambVolPan__FP3AMB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001be8f8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FVagPlaying__Fv);
+int FVagPlaying()
+{
+    return D_0027472C != 0;
+}
 
 JUNK_WORD(0x0080102D);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StopVag__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PauseVag__Fv);
+void PauseVag()
+{
+    if (D_0027472C)
+        snd_PauseSound(D_0027472C);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", ContinueVag__Fv);
+void ContinueVag()
+{
+    if (D_0027472C)
+        snd_ContinueSound(D_0027472C);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", KillMusic__Fv);
 
@@ -73,9 +105,15 @@ void ContinueMusic()
     SetMvgkRvol(2, MVGK_Music, 1.0f);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SfxhMusicUnknown1);
+void SfxhMusicUnknown1()
+{
+    snd_PauseSound(D_00274728);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SfxhMusicUnknown2);
+void SfxhMusicUnknown2()
+{
+    snd_ContinueSound(D_00274728);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PexcAlloc__Fv);
 
@@ -110,7 +148,10 @@ void StartupSound()
 JUNK_NOP();
 JUNK_ADDIU(10);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FAmbientsPaused__Fv);
+int FAmbientsPaused()
+{
+    return D_00274748;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", CalculateVolPan__FfP6VECTORPfT2fff);
 
@@ -130,7 +171,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", CalculateDistVolPan__FP6VECTORPfT1fff);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PambAlloc__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", DropPamb__FPP3AMB);
+void DropPamb(AMB **ppamb)
+{
+    (*ppamb)->ppamb = 0;
+    *ppamb = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", RemoveAmb__FP3AMB);
 
@@ -189,9 +234,15 @@ void SetMvgkRvol(int channel, MVGK mvgk, float rvol)
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", MvgkUnknown2__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", MvgkUnknown3);
+void MvgkUnknown3(int mute)
+{
+    SetMvgkRvol(3, MVGK_Music, mute ? 0.0f : 1.0f);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", MvgkUnknown4);
+void MvgkUnknown4(int mode)
+{
+    snd_SetPlaybackMode(mode != 0);
+}
 
 /**
  * @todo Figure out func_001c0cb0, and use enum values for params where applicable.

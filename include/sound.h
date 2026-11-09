@@ -201,13 +201,73 @@ extern IEXC g_iexcHyst;
 
 /**
  * @brief Check if a VAG is playing.
+ * @return Nonzero if a VAG stream handle is currently held.
  */
 int FVagPlaying();
 
 /**
- * @brief Set VAG unpaused state.
+ * @brief Returns the VAG unpaused state.
+ * @note Despite the name this is a getter for D_00274744 (name is original, meaning is a guess).
  */
 int SetVagUnpaused();
+
+/**
+ * @brief Clears the VAG unpaused flag and stops the VAG. (Name unknown, guess.)
+ */
+void FUN_001be708();
+
+/**
+ * @brief Clears D_00274730. (Meaning unknown.)
+ */
+void FUN_001BE5D8();
+
+/**
+ * @brief Pauses the current VAG if one is playing.
+ */
+void PauseVag();
+
+/**
+ * @brief Continues the current VAG if one is playing.
+ */
+void ContinueVag();
+
+/**
+ * @brief Pauses the music sound handle. (Name is a guess.)
+ */
+void SfxhMusicUnknown1();
+
+/**
+ * @brief Continues the music sound handle. (Name is a guess.)
+ */
+void SfxhMusicUnknown2();
+
+/**
+ * @brief Sets the rvol of the music MVGK on channel 3 to 0 (mute) or 1.
+ * @param mute Nonzero to mute. (Purpose is a guess.)
+ */
+void MvgkUnknown3(int mute);
+
+/**
+ * @brief Sets the sound playback mode to 0 or 1.
+ * @param mode Treated as a boolean. (Purpose is a guess.)
+ */
+void MvgkUnknown4(int mode);
+
+/**
+ * @brief Detaches an ambient sound from its owner pointer.
+ * @param ppamb Pointer to the owner's AMB pointer; cleared afterwards.
+ */
+void DropPamb(AMB **ppamb);
+
+/**
+ * @brief Returns the ambients-paused flag.
+ */
+int FAmbientsPaused();
+
+/**
+ * @brief Stops the current VAG.
+ */
+void StopVag();
 
 /**
  * @brief Unknown.
@@ -228,6 +288,12 @@ void StartupSound();
  * @brief Ensures the soundbank is available.
  */
 void SbpEnsureBank(int bank);
+
+/**
+ * @brief Ensures the soundbank for an SFX ID is loaded.
+ * @param sfxid SFX ID, used to index a bank table (table layout is a guess).
+ */
+void SbpEnsureBank(SFXID sfxid);
 
 /**
  * @brief Create a new sound effect.
