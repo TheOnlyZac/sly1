@@ -19,6 +19,9 @@
 #include <sqtr.h>
 #include <flash.h>
 #include <mat.h>
+#include <basic.h>
+#include <mark.h>
+#include <sw.h>
 
 extern BLOT g_binoc;
 void FUN_001d4c98(JT *pjt);
@@ -365,7 +368,112 @@ void UpdateJtTool(JT *pjt)
     }
 }
 
+/**
+ * @todo 95% matched. Walks the XP list of JT, frees/moves entries and updates celebrate state.
+ * Remaining diff: register allocation of the side index ($5 vs $6) and an addu operand order.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/jt", FUN_00172898);
+#ifdef SKIP_ASM
+struct XPNODE
+{
+    XP *pxpFirst;
+    XPNODE *pnext;
+    XP **ppxpHead;
+};
+
+extern VECTOR g_normalZ;
+
+extern "C" void FUN_001bc4d8(JT *pjt, void *p);
+
+struct XPSIDE
+{
+    SO *pso;
+    int n;
+    char pad[0x38];
+};
+
+struct XPV
+{
+    XPSIDE s[2];
+};
+
+#define XP_PSO(pxp, i) (((XPV *)(pxp))->s[i].pso)
+#define XP_NEXT(pxp) STRUCT_OFFSET(pxp, 0xd0, XP *)
+
+extern "C" void FUN_00172898(JT *pjt)
+{
+    XP *pxpFree = 0;
+    XPNODE *pnode;
+    XP *pxp;
+    XP **ppxp;
+
+    FUN_001bc4d8(pjt, (char *)pjt + 0x151c);
+    for (pnode = *STRUCT_OFFSET(pjt, 0x480, XPNODE **); pnode != 0; pnode = pnode->pnext)
+    {
+        ppxp = &pnode->pxpFirst;
+        for (pxp = pnode->pxpFirst; pxp != 0; pxp = *ppxp)
+        {
+            int iSide = XP_PSO(pxp, 0) != (SO *)pjt;
+            if (((XPSIDE *)pxp)[iSide].n == STRUCT_OFFSET(pjt, 0x23b0, int))
+            {
+                SO *pso = XP_PSO(pxp, 1 - iSide);
+                if (pso == 0 || !FIsBasicDerivedFrom((BASIC *)pso, (CID)0x46))
+                {
+                    *ppxp = XP_NEXT(pxp);
+                    XP_NEXT(pxp) = pxpFree;
+                    pxpFree = pxp;
+                }
+                else
+                {
+                    ppxp = &XP_NEXT(pxp);
+                }
+            }
+            else if (XP_PSO(pxp, 1 - iSide) == STRUCT_OFFSET(pjt, 0x2750, SO *) &&
+                     ((int (*)(JT *, XP *))STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0, void *), 0x168, void *))(pjt, pxp))
+            {
+                *ppxp = XP_NEXT(pxp);
+                XP_NEXT(pxp) = STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0x2750, void *), 0x554, XP *);
+                STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0x2750, void *), 0x554, XP *) = pxp;
+            }
+            else
+            {
+                ppxp = &XP_NEXT(pxp);
+            }
+        }
+        *pnode->ppxpHead = pnode->pxpFirst;
+    }
+    AdjustStepXps(pjt);
+    if (pjt->jts == JTS_Celebrate)
+    {
+        STRUCT_OFFSET(pjt, 0x690, int) = 1;
+        STRUCT_OFFSET(pjt, 0x694, float) = g_clock.t;
+        ConvertAloPos(STRUCT_OFFSET(pjt, 0x24a0, ALO *), 0, &STRUCT_OFFSET(pjt, 0x24b0, VECTOR), &STRUCT_OFFSET(pjt, 0x6a0, VECTOR));
+        STRUCT_OFFSET(pjt, 0x6b0, qword) = STRUCT_OFFSET(&g_normalZ, 0, qword);
+        STRUCT_OFFSET(pjt, 0x6c0, ALO *) = STRUCT_OFFSET(pjt, 0x24a0, ALO *);
+        for (pnode = *STRUCT_OFFSET(pjt, 0x480, XPNODE **); pnode != 0; pnode = pnode->pnext)
+        {
+            ppxp = &pnode->pxpFirst;
+            for (pxp = pnode->pxpFirst; pxp != 0; pxp = *ppxp)
+            {
+                int iSide = (SO *)pjt != XP_PSO(pxp, 0);
+                if (STRUCT_OFFSET(pxp, 0x9c, int) != 11)
+                {
+                    if (XP_PSO(pxp, 1 - iSide) == STRUCT_OFFSET(STRUCT_OFFSET(pjt, 0x24a0, void *), 0x50, SO *))
+                    {
+                        *ppxp = XP_NEXT(pxp);
+                        XP_NEXT(pxp) = pxpFree;
+                        pxpFree = pxp;
+                        continue;
+                    }
+                }
+                ppxp = &XP_NEXT(pxp);
+            }
+            *pnode->ppxpHead = pnode->pxpFirst;
+        }
+    }
+    FreeSwXpList(STRUCT_OFFSET(pjt, 0x14, SW *), pxpFree);
+}
+#endif // SKIP_ASM
 
 void UpdateJtPosWorldPrev(JT *pjt)
 {
