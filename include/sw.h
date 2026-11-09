@@ -252,6 +252,13 @@ void FreeSwPoxa(SW *psw, OXA *poxa);
 
 void CreateSwDefaultLights(SW *psw);
 
+/**
+ * @brief Clones the prize spawners (DPRIZE) found for two prize classes, using a small
+ * table of (cid, count) pairs, and starts the clones.
+ * @param psw World.
+ * @note The table lives in static data (D_0024DC98); the class ids and the DPRIZE fields
+ * at +0x334 / +0x374 are not understood.
+ */
 void CreateSwPrizes(SW *psw);
 
 void LoadSwFromBrx(SW *psw, CBinaryInputStream *pbis);

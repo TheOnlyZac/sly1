@@ -27,6 +27,7 @@
 
 // LsFromWid is still an unmangled INCLUDE_ASM symbol in game.c, so call it by its raw label.
 extern int *LsFromWidRaw(WID wid) __asm__("LsFromWid");
+typedef void (*PFNLOX)(LO *);
 extern SW *g_psw;
 extern BLOT D_002721D0;
 EXC *PexcSetExcitement(int iexc);
@@ -437,7 +438,43 @@ void FUN_001dccc0(CBinaryInputStream *pbis)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sw", CreateSwPrizes__FP2SW);
+struct PRIZEQ
+{
+    CID cid;
+    int c;
+};
+struct PRIZEQS
+{
+    PRIZEQ a[2];
+};
+extern PRIZEQS D_0024DC98;
+void CreateSwPrizes(SW *psw)
+{
+    uint i = 0;
+    PRIZEQS q = D_0024DC98;
+    for (; i < 2; i++)
+    {
+        DPRIZE *pdprize = (DPRIZE *)psw->dlDprize.head;
+        while (pdprize)
+        {
+            if (STRUCT_OFFSET(pdprize, 0x334, int) == 0 && pdprize->pvtlo->cid == q.a[i].cid)
+                break;
+            pdprize = STRUCT_OFFSET(pdprize, 0x374, DPRIZE *);
+        }
+        if (pdprize)
+        {
+            for (int j = 0; j < q.a[i].c; j++)
+            {
+                DPRIZE *pdprizeClone = (DPRIZE *)PloCloneLo(pdprize, psw, 0);
+                pdprizeClone->dprizesInit = (DPRIZES)2;
+                PFNLOX pfn = STRUCT_OFFSET(pdprizeClone->pvtlo, 0x4C, PFNLOX);
+                if (pfn)
+                    pfn(pdprizeClone);
+                STRUCT_OFFSET(pdprizeClone->pvtlo, 0x50, PFNLOX)(pdprizeClone);
+            }
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sw", LoadSwFromBrx__FP2SWP18CBinaryInputStream);
 
@@ -687,7 +724,6 @@ void FUN_001ddc38(SW *psw, LO *plo)
     STRUCT_OFFSET(psw, 0x2324, LO *) = plo;
 }
 
-typedef void (*PFNLOX)(LO *);
 void FUN_001ddc40(SW *psw)
 {
     LO *plo = STRUCT_OFFSET(psw, 0x2324, LO *);
