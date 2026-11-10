@@ -8,6 +8,11 @@
 #include <screen.h>
 #include <game.h>
 #include <basic.h>
+#include <memory.h>
+#include <cm.h>
+#include <vis.h>
+#include <mat.h>
+#include <vec.h>
 #include <rip.h>
 #include <util.h>
 #include <sound.h>
@@ -19,6 +24,7 @@
 #include <cid.h>
 
 extern "C" void func_001E02C8(void *, int);
+extern int FUN_00148938(SW *psw, CID cid, int cpdprizeMax, DPRIZE **apdprize);
 extern int D_00270458;
 extern int D_00275C34;
 extern char D_00261AD0[]; // unknown, rip vtable?
@@ -165,7 +171,38 @@ void UpdateCoin(COIN *pcoin, float dt)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", CreateSwCharm__FP2SW);
+extern "C" void ConvertCmScreenToWorld(CM *pcm, VECTOR *pscreen, VECTOR *pworld);
+extern VECTOR D_00261AB0;
+extern VECTOR D_00261AC0;
+extern VECTOR D_00248D30;
+extern MATRIX3 g_matIdentity;
+
+void CreateSwCharm(SW *psw)
+{
+    DPRIZE *pdprize;
+    if (FUN_00148938(psw, (CID)0x56, 1, &pdprize) == 0)
+    {
+        GS *pgs = g_pgsCur;
+        int ccharmMost = CcharmMost();
+        int ccharmNew = pgs->ccharm + 1;
+        g_pgsCur->ccharm = (ccharmNew < ccharmMost) ? ccharmNew : ccharmMost;
+    }
+    else
+    {
+        VECTOR vec;
+        pdprize->pvtalo->pfnAddLo(pdprize);
+        ((void (*)(DPRIZE *, ALO *))pdprize->pvtalo->pfnSetAloParent)(pdprize, 0);
+        ConvertCmScreenToWorld(g_pcm, &D_00261AB0, &vec);
+        pdprize->pvtalo->pfnTranslateAloToPos(pdprize, &vec);
+        ((void (*)(DPRIZE *, MATRIX3 *))pdprize->pvtalo->pfnRotateAloToMat)(pdprize, &g_matIdentity);
+        ((void (*)(DPRIZE *, VECTOR *))pdprize->pvtalo->pfnSetAloVelocityVec)(pdprize, &D_00248D30);
+        ((void (*)(DPRIZE *, VECTOR *))pdprize->pvtalo->pfnSetAloAngularVelocityVec)(pdprize, &D_00248D30);
+        PVTDPRIZE(pdprize)->pfnSetDprizeDprizes(pdprize, DPRIZES_Swirl);
+        STRUCT_OFFSET(pdprize, 0x300, qword) = STRUCT_OFFSET(&D_00261AC0, 0, qword);
+        ClipVismapSphereOneHop(psw->pvismap, &STRUCT_OFFSET(pdprize, 0x140, VECTOR), STRUCT_OFFSET(pdprize, 0x2a8, float),
+                               &STRUCT_OFFSET(pdprize, 0x88, GRFZON));
+    }
+}
 
 void AddLife(void *ptr)
 {
@@ -411,9 +448,45 @@ int SgnCompareSdprize(const void *pv1, const void *pv2)
     return (*(float *)pv1 < *(float *)pv2) ? 1 : -1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148938);
+INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148938__FP2SW3CIDiPP6DPRIZE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", CpdprizeAttractSwDprizes__FP2SW3CIDP6VECTORiPP6DPRIZE);
+extern float D_00261B40;
+extern LM D_00261B48;
+extern LM D_00261B50;
+
+int CpdprizeAttractSwDprizes(SW *psw, CID cid, VECTOR *pposCenter, int cpdprizeMax, DPRIZE **apdprize)
+{
+    InitStackImpl();
+    if (!apdprize)
+    {
+        apdprize = (DPRIZE **)PvAllocStackImpl(cpdprizeMax * 4);
+    }
+    int cpdprize = FUN_00148938(psw, cid, cpdprizeMax, apdprize);
+    float dradStep = 6.2831855f / (float)cpdprizeMax;
+    float rad = GRandInRange(0.0f, 6.2831855f);
+    for (int i = 0; i < cpdprize; i++)
+    {
+        DPRIZE *pdprize = apdprize[i];
+        VECTOR *pvCenter = &pdprize->vCenter;
+        pdprize->pvtalo->pfnAddLo(pdprize);
+        ((void (*)(DPRIZE *, ALO *))pdprize->pvtalo->pfnSetAloParent)(pdprize, 0);
+        ((void (*)(DPRIZE *, VECTOR *))pdprize->pvtalo->pfnTranslateAloToPos)(pdprize, pposCenter);
+        ((void (*)(DPRIZE *, MATRIX3 *))pdprize->pvtalo->pfnRotateAloToMat)(pdprize, &g_matIdentity);
+        ((void (*)(DPRIZE *, VECTOR *))pdprize->pvtalo->pfnSetAloVelocityVec)(pdprize, &D_00248D30);
+        ((void (*)(DPRIZE *, VECTOR *))pdprize->pvtalo->pfnSetAloAngularVelocityVec)(pdprize, &D_00248D30);
+        pdprize->fLastBounce = 0;
+        pdprize->dtInitialSkip = i * D_00261B40;
+        PVTDPRIZE(pdprize)->pfnSetDprizeDprizes(pdprize, DPRIZES_Fall);
+        float sXY = GRandInRange(D_00261B48.gMin, D_00261B48.gMax);
+        float sZ = GRandInRange(D_00261B50.gMin, D_00261B50.gMax);
+        SetVectorCylind(pvCenter, rad, sXY, sZ);
+        rad += dradStep;
+        ClipVismapSphereOneHop(psw->pvismap, &STRUCT_OFFSET(pdprize, 0x140, VECTOR), STRUCT_OFFSET(pdprize, 0x2a8, float),
+                               &STRUCT_OFFSET(pdprize, 0x88, GRFZON));
+    }
+    FreeStackImpl();
+    return cpdprize;
+}
 
 void RemoveSwExtraneousCharms(SW *psw)
 {
