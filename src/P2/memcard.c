@@ -155,6 +155,11 @@ int FUN_0018b930(int n)
 	return 0x1f;
 }
 
+/**
+ * @todo 91% matched (18 differing lines of about 210). Error code mapping, cmd is the libmc
+ * function id (guess) and r the result. Remaining diff is block layout around the shared
+ * leaf for r == -4 (cases 3 and 10 are written as two copies, the original shares one label).
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018b988__Fii);
 #ifdef SKIP_ASM
 int FUN_0018b988(int cmd, int r)
@@ -197,6 +202,16 @@ int FUN_0018b988(int cmd, int r)
 		if (r < -9)
 			return 0xb;
 		return 0x1f;
+	case 3:
+		switch (r)
+		{
+		case 0: return 0;
+		case -2: return 0xc;
+		case -4: return 0x10;
+		}
+		if (r < -9)
+			return 0xb;
+		return 0x1f;
 	case 5:
 		switch (r)
 		{
@@ -223,7 +238,6 @@ int FUN_0018b988(int cmd, int r)
 		if (r < -9)
 			return 0xb;
 		return 0x1f;
-	case 3:
 	case 10:
 		switch (r)
 		{
