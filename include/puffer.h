@@ -29,7 +29,7 @@ struct PUFFER : public PO
  * @brief Collection of piranha fish.
  * @todo Implement the struct.
  */
-struct PUFFC : public ALO
+struct PUFFC : public STEPGUARD
 {
     // ...
 };
@@ -53,6 +53,25 @@ struct PUFFT : public SO
 {
     // ...
 };
+
+extern float D_0026A718;
+extern float D_0026A71C;
+extern SNIP D_0026A728[1];
+extern int D_0026A720;
+extern float D_0026A838;
+extern float D_0026A83C;
+extern float D_0024C868;
+extern float D_0026A840;
+extern SNIP D_0026A8E0[3];
+extern PUFFER *g_ppuffer; // guess
+
+void OnDifficultyPlayerDeathRaw(float scalar, struct DIFFICULTY *pdifficulty) __asm__("OnDifficultyPlayerDeath"); // unmangled in original
+
+void FUN_001c8920(STEPGUARD *pstepguard);
+void FUN_001973d8(PUFFER *ppuffer);
+void FUN_00197a08(PUFFER *ppuffer, PUFFC *ppuffc);
+struct WKR;
+ALO *PaloAbsorbWkr(WKR *pwkr, int i, ALO **ppalo);
 
 void InitPuffer(PUFFER *ppuffer);
 
