@@ -42,20 +42,21 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", PostSuvLoad__FP3SUV);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", PresetSuvAccel__FP3SUVf);
 
+/**
+ * @todo 16 differing lines of 79: float register allocation (g and gBest swapped) and hoisted constant load.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/suv", GExcludeAlm__FiP2LMf);
 #ifdef SKIP_ASM
 extern float D_0024DC94;
 
 float GExcludeAlm(int clm, LM *alm, float g)
 {
-    float gBest;
-    float dgBest;
+    float gBest, dgBest;
+    gBest = dgBest = D_0024DC94;
     if (!FCheckAlm(clm, alm, g))
     {
         return g;
     }
-    dgBest = D_0024DC94;
-    gBest = dgBest;
     for (int i = 0; i < clm; i++)
     {
         LM *plm = &alm[i];
@@ -155,6 +156,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvLine__FP3SUVPi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvHeading__FP3SUV);
 
+/**
+ * @todo 6 differing lines of 45: loop counter increment and sltiu get scheduled earlier than the target.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvWheels__FP3SUV);
 #ifdef SKIP_ASM
 extern SMP D_002754E8;
@@ -192,6 +196,9 @@ void BoostSuv(SUV *psuv)
     }
 }
 
+/**
+ * @todo 24 differing lines of 96: bit test is folded to srav and andi 1, and loop constants are numbered differently.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/suv", FUN_001d9338__FP3SUV);
 #ifdef SKIP_ASM
 struct SUVLS // guess, view of LS fields at 0x70 and 0x74
@@ -230,7 +237,82 @@ void FUN_001d9338(SUV *psuv)
 }
 #endif
 
+/**
+ * @todo 67 differing lines of 140: target hoists the constants 1, -1, 0x42f, 0x430 into saved registers.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvVolumes__FP3SUVi);
+#ifdef SKIP_ASM
+void UpdateSuvVolumes(SUV *psuv, int fUnused)
+{
+    int i;
+    SUVFEAT *pfeat;
+    for (i = 0, pfeat = &STRUCT_OFFSET(psuv, 0x874, SUVFEAT); i < STRUCT_OFFSET(psuv, 0x870, int); i++, pfeat++)
+    {
+        int fIn = FCheckVolPoint(pfeat->pvol, &STRUCT_OFFSET(psuv, 0x100, VECTOR));
+        if (fIn != pfeat->unk8)
+        {
+            int kind = pfeat->fActive;
+            pfeat->unk8 = fIn;
+            switch (kind)
+            {
+            case 0:
+                if (fIn != 0 && pfeat->pfeatNext == STRUCT_OFFSET(psuv, 0xaf8, SUVFEAT *))
+                {
+                    STRUCT_OFFSET(psuv, 0xaf8, SUVFEAT *) = pfeat;
+                    if (pfeat == STRUCT_OFFSET(psuv, 0xaf4, SUVFEAT *))
+                    {
+                        int n = STRUCT_OFFSET(psuv, 0xb00, int) + 1;
+                        STRUCT_OFFSET(psuv, 0xb00, int) = n;
+                        if (STRUCT_OFFSET(psuv, 0xb04, int) < n)
+                        {
+                            LO *plo = PloFindSwObject(STRUCT_OFFSET(psuv, 0x14, SW *), 4, (OID)0x42c, psuv);
+                            SMA *psma = STRUCT_OFFSET(plo, 0x48, SMA *);
+                            OID oid;
+                            GetSmaGoal(psma, &oid);
+                            if (oid == -1)
+                            {
+                                GetSmaCur(psma, &oid);
+                            }
+                            if (psuv == PpoCur())
+                            {
+                                STRUCT_OFFSET(psuv, 0xb00, int) = STRUCT_OFFSET(psuv, 0xb04, int);
+                            }
+                            switch (oid)
+                            {
+                            case 0x42f:
+                                if (psuv == PpoCur())
+                                {
+                                    SetSmaGoal(psma, (OID)0x432);
+                                    OnDifficultyCollectKey(&g_difficulty);
+                                }
+                                else
+                                {
+                                    SetSmaGoal(psma, (OID)0x430);
+                                }
+                                break;
+                            case 0x430:
+                                if (psuv == PpoCur())
+                                {
+                                    SetSmaGoal(psma, (OID)0x431);
+                                    FUN_001d9338(psuv);
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+                break;
+            case 1:
+                if (fIn == 0)
+                    STRUCT_OFFSET(psuv, 0xafc, SUVFEAT *) = 0;
+                else
+                    STRUCT_OFFSET(psuv, 0xafc, SUVFEAT *) = pfeat;
+                break;
+            }
+        }
+    }
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvSounds__FP3SUVf);
 
@@ -519,6 +601,9 @@ void AddSuvCheckPoint(SUV *psuv, VOL *pvol)
     }
 }
 
+/**
+ * @todo 2 differing lines of 26: store order of the last field (pexpl) is wrong; all 720 statement orders tried.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/suv", AddSuvFeature__FP3SUVP3VOLffP4EXPLT4);
 #ifdef SKIP_ASM
 void AddSuvFeature(SUV *psuv, VOL *pvol, float a, float b, EXPL *pexpl, EXPL *pexpl2)
