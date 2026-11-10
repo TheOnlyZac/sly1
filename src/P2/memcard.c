@@ -7,21 +7,31 @@
 #include <cat.h>
 #include <game.h>
 #include <text.h>
+#include <rumble.h>
 
 // libmc functions, names unknown (guessed signatures)
 extern "C"
 {
 int func_00209CB8(int port, int slot, int *ptype, int *pfree, int *pformat); // sceMcGetInfo (guess)
 int func_00209E48(int port, int slot, char *pchz, int mode, int cMax, sceMcTblGetDir *ptbl); // sceMcGetDir (guess)
+int func_0020A078(int port, int slot, char *pchz);
 int func_00209B80(int mode, int *pcmd, int *presult); // sceMcSync (guess)
 int func_00209FA8(int port, int slot);
-int func_002096E8(int port, int slot, int x);
+int func_002096E8(int port, int slot, char *pchz);
 int func_002095B0(int port, int slot, char *pchz, int mode); // sceMcOpen (guess)
 int func_00209720(int fd); // sceMcClose (guess)
 int func_00209870(int fd, void *pv, int cb); // sceMcRead (guess)
 int func_00209990(int fd, void *pv, int cb); // sceMcWrite (guess)
 }
 
+extern char D_0024B3A0[];
+extern char D_0024B3C8[];
+extern char s_savePath[];
+extern char D_00248470[];
+extern char D_0024B340[];
+extern char D_0024B348[];
+extern char D_0024B360[];
+extern char D_0024B390[];
 extern SAVE g_save;
 extern MEMCARD g_memcard;
 
@@ -245,17 +255,74 @@ int FUN_0018c1e8(SAVE *psave)
 	return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018c250);
+int FUN_0018c250(SAVE *psave)
+{
+	char abBuf[0x50];
+	int n;
+	int c;
+	int cb;
+	int r = FUN_0018bd00(func_0020A078(psave->port, psave->slot, D_0024B340), 0x12, &n);
+	if (r != 0)
+		return r;
+	c = (n == 0) ? 2 : 1;
+	cb = FUN_0018c1e8((SAVE *)D_00248470);
+	c += 5;
+	c += (cb + 0x3ff) / 0x400;
+	c += 0x15;
+	if (psave->mcFree < c)
+		return 1;
+	r = FUN_0018d228(psave, D_0024B348);
+	if (r == 0)
+	{
+		r = FUN_0018d368(psave, D_0024B360, D_0024B390, 10);
+		if (r == 0)
+		{
+			r = FUN_0018ca10(psave, D_0024B348, D_0024B390);
+			if (r == 0)
+			{
+				r = load_sly_icon_from_disc(psave, D_0024B348);
+				if (r == 0)
+				{
+					SAVESLOT *aslot = (SAVESLOT *)((char *)psave + 0x30);
+					for (int i = 0; i < 3; i++)
+					{
+						sprintf(abBuf, D_0024B3A0, s_savePath, D_0024B3C8, i + 1);
+						r = FUN_0018d028(psave, abBuf, &aslot[i].gs, (char *)aslot[i].unk_0x1a00);
+						if (r != 0)
+							goto done;
+					}
+					if (psave->mode < 5)
+						psave->mode = 5;
+				}
+			}
+		}
+	}
+done:
+	return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018c420);
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018c568);
+int FUN_0018c568(SAVE *psave)
+{
+	if (STRUCT_OFFSET(psave, 0x4f44, GS *) == 0)
+		return 0x2c;
+	*g_pgsCur = *STRUCT_OFFSET(psave, 0x4f44, GS *);
+	RumbleUnknown2(g_pgsCur);
+	return 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018c638);
-
-extern char D_0024B3A0[];
-extern char D_0024B3C8[];
-extern char s_savePath[];
+int FUN_0018c638(SAVE *psave)
+{
+	char abBuf[0x50];
+	if (STRUCT_OFFSET(psave, 0x4f44, GS *) == 0)
+		return 0x2c;
+	RumbleUnknown2(g_pgsCur);
+	*STRUCT_OFFSET(psave, 0x4f44, GS *) = *g_pgsCur;
+	int i = ((SAVESLOT *)STRUCT_OFFSET(psave, 0x4f44, GS *) - (SAVESLOT *)((char *)psave + 0x30)) + 1;
+	sprintf(abBuf, D_0024B3A0, s_savePath, D_0024B3C8, i);
+	return FUN_0018cfc0(psave, abBuf, STRUCT_OFFSET(psave, 0x4f44, GS *));
+}
 
 int FUN_0018c770(SAVE *psave)
 {
@@ -322,9 +389,9 @@ JUNK_ADDIU(10);
 JUNK_ADDIU(10);
 JUNK_ADDIU(b0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018ca10);
+INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018ca10__FP4SAVEPcPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", load_sly_icon_from_disc);
+INCLUDE_ASM("asm/nonmatchings/P2/memcard", load_sly_icon_from_disc__FP4SAVEPc);
 
 INCLUDE_ASM("asm/nonmatchings/P2/memcard", load_file_from_disc);
 
@@ -376,9 +443,9 @@ int FUN_0018d1f8(SAVE *psave)
 	return FUN_0018bd00(func_00209FA8(psave->port, psave->slot), 0x10, 0);
 }
 
-int FUN_0018d228(SAVE *psave, int b)
+int FUN_0018d228(SAVE *psave, char *pchz)
 {
-	int r = FUN_0018bd00(func_002096E8(psave->port, psave->slot, b), 0xb, 0);
+	int r = FUN_0018bd00(func_002096E8(psave->port, psave->slot, pchz), 0xb, 0);
 	return r == 0x18 ? 0 : r;
 }
 
