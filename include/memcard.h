@@ -7,6 +7,7 @@
 
 #include "common.h"
 #include "game.h"
+#include <sdk/ee/libmc.h>
 
 /**
  * @brief Memory Card.
@@ -25,6 +26,43 @@ struct MEMCARD
  * @note Judging from the memset in InitSave,
  * this struct could be over 20k bytes long.
  */
+struct SAVESLOT // guess: one save game, GS plus a 0x5c byte trailer
+{
+    GS gs;
+    uint8_t unk_0x1a00[0x5c];
+};
+
+/**
+ * @brief Directory entry summary, converted from sceMcTblGetDir (guess at name).
+ */
+struct SAVEDIRENT
+{
+    char achzName[0x44];
+    int cb;
+    union // grf is a word but the dates below overlap its top half
+    {
+        uint grf;
+        struct
+        {
+            uint16_t unk_0x48;
+            uint8_t bCreateMonth;
+            uint8_t bCreateDay;
+            uint16_t wCreateYear;
+            uint8_t bCreateHour;
+            uint8_t bCreateMin;
+            uint8_t bCreateSec;
+            uint8_t unk_0x51;
+            uint8_t bModifyMonth;
+            uint8_t bModifyDay;
+            uint16_t wModifyYear;
+            uint8_t bModifyHour;
+            uint8_t bModifyMin;
+            uint8_t bModifySec;
+            uint8_t unk_0x59[3];
+        } dt;
+    };
+};
+
 struct SAVE
 {
     int field_0x00;
@@ -89,6 +127,8 @@ int FUN_0018d028(SAVE *psave, char *pchz, GS *pgs, char *pbHdr);
 int FUN_0018d168(SAVE *psave, int *pcb);
 int FUN_0018d368(SAVE *psave, char *pchz, void *pv, int cb);
 int CompareSaves(SAVE *psave1, SAVE *psave2);
+int FUN_0018c770(SAVE *psave);
+void FUN_0018b780(sceMcTblGetDir *pdir, SAVEDIRENT *pent);
 int FUN_0018d1f8(SAVE *psave);
 int FUN_0018d228(SAVE *psave, int b);
 int FUN_0018d268(SAVE *psave, char *pchz, int mode, int *pfd);
