@@ -97,29 +97,26 @@ void PostBlotLoad(BLOT *pblot)
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateBlot__FP4BLOT);
 
-/// @todo ~75% matched (only a $16/$17 register swap between pblot and pchz remains).
-INCLUDE_ASM("asm/nonmatchings/P2/screen", SetBlotAchzDraw__FP4BLOTPc);
-#ifdef SKIP_ASM
 void SetBlotAchzDraw(BLOT *pblot, char *pchz)
 {
+    char *achz;
     if (pchz && strlen(pchz))
     {
         strcpy(pblot->achzDraw, pchz);
-        pchz = pblot->achzDraw;
+        achz = pblot->achzDraw;
     }
     else
     {
         pblot->achzDraw[0] = 0;
-        pchz = pblot->achzDraw;
+        achz = pblot->achzDraw;
     }
     pblot->pfont->PushScaling(pblot->rFontScale, pblot->rFontScale);
-    CRichText richtext(pchz, pblot->pfont);
+    CRichText richtext(achz, pblot->pfont);
     float dx, dy;
     richtext.GetExtents(&dx, &dy, 0.0f);
     ResizeBlot(pblot, dx, dy);
     pblot->pfont->PopScaling();
 }
-#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", SetBlotRgba__FP4BLOTUi);
 
