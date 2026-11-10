@@ -1,5 +1,25 @@
 #include <suv.h>
 #include <clock.h>
+#include <find.h>
+#include <sm.h>
+#include <ui.h>
+
+struct SUVRACE // guess, only the vtable and the counter at 0x27c are known
+{
+    void *pvt;
+    char pad[0x278];
+    int c;
+};
+
+struct UNKBLOT // guess, only the vtable and the pointers at 0x264 and 0x268 are known
+{
+    void *pvt;
+    char pad[0x260];
+    void *pv0;
+    void *pv1;
+};
+
+#define VCALL(pobj, off) (*(void (**)(void *))(*(int *)(pobj) + (off)))(pobj)
 
 extern char D_00275290[];
 extern char D_00275250[];
@@ -62,7 +82,44 @@ float GExcludeAlm(int clm, LM *alm, float g)
 }
 #endif
 
-INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvBalance__FP3SUV);
+extern SMP D_00275490;
+extern float D_002754A0[2];
+
+void UpdateSuvBalance(SUV *psuv)
+{
+    if (psuv != PpoCur())
+    {
+        STRUCT_OFFSET(psuv, 0x85c, float) = GSmooth(STRUCT_OFFSET(psuv, 0x85c, float), STRUCT_OFFSET(psuv, 0x860, float), g_clock.dt, &D_00275490, 0);
+        if (g_clock.t < STRUCT_OFFSET(psuv, 0x864, float))
+        {
+        }
+        else
+        {
+            int n = (STRUCT_OFFSET(psuv, 0xb00, int) - 1) * 3 + STRUCT_OFFSET(STRUCT_OFFSET(psuv, 0xaf8, SUVFEAT *), 0xc, int);
+            float x = n * 0.1f;
+            float lo = 0.0f, hi = 1.0f;
+            float xc;
+            if (x < lo)
+                xc = lo;
+            else if (x > hi)
+                xc = hi;
+            else
+                xc = x;
+            float v = GEvaluateClq(&STRUCT_OFFSET(psuv, 0x670, CLQ), xc);
+            float vlo = STRUCT_OFFSET(psuv, 0x680, float), vhi = STRUCT_OFFSET(psuv, 0x684, float);
+            float vc;
+            if (v < vlo)
+                vc = vlo;
+            else if (v > vhi)
+                vc = vhi;
+            else
+                vc = v;
+            STRUCT_OFFSET(psuv, 0x860, float) = vc;
+            STRUCT_OFFSET(psuv, 0x860, float) += GRandInRange(-0.05f, 0.05f);
+            STRUCT_OFFSET(psuv, 0x864, float) = g_clock.t + GRandInRange(D_002754A0[0], D_002754A0[1]);
+        }
+    }
+}
 
 float DsGetTrackRelative(float a, float b, float c)
 {
@@ -135,7 +192,43 @@ void BoostSuv(SUV *psuv)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/suv", FUN_001d9338);
+INCLUDE_ASM("asm/nonmatchings/P2/suv", FUN_001d9338__FP3SUV);
+#ifdef SKIP_ASM
+struct SUVLS // guess, view of LS fields at 0x70 and 0x74
+{
+    char pad[0x70];
+    int c;
+    unsigned char ab[16];
+};
+
+void FUN_001d9338(SUV *psuv)
+{
+    float x = ((STRUCT_OFFSET(psuv, 0xb00, int) - 1) * 3 + STRUCT_OFFSET(STRUCT_OFFSET(psuv, 0xaf8, SUVFEAT *), 0xc, int)) * 0.1f;
+    float lo = 0.0f, hi = 1.0f;
+    float xc;
+    if (x < lo)
+        xc = lo;
+    else if (x > hi)
+        xc = hi;
+    else
+        xc = x;
+    int i = STRUCT_OFFSET(psuv, 0xb0c, int) - STRUCT_OFFSET(psuv, 0xb08, int);
+    if (i < 3 || (((SUVLS *)g_plsCur)->ab[i / 8] & (1 << (i & 7))))
+    {
+        OnDifficultyPlayerDeath(xc, &g_difficulty);
+    }
+    for (; i >= 0; i--)
+    {
+        SUVLS *pls = (SUVLS *)g_plsCur;
+        int m = 1 << (i & 7);
+        if (!(pls->ab[i / 8] & m))
+        {
+            pls->ab[i / 8] |= m;
+            pls->c++;
+        }
+    }
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvVolumes__FP3SUVi);
 
@@ -177,7 +270,69 @@ void UpdateSuv(SUV *psuv, float dt)
 
 INCLUDE_ASM("asm/nonmatchings/P2/suv", UpdateSuvActive__FP3SUVP3JOYf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/suv", FUN_001da170);
+extern UNKBLOT g_unkblot2;
+extern UNKBLOT g_unkblot3;
+extern UNKBLOT g_unkblot4;
+extern SUVRACE D_00272430;
+extern SUVRACE D_002726B0;
+
+void FUN_001da170(SUV *psuv)
+{
+    int f1 = 0;
+    int f2 = 0;
+    switch (STRUCT_OFFSET(psuv, 0xb30, int))
+    {
+    case 0:
+    {
+        LO *plo = PloFindSwObject(STRUCT_OFFSET(psuv, 0x14, SW *), 5, (OID)0x42c, 0);
+        if (plo)
+        {
+            SMA *psma = STRUCT_OFFSET(plo, 0x48, SMA *);
+            OID oid;
+            GetSmaGoal(psma, &oid);
+            int n = oid;
+            if (n == -1)
+            {
+                GetSmaCur(psma, &oid);
+                n = oid;
+            }
+            if (n < 0x431)
+            {
+                if (n >= 0x42f)
+                {
+                    f1 = (int)FUN_001e9970();
+                }
+            }
+        }
+        break;
+    }
+    case 1:
+        f2 = (int)FUN_001e9970();
+        break;
+    }
+    if (f1)
+    {
+        VCALL(&g_unkblot3, 0x38);
+        VCALL(&g_unkblot2, 0x38);
+        VCALL(&g_unkblot4, 0x38);
+    }
+    else
+    {
+        VCALL(&g_unkblot3, 0x3c);
+        VCALL(&g_unkblot2, 0x3c);
+        VCALL(&g_unkblot4, 0x3c);
+    }
+    if (f2)
+    {
+        VCALL(&D_00272430, 0x38);
+        VCALL(&D_002726B0, 0x38);
+    }
+    else
+    {
+        VCALL(&D_00272430, 0x3c);
+        VCALL(&D_002726B0, 0x3c);
+    }
+}
 
 void UpdateSuvInternalXps(SUV *psuv)
 {
@@ -237,12 +392,6 @@ void GetSuvCpdefi(SUV *psuv, float dt, CPDEFI *pcpdefi)
     GetSoCpdefi(psuv, dt, pcpdefi);
 }
 
-struct UNKBLOT // guess, only the pointers at 0x264 and 0x268 are known
-{
-    char pad[0x264];
-    void *pv0;
-    void *pv1;
-};
 extern UNKBLOT g_unkblot2;
 extern UNKBLOT g_unkblot3;
 extern UNKBLOT g_unkblot4;
@@ -265,11 +414,6 @@ void OnSuvActive(SUV *psuv, int fActive, PO *ppoOther)
     }
 }
 
-struct SUVRACE // guess, only the counter at 0x27c is known
-{
-    char pad[0x27c];
-    int c;
-};
 extern SUVRACE D_00272430;
 extern SUVRACE D_002726B0;
 extern int D_002751D4;

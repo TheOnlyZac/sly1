@@ -16,6 +16,8 @@
 #include <stepguard.h>
 #include <math.h>
 #include <memory.h>
+#include <game.h>
+#include <difficulty.h>
 
 /**
  * @class SMASHUP_VEHICLE
@@ -80,6 +82,8 @@ void UpdateSuvSounds(SUV *psuv, float dt);
 void UpdateSuvExpls(SUV *psuv);
 void UpdateSuvVolumes(SUV *psuv, int fNoXps); // guess
 void UpdateSuvPuncher(SUV *psuv);
+void FUN_001d9338(SUV *psuv);
+void FUN_001da170(SUV *psuv);
 float GExcludeAlm(int clm, LM *alm, float g);
 
 #endif // SUV_H
