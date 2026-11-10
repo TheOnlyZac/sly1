@@ -97,6 +97,8 @@ void InitMemcard(MEMCARD *pmemcard);
 // MemcardThreadEntry?
 void FUN_0018b600();
 
+void CreateMemcardThread(MEMCARD *pmemcard, int unk1, int unk2);
+
 void SetMemcardThreadHighPrio(MEMCARD *pmemcard);
 
 int FMemcardThreadValid(MEMCARD *pmemcard);

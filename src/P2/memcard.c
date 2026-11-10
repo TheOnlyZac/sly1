@@ -9,6 +9,7 @@
 #include <text.h>
 #include <rumble.h>
 #include <bis.h>
+#include <prompt.h>
 #include <memory.h>
 
 // libmc functions, names unknown (guessed signatures)
@@ -411,7 +412,42 @@ int FUN_0018c770(SAVE *psave)
 	return FUN_0018d028(psave, abBuf, STRUCT_OFFSET(psave, 0x4f4c, GS *), (char *)STRUCT_OFFSET(psave, 0x4f4c, GS *) + 0x1a00);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018c7f8__FP4SAVE);
+extern PROMPT D_0026FF68;
+struct UW
+{
+	int w;
+} __attribute__((packed));
+struct VTUNK
+{
+	char unk_0x00[0x38];
+	void (*pfn)(void *);
+};
+struct OBJUNK
+{
+	VTUNK *pvt;
+	char unk_0x04[0x25c];
+};
+extern OBJUNK D_00273EB0;
+
+void FUN_0018c7f8(SAVE *psave)
+{
+	if (STRUCT_OFFSET(psave, 0x4f44, int) != 0)
+	{
+		if ((g_pgsCur->grfgs & 0x100) == 0)
+		{
+			PROMPT *pprompt = &D_0026FF68;
+			STRUCT_OFFSET(pprompt, 0x27c, int) = -1;
+			SetPrompt(pprompt, (PRP)1, (PRK)0x14);
+		}
+		else
+		{
+			CreateMemcardThread(&g_memcard, (int)FUN_0018c638, (int)psave);
+			OBJUNK *pobj = &D_00273EB0;
+			((UW *)((char *)pobj + 0x260))->w = 0;
+			pobj->pvt->pfn(pobj);
+		}
+	}
+}
 
 extern char D_002BE9C0[];
 extern sceMcTblGetDir D_002BE540[];
