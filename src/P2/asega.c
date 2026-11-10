@@ -48,9 +48,6 @@ ACTSEG *PactsegFindAsega(ASEGA *pasega, OID oid)
 JUNK_NOP();
 JUNK_ADDIU(10);
 
-INCLUDE_ASM("asm/nonmatchings/P2/asega", HandleAsegaEvent__FP5ASEGAP2EAPi);
-
-#ifdef SKIP_ASM
 #include <find.h>
 #include <sound.h>
 #include <dialog.h>
@@ -87,7 +84,6 @@ int FPauseForVag();
 void StopVag();
 int FContinuousSound(SFXID sfxid);
 void SetJtPuppet(JT *pjt, ASEGA *pasega);
-void TriggerJoyRumble(JOY *pjoy, RUMK rumk, float dt);
 void PlaceCredit(CREDIT *pcredit, float x, float y, int i);
 void VacateCredit(CREDIT *pcredit);
 void SetCreditLine(CREDIT *pcredit, int iLine, char *pchz, float u);
@@ -314,12 +310,8 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         LO *plo = PloFindSwObject(psw, 0x104, pea->oid8, pasega->plo ? pasega->plo : pasega->paseg);
         if (plo == 0)
             return;
-        CT ctForce = (CT)pea->shC.s0;
-        if (ctForce < 0)
-            ctForce = STRUCT_OFFSET(plo, 0x450, CT);
-        CT ctTorque = (CT)pea->shC.s2;
-        if (ctTorque < 0)
-            ctTorque = STRUCT_OFFSET(plo, 0x470, CT);
+        CT ctForce = pea->shC.s0 < 0 ? STRUCT_OFFSET(plo, 0x450, CT) : (CT)pea->shC.s0;
+        CT ctTorque = pea->shC.s2 < 0 ? STRUCT_OFFSET(plo, 0x470, CT) : (CT)pea->shC.s2;
         SetSoConstraints((SO *)plo, ctForce, 0, ctTorque, 0);
         break;
     }
@@ -365,7 +357,8 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
             break;
         if ((pea->eak != 17) != (fReverse == 0))
         {
-            STRUCT_OFFSET(pactseg, 0x11, char) = 5;
+            int c = 5;
+            STRUCT_OFFSET(pactseg, 0x11, char) = c;
             STRUCT_OFFSET(pactseg, 0x10, char) = 5;
         }
         else
@@ -523,7 +516,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         break;
     }
     case 37:
-        TriggerJoyRumble(&g_joy, (RUMK)pea->sh8.s2, (float)pea->sh8.s0 * (1.0f / 60.0f));
+        TriggerJoyRumbleRumk(&g_joy, (RUMK)pea->sh8.s2, (float)pea->sh8.s0 * (1.0f / 60.0f));
         break;
     case 38:
     {
@@ -715,7 +708,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
     }
     }
 }
-#endif
+ALIGN_SECTION(rodata, 4);
 
 INCLUDE_ASM("asm/nonmatchings/P2/asega", HandleAsegaEventsFF__FP5ASEGAP4ASEGPi);
 
