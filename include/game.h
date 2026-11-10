@@ -292,7 +292,7 @@ char *PchzFriendlyFromWid(WID wid);
  *
  * @return The completion state of the level.
  */
-FLS GetLevelCompletionById(int id);
+FLS GetLevelCompletionById(WID wid);
 
 /**
  * @brief Tally the completion of a world.
