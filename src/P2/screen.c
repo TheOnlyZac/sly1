@@ -98,7 +98,68 @@ void PostBlotLoad(BLOT *pblot)
     pblot->rFontScale = 1.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateBlot__FP4BLOT);
+extern float D_002743A0[3];
+void UpdateBlot(BLOT *pblot)
+{
+    float t = *pblot->ptNow;
+    BLOTS blots = pblot->blots;
+    switch (blots)
+    {
+    case BLOTS_Visible:
+    {
+        float dt = pblot->pvtblot->pfnDtVisibleBlot(pblot);
+        if (dt != 0.0f && dt <= t - pblot->tBlots)
+            blots = BLOTS_Disappearing;
+        break;
+    }
+    case BLOTS_Appearing:
+    {
+        float dt = pblot->pvtblot->pfnDtAppearBlot(pblot);
+        if (dt != 0.0f)
+        {
+            float one = 1.0f;
+            float u = (t - pblot->tBlots + pblot->dtBlotsExtra) / dt;
+            if (u < 0.0f)
+                u = 0.0f;
+            else if (u > one)
+                u = one;
+            pblot->uOn = u;
+        }
+        if (pblot->uOn >= 1.0f)
+            blots = BLOTS_Visible;
+        break;
+    }
+    case BLOTS_Disappearing:
+    {
+        float dt = pblot->pvtblot->pfnDtDisappearBlot(pblot);
+        if (dt != 0.0f)
+        {
+            float one = 1.0f;
+            float x = (t - pblot->tBlots + pblot->dtBlotsExtra) / dt;
+            float u;
+            if (x < 0.0f)
+                u = 0.0f;
+            else if (x > one)
+                u = one;
+            else
+                u = x;
+            pblot->uOn = 1.0f - u;
+        }
+        if (pblot->uOn <= 0.0f)
+            blots = BLOTS_Hidden;
+        break;
+    }
+    }
+    if (blots == pblot->blots)
+    {
+        float u = pblot->uOn;
+        float s = D_002743A0[0] + u * (D_002743A0[1] + u * D_002743A0[2]);
+        pblot->x = pblot->dx + s * (pblot->xOn - pblot->dx);
+        pblot->y = pblot->dy + s * (pblot->yOn - pblot->dy);
+        RepositionBlotDependents(pblot);
+    }
+    pblot->pvtblot->pfnSetBlotBlots(pblot, blots);
+}
 
 void SetBlotAchzDraw(BLOT *pblot, char *pchz)
 {
@@ -304,7 +365,61 @@ void SetBlotClock(BLOT *pblot, float *pt)
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", PostCtrLoad__FP3CTR);
 
+/// @todo Near miss: 20 differing lines of 82 (register allocation, movz vs movn)
 INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateCtr__FP3CTR);
+#ifdef SKIP_ASM
+void UpdateCtr(CTR *pctr)
+{
+    UpdateBlot(pctr);
+    if (pctr->nDisplay != *pctr->pnActual)
+    {
+        if (pctr->nDisplay < 0)
+        {
+            pctr->nDisplay = *pctr->pnActual;
+        }
+        else
+        {
+            float f = g_clock.dt * pctr->dgDisplayMax + pctr->uRemain;
+            int n = (int)f;
+            pctr->uRemain = f - (float)n;
+            int nTarget = *pctr->pnActual;
+            int nNew;
+            if (nTarget < pctr->nDisplay)
+            {
+                nNew = pctr->nDisplay - n;
+                if (nNew < nTarget)
+                    nNew = nTarget;
+            }
+            else
+            {
+                nNew = pctr->nDisplay + n;
+                if (nTarget < nNew)
+                    nNew = nTarget;
+            }
+            pctr->nDisplay = nNew;
+        }
+        if (pctr->nDisplay == *pctr->pnActual && pctr->pfnsmack)
+        {
+            pctr->pfnsmack(pctr->pv);
+            pctr->pfnsmack = 0;
+            pctr->pv = 0;
+        }
+        RebuildCtrAchzDraw(pctr);
+        if (pctr->achzDraw[0])
+        {
+            pctr->pfont->PushScaling(pctr->rFontScale, pctr->rFontScale);
+            CRichText richtext(pctr->achzDraw, pctr->pfont);
+            float dx = richtext.Dx();
+            ResizeBlot(pctr, dx, (float)STRUCT_OFFSET(pctr->pfont, 8, int) * STRUCT_OFFSET(pctr->pfont, 0x48, float));
+            pctr->pfont->PopScaling();
+        }
+        else
+        {
+            ResizeBlot(pctr, 0.0f, 0.0f);
+        }
+    }
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawCtr__FP3CTR);
 
@@ -487,7 +602,39 @@ void SetNoteAchzDraw(NOTE *pnote, char *pchz)
     pnote->pfont->PopScaling();
 }
 
+/// @todo Near miss: 31 differing lines of 107 (RGBA temp copies, f20/f21 hoist)
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawNote__FP4NOTE);
+#ifdef SKIP_ASM
+void DrawNote(NOTE *pnote)
+{
+    if (pnote->achzDraw[0])
+    {
+        RGBA rgba = pnote->rgba;
+        CTextBox tbx;
+        rgba.bAlpha = (int)((float)rgba.bAlpha * pnote->uOn);
+        tbx.SetPos(pnote->x, pnote->y);
+        tbx.SetSize(pnote->width, pnote->height);
+        RGBA rgbaT = rgba;
+        tbx.SetTextColor(&rgbaT);
+        tbx.SetHorizontalJust((JH)0);
+        tbx.SetVerticalJust((JV)0);
+        CTextEdge *pte = pnote->pte;
+        if (pte)
+        {
+            rgbaT = STRUCT_OFFSET(pte, 0x18, RGBA);
+            STRUCT_OFFSET(pte, 0x18, RGBA).bAlpha = (int)((float)STRUCT_OFFSET(pte, 0x18, RGBA).bAlpha * pnote->uOn);
+            CFont *pfont = STRUCT_OFFSET(pnote->pte, 0, CFont *);
+            if (pfont)
+                pfont->EdgeRect(pnote->pte, &tbx, &g_gifs);
+            STRUCT_OFFSET(pnote->pte, 0x18, RGBA) = rgbaT;
+        }
+        pnote->pfont->PushScaling(pnote->rFontScale, pnote->rFontScale);
+        CRichText richtext(pnote->achzDraw, pnote->pfont);
+        richtext.Draw(&tbx, 0, &g_gifs);
+        pnote->pfont->PopScaling();
+    }
+}
+#endif // SKIP_ASM
 
 void FUN_001ac888(BLOT *pblot)
 {
@@ -596,7 +743,45 @@ void FUN_001ace38(BLOT *pblot, char *pchz)
     }
 }
 
+/// @todo Near miss: 6 differing lines of 105 (second 60 constant scheduling)
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001acee0);
+#ifdef SKIP_ASM
+extern char D_0024CD88[], D_0024CD90[], D_0024CD98[], D_0024CDA0[], D_0024CDA8[], D_0024CDB0[], D_0024CDB8[], D_0024CDC0[], D_0024CDC8[], D_0024CDE0[], D_0024CDF8[];
+void FUN_001acee0(char *pchz, int *pls, int grf)
+{
+    int flags = *pls;
+    *pchz = 0;
+    if (grf & 2)
+        pchz += sprintf(pchz, D_0024CD88, (flags & 2) ? D_0024CD90 : D_0024CD98);
+    if (grf & 4)
+    {
+        if (grf & 2)
+            *pchz++ = ' ';
+        pchz += sprintf(pchz, D_0024CD88, (flags & 4) ? D_0024CDA0 : D_0024CDA8);
+    }
+    if (grf & 8)
+    {
+        if (grf & 6)
+            *pchz++ = ' ';
+        int f8 = flags & 8;
+        pchz += sprintf(pchz, D_0024CDB0, f8 ? D_0024CDB8 : D_0024CDC0);
+        if (f8)
+        {
+            float t = ((float *)pls)[2];
+            if (t < 1.0f)
+            {
+                sprintf(pchz, D_0024CDC8, (int)(t * 10.0f));
+            }
+            else
+            {
+                int n = (int)t;
+                sprintf(pchz, D_0024CDE0, n / 60, n % 60);
+            }
+        }
+        strcpy1(pchz, D_0024CDF8);
+    }
+}
+#endif // SKIP_ASM
 
 void render_level_info_from_id(BLOT *pblot, int level_id)
 {
@@ -606,7 +791,32 @@ void render_level_info_from_id(BLOT *pblot, int level_id)
         pblot->pvtblot->pfnSetBlotAchzDraw(pblot, D_0024CE00);
 }
 
+/// @todo Near miss: 34 differing lines of 77 (register allocation of name/buffer)
 INCLUDE_ASM("asm/nonmatchings/P2/screen", render_level_info);
+#ifdef SKIP_ASM
+extern char D_0024CE10[], D_0024CE18[], D_0024CD68[];
+void render_level_info(BLOT *pblot, uint iws, uint ils)
+{
+    int *pls = (int *)((char *)g_pgsCur + iws * 0x44C + 0x10 + ils * 0x78);
+    int id = (iws << 8) | ils;
+    char achz[0x40];
+    FUN_001acee0(achz, pls, GetLevelCompletionById(id));
+    char achzOut[0x40];
+    char *pchzOut;
+    if (strlen(achz))
+    {
+        pchzOut = achzOut;
+        char *pchzName = PchzFriendlyFromWid((WID)id);
+        sprintf(achzOut, D_0024CE10, pchzName, strlen(achz) ? D_0024CE18 : D_0024CD68, achz);
+    }
+    else
+    {
+        pchzOut = achzOut;
+        strcpy(achzOut, PchzFriendlyFromWid((WID)id));
+    }
+    pblot->pvtblot->pfnSetBlotAchzDraw(pblot, pchzOut);
+}
+#endif // SKIP_ASM
 
 extern char D_0024CE18[], D_0024CD68[], D_0024CE80[], D_0024CEA0[], D_0024CEC0[];
 extern char *D_00274430[];
@@ -751,7 +961,41 @@ void FUN_001adf28(ATTRACT *pattract)
 }
 #endif // SKIP_ASM
 
+/// @todo Near miss: 28 differing lines of 84 (rgba byte store order, achz hoist)
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001adff0);
+#ifdef SKIP_ASM
+extern char D_0024CF90[];
+extern "C" float FUN_0015e1b0(CRichText *, float);
+extern char *D_00274478[];
+void FUN_001adff0(ATTRACT *pattract)
+{
+    RGBA rgba;
+    char *achz = pattract->achzDraw;
+    if (pattract->fJoyValid)
+    {
+        rgba.bRed = 0x6F;
+        rgba.bGreen = 0x6F;
+        rgba.bBlue = 0x6F;
+        rgba.bAlpha = 0xFF;
+        pattract->rgba = rgba;
+        sprintf(achz, D_0024CF90, D_00274478[pattract->fReshow ? 1 : 0], D_00274478[2]);
+    }
+    else
+    {
+        rgba.bRed = 0x6F;
+        rgba.bGreen = 0x1F;
+        rgba.bBlue = 0x1F;
+        rgba.bAlpha = 0xFF;
+        pattract->rgba = rgba;
+        strcpy(achz, D_00274478[3]);
+    }
+    pattract->pfont->PushScaling(pattract->rFontScale, pattract->rFontScale);
+    CRichText richtext(achz, pattract->pfont);
+    float dx = richtext.DxMaxLine();
+    ResizeBlot(pattract, dx, FUN_0015e1b0(&richtext, 0.0f));
+    pattract->pfont->PopScaling();
+}
+#endif // SKIP_ASM
 
 void FUN_001ae130(BLOT *pblot, BLOTS blots)
 {
