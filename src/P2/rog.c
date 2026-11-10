@@ -18,6 +18,22 @@ extern SNIP s_asnipLoadRost[1];
 extern SMP s_smpRovAccel; // guess
 extern SMP s_smpRocAccel; // guess
 extern VECTOR g_normalZ;
+
+// Inline copy of GLimitLm (the original is inlined here and the out of line one does not match).
+static inline float GLimitLmInl(LM *plm, float g)
+{
+    float lo = plm->gMin;
+    float hi = plm->gMax;
+    if (g < lo)
+    {
+        return lo;
+    }
+    if (g > hi)
+    {
+        return hi;
+    }
+    return g;
+}
 extern VECTOR g_vecZero; // guess
 #include <sound.h>
 #include <util.h>
@@ -268,7 +284,28 @@ ROBK RobkCur()
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", BindRob__FP3ROB);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", PostRobLoad__FP3ROB);
+void PostRobLoad(ROB *prob)
+{
+    PostAloLoad(prob);
+    if (STRUCT_OFFSET(prob, 0x64c, ROBK) != RobkCur())
+    {
+        prob->pvtlo->pfnRemoveLo(prob);
+        return;
+    }
+    float gRaw = GEvaluateClq(&STRUCT_OFFSET(prob, 0x3d0, CLQ), g_plsCur->uSuck);
+    float g = GLimitLmInl(&g_lmZeroOne, gRaw);
+    float *pgA = &STRUCT_OFFSET(prob, 0x3e0, float);
+    float *pgB = &STRUCT_OFFSET(prob, 0x4a0, float);
+    float *pgCur = &STRUCT_OFFSET(prob, 0x560, float);
+    int i = 0;
+    do
+    {
+        *pgCur++ = GLerp(*pgA++, *pgB++, g);
+        i++;
+    } while ((uint)i < 0x30);
+    AdjustRobDifficulty(prob, 0.0f);
+    SetRobRobs(prob, ROBS_Descend);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRob__FP3ROBf);
 
@@ -552,7 +589,34 @@ void PostRocLoad(ROC *proc)
     proc->pvtlo->pfnRemoveLo(proc);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRoc__FP3ROCf);
+void UpdateRoc(ROC *proc, float dt)
+{
+    ROCS rocs;
+    UpdateSo(proc, dt);
+    while ((rocs = RocsNextRoc(proc)) != STRUCT_OFFSET(proc, 0x550, ROCS))
+    {
+        SetRocRocs(proc, rocs);
+    }
+    if (STRUCT_OFFSET(proc, 0x578, EMITTER *))
+    {
+        float g = -STRUCT_OFFSET(proc, 0x158, float);
+        if (g > 0.0001f)
+        {
+            UnpauseEmitter(STRUCT_OFFSET(proc, 0x578, EMITTER *));
+            LM *plm = &g_lmZeroOne;
+            float u = GLimitLmInl(plm, GEvaluateClq(&STRUCT_OFFSET(proc, 0x590, CLQ), g));
+            float gA = STRUCT_OFFSET(proc, 0x57c, float) * u;
+            float gB = STRUCT_OFFSET(proc, 0x580, float) * u;
+            void *pemitter = STRUCT_OFFSET(proc, 0x578, void *);
+            STRUCT_OFFSET(pemitter, 0x2dc, float) = gA;
+            STRUCT_OFFSET(pemitter, 0x2e0, float) = gB;
+        }
+        else
+        {
+            PauseEmitterIndefinite(STRUCT_OFFSET(proc, 0x578, EMITTER *));
+        }
+    }
+}
 
 void PresetRocAccel(ROC *proc, float dt)
 {
