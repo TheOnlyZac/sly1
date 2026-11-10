@@ -8,6 +8,9 @@
 #include <screen.h>
 #include <game.h>
 #include <basic.h>
+#include <rip.h>
+#include <util.h>
+#include <sound.h>
 #include <po.h>
 #include <difficulty.h>
 #include <memcard.h>
@@ -18,6 +21,14 @@
 extern "C" void func_001E02C8(void *, int);
 extern int D_00270458;
 extern int D_00275C34;
+extern char D_00261AD0[]; // unknown, rip vtable?
+extern char D_00261B60[]; // unknown, rip vtable?
+
+// Packed so stores compile to swl/swr like the original OnCoinSmack.
+struct UNALIGNED_FLOAT
+{
+    float f;
+} __attribute__((packed));
 
 void InitDprize(DPRIZE *pdprize)
 {
@@ -167,11 +178,6 @@ void AddLife(void *ptr)
     g_pgsCur->clife = capped_clife;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", OnCoinSmack__FP4COIN);
-#ifdef SKIP_ASM
-/**
- * @todo 91.21% matched.
- */
 void OnCoinSmack(COIN *pcoin)
 {
     if (++g_pgsCur->ccoin < 100)
@@ -181,9 +187,10 @@ void OnCoinSmack(COIN *pcoin)
     {
         // Give the player a charm and reset the coin count
         g_pgsCur->ccoin = 0;
-        g_coinctr.dgDisplayMax = 250.0f;
-        g_coinctr.pfnsmack = CreateSwCharm;
-        g_coinctr.pv = pcoin->psw;
+        COINCTR *pcoinctr = &g_coinctr;
+        ((UNALIGNED_FLOAT *)&pcoinctr->dgDisplayMax)->f = 250.0f; // swl/swr store
+        pcoinctr->pfnsmack = CreateSwCharm;
+        pcoinctr->pv = pcoin->psw;
     }
     else if (g_pgsCur->clife < 99)
     {
@@ -200,9 +207,52 @@ void OnCoinSmack(COIN *pcoin)
         g_pgsCur->ccoin = 99;
     }
 }
-#endif
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", SetCoinDprizes__FP4COIN7DPRIZES);
+void SetCoinDprizes(COIN *pcoin, DPRIZES dprizes)
+{
+    if (pcoin->dprizes == dprizes)
+        return;
+
+    switch (dprizes)
+    {
+    case DPRIZES_Normal:
+        if (pcoin->fReuseCandidate)
+        {
+            pcoin->tLose = GRandInRange(pcoin->lmDtMaxLifetime.gMin, pcoin->lmDtMaxLifetime.gMax);
+        }
+        break;
+    case DPRIZES_Collect:
+    {
+        RIP *prip = PripNewRipg(RIPT_Smack, 0);
+        if (prip)
+        {
+            STRUCT_OFFSET(prip, 0x134, COIN *) = pcoin;
+            STRUCT_OFFSET(prip, 0x130, void *) = &D_00261AD0;
+            (*(void (***)(RIP *, float, void *, int))prip)[0](prip, 1.0f, (char *)pcoin + 0x140, 0);
+            STRUCT_OFFSET(prip, 0x20, COIN *) = pcoin;
+            STRUCT_OFFSET(prip, 0x50, qword) = STRUCT_OFFSET(pcoin, 0x110, qword);
+            STRUCT_OFFSET(prip, 0x60, qword) = STRUCT_OFFSET(pcoin, 0x120, qword);
+            STRUCT_OFFSET(prip, 0x70, qword) = STRUCT_OFFSET(pcoin, 0x130, qword);
+        }
+        else
+        {
+            OnCoinSmack(pcoin);
+        }
+        g_coinctr.pvtblot->pfnShowBlot(&g_coinctr);
+        StartSound(SFXID_Collect_Coin, 0, 0, 0, 3000.0f, 300.0f, 1.0f, 0.0f, 0.0f, 0, 0);
+        if (pcoin->pexplCollect)
+        {
+            int args[20];
+            args[1] = (int)pcoin;
+            args[0] = 1;
+            (*(void (***)(void *, void *))pcoin->pexplCollect)[0x7c / 4](pcoin->pexplCollect, args);
+        }
+        dprizes = DPRIZES_Removed;
+        break;
+    }
+    }
+    SetDprizeDprizes(pcoin, dprizes);
+}
 
 void InitCharm(CHARM *pcharm)
 {
@@ -384,6 +434,9 @@ void RemoveSwExtraneousCharms(SW *psw)
     }
 }
 
+/**
+ * @todo 98% matched (2 differing lines of 38): svLastBounce store is scheduled after sRadiusCollect.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148d90__FP7LIFETKN);
 #ifdef SKIP_ASM
 void FUN_00148d90(LIFETKN *plifetkn)
@@ -444,7 +497,7 @@ void FUN_00148ef8(LIFETKN *plifetkn, float dt)
     }
 }
 
-void increment_and_show_life_count()
+void increment_and_show_life_count(void *pv)
 {
     g_lifectr.pvtblot->pfnShowBlot(&g_lifectr);
     int clife = g_pgsCur->clife;
@@ -461,7 +514,52 @@ void increment_and_show_life_count()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", CollectLifetkn__FP7LIFETKN);
+void SetLifetknDprizes(LIFETKN *plifetkn, DPRIZES dprizes)
+{
+    if (plifetkn->dprizes == dprizes)
+        return;
+
+    switch (dprizes)
+    {
+    case DPRIZES_Normal:
+        if (plifetkn->fReuseCandidate)
+        {
+            plifetkn->tLose = GRandInRange(plifetkn->lmDtMaxLifetime.gMin, plifetkn->lmDtMaxLifetime.gMax);
+        }
+        break;
+    case DPRIZES_Collect:
+    {
+        RIP *prip = PripNewRipg(RIPT_Smack, 0);
+        if (prip)
+        {
+            STRUCT_OFFSET(prip, 0x134, LIFETKN *) = plifetkn;
+            STRUCT_OFFSET(prip, 0x130, void *) = &D_00261B60;
+            (*(void (***)(RIP *, float, void *, int))prip)[0](prip, 1.0f, (char *)plifetkn + 0x140, 0);
+            STRUCT_OFFSET(prip, 0x20, LIFETKN *) = plifetkn;
+            STRUCT_OFFSET(prip, 0x50, qword) = STRUCT_OFFSET(plifetkn, 0x110, qword);
+            STRUCT_OFFSET(prip, 0x60, qword) = STRUCT_OFFSET(plifetkn, 0x120, qword);
+            STRUCT_OFFSET(prip, 0x70, qword) = STRUCT_OFFSET(plifetkn, 0x130, qword);
+        }
+        else
+        {
+            increment_and_show_life_count(plifetkn);
+        }
+        g_lifectr.pvtblot->pfnShowBlot(&g_lifectr);
+        SetChkmgrIchk(&g_chkmgr, plifetkn->ichkCollected);
+        StartSound(SFXID_Collect_Life, 0, 0, 0, 3000.0f, 300.0f, 1.0f, 0.0f, 0.0f, 0, 0);
+        if (plifetkn->pexplCollect)
+        {
+            int args[20];
+            args[1] = (int)plifetkn;
+            args[0] = 1;
+            (*(void (***)(void *, void *))plifetkn->pexplCollect)[0x7c / 4](plifetkn->pexplCollect, args);
+        }
+        dprizes = DPRIZES_Removed;
+        break;
+    }
+    }
+    SetDprizeDprizes(plifetkn, dprizes);
+}
 
 void FUN_00149168(DPRIZE *pdprize)
 {
