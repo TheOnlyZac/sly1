@@ -709,10 +709,67 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", ScheduleNextIntermittentSound__FP3AMB);
 // WIP
 #endif // SKIP_ASM
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSound__F5SFXIDPP3AMBP3ALOP6VECTORfffffP2LMT9);
-#ifdef SKIP_ASM
-// WIP
-#endif // SKIP_ASM
+void StartSound(SFXID sfxid, AMB **ppamb, ALO *palo, VECTOR *ppos, float sStart, float sFull, float uVolAtSource, float frq, float uDoppler, LM *plmRepeat, LM *plmRepDist)
+{
+    if (sfxid == (SFXID)-1)
+        return;
+    int fContinuous;
+    if (sfxid != SFXID_UnkNeg2)
+    {
+        int ibank = D_00245020[sfxid][0];
+        if (ibank > 0 && ibank != STRUCT_OFFSET(g_psw, 0x1D70, int))
+            return;
+        fContinuous = FContinuousSound(sfxid);
+    }
+    else
+    {
+        fContinuous = 0;
+    }
+    AMB *pamb = 0;
+    if (ppos || palo || ppamb)
+    {
+        if (!fContinuous && (!plmRepeat || plmRepeat->gMin < 0.0f))
+        {
+            AMB amb;
+            FillPamb(&amb, ppamb, 0, palo, ppos, sStart, sFull, uVolAtSource, frq, uDoppler, 0, 0);
+            if (amb.volAttenuated != 0.0f)
+            {
+                pamb = PambAlloc();
+                if (pamb)
+                {
+                    amb.dle = pamb->dle;
+                    *pamb = amb;
+                }
+            }
+            else if (sfxid == SFXID_UnkNeg2)
+            {
+                snd_SetSoundVolPan(D_0027472C, 0, 0);
+            }
+            if (ppamb)
+                *ppamb = pamb;
+        }
+        else
+        {
+            pamb = PambAlloc();
+            if (!pamb)
+                return;
+            FillPamb(pamb, ppamb, fContinuous, palo, ppos, sStart, sFull, uVolAtSource, frq, uDoppler, plmRepeat, plmRepDist);
+        }
+        if (!pamb)
+            return;
+        if (0.0f <= pamb->lmRepeat.gMin)
+        {
+            ScheduleNextIntermittentSound(pamb);
+            pamb->tNext = g_clock.t + GRandInRange(0.0f, pamb->lmRepeat.gMin);
+        }
+        ActivatePamb(pamb, sfxid);
+    }
+    else
+    {
+        void *pbnk = SbpEnsureBank(sfxid);
+        snd_PlaySoundVolPanPMPB(pbnk, D_00245020[sfxid][1], (int)(uVolAtSource * 1024.0f), 0, (int)(frq * 1524.0f), 0);
+    }
+}
 
 void AmbCompleteProc(int result, unsigned long userData)
 {

@@ -171,7 +171,7 @@ struct AMB
     LM lmRepDist;
     undefined4 unk_2;
     undefined4 unk_3;
-};
+} __attribute__((aligned(16)));
 
 /**
  * @brief Sound Effect.
