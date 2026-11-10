@@ -67,6 +67,14 @@ void UpdateAsegaIeaCur(ASEGA *pasega);
  */
 ACTSEG *PactsegFindAsega(ASEGA *pasega, OID oid);
 
+/**
+ * @brief Handles one event of an animation segment (sound, show or hide object, wipe, message, etc).
+ *
+ * @param pasega The animation segment application that owns the event.
+ * @param pea The event to handle, EA::eak selects what it does.
+ * @param pfRetracted Set to 1 when the event pauses or retracts the animation, so the caller stops.
+ * @note The event kinds and their names are guesses, see EAK.
+ */
 void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted);
 
 void HandleAsegaEventsFF(ASEGA *pasega, ASEG *paseg, int *pfRetract);

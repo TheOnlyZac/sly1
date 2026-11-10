@@ -105,6 +105,78 @@ struct ASEGBL : public ASEG
 };
 
 /**
+ * @brief Animation segment event kind, the value of EA::eak. Selects the case in HandleAsegaEvent.
+ *
+ * @note Every name here is a guess from what the handler does. Pairs like ShowObject/HideObject
+ * are swapped when the segment plays backward over its own events.
+ */
+enum EAK
+{
+    EAK_Nil = -1,
+    EAK_Sound = 0,
+    EAK_StopSound = 1,
+    EAK_ContinueMusic = 2,
+    EAK_PauseMusic = 3,
+    EAK_SetTimeSpeed = 4,
+    EAK_SetSpeed = 5,
+    EAK_Dialog = 6,
+    EAK_SetTimeSpeedAlt = 7,
+    EAK_Retract = 8,
+    EAK_ShowObject = 9,
+    EAK_HideObject = 10,
+    EAK_Hold = 11,
+    EAK_EnableCamera = 12,
+    EAK_DisableCamera = 13,
+    EAK_HandsOff = 14,
+    EAK_HandsOn = 15,
+    EAK_SoConstraints = 16,
+    EAK_ActAckBegin = 17,
+    EAK_ActAckEnd = 18,
+    EAK_PuppetOn = 19,
+    EAK_PuppetOff = 20,
+    EAK_ErrorBeginA = 21,
+    EAK_ErrorEndA = 22,
+    EAK_ErrorBeginB = 23,
+    EAK_ErrorEndB = 24,
+    EAK_ActivateWipe = 25,
+    EAK_SetWipeButtonTrans = 26,
+    EAK_DefaultExit = 27,
+    EAK_ApplyAseg = 28,
+    EAK_PosOn = 29,
+    EAK_PosOff = 30,
+    EAK_RotOn = 31,
+    EAK_RotOff = 32,
+    EAK_StartTimer = 33,
+    EAK_StopTimer = 34,
+    EAK_EvalPos = 35,
+    EAK_EvalRot = 36,
+    EAK_JoyRumble = 37,
+    EAK_SendLoMessage = 38,
+    EAK_SendAsegaMessage13 = 39,
+    EAK_SpliceEvent = 40,
+    EAK_SendAsegaMessage15 = 41,
+    EAK_PauseForVag = 42,
+    EAK_StopVag = 43,
+    EAK_PreloadVag = 44,
+    EAK_PoseCombo = 45,
+    EAK_ApplySm = 46,
+    EAK_RetractSm = 47,
+    EAK_ProjectAlo = 48,
+    EAK_Unk49 = 49,
+    EAK_Unk50 = 50,
+    EAK_Mpeg = 51,
+    EAK_PlaceCredit = 52,
+    EAK_VacateCredit = 53,
+    EAK_SetCreditLine = 54,
+    EAK_UiMode0 = 55,
+    EAK_UiMode1 = 56,
+    EAK_Darken = 57,
+    EAK_DarkenSmooth = 58,
+    EAK_Jsg = 59,
+    EAK_Max = 60
+};
+
+/**
  * @brief Two shorts, for event arguments that are packed in pairs.
  */
 struct EAS
@@ -119,7 +191,7 @@ struct EAS
 struct EA
 {
     /* 0x00 */ float tLocal;
-    /* 0x04 */ int eak; // event kind, selects the case in HandleAsegaEvent (name is a guess)
+    /* 0x04 */ int eak; // EAK, event kind (name is a guess)
     /* 0x08 */ union
     {
         int n8;

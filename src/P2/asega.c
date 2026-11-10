@@ -1,6 +1,24 @@
 #include <asega.h>
 #include <sw.h>
 #include <actseg.h>
+#include <find.h>
+#include <sound.h>
+#include <dialog.h>
+#include <xform.h>
+#include <so.h>
+#include <wipe.h>
+#include <screen.h>
+#include <sm.h>
+#include <jsg.h>
+#include <jt.h>
+#include <mpeg.h>
+#include <joy.h>
+#include <ui.h>
+#include <pnt.h>
+#include <game.h>
+#include <act.h>
+#include <alo.h>
+#include <rumble.h>
 
 extern VTBASIC g_vtasega;
 
@@ -48,25 +66,7 @@ ACTSEG *PactsegFindAsega(ASEGA *pasega, OID oid)
 JUNK_NOP();
 JUNK_ADDIU(10);
 
-#include <find.h>
-#include <sound.h>
-#include <dialog.h>
-#include <xform.h>
-#include <so.h>
-#include <wipe.h>
-#include <screen.h>
-#include <sm.h>
-#include <jsg.h>
-#include <jt.h>
-#include <mpeg.h>
-#include <joy.h>
-#include <ui.h>
-#include <pnt.h>
-#include <game.h>
-#include <act.h>
-#include <alo.h>
 #include <actseg.h>
-#include <rumble.h>
 
 // Functions and data used here that have no header yet.
 struct CREDIT
@@ -90,7 +90,7 @@ void SetCreditLine(CREDIT *pcredit, int iLine, char *pchz, float u);
 extern CREDIT D_00272E08;
 extern TIMER g_unkblot9;
 
-/** Unaligned int access, reproduces the swl/swr store the original code used (cause unknown). */
+/** Unaligned int access. Reproduces the swl/swr store the original code does (the real cause is unknown). */
 struct __attribute__((packed)) UNALIGNED_INT
 {
     int n;
@@ -163,7 +163,27 @@ struct PROJMSG
 };
 
 /**
- * @todo Work in progress, not matching yet.
+ * @brief Handles one event of an animation segment.
+ *
+ * @details Events (EA) are the timed triggers stored in an animation segment: sounds and music,
+ * showing and hiding objects, wipes, camera and Sly control changes, messages to other objects, and so on.
+ * Called by HandleAsegaEvents for each event the playback head crosses. EA::eak picks what happens,
+ * see EAK. Most cases look up a target object by OID, with the animation's object (or the segment itself)
+ * as the search context, then act on it.
+ *
+ * Paired events (show/hide, enable/disable, hands off/on, ack begin/end, puppet on/off, act pos/rot)
+ * are inverted when the segment plays backward over the segment's own event list.
+ * That is what fReverse tracks: svtLocal is negative and the event is in the segment's own array.
+ *
+ * A few events steer playback itself: they seek (tLocal, speed), hold at a time (Hold, PauseForVag)
+ * or retract the whole animation (Retract), and report that through pfRetracted so the caller stops
+ * handling events.
+ *
+ * @param pasega The animation segment application that owns the event.
+ * @param pea The event to handle.
+ * @param pfRetracted Set to 1 when the event pauses or retracts the animation, so the caller stops.
+ *
+ * @note All the event and payload field names here are guesses from what the code does.
  */
 void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
 {
@@ -176,7 +196,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
     }
     switch (pea->eak)
     {
-    case 42:
+    case EAK_PauseForVag:
     {
         if (!FPauseForVag())
             return;
@@ -191,17 +211,23 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         *pfRetracted = 1;
         break;
     }
-    case 44:
+    case EAK_PreloadVag:
         PreloadVag1(pea->n8);
         break;
-    case 43:
+    case EAK_StopVag:
         StopVag();
         break;
-    case 0:
+    case EAK_Sound:
     {
+        // pea->pv8 is re-read each time on purpose, this is what matches.
         int i;
-        if (((SNDEV *)pea->pv8)->csfx < 2) i = 0; else
+        if (((SNDEV *)pea->pv8)->csfx < 2)
         {
+            i = 0;
+        }
+        else
+        {
+            // Pick a random sound that is not the one played last.
             int r = NRandInRange(0, ((SNDEV *)pea->pv8)->csfx - 2);
             i = (((SNDEV *)pea->pv8)->iLast + r + 1) % ((SNDEV *)pea->pv8)->csfx;
             ((SNDEV *)pea->pv8)->iLast = i;
@@ -238,17 +264,17 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         }
         break;
     }
-    case 1:
+    case EAK_StopSound:
         if (pasega->pamb != 0)
             StopSound(pasega->pamb, 0);
         break;
-    case 2:
+    case EAK_ContinueMusic:
         ContinueMusic();
         break;
-    case 3:
+    case EAK_PauseMusic:
         PauseMusic();
         break;
-    case 11:
+    case EAK_Hold:
     {
         float t = pea->tLocal;
         float tMax = paseg->tMax;
@@ -260,31 +286,31 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         pasega->svtLocal = 0.0f;
         break;
     }
-    case 4:
-    case 7:
+    case EAK_SetTimeSpeed:
+    case EAK_SetTimeSpeedAlt:
         pasega->tLocal = pea->g8;
         SetAsegaSpeed(pasega, pea->gC);
         UpdateAsegaIeaCur(pasega);
         AdaptAsega(pasega);
         break;
-    case 5:
+    case EAK_SetSpeed:
         SetAsegaSpeed(pasega, pea->g8);
         break;
-    case 6:
+    case EAK_Dialog:
     {
         LO *plo = PloFindSwObject(psw, 0x104, pea->oid8, pasega->plo ? pasega->plo : paseg);
         if (plo != 0)
             TriggerDialog((DIALOG *)plo);
         break;
     }
-    case 8:
+    case EAK_Retract:
         RetractAsega(pasega);
         *pfRetracted = 1;
         break;
-    case 9:
-    case 10:
+    case EAK_ShowObject:
+    case EAK_HideObject:
     {
-        int fIn = (pea->eak == 9);
+        int fIn = (pea->eak == EAK_ShowObject);
         fIn ^= fReverse;
         LO *plo = PloFindSwObject(psw, 0x104, pea->oid8, pasega->plo ? pasega->plo : paseg);
         if (plo == 0)
@@ -305,7 +331,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         }
         break;
     }
-    case 16:
+    case EAK_SoConstraints:
     {
         LO *plo = PloFindSwObject(psw, 0x104, pea->oid8, pasega->plo ? pasega->plo : pasega->paseg);
         if (plo == 0)
@@ -315,11 +341,12 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         SetSoConstraints((SO *)plo, ctForce, 0, ctTorque, 0);
         break;
     }
-    case 12:
-    case 13:
+    case EAK_EnableCamera:
+    case EAK_DisableCamera:
     {
-        int fOn = pea->eak == 12;
-        if (fReverse) fOn = !fOn;
+        int fOn = pea->eak == EAK_EnableCamera;
+        if (fReverse)
+            fOn = !fOn;
         LO *plo = PloFindSwObject(psw, 4, pea->oid8, pasega->paseg);
         if (plo == 0)
             return;
@@ -329,19 +356,20 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
             DisableCamera((CAMERA *)plo);
         break;
     }
-    case 14:
-    case 15:
-        {
-            int f = (pea->eak == 14);
-            f ^= fReverse;
-            SetAsegaHandsOff(pasega, f);
-        }
-        break;
-    case 19:
-    case 20:
+    case EAK_HandsOff:
+    case EAK_HandsOn:
     {
-        int fPuppet = (pea->eak == 19);
+        int fHandsOff = (pea->eak == EAK_HandsOff);
+        fHandsOff ^= fReverse;
+        SetAsegaHandsOff(pasega, fHandsOff);
+        break;
+    }
+    case EAK_PuppetOn:
+    case EAK_PuppetOff:
+    {
+        int fPuppet = (pea->eak == EAK_PuppetOn);
         fPuppet ^= fReverse;
+        // The declared second parameter is an ASEGA* but the original code passes the flag.
         SetJtPuppet(g_pjt, (ASEGA *)fPuppet);
         if (!fPuppet)
             return;
@@ -349,14 +377,15 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
             SnapAsega(pasega, 1);
         break;
     }
-    case 17:
-    case 18:
+    case EAK_ActAckBegin:
+    case EAK_ActAckEnd:
     {
         ACTSEG *pactseg = PactsegFindAsega(pasega, pea->oid8);
         if (pactseg == 0)
             break;
-        if ((pea->eak != 17) != (fReverse == 0))
+        if ((pea->eak != EAK_ActAckBegin) != (fReverse == 0))
         {
+            // Matching quirk: the original does not share one register for both 5s.
             int c = 5;
             STRUCT_OFFSET(pactseg, 0x11, char) = c;
             STRUCT_OFFSET(pactseg, 0x10, char) = 5;
@@ -367,13 +396,15 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         }
         break;
     }
-    case 21:
-    case 22:
-    case 23:
-    case 24:
+    case EAK_ErrorBeginA:
+    case EAK_ErrorEndA:
+    case EAK_ErrorBeginB:
+    case EAK_ErrorEndB:
     {
+        // Tracks the act segment used for error correction (see UFromEaErrorFunc) while either
+        // of two overlapping begin/end windows is open. The meaning is a guess.
         OID oid;
-        if (pea->eak == 21 || pea->eak == 23)
+        if (pea->eak == EAK_ErrorBeginA || pea->eak == EAK_ErrorBeginB)
             oid = *(OID *)pea->pv8;
         else
             oid = pea->oid8;
@@ -382,20 +413,20 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
             break;
         switch (pea->eak)
         {
-        case 21:
+        case EAK_ErrorBeginA:
             pasega->pactsegError = pactseg;
             pasega->peaErrorA = pea;
             break;
-        case 22:
+        case EAK_ErrorEndA:
             pasega->peaErrorA = 0;
             if (pasega->peaErrorB == 0)
                 pasega->pactsegError = 0;
             break;
-        case 23:
+        case EAK_ErrorBeginB:
             pasega->pactsegError = pactseg;
             pasega->peaErrorB = pea;
             break;
-        case 24:
+        case EAK_ErrorEndB:
             pasega->peaErrorB = 0;
             if (pasega->peaErrorA == 0)
                 pasega->pactsegError = 0;
@@ -403,13 +434,13 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         }
         break;
     }
-    case 25:
+    case EAK_ActivateWipe:
         ActivateWipe(&g_wipe, (TRANS *)pea->pvC, (WIPEK)pea->sh8.s0);
         break;
-    case 26:
+    case EAK_SetWipeButtonTrans:
         SetWipeButtonTrans(&g_wipe, (TRANS *)pea->pvC, (WIPEK)pea->sh8.s0);
         break;
-    case 27:
+    case EAK_DefaultExit:
     {
         if (g_pjt != 0 && STRUCT_OFFSET(g_pjt, 0x2220, int) == 9 && STRUCT_OFFSET(g_pjt, 0x2228, int) == 0x1C
             && (void *)g_plsCur == (void *)g_pwsCur)
@@ -417,14 +448,14 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         TriggerDefaultExit(pea->n8, (WIPEK)pea->nC);
         break;
     }
-    case 33:
+    case EAK_StartTimer:
         SetTimer(&g_unkblot9, pea->g8);
         StartTimer(&g_unkblot9);
         break;
-    case 34:
+    case EAK_StopTimer:
         StopTimer(&g_unkblot9);
         break;
-    case 28:
+    case EAK_ApplyAseg:
     {
         LO *plo = PloFindSwNearest(psw, ((ASEGEV *)pea->pv8)->oidAseg, paseg->paloParent);
         ALO *paloRoot;
@@ -436,10 +467,10 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
             ApplyAseg((ASEG *)plo, paloRoot, ((ASEGEV *)pea->pv8)->t, ((ASEGEV *)pea->pv8)->svt, 0, 0);
         break;
     }
-    case 29:
-    case 30:
-    case 31:
-    case 32:
+    case EAK_PosOn:
+    case EAK_PosOff:
+    case EAK_RotOn:
+    case EAK_RotOff:
     {
         ACTSEG *pactseg = PactsegFindAsega(pasega, pea->oid8);
         int fCall = 0;
@@ -448,7 +479,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
             ACHN *pachn = &paseg->pachn[pactseg->iachn];
             switch (pea->eak)
             {
-            case 29:
+            case EAK_PosOn:
                 if (pachn->punkPos != 0)
                 {
                     uchar c = STRUCT_OFFSET(pactseg, 0x12, uchar);
@@ -456,7 +487,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
                     fCall = (uchar)(c + 1) < 2;
                 }
                 break;
-            case 30:
+            case EAK_PosOff:
                 if (pachn->punkPos != 0)
                 {
                     char c = STRUCT_OFFSET(pactseg, 0x12, char);
@@ -464,7 +495,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
                     fCall = c != -1;
                 }
                 break;
-            case 31:
+            case EAK_RotOn:
                 if (pachn->punkRot != 0)
                 {
                     uchar c = STRUCT_OFFSET(pactseg, 0x13, uchar);
@@ -472,7 +503,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
                     fCall = (uchar)(c + 1) < 2;
                 }
                 break;
-            case 32:
+            case EAK_RotOff:
                 if (pachn->punkRot != 0)
                 {
                     char c = STRUCT_OFFSET(pactseg, 0x13, char);
@@ -487,15 +518,15 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         pactseg->palo->pvtalo->pfnRecacheAloActList(pactseg->palo);
         break;
     }
-    case 35:
-    case 36:
+    case EAK_EvalPos:
+    case EAK_EvalRot:
     {
         ACTSEG *pactseg = PactsegFindAsega(pasega, pea->oid8);
         if (pactseg == 0)
             break;
         ACHN *pachn = &paseg->pachn[pactseg->iachn];
         ALO *palo = pactseg->palo;
-        if (pea->eak == 35)
+        if (pea->eak == EAK_EvalPos)
         {
             VECTOR pos;
             VECTOR v;
@@ -515,10 +546,10 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         }
         break;
     }
-    case 37:
+    case EAK_JoyRumble:
         TriggerJoyRumbleRumk(&g_joy, (RUMK)pea->sh8.s2, (float)pea->sh8.s0 * (1.0f / 60.0f));
         break;
-    case 38:
+    case EAK_SendLoMessage:
     {
         LO *plo;
         if (pea->oid8 == -1)
@@ -533,7 +564,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         plo->pvtlo->pfnSendLoMessage(plo, (MSGID)0x12, apv);
         break;
     }
-    case 39:
+    case EAK_SendAsegaMessage13:
     {
         ASEGMSG13 msg;
         msg.t = pea->tLocal;
@@ -542,7 +573,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         SendAsegaMessage(pasega, (MSGID)0x13, &msg);
         break;
     }
-    case 40:
+    case EAK_SpliceEvent:
     {
         void *apv[2];
         apv[0] = &pasega;
@@ -550,7 +581,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         HandleLoSpliceEvent(pasega->paseg, 0xA, 2, apv);
         break;
     }
-    case 41:
+    case EAK_SendAsegaMessage15:
     {
         if (pasega->plo == 0)
             break;
@@ -564,7 +595,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         SendAsegaMessage(pasega, (MSGID)0x15, &msg);
         break;
     }
-    case 45:
+    case EAK_PoseCombo:
     {
         LO *plo = PloFindSwObject(psw, 0x104, pea->oid8, pasega->plo);
         if (plo == 0)
@@ -572,7 +603,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         SetAloPoseCombo((ALO *)plo, pea->oidC);
         break;
     }
-    case 46:
+    case EAK_ApplySm:
     {
         LO *ploCtx = pasega->plo ? pasega->plo : pasega->paseg;
         LO *plo1 = PloFindSwObject(psw, 0x104, (OID)pea->sh8.s0, ploCtx);
@@ -585,7 +616,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         SetSmaGoal(psma, (OID)pea->shC.s0);
         break;
     }
-    case 47:
+    case EAK_RetractSm:
     {
         LO *ploCtx = pasega->plo;
         SMA *psma = 0;
@@ -601,8 +632,10 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
             RetractSma(psma);
         break;
     }
-    case 48:
+    case EAK_ProjectAlo:
     {
+        // Builds a message (target object or position, optional up object, optional scale) and
+        // hands it to the ALO's pfnProjectAloTransform. The meaning is a guess.
         PROJEV *pprojev = (PROJEV *)pea->pv8;
         LO *ploCtx = pasega->plo ? pasega->plo : paseg;
         LO *plo = PloFindSwObject(psw, 0x104, pprojev->oidAlo, ploCtx);
@@ -620,6 +653,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
                     msg.pv4 = ploT;
                     msg.grf |= 1;
                 }
+                // 0x7E and 0x73 do not line up with the CID enum. Guesses: a point and a transform.
                 else if (FIsBasicDerivedFrom(ploT, (CID)0x7E))
                 {
                     msg.grf |= 4;
@@ -662,44 +696,45 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         ((ALO *)plo)->pvtalo->pfnProjectAloTransform((ALO *)plo, &msg);
         break;
     }
-    case 49:
+    case EAK_Unk49:
         FUN_001ddb58(psw);
         break;
-    case 50:
+    case EAK_Unk50:
         FUN_001ddbb8(psw);
         break;
-    case 51:
+    case EAK_Mpeg:
         g_mpeg.FUN_0018f0e8(pea->pv8);
         break;
-    case 52:
+    case EAK_PlaceCredit:
+        // Virtual call, slot at vtable offset 0x44 (guess: sets the credit's owner time).
         ((void (*)(CREDIT *, float *))D_00272E08.pvtcredit[0x44 / 4])(&D_00272E08, &pasega->tLocal);
         PlaceCredit(&D_00272E08, (float)pea->sh8.s0, (float)pea->sh8.s2, pea->shC.s0);
         break;
-    case 53:
+    case EAK_VacateCredit:
         ((void (*)(CREDIT *, float *))D_00272E08.pvtcredit[0x44 / 4])(&D_00272E08, 0);
         VacateCredit(&D_00272E08);
         break;
-    case 54:
+    case EAK_SetCreditLine:
         SetCreditLine(&D_00272E08, pea->sh8.s0, (char *)pea->pvC, (float)pea->sh8.s2 * (1.0f / 256.0f));
         break;
-    case 55:
+    case EAK_UiMode0:
     {
         UI *pui = &g_ui;
         ((UNALIGNED_INT *)&pui->unk6)->n = 0;
         SetUiUis(pui, (UIS)0);
         break;
     }
-    case 56:
+    case EAK_UiMode1:
         g_ui.unk6 = 1;
         SetUiUis(&g_ui, (UIS)1);
         break;
-    case 57:
+    case EAK_Darken:
         SetSwDarken(psw, pea->g8);
         break;
-    case 58:
+    case EAK_DarkenSmooth:
         SetSwDarkenSmooth(psw, pea->g8);
         break;
-    case 59:
+    case EAK_Jsg:
     {
         LO *plo = PloFindSwObject(psw, 0x104, pea->oid8, pasega->plo ? pasega->plo : paseg);
         if (plo != 0)
