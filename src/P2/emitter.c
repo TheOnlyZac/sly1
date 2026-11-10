@@ -661,11 +661,8 @@ void PostExplLoad(EXPL *pexpl)
 }
 
 /**
- * @todo 4 differing lines of 64: VU0 volatile asm statements; the original fills the final loop branch delay slot with the last sqc2 and aligns the loop top. Names are guesses.
+ * VU0 volatile asm in source order, the volatile asms pin the surrounding loads. The empty asm and the last sqc2 inside the loop condition make the assembler fill the branch delay slot like the original. The sB/sA stores are spill artifacts. Names are guesses.
  */
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", CalculateExplTransform__FP4EXPLP6VECTORP7MATRIX3);
-
-#ifdef SKIP_ASM
 void CalculateExplTransform(EXPL *pexpl, VECTOR *ppos, MATRIX3 *pmat)
 {
     STRUCT_OFFSET(ppos, 0, qword) = STRUCT_OFFSET(&D_00248D30, 0, qword);
@@ -673,8 +670,10 @@ void CalculateExplTransform(EXPL *pexpl, VECTOR *ppos, MATRIX3 *pmat)
     STRUCT_OFFSET(pmat, 0x10, qword) = STRUCT_OFFSET(pexpl, 0x60, qword);
     STRUCT_OFFSET(pmat, 0x20, qword) = STRUCT_OFFSET(pexpl, 0x70, qword);
     VECTOR sA[3], sB[3];
-    while (STRUCT_OFFSET(pexpl, 0x80, EXPL *))
+    if (STRUCT_OFFSET(pexpl, 0x80, EXPL *))
+    do
     {
+        asm volatile("");
         EXPL *pp = STRUCT_OFFSET(pexpl, 0x80, EXPL *);
         asm volatile("lqc2 $vf3,%0" : : "m"(STRUCT_OFFSET(pexpl, 0x40, qword)));
         MATRIX3 *pm = (MATRIX3 *)((char *)pp + 0x50);
@@ -716,14 +715,12 @@ void CalculateExplTransform(EXPL *pexpl, VECTOR *ppos, MATRIX3 *pmat)
         asm volatile("sqc2 $vf6,%0" : "=m"(sB[0]));
         pexpl = STRUCT_OFFSET(pexpl, 0x80, EXPL *);
         asm volatile("sqc2 $vf5,%0" : "=m"(sB[1]));
-        asm("sqc2 $vf4,%0" : "=m"(sB[2]));
-    }
+    } while (({ EXPL *tt = STRUCT_OFFSET(pexpl, 0x80, EXPL *); asm volatile("sqc2 $vf4,%0" : "=m"(sB[2])); tt; }));
     asm volatile("lqc2 $vf2,%0" : : "m"(STRUCT_OFFSET(pexpl, 0x40, qword)));
     asm volatile("lqc2 $vf1,%0" : : "m"(*ppos));
     asm volatile("vadd.xyzw $vf1,$vf1,$vf2");
     asm volatile("sqc2 $vf1,%0" : "=m"(*ppos));
 }
-#endif
 
 void ExplodeExpl(EXPL *pexpl)
 {
