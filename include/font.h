@@ -57,8 +57,6 @@ protected:
 public:
     virtual CFont *PfontClone(float rx, float ry);
     void CopyTo(CFont *pfontDest);
-    void SetupDraw(CTextBox *ptbxClip, GIFS *pgifs);
-    void CleanupDraw(CTextBox *ptbxClip, GIFS *pgifs);
     float DxFromPchz(char *pchz);
     float DyWrapPchz(char *pchz, float dx);
     int ClineWrapPchz(char *pchz, float dx);
@@ -67,6 +65,12 @@ public:
     void PopScaling();
     virtual int FValid(char ch);
     virtual float DxFromCh(char ch);
+    virtual void SetupDraw(CTextBox *ptbxClip, GIFS *pgifs);
+    virtual void SwitchTex0(GIFS *pgifs);
+    virtual float DxDrawCh(char ch, float xChar, float yChar, uint rgba, GIFS *pgifs);
+    virtual void CleanupDraw(CTextBox *ptbxClip, GIFS *pgifs);
+    virtual void VirtualSlot8(); // guessed placeholder for FUN_0015cf70 (CFontBrx only)
+    virtual void EdgeRect(CTextEdge *pte, CTextBox *ptbx, GIFS *pgifs);
 };
 
 class CFontBrx : public CFont

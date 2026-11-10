@@ -178,7 +178,76 @@ JUNK_NOP();
 
 JUNK_ADDIU(50);
 
+/**
+ * @todo 93% matched (12 differing lines of 181). Hoisting of the 0.5 constant and jh compare registers.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/font", DrawPchz__5CFontPcP8CTextBoxT2P4GIFS);
+#ifdef SKIP_ASM
+void CFont::DrawPchz(char *pchz, CTextBox *ptbx, CTextBox *ptbxClip, GIFS *pgifs)
+{
+    int fNewLine = 1;
+    float x;
+    float y;
+    char *pch;
+    SetupDraw(ptbxClip, pgifs);
+    if (ptbx->m_jv == JV_Top)
+    {
+        y = ptbx->m_y;
+    }
+    else
+    {
+        float dyLine = (float)m_dyUnscaled * m_ryScale;
+        float dyTotal = dyLine;
+        char *p = pchz;
+        while (*p)
+        {
+            if (*p++ == '\n')
+                dyTotal += (float)m_dyUnscaled * m_ryScale;
+        }
+        if (ptbx->m_jv == JV_Bottom)
+            y = (ptbx->m_y + ptbx->m_dy) - dyTotal;
+        else
+            y = ptbx->m_y + (ptbx->m_dy - dyTotal) * 0.5f;
+    }
+    pch = pchz;
+    float half = 0.5f;
+    while (*pch)
+    {
+        char ch = *pch;
+        char *pchNext = pch + 1;
+        if (ch == '\n')
+        {
+            y += (float)m_dyUnscaled * m_ryScale;
+            fNewLine = 1;
+        }
+        else
+        {
+            if (fNewLine)
+            {
+                if (ptbx->m_jh == JH_Left)
+                {
+                    x = ptbx->m_x;
+                }
+                else
+                {
+                    float dxLine = 0.0f;
+                    char *p = pch;
+                    while (*p != 0 && *p != '\n')
+                        dxLine += DxFromCh(*p++);
+                    if (ptbx->m_jh == JH_Right)
+                        x = ptbx->m_x + ptbx->m_dx - dxLine;
+                    else
+                        x = ptbx->m_x + (ptbx->m_dx - dxLine) * half;
+                }
+                fNewLine = 0;
+            }
+            x += DxDrawCh(*pch, x, y, *(uint *)&ptbx->m_rgba, pgifs);
+        }
+        pch = pchNext;
+    }
+    CleanupDraw(ptbxClip, pgifs);
+}
+#endif // SKIP_ASM
 
 void CFont::PushScaling(float rx, float ry)
 {
