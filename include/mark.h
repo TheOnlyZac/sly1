@@ -52,7 +52,7 @@ struct SBI
     VECTOR normal;
     float gDist;
     XPK xpk;
-    // ...
+    STRUCT_PADDING(2); // size 0x30 from the stack stride in FUN_00145b68
 };
 
 float MuFromAmtlk(MTLK *amtlk);
