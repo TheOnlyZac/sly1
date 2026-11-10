@@ -1575,7 +1575,50 @@ void PostRopLoad(ROP *prop)
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRop__FP3ROPf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", SetRopRops__FP3ROP4ROPS);
+void SetRopRops(ROP *prop, ROPS rops)
+{
+    if (STRUCT_OFFSET(prop, 0x550, ROPS) != rops)
+    {
+        if (STRUCT_OFFSET(prop, 0x564, ASEGA *))
+        {
+            RetractAsega(STRUCT_OFFSET(prop, 0x564, ASEGA *));
+            STRUCT_OFFSET(prop, 0x564, ASEGA *) = 0;
+        }
+        STRUCT_OFFSET(prop, 0x550, ROPS) = rops;
+        STRUCT_OFFSET(prop, 0x554, float) = g_clock.t;
+        ASEG *paseg = 0;
+        switch (rops)
+        {
+        case ROPS_Reveal:
+        {
+            ALO *palo = STRUCT_OFFSET(prop, 0x568, ALO *);
+            paseg = STRUCT_OFFSET(prop, 0x560, ASEG *);
+            if (palo)
+            {
+                struct
+                {
+                    int msgid;
+                    int pad[7];
+                    VECTOR vec;
+                    int pad2[8];
+                } msg;
+                msg.msgid = 4;
+                STRUCT_OFFSET(&msg, 0x20, qword) = STRUCT_OFFSET(prop, 0x140, qword);
+                ((void (*)(ALO *, void *))STRUCT_OFFSET(palo->pvtalo, 0x7c, void *))(palo, &msg);
+            }
+            break;
+        }
+        case ROPS_Collect:
+            SetAloParentVt(STRUCT_OFFSET(prop, 0x55c, ALO *), 0);
+            ((void (*)(ALO *, int))STRUCT_OFFSET(STRUCT_OFFSET(prop, 0x55c, ALO *)->pvtalo, 0xcc, void *))(STRUCT_OFFSET(prop, 0x55c, ALO *), 1);
+            break;
+        }
+        if (paseg)
+        {
+            ApplyAseg(paseg, prop, 0.0f, 1.0f, 0, &STRUCT_OFFSET(prop, 0x564, ASEGA *));
+        }
+    }
+}
 
 ROPS RopsNextRop(ROP *prop)
 {
