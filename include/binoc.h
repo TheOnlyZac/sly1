@@ -107,8 +107,12 @@ typedef enum JV
     JV_Max = 3
 } JV;
 
+class CFont;
+
 class CTextBox
 {
+    friend class CFont;
+
 public:
     /**
      * @brief Sets the position of the text box.

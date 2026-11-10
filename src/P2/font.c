@@ -1,6 +1,9 @@
 #include <font.h>
 #include <memory.h>
 #include <gs.h>
+#include <binoc.h>
+#include <frm.h>
+#include <shd.h>
 
 extern int g_cfontBrx;
 extern CFontBrx *g_afontBrx;
@@ -62,9 +65,31 @@ void CFont::CopyTo(CFont *pfontDest)
     pfontDest->m_z = this->m_z;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", SetupDraw__5CFontP8CTextBoxP4GIFS);
+void CFont::SetupDraw(CTextBox *ptbxClip, GIFS *pgifs)
+{
+    if (ptbxClip)
+    {
+        float x = ptbxClip->m_x;
+        float y = ptbxClip->m_y;
+        float x1 = x + ptbxClip->m_dx;
+        float y1 = y + ptbxClip->m_dy;
+        int xMax = (int)x1 - 1;
+        int yMax = (int)(y1 * 0.45454547f) - 1;
+        int yMin = (int)(y * 0.45454547f);
+        int xMin = (int)x;
+        pgifs->AddPrimPack(0, 1, 0xE);
+        pgifs->PackAD(0x40, (long)xMin | ((long)xMax << 16) | ((long)yMin << 32) | ((long)yMax << 48));
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", CleanupDraw__5CFontP8CTextBoxP4GIFS);
+void CFont::CleanupDraw(CTextBox *ptbxClip, GIFS *pgifs)
+{
+    if (ptbxClip)
+    {
+        pgifs->AddPrimPack(0, 1, 0xE);
+        pgifs->PackAD(0x40, 0xDF0000027F0000L);
+    }
+}
 
 float CFont::DxFromPchz(char *pchz)
 {
@@ -198,11 +223,54 @@ float CFontBrx::DxFromCh(char ch)
     return m_rxScale * (float)m_dxSpaceUnscaled;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", FEnsureLoaded__8CFontBrxP4GIFS);
+int CFontBrx::FEnsureLoaded(GIFS *pgifs)
+{
+    int fLoad = (g_pfrmOpen->grffont & m_grffont) == 0;
+    if (fLoad)
+    {
+        pgifs->EndDmaCnt();
+        pgifs->AddDmaRefs(m_cqwBmpGifs, m_aqwBmpGifs);
+        pgifs->AddDmaRefs(m_pbmp->cqwPixels, (QW *)m_pbmp->pbPixels);
+        if (m_pclut)
+        {
+            pgifs->AddDmaRefs(m_cqwClutGifs, m_aqwClutGifs);
+            pgifs->AddDmaRefs(m_pclut->cqwColors, (QW *)m_pclut->prgba);
+        }
+        pgifs->AddDmaCnt();
+        g_pfrmOpen->grffont |= m_grffont;
+    }
+    return fLoad;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", SetupDraw__8CFontBrxP8CTextBoxP4GIFS);
+void CFontBrx::SetupDraw(CTextBox *ptbxClip, GIFS *pgifs)
+{
+    CFont::SetupDraw(ptbxClip, pgifs);
+    int fLoad = FEnsureLoaded(pgifs);
+    pgifs->AddPrimPack(6, 1, 0xE);
+    if (fLoad)
+        pgifs->PackAD(0x3F, 0);
+    long tex1 = 0x31001;
+    if (m_fGstest)
+        tex1 = m_gstest;
+    pgifs->PackAD(0x47, tex1);
+    pgifs->PackAD(0x42, 0x44);
+    pgifs->PackAD(6, *(long *)&m_tex0);
+    pgifs->PackAD(0x14, 0x60);
+    pgifs->PackAD(8, 5);
+    pgifs->PackAD(0, 0x1D6);
+    pgifs->AddPrimList(5, 0x43431);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", SwitchTex0__8CFontBrxP4GIFS);
+void CFontBrx::SwitchTex0(GIFS *pgifs)
+{
+    int fLoad = FEnsureLoaded(pgifs);
+    pgifs->AddPrimPack(6, 1, 0xE);
+    if (fLoad)
+        pgifs->PackAD(0x3F, 0);
+    pgifs->PackAD(6, *(long *)&m_tex0);
+    pgifs->PackAD(0, 0x1D6);
+    pgifs->AddPrimList(5, 0x43431);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", DxDrawCh__8CFontBrxcffUiP4GIFS);
 
