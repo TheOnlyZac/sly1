@@ -975,9 +975,82 @@ void TakeRobRoc(ROB *prob, ROH *proh, ROC *proc)
     }
 }
 
+/**
+ * @todo Near match (30 differing lines of 76): VU0 inline asm; structure is right but the roh pointer lands in $4 instead of $3 and the unused pad local only reproduces the stack frame.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/rog", FChooseRobRoh__FP3ROBP3ROC);
+#ifdef SKIP_ASM
+static inline float DistXyVu2(VECTOR *pa, VECTOR *pb)
+{
+    int a, b, c;
+    float f;
+    asm("lqc2 $vf1,%1" : "=r"(a) : "m"(*pa));
+    asm("lqc2 $vf2,%1" : "=r"(b) : "m"(*pb), "r"(a));
+    asm("vsub.xyzw $vf1,$vf1,$vf2\n\tvmul.xy $vf1,$vf1,$vf1\n\tvaddy.x $vf1,$vf1,$vf1y\n\t.word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q" : "=r"(c) : "r"(b));
+    asm("qmfc2.ni $2,$vf1\n\tmtc1 $2,%0" : "=f"(f) : "r"(c) : "$2");
+    return f;
+}
+int FChooseRobRoh(ROB *prob, ROC *proc)
+{
+    ROH *prohBest = 0;
+    float dBest = 3.402823466e+38f;
+    for (ROH *proh = STRUCT_OFFSET(prob, 0x384, ROH *); proh; proh = STRUCT_OFFSET(proh, 0x5b0, ROH *))
+    {
+        if (!STRUCT_OFFSET(proh, 0x55c, ROC *) && STRUCT_OFFSET(proh, 0x550, ROHS) == ROHS_Wander)
+        {
+            float d = DistXyVu2(&STRUCT_OFFSET(proc, 0x140, VECTOR), &STRUCT_OFFSET(proh, 0x140, VECTOR));
+            if (d < dBest)
+            {
+                dBest = d;
+                prohBest = proh;
+            }
+        }
+    }
+    int pad;
+    asm("" : : "m"(pad));
+    if (!prohBest)
+    {
+        return 0;
+    }
+    STRUCT_OFFSET(proc, 0x55c, ROH *) = prohBest;
+    STRUCT_OFFSET(prohBest, 0x55c, ROC *) = proc;
+    RemoveDlEntry(&STRUCT_OFFSET(prob, 0x368, DL), proc);
+    AppendDlEntry(&STRUCT_OFFSET(prob, 0x35c, DL), proc);
+    SetRohRohs(prohBest, ROHS_Collect);
+    return 1;
+}
+#endif // SKIP_ASM
 
+/**
+ * @todo Near match (26 differing lines of 62): VU0 inline asm; the original fills the loop bnel delay slot with the lqc2 and loads vf2 first. Uses DistXyVu2 from the FChooseRobRoh attempt. The unused pad local only reproduces the stack frame.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/rog", FChooseRobReturnPoint__FP3ROBP3ROH);
+#ifdef SKIP_ASM
+int FChooseRobReturnPoint(ROB *prob, ROH *proh)
+{
+    int pad;
+    asm("" : : "m"(pad));
+    if (FIsDlEmpty(&STRUCT_OFFSET(prob, 0x3a0, DL)))
+    {
+        return 0;
+    }
+    ROST *prostBest = 0;
+    float dBest = 3.402823466e+38f;
+    for (ROST *prost = STRUCT_OFFSET(prob, 0x3a0, ROST *); prost; prost = STRUCT_OFFSET(prost, 0x568, ROST *))
+    {
+        float d = DistXyVu2(&STRUCT_OFFSET(prost, 0x140, VECTOR), &STRUCT_OFFSET(proh, 0x140, VECTOR));
+        if (d < dBest)
+        {
+            dBest = d;
+            prostBest = prost;
+        }
+    }
+    RemoveDlEntry(&STRUCT_OFFSET(prob, 0x3a0, DL), prostBest);
+    AppendDlEntry(&STRUCT_OFFSET(prob, 0x3ac, DL), prostBest);
+    STRUCT_OFFSET(proh, 0x560, ROST *) = prostBest;
+    return 1;
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", ChooseRobWanderLocation__FP3ROBP3ROH);
 
