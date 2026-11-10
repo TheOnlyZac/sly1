@@ -3,9 +3,16 @@
 #include <clock.h>
 #include <mat.h>
 #include <dl.h>
+#include <memory.h>
 #include <emitter.h>
 #include <sm.h>
 #include <find.h>
+#include <asega.h>
+#include <aseg.h>
+#include <xform.h>
+#include <wipe.h>
+#include <vec.h>
+#include <gcc/math.h>
 #include <basic.h>
 #include <game.h>
 
@@ -16,8 +23,10 @@ extern SNIP s_asnipLoadRoc[1];
 extern SNIP s_asnipPostRoc[1];
 extern SNIP s_asnipLoadRost[1];
 extern SMP s_smpRovAccel; // guess
+extern SMP s_smpRovPan; // guess
 extern SMP s_smpRocAccel; // guess
 extern VECTOR g_normalZ;
+extern RODD D_0024C9D0; // default rodd values
 
 // Inline copy of GLimitLm (the original is inlined here and the out of line one does not match).
 static inline float GLimitLmInl(LM *plm, float g)
@@ -89,7 +98,27 @@ void PostRovLoad(ROV *prov)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRovActive__FP3ROVP3JOYf);
+void UpdateRovActive(ROV *prov, JOY *pjoy, float dt)
+{
+    if (STRUCT_OFFSET(prov, 0x688, int))
+    {
+        RetractAsega(STRUCT_OFFSET(prov, 0x684, ASEGA *));
+        STRUCT_OFFSET(prov, 0x684, ASEGA *) = 0;
+        STRUCT_OFFSET(prov, 0x688, int) = 0;
+    }
+    ReadRovJoystick(prov, pjoy);
+    SetVectorCylind(&STRUCT_OFFSET(prov, 0x630, VECTOR), STRUCT_OFFSET(prov, 0x618, float),
+                    STRUCT_OFFSET(prov, 0x61c, float) * STRUCT_OFFSET(prov, 0x628, float), 0.0f);
+    MATRIX3 mat;
+    SMP smp = s_smpRovPan;
+    float radPan = RadSmooth(
+        atan2f(STRUCT_OFFSET(STRUCT_OFFSET(prov, 0x64c, ALO *), 0x114, float),
+               STRUCT_OFFSET(STRUCT_OFFSET(prov, 0x64c, ALO *), 0x110, float)),
+        STRUCT_OFFSET(prov, 0x620, float), g_clock.dt, &smp, 0);
+    LoadRotateMatrixPanTilt(radPan, 0.0f, &mat);
+    ConvertAloMat(0, prov, &mat, &mat);
+    STRUCT_OFFSET(prov, 0x64c, ALO *)->pvtalo->pfnRotateAloToMat(STRUCT_OFFSET(prov, 0x64c, ALO *), &mat);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRov__FP3ROVf);
 
@@ -137,7 +166,86 @@ ROVS RovsNextRov(ROV *prov)
     return rovs;
 }
 
+/**
+ * @todo Near match (2 differing lines of 144): the prologue stores of $21 and $18 are scheduled in a different order.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/rog", SetRovRovs__FP3ROV4ROVS);
+#ifdef SKIP_ASM
+void SetRovRovs(ROV *prov, ROVS rovs)
+{
+    int i;
+    ASEG *paseg = 0;
+    ROVS rovsPrev = STRUCT_OFFSET(prov, 0x610, ROVS);
+    if (rovsPrev != rovs)
+    {
+        STRUCT_OFFSET(prov, 0x610, ROVS) = rovs;
+        OID oid = OID_Nil;
+        int fPause = 0;
+        SFXID sfxid = (SFXID)0x14d;
+        switch (rovs)
+        {
+        case ROVS_Brake:
+            oid = (OID)0x28f;
+            fPause = 1;
+            sfxid = (SFXID)-1;
+            break;
+        case ROVS_Drive:
+            oid = (OID)0x290;
+            break;
+        case ROVS_Descend:
+            oid = (OID)0x290;
+            paseg = STRUCT_OFFSET(prov, 0x680, ASEG *);
+            break;
+        case ROVS_Ascend:
+            oid = (OID)0x290;
+            paseg = STRUCT_OFFSET(prov, 0x67c, ASEG *);
+            TriggerDefaultExit(0, WIPEK_Keyhole);
+            break;
+        }
+        for (i = 0; i < STRUCT_OFFSET(prov, 0x668, int); i++)
+        {
+            if (fPause)
+            {
+                PauseEmitterIndefinite(STRUCT_OFFSET(prov, 0x66c + i * 4, EMITTER *));
+            }
+            else
+            {
+                UnpauseEmitter(STRUCT_OFFSET(prov, 0x66c + i * 4, EMITTER *));
+            }
+        }
+        SMA *psma = STRUCT_OFFSET(prov, 0x644, SMA *);
+        if (psma)
+        {
+            if (rovsPrev == ROVS_Nil)
+            {
+                SeekSma(psma, oid);
+            }
+            else
+            {
+                SetSmaGoal(psma, oid);
+            }
+        }
+        if (paseg)
+        {
+            ApplyAseg(paseg, prov, 0.0f, 1.0f, 1, &STRUCT_OFFSET(prov, 0x684, ASEGA *));
+        }
+        AMB *pamb = STRUCT_OFFSET(prov, 0x648, AMB *);
+        if (pamb)
+        {
+            if (sfxid == STRUCT_OFFSET(pamb, 0x0, SFXID))
+            {
+                return;
+            }
+            StopSound(pamb, 0);
+            STRUCT_OFFSET(prov, 0x648, AMB *) = 0;
+        }
+        if (sfxid != (SFXID)-1)
+        {
+            StartSound(sfxid, &STRUCT_OFFSET(prov, 0x648, AMB *), prov, 0, 10000.0f, 6000.0f, 0.5f, 0.0f, 0.0f, 0, 0);
+        }
+    }
+}
+#endif // SKIP_ASM
 
 ROVTS RovtsNextRov(ROV *prov)
 {
@@ -208,7 +316,34 @@ void SetRovRovts(ROV *prov, ROVTS rovts)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", HandleRovMessage__FP3ROV5MSGIDPv);
+void HandleRovMessage(ROV *prov, MSGID msgid, void *pv)
+{
+    HandlePoMessage(prov, msgid, pv);
+    switch (msgid)
+    {
+    case MSGID_label:
+        switch (STRUCT_OFFSET(pv, 0x8, OID))
+        {
+        case 0x295:
+            StartSound((SFXID)0x152, 0, 0, &STRUCT_OFFSET(prov, 0x140, VECTOR), 12000.0f, 8000.0f, 0.5f, 0.0f, 0.0f, 0,
+                       0);
+            UnpauseEmitter(STRUCT_OFFSET(prov, 0x65c, EMITTER *));
+            break;
+        case 0x296:
+            StartSound((SFXID)0x152, 0, 0, &STRUCT_OFFSET(prov, 0x140, VECTOR), 12000.0f, 8000.0f, 0.5f, 0.0f, 0.0f, 0,
+                       0);
+            UnpauseEmitter(STRUCT_OFFSET(prov, 0x660, EMITTER *));
+            break;
+        }
+        break;
+    case MSGID_asega_limit:
+        if (pv == STRUCT_OFFSET(prov, 0x684, void *))
+        {
+            STRUCT_OFFSET(prov, 0x688, int) = 1;
+        }
+        break;
+    }
+}
 
 void PresetRovAccel(ROV *prov, float dt)
 {
@@ -235,7 +370,34 @@ int FIsRovSoundBase(ROV *prov)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", InitRob__FP3ROB);
+void InitRob(ROB *prob)
+{
+    RODD rodd;
+    InitAlo(prob);
+    InitDl(&STRUCT_OFFSET(prob, 0x35c, DL), 0x5a0);
+    InitDl(&STRUCT_OFFSET(prob, 0x368, DL), 0x5a0);
+    InitDl(&STRUCT_OFFSET(prob, 0x374, DL), 0x5a0);
+    InitDl(&STRUCT_OFFSET(prob, 0x384, DL), 0x5b0);
+    InitDl(&STRUCT_OFFSET(prob, 0x390, DL), 0x5b0);
+    InitDl(&STRUCT_OFFSET(prob, 0x3a0, DL), 0x568);
+    InitDl(&STRUCT_OFFSET(prob, 0x3ac, DL), 0x568);
+    STRUCT_OFFSET(prob, 0x2d0, OID) = OID_Nil;
+    STRUCT_OFFSET(prob, 0x2d4, OID) = OID_Nil;
+    STRUCT_OFFSET(prob, 0x2d8, OID) = OID_Nil;
+    STRUCT_OFFSET(prob, 0x2dc, OID) = OID_Nil;
+    STRUCT_OFFSET(prob, 0x64c, int) = -1;
+    STRUCT_OFFSET(prob, 0x650, int) = -1;
+    STRUCT_OFFSET(prob, 0x3b8, int) = 0x28;
+    rodd = D_0024C9D0;
+    CopyAb(&STRUCT_OFFSET(prob, 0x3e0, RODD), &rodd, 0xc0);
+    CopyAb(&STRUCT_OFFSET(prob, 0x4a0, RODD), &rodd, 0xc0);
+    STRUCT_OFFSET(prob, 0x3d0, qword) = *(qword *)&g_clqOne;
+    STRUCT_OFFSET(prob, 0x348, float) = 2300.0f;
+    STRUCT_OFFSET(prob, 0x344, float) = 1500.0f;
+    STRUCT_OFFSET(prob, 0x34c, float) = 1.46f;
+    STRUCT_OFFSET(prob, 0x340, int) = 0;
+    STRUCT_OFFSET(prob, 0x350, float) = 3000.0f;
+}
 
 void SetRobCollectible(ROB *prob, OID oidCollectible)
 {
