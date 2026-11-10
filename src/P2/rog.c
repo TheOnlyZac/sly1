@@ -1362,7 +1362,19 @@ ROC *ProcContactRoh(ROH *proh)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", InitRoc__FP3ROC);
+void InitRoc(ROC *proc)
+{
+    InitSo(proc);
+    SetSoConstraints(proc, (CT)2, &g_normalZ, (CT)3, 0);
+    float *pf = &STRUCT_OFFSET(proc, 0x590, float);
+    STRUCT_OFFSET(proc, 0x570, float) = 0.2f;
+    STRUCT_OFFSET(proc, 0x568, int) = 8;
+    STRUCT_OFFSET(proc, 0x550, int) = -1;
+    STRUCT_OFFSET(proc, 0x56c, float) = 1.0f;
+    *pf = 1.0f;
+    pf[1] = 0.0f;
+    pf[2] = 0.0f;
+}
 
 void LoadRocFromBrx(ROC *proc, CBinaryInputStream *pbis)
 {
@@ -1440,7 +1452,49 @@ void AdjustRocNewXp(ROC *proc, XP *pxp, int ixpd)
     STRUCT_OFFSET(pxp, 0x98, float) *= 0.6f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", FAbsorbRocWkr__FP3ROCP3WKR);
+int FAbsorbRocWkr(ROC *proc, WKR *pwkr)
+{
+    if (STRUCT_OFFSET(pwkr, 0xc, uint) & 0x10)
+    {
+        if (STRUCT_OFFSET(proc, 0x18, int))
+            goto done;
+        ROCS rocs = STRUCT_OFFSET(proc, 0x550, ROCS);
+        if (rocs == ROCS_Destroyed)
+            goto done;
+        if (g_clock.t < STRUCT_OFFSET(proc, 0x554, float) + STRUCT_OFFSET(proc, 0x570, float))
+            goto done;
+                    rocs = (ROCS)(rocs + 1);
+                    if (rocs >= STRUCT_OFFSET(proc, 0x568, int))
+                    {
+                        SetRocRocs(proc, ROCS_Destroyed);
+                        ALO *palo = STRUCT_OFFSET(proc, 0x574, ALO *);
+                        if (palo)
+                        {
+                            struct
+                            {
+                                int msgid;
+                                int pad[3];
+                                VECTOR vecA;
+                                VECTOR vecB;
+                                int pad2[8];
+                            } msg;
+                            msg.msgid = 6;
+                            STRUCT_OFFSET(&msg, 0x10, qword) = STRUCT_OFFSET(pwkr, 0x30, qword);
+                            STRUCT_OFFSET(&msg, 0x20, qword) = STRUCT_OFFSET(pwkr, 0x20, qword);
+                            msg.vecA.z += 1000.0f;
+                            ((void (*)(ALO *, void *))STRUCT_OFFSET(palo->pvtalo, 0x7c, void *))(palo, &msg);
+                        }
+                        StartSound((SFXID)0x23, 0, 0, &STRUCT_OFFSET(pwkr, 0x20, VECTOR), 12000.0f, 8000.0f, 1.0f, 0.0f, 0.0f, 0, 0);
+                    }
+                    else
+                    {
+                        SetRocRocs(proc, rocs);
+                        StartSound((SFXID)0x14f, 0, 0, &STRUCT_OFFSET(pwkr, 0x20, VECTOR), 12000.0f, 8000.0f, 1.0f, 0.0f, 0.0f, 0, 0);
+                    }
+    }
+done:
+    return STRUCT_OFFSET(pwkr, 0xc, uint) != 0;
+}
 
 ROCS RocsNextRoc(ROC *proc)
 {
