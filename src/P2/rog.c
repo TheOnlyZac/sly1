@@ -23,11 +23,25 @@ extern SNIP s_asnipLoadRoc[1];
 extern SNIP s_asnipPostRoc[1];
 extern SNIP s_asnipLoadRost[1];
 extern SMP s_smpRovAccel; // guess
-extern SMP s_smpRovPan; // guess
 extern SMP s_smpRocAccel; // guess
 extern VECTOR g_normalZ;
 void PropagateSoForce(SO *pso, GRFSG grfsg, XP *pxp, int ixpd, DZ *pdz, FX *afx); // @todo move to so.h
-extern RODD D_0024C9D0; // default rodd values
+// rodata of this file (order matters: smp, then rodd)
+extern const SMP s_smpRovPan = {30.0f, 0.0f, 0.2f}; // guess
+extern const RODD D_0024C9D0 = {{ // default rodd values, raw words
+    0x40000000, 0x40a00000, 0x00000000, 0x00000000,
+    0x00000000, 0x3f800000, 0x00000000, 0x00000000,
+    0x00000000, 0x41000000, 0x00000000, 0x00000000,
+    0x00000000, 0x3f800000, 0x00000000, 0x00000000,
+    0x3f800000, 0x40200000, 0x3dcccccd, 0x3e99999a,
+    0x00000000, 0x3f800000, 0x00000000, 0x00000000,
+    0x3fc00000, 0x40400000, 0x3e19999a, 0x3ecccccd,
+    0x00000000, 0x3f800000, 0x00000000, 0x00000000,
+    0x43c80000, 0x44bb8000, 0x00000000, 0x00000000,
+    0x00000000, 0x3f800000, 0x00000000, 0x00000000,
+    0x40400000, 0x40c00000, 0x00000000, 0x00000000,
+    0x00000000, 0x3f800000, 0x00000000, 0x00000000
+}};
 
 // Inline copy of GLimitLm (the original is inlined here and the out of line one does not match).
 static inline float GLimitLmInl(LM *plm, float g)
