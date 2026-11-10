@@ -108,10 +108,14 @@ typedef enum JV
 } JV;
 
 class CFont;
+class CFontBrx;
+class CRichText;
 
 class CTextBox
 {
     friend class CFont;
+    friend class CFontBrx;
+    friend class CRichText;
 
 public:
     /**

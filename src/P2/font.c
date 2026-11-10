@@ -178,7 +178,7 @@ JUNK_NOP();
 JUNK_ADDIU(50);
 
 /**
- * @todo 93% matched (12 differing lines of 181). Hoisting of the 0.5 constant and jh compare registers.
+ * @todo 97% matched (6 differing lines of 181). Only the jh == JH_Right compare register swap remains.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/font", DrawPchz__5CFontPcP8CTextBoxT2P4GIFS);
 #ifdef SKIP_ASM
@@ -209,7 +209,10 @@ void CFont::DrawPchz(char *pchz, CTextBox *ptbx, CTextBox *ptbxClip, GIFS *pgifs
             y = ptbx->m_y + (ptbx->m_dy - dyTotal) * 0.5f;
     }
     pch = pchz;
-    float half = 0.5f;
+    float half;
+    if (*pch)
+    {
+    half = 0.5f;
     while (*pch)
     {
         char ch = *pch;
@@ -243,6 +246,7 @@ void CFont::DrawPchz(char *pchz, CTextBox *ptbx, CTextBox *ptbxClip, GIFS *pgifs
             x += DxDrawCh(*pch, x, y, *(uint *)&ptbx->m_rgba, pgifs);
         }
         pch = pchNext;
+    }
     }
     CleanupDraw(ptbxClip, pgifs);
 }
@@ -469,16 +473,15 @@ void CFontBrx::EdgeRect(CTextEdge *pte, CTextBox *ptbx, GIFS *pgifs)
         SetupDraw(0, pgifs);
         float vB = (float)ivB;
         float uR = (float)iuR;
-        uint rgba = *(uint *)&pte->m_rgba;
-        DrawPart(xl0, yt0, xl1, yt1, uL, vT, uM, vM, rgba, pgifs);
-        DrawPart(xr0, yt0, xr1, yt1, uM, vT, uR, vM, rgba, pgifs);
-        DrawPart(xl0, yb0, xl1, yb1, uL, vM, uM, vB, rgba, pgifs);
-        DrawPart(xr0, yb0, xr1, yb1, uM, vM, uR, vB, rgba, pgifs);
-        DrawPart(xl1, yt0, xr0, yt1, uM, vT, uM, vM, rgba, pgifs);
-        DrawPart(xl1, yb0, xr0, yb1, uM, vM, uM, vB, rgba, pgifs);
-        DrawPart(xl0, yt1, xl1, yb0, uL, vM, uM, vM, rgba, pgifs);
-        DrawPart(xr0, yt1, xr1, yb0, uM, vM, uR, vM, rgba, pgifs);
-        DrawPart(xl1, yt1, xr0, yb0, uM, vM, uM, vM, rgba, pgifs);
+        DrawPart(xl0, yt0, xl1, yt1, uL, vT, uM, vM, *(uint *)&pte->m_rgba, pgifs);
+        DrawPart(xr0, yt0, xr1, yt1, uM, vT, uR, vM, *(uint *)&pte->m_rgba, pgifs);
+        DrawPart(xl0, yb0, xl1, yb1, uL, vM, uM, vB, *(uint *)&pte->m_rgba, pgifs);
+        DrawPart(xr0, yb0, xr1, yb1, uM, vM, uR, vB, *(uint *)&pte->m_rgba, pgifs);
+        DrawPart(xl1, yt0, xr0, yt1, uM, vT, uM, vM, *(uint *)&pte->m_rgba, pgifs);
+        DrawPart(xl1, yb0, xr0, yb1, uM, vM, uM, vB, *(uint *)&pte->m_rgba, pgifs);
+        DrawPart(xl0, yt1, xl1, yb0, uL, vM, uM, vM, *(uint *)&pte->m_rgba, pgifs);
+        DrawPart(xr0, yt1, xr1, yb0, uM, vM, uR, vM, *(uint *)&pte->m_rgba, pgifs);
+        DrawPart(xl1, yt1, xr0, yb0, uM, vM, uM, vM, *(uint *)&pte->m_rgba, pgifs);
         pte->m_pfont->PopScaling();
         CleanupDraw(0, pgifs);
     }
@@ -582,7 +585,129 @@ void CRichText::SetBaseColor(RGBA *rgba)
     this->m_rgbaCur = this->m_rgbaBase;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", ChNext__9CRichText);
+char CRichText::ChNext()
+{
+    int one = 1; // forces a separate register for the constant 1
+    int fDone = 0;
+    while (!fDone)
+    {
+        char ch = *m_pchCur;
+        switch (ch)
+        {
+        case '~':
+            if (m_pchCur[1] == ch)
+            {
+                m_pchCur = m_pchCur + 1;
+                fDone = 1;
+            }
+            else if (m_pchCur[1] == '.')
+            {
+                m_rgbaSet = m_rgbaBase;
+                m_rgbaCur = m_rgbaSet;
+                m_pchCur += 2;
+            }
+            else
+            {
+                char *p = m_pchCur + 1;
+                uint rgb = 0;
+                while (*p != 0 && p - m_pchCur < 7)
+                {
+                    uchar c = *p;
+                    int d;
+                    if (c - '0' < 10U)
+                        d = (char)c - '0';
+                    else if (c - 'A' < 6U)
+                        d = (char)c - 'A' + 10;
+                    else if (c - 'a' < 6U)
+                        d = (char)c - 'a' + 10;
+                    else
+                        break;
+                    p++;
+                    rgb = rgb * 16 + d;
+                }
+                if (p - m_pchCur >= 7)
+                {
+                    m_rgbaSet.bRed = (((rgb >> 16) & 0xFF) + 1) >> 1;
+                    m_rgbaSet.bGreen = (((rgb & 0xFF00) >> 8) + 1) >> 1;
+                    m_rgbaSet.bBlue = ((rgb & 0xFF) + 1) >> 1;
+                    m_rgbaCur = m_rgbaSet;
+                    m_pchCur += 7;
+                }
+                else
+                {
+                    m_pfontCur = m_pfontBase;
+                    m_rgbaCur = m_rgbaBase;
+                    fDone = 1;
+                }
+            }
+            break;
+        case '&':
+        {
+            char c1 = m_pchCur[1];
+            if (c1 == ch)
+            {
+                m_pchCur = m_pchCur + 1;
+                fDone = 1;
+            }
+            else if (c1 == '.')
+            {
+                m_pfontCur = m_pfontBase;
+                m_rgbaCur = m_rgbaSet;
+                m_unknown = one;
+                m_pchCur += 2;
+            }
+            else
+            {
+                CFont *pfont = PfontFromCh(c1);
+                if (pfont)
+                {
+                    ((CFontBrx *)pfont)->CopyTo(&m_fontOther);
+                    m_pchCur += 2;
+                    CFont *pfo = &m_fontOther;
+                    float rScale = ((float)m_pfontBase->m_dyUnscaled * m_pfontBase->m_ryScale) / ((float)pfo->m_dyUnscaled * pfo->m_ryScale);
+                    m_pfontCur = pfo;
+                    m_fontOther.m_rxScale *= rScale;
+                    m_fontOther.m_ryScale *= rScale;
+                    RGBA rgba = m_rgbaOther;
+                    rgba.bAlpha = m_rgbaCur.bAlpha;
+                    m_rgbaCur = rgba;
+                    m_unknown = one;
+                }
+                else
+                {
+                    m_pfontCur = m_pfontBase;
+                    fDone = 1;
+                    m_rgbaCur = m_rgbaBase;
+                    m_unknown = one;
+                }
+            }
+            break;
+        }
+        case '^':
+            if (m_pchCur[1] == ch)
+            {
+                m_pchCur = m_pchCur + 1;
+                fDone = 1;
+            }
+            else if (m_pchCur[1] == '.')
+            {
+                m_pfontCur->PopScaling();
+                m_pchCur += 2;
+            }
+            else
+            {
+                float r = (float)(m_pchCur[1] - '0') + (float)(m_pchCur[2] - '0') * 0.1f;
+                m_pfontCur->PushScaling(r * m_pfontCur->m_rxScale, r * m_pfontCur->m_ryScale);
+                m_pchCur += 3;
+            }
+            break;
+        default:
+            fDone = 1;
+            break;
+        }
+    }
+    return *m_pchCur++;
+}
 
 int CRichText::Cch()
 {
