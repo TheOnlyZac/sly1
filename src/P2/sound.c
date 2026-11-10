@@ -7,6 +7,9 @@
 #include <cplcy.h>
 #include <dl.h>
 #include <slotheap.h>
+#include <memory.h>
+#include <game.h>
+#include <cat.h>
 
 extern uchar D_00604790[]; // temp
 extern int D_006053E0[];
@@ -23,7 +26,8 @@ struct MVG
     undefined4 unk3;
 };
 
-extern float D_00274838[10][4]; // temp
+extern float D_00274838[11][4]; // temp
+extern float D_00274758[11][4]; // default mvgk rvols (guess)
 
 
 extern uint D_00274728; // music sfx handle (guess)
@@ -31,6 +35,9 @@ extern uint D_0027472C; // vag handle (guess)
 extern int D_00274730;
 extern int D_00274744;
 extern int D_00274748;
+extern int D_0027474C; // AMB serial counter (guess)
+extern float D_00274750;
+extern int D_00274754;
 extern int D_00245020[][2]; // sfxid -> bank table (guess)
 extern int D_00274720;
 extern int D_00274724;
@@ -75,12 +82,23 @@ void UnloadMusic()
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SbpEnsureBank__Fi);
 
-void SbpEnsureBank(SFXID sfxid)
+void *SbpEnsureBank(SFXID sfxid)
 {
-    SbpEnsureBank(D_00245020[sfxid][0]);
+    return SbpEnsureBank(D_00245020[sfxid][0]);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", NewSfx__FPP3SFX);
+void NewSfx(SFX **ppsfx)
+{
+    *ppsfx = (SFX *)PvAllocSwClearImpl(sizeof(SFX));
+    (*ppsfx)->sfxid = (SFXID)-1;
+    (*ppsfx)->sStart = 3000.0f;
+    (*ppsfx)->sFull = 300.0f;
+    (*ppsfx)->uVol = 1.0f;
+    (*ppsfx)->uPitch = 0.0f;
+    (*ppsfx)->pamb = 0;
+    (*ppsfx)->lmRepeat.gMin = -1.0f;
+    (*ppsfx)->uDoppler = 0.0f;
+}
 
 int FContinuousSound(SFXID sfxid)
 {
@@ -122,7 +140,17 @@ int FPauseForVag()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", RefreshPambVolPan__FP3AMB);
+void RefreshPambVolPan(AMB *pamb)
+{
+    int vol = (int)(pamb->volAttenuated * 1024.0f);
+    float pan = pamb->pan;
+    int ipan;
+    if (pan > 0.0f)
+        ipan = (int)((pan + 2.0f) * 179.5f) - 0x167;
+    else
+        ipan = (int)((pan + 2.0f) * 179.5f);
+    snd_SetSoundVolPan(pamb->sfxh, vol, ipan);
+}
 
 void StartAloSound(ALO *palo, AMB **ppamb, float sStart, float sFull)
 {
@@ -363,7 +391,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/sound", CalculateVolPan__FfP6VECTORPfT2fff);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BF2E0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BF398);
+extern "C" float FUN_001BF398(VECTOR *pposA, VECTOR *pposB)
+{
+    float r;
+    asm("lqc2 $vf1,%1\n\tlqc2 $vf2,%2\n\tvsub.xyzw $vf1,$vf1,$vf2\n\tvmul.xyz $vf1,$vf1,$vf1\n\tvaddw.x $vf3,$vf0,$vf0w\n\tvadday.x ACC,$vf1,$vf1y\n\tvmaddz.x $vf1,$vf3,$vf1z\n\t.word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q\n\tqmfc2.ni $2,$vf1\n\tmtc1 $2,%0" : "=f"(r) : "m"(*pposA), "m"(*pposB) : "$2");
+    return r;
+}
 
 VECTOR *PposEar()
 {
@@ -398,7 +431,18 @@ float SDistEar(VECTOR *ppos)
     return PfneardistGet()(pposEar, ppos);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", CalculateDistVolPan__FP6VECTORPfT1fff);
+void CalculateDistVolPan(VECTOR *ppos, float *puVol, float *pPan, float uVol, float sStart, float sFull)
+{
+    if (ppos)
+    {
+        CalculateVolPan(SDistEar(ppos), ppos, puVol, pPan, uVol, sStart, sFull);
+    }
+    else
+    {
+        *puVol = uVol;
+        *pPan = 0.0f;
+    }
+}
 
 AMB *PambAlloc()
 {
@@ -438,7 +482,30 @@ void StopSound(AMB *pamb, int msRampdown)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SetPambFrq__FP3AMBf);
+void SetPambFrq(AMB *pamb, float frq)
+{
+    if (pamb)
+    {
+        if (frq != pamb->frq || (pamb->palo && 0.0001f < pamb->rDoppler))
+        {
+            pamb->frq = frq;
+            if (!pamb->fPitchOrig)
+            {
+                pamb->ptchOrig = snd_GetSoundOriginalPitch(pamb->bnk, D_00245020[pamb->sfxid][1]);
+                pamb->fPitchOrig = 1;
+            }
+            int ptch = pamb->ptchOrig + (int)(pamb->frq * 1524.0f) + pamb->dnDoppler;
+            int hi = 0x7FFF;
+            int ptchNew;
+            if (ptch < -0x8000)
+                ptchNew = -0x8000;
+            else
+                ptchNew = (hi < ptch) ? hi : ptch;
+            ptch = ptchNew;
+            snd_SetSoundPitch(pamb->sfxh, ptch);
+        }
+    }
+}
 
 void SetPambVol(AMB *pamb, float uVolAtSource)
 {
@@ -450,9 +517,72 @@ void SetPambVol(AMB *pamb, float uVolAtSource)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", FillPamb__FP3AMBPP3AMBiP3ALOP6VECTORfffffP2LMT10_);
+void FillPamb(AMB *pamb, AMB **ppamb, int fContinuous, ALO *palo, VECTOR *ppos, float sStart, float sFull, float uVolAtSource, float frq, float uDoppler, LM *plmRepeat, LM *plmRepDist)
+{
+    DLE dle = pamb->dle;
+    memset(pamb, 0, sizeof(AMB));
+    pamb->dle = dle;
+    if (palo)
+        ppos = &STRUCT_OFFSET(palo, 0x140, VECTOR);
+    pamb->ppamb = ppamb;
+    if (ppamb)
+        *ppamb = pamb;
+    pamb->frq = frq;
+    pamb->rDoppler = uDoppler;
+    pamb->fContinuous = fContinuous;
+    pamb->palo = palo;
+    pamb->sStart = sStart;
+    pamb->sFull = sFull;
+    pamb->uVolAtSource = uVolAtSource;
+    pamb->fStopped = 0;
+    pamb->iSerial = D_0027474C++;
+    STRUCT_OFFSET(pamb, 0x4c, uchar) = NRandInRange(0, 3);
+    if (plmRepeat)
+        pamb->lmRepeat = *plmRepeat;
+    else
+        pamb->lmRepeat.gMin = -1.0f;
+    if (plmRepDist)
+        pamb->lmRepDist = *plmRepDist;
+    else
+        pamb->lmRepDist.gMin = -1.0f;
+    if (ppos)
+        STRUCT_OFFSET(&pamb->pos, 0, qword) = STRUCT_OFFSET(ppos, 0, qword);
+    pamb->fAttached = ppos != 0 || pamb->lmRepeat.gMin >= 0.0f;
+    CalculateDistVolPan(ppos, &pamb->volAttenuated, &pamb->pan, uVolAtSource, sStart, sFull);
+    SetDoppler(pamb);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", ActivatePamb__FP3AMB5SFXID);
+void ActivatePamb(AMB *pamb, SFXID sfxid)
+{
+    void *pbnk;
+    int isnd;
+    if (sfxid != SFXID_UnkNeg2)
+    {
+        pbnk = SbpEnsureBank(sfxid);
+        isnd = D_00245020[sfxid][1];
+        pamb->bnk = pbnk;
+    }
+    pamb->sfxid = sfxid;
+    pamb->tStarted = g_clock.t;
+    if (sfxid == SFXID_UnkNeg2)
+    {
+        pamb->sfxh = D_0027472C;
+        pamb->fOutOfRange = 0;
+    }
+    else if (pamb->volAttenuated != 0.0f && pamb->lmRepeat.gMin < 0.0f)
+    {
+        pamb->sfxh = snd_PlaySoundVolPanPMPB(pbnk, isnd, 0, 0, 0, 0);
+        pamb->fOutOfRange = 0;
+        SetDoppler(pamb);
+        SetPambFrq(pamb, pamb->frq);
+        RefreshPambVolPan(pamb);
+    }
+    else
+    {
+        pamb->sfxh = 0;
+        pamb->fOutOfRange = 1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", ScheduleNextIntermittentSound__FP3AMB);
 
@@ -513,7 +643,15 @@ void SetMvgkRvol(int channel, MVGK mvgk, float rvol)
     MvgkUnknown1(mvgk);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", MvgkUnknown2__Fv);
+void MvgkUnknown2()
+{
+    CopyAb(D_00274838, D_00274758, 0xB0);
+    SetMvgkUvol(1.0f);
+    for (int i = 0; i < 4; i++)
+        MvgkUnknown1((MVGK)i);
+    MvgkUnknown3(g_pgsCur->grfgs & 0x80);
+    MvgkUnknown4(g_pgsCur->grfgs & 0x40);
+}
 
 void MvgkUnknown3(int mute)
 {

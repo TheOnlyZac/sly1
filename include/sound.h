@@ -161,6 +161,7 @@ struct AMB
     float frq;
     float rDoppler;
     int dnDoppler;
+    DLE dle; // List links, preserved when the AMB is cleared.
     int fPitchOrig;
     int ptchOrig;
     float tNext;
@@ -168,8 +169,6 @@ struct AMB
     LM lmRepDist;
     undefined4 unk_2;
     undefined4 unk_3;
-    undefined4 unk_4;
-    undefined4 unk_5;
 };
 
 /**
@@ -289,6 +288,43 @@ EXC *PexcAlloc();
 AMB *PambAlloc();
 
 /**
+ * @brief Updates the doppler pitch shift of an ambient sound from the relative motion of its ALO and the player.
+ */
+void SetDoppler(AMB *pamb);
+
+/**
+ * @brief Starts (or reserves) the sound of an ambient sound.
+ * @param pamb Ambient sound.
+ * @param sfxid SFX ID, or SFXID_UnkNeg2 to use the current VAG.
+ */
+void ActivatePamb(AMB *pamb, SFXID sfxid);
+
+/**
+ * @brief Clears and fills in an ambient sound from StartSound style parameters. (Parameter names are guesses.)
+ */
+void FillPamb(AMB *pamb, AMB **ppamb, int fContinuous, ALO *palo, VECTOR *ppos, float sStart, float sFull, float uVolAtSource, float frq, float uDoppler, LM *plmRepeat, LM *plmRepDist);
+
+/**
+ * @brief Picks the next time (and, for non attached sounds, position) of an intermittent sound.
+ */
+void ScheduleNextIntermittentSound(AMB *pamb);
+
+/**
+ * @brief Volume and pan for a distance. (Parameter names are guesses.)
+ */
+void CalculateVolPan(float sDist, VECTOR *ppos, float *puVol, float *pPan, float uVol, float sStart, float sFull);
+
+/**
+ * @brief Volume and pan for a position, measured from the listener. (Parameter names are guesses.)
+ */
+void CalculateDistVolPan(VECTOR *ppos, float *puVol, float *pPan, float uVol, float sStart, float sFull);
+
+/**
+ * @brief Per frame update of VAG, excitement and ambient sounds.
+ */
+void UpdateSounds();
+
+/**
  * @brief Unlinks an EXC from the world's EXC list and frees it.
  */
 void RemoveExc(EXC *pexc);
@@ -334,13 +370,13 @@ void StartupSound();
 /**
  * @brief Ensures the soundbank is available.
  */
-void SbpEnsureBank(int bank);
+void *SbpEnsureBank(int bank);
 
 /**
  * @brief Ensures the soundbank for an SFX ID is loaded.
  * @param sfxid SFX ID, used to index a bank table (table layout is a guess).
  */
-void SbpEnsureBank(SFXID sfxid);
+void *SbpEnsureBank(SFXID sfxid);
 
 /**
  * @brief Create a new sound effect.
