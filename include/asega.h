@@ -14,6 +14,7 @@
 struct ACTSEG;
 struct CHN;
 struct EA;
+struct AMB;
 
 /**
  * @class ANIMATION_SEGMENT_APPLICATION
@@ -33,9 +34,12 @@ struct ASEGA : public BASIC
     /* 0x26 */ undefined1 unk2;
     /* 0x27 */ undefined1 unk3;
     /* 0x28 */ ACTSEG *pactsegError;
-    /* 0x2c */ STRUCT_PADDING(6);
+    /* 0x2c */ EA *peaErrorA; // guess: event that opened the error window
+    /* 0x30 */ EA *peaErrorB; // guess
+    /* 0x34 */ STRUCT_PADDING(4);
     /* 0x44 */ DL dlActseg;
-    /* 0x50 */ STRUCT_PADDING(4);
+    /* 0x50 */ AMB *pamb; // ambient sound started by a sound event
+    /* 0x54 */ STRUCT_PADDING(3);
     /* 0x60 */ uint32_t *punk60; // points at unk64
     /* 0x64 */ uint32_t unk64[32];
     /* 0xe4 */ MQ *pmqFirst;

@@ -22,6 +22,7 @@ struct ACTSEG : public ACT
 {
     /* 0x1c */ ASEGA *pasega;
     /* 0x20 */ DLE dleAsega;
+    /* 0x28 */ int iachn; // index into ASEG::pachn (name is a guess)
     // ...
 };
 

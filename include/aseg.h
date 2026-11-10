@@ -49,13 +49,29 @@ struct CHN
 };
 
 /**
+ * @brief Per channel data of an animation segment (name and fields are guesses).
+ */
+struct ACHN
+{
+    /* 0x00 */ undefined4 unk0;
+    /* 0x04 */ CHN *pchnPos;
+    /* 0x08 */ CHN *pchnRot;
+    /* 0x0c */ void *punkPos;
+    /* 0x10 */ undefined4 unk10;
+    /* 0x14 */ undefined4 unk14;
+    /* 0x18 */ void *punkRot;
+};
+
+/**
  * @class ANIMATION_SEGMENT
  * @brief Object representing an animation segment.
  */
 struct ASEG : public LO
 {
     /* 0x34 */ float tMax;
-    /* 0x38 */ STRUCT_PADDING(9);
+    /* 0x38 */ STRUCT_PADDING(1);
+    /* 0x3c */ ACHN *pachn; // one entry per action segment (name is a guess)
+    /* 0x40 */ STRUCT_PADDING(7);
     /* 0x5c */ int cea;
     /* 0x60 */ EA *aea;
     /* 0x64 */ STRUCT_PADDING(2);
@@ -89,12 +105,37 @@ struct ASEGBL : public ASEG
 };
 
 /**
+ * @brief Two shorts, for event arguments that are packed in pairs.
+ */
+struct EAS
+{
+    short s0;
+    short s2;
+};
+
+/**
  * @brief Unknown.
  */
 struct EA
 {
     /* 0x00 */ float tLocal;
-    /* 0x04 */ STRUCT_PADDING(3);
+    /* 0x04 */ int eak; // event kind, selects the case in HandleAsegaEvent (name is a guess)
+    /* 0x08 */ union
+    {
+        int n8;
+        float g8;
+        OID oid8;
+        void *pv8;
+        EAS sh8;
+    };
+    /* 0x0c */ union
+    {
+        int nC;
+        float gC;
+        OID oidC;
+        void *pvC;
+        EAS shC;
+    };
 };
 
 /**
