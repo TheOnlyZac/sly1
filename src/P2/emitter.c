@@ -263,7 +263,94 @@ void AddEmitterSkeleton(EMITTER *pemitter, OID oid, OID oidOther, float sRadius,
     AddEmitoSkeleton(&pemitb->emito, oid, oidOther, sRadius, gDensity, sRadiusOther, gDensityOther, pemitter);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", ModifyEmitterParticles__FP7EMITTER);
+/**
+ * Wraps the particle positions of the emitter cells into a box around the emitter. VU0 volatile asm in source order, the empty asms keep gcc from filling the branch delay slots so the assembler does it like the original. vUnused only matches the frame size. Names are guesses.
+ */
+void ModifyEmitterParticles(EMITTER *pemitter)
+{
+    float r = STRUCT_OFFSET(pemitter, 0x338, float);
+    if (r > 0.0001f)
+    {
+        VECTOR vRange;
+        VECTOR vLo;
+        VECTOR vHi;
+        VECTOR vDelta;
+        VECTOR vUnused;
+        qword b;
+        asm("mfc1 $3,%1\n\tpextlw $3,$3,$3\n\tpextlw %0,$3,$3" : "=r"(b) : "f"(r) : "$3");
+        EMITB *pemitb = STRUCT_OFFSET(pemitter, 0x2d0, EMITB *);
+        asm volatile("qmtc2.ni %0,$vf2" : : "r"(b));
+        asm volatile("sqc2 $vf2,%0" : "=m"(vRange));
+        LO *plo = STRUCT_OFFSET(pemitb, 0x7c, LO *);
+        asm volatile("qmtc2.ni %0,$vf3" : : "r"(b));
+        if (plo)
+        {
+            asm volatile("lqc2 $vf1,%0" : : "m"(STRUCT_OFFSET(plo, 0x140, qword)));
+            asm volatile("vsub.xyzw $vf1,$vf1,$vf2");
+            asm volatile("sqc2 $vf1,%0" : "=m"(vLo));
+            asm volatile("lqc2 $vf1,%0" : : "m"(STRUCT_OFFSET(STRUCT_OFFSET(pemitb, 0x7c, LO *), 0x140, qword)));
+            asm volatile("vadd.xyzw $vf1,$vf1,$vf2");
+            asm volatile("sqc2 $vf1,%0" : "=m"(vHi));
+        }
+        else
+        {
+            asm volatile("");
+            float m1 = -1.0f;
+            asm volatile("sq %1,%0" : "=m"(vHi) : "r"(b));
+            asm volatile("mfc1 $4,%0\n\tqmtc2.ni $4,$vf1" : : "f"(m1) : "$4");
+            asm volatile("vmulx.xyzw $vf2,$vf3,$vf1x");
+            asm volatile("sqc2 $vf1,%0" : "=m"(vDelta));
+            asm volatile("sqc2 $vf2,%0" : "=m"(vLo));
+        }
+        asm volatile("");
+        float r2 = STRUCT_OFFSET(pemitter, 0x338, float);
+        pemitb = STRUCT_OFFSET(pemitter, 0x2d0, EMITB *);
+        r2 += r2;
+        qword b2;
+        asm("mfc1 $3,%1\n\tpextlw $3,$3,$3\n\tpextlw %0,$3,$3" : "=r"(b2) : "f"(r2) : "$3");
+        STRUCT_OFFSET(&vRange, 0, qword) = b2;
+        if (STRUCT_OFFSET(pemitb, 0x120, int) == 0)
+        {
+            char *pgrid = STRUCT_OFFSET(pemitter, 0x348, char *);
+            if (pgrid)
+            {
+                char *pcell = STRUCT_OFFSET(pgrid, 0x624, char *);
+                if (pcell)
+                {
+                    int stride = 0x840;
+                    do
+                    {
+                        float *pfb = (float *)(pcell + STRUCT_OFFSET(pcell, 0x1080, int) * stride);
+                        float *pbase = pfb;
+                        for (int j = 0; j < STRUCT_OFFSET(pcell, 0x1084, int); j++)
+                        {
+                            float *pf = pbase + j * 4;
+                            float f = pf[0];
+                            if (f < vLo.x || vHi.x < f)
+                            {
+                                vDelta.x = vLo.x + GModPositive(f - vLo.x, vRange.x) - pf[0];
+                                pf[0] += vDelta.x;
+                            }
+                            f = pf[1];
+                            if (f < vLo.y || vHi.y < f)
+                            {
+                                vDelta.y = vLo.y + GModPositive(f - vLo.y, vRange.y) - pf[1];
+                                pf[1] += vDelta.y;
+                            }
+                            f = pf[2];
+                            if (f < vLo.z || vHi.z < f)
+                            {
+                                vDelta.z = vLo.z + GModPositive(f - vLo.z, vRange.z) - pf[2];
+                                pf[2] += vDelta.z;
+                            }
+                        }
+                        pcell = STRUCT_OFFSET(pcell, 0x1090, char *);
+                    } while (pcell);
+                }
+            }
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", UpdateEmitter__FP7EMITTERf);
 
