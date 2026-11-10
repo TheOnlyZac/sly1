@@ -575,7 +575,38 @@ void AddEmitoSkeleton(EMITO *pemito, OID oid, OID oidOther, float sRadius, float
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindEmitb__FP5EMITBP2LO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", SetEmitdvEmitb__FP6EMITDVP5EMITB);
+/**
+ * VU0 inline asm. The fake dependency variable is pinned to a scratch register so it does not disturb the register allocation. Normalizes the vector at 0xd0 of the emitb into 0x30 of the emitdv, falling back to g_normalZ for a tiny length. Field meanings are unknown.
+ */
+void SetEmitdvEmitb(EMITDV *pemitdv, EMITB *pemitb)
+{
+    STRUCT_OFFSET(pemitdv, 0, float) = STRUCT_OFFSET(pemitb, 0xc0, float);
+    STRUCT_OFFSET(pemitdv, 0x10, qword) = STRUCT_OFFSET(pemitb, 0xb0, qword);
+    STRUCT_OFFSET(pemitdv, 0x20, float) = STRUCT_OFFSET(pemitb, 0xc4, float);
+    qword *pn = &STRUCT_OFFSET(pemitdv, 0x30, qword);
+    qword nz = STRUCT_OFFSET(&g_normalZ, 0, qword);
+    float len;
+    register int ch asm("$8");
+    asm("lqc2 $vf3,%1" : "=r"(ch) : "m"(STRUCT_OFFSET(pemitb, 0xd0, qword)));
+    asm("vmul.xyz $vf1,$vf3,$vf3\n\tvaddw.x $vf2,$vf0,$vf0w\n\tvadday.x ACC,$vf1,$vf1y\n\tvmaddz.x $vf1,$vf2,$vf1z" : "=r"(ch) : "r"(ch));
+    asm(".word 0x4A0103BD" : "=r"(ch) : "r"(ch));
+    asm("vwaitq" : "=r"(ch) : "r"(ch));
+    asm("vaddq.x $vf1,$vf0,Q" : "=r"(ch) : "r"(ch));
+    asm("qmfc2.ni $2,$vf1\n\tmtc1 $2,%0" : "=f"(len) : "r"(ch) : "$2");
+    if (len < 0.0001f)
+    {
+        asm("qmtc2.ni %1,$vf1" : "=r"(ch) : "r"(nz), "r"(ch));
+    }
+    else
+    {
+        asm("vdiv Q,$vf0w,$vf1x" : "=r"(ch) : "r"(ch));
+        asm("vwaitq" : "=r"(ch) : "r"(ch));
+        asm("vmulq.xyzw $vf1,$vf3,Q" : "=r"(ch) : "r"(ch));
+    }
+    asm("sqc2 $vf1,%0" : "=m"(*pn) : "r"(ch));
+    STRUCT_OFFSET(pemitdv, 0x40, int) = STRUCT_OFFSET(pemitb, 0xe0, int);
+    STRUCT_OFFSET(pemitdv, 0x44, int) = STRUCT_OFFSET(pemitb, 0x7c, int);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", CalculateEmitdvMatrix__FP6EMITDVfP7MATRIX4);
 
