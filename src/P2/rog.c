@@ -564,7 +564,22 @@ void UpdateRob(ROB *prob, float dt)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", FUN_001a4d60);
+extern "C" void FUN_001a4d60(ROB *prob) // guess: updates the unk blot, name unknown
+{
+    void *pv = 0;
+    if (STRUCT_OFFSET(prob, 0x650, ROBS) == ROBS_Normal)
+    {
+        pv = FUN_001e9970();
+    }
+    if (pv)
+    {
+        ((void (*)(BLOT *))STRUCT_OFFSET(g_unkblot0.pvtblot, 0x38, void *))(&g_unkblot0);
+    }
+    else
+    {
+        ((void (*)(BLOT *))STRUCT_OFFSET(g_unkblot0.pvtblot, 0x3c, void *))(&g_unkblot0);
+    }
+}
 
 ROBS RobsNextRob(ROB *prob)
 {
@@ -1052,7 +1067,13 @@ int FChooseRobReturnPoint(ROB *prob, ROH *proh)
 }
 #endif // SKIP_ASM
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", ChooseRobWanderLocation__FP3ROBP3ROH);
+void ChooseRobWanderLocation(ROB *prob, ROH *proh)
+{
+    float rad = GRandInRange(0.0f, 6.2831855f);
+    float sXY = GRandInRange(0.0f, STRUCT_OFFSET(prob, 0x348, float));
+    SetVectorCylind(&STRUCT_OFFSET(proh, 0x570, VECTOR), rad, sXY, 0.0f);
+    STRUCT_OFFSET(proh, 0x574, float) *= STRUCT_OFFSET(prob, 0x34c, float);
+}
 
 RODD *ProddCurRob(ROB *prob, ENSK ensk)
 {
@@ -1556,7 +1577,13 @@ void InitRop(ROP *prop)
     SetSoConstraints(prop, CT_Locked, 0, CT_Locked, 0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", LoadRopFromBrx__FP3ROPP18CBinaryInputStream);
+extern SNIP D_0026B8A0[1]; // guess, load snips for rop
+void LoadRopFromBrx(ROP *prop, CBinaryInputStream *pbis)
+{
+    LoadSoFromBrx(prop, pbis);
+    SnipAloObjects(prop, 1, D_0026B8A0);
+    InferExpl(&STRUCT_OFFSET(prop, 0x568, EXPL *), prop);
+}
 
 void PostRopLoad(ROP *prop)
 {
