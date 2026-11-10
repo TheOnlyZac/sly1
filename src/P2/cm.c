@@ -12,6 +12,7 @@
 #include <vifs.h>
 #include <memory.h>
 #include <math.h>
+#include <mark.h>
 #include <jt.h>
 #include <bsp.h>
 #include <clip.h>
@@ -478,7 +479,28 @@ void UpdateCmLast(CM *pcm, int fClear, float dt)
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetupCmRotateToCam__FP2CM);
 
+/**
+ * @todo 17 differing lines: the original interleaves the VU loads with the float math, which inline asm cannot reproduce. Names are guesses.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCmScreenToWorld);
+#ifdef SKIP_ASM
+extern "C" void ConvertCmScreenToWorld(CM *pcm, VECTOR *pscreen, VECTOR *pworld)
+{
+    VECTOR v;
+    float z = pscreen->z;
+    v.x = z;
+    v.y = -pscreen->x;
+    v.z = pscreen->y;
+    if (0.0001f < z)
+    {
+        v.z = pscreen->y * z;
+        v.y = v.y * z;
+    }
+    v.y = v.y * pcm->xScreenRange;
+    v.z = v.z * pcm->yScreenRange;
+    asm("lqc2 $vf5,%1\n\tlqc2 $vf4,%2\n\tlqc2 $vf3,%3\n\tlqc2 $vf2,%4\n\tlqc2 $vf1,%5\n\tvmulax.xyz ACC,$vf5,$vf1x\n\tvmadday.xyz ACC,$vf2,$vf1y\n\tvmaddz.xyz $vf1,$vf3,$vf1z\n\tvadd.xyzw $vf1,$vf1,$vf4\n\tsqc2 $vf1,%0" : "=m"(*pworld) : "m"(pcm->mat.avec[0]), "m"(pcm->pos), "m"(pcm->mat.avec[2]), "m"(pcm->mat.avec[1]), "m"(v));
+}
+#endif
 
 /**
  * VU0 matrix transform written with inline asm (fake data dependencies keep the scheduling).
@@ -814,7 +836,46 @@ void ClearCmCut(CM *pcm)
     SetCmCut(pcm, 0);
 }
 
+/**
+ * @todo 26 differing lines of about 70, only instruction scheduling and a register choice differ. VU0 math as inline asm with fake dependencies, names are guesses. Mangled name would be AdaptCm__FP2CMP6VECTORff, rename the symbol when matched.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", AdaptCm);
+#ifdef SKIP_ASM
+void AdaptCm(CM *pcm, VECTOR *pposFocus, float fx, float fy)
+{
+    VECTOR dir, p2, vt;
+    MATRIX3 *pmat = &pcm->mat;
+    float s1, s2;
+    int a1, a2, a3, a4, a5, a6, b6, c6, d6, e6, a7, a8, a9, b9, c9, d9, a10, b10, a11;
+    float x = -fx * pcm->xScreenRange;
+    float y = fy * pcm->yScreenRange;
+    STRUCT_OFFSET(pcm, 0x240, qword) = STRUCT_OFFSET(&D_00248D30, 0, qword);
+    dir.x = 1.0f;
+    dir.y = x;
+    dir.z = y;
+    asm("lqc2 $vf5,%1" : "=r"(a1) : "m"(pcm->mat.avec[0]), "m"(dir));
+    asm("lqc2 $vf4,0x20(%1)" : "=r"(a2) : "r"(pmat), "r"(a1));
+    asm("lqc2 $vf1,0x10(%1)" : "=r"(a3) : "r"(pmat), "r"(a2));
+    asm("lqc2 $vf2,%1\n\tvmulax.xyz ACC,$vf5,$vf2x\n\tvmadday.xyz ACC,$vf1,$vf2y\n\tvmaddz.xyz $vf2,$vf4,$vf2z" : "=r"(a4) : "m"(dir), "r"(a3));
+    asm("mfc1 $2,%1\n\tqmtc2.ni $2,$vf3" : "=r"(a5) : "f"(100.0f), "r"(a4) : "$2");
+    asm("lqc2 $vf1,%1\n\tvadda.xyzw ACC,$vf1,$vf0\n\tvmaddx.xyzw $vf1,$vf2,$vf3x" : "=r"(a6) : "m"(pcm->pos), "r"(a5));
+    asm("sqc2 $vf3,%1" : "=r"(b6), "=m"(vt) : "r"(a6));
+    asm("sqc2 $vf1,%1" : "=r"(c6), "=m"(p2) : "r"(b6));
+    FindClosestPointOnLine(pposFocus, &pcm->pos, &p2, &s1, &s2);
+    float t = 1.0f - s1;
+    asm("lqc2 $vf1,%1" : "=r"(a7) : "m"(*pposFocus), "f"(s1));
+    asm("lqc2 $vf2,%1" : "=r"(a8) : "m"(pcm->pos), "r"(a7));
+    asm("mfc1 $2,%1\n\tqmtc2.ni $2,$vf5" : "=r"(a9) : "f"(s1), "r"(a8) : "$2");
+    asm("lqc2 $vf4,%1" : "=r"(b9) : "m"(p2), "r"(a9));
+    asm("mfc1 $2,%1\n\tqmtc2.ni $2,$vf3" : "=r"(c9) : "f"(t), "r"(b9) : "$2");
+    asm("vmulax.xyzw ACC,$vf2,$vf3x\n\tvmaddx.xyzw $vf2,$vf4,$vf5x" : "=r"(d9) : "r"(c9));
+    asm("sqc2 $vf3,%1" : "=r"(a10), "=m"(vt) : "r"(d9));
+    asm("vsub.xyzw $vf1,$vf2,$vf1" : "=r"(b10) : "r"(a10));
+    asm("sqc2 $vf5,%1" : "=r"(a11), "=m"(vt) : "r"(b10));
+    asm("sqc2 $vf1,%1" : "=r"(d6), "=m"(pcm->dposCenter) : "r"(a11));
+    asm("sqc2 $vf2,%1" : "=r"(e6), "=m"(p2) : "r"(d6));
+}
+#endif
 
 /**
  * @todo Four differing lines: the original loads R_SetCmDamping before copying the position and R_SetCmSpring after (argument load order). VU adds are inline asm with fake dependencies. Parameter names are guesses.
