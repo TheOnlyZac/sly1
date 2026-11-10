@@ -177,11 +177,6 @@ JUNK_NOP();
 
 JUNK_ADDIU(50);
 
-/**
- * @todo 97% matched (6 differing lines of 181). Only the jh == JH_Right compare register swap remains.
- */
-INCLUDE_ASM("asm/nonmatchings/P2/font", DrawPchz__5CFontPcP8CTextBoxT2P4GIFS);
-#ifdef SKIP_ASM
 void CFont::DrawPchz(char *pchz, CTextBox *ptbx, CTextBox *ptbxClip, GIFS *pgifs)
 {
     int fNewLine = 1;
@@ -208,6 +203,7 @@ void CFont::DrawPchz(char *pchz, CTextBox *ptbx, CTextBox *ptbxClip, GIFS *pgifs
         else
             y = ptbx->m_y + (ptbx->m_dy - dyTotal) * 0.5f;
     }
+    JH jhR = JH_Right;
     pch = pchz;
     float half;
     if (*pch)
@@ -236,7 +232,7 @@ void CFont::DrawPchz(char *pchz, CTextBox *ptbx, CTextBox *ptbxClip, GIFS *pgifs
                     char *p = pch;
                     while (*p != 0 && *p != '\n')
                         dxLine += DxFromCh(*p++);
-                    if (ptbx->m_jh == JH_Right)
+                    if (ptbx->m_jh == jhR)
                         x = ptbx->m_x + ptbx->m_dx - dxLine;
                     else
                         x = ptbx->m_x + (ptbx->m_dx - dxLine) * half;
@@ -250,7 +246,6 @@ void CFont::DrawPchz(char *pchz, CTextBox *ptbx, CTextBox *ptbxClip, GIFS *pgifs
     }
     CleanupDraw(ptbxClip, pgifs);
 }
-#endif // SKIP_ASM
 
 void CFont::PushScaling(float rx, float ry)
 {
