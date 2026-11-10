@@ -713,9 +713,86 @@ extern "C" int FInsideCmMrd(CM *pcm, qword vDelta, float sOffset, float sScale, 
     return 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", DecomposeCylind);
+/**
+ * VU0 vector math written with inline asm (fake data dependencies keep the scheduling).
+ * Parameter names are guesses. psXY receives the XY length, pz the Z component.
+ */
+extern "C" void DecomposeCylind(VECTOR *ptarget, VECTOR *pcenter, float *pradPan, float *psXY, float *pz)
+{
+    VECTOR d;
+    if (pcenter)
+    {
+        int a, b, c;
+        asm("lqc2 $vf1,%1" : "=r"(a) : "m"(*ptarget));
+        asm("lqc2 $vf2,%1" : "=r"(b) : "m"(*pcenter), "r"(a));
+        asm("vsub.xyzw $vf1,$vf1,$vf2" : "=r"(c) : "r"(b));
+        asm("sqc2 $vf1,%0" : "=m"(d) : "r"(c));
+    }
+    else
+    {
+        STRUCT_OFFSET(&d, 0, qword) = STRUCT_OFFSET(ptarget, 0, qword);
+    }
+    if (pradPan)
+        *pradPan = RadNormalize(atan2f(d.y, d.x));
+    int a0;
+    asm("lqc2 $vf1,%1" : "=r"(a0) : "m"(d));
+    if (psXY)
+    {
+        int a, t;
+        asm("vmul.xy $vf1,$vf1,$vf1\n\tvaddy.x $vf1,$vf1,$vf1y\n\t.word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q" : "=r"(a) : "r"(a0));
+        asm("qmfc2.ni %0,$vf1" : "=r"(t) : "r"(a));
+        *(int *)psXY = t;
+    }
+    if (pz)
+        *pz = d.z;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", DecomposeSphere);
+/**
+ * VU0 vector math written with inline asm (fake data dependencies keep the scheduling).
+ * The empty asm at the end only stops gcc from filling the last branch delay slot, so the
+ * assembler puts the VU load there like the original. Parameter names are guesses.
+ */
+extern "C" void DecomposeSphere(VECTOR *ptarget, VECTOR *pcenter, float *pradPan, float *pradTilt, float *ps)
+{
+    VECTOR d;
+    if (pcenter)
+    {
+        int a, b, c;
+        asm("lqc2 $vf1,%1" : "=r"(a) : "m"(*ptarget));
+        asm("lqc2 $vf2,%1" : "=r"(b) : "m"(*pcenter), "r"(a));
+        asm("vsub.xyzw $vf1,$vf1,$vf2" : "=r"(c) : "r"(b));
+        asm("sqc2 $vf1,%0" : "=m"(d) : "r"(c));
+    }
+    else
+    {
+        STRUCT_OFFSET(&d, 0, qword) = STRUCT_OFFSET(ptarget, 0, qword);
+    }
+    if (pradPan)
+        *pradPan = RadNormalize(atan2f(d.y, d.x));
+    int a0;
+    asm("lqc2 $vf1,%1" : "=r"(a0) : "m"(d));
+    if (pradTilt)
+    {
+        int a, t, a2;
+        float dxy;
+        asm("vmul.xy $vf1,$vf1,$vf1\n\tvaddy.x $vf1,$vf1,$vf1y" : "=r"(a2) : "r"(a0));
+        float dz = d.z;
+        asm(".word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q" : "=r"(a) : "r"(a2));
+        asm("qmfc2.ni %0,$vf1" : "=r"(t) : "r"(a));
+        asm("mtc1 %1,%0" : "=f"(dxy) : "r"(t));
+        *pradTilt = RadNormalize(atan2f(dz, dxy));
+    }
+    int a1;
+    asm("lqc2 $vf1,%1" : "=r"(a1) : "m"(d));
+    if (ps)
+    {
+        int a, t;
+        asm("vmul.xyz $vf1,$vf1,$vf1\n\tvaddw.x $vf2,$vf0,$vf0w\n\tvadday.x ACC,$vf1,$vf1y\n\tvmaddz.x $vf1,$vf2,$vf1z\n\t.word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q" : "=r"(a) : "r"(a1));
+        asm("qmfc2.ni %0,$vf1" : "=r"(t) : "r"(a));
+        *(int *)ps = t;
+    }
+    asm("");
+}
 
 void SetCmCut(CM *pcm, float *pradCut)
 {
