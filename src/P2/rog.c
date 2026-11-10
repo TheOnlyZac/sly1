@@ -21,6 +21,7 @@
 #include <difficulty.h>
 #include <prompt.h>
 #include <sw.h>
+#include <pnt.h>
 
 extern SNIP s_asnipLoadRov[2];
 extern SNIP s_asnipPostRov[6];
@@ -898,7 +899,48 @@ void KilledRobRoh(ROB *prob, ROH *proh)
     STRUCT_OFFSET(prob, 0x39c, int) -= 1;
 }
 
+/**
+ * @todo Near match (28 differing lines of 70): VU0 inline asm, the original fills the loop branch (bnel) delay slot with the lqc2 and orders the prologue stores differently. The unused pad local only reproduces the stack frame.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/rog", FChooseRobRoc__FP3ROBP3ROH);
+#ifdef SKIP_ASM
+int FChooseRobRoc(ROB *prob, ROH *proh)
+{
+    int pad;
+    asm("" : : "m"(pad));
+    if (FIsDlEmpty((&STRUCT_OFFSET(prob, 0x368, DL))))
+    {
+        return 0;
+    }
+    float dBest = 3.402823466e+38f;
+    ROC *procBest;
+    ROC *proc = STRUCT_OFFSET(prob, 0x368, ROC *);
+    int a;
+    if (proc)
+    {
+    asm("lqc2 $vf2,%1" : "=r"(a) : "m"(STRUCT_OFFSET(proh, 0x140, VECTOR)));
+    do
+    {
+        int b, c, t;
+        asm("lqc2 $vf1,%1" : "=r"(b) : "m"(STRUCT_OFFSET(proc, 0x140, VECTOR)), "r"(a));
+        asm("vsub.xyzw $vf1,$vf1,$vf2\n\tvmul.xy $vf1,$vf1,$vf1\n\tvaddy.x $vf1,$vf1,$vf1y\n\t.word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q" : "=r"(c) : "r"(b));
+        asm("qmfc2.ni %0,$vf1" : "=r"(t) : "r"(c));
+        float d = *(float *)&t;
+        if (d < dBest)
+        {
+            dBest = d;
+            procBest = proc;
+        }
+        proc = STRUCT_OFFSET(proc, 0x5a0, ROC *);
+    } while (proc);
+    }
+    STRUCT_OFFSET(proh, 0x55c, ROC *) = procBest;
+    STRUCT_OFFSET(procBest, 0x55c, ROH *) = proh;
+    RemoveDlEntry((&STRUCT_OFFSET(prob, 0x368, DL)), procBest);
+    AppendDlEntry(&STRUCT_OFFSET(prob, 0x35c, DL), procBest);
+    return 1;
+}
+#endif // SKIP_ASM
 
 void TakeRobRoc(ROB *prob, ROH *proh, ROC *proc)
 {
@@ -978,7 +1020,96 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRoh__FP3ROHf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", MoveRohToTarget__FP3ROHP6VECTORi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", RohsNextRoh__FP3ROH);
+// VU0 xy distance between two points, with fake data dependencies to keep gcc's scheduling.
+// The 10.0f limit load sits inside the asm so it lands between the vsub and the vmul like the original.
+static inline float DistXyVu(VECTOR *pa, VECTOR *pb, float *plim)
+{
+    int a, b, c0, c1;
+    float f, lim;
+    asm("lqc2 $vf1,%1" : "=r"(a) : "m"(*pa));
+    asm("lqc2 $vf2,%1" : "=r"(b) : "m"(*pb), "r"(a));
+    asm("vsub.xyzw $vf1,$vf1,$vf2\n\t.set noat\n\tlui $1,0x4120\n\tmtc1 $1,%1\n\t.set at" : "=r"(c0), "=f"(lim) : "r"(b) : "$1");
+    asm("vmul.xy $vf1,$vf1,$vf1\n\tvaddy.x $vf1,$vf1,$vf1y\n\t.word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q" : "=r"(c1) : "r"(c0));
+    asm("qmfc2.ni $2,$vf1\n\tmtc1 $2,%0" : "=f"(f) : "r"(c1) : "$2");
+    *plim = lim;
+    return f;
+}
+ROHS RohsNextRoh(ROH *proh)
+{
+    ROHS rohs = STRUCT_OFFSET(proh, 0x550, ROHS);
+    VECTOR vec;
+    float d, lim;
+    switch (rohs)
+    {
+    case ROHS_Spawn:
+    {
+        ROC *proc = ProcContactRoh(proh);
+        if (proc)
+        {
+            TakeRobRoc(STRUCT_OFFSET(proh, 0x558, ROB *), proh, proc);
+            rohs = ROHS_Grab;
+        }
+        else
+        {
+            GetPntPos(STRUCT_OFFSET(STRUCT_OFFSET(proh, 0x560, ROST *), 0x564, PNT *), &vec);
+            d = DistXyVu(&vec, &STRUCT_OFFSET(proh, 0x140, VECTOR), &lim);
+            if (d < lim)
+            {
+                rohs = FChooseRobRoc(STRUCT_OFFSET(proh, 0x558, ROB *), proh) ? ROHS_Collect : ROHS_Wander;
+            }
+        }
+        break;
+    }
+    case ROHS_Wander:
+    case ROHS_Collect:
+    {
+        ROC *proc = ProcContactRoh(proh);
+        if (proc)
+        {
+            TakeRobRoc(STRUCT_OFFSET(proh, 0x558, ROB *), proh, proc);
+            rohs = ROHS_Grab;
+        }
+        break;
+    }
+    case ROHS_Grab:
+    {
+        ASEGA *pasega = STRUCT_OFFSET(proh, 0x59c, ASEGA *);
+        if (pasega && STRUCT_OFFSET(pasega, 0x14, float) < STRUCT_OFFSET(STRUCT_OFFSET(proh, 0x594, ASEG *), 0x34, float))
+        {
+            rohs = ROHS_Grab;
+        }
+        else
+        {
+            rohs = FChooseRobReturnPoint(STRUCT_OFFSET(proh, 0x558, ROB *), proh) ? ROHS_Return : ROHS_Wander;
+        }
+        break;
+    }
+    case ROHS_Return:
+        GetPntPos(STRUCT_OFFSET(STRUCT_OFFSET(proh, 0x560, ROST *), 0x564, PNT *), &vec);
+        d = DistXyVu(&STRUCT_OFFSET(proh, 0x140, VECTOR), &vec, &lim);
+        if (d < lim)
+        {
+            rohs = ROHS_Exit;
+        }
+        break;
+    case ROHS_Exit:
+        d = DistXyVu(&STRUCT_OFFSET(proh, 0x140, VECTOR), &STRUCT_OFFSET(STRUCT_OFFSET(proh, 0x560, ROST *), 0x140, VECTOR), &lim);
+        if (d < lim)
+        {
+            rohs = ROHS_Inactive;
+        }
+        break;
+    case ROHS_Die:
+        rohs = ROHS_Dead;
+        break;
+    case ROHS_Inactive:
+    case ROHS_Happy:
+    case ROHS_Sad:
+    case ROHS_Dead:
+        break;
+    }
+    return rohs;
+}
 
 struct OVR // guess
 {
