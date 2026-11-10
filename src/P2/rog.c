@@ -504,7 +504,64 @@ ROBK RobkCur()
 }
 #endif // SKIP_ASM
 
+/**
+ * @todo Structure is right but only about 50% matched (157 differing lines of 312): register allocation is shifted (the original keeps prob in $18, proh in $17 and hoists the rost list pointers into saved registers).
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/rog", BindRob__FP3ROB);
+#ifdef SKIP_ASM
+static inline float GMaxInl(float a, float b)
+{
+    return (a > b) ? a : b;
+}
+void BindRob(ROB *prob)
+{
+    BindAlo(prob);
+    if (STRUCT_OFFSET(prob, 0x64c, ROBK) != RobkCur())
+    {
+        return;
+    }
+    ROV *prov = (ROV *)PloFindSwNearest(g_psw, STRUCT_OFFSET(prob, 0x2d8, OID), prob);
+    STRUCT_OFFSET(prob, 0x354, ROV *) = prov;
+    STRUCT_OFFSET(prov, 0x678, ROB *) = prob;
+    ROH *proh = (ROH *)PloFindSwNearest(g_psw, STRUCT_OFFSET(prob, 0x2d0, OID), prob);
+    STRUCT_OFFSET(proh, 0x558, ROB *) = prob;
+    ROC *proc = (ROC *)PloFindSwNearest(g_psw, STRUCT_OFFSET(prob, 0x2d4, OID), prob);
+    STRUCT_OFFSET(proc, 0x558, ROB *) = prob;
+    if (STRUCT_OFFSET(prob, 0x2dc, OID) != (OID)-1)
+    {
+        ROP *prop = (ROP *)PloFindSwNearest(g_psw, STRUCT_OFFSET(prob, 0x2dc, OID), prob);
+        STRUCT_OFFSET(prob, 0x358, ROP *) = prop;
+        STRUCT_OFFSET(prop, 0x558, ROB *) = prob;
+    }
+    int i;
+    for (i = 0; (float)i < GMaxInl(STRUCT_OFFSET(prob, 0x4a4, float), STRUCT_OFFSET(prob, 0x3e4, float)); i++)
+    {
+        LO *plo = i ? PloCloneLo(proh, g_psw, STRUCT_OFFSET(proh, 0x18, ALO *)) : proh;
+        AppendDlEntry(&STRUCT_OFFSET(prob, 0x374, DL), plo);
+    }
+    for (i = 0; (float)i < GMaxInl(STRUCT_OFFSET(prob, 0x4c4, float), STRUCT_OFFSET(prob, 0x404, float)); i++)
+    {
+        LO *plo = i ? PloCloneLo(proc, g_psw, STRUCT_OFFSET(proc, 0x18, ALO *)) : proc;
+        AppendDlEntry(&STRUCT_OFFSET(prob, 0x390, DL), plo);
+    }
+    OID *aoidRost = &STRUCT_OFFSET(prob, 0x2e4, OID);
+    DL *pdlRost = &STRUCT_OFFSET(prob, 0x3a0, DL);
+    for (i = 0; i < STRUCT_OFFSET(prob, 0x2e0, int); i++)
+    {
+        LO *aplo[2];
+        int n = CploFindSwObjects(g_psw, 0x104, aoidRost[i], prob, 2, aplo);
+        for (int j = 0; j < n; j++)
+        {
+            if (FIsBasicDerivedFrom(aplo[j], (CID)0x44))
+            {
+                STRUCT_OFFSET(aplo[j], 0x558, ROB *) = prob;
+                AppendDlEntry(pdlRost, aplo[j]);
+                break;
+            }
+        }
+    }
+}
+#endif // SKIP_ASM
 
 void PostRobLoad(ROB *prob)
 {
