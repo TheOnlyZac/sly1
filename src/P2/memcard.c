@@ -27,16 +27,7 @@ int func_00209870(int fd, void *pv, int cb); // sceMcRead (guess)
 int func_00209990(int fd, void *pv, int cb); // sceMcWrite (guess)
 }
 
-extern char D_0024B3A0[];
-extern char D_0024B3C8[];
-extern char s_savePath[];
 extern char D_00248470[];
-extern char D_0024B340[];
-extern char D_0024B348[];
-extern char D_0024B360[];
-extern char D_0024B390[];
-extern char D_0024B3D8[];
-extern char D_0024B3E0[];
 extern PROMPT D_0026FF68;
 extern SAVE g_save;
 extern MEMCARD g_memcard;
@@ -165,6 +156,187 @@ int FUN_0018b930(int n)
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018b988__Fii);
+#ifdef SKIP_ASM
+int FUN_0018b988(int cmd, int r)
+{
+	switch (cmd)
+	{
+	case 1:
+		switch (r)
+		{
+		case 0: return 0;
+		case -1: return 9;
+		case -2: return 0xa;
+		case -5: return 0xb;
+		}
+		if (r < -9)
+			return 0xb;
+		return 0x1f;
+	case 2:
+		switch (r)
+		{
+		case -3: return 1;
+		case -4: return 0xd;
+		case -5: return 6;
+		case -7: return 0x19;
+		case -2: return 0xc;
+		}
+		if (r >= 0)
+			return 0;
+		if (r < -9)
+			return 0xb;
+		return 0x1f;
+	case 4:
+		switch (r)
+		{
+		case -4: return 0x10;
+		case -2: return 0xc;
+		}
+		if (r >= 0)
+			return 0;
+		if (r < -9)
+			return 0xb;
+		return 0x1f;
+	case 5:
+		switch (r)
+		{
+		case -4: return 0x10;
+		case -2: return 0xc;
+		case -5: return 0x11;
+		}
+		if (r >= 0)
+			return 0;
+		if (r < -9)
+			return 0xb;
+		return 0x1f;
+	case 6:
+		switch (r)
+		{
+		case -5: return 0x12;
+		case -8: return 0x1a;
+		case -4: return 0x10;
+		case -3: return 1;
+		case -2: return 0xc;
+		}
+		if (r >= 0)
+			return 0;
+		if (r < -9)
+			return 0xb;
+		return 0x1f;
+	case 3:
+	case 10:
+		switch (r)
+		{
+		case 0: return 0;
+		case -2: return 0xc;
+		case -4: return 0x10;
+		}
+		if (r < -9)
+			return 0xb;
+		return 0x1f;
+	case 11:
+		switch (r)
+		{
+		case 0: return 0;
+		case -3: return 1;
+		case -4: return 0x18;
+		case -2: return 0xc;
+		}
+		if (r < -9)
+			return 0xb;
+		return 0x1f;
+	case 12:
+		switch (r)
+		{
+		case 0: return 0;
+		case -2: return 0xc;
+		case -4: return 0x15;
+		}
+		if (r < -9)
+			return 0xb;
+		return 0x1f;
+	case 13:
+		switch (r)
+		{
+		case -2: return 0xc;
+		case -4: return 0x15;
+		}
+		if (r >= 0)
+			return 0;
+		if (r < -9)
+			return 0xb;
+		return 0x1f;
+	case 14:
+		switch (r)
+		{
+		case 0: return 0;
+		case -2: return 0xc;
+		case -4: return 0x16;
+		}
+		if (r < -9)
+			return 0xb;
+		return 0x1f;
+	case 15:
+		switch (r)
+		{
+		case 0: return 0;
+		case -4: return 0xe;
+		case -5: return 0x13;
+		case -6: return 0x17;
+		case -2: return 0xc;
+		}
+		if (r < -9)
+			return 0xb;
+		return 0x1f;
+	case 16:
+		if (r == 0)
+			return 0;
+		if (r < 0)
+			return 4;
+		return 0x1f;
+	case 17:
+		if (r == 0)
+			return 0;
+		if (r < 0)
+			return 5;
+		return 0x1f;
+	case 18:
+		if (r == -2)
+			return 0xc;
+		if (r >= 0)
+			return 0;
+		if (r < -9)
+			return 0xb;
+		return 0x1f;
+	case 19:
+		switch (r)
+		{
+		case 0: return 0;
+		case -2: return 0xc;
+		case -4: return 0x16;
+		}
+		if (r < -9)
+			return 0xb;
+		return 0x1f;
+	case 20:
+		switch (r)
+		{
+		case 0: return 0;
+		case -403: return 0x23;
+		}
+		return 0x1f;
+	case 21:
+		if (r >= 0)
+			return 0;
+		if (r + 100 < 100u)
+			return 0x1f;
+		if (r < -99)
+			return 0x1e;
+		return 0x1f;
+	}
+	return 0x1f;
+}
+#endif // SKIP_ASM
 
 int FUN_0018bc90(int a, int b, int *pout)
 {
@@ -351,7 +523,7 @@ int FUN_0018c250(SAVE *psave)
 	int n;
 	int c;
 	int cb;
-	int r = FUN_0018bd00(func_0020A078(psave->port, psave->slot, D_0024B340), 0x12, &n);
+	int r = FUN_0018bd00(func_0020A078(psave->port, psave->slot, "/"), 0x12, &n);
 	if (r != 0)
 		return r;
 	c = (n == 0) ? 2 : 1;
@@ -361,22 +533,22 @@ int FUN_0018c250(SAVE *psave)
 	c += 0x15;
 	if (psave->mcFree < c)
 		return 1;
-	r = FUN_0018d228(psave, D_0024B348);
+	r = FUN_0018d228(psave, "/BASCUS-97198YAOTWTD!");
 	if (r == 0)
 	{
-		r = FUN_0018d368(psave, D_0024B360, D_0024B390, 10);
+		r = FUN_0018d368(psave, "/BASCUS-97198YAOTWTD!/BASCUS-97198YAOTWTD!", (void *)"Sly Cooper", 10);
 		if (r == 0)
 		{
-			r = FUN_0018ca10(psave, D_0024B348, D_0024B390);
+			r = FUN_0018ca10(psave, "/BASCUS-97198YAOTWTD!", (void *)"Sly Cooper");
 			if (r == 0)
 			{
-				r = load_sly_icon_from_disc(psave, D_0024B348);
+				r = load_sly_icon_from_disc(psave, "/BASCUS-97198YAOTWTD!");
 				if (r == 0)
 				{
 					SAVESLOT *aslot = (SAVESLOT *)((char *)psave + 0x30);
 					for (int i = 0; i < 3; i++)
 					{
-						sprintf(abBuf, D_0024B3A0, s_savePath, D_0024B3C8, i + 1);
+						sprintf(abBuf, "/%s/%s%d", "BASCUS-97198YAOTWTD!", "save", i + 1);
 						r = FUN_0018d028(psave, abBuf, &aslot[i].gs, (char *)aslot[i].unk_0x1a00);
 						if (r != 0)
 							goto done;
@@ -392,17 +564,15 @@ done:
 }
 
 /**
- * @todo Register allocation differs (64 differing lines), the result of the
- * first call wants a callee saved register in the original.
+ * @note (guess) The original asm tests r in the loop but never stores the result
+ * of FUN_0018cdd8, so the return value of that call is dropped here too.
  */
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018c420__FP4SAVE);
-#ifdef SKIP_ASM
 int FUN_0018c420(SAVE *psave)
 {
 	char abBuf[0x50];
 	int cEnt;
 	int cb;
-	int r = FUN_0018bd00(func_00209E48(psave->port, psave->slot, D_0024B348, 0, -1, 0), 0xd, &cEnt);
+	int r = FUN_0018bd00(func_00209E48(psave->port, psave->slot, "/BASCUS-97198YAOTWTD!", 0, -1, 0), 0xd, &cEnt);
 	if (cEnt <= 0)
 	{
 		FUN_0018d168(psave, &cb);
@@ -410,23 +580,18 @@ int FUN_0018c420(SAVE *psave)
 			psave->mode = 4;
 		return 0xe;
 	}
+	for (int i = 0; r == 0 && i < 3; i++)
+	{
+		sprintf(abBuf, "/%s/%s%d", "BASCUS-97198YAOTWTD!", "save", i + 1);
+		FUN_0018cdd8(psave, abBuf, &((SAVESLOT *)((char *)psave + 0x30))[i].gs, (char *)((SAVESLOT *)((char *)psave + 0x30))[i].unk_0x1a00);
+	}
 	if (r == 0)
 	{
-		SAVESLOT *aslot = (SAVESLOT *)((char *)psave + 0x30);
-		for (int i = 0; i < 3; i++)
-		{
-			sprintf(abBuf, D_0024B3A0, s_savePath, D_0024B3C8, i + 1);
-			r = FUN_0018cdd8(psave, abBuf, &aslot[i].gs, (char *)aslot[i].unk_0x1a00);
-			if (r != 0)
-				goto done;
-		}
 		if (psave->mode < 5)
 			psave->mode = 5;
 	}
-done:
 	return r;
 }
-#endif // SKIP_ASM
 
 int FUN_0018c568(SAVE *psave)
 {
@@ -445,7 +610,7 @@ int FUN_0018c638(SAVE *psave)
 	RumbleUnknown2(g_pgsCur);
 	*STRUCT_OFFSET(psave, 0x4f44, GS *) = *g_pgsCur;
 	int i = ((SAVESLOT *)STRUCT_OFFSET(psave, 0x4f44, GS *) - (SAVESLOT *)((char *)psave + 0x30)) + 1;
-	sprintf(abBuf, D_0024B3A0, s_savePath, D_0024B3C8, i);
+	sprintf(abBuf, "/%s/%s%d", "BASCUS-97198YAOTWTD!", "save", i);
 	return FUN_0018cfc0(psave, abBuf, STRUCT_OFFSET(psave, 0x4f44, GS *));
 }
 
@@ -455,7 +620,7 @@ int FUN_0018c770(SAVE *psave)
 	if (STRUCT_OFFSET(psave, 0x4f4c, GS *) == 0)
 		return 0x2c;
 	int i = ((SAVESLOT *)STRUCT_OFFSET(psave, 0x4f4c, GS *) - (SAVESLOT *)((char *)psave + 0x30)) + 1;
-	sprintf(abBuf, D_0024B3A0, s_savePath, D_0024B3C8, i);
+	sprintf(abBuf, "/%s/%s%d", "BASCUS-97198YAOTWTD!", "save", i);
 	return FUN_0018d028(psave, abBuf, STRUCT_OFFSET(psave, 0x4f4c, GS *), (char *)STRUCT_OFFSET(psave, 0x4f4c, GS *) + 0x1a00);
 }
 
@@ -548,9 +713,18 @@ JUNK_ADDIU(10);
 JUNK_ADDIU(10);
 JUNK_ADDIU(b0);
 
+// These two strings are read through the symbol in the original (not constant folded),
+// so they are emitted by hand in rodata order instead of being literals.
 extern char D_0024B3D0[];
 extern char D_0024B3D8[];
-extern char D_0024B3E8[];
+asm(".section .rodata\n"
+    ".align 3\n"
+    ".globl D_0024B3D0\n"
+    "D_0024B3D0: .asciz \"PS2D\"\n"
+    ".align 3\n"
+    ".globl D_0024B3D8\n"
+    "D_0024B3D8: .asciz \"sly.ico\"\n"
+    ".section .text\n");
 extern "C" void FUN_001b5c40(char *pchzSrc, char *pchzDst);
 struct S8
 {
@@ -603,7 +777,7 @@ int FUN_0018ca10(SAVE *psave, char *pchz, void *pv)
 	*(S8 *)icon.FnameView = *(S8 *)D_0024B3D8;
 	*(S8 *)icon.FnameCopy = *(S8 *)D_0024B3D8;
 	*(S8 *)icon.FnameDel = *(S8 *)D_0024B3D8;
-	sprintf(abName, D_0024B3E0, pchz, D_0024B3E8);
+	sprintf(abName, "%s/%s", pchz, "icon.sys");
 	return FUN_0018d368(psave, abName, &icon, 0x3c4);
 }
 
@@ -621,7 +795,7 @@ int load_file_from_disc(SAVE *psave, char *pchzA, SAVE *pcipher, char *pchzB)
 	fd = -1;
 	// @todo (guess) args are in the order the asm passes them, they do not match bis.h
 	CBinaryInputStream bis((void *)0x8040, (int)PvAllocStackImpl(0x8040), 0);
-	sprintf(abName, D_0024B3E0, pchzA, pchzB);
+	sprintf(abName, "%s/%s", pchzA, pchzB);
 	int r = FUN_0018d268(psave, abName, 0x202, &fd);
 	if (r == 0)
 	{
@@ -672,12 +846,6 @@ done:
 	return r;
 }
 
-/**
- * @todo Register allocation differs (20 differing lines), psave and cb swap
- * between $18 and $19.
- */
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018cdd8__FP4SAVEPcP2GST1);
-#ifdef SKIP_ASM
 int FUN_0018cdd8(SAVE *psave, char *pchz, GS *pgs, char *pbHdr)
 {
 	SAVEDIRENT dirent;
@@ -701,6 +869,11 @@ int FUN_0018cdd8(SAVE *psave, char *pchz, GS *pgs, char *pbHdr)
 	if (r != 0)
 		return r;
 	r = FUN_0018d2e8(psave, fd, &gs, 0x1a00, &cbRead);
+	if (r != 0)
+	{
+		FUN_0018d2b0(psave, fd);
+		return r;
+	}
 	if (r == 0)
 	{
 		if (cbRead != cb)
@@ -720,7 +893,6 @@ int FUN_0018cdd8(SAVE *psave, char *pchz, GS *pgs, char *pbHdr)
 	FUN_0018d2b0(psave, fd);
 	return r;
 }
-#endif // SKIP_ASM
 
 int FUN_0018cfc0(SAVE *psave, char *pchz, GS *pgs)
 {
@@ -742,7 +914,34 @@ int FUN_0018d028(SAVE *psave, char *pchz, GS *pgs, char *pbHdr)
 	return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018d0a0);
+int FUN_0018d0a0(SAVE *psave)
+{
+	int r = FUN_0018bd00(func_00209CB8(psave->port, psave->slot, &psave->mcType, &psave->mcFree, &psave->mcFormat), 1, 0);
+	switch (r)
+	{
+	case 9:
+	case 11:
+		psave->mode = 1;
+		r = 0xb;
+		break;
+	case 10:
+	case 12:
+		psave->mode = 2;
+		r = 0xc;
+		break;
+	case 0:
+		if (psave->mcFormat != 0)
+		{
+			if (psave->mode < 3)
+				psave->mode = 3;
+		}
+		else
+			psave->mode = 2;
+		break;
+	}
+	psave->tRetry = g_clock.tReal + 0.3f;
+	return r;
+}
 
 int FUN_0018d168(SAVE *psave, int *pcb)
 {
