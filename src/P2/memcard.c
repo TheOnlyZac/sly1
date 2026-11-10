@@ -183,7 +183,7 @@ int FUN_0018bd00(int a, int b, int *pc)
 void InitSave(SAVE *psave, int unk1, int unk2)
 {
 	memset(psave, 0, 0x4f50);
-	psave->field_0x0c = -1;
+	psave->state = -1;
 	psave->mode = 0;
 	FUN_0018c178(psave, 0);
 	psave->port = unk1;
@@ -214,16 +214,54 @@ int CompareSaves(SAVE *psave1, SAVE *psave2)
 	return psave1->unk_0x58 - psave2->unk_0x58;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018c028);
+extern "C" int FUN_0018d0a0(SAVE *psave);
 
-void FUN_0018c178(SAVE *psave, int state)
+void FUN_0018c028(SAVE *psave, int state)
 {
 	if (state != psave->state)
 	{
-		if (state == 2)
-			STRUCT_OFFSET(psave, 0x4f44, int) = 0;
+		if (psave->state == 5)
+			STRUCT_OFFSET(psave, 0x4f48, int) = 0;
+		switch (state)
+		{
+		case 0:
+		case 1:
+			CreateMemcardThread(&g_memcard, (int)FUN_0018d0a0, (int)psave);
+			break;
+		case 3:
+			CreateMemcardThread(&g_memcard, (int)FUN_0018c420, (int)psave);
+			break;
+		case 5:
+		{
+			SAVESLOT *pslot;
+			char *pbHdr = (char *)psave + 0x1a30;
+			pslot = STRUCT_OFFSET(psave, 0x4f48, SAVESLOT *) = (SAVESLOT *)((char *)psave + 0x30);
+			for (int i = 2; i >= 0; pbHdr += 0x1a5c, i--, pslot++)
+			{
+				if (pslot->gs.dt != 0.0f)
+				{
+					if (CompareSaves((SAVE *)((char *)STRUCT_OFFSET(psave, 0x4f48, SAVESLOT *) + 0x1a00), (SAVE *)pbHdr) < 0)
+						STRUCT_OFFSET(psave, 0x4f48, SAVESLOT *) = pslot;
+				}
+				else
+					InitGameState(&pslot->gs);
+			}
+			break;
+		}
+		}
 		psave->state = state;
 		psave->tState = g_clock.tReal;
+	}
+}
+
+void FUN_0018c178(SAVE *psave, int state)
+{
+	if (state != psave->substate)
+	{
+		if (state == 2)
+			STRUCT_OFFSET(psave, 0x4f44, int) = 0;
+		psave->substate = state;
+		psave->tSubstate = g_clock.tReal;
 	}
 }
 
@@ -301,7 +339,42 @@ done:
 	return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018c420);
+/**
+ * @todo Register allocation differs (64 differing lines), the result of the
+ * first call wants a callee saved register in the original.
+ */
+INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018c420__FP4SAVE);
+#ifdef SKIP_ASM
+int FUN_0018c420(SAVE *psave)
+{
+	char abBuf[0x50];
+	int cEnt;
+	int cb;
+	int r = FUN_0018bd00(func_00209E48(psave->port, psave->slot, D_0024B348, 0, -1, 0), 0xd, &cEnt);
+	if (cEnt <= 0)
+	{
+		FUN_0018d168(psave, &cb);
+		if (cb <= 0xc3ff)
+			psave->mode = 4;
+		return 0xe;
+	}
+	if (r == 0)
+	{
+		SAVESLOT *aslot = (SAVESLOT *)((char *)psave + 0x30);
+		for (int i = 0; i < 3; i++)
+		{
+			sprintf(abBuf, D_0024B3A0, s_savePath, D_0024B3C8, i + 1);
+			r = FUN_0018cdd8(psave, abBuf, &aslot[i].gs, (char *)aslot[i].unk_0x1a00);
+			if (r != 0)
+				goto done;
+		}
+		if (psave->mode < 5)
+			psave->mode = 5;
+	}
+done:
+	return r;
+}
+#endif // SKIP_ASM
 
 int FUN_0018c568(SAVE *psave)
 {
@@ -395,7 +468,55 @@ INCLUDE_ASM("asm/nonmatchings/P2/memcard", load_sly_icon_from_disc__FP4SAVEPc);
 
 INCLUDE_ASM("asm/nonmatchings/P2/memcard", load_file_from_disc);
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018cdd8);
+/**
+ * @todo Register allocation differs (20 differing lines), psave and cb swap
+ * between $18 and $19.
+ */
+INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018cdd8__FP4SAVEPcP2GST1);
+#ifdef SKIP_ASM
+int FUN_0018cdd8(SAVE *psave, char *pchz, GS *pgs, char *pbHdr)
+{
+	SAVEDIRENT dirent;
+	GS gs;
+	int fd = -1;
+	int cbRead;
+	if (pbHdr == 0)
+		pbHdr = (char *)&dirent;
+	memset(pbHdr, 0, 0x5c);
+	InitGameState(pgs);
+	int r = FUN_0018c9c0(psave, pchz, pbHdr);
+	if (r != 0)
+		return r;
+	SAVEDIRENT *pent = (SAVEDIRENT *)pbHdr;
+	if ((pent->grf & 0xd4) != 4)
+		return 0x14;
+	int cb = pent->cb;
+	if (cb != 0x1a00)
+		return 0x1c;
+	r = FUN_0018d268(psave, pchz, 1, &fd);
+	if (r != 0)
+		return r;
+	r = FUN_0018d2e8(psave, fd, &gs, 0x1a00, &cbRead);
+	if (r == 0)
+	{
+		if (cbRead != cb)
+			r = 8;
+		else if (gs.gsv != 0x12)
+			r = 0x1c;
+		else if (gs.cbThis != cbRead)
+			r = 0x1c;
+		else if (gs.nChecksum != FUN_00160650(&gs))
+			r = 0x1b;
+		else
+		{
+			*pgs = gs;
+			r = 0;
+		}
+	}
+	FUN_0018d2b0(psave, fd);
+	return r;
+}
+#endif // SKIP_ASM
 
 int FUN_0018cfc0(SAVE *psave, char *pchz, GS *pgs)
 {

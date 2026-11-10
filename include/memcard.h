@@ -68,11 +68,11 @@ struct SAVE
     int field_0x00;
     int port;         // 0x04 (guess)
     int slot;         // 0x08 (guess)
-    int field_0x0c;
-    int field_0x10;
+    int state;        // 0x0c (guess)
+    float tState;     // 0x10 (guess)
     int mode;         // 0x14 (guess)
-    int state;        // 0x18 (guess)
-    float tState;     // 0x1c (guess)
+    int substate;     // 0x18 (guess)
+    float tSubstate;  // 0x1c (guess)
     STRUCT_PADDING(1);
     int mcType;       // 0x24 (guess)
     int mcFree;       // 0x28 (guess)
@@ -117,6 +117,7 @@ int FUN_0018b930(int n);
 int FUN_0018b988(int a, int b);
 int FUN_0018bc90(int a, int b, int *pout);
 int FUN_0018bd00(int a, int b, int *pc);
+void FUN_0018c028(SAVE *psave, int state);
 void FUN_0018c178(SAVE *psave, int state);
 int FUN_0018c1a8(SAVE *psave);
 int FUN_0018c1e8(SAVE *psave);
@@ -130,6 +131,8 @@ int CompareSaves(SAVE *psave1, SAVE *psave2);
 int FUN_0018c250(SAVE *psave);
 int FUN_0018ca10(SAVE *psave, char *pchz, void *pv);
 int load_sly_icon_from_disc(SAVE *psave, char *pchz);
+int FUN_0018c420(SAVE *psave);
+int FUN_0018cdd8(SAVE *psave, char *pchz, GS *pgs, char *pbHdr);
 int FUN_0018c568(SAVE *psave);
 int FUN_0018c638(SAVE *psave);
 int FUN_0018c770(SAVE *psave);
