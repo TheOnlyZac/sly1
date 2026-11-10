@@ -411,7 +411,7 @@ void KillSoundSystem();
 /**
  * @brief Unknown.
  */
-void KillSounds(int param_1);
+void KillSounds(int msRampdown);
 
 /**
  * @brief Unknown.

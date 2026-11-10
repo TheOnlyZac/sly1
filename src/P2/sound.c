@@ -48,6 +48,17 @@ extern int D_006047D0[];
 
 
 
+/**
+ * @brief Advance a DL iterator and return the element it was on.
+ * @note Name is a guess.
+ */
+static inline void *PvNextDli(DLI *pdli)
+{
+    void *pv = *pdli->m_ppv;
+    pdli->m_ppv = (void **)((char *)pv + pdli->m_ibDle);
+    return pv;
+}
+
 void UnloadMusic()
 {
     if (D_0027473C)
@@ -218,11 +229,6 @@ void RemoveExc(EXC *pexc)
     FreeSlotheapPv(&g_psw->slotheapExc, pexc);
 }
 
-/**
- * @todo ~50% matched: DLI iteration register allocation differs (pv kept in $4 instead of $2).
- */
-INCLUDE_ASM("asm/nonmatchings/P2/sound", KillExcitement__Fv);
-#ifdef SKIP_ASM
 void KillExcitement()
 {
     DL *pdl = &g_psw->dlExc;
@@ -232,23 +238,17 @@ void KillExcitement()
     dli.m_ibDle = pdl->ibDle;
     dli.m_pdliNext = s_pdliFirst;
     s_pdliFirst = &dli;
-    void *pv = *dli.m_ppv;
-    dli.m_ppv = (void **)((char *)pv + dli.m_ibDle);
-    while (pv)
-    {
+    for (void *pv = PvNextDli(&dli); pv; pv = PvNextDli(&dli))
         RemoveExc((EXC *)pv);
-        dli.m_ppv = (void **)((char *)(pv = *dli.m_ppv) + dli.m_ibDle);
-    }
     snd_SetGlobalExcite(0x14);
     D_002748EC = 0;
     s_pdliFirst = dli.m_pdliNext;
     g_iexcHyst = 0;
     D_00274734 = 0;
 }
-#endif // SKIP_ASM
 
 /**
- * @todo ~78% matched: clamp of iexc to [-20, 107] compiles to different branch/movz layout.
+ * @todo ~84% matched (6 differing lines of 37): clamp uses movn with swapped operands instead of movz.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/sound", PexcSetExcitement__Fi);
 #ifdef SKIP_ASM
@@ -256,13 +256,12 @@ EXC *PexcSetExcitement(int iexc)
 {
     bool fEmpty = FIsDlEmpty(&g_psw->dlExc);
     EXC *pexc = PexcAlloc();
-    int iexcNew = -20;
-    if (iexc >= -20)
-    {
-        iexcNew = 0x6B;
-        if (iexc <= 0x6B)
-            iexcNew = iexc;
-    }
+    int lim = 0x6B;
+    int iexcNew;
+    if (iexc < -20)
+        iexcNew = -20;
+    else
+        iexcNew = (lim < iexc) ? lim : iexc;
     if (pexc)
     {
         pexc->iexc = iexcNew;
@@ -277,11 +276,6 @@ EXC *PexcSetExcitement(int iexc)
 }
 #endif // SKIP_ASM
 
-/**
- * @todo ~50% matched: DLI iteration register allocation differs, same as KillExcitement.
- */
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SetIexcCurHigh__FP3EXC);
-#ifdef SKIP_ASM
 void SetIexcCurHigh(EXC *pexc)
 {
     DL *pdl = &g_psw->dlExc;
@@ -298,20 +292,15 @@ void SetIexcCurHigh(EXC *pexc)
     else
     {
         D_00274734 = -20;
-        void *pv = *dli.m_ppv;
-        dli.m_ppv = (void **)((char *)pv + dli.m_ibDle);
-        while (pv)
+        for (void *pv = PvNextDli(&dli); pv; pv = PvNextDli(&dli))
         {
             int iexc = ((EXC *)pv)->iexc;
             if (D_00274734 < iexc)
                 D_00274734 = iexc;
-            pv = *dli.m_ppv;
-            dli.m_ppv = (void **)((char *)pv + dli.m_ibDle);
         }
     }
     s_pdliFirst = dli.m_pdliNext;
 }
-#endif // SKIP_ASM
 
 void UnsetExcitement(EXC *pexc)
 {
@@ -550,7 +539,23 @@ void KillSoundSystem()
     snd_StreamSafeCdSync(0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", KillSounds__Fi);
+void KillSounds(int msRampdown)
+{
+    if (g_psw)
+    {
+        DL *pdl = &g_psw->dlAmb;
+        DLI dli;
+        dli.m_pdl = pdl;
+        dli.m_ppv = (void **)pdl;
+        dli.m_ibDle = pdl->ibDle;
+        dli.m_pdliNext = s_pdliFirst;
+        s_pdliFirst = &dli;
+        for (void *pv = PvNextDli(&dli); pv; pv = PvNextDli(&dli))
+            StopSound((AMB *)pv, msRampdown);
+        s_pdliFirst = dli.m_pdliNext;
+    }
+    snd_FlushSoundCommands();
+}
 
 void PushSwReverb(SW *psw, REVERBK reverbk, const int depth)
 {
@@ -624,20 +629,17 @@ void StartSwIntermittentSounds(SW *psw)
 }
 
 // TODO: Verify signature.
-/**
- * @todo 94% matched: the original does not zero-extend (andi 0xff) the uchar argument.
- */
-INCLUDE_ASM("asm/nonmatchings/P2/sound", SetAMRegister__FiUc);
-#ifdef SKIP_ASM
-void SetAMRegister(int reg, uchar value)
+// The original does not zero-extend the uchar argument, which only compiles
+// with an int parameter and an asm label carrying the real (uchar) mangled name.
+void SetAMRegister_impl(int reg, int value) asm("SetAMRegister__FiUc");
+void SetAMRegister_impl(int reg, int value)
 {
-    if ((int)value != D_006053E0[reg])
+    if (value != D_006053E0[reg])
     {
-        D_006053E0[reg] = (int)value;
-        snd_SetMIDIRegister(D_00274728, reg, (int)value);
+        D_006053E0[reg] = value;
+        snd_SetMIDIRegister(D_00274728, reg, value);
     }
 }
-#endif // SKIP_ASM
 
 int GetAMRegister(int reg) 
 {
