@@ -211,7 +211,7 @@ struct VTSO : VT
     void (*pfnUpdateSoPivots)();
     void (*pfnUpdateSoImpacts)();
     void (*pfnUpdateSoPosWorldPrev)(SO *);
-    void (*pfnGetSoCpdefi)(SO *, CPDEFI *, float);
+    void (*pfnGetSoCpdefi)(SO *, float, CPDEFI *);
     void (*pfnAddSoWaterAcceleration)();
     void (*pfnFInflictSoZap)();
 };

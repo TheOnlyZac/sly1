@@ -188,7 +188,7 @@ void GetCmCpdefi(CM *pcm, SO *psoFocus, float dt, CPDEFI *pcpdefi)
     }
     else
     {
-        psoFocus->pvtso->pfnGetSoCpdefi(psoFocus, pcpdefi, dt);
+        psoFocus->pvtso->pfnGetSoCpdefi(psoFocus, dt, pcpdefi);
         VECTOR vAdj;
         CalcCmAdjust(pcm, psoFocus, pcpdefi, &vAdj);
         // VU0 vector add: posAdjust = posBase + vAdj
@@ -481,10 +481,10 @@ extern "C" void UpdateCmFade(CM *pcm)
 #endif
 
 /**
- * @todo Nearly there, 28 differing lines of about 130: only registers differ (pcplcy and pcpdefi swapped). Parameter fClear is a guess.
+ * Runs the active camera policies for one frame, then updates the fov and clears the cut flags.
+ * The vtable GetSoCpdefi signature is (SO *, float dt, CPDEFI *). pcpdefi is pinned to a register to match
+ * the original register numbering. Parameter names are guesses.
  */
-INCLUDE_ASM("asm/nonmatchings/P2/cm", UpdateCmLast__FP2CMif);
-#ifdef SKIP_ASM
 void UpdateCmLast(CM *pcm, int fClear, float dt)
 {
     if (pcm->fCutNext)
@@ -498,7 +498,8 @@ void UpdateCmLast(CM *pcm, int fClear, float dt)
         CPLCY *pcplcy = pcm->acpr[0].pcplcy;
         CPLCY *pcplcyPrev = 0;
         SO *psoPrev = 0;
-        CPDEFI *pcpdefi;
+        // Hack: pinned to $18, the original allocation numbers pcpdefi below pcplcy
+        register CPDEFI *pcpdefi __asm__("$18");
         if (pcplcy)
         {
             do
@@ -510,7 +511,7 @@ void UpdateCmLast(CM *pcm, int fClear, float dt)
                     pcpdefi = &pcm->cpdefiPrev;
                     if (pso != psoPrev)
                     {
-                        pso->pvtso->pfnGetSoCpdefi(pso, pcpdefi, dt);
+                        pso->pvtso->pfnGetSoCpdefi(pso, dt, pcpdefi);
                         if (pcplcyPrev || pso != pcm->psoFocusPrev)
                             ResetCmAdjust(pcm, pso, pcpdefi);
                         AdjustCmCpdefi(pcm, pso, dt, pcpdefi);
@@ -541,7 +542,6 @@ void UpdateCmLast(CM *pcm, int fClear, float dt)
         pcm->fCut = pcm->fRadCut = 0;
     }
 }
-#endif
 
 /**
  * @todo Structure matches, 36 differing lines of about 72 (register allocation of the qwords and placement of the junk spill stores). VU0 inline asm, vector built with pextlw/pcpyld asm. Computes matRotateToCam and matRotateTiltToCam; names are guesses.
