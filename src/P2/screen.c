@@ -1,22 +1,94 @@
 #include <screen.h>
 #include <clock.h>
 #include <font.h>
+#include <jt.h>
+#include <ui.h>
+#include <text.h>
+#include <gifs.h>
+#include <binoc.h>
+#include <frm.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", StartupScreen__Fv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", PostBlotsLoad__Fv);
+void PostBlotsLoad()
+{
+    for (int i = 0x24; i >= 0; i--)
+    {
+        BLOT *pblot = D_002486B0[i];
+        pblot->pvtblot->pfnPostBlotLoad(pblot);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateBlots__Fv);
+void UpdateBlots()
+{
+    for (int i = 0x24; i >= 0; i--)
+    {
+        BLOT *pblot = D_002486B0[i];
+        pblot->pvtblot->pfnUpdateBlot(pblot);
+    }
+    UpdateWipe(&g_wipe, (g_grfjoyt & 4) ? &g_joy : &g_joyZero);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", ForceHideBlots__Fv);
+void ForceHideBlots()
+{
+    for (int i = 0x24; i >= 0; i--)
+    {
+        BLOT *pblot = D_002486B0[i];
+        pblot->pvtblot->pfnSetBlotBlots(pblot, 0);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", ResetBlots__Fv);
+void ResetBlots()
+{
+    int i = 0x24;
+    BLOT **ppblot = D_002486B0;
+    do
+    {
+        BLOT *pblot = *ppblot;
+        ppblot++;
+        i--;
+        pblot->pvtblot->pfnOnBlotReset(pblot);
+    } while (i >= 0);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", RenderBlots__Fv);
+void RenderBlots()
+{
+    int i = 0x24;
+    BLOT **ppblot = D_002486B0;
+    do
+    {
+        BLOT *pblot = *ppblot;
+        i--;
+        ppblot++;
+        if (pblot->blots != BLOTS_Hidden && pblot->pvtblot->pfnRenderBlot)
+            pblot->pvtblot->pfnRenderBlot(pblot);
+    } while (i >= 0);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawBlots__Fv);
+void DrawBlots()
+{
+    BLOT **ppblot = D_002486B0;
+    for (int i = 0; i < 0x25; i++)
+    {
+        BLOT *pblot = ppblot[i];
+        if (pblot->blots != BLOTS_Hidden)
+            pblot->pvtblot->pfnDrawBlot(pblot);
+    }
+    DrawWipe(&g_wipe);
+    FUN_001ae820(&D_00273EB0);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", InitBlot__FP4BLOT5BLOTK);
+void InitBlot(BLOT *pblot, BLOTK blotk)
+{
+    pblot->bloti = &D_0026C3E0[blotk];
+    pblot->dtDisappear = 0.25f;
+    pblot->dtAppear = 0.25f;
+    pblot->ptNow = &g_clock.tReal;
+    pblot->blotk = blotk;
+    ResizeBlot(pblot, pblot->width, pblot->height);
+    pblot->x = pblot->dx;
+    pblot->y = pblot->dy;
+}
 
 void PostBlotLoad(BLOT *pblot)
 {
@@ -26,9 +98,89 @@ void PostBlotLoad(BLOT *pblot)
     pblot->rFontScale = 1.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateBlot__FP4BLOT);
+extern float D_002743A0[3];
+void UpdateBlot(BLOT *pblot)
+{
+    float t = *pblot->ptNow;
+    BLOTS blots = pblot->blots;
+    switch (blots)
+    {
+    case BLOTS_Visible:
+    {
+        float dt = pblot->pvtblot->pfnDtVisibleBlot(pblot);
+        if (dt != 0.0f && dt <= t - pblot->tBlots)
+            blots = BLOTS_Disappearing;
+        break;
+    }
+    case BLOTS_Appearing:
+    {
+        float dt = pblot->pvtblot->pfnDtAppearBlot(pblot);
+        if (dt != 0.0f)
+        {
+            float one = 1.0f;
+            float u = (t - pblot->tBlots + pblot->dtBlotsExtra) / dt;
+            if (u < 0.0f)
+                u = 0.0f;
+            else if (u > one)
+                u = one;
+            pblot->uOn = u;
+        }
+        if (pblot->uOn >= 1.0f)
+            blots = BLOTS_Visible;
+        break;
+    }
+    case BLOTS_Disappearing:
+    {
+        float dt = pblot->pvtblot->pfnDtDisappearBlot(pblot);
+        if (dt != 0.0f)
+        {
+            float one = 1.0f;
+            float x = (t - pblot->tBlots + pblot->dtBlotsExtra) / dt;
+            float u;
+            if (x < 0.0f)
+                u = 0.0f;
+            else if (x > one)
+                u = one;
+            else
+                u = x;
+            pblot->uOn = 1.0f - u;
+        }
+        if (pblot->uOn <= 0.0f)
+            blots = BLOTS_Hidden;
+        break;
+    }
+    }
+    if (blots == pblot->blots)
+    {
+        float u = pblot->uOn;
+        float s = D_002743A0[0] + u * (D_002743A0[1] + u * D_002743A0[2]);
+        pblot->x = pblot->dx + s * (pblot->xOn - pblot->dx);
+        pblot->y = pblot->dy + s * (pblot->yOn - pblot->dy);
+        RepositionBlotDependents(pblot);
+    }
+    pblot->pvtblot->pfnSetBlotBlots(pblot, blots);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", SetBlotAchzDraw__FP4BLOTPc);
+void SetBlotAchzDraw(BLOT *pblot, char *pchz)
+{
+    char *achz;
+    if (pchz && strlen(pchz))
+    {
+        strcpy(pblot->achzDraw, pchz);
+        achz = pblot->achzDraw;
+    }
+    else
+    {
+        pblot->achzDraw[0] = 0;
+        achz = pblot->achzDraw;
+    }
+    pblot->pfont->PushScaling(pblot->rFontScale, pblot->rFontScale);
+    CRichText richtext(achz, pblot->pfont);
+    float dx, dy;
+    richtext.GetExtents(&dx, &dy, 0.0f);
+    ResizeBlot(pblot, dx, dy);
+    pblot->pfont->PopScaling();
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", SetBlotRgba__FP4BLOTUi);
 
@@ -37,7 +189,32 @@ void SetBlotFontScale(BLOT *pblot, float rFontScale)
     pblot->rFontScale = rFontScale;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawBlot__FP4BLOT);
+void DrawBlot(BLOT *pblot)
+{
+    if (pblot->achzDraw[0])
+    {
+        CTextBox tbx;
+        float dx = pblot->width;
+        float dy = pblot->height;
+        int rgba = *(int *)&pblot->rgba;
+        tbx.SetPos(pblot->x, pblot->y);
+        tbx.SetSize(dx, dy);
+        int rgbaT = rgba;
+        tbx.SetTextColor((RGBA *)&rgbaT);
+        tbx.SetHorizontalJust((JH)0);
+        tbx.SetVerticalJust((JV)0);
+        CTextEdge *pte = pblot->pte;
+        if (pte)
+        {
+            CFont *pfont = STRUCT_OFFSET(pte, 0, CFont *);
+            if (pfont)
+                pfont->EdgeRect(pte, &tbx, &g_gifs);
+        }
+        pblot->pfont->PushScaling(pblot->rFontScale, pblot->rFontScale);
+        pblot->pfont->DrawPchz(pblot->achzDraw, &tbx, 0, &g_gifs);
+        pblot->pfont->PopScaling();
+    }
+}
 
 JUNK_ADDIU(10);
 
@@ -71,37 +248,222 @@ void SetBlotDtDisappear(BLOT *pblot, float dtDisappear)
     pblot->dtDisappear = dtDisappear;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", OnBlotReset__FP4BLOT);
+void OnBlotReset(BLOT *pblot)
+{
+    pblot->pvtblot->pfnSetBlotBlots(pblot, 0);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", ShowBlot__FP4BLOT);
+void ShowBlot(BLOT *pblot)
+{
+    switch (pblot->blots)
+    {
+    case BLOTS_Hidden:
+    case BLOTS_Disappearing:
+        pblot->pvtblot->pfnSetBlotBlots(pblot, BLOTS_Appearing);
+        break;
+    case BLOTS_Visible:
+        pblot->tBlots = *pblot->ptNow;
+        break;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", HideBlot__FP4BLOT);
+void HideBlot(BLOT *pblot)
+{
+    if (pblot->blots < BLOTS_Disappearing)
+    {
+        if (pblot->blots > BLOTS_Hidden)
+            pblot->pvtblot->pfnSetBlotBlots(pblot, BLOTS_Disappearing);
+    }
+}
 
+/// @todo Matches, but converting it makes ee-as insert nops into DrawTitle (frag boundary quirk).
 INCLUDE_ASM("asm/nonmatchings/P2/screen", SetBlotBlots__FP4BLOT5BLOTS);
+#ifdef SKIP_ASM
+void SetBlotBlots(BLOT *pblot, BLOTS blots)
+{
+    if (pblot->blots == blots)
+        return;
+    int fReposition = 0;
+    switch (blots)
+    {
+    case BLOTS_Appearing:
+    case BLOTS_Disappearing:
+        if (blots == BLOTS_Appearing)
+            pblot->dtBlotsExtra = pblot->uOn * pblot->pvtblot->pfnDtAppearBlot(pblot);
+        else
+            pblot->dtBlotsExtra = (1.0f - pblot->uOn) * pblot->pvtblot->pfnDtDisappearBlot(pblot);
+        if (pblot->blots == BLOTS_Hidden || pblot->blots == BLOTS_Visible)
+            fReposition = 1;
+        break;
+    case BLOTS_Visible:
+        pblot->x = pblot->xOn;
+        pblot->y = pblot->yOn;
+        pblot->uOn = 1.0f;
+        pblot->dtBlotsExtra = 0.0f;
+        fReposition = 1;
+        break;
+    case BLOTS_Hidden:
+        pblot->x = pblot->dx;
+        pblot->y = pblot->dy;
+        pblot->uOn = 0.0f;
+        pblot->dtBlotsExtra = 0.0f;
+        fReposition = 1;
+        break;
+    }
+    pblot->blots = blots;
+    pblot->tBlots = *pblot->ptNow;
+    if (fReposition)
+        RepositionBlot(pblot);
+}
+#endif // SKIP_ASM
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FIncludeBlotForPeg__FP4BLOTT0);
+int FIncludeBlotForPeg(BLOT *pblot, BLOT *pblotOther)
+{
+    int f = 0;
+    if (((uint)(pblot->blots - 1) < 2 && (uint)(pblotOther->blots - 1) < 2) ||
+        (pblot->blots == BLOTS_Disappearing && pblotOther->blots == pblot->blots) ||
+        (pblotOther->blots == BLOTS_Disappearing && pblot->blots == BLOTS_Visible))
+    {
+        f = 1;
+    }
+    return f;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", ResizeBlot__FP4BLOTff);
+void ResizeBlot(BLOT *pblot, float dx, float dy)
+{
+    if (0.0f <= dx)
+        pblot->width = dx;
+    if (0.0f <= dy)
+        pblot->height = dy;
+    RepositionBlot(pblot);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", RepositionBlot__FP4BLOT);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", RepositionBlotDependents__FP4BLOT);
+void RepositionBlotDependents(BLOT *pblot)
+{
+    BLOTI *pbloti = D_0026C3E0;
+    for (int i = 0; i < 0x25; i++)
+    {
+        BLOTK blotk = pbloti->blotkPeg;
+        pbloti++;
+        if (blotk != -1 && D_002486B0[blotk] == pblot)
+            RepositionBlot(D_002486B0[i]);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", SetBlotClock__FP4BLOTPf);
+void SetBlotClock(BLOT *pblot, float *pt)
+{
+    if (pblot->ptNow != pt)
+    {
+        if (!pt)
+            pt = &g_clock.tReal;
+        pblot->tBlots = *pt;
+    }
+    pblot->ptNow = pt;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", PostCtrLoad__FP3CTR);
 
+/// @todo Near miss: 20 differing lines of 82 (register allocation, movz vs movn)
 INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateCtr__FP3CTR);
+#ifdef SKIP_ASM
+void UpdateCtr(CTR *pctr)
+{
+    UpdateBlot(pctr);
+    if (pctr->nDisplay != *pctr->pnActual)
+    {
+        if (pctr->nDisplay < 0)
+        {
+            pctr->nDisplay = *pctr->pnActual;
+        }
+        else
+        {
+            float f = g_clock.dt * pctr->dgDisplayMax + pctr->uRemain;
+            int n = (int)f;
+            pctr->uRemain = f - (float)n;
+            int nTarget = *pctr->pnActual;
+            int nNew;
+            if (nTarget < pctr->nDisplay)
+            {
+                nNew = pctr->nDisplay - n;
+                if (nNew < nTarget)
+                    nNew = nTarget;
+            }
+            else
+            {
+                nNew = pctr->nDisplay + n;
+                if (nTarget < nNew)
+                    nNew = nTarget;
+            }
+            pctr->nDisplay = nNew;
+        }
+        if (pctr->nDisplay == *pctr->pnActual && pctr->pfnsmack)
+        {
+            pctr->pfnsmack(pctr->pv);
+            pctr->pfnsmack = 0;
+            pctr->pv = 0;
+        }
+        RebuildCtrAchzDraw(pctr);
+        if (pctr->achzDraw[0])
+        {
+            pctr->pfont->PushScaling(pctr->rFontScale, pctr->rFontScale);
+            CRichText richtext(pctr->achzDraw, pctr->pfont);
+            float dx = richtext.Dx();
+            ResizeBlot(pctr, dx, (float)STRUCT_OFFSET(pctr->pfont, 8, int) * STRUCT_OFFSET(pctr->pfont, 0x48, float));
+            pctr->pfont->PopScaling();
+        }
+        else
+        {
+            ResizeBlot(pctr, 0.0f, 0.0f);
+        }
+    }
+}
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawCtr__FP3CTR);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", RebuildCtrAchzDraw__FP3CTR);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", DtVisibleCtr__FP3CTR);
+float DtVisibleCtr(CTR *pctr)
+{
+    float dt = 0.0f;
+    if (g_clock.fEnabled)
+        dt = 2.5f;
+    return dt;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ab600);
+void FUN_001ab600(BLOT *pblot)
+{
+    PostBlotLoad(pblot);
+    pblot->pfont = FUN_0015c1c0(2);
+    TIMER *ptimer = (TIMER *)pblot;
+    ptimer->nSecondsLast = -1;
+    ptimer->nTenthsLast = -1;
+    ptimer->dtThreshold = D_0024CD48;
+    ptimer->fStopped = 1;
+    SetTimerTimers(ptimer, TIMERS_Expired);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateTimer__FP5TIMER);
+void UpdateTimer(TIMER *ptimer)
+{
+    UpdateBlot(ptimer);
+    if (ptimer->blots == BLOTS_Hidden)
+        return;
+    if (ptimer->timers == TIMERS_Expired)
+    {
+        int f = (g_clock.t - ptimer->tTimers >= 1.0f) ? 1 : 0;
+        if (ptimer->blots == BLOTS_Appearing || ptimer->blots == BLOTS_Visible)
+        {
+            if (ptimer->fStopped || f)
+                ptimer->pvttimer->pfnHideBlot(ptimer);
+        }
+    }
+    else
+    {
+        RebuildTimerAchzDraw(ptimer, g_clock.dt);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawTimer__FP5TIMER);
 
@@ -180,93 +542,557 @@ float FUN_001ABE60()
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001abe70);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac060);
+void FUN_001ac060(BLOT *pblot)
+{
+    int n = STRUCT_OFFSET(pblot, 0x270, int) - 1;
+    STRUCT_OFFSET(pblot, 0x270, int) = n;
+    if (n <= 0)
+    {
+        int m = STRUCT_OFFSET(pblot, 0x26c, int) - 1;
+        STRUCT_OFFSET(pblot, 0x26c, int) = m;
+        if (m <= 0)
+        {
+            STRUCT_OFFSET(pblot, 0x270, int) = 0;
+            STRUCT_OFFSET(pblot, 0x26c, int) = 0;
+        }
+        else
+        {
+            STRUCT_OFFSET(pblot, 0x270, int) = STRUCT_OFFSET(pblot, 0x264, int);
+        }
+    }
+    int k = STRUCT_OFFSET(pblot, 0x26c, int) - 1;
+    if (k < 0)
+        k = 0;
+    STRUCT_OFFSET(pblot, 0x278, float) = (float)(k * STRUCT_OFFSET(pblot, 0x264, int) + STRUCT_OFFSET(pblot, 0x270, int)) / (float)STRUCT_OFFSET(pblot, 0x268, int);
+    STRUCT_OFFSET(pblot, 0x27c, float) = g_clock.t;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac0e8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", PostNoteLoad__FP4NOTE);
+void PostNoteLoad(NOTE *pnote)
+{
+    PostBlotLoad(pnote);
+    pnote->pfont = pnote->pfont->PfontClone(1.25f, 1.25f);
+    if (FUN_0015c188(2))
+    {
+        pnote->pte = &D_002743D0;
+        STRUCT_OFFSET(pnote->pte, 0, CFont *) = FUN_0015c1c0(2);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", SetNoteAchzDraw__FP4NOTEPc);
+void SetNoteAchzDraw(NOTE *pnote, char *pchz)
+{
+    char *achz;
+    if (pchz && strlen(pchz))
+    {
+        strcpy(pnote->achzDraw, pchz);
+        achz = pnote->achzDraw;
+    }
+    else
+    {
+        pnote->achzDraw[0] = 0;
+        achz = pnote->achzDraw;
+    }
+    float zero = 0.0f;
+    float dx, dy;
+    pnote->pfont->PushScaling(pnote->rFontScale, pnote->rFontScale);
+    CRichText richtext(achz, pnote->pfont);
+    richtext.GetExtents(&dx, &dy, zero);
+    ResizeBlot(pnote, dx, pnote->achzDraw[0] ? dy : zero);
+    pnote->pfont->PopScaling();
+}
 
+/// @todo Near miss: 31 differing lines of 107 (RGBA temp copies, f20/f21 hoist)
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawNote__FP4NOTE);
+#ifdef SKIP_ASM
+void DrawNote(NOTE *pnote)
+{
+    if (pnote->achzDraw[0])
+    {
+        RGBA rgba = pnote->rgba;
+        CTextBox tbx;
+        rgba.bAlpha = (int)((float)rgba.bAlpha * pnote->uOn);
+        tbx.SetPos(pnote->x, pnote->y);
+        tbx.SetSize(pnote->width, pnote->height);
+        RGBA rgbaT = rgba;
+        tbx.SetTextColor(&rgbaT);
+        tbx.SetHorizontalJust((JH)0);
+        tbx.SetVerticalJust((JV)0);
+        CTextEdge *pte = pnote->pte;
+        if (pte)
+        {
+            rgbaT = STRUCT_OFFSET(pte, 0x18, RGBA);
+            STRUCT_OFFSET(pte, 0x18, RGBA).bAlpha = (int)((float)STRUCT_OFFSET(pte, 0x18, RGBA).bAlpha * pnote->uOn);
+            CFont *pfont = STRUCT_OFFSET(pnote->pte, 0, CFont *);
+            if (pfont)
+                pfont->EdgeRect(pnote->pte, &tbx, &g_gifs);
+            STRUCT_OFFSET(pnote->pte, 0x18, RGBA) = rgbaT;
+        }
+        pnote->pfont->PushScaling(pnote->rFontScale, pnote->rFontScale);
+        CRichText richtext(pnote->achzDraw, pnote->pfont);
+        richtext.Draw(&tbx, 0, &g_gifs);
+        pnote->pfont->PopScaling();
+    }
+}
+#endif // SKIP_ASM
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac888);
+void FUN_001ac888(BLOT *pblot)
+{
+    PostBlotLoad(pblot);
+    pblot->pfont = pblot->pfont->PfontClone(0.9f, 0.9f);
+    *(int *)&pblot->rgba = 0xDF7F7F7F;
+    if (FUN_0015c188(2))
+    {
+        pblot->pte = &D_002743F0;
+        STRUCT_OFFSET(pblot->pte, 0, CFont *) = FUN_0015c1c0(2);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac910);
+void FUN_001ac910(TITLE *ptitle, char *pchz)
+{
+    if (ptitle->blots == BLOTS_Hidden)
+    {
+        SetBlotAchzDraw(ptitle, pchz);
+        return;
+    }
+    if (ptitle->blots >= 0)
+    {
+        if (ptitle->blots < 4)
+        {
+            if (func_001F6738(ptitle->achzDraw, pchz))
+            {
+                ptitle->pchzReshow = pchz;
+                ptitle->fReshow = 1;
+                ptitle->pvtblot->pfnSetBlotBlots(ptitle, 3);
+            }
+        }
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac990);
+void FUN_001ac990(BLOT *pblot, BLOTS blots)
+{
+    if (STRUCT_OFFSET(pblot, 0x260, int) && !blots)
+    {
+        STRUCT_OFFSET(pblot, 0x260, int) = 0;
+        SetBlotAchzDraw(pblot, STRUCT_OFFSET(pblot, 0x264, char *));
+        blots = BLOTS_Appearing;
+    }
+    SetBlotBlots(pblot, blots);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ac9e0);
+int FUN_001ac9e0(BLOT *pblot, BLOT *pblotOther)
+{
+    int f = 0;
+    if (FIncludeBlotForPeg(pblot, pblotOther) || STRUCT_OFFSET(pblot, 0x260, int))
+        f = 1;
+    return f;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001aca30);
+void FUN_001aca30(BLOT *pblot)
+{
+    if (pblot->blots != BLOTS_Disappearing || !STRUCT_OFFSET(pblot, 0x260, int))
+        ShowBlot(pblot);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001aca68);
+void FUN_001aca68(BLOT *pblot)
+{
+    if (pblot->blots == BLOTS_Disappearing && STRUCT_OFFSET(pblot, 0x260, int))
+        STRUCT_OFFSET(pblot, 0x260, int) = 0;
+    else
+        HideBlot(pblot);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawTitle__FP5TITLE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", PostTotalsLoad__FP6TOTALS);
+void PostTotalsLoad(TOTALS *ptotals)
+{
+    PostBlotLoad(ptotals);
+    ptotals->pfont = FUN_0015c1c0(0)->PfontClone(1.0f, 1.0f);
+    ptotals->rFontScale = 0.8f;
+    ptotals->dtDisappear = 0.5f;
+    if (FUN_0015c188(2))
+    {
+        ptotals->pte = &D_00274410;
+        STRUCT_OFFSET(ptotals->pte, 0, CFont *) = FUN_0015c1c0(2);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ace38);
+void FUN_001ace38(BLOT *pblot, char *pchz)
+{
+    if (pblot->blots == BLOTS_Hidden)
+    {
+        SetBlotAchzDraw(pblot, pchz);
+        return;
+    }
+    if (pblot->blots >= 0)
+    {
+        if (pblot->blots < 4)
+        {
+            if (!STRUCT_OFFSET(pblot, 0x260, int))
+            {
+                if (!func_001F6738(pblot->achzDraw, pchz))
+                    return;
+            }
+            STRUCT_OFFSET(pblot, 0x260, int) = 1;
+            if (pchz)
+                strcpy(&STRUCT_OFFSET(pblot, 0x264, char), pchz);
+            else
+                STRUCT_OFFSET(pblot, 0x264, char) = 0;
+            pblot->pvtblot->pfnSetBlotBlots(pblot, 3);
+        }
+    }
+}
 
+/// @todo Near miss: 6 differing lines of 105 (second 60 constant scheduling)
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001acee0);
+#ifdef SKIP_ASM
+extern char D_0024CD88[], D_0024CD90[], D_0024CD98[], D_0024CDA0[], D_0024CDA8[], D_0024CDB0[], D_0024CDB8[], D_0024CDC0[], D_0024CDC8[], D_0024CDE0[], D_0024CDF8[];
+void FUN_001acee0(char *pchz, int *pls, int grf)
+{
+    int flags = *pls;
+    *pchz = 0;
+    if (grf & 2)
+        pchz += sprintf(pchz, D_0024CD88, (flags & 2) ? D_0024CD90 : D_0024CD98);
+    if (grf & 4)
+    {
+        if (grf & 2)
+            *pchz++ = ' ';
+        pchz += sprintf(pchz, D_0024CD88, (flags & 4) ? D_0024CDA0 : D_0024CDA8);
+    }
+    if (grf & 8)
+    {
+        if (grf & 6)
+            *pchz++ = ' ';
+        int f8 = flags & 8;
+        pchz += sprintf(pchz, D_0024CDB0, f8 ? D_0024CDB8 : D_0024CDC0);
+        if (f8)
+        {
+            float t = ((float *)pls)[2];
+            if (t < 1.0f)
+            {
+                sprintf(pchz, D_0024CDC8, (int)(t * 10.0f));
+            }
+            else
+            {
+                int n = (int)t;
+                sprintf(pchz, D_0024CDE0, n / 60, n % 60);
+            }
+        }
+        strcpy1(pchz, D_0024CDF8);
+    }
+}
+#endif // SKIP_ASM
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", render_level_info_from_id);
+void render_level_info_from_id(BLOT *pblot, int level_id)
+{
+    if (level_id != -1)
+        render_level_info(pblot, level_id >> 8, level_id & 0xff);
+    else
+        pblot->pvtblot->pfnSetBlotAchzDraw(pblot, D_0024CE00);
+}
 
+/// @todo Near miss: 34 differing lines of 77 (register allocation of name/buffer)
 INCLUDE_ASM("asm/nonmatchings/P2/screen", render_level_info);
+#ifdef SKIP_ASM
+extern char D_0024CE10[], D_0024CE18[], D_0024CD68[];
+void render_level_info(BLOT *pblot, uint iws, uint ils)
+{
+    int *pls = (int *)((char *)g_pgsCur + iws * 0x44C + 0x10 + ils * 0x78);
+    int id = (iws << 8) | ils;
+    char achz[0x40];
+    FUN_001acee0(achz, pls, GetLevelCompletionById(id));
+    char achzOut[0x40];
+    char *pchzOut;
+    if (strlen(achz))
+    {
+        pchzOut = achzOut;
+        char *pchzName = PchzFriendlyFromWid((WID)id);
+        sprintf(achzOut, D_0024CE10, pchzName, strlen(achz) ? D_0024CE18 : D_0024CD68, achz);
+    }
+    else
+    {
+        pchzOut = achzOut;
+        strcpy(achzOut, PchzFriendlyFromWid((WID)id));
+    }
+    pblot->pvtblot->pfnSetBlotAchzDraw(pblot, pchzOut);
+}
+#endif // SKIP_ASM
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", render_hideout_world_info);
+extern char D_0024CE18[], D_0024CD68[], D_0024CE80[], D_0024CEA0[], D_0024CEC0[];
+extern char *D_00274430[];
+void render_hideout_world_info(BLOT *pblot, int iw)
+{
+    int ckey, cvault, cmts;
+    char achz[0x200];
+    tally_world_completion(iw, &ckey, &cvault, &cmts);
+    char *pws = (char *)g_pgsCur + (iw * 0x44C + 0x10);
+    strcpy(achz, D_00274430[iw]);
+    char *p = achz + strlen(achz);
+    if (ckey)
+        p += sprintf(p, D_0024CE80, STRUCT_OFFSET(pws, 0x438, int), ckey);
+    if (cvault)
+    {
+        p += sprintf(p, D_0024CEA0, ckey ? D_0024CE18 : D_0024CD68, STRUCT_OFFSET(pws, 0x43C, int), cvault);
+    }
+    if (cmts)
+    {
+        sprintf(p, D_0024CEC0, (ckey || cvault) ? D_0024CE18 : D_0024CD68, STRUCT_OFFSET(pws, 0x440, int), cmts);
+    }
+    pblot->pvtblot->pfnSetBlotAchzDraw(pblot, achz);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", SetTotalsBlots__FP6TOTALS5BLOTS);
+void SetTotalsBlots(TOTALS *ptotals, BLOTS blots)
+{
+    if (ptotals->fReshow)
+    {
+        if (blots == BLOTS_Hidden)
+        {
+            ptotals->fReshow = 0;
+            SetBlotAchzDraw(ptotals, &STRUCT_OFFSET(ptotals, 0x264, char));
+            blots = BLOTS_Appearing;
+        }
+    }
+    if (blots == BLOTS_Hidden)
+        STRUCT_OFFSET(ptotals, 0x464, int) = 0;
+    SetBlotBlots(ptotals, blots);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", ShowTotalsQMARK);
+void ShowTotals(TOTALS *ptotals)
+{
+    if (ptotals->blots != BLOTS_Disappearing || !ptotals->fReshow)
+        ShowBlot(ptotals);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", HideTotalsQMARK);
+void HideTotals(TOTALS *ptotals)
+{
+    if (ptotals->blots == BLOTS_Disappearing && ptotals->fReshow)
+        ptotals->fReshow = 0;
+    else
+        HideBlot(ptotals);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawTotals__FP6TOTALS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad6a8);
+void FUN_001ad6a8(BLOT *pblot)
+{
+    PostBlotLoad(pblot);
+    pblot->pfont = FUN_0015c1c0(2)->PfontClone(1.0f, 1.0f);
+    pblot->pvtblot->pfnSetBlotAchzDraw(pblot, D_0024CEE0);
+    STRUCT_OFFSET(pblot, 0x260, int) = 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad718);
+void FUN_001ad718(BLOT *pblot)
+{
+    UpdateBlot(pblot);
+    if (STRUCT_OFFSET(pblot, 0x260, int) && (!g_pjt || STRUCT_OFFSET(g_pjt, 0x2220, int) != 6) &&
+        g_ui.tUis == 3 && STRUCT_OFFSET(&g_ui, 0x2c, int) < 2)
+    {
+        pblot->pvtblot->pfnShowBlot(pblot);
+        return;
+    }
+    pblot->pvtblot->pfnHideBlot(pblot);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad7b0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad940);
+void FUN_001ad940(BLOT *pblot)
+{
+    PostBlotLoad(pblot);
+    pblot->dtDisappear = 0.5f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad970);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawLetterbox__FP9LETTERBOX);
+void DrawLetterbox(LETTERBOX *pletterbox)
+{
+    float top = pletterbox->uOn * 66.40001f;
+    float bot = 492.80002f - top;
+    g_gifs.AddPrimPack(6, 7, 0x44441EE);
+    g_gifs.PackAD(0x47, 0x30000);
+    g_gifs.PackAD(0x42, 0x44);
+    g_gifs.PackRGBA(0x80000000);
+    g_gifs.PackXYZF(0x6C00, 0x7900, 0xFFFFFF0, 0);
+    g_gifs.PackXYZF(0x9400, (int)((top * 0.45454547f + 1936.0f) * 16.0f), 0xFFFFFF0, 0);
+    g_gifs.PackXYZF(0x6C00, (int)((bot * 0.45454547f + 1936.0f) * 16.0f), 0xFFFFFF0, 0);
+    g_gifs.PackXYZF(0x9400, 0x8700, 0xFFFFFF0, 0);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001adc60);
+void FUN_001adc60(LOGO *plogo)
+{
+    PostBlotLoad(plogo);
+    plogo->pfont = plogo->pfont->PfontClone(D_00274448, D_0027444C);
+    if (FUN_0015c1c0(2))
+    {
+        plogo->pte = &D_00274450;
+        STRUCT_OFFSET(plogo->pte, 0, CFont *) = FUN_0015c1c0(2);
+    }
+    plogo->pshd = PshdFindShader((OID)0x493);
+    if (plogo->pshd)
+        ResizeBlot(plogo, 366.75f, 165.75f);
+    else
+        plogo->pvtblot->pfnSetBlotAchzDraw(plogo, D_0024CEF0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawLogo__FP4LOGO);
 
+/// @todo ~85% matched (statement scheduling differs around the fReshow store).
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001adf28);
+#ifdef SKIP_ASM
+void FUN_001adf28(ATTRACT *pattract)
+{
+    PostBlotLoad(pattract);
+    pattract->pfont = pattract->pfont->PfontClone(D_0027446C, D_00274470);
+    if (FUN_0015c1c0(2))
+    {
+        pattract->pte = &D_00274488;
+        STRUCT_OFFSET(pattract->pte, 0, CFont *) = FUN_0015c1c0(2);
+    }
+    int fJoy = (g_joy.joys == 3);
+    pattract->fReshow = 0;
+    pattract->fJoyValid = fJoy;
+    int f = 0;
+    if (D_00269988)
+    {
+        if (STRUCT_OFFSET(D_00269988, 0xC, float) != 0.0f)
+            f = 1;
+    }
+    pattract->fReshow = f;
+    FUN_001adff0(pattract);
+}
+#endif // SKIP_ASM
 
+/// @todo Near miss: 28 differing lines of 84 (rgba byte store order, achz hoist)
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001adff0);
+#ifdef SKIP_ASM
+extern char D_0024CF90[];
+extern "C" float FUN_0015e1b0(CRichText *, float);
+extern char *D_00274478[];
+void FUN_001adff0(ATTRACT *pattract)
+{
+    RGBA rgba;
+    char *achz = pattract->achzDraw;
+    if (pattract->fJoyValid)
+    {
+        rgba.bRed = 0x6F;
+        rgba.bGreen = 0x6F;
+        rgba.bBlue = 0x6F;
+        rgba.bAlpha = 0xFF;
+        pattract->rgba = rgba;
+        sprintf(achz, D_0024CF90, D_00274478[pattract->fReshow ? 1 : 0], D_00274478[2]);
+    }
+    else
+    {
+        rgba.bRed = 0x6F;
+        rgba.bGreen = 0x1F;
+        rgba.bBlue = 0x1F;
+        rgba.bAlpha = 0xFF;
+        pattract->rgba = rgba;
+        strcpy(achz, D_00274478[3]);
+    }
+    pattract->pfont->PushScaling(pattract->rFontScale, pattract->rFontScale);
+    CRichText richtext(achz, pattract->pfont);
+    float dx = richtext.DxMaxLine();
+    ResizeBlot(pattract, dx, FUN_0015e1b0(&richtext, 0.0f));
+    pattract->pfont->PopScaling();
+}
+#endif // SKIP_ASM
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae130);
+void FUN_001ae130(BLOT *pblot, BLOTS blots)
+{
+    if (STRUCT_OFFSET(pblot, 0x268, int) && !blots)
+    {
+        STRUCT_OFFSET(pblot, 0x268, int) = 0;
+        FUN_001adff0((ATTRACT *)pblot);
+        blots = BLOTS_Appearing;
+    }
+    SetBlotBlots(pblot, blots);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", UpdateAttract__FP7ATTRACT);
+void UpdateAttract(ATTRACT *pattract)
+{
+    if (D_00275BF0 == 1)
+    {
+        int fJoy = (g_joy.joys == 3);
+        int f = 0;
+        if (D_00269988)
+        {
+            if (STRUCT_OFFSET(D_00269988, 0xC, float) != 0.0f)
+                f = 1;
+        }
+        if (!fJoy != !pattract->fJoyValid || !f != !pattract->fReshow)
+        {
+            pattract->fJoyValid = fJoy;
+            pattract->fReshow = f;
+            FUN_001adff0(pattract);
+        }
+    }
+    UpdateBlot(pattract);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawAttract__FP7ATTRACT);
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawLineScreen__FUiUiUiUiUiUiG4RGBAi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae510);
+void FUN_001ae510(BLOT *pblot)
+{
+    char *achz;
+    PostBlotLoad(pblot);
+    pblot->pfont = FUN_0015c1c0(2);
+    if (pblot == (BLOT *)&D_00273C50)
+    {
+        char *a2 = pblot->achzDraw;
+        sprintf(a2, D_0024CF98, 0x4C);
+        achz = a2;
+    }
+    else
+    {
+        achz = pblot->achzDraw;
+        if (pblot == (BLOT *)&D_002739F0)
+            sprintf(achz, D_0024CF98, 0x4B);
+    }
+    pblot->pfont->PushScaling(D_002744A8, D_002744A8);
+    pblot->width = pblot->pfont->DxFromPchz(achz);
+    pblot->height = (float)STRUCT_OFFSET(pblot->pfont, 8, int) * STRUCT_OFFSET(pblot->pfont, 0x48, float);
+    pblot->pfont->PopScaling();
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae5e0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae758);
+void FUN_001ae758(BLOT *pblot)
+{
+    char achz[2];
+    PostBlotLoad(pblot);
+    SetBlotDtAppear(pblot, 0.25f);
+    SetBlotDtDisappear(pblot, 0.25f);
+    SetBlotDtVisible(pblot, 0.0f);
+    pblot->pfont = FUN_0015c1c0(1);
+    SetBlotFontScale(pblot, D_002744AC);
+    achz[0] = FUN_001aea08();
+    achz[1] = 0;
+    pblot->pvtblot->pfnSetBlotAchzDraw(pblot, achz);
+    pblot->achzDraw[0] = 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae7f8);
+void FUN_001ae7f8(BLOT *pblot, BLOTS blots)
+{
+    if (!blots)
+        STRUCT_OFFSET(pblot, 0x260, int) = 0;
+    SetBlotBlots(pblot, blots);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ae820);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001aea08);
+char FUN_001aea08()
+{
+    return D_002744B0[(int)(g_clock.tReal * 5.0f) % strlen(D_002744B0)];
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001aea70);
 
 JUNK_WORD(0xE48C0000);
 JUNK_WORD(0xE48C0008);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001aec90);
+void FUN_001aec90()
+{
+    FUN_001aea70(1, 0xFFFF);
+}
