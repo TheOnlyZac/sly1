@@ -109,7 +109,7 @@ INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FFilterStepguardJump__FP9STEPGUARDP
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", MoveStepguardToGoal__FP9STEPGUARD);
 
-INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FUN_001c8920);
+INCLUDE_ASM("asm/nonmatchings/P2/stepguard", FUN_001c8920__FP9STEPGUARD);
 
 INCLUDE_ASM("asm/nonmatchings/P2/stepguard", LookStepguardAtGoal__FP9STEPGUARD);
 
