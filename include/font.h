@@ -50,6 +50,7 @@ protected:
     float m_ryScale;
 
 public:
+    virtual CFont *PfontClone(float rx, float ry);
     void CopyTo(CFont *pfontDest);
     void SetupDraw(CTextBox *ptbxClip, GIFS *pgifs);
     void CleanupDraw(CTextBox *ptbxClip, GIFS *pgifs);
@@ -77,7 +78,7 @@ private:
     STRUCT_PADDING(2);
 
 public:
-    CFont *PfontClone(float rx, float ry);
+    virtual CFont *PfontClone(float rx, float ry);
     void CopyTo(CFontBrx *pfontDest);
     int FValid(char ch);
     float DxFromCh(char ch);
