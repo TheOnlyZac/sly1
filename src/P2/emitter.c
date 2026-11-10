@@ -570,7 +570,53 @@ void ExplodeExplExplso(EXPL *pexpl, EXPLSO *pexplso)
     return;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadExplgFromBrx__FP5EXPLGP18CBinaryInputStream);
+void LoadExplgFromBrx(EXPLG *pexplg, CBinaryInputStream *pbis)
+{
+    typedef void (*PFNLOAD)(LO *, CBinaryInputStream *);
+    typedef void (*PFN)(LO *);
+    LoadXfmFromBrx(pexplg, pbis);
+    int cplo = pbis->S16Read();
+    for (int iplo = 0; iplo < cplo; iplo++)
+    {
+        CID cid = (CID)pbis->S16Read();
+        OID oid = (OID)pbis->S16Read();
+        int isplice = pbis->S16Read();
+        LO *plo = PloNew(cid, pexplg->psw, pexplg->paloParent, oid, isplice);
+        STRUCT_OFFSET(plo->pvtlo, 0x38, PFNLOAD)(plo, pbis);
+        LO *aplo[8];
+        int cpl;
+        if (plo->pvtlo->grfcid & 0x100)
+        {
+            cpl = 0;
+            for (void *p = STRUCT_OFFSET(plo, 0x2d0, void *); p; p = STRUCT_OFFSET(p, 8, void *))
+            {
+                if ((uint)cpl < 8)
+                    aplo[cpl++] = STRUCT_OFFSET(p, 0, LO *);
+            }
+        }
+        else
+        {
+            aplo[0] = plo;
+            cpl = 1;
+        }
+        for (int ipl = 0; ipl < cpl; ipl++)
+        {
+            LO *pl = aplo[ipl];
+            LO **paplo = &STRUCT_OFFSET(pexplg, 0x94, LO *);
+            if (FIsBasicDerivedFrom(pl, (CID)0x78) || FIsBasicDerivedFrom(pl, (CID)0x7a))
+            {
+                STRUCT_OFFSET(pl->pvtlo, 0x1c, PFN)(pl);
+                uint c = STRUCT_OFFSET(pexplg, 0x90, uint);
+                if (c < 8)
+                {
+                    LO **pp = paplo + c; *pp = pl;
+                    STRUCT_OFFSET(pexplg, 0x90, uint) = c + 1;
+                    STRUCT_OFFSET(pl, 0x80, void *) = pexplg;
+                }
+            }
+        }
+    }
+}
 
 void CloneExplg(EXPLG *pexplg, EXPLG *pexplgBase)
 {
