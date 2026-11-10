@@ -43,6 +43,7 @@ struct FGFN
  */
 struct CM : public LO
 {
+    STRUCT_PADDING(3); // LO ends at 0x34
     /* 0x040 */ VECTOR pos;
     /* 0x050 */ VECTOR4 anormalFrustrumTranspose[3];
     /* 0x080 */ MATRIX3 mat;
@@ -222,6 +223,12 @@ void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog);
 void SetCmMrdRatio(CM *pcm, float ratio);
 
 /**
+ * @brief Resets the camera policies and cut state.
+ * @param fLookAt If nonzero, also resets the look at to the default eye and center.
+ */
+void ResetCm(CM *pcm, int fLookAt);
+
+/**
  * @brief Clears fading objects from the given camera.
  */
 void ClearCmFadeObjects(CM *pcm);
@@ -247,6 +254,13 @@ void DrawCm(CM *pcm);
  * @brief Sets the position matrix on the given camera.
  */
 void SetCmPosMat(CM *pcm, VECTOR *ppos, MATRIX3 *pmat);
+
+/**
+ * @brief Adjusts the camera default info for the given focus object.
+ */
+void AdjustCmCpdefi(CM *pcm, SO *psoFocus, float dt, CPDEFI *pcpdefi);
+
+void ResetCmAdjust(CM *pcm, SO *psoFocus, CPDEFI *pcpdefi);
 
 void SetCmPolicy(CM *pcm, CPP cpp, CPLCY *pcplcy, SO *psoFocus, void *pv);
 

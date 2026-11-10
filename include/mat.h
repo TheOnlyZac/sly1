@@ -36,6 +36,8 @@ struct MATRIX3
 	};
 };
 
+MATRIX4 operator*(const MATRIX4 &matLeft, const MATRIX4 &matRight);
+
 void PostCopyMatrix3(MATRIX4 *pmat);
 
 MATRIX3 *MatMulMatTransMat(MATRIX3 *matLeft, MATRIX3 *matRight);
