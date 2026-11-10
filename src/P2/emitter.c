@@ -573,7 +573,50 @@ void AddEmitoSkeleton(EMITO *pemito, OID oid, OID oidOther, float sRadius, float
     }
 }
 
+/**
+ * @todo 26 differing lines of 88: VU0 asm volatile statements, the original keeps the loop counter copy before the first asm and has a different register split (pemitb/i+1). Names are guesses.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindEmitb__FP5EMITBP2LO);
+
+#ifdef SKIP_ASM
+void BindEmitb(EMITB *pemitb, LO *plo)
+{
+    if (STRUCT_OFFSET(pemitb, 0x120, int) == 0 && STRUCT_OFFSET(pemitb, 0x188, OID) != OID_Nil)
+        STRUCT_OFFSET(pemitb, 0x18c, LO *) = PloFindSwObject(plo->psw, 0x104, STRUCT_OFFSET(pemitb, 0x188, OID), plo);
+    if (STRUCT_OFFSET(pemitb, 0x10, int) == 3)
+    {
+        float fSum = 0.0f;
+        for (int i = 0; i < STRUCT_OFFSET(pemitb, 0x20, int); i++)
+        {
+            char *pe = STRUCT_OFFSET(pemitb, 0x24, char *) + i * 0x28;
+            for (int j = 0; j < 2; j++)
+                STRUCT_OFFSET(pe, 0x18 + j * 4, LO *) = PloFindSwObject(plo->psw, 0x104, STRUCT_OFFSET(pe, j * 4, OID), plo);
+            asm volatile("lqc2 $vf2,%0" : : "m"(STRUCT_OFFSET(STRUCT_OFFSET(pe, 0x1c, LO *), 0x140, qword)));
+            asm volatile("lqc2 $vf1,%0" : : "m"(STRUCT_OFFSET(STRUCT_OFFSET(pe, 0x18, LO *), 0x140, qword)));
+            asm volatile("vsub.xyzw $vf1,$vf1,$vf2");
+            float a = STRUCT_OFFSET(pe, 8, float);
+            asm volatile("vmul.xyz $vf1,$vf1,$vf1");
+            asm volatile("vaddw.x $vf2,$vf0,$vf0w");
+            asm volatile("vadday.x ACC,$vf1,$vf1y");
+            asm volatile("vmaddz.x $vf1,$vf2,$vf1z");
+            float b = STRUCT_OFFSET(pe, 0xc, float);
+            asm volatile(".word 0x4A0103BD");
+            asm volatile("vwaitq");
+            asm volatile("vaddq.x $vf1,$vf0,Q");
+            int q;
+            asm volatile("qmfc2.ni %0,$vf1" : "=r"(q));
+            float len;
+            asm("mtc1 %1,%0" : "=f"(len) : "r"(q));
+            STRUCT_OFFSET(pe, 0x20, float) = len;
+            float h = len * 0.5f;
+            float t = h * (a + b);
+            STRUCT_OFFSET(pe, 0x24, float) = t;
+            fSum += t;
+        }
+        STRUCT_OFFSET(pemitb, 0x28, float) = fSum;
+    }
+}
+#endif
 
 /**
  * VU0 inline asm. The fake dependency variable is pinned to a scratch register so it does not disturb the register allocation. Normalizes the vector at 0xd0 of the emitb into 0x30 of the emitdv, falling back to g_normalZ for a tiny length. Field meanings are unknown.
@@ -617,7 +660,70 @@ void PostExplLoad(EXPL *pexpl)
     STRUCT_OFFSET(pexpl->pvtlo, 0x1c, PFN)(pexpl);
 }
 
+/**
+ * @todo 4 differing lines of 64: VU0 volatile asm statements; the original fills the final loop branch delay slot with the last sqc2 and aligns the loop top. Names are guesses.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", CalculateExplTransform__FP4EXPLP6VECTORP7MATRIX3);
+
+#ifdef SKIP_ASM
+void CalculateExplTransform(EXPL *pexpl, VECTOR *ppos, MATRIX3 *pmat)
+{
+    STRUCT_OFFSET(ppos, 0, qword) = STRUCT_OFFSET(&D_00248D30, 0, qword);
+    STRUCT_OFFSET(pmat, 0, qword) = STRUCT_OFFSET(pexpl, 0x50, qword);
+    STRUCT_OFFSET(pmat, 0x10, qword) = STRUCT_OFFSET(pexpl, 0x60, qword);
+    STRUCT_OFFSET(pmat, 0x20, qword) = STRUCT_OFFSET(pexpl, 0x70, qword);
+    VECTOR sA[3], sB[3];
+    while (STRUCT_OFFSET(pexpl, 0x80, EXPL *))
+    {
+        EXPL *pp = STRUCT_OFFSET(pexpl, 0x80, EXPL *);
+        asm volatile("lqc2 $vf3,%0" : : "m"(STRUCT_OFFSET(pexpl, 0x40, qword)));
+        MATRIX3 *pm = (MATRIX3 *)((char *)pp + 0x50);
+        asm volatile("lqc2 $vf5,%0" : : "m"(STRUCT_OFFSET(pp, 0x50, qword)));
+        asm volatile("lqc2 $vf4,%0" : : "m"(STRUCT_OFFSET(pm, 0x20, qword)));
+        asm volatile("lqc2 $vf2,%0" : : "m"(STRUCT_OFFSET(pm, 0x10, qword)));
+        asm volatile("lqc2 $vf1,%0" : : "m"(*ppos));
+        asm volatile("vmulax.xyz ACC,$vf5,$vf3x");
+        asm volatile("vmadday.xyz ACC,$vf2,$vf3y");
+        asm volatile("vmaddz.xyz $vf3,$vf4,$vf3z");
+        asm volatile("vmulax.xyz ACC,$vf5,$vf1x");
+        asm volatile("vmadday.xyz ACC,$vf2,$vf1y");
+        asm volatile("vmaddz.xyz $vf1,$vf4,$vf1z");
+        asm volatile("vadd.xyzw $vf1,$vf1,$vf3");
+        asm volatile("sqc2 $vf1,%0" : "=m"(*ppos));
+        pp = STRUCT_OFFSET(pexpl, 0x80, EXPL *);
+        asm volatile("lqc2 $vf5,%0" : : "m"(STRUCT_OFFSET(pmat, 0x10, qword)));
+        pm = (MATRIX3 *)((char *)pp + 0x50);
+        asm volatile("lqc2 $vf4,%0" : : "m"(STRUCT_OFFSET(pp, 0x50, qword)));
+        asm volatile("lqc2 $vf2,%0" : : "m"(STRUCT_OFFSET(pm, 0x20, qword)));
+        asm volatile("lqc2 $vf1,%0" : : "m"(STRUCT_OFFSET(pm, 0x10, qword)));
+        asm volatile("lqc2 $vf6,%0" : : "m"(STRUCT_OFFSET(pmat, 0, qword)));
+        asm volatile("vmulax.xyz ACC,$vf4,$vf5x");
+        asm volatile("vmadday.xyz ACC,$vf1,$vf5y");
+        asm volatile("vmaddz.xyz $vf5,$vf2,$vf5z");
+        asm volatile("lqc2 $vf3,%0" : : "m"(STRUCT_OFFSET(pmat, 0x20, qword)));
+        asm volatile("vmulax.xyz ACC,$vf4,$vf6x");
+        asm volatile("vmadday.xyz ACC,$vf1,$vf6y");
+        asm volatile("vmaddz.xyz $vf6,$vf2,$vf6z");
+        asm volatile("vmulax.xyz ACC,$vf4,$vf3x");
+        asm volatile("vmadday.xyz ACC,$vf1,$vf3y");
+        asm volatile("vmaddz.xyz $vf4,$vf2,$vf3z");
+        asm volatile("sqc2 $vf5,%0" : "=m"(STRUCT_OFFSET(pmat, 0x10, qword)));
+        asm volatile("sqc2 $vf4,%0" : "=m"(STRUCT_OFFSET(pmat, 0x20, qword)));
+        asm volatile("sqc2 $vf6,%0" : "=m"(STRUCT_OFFSET(pmat, 0, qword)));
+        asm volatile("sqc2 $vf6,%0" : "=m"(sA[0]));
+        asm volatile("sqc2 $vf5,%0" : "=m"(sA[1]));
+        asm volatile("sqc2 $vf4,%0" : "=m"(sA[2]));
+        asm volatile("sqc2 $vf6,%0" : "=m"(sB[0]));
+        pexpl = STRUCT_OFFSET(pexpl, 0x80, EXPL *);
+        asm volatile("sqc2 $vf5,%0" : "=m"(sB[1]));
+        asm("sqc2 $vf4,%0" : "=m"(sB[2]));
+    }
+    asm volatile("lqc2 $vf2,%0" : : "m"(STRUCT_OFFSET(pexpl, 0x40, qword)));
+    asm volatile("lqc2 $vf1,%0" : : "m"(*ppos));
+    asm volatile("vadd.xyzw $vf1,$vf1,$vf2");
+    asm volatile("sqc2 $vf1,%0" : "=m"(*ppos));
+}
+#endif
 
 void ExplodeExpl(EXPL *pexpl)
 {
