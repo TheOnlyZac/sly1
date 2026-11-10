@@ -196,11 +196,6 @@ void CFont::PopScaling()
     m_ryScale = psfr->ry;
 }
 
-/**
- * @todo 90.62% match. Issue with the vtable.
- */
-INCLUDE_ASM("asm/nonmatchings/P2/font", PfontClone__8CFontBrxff);
-#ifdef SKIP_ASM
 CFont *CFontBrx::PfontClone(float rx, float ry)
 {
     CFontBrx *pfontDest = new CFontBrx();
@@ -209,7 +204,6 @@ CFont *CFontBrx::PfontClone(float rx, float ry)
     pfontDest->m_ryScale = pfontDest->m_ryScale * ry;
     return (CFont *)pfontDest;
 }
-#endif // SKIP_ASM
 
 void CFontBrx::CopyTo(CFontBrx *pfontDest)
 {
@@ -367,7 +361,17 @@ GLYFF *CFontBrx::PglyffFromCh(char ch)
     return NULL;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", __9CRichTextPcP5CFont);
+CRichText::CRichText(char *achz, CFont *pfont)
+{
+    m_achz = achz;
+    m_pfontBase = pfont;
+    uint rgba = 0xFF808080;
+    *(uint *)&m_rgbaOther = rgba;
+    *(uint *)&m_rgbaBase = rgba;
+    *(uint *)&m_rgbaSet = rgba;
+    *(uint *)&m_rgbaCur = rgba;
+    Reset();
+}
 
 void CRichText::Reset()
 {

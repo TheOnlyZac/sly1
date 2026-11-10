@@ -18,6 +18,9 @@ struct CLUT;
 class CTextBox;
 class CTextEdge;
 
+// The CFontBrx vtable is emitted from the data segment, not from font.c.
+#pragma interface
+
 /**
  * @brief Scaled font ratio.
  */
