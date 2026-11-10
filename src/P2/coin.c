@@ -2,6 +2,41 @@
 #include <chkpnt.h>
 #include <bis.h>
 #include <sw.h>
+#include <clock.h>
+#include <mq.h>
+#include <sm.h>
+#include <screen.h>
+#include <game.h>
+#include <basic.h>
+#include <memory.h>
+#include <cm.h>
+#include <vis.h>
+#include <mat.h>
+#include <vec.h>
+#include <rip.h>
+#include <util.h>
+#include <sound.h>
+#include <po.h>
+#include <difficulty.h>
+#include <memcard.h>
+#include <so.h>
+#include <find.h>
+#include <cid.h>
+
+extern "C" void func_001E02C8(void *, int);
+extern int FUN_00148938(SW *psw, CID cid, int cpdprizeMax, DPRIZE **apdprize);
+extern VECTOR D_00248D30;
+extern MATRIX3 g_matIdentity;
+extern int D_00270458;
+extern int D_00275C34;
+extern char D_00261AD0[]; // unknown, rip vtable?
+extern char D_00261B60[]; // unknown, rip vtable?
+
+// Packed so stores compile to swl/swr like the original OnCoinSmack.
+struct UNALIGNED_FLOAT
+{
+    float f;
+} __attribute__((packed));
 
 void InitDprize(DPRIZE *pdprize)
 {
@@ -35,21 +70,105 @@ void CloneDprize(DPRIZE *pdprize, DPRIZE *pdprizeBase)
     pdprize->ichkCollected = ichkCollected;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", PostDprizeLoad__FP6DPRIZE);
+void PostDprizeLoad(DPRIZE *pdprize)
+{
+    PostAloLoad(pdprize);
+    pdprize->ptarget = (TARGET *)PloFindSwObjectByClass(pdprize->psw, 1, (CID)0x75, pdprize);
+    if (pdprize->ptarget)
+    {
+        pdprize->ptarget->pvtlo->pfnRemoveLo(pdprize->ptarget);
+    }
+    if (((g_pgsCur->gameworldCur << 8) | g_pgsCur->worldlevelCur) != 0x308 &&
+        FGetChkmgrIchk(&g_chkmgr, pdprize->ichkCollected))
+    {
+        pdprize->dprizesInit = DPRIZES_Removed;
+    }
+    PVTDPRIZE(pdprize)->pfnSetDprizeDprizes(pdprize, pdprize->dprizesInit);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", ProjectDprizeTransform__FP6DPRIZEfi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FFilterDprizeObjects__FP6DPRIZEP2SO);
+int FFilterDprizeObjects(DPRIZE *pdprize, SO *pso)
+{
+    if ((STRUCT_OFFSET(pso, 0x538, uint64_t) & 0x80000000000) || FIsBasicDerivedFrom(pso->paloRoot, CID_PO) ||
+        FIsBasicDerivedFrom(pso->paloRoot, CID_SWP) || FIsBasicDerivedFrom(pso->paloRoot, CID_TZP) ||
+        FIsBasicDerivedFrom(pso->paloRoot, CID_MISSILE) || FIsBasicDerivedFrom(pso->paloRoot, CID_SQUISH))
+        return 0;
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", CheckDprizeBounce__FP6DPRIZE);
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", CheckDprizeCollect__FP6DPRIZE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FAbsorbDprizeWkr__FP6DPRIZEP3WKR);
+int FAbsorbDprizeWkr(DPRIZE *pdprize, WKR *pwkr)
+{
+    if (pdprize->fUnknown && (pwkr->grfic & 0x10))
+    {
+        PVTDPRIZE(pdprize)->pfnSetDprizeDprizes(pdprize, DPRIZES_Collect);
+    }
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", UpdateDprize__FP6DPRIZEf);
 
+/**
+ * @todo ~60% matched (about 100 differing lines of 124). The scale vector is a pextlw broadcast of a float in the target,
+ * the clamp and coefficient loads are duplicated per branch, and the ro temp copy is scheduled differently.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/coin", RenderDprizeAll__FP6DPRIZEP2CMP2RO);
+#ifdef SKIP_ASM
+extern float D_002619E4;
+extern float D_002619E8;
+extern float D_00261A80[3];
+extern float D_00261A90[3];
+MATRIX4 operator*(const MATRIX4 &mat0, const MATRIX4 &mat1);
+
+void RenderDprizeAll(DPRIZE *pdprize, CM *pcm, RO *pro)
+{
+    if (STRUCT_OFFSET(pdprize, 0x2c8, uint64_t) & 0x100000000)
+        return;
+
+    int dprizes = pdprize->dprizes;
+    if (dprizes < 6 && dprizes >= 4)
+    {
+        float *pgCoef;
+        float u;
+        if (dprizes == DPRIZES_Swirl)
+        {
+            u = (g_clock.t - pdprize->tDprizes) / D_002619E4;
+            pgCoef = D_00261A80;
+        }
+        else
+        {
+            u = (g_clock.t - pdprize->tDprizes) / D_002619E8;
+            pgCoef = D_00261A90;
+        }
+        float t;
+        if (u < 0.0f)
+            t = 0.0f;
+        else if (1.0f < u)
+            t = 1.0f;
+        else
+            t = u;
+
+        float s = pgCoef[0] + t * (pgCoef[1] + t * pgCoef[2]);
+        VECTOR vScale;
+        vScale.x = vScale.y = vScale.z = vScale.gUnused = s;
+        MATRIX4 matScale;
+        LoadMatrixFromPosRotScale(&D_00248D30, &g_matIdentity, &vScale, &matScale);
+        struct
+        {
+            MATRIX4 mat;
+            char a[0x10];
+        } ro;
+        DupAloRo(pdprize, pro, (RO *)&ro);
+        ro.mat = ro.mat * matScale;
+        pro = (RO *)&ro;
+    }
+    RenderAloAll(pdprize, pcm, pro);
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", SetDprizeDprizes__FP6DPRIZE7DPRIZES);
 
@@ -67,13 +186,79 @@ void InitCoin(COIN *pcoin)
     pcoin->lmDtMaxLifetime.gMax = 10.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00147ed0);
+void FUN_00147ed0(COIN *pcoin)
+{
+    PVTDPRIZE(pcoin)->pfnSetDprizeDprizes(pcoin, DPRIZES_Removed);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00147ef8);
+void FUN_00147ef8(COIN *pcoin, MSGID msgid, void *pv)
+{
+    HandleAloMessage(pcoin, msgid, pv);
+    if (msgid == MSGID_sma_transition && pv == pcoin->psma)
+    {
+        OID oid;
+        GetSmaCur((SMA *)pv, &oid);
+        if (oid == (OID)0x263)
+        {
+            void *pobj = STRUCT_OFFSET(pcoin->psw, 0x1d60, void *);
+            if (pobj)
+            {
+                int args[20];
+                args[1] = (int)pcoin;
+                args[0] = 1;
+                (*(void (***)(void *, void *))pobj)[0x7c / 4](pobj, args);
+            }
+            PostSwCallback(pcoin->psw, (PFNMQ)FUN_00147ed0, pcoin, MSGID_callback, 0);
+        }
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", UpdateCoin__FP4COINf);
+void UpdateCoin(COIN *pcoin, float dt)
+{
+    UpdateDprize(pcoin, dt);
+    if (pcoin->dprizes == DPRIZES_Normal && pcoin->fReuseCandidate)
+    {
+        if (D_00270458 != 2)
+        {
+            pcoin->tLose -= g_clock.dt;
+        }
+        if (pcoin->tLose <= 0.0f)
+        {
+            PVTDPRIZE(pcoin)->pfnSetDprizeDprizes(pcoin, DPRIZES_Lose);
+        }
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", CreateSwCharm__FP2SW);
+extern "C" void ConvertCmScreenToWorld(CM *pcm, VECTOR *pscreen, VECTOR *pworld);
+extern VECTOR D_00261AB0;
+extern VECTOR D_00261AC0;
+
+void CreateSwCharm(SW *psw)
+{
+    DPRIZE *pdprize;
+    if (FUN_00148938(psw, (CID)0x56, 1, &pdprize) == 0)
+    {
+        GS *pgs = g_pgsCur;
+        int ccharmMost = CcharmMost();
+        int ccharmNew = pgs->ccharm + 1;
+        g_pgsCur->ccharm = (ccharmNew < ccharmMost) ? ccharmNew : ccharmMost;
+    }
+    else
+    {
+        VECTOR vec;
+        pdprize->pvtalo->pfnAddLo(pdprize);
+        ((void (*)(DPRIZE *, ALO *))pdprize->pvtalo->pfnSetAloParent)(pdprize, 0);
+        ConvertCmScreenToWorld(g_pcm, &D_00261AB0, &vec);
+        pdprize->pvtalo->pfnTranslateAloToPos(pdprize, &vec);
+        ((void (*)(DPRIZE *, MATRIX3 *))pdprize->pvtalo->pfnRotateAloToMat)(pdprize, &g_matIdentity);
+        ((void (*)(DPRIZE *, VECTOR *))pdprize->pvtalo->pfnSetAloVelocityVec)(pdprize, &D_00248D30);
+        ((void (*)(DPRIZE *, VECTOR *))pdprize->pvtalo->pfnSetAloAngularVelocityVec)(pdprize, &D_00248D30);
+        PVTDPRIZE(pdprize)->pfnSetDprizeDprizes(pdprize, DPRIZES_Swirl);
+        STRUCT_OFFSET(pdprize, 0x300, qword) = STRUCT_OFFSET(&D_00261AC0, 0, qword);
+        ClipVismapSphereOneHop(psw->pvismap, &STRUCT_OFFSET(pdprize, 0x140, VECTOR), STRUCT_OFFSET(pdprize, 0x2a8, float),
+                               &STRUCT_OFFSET(pdprize, 0x88, GRFZON));
+    }
+}
 
 void AddLife(void *ptr)
 {
@@ -86,11 +271,6 @@ void AddLife(void *ptr)
     g_pgsCur->clife = capped_clife;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", OnCoinSmack__FP4COIN);
-#ifdef SKIP_ASM
-/**
- * @todo 91.21% matched.
- */
 void OnCoinSmack(COIN *pcoin)
 {
     if (++g_pgsCur->ccoin < 100)
@@ -100,9 +280,10 @@ void OnCoinSmack(COIN *pcoin)
     {
         // Give the player a charm and reset the coin count
         g_pgsCur->ccoin = 0;
-        g_coinctr.dgDisplayMax = 250.0f;
-        g_coinctr.pfnsmack = CreateSwCharm;
-        g_coinctr.pv = pcoin->psw;
+        COINCTR *pcoinctr = &g_coinctr;
+        ((UNALIGNED_FLOAT *)&pcoinctr->dgDisplayMax)->f = 250.0f; // swl/swr store
+        pcoinctr->pfnsmack = CreateSwCharm;
+        pcoinctr->pv = pcoin->psw;
     }
     else if (g_pgsCur->clife < 99)
     {
@@ -119,9 +300,52 @@ void OnCoinSmack(COIN *pcoin)
         g_pgsCur->ccoin = 99;
     }
 }
-#endif
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", SetCoinDprizes__FP4COIN7DPRIZES);
+void SetCoinDprizes(COIN *pcoin, DPRIZES dprizes)
+{
+    if (pcoin->dprizes == dprizes)
+        return;
+
+    switch (dprizes)
+    {
+    case DPRIZES_Normal:
+        if (pcoin->fReuseCandidate)
+        {
+            pcoin->tLose = GRandInRange(pcoin->lmDtMaxLifetime.gMin, pcoin->lmDtMaxLifetime.gMax);
+        }
+        break;
+    case DPRIZES_Collect:
+    {
+        RIP *prip = PripNewRipg(RIPT_Smack, 0);
+        if (prip)
+        {
+            STRUCT_OFFSET(prip, 0x134, COIN *) = pcoin;
+            STRUCT_OFFSET(prip, 0x130, void *) = &D_00261AD0;
+            (*(void (***)(RIP *, float, void *, int))prip)[0](prip, 1.0f, (char *)pcoin + 0x140, 0);
+            STRUCT_OFFSET(prip, 0x20, COIN *) = pcoin;
+            STRUCT_OFFSET(prip, 0x50, qword) = STRUCT_OFFSET(pcoin, 0x110, qword);
+            STRUCT_OFFSET(prip, 0x60, qword) = STRUCT_OFFSET(pcoin, 0x120, qword);
+            STRUCT_OFFSET(prip, 0x70, qword) = STRUCT_OFFSET(pcoin, 0x130, qword);
+        }
+        else
+        {
+            OnCoinSmack(pcoin);
+        }
+        g_coinctr.pvtblot->pfnShowBlot(&g_coinctr);
+        StartSound(SFXID_Collect_Coin, 0, 0, 0, 3000.0f, 300.0f, 1.0f, 0.0f, 0.0f, 0, 0);
+        if (pcoin->pexplCollect)
+        {
+            int args[20];
+            args[1] = (int)pcoin;
+            args[0] = 1;
+            (*(void (***)(void *, void *))pcoin->pexplCollect)[0x7c / 4](pcoin->pexplCollect, args);
+        }
+        dprizes = DPRIZES_Removed;
+        break;
+    }
+    }
+    SetDprizeDprizes(pcoin, dprizes);
+}
 
 void InitCharm(CHARM *pcharm)
 {
@@ -168,43 +392,308 @@ void InitKey(KEY *pkey)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", SetKeyDprizes__FP3KEY7DPRIZES);
+void SetKeyDprizes(KEY *pkey, DPRIZES dprizes)
+{
+    if (pkey->dprizes == dprizes)
+        return;
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148698);
+    if (dprizes == DPRIZES_Collect)
+    {
+        if (!(g_plsCur->fls & FLS_KeyCollected))
+        {
+            g_plsCur->fls = (FLS)(g_plsCur->fls | FLS_KeyCollected);
+            int ckey = g_pwsCur->ckey;
+            g_pwsCur->ckey = ckey + 1;
+            if (D_00275C34)
+                g_pwsCur->ckey = ckey;
+        }
+        g_keyctr.pvtblot->pfnShowBlot(&g_keyctr);
+        PO *ppo = PpoCur();
+        if (ppo)
+        {
+            (*(void (***)(PO *, int, KEY *))ppo)[0x148 / 4](ppo, 0, pkey);
+        }
+        HandleLoSpliceEvent(pkey, 2, 0, 0);
+        dprizes = DPRIZES_Removed;
+        OnDifficultyCollectKey(&g_difficulty);
+        FUN_0018c7f8(&g_save);
+    }
+    SetDprizeDprizes(pkey, dprizes);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148718);
+void FUN_00148698(DPRIZE *pdprize)
+{
+    InitDprize(pdprize);
+    pdprize->sRadiusBounce = 60.0f;
+    pdprize->sRadiusCollect = 60.0f;
+    pdprize->svLastBounceMax = 500.0f;
+    pdprize->svLastBounce = 250.0f;
+    pdprize->rxyBounce = 0.6f;
+    pdprize->rzBounce = 0.6f;
+    pdprize->uGlintChance = 0.75f;
+    if (STRUCT_OFFSET(&g_note, 0x268, int) == 0)
+    {
+        pdprize->dprizesInit = DPRIZES_Removed;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148748);
+void FUN_00148718(DPRIZE *pdprize)
+{
+    PostDprizeLoad(pdprize);
+    STRUCT_OFFSET(&g_note, 0x270, DPRIZE *) = pdprize;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148770);
+void FUN_00148748(DPRIZE *pdprize)
+{
+    PVTDPRIZE(pdprize)->pfnSetDprizeDprizes(pdprize, DPRIZES_Removed);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148828);
+void FUN_00148770(DPRIZE *pdprize, MSGID msgid, void *pv)
+{
+    HandleAloMessage(pdprize, msgid, pv);
+    if (msgid == MSGID_sma_transition && pv == pdprize->psma)
+    {
+        OID oid;
+        GetSmaCur((SMA *)pv, &oid);
+        if (oid == (OID)0x263)
+        {
+            void *pobj = STRUCT_OFFSET(pdprize->psw, 0x1d60, void *);
+            if (pobj)
+            {
+                int args[20];
+                args[1] = (int)pdprize;
+                args[0] = 1;
+                (*(void (***)(void *, void *))pobj)[0x7c / 4](pobj, args);
+            }
+            PostSwCallback(pdprize->psw, (PFNMQ)FUN_00148748, pdprize, MSGID_callback, 0);
+        }
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148888);
+void FUN_00148828(DPRIZE *pdprize, float dt)
+{
+    UpdateDprize(pdprize, dt);
+    if (pdprize->dprizes == DPRIZES_Normal && STRUCT_OFFSET(pdprize->psw, 0x2308, float) <= g_clock.t)
+    {
+        PVTDPRIZE(pdprize)->pfnSetDprizeDprizes(pdprize, DPRIZES_Lose);
+    }
+}
+
+void FUN_00148888(DPRIZE *pdprize, DPRIZES dprizes)
+{
+    if (pdprize->dprizes == dprizes)
+        return;
+
+    if (dprizes == DPRIZES_Collect)
+    {
+        func_001E02C8(&g_note, 2);
+        if (pdprize->pexplCollect)
+        {
+            int args[20];
+            args[0] = dprizes;
+            args[1] = (int)pdprize;
+            (*(void (***)(void *, void *))pdprize->pexplCollect)[0x7c / 4](pdprize->pexplCollect, args);
+        }
+        dprizes = DPRIZES_Removed;
+    }
+    SetDprizeDprizes(pdprize, dprizes);
+}
 
 int SgnCompareSdprize(const void *pv1, const void *pv2)
 {
     return (*(float *)pv1 < *(float *)pv2) ? 1 : -1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148938);
+INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148938__FP2SW3CIDiPP6DPRIZE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", CpdprizeAttractSwDprizes__FP2SW3CIDP6VECTORiPP6DPRIZE);
+extern float D_00261B40;
+extern LM D_00261B48;
+extern LM D_00261B50;
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", RemoveSwExtraneousCharms__FP2SW);
+int CpdprizeAttractSwDprizes(SW *psw, CID cid, VECTOR *pposCenter, int cpdprizeMax, DPRIZE **apdprize)
+{
+    InitStackImpl();
+    if (!apdprize)
+    {
+        apdprize = (DPRIZE **)PvAllocStackImpl(cpdprizeMax * 4);
+    }
+    int cpdprize = FUN_00148938(psw, cid, cpdprizeMax, apdprize);
+    float dradStep = 6.2831855f / (float)cpdprizeMax;
+    float rad = GRandInRange(0.0f, 6.2831855f);
+    for (int i = 0; i < cpdprize; i++)
+    {
+        DPRIZE *pdprize = apdprize[i];
+        VECTOR *pvCenter = &pdprize->vCenter;
+        pdprize->pvtalo->pfnAddLo(pdprize);
+        ((void (*)(DPRIZE *, ALO *))pdprize->pvtalo->pfnSetAloParent)(pdprize, 0);
+        ((void (*)(DPRIZE *, VECTOR *))pdprize->pvtalo->pfnTranslateAloToPos)(pdprize, pposCenter);
+        ((void (*)(DPRIZE *, MATRIX3 *))pdprize->pvtalo->pfnRotateAloToMat)(pdprize, &g_matIdentity);
+        ((void (*)(DPRIZE *, VECTOR *))pdprize->pvtalo->pfnSetAloVelocityVec)(pdprize, &D_00248D30);
+        ((void (*)(DPRIZE *, VECTOR *))pdprize->pvtalo->pfnSetAloAngularVelocityVec)(pdprize, &D_00248D30);
+        pdprize->fLastBounce = 0;
+        pdprize->dtInitialSkip = i * D_00261B40;
+        PVTDPRIZE(pdprize)->pfnSetDprizeDprizes(pdprize, DPRIZES_Fall);
+        float sXY = GRandInRange(D_00261B48.gMin, D_00261B48.gMax);
+        float sZ = GRandInRange(D_00261B50.gMin, D_00261B50.gMax);
+        SetVectorCylind(pvCenter, rad, sXY, sZ);
+        rad += dradStep;
+        ClipVismapSphereOneHop(psw->pvismap, &STRUCT_OFFSET(pdprize, 0x140, VECTOR), STRUCT_OFFSET(pdprize, 0x2a8, float),
+                               &STRUCT_OFFSET(pdprize, 0x88, GRFZON));
+    }
+    FreeStackImpl();
+    return cpdprize;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148d90);
+void RemoveSwExtraneousCharms(SW *psw)
+{
+    GS *pgs = g_pgsCur;
+    if (((pgs->gameworldCur << 8) | pgs->worldlevelCur) == 0x308)
+        return;
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148e18);
+    if (pgs->ccharm < CcharmMost() && STRUCT_OFFSET(&g_note, 0x260, int) < 2)
+        return;
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148e40);
+    // 0x56 is the release CID for CHARM (header enum differs)
+    for (DPRIZE *pdprize = (DPRIZE *)psw->dlDprize.head; pdprize != 0; pdprize = (DPRIZE *)pdprize->dle.next)
+    {
+        if (FIsBasicDerivedFrom(pdprize, (CID)0x56))
+        {
+            PVTDPRIZE(pdprize)->pfnSetDprizeDprizes(pdprize, DPRIZES_Removed);
+        }
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148ef8);
+/**
+ * @todo 98% matched (2 differing lines of 38): svLastBounce store is scheduled after sRadiusCollect.
+ */
+INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00148d90__FP7LIFETKN);
+#ifdef SKIP_ASM
+void FUN_00148d90(LIFETKN *plifetkn)
+{
+    InitDprize(plifetkn);
+    plifetkn->sRadiusBounce = 45.0f;
+    plifetkn->svLastBounce = 50.0f;
+    plifetkn->svLastBounceMax = 250.0f;
+    plifetkn->rxyBounce = 0.05f;
+    plifetkn->rzBounce = 0.5f;
+    plifetkn->lmDtMaxLifetime.gMin = 4.0f;
+    plifetkn->sRadiusCollect = 50.0f;
+    plifetkn->uGlintChance = 0.0f;
+    plifetkn->lmDtMaxLifetime.gMax = 6.0f;
+}
+#endif
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", increment_and_show_life_count);
+void FUN_00148e18(LIFETKN *plifetkn)
+{
+    PVTDPRIZE(plifetkn)->pfnSetDprizeDprizes(plifetkn, DPRIZES_Removed);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", CollectLifetkn__FP7LIFETKN);
+void FUN_00148e40(LIFETKN *plifetkn, MSGID msgid, void *pv)
+{
+    HandleAloMessage(plifetkn, msgid, pv);
+    if (msgid == MSGID_sma_transition && pv == plifetkn->psma)
+    {
+        OID oid;
+        GetSmaCur((SMA *)pv, &oid);
+        if (oid == (OID)0x263)
+        {
+            void *pobj = STRUCT_OFFSET(plifetkn->psw, 0x1d60, void *);
+            if (pobj)
+            {
+                int args[20];
+                args[1] = (int)plifetkn;
+                args[0] = 1;
+                (*(void (***)(void *, void *))pobj)[0x7c / 4](pobj, args);
+            }
+            PostSwCallback(plifetkn->psw, (PFNMQ)FUN_00148e18, plifetkn, MSGID_callback, 0);
+        }
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/coin", FUN_00149168);
+void FUN_00148ef8(LIFETKN *plifetkn, float dt)
+{
+    UpdateDprize(plifetkn, dt);
+    if (plifetkn->dprizes == DPRIZES_Normal && plifetkn->fReuseCandidate)
+    {
+        if (D_00270458 != 2)
+        {
+            plifetkn->tLose -= g_clock.dt;
+        }
+        if (plifetkn->tLose <= 0.0f)
+        {
+            PVTDPRIZE(plifetkn)->pfnSetDprizeDprizes(plifetkn, DPRIZES_Lose);
+        }
+    }
+}
+
+void increment_and_show_life_count(void *pv)
+{
+    g_lifectr.pvtblot->pfnShowBlot(&g_lifectr);
+    int clife = g_pgsCur->clife;
+    if (clife < 99)
+    {
+        g_pgsCur->clife = clife + 1;
+        g_lifectr.dgDisplayMax = 250.0f;
+        g_lifectr.pfnsmack = 0;
+        g_lifectr.pv = 0;
+    }
+    else
+    {
+        g_pgsCur->clife = 99;
+    }
+}
+
+void SetLifetknDprizes(LIFETKN *plifetkn, DPRIZES dprizes)
+{
+    if (plifetkn->dprizes == dprizes)
+        return;
+
+    switch (dprizes)
+    {
+    case DPRIZES_Normal:
+        if (plifetkn->fReuseCandidate)
+        {
+            plifetkn->tLose = GRandInRange(plifetkn->lmDtMaxLifetime.gMin, plifetkn->lmDtMaxLifetime.gMax);
+        }
+        break;
+    case DPRIZES_Collect:
+    {
+        RIP *prip = PripNewRipg(RIPT_Smack, 0);
+        if (prip)
+        {
+            STRUCT_OFFSET(prip, 0x134, LIFETKN *) = plifetkn;
+            STRUCT_OFFSET(prip, 0x130, void *) = &D_00261B60;
+            (*(void (***)(RIP *, float, void *, int))prip)[0](prip, 1.0f, (char *)plifetkn + 0x140, 0);
+            STRUCT_OFFSET(prip, 0x20, LIFETKN *) = plifetkn;
+            STRUCT_OFFSET(prip, 0x50, qword) = STRUCT_OFFSET(plifetkn, 0x110, qword);
+            STRUCT_OFFSET(prip, 0x60, qword) = STRUCT_OFFSET(plifetkn, 0x120, qword);
+            STRUCT_OFFSET(prip, 0x70, qword) = STRUCT_OFFSET(plifetkn, 0x130, qword);
+        }
+        else
+        {
+            increment_and_show_life_count(plifetkn);
+        }
+        g_lifectr.pvtblot->pfnShowBlot(&g_lifectr);
+        SetChkmgrIchk(&g_chkmgr, plifetkn->ichkCollected);
+        StartSound(SFXID_Collect_Life, 0, 0, 0, 3000.0f, 300.0f, 1.0f, 0.0f, 0.0f, 0, 0);
+        if (plifetkn->pexplCollect)
+        {
+            int args[20];
+            args[1] = (int)plifetkn;
+            args[0] = 1;
+            (*(void (***)(void *, void *))plifetkn->pexplCollect)[0x7c / 4](plifetkn->pexplCollect, args);
+        }
+        dprizes = DPRIZES_Removed;
+        break;
+    }
+    }
+    SetDprizeDprizes(plifetkn, dprizes);
+}
+
+void FUN_00149168(DPRIZE *pdprize)
+{
+    InitDprize(pdprize);
+    pdprize->fUnknown = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", break_bottle);

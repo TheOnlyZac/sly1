@@ -34,6 +34,19 @@ enum DPRIZES
     DPRIZES_Max = 8
 };
 
+struct DPRIZE;
+
+/**
+ * @brief VT for DPRIZE objects.
+ *
+ * @note The slot at 0xc8 is unidentified.
+ */
+struct VTDPRIZE : VTALO
+{
+    /* 0xc8 */ void (*pfnUnkC8)(DPRIZE *);
+    /* 0xcc */ void (*pfnSetDprizeDprizes)(DPRIZE *, DPRIZES);
+};
+
 /**
  * @class _DPRIZE
  * @brief Base class for collectibles.
@@ -88,6 +101,18 @@ struct COIN : public DPRIZE
 };
 
 /**
+ * @class LIFETKN
+ * @brief Extra life token.
+ *
+ * @note Layout guessed to mirror COIN.
+ */
+struct LIFETKN : public DPRIZE
+{
+    /* 0x390 */ LM lmDtMaxLifetime;
+    /* 0x398 */ float tLose;
+};
+
+/**
  * @class CHARM
  * @brief Lucky charm worn by Sly and Murray.
  */
@@ -129,6 +154,12 @@ void LoadDprizeFromBrx(DPRIZE *pdprize, CBinaryInputStream *pbis);
  * @note ichkCollected and dle will not be overwritten.
  */
 void CloneDprize(DPRIZE *pdprize, DPRIZE *pdprizeBase);
+
+void PostDprizeLoad(DPRIZE *pdprize);
+
+int FAbsorbDprizeWkr(DPRIZE *pdprize, WKR *pwkr);
+
+void UpdateDprize(DPRIZE *pdprize, float dt);
 
 /**
  * @brief Sets the state of a given dprize.
@@ -230,5 +261,7 @@ int CpdprizeAttractSwDprizes(SW *psw, CID cid, VECTOR *pposCenter, int cpdprizeM
 void RemoveSwExtraneousCharms(SW *psw);
 
 extern SNIP s_asnipDprize[5];
+
+#define PVTDPRIZE(pdprize) ((VTDPRIZE *)(pdprize)->pvtalo)
 
 #endif // COIN_H
