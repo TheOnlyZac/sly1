@@ -31,6 +31,7 @@ extern SNIP s_asnipPostRoc[1];
 extern SNIP s_asnipLoadRost[1];
 extern SMP s_smpRovAccel; // guess
 extern SMP s_smpRocAccel; // guess
+extern VECTOR g_normalX;
 extern VECTOR g_normalZ;
 extern BLOT g_binoc;
 extern BLOT g_unkblot0;
@@ -1795,7 +1796,56 @@ void PostRopLoad(ROP *prop)
     }
 }
 
+/**
+ * @todo Partial (74 differing lines of about 110): first full VU0 inline asm draft. Left: scheduling of the smp/constant setup around the GSmooth call, local layout (smp at sp+0x10) and the g_normalX fallback copy order.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRop__FP3ROPf);
+#ifdef SKIP_ASM
+void UpdateRop(ROP *prop, float dt)
+{
+    UpdateSo(prop, dt);
+    ROPS rops;
+    while ((rops = RopsNextRop(prop)) != STRUCT_OFFSET(prop, 0x550, ROPS))
+    {
+        SetRopRops(prop, rops);
+    }
+    if (rops == ROPS_Collect)
+    {
+        VECTOR vecDir;
+        SMP smp;
+        int padSmp;
+        VECTOR vecDelta;
+        VECTOR vecDelta2;
+        float len;
+        ROB *prob = STRUCT_OFFSET(prop, 0x558, ROB *);
+        ROV *prov = STRUCT_OFFSET(prob, 0x354, ROV *);
+        ALO *palo = STRUCT_OFFSET(prop, 0x55c, ALO *);
+        int a, b, c, t;
+        asm("lqc2 $vf2,%1" : "=r"(a) : "m"(STRUCT_OFFSET(palo, 0x140, VECTOR)));
+        asm("lqc2 $vf1,%1" : "=r"(b) : "m"(STRUCT_OFFSET(prov, 0x140, VECTOR)), "r"(a));
+        asm("vsub.xyzw $vf3,$vf1,$vf2\n\tvmul.xyz $vf1,$vf3,$vf3\n\tvaddw.x $vf2,$vf0,$vf0w\n\tvadday.x ACC,$vf1,$vf1y\n\tvmaddz.x $vf1,$vf2,$vf1z\n\tsqc2 $vf3,%0\n\t.word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q\n\tqmfc2.ni $2,$vf1\n\tmtc1 $2,%1" : "=m"(vecDelta), "=f"(len) : "r"(b) : "$2");
+        if (len < 0.0001f)
+        {
+            STRUCT_OFFSET(&vecDir, 0, qword) = STRUCT_OFFSET(&g_normalX, 0, qword);
+        }
+        else
+        {
+            asm("lqc2 $vf3,%1\n\tvdiv Q,$vf0w,$vf1x\n\tvwaitq\n\tvmulq.xyzw $vf1,$vf3,Q\n\tsqc2 $vf1,%0" : "=m"(vecDir) : "m"(vecDelta));
+        }
+        smp.svFast = 3000.0f;
+        smp.svSlow = 0.0f;
+        smp.dtFast = 0.2f;
+        float speed;
+        asm("lqc2 $vf1,%1\n\tvmul.xyz $vf1,$vf1,$vf1\n\tvaddw.x $vf2,$vf0,$vf0w\n\tvadday.x ACC,$vf1,$vf1y\n\tvmaddz.x $vf1,$vf2,$vf1z\n\t.word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q\n\tqmfc2.ni $2,$vf1\n\tmtc1 $2,%0" : "=f"(speed) : "m"(STRUCT_OFFSET(STRUCT_OFFSET(prop, 0x55c, ALO *), 0x150, VECTOR)) : "$2");
+        float gs = GSmooth(speed, len, g_clock.dt, &smp, 0);
+        asm("mfc1 $2,%2\n\tqmtc2.ni $2,$vf2\n\tlqc2 $vf1,%3\n\tvmulx.xyzw $vf1,$vf1,$vf2x\n\tsqc2 $vf1,%0\n\tsqc2 $vf2,%1" : "=m"(vecDelta), "=m"(vecDelta2) : "f"(gs), "m"(vecDir) : "$2");
+        ((void (*)(ALO *, VECTOR *))STRUCT_OFFSET(STRUCT_OFFSET(prop, 0x55c, ALO *)->pvtalo, 0x90, void *))(STRUCT_OFFSET(prop, 0x55c, ALO *), &vecDelta);
+        MATRIX3 mat;
+        LoadLookAtMatrix(&vecDir, &mat);
+        ((void (*)(ALO *, MATRIX3 *))STRUCT_OFFSET(STRUCT_OFFSET(prop, 0x55c, ALO *)->pvtalo, 0x88, void *))(STRUCT_OFFSET(prop, 0x55c, ALO *), &mat);
+    }
+}
+#endif // SKIP_ASM
 
 void SetRopRops(ROP *prop, ROPS rops)
 {
