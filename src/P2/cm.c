@@ -12,6 +12,7 @@
 #include <vifs.h>
 #include <memory.h>
 #include <math.h>
+#include <jt.h>
 #include <bsp.h>
 #include <clip.h>
 #include <joy.h>
@@ -96,9 +97,77 @@ void CalcCmAdjust(CM *pcm, SO *psoFocus, CPDEFI *pcpdefi, VECTOR *pdpos)
     SetVectorCylind(pdpos, pcpdefi->radHome + 3.14159265359f, pcpdefi->sAdjust, 0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", SpringCm__FfffP2CMP6VECTORP6VECTORP6VECTOR);
+/**
+ * Spring step: pos += (target - pos) * k + vel * damp, scaled by dt (roughly). Written with VU0 inline asm
+ * (fake data dependencies keep the scheduling). The VU spill stores are artifacts of the original code.
+ * Parameter names are guesses.
+ */
+void SpringCm(float k, float damp, float dt, CM *pcm, VECTOR *ppos, VECTOR *pvel, VECTOR *ptarget)
+{
+    if (pcm->fCut)
+    {
+        STRUCT_OFFSET(ppos, 0, qword) = STRUCT_OFFSET(ptarget, 0, qword);
+        int d;
+        asm("vsub.xyzw $vf1,$vf0,$vf0" : "=r"(d));
+        asm("sqc2 $vf1,%0" : "=m"(*pvel) : "r"(d));
+        return;
+    }
+    VECTOR s0, s1, s2;
+    int a1, a2, a3, a4, a5, b5, a6, b6, c6, d6, e6, a7, b7, c7;
+    asm("mfc1 $2,%1\n\tqmtc2.ni $2,$vf5" : "=r"(a1) : "f"(k) : "$2");
+    asm("lqc2 $vf1,%1" : "=r"(a2) : "m"(*ppos), "r"(a1));
+    asm("mfc1 $2,%1\n\tlqc2 $vf4,%2\n\tqmtc2.ni $2,$vf6" : "=r"(a3) : "f"(damp), "m"(*ptarget), "r"(a2) : "$2");
+    asm("lqc2 $vf2,%1\n\tvsub.xyzw $vf4,$vf4,$vf1" : "=r"(a4) : "m"(*pvel), "r"(a3));
+    asm("mfc1 $2,%1\n\tvmulax.xyzw ACC,$vf4,$vf5x\n\tvmaddx.xyzw $vf7,$vf2,$vf6x\n\tqmtc2.ni $2,$vf3" : "=r"(a5) : "f"(dt), "r"(a4) : "$2");
+    asm("sqc2 $vf5,%1" : "=r"(b5), "=m"(s2) : "r"(a5));
+    asm("vadda.xyzw ACC,$vf2,$vf0\n\tvmaddx.xyzw $vf2,$vf7,$vf3x" : "=r"(a6) : "r"(b5));
+    asm("sqc2 $vf6,%1" : "=r"(b6), "=m"(s2) : "r"(a6));
+    asm("sqc2 $vf2,%1" : "=r"(c6), "=m"(*pvel) : "r"(b6));
+    asm("sqc2 $vf3,%1" : "=r"(d6), "=m"(s2) : "r"(c6));
+    asm("sqc2 $vf4,%1" : "=r"(e6), "=m"(s0) : "r"(d6));
+    asm("lqc2 $vf1,%1\n\tvadda.xyzw ACC,$vf1,$vf0\n\tvmaddx.xyzw $vf1,$vf2,$vf3x" : "=r"(a7) : "m"(*ppos), "r"(e6));
+    asm("sqc2 $vf7,%1" : "=r"(b7), "=m"(s1) : "r"(a7));
+    asm("sqc2 $vf1,%1" : "=r"(c7), "=m"(*ppos) : "r"(b7));
+}
 
+/**
+ * @todo Structure matches but 76 differing lines: the original fills branch delay slots with the VU load (lqc2 vf2) and keeps the constants in other float registers. Switch cases and constants are from the asm; names are guesses.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", AdjustCmCpdefi__FP2CMP2SOfP6CPDEFI);
+#ifdef SKIP_ASM
+void AdjustCmCpdefi(CM *pcm, SO *psoFocus, float dt, CPDEFI *pcpdefi)
+{
+    VECTOR v;
+    CalcCmAdjust(pcm, psoFocus, pcpdefi, &v);
+    if (psoFocus == g_pjt)
+    {
+        switch (STRUCT_OFFSET(psoFocus, 0x268C, int))
+        {
+        case 0:
+            SpringCm(5.0f, -3.5f, dt, pcm, &pcm->dposAdjust, &pcm->vAdjust, &v);
+            SpringCm(5.0f, -3.5f, dt, pcm, &pcm->dposFocus, &pcm->vFocus, &D_00248D30);
+            break;
+        case 1:
+            SpringCm(1.0f, -10.0f, dt, pcm, &pcm->dposAdjust, &pcm->vAdjust, &v);
+            SpringCm(0.0f, -10.0f, dt, pcm, &pcm->dposFocus, &pcm->vFocus, &pcm->dposFocus);
+            break;
+        case 2:
+            SpringCm(5.0f, -3.5f, dt, pcm, &pcm->dposAdjust, &pcm->vAdjust, &v);
+            break;
+        }
+    }
+    else
+    {
+        SpringCm(5.0f, -3.5f, dt, pcm, &pcm->dposAdjust, &pcm->vAdjust, &v);
+        SpringCm(5.0f, -3.5f, dt, pcm, &pcm->dposFocus, &pcm->vFocus, &D_00248D30);
+    }
+    int d1, d2, d3;
+    asm("lqc2 $vf2,%1" : "=r"(d1) : "m"(pcm->dposAdjust));
+    asm("lqc2 $vf1,%1" : "=r"(d2) : "m"(pcpdefi->posBase), "r"(d1));
+    asm("vadd.xyzw $vf1,$vf1,$vf2" : "=r"(d3) : "r"(d2));
+    asm("sqc2 $vf1,%0" : "=m"(pcpdefi->posAdjust) : "r"(d3));
+}
+#endif
 
 void ResetCmAdjust(CM *pcm, SO *psoFocus, CPDEFI *pcpdefi)
 {
@@ -411,7 +480,30 @@ INCLUDE_ASM("asm/nonmatchings/P2/cm", SetupCmRotateToCam__FP2CM);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCmScreenToWorld);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCmWorldToScreen);
+/**
+ * VU0 matrix transform written with inline asm (fake data dependencies keep the scheduling).
+ * Parameter names are guesses.
+ */
+extern "C" void ConvertCmWorldToScreen(CM *pcm, VECTOR *pworld, VECTOR *pscreen)
+{
+    VECTOR vt;
+    int d, e;
+    MATRIX3 *pmat = &pcm->mat;
+    asm("lqc2 $vf1,%1" : "=r"(e) : "m"(pcm->pos));
+    asm("lqc2 $vf3,%2" : "=r"(d) : "m"(pcm->pos), "m"(*pworld), "r"(e));
+    asm("vsub.xyzw $vf3,$vf3,$vf1\n\tlqc2 $vf4,0x20(%5)\n\tlqc2 $vf2,0x10(%5)\n\tlqc2 $vf1,%3\n\tvmul.xyzw $vf8,$vf1,$vf3\n\tvmaxw.xyzw $vf9,$vf0,$vf0w\n\tvmul.xyzw $vf7,$vf2,$vf3\n\tvmul.xyzw $vf6,$vf4,$vf3\n\tvadday.x ACC,$vf8,$vf8y\n\tvmaddz.x $vf5,$vf9,$vf8z\n\tvaddax.y ACC,$vf7,$vf7x\n\tvmaddz.y $vf5,$vf9,$vf7z\n\tvaddax.z ACC,$vf6,$vf6x\n\tvmaddy.z $vf5,$vf9,$vf6y" : "=r"(e) : "m"(pcm->pos), "m"(*pworld), "m"(pmat->avec[0]), "m"(pmat->avec[1]), "r"(pmat), "r"(d));
+    asm("sqc2 $vf5,%0" : "=m"(vt) : "r"(e));
+    pscreen->z = vt.x;
+    pscreen->y = vt.z;
+    pscreen->x = -vt.y;
+    pscreen->x = pscreen->x / pcm->xScreenRange;
+    pscreen->y = pscreen->y / pcm->yScreenRange;
+    if (0.0001f < vt.x)
+    {
+        pscreen->x = pscreen->x / vt.x;
+        pscreen->y = pscreen->y / vt.x;
+    }
+}
 
 void SetupCm(CM *pcm)
 {

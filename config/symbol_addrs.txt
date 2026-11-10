@@ -1421,7 +1421,7 @@ cWrapAround = 0x27c000; // size:0x8
 ////////////////////////////////////////////////////////////////
 StartupCm__Fv = 0x143140; // type:func
 CalcCmAdjust__FP2CMP2SOP6CPDEFIP6VECTOR = 0x143148; // type:func
-SpringCm__FfffP2CMP6VECTORP6VECTORP6VECTOR = 0x143180; // type:func
+SpringCm__FfffP2CMP6VECTORN24 = 0x143180; // type:func
 AdjustCmCpdefi__FP2CMP2SOfP6CPDEFI = 0x143208; // type:func
 ResetCmAdjust__FP2CMP2SOP6CPDEFI = 0x1433E0; // type:func
 GetCmCpdefi__FP2CMP2SOfP6CPDEFI = 0x143418; // type:func
