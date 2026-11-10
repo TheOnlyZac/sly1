@@ -8,6 +8,7 @@
 
 #include "common.h"
 #include <util.h>
+#include <cat.h>
 
 // Forward.
 struct ALO;
@@ -274,6 +275,37 @@ int FAmbientsPaused();
  * @brief Stops the current VAG.
  */
 void StopVag();
+
+/**
+ * @brief Music id. (Guess: callers pass a pointer to a catalog entry, so this is not a real enum.)
+ */
+enum MUSID
+{
+    MUSID_Nil = 0
+};
+
+/**
+ * @brief Looks up the file location of a VAG entry and starts streaming it, pausing the other volumes.
+ * @param pch Catalog entry of the VAG (type is a guess).
+ * @param fk File key kind (unused by the code).
+ */
+void PreloadVag(char *pch, FK fk);
+
+/**
+ * @brief Like PreloadVag, but marks the stream as pending until it is buffered. (Name and signature are guesses.)
+ * @param pent Catalog entry of the VAG.
+ */
+extern "C" void PreloadVag1(void *pent);
+
+/**
+ * @brief Starts loading the bank of a music song, replacing the current one. A null id kills the music.
+ */
+void PreloadMusidSong(MUSID musid);
+
+/**
+ * @brief Loads a music song, waits for it and starts playing it.
+ */
+void StartMusidSong(MUSID musid);
 
 /**
  * @brief Allocates a zeroed excitement (EXC) from the world's EXC heap and links it into the EXC list.

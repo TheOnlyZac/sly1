@@ -10,8 +10,10 @@
 #include <memory.h>
 #include <game.h>
 #include <cat.h>
+#include <sdk/ee/eekernel.h>
+#include <sdk/libcdvd.h>
 
-extern uchar D_00604790[]; // temp
+extern void *D_00604790[]; // loaded sound bank table (guess)
 extern int D_006053E0[];
 
 /**
@@ -34,6 +36,7 @@ extern uint D_00274728; // music sfx handle (guess)
 extern uint D_0027472C; // vag handle (guess)
 extern int D_00274730;
 extern int D_00274744;
+extern int D_00274740; // current bank index (guess)
 extern int D_00274748;
 extern int D_0027474C; // AMB serial counter (guess)
 extern float D_00274750;
@@ -49,7 +52,7 @@ extern AMB *D_002748E8;
 extern LM D_00274820;
 extern LM D_00274828;
 extern int D_00274808[];
-extern void *D_006047B0[];
+extern int D_006047B0[]; // bank looper scan done flags (guess)
 extern int D_006047D0[];
 
 
@@ -64,6 +67,34 @@ static inline void *PvNextDli(DLI *pdli)
     void *pv = *pdli->m_ppv;
     pdli->m_ppv = (void **)((char *)pv + pdli->m_ibDle);
     return pv;
+}
+
+/**
+ * @brief Decode the file location (sector and size) of a catalog entry into a CFileLocation.
+ * @return Nonzero if the entry exists and has a size. (Name is a guess.)
+ */
+static inline int FFillFcl(CFileLocation *pfl, void *pent)
+{
+    if (!pent)
+        return 0;
+    uint cb = STRUCT_OFFSET(pent, 4, uint) ^ STRUCT_OFFSET(pent, 0x1C, uint);
+    uint isector = STRUCT_OFFSET(pent, 0, uint) ^ STRUCT_OFFSET(pent, 0x14, uint);
+    pfl->m_fcl.cb = cb;
+    pfl->m_fcl.isector = isector;
+    return cb != 0;
+}
+
+/**
+ * @brief Compare two catalog entries by their decoded key. (Name is a guess.)
+ */
+static inline int FEqualKey(void *entry, void *key)
+{
+    if (entry == key)
+        return 1;
+    if (entry == 0 || key == 0)
+        return 0;
+    return (((STRUCT_OFFSET(entry, 0x8, int) ^ STRUCT_OFFSET(entry, 0x18, int)) ^
+             (STRUCT_OFFSET(key, 0x8, int) ^ STRUCT_OFFSET(key, 0x18, int)))) == 0;
 }
 
 void UnloadMusic()
@@ -81,6 +112,9 @@ void UnloadMusic()
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SbpEnsureBank__Fi);
+#ifdef SKIP_ASM
+// WIP
+#endif // SKIP_ASM
 
 void *SbpEnsureBank(SFXID sfxid)
 {
@@ -117,7 +151,28 @@ int SetVagUnpaused()
     return D_00274744;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadVag__FPc2FK);
+void PreloadVag(char *pch, FK fk)
+{
+    if (D_00274744)
+        return;
+    if (!pch)
+        return;
+    if (FVagPlaying())
+        StopVag();
+    CFileLocation fl;
+    if (!FFillFcl(&fl, pch))
+        return;
+    u_int h = snd_PlayVAGStreamByLoc(fl.m_fcl.isector, 0, 0, 0, 0x400, 0, 2, 0, 0);
+    if (h)
+    {
+        D_0027472C = h;
+        D_00274744 = 1;
+        D_00274730 = 0;
+        SetMvgkRvol(8, MVGK_Music, 0.5f);
+        SetMvgkRvol(8, MVGK_Effects, 0.5f);
+        SetMvgkRvol(8, (MVGK)3, 0.5f);
+    }
+}
 
 void FUN_001be708()
 {
@@ -125,7 +180,24 @@ void FUN_001be708()
     StopVag();
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadVag1);
+extern "C" void PreloadVag1(void *pent)
+{
+    if (D_00274744)
+        return;
+    if (FVagPlaying())
+        StopVag();
+    CFileLocation fl;
+    if (FFillFcl(&fl, pent))
+    {
+        u_int h = snd_PlayVAGStreamByLoc(fl.m_fcl.isector, 0, 0, 0, 0x400, 0, 2, 0, 1);
+        if (h)
+        {
+            D_0027472C = h;
+            D_00274730 = 1;
+            snd_IsVAGStreamBuffered_CB(h, (SndCompleteProc)FUN_001BE5D8, (u_long)h);
+        }
+    }
+}
 
 int FPauseForVag()
 {
@@ -178,6 +250,9 @@ int FVagPlaying()
 JUNK_WORD(0x0080102D);
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StopVag__Fv);
+#ifdef SKIP_ASM
+// WIP
+#endif // SKIP_ASM
 
 void PauseVag()
 {
@@ -216,9 +291,45 @@ void PreloadMusidSongComplete(uint handle, unsigned long userData)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", PreloadMusidSong__F5MUSID);
+void PreloadMusidSong(MUSID musid)
+{
+    if (!musid)
+    {
+        KillMusic();
+        return;
+    }
+    int fSame = FEqualKey((void *)musid, (void *)D_00274724);
+    if (fSame && D_00274720)
+        return;
+    while (snd_FlushSoundCommands() && D_00274720 == 1)
+        FlushCache(0);
+    UnloadMusic();
+    D_00274724 = (int)musid;
+    CFileLocation fl;
+    if (FFillFcl(&fl, (void *)musid))
+    {
+        D_00274720 = 1;
+        snd_StreamSafeCdSync(0);
+        snd_BankLoadByLoc_CB(fl.m_fcl.isector, 0, (SndCompleteProc)PreloadMusidSongComplete, 0);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", StartMusidSong__F5MUSID);
+void StartMusidSong(MUSID musid)
+{
+    PreloadMusidSong(musid);
+    if (musid)
+    {
+        while (snd_FlushSoundCommands() && D_00274720 == 1)
+            FlushCache(0);
+        if (D_00274720 == 2)
+        {
+            u_int h = snd_PlaySoundVolPanPMPB((SoundBankPtr)D_0027473C, 0, 0x400, -1, 0, 0);
+            D_00274728 = h;
+            if (h)
+                D_00274720 = 3;
+        }
+    }
+}
 
 void PauseMusic()
 {
@@ -388,8 +499,14 @@ int FAmbientsPaused()
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", CalculateVolPan__FfP6VECTORPfT2fff);
+#ifdef SKIP_ASM
+// WIP
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BF2E0);
+#ifdef SKIP_ASM
+// WIP
+#endif // SKIP_ASM
 
 extern "C" float FUN_001BF398(VECTOR *pposA, VECTOR *pposB)
 {
@@ -411,6 +528,9 @@ VECTOR *PposEar()
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SetDoppler__FP3AMB);
+#ifdef SKIP_ASM
+// WIP
+#endif // SKIP_ASM
 
 PFNEARDIST PfneardistGet()
 {
@@ -585,8 +705,14 @@ void ActivatePamb(AMB *pamb, SFXID sfxid)
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", ScheduleNextIntermittentSound__FP3AMB);
+#ifdef SKIP_ASM
+// WIP
+#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StartSound__F5SFXIDPP3AMBP3ALOP6VECTORfffffP2LMT9);
+#ifdef SKIP_ASM
+// WIP
+#endif // SKIP_ASM
 
 void AmbCompleteProc(int result, unsigned long userData)
 {
@@ -609,6 +735,9 @@ void HandleWipeVolumes(int fMusic, float vol)
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", UpdateSounds__Fv);
+#ifdef SKIP_ASM
+// WIP
+#endif // SKIP_ASM
 
 void SetMvgkUvol(float uvol)
 {
@@ -796,6 +925,9 @@ void FUN_001c0cb0()
 }
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", HsNextFootFall__Fv);
+#ifdef SKIP_ASM
+// WIP
+#endif // SKIP_ASM
 
 void NextSneakyFootstep()
 {
