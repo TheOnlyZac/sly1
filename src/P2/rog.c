@@ -15,6 +15,12 @@
 #include <gcc/math.h>
 #include <basic.h>
 #include <game.h>
+#include <screen.h>
+#include <ui.h>
+#include <find.h>
+#include <difficulty.h>
+#include <prompt.h>
+#include <sw.h>
 
 extern SNIP s_asnipLoadRov[2];
 extern SNIP s_asnipPostRov[6];
@@ -25,6 +31,13 @@ extern SNIP s_asnipLoadRost[1];
 extern SMP s_smpRovAccel; // guess
 extern SMP s_smpRocAccel; // guess
 extern VECTOR g_normalZ;
+extern BLOT g_binoc;
+extern BLOT g_unkblot0;
+extern BLOT g_unkblot12;
+// the symbol for this function is still unmangled in symbol_addrs.txt (difficulty.c has it as INCLUDE_ASM)
+void OnDifficultyPlayerDeathUnmangled(float scalar, DIFFICULTY *pdifficulty) asm("OnDifficultyPlayerDeath");
+extern PROMPT D_0026FF68; // guess, a global prompt
+
 void PropagateSoForce(SO *pso, GRFSG grfsg, XP *pxp, int ixpd, DZ *pdz, FX *afx); // @todo move to so.h
 // rodata of this file (order matters: smp, then rodd)
 extern const SMP s_smpRovPan = {30.0f, 0.0f, 0.2f}; // guess
@@ -615,7 +628,103 @@ ROBS RobsNextRob(ROB *prob)
     return robs;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", SetRobRobs__FP3ROB4ROBS);
+struct PK // unaligned pointer store helper
+{
+    LO *plo;
+} __attribute__((packed));
+void SetRobRobs(ROB *prob, ROBS robs)
+{
+    if (STRUCT_OFFSET(prob, 0x650, ROBS) != robs)
+    {
+        STRUCT_OFFSET(prob, 0x650, ROBS) = robs;
+        STRUCT_OFFSET(prob, 0x654, float) = g_clock.t;
+        STRUCT_OFFSET(prob, 0x658, LO *) = 0;
+        switch (robs)
+        {
+        case ROBS_Descend:
+            break;
+        case ROBS_Instruct:
+        {
+            int n = STRUCT_OFFSET(prob, 0x64c, int);
+            int pad; // unused local, reproduces the 16 byte stack frame
+            asm("" : : "m"(pad));
+            if (n < 3)
+            {
+                if (n >= 0)
+                {
+                    if (g_plsCur->afDialogPlayed[0])
+                    {
+                        STRUCT_OFFSET(prob, 0x658, LO *) = 0;
+                    }
+                    else
+                    {
+                        STRUCT_OFFSET(prob, 0x658, LO *) =
+                            PloFindSwObject(STRUCT_OFFSET(prob, 0x14, SW *), 0x105, (OID)0x33b, 0);
+                    }
+                }
+            }
+            if (STRUCT_OFFSET(prob, 0x658, LO *))
+            {
+                BLOT *pbinoc = &g_binoc;
+                STRUCT_OFFSET(pbinoc, 0x324, PK).plo = STRUCT_OFFSET(prob, 0x658, LO *);
+                PushUiActiveBlot(&g_ui, pbinoc);
+            }
+            break;
+        }
+        case ROBS_Normal:
+        {
+            BLOT *pblot = &g_unkblot0;
+            STRUCT_OFFSET(pblot, 0x264, int *) = &STRUCT_OFFSET(prob, 0x3c4, int);
+            STRUCT_OFFSET(pblot, 0x268, int *) = &STRUCT_OFFSET(prob, 0x3b8, int);
+            FUN_001ddc38(STRUCT_OFFSET(prob, 0x14, SW *), prob);
+            break;
+        }
+        case ROBS_Ascend:
+        {
+            LO *plo = PloFindSwObject(STRUCT_OFFSET(prob, 0x14, SW *), 0x105, (OID)0x33d, 0);
+            if ((STRUCT_OFFSET(prob, 0x658, LO *) = plo))
+            {
+                BLOT *pbinoc = &g_binoc;
+                STRUCT_OFFSET(pbinoc, 0x324, LO *) = plo;
+                PushUiActiveBlot(&g_ui, pbinoc);
+            }
+            for (ROH *proh = STRUCT_OFFSET(prob, 0x384, ROH *); proh; proh = STRUCT_OFFSET(proh, 0x5b0, ROH *))
+            {
+                SetRohRohs(proh, (ROHS)8);
+            }
+            OnDifficultyCollectKey(&g_difficulty);
+            break;
+        }
+        case ROBS_Lose:
+        {
+            LO *plo = PloFindSwObject(STRUCT_OFFSET(prob, 0x14, SW *), 0x105, (OID)0x33e, 0);
+            if ((STRUCT_OFFSET(prob, 0x658, LO *) = plo))
+            {
+                BLOT *pbinoc = &g_binoc;
+                STRUCT_OFFSET(pbinoc, 0x324, LO *) = plo;
+                PushUiActiveBlot(&g_ui, pbinoc);
+            }
+            for (ROH *proh = STRUCT_OFFSET(prob, 0x384, ROH *); proh; proh = STRUCT_OFFSET(proh, 0x5b0, ROH *))
+            {
+                ROH *prohOwner = STRUCT_OFFSET(proh, 0x55c, ROH *);
+                if (!prohOwner || STRUCT_OFFSET(prohOwner, 0x18, ROH *) != proh)
+                {
+                    SetRohRohs(proh, (ROHS)7);
+                }
+            }
+            OnDifficultyPlayerDeathUnmangled(1.0f, &g_difficulty);
+            break;
+        }
+        case ROBS_Win:
+            SetPrompt(&D_0026FF68, (PRP)0, (PRK)0x1a);
+            break;
+        case ROBS_Max:
+            SetRovRovs(STRUCT_OFFSET(prob, 0x354, ROV *), ROVS_Ascend);
+            ((void (*)(BLOT *))STRUCT_OFFSET(g_unkblot12.pvtblot, 0x3c, void *))(&g_unkblot12);
+            break;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", AddRobRoc__FP3ROB);
 
