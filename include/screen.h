@@ -492,7 +492,7 @@ void PostTotalsLoad(TOTALS *ptotals);
  */
 void FUN_001ace38(BLOT *pblot, char *pchz);
 
-ulong FUN_001acee0(char *pchz, uint *param_2, ulong param_3);
+extern "C" void FUN_001acee0(char *pchz, int *pls, int grf);
 
 /**
  * @brief Renders level info for a packed level id (world in the high bits, map in the low byte); -1 draws a fallback string.
@@ -504,7 +504,7 @@ extern "C" void render_level_info_from_id(BLOT *pblot, int level_id);
 
 extern "C" void render_level_info(BLOT *pblot, uint world_id, uint map_id);
 
-void render_hideout_world_info(BLOT *pblot, int world_id);
+extern "C" void render_hideout_world_info(BLOT *pblot, int world_id);
 
 /**
  * @brief Sets the totals blot state, clearing pending reshow data when hiding.
@@ -570,7 +570,7 @@ void DrawLogo(LOGO *ploto);
 
 extern "C" void FUN_001adf28(ATTRACT *pattract);
 
-extern "C" void FUN_001adff0(BLOT *pblot);
+extern "C" void FUN_001adff0(ATTRACT *pattract);
 
 /**
  * @brief Blot state setter that clears the flag at 0x268 and calls FUN_001adff0 when hiding (guess: attract blot).
@@ -586,7 +586,7 @@ void FUN_001ae130(BLOT *pblot, BLOTS blots);
  */
 void UpdateAttract(ATTRACT *pattract);
 
-void DrawLineScreen(uint x1, uint y1, uint z1, uint x2, uint y2, uint z2, RGBA *rgba, int fDepthTest);
+void DrawLineScreen(uint x1, uint y1, uint z1, uint x2, uint y2, uint z2, RGBA rgba, int fDepthTest);
 
 /**
  * @brief Returns a character cycling through a string, advancing five times per second of real time.

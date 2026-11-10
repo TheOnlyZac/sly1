@@ -4,6 +4,9 @@
 #include <jt.h>
 #include <ui.h>
 #include <text.h>
+#include <gifs.h>
+#include <binoc.h>
+#include <frm.h>
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", StartupScreen__Fv);
 
@@ -125,7 +128,32 @@ void SetBlotFontScale(BLOT *pblot, float rFontScale)
     pblot->rFontScale = rFontScale;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawBlot__FP4BLOT);
+void DrawBlot(BLOT *pblot)
+{
+    if (pblot->achzDraw[0])
+    {
+        CTextBox tbx;
+        float dx = pblot->width;
+        float dy = pblot->height;
+        int rgba = *(int *)&pblot->rgba;
+        tbx.SetPos(pblot->x, pblot->y);
+        tbx.SetSize(dx, dy);
+        int rgbaT = rgba;
+        tbx.SetTextColor((RGBA *)&rgbaT);
+        tbx.SetHorizontalJust((JH)0);
+        tbx.SetVerticalJust((JV)0);
+        CTextEdge *pte = pblot->pte;
+        if (pte)
+        {
+            CFont *pfont = STRUCT_OFFSET(pte, 0, CFont *);
+            if (pfont)
+                pfont->EdgeRect(pte, &tbx, &g_gifs);
+        }
+        pblot->pfont->PushScaling(pblot->rFontScale, pblot->rFontScale);
+        pblot->pfont->DrawPchz(pblot->achzDraw, &tbx, 0, &g_gifs);
+        pblot->pfont->PopScaling();
+    }
+}
 
 JUNK_ADDIU(10);
 
@@ -187,7 +215,46 @@ void HideBlot(BLOT *pblot)
     }
 }
 
+/// @todo Matches, but converting it makes ee-as insert nops into DrawTitle (frag boundary quirk).
 INCLUDE_ASM("asm/nonmatchings/P2/screen", SetBlotBlots__FP4BLOT5BLOTS);
+#ifdef SKIP_ASM
+void SetBlotBlots(BLOT *pblot, BLOTS blots)
+{
+    if (pblot->blots == blots)
+        return;
+    int fReposition = 0;
+    switch (blots)
+    {
+    case BLOTS_Appearing:
+    case BLOTS_Disappearing:
+        if (blots == BLOTS_Appearing)
+            pblot->dtBlotsExtra = pblot->uOn * pblot->pvtblot->pfnDtAppearBlot(pblot);
+        else
+            pblot->dtBlotsExtra = (1.0f - pblot->uOn) * pblot->pvtblot->pfnDtDisappearBlot(pblot);
+        if (pblot->blots == BLOTS_Hidden || pblot->blots == BLOTS_Visible)
+            fReposition = 1;
+        break;
+    case BLOTS_Visible:
+        pblot->x = pblot->xOn;
+        pblot->y = pblot->yOn;
+        pblot->uOn = 1.0f;
+        pblot->dtBlotsExtra = 0.0f;
+        fReposition = 1;
+        break;
+    case BLOTS_Hidden:
+        pblot->x = pblot->dx;
+        pblot->y = pblot->dy;
+        pblot->uOn = 0.0f;
+        pblot->dtBlotsExtra = 0.0f;
+        fReposition = 1;
+        break;
+    }
+    pblot->blots = blots;
+    pblot->tBlots = *pblot->ptNow;
+    if (fReposition)
+        RepositionBlot(pblot);
+}
+#endif // SKIP_ASM
 
 int FIncludeBlotForPeg(BLOT *pblot, BLOT *pblotOther)
 {
@@ -541,7 +608,28 @@ void render_level_info_from_id(BLOT *pblot, int level_id)
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", render_level_info);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", render_hideout_world_info);
+extern char D_0024CE18[], D_0024CD68[], D_0024CE80[], D_0024CEA0[], D_0024CEC0[];
+extern char *D_00274430[];
+void render_hideout_world_info(BLOT *pblot, int iw)
+{
+    int ckey, cvault, cmts;
+    char achz[0x200];
+    tally_world_completion(iw, &ckey, &cvault, &cmts);
+    char *pws = (char *)g_pgsCur + (iw * 0x44C + 0x10);
+    strcpy(achz, D_00274430[iw]);
+    char *p = achz + strlen(achz);
+    if (ckey)
+        p += sprintf(p, D_0024CE80, STRUCT_OFFSET(pws, 0x438, int), ckey);
+    if (cvault)
+    {
+        p += sprintf(p, D_0024CEA0, ckey ? D_0024CE18 : D_0024CD68, STRUCT_OFFSET(pws, 0x43C, int), cvault);
+    }
+    if (cmts)
+    {
+        sprintf(p, D_0024CEC0, (ckey || cvault) ? D_0024CE18 : D_0024CD68, STRUCT_OFFSET(pws, 0x440, int), cmts);
+    }
+    pblot->pvtblot->pfnSetBlotAchzDraw(pblot, achz);
+}
 
 void SetTotalsBlots(TOTALS *ptotals, BLOTS blots)
 {
@@ -605,7 +693,19 @@ void FUN_001ad940(BLOT *pblot)
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", FUN_001ad970);
 
-INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawLetterbox__FP9LETTERBOX);
+void DrawLetterbox(LETTERBOX *pletterbox)
+{
+    float top = pletterbox->uOn * 66.40001f;
+    float bot = 492.80002f - top;
+    g_gifs.AddPrimPack(6, 7, 0x44441EE);
+    g_gifs.PackAD(0x47, 0x30000);
+    g_gifs.PackAD(0x42, 0x44);
+    g_gifs.PackRGBA(0x80000000);
+    g_gifs.PackXYZF(0x6C00, 0x7900, 0xFFFFFF0, 0);
+    g_gifs.PackXYZF(0x9400, (int)((top * 0.45454547f + 1936.0f) * 16.0f), 0xFFFFFF0, 0);
+    g_gifs.PackXYZF(0x6C00, (int)((bot * 0.45454547f + 1936.0f) * 16.0f), 0xFFFFFF0, 0);
+    g_gifs.PackXYZF(0x9400, 0x8700, 0xFFFFFF0, 0);
+}
 
 void FUN_001adc60(LOGO *plogo)
 {
@@ -658,7 +758,7 @@ void FUN_001ae130(BLOT *pblot, BLOTS blots)
     if (STRUCT_OFFSET(pblot, 0x268, int) && !blots)
     {
         STRUCT_OFFSET(pblot, 0x268, int) = 0;
-        FUN_001adff0(pblot);
+        FUN_001adff0((ATTRACT *)pblot);
         blots = BLOTS_Appearing;
     }
     SetBlotBlots(pblot, blots);
