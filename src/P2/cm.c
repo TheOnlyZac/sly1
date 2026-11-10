@@ -28,6 +28,13 @@ extern MATRIX3 g_matIdentity;
 extern float g_sNearFog;
 extern float g_sFarFog;
 extern float g_uFogMax;
+extern float D_0026194C;
+extern float R_SetCmSpring;
+extern float R_SetCmDamping;
+extern VECTOR D_00248D30;
+void SpringCm(float f0, float f1, float f2, CM *pcm, VECTOR *p0, VECTOR *p1, VECTOR *p2); // signature from symbol
+extern "C" void DecomposeSphere(VECTOR *pvecDelta, VECTOR *pposCenter, float *pradPan, float *pradTilt, float *ps); // signature guessed
+extern SMP s_smpSquishEye;
 extern VECTOR g_posEyeDefault;
 extern VECTOR g_posCenterDefault;
 extern "C" void ConvertCylindToWorldVelocity(VECTOR *pposCenter, VECTOR *ppos, VECTOR *pvel, float s0, float s1, float s2); // signature guessed
@@ -417,7 +424,33 @@ void SetCmPolicy(CM *pcm, CPP cpp, CPLCY *pcplcy, SO *psoFocus, void *pv)
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", RevokeCmPolicy__FP2CMi3CPPP5CPLCYP2SOPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", FInsideCmMrd);
+/**
+ * Hack: the original passes the first vector in a VU register (VU_VECTOR), so it is a qword here,
+ * and the VU0 dot product is written with inline asm. Parameter names are guesses.
+ */
+extern "C" int FInsideCmMrd(CM *pcm, qword vDelta, float sOffset, float sScale, float *puFrac)
+{
+    float r = pcm->rMRDAdjust;
+    int t;
+    float dist2;
+    float m;
+    asm("qmtc2.ni %1,$vf3\n\tvmul.xyz $vf1,$vf3,$vf3\n\tvaddw.x $vf2,$vf0,$vf0w\n\tvadday.x ACC,$vf1,$vf1y\n\tvmaddz.x $vf1,$vf2,$vf1z" : "=r"(t) : "r"(vDelta));
+    m = sScale * r;
+    asm("qmfc2.ni $2,$vf1\n\tmtc1 $2,%0" : "=f"(dist2) : "r"(t), "f"(m) : "$2");
+    float a = m + sOffset;
+    float a2 = a * a;
+    if (a2 < dist2)
+        return 0;
+    float b = a - r * 400.0f;
+    b = b * b;
+    float u;
+    if (b < dist2)
+        u = (a2 - dist2) / (a2 - b);
+    else
+        u = 1.0f;
+    *puFrac = u;
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", DecomposeCylind);
 
@@ -458,7 +491,22 @@ int FUN_00145dd8(void *punk, SO *pso)
     return STRUCT_OFFSET(pso, 0x538, int) != 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145de8);
+/**
+ * VU0 dot product written with inline asm. The unused second parameter and the names are guesses.
+ */
+extern "C" float FUN_00145de8(CM *pcm, void *pvUnused, VECTOR *pvecA, void *pb)
+{
+    float dgNext;
+    GSmooth(STRUCT_OFFSET(pb, 0x20, float), pcm->sRadiusNearClip - D_0026194C, g_clock.dtReal, &s_smpSquishEye, &dgNext);
+    int t;
+    float dg = dgNext;
+    asm("lqc2 $vf2,%1\n\tlqc2 $vf1,%2\n\tvmul.xyz $vf2,$vf2,$vf1\n\tvaddw.x $vf3,$vf0,$vf0w\n\tvadday.x ACC,$vf2,$vf2y\n\tvmaddz.x $vf2,$vf3,$vf2z" : "=r"(t) : "m"(*pvecA), "m"(STRUCT_OFFSET(pb, 0x10, VECTOR)));
+    int d;
+    asm("qmfc2.ni %0,$vf2" : "=r"(d) : "r"(t));
+    float dot;
+    asm("mtc1 %1,%0" : "=f"(dot) : "r"(d));
+    return dot - dg;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145e68);
 
