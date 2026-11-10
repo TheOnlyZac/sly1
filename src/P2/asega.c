@@ -114,6 +114,22 @@ struct SNDEV
     float uVolAtSource;
 };
 
+/** Message sent by event 39 (name is a guess). */
+struct ASEGMSG13
+{
+    ASEGA *pasega;
+    float t;
+    int n;
+};
+
+/** Message sent by event 41 (name is a guess). */
+struct ASEGMSG15
+{
+    ASEGA *pasega;
+    LO *plo;
+    float t;
+};
+
 /** Event description for starting another aseg. */
 struct ASEGEV
 {
@@ -163,10 +179,11 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         if (!FPauseForVag())
             return;
         float t = pea->tLocal;
+        float tMax = paseg->tMax;
         if (t < 0.0f)
             t = 0.0f;
-        else if (paseg->tMax < t)
-            t = paseg->tMax;
+        else if (tMax < t)
+            t = tMax;
         pasega->tLocal = t;
         pasega->ieaCur--;
         *pfRetracted = 1;
@@ -264,7 +281,8 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
     case 9:
     case 10:
     {
-        int fIn = (pea->eak == 9) ^ fReverse;
+        int fIn = (pea->eak == 9);
+        fIn ^= fReverse;
         LO *plo = PloFindSwObject(psw, 0x104, pea->oid8, pasega->plo ? pasega->plo : paseg);
         if (plo == 0)
             return;
@@ -301,7 +319,8 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
     case 12:
     case 13:
     {
-        int fOn = (pea->eak == 12) ^ fReverse;
+        int fOn = pea->eak == 12;
+        if (fReverse) fOn = !fOn;
         LO *plo = PloFindSwObject(psw, 4, pea->oid8, pasega->paseg);
         if (plo == 0)
             return;
@@ -313,12 +332,17 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
     }
     case 14:
     case 15:
-        SetAsegaHandsOff(pasega, (pea->eak == 14) ^ fReverse);
+        {
+            int f = (pea->eak == 14);
+            f ^= fReverse;
+            SetAsegaHandsOff(pasega, f);
+        }
         break;
     case 19:
     case 20:
     {
-        int fPuppet = (pea->eak == 19) ^ fReverse;
+        int fPuppet = (pea->eak == 19);
+        fPuppet ^= fReverse;
         SetJtPuppet(g_pjt, (ASEGA *)fPuppet);
         if (!fPuppet)
             return;
@@ -402,15 +426,14 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         break;
     case 28:
     {
-        ASEGEV *pasegev = (ASEGEV *)pea->pv8;
-        LO *plo = PloFindSwNearest(psw, pasegev->oidAseg, paseg->paloParent);
+        LO *plo = PloFindSwNearest(psw, ((ASEGEV *)pea->pv8)->oidAseg, paseg->paloParent);
         ALO *paloRoot;
-        if (pasegev->oidRoot == -1)
-            paloRoot = 0;
+        if (((ASEGEV *)pea->pv8)->oidRoot != -1)
+            paloRoot = (ALO *)PloFindSwNearest(paseg->psw, ((ASEGEV *)pea->pv8)->oidRoot, paseg->paloParent);
         else
-            paloRoot = (ALO *)PloFindSwNearest(paseg->psw, pasegev->oidRoot, paseg->paloParent);
+            paloRoot = 0;
         if (plo != 0)
-            ApplyAseg((ASEG *)plo, paloRoot, pasegev->t, pasegev->svt, 0, 0);
+            ApplyAseg((ASEG *)plo, paloRoot, ((ASEGEV *)pea->pv8)->t, ((ASEGEV *)pea->pv8)->svt, 0, 0);
         break;
     }
     case 29:
@@ -425,20 +448,20 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
             ACHN *pachn = &paseg->pachn[pactseg->iachn];
             switch (pea->eak)
             {
-            case 30:
-                if (pachn->punkPos != 0)
-                {
-                    char c = STRUCT_OFFSET(pactseg, 0x12, char);
-                    STRUCT_OFFSET(pactseg, 0x12, char) = -1;
-                    fCall = c != -1;
-                }
-                break;
             case 29:
                 if (pachn->punkPos != 0)
                 {
                     uchar c = STRUCT_OFFSET(pactseg, 0x12, uchar);
                     STRUCT_OFFSET(pactseg, 0x12, uchar) = 2;
                     fCall = (uchar)(c + 1) < 2;
+                }
+                break;
+            case 30:
+                if (pachn->punkPos != 0)
+                {
+                    char c = STRUCT_OFFSET(pactseg, 0x12, char);
+                    STRUCT_OFFSET(pactseg, 0x12, char) = -1;
+                    fCall = c != -1;
                 }
                 break;
             case 31:
@@ -479,7 +502,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
             CHN *pchn = pachn->pchnPos;
             (*(VTCHN **)pchn)->pfnEval(pchn, palo, pea->tLocal, pasega->svtLocal, 0, &pos, &v);
             palo->pvtalo->pfnTranslateAloToPos(palo, &pos);
-            palo->pvtalo->pfnSetAloVelocityVec(palo);
+            palo->pvtalo->pfnSetAloVelocityVec(palo, &v);
         }
         else
         {
@@ -487,8 +510,8 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
             MATRIX3 mat;
             CHN *pchn = pachn->pchnRot;
             (*(VTCHN **)pchn)->pfnEval(pchn, palo, pea->tLocal, pasega->svtLocal, 0, &mat, &w);
-            palo->pvtalo->pfnRotateAloToMat(palo);
-            palo->pvtalo->pfnSetAloAngularVelocityVec(palo);
+            palo->pvtalo->pfnRotateAloToMat(palo, &mat);
+            palo->pvtalo->pfnSetAloAngularVelocityVec(palo, &w);
         }
         break;
     }
@@ -512,11 +535,11 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
     }
     case 39:
     {
-        void *apv[3];
-        apv[2] = pea->pv8;
-        apv[1] = (void *)*(int *)&pea->tLocal;
-        apv[0] = pasega;
-        SendAsegaMessage(pasega, (MSGID)0x13, apv);
+        ASEGMSG13 msg;
+        msg.n = pea->n8;
+        msg.t = pea->tLocal;
+        msg.pasega = pasega;
+        SendAsegaMessage(pasega, (MSGID)0x13, &msg);
         break;
     }
     case 40:
@@ -534,11 +557,11 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         LO *plo = PloFindSwObject(psw, 0x104, pea->oid8, pasega->plo);
         if (plo == 0)
             break;
-        void *apv[3];
-        apv[1] = plo;
-        apv[2] = (void *)*(int *)&pea->tLocal;
-        apv[0] = pasega;
-        SendAsegaMessage(pasega, (MSGID)0x15, apv);
+        ASEGMSG15 msg;
+        msg.plo = plo;
+        msg.t = pea->tLocal;
+        msg.pasega = pasega;
+        SendAsegaMessage(pasega, (MSGID)0x15, &msg);
         break;
     }
     case 45:
@@ -636,7 +659,7 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
             msg.grf |= 0x18;
             msg.g30 = pprojev->g;
         }
-        ((void (*)(ALO *, void *))((ALO *)plo)->pvtalo->pfnProjectAloTransform)((ALO *)plo, &msg);
+        ((ALO *)plo)->pvtalo->pfnProjectAloTransform((ALO *)plo, &msg);
         break;
     }
     case 49:
