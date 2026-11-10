@@ -283,11 +283,41 @@ void CFontBrx::SwitchTex0(GIFS *pgifs)
     pgifs->AddPrimList(5, 0x43431);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", DxDrawCh__8CFontBrxcffUiP4GIFS);
+float CFontBrx::DxDrawCh(char ch, float xChar, float yChar, uint rgba, GIFS *pgifs)
+{
+    GLYFF *pglyff = PglyffFromCh(ch);
+    if (pglyff)
+    {
+        int dTexH = 1 << (int)((*(ulong *)&m_tex0 >> 30) & 0xF);
+        float dxGlyph = (float)pglyff->dx * m_rxScale;
+        float dyGlyph = (float)m_dyUnscaled * m_ryScale;
+        float xRight = xChar + dxGlyph;
+        float yBottom = yChar + dyGlyph;
+        if (xRight >= 0.0f && xChar <= 640.0f && yBottom >= 0.0f && yChar <= 492.80002f)
+        {
+            rgba = (rgba & 0xFFFFFF) | ((((rgba >> 24) + 1) & 0x1FE) << 23);
+            pgifs->ListRGBAQ(rgba, 0.0f);
+            pgifs->ListUV(pglyff->x << 4, (dTexH - pglyff->y) << 4);
+            pgifs->ListXYZF((int)((xChar + 1728.0f) * 16.0f), (int)((yChar * 0.45454547f + 1936.0f) * 16.0f), m_z, 0);
+            pgifs->ListUV((pglyff->x + pglyff->dx) << 4, (dTexH - (pglyff->y + m_dyUnscaled)) << 4);
+            pgifs->ListXYZF((int)((xRight + 1728.0f) * 16.0f), (int)((yBottom * 0.45454547f + 1936.0f) * 16.0f), m_z, 0);
+        }
+        return (float)(pglyff->dx + 1) * m_rxScale;
+    }
+    return (float)m_dxSpaceUnscaled * m_rxScale;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015cf70);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", DrawPart__8CFontBrxffffffffUiP4GIFS);
+void CFontBrx::DrawPart(float xLeft, float yTop, float xRight, float yBottom, float sLeft, float tTop, float sRight, float tBottom, uint rgba, GIFS *pgifs)
+{
+    rgba = (rgba & 0xFFFFFF) | ((((rgba >> 24) + 1) & 0x1FE) << 23);
+    pgifs->ListRGBAQ(rgba, 0.0f);
+    pgifs->ListUV((int)(sLeft * 16.0f), (int)(tTop * 16.0f));
+    pgifs->ListXYZF((int)((xLeft + 1728.0f) * 16.0f), (int)((yTop * 0.45454547f + 1936.0f) * 16.0f), m_z, 0);
+    pgifs->ListUV((int)(sRight * 16.0f), (int)(tBottom * 16.0f));
+    pgifs->ListXYZF((int)((xRight + 1728.0f) * 16.0f), (int)((yBottom * 0.45454547f + 1936.0f) * 16.0f), m_z, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", EdgeRect__8CFontBrxP9CTextEdgeP8CTextBoxP4GIFS);
 
