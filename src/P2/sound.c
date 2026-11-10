@@ -41,6 +41,7 @@ extern int D_00274748;
 extern int D_0027474C; // AMB serial counter (guess)
 extern float D_00274750;
 extern int D_00274754;
+extern int D_00274830; // footfall state (guess)
 extern int D_00245020[][2]; // sfxid -> bank table (guess)
 extern int D_00274720;
 extern int D_00274724;
@@ -1138,10 +1139,15 @@ void FUN_001c0cb0()
         SetAMRegister(i, 0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", HsNextFootFall__Fv);
-#ifdef SKIP_ASM
-// WIP
-#endif // SKIP_ASM
+int HsNextFootFall()
+{
+    int aiStep[42] = {-5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, 1, -5, -5, -5, -5, 1, 1, -5, -5, -5, 1, 1, 1, -5, -5, 1, 1, 1, 1, -5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    int aiRow[25] = {6, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 3, 2, 1, 0};
+    int n = NRandInRange(0, 5);
+    int r = aiRow[D_00274830 + 12] * 24;
+    D_00274830 += *(int *)((char *)aiStep + (n * 4 + r));
+    return D_00274830;
+}
 
 void NextSneakyFootstep()
 {
@@ -1151,3 +1157,7 @@ void NextSneakyFootstep()
         StartSound((SFXID)0x77, 0, 0, 0, 0.0f, 0.0f, 0.5f, (float)hs * 0.083333336f, 0.0f, 0, 0);
     }
 }
+
+// FLT_MAX. Probably owned by spire (its rodata starts at 0x14e3b4, used by InitSpire); defined here only so the
+// raw rodata blob after sound's rodata starts 8 byte aligned like in the original.
+extern const float DAT_0024d3b4 = 3.4028235e38f;

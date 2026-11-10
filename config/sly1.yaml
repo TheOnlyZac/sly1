@@ -356,7 +356,8 @@ segments:
     - [0x14e220, .rodata, P2/shdanim]
     - [0x14e268, rodata]
     #- [0x14e280, .rodata, P2/so]
-    #- [0x14e2a8, .rodata, P2/sound]
+    - [0x14e2a8, .rodata, P2/sound]
+    - [0x14e3b8, rodata]
     #- [0x14e3b4, .rodata, P2/spire]
     #- [0x14e3c0, .rodata, P2/spliceobj]
     #- [0x14e560, .rodata, P2/squish] # TODO: Might be something else.
