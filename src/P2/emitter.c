@@ -21,26 +21,22 @@ extern float DAT_0024a124;
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", InitEmitb__FP5EMITB);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", InitEmitter__FP7EMITTER);
-
-#ifdef SKIP_ASM
 void InitEmitter(EMITTER *pemitter)
 {
     InitAlo(pemitter);
-    STRUCT_OFFSET(pemitter, 0x2dc, float) = 10.0f;
-    STRUCT_OFFSET(pemitter, 0x340, float) = -1.0f;
-    STRUCT_OFFSET(pemitter, 0x310, int) = -1;
     STRUCT_OFFSET(pemitter, 0x2d8, int) = -1;
     STRUCT_OFFSET(pemitter, 0x2e0, float) = 10.0f;
     STRUCT_OFFSET(pemitter, 0x2f8, int) = -1;
     STRUCT_OFFSET(pemitter, 0x2fc, int) = -1;
     STRUCT_OFFSET(pemitter, 0x304, int) = -1;
+    STRUCT_OFFSET(pemitter, 0x2dc, float) = 10.0f;
     STRUCT_OFFSET(pemitter, 0x300, int) = -1;
     STRUCT_OFFSET(pemitter, 0x30c, int) = -1;
     STRUCT_OFFSET(pemitter, 0x2d4, int) = -1;
+    STRUCT_OFFSET(pemitter, 0x340, float) = -1.0f;
+    STRUCT_OFFSET(pemitter, 0x310, int) = -1;
     InitDl((DL *)&STRUCT_OFFSET(pemitter, 0x314, int), 0x320);
 }
-#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadEmitmeshFromBrx__FP8EMITMESHP18CBinaryInputStream);
 
