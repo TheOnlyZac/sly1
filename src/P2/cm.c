@@ -412,7 +412,73 @@ int FFilterCamera(void *pv, SO *pso)
     return f;
 }
 
+/**
+ * @todo Structure matches, 80 differing lines of about 150 (loop invariant hoisting of the constant mask and the apaloFade base differs, plus callee saved register numbering). Marks the fade objects near the camera path; flag 0x2000000000 and offsets guessed from the asm, names guessed. VU0 inline asm.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", UpdateCmFade);
+#ifdef SKIP_ASM
+extern "C" void UpdateCmFade(CM *pcm)
+{
+    VECTOR vMin;
+    VECTOR vMax;
+    LSG alsg[32];
+    int cpso;
+    SO **apso;
+    InitStackImpl();
+    STRUCT_OFFSET(&vMin, 0, qword) = STRUCT_OFFSET(&pcm->pos, 0, qword);
+    STRUCT_OFFSET(&vMax, 0, qword) = STRUCT_OFFSET(&pcm->pos, 0, qword);
+    int n = pcm->cpaloFade;
+    for (int i = 0; i < n; i++)
+    {
+        ALO *palo = pcm->apaloFade[i];
+        if (STRUCT_OFFSET(palo, 0x2c8, ulong) & 0x2000000000)
+        {
+            int a1, a2, a3, a4, a5, a6;
+            asm("lqc2 $vf1,%1" : "=r"(a1) : "m"(vMin));
+            asm("lqc2 $vf2,%1" : "=r"(a2) : "m"(STRUCT_OFFSET(palo, 0x140, VECTOR)), "r"(a1));
+            asm("vmini.xyz $vf1,$vf1,$vf2" : "=r"(a3) : "r"(a2));
+            asm("lqc2 $vf3,%1" : "=r"(a4) : "m"(vMax), "r"(a3));
+            asm("sqc2 $vf1,%0" : "=m"(vMin) : "r"(a4));
+            asm("lqc2 $vf2,%1" : "=r"(a5) : "m"(STRUCT_OFFSET(palo, 0x140, VECTOR)), "r"(a4));
+            asm("vmax.xyz $vf3,$vf3,$vf2" : "=r"(a6) : "r"(a5));
+            asm("sqc2 $vf3,%0" : "=m"(vMax) : "r"(a6));
+        }
+    }
+    IntersectSwBoundingBox(g_psw, 0, &vMin, &vMax, (PFNFILTER)FFilterCamera, 0, &cpso, &apso);
+    ulong mask = 0x2000000000;
+    for (int k = 0; k < cpso; k++)
+    {
+        SO *pso = apso[k];
+        ALO **apalo = pcm->apaloFade;
+        for (int j = 0; j < pcm->cpaloFade; j++)
+        {
+            ALO *palo = apalo[j];
+            if (STRUCT_OFFSET(palo, 0x2c8, ulong) & mask)
+            {
+                int clsg = ClsgClipEdgeToBsp(STRUCT_OFFSET(pso, 0x3f8, BSP *), &pcm->pos, &STRUCT_OFFSET(palo, 0x140, VECTOR), STRUCT_OFFSET(pso, 0x404, int *), 0x20, alsg);
+                for (LSG *plsg = alsg; plsg < alsg + clsg; plsg++)
+                {
+                    int u = plsg->unk1;
+                    if (u >= 0)
+                    {
+                        int i = u;
+                        if (i < STRUCT_OFFSET(pso, 0x3fc, int))
+                        {
+                        do
+                        {
+                            int idx = STRUCT_OFFSET(pso, 0x400, int *)[i * 2 + 1];
+                            STRUCT_OFFSET(STRUCT_OFFSET(pso, 0x240, char *) + idx * 0x28, 0x14, float) = g_clock.tReal + 0.1f;
+                            i++;
+                        } while (i < STRUCT_OFFSET(pso, 0x3fc, int) && (STRUCT_OFFSET(pso, 0x400, int *)[i * 2] < 0 || i == plsg->unk1));
+                        }
+                    }
+                }
+            }
+        }
+    }
+    FreeStackImpl();
+}
+#endif
 
 /**
  * @todo Nearly there, 28 differing lines of about 130: only registers differ (pcplcy and pcpdefi swapped). Parameter fClear is a guess.
@@ -542,7 +608,7 @@ void SetupCmRotateToCam(CM *pcm)
 #endif
 
 /**
- * @todo 17 differing lines: the original interleaves the VU loads with the float math, which inline asm cannot reproduce. Names are guesses.
+ * @todo Structure matches, 22 diff lines of 40 (the original interleaves two VU loads with the float math and keeps x in f0 while negating into f1). Separate asm statements per VU load. Names are guesses.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCmScreenToWorld);
 #ifdef SKIP_ASM
@@ -560,7 +626,14 @@ extern "C" void ConvertCmScreenToWorld(CM *pcm, VECTOR *pscreen, VECTOR *pworld)
     }
     v.y = v.y * pcm->xScreenRange;
     v.z = v.z * pcm->yScreenRange;
-    asm("lqc2 $vf5,%1\n\tlqc2 $vf4,%2\n\tlqc2 $vf3,%3\n\tlqc2 $vf2,%4\n\tlqc2 $vf1,%5\n\tvmulax.xyz ACC,$vf5,$vf1x\n\tvmadday.xyz ACC,$vf2,$vf1y\n\tvmaddz.xyz $vf1,$vf3,$vf1z\n\tvadd.xyzw $vf1,$vf1,$vf4\n\tsqc2 $vf1,%0" : "=m"(*pworld) : "m"(pcm->mat.avec[0]), "m"(pcm->pos), "m"(pcm->mat.avec[2]), "m"(pcm->mat.avec[1]), "m"(v));
+    int a1, a2, a3, a4, a5;
+    MATRIX3 *pmat = &pcm->mat;
+    asm("lqc2 $vf5,%0" : : "m"(pmat->avec[0]));
+    asm("lqc2 $vf4,%0" : : "m"(pcm->pos));
+    asm("lqc2 $vf3,%0" : : "m"(pmat->avec[2]));
+    asm("lqc2 $vf2,%0" : : "m"(pmat->avec[1]));
+    asm("lqc2 $vf1,%0" : : "m"(v));
+    asm("vmulax.xyz ACC,$vf5,$vf1x\n\tvmadday.xyz ACC,$vf2,$vf1y\n\tvmaddz.xyz $vf1,$vf3,$vf1z\n\tvadd.xyzw $vf1,$vf1,$vf4\n\tsqc2 $vf1,%0" : "=m"(*pworld));
 }
 #endif
 
@@ -676,7 +749,100 @@ extern "C" void BuildFrustrum(MATRIX3 *pmat, VECTOR *anormal, float xScale, floa
     asm("sqc2 $vf3,%0" : "=m"(anormal[3]) : "r"(ch));
 }
 
+/**
+ * @todo Structure matches, about 250 differing lines of about 195 asm lines (callee saved register numbering of pcm/mat pointers, float constant scheduling around the VU asm, and the transposition loop uses one base pointer instead of four). Applies the jolt and rebuilds the projection and frustum matrices; CombineEyeLookAtProj is called through an asm label alias until it is matched. Names guessed.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", UpdateCmMat4__FP2CM);
+#ifdef SKIP_ASM
+extern float DT_CmJoltMax;
+extern float SW_CmJolt;
+extern CLQ s_clqUToUJolt;
+extern VECTOR s_dposJolt;
+extern VECTOR s_rotJolt;
+extern VECTOR s_vecRange;
+extern VECTOR s_vecOffset;
+extern VECTOR D_00248D40;
+extern "C" void CombineEyeLookAtProjSym(VECTOR *ppos, MATRIX3 *pmat, MATRIX4 *pmatProj, MATRIX4 *pmatOut) __asm__("CombineEyeLookAtProj"); // until CombineEyeLookAtProj matches and gets its mangled name
+void UpdateCmMat4(CM *pcm)
+{
+    VECTOR pos;
+    VECTOR rot;
+    MATRIX3 matJolt;
+    VECTOR vec;
+    VECTOR spill;
+    VECTOR spill2;
+    MATRIX4 matProj;
+    MATRIX3 *pmat = &pcm->mat;
+    MATRIX4 *pmatW2C = &pcm->matWorldToClip;
+    float dt = g_clock.t - pcm->tJolt;
+    if (DT_CmJoltMax < dt)
+    {
+        CombineEyeLookAtProjSym(&pcm->pos, pmat, &pcm->matProj, pmatW2C);
+    }
+    else
+    {
+        float u = dt / DT_CmJoltMax;
+        float g = GLimitLm(&g_lmZeroOne, GEvaluateClq(&s_clqUToUJolt, u));
+        float s = sinf(dt * SW_CmJolt) * g;
+        int a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26;
+        asm("lqc2 $vf6,%1" : "=r"(a1) : "m"(pmat->avec[1]));
+        asm("lqc2 $vf3,%1" : "=r"(a2) : "m"(s_dposJolt), "r"(a1));
+        asm("lqc2 $vf4,%1" : "=r"(a3) : "m"(pmat->avec[2]), "r"(a2));
+        asm("lqc2 $vf1,%1" : "=r"(a4) : "m"(pmat->avec[0]), "r"(a3));
+        asm("vmulax.xyz ACC,$vf1,$vf3x\n\tvmadday.xyz ACC,$vf6,$vf3y\n\tvmaddz.xyz $vf3,$vf4,$vf3z" : "=r"(a5) : "r"(a4));
+        asm("qmtc2.ni %1,$vf5" : "=r"(a6) : "r"(s), "r"(a5));
+        asm("lqc2 $vf2,%1" : "=r"(a7) : "m"(s_rotJolt), "r"(a6));
+        asm("lqc2 $vf1,%1" : "=r"(a8) : "m"(pcm->pos), "r"(a7));
+        asm("vmulx.xyzw $vf2,$vf2,$vf5x\n\tvadda.xyzw ACC,$vf1,$vf0\n\tvmaddx.xyzw $vf1,$vf3,$vf5x" : "=r"(a9) : "r"(a8));
+        asm("sqc2 $vf5,%1" : "=r"(a10), "=m"(spill) : "r"(a9));
+        asm("sqc2 $vf1,%1" : "=r"(a11), "=m"(pos) : "r"(a10));
+        asm("sqc2 $vf2,%1" : "=r"(a12), "=m"(rot) : "r"(a11));
+        asm("sqc2 $vf5,%1" : "=r"(a13), "=m"(spill2) : "r"(a12));
+        LoadRotateMatrix(&rot, &matJolt);
+        asm("lqc2 $vf2,%1" : "=r"(a14) : "m"(s_vecRange));
+        asm("lqc2 $vf1,%1" : "=r"(a15) : "m"(D_00248D40), "r"(a14));
+        asm("lqc2 $vf5,%1" : "=r"(a16) : "m"(spill2), "r"(a15));
+        asm("lqc2 $vf7,%1" : "=r"(a17) : "m"(pmat->avec[1]), "r"(a16));
+        asm("vadda.xyzw ACC,$vf1,$vf0\n\tvmaddx.xyzw $vf1,$vf2,$vf5x" : "=r"(a18) : "r"(a17));
+        asm("lqc2 $vf6,%1" : "=r"(a19) : "m"(pmat->avec[2]), "r"(a18));
+        asm("sqc2 $vf1,%0" : "=m"(vec) : "r"(a19));
+        float xr = pcm->xScreenRange * 4096.0f;
+        float yr = pcm->yScreenRange * 4096.0f;
+        float vx = vec.x * 640.0f;
+        float vy = vec.y * 224.0f;
+        asm("lqc2 $vf4,%1" : "=r"(a20) : "m"(pmat->avec[0]));
+        asm("lqc2 $vf3,%1" : "=r"(a21) : "m"(matJolt.avec[0]), "r"(a20));
+        asm("lqc2 $vf1,%1" : "=r"(a22) : "m"(s_vecOffset), "r"(a21));
+        asm("vmulax.xyz ACC,$vf4,$vf3x\n\tvmadday.xyz ACC,$vf7,$vf3y\n\tvmaddz.xyz $vf3,$vf6,$vf3z" : "=r"(a23) : "r"(a22));
+        asm("sqc2 $vf3,%1" : "=r"(a24), "=m"(spill) : "r"(a23));
+        asm("vmulx.xyzw $vf1,$vf1,$vf5x" : "=r"(a25) : "r"(a24));
+        float rx = vx / xr;
+        asm("sqc2 $vf1,%1" : "=r"(a26), "=m"(spill) : "r"(a25));
+        float ry = vy / yr;
+        int b1, b2, b3, b4, b5, b6, b7, b8, b9, b10;
+        asm("lqc2 $vf2,%1" : "=r"(b1) : "m"(matJolt.avec[1]), "r"(a26));
+        asm("vmulax.xyz ACC,$vf4,$vf2x\n\tvmadday.xyz ACC,$vf7,$vf2y\n\tvmaddz.xyz $vf2,$vf6,$vf2z" : "=r"(b2) : "r"(b1));
+        asm("lqc2 $vf1,%1" : "=r"(b3) : "m"(matJolt.avec[2]), "r"(b2));
+        asm("vmulax.xyz ACC,$vf4,$vf1x\n\tvmadday.xyz ACC,$vf7,$vf1y\n\tvmaddz.xyz $vf4,$vf6,$vf1z" : "=r"(b4) : "r"(b3));
+        float dx = spill.x, dy = spill.y;
+        asm("sqc2 $vf5,%1" : "=r"(b5), "=m"(spill2) : "r"(b4));
+        asm("sqc2 $vf3,%1" : "=r"(b6), "=m"(matJolt.avec[0]) : "r"(b5));
+        asm("sqc2 $vf2,%1" : "=r"(b7), "=m"(matJolt.avec[1]) : "r"(b6));
+        asm("sqc2 $vf4,%1" : "=r"(b8), "=m"(matJolt.avec[2]) : "r"(b7));
+        BuildSimpleProjectionMatrix(rx, ry, dx, dy, pcm->sNearClip, pcm->sFarClip, &matProj);
+        CombineEyeLookAtProjSym(&pos, &matJolt, &matProj, pmatW2C);
+    }
+    FInvertMatrix4(pmatW2C, &pcm->matClipToWorld);
+    BuildFrustrum(pmat, pcm->anormalFrustrum, pcm->xScreenRange, pcm->yScreenRange);
+    for (int j = 0; j < 3; j++)
+    {
+        (&pcm->anormalFrustrumTranspose[j].x)[0] = (&pcm->anormalFrustrum[0].x)[j];
+        (&pcm->anormalFrustrumTranspose[j].x)[1] = (&pcm->anormalFrustrum[1].x)[j];
+        (&pcm->anormalFrustrumTranspose[j].x)[2] = (&pcm->anormalFrustrum[2].x)[j];
+        (&pcm->anormalFrustrumTranspose[j].x)[3] = (&pcm->anormalFrustrum[3].x)[j];
+    }
+}
+#endif
 
 void DrawCm(CM *pcm)
 {
@@ -1028,7 +1194,7 @@ void ClearCmCut(CM *pcm)
 }
 
 /**
- * @todo 26 differing lines of about 70, only instruction scheduling and a register choice differ. VU0 math as inline asm with fake dependencies, names are guesses. Mangled name would be AdaptCm__FP2CMP6VECTORff, rename the symbol when matched.
+ * @todo 24 differing lines of about 70 (measured with the symbol made extern C): only instruction scheduling of compiler epilogue loads and the early constant differs. VU0 math as inline asm with fake dependencies, names are guesses. Mangled name would be AdaptCm__FP2CMP6VECTORff, rename the symbol when matched.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", AdaptCm);
 #ifdef SKIP_ASM
@@ -1055,7 +1221,7 @@ void AdaptCm(CM *pcm, VECTOR *pposFocus, float fx, float fy)
     FindClosestPointOnLine(pposFocus, &pcm->pos, &p2, &s1, &s2);
     float t = 1.0f - s1;
     asm("lqc2 $vf1,%1" : "=r"(a7) : "m"(*pposFocus), "f"(s1));
-    asm("lqc2 $vf2,%1" : "=r"(a8) : "m"(pcm->pos), "r"(a7));
+    asm("lqc2 $vf2,%1" : "=r"(a8) : "m"(pcm->pos), "r"(a7), "f"(t));
     asm("mfc1 $2,%1\n\tqmtc2.ni $2,$vf5" : "=r"(a9) : "f"(s1), "r"(a8) : "$2");
     asm("lqc2 $vf4,%1" : "=r"(b9) : "m"(p2), "r"(a9));
     asm("mfc1 $2,%1\n\tqmtc2.ni $2,$vf3" : "=r"(c9) : "f"(t), "r"(b9) : "$2");
