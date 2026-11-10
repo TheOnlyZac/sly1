@@ -4,9 +4,26 @@
 #include <binoc.h>
 #include <frm.h>
 #include <shd.h>
+#include <bis.h>
 
 extern int g_cfontBrx;
 extern CFontBrx *g_afontBrx;
+extern BMP *g_abmp;
+extern CLUT *g_aclut;
+
+// Header read by CFontBrx::LoadFromBrx (guessed name).
+struct FONTB
+{
+    ushort ibmp;
+    ushort iclut;
+    uchar dxChar;
+    uchar dxSpace;
+    uchar dy;
+    uchar ifont;
+    float rScale;
+    ushort cglyff;
+    ushort pad;
+};
 
 void StartupFont()
 {
@@ -280,9 +297,55 @@ INCLUDE_ASM("asm/nonmatchings/P2/font", DrawPart__8CFontBrxffffffffUiP4GIFS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", EdgeRect__8CFontBrxP9CTextEdgeP8CTextBoxP4GIFS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", LoadFromBrx__8CFontBrxP18CBinaryInputStream);
+void CFontBrx::LoadFromBrx(CBinaryInputStream *pbis)
+{
+    FONTB fontb;
+    pbis->Read(16, &fontb);
+    int ifont = fontb.ifont;
+    m_ifont = ifont;
+    g_apfont[ifont] = this;
+    m_pbmp = g_abmp + fontb.ibmp;
+    m_pclut = (fontb.iclut != 0xFFFF) ? g_aclut + fontb.iclut : 0;
+    m_dxCharUnscaled = fontb.dxChar;
+    m_dxSpaceUnscaled = fontb.dxSpace;
+    m_dyUnscaled = fontb.dy;
+    m_ryScale = m_rxScale = fontb.rScale;
+    m_cglyff = fontb.cglyff;
+    m_aglyff = (GLYFF *)PvAllocSwImpl(m_cglyff * 8);
+    pbis->Read(m_cglyff * 8, m_aglyff);
+}
 
+/**
+ * @todo 87% matched (10 differing lines of 78). Register choice in the clut tex0 or.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/font", PostLoad__8CFontBrxP3GSB);
+#ifdef SKIP_ASM
+long BuildBmpTex0(BMP *pbmp, int igs);
+void BuildBmpGifs(BMP *pbmp, int igs, GIFS *pgifs);
+long BuildClutTex2(CLUT *pclut, int igs);
+void BuildClutGifs(CLUT *pclut, int igs, GIFS *pgifs);
+
+void CFontBrx::PostLoad(GSB *pgsb)
+{
+    GIFS gifs;
+    QW aqw[16];
+    int igs = IgsAllocGsb(pgsb, (ushort)m_pbmp->cgsPixels);
+    BuildBmpTex0(m_pbmp, igs);
+    *(long *)&m_tex0 = *(long *)&m_pbmp->tex0;
+    gifs.AllocStatic(16, aqw);
+    BuildBmpGifs(m_pbmp, igs, &gifs);
+    gifs.DetachCopySw(&m_cqwBmpGifs, 0, &m_aqwBmpGifs, 7);
+    if (m_pclut)
+    {
+        igs = IgsAllocGsb(pgsb, m_pclut->cgsColors);
+        BuildClutTex2(m_pclut, igs);
+        *(long *)&m_tex0 = *(long *)&m_tex0 | *(long *)&m_pclut->tex2;
+        gifs.AllocStatic(16, aqw);
+        BuildClutGifs(m_pclut, igs, &gifs);
+        gifs.DetachCopySw(&m_cqwClutGifs, 0, &m_aqwClutGifs, 7);
+    }
+}
+#endif // SKIP_ASM
 
 GLYFF *CFontBrx::PglyffFromCh(char ch)
 {
