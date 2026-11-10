@@ -85,7 +85,54 @@ float CFont::DyWrapPchz(char *pchz, float dx)
     return dy * (float)ClineWrapPchz(pchz, dx);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", ClineWrapPchz__5CFontPcf);
+int CFont::ClineWrapPchz(char *pchz, float dx)
+{
+    int cline = 1;
+    float dxCur = 0.0f;
+    char *pch = pchz;
+    while (*pch)
+    {
+        char ch = *pch;
+        if (ch == '\n')
+        {
+            dxCur = 0.0f;
+            cline++;
+        }
+        else
+        {
+            dxCur += DxFromCh(ch);
+        }
+        if (dx != 0.0f && dx < dxCur)
+        {
+            char *pchT = pch;
+            while (pchT >= pchz)
+            {
+                char c = *pchT;
+                if (c == '\n')
+                    break;
+                if (c == ' ' || c == '\t')
+                {
+                    pch = pchT;
+                    *pch = '\n';
+                    dxCur = 0.0f;
+                    cline++;
+                    break;
+                }
+                pchT--;
+            }
+            if (dxCur != 0.0f)
+            {
+                *pch = '\n';
+                cline++;
+                dxCur = 0.0f;
+            }
+        }
+        pch++;
+    }
+    return cline;
+}
+
+JUNK_NOP();
 
 JUNK_ADDIU(50);
 
@@ -122,7 +169,21 @@ CFont *CFontBrx::PfontClone(float rx, float ry)
 }
 #endif // SKIP_ASM
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", CopyTo__8CFontBrxP8CFontBrx);
+void CFontBrx::CopyTo(CFontBrx *pfontDest)
+{
+    CFont::CopyTo(pfontDest);
+    pfontDest->m_ifont = m_ifont;
+    pfontDest->m_pbmp = m_pbmp;
+    pfontDest->m_pclut = m_pclut;
+    *(long *)&pfontDest->m_tex0 = *(long *)&m_tex0;
+    pfontDest->m_cqwBmpGifs = m_cqwBmpGifs;
+    pfontDest->m_aqwBmpGifs = m_aqwBmpGifs;
+    pfontDest->m_cqwClutGifs = m_cqwClutGifs;
+    pfontDest->m_aqwClutGifs = m_aqwClutGifs;
+    pfontDest->m_cglyff = m_cglyff;
+    pfontDest->m_aglyff = m_aglyff;
+    pfontDest->m_grffont = m_grffont;
+}
 
 int CFontBrx::FValid(char ch)
 {
@@ -227,7 +288,51 @@ float CRichText::Dx()
     return dx;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", ClineWrap__9CRichTextf);
+int CRichText::ClineWrap(float dx)
+{
+    int cline = 1;
+    float dxCur = 0.0f;
+    char ch;
+    Reset();
+    while ((ch = ChNext()) != 0)
+    {
+        if (ch == '\n')
+        {
+            dxCur = 0.0f;
+            cline++;
+        }
+        else
+        {
+            dxCur += m_pfontCur->DxFromCh(ch);
+        }
+        if (dx != 0.0f && dx < dxCur)
+        {
+            char *pch = m_pchCur - 1;
+            while (pch >= m_achz)
+            {
+                char c = *pch;
+                if (c == '\n')
+                    break;
+                if (c == ' ' || c == '\t')
+                {
+                    dxCur = 0.0f;
+                    m_pchCur = pch + 1;
+                    cline++;
+                    *pch = '\n';
+                    break;
+                }
+                pch--;
+            }
+            if (dxCur != 0.0f)
+            {
+                *m_pchCur = '\n';
+                cline++;
+                dxCur = 0.0f;
+            }
+        }
+    }
+    return cline;
+}
 
 float CRichText::DyWrap(float dx) // guessed name
 {
