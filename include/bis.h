@@ -65,8 +65,8 @@ public:
     uint m_isector; /* Sector Offset in ISO */
     int m_cbuf;
     int m_cbufFill;
-    int m_ibufMic;
-    int m_ibufMac;
+    // @todo m_ibufMic and m_ibufMac removed: load_file_from_disc in P2/memcard shows the
+    // object is at most 0x60 bytes (stack slot after it is 8 byte aligned at +0x60).
 
     /**
      * @brief Constructs a new CBinaryInputStream.

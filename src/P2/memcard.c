@@ -8,6 +8,8 @@
 #include <game.h>
 #include <text.h>
 #include <rumble.h>
+#include <bis.h>
+#include <memory.h>
 
 // libmc functions, names unknown (guessed signatures)
 extern "C"
@@ -464,9 +466,74 @@ JUNK_ADDIU(b0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018ca10__FP4SAVEPcPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", load_sly_icon_from_disc__FP4SAVEPc);
+extern char D_0024B3D8[];
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", load_file_from_disc);
+int load_sly_icon_from_disc(SAVE *psave, char *pchz)
+{
+	return load_file_from_disc(psave, pchz, (SAVE *)D_00248470, D_0024B3D8);
+}
+
+extern char D_0024B3E0[];
+
+int load_file_from_disc(SAVE *psave, char *pchzA, SAVE *pcipher, char *pchzB)
+{
+	char abName[0x50];
+	int fd;
+	int cbWritten;
+	InitStackImpl();
+	fd = -1;
+	// @todo (guess) args are in the order the asm passes them, they do not match bis.h
+	CBinaryInputStream bis((void *)0x8040, (int)PvAllocStackImpl(0x8040), 0);
+	sprintf(abName, D_0024B3E0, pchzA, pchzB);
+	int r = FUN_0018d268(psave, abName, 0x202, &fd);
+	if (r == 0)
+	{
+		CFileLocation cfl;
+		int f;
+		if (pcipher == 0)
+			f = 0;
+		else
+		{
+			cfl.m_fcl.cb = pcipher->port ^ STRUCT_OFFSET(pcipher, 0x1c, uint);
+			cfl.m_fcl.isector = pcipher->field_0x00 ^ pcipher->mode;
+			f = cfl.m_fcl.cb != 0;
+		}
+		if (f == 0 || !bis.FOpenFile(&cfl))
+			r = 0x27;
+		else
+		{
+			int cbLeft = bis.m_cbFile;
+			if (cbLeft > 0)
+			{
+				char abBuf[0x1000];
+				do
+				{
+					int cb = 0x1000;
+					if (cbLeft <= 0xfff)
+						cb = cbLeft;
+					bis.Read(cb, abBuf);
+					r = FUN_0018d328(psave, fd, abBuf, cb, &cbWritten);
+					if (r != 0)
+						goto done;
+					if (cbWritten != cb)
+					{
+						r = 7;
+						goto done;
+					}
+					cbLeft -= cbWritten;
+				} while (cbLeft > 0);
+			}
+			r = 0;
+		}
+done:
+		bis.Close();
+		int rc = FUN_0018d2b0(psave, fd);
+		if (r == 0)
+			r = rc;
+		FreeStackImpl();
+	}
+	return r;
+}
 
 /**
  * @todo Register allocation differs (20 differing lines), psave and cb swap

@@ -131,6 +131,7 @@ int CompareSaves(SAVE *psave1, SAVE *psave2);
 int FUN_0018c250(SAVE *psave);
 int FUN_0018ca10(SAVE *psave, char *pchz, void *pv);
 int load_sly_icon_from_disc(SAVE *psave, char *pchz);
+int load_file_from_disc(SAVE *psave, char *pchzA, SAVE *pcipher, char *pchzB);
 int FUN_0018c420(SAVE *psave);
 int FUN_0018cdd8(SAVE *psave, char *pchz, GS *pgs, char *pbHdr);
 int FUN_0018c568(SAVE *psave);
