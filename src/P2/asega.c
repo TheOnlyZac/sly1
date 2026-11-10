@@ -94,6 +94,12 @@ void SetCreditLine(CREDIT *pcredit, int iLine, char *pchz, float u);
 extern CREDIT D_00272E08;
 extern TIMER g_unkblot9;
 
+/** Unaligned int access, reproduces the swl/swr store the original code used (cause unknown). */
+struct __attribute__((packed)) UNALIGNED_INT
+{
+    int n;
+};
+
 struct VTCHN
 {
     void (*pfnEval)(CHN *, ALO *, float, float, int, void *, void *);
@@ -250,10 +256,11 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
     {
         float t = pea->tLocal;
         float tMax = paseg->tMax;
-        float tMin = 0.0f;
-        float tc;
-        if (t < tMin) tc = tMin; else {tc = t; if (tMax < t) tc = tMax;}
-        pasega->tLocal = tc;
+        if (t < 0.0f)
+            t = 0.0f;
+        else if (tMax < t)
+            t = tMax;
+        pasega->tLocal = t;
         pasega->svtLocal = 0.0f;
         break;
     }
@@ -383,8 +390,8 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         switch (pea->eak)
         {
         case 21:
-            pasega->peaErrorA = pea;
             pasega->pactsegError = pactseg;
+            pasega->peaErrorA = pea;
             break;
         case 22:
             pasega->peaErrorA = 0;
@@ -392,8 +399,8 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
                 pasega->pactsegError = 0;
             break;
         case 23:
-            pasega->peaErrorB = pea;
             pasega->pactsegError = pactseg;
+            pasega->peaErrorB = pea;
             break;
         case 24:
             pasega->peaErrorB = 0;
@@ -536,8 +543,8 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
     case 39:
     {
         ASEGMSG13 msg;
-        msg.n = pea->n8;
         msg.t = pea->tLocal;
+        msg.n = pea->n8;
         msg.pasega = pasega;
         SendAsegaMessage(pasega, (MSGID)0x13, &msg);
         break;
@@ -683,9 +690,12 @@ void HandleAsegaEvent(ASEGA *pasega, EA *pea, int *pfRetracted)
         SetCreditLine(&D_00272E08, pea->sh8.s0, (char *)pea->pvC, (float)pea->sh8.s2 * (1.0f / 256.0f));
         break;
     case 55:
-        g_ui.unk6 = 0;
-        SetUiUis(&g_ui, (UIS)0);
+    {
+        UI *pui = &g_ui;
+        ((UNALIGNED_INT *)&pui->unk6)->n = 0;
+        SetUiUis(pui, (UIS)0);
         break;
+    }
     case 56:
         g_ui.unk6 = 1;
         SetUiUis(&g_ui, (UIS)1);
