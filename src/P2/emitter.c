@@ -1,4 +1,8 @@
 #include <emitter.h>
+#include <sw.h>
+#include <clock.h>
+#include <sound.h>
+#include <sce/memset.h>
 
 extern float DAT_0024a124;
 
@@ -18,7 +22,11 @@ void CloneEmitter(EMITTER *pemitter, EMITTER *pemitterBase)
     STRUCT_OFFSET(pemitter, 0x2d0, EMITB *)->cref++;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindEmitterCallback__FP7EMITTER5MSGIDPv);
+void BindEmitterCallback(EMITTER *pemitter, MSGID msgid, void *pvData)
+{
+    typedef void (*PFN)(EMITTER *, void *);
+    STRUCT_OFFSET(pemitter->pvtlo, 0x64, PFN)(pemitter, STRUCT_OFFSET(STRUCT_OFFSET(pemitter, 0x2d0, EMITB *), 0x7c, void *));
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindEmitter__FP7EMITTER);
 
@@ -76,7 +84,21 @@ void UnpauseEmitter(EMITTER *pemitter)
     STRUCT_OFFSET(pemitter, 0x340, float) = -1.0f; // pemitter->tUnpause
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", FPausedEmitter__FP7EMITTER);
+int FPausedEmitter(EMITTER *pemitter)
+{
+    if (g_clock.t < STRUCT_OFFSET(pemitter, 0x340, float)) // pemitter->tUnpause
+        return 1;
+    int v = STRUCT_OFFSET(pemitter, 0x2d4, int);
+    if (v < 2)
+    {
+        if (v >= 0)
+        {
+            if (STRUCT_OFFSET(pemitter, 0x2d8, int) == 0)
+                return 1;
+        }
+    }
+    return 0;
+}
 
 void SetEmitterEnabled(EMITTER *pemitter, int fEnabled)
 {
@@ -125,7 +147,20 @@ void SetExploRipt(EXPLO *pexplo, RIPT ript)
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", WakeSoWater__FP2SOP5WATERfP6VECTORT3ff);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", StandardSmokeCloud__FP6VECTORf);
+void StandardSmokeCloud(VECTOR *ppos, float sRadius)
+{
+    typedef void (*PFN)(void *, void *);
+    void *pexpl = STRUCT_OFFSET(g_psw, 0x1d0c, void *);
+    if (pexpl)
+    {
+        EXPLSO explso;
+        explso.grfexplso = 0xc;
+        STRUCT_OFFSET(&explso, 0x20, qword) = STRUCT_OFFSET(ppos, 0, qword);
+        explso.rScale = 0.0f;
+        explso.sRadius = sRadius;
+        STRUCT_OFFSET(STRUCT_OFFSET(pexpl, 0, void *), 0x7c, PFN)(pexpl, &explso);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", ChooseEmitoPos__FP5EMITOiiP6VECTORT3);
 
@@ -163,13 +198,35 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", SetEmitdvEmitb__FP6EMITDVP5EMITB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", CalculateEmitdvMatrix__FP6EMITDVfP7MATRIX4);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", PostExplLoad__FP4EXPL);
+void PostExplLoad(EXPL *pexpl)
+{
+    typedef void (*PFN)(EXPL *);
+    PostLoLoad(pexpl);
+    STRUCT_OFFSET(pexpl->pvtlo, 0x1c, PFN)(pexpl);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", CalculateExplTransform__FP4EXPLP6VECTORP7MATRIX3);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", ExplodeExpl__FP4EXPL);
+void ExplodeExpl(EXPL *pexpl)
+{
+    typedef void (*PFN)(EXPL *, EXPLSO *);
+    EXPLSO explso;
+    memset(&explso, 0, sizeof(EXPLSO));
+    STRUCT_OFFSET(pexpl->pvtlo, 0x7c, PFN)(pexpl, &explso);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", ExplodeExplParams__FP4EXPLUiP3ALOP6VECTORT3ff);
+void ExplodeExplParams(EXPL *pexpl, GRFEXPLSO grfexplso, ALO *paloReference, VECTOR *pvec, VECTOR *pposOrigin, float rScale, float sRadius)
+{
+    typedef void (*PFN)(EXPL *, EXPLSO *);
+    EXPLSO explso;
+    explso.grfexplso = grfexplso;
+    explso.paloReference = paloReference;
+    STRUCT_OFFSET(&explso, 0x10, qword) = STRUCT_OFFSET(pvec, 0, qword);
+    STRUCT_OFFSET(&explso, 0x20, qword) = STRUCT_OFFSET(pposOrigin, 0, qword);
+    explso.rScale = rScale;
+    explso.sRadius = sRadius;
+    STRUCT_OFFSET(pexpl->pvtlo, 0x7c, PFN)(pexpl, &explso);
+}
 
 void ExplodeExplExplso(EXPL *pexpl, EXPLSO *pexplso)
 {
@@ -184,11 +241,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindExplg__FP5EXPLG);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", ExplodeExplgExplso__FP5EXPLGP6EXPLSO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", InitExplo__FP5EXPLO);
+void InitExplo(EXPLO *pexplo)
+{
+    InitXfm(pexplo);
+    STRUCT_OFFSET(pexplo, 0x94, int) = -1;
+    STRUCT_OFFSET(pexplo, 0x98, int) = -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadExploFromBrx__FP5EXPLOP18CBinaryInputStream);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", CloneExplo__FP5EXPLOT0);
+void CloneExplo(EXPLO *pexplo, EXPLO *pexploBase)
+{
+    CloneLo(pexplo, pexploBase);
+    STRUCT_OFFSET(pexplo, 0x90, EMITB *)->cref++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindExplo__FP5EXPLO);
 
@@ -199,9 +265,22 @@ void ExplodeExploExplso(EXPLO *pexplo, EXPLSO *pexplso)
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", AddExploSkeleton__FP5EXPLO3OIDT1ffff);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", PemitbEnsureExplo__FP5EXPLO4ENSK);
+EMITB *PemitbEnsureExplo(EXPLO *pexplo, ENSK ensk)
+{
+    if (ensk == ENSK_Set)
+    {
+        STRUCT_OFFSET(pexplo, 0x90, EMITB *) = PemitbCopyOnWrite(STRUCT_OFFSET(pexplo, 0x90, EMITB *));
+    }
+    return STRUCT_OFFSET(pexplo, 0x90, EMITB *);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", InitExpls__FP5EXPLS);
+void InitExpls(EXPLS *pexpls)
+{
+    InitExplo(pexpls);
+    STRUCT_OFFSET(pexpls, 0xac, int) = -1;
+    STRUCT_OFFSET(pexpls, 0xb0, int) = -1;
+    STRUCT_OFFSET(pexpls, 0xb4, int) = -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindExpls__FP5EXPLS);
 
@@ -209,7 +288,14 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", HandleExplsMessage__FP5EXPLS5MSGIDPv)
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", ExplodeExplsExplso__FP5EXPLSP6EXPLSO);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", PsfxEnsureExpls__FP5EXPLS4ENSK);
+SFX *PsfxEnsureExpls(EXPLS *pexpls, ENSK ensk)
+{
+    if (!STRUCT_OFFSET(pexpls, 0xa0, SFX *))
+    {
+        NewSfx(&STRUCT_OFFSET(pexpls, 0xa0, SFX *));
+    }
+    return STRUCT_OFFSET(pexpls, 0xa0, SFX *);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", FireExplsExplso__FP5EXPLSP6EXPLSO);
 

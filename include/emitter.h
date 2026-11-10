@@ -15,7 +15,7 @@
 // Forward.
 struct EXPL;
 
-typedef int GRFEXPLSO;
+typedef unsigned int GRFEXPLSO;
 
 /**
  * @brief Unknown.

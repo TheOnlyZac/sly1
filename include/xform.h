@@ -85,7 +85,14 @@ struct EXPLS : public EXPLO
  */
 struct EXPLSO
 {
-    // ...
+    /* 0x00 */ unsigned int grfexplso;
+    /* 0x04 */ ALO *paloReference;
+    /* 0x08 */ STRUCT_PADDING(2);
+    /* 0x10 */ VECTOR vec; // guess
+    /* 0x20 */ VECTOR posOrigin; // guess
+    /* 0x30 */ float rScale; // guess
+    /* 0x34 */ float sRadius; // guess
+    /* 0x38 */ STRUCT_PADDING(6);
 };
 
 /**
