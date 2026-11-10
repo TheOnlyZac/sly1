@@ -1110,24 +1110,85 @@ void PostRohLoad(ROH *proh)
     proh->pvtlo->pfnRemoveLo(proh);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRoh__FP3ROHf);
+// VU0 xy distance between two points, with fake data dependencies to keep gcc's scheduling.
+// The float limit load (hi is the upper half of the constant) sits inside the asm so it lands
+// between the vsub and the vmul like the original.
+#define DEFINE_DIST_XY_VU(name, hi)                                                                                    \
+    static inline float name(VECTOR *pa, VECTOR *pb, float *plim)                                                      \
+    {                                                                                                                  \
+        int a, b, c0, c1;                                                                                              \
+        float f, lim;                                                                                                  \
+        asm("lqc2 $vf1,%1" : "=r"(a) : "m"(*pa));                                                                      \
+        asm("lqc2 $vf2,%1" : "=r"(b) : "m"(*pb), "r"(a));                                                              \
+        asm("vsub.xyzw $vf1,$vf1,$vf2\n\t.set noat\n\tlui $1," #hi "\n\tmtc1 $1,%1\n\t.set at" : "=r"(c0), "=f"(lim)  \
+            : "r"(b)                                                                                                   \
+            : "$1");                                                                                                   \
+        asm("vmul.xy $vf1,$vf1,$vf1\n\tvaddy.x $vf1,$vf1,$vf1y\n\t.word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q"     \
+            : "=r"(c1)                                                                                                 \
+            : "r"(c0));                                                                                                \
+        asm("qmfc2.ni $2,$vf1\n\tmtc1 $2,%0" : "=f"(f) : "r"(c1) : "$2");                                            \
+        *plim = lim;                                                                                                   \
+        return f;                                                                                                      \
+    }
+DEFINE_DIST_XY_VU(DistXyVu, 0x4120) // limit 10.0f
+DEFINE_DIST_XY_VU(DistXyVu50, 0x4248) // limit 50.0f
+
+void UpdateRoh(ROH *proh, float dt)
+{
+    UpdateSo(proh, dt);
+    ROHS rohs;
+    while ((rohs = RohsNextRoh(proh)) != STRUCT_OFFSET(proh, 0x550, ROHS))
+    {
+        SetRohRohs(proh, rohs);
+    }
+    switch (rohs)
+    {
+    case ROHS_Spawn:
+    {
+        VECTOR vec;
+        GetPntPos(STRUCT_OFFSET(STRUCT_OFFSET(proh, 0x560, ROST *), 0x564, PNT *), &vec);
+        MoveRohToTarget(proh, &vec, 0);
+        break;
+    }
+    case ROHS_Wander:
+    {
+        float d, lim;
+        if (STRUCT_OFFSET(proh, 0x580, float) < g_clock.t ||
+            ((d = DistXyVu50(&STRUCT_OFFSET(proh, 0x140, VECTOR), &STRUCT_OFFSET(proh, 0x570, VECTOR), &lim)), d < lim))
+        {
+            ChooseRobWanderLocation(STRUCT_OFFSET(proh, 0x558, ROB *), proh);
+            STRUCT_OFFSET(proh, 0x580, float) = g_clock.t + GRandInRange(STRUCT_OFFSET(proh, 0x584, float), STRUCT_OFFSET(proh, 0x588, float));
+        }
+        MoveRohToTarget(proh, &STRUCT_OFFSET(proh, 0x570, VECTOR), 0);
+        break;
+    }
+    case ROHS_Collect:
+        MoveRohToTarget(proh, &STRUCT_OFFSET(STRUCT_OFFSET(proh, 0x55c, ROC *), 0x140, VECTOR), 0);
+        break;
+    case ROHS_Return:
+    {
+        VECTOR vec;
+        GetPntPos(STRUCT_OFFSET(STRUCT_OFFSET(proh, 0x560, ROST *), 0x564, PNT *), &vec);
+        MoveRohToTarget(proh, &vec, 1);
+        break;
+    }
+    case ROHS_Exit:
+        MoveRohToTarget(proh, &STRUCT_OFFSET(STRUCT_OFFSET(proh, 0x560, ROST *), 0x140, VECTOR), 1);
+        break;
+    case ROHS_Inactive:
+    case ROHS_Grab:
+    case ROHS_Happy:
+    case ROHS_Sad:
+    case ROHS_Die:
+    case ROHS_Dead:
+        ((void (*)(ROH *, VECTOR *))STRUCT_OFFSET(proh->pvtalo, 0x90, void *))(proh, &g_vecZero);
+        ((void (*)(ROH *, VECTOR *))STRUCT_OFFSET(proh->pvtalo, 0x94, void *))(proh, &g_vecZero);
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", MoveRohToTarget__FP3ROHP6VECTORi);
 
-// VU0 xy distance between two points, with fake data dependencies to keep gcc's scheduling.
-// The 10.0f limit load sits inside the asm so it lands between the vsub and the vmul like the original.
-static inline float DistXyVu(VECTOR *pa, VECTOR *pb, float *plim)
-{
-    int a, b, c0, c1;
-    float f, lim;
-    asm("lqc2 $vf1,%1" : "=r"(a) : "m"(*pa));
-    asm("lqc2 $vf2,%1" : "=r"(b) : "m"(*pb), "r"(a));
-    asm("vsub.xyzw $vf1,$vf1,$vf2\n\t.set noat\n\tlui $1,0x4120\n\tmtc1 $1,%1\n\t.set at" : "=r"(c0), "=f"(lim) : "r"(b) : "$1");
-    asm("vmul.xy $vf1,$vf1,$vf1\n\tvaddy.x $vf1,$vf1,$vf1y\n\t.word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q" : "=r"(c1) : "r"(c0));
-    asm("qmfc2.ni $2,$vf1\n\tmtc1 $2,%0" : "=f"(f) : "r"(c1) : "$2");
-    *plim = lim;
-    return f;
-}
 ROHS RohsNextRoh(ROH *proh)
 {
     ROHS rohs = STRUCT_OFFSET(proh, 0x550, ROHS);
