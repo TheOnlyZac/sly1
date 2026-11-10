@@ -19,6 +19,7 @@
 #include <joy.h>
 #include <so.h>
 #include <mat.h>
+#include <intrinsics.h>
 
 void SetupCmRotateToCam(CM *pcm);
 extern "C" void *memmove(void *pvDst, const void *pvSrc, uint cb);
@@ -132,7 +133,7 @@ void SpringCm(float k, float damp, float dt, CM *pcm, VECTOR *ppos, VECTOR *pvel
 }
 
 /**
- * @todo Structure matches but 76 differing lines: the original fills branch delay slots with the VU load (lqc2 vf2) and keeps the constants in other float registers. Switch cases and constants are from the asm; names are guesses.
+ * @todo Structure matches, 74 differing lines of about 118 (the original copies the first tail VU load into the delay slot of every case's jump, constants and float args land in swapped registers). Switch cases and constants are from the asm; names are guesses. The vtable GetSoCpdefi call now uses the real argument order (so, dt, cpdefi).
  */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", AdjustCmCpdefi__FP2CMP2SOfP6CPDEFI);
 #ifdef SKIP_ASM
@@ -163,8 +164,8 @@ void AdjustCmCpdefi(CM *pcm, SO *psoFocus, float dt, CPDEFI *pcpdefi)
         SpringCm(5.0f, -3.5f, dt, pcm, &pcm->dposFocus, &pcm->vFocus, &D_00248D30);
     }
     int d1, d2, d3;
-    asm("lqc2 $vf2,%1" : "=r"(d1) : "m"(pcm->dposAdjust));
-    asm("lqc2 $vf1,%1" : "=r"(d2) : "m"(pcpdefi->posBase), "r"(d1));
+    asm volatile("lqc2 $vf2,%0" : : "m"(pcm->dposAdjust));
+    asm("lqc2 $vf1,%1" : "=r"(d2) : "m"(pcpdefi->posBase));
     asm("vadd.xyzw $vf1,$vf1,$vf2" : "=r"(d3) : "r"(d2));
     asm("sqc2 $vf1,%0" : "=m"(pcpdefi->posAdjust) : "r"(d3));
 }
@@ -214,7 +215,7 @@ void BuildCmFgfn(CM *pcm, float uFog, FGFN *pfgfn)
 }
 
 /**
- * @todo Roughly 50 percent matched, float scheduling differs.
+ * @todo About 33 differing lines of about 55 after switching to the SQRTF volatile asm macro (it orders the float math like the original); float register numbering and operand order of a few multiplies still differ. Found by random source mutation, expression forms are equivalent.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", RecalcCmFrustrum__FP2CM);
 #ifdef SKIP_ASM
@@ -224,11 +225,11 @@ void RecalcCmFrustrum(CM *pcm)
     float rAspect = pcm->rAspect;
     float inv = 1.0f / pcm->radFOV;
     pcm->yScreenRange = t;
-    pcm->xScreenRange = t * rAspect;
-    float r = pcm->rMRD * inv;
-    pcm->rMRDAdjust = 1.0f > r ? 1.0f : r;
-    pcm->sRadiusNearClip = t * sqrtf(rAspect * rAspect + 1.0f) * pcm->sNearClip + 1.0f;
-    BuildSimpleProjectionMatrix(640.0f / (pcm->xScreenRange * 4096.0f), 224.0f / (t * 4096.0f), 0.0f, 0.0f, pcm->sNearClip, pcm->sFarClip, &pcm->matProj);
+    float r = inv * pcm->rMRD;
+    pcm->xScreenRange = rAspect * t;
+    pcm->rMRDAdjust = r < 1.0f ? 1.0f : r;
+    pcm->sRadiusNearClip = t * SQRTF(rAspect * rAspect + 1.0f) * pcm->sNearClip + 1.0f;
+    BuildSimpleProjectionMatrix(640.0f / (pcm->xScreenRange * 4096.0f), 224.0f / (4096.0f * t), 0.0f, 0.0f, pcm->sNearClip, pcm->sFarClip, &pcm->matProj);
     BuildCmFgfn(pcm, 1.0f, &pcm->fgfn);
     UpdateCmMat4(pcm);
 }
@@ -544,12 +545,12 @@ void UpdateCmLast(CM *pcm, int fClear, float dt)
 }
 
 /**
- * @todo Structure matches, 36 differing lines of about 72 (register allocation of the qwords and placement of the junk spill stores). VU0 inline asm, vector built with pextlw/pcpyld asm. Computes matRotateToCam and matRotateTiltToCam; names are guesses.
+ * @todo Structure matches, 34 differing lines of about 72 (register allocation of the qwords and placement of the junk spill stores). VU0 inline asm, vector built with pextlw/pcpyld asm. Computes matRotateToCam and matRotateTiltToCam; names are guesses.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetupCmRotateToCam__FP2CM);
 #ifdef SKIP_ASM
-extern VECTOR g_normalX;
 extern VECTOR g_normalZ;
+extern VECTOR g_normalX;
 void SetupCmRotateToCam(CM *pcm)
 {
     MATRIX3 loc;
@@ -585,7 +586,7 @@ void SetupCmRotateToCam(CM *pcm)
     int b1, b2, b3, b4, b5, b6, b7, b8, b9;
     asm("lqc2 $vf1,%1" : "=r"(b1) : "m"(pcm->mat.avec[0]));
     asm("lqc2 $vf4,%1" : "=r"(b2) : "m"(g_normalZ), "r"(b1));
-    asm("lqc2 $vf5,%1" : "=r"(b3) : "m"(vNorm), "r"(b2));
+    asm volatile("lqc2 $vf5,%1" : "=r"(b3) : "m"(vNorm), "r"(b2));
     asm("qmtc2.ni %1,$vf3" : "=r"(b4) : "r"(m1), "r"(b3));
     STRUCT_OFFSET(pcm, 0x3c0, qword) = STRUCT_OFFSET(pcm, 0xa0, qword);
     asm("vopmula.xyz ACC,$vf4,$vf5\n\tvopmsub.xyz $vf6,$vf5,$vf4\n\tvsub.w $vf6,$vf6,$vf6" : "=r"(b5) : "r"(b4));
@@ -608,28 +609,28 @@ void SetupCmRotateToCam(CM *pcm)
 #endif
 
 /**
- * @todo Structure matches, 22 diff lines of 40 (the original interleaves two VU loads with the float math and keeps x in f0 while negating into f1). Separate asm statements per VU load. Names are guesses.
+ * @todo Structure matches, 4 differing lines of 40: the original schedules the lqc2 of vf5 and vf4 between the float multiplies, we place them after the stores (tried volatile, memory clobber and register operand forms). Found by source mutation. Names are guesses.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCmScreenToWorld);
 #ifdef SKIP_ASM
 extern "C" void ConvertCmScreenToWorld(CM *pcm, VECTOR *pscreen, VECTOR *pworld)
 {
     VECTOR v;
+    v.z = pscreen->y;
+    v.y = -pscreen->x;
     float z = pscreen->z;
     v.x = z;
-    v.y = -pscreen->x;
-    v.z = pscreen->y;
     if (0.0001f < z)
     {
-        v.z = pscreen->y * z;
         v.y = v.y * z;
+        v.z = pscreen->y * z;
     }
     v.y = v.y * pcm->xScreenRange;
     v.z = v.z * pcm->yScreenRange;
     int a1, a2, a3, a4, a5;
     MATRIX3 *pmat = &pcm->mat;
-    asm("lqc2 $vf5,%0" : : "m"(pmat->avec[0]));
-    asm("lqc2 $vf4,%0" : : "m"(pcm->pos));
+    asm volatile("lqc2 $vf5,%0" : : "m"(pmat->avec[0]));
+    asm volatile("lqc2 $vf4,%0" : : "m"(pcm->pos));
     asm("lqc2 $vf3,%0" : : "m"(pmat->avec[2]));
     asm("lqc2 $vf2,%0" : : "m"(pmat->avec[1]));
     asm("lqc2 $vf1,%0" : : "m"(v));
@@ -677,12 +678,14 @@ void SetupCm(CM *pcm)
 }
 
 /**
- * @todo Structure matches, register assignment differs (out/proj/matB/temp swapped). Mangled name would be CombineEyeLookAtProj__FP6VECTORP7MATRIX3P7MATRIX4T2; rename the symbol when matched.
+ * @todo Structure matches, 12 differing lines of about 55 (measured with extern C): only the register order and store order of the final 4 qword copy differ, the original keeps $2 busy until the last load. pmatOut is pinned to a register to fix the saved register numbering. Mangled name would be CombineEyeLookAtProj__FP6VECTORP7MATRIX3P7MATRIX4T2; rename the symbol when matched.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", CombineEyeLookAtProj);
 #ifdef SKIP_ASM
 void CombineEyeLookAtProj(VECTOR *ppos, MATRIX3 *pmat, MATRIX4 *pmatProj, MATRIX4 *pmatOut)
 {
+    // Hack: pinned to $18 to get the original register numbering
+    register MATRIX4 *po __asm__("$18") = pmatOut;
     MATRIX4 matA;
     MATRIX4 matB;
     LoadIdentityMatrix4(&matA);
@@ -694,7 +697,11 @@ void CombineEyeLookAtProj(VECTOR *ppos, MATRIX3 *pmat, MATRIX4 *pmatProj, MATRIX
         matA.aag[3][i] = (&ppos->x)[i];
     }
     FInvertMatrix4(&matA, &matB);
-    *pmatOut = *pmatProj * matB;
+    MATRIX4 tmp = *pmatProj * matB;
+    STRUCT_OFFSET(po, 0, qword) = STRUCT_OFFSET(&tmp, 0, qword);
+    STRUCT_OFFSET(po, 16, qword) = STRUCT_OFFSET(&tmp, 16, qword);
+    STRUCT_OFFSET(po, 32, qword) = STRUCT_OFFSET(&tmp, 32, qword);
+    STRUCT_OFFSET(po, 48, qword) = STRUCT_OFFSET(&tmp, 48, qword);
 }
 #endif
 
@@ -873,7 +880,7 @@ void SetCmLookAt(CM *pcm, VECTOR *peye, VECTOR *pcenter)
 }
 
 /**
- * @todo Structure matches, 16 differing lines of about 74 (branch delay slot fill: the original puts lqc2 vf4 and sqc2 vf5 in the delay slots and hoists the 1e-4 constant after vmaddz). VU0 inline asm, names guessed.
+ * @todo Structure matches, 11 differing lines of about 74: the original fills the first branch delay slot with the lqc2 of vf4 (a branch likely) and puts sqc2 vf5 in the second branch's slot; gcc never puts inline asm in a slot and the assembler only fills a plain bc1f. VU0 inline asm, names guessed.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertWorldToCylindVelocity);
 #ifdef SKIP_ASM
@@ -889,7 +896,7 @@ extern "C" void ConvertWorldToCylindVelocity(VECTOR *pposCenter, VECTOR *ppos, V
     asm("vsub.xyzw $vf1,$vf1,$vf2" : "=r"(a3) : "r"(a2));
     asm("sqc2 $vf1,%0" : "=m"(d) : "r"(a3));
     LoadLookAtMatrix(&d, &mat);
-    asm("lqc2 $vf1,%1" : "=r"(a4) : "m"(d));
+    asm volatile("lqc2 $vf1,%1" : "=r"(a4) : "m"(d));
     asm("vmul.xyz $vf1,$vf1,$vf1\n\tvaddw.x $vf2,$vf0,$vf0w\n\tvadday.x ACC,$vf1,$vf1y\n\tvmaddz.x $vf1,$vf2,$vf1z" : "=r"(a5) : "r"(a4));
     asm(".word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q" : "=r"(a6) : "r"(a5));
     asm("qmfc2.ni %0,$vf1" : "=r"(t) : "r"(a6));
@@ -1342,7 +1349,7 @@ extern "C" void FUN_00145950(int cpv, void **apv, VECTOR *ppos, VECTOR *pposOut,
 #endif
 
 /**
- * @todo Structure matches, 125 differing lines of about 155 (callee saved register numbering of csbi/apv pointer/constants differs, which shifts most lines). Pushes the camera out of up to 0x40 SBI sphere/BSP hits by solving inequalities. FInsideCmMrd style VU0 inline asm, names guessed. SBI in mark.h was padded to its real size 0x30.
+ * @todo Structure matches, 117 differing lines of about 155 (callee saved register numbering of csbi/apv pointer/constants differs, which shifts most lines). Pushes the camera out of up to 0x40 SBI sphere/BSP hits by solving inequalities. VU0 inline asm, names guessed. SBI in mark.h was padded to its real size 0x30.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145b68);
 #ifdef SKIP_ASM
@@ -1363,10 +1370,10 @@ extern "C" void FUN_00145b68(CM *pcm, int cpv, void **apv, float (*pfn)(CM *, VE
         STRUCT_OFFSET(pout, 0, qword) = STRUCT_OFFSET(pdir, 0, qword);
         return;
     }
-    InitStackImpl();
     float *aag = (float *)PvAllocStackImpl(csbi * csbi * 4);
-    float *ag = (float *)PvAllocStackImpl(csbi * 4);
-    float *agSoln = (float *)PvAllocStackImpl(csbi * 4);
+    float *ag = (float *)PvAllocStackImpl(4 * csbi);
+    InitStackImpl();
+    float *agSoln = (float *)PvAllocStackImpl(4 * csbi);
     VECTOR *pvec = &vec;
     float *pa = aag;
     for (int i = 0; i < csbi; i++)
@@ -1388,8 +1395,8 @@ extern "C" void FUN_00145b68(CM *pcm, int cpv, void **apv, float (*pfn)(CM *, VE
         *pg++ = pfn(pcm, ppos, pdir, &asbi[i]);
     SolveInequalities(csbi, aag, ag, agSoln);
     STRUCT_OFFSET(&vec, 0, qword) = STRUCT_OFFSET(&D_00248D30, 0, qword);
-    float *ps = agSoln;
     SBI *psb = asbi;
+    float *ps = agSoln;
     for (int i = 0; i < csbi; i++, psb++)
     {
         float f = *ps++;
@@ -1399,15 +1406,15 @@ extern "C" void FUN_00145b68(CM *pcm, int cpv, void **apv, float (*pfn)(CM *, VE
         asm("sqc2 $vf3,%1" : "=r"(c), "=m"(spill) : "r"(b));
         asm("lqc2 $vf1,0(%1)" : "=r"(d) : "r"(&psb->normal), "r"(c));
         asm("vadda.xyzw ACC,$vf2,$vf0\n\tvmaddx.xyzw $vf2,$vf1,$vf3x" : "=r"(e) : "r"(d));
-        asm("sqc2 $vf2,%1" : "=r"(a), "=m"(vec) : "r"(e));
+        asm volatile("sqc2 $vf2,%1" : "=r"(a), "=m"(vec) : "r"(e));
     }
     LimitVectorLength(pvec, sMax, pvec);
     FreeStackImpl();
     int a, b, c;
     asm("lqc2 $vf1,%1" : "=r"(a) : "m"(*pdir));
     asm("lqc2 $vf2,%1" : "=r"(b) : "m"(vec), "r"(a));
-    asm("vadd.xyzw $vf1,$vf1,$vf2" : "=r"(c) : "r"(b));
-    asm("sqc2 $vf1,%0" : "=m"(*pout) : "r"(c));
+    asm volatile("vadd.xyzw $vf1,$vf1,$vf2" : "=r"(c) : "r"(b));
+    asm volatile("sqc2 $vf1,%0" : "=m"(*pout) : "r"(c));
 }
 #endif
 
@@ -1434,15 +1441,15 @@ extern "C" float FUN_00145de8(CM *pcm, void *pvUnused, VECTOR *pvecA, void *pb)
 }
 
 /**
- * @todo Structure matches, about 44 differing lines of about 84 (callee saved register order of ppos vs the clock pointer, and relocation noise for the two callback addresses). Moves the camera along a velocity, pushing it out of nearby objects (FUN_00145b68). VU0 inline asm, names guessed.
+ * @todo Structure matches, about 43 differing lines of about 84 (callee saved register order of ppos vs the clock pointer, and relocation noise for the two callback addresses). Moves the camera along a velocity, pushing it out of nearby objects (FUN_00145b68). VU0 inline asm, names guessed.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145e68);
 #ifdef SKIP_ASM
-extern VECTOR D_00261970;
 extern VECTOR D_00261980;
+extern VECTOR D_00261970;
 extern float D_00261950;
-extern "C" void FUN_00145b68(CM *pcm, int cpv, void **apv, float (*pfn)(CM *, VECTOR *, VECTOR *, SBI *), VECTOR *ppos, VECTOR *pdir, VECTOR *pout, float sRadius, float sMax);
 extern "C" float FUN_00145de8(CM *pcm, void *pvUnused, VECTOR *pvecA, void *pb);
+extern "C" void FUN_00145b68(CM *pcm, int cpv, void **apv, float (*pfn)(CM *, VECTOR *, VECTOR *, SBI *), VECTOR *ppos, VECTOR *pdir, VECTOR *pout, float sRadius, float sMax);
 extern "C" void FUN_00145e68(CM *pcm, VECTOR *ppos, VECTOR *ppos2, VECTOR *pposOut)
 {
     CLOCK *pclk = &g_clock;
@@ -1454,17 +1461,17 @@ extern "C" void FUN_00145e68(CM *pcm, VECTOR *ppos, VECTOR *ppos2, VECTOR *pposO
     int cpso;
     SO **apso;
     int a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12;
-    asm("lqc2 $vf1,%1" : "=r"(a1) : "m"(*ppos));
+    asm volatile("lqc2 $vf1,%1" : "=r"(a1) : "m"(*ppos));
     asm("lqc2 $vf2,%1" : "=r"(a2) : "m"(D_00261980), "r"(a1));
     asm("lqc2 $vf3,%1" : "=r"(a3) : "m"(*ppos2), "r"(a2));
-    asm("vadd.xyzw $vf2,$vf1,$vf2" : "=r"(a4) : "r"(a3));
+    asm volatile("vadd.xyzw $vf2,$vf1,$vf2" : "=r"(a4) : "r"(a3));
     asm("vsub.xyzw $vf3,$vf3,$vf1" : "=r"(a5) : "r"(a4));
     asm("lqc2 $vf4,%1" : "=r"(a6) : "m"(D_00261970), "r"(a5));
     asm("move $5,%1\n\tqmtc2.ni $5,$vf5\n\tvdiv Q,$vf0w,$vf5x\n\tvwaitq\n\tvmulq.xyzw $vf3,$vf3,Q\n\tvadd.xyzw $vf1,$vf1,$vf4" : "=r"(a7) : "r"(STRUCT_OFFSET(pclk, 0x14, int)), "r"(a6) : "$5");
     asm("sqc2 $vf3,%1" : "=r"(a8), "=m"(vel) : "r"(a7));
     asm("sqc2 $vf1,%1" : "=r"(a9), "=m"(box0) : "r"(a8));
     asm("sqc2 $vf2,%1" : "=r"(a10), "=m"(box1) : "r"(a9));
-    asm("sqc2 $vf5,%1" : "=r"(a11), "=m"(spill) : "r"(a10));
+    asm volatile("sqc2 $vf5,%1" : "=r"(a11), "=m"(spill) : "r"(a10));
     InitStackImpl();
     IntersectSwBoundingBox(g_psw, 0, &box0, &box1, (PFNFILTER)FUN_00145dd8, 0, &cpso, &apso);
     int b1, b2, b3, b4, b5, b6;
@@ -1474,7 +1481,7 @@ extern "C" void FUN_00145e68(CM *pcm, VECTOR *ppos, VECTOR *ppos2, VECTOR *pposO
     asm("vmul.xyz $vf1,$vf1,$vf1\n\tvaddw.x $vf2,$vf0,$vf0w\n\tvadday.x ACC,$vf1,$vf1y\n\tvmaddz.x $vf1,$vf2,$vf1z\n\t.word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q" : "=r"(b2) : "r"(b1));
     asm("qmfc2.ni %0,$vf1" : "=r"(t) : "r"(b2));
     asm("mtc1 %1,%0" : "=f"(len) : "r"(t));
-    FUN_00145b68(pcm, cpso, (void **)apso, (float (*)(CM *, VECTOR *, VECTOR *, SBI *))FUN_00145de8, ppos, &vel, &out, D_0026194C, len + D_00261950);
+    FUN_00145b68(pcm, cpso, (void **)apso, (float (*)(CM *, VECTOR *, VECTOR *, SBI *))FUN_00145de8, ppos, &vel, &out, D_0026194C, D_00261950 + len);
     int c1, c2, c3, c4, c5;
     int dt = STRUCT_OFFSET(pclk, 0x14, int);
     asm("qmtc2.ni %1,$vf3" : "=r"(c1) : "r"(dt));
