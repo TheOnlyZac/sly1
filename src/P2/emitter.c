@@ -24,21 +24,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", InitEmitb__FP5EMITB);
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", InitEmitter__FP7EMITTER);
 
 #ifdef SKIP_ASM
-// @todo 93% matched (2 differing lines of 28): store order of the fields, one int store is scheduled differently
 void InitEmitter(EMITTER *pemitter)
 {
     InitAlo(pemitter);
+    STRUCT_OFFSET(pemitter, 0x2dc, float) = 10.0f;
+    STRUCT_OFFSET(pemitter, 0x340, float) = -1.0f;
     STRUCT_OFFSET(pemitter, 0x310, int) = -1;
     STRUCT_OFFSET(pemitter, 0x2d8, int) = -1;
     STRUCT_OFFSET(pemitter, 0x2e0, float) = 10.0f;
+    STRUCT_OFFSET(pemitter, 0x2f8, int) = -1;
     STRUCT_OFFSET(pemitter, 0x2fc, int) = -1;
     STRUCT_OFFSET(pemitter, 0x304, int) = -1;
-    STRUCT_OFFSET(pemitter, 0x2dc, float) = 10.0f;
-    STRUCT_OFFSET(pemitter, 0x340, float) = -1.0f;
     STRUCT_OFFSET(pemitter, 0x300, int) = -1;
     STRUCT_OFFSET(pemitter, 0x30c, int) = -1;
     STRUCT_OFFSET(pemitter, 0x2d4, int) = -1;
-    STRUCT_OFFSET(pemitter, 0x2f8, int) = -1;
     InitDl((DL *)&STRUCT_OFFSET(pemitter, 0x314, int), 0x320);
 }
 #endif
@@ -372,7 +371,27 @@ void StandardSmokeCloud(VECTOR *ppos, float sRadius)
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", ChooseEmitoPos__FP5EMITOiiP6VECTORT3);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", ConvertEmitoPosVec__FP5EMITOP6VECTORT1);
+void ConvertEmitoPosVec(EMITO *pemito, VECTOR *ppos, VECTOR *pvec)
+{
+    if (STRUCT_OFFSET(pemito, 0x6c, ALO *))
+    {
+        ConvertAloPos(STRUCT_OFFSET(pemito, 0x6c, ALO *), 0, ppos, ppos);
+        if (STRUCT_OFFSET(pemito, 0x70, int) != 3)
+        {
+            ConvertAloVec(STRUCT_OFFSET(pemito, 0x6c, ALO *), 0, pvec, pvec);
+            int k = STRUCT_OFFSET(pemito, 0x70, int);
+            if (k != 2)
+            {
+                VECTOR *p = ppos;
+                if (k != 1)
+                    p = &STRUCT_OFFSET(STRUCT_OFFSET(pemito, 0x6c, ALO *), 0x140, VECTOR);
+                VECTOR vec;
+                CalculateAloMovement(STRUCT_OFFSET(pemito, 0x6c, ALO *), 0, p, &vec, 0, 0, 0);
+                asm("lqc2 $vf1,%1\n\tlqc2 $vf2,%2\n\tvadd.xyzw $vf1,$vf1,$vf2\n\tsqc2 $vf1,%0" : "=m"(*pvec) : "m"(*pvec), "m"(vec));
+            }
+        }
+    }
+}
 
 void CalculateEmitvx(int cParticlePerRing, LM *plmTilt, int cParticle, EMITVX *pemitvx)
 {
