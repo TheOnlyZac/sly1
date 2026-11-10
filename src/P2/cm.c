@@ -24,7 +24,7 @@
 void SetupCmRotateToCam(CM *pcm);
 extern "C" void *memmove(void *pvDst, const void *pvSrc, uint cb);
 extern "C" void SetCmLookAt(CM *pcm, VECTOR *peye, VECTOR *pcenter); // signature guessed
-extern "C" void SetCmLookAtSmooth(CM *pcm, VECTOR *p1, VECTOR *peye, VECTOR *pcenter, VECTOR *p4, float f0, float f1, float f2, float f3, float f4, float f5); // signature guessed
+extern "C" void SetCmLookAtSmooth(CM *pcm, int grf, VECTOR *peye, VECTOR *pcenter, VECTOR *pUnused, float k0, float k1, float fUnused, float offPan, float offTilt, float dt); // signature guessed
 extern VTCPLCY D_00217398;
 extern VTCPLCY D_002173B0;
 extern VTCPLCY D_002173C8;
@@ -971,7 +971,109 @@ void ResetCmLookAtSmooth(CM *pcm, VECTOR *pposCenter)
     *(qword *)&pcm->posCenterPrev = *(qword *)pposCenter;
 }
 
+/**
+ * @todo Structure matches, 44 differing lines of about 260 (order of the five spring field loads and float register numbering in the smoothing step). Smoothly moves the camera toward a look at target (spherical pan/tilt/distance springs); signature and names are guesses from the asm,  is a flags word (bit 0 smooths, cleared on a cut). Found by hill climbing over equivalent source forms.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmLookAtSmooth);
+#ifdef SKIP_ASM
+extern "C" void SetCmLookAtSmooth(CM *pcm, int grf, VECTOR *peye, VECTOR *pcenter, VECTOR *pUnused, float k0, float k1, float fUnused, float offPan, float offTilt, float dt)
+{
+    VECTOR vPos;
+    VECTOR vSum;
+    MATRIX3 matNew;
+    float ag[8];
+    float fPan, fTilt, fS;
+    if (pcm->fCut)
+        grf &= ~1;
+    DecomposeSphere(peye, pcenter, &ag[0], &ag[1], &ag[2]);
+    float scale = pcm->radFOV;
+    float sc = offPan * scale * pcm->rAspect * 0.5f;
+    float panWant = ag[0] + 3.14159265f + sc;
+    float tiltWant = -ag[1] - offTilt * scale * 0.5f;
+    DecomposeSphere(&pcm->pos, &pcm->posCenterPrev, &ag[3], &ag[4], &ag[5]);
+    DecomposeRotateMatrixPanTilt(&pcm->mat, &ag[6], &ag[7]);
+    float radPan, radTilt;
+    if ((grf & 1) == 0)
+    {
+        radPan = panWant;
+        radTilt = tiltWant;
+        fPan = ag[0];
+        fTilt = ag[1];
+        fS = ag[2];
+    }
+    else
+    {
+        float dPanC = RadNormalize(ag[0] - ag[3]);
+        float dTiltC = ag[1] - ag[4];
+        float dSC = ag[2] - ag[5];
+        float dPanM = RadNormalize(panWant - ag[6]);
+        float dTiltM = tiltWant - ag[7];
+        if (__builtin_fabsf(dPanC) > 2.0f && __builtin_fabsf(dPanM) > 2.0f && dPanC * dPanM < 0.0f)
+        {
+            if (__builtin_fabsf(dPanM) < __builtin_fabsf(dPanC))
+            {
+                if (dPanM < 0.0f)
+                    dPanM += 6.28318531f;
+                else
+                    dPanM -= 6.28318531f;
+            }
+            else
+            {
+                if (dPanC < 0.0f)
+                    dPanC += 6.28318531f;
+                else
+                    dPanC -= 6.28318531f;
+            }
+        }
+        float m = 1.0f;
+        float t;
+        t = __builtin_fabsf(dPanC) * 0.6666667f;
+        if (m < t) m = t;
+        t = __builtin_fabsf(dTiltC) * 1.3333334f;
+        if (m < t) m = t;
+        t = __builtin_fabsf(dSC) * 0.002f;
+        if (m < t) m = t;
+        t = __builtin_fabsf(dPanM) * 0.6666667f;
+        if (m < t) m = t;
+        dTiltM /= m;
+        t = __builtin_fabsf(dTiltM) * 1.3333334f;
+        if (m < t) m = t;
+        dPanC /= m;
+        dSC /= m;
+        dPanM /= m;
+        dTiltC /= m;
+        float w0 = pcm->swTiltPos, w1 = pcm->sv, w2 = pcm->swPanMat, w3 = pcm->swPanPos, w4 = pcm->swTiltMat;
+        float n1 = w1 + (dTiltC * k0 + w1 * k1) * dt;
+        float n0 = w0 + (dPanC * k0 + w0 * k1) * dt;
+        float n2 = w2 + (dSC * k0 + w2 * k1) * dt;
+        float n3 = w3 + (dPanM * k0 + w3 * k1) * dt;
+        float n4 = w4 + (dTiltM * k0 + w4 * k1) * dt;
+        pcm->swTiltPos = n0;
+        pcm->swPanMat = n2;
+        pcm->swPanPos = n3;
+        pcm->sv = n1;
+        pcm->swTiltMat = n4;
+        fTilt = ag[4] + n1 * dt;
+        fPan = ag[3] + n0 * dt;
+        fS = ag[5] + n2 * dt;
+        radPan = ag[6] + n3 * dt;
+        radTilt = ag[7] + n4 * dt;
+    }
+    SetVectorSphere(&vPos, fPan, fTilt, fS);
+    int a1, a2, a3, a4;
+    asm("lqc2 $vf2,%1" : "=r"(a1) : "m"(vPos));
+    asm("lqc2 $vf1,%1" : "=r"(a2) : "m"(*pcenter), "r"(a1));
+    asm("vadd.xyzw $vf1,$vf1,$vf2" : "=r"(a3) : "r"(a2));
+    asm("sqc2 $vf1,%0" : "=m"(vSum) : "r"(a3));
+    LoadRotateMatrixPanTilt(radPan, radTilt, &matNew);
+    STRUCT_OFFSET(pcm, 0x40, qword) = STRUCT_OFFSET(&vSum, 0, qword);
+    STRUCT_OFFSET(pcm, 0x80, qword) = STRUCT_OFFSET(&matNew, 0, qword);
+    STRUCT_OFFSET(pcm, 0x90, qword) = STRUCT_OFFSET(&matNew, 0x10, qword);
+    STRUCT_OFFSET(pcm, 0xa0, qword) = STRUCT_OFFSET(&matNew, 0x20, qword);
+    UpdateCmMat4(pcm);
+    STRUCT_OFFSET(pcm, 0x2d0, qword) = STRUCT_OFFSET(pcenter, 0, qword);
+}
+#endif
 
 void AdjustCmJoy(CM *pcm, JOY *pjoy, JOYID joyid, float *prad)
 {
