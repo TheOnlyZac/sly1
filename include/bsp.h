@@ -83,6 +83,7 @@ struct LSG
     EDGE *pedge;
     int iiposSwap;
     LSG *plsgNext;
+    STRUCT_PADDING(3); // real size is 0x70
 };
 
 /**

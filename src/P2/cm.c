@@ -12,6 +12,8 @@
 #include <vifs.h>
 #include <memory.h>
 #include <math.h>
+#include <bsp.h>
+#include <clip.h>
 #include <joy.h>
 #include <so.h>
 #include <mat.h>
@@ -108,7 +110,25 @@ void ResetCmAdjust(CM *pcm, SO *psoFocus, CPDEFI *pcpdefi)
     asm("sqc2 $vf1,%0" : "=m"(pcm->dposFocus) : "r"(d));
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", GetCmCpdefi__FP2CMP2SOfP6CPDEFI);
+void GetCmCpdefi(CM *pcm, SO *psoFocus, float dt, CPDEFI *pcpdefi)
+{
+    if (psoFocus == pcm->psoFocusPrev)
+    {
+        *pcpdefi = pcm->cpdefiPrev;
+    }
+    else
+    {
+        psoFocus->pvtso->pfnGetSoCpdefi(psoFocus, pcpdefi, dt);
+        VECTOR vAdj;
+        CalcCmAdjust(pcm, psoFocus, pcpdefi, &vAdj);
+        // VU0 vector add: posAdjust = posBase + vAdj
+        int d1, d2, d3;
+        asm("lqc2 $vf2,%1" : "=r"(d1) : "m"(vAdj));
+        asm("lqc2 $vf1,%1" : "=r"(d2) : "m"(pcpdefi->posBase), "r"(d1));
+        asm("vadd.xyzw $vf1,$vf1,$vf2" : "=r"(d3) : "r"(d2));
+        asm("sqc2 $vf1,%0" : "=m"(pcpdefi->posAdjust) : "r"(d3));
+    }
+}
 
 void BuildCmFgfn(CM *pcm, float uFog, FGFN *pfgfn)
 {
@@ -651,7 +671,34 @@ extern "C" void SetCm(CM *pcm, float fx, float fy, VECTOR *pdpos, VECTOR *ppos)
 }
 #endif
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145810);
+/**
+ * Clips the edge against the BSPs of each object and looks for a gap longer than sMin.
+ * Parameter names are guesses, the objects are unidentified (BSP root at 0x538).
+ */
+extern "C" int FUN_00145810(int cpv, void **apv, VECTOR *ppos1, VECTOR *ppos2, float *pu0, float *pu1, float sMin)
+{
+    LSG alsg[64];
+    int c = 0;
+    for (int i = 0; i < cpv; i++)
+        c += ClsgClipEdgeToBsp(STRUCT_OFFSET(apv[i], 0x538, BSP *), ppos1, ppos2, 0, 0x40 - c, &alsg[c]);
+    c = ClsgMergeAlsg(c, alsg);
+    float u0, u1;
+    int i;
+    for (i = 0; i <= c; i++)
+    {
+        u0 = (i > 0) ? alsg[i - 1].au[1] : 0.0f;
+        u1 = (i < c) ? alsg[i].au[0] : 1.0f;
+        if (sMin < u1 - u0)
+            break;
+    }
+    if (i > c)
+        return 0;
+    if (pu0)
+        *pu0 = u0;
+    if (pu1)
+        *pu1 = u1;
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145950);
 

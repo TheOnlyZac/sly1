@@ -105,7 +105,7 @@ struct CPDEFI
     float tMoveLast;
     CFK cfk;
     VECTOR posAdjust;
-};
+} __attribute__((aligned(16)));
 
 /**
  * @brief Camera policy.
