@@ -398,34 +398,27 @@ void PostNoteLoad(NOTE *pnote)
     }
 }
 
-/// @todo ~60% matched (register allocation of pnote/pchz is swapped, as in SetBlotAchzDraw).
-INCLUDE_ASM("asm/nonmatchings/P2/screen", SetNoteAchzDraw__FP4NOTEPc);
-#ifdef SKIP_ASM
 void SetNoteAchzDraw(NOTE *pnote, char *pchz)
 {
-    char *achz = pnote->achzDraw;
+    char *achz;
     if (pchz && strlen(pchz))
     {
-        strcpy(achz, pchz);
-        pchz = achz;
+        strcpy(pnote->achzDraw, pchz);
+        achz = pnote->achzDraw;
     }
     else
     {
-        achz[0] = 0;
-        pchz = achz;
+        pnote->achzDraw[0] = 0;
+        achz = pnote->achzDraw;
     }
     float zero = 0.0f;
-    pnote->pfont->PushScaling(pnote->rFontScale, pnote->rFontScale);
-    CRichText richtext(pchz, pnote->pfont);
     float dx, dy;
+    pnote->pfont->PushScaling(pnote->rFontScale, pnote->rFontScale);
+    CRichText richtext(achz, pnote->pfont);
     richtext.GetExtents(&dx, &dy, zero);
-    float h = zero;
-    if (pnote->achzDraw[0])
-        h = dy;
-    ResizeBlot(pnote, dx, h);
+    ResizeBlot(pnote, dx, pnote->achzDraw[0] ? dy : zero);
     pnote->pfont->PopScaling();
 }
-#endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/screen", DrawNote__FP4NOTE);
 
