@@ -1118,7 +1118,104 @@ void OriginateParticles(int cParticle, EMITB *pemitb, EMITGEN *pemitgen)
 }
 #endif
 
+/**
+ * @todo 113 differing lines of 158: same frame and block structure, VU0 asm volatile. gcc strength reduces the particle index differently (the original shares one i*16 induction register). Names and offsets are guesses.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", OriginateSplineSinkParticles__FiP5EMITBR7EMITGENT2);
+
+#ifdef SKIP_ASM
+extern float D_0024A144;
+
+void OriginateSplineSinkParticles(int cParticle, EMITB *pemitb, EMITGEN &emitgen, EMITGEN &emitgenTarget)
+{
+    struct
+    {
+        VECTOR pos;
+        MATRIX3 mat;
+        VECTOR v;
+        VECTOR w;
+    } xf;
+    VECTOR vPredPos, vPredV, vPredW;
+    MATRIX3 matPred;
+    VECTOR vSpill;
+    memset(&xf, 0, 0x60);
+    pemitb = STRUCT_OFFSET(pemitb, 0x18c, EMITB *);
+    EMITB *pemitbTarget = STRUCT_OFFSET(pemitb, 0x90, EMITB *);
+    LO *ploSave = STRUCT_OFFSET(pemitbTarget, 0x7c, LO *);
+    if (STRUCT_OFFSET(pemitb, 0x94, int) == -1)
+        STRUCT_OFFSET(STRUCT_OFFSET(pemitb, 0x90, EMITB *), 0x7c, int) = STRUCT_OFFSET(pemitb, 0x18, int);
+    if (STRUCT_OFFSET(STRUCT_OFFSET(pemitb, 0x90, EMITB *), 0x7c, int) == STRUCT_OFFSET(pemitb, 0x18, int))
+    {
+        CalculateExplTransform((EXPL *)pemitb, &xf.pos, &xf.mat);
+        STRUCT_OFFSET(STRUCT_OFFSET(pemitb, 0x90, EMITB *), 0x78, void *) = &xf;
+    }
+    emitgenTarget.fUnknown = 0;
+    int i = 0;
+    OriginateParticles(cParticle, STRUCT_OFFSET(pemitb, 0x90, EMITB *), &emitgenTarget);
+    STRUCT_OFFSET(STRUCT_OFFSET(pemitb, 0x90, EMITB *), 0x78, int) = 0;
+    float fPrev = D_0024A144;
+    int ch;
+    for (; i < cParticle; i++)
+    {
+        if (STRUCT_OFFSET(STRUCT_OFFSET(pemitb, 0x90, EMITB *), 0x7c, int))
+        {
+            float f = emitgen.atDestroy[i] - g_clock.t;
+            if (!FFloatsNear(f, fPrev, 0.0001f))
+            {
+                fPrev = f;
+                PredictAloTransform(STRUCT_OFFSET(STRUCT_OFFSET(pemitb, 0x90, EMITB *), 0x7c, ALO *), 0, fPrev, &vPredPos, &matPred, &vPredV, &vPredW);
+            }
+            VECTOR *pa = &emitgenTarget.apos[i];
+            asm volatile("lqc2 $vf5,%0" : : "m"(matPred.avec[0]));
+            asm volatile("lqc2 $vf4,%0" : : "m"(matPred.avec[1]));
+            asm volatile("lqc2 $vf3,%0" : : "m"(*pa));
+            asm volatile("lqc2 $vf1,%0" : : "m"(matPred.avec[2]));
+            asm volatile("vmulax.xyz ACC,$vf5,$vf3x");
+            asm volatile("vmadday.xyz ACC,$vf4,$vf3y");
+            asm volatile("vmaddz.xyz $vf3,$vf1,$vf3z");
+            asm volatile("lqc2 $vf2,%0" : : "m"(vPredPos));
+            asm volatile("sqc2 $vf3,%0" : "=m"(vSpill));
+            asm volatile("vadd.xyzw $vf2,$vf2,$vf3");
+            asm volatile("sqc2 $vf2,%0" : "=m"(*pa));
+            int mode = STRUCT_OFFSET(STRUCT_OFFSET(pemitb, 0x90, EMITB *), 0x80, int);
+            if (mode != 3)
+            {
+                VECTOR *pw = &emitgenTarget.av[i];
+                asm volatile("lqc2 $vf4,%0" : : "m"(matPred.avec[0]));
+                asm volatile("lqc2 $vf3,%0" : : "m"(matPred.avec[1]));
+                asm volatile("lqc2 $vf1,%0" : : "m"(*pw));
+                asm volatile("lqc2 $vf2,%0" : : "m"(matPred.avec[2]));
+                asm volatile("vmulax.xyz ACC,$vf4,$vf1x");
+                asm volatile("vmadday.xyz ACC,$vf3,$vf1y");
+                asm volatile("vmaddz.xyz $vf1,$vf2,$vf1z");
+                asm volatile("sqc2 $vf1,%0" : "=m"(*pw));
+                if (mode != 2)
+                {
+                    asm volatile("lqc2 $vf2,%0" : : "m"(vPredV));
+                    asm volatile("lqc2 $vf3,%0" : : "m"(vPredW));
+                    VECTOR *pr = mode == 1 ? pa : &vSpill;
+                    asm volatile("lqc2 $vf1,%0" : : "m"(*pw));
+                    asm volatile("vadd.xyzw $vf2,$vf1,$vf2");
+                    asm volatile("lqc2 $vf1,%0" : : "m"(*pr));
+                    asm volatile("vopmula.xyz ACC,$vf3,$vf1");
+                    asm volatile("vopmsub.xyz $vf1,$vf1,$vf3");
+                    asm volatile("vsub.w $vf1,$vf1,$vf1");
+                    asm volatile("vadd.xyzw $vf1,$vf2,$vf1");
+                    asm volatile("sqc2 $vf1,%0" : "=m"(*pw));
+                }
+            }
+        }
+        VECTOR *pw2 = &emitgenTarget.av[i];
+        float neg = -1.0f;
+        asm volatile("qmtc2.ni %0,$vf2" : : "r"(neg));
+        asm volatile("lqc2 $vf1,%0" : : "m"(*pw2));
+        asm volatile("vmulx.xyzw $vf1,$vf1,$vf2x");
+        asm volatile("sqc2 $vf2,%0" : "=m"(vSpill));
+        asm volatile("sqc2 $vf1,%0" : "=m"(*pw2));
+    }
+    STRUCT_OFFSET(STRUCT_OFFSET(pemitb, 0x90, EMITB *), 0x7c, LO *) = ploSave;
+}
+#endif
 
 void EmitParticles(int cParticle, EMITB *pemitb, EMITG *pemitg)
 {
@@ -1248,7 +1345,7 @@ void AddEmitoSkeleton(EMITO *pemito, OID oid, OID oidOther, float sRadius, float
 }
 
 /**
- * @todo 26 differing lines of 88: VU0 asm volatile statements, the original keeps the loop counter copy before the first asm and has a different register split (pemitb/i+1). Names are guesses.
+ * @todo 18 differing lines of 88: VU0 asm chain with memory clobbers and a pinned fake dependency register keeps the register split. Remaining: float load placement between the VU0 asms (the original interleaves them) and the (a+b)*(len*0.5) schedule. Names are guesses.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", BindEmitb__FP5EMITBP2LO);
 
@@ -1265,25 +1362,19 @@ void BindEmitb(EMITB *pemitb, LO *plo)
             char *pe = STRUCT_OFFSET(pemitb, 0x24, char *) + i * 0x28;
             for (int j = 0; j < 2; j++)
                 STRUCT_OFFSET(pe, 0x18 + j * 4, LO *) = PloFindSwObject(plo->psw, 0x104, STRUCT_OFFSET(pe, j * 4, OID), plo);
-            asm volatile("lqc2 $vf2,%0" : : "m"(STRUCT_OFFSET(STRUCT_OFFSET(pe, 0x1c, LO *), 0x140, qword)));
-            asm volatile("lqc2 $vf1,%0" : : "m"(STRUCT_OFFSET(STRUCT_OFFSET(pe, 0x18, LO *), 0x140, qword)));
-            asm volatile("vsub.xyzw $vf1,$vf1,$vf2");
-            float a = STRUCT_OFFSET(pe, 8, float);
-            asm volatile("vmul.xyz $vf1,$vf1,$vf1");
-            asm volatile("vaddw.x $vf2,$vf0,$vf0w");
-            asm volatile("vadday.x ACC,$vf1,$vf1y");
-            asm volatile("vmaddz.x $vf1,$vf2,$vf1z");
-            float b = STRUCT_OFFSET(pe, 0xc, float);
-            asm volatile(".word 0x4A0103BD");
-            asm volatile("vwaitq");
-            asm volatile("vaddq.x $vf1,$vf0,Q");
-            int q;
-            asm volatile("qmfc2.ni %0,$vf1" : "=r"(q));
+            register int ch asm("$24");
             float len;
+            asm("lqc2 $vf2,%1" : "=r"(ch) : "m"(STRUCT_OFFSET(STRUCT_OFFSET(pe, 0x1c, LO *), 0x140, qword)) : "memory");
+            asm("lqc2 $vf1,%1" : "=r"(ch) : "m"(STRUCT_OFFSET(STRUCT_OFFSET(pe, 0x18, LO *), 0x140, qword)), "r"(ch) : "memory");
+            asm("vsub.xyzw $vf1,$vf1,$vf2" : "=r"(ch) : "r"(ch) : "memory");
+            asm("vmul.xyz $vf1,$vf1,$vf1" : "=r"(ch) : "r"(ch) : "memory");
+            asm("vaddw.x $vf2,$vf0,$vf0w" : "=r"(ch) : "r"(ch) : "memory");
+            asm("vadday.x ACC,$vf1,$vf1y\n\tvmaddz.x $vf1,$vf2,$vf1z\n\t.word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q" : "=r"(ch) : "r"(ch) : "memory");
+            int q;
+            asm("qmfc2.ni %0,$vf1" : "=r"(q) : "r"(ch));
             asm("mtc1 %1,%0" : "=f"(len) : "r"(q));
             STRUCT_OFFSET(pe, 0x20, float) = len;
-            float h = len * 0.5f;
-            float t = h * (a + b);
+            float t = (STRUCT_OFFSET(pe, 8, float) + STRUCT_OFFSET(pe, 0xc, float)) * (len * 0.5f);
             STRUCT_OFFSET(pe, 0x24, float) = t;
             fSum += t;
         }
