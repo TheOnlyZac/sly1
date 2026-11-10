@@ -30,20 +30,18 @@ void StartupFont()
     g_pfont = NULL;
 }
 
-/**
- * @todo 85% matched (8 differing lines of 16), guessed name FFontLoaded.
- */
-INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c188);
-#ifdef SKIP_ASM
-int FFontLoaded(int ifont)
+int FFontLoaded(int ifont) // guessed name
 {
     if (ifont == -1)
-        return 0;
-    if (g_apfont[ifont] != NULL)
-        return 1;
+        goto no;
+    ifont = (int)g_apfont[ifont];
+    if (ifont != 0)
+        goto yes;
+no:
     return 0;
+yes:
+    return 1;
 }
-#endif // SKIP_ASM
 
 CFont *PfontFromIfont(int ifont) // guessed name
 {

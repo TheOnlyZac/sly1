@@ -2045,7 +2045,7 @@ FCheckFlyOpenSpaceBelow__FP3FLY             = 0x15C0A0; // type:func
 // P2/font.c
 ////////////////////////////////////////////////////////////////
 StartupFont__Fv                                = 0x15C178; // type:func
-FUN_0015c188                                   = 0x15C188; // type:func
+FFontLoaded__Fi                                   = 0x15C188; // type:func
 PfontFromIfont__Fi                                   = 0x15C1C0; // type:func
 PfontFromCh__Fc                                   = 0x15C200; // type:func
 CopyTo__5CFontP5CFont                          = 0x15C260; // type:func
