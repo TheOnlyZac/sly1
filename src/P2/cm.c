@@ -477,7 +477,69 @@ void UpdateCmLast(CM *pcm, int fClear, float dt)
 }
 #endif
 
+/**
+ * @todo Structure matches, 36 differing lines of about 72 (register allocation of the qwords and placement of the junk spill stores). VU0 inline asm, vector built with pextlw/pcpyld asm. Computes matRotateToCam and matRotateTiltToCam; names are guesses.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetupCmRotateToCam__FP2CM);
+#ifdef SKIP_ASM
+extern VECTOR g_normalX;
+extern VECTOR g_normalZ;
+void SetupCmRotateToCam(CM *pcm)
+{
+    MATRIX3 loc;
+    VECTOR v30;
+    VECTOR &vNorm = loc.avec[0];
+    float x = -pcm->mat.avec[0].x;
+    float y = -pcm->mat.avec[0].y;
+    float z = 0.0f;
+    register qword q __asm__("$2");
+    asm("mfc1 $2,%1\n\tmfc1 $3,%2\n\tpextlw $2,$3,$2" : "=r"(q) : "f"(x), "f"(y) : "$3");
+    asm("mfc1 $3,%1\n\tpcpyld $2,$3,$2" : "+r"(q) : "f"(z) : "$3");
+    qword n = STRUCT_OFFSET(&g_normalX, 0, qword);
+    int a1, a2, a3, a4, a5, a6, a7, t;
+    float len;
+    STRUCT_OFFSET(&v30, 0, qword) = q;
+    asm("qmtc2.ni %1,$vf1" : "=r"(a1) : "r"(q));
+    asm("vmul.xyz $vf2,$vf1,$vf1\n\tvaddw.x $vf3,$vf0,$vf0w\n\tvadday.x ACC,$vf2,$vf2y\n\tvmaddz.x $vf2,$vf3,$vf2z" : "=r"(a2) : "r"(a1));
+    asm("sqc2 $vf1,%1" : "=r"(a3), "=m"(loc.avec[0]) : "r"(a2));
+    asm(".word 0x4A0203BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q" : "=r"(a4) : "r"(a3));
+    asm("qmfc2.ni %0,$vf1" : "=r"(t) : "r"(a4));
+    asm("mtc1 %1,%0" : "=f"(len) : "r"(t));
+    asm("qmtc2.ni %1,$vf2" : "=r"(a5) : "r"(q));
+    if (len < 0.0001f)
+    {
+        asm volatile("qmtc2.ni %1,$vf1" : "=r"(a6) : "r"(n), "r"(a5));
+    }
+    else
+    {
+        asm volatile("vdiv Q,$vf0w,$vf1x\n\tvwaitq\n\tvmulq.xyzw $vf1,$vf2,Q" : "=r"(a6) : "r"(a5));
+    }
+    asm volatile("sqc2 $vf1,%0" : "=m"(vNorm) : "r"(a6));
+    float m1 = -1.0f;
+    int b1, b2, b3, b4, b5, b6, b7, b8, b9;
+    asm("lqc2 $vf1,%1" : "=r"(b1) : "m"(pcm->mat.avec[0]));
+    asm("lqc2 $vf4,%1" : "=r"(b2) : "m"(g_normalZ), "r"(b1));
+    asm("lqc2 $vf5,%1" : "=r"(b3) : "m"(vNorm), "r"(b2));
+    asm("qmtc2.ni %1,$vf3" : "=r"(b4) : "r"(m1), "r"(b3));
+    STRUCT_OFFSET(pcm, 0x3c0, qword) = STRUCT_OFFSET(pcm, 0xa0, qword);
+    asm("vopmula.xyz ACC,$vf4,$vf5\n\tvopmsub.xyz $vf6,$vf5,$vf4\n\tvsub.w $vf6,$vf6,$vf6" : "=r"(b5) : "r"(b4));
+    asm("lqc2 $vf2,%1" : "=r"(b6) : "m"(pcm->mat.avec[1]), "r"(b5));
+    asm("vmulx.xyzw $vf1,$vf1,$vf3x" : "=r"(b7) : "r"(b6));
+    asm("sqc2 $vf6,%1" : "=r"(b8), "=m"(loc.avec[1]) : "r"(b7));
+    asm("vmulx.xyzw $vf2,$vf2,$vf3x" : "=r"(b9) : "r"(b8));
+    asm("sqc2 $vf4,%1" : "=r"(a7), "=m"(loc.avec[2]) : "r"(b9));
+    asm("sqc2 $vf3,%1" : "=r"(a1), "=m"(v30) : "r"(a7));
+    asm("sqc2 $vf5,%1" : "=r"(a2), "=m"(pcm->matRotateToCam.avec[0]) : "r"(a1));
+    asm("sqc2 $vf6,%1" : "=r"(a3), "=m"(pcm->matRotateToCam.avec[1]) : "r"(a2));
+    asm("sqc2 $vf4,%1" : "=r"(a4), "=m"(pcm->matRotateToCam.avec[2]) : "r"(a3));
+    asm("sqc2 $vf1,%1" : "=r"(a5), "=m"(pcm->matRotateTiltToCam.avec[0]) : "r"(a4));
+    asm("sqc2 $vf2,%1" : "=r"(a6), "=m"(pcm->matRotateTiltToCam.avec[1]) : "r"(a5));
+    asm("sqc2 $vf1,%1" : "=r"(a7), "=m"(loc.avec[0]) : "r"(a6));
+    asm("sqc2 $vf3,%1" : "=r"(b1), "=m"(v30) : "r"(a7));
+    asm("sqc2 $vf2,%1" : "=r"(b2), "=m"(loc.avec[1]) : "r"(b1));
+    STRUCT_OFFSET(&loc.avec[2], 0, qword) = STRUCT_OFFSET(pcm, 0xa0, qword);
+}
+#endif
 
 /**
  * @todo 17 differing lines: the original interleaves the VU loads with the float math, which inline asm cannot reproduce. Names are guesses.
@@ -595,9 +657,89 @@ void SetCmLookAt(CM *pcm, VECTOR *peye, VECTOR *pcenter)
     SetCmLookAtSmooth(pcm, 0, peye, pcenter, 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 }
 
+/**
+ * @todo Structure matches, 16 differing lines of about 74 (branch delay slot fill: the original puts lqc2 vf4 and sqc2 vf5 in the delay slots and hoists the 1e-4 constant after vmaddz). VU0 inline asm, names guessed.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertWorldToCylindVelocity);
+#ifdef SKIP_ASM
+extern "C" void ConvertWorldToCylindVelocity(VECTOR *pposCenter, VECTOR *ppos, VECTOR *pvel, float *ps0, float *ps1, float *ps2)
+{
+    MATRIX3 mat;
+    VECTOR d;
+    VECTOR r;
+    int a1, a2, a3, a4, a5, a6, t;
+    float len;
+    asm("lqc2 $vf2,%1" : "=r"(a1) : "m"(*pposCenter));
+    asm("lqc2 $vf1,%1" : "=r"(a2) : "m"(*ppos), "r"(a1));
+    asm("vsub.xyzw $vf1,$vf1,$vf2" : "=r"(a3) : "r"(a2));
+    asm("sqc2 $vf1,%0" : "=m"(d) : "r"(a3));
+    LoadLookAtMatrix(&d, &mat);
+    asm("lqc2 $vf1,%1" : "=r"(a4) : "m"(d));
+    asm("vmul.xyz $vf1,$vf1,$vf1\n\tvaddw.x $vf2,$vf0,$vf0w\n\tvadday.x ACC,$vf1,$vf1y\n\tvmaddz.x $vf1,$vf2,$vf1z" : "=r"(a5) : "r"(a4));
+    asm(".word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q" : "=r"(a6) : "r"(a5));
+    asm("qmfc2.ni %0,$vf1" : "=r"(t) : "r"(a6));
+    asm("mtc1 %1,%0" : "=f"(len) : "r"(t));
+    if (len < 0.0001f)
+    {
+        *ps2 = *ps0 = *ps1 = 0.0f;
+    }
+    else
+    {
+        int b1, b2, b3, b4, b5, b6, b7, b8, b9;
+        asm("lqc2 $vf4,%1" : "=r"(b1) : "m"(*pvel));
+        asm("lqc2 $vf3,%1" : "=r"(b2) : "m"(mat.avec[0]), "r"(b1));
+        asm("lqc2 $vf2,%1" : "=r"(b3) : "m"(mat.avec[1]), "r"(b2));
+        asm("lqc2 $vf1,%1" : "=r"(b4) : "m"(mat.avec[2]), "r"(b3));
+        asm("vmul.xyzw $vf8,$vf3,$vf4\n\tvmaxw.xyzw $vf9,$vf0,$vf0w\n\tvmul.xyzw $vf7,$vf2,$vf4\n\tvmul.xyzw $vf6,$vf1,$vf4\n\tvadday.x ACC,$vf8,$vf8y\n\tvmaddz.x $vf5,$vf9,$vf8z\n\tvaddax.y ACC,$vf7,$vf7x\n\tvmaddz.y $vf5,$vf9,$vf7z\n\tvaddax.z ACC,$vf6,$vf6x\n\tvmaddy.z $vf5,$vf9,$vf6y" : "=r"(b5) : "r"(b4));
+        asm("sqc2 $vf5,%1" : "=r"(b6), "=m"(r) : "r"(b5));
+        if (len < 100.0f)
+            len = 100.0f;
+        float rx = r.x, ry = r.y, rz = r.z;
+        *ps2 = rx;
+        *ps0 = ry / len;
+        *ps1 = rz / len;
+    }
+}
+#endif
 
+/**
+ * @todo Structure matches, 14 differing lines of about 52 (scheduling of compiler epilogue loads and spill stores around the VU asm). The VU vector is built with pextlw/pcpyld inline asm because no C source form was found that emits them. Names guessed.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertCylindToWorldVelocity);
+#ifdef SKIP_ASM
+extern "C" void ConvertCylindToWorldVelocity(VECTOR *pposCenter, VECTOR *ppos, VECTOR *pvel, float s0, float s1, float s2)
+{
+    MATRIX3 mat;
+    VECTOR d;
+    int a1, a2, a3, a4, a5, a6, a7, a8;
+    asm("lqc2 $vf2,%1" : "=r"(a1) : "m"(*pposCenter));
+    asm("lqc2 $vf1,%1" : "=r"(a2) : "m"(*ppos), "r"(a1));
+    asm("vsub.xyzw $vf1,$vf1,$vf2" : "=r"(a3) : "r"(a2));
+    asm("sqc2 $vf1,%0" : "=m"(d) : "r"(a3));
+    LoadLookAtMatrix(&d, &mat);
+    int t;
+    float len;
+    asm("lqc2 $vf1,%1" : "=r"(a4) : "m"(d));
+    asm("vmul.xyz $vf1,$vf1,$vf1\n\tvaddw.x $vf3,$vf0,$vf0w\n\tvadday.x ACC,$vf1,$vf1y\n\tvmaddz.x $vf1,$vf3,$vf1z" : "=r"(a5) : "r"(a4));
+    asm("lqc2 $vf2,%1" : "=r"(a6) : "m"(mat.avec[0]), "r"(a5));
+    asm(".word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q" : "=r"(a7) : "r"(a6));
+    asm("lqc2 $vf4,%1" : "=r"(a8) : "m"(mat.avec[1]), "r"(a7));
+    asm("qmfc2.ni %0,$vf1" : "=r"(t) : "r"(a8));
+    asm("mtc1 %1,%0" : "=f"(len) : "r"(t));
+    float v0 = len * s0;
+    float v1 = len * s1;
+    register qword q __asm__("$2");
+    asm volatile("mfc1 $2,%1\n\tmfc1 $3,%2\n\tpextlw $2,$3,$2" : "=r"(q) : "f"(s2), "f"(v0) : "$3");
+    asm("mfc1 $3,%1\n\tpcpyld $2,$3,$2" : "+r"(q) : "f"(v1) : "$3");
+    VECTOR s1v, s2v;
+    STRUCT_OFFSET(&s1v, 0, qword) = q;
+    STRUCT_OFFSET(&s2v, 0, qword) = q;
+    int b1, b2;
+    asm("lqc2 $vf3,%1\n\tqmtc2.ni %2,$vf1" : "=r"(b1) : "m"(mat.avec[2]), "r"(q));
+    asm("vmulax.xyz ACC,$vf2,$vf1x\n\tvmadday.xyz ACC,$vf4,$vf1y\n\tvmaddz.xyz $vf2,$vf3,$vf1z" : "=r"(b2) : "r"(b1));
+    asm("sqc2 $vf2,%0" : "=m"(*pvel) : "r"(b2));
+}
+#endif
 
 void ResetCmLookAtSmooth(CM *pcm, VECTOR *pposCenter)
 {
@@ -985,7 +1127,40 @@ void JoltCm(CM *pcm)
     pcm->tJolt = g_clock.t;
 }
 
+/**
+ * @todo Two differing lines of 36: the original schedules daddu $3,0 (result init) after vmaxw, we emit it one slot earlier. Frustum sphere test, names are guesses.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00146038);
+#ifdef SKIP_ASM
+// FInsideCmMrd called with fewer args here, alias with a guessed shorter signature
+extern "C" int FInsideCmMrd3(CM *pcm, qword vDelta, float sOffset, float *puFrac) __asm__("FInsideCmMrd");
+extern "C" int FUN_00146038(CM *pcm, VECTOR *ppos, float sRadius)
+{
+    // VU0 inline asm with fake dependencies through $2, see SpringCm
+    register int ch __asm__("$2");
+    VECTOR spill;
+    float u;
+    qword vDelta;
+    asm("mfc1 $2,%1" : "=r"(ch) : "f"(sRadius));
+    asm("qmtc2.ni $2,$vf4\n\tvmaxw.xyzw $vf5,$vf0,$vf0w" : "=r"(ch) : "r"(ch));
+    int r = 0;
+    asm("lqc2 $vf2,%1" : "=r"(ch) : "m"(*ppos), "r"(ch), "r"(r));
+    asm("lqc2 $vf1,%1" : "=r"(ch) : "m"(STRUCT_OFFSET(pcm, 0x40, VECTOR)), "r"(ch));
+    asm("vsub.xyzw $vf6,$vf2,$vf1" : "=r"(ch) : "r"(ch));
+    asm("lqc2 $vf3,%1" : "=r"(ch) : "m"(STRUCT_OFFSET(pcm, 0x50, VECTOR)), "r"(ch));
+    asm("lqc2 $vf2,%1" : "=r"(ch) : "m"(STRUCT_OFFSET(pcm, 0x60, VECTOR)), "r"(ch));
+    asm("lqc2 $vf1,%1" : "=r"(ch) : "m"(STRUCT_OFFSET(pcm, 0x70, VECTOR)), "r"(ch));
+    asm("vmulax.xyzw ACC,$vf3,$vf6x\n\tvmadday.xyzw ACC,$vf2,$vf6y\n\tvmaddaz.xyzw ACC,$vf1,$vf6z\n\tvmsubax.xyzw ACC,$vf5,$vf4x\n\tvnop\n\tvnop\n\tvnop\n\tvnop\n\tcfc2.ni $2,$vi17\n\txori $2,$2,0xF0" : "=r"(ch) : "r"(ch));
+    asm("sqc2 $vf4,%0" : "=m"(spill) : "r"(ch));
+    if (ch == 0)
+    {
+        asm volatile("qmfc2.ni %0,$vf6" : "=r"(vDelta));
+        r = FInsideCmMrd3(pcm, vDelta, sRadius, &u) != 0;
+    }
+    asm("");
+    return r;
+}
+#endif
 
 /**
  * @todo This is a compiler generated function. Remove once data is migrated.
