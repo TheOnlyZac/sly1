@@ -213,7 +213,20 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", ModifyEmitterParticles__FP7EMITTER);
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", UpdateEmitter__FP7EMITTERf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", FUN_00155f28);
+extern "C" void FUN_00155f28(EMITTER *pemitter)
+{
+    if ((STRUCT_OFFSET(pemitter, 0x2c8, ulong) & 0xC000000) != 0x8000000)
+    {
+        ALO *palo;
+        for (palo = pemitter->paloParent; palo; palo = palo->paloParent)
+        {
+            if ((STRUCT_OFFSET(palo, 0x2c8, ulong) & 0xC000000) == 0x8000000)
+                break;
+        }
+        if (palo)
+            STRUCT_OFFSET(pemitter, 0x88, int) = STRUCT_OFFSET(palo, 0x88, int);
+    }
+}
 
 void PauseEmitter(EMITTER *pemitter, float dtPause)
 {
@@ -361,7 +374,21 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", ChooseEmitoPos__FP5EMITOiiP6VECTORT3)
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", ConvertEmitoPosVec__FP5EMITOP6VECTORT1);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", CalculateEmitvx__FiP2LMiP6EMITVX);
+void CalculateEmitvx(int cParticlePerRing, LM *plmTilt, int cParticle, EMITVX *pemitvx)
+{
+    if (cParticlePerRing > 0)
+        STRUCT_OFFSET(pemitvx, 0, int) = cParticlePerRing < cParticle ? cParticlePerRing : cParticle;
+    else
+        STRUCT_OFFSET(pemitvx, 0, int) = cParticle;
+    int cm1 = cParticle - 1;
+    int cRing = (cm1 + STRUCT_OFFSET(pemitvx, 0, int)) / STRUCT_OFFSET(pemitvx, 0, int);
+    float rad = RadNormalize(STRUCT_OFFSET(plmTilt, 4, float) - STRUCT_OFFSET(plmTilt, 0, float));
+    float radStep = rad / (float)cRing;
+    STRUCT_OFFSET(pemitvx, 8, float) = 6.2831855f / (float)STRUCT_OFFSET(pemitvx, 0, int);
+    STRUCT_OFFSET(pemitvx, 4, float) = radStep;
+    STRUCT_OFFSET(pemitvx, 0xc, float) = STRUCT_OFFSET(plmTilt, 0, float) + radStep * 0.5f;
+    STRUCT_OFFSET(pemitvx, 0x10, float) = GRandInRange(0.0f, 6.2831855f);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", ChooseEmitVelocity__FP6EMITVXffP2LMP6VECTORiT4);
 
@@ -375,9 +402,56 @@ INCLUDE_ASM("asm/nonmatchings/P2/emitter", OriginateParticles__FiP5EMITBP7EMITGE
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", OriginateSplineSinkParticles__FiP5EMITBR7EMITGENT2);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", EmitParticles__FiP5EMITBP5EMITG);
+void EmitParticles(int cParticle, EMITB *pemitb, EMITG *pemitg)
+{
+    if (cParticle)
+    {
+        InitStackImpl();
+        EMITGEN emitgen;
+        EMITGEN emitgenTarget;
+        emitgen.fUnknown = 1;
+        OriginateParticles(cParticle, pemitb, &emitgen);
+        if (STRUCT_OFFSET(pemitb, 0x120, int) == 1)
+        {
+            EmitRips(pemitb, pemitg, cParticle, emitgen.apos, emitgen.av, emitgen.atCreated, emitgen.atDestroy);
+        }
+        else
+        {
+            if (STRUCT_OFFSET(pemitb, 0x130, int) == 2)
+            {
+                OriginateSplineSinkParticles(cParticle, pemitb, emitgen, emitgenTarget);
+            }
+            else
+            {
+                emitgenTarget.apos = 0;
+                emitgenTarget.av = 0;
+            }
+            EmitBlips(pemitb, pemitg, cParticle, emitgen.apos, emitgen.av, emitgen.atCreated, emitgen.atDestroy, emitgenTarget.apos, emitgenTarget.av);
+        }
+        FreeStackImpl();
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", EmitRipsSphere__FP6VECTORT0iP7EMITRIPP5EMITVPP4RIPGP2LO);
+
+#ifdef SKIP_ASM
+// @todo ~50% matched (85 differing lines): gcc keeps &emitg in an extra callee saved register, frame is 16 bytes too big
+void EmitRipsSphere(VECTOR *ppos, VECTOR *pnormal, int crip, EMITRIP *pemitrip, EMITV *pemitv, RIPG **ppripg, LO *ploSubscribe)
+{
+    EMITB emitb;
+    EMITG emitg;
+    InitEmitb(&emitb);
+    memset(&emitg, 0, sizeof(EMITG));
+    STRUCT_OFFSET(&emitb, 0x20, qword) = STRUCT_OFFSET(ppos, 0, qword);
+    STRUCT_OFFSET(&emitb, 0x60, qword) = STRUCT_OFFSET(pnormal, 0, qword);
+    emitb.emitv = *pemitv;
+    emitg.ppripg = ppripg;
+    emitg.ploSubscribe = ploSubscribe;
+    emitb.unk120 = 1;
+    emitb.emitrip = *pemitrip;
+    EmitParticles(crip, &emitb, &emitg);
+}
+#endif
 
 JUNK_WORD(0x27bd0290); // junk_00157FF0
 

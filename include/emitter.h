@@ -41,7 +41,12 @@ struct EMITBLIP
  */
 struct EMITGEN
 {
-    // ...
+    /* 0x00 */ VECTOR *apos; // guess
+    /* 0x04 */ VECTOR *av; // guess
+    /* 0x08 */ float *atCreated; // guess
+    /* 0x0c */ float *atDestroy; // guess
+    /* 0x10 */ int fUnknown; // guess
+    /* 0x14 */ STRUCT_PADDING(3);
 };
 
 /**
@@ -50,8 +55,8 @@ struct EMITGEN
  */
 struct EMITRIP
 {
-    // ...
-};
+    STRUCT_PADDING(16); // 0x40 bytes
+} __attribute__((aligned(16)));
 
 /**
  * @brief Unknown.
@@ -68,8 +73,8 @@ struct EMITDV
  */
 struct EMITV
 {
-    // ...
-};
+    STRUCT_PADDING(32); // 0x80 bytes
+} __attribute__((aligned(16)));
 
 /**
  * @brief Unknown.
@@ -86,7 +91,7 @@ struct EMITVX
  */
 struct EMITO
 {
-    // ...
+    STRUCT_PADDING(36); // 0x90 bytes, layout is a guess
 };
 
 /**
@@ -98,8 +103,12 @@ struct EMITB
     /* 0x00 */ int cref;
     /* 0x04 */ STRUCT_PADDING(3);
     /* 0x10 */ EMITO emito;
-    // ...
-};
+    /* 0xa0 */ EMITV emitv; // guess
+    /* 0x120 */ int unk120; // guess, compared against 1 in EmitParticles
+    /* 0x124 */ STRUCT_PADDING(35);
+    /* 0x1b0 */ EMITRIP emitrip; // guess
+    /* 0x1f0 */ STRUCT_PADDING(4);
+}; // 0x200 bytes
 
 /**
  * @brief Emitter group?
@@ -107,7 +116,9 @@ struct EMITB
  */
 struct EMITG
 {
-    // ...
+    /* 0x00 */ STRUCT_PADDING(1);
+    /* 0x04 */ RIPG **ppripg; // guess
+    /* 0x08 */ LO *ploSubscribe; // guess
 };
 
 /**
@@ -205,7 +216,7 @@ void EmitBlips(EMITB *pemitb, EMITG *pemitg, int cblipeRequested, VECTOR *apos, 
 
 void OriginateParticles(int cParticle, EMITB *pemitb, EMITGEN *pemitgen);
 
-void OriginateSplineSinkParticles(int cParticle, EMITB *pemitb, EMITGEN *emitgen, EMITGEN *emitgenTarget);
+void OriginateSplineSinkParticles(int cParticle, EMITB *pemitb, EMITGEN &emitgen, EMITGEN &emitgenTarget);
 
 void EmitParticles(int cParticle, EMITB *pemitb, EMITG *pemitg);
 
