@@ -114,13 +114,13 @@ struct VTALO : VT
     void (*pfnUnsubscribeLoObject)(ALO *);
     void (*pfnSubscribeLoStruct)(ALO *);
     void (*pfnUnsubscribeLoStruct)(ALO *);
-    void (*pfnProjectAloTransform)(ALO *);
+    void (*pfnProjectAloTransform)(ALO *, void *);
     void (*pfnPresetAloAccel)(ALO *);
     void (*pfnTranslateAloToPos)(ALO *, VECTOR *);
-    void (*pfnRotateAloToMat)(ALO *);
+    void (*pfnRotateAloToMat)(ALO *, MATRIX3 *);
     void (*pfnMatchAloOtherObject)(ALO *);
-    void (*pfnSetAloVelocityVec)(ALO *);
-    void (*pfnSetAloAngularVelocityVec)(ALO *);
+    void (*pfnSetAloVelocityVec)(ALO *, VECTOR *);
+    void (*pfnSetAloAngularVelocityVec)(ALO *, VECTOR *);
     void (*pfnPredictAloPosition)(ALO *);
     void (*pfnPredictAloRotation)(ALO *);
     void (*pfnRenderAloAll)(ALO *);
@@ -756,11 +756,16 @@ struct VTSAA
     /* 0x1c */ void (*pfnUnk1C)();
 };
 
+struct ACT;
+
 /**
  * @brief VT for an act related struct.
  */
 struct VTACT
 {
+    void (*pfnInitAct)(ACT *, ALO *);
+    void (*pfnCloneAct)(ACT *, ACT *);
+    void (*pfnRetractAct)(ACT *, int);
     // ...
 };
 

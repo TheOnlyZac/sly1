@@ -239,7 +239,7 @@ int FReadJoy(JOY *pjoy);
 
 void SetJoyBtnHandled(JOY *joy, ushort btn);
 
-void TriggerJoyRumbleRumk(RUMBLE *prumble, JOY *pjoy, float dt);
+void TriggerJoyRumbleRumk(JOY *pjoy, RUMK rumk, float dt);
 
 void StartJoySelection(JOY *pjoy);
 
