@@ -155,6 +155,7 @@ struct AMB
     int fOutOfRange;
     int fAttached;
     int fStopped;
+    undefined4 unk_pre; // Padding found from asm offsets (guess).
     float volAttenuated;
     float pan;
     float frq;
@@ -168,6 +169,7 @@ struct AMB
     undefined4 unk_2;
     undefined4 unk_3;
     undefined4 unk_4;
+    undefined4 unk_5;
 };
 
 /**
@@ -200,17 +202,122 @@ typedef int IEXC;
 extern IEXC g_iexcHyst;
 
 /**
+ * @brief Stops and unloads the music bank (if loaded) and resets the music state.
+ */
+void UnloadMusic();
+
+/**
  * @brief Check if a VAG is playing.
+ * @return Nonzero if a VAG stream handle is currently held.
  */
 int FVagPlaying();
 
 /**
- * @brief Set VAG unpaused state.
+ * @brief Returns the VAG unpaused state.
+ * @note Despite the name this is a getter for D_00274744 (name is original, meaning is a guess).
  */
 int SetVagUnpaused();
 
 /**
+ * @brief Clears the VAG unpaused flag and stops the VAG. (Name unknown, guess.)
+ */
+void FUN_001be708();
+
+/**
+ * @brief Clears D_00274730. (Meaning unknown.)
+ */
+void FUN_001BE5D8();
+
+/**
+ * @brief Pauses the current VAG if one is playing.
+ */
+void PauseVag();
+
+/**
+ * @brief Continues the current VAG if one is playing.
+ */
+void ContinueVag();
+
+/**
+ * @brief Pauses the music sound handle. (Name is a guess.)
+ */
+void SfxhMusicUnknown1();
+
+/**
+ * @brief Continues the music sound handle. (Name is a guess.)
+ */
+void SfxhMusicUnknown2();
+
+/**
+ * @brief Sets the rvol of the music MVGK on channel 3 to 0 (mute) or 1.
+ * @param mute Nonzero to mute. (Purpose is a guess.)
+ */
+void MvgkUnknown3(int mute);
+
+/**
+ * @brief Sets the sound playback mode to 0 or 1.
+ * @param mode Treated as a boolean. (Purpose is a guess.)
+ */
+void MvgkUnknown4(int mode);
+
+/**
+ * @brief Detaches an ambient sound from its owner pointer.
+ * @param ppamb Pointer to the owner's AMB pointer; cleared afterwards.
+ */
+void DropPamb(AMB **ppamb);
+
+/**
+ * @brief Returns the ambients-paused flag.
+ */
+int FAmbientsPaused();
+
+/**
+ * @brief Stops the current VAG.
+ */
+void StopVag();
+
+/**
+ * @brief Allocates a zeroed excitement (EXC) from the world's EXC heap and links it into the EXC list.
+ * @return The new EXC, or 0 if the heap is full.
+ */
+EXC *PexcAlloc();
+
+/**
+ * @brief Allocates a zeroed ambient sound (AMB) from the world's AMB heap and links it into the AMB list.
+ * @return The new AMB, or 0 if the heap is full.
+ */
+AMB *PambAlloc();
+
+/**
+ * @brief Unlinks an EXC from the world's EXC list and frees it.
+ */
+void RemoveExc(EXC *pexc);
+
+/**
+ * @brief Clears the owner pointer of an AMB, invalidates its serial, then unlinks and frees it.
+ */
+void RemoveAmb(AMB *pamb);
+
+/**
+ * @brief Stops the music if it is currently playing. (State values are guesses.)
+ */
+void KillMusic();
+
+/**
+ * @brief Removes an EXC and, if it was the hysteresis level, makes it the current high. (Meaning is a guess.)
+ * @param pexc The EXC to remove, may be null.
+ */
+void UnsetExcitementHyst(EXC *pexc);
+
+/**
  * @brief Unknown.
+ */
+void SetIexcCurHigh(EXC *pexc);
+
+/**
+ * @brief Removes an excitement (EXC). If it was the current high, recomputes the high and resets the global excite level and
+ * the music volume (channel 7). (Behavior inferred from the asm, meanings are guesses.)
+ * @param pexc The EXC to remove, may be null.
  */
 void UnsetExcitement(EXC *pexc);
 
@@ -228,6 +335,12 @@ void StartupSound();
  * @brief Ensures the soundbank is available.
  */
 void SbpEnsureBank(int bank);
+
+/**
+ * @brief Ensures the soundbank for an SFX ID is loaded.
+ * @param sfxid SFX ID, used to index a bank table (table layout is a guess).
+ */
+void SbpEnsureBank(SFXID sfxid);
 
 /**
  * @brief Create a new sound effect.
@@ -252,7 +365,9 @@ void NewSfx(SFX **ppsfx);
 void StartSound(SFXID sfxid, AMB **ppamb, ALO *palo, VECTOR *ppos, float sStart, float sFull, float uVolAtSource, float frq, float uDoppler, LM *plmRepeat, LM *plmRepDis);
 
 /**
- * @brief TODO
+ * @brief Ramps down (or stops immediately) an ambient sound and removes it.
+ * @param pamb Ambient sound, may be null.
+ * @param msRampdown Rampdown time in ms (scaled by a guessed constant); 0 stops immediately.
  */
 void StopSound(AMB *pamb, int msRampdown);
 
@@ -314,6 +429,59 @@ int GetAMRegister(int reg);
  */
 void UpdateAMRegister(int reg, int value);
 
+/**
+ * @brief Returns the listener (ear) position. (Name/meaning inferred from usage in SDistEar.)
+ */
+VECTOR *PposEar();
+
+typedef float (*PFNEARDIST)(VECTOR *, VECTOR *);
+
+/**
+ * @brief Distance function used for the listener, variant A (unmatched, name unknown).
+ */
+extern "C" float FUN_001BF2E0(VECTOR *, VECTOR *);
+
+/**
+ * @brief Plain 3D distance between two positions (VU0 code, not yet matched; name unknown).
+ */
+extern "C" float FUN_001BF398(VECTOR *, VECTOR *);
+
+/**
+ * @brief Returns the distance function to use for the listener: FUN_001BF2E0 for camera look kinds 1 and 2
+ * while the look policy is active, otherwise FUN_001BF398. (Interpretation is a guess.)
+ */
+PFNEARDIST PfneardistGet();
+
+/**
+ * @brief Distance from the listener to a position.
+ * @param ppos Position to measure to.
+ * @return Distance as computed by the near-distance function (return type is a guess).
+ */
+float SDistEar(VECTOR *ppos);
+
+/**
+ * @brief Recomputes volume and pan of an ambient sound.
+ */
+void RefreshPambVolPan(AMB *pamb);
+
+/**
+ * @brief Sets a cached AM register and forwards it to the music handle if it changed.
+ */
+void SetAMRegister(int reg, uchar value);
+
+/**
+ * @brief Continues a paused VAG stream when appropriate. (Meaning is a guess.)
+ * @return 1 if paused for VAG, otherwise 0 (guess).
+ */
+int FPauseForVag();
+
+/**
+ * @brief Records the preload completion handle and resolves bank XREFs.
+ * @param handle Completion handle (guess).
+ * @param userData Unused.
+ */
+void PreloadMusidSongComplete(uint handle, unsigned long userData);
+
 enum REVERBK
 {
     REVERBK_None = 0,
@@ -328,7 +496,92 @@ enum REVERBK
 
 struct SW;
 
+/**
+ * @brief Sets the default reverb type and depth for a world.
+ * @param psw World.
+ * @param reverbk Reverb kind, indexes a table of hardware reverb types.
+ * @param depth Reverb depth (used for both left and right).
+ */
+void SetSwDefaultReverb(SW *psw, REVERBK reverbk, const int depth);
+
+/**
+ * @brief Sets the volume of the effects, dialog and others (and optionally music) on MVGK channel 6 for wipes.
+ * @param fMusic Nonzero to also set the music volume.
+ * @param vol Volume. (Name and channel semantics are guesses.)
+ */
+void HandleWipeVolumes(int fMusic, float vol);
+
+/**
+ * @brief Whether the SFX's soundbank is loaded (loads it first if needed) and a per-sfx continuous flag.
+ * @return Per-SFX table value (meaning is a guess).
+ */
+int FContinuousSound(SFXID sfxid);
+
+/**
+ * @brief Plays the next sneaky footstep sound if enabled. (Meaning is a guess.)
+ */
+void NextSneakyFootstep();
+
+/**
+ * @brief Gets the next foot fall index. (Guess.)
+ */
+int HsNextFootFall();
+
+/**
+ * @brief Pushes a reverb setting on the world's reverb stack and applies it (stack holds up to 4 entries, bounds are from the asm).
+ * @param psw World.
+ * @param reverb Reverb kind.
+ * @param k Reverb depth (named k in the existing header, used for both channels).
+ */
+/**
+ * @brief Adds an intermittent sound to the world's list (max 16), with default repeat and distance limits.
+ * @param psw World.
+ * @param sfxid Sound to add.
+ * @note Name is a guess (originally FUN_001C0A50).
+ */
+void AddSwIntermittentSound(SW *psw, SFXID sfxid);
+
+/**
+ * @brief Sets the distance limits of the most recently added intermittent sound.
+ * @param plm Limits; stored as 8000 - 50 * (swapped min/max). Name and units are guesses (originally FUN_001C0AB8).
+ */
+void SetSwIntermittentDist(SW *psw, LM *plm);
+
+/**
+ * @brief Sets the repeat limits of the most recently added intermittent sound.
+ * @note Name is a guess (originally FUN_001C0B08).
+ */
+void SetSwIntermittentRepeat(SW *psw, LM *plm);
+
+/**
+ * @brief Starts every intermittent sound registered on the world.
+ */
+void StartSwIntermittentSounds(SW *psw);
+
+/**
+ * @brief Sound completion callback for an ambient sound: marks the AMB stopped if it is still the same one.
+ * @param result Completion result; the callback only acts when 0.
+ * @param userData Packed value: low 32 bits are the AMB pointer, high 32 bits the AMB serial.
+ * @note Name and exact semantics are guesses (originally FUN_001BFFC8).
+ */
+void AmbCompleteProc(int result, unsigned long userData);
+
+/**
+ * @brief Starts a sound (SFXID -2) attached to an ALO and refreshes its volume and pan; drops the AMB if no owner pointer was given.
+ * @param palo Object the sound is attached to.
+ * @param ppamb Optional owner pointer for the AMB; if null a temporary is used and released afterwards.
+ * @param sStart Start distance (passed through to StartSound).
+ * @param sFull Full distance (passed through to StartSound).
+ * @note Name is a guess (originally FUN_001be8f8).
+ */
+void StartAloSound(ALO *palo, AMB **ppamb, float sStart, float sFull);
+
 void PushSwReverb(SW *psw, REVERBK reverb, int k);
+
+/**
+ * @brief Pops the top reverb setting from the world's reverb stack and re-applies the previous one.
+ * @param psw World.
+ */
 void PopSwReverb(SW *psw);
 
 #endif // SOUND_H

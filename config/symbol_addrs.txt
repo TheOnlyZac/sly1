@@ -4139,17 +4139,17 @@ SbpEnsureBank__Fi = 0x1BE268; // type:func
 SbpEnsureBank__F5SFXID = 0x1BE4A8; // type:func
 NewSfx__FPP3SFX = 0x1BE4D8; // type:func
 FContinuousSound__F5SFXID = 0x1BE568; // type:func
-FUN_001BE5D8 = 0x1BE5D8; // type:func
+FUN_001BE5D8__Fv = 0x1BE5D8; // type:func
 SetVagUnpaused__Fv = 0x1BE5E8; // type:func
 PreloadVag__FPc2FK = 0x1BE5F8; // type:func
 
-FUN_001be708 = 0x1BE708; // type:func
+FUN_001be708__Fv = 0x1BE708; // type:func
 PreloadVag1 = 0x1BE728; // type:func
 
 FPauseForVag__Fv = 0x1BE810; // type:func
 RefreshPambVolPan__FP3AMB = 0x1BE860; // type:func
 
-FUN_001be8f8 = 0x1BE8F8; // type:func
+StartAloSound__FP3ALOPP3AMBff = 0x1BE8F8; // type:func
 
 FVagPlaying__Fv = 0x1BE980; // type:func
 junk_001BE990 = 0x1BE990; // type:func
@@ -4163,8 +4163,8 @@ StartMusidSong__F5MUSID = 0x1BEC58; // type:func
 PauseMusic__Fv = 0x1BECF8; // type:func
 ContinueMusic__Fv = 0x1BED20; // type:func
 
-SfxhMusicUnknown1 = 0x1BED48; // type:func
-SfxhMusicUnknown2 = 0x1BED70; // type:func
+SfxhMusicUnknown1__Fv = 0x1BED48; // type:func
+SfxhMusicUnknown2__Fv = 0x1BED70; // type:func
 
 PexcAlloc__Fv = 0x1BED98; // type:func
 RemoveExc__FP3EXC = 0x1BEDF8; // type:func
@@ -4194,23 +4194,23 @@ FillPamb__FP3AMBPP3AMBiP3ALOP6VECTORfffffP2LMT10_ = 0x1BF920; // type:func
 ActivatePamb__FP3AMB5SFXID = 0x1BFAF8; // type:func
 ScheduleNextIntermittentSound__FP3AMB = 0x1BFBF8; // type:func
 StartSound__F5SFXIDPP3AMBP3ALOP6VECTORfffffP2LMT9 = 0x1BFCD8; // type:func
-FUN_001BFFC8 = 0x1BFFC8; // type:func
-HandleWipeHandleWipeVolumes__FifVolumes = 0x1C0000; // type:func
+AmbCompleteProc__FiUl = 0x1BFFC8; // type:func
+HandleWipeVolumes__Fif = 0x1C0000; // type:func
 UpdateSounds__Fv = 0x1C0070; // type:func
 SetMvgkUvol__Ff = 0x1c05d0; // type:func
 MvgkUnknown1__F4MVGK = 0x1C0600; // type:func
 SetMvgkRvol__Fi4MVGKf = 0x1C06A0; // type:func
 MvgkUnknown2__Fv = 0x1C06D8; // type:func
-MvgkUnknown3 = 0x1C0760; // type:func
-MvgkUnknown4 = 0x1C0790; // type:func
+MvgkUnknown3__Fi = 0x1C0760; // type:func
+MvgkUnknown4__Fi = 0x1C0790; // type:func
 KillSoundSystem__Fv = 0x1C07B0; // type:func
 KillSounds__Fi = 0x1C0808; // type:func
 PushSwReverb__FP2SW7REVERBKi = 0x1C08B0; // type:func
 PopSwReverb__FP2SW = 0x1C0950; // type:func
 SetSwDefaultReverb__FP2SW7REVERBKi = 0x1C09D8; // type:func
-FUN_001C0A50 = 0x1C0A50; // type:func
-FUN_001C0AB8 = 0x1C0AB8; // type:func
-FUN_001C0B08 = 0x1C0B08; // type:func
+AddSwIntermittentSound__FP2SW5SFXID = 0x1C0A50; // type:func
+SetSwIntermittentDist__FP2SWP2LM = 0x1C0AB8; // type:func
+SetSwIntermittentRepeat__FP2SWP2LM = 0x1C0B08; // type:func
 StartSwIntermittentSounds__FP2SW = 0x1C0B38; // type:func
 SetAMRegister__FiUc = 0x1C0C08; // type:func
 GetAMRegister__Fi = 0x1C0C50; // type:func

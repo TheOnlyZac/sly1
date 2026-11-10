@@ -31,6 +31,25 @@ struct SPLC;
  *
  * @todo Add the rest of the fields.
  */
+/**
+ * @brief Reverb stack entry (name and fields are guesses).
+ */
+struct SWREV
+{
+    int reverbk; // REVERBK value, indexes a table of hardware reverb types.
+    int depth;
+};
+
+/**
+ * @brief World intermittent sound entry (name and fields are guesses).
+ */
+struct SWSI
+{
+    int sfxid; // SFXID
+    LM lmRepeat;
+    LM lmRepDist;
+};
+
 struct SW : public LO
 {
     /* 0x34   */ int cpsoAll;
@@ -54,7 +73,11 @@ struct SW : public LO
     /* 0x1b7c */ DL dlAsegaPending;
     /* 0x1b88 */ SLOTHEAP slotheapSma;
     /* 0x1b94 */ DL dlSma;
-    /* 0x1ba0 */ STRUCT_PADDING(18);
+    /* 0x1ba0 */ SLOTHEAP slotheapAmb; // Ambient sound (AMB) heap, name is a guess.
+    /* 0x1bac */ DL dlAmb;
+    /* 0x1bb8 */ SLOTHEAP slotheapExc; // Excitement (EXC) heap, name is a guess.
+    /* 0x1bc4 */ DL dlExc;
+    /* 0x1bd0 */ STRUCT_PADDING(6);
     /* 0x1be8 */ DL dlLight;
     /* 0x1bf4 */ STRUCT_PADDING(6);
     /* 0x1c0c */ SLOTHEAP slotheapStso;
@@ -78,7 +101,9 @@ struct SW : public LO
     /* 0x1ce8 */ LO *aploStock[29];
     /* 0x1d5c */ STRUCT_PADDING(3);
     /* 0x1d68 */ LSM lsmDefault;
-    /* 0x1d70 */ STRUCT_PADDING(85);
+    /* 0x1d70 */ STRUCT_PADDING(4);
+    /* 0x1d80 */ int cswsi; // Number of intermittent sounds (name is a guess).
+    /* 0x1d84 */ SWSI aswsi[16];
     /* 0x1ec4 */ VISMAP *pvismap;
     /* 0x1ec8 */ MQ *pmqCallbackFirst;
     /* 0x1ecc */ MQ *pmqCallbackLast;
@@ -89,7 +114,9 @@ struct SW : public LO
     /* 0x1efc */ STRUCT_PADDING(263);
     /* 0x2318 */ float gexcMenu;
     /* 0x231c */ int cHandsOff;
-    /* 0x2320 */ STRUCT_PADDING(11);
+    /* 0x2320 */ STRUCT_PADDING(2);
+    /* 0x2328 */ SWREV aswrev[4]; // Reverb stack (name is a guess).
+    /* 0x2348 */ int cswrev; // Number of entries in the reverb stack.
     /* 0x234c */ float rDarken;
     /* 0x2350 */ float rDarkenSmooth;
     // ...
