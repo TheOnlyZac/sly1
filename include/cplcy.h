@@ -105,14 +105,28 @@ struct CPDEFI
     float tMoveLast;
     CFK cfk;
     VECTOR posAdjust;
-};
+} __attribute__((aligned(16)));
 
 /**
  * @brief Camera policy.
  */
+struct CPLCY;
+
+/**
+ * @brief Camera policy vtable. Slot names are guesses from usage in cm.c.
+ */
+struct VTCPLCY
+{
+    /* 0x00 */ void (*pfnActivate)(CPLCY *pcplcy, void *pv);   // guess
+    /* 0x04 */ void (*pfnDeactivate)(CPLCY *pcplcy, void *pv); // guess
+    /* 0x08 */ void (*pfnAdd)(CPLCY *pcplcy, void *pv);        // guess
+    /* 0x0c */ void (*pfnRemove)(CPLCY *pcplcy, void *pv);     // guess
+    /* 0x10 */ void (*pfnUpdate)(CPLCY *pcplcy, CPDEFI *pcpdefi, JOY *pjoy, float dt); // guess
+};
+
 struct CPLCY
 {
-    void *vtable; // TODO: implement methods on this struct
+    VTCPLCY *pvtcplcy;
     CM *pcm;
 };
 
@@ -169,6 +183,7 @@ struct CPALIGN : public CPLCY
     undefined4 field_6_0x14;
     float field_7_0x18;
     float field_8_0x1c;
+    STRUCT_PADDING(8); // real size is 0x50
 };
 
 /**
@@ -179,6 +194,7 @@ struct CPALIGN : public CPLCY
 struct CPASEG : public CPLCY
 {
     CAMERA *pcamera;
+    STRUCT_PADDING(1); // real size is 0x10
 };
 
 /**

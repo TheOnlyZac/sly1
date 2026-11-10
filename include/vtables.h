@@ -32,6 +32,7 @@ struct LO;
 struct ALO;
 struct SO;
 struct VECTOR;
+struct CPDEFI;
 struct MATRIX3;
 
 /**
@@ -210,7 +211,7 @@ struct VTSO : VT
     void (*pfnUpdateSoPivots)();
     void (*pfnUpdateSoImpacts)();
     void (*pfnUpdateSoPosWorldPrev)(SO *);
-    void (*pfnGetSoCpdefi)();
+    void (*pfnGetSoCpdefi)(SO *, float, CPDEFI *);
     void (*pfnAddSoWaterAcceleration)();
     void (*pfnFInflictSoZap)();
 };
