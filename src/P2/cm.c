@@ -12,6 +12,8 @@
 #include <vifs.h>
 #include <memory.h>
 #include <math.h>
+#include <joy.h>
+#include <so.h>
 #include <mat.h>
 
 void SetupCmRotateToCam(CM *pcm);
@@ -29,6 +31,7 @@ extern float g_sNearFog;
 extern float g_sFarFog;
 extern float g_uFogMax;
 extern float D_0026194C;
+extern JOY g_joyZero;
 extern float R_SetCmSpring;
 extern float R_SetCmDamping;
 extern VECTOR D_00248D30;
@@ -120,7 +123,26 @@ void BuildCmFgfn(CM *pcm, float uFog, FGFN *pfgfn)
     pfgfn->duFogPlusClipBias = pfgfn->duFogBias + 36864.0f;
 }
 
+/**
+ * @todo Roughly 50 percent matched, float scheduling differs.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", RecalcCmFrustrum__FP2CM);
+#ifdef SKIP_ASM
+void RecalcCmFrustrum(CM *pcm)
+{
+    float t = tanf(pcm->radFOV * 0.5f);
+    float rAspect = pcm->rAspect;
+    float inv = 1.0f / pcm->radFOV;
+    pcm->yScreenRange = t;
+    pcm->xScreenRange = t * rAspect;
+    float r = pcm->rMRD * inv;
+    pcm->rMRDAdjust = 1.0f > r ? 1.0f : r;
+    pcm->sRadiusNearClip = t * sqrtf(rAspect * rAspect + 1.0f) * pcm->sNearClip + 1.0f;
+    BuildSimpleProjectionMatrix(640.0f / (pcm->xScreenRange * 4096.0f), 224.0f / (t * 4096.0f), 0.0f, 0.0f, pcm->sNearClip, pcm->sFarClip, &pcm->matProj);
+    BuildCmFgfn(pcm, 1.0f, &pcm->fgfn);
+    UpdateCmMat4(pcm);
+}
+#endif
 
 void InitCm(CM *pcm)
 {
@@ -302,7 +324,68 @@ int FFilterCamera(void *pv, SO *pso)
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", UpdateCmFade);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", UpdateCmLast);
+/**
+ * @todo Nearly there, 28 differing lines of about 130: only registers differ (pcplcy and pcpdefi swapped). Parameter fClear is a guess.
+ */
+INCLUDE_ASM("asm/nonmatchings/P2/cm", UpdateCmLast__FP2CMif);
+#ifdef SKIP_ASM
+void UpdateCmLast(CM *pcm, int fClear, float dt)
+{
+    if (pcm->fCutNext)
+    {
+        pcm->fCutNext = 0;
+        pcm->fCut = 1;
+        pcm->fRadCut = 0;
+    }
+    if (pcm->ccpr > 0)
+    {
+        CPLCY *pcplcy = pcm->acpr[0].pcplcy;
+        CPLCY *pcplcyPrev = 0;
+        SO *psoPrev = 0;
+        CPDEFI *pcpdefi;
+        if (pcplcy)
+        {
+            do
+            {
+                SO *pso = pcm->acpr[0].psoFocus;
+                pcpdefi = 0;
+                if (pso)
+                {
+                    pcpdefi = &pcm->cpdefiPrev;
+                    if (pso != psoPrev)
+                    {
+                        pso->pvtso->pfnGetSoCpdefi(pso, pcpdefi, dt);
+                        if (pcplcyPrev || pso != pcm->psoFocusPrev)
+                            ResetCmAdjust(pcm, pso, pcpdefi);
+                        AdjustCmCpdefi(pcm, pso, dt, pcpdefi);
+                        pcm->psoFocusPrev = pso;
+                        psoPrev = pso;
+                    }
+                }
+                if (pcplcy->pvtcplcy->pfnUpdate)
+                    pcplcy->pvtcplcy->pfnUpdate(pcplcy, pcpdefi, (g_grfjoyt & 1) ? &g_joy : &g_joyZero, dt);
+                pcplcyPrev = pcplcy;
+                if (pcm->ccpr <= 0)
+                    break;
+                pcplcy = pcm->acpr[0].pcplcy;
+            } while (pcplcy != pcplcyPrev);
+        }
+    }
+    if (pcm->fCut)
+    {
+        SetCmFov(pcm, pcm->radFOV2);
+    }
+    else if (pcm->radFOV != pcm->radFOV2)
+    {
+        pcm->radFOV = GSmoothA(pcm->radFOV, STRUCT_OFFSET(pcm, 0x1cc, float), pcm->radFOV2, dt, &STRUCT_OFFSET(pcm, 0x1d0, SMPA), &STRUCT_OFFSET(pcm, 0x1cc, float));
+        RecalcCmFrustrum(pcm);
+    }
+    if (fClear)
+    {
+        pcm->fCut = pcm->fRadCut = 0;
+    }
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetupCmRotateToCam__FP2CM);
 
@@ -324,7 +407,27 @@ void SetupCm(CM *pcm)
     }
 }
 
+/**
+ * @todo Structure matches, register assignment differs (out/proj/matB/temp swapped). Mangled name would be CombineEyeLookAtProj__FP6VECTORP7MATRIX3P7MATRIX4T2; rename the symbol when matched.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", CombineEyeLookAtProj);
+#ifdef SKIP_ASM
+void CombineEyeLookAtProj(VECTOR *ppos, MATRIX3 *pmat, MATRIX4 *pmatProj, MATRIX4 *pmatOut)
+{
+    MATRIX4 matA;
+    MATRIX4 matB;
+    LoadIdentityMatrix4(&matA);
+    for (int i = 0; i < 3; i++)
+    {
+        matA.aag[0][i] = -pmat->aag[1][i];
+        matA.aag[1][i] = -pmat->aag[2][i];
+        matA.aag[2][i] = pmat->aag[0][i];
+        matA.aag[3][i] = (&ppos->x)[i];
+    }
+    FInvertMatrix4(&matA, &matB);
+    *pmatOut = *pmatProj * matB;
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", BuildFrustrum);
 
@@ -392,14 +495,19 @@ void AdjustCmJoy(CM *pcm, JOY *pjoy, JOYID joyid, float *prad)
 
 JUNK_WORD(0x0000102D);
 
+/**
+ * @todo Close, 13 differing lines of about 100 (loop register allocation and memmove address setup).
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmPolicy__FP2CM3CPPP5CPLCYP2SOPv);
 #ifdef SKIP_ASM
 void SetCmPolicy(CM *pcm, CPP cpp, CPLCY *pcplcy, SO *psoFocus, void *pv)
 {
-    int i = 0;
-    while (i < pcm->ccpr && pcm->acpr[i].cpp >= cpp)
-        i++;
-    memmove(&pcm->acpr[i + 1], &pcm->acpr[i], (pcm->ccpr - i) * sizeof(CPR));
+    int i;
+    for (i = 0; i < pcm->ccpr; i++)
+        if (pcm->acpr[i].cpp < cpp)
+            break;
+    char *pc = (char *)pcm + (i << 4);
+    memmove(pc + 0x3e4, pc + 0x3d4, (pcm->ccpr - i) * 16);
     pcm->acpr[i].cpp = cpp;
     pcm->acpr[i].pcplcy = pcplcy;
     pcm->acpr[i].psoFocus = psoFocus;
@@ -422,7 +530,48 @@ void SetCmPolicy(CM *pcm, CPP cpp, CPLCY *pcplcy, SO *psoFocus, void *pv)
 }
 #endif
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", RevokeCmPolicy__FP2CMi3CPPP5CPLCYP2SOPv);
+void RevokeCmPolicy(CM *pcm, GRFRCP grfrcp, CPP cpp, CPLCY *pcplcy, SO *psoFocus, void *pv)
+{
+    CPR *pcprDst = pcm->acpr;
+    CPR *pcprSrc = pcm->acpr;
+    CPLCY *pcplcyTop = 0;
+    void *pvTop = 0;
+    int i;
+    for (i = 0; i < pcm->ccpr; i++, pcprSrc++)
+    {
+        if ((!(grfrcp & 1) || cpp == pcprSrc->cpp) &&
+            ((grfrcp & 2) == 0 || pcplcy == pcprSrc->pcplcy) &&
+            ((grfrcp & 4) == 0 || psoFocus == pcprSrc->psoFocus) &&
+            ((grfrcp & 8) == 0 || pv == pcprSrc->pv))
+        {
+            if (i == 0)
+            {
+                pvTop = pcprSrc->pv;
+                pcplcyTop = pcprSrc->pcplcy;
+            }
+            if (pcprSrc->pcplcy->pvtcplcy->pfnRemove)
+                pcprSrc->pcplcy->pvtcplcy->pfnRemove(pcprSrc->pcplcy, pcprSrc->pv);
+        }
+        else
+        {
+            *pcprDst = *pcprSrc;
+            pcprDst++;
+        }
+    }
+    pcm->ccpr = pcprDst - pcm->acpr;
+    if (pcplcyTop)
+    {
+        if (pcplcyTop->pvtcplcy->pfnDeactivate)
+            pcplcyTop->pvtcplcy->pfnDeactivate(pcplcyTop, pvTop);
+        if (pcm->ccpr > 0)
+        {
+            pcm->tActivateCplcy = g_clock.t;
+            CPLCY *pcplcyNew = pcm->acpr[0].pcplcy;
+            if (pcplcyNew->pvtcplcy->pfnActivate)
+                pcplcyNew->pvtcplcy->pfnActivate(pcplcyNew, pcm->acpr[0].pv);
+        }
+    }
+}
 
 /**
  * Hack: the original passes the first vector in a VU register (VU_VECTOR), so it is a qword here,
@@ -478,7 +627,29 @@ void ClearCmCut(CM *pcm)
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", AdaptCm);
 
+/**
+ * @todo Four differing lines: the original loads R_SetCmDamping before copying the position and R_SetCmSpring after (argument load order). VU adds are inline asm with fake dependencies. Parameter names are guesses.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCm);
+#ifdef SKIP_ASM
+extern "C" void SetCm(CM *pcm, float fx, float fy, VECTOR *pdpos, VECTOR *ppos)
+{
+    STRUCT_OFFSET(pcm, 0x40, qword) = *(qword *)ppos;
+    SpringCm(R_SetCmSpring, R_SetCmDamping, g_clock.dt, pcm, &pcm->dposCenter, &pcm->vCenter, &D_00248D30);
+    VECTOR v;
+    int d1, d2, d3;
+    asm("lqc2 $vf2,%1" : "=r"(d1) : "m"(pcm->dposCenter));
+    asm("lqc2 $vf1,%1" : "=r"(d2) : "m"(*pdpos), "r"(d1));
+    asm("vadd.xyzw $vf1,$vf1,$vf2" : "=r"(d3) : "r"(d2));
+    asm("sqc2 $vf1,%0" : "=m"(v) : "r"(d3));
+    float radPan, radTilt, s;
+    DecomposeSphere(&v, ppos, &radPan, &radTilt, &s);
+    radPan = radPan + atanf(fx * pcm->xScreenRange);
+    radTilt = radTilt - atanf(fy * pcm->yScreenRange);
+    LoadRotateMatrixPanTilt(radPan, radTilt, &pcm->mat);
+    UpdateCmMat4(pcm);
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", FUN_00145810);
 

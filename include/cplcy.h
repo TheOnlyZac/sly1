@@ -121,6 +121,7 @@ struct VTCPLCY
     /* 0x04 */ void (*pfnDeactivate)(CPLCY *pcplcy, void *pv); // guess
     /* 0x08 */ void (*pfnAdd)(CPLCY *pcplcy, void *pv);        // guess
     /* 0x0c */ void (*pfnRemove)(CPLCY *pcplcy, void *pv);     // guess
+    /* 0x10 */ void (*pfnUpdate)(CPLCY *pcplcy, CPDEFI *pcpdefi, JOY *pjoy, float dt); // guess
 };
 
 struct CPLCY

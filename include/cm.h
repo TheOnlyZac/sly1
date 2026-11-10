@@ -255,6 +255,13 @@ void DrawCm(CM *pcm);
  */
 void SetCmPosMat(CM *pcm, VECTOR *ppos, MATRIX3 *pmat);
 
+/**
+ * @brief Adjusts the camera default info for the given focus object.
+ */
+void AdjustCmCpdefi(CM *pcm, SO *psoFocus, float dt, CPDEFI *pcpdefi);
+
+void ResetCmAdjust(CM *pcm, SO *psoFocus, CPDEFI *pcpdefi);
+
 void SetCmPolicy(CM *pcm, CPP cpp, CPLCY *pcplcy, SO *psoFocus, void *pv);
 
 void AdjustCmJoy(CM *pcm, JOY *pjoy, JOYID joyid, float *prad);
