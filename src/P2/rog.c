@@ -502,7 +502,53 @@ void PostRobLoad(ROB *prob)
     SetRobRobs(prob, ROBS_Descend);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRob__FP3ROBf);
+void UpdateRob(ROB *prob, float dt)
+{
+    UpdateAlo(prob, dt);
+    ROBS robs;
+    while ((robs = RobsNextRob(prob)) != STRUCT_OFFSET(prob, 0x650, ROBS))
+    {
+        SetRobRobs(prob, robs);
+    }
+    switch (robs)
+    {
+    case ROBS_Normal:
+        if (STRUCT_OFFSET(prob, 0x3bc, int) < STRUCT_OFFSET(prob, 0x3b8, int))
+        {
+            if (STRUCT_OFFSET(prob, 0x634, float) < g_clock.t)
+            {
+                AddRobRoc(prob);
+            }
+        }
+        if (STRUCT_OFFSET(prob, 0x640, float) < g_clock.t)
+        {
+            AddRobRoh(prob);
+        }
+        break;
+    case ROBS_Ascend:
+    {
+        ROP *prop = STRUCT_OFFSET(prob, 0x358, ROP *);
+        if (prop)
+        {
+            if (!STRUCT_OFFSET(prop, 0x550, int))
+            {
+                ALO *palo = STRUCT_OFFSET(prob, 0x658, ALO *);
+                if (!palo || STRUCT_OFFSET(palo, 0x2d4, int) != 3)
+                {
+                    SetRopRops(prop, ROPS_Reveal);
+                }
+            }
+        }
+        break;
+    }
+    case ROBS_Descend:
+    case ROBS_Instruct:
+    case ROBS_Lose:
+    case ROBS_Win:
+    case ROBS_Max:
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", FUN_001a4d60);
 
