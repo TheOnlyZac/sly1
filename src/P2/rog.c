@@ -382,7 +382,20 @@ void PresetRovAccel(ROV *prov, float dt)
     AccelSoTowardMatSmooth(prov, g_clock.dt, &mat, &s_smpRovAccel);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", AdjustRovXpVelocity__FP3ROVP2XPi);
+// VU0 inline asm: removes the velocity component along the contact normal from the xpd velocity.
+// vecTan is unused scratch that only exists to take the store like the original.
+void AdjustRovXpVelocity(ROV *prov, XP *pxp, int ixpd)
+{
+    if (!FDrivenAlo(prov))
+    {
+    VECTOR vecTan;
+    XP *pe = (XP *)((char *)pxp + (ixpd << 6));
+    int a, b;
+    asm("lqc2 $vf4,%1" : "=r"(a) : "m"(STRUCT_OFFSET(prov, 0x630, VECTOR)));
+    asm("lqc2 $vf2,%1" : "=r"(b) : "m"(STRUCT_OFFSET(pxp, 0x80, VECTOR)), "r"(a));
+    asm("vmul.xyz $vf1,$vf4,$vf2\n\tvaddw.x $vf5,$vf0,$vf0w\n\tvadday.x ACC,$vf1,$vf1y\n\tvmaddz.x $vf1,$vf5,$vf1z\n\tlqc2 $vf3,%1\n\tvmulx.xyzw $vf1,$vf2,$vf1x\n\tvsub.xyzw $vf4,$vf4,$vf1\n\tvsub.xyzw $vf3,$vf3,$vf4\n\tsqc2 $vf4,%2\n\tsqc2 $vf3,%0" : "=m"(STRUCT_OFFSET(pe, 0x30, VECTOR)) : "m"(STRUCT_OFFSET(pe, 0x30, VECTOR)), "m"(vecTan), "r"(b));
+    }
+}
 
 void AdjustRovNewXp(ROV *prov, XP *pxp, int ixpd)
 {
