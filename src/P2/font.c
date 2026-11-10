@@ -4,6 +4,7 @@
 #include <binoc.h>
 #include <frm.h>
 #include <shd.h>
+#include <screen.h>
 #include <bis.h>
 
 extern int g_cfontBrx;
@@ -433,7 +434,56 @@ void CFontBrx::DrawPart(float xLeft, float yTop, float xRight, float yBottom, fl
     pgifs->ListXYZF((int)((xRight + 1728.0f) * 16.0f), (int)((yBottom * 0.45454547f + 1936.0f) * 16.0f), m_z, 0);
 }
 
+/**
+ * @todo 85% matched (38 differing lines of 248). Instruction scheduling and register assignment of the locals.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/font", EdgeRect__8CFontBrxP9CTextEdgeP8CTextBoxP4GIFS);
+#ifdef SKIP_ASM
+void CFontBrx::EdgeRect(CTextEdge *pte, CTextBox *ptbx, GIFS *pgifs)
+{
+    GLYFF *pglyff = PglyffFromCh(pte->m_ch);
+    if (pglyff)
+    {
+        pte->m_pfont->PushScaling(pte->m_rxScaling, pte->m_ryScaling);
+        int iuL = pglyff->x;
+        int dTexH = 1 << (int)((*(ulong *)&m_tex0 >> 30) & 0xF);
+        float dyGlyph = (float)m_dyUnscaled * m_ryScale;
+        float dyExtra = pte->m_dyExtra * m_ryScale;
+        float yt1 = ptbx->m_y - dyExtra;
+        float dxExtra = pte->m_dxExtra * m_rxScale;
+        float xr0 = ptbx->m_x + ptbx->m_dx + dxExtra;
+        float dxGlyph = (float)pglyff->dx * m_rxScale;
+        float yt0 = yt1 - dyGlyph;
+        float uL = (float)iuL;
+        int iuR = pglyff->x + pglyff->dx;
+        float xl1 = ptbx->m_x - dxExtra;
+        float yb0 = ptbx->m_y + ptbx->m_dy + dyExtra;
+        float uM = (float)((iuL + iuR) / 2);
+        float xl0 = xl1 - dxGlyph;
+        int ivB = dTexH - (pglyff->y + m_dyUnscaled);
+        int ivT = dTexH - pglyff->y;
+        float vT = (float)ivT;
+        float xr1 = xr0 + dxGlyph;
+        float vM = (float)((ivT + ivB) / 2);
+        float yb1 = yb0 + dyGlyph;
+        SetupDraw(0, pgifs);
+        float vB = (float)ivB;
+        float uR = (float)iuR;
+        uint rgba = *(uint *)&pte->m_rgba;
+        DrawPart(xl0, yt0, xl1, yt1, uL, vT, uM, vM, rgba, pgifs);
+        DrawPart(xr0, yt0, xr1, yt1, uM, vT, uR, vM, rgba, pgifs);
+        DrawPart(xl0, yb0, xl1, yb1, uL, vM, uM, vB, rgba, pgifs);
+        DrawPart(xr0, yb0, xr1, yb1, uM, vM, uR, vB, rgba, pgifs);
+        DrawPart(xl1, yt0, xr0, yt1, uM, vT, uM, vM, rgba, pgifs);
+        DrawPart(xl1, yb0, xr0, yb1, uM, vM, uM, vB, rgba, pgifs);
+        DrawPart(xl0, yt1, xl1, yb0, uL, vM, uM, vM, rgba, pgifs);
+        DrawPart(xr0, yt1, xr1, yb0, uM, vM, uR, vM, rgba, pgifs);
+        DrawPart(xl1, yt1, xr0, yb0, uM, vM, uM, vM, rgba, pgifs);
+        pte->m_pfont->PopScaling();
+        CleanupDraw(0, pgifs);
+    }
+}
+#endif // SKIP_ASM
 
 void CFontBrx::LoadFromBrx(CBinaryInputStream *pbis)
 {

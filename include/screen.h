@@ -205,6 +205,8 @@ struct LOGO : public BLOT
 
 class CTextEdge
 {
+    friend class CFontBrx;
+
     CFont *m_pfont;
     char m_ch;
     // 3 empty bytes for alignment
