@@ -45,7 +45,34 @@ struct DLI
     void **m_ppv;
     int m_ibDle;
     DLI *m_pdliNext;
+
+    inline DLI(DL *pdl);
+    inline ~DLI();
+    inline void *PvNext();
 };
+
+extern DLI *s_pdliFirst;
+
+inline DLI::DLI(DL *pdl)
+{
+    m_pdl = pdl;
+    m_ppv = (void **)pdl;
+    m_ibDle = pdl->ibDle;
+    m_pdliNext = s_pdliFirst;
+    s_pdliFirst = this;
+}
+
+inline DLI::~DLI()
+{
+    s_pdliFirst = m_pdliNext;
+}
+
+inline void *DLI::PvNext()
+{
+    void *pv = *m_ppv;
+    m_ppv = (void **)((char *)pv + m_ibDle);
+    return pv;
+}
 
 /**
  * @brief Unknown.

@@ -85,15 +85,27 @@ struct EXPLS : public EXPLO
  */
 struct EXPLSO
 {
-    // ...
-};
+    /* 0x00 */ unsigned int grfexplso;
+    /* 0x04 */ ALO *paloReference;
+    /* 0x08 */ STRUCT_PADDING(2);
+    /* 0x10 */ VECTOR vec; // guess
+    /* 0x20 */ VECTOR posOrigin; // guess
+    /* 0x30 */ float rScale; // guess
+    /* 0x34 */ float sRadius; // guess
+    /* 0x38 */ struct SO *psoTouch; // guess
+    /* 0x3c */ STRUCT_PADDING(5);
+} __attribute__((aligned(16)));
 
 /**
  * @brief Unknown.
  */
 struct EXPLSTE
 {
-    // ...
+    /* 0x00 */ EXPLS *pexpls;
+    /* 0x04 */ STRUCT_PADDING(3);
+    /* 0x10 */ EXPLSO explso;
+    /* 0x60 */ float tFire; // guess
+    /* 0x64 */ DLE dle;
 };
 
 /**
