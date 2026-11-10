@@ -18,6 +18,9 @@ struct CLUT;
 class CTextBox;
 class CTextEdge;
 
+// The CFontBrx vtable is emitted from the data segment, not from font.c.
+#pragma interface
+
 /**
  * @brief Scaled font ratio.
  */
@@ -36,6 +39,8 @@ struct GLYFF
 
 class CFont
 {
+    friend class CRichText;
+
 protected:
     int m_dxCharUnscaled;
     int m_dxSpaceUnscaled;
@@ -50,22 +55,31 @@ protected:
     float m_ryScale;
 
 public:
+    virtual CFont *PfontClone(float rx, float ry);
     void CopyTo(CFont *pfontDest);
-    void SetupDraw(CTextBox *ptbxClip, GIFS *pgifs);
-    void CleanupDraw(CTextBox *ptbxClip, GIFS *pgifs);
     float DxFromPchz(char *pchz);
     float DyWrapPchz(char *pchz, float dx);
     int ClineWrapPchz(char *pchz, float dx);
     void DrawPchz(char *pchz, CTextBox *ptbx, CTextBox *ptbxClip, GIFS *pgifs);
     void PushScaling(float rx, float ry);
     void PopScaling();
+    virtual int FValid(char ch);
+    virtual float DxFromCh(char ch);
+    virtual void SetupDraw(CTextBox *ptbxClip, GIFS *pgifs);
+    virtual void SwitchTex0(GIFS *pgifs);
+    virtual float DxDrawCh(char ch, float xChar, float yChar, uint rgba, GIFS *pgifs);
+    virtual void CleanupDraw(CTextBox *ptbxClip, GIFS *pgifs);
+    virtual void DrawChRotated(char ch, float xChar, float yChar, uint rgba, GIFS *pgifs); // guessed name
+    virtual void EdgeRect(CTextEdge *pte, CTextBox *ptbx, GIFS *pgifs);
 };
 
 class CFontBrx : public CFont
 {
 private:
+    int m_ifont; // guessed name
     BMP *m_pbmp;
     CLUT *m_pclut;
+    STRUCT_PADDING(1);
     sceGsTex0 m_tex0;
     int m_cqwBmpGifs;
     QW *m_aqwBmpGifs;
@@ -74,10 +88,10 @@ private:
     int m_cglyff;
     GLYFF *m_aglyff;
     uint32_t m_grffont;
-    STRUCT_PADDING(2);
+    STRUCT_PADDING(1);
 
 public:
-    CFont *PfontClone(float rx, float ry);
+    virtual CFont *PfontClone(float rx, float ry);
     void CopyTo(CFontBrx *pfontDest);
     int FValid(char ch);
     float DxFromCh(char ch);
@@ -85,6 +99,7 @@ public:
     void SetupDraw(CTextBox *ptbxClip, GIFS *pgifs);
     void SwitchTex0(GIFS *pgifs);
     float DxDrawCh(char ch, float xChar, float yChar, uint rgba, GIFS *pgifs);
+    void DrawChRotated(char ch, float xChar, float yChar, uint rgba, GIFS *pgifs); // guessed name
     void DrawPart(float xLeft, float yTop, float xRight, float yBottom, float sLeft, float tTop, float sRight, float tBottom, uint rgba, GIFS *pgifs);
     void EdgeRect(CTextEdge *pte, CTextBox *ptbx, GIFS *pgifs);
     void LoadFromBrx(CBinaryInputStream *pbis);
@@ -115,12 +130,17 @@ public:
     void Trim(int cch);
     float Dx();
     int ClineWrap(float dx);
+    float DyWrap(float dx); // guessed name
     float DxMaxLine();
     void GetExtents(float *pdx, float *pdy, float dxMax);
     void Draw(CTextBox *ptbx, CTextBox *ptbxClip, GIFS *pgifs);
 };
 
 extern CFont *g_pfont;
+extern int g_duGlyph; // guessed name
+extern int g_dvGlyph; // guessed name
+extern char g_achFont[5];
+extern CFont *g_apfont[5];
 
 void StartupFont();
 
