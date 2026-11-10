@@ -2045,9 +2045,9 @@ FCheckFlyOpenSpaceBelow__FP3FLY             = 0x15C0A0; // type:func
 // P2/font.c
 ////////////////////////////////////////////////////////////////
 StartupFont__Fv                                = 0x15C178; // type:func
-FUN_0015c188                                   = 0x15C188; // type:func
-FUN_0015c1c0                                   = 0x15C1C0; // type:func
-FUN_0015c200                                   = 0x15C200; // type:func
+FFontLoaded__Fi                                   = 0x15C188; // type:func
+PfontFromIfont__Fi                                   = 0x15C1C0; // type:func
+PfontFromCh__Fc                                   = 0x15C200; // type:func
 CopyTo__5CFontP5CFont                          = 0x15C260; // type:func
 SetupDraw__5CFontP8CTextBoxP4GIFS              = 0x15C2E8; // type:func
 CleanupDraw__5CFontP8CTextBoxP4GIFS            = 0x15C3C0; // type:func
@@ -2066,7 +2066,7 @@ FEnsureLoaded__8CFontBrxP4GIFS                 = 0x15CAB8; // type:func
 SetupDraw__8CFontBrxP8CTextBoxP4GIFS           = 0x15CB88; // type:func
 SwitchTex0__8CFontBrxP4GIFS                    = 0x15CC80; // type:func
 DxDrawCh__8CFontBrxcffUiP4GIFS                 = 0x15CD18; // type:func
-FUN_0015cf70                                   = 0x15CF70; // type:func
+DrawChRotated__8CFontBrxcffUiP4GIFS                                   = 0x15CF70; // type:func
 DrawPart__8CFontBrxffffffffUiP4GIFS            = 0x15D338; // type:func
 EdgeRect__8CFontBrxP9CTextEdgeP8CTextBoxP4GIFS = 0x15D4E0; // type:func
 LoadFromBrx__8CFontBrxP18CBinaryInputStream    = 0x15D8A8; // type:func
@@ -2080,7 +2080,7 @@ Cch__9CRichText                                = 0x15DF58; // type:func
 Trim__9CRichTexti                              = 0x15DFA0; // type:func
 Dx__9CRichText                                 = 0x15DFF8; // type:func
 ClineWrap__9CRichTextf                         = 0x15E068; // type:func
-FUN_0015e1b0                                   = 0x15E1B0; // type:func
+DyWrap__9CRichTextf                                   = 0x15E1B0; // type:func
 DxMaxLine__9CRichText                          = 0x15E1F0; // type:func
 GetExtents__9CRichTextPfT1f                    = 0x15E290; // type:func
 Draw__9CRichTextP8CTextBoxT1P4GIFS             = 0x15E318; // type:func
@@ -2090,6 +2090,11 @@ junk_0015E678                                  = 0x15E678; // type:func
 g_cfontBrx = 0x262260; // size:0x4
 g_afontBrx = 0x262264; // size:0x4
 g_pfont    = 0x26227C; // size:0x4
+g_duGlyph  = 0x262258; // size:0x4 (guessed name)
+g_dvGlyph  = 0x26225C; // size:0x4 (guessed name)
+g_achFont  = 0x262250; // size:0x5 (guessed name)
+g_apfont   = 0x262268; // size:0x14 (guessed name)
+_vt$8CFontBrx = 0x24A220; // vtable of CFontBrx
 
 
 ////////////////////////////////////////////////////////////////
