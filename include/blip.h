@@ -25,7 +25,14 @@ typedef int GRFZON;
  */
 struct VU_FLOAT
 {
-    uint16_t data;
+    qword data;
+
+    VU_FLOAT(float f)
+    {
+        qword v;
+        asm("mfc1 %0,%1" : "=r"(v) : "f"(f));
+        data = v;
+    }
 };
 
 /**
