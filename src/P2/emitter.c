@@ -546,7 +546,181 @@ void ModifyEmitterParticles(EMITTER *pemitter)
     }
 }
 
+/**
+ * @todo 88 differing lines of 317: structure matches (switch case order 3,2,0,1, in range test with VU0 asm). Remaining: gcc keeps the emitg address in a callee saved register while the original recomputes it, the in range flag branch shape, and the n clamp. Names and offsets are guesses.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", UpdateEmitter__FP7EMITTERf);
+
+#ifdef SKIP_ASM
+void UpdateEmitter(EMITTER *pemitter, float dt)
+{
+    if (STRUCT_OFFSET(pemitter, 0x34c, int))
+        OnEmitterValuesChanged(pemitter);
+    UpdateAlo(pemitter, dt);
+    if (STRUCT_OFFSET(pemitter, 0x310, OID) != OID_Nil)
+        return;
+    if (!FIsDlEmpty((DL *)&STRUCT_OFFSET(pemitter, 0x314, int)))
+    {
+        LO *plo = STRUCT_OFFSET(pemitter, 0x314, LO *);
+        if (!plo)
+            return;
+        do
+        {
+            if (!(STRUCT_OFFSET(plo, 0x2c8, ulong) & ((ulong)0x8000 << 23)) && FIsLoInWorld(plo))
+            {
+                if (!STRUCT_OFFSET(plo, 0x18, int))
+                    goto update;
+                float r = STRUCT_OFFSET(plo, 0x80, float) * STRUCT_OFFSET(g_pcm, 0xb0, float);
+                float d2;
+                asm volatile("lqc2 $vf3,%0" : : "m"(STRUCT_OFFSET(g_pcm, 0x40, qword)));
+                asm volatile("lqc2 $vf1,%0" : : "m"(STRUCT_OFFSET(plo, 0x140, qword)));
+                asm volatile("vsub.xyzw $vf1,$vf1,$vf3");
+                asm volatile("vmul.xyz $vf1,$vf1,$vf1");
+                asm volatile("vaddw.x $vf2,$vf0,$vf0w");
+                asm volatile("vadday.x ACC,$vf1,$vf1y");
+                asm volatile("vmaddz.x $vf1,$vf2,$vf1z");
+                r = r * r;
+                int q;
+                asm volatile("qmfc2.ni %0,$vf1" : "=r"(q));
+                asm("mtc1 %1,%0" : "=f"(d2) : "r"(q));
+                int fIn = 1;
+                if (d2 >= r)
+                    fIn = 0;
+                if (fIn)
+                    goto update;
+            }
+            plo = STRUCT_OFFSET(plo, 0x320, LO *);
+        } while (plo);
+        return;
+    }
+    else if (STRUCT_OFFSET(pemitter, 0x18, int))
+    {
+        float r = STRUCT_OFFSET(pemitter, 0x80, float) * STRUCT_OFFSET(g_pcm, 0xb0, float);
+        float d2;
+        asm volatile("lqc2 $vf1,%0" : : "m"(STRUCT_OFFSET(pemitter, 0x140, qword)));
+        asm volatile("lqc2 $vf2,%0" : : "m"(STRUCT_OFFSET(g_pcm, 0x40, qword)));
+        asm volatile("vsub.xyzw $vf1,$vf1,$vf2");
+        asm volatile("vmul.xyz $vf1,$vf1,$vf1");
+        asm volatile("vaddw.x $vf3,$vf0,$vf0w");
+        asm volatile("vadday.x ACC,$vf1,$vf1y");
+        asm volatile("vmaddz.x $vf1,$vf3,$vf1z");
+        int q;
+        r = r * r;
+        asm volatile("qmfc2.ni %0,$vf1" : "=r"(q));
+        asm("mtc1 %1,%0" : "=f"(d2) : "r"(q));
+        int fIn = 1;
+        if (d2 >= r)
+            fIn = 0;
+        if (fIn)
+            return;
+    }
+update:
+    if (FPausedEmitter(pemitter))
+        return;
+    int n = 0;
+    switch (STRUCT_OFFSET(pemitter, 0x2d4, int))
+    {
+    case 3:
+    {
+        float f = STRUCT_OFFSET(pemitter, 0x33c, float) + STRUCT_OFFSET(pemitter, 0x328, float) * STRUCT_OFFSET(pemitter, 0x334, float) * dt;
+        n = (int)f;
+        STRUCT_OFFSET(pemitter, 0x33c, float) = f - (float)n;
+        if (1.0f < (float)n)
+        {
+            int lim = STRUCT_OFFSET(pemitter, 0x2d8, int);
+            if (lim >= 0)
+            {
+                n = n < lim ? n : lim;
+                STRUCT_OFFSET(pemitter, 0x2d8, int) = lim - n;
+            }
+            if (STRUCT_OFFSET(pemitter, 0x308, int))
+                PauseEmitterIndefinite(pemitter);
+            else if (GRandInRange(0.0f, 1.0f) <= STRUCT_OFFSET(pemitter, 0x2e8, float))
+                PauseEmitter(pemitter, GRandInRange(STRUCT_OFFSET(pemitter, 0x2ec, float), STRUCT_OFFSET(pemitter, 0x2f0, float)));
+            STRUCT_OFFSET(pemitter, 0x328, float) = GRandInRange(STRUCT_OFFSET(pemitter, 0x2dc, float), STRUCT_OFFSET(pemitter, 0x2e0, float)) * 60.0f;
+        }
+        break;
+    }
+    case 2:
+    {
+        n = (int)STRUCT_OFFSET(pemitter, 0x328, float);
+        int lim = STRUCT_OFFSET(pemitter, 0x2d8, int);
+        if (lim >= 0)
+        {
+            n = n < lim ? n : lim;
+            STRUCT_OFFSET(pemitter, 0x2d8, int) = lim - n;
+        }
+        if (STRUCT_OFFSET(pemitter, 0x308, int))
+            PauseEmitterIndefinite(pemitter);
+        else if (GRandInRange(0.0f, 1.0f) <= STRUCT_OFFSET(pemitter, 0x2e8, float))
+            PauseEmitter(pemitter, GRandInRange(STRUCT_OFFSET(pemitter, 0x2ec, float), STRUCT_OFFSET(pemitter, 0x2f0, float)));
+        STRUCT_OFFSET(pemitter, 0x328, float) = GRandInRange(STRUCT_OFFSET(pemitter, 0x2dc, float), STRUCT_OFFSET(pemitter, 0x2e0, float));
+        break;
+    }
+    case 0:
+    {
+        float f = STRUCT_OFFSET(pemitter, 0x33c, float) + STRUCT_OFFSET(pemitter, 0x328, float) * STRUCT_OFFSET(pemitter, 0x334, float) * dt;
+        n = (int)f;
+        STRUCT_OFFSET(pemitter, 0x33c, float) = f - (float)n;
+        if (n)
+        {
+            int lim = STRUCT_OFFSET(pemitter, 0x2d8, int);
+            if (lim >= 0)
+            {
+                n = n < lim ? n : lim;
+                STRUCT_OFFSET(pemitter, 0x2d8, int) = lim - n;
+            }
+        }
+        break;
+    }
+    case 1:
+    {
+        n = (int)(STRUCT_OFFSET(pemitter, 0x2f4, float) * STRUCT_OFFSET(pemitter, 0x334, float));
+        int base;
+        if (STRUCT_OFFSET(STRUCT_OFFSET(pemitter, 0x2d0, EMITB *), 0x120, int) == 0)
+        {
+            void *pgrid = STRUCT_OFFSET(pemitter, 0x348, void *);
+            base = pgrid ? STRUCT_OFFSET(pgrid, 0x620, int) : 0;
+        }
+        else
+        {
+            DL *pdl = STRUCT_OFFSET(pemitter, 0x344, DL *);
+            base = pdl ? CPvDl((DL *)((char *)pdl + 0x558)) : 0;
+        }
+        int d = n - base;
+        n = 0;
+        if (d > 0)
+            n = d;
+        break;
+    }
+    }
+    if (n)
+    {
+        struct
+        {
+            int pad[4];
+            void *pa;
+            void *pb;
+            void *pc;
+        } emitg;
+        memset(&emitg.pa, 0, 12);
+        emitg.pa = &STRUCT_OFFSET(pemitter, 0x348, int);
+        emitg.pb = &STRUCT_OFFSET(pemitter, 0x344, int);
+        emitg.pc = pemitter;
+        LO *ploOld = STRUCT_OFFSET(STRUCT_OFFSET(pemitter, 0x2d0, EMITB *), 0x7c, LO *);
+        if (STRUCT_OFFSET(pemitter, 0x2f8, OID) == OID_Nil)
+            STRUCT_OFFSET(STRUCT_OFFSET(pemitter, 0x2d0, EMITB *), 0x7c, EMITTER *) = pemitter;
+        EmitParticles(n, STRUCT_OFFSET(pemitter, 0x2d0, EMITB *), (EMITG *)&emitg.pa);
+        STRUCT_OFFSET(STRUCT_OFFSET(pemitter, 0x2d0, EMITB *), 0x7c, LO *) = ploOld;
+    }
+    if (STRUCT_OFFSET(pemitter, 0x330, float) <= g_clock.t)
+    {
+        STRUCT_OFFSET(pemitter, 0x328, float) = GRandInRange(STRUCT_OFFSET(pemitter, 0x2dc, float), STRUCT_OFFSET(pemitter, 0x2e0, float));
+        STRUCT_OFFSET(pemitter, 0x330, float) = g_clock.t + STRUCT_OFFSET(pemitter, 0x32c, float);
+    }
+    ModifyEmitterParticles(pemitter);
+}
+#endif
 
 extern "C" void FUN_00155f28(EMITTER *pemitter)
 {
