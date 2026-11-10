@@ -156,7 +156,8 @@ struct AMB
     int fOutOfRange;
     int fAttached;
     int fStopped;
-    undefined4 unk_pre; // Padding found from asm offsets (guess).
+    uchar cTick; // Frame counter modulo 4 (guess).
+    uchar unk_pre[3]; // Padding found from asm offsets (guess).
     float volAttenuated;
     float pan;
     float frq;

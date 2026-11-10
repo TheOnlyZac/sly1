@@ -656,7 +656,7 @@ void FillPamb(AMB *pamb, AMB **ppamb, int fContinuous, ALO *palo, VECTOR *ppos, 
     pamb->uVolAtSource = uVolAtSource;
     pamb->fStopped = 0;
     pamb->iSerial = D_0027474C++;
-    STRUCT_OFFSET(pamb, 0x4c, uchar) = NRandInRange(0, 3);
+    pamb->cTick = NRandInRange(0, 3);
     if (plmRepeat)
         pamb->lmRepeat = *plmRepeat;
     else
@@ -734,10 +734,167 @@ void HandleWipeVolumes(int fMusic, float vol)
         SetMvgkRvol(6, MVGK_Music, vol);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/sound", UpdateSounds__Fv);
-#ifdef SKIP_ASM
-// WIP
-#endif // SKIP_ASM
+void UpdateSounds()
+{
+    if (FAmbientsPaused())
+        return;
+    // Register pins are a hack to force the original register assignment.
+    register VECTOR *pposEar asm("$20") = PposEar();
+    register PFNEARDIST pfneardist asm("$21") = PfneardistGet();
+    DL *pdl = &g_psw->dlAmb;
+    DLI dli;
+    dli.m_pdl = pdl;
+    dli.m_ppv = (void **)pdl;
+    dli.m_ibDle = pdl->ibDle;
+    dli.m_pdliNext = s_pdliFirst;
+    s_pdliFirst = &dli;
+    if (D_0027472C && !snd_SoundIsStillPlaying(D_0027472C))
+    {
+        if (D_00274744)
+        {
+            SetMvgkRvol(8, MVGK_Music, 1.0f);
+            SetMvgkRvol(8, MVGK_Effects, 1.0f);
+            SetMvgkRvol(8, (MVGK)3, 1.0f);
+        }
+        D_0027472C = 0;
+        D_00274744 = 0;
+        D_00274730 = 0;
+    }
+    if (g_iexcHyst != -100)
+    {
+        int iexcCur = D_00274734;
+        int fRise = g_iexcHyst < iexcCur;
+        if (iexcCur > 0 && fRise)
+        {
+            snd_SetGlobalExcite(iexcCur + 20);
+            g_iexcHyst = D_00274734;
+            SetMvgkRvol(7, MVGK_Music, 1.0f);
+            D_002748EC = 0;
+        }
+        else if (--D_00274754 < 0)
+        {
+            int iexcHyst = g_iexcHyst;
+            int iexcNew = (D_00274734 < iexcHyst) ? iexcHyst - 1 : iexcHyst + 1;
+            D_002748EC = (uint)iexcNew >> 31;
+            g_iexcHyst = iexcNew;
+            snd_SetGlobalExcite(iexcNew + 20);
+            if (g_iexcHyst < 0)
+            {
+                float t = (float)g_iexcHyst * -0.05f;
+                float zero = 0.0f;
+                float one = 1.0f;
+                float tc;
+                if (t < zero)
+                    tc = zero;
+                else if (t > one)
+                    tc = one;
+                else
+                    tc = t;
+                float a = tc * 0.6666667f;
+                SetMvgkRvol(7, MVGK_Music, (1.0f - tc) + a);
+            }
+            D_00274754 += 3;
+        }
+        if (fRise ? !(g_iexcHyst < D_00274734) : !(g_iexcHyst > D_00274734))
+        {
+            D_002748EC = (uint)g_iexcHyst >> 31;
+            snd_SetGlobalExcite(D_00274734 + 20);
+            g_iexcHyst = -100;
+        }
+    }
+    for (void *pv = PvNextDli(&dli); pv; pv = PvNextDli(&dli))
+    {
+        AMB *pamb = (AMB *)pv;
+        if (pamb->palo && !FIsLoInWorld(pamb->palo))
+        {
+            StopSound(pamb, 0);
+            continue;
+        }
+        if (!pamb->fOutOfRange)
+        {
+            if (pamb->fStopped)
+            {
+                if (0.0f <= pamb->lmRepeat.gMin)
+                {
+                    pamb->sfxh = 0;
+                }
+                else
+                {
+                    if (pamb->palo)
+                        pamb->palo->pvtlo->pfnSendLoMessage(pamb->palo, (MSGID)9, pamb);
+                    if (!pamb->fContinuous)
+                    {
+                        StopSound(pamb, 0);
+                        continue;
+                    }
+                    snd_StopSound(pamb->sfxh);
+                    pamb->sfxh = 0;
+                }
+                pamb->fStopped = 0;
+                pamb->fOutOfRange = 1;
+                continue;
+            }
+            int n = (pamb->cTick + 1) % 4;
+            pamb->cTick = n;
+            if ((uchar)n == 0)
+                snd_SoundIsStillPlaying_CB(pamb->sfxh, AmbCompleteProc, (u_long)pamb | ((u_long)pamb->iSerial << 32));
+        }
+        if (0.0f <= pamb->lmRepeat.gMin)
+        {
+            if (g_clock.t < pamb->tNext)
+            {
+                if (pamb->fOutOfRange)
+                    continue;
+            }
+            else
+            {
+                ScheduleNextIntermittentSound(pamb);
+                if (pamb->fOutOfRange)
+                {
+                    float tNow = g_clock.t;
+                    if (tNow - D_00274750 < 1.0f)
+                        continue;
+                    D_00274750 = tNow;
+                }
+            }
+        }
+        if (!pamb->fAttached)
+            continue;
+        VECTOR *ppos = pamb->palo ? &STRUCT_OFFSET(pamb->palo, 0x140, VECTOR) : &pamb->pos;
+        float sDist = pfneardist(pposEar, ppos);
+        if (pamb->sStart < sDist)
+        {
+            if (0.0f <= pamb->lmRepeat.gMin)
+                continue;
+            if (pamb->fOutOfRange)
+                continue;
+            if (pamb->fContinuous || 0.0f < pamb->tNext)
+            {
+                snd_StopSound(pamb->sfxh);
+                pamb->sfxh = 0;
+                pamb->fOutOfRange = 1;
+            }
+            else
+            {
+                StopSound(pamb, 0);
+            }
+        }
+        else
+        {
+            CalculateVolPan(sDist, ppos, &pamb->volAttenuated, &pamb->pan, pamb->uVolAtSource, pamb->sStart, pamb->sFull);
+            if (pamb->fOutOfRange && pamb->sfxid != SFXID_UnkNeg2)
+            {
+                pamb->sfxh = snd_PlaySoundVolPanPMPB(pamb->bnk, D_00245020[pamb->sfxid][1], 0, 0, 0, 0);
+                pamb->fOutOfRange = 0;
+            }
+            SetDoppler(pamb);
+            SetPambFrq(pamb, pamb->frq);
+            RefreshPambVolPan(pamb);
+        }
+    }
+    snd_FlushSoundCommands();
+    s_pdliFirst = dli.m_pdliNext;
+}
 
 void SetMvgkUvol(float uvol)
 {
