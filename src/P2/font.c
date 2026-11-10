@@ -374,7 +374,54 @@ float CFontBrx::DxDrawCh(char ch, float xChar, float yChar, uint rgba, GIFS *pgi
     return (float)m_dxSpaceUnscaled * m_rxScale;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015cf70);
+void CFontBrx::DrawChRotated(char ch, float xChar, float yChar, uint rgba, GIFS *pgifs) // guessed name
+{
+    GLYFF *pglyff = PglyffFromCh(ch);
+    if (pglyff)
+    {
+        int dTexH = 1 << (int)((*(ulong *)&m_tex0 >> 30) & 0xF);
+        float dxGlyph = (float)pglyff->dx * m_rxScale;
+        float dyGlyph = (float)m_dyUnscaled * m_ryScale;
+        float xRight = xChar + dyGlyph;
+        float yBottom = yChar + dxGlyph;
+        if (xRight >= 0.0f && xChar <= 640.0f && yBottom >= 0.0f && yChar <= 492.80002f)
+        {
+            int uLeft = (pglyff->x << 4) + g_duGlyph;
+            int uRight = ((pglyff->x + pglyff->dx) << 4) + g_duGlyph;
+            int vTop = ((dTexH - pglyff->y) << 4) + g_dvGlyph;
+            int vBottom = ((dTexH - (pglyff->y + m_dyUnscaled)) << 4) + g_dvGlyph;
+            int fLoad = FEnsureLoaded(pgifs);
+            pgifs->AddPrimPack(6, 1, 0xE);
+            if (fLoad)
+                pgifs->PackAD(0x3F, 0);
+            long tex1 = 0x31001;
+            if (m_fGstest)
+                tex1 = m_gstest;
+            pgifs->PackAD(0x47, tex1);
+            pgifs->PackAD(0x42, 0x44);
+            pgifs->PackAD(6, *(long *)&m_tex0);
+            pgifs->PackAD(0x14, 0x60);
+            pgifs->PackAD(8, 5);
+            pgifs->PackAD(0, 0x1D4);
+            pgifs->AddPrimList(9, 0x434343431L);
+            rgba = (rgba & 0xFFFFFF) | ((((rgba >> 24) + 1) & 0x1FE) << 23);
+            pgifs->ListRGBAQ(rgba, 0.0f);
+            pgifs->ListUV(uLeft, vTop);
+            int x0 = (int)((xChar + 1728.0f) * 16.0f);
+            int yA = (int)((yBottom * 0.45454547f + 1936.0f) * 16.0f);
+            pgifs->ListXYZF(x0, yA, m_z, 0);
+            pgifs->ListUV(uRight, vTop);
+            int yB = (int)((yChar * 0.45454547f + 1936.0f) * 16.0f);
+            pgifs->ListXYZF(x0, yB, m_z, 0);
+            pgifs->ListUV(uLeft, vBottom);
+            int x1 = (int)((xRight + 1728.0f) * 16.0f);
+            pgifs->ListXYZF(x1, yA, m_z, 0);
+            pgifs->ListUV(uRight, vBottom);
+            pgifs->ListXYZF(x1, yB, m_z, 0);
+            CleanupDraw(0, &g_gifs);
+        }
+    }
+}
 
 void CFontBrx::DrawPart(float xLeft, float yTop, float xRight, float yBottom, float sLeft, float tTop, float sRight, float tBottom, uint rgba, GIFS *pgifs)
 {

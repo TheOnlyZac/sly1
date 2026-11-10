@@ -69,7 +69,7 @@ public:
     virtual void SwitchTex0(GIFS *pgifs);
     virtual float DxDrawCh(char ch, float xChar, float yChar, uint rgba, GIFS *pgifs);
     virtual void CleanupDraw(CTextBox *ptbxClip, GIFS *pgifs);
-    virtual void VirtualSlot8(); // guessed placeholder for FUN_0015cf70 (CFontBrx only)
+    virtual void DrawChRotated(char ch, float xChar, float yChar, uint rgba, GIFS *pgifs); // guessed name
     virtual void EdgeRect(CTextEdge *pte, CTextBox *ptbx, GIFS *pgifs);
 };
 
@@ -99,6 +99,7 @@ public:
     void SetupDraw(CTextBox *ptbxClip, GIFS *pgifs);
     void SwitchTex0(GIFS *pgifs);
     float DxDrawCh(char ch, float xChar, float yChar, uint rgba, GIFS *pgifs);
+    void DrawChRotated(char ch, float xChar, float yChar, uint rgba, GIFS *pgifs); // guessed name
     void DrawPart(float xLeft, float yTop, float xRight, float yBottom, float sLeft, float tTop, float sRight, float tBottom, uint rgba, GIFS *pgifs);
     void EdgeRect(CTextEdge *pte, CTextBox *ptbx, GIFS *pgifs);
     void LoadFromBrx(CBinaryInputStream *pbis);
@@ -136,6 +137,8 @@ public:
 };
 
 extern CFont *g_pfont;
+extern int g_duGlyph; // guessed name
+extern int g_dvGlyph; // guessed name
 extern char g_achFont[5];
 extern CFont *g_apfont[5];
 
