@@ -43,6 +43,7 @@ struct FGFN
  */
 struct CM : public LO
 {
+    STRUCT_PADDING(3); // LO ends at 0x34
     /* 0x040 */ VECTOR pos;
     /* 0x050 */ VECTOR4 anormalFrustrumTranspose[3];
     /* 0x080 */ MATRIX3 mat;
