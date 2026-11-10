@@ -69,6 +69,8 @@ struct LM
 	float gMin, gMax;
 };
 
+bool FCheckAlm(int clm, LM *alm, float g);
+
 extern CLQ g_clqZero;
 extern CLQ g_clqOne;
 extern LM g_lmZeroOne;
