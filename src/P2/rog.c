@@ -552,7 +552,68 @@ void UpdateRob(ROB *prob, float dt)
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", FUN_001a4d60);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", RobsNextRob__FP3ROB);
+ROBS RobsNextRob(ROB *prob)
+{
+    ROBS robs = STRUCT_OFFSET(prob, 0x650, ROBS);
+    switch (robs)
+    {
+    case ROBS_Descend:
+        if ((uint)STRUCT_OFFSET(STRUCT_OFFSET(prob, 0x354, ROV *), 0x610, ROVS) <= 1)
+        {
+            robs = ROBS_Instruct;
+        }
+        break;
+    case ROBS_Instruct:
+    {
+        ALO *palo = STRUCT_OFFSET(prob, 0x658, ALO *);
+        if (!palo || STRUCT_OFFSET(palo, 0x2d4, int) != 3)
+        {
+            robs = ROBS_Normal;
+        }
+        break;
+    }
+    case ROBS_Normal:
+        if (STRUCT_OFFSET(prob, 0x3c0, int))
+        {
+            robs = ROBS_Lose;
+        }
+        else if (STRUCT_OFFSET(prob, 0x3c4, int) == STRUCT_OFFSET(prob, 0x3b8, int))
+        {
+            robs = ROBS_Ascend;
+        }
+        break;
+    case ROBS_Lose:
+        if (STRUCT_OFFSET(STRUCT_OFFSET(prob, 0x658, ALO *), 0x2d4, int) != 3)
+        {
+            robs = ROBS_Win;
+        }
+        break;
+    case ROBS_Ascend:
+    {
+        ROP *prop = STRUCT_OFFSET(prob, 0x358, ROP *);
+        if (prop)
+        {
+            if (STRUCT_OFFSET(prop, 0x550, int) == 3 && STRUCT_OFFSET(prop, 0x554, float) + 3.0f < g_clock.t)
+            {
+                robs = ROBS_Max;
+            }
+        }
+        else if (STRUCT_OFFSET(prob, 0x654, float) + 5.0f < g_clock.t)
+        {
+            ALO *palo = STRUCT_OFFSET(prob, 0x658, ALO *);
+            if (!palo || STRUCT_OFFSET(palo, 0x2d4, int) != 3)
+            {
+                robs = ROBS_Max;
+            }
+        }
+        break;
+    }
+    case ROBS_Win:
+    case ROBS_Max:
+        break;
+    }
+    return robs;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", SetRobRobs__FP3ROB4ROBS);
 
