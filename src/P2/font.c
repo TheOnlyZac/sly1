@@ -434,7 +434,7 @@ void CFontBrx::DrawPart(float xLeft, float yTop, float xRight, float yBottom, fl
 }
 
 /**
- * @todo 85% matched (38 differing lines of 248). Instruction scheduling and register assignment of the locals.
+ * @todo 94% matched (14 differing lines of 248). Instruction scheduling of the locals.
  */
 INCLUDE_ASM("asm/nonmatchings/P2/font", EdgeRect__8CFontBrxP9CTextEdgeP8CTextBoxP4GIFS);
 #ifdef SKIP_ASM
@@ -445,24 +445,24 @@ void CFontBrx::EdgeRect(CTextEdge *pte, CTextBox *ptbx, GIFS *pgifs)
     {
         pte->m_pfont->PushScaling(pte->m_rxScaling, pte->m_ryScaling);
         int iuL = pglyff->x;
+        float dxExtra = pte->m_dxExtra * m_rxScale;
         int dTexH = 1 << (int)((*(ulong *)&m_tex0 >> 30) & 0xF);
-        float dyGlyph = (float)m_dyUnscaled * m_ryScale;
         float dyExtra = pte->m_dyExtra * m_ryScale;
         float yt1 = ptbx->m_y - dyExtra;
-        float dxExtra = pte->m_dxExtra * m_rxScale;
+        float dyGlyph = (float)m_dyUnscaled * m_ryScale;
         float xr0 = ptbx->m_x + ptbx->m_dx + dxExtra;
         float dxGlyph = (float)pglyff->dx * m_rxScale;
-        float yt0 = yt1 - dyGlyph;
-        float uL = (float)iuL;
-        int iuR = pglyff->x + pglyff->dx;
         float xl1 = ptbx->m_x - dxExtra;
-        float yb0 = ptbx->m_y + ptbx->m_dy + dyExtra;
-        float uM = (float)((iuL + iuR) / 2);
+        float uL = (float)iuL;
         float xl0 = xl1 - dxGlyph;
-        int ivB = dTexH - (pglyff->y + m_dyUnscaled);
+        int iuR = pglyff->x + pglyff->dx;
+        float uM = (float)((iuL + iuR) / 2);
         int ivT = dTexH - pglyff->y;
-        float vT = (float)ivT;
+        float yt0 = yt1 - dyGlyph;
         float xr1 = xr0 + dxGlyph;
+        float yb0 = ptbx->m_y + ptbx->m_dy + dyExtra;
+        float vT = (float)ivT;
+        int ivB = dTexH - (pglyff->y + m_dyUnscaled);
         float vM = (float)((ivT + ivB) / 2);
         float yb1 = yb0 + dyGlyph;
         SetupDraw(0, pgifs);
