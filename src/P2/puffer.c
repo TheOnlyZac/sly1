@@ -4,6 +4,7 @@
 #include <rog.h>
 #include <vec.h>
 #include <sm.h>
+#include <ui.h>
 #include <lo.h>
 #include <vol.h>
 #include <clock.h>
@@ -13,7 +14,13 @@
 #include <oid.h>
 
 extern VECTOR g_normalZ;
+extern BLOT g_unkblot1;
+extern BLOT g_unkblot8;
+extern BLOT g_unkblot9;
 
+/**
+ * @todo ~65% matched (22 differing lines of 41): scheduling of the float loads and the qword copy differs.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", InitPuffer__FP6PUFFER);
 #ifdef SKIP_ASM
 void InitPuffer(PUFFER *ppuffer)
@@ -40,6 +47,9 @@ INCLUDE_ASM("asm/nonmatchings/P2/puffer", PostPufferLoad__FP6PUFFER);
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", PresetPufferAccel__FP6PUFFERf);
 
+/**
+ * @todo ~75% matched (8 differing lines of 31): branch layout of the final compare differs.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", FFilterPuffer__FP6PUFFERP2SO);
 #ifdef SKIP_ASM
 int FFilterPuffer(PUFFER *ppuffer, SO *psoOther)
@@ -95,7 +105,32 @@ void OnPufferActive(PUFFER *ppuffer, int fActive, PO *ppoOther)
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", UpdatePufferActive__FP6PUFFERP3JOYf);
 
+/**
+ * @todo ~90% matched (6 differing lines of 56): argument register for the FUN_001e9970 result.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_00197788__FP6PUFFER);
+#ifdef SKIP_ASM
+void FUN_00197788(PUFFER *ppuffer)
+{
+    OID oid;
+    GetSmaCur(STRUCT_OFFSET(ppuffer, 0x6b8, SMA *), &oid);
+    void *pv = (void *)oid;
+    if (oid == (OID)0x3f3)
+        pv = FUN_001e9970();
+    if (pv != NULL)
+    {
+        g_unkblot1.pvtblot->pfnShowBlot(&g_unkblot1);
+        g_unkblot8.pvtblot->pfnShowBlot(&g_unkblot8);
+        g_unkblot9.pvtblot->pfnShowBlot(&g_unkblot9);
+    }
+    else
+    {
+        g_unkblot1.pvtblot->pfnHideBlot(&g_unkblot1);
+        g_unkblot8.pvtblot->pfnHideBlot(&g_unkblot8);
+        g_unkblot9.pvtblot->pfnHideBlot(&g_unkblot9);
+    }
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_00197848);
 
@@ -127,23 +162,25 @@ void PostPuffcLoad(PUFFC *ppuffc)
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", PresetPuffcAccel__FP5PUFFCf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/puffer", FUN_001982a0__FP5PUFFC);
-#ifdef SKIP_ASM
 SGS FUN_001982a0(PUFFC *ppuffc)
 {
-    SGS sgs = STRUCT_OFFSET(ppuffc, 0x724, SGS);
-    if (sgs == SGS_PatrolIdle)
+    SGS sgsRet;
+    switch (STRUCT_OFFSET(ppuffc, 0x724, SGS))
     {
-        if (SggsGetStepguard(ppuffc) == SGGS_Patrol)
-            return SGS_ReturnToPatrol;
+    case SGS_PatrolIdle:
+        if (SggsGetStepguard(ppuffc) == SGGS_Patrol) { sgsRet = SGS_ReturnToPatrol; break; }
+        sgsRet = SgsNextStepguardAI(ppuffc);
+        break;
+    case SGS_Stun:
+        sgsRet = SGS_Stun;
+        if (STRUCT_OFFSET(ppuffc, 0xc10, int)) sgsRet = SGS_Reset;
+        break;
+    default:
+        sgsRet = SgsNextStepguardAI(ppuffc);
+        break;
     }
-    else if (sgs == SGS_Stun)
-    {
-        return STRUCT_OFFSET(ppuffc, 0xc10, int) ? SGS_Reset : SGS_Stun;
-    }
-    return SgsNextStepguardAI(ppuffc);
+    return sgsRet;
 }
-#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", UpdatePuffcGoal__FP5PUFFCi);
 
@@ -190,6 +227,9 @@ void HandlePuffcMessage(PUFFC *ppuffc, MSGID msgid, void *pv)
     }
 }
 
+/**
+ * @todo ~80% matched (16 differing lines of 70): float compare and count store scheduling.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/puffer", UpdatePuffc__FP5PUFFCf);
 #ifdef SKIP_ASM
 void UpdatePuffc(PUFFC *ppuffc, float dt)
