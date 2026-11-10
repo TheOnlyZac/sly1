@@ -73,7 +73,7 @@ struct SAVE
     int mode;         // 0x14 (guess)
     int substate;     // 0x18 (guess)
     float tSubstate;  // 0x1c (guess)
-    STRUCT_PADDING(1);
+    float tRetry;     // 0x20 (guess)
     int mcType;       // 0x24 (guess)
     int mcFree;       // 0x28 (guess)
     int mcFormat;     // 0x2c (guess)
@@ -141,6 +141,7 @@ int FUN_0018c638(SAVE *psave);
 int FUN_0018c770(SAVE *psave);
 void FUN_0018b780(sceMcTblGetDir *pdir, SAVEDIRENT *pent);
 int FUN_0018d1f8(SAVE *psave);
+extern "C" int FUN_0018d0a0(SAVE *psave);
 int FUN_0018d228(SAVE *psave, char *pchz);
 int FUN_0018d268(SAVE *psave, char *pchz, int mode, int *pfd);
 int FUN_0018d2b0(SAVE *psave, int fd);

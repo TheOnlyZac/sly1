@@ -37,6 +37,7 @@ extern char D_0024B360[];
 extern char D_0024B390[];
 extern char D_0024B3D8[];
 extern char D_0024B3E0[];
+extern PROMPT D_0026FF68;
 extern SAVE g_save;
 extern MEMCARD g_memcard;
 
@@ -197,7 +198,55 @@ void InitSave(SAVE *psave, int unk1, int unk2)
 	STRUCT_OFFSET(psave, 0x4f44, int) = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", UpdateSave__FP4SAVE);
+void UpdateSave(SAVE *psave)
+{
+	if (FMemcardThreadValid(&g_memcard))
+		return;
+	if (psave->state == psave->mode)
+	{
+		if (psave->tRetry <= g_clock.tReal)
+			CreateMemcardThread(&g_memcard, (int)FUN_0018d0a0, (int)psave);
+	}
+	else
+		FUN_0018c028(psave, psave->mode);
+	if (FMemcardThreadValid(&g_memcard))
+		return;
+	if (psave->substate != 1)
+		return;
+	if (g_clock.tReal - psave->tState >= 0.3f)
+	{
+		if (STRUCT_OFFSET(psave, 0x4f44, int) != 0)
+		{
+			if (psave->state != 5)
+				SetPrompt(&D_0026FF68, (PRP)1, (PRK)0x15);
+		}
+		else
+		{
+			PROMPT *pprompt = &D_0026FF68;
+			if (STRUCT_OFFSET(pprompt, 0x25c, int) != 0 && STRUCT_OFFSET(pprompt, 0x268, int) == 0x11)
+			{
+				if (psave->state != 5)
+					SetPrompt(&D_0026FF68, (PRP)1, (PRK)0x20);
+				return;
+			}
+			switch (psave->state)
+			{
+			case 1:
+				SetPrompt(&D_0026FF68, (PRP)1, (PRK)3);
+				break;
+			case 2:
+				SetPrompt(&D_0026FF68, (PRP)1, (PRK)4);
+				break;
+			case 3:
+				SetPrompt(&D_0026FF68, (PRP)1, (PRK)7);
+				break;
+			case 4:
+				SetPrompt(&D_0026FF68, (PRP)1, (PRK)10);
+				break;
+			}
+		}
+	}
+}
 
 int CompareSaves(SAVE *psave1, SAVE *psave2)
 {
@@ -218,8 +267,6 @@ int CompareSaves(SAVE *psave1, SAVE *psave2)
 		return d;
 	return psave1->unk_0x58 - psave2->unk_0x58;
 }
-
-extern "C" int FUN_0018d0a0(SAVE *psave);
 
 void FUN_0018c028(SAVE *psave, int state)
 {
@@ -412,7 +459,6 @@ int FUN_0018c770(SAVE *psave)
 	return FUN_0018d028(psave, abBuf, STRUCT_OFFSET(psave, 0x4f4c, GS *), (char *)STRUCT_OFFSET(psave, 0x4f4c, GS *) + 0x1a00);
 }
 
-extern PROMPT D_0026FF68;
 struct UW
 {
 	int w;
