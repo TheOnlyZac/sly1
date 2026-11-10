@@ -32,6 +32,11 @@ D_00270458 = 0x270458; // size:0x4
 BuildEopids__Fv = 0x109488; // type:func
 
 // .rodata
+D_00217398 = 0x217398; // vtable for CPMAN (guess)
+D_002173B0 = 0x2173b0; // vtable for CPLOOK (guess)
+D_002173C8 = 0x2173c8; // vtable for CPALIGN (guess)
+D_002173E0 = 0x2173e0; // vtable for CPASEG (guess)
+D_002173F8 = 0x2173f8; // vtable for CPTN (guess)
 g_vtbasic        = 0x217410;
 g_vtlo           = 0x217418;
 g_vtalo          = 0x217498;
@@ -1494,6 +1499,7 @@ g_sNearFog = 0x2618a0; // size:0x4
 g_sFarFog = 0x2618a4; // size:0x4
 g_uFogMax = 0x2618a8; // size:0x4
 g_rgbaFog = 0x2618b0; // size:0x4
+D_002618B8 = 0x2618b8; // size:0x10
 // ...
 DT_CmJoltMax = 0x2618c8; // size:0x4
 SW_CmJolt = 0x2618cc; // size:0x4

@@ -223,6 +223,12 @@ void SetCmRgbaFog(CM *pcm, RGBA *prgbaFog);
 void SetCmMrdRatio(CM *pcm, float ratio);
 
 /**
+ * @brief Resets the camera policies and cut state.
+ * @param fLookAt If nonzero, also resets the look at to the default eye and center.
+ */
+void ResetCm(CM *pcm, int fLookAt);
+
+/**
  * @brief Clears fading objects from the given camera.
  */
 void ClearCmFadeObjects(CM *pcm);

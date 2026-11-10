@@ -15,7 +15,19 @@
 #include <mat.h>
 
 void SetupCmRotateToCam(CM *pcm);
+extern "C" void *memmove(void *pvDst, const void *pvSrc, uint cb);
 extern "C" void SetCmLookAt(CM *pcm, VECTOR *peye, VECTOR *pcenter); // signature guessed
+extern "C" void SetCmLookAtSmooth(CM *pcm, VECTOR *p1, VECTOR *peye, VECTOR *pcenter, VECTOR *p4, float f0, float f1, float f2, float f3, float f4, float f5); // signature guessed
+extern VTCPLCY D_00217398;
+extern VTCPLCY D_002173B0;
+extern VTCPLCY D_002173C8;
+extern VTCPLCY D_002173E0;
+extern VTCPLCY D_002173F8;
+extern VECTOR D_002618B8;
+extern MATRIX3 g_matIdentity;
+extern float g_sNearFog;
+extern float g_sFarFog;
+extern float g_uFogMax;
 extern VECTOR g_posEyeDefault;
 extern VECTOR g_posCenterDefault;
 extern "C" void ConvertCylindToWorldVelocity(VECTOR *pposCenter, VECTOR *ppos, VECTOR *pvel, float s0, float s1, float s2); // signature guessed
@@ -103,7 +115,36 @@ void BuildCmFgfn(CM *pcm, float uFog, FGFN *pfgfn)
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", RecalcCmFrustrum__FP2CM);
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", InitCm__FP2CM);
+void InitCm(CM *pcm)
+{
+    InitLo(pcm);
+    pcm->rMRD = 1.0f;
+    pcm->radFOV = 1.0f;
+    pcm->radFOV2 = 1.0f;
+    STRUCT_OFFSET(pcm, 0x1d0, VECTOR) = D_002618B8; // unnamed field, probably a VECTOR (guess)
+    pcm->rAspect = 1.2987013f;
+    pcm->sNearClip = 100.0f;
+    pcm->sFarClip = 20000.0f;
+    pcm->sNearFog = g_sNearFog;
+    pcm->sFarFog = g_sFarFog;
+    pcm->uFogMax = g_uFogMax;
+    pcm->rgbaFog = *(RGBA *)&g_rgbaFog;
+    STRUCT_OFFSET(pcm, 0x80, qword) = STRUCT_OFFSET(&g_matIdentity, 0, qword);
+    STRUCT_OFFSET(pcm, 0x90, qword) = STRUCT_OFFSET(&g_matIdentity, 0x10, qword);
+    STRUCT_OFFSET(pcm, 0xa0, qword) = STRUCT_OFFSET(&g_matIdentity, 0x20, qword);
+    RecalcCmFrustrum(pcm);
+    pcm->cpman.pvtcplcy = &D_00217398;
+    InitCplcy(&pcm->cpman, pcm);
+    pcm->cplook.pvtcplcy = &D_002173B0;
+    InitCplook(&pcm->cplook, pcm);
+    pcm->cpalign.pvtcplcy = &D_002173C8;
+    InitCpalign(&pcm->cpalign, pcm);
+    pcm->cpaseg.pvtcplcy = &D_002173E0;
+    InitCplcy(&pcm->cpaseg, pcm);
+    pcm->cptn.pvtcplcy = &D_002173F8;
+    InitCplcy(&pcm->cptn, pcm);
+    ResetCm(pcm, 1);
+}
 
 void SetSwCameraFov(float fov)
 {
@@ -305,7 +346,10 @@ void SetCmPosMat(CM *pcm, VECTOR *ppos, MATRIX3 *pmat)
     pcm->swPanMat = pcm->swTiltPos = pcm->sv = pcm->swPanPos = pcm->swTiltMat = 0.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmLookAt);
+void SetCmLookAt(CM *pcm, VECTOR *peye, VECTOR *pcenter)
+{
+    SetCmLookAtSmooth(pcm, 0, peye, pcenter, 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", ConvertWorldToCylindVelocity);
 
@@ -342,6 +386,34 @@ void AdjustCmJoy(CM *pcm, JOY *pjoy, JOYID joyid, float *prad)
 JUNK_WORD(0x0000102D);
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", SetCmPolicy__FP2CM3CPPP5CPLCYP2SOPv);
+#ifdef SKIP_ASM
+void SetCmPolicy(CM *pcm, CPP cpp, CPLCY *pcplcy, SO *psoFocus, void *pv)
+{
+    int i = 0;
+    while (i < pcm->ccpr && pcm->acpr[i].cpp >= cpp)
+        i++;
+    memmove(&pcm->acpr[i + 1], &pcm->acpr[i], (pcm->ccpr - i) * sizeof(CPR));
+    pcm->acpr[i].cpp = cpp;
+    pcm->acpr[i].pcplcy = pcplcy;
+    pcm->acpr[i].psoFocus = psoFocus;
+    pcm->acpr[i].pv = pv;
+    pcm->ccpr++;
+    if (pcplcy->pvtcplcy->pfnAdd)
+        pcplcy->pvtcplcy->pfnAdd(pcplcy, pv);
+    if (i == 0)
+    {
+        if (pcm->ccpr >= 2)
+        {
+            CPLCY *pcplcyOld = pcm->acpr[1].pcplcy;
+            if (pcplcyOld->pvtcplcy->pfnDeactivate)
+                pcplcyOld->pvtcplcy->pfnDeactivate(pcplcyOld, pcm->acpr[1].pv);
+        }
+        pcm->tActivateCplcy = g_clock.t;
+        if (pcplcy->pvtcplcy->pfnActivate)
+            pcplcy->pvtcplcy->pfnActivate(pcplcy, pv);
+    }
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/cm", RevokeCmPolicy__FP2CMi3CPPP5CPLCYP2SOPv);
 
