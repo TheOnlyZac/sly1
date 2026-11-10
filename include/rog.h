@@ -206,8 +206,8 @@ struct ROP : public SO
  */
 struct RODD
 {
-    // ...
-};
+    STRUCT_PADDING(48); // size 0xc0, contents unknown
+} __attribute__((aligned(16)));
 
 void InitRov(ROV *prov);
 
