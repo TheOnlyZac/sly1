@@ -112,9 +112,65 @@ void UnloadMusic()
     D_00274728 = 0;
 }
 
+/**
+ * @todo ~50% matched (81 differing lines of 165): same control flow, but the original recomputes the D_00604790 address at each use (no CSE) and keeps different registers.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SbpEnsureBank__Fi);
 #ifdef SKIP_ASM
-// WIP
+extern int D_00244F40[];
+extern int D_00246838[];
+void *SbpEnsureBank(int bank)
+{
+    if (bank == D_00274740)
+        return D_00604790[bank];
+    if (bank == 0)
+    {
+        if (D_00604790[0])
+            return D_00604790[0];
+    }
+    else
+    {
+        UnloadMusic();
+        if (D_00274740 >= 0)
+        {
+            if (D_00604790[D_00274740])
+            {
+                snd_UnloadBank((SoundBankPtr)D_00604790[D_00274740]);
+                while (snd_FlushSoundCommands()) {}
+                D_00604790[D_00274740] = 0;
+                snd_ResolveBankXREFS();
+            }
+        }
+        D_00274740 = bank;
+    }
+    CFileLocation fl;
+    if (FFillFcl(&fl, &D_00244F40[bank * 8]))
+    {
+        while (sceCdDiskReady(0) != 2) {}
+        snd_StreamSafeCdSync(0);
+        void *pbnk = snd_BankLoadByLoc(fl.m_fcl.isector, 0);
+        D_00604790[bank] = pbnk;
+        if (pbnk)
+        {
+            snd_ResolveBankXREFS();
+            if (!D_006047B0[bank])
+            {
+                D_006047B0[bank] = 1;
+                for (int i = 0; i < 0x303; i++)
+                {
+                    if (D_00245020[i][0] == bank)
+                    {
+                        int fLoop = 0;
+                        if (snd_IsSoundALooper(pbnk, D_00245020[i][1]) || D_00246838[i])
+                            fLoop = 1;
+                        D_006047D0[i] = fLoop;
+                    }
+                }
+            }
+        }
+    }
+    return D_00604790[bank];
+}
 #endif // SKIP_ASM
 
 void *SbpEnsureBank(SFXID sfxid)
@@ -250,9 +306,27 @@ int FVagPlaying()
 
 JUNK_WORD(0x0080102D);
 
+/**
+ * @todo ~87% matched (5 differing lines of 37): the delay loop is [addiu; nop; nop*5; bgez; addiu(delay)] in the original, i.e. the decrement sits in the branch delay slot and the nop count differs; no variant reproduced it.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/sound", StopVag__Fv);
 #ifdef SKIP_ASM
-// WIP
+void StopVag()
+{
+    if (!D_00274744 && D_0027472C)
+    {
+        snd_StopSound(D_0027472C);
+        while (snd_SoundIsStillPlaying(D_0027472C))
+        {
+            for (int i = 19999; i >= 0; i--)
+            {
+                asm("nop;nop;nop;nop;nop;nop");
+            }
+        }
+        D_0027472C = 0;
+        D_00274730 = 0;
+    }
+}
 #endif // SKIP_ASM
 
 void PauseVag()
@@ -499,14 +573,54 @@ int FAmbientsPaused()
     return D_00274748;
 }
 
+/**
+ * @todo ~45% matched (29 differing lines of 56): VU0 inline asm with fake register dependencies; the scalar constants and the g_pcm load are scheduled differently and ppos is copied to another register.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/sound", CalculateVolPan__FfP6VECTORPfT2fff);
 #ifdef SKIP_ASM
-// WIP
+void CalculateVolPan(float sDist, VECTOR *ppos, float *puVol, float *pPan, float uVol, float sStart, float sFull)
+{
+    if (ppos)
+    {
+        if (sStart < sDist)
+        {
+            float zero = 0.0f;
+            *pPan = zero;
+            *puVol = zero;
+            return;
+        }
+        if (sFull < sDist)
+        {
+            VECTOR d;
+            int a1, a2, a3, a4, a5, a6, a7;
+            float num = sStart - sDist;
+            float den = sStart - sFull;
+            float k = 0.7f;
+            float one = 1.0f;
+            int dot;
+            asm("lqc2 $vf2,0(%1)" : "=r"(a1) : "r"(ppos));
+            asm("lqc2 $vf1,%1\n\tvsub.xyzw $vf2,$vf2,$vf1" : "=r"(a2) : "m"(STRUCT_OFFSET(g_pcm, 0x40, VECTOR)), "r"(a1));
+            asm("vmul.xyz $vf1,$vf2,$vf2\n\tvaddw.x $vf3,$vf0,$vf0w\n\tvadday.x ACC,$vf1,$vf1y\n\tvmaddz.x $vf1,$vf3,$vf1z\n\tsqc2 $vf2,%1\n\t.word 0x4A0103BD\n\tvwaitq\n\tvaddq.x $vf1,$vf0,Q" : "=r"(a3), "=m"(d), "+f"(num) : "r"(a2));
+            float t = num / den;
+            asm("vdiv Q,$vf0w,$vf1x\n\tvwaitq\n\tvmulq.xyzw $vf1,$vf2,Q\n\tsqc2 $vf1,%1\n\tlqc2 $vf2,%2\n\tvmul.xyz $vf1,$vf1,$vf2\n\tvaddw.x $vf3,$vf0,$vf0w\n\tvadday.x ACC,$vf1,$vf1y\n\tvmaddz.x $vf1,$vf3,$vf1z" : "=r"(a4), "=m"(d) : "m"(STRUCT_OFFSET(g_pcm, 0x90, VECTOR)), "r"(a3), "f"(t));
+            float oneMinusT = one - t;
+            float vol = uVol * t;
+            asm("qmfc2.ni %0,$vf1" : "=r"(dot) : "r"(a4));
+            float dotf;
+            asm("mtc1 %1,%0" : "=f"(dotf) : "r"(dot));
+            *pPan = -dotf * k * oneMinusT;
+            *puVol = vol;
+            return;
+        }
+    }
+    *puVol = uVol;
+    *pPan = 0.0f;
+}
 #endif // SKIP_ASM
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", FUN_001BF2E0);
 #ifdef SKIP_ASM
-// WIP
+// @todo not attempted: VU0 code (see the asm), needs inline asm with fake register dependencies like CalculateVolPan.
 #endif // SKIP_ASM
 
 extern "C" float FUN_001BF398(VECTOR *pposA, VECTOR *pposB)
@@ -530,7 +644,7 @@ VECTOR *PposEar()
 
 INCLUDE_ASM("asm/nonmatchings/P2/sound", SetDoppler__FP3AMB);
 #ifdef SKIP_ASM
-// WIP
+// @todo not attempted: VU0 code (see the asm), needs inline asm with fake register dependencies like CalculateVolPan.
 #endif // SKIP_ASM
 
 PFNEARDIST PfneardistGet()
@@ -705,9 +819,28 @@ void ActivatePamb(AMB *pamb, SFXID sfxid)
     }
 }
 
+/**
+ * @todo ~10% matched (64 differing lines of 57): the original builds the vector in a 128 bit register (mfc1, pextlw, pcpyld, qmtc2, sqc2 to pos and two stack copies); plain struct code uses ldl/ldr copies instead.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/sound", ScheduleNextIntermittentSound__FP3AMB);
 #ifdef SKIP_ASM
-// WIP
+void ScheduleNextIntermittentSound(AMB *pamb)
+{
+    pamb->tNext = g_clock.t + GRandInRange(pamb->lmRepeat.gMin, pamb->lmRepeat.gMax);
+    if (!pamb->palo)
+    {
+        float rad = GRandInRange(0.0f, 6.2831855f);
+        float sDist = GRandInRange(pamb->lmRepDist.gMin, pamb->lmRepDist.gMax);
+        VECTOR v;
+        v.x = cosf(rad) * sDist;
+        v.y = sinf(rad) * sDist;
+        v.z = 0.0f;
+        v.gUnused = 0.0f;
+        pamb->pos = v;
+        VECTOR *pposEar = PposEar();
+        asm("lqc2 $vf2,%1\n\tlqc2 $vf1,%2\n\tvadd.xyzw $vf1,$vf1,$vf2\n\tsqc2 $vf1,%0" : "=m"(pamb->pos) : "m"(*pposEar), "m"(v));
+    }
+}
 #endif // SKIP_ASM
 
 void StartSound(SFXID sfxid, AMB **ppamb, ALO *palo, VECTOR *ppos, float sStart, float sFull, float uVolAtSource, float frq, float uDoppler, LM *plmRepeat, LM *plmRepDist)
