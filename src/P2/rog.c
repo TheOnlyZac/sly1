@@ -1073,7 +1073,56 @@ void SetRohRohs(ROH *proh, ROHS rohs)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", FAbsorbRohWkr__FP3ROHP3WKR);
+int FAbsorbRohWkr(ROH *proh, WKR *pwkr)
+{
+    if (STRUCT_OFFSET(pwkr, 0xc, uint) & 0x20)
+    {
+        switch (STRUCT_OFFSET(proh, 0x550, ROHS))
+        {
+        case ROHS_Spawn:
+        case ROHS_Wander:
+        case ROHS_Collect:
+        case ROHS_Grab:
+        case ROHS_Return:
+        case ROHS_Happy:
+        case ROHS_Sad:
+            SetRohRohs(proh, ROHS_Die);
+            break;
+        case ROHS_Exit:
+        {
+            ROC *proc = STRUCT_OFFSET(proh, 0x55c, ROC *);
+            SetRohRohs(proh, ROHS_Die);
+            if (proc)
+            {
+                SetRocRocs(proc, ROCS_Destroyed);
+            }
+            break;
+        }
+        }
+        if (STRUCT_OFFSET(proh, 0x550, ROHS) == ROHS_Die)
+        {
+            ALO *palo = STRUCT_OFFSET(proh, 0x5ac, ALO *);
+            if (palo)
+            {
+                struct
+                {
+                    int msgid;
+                    int pad[3];
+                    VECTOR vecA;
+                    VECTOR vecB;
+                    int pad2[8];
+                } msg;
+                msg.msgid = 6;
+                STRUCT_OFFSET(&msg, 0x10, qword) = STRUCT_OFFSET(pwkr, 0x30, qword);
+                STRUCT_OFFSET(&msg, 0x20, qword) = STRUCT_OFFSET(pwkr, 0x20, qword);
+                msg.vecA.z += 3000.0f;
+                ((void (*)(ALO *, void *))STRUCT_OFFSET(palo->pvtalo, 0x7c, void *))(palo, &msg);
+            }
+            StartSound((SFXID)0x37, 0, 0, &STRUCT_OFFSET(pwkr, 0x20, VECTOR), 12000.0f, 8000.0f, 1.0f, 0.0f, 0.0f, 0, 0);
+        }
+    }
+    return STRUCT_OFFSET(pwkr, 0xc, uint) != 0;
+}
 
 ROC *ProcContactRoh(ROH *proh)
 {
