@@ -34,6 +34,8 @@ extern char D_0024B340[];
 extern char D_0024B348[];
 extern char D_0024B360[];
 extern char D_0024B390[];
+extern char D_0024B3D8[];
+extern char D_0024B3E0[];
 extern SAVE g_save;
 extern MEMCARD g_memcard;
 
@@ -464,16 +466,69 @@ JUNK_ADDIU(10);
 JUNK_ADDIU(10);
 JUNK_ADDIU(b0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018ca10__FP4SAVEPcPv);
-
+extern char D_0024B3D0[];
 extern char D_0024B3D8[];
+extern char D_0024B3E8[];
+extern "C" void FUN_001b5c40(char *pchzSrc, char *pchzDst);
+struct S8
+{
+	char ach[8];
+};
+
+int FUN_0018ca10(SAVE *psave, char *pchz, void *pv)
+{
+	sceMcIconSys icon;
+	char abName[0x50];
+	memset(&icon, 0, sizeof(sceMcIconSys));
+	*(int *)icon.Head = *(int *)D_0024B3D0;
+	icon.Head[4] = D_0024B3D0[4];
+	icon.OffsLF = 0x20;
+	icon.TransRate = 0x60;
+	icon.BgColor[0][0] = 0;
+	icon.BgColor[0][1] = 0x87;
+	icon.BgColor[0][2] = 0xff;
+	icon.BgColor[1][0] = 0;
+	icon.BgColor[1][1] = 0x29;
+	icon.BgColor[1][2] = 0x6f;
+	icon.BgColor[2][0] = 0;
+	icon.BgColor[2][1] = 0x29;
+	icon.BgColor[2][2] = 0x6f;
+	icon.BgColor[3][0] = 0;
+	icon.BgColor[3][1] = 0x87;
+	icon.BgColor[3][2] = 0xff;
+	icon.LightDir[0][0] = 0.0f;
+	icon.LightDir[0][1] = 0.5f;
+	icon.LightDir[0][2] = -0.5f;
+	icon.LightDir[1][0] = 0.5f;
+	icon.LightDir[1][1] = -0.4f;
+	icon.LightDir[1][2] = 0.1f;
+	icon.LightDir[2][0] = -0.5f;
+	icon.LightDir[2][1] = 0.5f;
+	icon.LightDir[2][2] = 0.5f;
+	icon.LightColor[0][0] = 0.14f;
+	icon.LightColor[0][1] = 0.03f;
+	icon.LightColor[0][2] = 0.48f;
+	icon.LightColor[1][0] = 0.33f;
+	icon.LightColor[1][1] = 0.0f;
+	icon.LightColor[1][2] = 0.33f;
+	icon.LightColor[2][0] = 0.14f;
+	icon.LightColor[2][1] = 0.14f;
+	icon.LightColor[2][2] = 0.38f;
+	icon.Ambient[0] = 0.5f;
+	icon.Ambient[1] = 0.5f;
+	icon.Ambient[2] = 0.5f;
+	FUN_001b5c40((char *)pv, (char *)icon.TitleName);
+	*(S8 *)icon.FnameView = *(S8 *)D_0024B3D8;
+	*(S8 *)icon.FnameCopy = *(S8 *)D_0024B3D8;
+	*(S8 *)icon.FnameDel = *(S8 *)D_0024B3D8;
+	sprintf(abName, D_0024B3E0, pchz, D_0024B3E8);
+	return FUN_0018d368(psave, abName, &icon, 0x3c4);
+}
 
 int load_sly_icon_from_disc(SAVE *psave, char *pchz)
 {
 	return load_file_from_disc(psave, pchz, (SAVE *)D_00248470, D_0024B3D8);
 }
-
-extern char D_0024B3E0[];
 
 int load_file_from_disc(SAVE *psave, char *pchzA, SAVE *pcipher, char *pchzB)
 {
