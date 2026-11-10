@@ -79,6 +79,7 @@ g_matZero        = 0x248440; // size:0x30
 g_normalX        = 0x248D00; // size:0xc
 g_normalY        = 0x248D10; // size:0xc
 g_normalZ        = 0x248D20; // size:0xc
+g_vecZero        = 0x248D30; // size:0xc guess
 g_vtwpsg         = 0x2505c0;
 
 
@@ -3582,6 +3583,7 @@ s_asnipLoadRoc = 0x26B830;
 s_smpRocAccel = 0x26B850; // guess
 s_asnipLoadRost = 0x26B888;
 s_mpmpostoidRost = 0x26B898; // guess
+s_mpmpocsoidRoc = 0x26B860; // guess
 
 
 ////////////////////////////////////////////////////////////////

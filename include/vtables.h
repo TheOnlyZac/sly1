@@ -119,8 +119,8 @@ struct VTALO : VT
     void (*pfnTranslateAloToPos)(ALO *, VECTOR *);
     void (*pfnRotateAloToMat)(ALO *);
     void (*pfnMatchAloOtherObject)(ALO *);
-    void (*pfnSetAloVelocityVec)(ALO *);
-    void (*pfnSetAloAngularVelocityVec)(ALO *);
+    void (*pfnSetAloVelocityVec)(ALO *, VECTOR *);
+    void (*pfnSetAloAngularVelocityVec)(ALO *, VECTOR *);
     void (*pfnPredictAloPosition)(ALO *);
     void (*pfnPredictAloRotation)(ALO *);
     void (*pfnRenderAloAll)(ALO *);
