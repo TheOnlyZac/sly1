@@ -54,7 +54,9 @@ struct SW : public LO
     /* 0x1b7c */ DL dlAsegaPending;
     /* 0x1b88 */ SLOTHEAP slotheapSma;
     /* 0x1b94 */ DL dlSma;
-    /* 0x1ba0 */ STRUCT_PADDING(18);
+    /* 0x1ba0 */ STRUCT_PADDING(12);
+    /* 0x1bd0 */ SLOTHEAP slotheapExplste; // guess name
+    /* 0x1bdc */ DL dlExplste; // guess name
     /* 0x1be8 */ DL dlLight;
     /* 0x1bf4 */ STRUCT_PADDING(6);
     /* 0x1c0c */ SLOTHEAP slotheapStso;

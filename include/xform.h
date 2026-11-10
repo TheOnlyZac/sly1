@@ -94,14 +94,18 @@ struct EXPLSO
     /* 0x34 */ float sRadius; // guess
     /* 0x38 */ struct SO *psoTouch; // guess
     /* 0x3c */ STRUCT_PADDING(5);
-};
+} __attribute__((aligned(16)));
 
 /**
  * @brief Unknown.
  */
 struct EXPLSTE
 {
-    // ...
+    /* 0x00 */ EXPLS *pexpls;
+    /* 0x04 */ STRUCT_PADDING(3);
+    /* 0x10 */ EXPLSO explso;
+    /* 0x60 */ float tFire; // guess
+    /* 0x64 */ DLE dle;
 };
 
 /**
