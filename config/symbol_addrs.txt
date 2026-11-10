@@ -3576,6 +3576,12 @@ SetRopRops__FP3ROP4ROPS                       = 0x1A7998; // type:func
 RopsNextRop__FP3ROP                           = 0x1A7AA0; // type:func
 
 s_asnipLoadRov = 0x26B778;
+s_smpRovAccel = 0x26B7D8; // guess
+s_asnipLoadRoh = 0x26B7E8;
+s_asnipLoadRoc = 0x26B830;
+s_smpRocAccel = 0x26B850; // guess
+s_asnipLoadRost = 0x26B888;
+s_mpmpostoidRost = 0x26B898; // guess
 
 
 ////////////////////////////////////////////////////////////////

@@ -206,7 +206,7 @@ struct ROP : public SO
  */
 struct RODD
 {
-    // ...
+    STRUCT_PADDING(48); // size 0xc0, contents unknown
 };
 
 void InitRov(ROV *prov);

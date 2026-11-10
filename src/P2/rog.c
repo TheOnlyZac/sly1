@@ -1,7 +1,23 @@
 #include <rog.h>
 #include <cm.h>
+#include <clock.h>
+#include <mat.h>
+#include <dl.h>
+#include <emitter.h>
 
 extern SNIP s_asnipLoadRov[2];
+extern SNIP s_asnipLoadRoh[6];
+extern SNIP s_asnipLoadRoc[1];
+extern SNIP s_asnipLoadRost[1];
+extern SMP s_smpRovAccel; // guess
+extern SMP s_smpRocAccel; // guess
+extern VECTOR g_normalZ;
+
+struct W2 // 8 byte copy helper
+{
+    int a;
+    int b;
+};
 
 void InitRov(ROV *prov)
 {
@@ -50,11 +66,23 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", SetRovRovts__FP3ROV5ROVTS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", HandleRovMessage__FP3ROV5MSGIDPv);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", PresetRovAccel__FP3ROVf);
+void PresetRovAccel(ROV *prov, float dt)
+{
+    MATRIX3 mat;
+    PresetSoAccel(prov, dt);
+    LoadRotateMatrixPanTilt(STRUCT_OFFSET(prov, 0x618, float), 0.0f, &mat);
+    AccelSoTowardMatSmooth(prov, g_clock.dt, &mat, &s_smpRovAccel);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", AdjustRovXpVelocity__FP3ROVP2XPi);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", AdjustRovNewXp__FP3ROVP2XPi);
+void AdjustRovNewXp(ROV *prov, XP *pxp, int ixpd)
+{
+    if (!FDrivenAlo(prov) && STRUCT_OFFSET(pxp, 0x88, float) > 0.7f)
+    {
+        STRUCT_OFFSET(pxp, 0x94, float) = 20.0f;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", PropagateRovForce__FP3ROViP2XPiP2DZP2FX);
 
@@ -130,13 +158,22 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", AdjustRobDifficulty__FP3ROBf);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", DestroyedRobRoc__FP3ROBP3ROC);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", SpawnedRobRoh__FP3ROBP3ROH);
+void SpawnedRobRoh(ROB *prob, ROH *proh)
+{
+    RemoveDlEntry(&STRUCT_OFFSET(prob, 0x3ac, DL), STRUCT_OFFSET(proh, 0x560, ROST *));
+    AppendDlEntry(&STRUCT_OFFSET(prob, 0x3a0, DL), STRUCT_OFFSET(proh, 0x560, ROST *));
+    SetRostRosts(STRUCT_OFFSET(proh, 0x560, ROST *), ROSTS_Close);
+    STRUCT_OFFSET(proh, 0x560, ROST *) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", GrabbedRobRoh__FP3ROBP3ROH);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", DroppedRobRoh__FP3ROBP3ROH);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", ReturnedRobRoh__FP3ROBP3ROH);
+void ReturnedRobRoh(ROB *prob, ROH *proh)
+{
+    SetRostRosts(STRUCT_OFFSET(proh, 0x560, ROST *), ROSTS_Open);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", ExitedRobRoh__FP3ROBP3ROH);
 
@@ -152,15 +189,41 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", FChooseRobReturnPoint__FP3ROBP3ROH);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", ChooseRobWanderLocation__FP3ROBP3ROH);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", ProddCurRob__FP3ROB4ENSK);
+RODD *ProddCurRob(ROB *prob, ENSK ensk)
+{
+    return &STRUCT_OFFSET(prob, 0x3e0, RODD) + STRUCT_OFFSET(prob, 0x620, int);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", InitRoh__FP3ROH);
+void InitRoh(ROH *proh)
+{
+    InitSo(proh);
+    STRUCT_OFFSET(proh, 0x550, ROHS) = ROHS_Nil; // proh->rohs
+    STRUCT_OFFSET(proh, 0x584, float) = 1.0f;
+    STRUCT_OFFSET(proh, 0x588, float) = 2.5f;
+    SetSoConstraints(proh, CT_Tangent, &g_normalZ, CT_Project, &g_normalZ);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", LoadRohFromBrx__FP3ROHP18CBinaryInputStream);
+void LoadRohFromBrx(ROH *proh, CBinaryInputStream *pbis)
+{
+    LoadSoFromBrx(proh, pbis);
+    SnipAloObjects(proh, 6, s_asnipLoadRoh);
+    InferExpl(&STRUCT_OFFSET(proh, 0x5ac, EXPL *), proh);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", CloneRoh__FP3ROHT0);
+void CloneRoh(ROH *proh, ROH *prohBase)
+{
+    W2 w = STRUCT_OFFSET(proh, 0x5b0, W2);
+    CloneSo(proh, prohBase);
+    STRUCT_OFFSET(proh, 0x5b0, W2) = w;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", PostRohLoad__FP3ROH);
+void PostRohLoad(ROH *proh)
+{
+    PostAloLoad(proh);
+    SetRohRohs(proh, ROHS_Inactive);
+    // vtable slot 0x1c (name unconfirmed)
+    (*(void (**)(ROH *))(*(int *)proh + 0x1c))(proh);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRoh__FP3ROHf);
 
@@ -176,17 +239,39 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", ProcContactRoh__FP3ROH);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", InitRoc__FP3ROC);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", LoadRocFromBrx__FP3ROCP18CBinaryInputStream);
+void LoadRocFromBrx(ROC *proc, CBinaryInputStream *pbis)
+{
+    LoadSoFromBrx(proc, pbis);
+    SnipAloObjects(proc, 1, s_asnipLoadRoc);
+    InferExpl(&STRUCT_OFFSET(proc, 0x574, EXPL *), proc);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", CloneRoc__FP3ROCT0);
+void CloneRoc(ROC *proc, ROC *procBase)
+{
+    W2 w = STRUCT_OFFSET(proc, 0x5a0, W2);
+    CloneSo(proc, procBase);
+    STRUCT_OFFSET(proc, 0x5a0, W2) = w;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", PostRocLoad__FP3ROC);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRoc__FP3ROCf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", PresetRocAccel__FP3ROCf);
+void PresetRocAccel(ROC *proc, float dt)
+{
+    MATRIX3 mat;
+    PresetSoAccel(proc, dt);
+    if (STRUCT_OFFSET(proc, 0x18, int) == 0)
+    {
+        TiltMatUpright(&STRUCT_OFFSET(proc, 0x110, MATRIX3), 0, &mat);
+        AccelSoTowardMatSmooth(proc, g_clock.dt, &mat, &s_smpRocAccel);
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", AdjustRocNewXp__FP3ROCP2XPi);
+void AdjustRocNewXp(ROC *proc, XP *pxp, int ixpd)
+{
+    STRUCT_OFFSET(pxp, 0x98, float) *= 0.6f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", FAbsorbRocWkr__FP3ROCP3WKR);
 
@@ -194,15 +279,31 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", RocsNextRoc__FP3ROC);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", SetRocRocs__FP3ROC4ROCS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", InitRost__FP4ROST);
+void InitRost(ROST *prost)
+{
+    InitSo(prost);
+    STRUCT_OFFSET(prost, 0x550, ROSTS) = ROSTS_Nil; // prost->rosts
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", LoadRostFromBrx__FP4ROSTP18CBinaryInputStream);
+void LoadRostFromBrx(ROST *prost, CBinaryInputStream *pbis)
+{
+    LoadSoFromBrx(prost, pbis);
+    SnipAloObjects(prost, 1, s_asnipLoadRost);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", CloneRost__FP4ROSTT0);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", PostRostLoad__FP4ROST);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", UpdateRost__FP4ROSTf);
+void UpdateRost(ROST *prost, float dt)
+{
+    ROSTS rosts;
+    UpdateSo(prost, dt);
+    while ((rosts = RostsNextRost(prost)) != STRUCT_OFFSET(prost, 0x550, ROSTS))
+    {
+        SetRostRosts(prost, rosts);
+    }
+}
 
 ROSTS RostsNextRost(ROST *prost)
 {
@@ -211,7 +312,12 @@ ROSTS RostsNextRost(ROST *prost)
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", SetRostRosts__FP4ROST5ROSTS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", InitRop__FP3ROP);
+void InitRop(ROP *prop)
+{
+    InitSo(prop);
+    STRUCT_OFFSET(prop, 0x550, ROPS) = ROPS_Nil; // prop->rops
+    SetSoConstraints(prop, CT_Locked, 0, CT_Locked, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", LoadRopFromBrx__FP3ROPP18CBinaryInputStream);
 
