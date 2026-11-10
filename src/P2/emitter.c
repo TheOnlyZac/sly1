@@ -97,7 +97,84 @@ void InitEmitter(EMITTER *pemitter)
     InitDl((DL *)&STRUCT_OFFSET(pemitter, 0x314, int), 0x320);
 }
 
+/**
+ * @todo 128 differing lines of 150: structure matches, differences are the callee saved register split (emitmesh/ptri swapped) and the loop counters. VU0 volatile asm. Names are guesses.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", LoadEmitmeshFromBrx__FP8EMITMESHP18CBinaryInputStream);
+
+#ifdef SKIP_ASM
+void LoadEmitmeshFromBrx(EMITMESH *pemitmesh, CBinaryInputStream *pbis)
+{
+    STRUCT_OFFSET(pemitmesh, 0, int) = pbis->U16Read();
+    STRUCT_OFFSET(pemitmesh, 4, VECTOR *) = (VECTOR *)PvAllocSwImpl(STRUCT_OFFSET(pemitmesh, 0, int) * 16);
+    STRUCT_OFFSET(pemitmesh, 0x10, VECTOR *) = (VECTOR *)PvAllocSwClearImpl(STRUCT_OFFSET(pemitmesh, 0, int) * 16);
+    for (int i = 0; i < STRUCT_OFFSET(pemitmesh, 0, int); i++)
+        pbis->ReadVector(&STRUCT_OFFSET(pemitmesh, 4, VECTOR *)[i]);
+    STRUCT_OFFSET(pemitmesh, 8, int) = pbis->U16Read();
+    STRUCT_OFFSET(pemitmesh, 0xc, int *) = (int *)PvAllocSwImpl(STRUCT_OFFSET(pemitmesh, 8, int) * 16);
+    STRUCT_OFFSET(pemitmesh, 0x14, float) = 0.0f;
+    for (int i = 0; i < STRUCT_OFFSET(pemitmesh, 8, int); i++)
+    {
+        int *ptri = STRUCT_OFFSET(pemitmesh, 0xc, int *) + i * 4;
+        for (int k = 0; k < 3; k++)
+            ptri[k] = pbis->U16Read();
+        float area = pbis->F32Read();
+        STRUCT_OFFSET(ptri, 0xc, float) = area;
+        STRUCT_OFFSET(pemitmesh, 0x14, float) += area;
+        VECTOR *pv = STRUCT_OFFSET(pemitmesh, 4, VECTOR *);
+        VECTOR *p0 = &pv[ptri[0]];
+        VECTOR *p1 = &pv[ptri[1]];
+        VECTOR *p2 = &pv[ptri[2]];
+        asm volatile("lqc2 $vf3,%0" : : "m"(*p0));
+        asm volatile("lqc2 $vf2,%0" : : "m"(*p1));
+        asm volatile("lqc2 $vf1,%0" : : "m"(*p2));
+        asm volatile("vsub.xyzw $vf2,$vf2,$vf3");
+        asm volatile("vsub.xyzw $vf1,$vf1,$vf3");
+        asm volatile("vopmula.xyz ACC,$vf2,$vf1");
+        asm volatile("vopmsub.xyz $vf2,$vf1,$vf2");
+        asm volatile("vsub.w $vf2,$vf2,$vf2");
+        int *pidx = ptri;
+        for (int k = 0; k < 3;)
+        {
+            asm volatile("");
+            VECTOR *pn = &STRUCT_OFFSET(pemitmesh, 0x10, VECTOR *)[*pidx++];
+            k++;
+            asm volatile("lqc2 $vf1,%0" : : "m"(*pn));
+            asm volatile("vadd.xyzw $vf1,$vf1,$vf2");
+            asm volatile("sqc2 $vf1,%0" : "=m"(*pn));
+        }
+    }
+    pbis->ReadVector((VECTOR *)&STRUCT_OFFSET(pemitmesh, 0x20, int));
+    for (int i = 0; i < STRUCT_OFFSET(pemitmesh, 0, int); i++)
+    {
+        VECTOR *pn = &STRUCT_OFFSET(pemitmesh, 0x10, VECTOR *)[i];
+        qword nz = STRUCT_OFFSET(&g_normalZ, 0, qword);
+        float len;
+        int q;
+        asm volatile("lqc2 $vf3,%0" : : "m"(*pn));
+        asm volatile("vmul.xyz $vf1,$vf3,$vf3");
+        asm volatile("vaddw.x $vf2,$vf0,$vf0w");
+        asm volatile("vadday.x ACC,$vf1,$vf1y");
+        asm volatile("vmaddz.x $vf1,$vf2,$vf1z");
+        asm volatile("vsqrt Q,$vf1x");
+        asm volatile("vwaitq");
+        asm volatile("vaddq.x $vf1,$vf0,Q");
+        asm volatile("qmfc2.ni %0,$vf1" : "=r"(q));
+        asm("mtc1 %1,%0" : "=f"(len) : "r"(q));
+        if (len < 0.0001f)
+        {
+            asm volatile("qmtc2.ni %0,$vf1" : : "r"(nz));
+        }
+        else
+        {
+            asm volatile("vdiv Q,$vf0w,$vf1x");
+            asm volatile("vwaitq");
+            asm volatile("vmulq.xyzw $vf1,$vf3,Q");
+        }
+        asm volatile("sqc2 $vf1,%0" : "=m"(*pn));
+    }
+}
+#endif
 
 void LoadEmitblipColorsFromBrx(EMITBLIP *pemitblip, int crgba, LO *ploEmit, CBinaryInputStream *pbis)
 {
@@ -197,7 +274,124 @@ void BindEmitter(EMITTER *pemitter)
 }
 #endif
 
+/**
+ * @todo 95 differing lines of 284: structure matches (switch with shared case 2/3 tail, clone of the emitter). Differences are branch layout of the first state selection, 2D/3D volume branch scheduling and the order of the clone field copies. Names and offsets are guesses.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", PostEmitterLoad__FP7EMITTER);
+
+#ifdef SKIP_ASM
+struct FPAIR { float a, b; };
+extern float D_0024A120;
+extern "C" void FUN_00155f28(EMITTER *pemitter);
+
+void PostEmitterLoad(EMITTER *pemitter)
+{
+    PostAloLoad(pemitter);
+    if (STRUCT_OFFSET(STRUCT_OFFSET(pemitter, 0x2d0, EMITB *), 0x1b0, int) != -1)
+        STRUCT_OFFSET(STRUCT_OFFSET(pemitter, 0x2d0, EMITB *), 0x120, int) = 1;
+    if (STRUCT_OFFSET(pemitter, 0x2d4, int) == -1)
+    {
+        if (STRUCT_OFFSET(pemitter, 0x2e8, float) != 0.0f)
+            goto set3;
+        if (STRUCT_OFFSET(pemitter, 0x308, int) == 0)
+            goto set01;
+    set3:
+        STRUCT_OFFSET(pemitter, 0x2d4, int) = 3;
+        goto done;
+    set01:
+        STRUCT_OFFSET(pemitter, 0x2d4, int) = STRUCT_OFFSET(pemitter, 0x2f4, float) == 0.0f ? 0 : 1;
+    }
+done:
+    switch (STRUCT_OFFSET(pemitter, 0x2d4, int))
+    {
+    case 2:
+        STRUCT_OFFSET(pemitter, 0x330, float) = D_0024A120;
+        STRUCT_OFFSET(pemitter, 0x328, float) = GRandInRange(STRUCT_OFFSET(pemitter, 0x2dc, float), STRUCT_OFFSET(pemitter, 0x2e0, float));
+        goto tail;
+    case 3:
+        STRUCT_OFFSET(pemitter, 0x330, float) = D_0024A120;
+        STRUCT_OFFSET(pemitter, 0x328, float) = GRandInRange(STRUCT_OFFSET(pemitter, 0x2dc, float), STRUCT_OFFSET(pemitter, 0x2e0, float)) * 60.0f;
+    tail:
+        if (STRUCT_OFFSET(pemitter, 0x308, int))
+            PauseEmitterIndefinite(pemitter);
+        else if (GRandInRange(0.0f, 1.0f) <= STRUCT_OFFSET(pemitter, 0x2e8, float))
+            PauseEmitter(pemitter, GRandInRange(STRUCT_OFFSET(pemitter, 0x2ec, float), STRUCT_OFFSET(pemitter, 0x2f0, float)));
+        break;
+    case 0:
+    case 1:
+        STRUCT_OFFSET(pemitter, 0x330, float) = 1.0f;
+        STRUCT_OFFSET(pemitter, 0x32c, float) = 1.0f;
+        STRUCT_OFFSET(pemitter, 0x328, float) = GRandInRange(STRUCT_OFFSET(pemitter, 0x2dc, float), STRUCT_OFFSET(pemitter, 0x2e0, float));
+        break;
+    }
+    STRUCT_OFFSET(pemitter, 0x334, float) = 1.0f;
+    EMITB *pemitb = STRUCT_OFFSET(pemitter, 0x2d0, EMITB *);
+    if (STRUCT_OFFSET(pemitb, 0x10, int) == 1)
+    {
+        float *pf = &STRUCT_OFFSET(pemitb, 0x20, float);
+        if (STRUCT_OFFSET(pemitter, 0x2f8, OID) != OID_Nil)
+        {
+            float dx = fabsf(pf[4] - STRUCT_OFFSET(pemitb, 0x20, float));
+            float dy = fabsf(pf[5] - pf[1]);
+            float dz = fabsf(pf[6] - pf[2]);
+            float m;
+            if (dy < dx)
+                m = dx > dz ? dx : dz;
+            else
+                m = dy > dz ? dy : dz;
+            STRUCT_OFFSET(pemitter, 0x338, float) = m * 0.5f;
+        }
+        if (STRUCT_OFFSET(pemitter, 0x2e4, int))
+        {
+            float v;
+            if (STRUCT_OFFSET(pemitter, 0x2f4, float) != 0.0f)
+                v = (pf[4] - pf[0]) * (pf[5] - pf[1]) * (pf[6] - pf[2]) * 0.000001f;
+            else
+                v = (pf[5] - pf[1]) * (pf[6] - pf[2]) * 0.0001f;
+            STRUCT_OFFSET(pemitter, 0x334, float) = v;
+        }
+    }
+    if (STRUCT_OFFSET(pemitter, 0x310, OID) != OID_Nil)
+    {
+        EMITTER *pnew = (EMITTER *)PloFindSwChild(pemitter->psw, STRUCT_OFFSET(pemitter, 0x310, OID), 0);
+        if (pnew)
+        {
+            STRUCT_OFFSET(pemitter, 0x34c, int) = 0;
+        }
+        else
+        {
+            pnew = (EMITTER *)PloNew((CID)0x50, pemitter->psw, 0, STRUCT_OFFSET(pemitter, 0x310, OID), -1);
+            EMITB *pb = (EMITB *)PvAllocSwImpl(0x200);
+            STRUCT_OFFSET(pnew, 0x2d0, EMITB *) = pb;
+            *pb = *STRUCT_OFFSET(pemitter, 0x2d0, EMITB *);
+            STRUCT_OFFSET(STRUCT_OFFSET(pnew, 0x2d0, EMITB *), 0x7c, int) = 0;
+            STRUCT_OFFSET(pnew, 0x2d4, int) = STRUCT_OFFSET(pemitter, 0x2d4, int);
+            STRUCT_OFFSET(pnew, 0x2d8, int) = STRUCT_OFFSET(pemitter, 0x2d8, int);
+            STRUCT_OFFSET(pnew, 0x2dc, FPAIR) = STRUCT_OFFSET(pemitter, 0x2dc, FPAIR);
+            STRUCT_OFFSET(pnew, 0x2e4, int) = STRUCT_OFFSET(pemitter, 0x2e4, int);
+            STRUCT_OFFSET(pnew, 0x2e8, float) = STRUCT_OFFSET(pemitter, 0x2e8, float);
+            STRUCT_OFFSET(pnew, 0x2ec, FPAIR) = STRUCT_OFFSET(pemitter, 0x2ec, FPAIR);
+            STRUCT_OFFSET(pnew, 0x2f4, float) = STRUCT_OFFSET(pemitter, 0x2f4, float);
+            STRUCT_OFFSET(pnew, 0x308, int) = STRUCT_OFFSET(pemitter, 0x308, int);
+            STRUCT_OFFSET(pnew, 0x2c8, ulong) = (STRUCT_OFFSET(pnew, 0x2c8, ulong) | ((ulong)1 << 32)) & ~((ulong)0x300 << 32) | ((ulong)1 << 40);
+            qword *pq = &STRUCT_OFFSET(pnew, 0x110, qword);
+            pq[0] = STRUCT_OFFSET(pemitter, 0xd0, qword);
+            pq[1] = STRUCT_OFFSET(pemitter, 0xe0, qword);
+            pq[2] = STRUCT_OFFSET(pemitter, 0xf0, qword);
+            STRUCT_OFFSET(pnew, 0xd0, qword) = STRUCT_OFFSET(pemitter, 0xd0, qword);
+            STRUCT_OFFSET(pnew, 0xe0, qword) = pq[1];
+            STRUCT_OFFSET(pnew, 0xf0, qword) = pq[2];
+            typedef void (*PFN)(EMITTER *);
+            PFN pfn = STRUCT_OFFSET(pnew->pvtlo, 0x4c, PFN);
+            if (pfn)
+                pfn(pnew);
+            STRUCT_OFFSET(pemitter, 0x34c, int) = 0;
+        }
+        AppendDlEntry((DL *)&STRUCT_OFFSET(pnew, 0x314, int), pemitter);
+        FUN_00155f28(pemitter);
+    }
+}
+#endif
 
 void HandleEmitterMessage(EMITTER *pemitter, MSGID msgid, void *pv)
 {
@@ -686,7 +880,69 @@ void EmitRips(EMITB *pemitb, EMITG *pemitg, int crip, VECTOR *apos, VECTOR *av, 
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", EmitBlips__FP5EMITBP5EMITGiP6VECTORT3PfT5T3T3);
 
+/**
+ * @todo 20 differing lines of 127: volatile VU0 asm block matches, remaining diffs are that gcc strength reduces the i*16 index (target recomputes sll each iteration) and one loop top delay slot fill. EMITVX is a 0x20 byte buffer here. Names are guesses.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", OriginateParticles__FiP5EMITBP7EMITGEN);
+
+#ifdef SKIP_ASM
+void OriginateParticles(int cParticle, EMITB *pemitb, EMITGEN *pemitgen)
+{
+    int cb = cParticle * 16;
+    int cf = cParticle * 4;
+    qword emitvxbuf[2];
+    VECTOR normal;
+    int i = 0;
+    STRUCT_OFFSET(pemitgen, 0, void *) = PvAllocStackImpl(cb);
+    STRUCT_OFFSET(pemitgen, 4, void *) = PvAllocStackImpl(cb);
+    STRUCT_OFFSET(pemitgen, 8, void *) = PvAllocStackImpl(cf);
+    STRUCT_OFFSET(pemitgen, 0xc, void *) = PvAllocStackImpl(cf);
+    CalculateEmitvx(STRUCT_OFFSET(pemitb, 0xec, int), (LM *)&STRUCT_OFFSET(pemitb, 0xe4, int), cParticle, (EMITVX *)emitvxbuf);
+    for (; i < cParticle; i++)
+    {
+        ChooseEmitoPos((&pemitb->emito), i, cParticle, &pemitgen->apos[i], &normal);
+        ChooseEmitvVelocityAge(&pemitb->emitv, (EMITVX *)emitvxbuf, (&pemitb->emito), i, &pemitgen->apos[i], &normal, &pemitgen->av[i], &pemitgen->atCreated[i], &pemitgen->atDestroy[i]);
+        char *palo = STRUCT_OFFSET(pemitb, 0x78, char *);
+        if (palo)
+        {
+            char *pm = palo + 0x10;
+            asm volatile("lqc2 $vf5,%0" : : "m"(STRUCT_OFFSET(palo, 0x10, qword)));
+            asm volatile("lqc2 $vf4,%0" : : "m"(STRUCT_OFFSET(pm, 0x10, qword)));
+            VECTOR *pa = &pemitgen->apos[i];
+            asm volatile("lqc2 $vf3,%0" : : "m"(*pa));
+            asm volatile("lqc2 $vf1,%0" : : "m"(STRUCT_OFFSET(pm, 0x20, qword)));
+            asm volatile("vmulax.xyz ACC,$vf5,$vf3x");
+            asm volatile("vmadday.xyz ACC,$vf4,$vf3y");
+            asm volatile("vmaddz.xyz $vf3,$vf1,$vf3z");
+            asm volatile("lqc2 $vf2,%0" : : "m"(STRUCT_OFFSET(palo, 0, qword)));
+            asm volatile("vadd.xyzw $vf3,$vf3,$vf2");
+            asm volatile("sqc2 $vf3,%0" : "=m"(*pa));
+            asm volatile("lqc2 $vf1,%0" : : "m"(STRUCT_OFFSET(palo, 0, qword)));
+            VECTOR *pa2 = &pemitgen->apos[i];
+            VECTOR *pv = &pemitgen->av[i];
+            asm volatile("lqc2 $vf5,%0" : : "m"(*pa2));
+            asm volatile("vsub.xyzw $vf5,$vf5,$vf1");
+            asm volatile("lqc2 $vf6,%0" : : "m"(STRUCT_OFFSET(pm, 0x20, qword)));
+            asm volatile("lqc2 $vf1,%0" : : "m"(STRUCT_OFFSET(pm, 0x10, qword)));
+            asm volatile("lqc2 $vf2,%0" : : "m"(*pv));
+            asm volatile("lqc2 $vf3,%0" : : "m"(STRUCT_OFFSET(palo, 0x10, qword)));
+            asm volatile("vmulax.xyz ACC,$vf3,$vf2x");
+            asm volatile("vmadday.xyz ACC,$vf1,$vf2y");
+            asm volatile("vmaddz.xyz $vf2,$vf6,$vf2z");
+            asm volatile("lqc2 $vf4,%0" : : "m"(STRUCT_OFFSET(palo, 0x40, qword)));
+            asm volatile("lqc2 $vf1,%0" : : "m"(STRUCT_OFFSET(palo, 0x50, qword)));
+            asm volatile("vadd.xyzw $vf2,$vf2,$vf4");
+            asm volatile("vopmula.xyz ACC,$vf1,$vf5");
+            asm volatile("vopmsub.xyz $vf1,$vf5,$vf1");
+            asm volatile("vsub.w $vf1,$vf1,$vf1");
+            asm volatile("vadd.xyzw $vf2,$vf2,$vf1");
+            asm volatile("sqc2 $vf2,%0" : "=m"(*pv));
+        }
+        if (pemitgen->fUnknown)
+            ConvertEmitoPosVec((&pemitb->emito), &pemitgen->apos[i], &pemitgen->av[i]);
+    }
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", OriginateSplineSinkParticles__FiP5EMITBR7EMITGENT2);
 
