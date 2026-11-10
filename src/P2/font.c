@@ -66,7 +66,18 @@ INCLUDE_ASM("asm/nonmatchings/P2/font", SetupDraw__5CFontP8CTextBoxP4GIFS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", CleanupDraw__5CFontP8CTextBoxP4GIFS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", DxFromPchz__5CFontPc);
+float CFont::DxFromPchz(char *pchz)
+{
+    if (pchz == 0)
+        return 0.0f;
+    char *pch = pchz;
+    float dx = 0.0f;
+    while (*pch)
+    {
+        dx += DxFromCh(*pch++);
+    }
+    return dx;
+}
 
 float CFont::DyWrapPchz(char *pchz, float dx)
 {
@@ -118,7 +129,13 @@ int CFontBrx::FValid(char ch)
     return PglyffFromCh(ch) != NULL;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", DxFromCh__8CFontBrxc);
+float CFontBrx::DxFromCh(char ch)
+{
+    GLYFF *pglyff = PglyffFromCh(ch);
+    if (pglyff)
+        return (float)(pglyff->dx + 1) * m_rxScale;
+    return m_rxScale * (float)m_dxSpaceUnscaled;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", FEnsureLoaded__8CFontBrxP4GIFS);
 
@@ -138,7 +155,25 @@ INCLUDE_ASM("asm/nonmatchings/P2/font", LoadFromBrx__8CFontBrxP18CBinaryInputStr
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", PostLoad__8CFontBrxP3GSB);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", PglyffFromCh__8CFontBrxc);
+GLYFF *CFontBrx::PglyffFromCh(char ch)
+{
+    uchar uch = ch;
+    int iglyffMax = m_cglyff - 1;
+    int iglyffMin = 0;
+    while (iglyffMin <= iglyffMax)
+    {
+        int iglyff = (iglyffMax + iglyffMin) / 2;
+        GLYFF *pglyff = (GLYFF *)(iglyff * 8 + (int)m_aglyff);
+        int dwch = uch - pglyff->wch;
+        if (dwch == 0)
+            return pglyff;
+        if (dwch > 0)
+            iglyffMin = iglyff + 1;
+        else
+            iglyffMax = iglyff - 1;
+    }
+    return NULL;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", __9CRichTextPcP5CFont);
 
@@ -159,19 +194,79 @@ void CRichText::SetBaseColor(RGBA *rgba)
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", ChNext__9CRichText);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", Cch__9CRichText);
+int CRichText::Cch()
+{
+    int cch = 0;
+    Reset();
+    while (ChNext() != 0)
+        cch++;
+    return cch;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", Trim__9CRichTexti);
+void CRichText::Trim(int cch)
+{
+    Reset();
+    while (ChNext() != 0)
+    {
+        if (cch == 0)
+            break;
+        cch--;
+    }
+    *m_pchCur = 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", Dx__9CRichText);
+float CRichText::Dx()
+{
+    float dx = 0.0f;
+    char ch;
+    Reset();
+    while ((ch = ChNext()) != 0)
+    {
+        dx += m_pfontCur->DxFromCh(ch);
+    }
+    return dx;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", ClineWrap__9CRichTextf);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015e1b0);
+float CRichText::DyWrap(float dx) // guessed name
+{
+    float dy = (float)m_pfontBase->m_dyUnscaled * m_pfontBase->m_ryScale;
+    return dy * (float)ClineWrap(dx);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", DxMaxLine__9CRichText);
+float CRichText::DxMaxLine()
+{
+    float dxMax = 0.0f;
+    float dx = 0.0f;
+    char ch;
+    Reset();
+    while ((ch = ChNext()) != 0)
+    {
+        if (ch == '\n')
+        {
+            dxMax = (dxMax > dx) ? dxMax : dx;
+            dx = 0.0f;
+        }
+        else
+        {
+            dx += m_pfontCur->DxFromCh(ch);
+        }
+    }
+    dxMax = (dxMax > dx) ? dxMax : dx;
+    return dxMax;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", GetExtents__9CRichTextPfT1f);
+void CRichText::GetExtents(float *pdx, float *pdy, float dxMax)
+{
+    int cline = ClineWrap(dxMax);
+    float dx = DxMaxLine();
+    float dy = (float)cline * ((float)m_pfontBase->m_dyUnscaled * m_pfontBase->m_ryScale);
+    if (pdx)
+        *pdx = dx;
+    if (pdy)
+        *pdy = dy;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", Draw__9CRichTextP8CTextBoxT1P4GIFS);
 

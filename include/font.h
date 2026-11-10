@@ -36,6 +36,8 @@ struct GLYFF
 
 class CFont
 {
+    friend class CRichText;
+
 protected:
     int m_dxCharUnscaled;
     int m_dxSpaceUnscaled;
@@ -50,6 +52,7 @@ protected:
     float m_ryScale;
 
 public:
+    virtual CFont *PfontClone(float rx, float ry);
     void CopyTo(CFont *pfontDest);
     void SetupDraw(CTextBox *ptbxClip, GIFS *pgifs);
     void CleanupDraw(CTextBox *ptbxClip, GIFS *pgifs);
@@ -59,13 +62,17 @@ public:
     void DrawPchz(char *pchz, CTextBox *ptbx, CTextBox *ptbxClip, GIFS *pgifs);
     void PushScaling(float rx, float ry);
     void PopScaling();
+    virtual int FValid(char ch);
+    virtual float DxFromCh(char ch);
 };
 
 class CFontBrx : public CFont
 {
 private:
+    int m_ifont; // guessed name
     BMP *m_pbmp;
     CLUT *m_pclut;
+    STRUCT_PADDING(1);
     sceGsTex0 m_tex0;
     int m_cqwBmpGifs;
     QW *m_aqwBmpGifs;
@@ -74,10 +81,10 @@ private:
     int m_cglyff;
     GLYFF *m_aglyff;
     uint32_t m_grffont;
-    STRUCT_PADDING(2);
+    STRUCT_PADDING(1);
 
 public:
-    CFont *PfontClone(float rx, float ry);
+    virtual CFont *PfontClone(float rx, float ry);
     void CopyTo(CFontBrx *pfontDest);
     int FValid(char ch);
     float DxFromCh(char ch);
@@ -115,6 +122,7 @@ public:
     void Trim(int cch);
     float Dx();
     int ClineWrap(float dx);
+    float DyWrap(float dx); // guessed name
     float DxMaxLine();
     void GetExtents(float *pdx, float *pdy, float dxMax);
     void Draw(CTextBox *ptbx, CTextBox *ptbxClip, GIFS *pgifs);
