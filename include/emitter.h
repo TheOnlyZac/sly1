@@ -92,7 +92,7 @@ struct EMITVX
 struct EMITO
 {
     STRUCT_PADDING(36); // 0x90 bytes, layout is a guess
-};
+} __attribute__((aligned(16)));
 
 /**
  * @brief Unknown.

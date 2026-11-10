@@ -18,6 +18,20 @@
 #include <sce/memset.h>
 
 extern float DAT_0024a124;
+extern VECTOR g_normalX;
+extern VECTOR g_normalZ;
+
+struct EMITBTAIL
+{
+    STRUCT_PADDING(52); // 0xd0 bytes, EMITB from 0x120
+} __attribute__((aligned(16)));
+
+extern int D_00261F70; // guard for D_0027C010 (guess)
+extern int D_00261F74; // guard for D_0027C0A0 (guess)
+extern EMITBTAIL D_00261F80; // default values for EMITB from 0x120 (guess)
+extern EMITO D_0027C010; // default EMITO (guess)
+extern EMITV D_0027C0A0; // default EMITV (guess)
+extern VECTOR D_00248D30; // zero vector (guess)
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", InitEmitb__FP5EMITB);
 
@@ -407,7 +421,22 @@ void CalculateEmitvx(int cParticlePerRing, LM *plmTilt, int cParticle, EMITVX *p
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", ChooseEmitVelocity__FP6EMITVXffP2LMP6VECTORiT4);
 
-INCLUDE_ASM("asm/nonmatchings/P2/emitter", ChooseEmitvVelocityAge__FP5EMITVP6EMITVXP5EMITOiP6VECTORN24PfT7);
+/**
+ * VU0 inline asm with a fake data dependency keeps the scheduling, the spill store is an artifact of the original.
+ */
+void ChooseEmitvVelocityAge(EMITV *pemitv, EMITVX *pemitvx, EMITO *pemito, int iParticle, VECTOR *ppos, VECTOR *pnormal, VECTOR *pv, float *ptCreated, float *ptDestroy)
+{
+    ChooseEmitVelocity(pemitvx, STRUCT_OFFSET(pemitv, 0x50, float), STRUCT_OFFSET(pemitv, 8, float), (LM *)pemitv, pnormal, iParticle, pv);
+    float t = g_clock.t - GRandInRange(STRUCT_OFFSET(pemitv, 0x60, float), STRUCT_OFFSET(pemitv, 0x64, float));
+    *ptCreated = t;
+    *ptDestroy = t + STRUCT_OFFSET(pemitv, 0x54, float);
+    float r = GRandInRange(STRUCT_OFFSET(pemitv, 0x58, float), STRUCT_OFFSET(pemitv, 0x5c, float));
+    if (r != 0.0f)
+    {
+        VECTOR spill;
+        asm("mfc1 $2,%1\n\tlqc2 $vf2,%2\n\tqmtc2.ni $2,$vf3\n\tlqc2 $vf1,0(%3)\n\tvadda.xyzw ACC,$vf1,$vf0\n\tvmaddx.xyzw $vf1,$vf2,$vf3x\n\tsqc2 $vf3,%0\n\tsqc2 $vf1,0(%3)" : "=m"(spill) : "f"(r), "m"(*pv), "r"(ppos) : "$2", "memory");
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/emitter", EmitRips__FP5EMITBP5EMITGiP6VECTORT3PfT5);
 
