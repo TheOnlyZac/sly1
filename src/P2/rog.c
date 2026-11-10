@@ -980,7 +980,98 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", MoveRohToTarget__FP3ROHP6VECTORi);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", RohsNextRoh__FP3ROH);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", SetRohRohs__FP3ROH4ROHS);
+struct OVR // guess
+{
+    OID oid;
+    ALO *palo;
+};
+void SetRohRohs(ROH *proh, ROHS rohs)
+{
+    ROHS rohsPrev = STRUCT_OFFSET(proh, 0x550, ROHS);
+    if (rohsPrev == rohs)
+    {
+        return;
+    }
+    if (STRUCT_OFFSET(proh, 0x59c, ASEGA *))
+    {
+        RetractAsega(STRUCT_OFFSET(proh, 0x59c, ASEGA *));
+        STRUCT_OFFSET(proh, 0x59c, ASEGA *) = 0;
+    }
+    if (STRUCT_OFFSET(proh, 0x5a8, SMA *))
+    {
+        RetractSma(STRUCT_OFFSET(proh, 0x5a8, SMA *));
+        STRUCT_OFFSET(proh, 0x5a8, SMA *) = 0;
+    }
+    switch (STRUCT_OFFSET(proh, 0x550, ROHS))
+    {
+    case ROHS_Spawn:
+        SpawnedRobRoh(STRUCT_OFFSET(proh, 0x558, ROB *), proh);
+        break;
+    case ROHS_Return:
+        if (rohs == ROHS_Exit)
+        {
+            ReturnedRobRoh(STRUCT_OFFSET(proh, 0x558, ROB *), proh);
+        }
+        break;
+    case ROHS_Exit:
+        if (rohs == ROHS_Inactive)
+        {
+            ExitedRobRoh(STRUCT_OFFSET(proh, 0x558, ROB *), proh);
+        }
+        break;
+    case ROHS_Die:
+        KilledRobRoh(STRUCT_OFFSET(proh, 0x558, ROB *), proh);
+        break;
+    }
+    STRUCT_OFFSET(proh, 0x550, ROHS) = rohs;
+    STRUCT_OFFSET(proh, 0x554, float) = g_clock.t;
+    ASEG *paseg = 0;
+    SM *psm = 0;
+    OVR aovr[2];
+    OVR *povr = aovr;
+    switch (rohs)
+    {
+    case ROHS_Inactive:
+    case ROHS_Dead:
+        break;
+    case ROHS_Spawn:
+    case ROHS_Wander:
+    case ROHS_Collect:
+        paseg = STRUCT_OFFSET(proh, 0x58c, ASEG *);
+        break;
+    case ROHS_Grab:
+        GrabbedRobRoh(STRUCT_OFFSET(proh, 0x558, ROB *), proh);
+        povr->oid = (OID)0x2a0;
+        povr->palo = STRUCT_OFFSET(proh, 0x55c, ALO *);
+        povr++;
+        paseg = STRUCT_OFFSET(proh, 0x594, ASEG *);
+        break;
+    case ROHS_Return:
+    case ROHS_Exit:
+        povr->oid = (OID)0x2a0;
+        povr->palo = STRUCT_OFFSET(proh, 0x55c, ALO *);
+        povr++;
+        paseg = STRUCT_OFFSET(proh, 0x590, ASEG *);
+        break;
+    case ROHS_Happy:
+        psm = STRUCT_OFFSET(proh, 0x5a0, SM *);
+        break;
+    case ROHS_Sad:
+        psm = STRUCT_OFFSET(proh, 0x5a4, SM *);
+        break;
+    case ROHS_Die:
+        paseg = STRUCT_OFFSET(proh, 0x598, ASEG *);
+        break;
+    }
+    if (paseg)
+    {
+        ApplyAsegOvr(paseg, proh, povr - aovr, aovr, 0.0f, 1.0f, 1, &STRUCT_OFFSET(proh, 0x59c, ASEGA *));
+    }
+    if (psm)
+    {
+        STRUCT_OFFSET(proh, 0x5a8, SMA *) = PsmaApplySm(psm, proh, (OID)-1, 1);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", FAbsorbRohWkr__FP3ROHP3WKR);
 
