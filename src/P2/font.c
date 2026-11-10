@@ -10,11 +10,43 @@ void StartupFont()
     g_pfont = NULL;
 }
 
+/**
+ * @todo 85% matched (8 differing lines of 16), guessed name FFontLoaded.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c188);
+#ifdef SKIP_ASM
+int FFontLoaded(int ifont)
+{
+    if (ifont == -1)
+        return 0;
+    if (g_apfont[ifont] != NULL)
+        return 1;
+    return 0;
+}
+#endif // SKIP_ASM
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c1c0);
+CFont *PfontFromIfont(int ifont) // guessed name
+{
+    if (ifont == -1)
+        return NULL;
+    CFont *pfont = g_apfont[ifont];
+    if (pfont != NULL)
+        return pfont;
+    return g_pfont;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", FUN_0015c200);
+CFont *PfontFromCh(char ch) // guessed name
+{
+    int i;
+    for (i = 0; i < 5; i++)
+    {
+        if (ch == g_achFont[i])
+            break;
+    }
+    if (i < 5)
+        return g_apfont[i];
+    return NULL;
+}
 
 void CFont::CopyTo(CFont *pfontDest)
 {
@@ -36,7 +68,11 @@ INCLUDE_ASM("asm/nonmatchings/P2/font", CleanupDraw__5CFontP8CTextBoxP4GIFS);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", DxFromPchz__5CFontPc);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", DyWrapPchz__5CFontPcf);
+float CFont::DyWrapPchz(char *pchz, float dx)
+{
+    float dy = (float)m_dyUnscaled * m_ryScale;
+    return dy * (float)ClineWrapPchz(pchz, dx);
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", ClineWrapPchz__5CFontPcf);
 
@@ -44,9 +80,21 @@ JUNK_ADDIU(50);
 
 INCLUDE_ASM("asm/nonmatchings/P2/font", DrawPchz__5CFontPcP8CTextBoxT2P4GIFS);
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", PushScaling__5CFontff);
+void CFont::PushScaling(float rx, float ry)
+{
+    SFR *psfr = &m_asfr[m_csfr++];
+    psfr->rx = m_rxScale;
+    psfr->ry = m_rxScale;
+    m_rxScale = m_asfr[0].rx * rx;
+    m_ryScale = m_asfr[0].ry * ry;
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", PopScaling__5CFont);
+void CFont::PopScaling()
+{
+    SFR *psfr = &m_asfr[--m_csfr];
+    m_rxScale = psfr->rx;
+    m_ryScale = psfr->ry;
+}
 
 /**
  * @todo 90.62% match. Issue with the vtable.

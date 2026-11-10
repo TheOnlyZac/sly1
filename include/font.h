@@ -121,6 +121,8 @@ public:
 };
 
 extern CFont *g_pfont;
+extern char g_achFont[5];
+extern CFont *g_apfont[5];
 
 void StartupFont();
 

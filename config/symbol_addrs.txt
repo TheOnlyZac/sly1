@@ -2046,8 +2046,8 @@ FCheckFlyOpenSpaceBelow__FP3FLY             = 0x15C0A0; // type:func
 ////////////////////////////////////////////////////////////////
 StartupFont__Fv                                = 0x15C178; // type:func
 FUN_0015c188                                   = 0x15C188; // type:func
-FUN_0015c1c0                                   = 0x15C1C0; // type:func
-FUN_0015c200                                   = 0x15C200; // type:func
+PfontFromIfont__Fi                                   = 0x15C1C0; // type:func
+PfontFromCh__Fc                                   = 0x15C200; // type:func
 CopyTo__5CFontP5CFont                          = 0x15C260; // type:func
 SetupDraw__5CFontP8CTextBoxP4GIFS              = 0x15C2E8; // type:func
 CleanupDraw__5CFontP8CTextBoxP4GIFS            = 0x15C3C0; // type:func
@@ -2090,6 +2090,8 @@ junk_0015E678                                  = 0x15E678; // type:func
 g_cfontBrx = 0x262260; // size:0x4
 g_afontBrx = 0x262264; // size:0x4
 g_pfont    = 0x26227C; // size:0x4
+g_achFont  = 0x262250; // size:0x5 (guessed name)
+g_apfont   = 0x262268; // size:0x14 (guessed name)
 
 
 ////////////////////////////////////////////////////////////////
