@@ -26,6 +26,7 @@ extern SMP s_smpRovAccel; // guess
 extern SMP s_smpRovPan; // guess
 extern SMP s_smpRocAccel; // guess
 extern VECTOR g_normalZ;
+void PropagateSoForce(SO *pso, GRFSG grfsg, XP *pxp, int ixpd, DZ *pdz, FX *afx); // @todo move to so.h
 extern RODD D_0024C9D0; // default rodd values
 
 // Inline copy of GLimitLm (the original is inlined here and the out of line one does not match).
@@ -363,7 +364,24 @@ void AdjustRovNewXp(ROV *prov, XP *pxp, int ixpd)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", PropagateRovForce__FP3ROViP2XPiP2DZP2FX);
+void PropagateRovForce(ROV *prov, GRFSG grfsg, XP *pxp, int ixpd, DZ *pdz, FX *afx)
+{
+    qword aqwSave[2];
+    aqwSave[0] = STRUCT_OFFSET(prov, 0x440, qword);
+    aqwSave[1] = STRUCT_OFFSET(prov, 0x450, qword);
+    BASIC *pbasic = *(BASIC **)((uint8_t *)pxp + ((1 - ixpd) << 6));
+    if (pbasic)
+    {
+        if (FIsBasicDerivedFrom(pbasic, (CID)0x43) || FIsBasicDerivedFrom(pbasic, (CID)0x42))
+        {
+            STRUCT_OFFSET(prov, 0x450, int) = 1;
+            STRUCT_OFFSET(prov, 0x440, qword) = *(qword *)&g_normalZ;
+        }
+    }
+    PropagateSoForce(prov, grfsg, pxp, ixpd, pdz, afx);
+    STRUCT_OFFSET(prov, 0x440, qword) = aqwSave[0];
+    STRUCT_OFFSET(prov, 0x450, qword) = aqwSave[1];
+}
 
 int FIsRovSoundBase(ROV *prov)
 {
@@ -428,7 +446,8 @@ void AddRobSpawnTunnel(ROB *prob, OID oidSpawnTunnel)
 }
 
 /**
- * @brief 80% match.
+ * @brief Near match (1 differing line of 10): the target returns `(fls & 2) > 0` via `sltu $2, $0, $2` in the
+ * delay slot, every bool-style form tried (about 20) gives different code.
  * https://decomp.me/scratch/s3oRy
  */
 INCLUDE_ASM("asm/nonmatchings/P2/rog", RobkCur__Fv);
@@ -481,7 +500,37 @@ INCLUDE_ASM("asm/nonmatchings/P2/rog", AddRobRoc__FP3ROB);
 
 INCLUDE_ASM("asm/nonmatchings/P2/rog", AddRobRoh__FP3ROB);
 
-INCLUDE_ASM("asm/nonmatchings/P2/rog", AdjustRobDifficulty__FP3ROBf);
+void AdjustRobDifficulty(ROB *prob, float rRoc)
+{
+    float u1 = GLimitLmInl(&g_lmZeroOne, GEvaluateClq(&STRUCT_OFFSET(prob, 0x5b0, CLQ), rRoc));
+    STRUCT_OFFSET(prob, 0x62c, float) = GLerp(STRUCT_OFFSET(prob, 0x5a0, float), STRUCT_OFFSET(prob, 0x5a8, float), u1);
+    STRUCT_OFFSET(prob, 0x630, float) = GLerp(STRUCT_OFFSET(prob, 0x5a4, float), STRUCT_OFFSET(prob, 0x5ac, float), u1);
+    float u2 = GLimitLmInl(&g_lmZeroOne, GEvaluateClq(&STRUCT_OFFSET(prob, 0x5d0, CLQ), rRoc));
+    STRUCT_OFFSET(prob, 0x638, float) = GLerp(STRUCT_OFFSET(prob, 0x5c0, float), STRUCT_OFFSET(prob, 0x5c8, float), u2);
+    STRUCT_OFFSET(prob, 0x63c, float) = GLerp(STRUCT_OFFSET(prob, 0x5c4, float), STRUCT_OFFSET(prob, 0x5cc, float), u2);
+    float u3 = GLimitLmInl(&g_lmZeroOne, GEvaluateClq(&STRUCT_OFFSET(prob, 0x5f0, CLQ), rRoc));
+    STRUCT_OFFSET(prob, 0x644, float) = GLerp(STRUCT_OFFSET(prob, 0x5e0, float), STRUCT_OFFSET(prob, 0x5e4, float), u3);
+    float u4 = GLimitLmInl(&g_lmZeroOne, GEvaluateClq(&STRUCT_OFFSET(prob, 0x610, CLQ), rRoc));
+    STRUCT_OFFSET(prob, 0x648, float) = GLerp(STRUCT_OFFSET(prob, 0x600, float), STRUCT_OFFSET(prob, 0x604, float), u4);
+    float u5 = GLimitLmInl(&g_lmZeroOne, GEvaluateClq(&STRUCT_OFFSET(prob, 0x570, CLQ), rRoc));
+    int cRoc = (int)GLerp(STRUCT_OFFSET(prob, 0x560, float), STRUCT_OFFSET(prob, 0x564, float), u5);
+    int cRocOld = STRUCT_OFFSET(prob, 0x624, int);
+    if (cRocOld < cRoc && STRUCT_OFFSET(prob, 0x380, int) == cRocOld)
+    {
+        STRUCT_OFFSET(prob, 0x634, float) =
+            g_clock.t + GRandInRange(STRUCT_OFFSET(prob, 0x62c, float), STRUCT_OFFSET(prob, 0x630, float));
+    }
+    STRUCT_OFFSET(prob, 0x624, int) = cRoc;
+    float u6 = GLimitLmInl(&g_lmZeroOne, GEvaluateClq(&STRUCT_OFFSET(prob, 0x590, CLQ), rRoc));
+    int cRoh = (int)GLerp(STRUCT_OFFSET(prob, 0x580, float), STRUCT_OFFSET(prob, 0x584, float), u6);
+    int cRohOld = STRUCT_OFFSET(prob, 0x628, int);
+    if (cRohOld < cRoh && STRUCT_OFFSET(prob, 0x39c, int) == cRohOld)
+    {
+        STRUCT_OFFSET(prob, 0x640, float) =
+            g_clock.t + GRandInRange(STRUCT_OFFSET(prob, 0x638, float), STRUCT_OFFSET(prob, 0x63c, float));
+    }
+    STRUCT_OFFSET(prob, 0x628, int) = cRoh;
+}
 
 void DestroyedRobRoc(ROB *prob, ROC *proc)
 {
