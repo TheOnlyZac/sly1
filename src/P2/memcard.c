@@ -5,10 +5,12 @@
 #include <sce/memset.h>
 #include <clock.h>
 #include <cat.h>
+#include <game.h>
 
 // libmc functions, names unknown (guessed signatures)
 extern "C"
 {
+int func_00209CB8(int port, int slot, int *ptype, int *pfree, int *pformat); // sceMcGetInfo (guess)
 int func_00209B80(int mode, int *pcmd, int *presult); // sceMcSync (guess)
 int func_00209FA8(int port, int slot);
 int func_002096E8(int port, int slot, int x);
@@ -22,6 +24,8 @@ extern SAVE g_save;
 extern MEMCARD g_memcard;
 
 extern void *DAT_002bea10;
+extern "C" void func_001F6A30();
+extern "C" int FUN_00160650(GS *pgs);
 
 void StartupMemcard()
 {
@@ -37,7 +41,17 @@ void InitMemcard(MEMCARD *pmemcard)
 	pmemcard->field_0x10 = 0x22;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018b600__Fv);
+void FUN_0018b600()
+{
+	WaitSema(g_memcard.semaId);
+	g_memcard.field_0x10 = ((int (*)(int))g_memcard.field_0x08)(g_memcard.field_0x0c);
+	g_athread.sema = -1;
+	g_memcard.threadId = -1;
+	g_memcard.field_0x0c = 0;
+	g_memcard.field_0x08 = 0;
+	SignalSema(g_memcard.semaId);
+	func_001F6A30();
+}
 
 /**
  * @todo 82.93% match. Setting struct fields in wrong order?
@@ -53,7 +67,7 @@ void CreateMemcardThread(MEMCARD *pmemcard, int unk1, int unk2)
 	
 	ThreadParam threadParam;
 	memset(&threadParam, 0, sizeof(ThreadParam));
-	threadParam.entry = FUN_0018b600;
+	threadParam.entry = (void (*)(void *))FUN_0018b600;
 	threadParam.gpReg = &_gpReg;
 	threadParam.stack = DAT_002bea10;
 	threadParam.stackSize = 0x4000;
@@ -128,11 +142,39 @@ int FUN_0018bd00(int a, int b, int *pc)
 	return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", InitSave__FP4SAVEii);
+void InitSave(SAVE *psave, int unk1, int unk2)
+{
+	memset(psave, 0, 0x4f50);
+	psave->field_0x0c = -1;
+	psave->mode = 0;
+	FUN_0018c178(psave, 0);
+	psave->port = unk1;
+	psave->slot = unk2;
+	STRUCT_OFFSET(psave, 0x4f48, int) = 0;
+	STRUCT_OFFSET(psave, 0x4f44, int) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/memcard", UpdateSave__FP4SAVE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", CompareSaves__FP4SAVET0);
+int CompareSaves(SAVE *psave1, SAVE *psave2)
+{
+	int d = psave1->unk_0x54 - psave2->unk_0x54;
+	if (d != 0)
+		return d;
+	d = psave1->unk_0x52 - psave2->unk_0x52;
+	if (d != 0)
+		return d;
+	d = psave1->unk_0x53 - psave2->unk_0x53;
+	if (d != 0)
+		return d;
+	d = psave1->unk_0x56 - psave2->unk_0x56;
+	if (d != 0)
+		return d;
+	d = psave1->unk_0x57 - psave2->unk_0x57;
+	if (d != 0)
+		return d;
+	return psave1->unk_0x58 - psave2->unk_0x58;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018c028);
 
@@ -187,12 +229,12 @@ INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018c770);
 
 INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018c7f8__FP4SAVE);
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018c888__FP4SAVEiiiPi);
+INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018c888__FP4SAVEPciT1Pi);
 
-int FUN_0018c9c0(SAVE *psave, int b, int c)
+int FUN_0018c9c0(SAVE *psave, char *pchz, char *pbHdr)
 {
 	int x;
-	int r = FUN_0018c888(psave, b, 1, c, &x);
+	int r = FUN_0018c888(psave, pchz, 1, pbHdr, &x);
 	if (r != 0)
 		return r;
 	return (x == 1) ? 0 : 0xe;
@@ -210,13 +252,46 @@ INCLUDE_ASM("asm/nonmatchings/P2/memcard", load_file_from_disc);
 
 INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018cdd8);
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018cfc0);
+int FUN_0018cfc0(SAVE *psave, char *pchz, GS *pgs)
+{
+	pgs->gsv = 0x12;
+	pgs->cbThis = 0x1a00;
+	pgs->nChecksum = FUN_00160650(pgs);
+	return FUN_0018d368(psave, pchz, pgs, 0x1a00);
+}
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018d028);
+int FUN_0018d028(SAVE *psave, char *pchz, GS *pgs, char *pbHdr)
+{
+	char abHdr[0x60];
+	InitGameState(pgs);
+	if (pbHdr == 0)
+		pbHdr = abHdr;
+	int r = FUN_0018cfc0(psave, pchz, pgs);
+	if (r == 0)
+		r = FUN_0018c9c0(psave, pchz, pbHdr);
+	return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018d0a0);
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018d168);
+int FUN_0018d168(SAVE *psave, int *pcb)
+{
+	int r = FUN_0018bd00(func_00209CB8(psave->port, psave->slot, &psave->mcType, &psave->mcFree, &psave->mcFormat), 1, 0);
+	switch (r)
+	{
+	case 9:
+		r = 0;
+		break;
+	case 10:
+		r = 12;
+		break;
+	}
+	if (r == 0)
+		*pcb = psave->mcFree << 10;
+	else
+		*pcb = 0;
+	return r;
+}
 
 int FUN_0018d1f8(SAVE *psave)
 {
@@ -252,7 +327,19 @@ int FUN_0018d328(SAVE *psave, int fd, void *pv, int cb, int *pc)
 	return FUN_0018bd00(func_00209990(fd, pv, cb), 6, pc);
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/memcard", FUN_0018d368);
+int FUN_0018d368(SAVE *psave, char *pchz, void *pv, int cb)
+{
+	int fd = -1;
+	int cbWritten;
+	int r = FUN_0018d268(psave, pchz, 0x202, &fd);
+	if (r != 0)
+		return r;
+	r = FUN_0018d328(psave, fd, pv, cb, &cbWritten);
+	if (r == 0)
+		r = (cbWritten == cb) ? 0 : 7;
+	FUN_0018d2b0(psave, fd);
+	return r;
+}
 
 JUNK_ADDIU(10);
 

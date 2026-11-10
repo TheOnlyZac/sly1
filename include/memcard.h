@@ -6,6 +6,7 @@
 #define MEMCARD_H
 
 #include "common.h"
+#include "game.h"
 
 /**
  * @brief Memory Card.
@@ -56,7 +57,7 @@ void StartupMemcard();
 void InitMemcard(MEMCARD *pmemcard);
 
 // MemcardThreadEntry?
-void FUN_0018b600(void *data);
+void FUN_0018b600();
 
 void SetMemcardThreadHighPrio(MEMCARD *pmemcard);
 
@@ -81,8 +82,13 @@ int FUN_0018bd00(int a, int b, int *pc);
 void FUN_0018c178(SAVE *psave, int state);
 int FUN_0018c1a8(SAVE *psave);
 int FUN_0018c1e8(SAVE *psave);
-int FUN_0018c888(SAVE *psave, int b, int c, int d, int *pe);
-int FUN_0018c9c0(SAVE *psave, int b, int c);
+int FUN_0018c888(SAVE *psave, char *pchz, int c, char *pbHdr, int *pe);
+int FUN_0018c9c0(SAVE *psave, char *pchz, char *pbHdr);
+int FUN_0018cfc0(SAVE *psave, char *pchz, GS *pgs);
+int FUN_0018d028(SAVE *psave, char *pchz, GS *pgs, char *pbHdr);
+int FUN_0018d168(SAVE *psave, int *pcb);
+int FUN_0018d368(SAVE *psave, char *pchz, void *pv, int cb);
+int CompareSaves(SAVE *psave1, SAVE *psave2);
 int FUN_0018d1f8(SAVE *psave);
 int FUN_0018d228(SAVE *psave, int b);
 int FUN_0018d268(SAVE *psave, char *pchz, int mode, int *pfd);
