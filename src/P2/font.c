@@ -827,7 +827,88 @@ void CRichText::GetExtents(float *pdx, float *pdy, float dxMax)
         *pdy = dy;
 }
 
-INCLUDE_ASM("asm/nonmatchings/P2/font", Draw__9CRichTextP8CTextBoxT1P4GIFS);
+extern "C" void *memset(void *, int, unsigned int);
+
+void CRichText::Draw(CTextBox *ptbx, CTextBox *ptbxClip, GIFS *pgifs)
+{
+    float adx[64];
+    RGBA rgbaBase;
+    int fNewLine = 1;
+    int cline = 0;
+    char ch;
+    float x;
+    float y;
+    float *pdx;
+    CFont *pfontSetup;
+    memset(adx, 0, sizeof(adx));
+    Reset();
+    while ((ch = ChNext()) != 0)
+    {
+        if (ch == '\n')
+            cline++;
+        else
+            adx[cline] += m_pfontCur->DxFromCh(ch);
+    }
+    if (ptbx->m_jv == JV_Top)
+    {
+        y = ptbx->m_y;
+    }
+    else
+    {
+        float dyTotal = (float)(cline + 1) * ((float)m_pfontBase->m_dyUnscaled * m_pfontBase->m_ryScale);
+        if (ptbx->m_jv == JV_Bottom)
+            y = ptbx->m_y + ptbx->m_dy - dyTotal;
+        else
+            y = ptbx->m_y + (ptbx->m_dy - dyTotal) * 0.5f;
+    }
+    rgbaBase = ptbx->m_rgba;
+    SetBaseColor(&rgbaBase);
+    pfontSetup = 0;
+    Reset();
+    float half = 0.5f;
+    JH jhRight = JH_Right;
+    pdx = adx;
+    while ((ch = ChNext()) != 0)
+    {
+        if (ch == '\n')
+        {
+            fNewLine = 1;
+            pdx++;
+            y += (float)m_pfontBase->m_dyUnscaled * m_pfontBase->m_ryScale;
+        }
+        else
+        {
+            if (fNewLine)
+            {
+                if (ptbx->m_jh == JH_Left)
+                {
+                    x = ptbx->m_x;
+                }
+                else
+                {
+                    float dxLine = *pdx;
+                    if (ptbx->m_jh == jhRight)
+                        x = ptbx->m_x + ptbx->m_dx - dxLine;
+                    else
+                        x = ptbx->m_x + (ptbx->m_dx - dxLine) * half;
+                }
+                fNewLine = 0;
+            }
+            if (pfontSetup == 0)
+            {
+                m_pfontCur->SetupDraw(ptbxClip, pgifs);
+                pfontSetup = m_pfontCur;
+            }
+            else if (m_unknown)
+            {
+                m_pfontCur->SwitchTex0(pgifs);
+                m_unknown = 0;
+            }
+            x += m_pfontCur->DxDrawCh(ch, x, y, *(uint *)&m_rgbaCur, pgifs);
+        }
+    }
+    m_pfontCur->CleanupDraw(ptbxClip, pgifs);
+}
 
 void PostFontsLoad()
 {
