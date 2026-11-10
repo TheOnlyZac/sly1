@@ -25,6 +25,8 @@
 
 extern "C" void func_001E02C8(void *, int);
 extern int FUN_00148938(SW *psw, CID cid, int cpdprizeMax, DPRIZE **apdprize);
+extern VECTOR D_00248D30;
+extern MATRIX3 g_matIdentity;
 extern int D_00270458;
 extern int D_00275C34;
 extern char D_00261AD0[]; // unknown, rip vtable?
@@ -110,7 +112,63 @@ int FAbsorbDprizeWkr(DPRIZE *pdprize, WKR *pwkr)
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", UpdateDprize__FP6DPRIZEf);
 
+/**
+ * @todo ~60% matched (about 100 differing lines of 124). The scale vector is a pextlw broadcast of a float in the target,
+ * the clamp and coefficient loads are duplicated per branch, and the ro temp copy is scheduled differently.
+ */
 INCLUDE_ASM("asm/nonmatchings/P2/coin", RenderDprizeAll__FP6DPRIZEP2CMP2RO);
+#ifdef SKIP_ASM
+extern float D_002619E4;
+extern float D_002619E8;
+extern float D_00261A80[3];
+extern float D_00261A90[3];
+MATRIX4 operator*(const MATRIX4 &mat0, const MATRIX4 &mat1);
+
+void RenderDprizeAll(DPRIZE *pdprize, CM *pcm, RO *pro)
+{
+    if (STRUCT_OFFSET(pdprize, 0x2c8, uint64_t) & 0x100000000)
+        return;
+
+    int dprizes = pdprize->dprizes;
+    if (dprizes < 6 && dprizes >= 4)
+    {
+        float *pgCoef;
+        float u;
+        if (dprizes == DPRIZES_Swirl)
+        {
+            u = (g_clock.t - pdprize->tDprizes) / D_002619E4;
+            pgCoef = D_00261A80;
+        }
+        else
+        {
+            u = (g_clock.t - pdprize->tDprizes) / D_002619E8;
+            pgCoef = D_00261A90;
+        }
+        float t;
+        if (u < 0.0f)
+            t = 0.0f;
+        else if (1.0f < u)
+            t = 1.0f;
+        else
+            t = u;
+
+        float s = pgCoef[0] + t * (pgCoef[1] + t * pgCoef[2]);
+        VECTOR vScale;
+        vScale.x = vScale.y = vScale.z = vScale.gUnused = s;
+        MATRIX4 matScale;
+        LoadMatrixFromPosRotScale(&D_00248D30, &g_matIdentity, &vScale, &matScale);
+        struct
+        {
+            MATRIX4 mat;
+            char a[0x10];
+        } ro;
+        DupAloRo(pdprize, pro, (RO *)&ro);
+        ro.mat = ro.mat * matScale;
+        pro = (RO *)&ro;
+    }
+    RenderAloAll(pdprize, pcm, pro);
+}
+#endif
 
 INCLUDE_ASM("asm/nonmatchings/P2/coin", SetDprizeDprizes__FP6DPRIZE7DPRIZES);
 
@@ -174,8 +232,6 @@ void UpdateCoin(COIN *pcoin, float dt)
 extern "C" void ConvertCmScreenToWorld(CM *pcm, VECTOR *pscreen, VECTOR *pworld);
 extern VECTOR D_00261AB0;
 extern VECTOR D_00261AC0;
-extern VECTOR D_00248D30;
-extern MATRIX3 g_matIdentity;
 
 void CreateSwCharm(SW *psw)
 {
