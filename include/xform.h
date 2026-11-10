@@ -92,7 +92,8 @@ struct EXPLSO
     /* 0x20 */ VECTOR posOrigin; // guess
     /* 0x30 */ float rScale; // guess
     /* 0x34 */ float sRadius; // guess
-    /* 0x38 */ STRUCT_PADDING(6);
+    /* 0x38 */ struct SO *psoTouch; // guess
+    /* 0x3c */ STRUCT_PADDING(5);
 };
 
 /**
