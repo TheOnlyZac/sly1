@@ -348,44 +348,26 @@ def generate_ninja_build(
 
 
 # MARK: Short loop fix
-# Pattern to workaround unintended nops around loops
+# ee-as (2.9-ee-991111) implements the R5900 short loop erratum fix: a backward branch whose
+# loop is 6 instructions or shorter gets nops inserted before it, even under .set noreorder.
+# It measures the loop with frag-relative offsets, so when one of its internal frag boundaries
+# (it starts a new frag whenever its obstack chunk fills up) falls between the loop label and the
+# branch, a long loop can be mistaken for a short one and padded. Where the boundaries fall
+# depends on everything earlier in the same .c file, so editing one function can add nops to
+# an unrelated later INCLUDE_ASM function. Emitting the branches of every INCLUDE_ASM function
+# as raw .word opcodes hides them from that check; the bytes are the original ones anyway.
 COMMENT_PART = r"\/\* (.+) ([0-9A-Z]{2})([0-9A-Z]{2})([0-9A-Z]{2})([0-9A-Z]{2}) \*\/"
-INSTRUCTION_PART = r"(\b(bne|bnel|beq|beql|bnez|bnezl|beqzl|bgez|bgezl|bgtz|bgtzl|blez|blezl|bltz|bltzl|b)\b.*)"
+INSTRUCTION_PART = r"(\b(bne|bnel|beq|beql|bnez|bnezl|beqz|beqzl|bgez|bgezl|bgtz|bgtzl|blez|blezl|bltz|bltzl|bgezal|bltzal|bc0f|bc0fl|bc0t|bc0tl|bc1f|bc1fl|bc1t|bc1tl|bc2f|bc2fl|bc2t|bc2tl|b)\b.*)"
 OPCODE_PATTERN = re.compile(f"{COMMENT_PART}  {INSTRUCTION_PART}")
-
-PROBLEMATIC_FUNCS = {
-    "RefOpForEach__FiP4CRefP6CFrame",                            # P2/splice/bif
-    "PredictAsegEffect__FP4ASEGffP3ALOT3iP6VECTORP7MATRIX3T6T6", # P2/aseg
-    "ProjectBlipgTransform__FP5BLIPGfi",                         # P2/blip
-    "ExplodeExplsExplso__FP5EXPLSP6EXPLSO",                      # P2/emitter
-    "ApplyDzg__FP3DZGiPiPPP2SOff",                               # P2/dzg
-    "UpdateJtActive__FP2JTP3JOYf",                               # P2/jt
-    "RebuildLightVifs__FP5LIGHT",                                # P2/light
-    "AddMatrix4Matrix4__FP7MATRIX4N20",                          # P2/mat
-    "FInvertMatrix__FiPfT1",                                     # P2/mat
-    "RenderMsGlobset__FP2MSP2CMP2RO",                            # P2/ms
-    "BounceRipgRips__FP4RIPG",                                   # P2/rip
-    "FUN_001aea70",                                              # P2/screen
-    "UpdateShadow__FP6SHADOWf",                                  # P2/shadow
-    "LoadShadersFromBrx__FP18CBinaryInputStream",                # P2/shd
-    "FillShaders__Fi",                                           # P2/shd
-    "UpdateStepPhys__FP4STEP",                                   # P2/step
-    "DrawTvBands__FP2TVR4GIFS",                                  # P2/tv
-    "FIgnoreUbgIntersection__FP3UBGP2SO",                        # P2/ub
-    "PwarpFromOid__F3OIDT0",                                     # P2/xform
-    "TriggerWarp__FP4WARP"                                       # P2/xform
-}
 
 def replace_instructions_with_opcodes(asm_folder: Path) -> None:
     """
-    Replace branch instructions with raw opcodes for functions that trigger the short loop bug.
+    Replace branch instructions with raw opcodes in every INCLUDE_ASM function, so ee-as never
+    applies its short loop fix to them (see the note above).
     """
     nm_folder = ROOT / asm_folder / "nonmatchings"
 
     for p in nm_folder.rglob("*.s"):
-        if p.stem not in PROBLEMATIC_FUNCS:
-            continue
-
         with p.open("r") as file:
             content = file.read()
 
